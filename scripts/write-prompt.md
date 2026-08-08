@@ -89,6 +89,12 @@ Every article is **3 blocks**. Always 3. Each block is a markdown paragraph sepa
 
 **Attribute non-routine numbers.** Contested figures — casualty counts, production volumes, market-share claims, specific statistics — earn a 2-3 word inline attribution: "the central bank said," "DoD figures show," "according to the study." Routine, self-evident facts (ages, dates, geography) don't. If a figure is load-bearing and lacks a named authority in the source material, drop or soften it — don't float it as if it were common knowledge.
 
+**Live levels, where a story has them.** A selection entry may carry an `indicators` array — the current level of a commodity, currency, rate or index this story is about, with `unit`, a `recent` and `wider` change, and the `asOf` date the figure was published. Use one **when it sharpens the story**, and prefer it to a vague phrase: "Brent at $88.90, down 15.6% in a week" says something "oil prices fell" does not. Three rules, in order of how badly breaking them reads:
+
+- **Date it.** These are published series with their own lag — `asOf` is often several days behind today. Say "as of 3 August", or use the change rather than the level. Never present a dated figure as today's.
+- **Never invent one.** Only the numbers in `indicators` are available to you. Do not compute a different window, round a level into a different figure, or add an indicator the array does not carry.
+- **Skip it when it is not the story.** This is permission, not an instruction. A number that does not bear on what happened is filler, and filler in a 350-character article is the most expensive kind. Most stories will carry no indicator at all, and most that do should use at most one.
+
 **Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
 
 **Strategic depth.** The context sentence must teach a mechanism, not restate the hook with more words. "Prices rose" is a hook. "The pipeline runs through a chokepoint that carries 20% of global supply" is a mechanism. If the reader already knows the mechanism, teach the constraint — why the obvious solution doesn't work, what makes this problem structural rather than temporary.

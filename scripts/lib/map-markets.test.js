@@ -651,7 +651,41 @@ test('the question keeps its horizon and loses only what carries nothing', () =>
   assert.equal(byId['poly-1'], 'U.S. invade Iran before 2027')
   assert.equal(byId['poly-2'], 'US-Iran Nuclear Deal by Aug 31')
   assert.equal(byId['poly-3'], 'Fed raises rates 25 bps after Sept 2026')
-  assert.ok(rows.every((r) => r.note.includes('not a forecast')), 'and every row says what it is')
+  // The provenance disclosure moved from `note` to `caveat` (2026-08-08), when
+  // `narrate-indicators.js` took over `note` to write a per-market description.
+  // The invariant is unchanged and is the reason the field was split: a
+  // generated sentence must never be able to drop the statement that this
+  // number is a price rather than a forecast.
+  assert.ok(
+    rows.every((r) => r.caveat?.includes('not a forecast')),
+    'and every row says what it is',
+  )
+})
+
+/**
+ * The dispatch writes the description and can never write over the disclosure.
+ *
+ * `narrate-indicators.js` puts a `standing` sentence on each indicator in
+ * `/api/trends.json`, and the row prefers it — that is the whole point, since
+ * before it twelve attention rows shared one paragraph about what a pageview
+ * is. The risk that came with it is that the odds block's provenance line was
+ * living in the same field, so a model that wrote a good description would have
+ * silently deleted the statement that a prediction market is a bet. Two fields,
+ * and this is the test that says why there are two.
+ */
+test('generated prose replaces the description and never the provenance', () => {
+  const withStanding = {
+    ...poly('poly-1', 'Will the thing happen?', steady(20, 10, 30)),
+    standing: 'A market on whether the thing happens by the deadline.',
+  }
+  const [row] = oddsEntries([withStanding], 30, NOW)
+  assert.equal(row.note, 'A market on whether the thing happens by the deadline.')
+  assert.ok(row.caveat?.includes('not a forecast'), 'the disclosure survives a written description')
+
+  // And with no `standing` the row still says something rather than nothing.
+  const [bare] = oddsEntries([poly('poly-2', 'Will it?', steady(20, 10, 30))], 30, NOW)
+  assert.ok(bare.note && bare.note.length > 0, 'a payload without the stage still describes the row')
+  assert.ok(bare.caveat?.includes('not a forecast'))
 })
 
 test('attention has no answer at the day step', () => {

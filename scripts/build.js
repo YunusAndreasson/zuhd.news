@@ -13,6 +13,7 @@ import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
+import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
 import {
   formatDate,
@@ -232,7 +233,11 @@ const threadBlockHtml = (threadCtx) => {
 // don't ship series for) is silently dropped.
 const entityStripHtml = (entities, indicatorMap) => {
   if (!Array.isArray(entities) || !entities.length) return ''
+  // Through the alias table first: a published article names the id that was
+  // current when it was written, and the chip has to point at the page that
+  // exists now.
   const rendered = entities
+    .map((e) => (e?.indicatorId ? { ...e, indicatorId: canonicalIndicatorId(e.indicatorId) } : e))
     .filter((e) => e?.indicatorId && indicatorMap?.has(e.indicatorId))
     .map((e) => {
       const ind = indicatorMap.get(e.indicatorId)
@@ -792,6 +797,65 @@ if (Object.keys(contextIndex).length > 0) {
   console.log(`  Built: api/context/ (${Object.keys(contextIndex).length} briefs)`)
 }
 
+/**
+ * Indicator dispatch — the prose `narrate-indicators.js` writes once a day.
+ *
+ * `{ items: { <namespaced id>: { standing, recent, citations } } }`, where the
+ * namespace is bare for a trends indicator, `cp:` for a chokepoint and `mkt:`
+ * for an exchange. Missing file is a graceful degrade: every surface that reads
+ * it spreads the fields conditionally, so a build before the stage has ever run
+ * produces exactly the site it produced before.
+ *
+ * `standing` is joined onto the three list payloads below because it is a row's
+ * tooltip and has to be there before anything is pressed. `recent` and
+ * `citations` are deliberately *not* — they are only wanted when a card opens,
+ * and they ride `/api/entity/{id}.json`, which is already fetched at that
+ * moment.
+ */
+const dispatchSrc = join(ROOT, 'content', '.indicator-dispatch.json')
+const dispatch = existsSync(dispatchSrc)
+  ? JSON.parse(readFileSync(dispatchSrc, 'utf8')).items || {}
+  : {}
+if (Object.keys(dispatch).length) {
+  console.log(`  Loaded: indicator dispatch (${Object.keys(dispatch).length} items)`)
+}
+
+const articleBySlug = new Map(sorted.map((a) => [a.slug, a]))
+
+/**
+ * Chokepoints and exchanges, shaped as indicators so they get `/e/{id}` pages.
+ *
+ * Both are series with a label, a unit, a date axis and an article join — every
+ * property `/e/{id}` renders — and both were absent from it only because they
+ * arrive in their own payloads rather than in the trends snapshot. The cost of
+ * that accident was not cosmetic: `entity-registry.js` resolved a mention of the
+ * Strait of Hormuz to a chokepoint id, `indicatorMap` found no page for it, and
+ * **305 articles carried a chokepoint entity that rendered no chip at all**.
+ *
+ * Filled by the two blocks below, read by `indicatorMap` and `buildEntityPages`.
+ */
+const extraIndicators = []
+
+/** An article row as the card lists want it. */
+const relatedRow = (a) => ({
+  slug: a.slug,
+  title: a.title,
+  date: a.meta.date,
+  dateFormatted: a.dateFormatted,
+})
+
+/**
+ * The dispatch's cited stories, or the caller's tag matches when there are none.
+ *
+ * Citations are resolved against the corpus here rather than trusted, because
+ * the dispatch file is committed and an article can be renamed or withdrawn
+ * between the run that wrote it and the build that reads it.
+ */
+const citedOr = (d, fallback) => {
+  const cited = (d?.citations || []).map((s) => articleBySlug.get(s)).filter(Boolean)
+  return cited.length ? cited.map(relatedRow) : fallback
+}
+
 // Chokepoints snapshot — ambient globe layer on mobile, and the data
 // source the web chokepoint-sheet island reads when a reader taps a
 // chokepoint marker. Web enriches the blob with `relatedArticles[]` so
@@ -827,11 +891,39 @@ if (existsSync(chokepointsSrc)) {
           if (hits.length >= 8) break
         }
       }
-      return { ...c, relatedArticles: hits }
+      const d = dispatch[`cp:${c.id}`]
+      return {
+        ...c,
+        // The cited stories where the dispatch produced some, the tag matches
+        // otherwise. A citation list is the stories an explanation was *built
+        // from*, ranked by a reader of both; the tag list is the first eight
+        // articles containing one of eleven words. Where we have the first, the
+        // second is strictly worse and showing both would be the same shelf
+        // twice.
+        relatedArticles: citedOr(d, hits),
+        ...(d?.standing ? { standing: d.standing } : {}),
+        ...(d?.recent ? { recent: d.recent } : {}),
+      }
     }),
   }
   writeFileSync(join(DIST_DIR, 'api', 'chokepoints.json'), JSON.stringify(enriched))
   console.log(`  Built: api/chokepoints.json (${enriched.chokepoints.length} chokepoints)`)
+  for (const c of enriched.chokepoints) {
+    // `series.total`, not `series.values` — the one field name this payload
+    // spells differently from every other series on the site.
+    if (!Array.isArray(c.series?.total) || c.series.total.length < 2) continue
+    extraIndicators.push({
+      id: `cp:${c.id}`,
+      label: c.name,
+      unit: 'vessels/day',
+      source: 'portwatch',
+      sourceLabel: 'IMF PortWatch',
+      cadence: 'daily',
+      values: c.series.total,
+      periods: c.series.periods || [],
+      asOf: c.asOf || '',
+    })
+  }
 }
 
 // Stock-exchange snapshot — the map's markets layer. Enriched the same way as
@@ -883,14 +975,35 @@ if (existsSync(marketsSrc)) {
         hits.push({ slug: a.slug, title: a.title, date: a.date, dateFormatted: a.dateFormatted })
         if (hits.length >= 8) break
       }
+      const d = dispatch[`mkt:${e.id}`]
       // Translated here, not in the island, for the same reason and by the same
       // call the map points use above: the catalog holds the untranslated
       // source string so joins stay stable, and the display layer renames. This
       // is what prints Yafa rather than Tel Aviv beside the TA-125.
-      return { ...e, city: displayLocation(e.city) || e.city, relatedArticles: hits }
+      return {
+        ...e,
+        city: displayLocation(e.city) || e.city,
+        relatedArticles: citedOr(d, hits),
+        ...(d?.standing ? { standing: d.standing } : {}),
+        ...(d?.recent ? { recent: d.recent } : {}),
+      }
     }),
   }
   writeFileSync(join(DIST_DIR, 'api', 'markets.json'), JSON.stringify(enriched))
+  for (const e of enriched.exchanges) {
+    if (!Array.isArray(e.series?.values) || e.series.values.length < 2) continue
+    extraIndicators.push({
+      id: `mkt:${e.id}`,
+      label: e.indexName ? `${e.name} (${e.indexName})` : e.name,
+      unit: e.currency || '',
+      source: 'exchange',
+      sourceLabel: e.sourceLabel || 'Yahoo Finance',
+      cadence: 'daily',
+      values: e.series.values,
+      periods: e.series.periods || [],
+      asOf: e.asOf || '',
+    })
+  }
   const withCoverage = enriched.exchanges.filter((e) => e.relatedArticles.length).length
   console.log(
     `  Built: api/markets.json (${enriched.exchanges.length} exchanges, ${withCoverage} with coverage)`,
@@ -957,10 +1070,26 @@ if (existsSync(iodaSrc)) {
 // newest snapshot is what entity pages have always done.
 const trendsSrc = latestTrendsPath()
 if (trendsSrc && existsSync(trendsSrc)) {
-  cpSync(trendsSrc, join(DIST_DIR, 'api', 'trends.json'))
   const snapshot = JSON.parse(readFileSync(trendsSrc, 'utf8'))
-  const n = snapshot.indicators?.length ?? 0
-  console.log(`  Built: api/trends.json (${n} indicators, ${snapshot.asOf ?? 'undated'})`)
+  // `standing` joined on, which is why this is a read-modify-write and no
+  // longer a `cpSync`. This is the payload the instrument rail reads, so it is
+  // where the row's own sentence has to arrive — the copy left it out at first
+  // and every rail row went on printing the hardcoded block constant while
+  // `/e/{id}` and the cards had prose. `recent` deliberately stays off it: it
+  // is only wanted when a card opens, and it rides `/api/entity/{id}.json`.
+  const withStanding = {
+    ...snapshot,
+    indicators: (snapshot.indicators ?? []).map((ind) => {
+      const s = dispatch[ind.id]?.standing
+      return s ? { ...ind, standing: s } : ind
+    }),
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'trends.json'), JSON.stringify(withStanding))
+  const n = withStanding.indicators.length
+  const described = withStanding.indicators.filter((i) => i.standing).length
+  console.log(
+    `  Built: api/trends.json (${n} indicators, ${described} described, ${snapshot.asOf ?? 'undated'})`,
+  )
 } else {
   console.log('  Skipped: api/trends.json (no snapshot in content/trends/)')
 }
@@ -1409,6 +1538,15 @@ const indicatorMap = new Map()
     }
     if (indicatorMap.size) break
   }
+  // The chokepoint and exchange series get pages too, so a chip naming one is a
+  // chip that resolves. Added after the loop rather than inside it because the
+  // `break` above is about finding a usable trends snapshot, and these come
+  // from payloads that have nothing to do with which snapshot won.
+  for (const ind of extraIndicators) {
+    if (!indicatorMap.has(ind.id)) {
+      indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+    }
+  }
 }
 // Per-story payloads for the map's reading card. The map never navigates away
 // to read — the card opens anchored at the story's own coordinates — so each
@@ -1462,6 +1600,9 @@ for (const a of sorted) {
        */
       ...(() => {
         const entities = (Array.isArray(a.meta.entities) ? a.meta.entities : [])
+          .map((e) =>
+            e?.indicatorId ? { ...e, indicatorId: canonicalIndicatorId(e.indicatorId) } : e,
+          )
           .filter((e) => e?.indicatorId && indicatorMap.has(e.indicatorId))
           .map((e) => ({
             id: e.indicatorId,
@@ -1867,6 +2008,8 @@ const entityResult = await buildEntityPages({
   footerNav: FOOTER_NAV,
   islandV: ISLAND_V,
   shareRowHtml,
+  dispatch,
+  extraIndicators,
 })
 console.log(`  Built: e/ (${entityResult.count} entity pages)`)
 

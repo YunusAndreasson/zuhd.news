@@ -42,6 +42,7 @@ const CLASSES: EntityPanelClasses = {
   full: 'article-entity-full',
   more: 'article-entity-more',
   provenance: 'article-entity-provenance',
+  recent: 'article-entity-recent',
   section: 'article-entity-section',
   mentions: 'article-entity-mentions',
   mentionTime: 'article-entity-mention-time',

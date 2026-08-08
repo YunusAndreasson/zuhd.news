@@ -43,6 +43,7 @@ const ENTITY_CLASSES: EntityPanelClasses = {
   full: 'map-popup-entity-full',
   more: 'map-popup-more',
   provenance: 'map-popup-meta',
+  recent: 'map-popup-entity-recent',
   section: 'map-popup-section',
   mentions: 'map-popup-mentions',
   mention: 'map-popup-mention',

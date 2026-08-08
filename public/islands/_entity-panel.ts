@@ -44,6 +44,25 @@ export interface EntityRecord {
   deltaLabel?: string | null
   deltaTone?: string | null
   caption?: string
+  /**
+   * The dispatch's prose, written once a day by `narrate-indicators.js`.
+   *
+   * `standing` is what the instrument is; `recent` is what has happened and
+   * why; `citations` are the slugs `recent` was built from, a subset of
+   * `mentions`. All optional — the build spreads them conditionally, so a
+   * payload from before that stage carries none and every surface renders
+   * exactly what it rendered before.
+   */
+  standing?: string
+  recent?: string
+  /**
+   * The stories `recent` was written from, already resolved to rows.
+   *
+   * Not slugs to be looked up in `mentions`: a `wiki-*` or `poly-*` id appears
+   * in no article's frontmatter, so those records have no `mentions` and the
+   * lookup returned nothing on precisely the blocks this prose is for.
+   */
+  cited?: EntityMention[]
   /** The series filters non-finite points itself; `series-chart` declares the
    *  same shape against the same endpoint. */
   values: number[]
@@ -97,6 +116,8 @@ export interface EntityPanelClasses {
   full: string
   more: string
   provenance: string
+  /** The `recent` paragraph — the dispatch's account of what has happened. */
+  recent: string
   section: string
   mentions: string
   /** The `<li>`. The article page's list needs no class of its own. */
@@ -167,6 +188,24 @@ export const buildEntityPanel = ({
     className: classes.figure,
   })
   if (chart) body.append(chart.element)
+
+  /**
+   * What has happened, under the chart it is about.
+   *
+   * The question a chip is asked is *this story is about Brent crude — what is
+   * Brent crude doing?*, and until now the whole answer was a line and a
+   * percentage: the reader could see the shape and had no way to learn what
+   * made it. One sentence of cause is the difference between a chart and an
+   * explanation, and it costs one paragraph in a panel that already opens.
+   *
+   * `standing` is deliberately **not** rendered here. On the map the row that
+   * opened this panel already carries it as its `title`, and on the article page
+   * the chip sits inside a sentence that has just named the thing — so printing
+   * a definition would be the panel answering a question the reader did not ask
+   * before the one they did. It stays on `/e/{id}`, where a reader has come for
+   * the whole record.
+   */
+  if (record.recent) body.append(el('p', classes.recent, record.recent))
 
   // The record's second density, under the chart rather than at `/e/{id}`.
   //

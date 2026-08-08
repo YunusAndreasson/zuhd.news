@@ -258,6 +258,14 @@ SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/z
 # Runs after dedup so only genuinely new stories get added to the ledger
 node scripts/update-ledger.js 2>&1 | tee -a "$LOG_FILE"
 
+# Stage 1.7: Attach live indicator levels to the selection, so the writer can
+# cite a number rather than say "oil prices fell". Deterministic — reads the
+# trends snapshot already on disk, no model call and no API call. Runs after
+# backfill so it only works on the final story set. Fail-soft: a missing
+# snapshot or an unreadable selection logs and exits 0, and the writer sees a
+# selection with no `indicators` key, which is the state it has always handled.
+node scripts/attach-indicators.js 2>&1 | tee -a "$LOG_FILE"
+
 # Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
@@ -775,6 +783,35 @@ $ARTICLE_TEXT" 2>/dev/null)
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"
   fi
+fi
+
+# Stage 3.8: Indicator dispatch (04:00 UTC only) — Opus writes two sentences for
+# every instrument the rail shows a number for: what it is, and what has
+# happened to it and why. Grounded in our own corpus plus the merged feed
+# snapshots, so it costs nothing at the news API. Writes
+# content/.indicator-dispatch.json; the build joins it onto /api/trends.json,
+# /api/chokepoints.json, /api/markets.json and /api/entity/{id}.json.
+#
+# Placed *before* Stage 4 deliberately: the briefing rebuilds and redeploys
+# below, so the prose ships on that pass rather than needing a deploy of its
+# own. If Stage 4 is skipped or fails, the next cycle's Stage 3b build picks the
+# file up — which is why it commits here rather than waiting.
+#
+# Cached on two fingerprints (identity, and the story behind the move), so a
+# steady day is close to free: measured 98 items / $17.60 cold, 0 calls when
+# nothing changed, 6 items / $1.26 after one cycle of 12 new articles. The
+# timeout covers a cold run (~18 min measured) and is behind `|| echo WARNING`
+# so it can never hold up a publish.
+HOUR_UTC=$(date -u +%H)
+if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.8: Indicator dispatch ---" | tee -a "$LOG_FILE"
+  T38=$SECONDS
+  timeout 1500 node scripts/narrate-indicators.js 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: indicator dispatch failed" | tee -a "$LOG_FILE"
+  echo "Dispatch — $((SECONDS - T38))s" | tee -a "$LOG_FILE"
+  commit_only "Indicator dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.indicator-dispatch.json
+else
+  echo "--- Stage 3.8: Indicator dispatch (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 3.9: Cloudflare analytics fetch (04:00 UTC only — low-frequency, fail-soft)

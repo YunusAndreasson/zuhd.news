@@ -25,6 +25,7 @@ import { el } from '../_dom'
 import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
+import { fetchEntity } from '../_entity-panel'
 import { nisab, ribbonPoints, sparkInput, type TickerEntry } from './markets'
 import { windowPoints } from './series-window'
 import type {
@@ -401,6 +402,15 @@ export function createSheet(): Sheet {
     return chart ? [chart.element] : []
   }
 
+  /**
+   * Which indicator card is current, so a fetch that lands late cannot fill it.
+   *
+   * The rail is a column of rows a reader scans by pressing several in a row,
+   * and `/api/entity/{id}.json` is a network call — without this, pressing Brent
+   * and then VIX inside one round trip fills the VIX card with Brent's prose.
+   */
+  let indicatorSeq = 0
+
   const relatedList = (items: Array<{ slug: string; title: string }>, label: string): Node[] => {
     if (!items.length) return []
     const list = el('ul', 'map-sheet-more')
@@ -712,8 +722,8 @@ export function createSheet(): Sheet {
       )
 
       // Before the chart, because a reader who cannot name the instrument
-      // cannot read the line either. Only the instruments that need one carry
-      // it — see `TickerEntry.note`.
+      // cannot read the line either. Since 2026-08-08 this is normally the
+      // dispatch's `standing`, written per row — see `TickerEntry.note`.
       if (entry.note) nodes.push(el('p', 'map-sheet-lead', entry.note))
 
       if (pin) {
@@ -759,6 +769,48 @@ export function createSheet(): Sheet {
         }
 
         if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
+
+        // The provenance disclosure, where the block carries one. Below the
+        // chart rather than above it: it qualifies the number, and putting it
+        // where `standing` goes would make the card open on a disclaimer.
+        if (entry.caveat) nodes.push(el('p', 'map-sheet-note', entry.caveat))
+
+        /**
+         * What has actually happened, and the stories it was read from.
+         *
+         * **This is the crossreference the rail did not have.** The chokepoint,
+         * exchange and conflict cards have all carried a related-coverage list
+         * for a long time; the indicator card rendered kicker → title → hero →
+         * note → chart → source and stopped, on a surface whose ids are exactly
+         * the ones the entity pages are keyed on. A reader could see that Brent
+         * had moved 14% and had no route from that number to a single word
+         * about why.
+         *
+         * Fetched rather than carried on the rail's payload because it is only
+         * ever wanted once a card is open, and `/api/entity/{id}.json` is the
+         * blob the article strip and the story card already fetch through the
+         * same in-memory cache. The card renders complete without it and grows
+         * when it lands, so a slow network costs a paragraph rather than the
+         * card.
+         */
+        const seq = ++indicatorSeq
+        const host = el('div', 'map-sheet-dispatch')
+        nodes.push(host)
+        void fetchEntity(entry.id).then((record) => {
+          // A second row pressed while this was in flight owns the sheet now.
+          // Same guard, and for the same reason, as `_disclosure.ts`'s.
+          if (!record || seq !== indicatorSeq || !host.isConnected) return
+          const grown: Node[] = []
+          if (record.recent) grown.push(el('p', 'map-sheet-lead', record.recent))
+          // The cited stories, which are the ones the sentence above was built
+          // from — not every article mentioning the instrument. `mentions` is
+          // that, and it stays on `/e/{id}` where a reader has asked for the
+          // whole record.
+          const cited = record.cited ?? []
+          if (cited.length) grown.push(...relatedList(cited, 'Read from'))
+          grown.push(readMore(`/e/${encodeURIComponent(entry.id)}`, 'Full record →'))
+          host.replaceChildren(...grown)
+        })
       }
       render(nodes, pin, docked)
     },

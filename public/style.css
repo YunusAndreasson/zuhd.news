@@ -1572,6 +1572,32 @@ body.archetype-page-body .article-page-header {
   color: var(--text);
 }
 
+/* The dispatch's two sentences, on the indicator's own page.
+
+   `standing` sits above the chart and `recent` below it, and the split is the
+   reading order rather than a layout preference: a reader who cannot name the
+   instrument cannot read the line either, and an account of what moved is a
+   claim about a shape they have to have seen first.
+
+   `standing` is set at reading size because it is prose the page is partly
+   about; the old page had none at all and opened straight onto a number. */
+.entity-standing {
+  margin: var(--space-sm) 0 0;
+  max-width: var(--measure);
+  color: var(--text-secondary);
+}
+
+.entity-recent { margin-top: var(--space-md); }
+
+.entity-recent-body {
+  margin: var(--space-xs) 0 0;
+  max-width: var(--measure);
+}
+
+/* The stories the sentence above was built from. Tighter than `Mentioned in`
+   under it, because this is a short attribution list and that is an index. */
+.entity-recent-sources { margin-top: var(--space-sm); }
+
 .entity-mentioned { margin-top: var(--space-md); }
 
 /* --- Category page --- */
@@ -2003,6 +2029,16 @@ body.archetype-page-body .article-page-header {
   /* A disclosure wearing a link's clothes — the `href` is real and survives a
      modified click — so the open state has to be visible as well as announced. */
   &[aria-expanded='true'] { color: var(--text); }
+}
+
+/* `recent` inside the article page's `follows` panel — what the instrument has
+   actually done, under the chart of it doing so. Reading size, not the metadata
+   step: it is the one sentence in this panel that is prose rather than a label,
+   and quiet is an ink step here as everywhere (never `opacity`). */
+.article-entity-recent {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
 }
 
 .article-entity-more {
@@ -7072,6 +7108,17 @@ a.map-popup-source-name {
   margin: 0;
 }
 
+/* `recent` inside the story card's `follows` panel. Map chrome, so the ink
+   tokens are `--map-*` — this panel is on the map's dark surface whatever the
+   reader's theme, which is the whole reason `_entity-panel.ts` takes its class
+   names as parameters instead of sharing them with the article page. */
+.map-popup-entity-recent {
+  margin: 0.4rem 0 0;
+  font-size: var(--size-sm);
+  line-height: var(--leading-body);
+  color: var(--map-ink-muted);
+}
+
 .map-popup-entity-full {
   display: inline-block;
   margin-top: 0.4rem;
@@ -7227,6 +7274,20 @@ a.map-popup-source-name {
   font-size: var(--size-sm);
   line-height: var(--leading-body);
   color: var(--text);
+}
+
+/* Where the indicator card grows once `/api/entity/{id}.json` lands: the
+   account of what moved, the stories it was read from, and the route to the
+   full record.
+
+   It reserves no height on purpose. The card is a `<dialog>` the reader has
+   just opened and the fetch is `force-cache`, so on any repeat press it is
+   already there; reserving space for prose that may not exist would leave a gap
+   under every indicator whose dispatch entry has only a standing sentence. */
+.map-sheet-dispatch:not(:empty) {
+  margin-top: var(--space-xs);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--map-line-soft);
 }
 
 /* Who made the finding — the genocide card's version of the focal line.

@@ -108,21 +108,65 @@ export const ENTITY_RULES = [
   { mention: 'XMR',            indicatorId: 'xmr',        kind: 'crypto' },
 
   // ── Chokepoints ────────────────────────────────────────────────────────────
-  { mention: 'Strait of Hormuz',indicatorId: 'portwatch-hormuz-tanker', kind: 'chokepoint' },
-  { mention: 'Hormuz',         indicatorId: 'portwatch-hormuz-tanker', kind: 'chokepoint' },
-  { mention: 'Bab-el-Mandeb',  indicatorId: 'portwatch-bab-container', kind: 'chokepoint' },
-  { mention: 'Bab el-Mandeb',  indicatorId: 'portwatch-bab-container', kind: 'chokepoint' },
-  { mention: 'Suez Canal',     indicatorId: 'portwatch-suez-total',    kind: 'chokepoint' },
-  { mention: 'Suez',           indicatorId: 'portwatch-suez-total',    kind: 'chokepoint' },
-  { mention: 'Panama Canal',   indicatorId: 'portwatch-panama-total',  kind: 'chokepoint' },
-  { mention: 'Strait of Malacca', indicatorId: 'portwatch-malacca-total', kind: 'chokepoint' },
-  { mention: 'Malacca Strait', indicatorId: 'portwatch-malacca-total', kind: 'chokepoint' },
-  { mention: 'Taiwan Strait',  indicatorId: 'portwatch-taiwan-total',  kind: 'chokepoint' },
-  { mention: 'Dover Strait',   indicatorId: 'portwatch-dover-total',   kind: 'chokepoint' },
-  { mention: 'English Channel',indicatorId: 'portwatch-dover-total',   kind: 'chokepoint' },
-  { mention: 'Strait of Gibraltar', indicatorId: 'portwatch-gibraltar-total', kind: 'chokepoint' },
-  { mention: 'Gibraltar Strait', indicatorId: 'portwatch-gibraltar-total', kind: 'chokepoint' },
+  //
+  // **These resolve to `cp:<id>`, matching `content/.chokepoints.json`, and used
+  // to resolve to `portwatch-*` ids that do not exist** (corrected 2026-08-08).
+  //
+  // The registry was written against `trends-registry.js`, which declares eight
+  // portwatch indicators — but that source has not landed a single row in the
+  // trends payload for as long as the snapshots go back, because chokepoint
+  // series are fetched by `fetch-chokepoints.js` into their own file instead.
+  // So every one of these pointed at an id the payload never carried, and
+  // `indicatorMap` in `build.js` — which exists precisely so a chip cannot open
+  // an empty sheet — silently dropped all of them. Measured at the time of the
+  // fix: **305 articles carried a `portwatch-*` id and not one rendered a
+  // chip.** The failure was invisible from either end; the frontmatter looked
+  // populated and the page looked like an article that simply had no entities.
+  //
+  // `ENTITY_ID_ALIASES` below remaps the published frontmatter rather than
+  // rewriting 305 files, so the corpus stays untouched and the fix is one
+  // reversible table.
+  { mention: 'Strait of Hormuz',indicatorId: 'cp:hormuz',            kind: 'chokepoint' },
+  { mention: 'Hormuz',         indicatorId: 'cp:hormuz',             kind: 'chokepoint' },
+  { mention: 'Bab-el-Mandeb',  indicatorId: 'cp:bab-el-mandeb',      kind: 'chokepoint' },
+  { mention: 'Bab el-Mandeb',  indicatorId: 'cp:bab-el-mandeb',      kind: 'chokepoint' },
+  { mention: 'Suez Canal',     indicatorId: 'cp:suez',               kind: 'chokepoint' },
+  { mention: 'Suez',           indicatorId: 'cp:suez',               kind: 'chokepoint' },
+  { mention: 'Panama Canal',   indicatorId: 'cp:panama',             kind: 'chokepoint' },
+  { mention: 'Strait of Malacca', indicatorId: 'cp:malacca',         kind: 'chokepoint' },
+  { mention: 'Malacca Strait', indicatorId: 'cp:malacca',            kind: 'chokepoint' },
+  { mention: 'Taiwan Strait',  indicatorId: 'cp:taiwan',             kind: 'chokepoint' },
+  { mention: 'Dover Strait',   indicatorId: 'cp:dover',              kind: 'chokepoint' },
+  { mention: 'English Channel',indicatorId: 'cp:dover',              kind: 'chokepoint' },
+  { mention: 'Strait of Gibraltar', indicatorId: 'cp:gibraltar',     kind: 'chokepoint' },
+  { mention: 'Gibraltar Strait', indicatorId: 'cp:gibraltar',        kind: 'chokepoint' },
+  { mention: 'Bosporus',       indicatorId: 'cp:bosporus',           kind: 'chokepoint' },
+  { mention: 'Bosphorus',      indicatorId: 'cp:bosporus',           kind: 'chokepoint' },
+  { mention: 'Kerch Strait',   indicatorId: 'cp:kerch',              kind: 'chokepoint' },
+  { mention: 'Cape of Good Hope', indicatorId: 'cp:cape-of-good-hope', kind: 'chokepoint' },
 ]
+
+/**
+ * Published frontmatter ids that have been renamed, old → new.
+ *
+ * Read wherever an article's `entities[]` is resolved against a catalog. The
+ * corpus is append-only in practice — 7,847 files, each one a published record
+ * with its own git history — so a rename is a lookup, not a migration. Drop an
+ * entry only once no article on disk carries the old id.
+ */
+export const ENTITY_ID_ALIASES = {
+  'portwatch-hormuz-tanker': 'cp:hormuz',
+  'portwatch-bab-container': 'cp:bab-el-mandeb',
+  'portwatch-suez-total': 'cp:suez',
+  'portwatch-panama-total': 'cp:panama',
+  'portwatch-malacca-total': 'cp:malacca',
+  'portwatch-taiwan-total': 'cp:taiwan',
+  'portwatch-dover-total': 'cp:dover',
+  'portwatch-gibraltar-total': 'cp:gibraltar',
+}
+
+/** Resolve a possibly-renamed indicator id to its current form. */
+export const canonicalIndicatorId = (id) => ENTITY_ID_ALIASES[id] ?? id
 
 /** Sort rules longest-first so "Strait of Hormuz" beats "Hormuz" when both
  *  appear overlapping; the extractor takes the earliest non-overlapping match
@@ -138,4 +182,87 @@ export function mentionToRegex(mention) {
   // Word-boundary both sides; allow optional 's' for plural nouns at the end
   // so "rupees" / "tankers" still match — but block "Hormuzian" (letters).
   return new RegExp(`\\b${escaped}(?:s)?\\b`, 'gi')
+}
+
+/**
+ * Whole-tag matcher for a `topicTags` entry.
+ *
+ * **Not a bare `includes`, and the reason is on the record.** `build.js` matched
+ * exchange `topicTags` by substring until `smi` — the Swiss index — matched
+ * "transmission" and hung eight unrelated technology stories off Zurich. Short
+ * tickers are exactly what a market catalog is full of. The boundary is on the
+ * whole tag rather than on each word, so multi-word tags like `red sea` still
+ * match as a phrase.
+ *
+ * Lives here rather than inline in `build.js` because three call sites now want
+ * it — the chokepoint join, the exchange join, and entity extraction — and the
+ * bug above is what a second copy costs.
+ */
+export const tagMatcher = (tag) => {
+  const escaped = String(tag).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`)
+}
+
+/** True when any of `tags` appears as a whole tag in `haystack`.
+ *  `haystack` must already be lowercased — callers build it once per article
+ *  and test it against many tag sets. */
+export const matchesAnyTag = (tags, haystack) =>
+  (tags || []).some((t) => tagMatcher(String(t).toLowerCase()).test(haystack))
+
+/**
+ * Scan one article for entity mentions. Returns:
+ *   - resolved: entities with concrete indicatorIds ready for frontmatter
+ *   - pending:  ambiguous matches awaiting a Haiku disambiguation pass
+ *
+ * `pending` entries carry `candidates` so the Haiku call has the full choice
+ * space per mention. The caller resolves them in one batched call across the
+ * whole cycle, then merges back into `resolved`.
+ *
+ * **`concepts` is scanned alongside the body**, and it is the cleaner of the
+ * two signals: the selector emits Wikipedia-backed concept labels, so a story
+ * whose subject is the Strait of Hormuz carries it as a concept whether or not
+ * the 350-character body ever names it. Body-only matching was leaving
+ * article→indicator coverage at 16% of the corpus.
+ *
+ * Lives in the registry rather than in `extract-entities.js` because
+ * `attach-indicators.js` resolves the *same* question one stage earlier, over a
+ * selection entry rather than a written article, and two copies of a matcher
+ * are two answers to "is this story about oil".
+ *
+ * @param {string} body                Article body, or any prose to scan.
+ * @param {Array<string|{label?: string}>} [concepts]  Concept labels.
+ */
+export function extractEntities(body, concepts = []) {
+  const conceptText = (Array.isArray(concepts) ? concepts : [])
+    .map((c) => (c && typeof c === 'object' ? c.label : c))
+    .filter((s) => typeof s === 'string')
+    .join('\n')
+  const haystack = [typeof body === 'string' ? body : '', conceptText].join('\n')
+  if (!haystack.trim()) return { resolved: [], pending: [] }
+
+  const resolved = new Map() // key: indicatorId
+  const pending = []
+
+  for (const rule of ENTITY_RULES_SORTED) {
+    const re = mentionToRegex(rule.mention)
+    const match = re.exec(haystack)
+    if (!match) continue
+    if (rule.ambiguous) {
+      // Defer — Haiku resolves with article context in the batch pass.
+      pending.push({
+        mention: match[0],
+        candidates: rule.candidates || [{ id: rule.indicatorId, label: rule.indicatorId }],
+        kind: rule.kind,
+      })
+      continue
+    }
+    if (!resolved.has(rule.indicatorId)) {
+      resolved.set(rule.indicatorId, {
+        mention: match[0],
+        indicatorId: rule.indicatorId,
+        kind: rule.kind,
+      })
+    }
+  }
+  return { resolved: [...resolved.values()], pending }
 }

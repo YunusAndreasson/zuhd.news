@@ -23,6 +23,7 @@ import { spawnSync } from 'node:child_process'
 import { loadShared } from './build/shared-ts.js'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
+import { validateGrounding } from './lib/grounding.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
@@ -373,34 +374,10 @@ function sanitizeNarrative(s) {
   return s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '')
 }
 
-/** Validator — every number-like token in the narrative must appear in the
- *  input bundle (after the same normalization). Catches fabricated stats but
- *  not fabricated qualitative claims; mitigation is the prompt-side discipline.
- *  Returns a reason string when rejected, null when grounded. */
-function validateGrounding(narrative, bundle) {
-  const inputBlob = JSON.stringify(bundle).toLowerCase()
-  // Extract numeric tokens (with optional decimals, percent, comma grouping).
-  const numbers = narrative.match(/\d[\d,]*(?:\.\d+)?/g) || []
-  for (const raw of numbers) {
-    const norm = raw.replace(/,/g, '')
-    // Allow if either the comma'd or plain form appears in input, or the
-    // round forms (10s) for soft matches like "180" matching "183 mm".
-    if (inputBlob.includes(norm) || inputBlob.includes(raw)) continue
-    // Try ±10% rounding tolerance for numbers ≥ 100 — the LLM will round
-    // "183 mm" to "180", which is fine.
-    const n = Number(norm)
-    if (Number.isFinite(n) && n >= 100) {
-      const candidates = [Math.round(n / 10) * 10, Math.round(n / 100) * 100]
-      let matched = false
-      for (const c of candidates) {
-        if (inputBlob.includes(String(c))) {
-          matched = true
-          break
-        }
-      }
-      if (matched) continue
-    }
-    return `number "${raw}" not in input`
-  }
-  return null
-}
+/* The numeric validator moved to `lib/grounding.js` on 2026-08-08, unchanged in
+   behaviour, when `narrate-indicators.js` needed the same check. It is imported
+   at the top of this file. The name scan that module also exports is
+   deliberately *not* switched on here: a disaster narrative's whole job is to
+   name the country and the storm, and this stage already constrains those
+   through the prompt's iron rule plus a bundle that carries every name it is
+   allowed to use. */

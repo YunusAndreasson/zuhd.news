@@ -15,7 +15,7 @@ import { join, basename } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { ENTITY_RULES_SORTED, mentionToRegex } from './lib/entity-registry.js'
+import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -38,43 +38,10 @@ if (newFiles.length === 0) {
   process.exit(0)
 }
 
-/**
- * Scan one article's body for entity mentions. Returns:
- *   - resolved: entities with concrete indicatorIds ready for frontmatter
- *   - pending:  ambiguous matches awaiting a Haiku disambiguation pass
- *
- * `pending` entries carry `candidates` so the Haiku call has the full choice
- * space per mention. The caller resolves them in one batched call across the
- * whole cycle, then merges back into `resolved`.
- */
-function extractEntities(body) {
-  if (!body || typeof body !== 'string') return { resolved: [], pending: [] }
-  const resolved = new Map() // key: indicatorId
-  const pending = []
-
-  for (const rule of ENTITY_RULES_SORTED) {
-    const re = mentionToRegex(rule.mention)
-    const match = re.exec(body)
-    if (!match) continue
-    if (rule.ambiguous) {
-      // Defer — Haiku resolves with article context in the batch pass.
-      pending.push({
-        mention: match[0],
-        candidates: rule.candidates || [{ id: rule.indicatorId, label: rule.indicatorId }],
-        kind: rule.kind,
-      })
-      continue
-    }
-    if (!resolved.has(rule.indicatorId)) {
-      resolved.set(rule.indicatorId, {
-        mention: match[0],
-        indicatorId: rule.indicatorId,
-        kind: rule.kind,
-      })
-    }
-  }
-  return { resolved: [...resolved.values()], pending }
-}
+/* `extractEntities` moved to `lib/entity-registry.js` on 2026-08-08, where the
+   rules it walks already lived, so `attach-indicators.js` can ask the same
+   question of a selection entry one stage earlier. It also gained a `concepts`
+   argument there — see its header. */
 
 /**
  * Disambiguate a batch of ambiguous mentions across multiple articles in one
@@ -328,7 +295,13 @@ for (const rel of newFiles) {
   const { meta, body } = parseFrontmatter(raw)
   const slug = basename(filename, '.md')
   const title = typeof meta.title === 'string' ? meta.title : ''
-  const { resolved, pending } = extractEntities(body)
+  // Title and concepts alongside the body. A 350-character article often names
+  // its subject only in the headline, and `concepts[]` is the selector's own
+  // Wikipedia-backed labelling — both are cleaner signal than the prose.
+  const { resolved, pending } = extractEntities(
+    `${title}\n${body}`,
+    Array.isArray(meta.concepts) ? meta.concepts : [],
+  )
 
   const fileIdx = files.length
   files.push({ fullPath, raw, slug, title, body, resolved })

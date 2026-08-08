@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 
 import { join } from 'node:path'
 import { escHtml } from '../lib/html.js'
 import { ARCHETYPE_HEADER } from '../lib/site-chrome.js'
+import { canonicalIndicatorId } from '../lib/entity-registry.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
@@ -87,8 +88,13 @@ const chartHtml = (chart, record) => {
 }
 
 /** Shape consumed by both the static page and the entity-sheet island.
- *  All numbers are precomputed here so the island stays tiny. */
-const buildEntityRecord = (ind, mentions) => {
+ *  All numbers are precomputed here so the island stays tiny.
+ *
+ *  `dispatch` is this indicator's entry from `content/.indicator-dispatch.json`
+ *  — `{ standing, recent, citations }` — or null. It rides the record rather
+ *  than being fetched separately because every surface that wants the prose
+ *  already fetches this blob. */
+const buildEntityRecord = (ind, mentions, dispatch, bySlug) => {
   const values = ind.values
   const periods = Array.isArray(ind.periods) ? ind.periods : []
   const last = values[values.length - 1]
@@ -127,6 +133,37 @@ const buildEntityRecord = (ind, mentions) => {
     periods,
     caption,
     asOf: ind.asOf || '',
+    // Spread-conditionally, the way `corrections` is added to the article
+    // payloads: absent on any indicator the dispatch stage has not reached, so
+    // the published shape is unchanged and every existing consumer keeps
+    // parsing. See `.claude/rules/pipeline/articles.md`.
+    ...(dispatch?.standing ? { standing: dispatch.standing } : {}),
+    ...(dispatch?.recent ? { recent: dispatch.recent } : {}),
+    /**
+     * The cited stories, **resolved here rather than as bare slugs**.
+     *
+     * They were shipped as slugs first, on the assumption that a consumer could
+     * look each one up in `mentions` — which is true for `brent`, where the
+     * entity registry puts the id in article frontmatter, and false for every
+     * `wiki-*` and `poly-*` id, where nothing does. Those have no mentions at
+     * all, so the join found nothing and the list silently did not render on
+     * exactly the block this change exists for. The dispatch draws citations
+     * from a wider pool than `entities[]` ever populates, so the pool it drew
+     * from is what has to travel.
+     */
+    ...(() => {
+      const cited = (dispatch?.citations || [])
+        .map((slug) => bySlug?.get(slug))
+        .filter(Boolean)
+        .map((a) => ({
+          slug: a.slug,
+          title: a.title,
+          date: a.meta.date,
+          dateFormatted: a.dateFormatted,
+          source: a.sources?.[0]?.name || '',
+        }))
+      return cited.length ? { cited } : {}
+    })(),
     mentions: mentions.map((a) => ({
       slug: a.slug,
       title: a.title,
@@ -173,6 +210,7 @@ __HEAD__
           <span class="entity-delta t-tabular __DELTA_TONE__">__DELTA__</span>
         </div>
       </header>
+      __STANDING__
       <!--
         The static chart is complete on its own; the island swaps in the
         interactive one on top of it. The series travels in a JSON script
@@ -184,6 +222,7 @@ __HEAD__
         __SPARK__
         <script type="application/json" class="chart-source">__SERIES__</script>
       </div>
+      __RECENT__
       __MENTIONED__
     </article>
     __SHARE_ROW__
@@ -199,7 +238,9 @@ __HEAD__
 /**
  * @param {{ sorted: any[], distDir: string, headCommon: string,
  *           footerNav?: string, islandV?: string,
- *           shareRowHtml?: (target: string, title: string) => string }} opts
+ *           shareRowHtml?: (target: string, title: string) => string,
+ *           dispatch?: Record<string, {standing?: string, recent?: string, citations?: string[]}>,
+ *           extraIndicators?: any[] }} opts
  *        `shareRowHtml` and `footerNav` are passed in rather than imported
  *        because build.js owns both — the footer is built once there from the
  *        loaded `share.ts`, and this module cannot load TypeScript itself.
@@ -216,13 +257,25 @@ export const buildEntityPages = async ({
   footerNav = '',
   islandV = '',
   shareRowHtml = () => '',
+  dispatch = {},
+  extraIndicators = [],
 }) => {
   const today = new Date().toISOString().slice(0, 10)
   const trendsPath = latestTrendsPath()
   if (!trendsPath) return { count: 0, ids: [] }
   const trends = JSON.parse(readFileSync(trendsPath, 'utf8'))
-  const indicators = Array.isArray(trends.indicators) ? trends.indicators : []
+  const indicators = [
+    ...(Array.isArray(trends.indicators) ? trends.indicators : []),
+    // Chokepoints and exchanges, shaped as indicators by the caller. They are
+    // series with a label, a unit and a date axis like any other, and the only
+    // reason they never had a page is that they arrive in their own payloads —
+    // which is also why 305 articles carried a chokepoint entity id that
+    // resolved to nothing and rendered no chip at all.
+    ...extraIndicators,
+  ]
   const chart = await loadShared('chart/series.ts')
+
+  const bySlug = new Map(sorted.map((a) => [a.slug, a]))
 
   // Index articles by entity.indicatorId so each entity page can surface
   // its mentions. Use sorted (newest → oldest) to preserve the reading
@@ -232,8 +285,11 @@ export const buildEntityPages = async ({
     const entities = Array.isArray(a.meta.entities) ? a.meta.entities : []
     for (const e of entities) {
       if (!e?.indicatorId) continue
+      // Through the alias table, so an article published against a renamed id
+      // still counts as a mention of the thing it was always about.
+      const id = canonicalIndicatorId(e.indicatorId)
       // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
-      ;(mentionsByEntity[e.indicatorId] ??= []).push(a)
+      ;(mentionsByEntity[id] ??= []).push(a)
     }
   }
 
@@ -244,7 +300,50 @@ export const buildEntityPages = async ({
     if (!ind?.id || !Array.isArray(ind.values) || ind.values.length < 2) continue
 
     const mentions = mentionsByEntity[ind.id] || []
-    const record = buildEntityRecord(ind, mentions.slice(0, 30))
+    const record = buildEntityRecord(ind, mentions.slice(0, 30), dispatch[ind.id], bySlug)
+
+    /**
+     * The two pieces of prose, in the two places their jobs put them.
+     *
+     * `standing` sits above the chart because a reader who cannot name the
+     * instrument cannot read the line either — the same ordering `_map/sheet.ts`
+     * already argues for. `recent` sits below it, because it is a claim *about*
+     * the shape the reader has just looked at and reads as a caption to it
+     * rather than as an introduction.
+     */
+    const standingSection = record.standing
+      ? `<p class="entity-standing">${escHtml(record.standing)}</p>`
+      : ''
+
+    /**
+     * `recent`, and under it the stories it was actually built from.
+     *
+     * This list is not "articles mentioning this indicator" — that is
+     * `Mentioned in` below, and it is a tag match. These are the slugs the
+     * dispatch stage returned as the sources of the sentence above them, which
+     * is why the heading is a claim about the prose and not about the
+     * instrument. Filtered against the corpus so a slug that has since been
+     * renamed or dropped cannot render a dead link.
+     */
+    const cited = record.cited || []
+    const recentSection = record.recent
+      ? `<section class="entity-recent">
+          <h2 class="label archive-section-title">Lately</h2>
+          <p class="entity-recent-body">${escHtml(record.recent)}</p>
+          ${
+            cited.length
+              ? `<ol class="archive-article-list entity-recent-sources">
+            ${cited.map((a) => `<li>
+              <a class="archive-article-row" href="/a/${a.slug}">
+                <time datetime="${escHtml(a.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
+                <span class="archive-article-title">${escHtml(a.title)}</span>
+              </a>
+            </li>`).join('')}
+          </ol>`
+              : ''
+          }
+        </section>`
+      : ''
 
     const mentionedSection = mentions.length
       ? `<section class="entity-mentioned">
@@ -272,7 +371,18 @@ export const buildEntityPages = async ({
       .replace(/__SHARE_ROW__/g, shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
       .replace(/__ID__/g, escHtml(ind.id))
       .replace(/__LABEL__/g, escHtml(ind.label))
-      .replace(/__DESC__/g, escHtml(`${ind.label} — ${ind.sourceLabel || ind.source}. ${mentions.length} related articles on zuhd.news.`))
+      // The standing sentence where there is one. The fallback it replaces —
+      // "<label> — <source>. N related articles on zuhd.news." — described the
+      // page rather than the subject, so every search result and every share
+      // card for 57 instruments said the same thing with a different number in
+      // it. Trimmed to a length a description meta tag is actually shown at.
+      .replace(
+        /__DESC__/g,
+        escHtml(
+          record.standing ||
+            `${ind.label} — ${ind.sourceLabel || ind.source}. ${mentions.length} related articles on zuhd.news.`,
+        ).slice(0, 300),
+      )
       .replace(/__KIND__/g, escHtml(record.kind))
       .replace(/__SOURCE__/g, escHtml(record.sourceLabel))
       .replace(/__CURRENT__/g, escHtml(record.currentFormatted))
@@ -294,6 +404,8 @@ export const buildEntityPages = async ({
           caption: record.caption,
         }).replace(/</g, '\\u003c'),
       )
+      .replace(/__STANDING__/g, standingSection)
+      .replace(/__RECENT__/g, recentSection)
       .replace(/__MENTIONED__/g, mentionedSection)
       .replace(/__AS_OF__/g, escHtml(`As of ${record.asOf || trends.asOf || today}`))
 

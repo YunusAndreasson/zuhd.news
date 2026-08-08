@@ -266,6 +266,17 @@ export interface TrendIndicator {
   values: number[]
   periods?: string[]
   asOf?: string
+  /**
+   * What this instrument *is*, written once a day by `narrate-indicators.js`.
+   *
+   * Optional because the build joins it conditionally, so a payload written
+   * before that stage first ran carries none and every row falls back to the
+   * catalog `note` below. It rides the list payload rather than
+   * `/api/entity/{id}.json` because it is the row's `title` and has to be
+   * present before anything is pressed; `recent` and `citations` do not, and
+   * are fetched when a card opens.
+   */
+  standing?: string
 }
 
 /** One entry of `/api/trends.json`'s `releaseCalendar` — a date and a name. */
@@ -548,8 +559,25 @@ export interface TickerEntry {
    * field, so these are ours, and they sit in the catalog beside the label for
    * the same reason the exchange gaps do: editorial text belongs with the
    * editorial decision.
+   *
+   * **Since 2026-08-08 this is normally the dispatch's `standing`** — the same
+   * sentence, written per row for every instrument rather than by hand for
+   * three of them — and the catalog strings survive as the fallback for a
+   * payload built before that stage ever ran.
    */
   note?: string | undefined
+  /**
+   * A warning about the *provenance* of the number, not an explanation of it.
+   *
+   * Separate from `note` because the two survive different rewrites. `note` is
+   * a description and the dispatch now writes it; this is a standing editorial
+   * disclosure, and folding it into a generated field would mean a model could
+   * drop it. `odds` carries the only one: a prediction market is a price set by
+   * people with money on the outcome, and `map.md` records that saying so is a
+   * correctness rule rather than a nicety — without it the block borrows the
+   * standing of the institutional readings above it.
+   */
+  caveat?: string | undefined
   /**
    * The last day this row's *block* traded, when that is not today.
    *
@@ -1021,7 +1049,12 @@ const entryFrom = (
   label: item.label,
   name: ind.label,
   flag: flagOf(item.iso2),
-  note: item.note,
+  // The payload's sentence where there is one, the catalog's otherwise. The
+  // catalog held three hand-written notes for fifty-seven series and two
+  // block-wide constants standing in for the rest; `standing` is the same
+  // sentence written for every row, so it wins where it exists and the
+  // hardcoded ones remain the fallback for a build that predates the stage.
+  note: ind.standing || item.note,
   pct,
   unit: ind.unit,
   level: ind.values[ind.values.length - 1],
@@ -1170,7 +1203,12 @@ const selectEntries = (
    */
   minLevel: number | null,
   shorten: (label: string) => string,
+  /** The block's fallback description, used only where the payload carries no
+   *  `standing` for the row. */
   note: string,
+  /** The block's standing provenance disclosure, if it has one. Never replaced
+   *  by generated prose — see `TickerEntry.caveat`. */
+  caveat?: string,
 ): TickerEntry[] => {
   const scored: Array<{ entry: TickerEntry; score: number; young: boolean }> = []
   for (const ind of indicators) {
@@ -1223,7 +1261,12 @@ const selectEntries = (
         label: shorten(ind.label),
         name: ind.label,
         flag: '',
-        note,
+        // The per-row sentence where the dispatch wrote one, the block-wide
+        // constant otherwise. `note` was *only* ever the constant here, so
+        // twelve attention rows carried one identical paragraph about what a
+        // pageview is — the boilerplate this whole change exists to remove.
+        note: ind.standing || note,
+        caveat,
         // The tick's direction, and it is the *window's* move rather than the
         // last day's: these rows have no other figure, so a green tick over a
         // falling week would be the row disagreeing with its own line.
@@ -1294,15 +1337,40 @@ const oddsShort = (label: string): string =>
     .replace(/(\b[A-Z][a-z]{2,8}\.?\s+\d{1,2}),?\s+\d{4}\b/g, '$1')
     .trim()
 
-const ODDS_NOTE =
+/**
+ * The provenance disclosure, which is a `caveat` and no longer the row's whole
+ * description (2026-08-08).
+ *
+ * It used to be both, because it was the only sentence these rows had. Now that
+ * `narrate-indicators.js` writes a `standing` per market, the description job is
+ * covered and this keeps the job it was actually written for: saying that the
+ * number is a price rather than a forecast. Kept as a distinct field
+ * deliberately — see `TickerEntry.caveat` — because a generated sentence could
+ * drop it and the reason it is here is not editorial taste.
+ */
+const ODDS_CAVEAT =
   'The price of a bet, not a forecast: what traders on Polymarket are currently paying for this outcome, read as a probability. It moves with money and attention, and nobody has put their name to it.'
+
+/** The fallback description, for a payload built before the dispatch stage. */
+const ODDS_NOTE = 'What traders are paying for one outcome of an open question, read as a probability.'
 
 export const oddsEntries = (
   indicators: TrendIndicator[],
   days: number,
   now = Date.now(),
 ): TickerEntry[] =>
-  selectEntries(indicators, 'polymarket', 'odds', days, now, 'points', null, oddsShort, ODDS_NOTE)
+  selectEntries(
+    indicators,
+    'polymarket',
+    'odds',
+    days,
+    now,
+    'points',
+    null,
+    oddsShort,
+    ODDS_NOTE,
+    ODDS_CAVEAT,
+  )
 
 /**
  * What the world is reading — the `attention` block.
@@ -1318,8 +1386,27 @@ export const oddsEntries = (
  */
 const attentionShort = (label: string): string => label.replace(/\s*—\s*Wikipedia views$/i, '')
 
+/**
+ * The fallback description only — and it used to be the whole answer.
+ *
+ * It read: *"How many people read this article on Wikipedia each day. It
+ * measures the audience rather than the event, and it runs on a weekly
+ * rhythm…"* — three sentences about the metric, shown identically on all twelve
+ * rows, at the moment a reader had just asked what was happening. It described
+ * the instrument correctly and told nobody anything about the world, and the
+ * second half of it was redundant besides: `attentionEntries` already returns
+ * nothing at the 24h step precisely because a day of pageviews against the day
+ * before is mostly the calendar, so the caveat warned about a reading the block
+ * declines to print.
+ *
+ * What replaces it is per-row and is the point of the whole stage: the dispatch
+ * bundles the *feed stories carrying this article's Wikipedia concept* — including
+ * the ones we never published — so the card explains the event that drew the
+ * readers rather than restating that readers arrived. This string survives only
+ * for a payload built before that stage first ran.
+ */
 const ATTENTION_NOTE =
-  'How many people read this article on Wikipedia each day. It measures the audience rather than the event, and it runs on a weekly rhythm — weekdays are busier than weekends — so a single day against the one before it is mostly the calendar.'
+  'Daily readership of one Wikipedia article, as a gauge of where public attention is going.'
 
 export const attentionEntries = (
   indicators: TrendIndicator[],

@@ -131,9 +131,102 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   `extract-entities.js` had two hand-rolled copies.
   `parseClaudeEnvelopeWithUsage` additionally returns cache token counts, which
   is how you tell whether prompt caching is firing.
+- **`lib/grounding.js` is the one grounding validator**, extracted from
+  `narrate-gdacs.js` when the dispatch stage needed the same check. Two
+  functions: `validateNumbers` for prose about what happened, and
+  `validateProperNouns` for the names in it, opt-in per call site because a
+  definitional sentence draws on general knowledge by design.
+- **A validator's calibration is a measurement, not a preference.** The first
+  version checked every capitalised token and the numeric tolerance was gated to
+  figures of 100 and above. Run over twelve real indicators it produced **two
+  rejections, both false positives, and caught nothing** — it deleted a good
+  sentence for writing "America's" where the bundle said `US`, and rejected a
+  definitional one over the `500` in "S&P 500". A validator that discards good
+  output at 17% and catches nothing is not protecting a reader; it is deleting
+  the feature. What ships: the tolerance is proportional at every scale (so
+  `4.7%` matches an input of `4.65%` and `12%` still fails against `8%`), only
+  **runs of two or more non-generic capitals** are name-checked (`Aban Tether`
+  is, `America's` and `The Fed` are not), and `standing` is not grounding-checked
+  at all. Measured after: 1 drop in 98, itself a false positive on a hyphenated
+  demonym, since fixed.
 - **Timeouts are measured, not guessed.** The batched stock scan sat at 30s and
   was SIGTERM-killed (exit 143) on ~28% of cycles, discarding output whose input
   tokens were already billed; it is 60s against a 180s stage budget.
+
+## The indicator dispatch
+
+- **The rail said what moved and never why, and the gap was structural rather
+  than an omission.** Five sentences of explanatory copy existed for 57
+  indicators: three hand-written `note` strings on `brent`/`vix`/`us-10y`, plus
+  one block-wide constant per block. The attention block's read *"How many people
+  read this article on Wikipedia each day…"* — a correct description of the
+  metric, shown identically on twelve rows, at the exact moment a reader had
+  asked what was happening. `/e/{id}` carried no prose at all. `narrate-indicators.js`
+  (Stage 3.8, 04:00) writes two fields per instrument instead: `standing`, what
+  the thing is, and `recent`, what has happened to it and why.
+- **The two fields are fingerprinted separately, and that is the cost model.**
+  `standing` is definitional and stable, so its fingerprint is the item's
+  identity and it is written approximately once. `recent` is a claim about the
+  last fortnight. **Its fingerprint is the story, not the number** — the top six
+  coverage slugs and feed headlines sorted, the move in 5-point bands, and the
+  *dates* of the extremes. The first version hashed the series itself, which
+  meant every daily-cadence indicator busted its own cache every day and the
+  "steady state costs nothing" claim was false for all 98 items. Measured after
+  the fix: 98 items / $17.60 cold, **0 calls and $0.00 when nothing changed**,
+  6 items / $1.26 after one cycle published 12 articles.
+- **The grounding is free, and that is what makes the attention block
+  answerable.** `merge-feeds.js` has archived every merged feed to
+  `content/.feed-snapshots-merged/` five times a day since May, ~200 stories
+  each, carrying `concepts[].uri` — Wikipedia article URLs. Those are the same
+  keys `wiki-*` ids are minted from, so a `wiki-iran` bundle can carry every
+  story in the window tagged `en.wikipedia.org/wiki/Iran`, **including the ~190
+  per cycle we never published**, aligned against the days the series spiked.
+  The prompt's hardest rule follows from it: an attention row must explain the
+  *event*, never write that attention rose because the topic was in the news.
+  That answer is circular and is the boilerplate the stage replaced.
+- **`citations` is the crossreference, and it is why the related lists are worth
+  reading.** The model returns which of the offered slugs its `recent` was
+  actually built from, and the build prefers those over the tag matches for the
+  chokepoint and exchange cards. A tag list is the first eight articles
+  containing one of eleven words; a citation list is a claim that these stories
+  explain this movement. Validated against the offered set and re-resolved
+  against the corpus at build time, since an article can be renamed between the
+  run that wrote the file and the build that reads it.
+- **Catalog prose wins over generated prose.** The 11 chokepoint and 30 exchange
+  `blurb` strings are seeded as `standing` and never regenerated — they are
+  editorial judgements, and this stage paraphrasing them would be the failure
+  "editorial lists are editorial" is about. It also takes 41 of 98 items out of
+  the expensive first run.
+- **The writer is handed the number, and matched on the subject rather than the
+  prose.** `attach-indicators.js` (Stage 1.7) puts current levels on the
+  selection before Stage 2, so an article can say "Brent at $88.90, down 15.6%
+  in a week" instead of "oil prices fell" — which is what makes the chart
+  `extract-entities.js` later attaches an *earned* link rather than a decoration
+  on a sentence that never engaged with it. Two corrections it needed, both
+  found by running it against a live selection:
+  - **It matches `title` + `angle` + `concepts`, never the source bodies.** The
+    bodies are the prose the writer works from, and they are also full news
+    articles containing every incidental noun there is: the first run offered a
+    **wheat price to a story about a solar eclipse**, off a sentence describing
+    "wheat fields and rolling hills" in the viewing area. A title and an angle
+    state what a story is *about*; a body is what an outlet happened to write.
+  - **The window is named from the cadence, and stale levels are dropped.**
+    `values` is a list of observations, not of days — `wheat` and `rice` are
+    monthly, so a fixed seven-point window is seven *months*, and a thirty-point
+    one is nearly two years. Windows are now `[3, 12]` for monthly and `[7, 30]`
+    for daily, each labelled with its real period, and anything older than 45
+    days (monthly) or 12 (daily) is dropped rather than dated — a writer handed
+    a figure will use it, and the caveat is the first thing a 350-character
+    article cuts. Ambiguous mentions are dropped too: guessing `rupee` would put
+    a Pakistani level in front of a writer covering Delhi.
+  The prompt rule is framed as **permission, not obligation** — a mandate here
+  produces a numeric tic on every article, which `measure-quality.js` would
+  score as filler. Measured on a live selection: 2 of 13 stories carried a
+  level, which is the intended precision.
+- **A rejected `recent` is not a rejected item.** The standing sentence still
+  ships; only the claim about last week is dropped. Partial output beats none,
+  and the alternative is an item that silently loses all its prose over one
+  unverifiable name.
 
 ## Tunable parameters and experiments
 
