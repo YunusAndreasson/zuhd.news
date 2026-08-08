@@ -430,7 +430,7 @@ export function createSheet(): Sheet {
     const list = el('ul', 'map-sheet-more')
     for (const a of items.slice(0, 5)) {
       const li = el('li')
-      const link = el('a', undefined, a.title)
+      const link = el('a', 'map-sheet-more-link', a.title)
       link.href = `/a/${a.slug}`
       li.append(link)
       list.append(li)
@@ -846,9 +846,18 @@ export function createSheet(): Sheet {
     showEvent(entry, pin, docked) {
       const nodes: Node[] = []
       const daysUntil = daysUntilEvent(entry.date)
-      nodes.push(kicker([entry.institution, fmt.fullDate(entry.date)]))
+      // `hero()` is sized for the card's defining figure — a price, a level, a
+      // casualty count — and a countdown is not that: it is a second reading of
+      // the date the kicker already states, in the same three characters the
+      // rail row prints it in. At `h2` it dwarfed the event's own title, so it
+      // joins the kicker as its third clause instead, on the row's own words —
+      // but only inside `eventCountdown`'s relative range (`in Nd`, "today",
+      // "tomorrow"). Past 13 days out the function falls back to a short date,
+      // which would just restate `fullDate` a second time on the same line.
+      const countdown = eventCountdown(daysUntil, entry.date)
+      const relative = daysUntil <= 13
+      nodes.push(kicker([entry.institution, fmt.fullDate(entry.date), relative ? countdown : null]))
       nodes.push(el('h2', 'island-sheet-title', entry.title))
-      nodes.push(hero(eventCountdown(daysUntil, entry.date)))
 
       if (entry.standing) nodes.push(el('p', 'map-sheet-lead', entry.standing))
 
