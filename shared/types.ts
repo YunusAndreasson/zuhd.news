@@ -546,6 +546,47 @@ export interface TrendRelease {
   release: string;
 }
 
+/**
+ * One scheduled macro/political event on the money rail's events block —
+ * a central-bank decision, an OPEC+ meeting, a major non-US release or a
+ * summit/election. Wider in scope than `TrendRelease` (US-only, FRED-only)
+ * and separate from it rather than replacing it: `releaseCalendar` is a
+ * published field and existing consumers keep reading it unchanged.
+ *
+ * `standing`/`recent`/`citations` are written by `narrate-events.js` (Stage
+ * 3.8b) and joined on at build time, exactly as `Indicator`'s equivalent
+ * fields are — see `build.js`'s indicator-dispatch join. Absent on a build
+ * that ran before that stage ever wrote a dispatch file, or on an event the
+ * stage has not yet reached.
+ */
+export interface TrendEvent {
+  id: string;
+  title: string;
+  institution: string;
+  kind: 'central-bank' | 'opec' | 'econ-release' | 'summit-election';
+  /** ISO date the event lands on. */
+  date: string;
+  topicTags?: string[];
+  countryTags?: string[];
+  /** What the event/institution is — stable, general knowledge. */
+  standing?: string;
+  /** Why it matters right now, tied to recent coverage. */
+  recent?: string;
+  /**
+   * The articles `recent` was actually built from, most relevant first —
+   * resolved against the corpus at build time from the dispatch's own
+   * `citations` slugs, the same way `MapChokepoint.relatedArticles` is: the
+   * dispatch file is committed and an article can be renamed or withdrawn
+   * between the run that wrote it and the build that reads it.
+   */
+  relatedArticles?: Array<{
+    slug: string;
+    title: string;
+    date?: string;
+    dateFormatted?: string;
+  }>;
+}
+
 export interface TrendsSnapshot {
   fetchedAt: string;
   asOf: string;
@@ -553,5 +594,10 @@ export interface TrendsSnapshot {
    *  before this field existed, and from any cycle that ran without a
    *  `FRED_API_KEY`, so every reader must treat it as optional. */
   releaseCalendar?: TrendRelease[];
+  /** The money rail's events block: FRED's recognised US releases merged
+   *  with the hand-curated catalog (central banks, OPEC+, major non-US
+   *  releases, summits/elections), within a near-term window. Absent from
+   *  snapshots written before this field existed. */
+  events?: TrendEvent[];
   indicators: Indicator[];
 }

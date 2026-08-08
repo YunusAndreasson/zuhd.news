@@ -22,6 +22,7 @@ import {
   type GeoJSONSource,
   type MapGeoJSONFeature,
   type PaddingOptions,
+  type Point,
   type PointLike,
 } from 'maplibre-gl'
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
@@ -64,7 +65,7 @@ import {
   ribbonPct,
   type MarketStrip,
   type TrendIndicator,
-  type TrendRelease,
+  type TrendEvent,
 } from './_map/markets'
 import { bucketCounts, coverage, halfOverHalf } from './_map/series-window'
 import { sparkline } from './_spark'
@@ -1487,6 +1488,27 @@ export function mount(
   // The map moves under a stationary pointer during a flight, which would
   // otherwise drag the cursor across other markers and chain more flights.
   let flying = false
+  /**
+   * Whether the camera is moving at all — a drag, a wheel, a pinch or a flight.
+   *
+   * Set from `movestart`/`moveend`, which is every one of them. Two things read
+   * it, and they are the same argument twice: **nothing that is only worth
+   * doing at rest should be done inside the frame being dragged.** The sky
+   * drops its star field, and the hover path stops running three
+   * `queryRenderedFeatures` per pointer move against a 99k-point source while
+   * the pointer is the thing moving the map.
+   */
+  let interacting = false
+  /**
+   * The last canvas point the pointer reported, kept across the guard above.
+   *
+   * Recorded even while a gesture is in flight — it is one assignment, and it
+   * is what lets `moveend` ask the hit test again for a pointer that has not
+   * sent an event since the drag began but is now over different geography.
+   * Cleared on `mouseout`, because a pointer that has left the canvas is not
+   * anywhere on it.
+   */
+  let lastPointer: Point | null = null
 
   const sheet: Sheet = createSheet()
   let popup: StoryPopup | null = null
@@ -1540,6 +1562,12 @@ export function mount(
       flying = true
       map.flyTo({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
       sheet.showChokepoint(cp, true, docked())
+    },
+    // Nothing to fly to — a calendar entry is not a place — so this only
+    // opens the sheet, the way `onQuote` does.
+    onEvent: (entry, anchor) => {
+      sheet.dockTo(anchor)
+      sheet.showEvent(entry, true, docked())
     },
   })
 
@@ -1745,6 +1773,40 @@ export function mount(
     minZoom: HOME_VIEW.zoom,
     maxZoom: 9,
     attributionControl: false,
+    /**
+     * The canvas is multisampled, and the globe's silhouette is why.
+     *
+     * MapLibre's default is `antialias: false`. On a flat map that costs a
+     * little stair-stepping on a coastline; on a sphere it costs the **one edge
+     * the whole design is built around** — the limb is a circle assembled from
+     * tile-mesh triangles, so without MSAA it is a stepped polygon whose
+     * silhouette jumps by whole pixels as the camera moves, while the airglow
+     * drawn against it (`_map/starfield.ts`, `drawHalo`) is an analytic circle
+     * that moves continuously. The two disagree by up to a pixel, everywhere,
+     * every frame, and that disagreement is what makes the edge crawl.
+     *
+     * It is also the cheapest quality this map can buy anywhere: every hairline
+     * on it — the coastline, the frontier, the graticule, the prayer curves —
+     * is a thin stroke on a dark ground, which is the exact case aliasing is
+     * worst for.
+     */
+    canvasContextAttributes: { antialias: true },
+    /**
+     * The camera has one pose, and this is what actually holds it there.
+     *
+     * `dragRotate: false` and `pitchWithRotate: false` below turn off the
+     * *mouse* paths and nothing else: `touchPitch` defaults to true, the
+     * keyboard handler rotates on Shift+Arrow, and `maxPitch` defaults to 60.
+     * So a two-finger drag on a phone or one keypress on a desktop tilted a
+     * globe whose whole sky is computed on the assumption that it never tilts —
+     * `calibrate` in `_map/sky.ts` refuses any non-zero bearing or pitch, so the
+     * stars, the sun, the moon and the airglow all **disappeared and stayed
+     * gone** until the reader found `resetView`. Nothing was thrown and nothing
+     * was logged, because refusing to draw is the correct behaviour there; what
+     * was wrong is that the state was reachable at all.
+     */
+    maxPitch: 0,
+    touchPitch: false,
     // `preserveDrawingBuffer` was set here for a share-image export that was
     // never built. It is not free: the driver reports "GPU stall due to
     // ReadPixels" on every frame, because the buffer has to survive the swap
@@ -1763,6 +1825,67 @@ export function mount(
     renderWorldCopies: false,
   })
   map.touchZoomRotate.disableRotation()
+  map.keyboard.disableRotation()
+
+  /**
+   * Zoom about the planet's centre while the planet is a planet.
+   *
+   * **The bug this fixes is upstream and this map is its worst case.** MapLibre
+   * knows a globe must not zoom about a point that is not on the sphere and
+   * says so in `handler_manager.ts` — but the correction lands one line too
+   * late. `deltasForHelper` snapshots `around` first; the guard
+   * (`if (useGlobeControls && !tr.isPointOnMapSurface(around)) around = centerPoint`)
+   * runs *after* it and therefore only ever reaches `preZoomAroundLoc`, while
+   * `VerticalPerspectiveCameraHelper.handleMapControlsRollPitchBearingZoom`
+   * reads the uncorrected `deltas.around`. What follows is
+   * `unprojectScreenPoint` snapping the cursor to the **nearest point on the
+   * visible limb**, `setLocationAtPoint` trying to pin that limb point under a
+   * cursor that is not on the globe — an unsatisfiable constraint — and then a
+   * blend with a heuristic centre, in code whose own comments say it "will
+   * eventually glitch out".
+   *
+   * A disc inscribed in a 16:9 frame leaves the canvas **39% empty at 1600×900
+   * and 60% at 3440** (the measurement `.map-mapctl`'s corner argument is built
+   * on), so on this map close to half of all wheel events land on space. It is
+   * measurable: tracking the genocide ring at Gaza across a wheel ladder with
+   * the pointer parked in an empty corner, one notch moved it **(+31.2, +6.2)
+   * px** — sideways, in the direction *away* from the cursor, which is not even
+   * the behaviour zoom-to-cursor promises. That is the whole of "the globe
+   * doesn't feel stable when you scroll it". Measured after: the same notch
+   * moves it (−7.1, −12.1) against (−6.7, −12.7) for a pointer resting on the
+   * disc centre — the two paths agreeing to a pixel, which is what "the disc
+   * scales about itself" looks like as a number.
+   *
+   * `around: 'center'` makes `ScrollZoomHandler` write `around` as
+   * `locationToScreenPoint(center)`, so `dLng` and `dLat` come out zero and the
+   * entire heuristic pile above is bypassed: the disc simply scales about
+   * itself. That is also the right *interaction* for a globe — a sphere is not
+   * a surface you can grab a point of and pull toward you, which is the reason
+   * `handleMapControlsPan` already refuses to pan that way.
+   *
+   * Past `GLOBE_ZOOM.plane` the map is ordinary Mercator, where zoom-to-cursor
+   * is both correct and expected, so the anchor is handed back — see the
+   * `zoomend` handler, which flips it on the crossing and nowhere else.
+   */
+  const setZoomAnchor = (centred: boolean) => {
+    // **`ScrollZoomHandler.enable` begins `if (this.isEnabled()) return`**, and
+    // the handler is enabled by the constructor — so calling it with an option
+    // on a live map sets nothing at all, silently, and the anchor stays on the
+    // pointer. It has to be turned off and on again. Nothing reports this:
+    // there is no throw, no warning, and the map goes on zooming exactly as it
+    // did, which is why it survived the first pass here and was caught only by
+    // measuring a fixed point on the planet across a wheel ladder — Gaza slid
+    // 31.8px on the first notch with the anchor "set". `touchZoomRotate.enable`
+    // has no such guard and is called plainly.
+    map.scrollZoom.disable()
+    map.scrollZoom.enable(centred ? { around: 'center' } : undefined)
+    map.touchZoomRotate.enable(centred ? { around: 'center' } : undefined)
+    // `enable` puts the rotate half back unless it has been told not to, and
+    // this map never rotates.
+    map.touchZoomRotate.disableRotation()
+  }
+  let zoomAnchorCentred = true
+  setZoomAnchor(true)
 
   // Chrome that covers the canvas moves the map's true centre away from the
   // viewport's, and telling MapLibre once means every flyTo, easeTo and cluster
@@ -3410,7 +3533,12 @@ export function mount(
     // which is under a pixel where the sky is drawn most precisely. It is *not*
     // on `scrubNow` either — a Tuesday moon over tonight's earth would be the
     // same two clocks in one picture.
-    sky.draw(now)
+    //
+    // A tick that lands mid-gesture drops the stars, for the same reason `move`
+    // does: two minutes of sky rotation is under a pixel, and the catalogue
+    // walk is the one thing that must not happen inside a dragged frame.
+    // `moveend` redraws in full immediately afterwards in any case.
+    sky.draw(now, interacting ? 'quiet' : 'full')
   }
 
   // --- Interaction --------------------------------------------------------
@@ -3914,9 +4042,41 @@ export function mount(
      * the click, because that line crosses every country there is.
      */
     map.on('mousemove', (e) => {
-      if (flying) return
-      const f = topHit(e.point)
+      /**
+       * Not during a gesture, and `flying` was only ever half of that rule.
+       *
+       * Every one of these events costs `topHit`, `prayerAt` and `countryAt` —
+       * three `queryRenderedFeatures`, one of them against `countries`, which
+       * is 1.6 MB and 99k points — plus a feature-state write. A drag-pan is a
+       * *stream* of `mousemove`s by construction, so this was main-thread work
+       * fighting the very gesture that produced it, once per frame, to answer a
+       * question nobody was asking: hover is what a **resting** pointer means,
+       * and a pointer that is dragging the planet is not resting on anything.
+       *
+       * `flying` covered the case where the map moves under a stationary
+       * pointer; this is the case where the pointer moves the map, and it is
+       * far the more common of the two. `moveend` restores the answer for
+       * wherever the pointer ended up.
+       */
+      lastPointer = e.point
+      if (flying || interacting) return
+      resolvePointer(e.point, [e.lngLat.lng, e.lngLat.lat])
+    })
+
+    /**
+     * What is under a canvas point, and what the chrome should say about it.
+     *
+     * Lifted out of the `mousemove` listener so `moveend` can ask the same
+     * question again: the gesture guard above means the map has moved a long
+     * way under a pointer that never sent an event, so whatever was lit when
+     * the drag began is a claim about geography that is no longer true. Re-run
+     * once when the camera settles and the answer is right again without the
+     * reader having to twitch the mouse to correct it.
+     */
+    function resolvePointer(point: Point, lngLat: [number, number]) {
+      const f = topHit(point)
       const overMarker = f !== null
+      const e = { point, lngLat: { lng: lngLat[0], lat: lngLat[1] } }
 
       if (f && isStoryLayer(f.layer.id)) {
         map.getCanvas().style.cursor = 'pointer'
@@ -3963,9 +4123,10 @@ export function mount(
       const iso = overMarker ? null : countryAt(e.point)
       writeCountryHover(iso)
       if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
-    })
+    }
 
     map.on('mouseout', () => {
+      lastPointer = null
       setHoverSlug(null)
       setHoverPrayer(null)
       hidePrayerTip()
@@ -4037,6 +4198,14 @@ export function mount(
       // at 2.33:1 with nothing able to see it.
       const density = keyItems.get('density')
       if (density) density.hidden = map.getZoom() >= DENSITY_FADE_OUT
+      // The zoom anchor is the projection's, so it flips where the projection
+      // does and only on the crossing — this runs on every zoom gesture, and
+      // `enable()` rebuilds the handler's options each call.
+      const centred = map.getZoom() < GLOBE_ZOOM.plane
+      if (centred !== zoomAnchorCentred) {
+        zoomAnchorCentred = centred
+        setZoomAnchor(centred)
+      }
       if (ultraLoaded || map.getZoom() < ULTRA_ZOOM) return
       // Set before awaiting, or a second zoomend starts the same fetch again.
       ultraLoaded = true
@@ -4048,13 +4217,52 @@ export function mount(
     map.on('move', syncResetButton)
     syncResetButton()
 
-    // The sky follows the camera, and `move` is the only event it needs: it
-    // fires on a frame MapLibre is already drawing, so this adds a repaint to
-    // work in flight rather than scheduling work of its own. Nothing here
-    // touches a source, a layer or a feature state, so the map's idle stays
-    // exactly as quiet as it was — which is the invariant that was once worth
-    // 57% of a core.
-    map.on('move', () => sky.draw())
+    /**
+     * The sky follows the camera, and it stands down for the duration of a
+     * gesture.
+     *
+     * `move` is still the only event it needs — it fires on a frame MapLibre is
+     * already drawing, so this adds a repaint to work in flight rather than
+     * scheduling work of its own, and nothing here touches a source, a layer or
+     * a feature state, so the map's idle stays exactly as quiet as it was.
+     * What changed is *how much* it repaints while the camera is moving.
+     *
+     * The star field is the whole of the cost — the catalogue walk, a `place()`
+     * per survivor and ~200 `fill()` calls — and it is 0.03% of the ink on the
+     * canvas, which is what makes it the right thing to drop while the camera
+     * is moving and the reader is looking at the planet. The atmosphere, the
+     * sun and the moon stay: the first is the only edge the night hemisphere
+     * has, and the other two are 13px discs whose vanishing at the start of
+     * every drag a reader would actually notice. This is the lever `map.md`
+     * has recorded as "the next real lever" since the allocation fix, and it is
+     * taken here rather than by moving the whole sky to a worker, because the
+     * cheapest frame is still the one that draws less.
+     *
+     * The full sky returns on `moveend`, in one settled frame. Two things fall
+     * out for free. `calibrate` refuses any camera it cannot solve as a sphere
+     * camera, which is every camera part-way through the projection's morph, so
+     * the sky used to **blink out and back frame by frame** through the zoom
+     * band; what is not redrawn while moving cannot blink. And where the
+     * residual was still inside the 1.5px gate it was drawn against a camera
+     * already slightly wrong — the "parts land in the wrong place" half of the
+     * same report.
+     */
+    map.on('movestart', () => {
+      interacting = true
+    })
+    map.on('move', () => {
+      sky.draw(undefined, interacting ? 'quiet' : 'full')
+    })
+    map.on('moveend', () => {
+      interacting = false
+      sky.draw()
+      // The pointer has not moved and the world under it has. See
+      // `resolvePointer`.
+      if (lastPointer && !flying) {
+        const g = map.unproject([lastPointer.x, lastPointer.y])
+        resolvePointer(lastPointer, [g.lng, g.lat])
+      }
+    })
   }
 
   // --- Chrome -------------------------------------------------------------
@@ -5322,10 +5530,10 @@ export function mount(
       void (async () => {
         const t = await json<{
           indicators: TrendIndicator[]
-          releaseCalendar?: TrendRelease[]
+          events?: TrendEvent[]
         }>('/api/trends.json', abort.signal)
         if (!mounted || !t?.indicators) return
-        marketStrip.setTrends(t.indicators, t.releaseCalendar ?? [])
+        marketStrip.setTrends(t.indicators, t.events ?? [])
       })()
     })
     // The picker only needs a list of names, and nothing depends on it until

@@ -687,28 +687,28 @@ if (existsSync(briefingMetaPath)) {
       <div class="briefing-track"><div class="briefing-bar"></div></div>
       <audio preload="none" src="/audio/briefing-${meta.date}.mp3"></audio>
     </div>
-    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;
-var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),l=b.querySelector('.briefing-label'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key;
-var play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}',txt='Today\\u2019s briefing';
-var ms='mediaSession'in navigator?navigator.mediaSession:null;
-function fmt(s){var m=Math.floor(s/60),ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss}
-function syncPos(){if(ms&&a.duration){ms.setPositionState({duration:a.duration,playbackRate:a.playbackRate,position:a.currentTime})}}
-function doPlay(){a.play();p.innerHTML=pause;if(ms)ms.playbackState='playing'}
-function doPause(){a.pause();p.innerHTML=play;l.textContent=txt;if(ms)ms.playbackState='paused'}
+    <script>(()=>{const b=document.querySelector('.audio-briefing');if(!b)return;
+const a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),l=b.querySelector('.briefing-label'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key;
+const play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}',txt='Today\\u2019s briefing';
+const ms='mediaSession'in navigator?navigator.mediaSession:null;
+const fmt=s=>{const m=Math.floor(s/60),ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss};
+const syncPos=()=>{if(ms&&a.duration)ms.setPositionState({duration:a.duration,playbackRate:a.playbackRate,position:a.currentTime})};
+const doPlay=()=>{a.play();p.innerHTML=pause;if(ms)ms.playbackState='playing'};
+const doPause=()=>{a.pause();p.innerHTML=play;l.textContent=txt;if(ms)ms.playbackState='paused'};
 if(localStorage.getItem(k))b.classList.add('listened');
 b.style.cursor='pointer';
-b.onclick=function(e){if(e.target.closest('.briefing-track'))return;a.paused?doPlay():doPause()};
-a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.duration&&!a.paused)l.textContent=fmt(a.duration-a.currentTime);if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}syncPos()};
-a.onended=function(){p.innerHTML=play;r.style.width='0';l.textContent=txt;localStorage.setItem(k,'1');b.classList.add('listened');if(ms)ms.playbackState='none'};
-t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration;syncPos()}};
+b.onclick=e=>{if(e.target.closest('.briefing-track'))return;a.paused?doPlay():doPause()};
+a.ontimeupdate=()=>{r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.duration&&!a.paused)l.textContent=fmt(a.duration-a.currentTime);if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}syncPos()};
+a.onended=()=>{p.innerHTML=play;r.style.width='0';l.textContent=txt;localStorage.setItem(k,'1');b.classList.add('listened');if(ms)ms.playbackState='none'};
+t.onclick=e=>{if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration;syncPos()}};
 if(ms){ms.metadata=new MediaMetadata({title:'Daily Briefing',artist:'zuhd.news',album:'${meta.date}',artwork:[{src:'/briefing-artwork-192.png',sizes:'192x192',type:'image/png'},{src:'/briefing-artwork.png',sizes:'512x512',type:'image/png'}]});
 ms.setActionHandler('play',doPlay);
 ms.setActionHandler('pause',doPause);
-ms.setActionHandler('stop',function(){a.pause();a.currentTime=0;p.innerHTML=play;r.style.width='0';l.textContent=txt;ms.playbackState='none'});
-ms.setActionHandler('seekto',function(d){if(d.fastSeek&&'fastSeek'in a)a.fastSeek(d.seekTime);else a.currentTime=d.seekTime;syncPos()});
-ms.setActionHandler('seekbackward',function(d){a.currentTime=Math.max(0,a.currentTime-(d.seekOffset||15));syncPos()});
-ms.setActionHandler('seekforward',function(d){a.currentTime=Math.min(a.duration||0,a.currentTime+(d.seekOffset||15));syncPos()});
-}}()</script>`
+ms.setActionHandler('stop',()=>{a.pause();a.currentTime=0;p.innerHTML=play;r.style.width='0';l.textContent=txt;ms.playbackState='none'});
+ms.setActionHandler('seekto',d=>{if(d.fastSeek&&'fastSeek'in a)a.fastSeek(d.seekTime);else a.currentTime=d.seekTime;syncPos()});
+ms.setActionHandler('seekbackward',d=>{a.currentTime=Math.max(0,a.currentTime-(d.seekOffset||15));syncPos()});
+ms.setActionHandler('seekforward',d=>{a.currentTime=Math.min(a.duration||0,a.currentTime+(d.seekOffset||15));syncPos()});
+}})()</script>`
   }
 }
 
@@ -818,6 +818,24 @@ const dispatch = existsSync(dispatchSrc)
   : {}
 if (Object.keys(dispatch).length) {
   console.log(`  Loaded: indicator dispatch (${Object.keys(dispatch).length} items)`)
+}
+
+/**
+ * Event dispatch — the prose `narrate-events.js` writes, same shape and same
+ * graceful-degrade contract as the indicator dispatch above.
+ *
+ * Unlike indicators, `recent`/`citations` ARE joined in full below: the
+ * events block has no on-demand `/api/entity/{id}.json` of its own — an event
+ * carries no time series, so it never earns an `/e/{id}` page — and at
+ * ~15-20 events the whole dispatch is a few KB, nowhere near the size that
+ * made withholding `recent` from 98 indicators worth doing.
+ */
+const eventsDispatchSrc = join(ROOT, 'content', '.events-dispatch.json')
+const eventsDispatch = existsSync(eventsDispatchSrc)
+  ? JSON.parse(readFileSync(eventsDispatchSrc, 'utf8')).items || {}
+  : {}
+if (Object.keys(eventsDispatch).length) {
+  console.log(`  Loaded: event dispatch (${Object.keys(eventsDispatch).length} items)`)
 }
 
 const articleBySlug = new Map(sorted.map((a) => [a.slug, a]))
@@ -1083,12 +1101,25 @@ if (trendsSrc && existsSync(trendsSrc)) {
       const s = dispatch[ind.id]?.standing
       return s ? { ...ind, standing: s } : ind
     }),
+    events: (snapshot.events ?? []).map((ev) => {
+      const d = eventsDispatch[ev.id]
+      if (!d) return ev
+      return {
+        ...ev,
+        standing: d.standing,
+        recent: d.recent,
+        relatedArticles: citedOr(d, []),
+      }
+    }),
   }
   writeFileSync(join(DIST_DIR, 'api', 'trends.json'), JSON.stringify(withStanding))
   const n = withStanding.indicators.length
   const described = withStanding.indicators.filter((i) => i.standing).length
+  const eventsN = withStanding.events.length
+  const eventsDescribed = withStanding.events.filter((e) => e.standing).length
   console.log(
-    `  Built: api/trends.json (${n} indicators, ${described} described, ${snapshot.asOf ?? 'undated'})`,
+    `  Built: api/trends.json (${n} indicators, ${described} described, ` +
+      `${eventsN} events, ${eventsDescribed} described, ${snapshot.asOf ?? 'undated'})`,
   )
 } else {
   console.log('  Skipped: api/trends.json (no snapshot in content/trends/)')

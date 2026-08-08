@@ -28,8 +28,8 @@ const markets = await import(await bundleIsland(dir, 'public/islands/_map/market
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
 const { sparkline, sparkPct } = spark
 const {
-  sparkInput, oddsEntries, attentionEntries, nextRelease, ribbonPoints, createMarketStrip,
-  BLOCK_ROWS,
+  sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
+  createMarketStrip, BLOCK_ROWS,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -777,100 +777,105 @@ test('attention needs a readership before a percentage can rank it', () => {
   assert.ok(Math.abs(both[0].pct - 20) < 0.01, 'printed as its own percentage')
 })
 
-// --- The release calendar --------------------------------------------------
+// --- The events calendar ----------------------------------------------------
 
-test('the next release is the nearest one a reader would recognise', () => {
-  const calendar = [
-    // FRED's nearest entry is usually plumbing: a weekly Fed balance-sheet
-    // statement, forty-three characters of jargon where a fact should be.
-    { date: '2026-08-04', release: 'H.4.1 Factors Affecting Reserve Balances' },
-    { date: '2026-08-07', release: 'Employment Situation' },
-    { date: '2026-08-12', release: 'Consumer Price Index' },
-  ]
-  assert.deepEqual(nextRelease(calendar, Date.UTC(2026, 7, 3)), {
-    label: 'US jobs',
-    date: '2026-08-07',
-  })
-  // Past entries are skipped, and a release published today still counts as
-  // next — it lands at 8:30 Eastern and the rail may be read before that.
-  assert.deepEqual(nextRelease(calendar, Date.UTC(2026, 7, 7)), {
-    label: 'US jobs',
-    date: '2026-08-07',
-  })
-  assert.equal(nextRelease(calendar, Date.UTC(2026, 7, 20)), null, 'and the line simply goes')
+const event = (id, date, extra = {}) => ({
+  id,
+  title: id,
+  institution: 'Test Institution',
+  kind: 'central-bank',
+  date,
+  ...extra,
 })
 
-test('the research CPI is not the CPI', () => {
-  // FRED publishes both. `^` anchors the price indices, because a
-  // methodological series is not the print anyone is waiting for.
-  assert.equal(
-    nextRelease(
-      [{ date: '2026-08-12', release: 'Research Consumer Price Index' }],
-      Date.UTC(2026, 7, 3),
-    ),
-    null,
+test('events sort soonest first, and a past one drops off entirely', () => {
+  const events = [
+    event('fomc', '2026-09-16'),
+    event('ecb', '2026-08-07'), // already past on the reference instant below
+    event('boe', '2026-08-20'),
+  ]
+  const entries = eventEntries(events, Date.UTC(2026, 7, 8))
+  assert.deepEqual(
+    entries.map((e) => e.id),
+    ['boe', 'fomc'],
+    'nearest first, and the past ECB date is gone rather than sorted last',
   )
+  assert.equal(entries[0].daysUntil, 12, 'whole days at day granularity')
+})
+
+test('an event scheduled for today still counts as next, not overdue', () => {
+  const entries = eventEntries([event('boe', '2026-08-08')], Date.UTC(2026, 7, 8, 18))
+  assert.equal(entries.length, 1)
+  assert.equal(entries[0].daysUntil, 0)
+})
+
+test('the countdown hands off from a phrase to a bare date', () => {
+  assert.equal(eventCountdown(0, '2026-08-08'), 'today')
+  assert.equal(eventCountdown(1, '2026-08-09'), 'tomorrow')
+  assert.equal(eventCountdown(13, '2026-08-21'), 'in 13d')
+  // Past the point a countdown is a useful picture, the date itself —
+  // `shortDate` drops the year, since this map's events are all near-term.
+  assert.equal(eventCountdown(14, '2026-08-22'), '22 Aug')
 })
 
 /**
- * The straits row survives a redraw, and it did not.
+ * Chokepoint rows are rebuilt whole on every `setStraits`, not a persistent
+ * node `trigger` is rewired onto.
  *
- * `straitsSummary` is created once and reused; the three ribbon groups build a
- * fresh `<button>` per payload and the exchange tally is triggered at
- * construction, so this was the one row where `trigger` ran repeatedly on a
- * *persistent* node — once per `setStraits`, and `setStraits` runs on every
- * range press through `redraw`. Each call added another `click` listener, each
- * listener calls `openPanel`, and `openPanel`'s first line is "a second press on
- * the control that opened it closes it". So the panel toggled once per
- * accumulated listener and the row stopped responding at **even** numbers of
- * redraws, which is what made it read as intermittent rather than broken.
- *
- * Two redraws, one click, and the panel must be open. The symptom of the bug is
- * that nothing happens, so there is nothing left in the DOM to inspect
- * afterwards — which is why it was found by driving the built page and why the
- * assertion here is on the dialog rather than on any listener count.
+ * This block used to be one composite "straits" row, created once and reused,
+ * with a click-through panel behind it — and `trigger` ran repeatedly on that
+ * *persistent* node, once per `setStraits`, which on a range press (`redraw`)
+ * added another `click` listener each time and made the panel toggle once per
+ * accumulated listener. Replaced (2026-08-08) with rows built the same way
+ * `world`/`odds`/`attention` already are: `fillInstruments` replaces the
+ * block's children wholesale every call, so there is no persistent node left
+ * for a listener to accumulate on — a redraw cannot leak here by
+ * construction, which this test pins rather than assumes.
  */
-test('a redrawn row opens its panel once, not once per redraw', () => {
+test('a redrawn chokepoint block has exactly one row per strait, ranked by delta7vs90', () => {
   withDom(() => {
-    // jsdom's <dialog> is inert in this version; model only what is asserted.
-    globalThis.window.HTMLDialogElement.prototype.show = function () {
-      this.setAttribute('open', '')
-    }
-    globalThis.window.HTMLDialogElement.prototype.close = function () {
-      this.removeAttribute('open')
-    }
+    const clicked = []
     const strip = createMarketStrip({
       rangeDays: 90,
       onSelect() {},
       onQuote() {},
-      onStrait() {},
+      onStrait(id) {
+        clicked.push(id)
+      },
     })
-    const point = {
-      id: 'hormuz',
-      name: 'Strait of Hormuz',
-      lat: 26.3,
-      lng: 56.9,
-      primaryField: 'n_total',
-      delta7vs90: { n_total: -0.2 },
-      series: { periods: dailyPeriods('2026-08-03', 30), total: ramp(30) },
-      asOf: '2026-08-03',
-    }
-    // `setTrends` is what appends the straits row to the money block — it is
-    // re-appended under the groups on every payload — so the row is not in the
-    // tree until it has run once.
-    strip.setTrends([])
+    const points = [
+      {
+        id: 'hormuz',
+        name: 'Strait of Hormuz',
+        lat: 26.3,
+        lng: 56.9,
+        primaryField: 'n_total',
+        delta7vs90: { n_total: -0.05 },
+        series: { periods: dailyPeriods('2026-08-03', 30), total: ramp(30) },
+        asOf: '2026-08-03',
+      },
+      {
+        id: 'malacca',
+        name: 'Strait of Malacca',
+        lat: 2.8,
+        lng: 101.4,
+        primaryField: 'n_total',
+        delta7vs90: { n_total: 0.2 },
+        series: { periods: dailyPeriods('2026-08-03', 30), total: ramp(30) },
+        asOf: '2026-08-03',
+      },
+    ]
     // Twice, which is exactly what one range press already costs.
-    strip.setStraits([point])
-    strip.setStraits([point])
+    strip.setStraits(points)
+    strip.setStraits(points)
 
-    const summary =
-      strip.element.querySelector('.is-straits .map-markets-summary') ??
-      document.querySelector('.is-straits .map-markets-summary')
-    assert.ok(summary, 'the straits row is built')
-    summary.dispatchEvent(new globalThis.window.MouseEvent('click', { bubbles: true }))
-    const panel = document.querySelector('dialog.map-markets-panel')
-    assert.ok(panel, 'the panel exists')
-    assert.equal(panel.hasAttribute('open'), true, 'one press must leave it open')
+    const rows = strip.element.querySelectorAll('.map-markets-straits .map-markets-summary')
+    assert.equal(rows.length, 2, 'one row per strait, not one accumulated per redraw')
+    // Ranked by |delta7vs90.n_total| descending: Malacca (0.2) before Hormuz (0.05).
+    assert.ok(rows[0].textContent.includes('Malacca'), 'the bigger mover leads')
+
+    rows[0].dispatchEvent(new globalThis.window.MouseEvent('click', { bubbles: true }))
+    assert.deepEqual(clicked, ['malacca'], 'a press flies straight to the strait, once')
     strip.destroy()
   })
 })

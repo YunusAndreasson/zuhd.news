@@ -20,7 +20,7 @@ import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './form
 import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
-import { CATEGORY_COLOUR, MAP_COLOURS, OVERLAY_COLOUR } from './style'
+import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
 import type { MapChokepoint, MapExchange } from './types'
 import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
@@ -279,67 +279,78 @@ export interface TrendIndicator {
   standing?: string
 }
 
-/** One entry of `/api/trends.json`'s `releaseCalendar` — a date and a name. */
-export interface TrendRelease {
+/**
+ * One entry of `/api/trends.json`'s `events` — a scheduled central-bank
+ * decision, OPEC+ meeting, major non-US release or summit/election, merged
+ * server-side (`fetch-trends.js`) from the hand-curated catalog and FRED's
+ * own recognised releases. Superseded `TrendRelease`/`nextRelease` entirely
+ * (2026-08-08): where that surfaced one US-only release as a caption line,
+ * this is a real block of several rows, each explained.
+ *
+ * `standing`/`recent`/`relatedArticles` are written by `narrate-events.js` and
+ * joined in full at build time — unlike an indicator, an event has no
+ * `/api/entity/{id}.json` of its own to fetch `recent` from later, so it
+ * rides the list payload alongside `standing`. Optional because a snapshot
+ * built before that stage first ran, or an event the stage has not yet
+ * reached, carries none.
+ */
+export interface TrendEvent {
+  id: string
+  title: string
+  institution: string
+  kind: 'central-bank' | 'opec' | 'econ-release' | 'summit-election'
   date: string
-  release: string
+  standing?: string
+  recent?: string
+  relatedArticles?: Array<{ slug: string; title: string; date?: string; dateFormatted?: string }>
+}
+
+/** The block's own row cap — matches the density of `odds`/`attention` and
+ *  keeps a calendar of several months' worth of meetings scannable. */
+const EVENTS_BLOCK_ROWS = 5
+
+/**
+ * Whole days between now and an event's date, at day granularity — negative
+ * once the date has passed. Exported so the card (`sheet.ts`'s `showEvent`)
+ * computes the same figure the row that opened it did, rather than a second
+ * copy that could disagree by a day around midnight.
+ */
+export const daysUntilEvent = (date: string, now = Date.now()): number => {
+  const today = Math.floor(now / DAY_MS) * DAY_MS
+  const t = Date.parse(`${date}T00:00:00Z`)
+  return Number.isFinite(t) ? Math.round((t - today) / DAY_MS) : Number.NaN
 }
 
 /**
- * The releases worth naming, and what to call them.
+ * The soonest scheduled events, nearest first.
  *
- * FRED's calendar is fetched every cycle, published in `/api/trends.json`, and
- * has been rendered by nothing anywhere on this site since it landed. It is the
- * only forward-looking field in the whole payload — every other thing in this
- * rail is a record of what already happened — and one line of it answers the
- * question a reader has after looking at the money: *what is next*.
- *
- * It has to be an editorial shortlist rather than "the nearest entry", because
- * most of what FRED schedules is plumbing. The nearest entry today is **"H.4.1
- * Factors Affecting Reserve Balances"** — a weekly Fed balance-sheet statement,
- * forty-three characters of jargon standing where a reader expects a fact. So
- * an unrecognised release is skipped and the next one is offered instead, and
- * the rail says nothing rather than something unreadable.
- *
- * **Every name carries `US`**, and that is not decoration. These are all US
- * federal releases; an unqualified "CPI" on a world map claims a scope it has
- * not got, on the one line of the rail that is about a country rather than the
- * world. `^` anchors on the price indices because FRED also publishes "Research
- * Consumer Price Index", which is a methodological series and not the print
- * anyone is waiting for.
+ * Unlike `odds`/`attention` there is no move to rank on — a calendar entry
+ * either happens or it does not — so proximity is the only honest ordering.
+ * Compared at day granularity, so an event scheduled for today still sorts
+ * first rather than being read as overdue.
  */
-const RELEASES: Array<[test: RegExp, label: string]> = [
-  [/^consumer price index/i, 'US CPI'],
-  [/^producer price index/i, 'US PPI'],
-  [/^employment situation/i, 'US jobs'],
-  [/^gross domestic product/i, 'US GDP'],
-  [/^personal income and outlays/i, 'US PCE'],
-  [/^advance monthly sales|^retail sales/i, 'US retail sales'],
-  [/federal open market|^fomc/i, 'Fed decision'],
-]
-
-/**
- * The next release a reader would recognise, or `null`.
- *
- * Compared at day granularity, so a release scheduled for today still counts as
- * next — it is published at 8:30 Eastern and the rail may well be read before
- * that, and "today" is the answer in either case.
- */
-export const nextRelease = (
-  calendar: readonly TrendRelease[] | undefined,
+export const eventEntries = (
+  events: readonly TrendEvent[] | undefined,
   now = Date.now(),
-): { label: string; date: string } | null => {
-  if (!calendar?.length) return null
-  const today = Math.floor(now / DAY_MS) * DAY_MS
-  let best: { label: string; date: string; t: number } | null = null
-  for (const entry of calendar) {
-    const t = Date.parse(`${entry.date}T00:00:00Z`)
-    if (!Number.isFinite(t) || t < today) continue
-    const hit = RELEASES.find(([re]) => re.test(entry.release))
-    if (!hit) continue
-    if (!best || t < best.t) best = { label: hit[1], date: entry.date, t }
+): Array<TrendEvent & { daysUntil: number }> => {
+  if (!events?.length) return []
+  const withCountdown: Array<TrendEvent & { daysUntil: number }> = []
+  for (const ev of events) {
+    const daysUntil = daysUntilEvent(ev.date, now)
+    if (!Number.isFinite(daysUntil) || daysUntil < 0) continue
+    withCountdown.push({ ...ev, daysUntil })
   }
-  return best ? { label: best.label, date: best.date } : null
+  return withCountdown.sort((a, b) => a.daysUntil - b.daysUntil).slice(0, EVENTS_BLOCK_ROWS)
+}
+
+/** "today" / "tomorrow" / "in 6d" close in, the date itself once a reader
+ *  cannot usefully picture a countdown that far out — the same handoff
+ *  `staleLabel` makes between an age and a bare date. */
+export const eventCountdown = (daysUntil: number, date: string): string => {
+  if (daysUntil <= 0) return 'today'
+  if (daysUntil === 1) return 'tomorrow'
+  if (daysUntil <= 13) return `in ${daysUntil}d`
+  return shortDate(date)
 }
 
 interface TickerItem {
@@ -1476,7 +1487,11 @@ export const worldEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   // One edge for the block, applied after the members are known — the whole
   // point is that these rows share it.
   const edge = lastTradedDay(used)
-  return edge == null ? out : out.map((e) => ({ ...e, edge }))
+  const withEdge = edge == null ? out : out.map((e) => ({ ...e, edge }))
+  // Ranked like every other block on the rail: the biggest mover first, not
+  // Brent-VIX-yield by catalog order — a reader scanning the rail should never
+  // have to learn a second sort rule.
+  return withEdge.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))
 }
 
 /**
@@ -1572,14 +1587,14 @@ export interface MarketStrip {
   signals: HTMLElement
   update(markets: MapExchange[], now?: number): void
   /**
-   * The trends payload: every series, and the release calendar beside them.
+   * The trends payload: every series, and the events calendar beside them.
    *
-   * The calendar is optional because it is the newer half of the same fetch and
-   * an older cached payload may not carry it — a rail that threw on a snapshot
-   * from last week would be a strictly worse failure than one that omits a line
-   * about next week.
+   * The calendar is optional because a build before `narrate-events.js` first
+   * ran, or an older cached payload, may not carry it — a rail that threw on a
+   * snapshot from last week would be a strictly worse failure than one that
+   * omits a block about next month.
    */
-  setTrends(indicators: TrendIndicator[], releases?: TrendRelease[]): void
+  setTrends(indicators: TrendIndicator[], events?: TrendEvent[]): void
   /** The chokepoint set, as the money block's fifth row. */
   setStraits(points: MapChokepoint[]): void
   setVisible(on: boolean): void
@@ -1623,6 +1638,9 @@ export interface MarketStripOptions {
   rangeDays: number
   /** Fly to a chokepoint and pin its card, the way `onSelect` does an exchange. */
   onStrait: (id: string, anchor: HTMLElement) => void
+  /** Open an event's card. Nothing to fly to — a calendar entry is not a
+   *  place — so this only opens the sheet, the way `onQuote` does. */
+  onEvent: (entry: TrendEvent, anchor: HTMLElement) => void
 }
 
 /**
@@ -1663,9 +1681,16 @@ export const ribbonPoints = (delta: number): string => {
   return Number(body) === 0 ? '0 pts' : `${delta > 0 ? '+' : '−'}${body} pts`
 }
 
-/** `is-pos` / `is-neg` / neither — the same threshold the tick shape uses. */
-const toneClass = (pct: number): string =>
-  Math.abs(pct) <= FLAT_PCT ? '' : pct < 0 ? ' is-neg' : ' is-pos'
+/**
+ * `is-stale` / `is-pos` / `is-neg` / neither.
+ *
+ * Staleness outranks direction: a row too old to trust is not "flat", it is
+ * unknown, and the three colours the rail has are green, orange and the one
+ * grey-blue that covers both "flat" and "too old to say" — the age label
+ * beside the figure is what tells those two apart for a reader who wants to.
+ */
+const toneClass = (pct: number, stale = false): string =>
+  stale || Math.abs(pct) <= FLAT_PCT ? ' is-stale' : pct < 0 ? ' is-neg' : ' is-pos'
 
 
 /**
@@ -1768,6 +1793,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   worldHead.hidden = true
   const world = el('div', 'map-markets-world')
   world.hidden = true
+  const straitsHead = el('span', 'map-group-label map-markets-head', 'straits')
+  straitsHead.hidden = true
+  const straits = el('div', 'map-markets-straits')
+  straits.hidden = true
 
   /**
    * The two instrument blocks the payload has always carried and nothing read.
@@ -1778,39 +1807,14 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * differs is only which series fill them, which is a selection rule rather
    * than a second row grammar.
    */
-  /**
-   * These two blocks are tinted from the **topic palette**, never from the
-   * money's green and orange, and that is a correctness rule rather than a
-   * preference.
-   *
-   * `--map-pos`/`--map-neg` mean "a signed change" and read as good and bad. On
-   * a market that is a convention old enough to be invisible; on the odds of an
-   * invasion it is a verdict — a green **US invade Iran +35 pts** is this map
-   * telling a reader that a war becoming likelier is good news. It is exactly
-   * the trap the layer trends already record for a green *DISASTERS +40%*, and
-   * exactly why those carry their layer's own hue instead. Attention is the
-   * same case one step milder: more people reading about a famine is not good
-   * and not bad, it is more.
-   *
-   * So identity rides on hue, direction on the shape, magnitude on the figure,
-   * and none of the three is a judgement. The hues come from `CATEGORY_COLOUR`
-   * so the rail reads as one palette rather than as a money block and two
-   * strangers — **economy's gold** for a block of prices-of-opinions, and
-   * **tech's blue-violet** for attention, which is the coolest and quietest
-   * thing here and belongs to the block furthest from a fact. Set as `--cat`,
-   * inline, the way a filter chip receives its layer's colour, so the
-   * stylesheet never names a hue.
-   */
   const oddsHead = el('span', 'map-group-label map-markets-head', 'odds')
   oddsHead.hidden = true
   const odds = el('div', 'map-markets-odds')
   odds.hidden = true
-  odds.style.setProperty('--cat', CATEGORY_COLOUR.economy ?? '')
   const attentionHead = el('span', 'map-group-label map-markets-head', 'attention')
   attentionHead.hidden = true
   const attention = el('div', 'map-markets-attention')
   attention.hidden = true
-  attention.style.setProperty('--cat', CATEGORY_COLOUR.tech ?? '')
 
   /**
    * The two blocks stand apart from the money, at the foot of the rail, and
@@ -1835,23 +1839,29 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   signals.append(oddsHead, odds, attentionHead, attention)
 
   /**
-   * What the money is waiting for — the one forward-looking line on this map.
+   * What the money is waiting for — the events calendar.
    *
    * Everything else in the rail is a record: a beacon is a story that ran, a
    * change is a month that happened, the scrubber is a fortnight already
-   * spent. `releaseCalendar` is the only field in any payload the site fetches
-   * that points the other way, and it has been published and drawn by nothing
-   * since it landed.
+   * spent. This is the one block that points the other way, and it used to be
+   * a single US-only caption line (`releaseCalendar`/`nextRelease`, superseded
+   * 2026-08-08) — central-bank decisions, OPEC+, major non-US releases and
+   * summits merged server-side into `events`, each explained by
+   * `narrate-events.js`.
    *
-   * A closing line for the money block rather than a row of it: it has no
-   * value, no direction and no series, so giving it a row would be a row with
-   * three of its four columns empty — the reserved-but-blank failure the mark
-   * column already records. `aria-live` is deliberately absent; it changes
-   * about once a week and announcing it would interrupt a reader for something
+   * Same row grammar as `odds`/`attention` — a phrase can only be read as the
+   * thing it names, so the caption takes a line and the countdown stands where
+   * a percentage would. `aria-live` is deliberately absent; this changes on the
+   * scale of days and announcing it would interrupt a reader for something
    * that is not news.
    */
-  const nextLine = el('p', 'map-markets-next')
-  nextLine.hidden = true
+  const eventsHead = el('span', 'map-group-label map-markets-head map-markets-events-head', 'events')
+  eventsHead.hidden = true
+  // Named `eventsBox` rather than `events`, which `setTrends` below takes as
+  // the incoming payload's own events array — the two would otherwise shadow
+  // each other in the same closure.
+  const eventsBox = el('div', 'map-markets-events')
+  eventsBox.hidden = true
 
   /**
    * How far back the lines reach.
@@ -1870,11 +1880,12 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   let rangeDays = opts.rangeDays
 
   // Reading order, and it is the order of the argument: what the money did,
-  // what it is waiting for, and the world it is moving in. `signals` continues
-  // the sequence — what is being bet on that world, then what the world is
-  // reading about it — but from its own box at the foot of the rail, for the
-  // reason given where it is built.
-  root.append(moneyHead, row, nextLine, worldHead, world)
+  // what it is waiting for, the world it is moving in, and the chokepoints
+  // that world ships through. `signals` continues the sequence — what is
+  // being bet on that world, then what the world is reading about it — but
+  // from its own box at the foot of the rail, for the reason given where it
+  // is built.
+  root.append(moneyHead, row, eventsHead, eventsBox, worldHead, world, straitsHead, straits)
 
   /**
    * The panel the summaries open, folded up from the strip.
@@ -2173,7 +2184,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         })
       : null
     if (windowPct === null || !input) {
-      host.className = 'map-markets-move'
+      // `is-stale` here too: nothing measured is the strongest form of "don't
+      // read a direction into this row", not an exemption from the rule.
+      host.className = 'map-markets-move is-stale'
       sparkFigure = ''
       /**
        * No line, and the age is the answer rather than the excuse.
@@ -2218,7 +2231,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const figure =
       unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct)
     sparkFigure = figure
-    host.className = `map-markets-move${toneClass(pct)}`
+    host.className = `map-markets-move${toneClass(pct, !!age)}`
     host.replaceChildren(
       // Direction first, because it is what the glance is for, and it is read
       // before the figure it qualifies rather than after it.
@@ -2472,7 +2485,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   let lastMarkets: MapExchange[] | null = null
   let lastIndicators: TrendIndicator[] | null = null
-  let lastReleases: TrendRelease[] = []
+  let lastEvents: TrendEvent[] = []
 
   /**
    * The thirty exchanges as composite members, from whatever landed last.
@@ -2553,116 +2566,65 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * daily vessel transits, which is a fact about trade. It reads as one of
    * these rows and never read as one of those chips.
    *
-   * A summary with a panel behind it, exactly like `markets`: eleven members,
-   * each a place on the map with a card, so a press has somewhere to go. The
-   * composite is `sparkInput` over the eleven — the same date-windowing, the
-   * same short-member filter, the same short-draw — because these are published
-   * series and not a pile of timestamps.
-   *
-   * `series.total` and not `series.values`: the payload names this one
-   * differently from every other series on the site, which is the sort of
-   * detail that reads as a typo until it silently draws nothing.
+   * These used to be one composite row behind a click-through panel — eleven
+   * members summarised into a single "straits" reading, a second press away
+   * from which of them had actually moved. Replaced (2026-08-08) with the top
+   * movers shown directly, the same one-tap-to-card row every other block in
+   * the rail already uses — see `chokepointEntries` and `instrumentRow`.
    */
   let lastStraits: MapChokepoint[] = []
-  const straitsSummary = el('button', 'map-markets-group map-markets-summary')
-  const straitsMove = el('span', 'map-markets-move')
-  const straitsItem = moneyItem(straitsSummary)
-  straitsItem.classList.add('is-straits')
-  straitsItem.hidden = true
-
-  /** The eleven chokepoints as composite members — see `exchangeMembers`. */
-  const straitsMembers = (): SparkMember[] =>
-    lastStraits.flatMap((c) => {
-      const vals = c.series?.total
-      if (!Array.isArray(vals) || vals.length < 2) return []
-      return [{
-        values: vals,
-        periods: c.series?.periods,
-        asOf: c.asOf,
-        // The day step wants this member's own last-against-previous.
-        // `delta7vs90` is on the payload and is a week against a quarter —
-        // a different quantity, and printing it here would caption a shape
-        // that does not draw it.
-        pct: seriesChangePct(vals) ?? 0,
-      }]
-    })
 
   /**
-   * Wired **once**, on an element that outlives every payload — and it was
-   * inside `setStraits` until a browser was pointed at it (2026-08-07).
-   *
-   * `straitsSummary` is created here and reused; the three ribbon groups build a
-   * fresh `<button>` on every `setTrends` and the exchange tally is triggered at
-   * construction, so this was the one row where `trigger` ran repeatedly on a
-   * persistent node. Each call added another `click` listener, and each listener
-   * calls `openPanel`, whose first line is *a second press on the control that
-   * opened it closes it*. So the panel toggled once per accumulated listener:
-   * after the first redraw it opened and shut inside one click and the row
-   * simply stopped responding — **at even numbers of range presses only**, which
-   * is why it reads as intermittent rather than broken.
-   *
-   * Found by driving the built page across `30d` and `90d` and asking whether a
-   * dialog was open, not by reading the code: a leak whose symptom is "nothing
-   * happened" leaves nothing in the DOM to inspect afterwards.
-   *
-   * The thunks read `lastStraits` rather than closing over a `points` argument,
-   * which is what makes wiring once safe — and is the same reason
-   * `exchangeMembers` reads `lastMarkets`.
+   * How many chokepoints get a row of their own — three, the same short-list
+   * size the rest of the rail settles on for "which of these moved".
    */
-  trigger(
-    straitsSummary,
-    'straits',
-    () => `${lastStraits.length} chokepoints`,
-    () =>
-      [...lastStraits]
-        .sort((a, b) => (b.delta7vs90?.n_total ?? 0) - (a.delta7vs90?.n_total ?? 0))
-        .map((c) => {
-          const d = (c.delta7vs90?.n_total ?? 0) * 100
-          const btn = el('button', `map-markets-row-item${toneClass(d)}`)
-          btn.setAttribute('type', 'button')
-          btn.append(
-            tick(marketDirection(d)),
-            el('span', 'map-markets-row-name', c.name),
-            el('span', 'map-markets-row-pct', ribbonPct(d)),
-          )
-          btn.addEventListener('click', () => {
-            const from = openOn ?? btn
-            closePanel()
-            opts.onStrait(c.id, from)
-          })
-          return btn
-        }),
-    straitsMembers,
-  )
+  const STRAITS_ROWS = 3
+
+  /**
+   * The busiest chokepoints, as rows in the shared instrument grammar.
+   *
+   * Ranked by `delta7vs90.n_total`, the week-against-quarter structural swing
+   * PortWatch publishes and the panel this replaced already ranked by — not by
+   * each row's own window-change, which would make *which three* appear jump
+   * with whatever range the reader has scrubbed to. The figure a row prints is
+   * still its own window-change, same as every other row here.
+   */
+  const chokepointEntries = (points: MapChokepoint[]): TickerEntry[] =>
+    [...points]
+      .sort(
+        (a, b) => Math.abs(b.delta7vs90?.n_total ?? 0) - Math.abs(a.delta7vs90?.n_total ?? 0),
+      )
+      .slice(0, STRAITS_ROWS)
+      .flatMap((c) => {
+        const vals = c.series?.total
+        if (!Array.isArray(vals) || vals.length < 2) return []
+        return [{
+          group: 'straits',
+          id: c.id,
+          label: c.name,
+          name: c.name,
+          flag: '',
+          note: c.blurb,
+          pct: seriesChangePct(vals) ?? 0,
+          level: vals[vals.length - 1],
+          values: vals,
+          periods: c.series?.periods ?? [],
+          asOf: c.asOf,
+        }]
+      })
 
   const setStraits = (points: MapChokepoint[]) => {
     lastStraits = points
-    straitsItem.hidden = points.length === 0
-    if (!points.length) return
-    straitsSummary.replaceChildren(el('span', 'map-markets-label', 'straits'), straitsMove)
-    const pct = sparkInto(straitsMove, straitsMembers())
-    // The accessible name is rewritten per payload; only the *listener* had to
-    // stop being. `trigger` sets a name too, so this must run after it — which
-    // it does, being the redraw rather than the wiring.
-    straitsSummary.setAttribute(
-      'aria-label',
-      `Straits${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}`,
+    fillInstruments(straits, straitsHead, chokepointEntries(points), true, (entry, item) =>
+      opts.onStrait(entry.id, item),
     )
   }
 
-  const setTrends = (indicators: TrendIndicator[], releases: TrendRelease[] = lastReleases) => {
+  const setTrends = (indicators: TrendIndicator[], events: TrendEvent[] = lastEvents) => {
     lastIndicators = indicators
-    lastReleases = releases
+    lastEvents = events
 
-    const next = nextRelease(releases)
-    nextLine.hidden = next === null
-    if (next) {
-      // A `·` between the three parts and no verb: the heading above it says
-      // this is the money block, the word `next` says which direction in time,
-      // and a sentence would be three times the ink for the same statement.
-      nextLine.textContent = `next · ${next.label} · ${shortDate(next.date)}`
-      nextLine.title = `The next scheduled US release the money above will move on, from FRED's calendar`
-    }
+    fillEvents(eventsBox, eventsHead, eventEntries(events))
     // The *row box*, not the group inside it. When these summaries were direct
     // children of `row` this line was right; wrapping them left the wrapper
     // behind on every rebuild, so each press of the time range added three
@@ -2681,6 +2643,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       else byGroup.set(e.group, [e])
     }
 
+    // Ranked by the same figure the row itself prints, biggest mover first —
+    // built before any group is appended, since `sparkInto`'s own return value
+    // *is* that figure and re-deriving it would risk it disagreeing with what
+    // the row shows.
+    const groupRows: Array<{ pct: number; node: HTMLElement }> = []
     for (const [name, items] of byGroup) {
       const summary = el('button', 'map-markets-group map-markets-summary')
       summary.dataset.trend = ''
@@ -2714,17 +2681,15 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         name,
         () => countsText(s),
         () => items.map(quoteRow),
-        // Safe to capture, unlike the exchanges and the straits: these summaries
-        // are rebuilt from scratch on every `setTrends`, so the closure and the
-        // row it is wired to are always the same generation of the payload.
+        // Safe to capture, unlike the exchanges: these summaries are rebuilt
+        // from scratch on every `setTrends`, so the closure and the row it is
+        // wired to are always the same generation of the payload.
         () => items.filter((e) => e.id !== 'usd-index'),
       )
-      row.append(moneyItem(summary))
+      groupRows.push({ pct: pct ?? 0, node: moneyItem(summary) })
     }
-
-    // Last of the money rows, and re-appended on every `setTrends` so it stays
-    // under the three groups that rebuild above it.
-    row.append(straitsItem)
+    groupRows.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))
+    for (const { node } of groupRows) row.append(node)
 
     /**
      * The world block: three instruments, no groups, no panel.
@@ -2749,34 +2714,40 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   /**
    * A row that *is* an instrument: a tick, a name, the level, the reading.
    *
-   * Three blocks are built from this — `world`, `odds` and `attention` — and it
-   * was written out once for the first of them. Extracting it is the rule this
-   * file's own header states: duplication is only free while the copies agree,
-   * and the thing three copies would have had to agree about is the row's
-   * grammar, which is the one thing the rail is arranged around.
+   * Four blocks are built from this — `world`, `straits`, `odds` and
+   * `attention` — and it was written out once for the first of them.
+   * Extracting it is the rule this file's own header states: duplication is
+   * only free while the copies agree, and the thing four copies would have
+   * had to agree about is the row's grammar, which is the one thing the rail
+   * is arranged around.
    *
    * **The level is the fact.** The rail printed a change and never a value, so
    * it could say Brent rose 1.2% and never say what a barrel costs — the
    * footnote without the sentence. `entry.level` and `entry.unit` were on the
    * entry the whole time and reached only the card.
    *
-   * ── Direction is a shape on every block, and colour only where it may be ──
+   * ── Direction is a shape and a colour, on every block (2026-08-08) ──
    *
-   * The tick used to be inserted here, and only on the two blocks that refuse
-   * to say direction in colour: `--map-pos`/`--map-neg` read as good and bad,
-   * and a green *US invade Iran +35 pts* is this map calling a likelier war
-   * good news. **That argument holds and is not reopened** — what changed is
-   * that the eight rows it did *not* cover no longer have a tinted line to say
-   * direction with either, so the exemption that kept the glyph off them ("a
-   * glyph beside a tinted line is the same fact twice") has no line left to
-   * point at.
+   * `odds` and `attention` used to read their tone from the topic palette —
+   * `--map-pos`/`--map-neg` read as good and bad, and a green *US invade Iran
+   * +35 pts* looked like this map calling a likelier war good news — so
+   * identity carried the hue and only the tick carried direction. The rail now
+   * treats every row the same way: `--map-pos`/`--map-neg` mean "the number
+   * went up or down", a factual statement rather than a verdict, and the tick
+   * stays as a second, redundant channel for the same fact rather than the
+   * only one. One rule, scanned the same way down the whole column.
    *
-   * So `sparkInto` draws the tick for every row family, once, in the box that
-   * carries the tone. The split this file has always named is finally spent
-   * whole: **identity in the hue, magnitude in the figure, direction in the
-   * tick** — and only the first of those three is ever allowed to be a verdict.
+   * `sparkInto` draws the tick for every row family, once, in the box that
+   * carries the tone.
    */
-  const instrumentRow = (entry: TickerEntry, caption = false) => {
+  const instrumentRow = (
+    entry: TickerEntry,
+    caption = false,
+    // A chokepoint row flies the camera and pins a place; every other
+    // instrument opens its card in place. Parameterized rather than forked,
+    // since the row itself — grammar, tone, tick — does not change.
+    onClick: (entry: TickerEntry, anchor: HTMLElement) => void = opts.onQuote,
+  ) => {
     const item = el('button', 'map-markets-group map-markets-summary')
     item.setAttribute('type', 'button')
     item.setAttribute('aria-haspopup', 'dialog')
@@ -2856,7 +2827,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     item.title = entry.note ? `${entry.name} — ${entry.note}` : entry.name
     item.addEventListener('click', () => {
       closePanel()
-      opts.onQuote(entry, item)
+      onClick(entry, item)
     })
     return moneyItem(item)
   }
@@ -2873,8 +2844,58 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     head: HTMLElement,
     rows: TickerEntry[],
     caption = false,
+    onClick?: (entry: TickerEntry, anchor: HTMLElement) => void,
   ) => {
-    host.replaceChildren(...rows.map((r) => instrumentRow(r, caption)))
+    host.replaceChildren(...rows.map((r) => instrumentRow(r, caption, onClick)))
+    host.hidden = rows.length === 0
+    head.hidden = host.hidden
+  }
+
+  /**
+   * A row for one upcoming event — the money block's forward-looking
+   * counterpart to `instrumentRow`, and deliberately not built through it.
+   *
+   * `instrumentRow` reads `entry.pct`/`.level`/`.unit` from a real series via
+   * `sparkInto`, and an event has none of those: there is nothing to measure a
+   * direction or a level from, only a date. Forcing an event through that
+   * machinery would mean faking a series so `sparkInto` degrades into its
+   * "nothing in this window" branch — a dotted rule captioned with an age,
+   * which states the wrong thing (there is no missing *reading*, there is no
+   * reading to be missing). So the countdown is written directly into the same
+   * `.map-markets-move`/`.map-markets-window` classes a real reading would use
+   * — same column, same grid, same caret — and no tick, because there is no
+   * direction to draw one about.
+   */
+  const eventRow = (
+    entry: TrendEvent & { daysUntil: number },
+    onClick: (entry: TrendEvent, anchor: HTMLElement) => void = opts.onEvent,
+  ) => {
+    const item = el('button', 'map-markets-group map-markets-summary')
+    item.setAttribute('type', 'button')
+    item.setAttribute('aria-haspopup', 'dialog')
+    const countdown = eventCountdown(entry.daysUntil, entry.date)
+    const move = el('span', 'map-markets-move')
+    move.append(el('span', 'map-markets-window', countdown))
+    item.append(el('span', 'map-markets-label map-markets-caption', entry.title), move)
+    item.setAttribute('aria-label', `${entry.title}, ${entry.institution}, ${countdown}, show detail`)
+    // The full institution name, the way a code's `title` expands it elsewhere
+    // in this rail — the caption already carries the event's own name.
+    item.title = entry.institution
+    item.addEventListener('click', () => {
+      closePanel()
+      onClick(entry, item)
+    })
+    return moneyItem(item)
+  }
+
+  /** Fill the events block, or hide it and its heading together — same
+   *  contract as `fillInstruments`. */
+  const fillEvents = (
+    host: HTMLElement,
+    head: HTMLElement,
+    rows: Array<TrendEvent & { daysUntil: number }>,
+  ) => {
+    host.replaceChildren(...rows.map((r) => eventRow(r)))
     host.hidden = rows.length === 0
     head.hidden = host.hidden
   }

@@ -26,7 +26,15 @@ import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
 import { fetchEntity } from '../_entity-panel'
-import { nisab, ribbonPoints, sparkInput, type TickerEntry } from './markets'
+import {
+  daysUntilEvent,
+  eventCountdown,
+  nisab,
+  ribbonPoints,
+  sparkInput,
+  type TickerEntry,
+  type TrendEvent,
+} from './markets'
 import { windowPoints } from './series-window'
 import type {
   ConflictEvent,
@@ -73,6 +81,12 @@ export interface Sheet {
    */
   showMarket(exchange: MapExchange, pinned: boolean, rangeDays?: number, docked?: boolean): void
   showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number, docked?: boolean): void
+  /**
+   * An upcoming calendar event — a central-bank decision, an OPEC+ meeting, a
+   * major non-US release, a summit. No `rangeDays`: unlike an indicator this
+   * has no time series, so there is no window for a card to open on.
+   */
+  showEvent(entry: TrendEvent, pinned: boolean, docked?: boolean): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
@@ -811,6 +825,30 @@ export function createSheet(): Sheet {
           grown.push(readMore(`/e/${encodeURIComponent(entry.id)}`, 'Full record →'))
           host.replaceChildren(...grown)
         })
+      }
+      render(nodes, pin, docked)
+    },
+
+    /**
+     * An upcoming calendar event. No chart path is invoked anywhere in here —
+     * see `TrendEvent` and `eventRow` in `markets.ts` for why: there is no
+     * series, so there is nothing for `chartFigure`/`sparkInput` to draw.
+     * `standing`, `recent` and `relatedArticles` all ride the list payload
+     * already, unlike an indicator's — so unlike `showIndicator` this needs no
+     * `fetchEntity` round trip; the card renders complete on the first paint.
+     */
+    showEvent(entry, pin, docked) {
+      const nodes: Node[] = []
+      const daysUntil = daysUntilEvent(entry.date)
+      nodes.push(kicker([entry.institution, fmt.fullDate(entry.date)]))
+      nodes.push(el('h2', 'island-sheet-title', entry.title))
+      nodes.push(hero(eventCountdown(daysUntil, entry.date)))
+
+      if (entry.standing) nodes.push(el('p', 'map-sheet-lead', entry.standing))
+
+      if (pin) {
+        if (entry.recent) nodes.push(el('p', 'map-sheet-lead', entry.recent))
+        nodes.push(...relatedList(entry.relatedArticles ?? [], 'Related coverage'))
       }
       render(nodes, pin, docked)
     },

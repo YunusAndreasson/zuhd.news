@@ -810,6 +810,17 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   timeout 1500 node scripts/narrate-indicators.js 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: indicator dispatch failed" | tee -a "$LOG_FILE"
   echo "Dispatch — $((SECONDS - T38))s" | tee -a "$LOG_FILE"
   commit_only "Indicator dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.indicator-dispatch.json
+
+  # Stage 3.8b: Event dispatch — same fingerprint-cached shape as 3.8, for the
+  # money rail's events block (central-bank decisions, OPEC+, major non-US
+  # releases, summits). An event weeks out is only re-narrated when its
+  # countdown bucket changes or new coverage attaches to it, never every run.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.8b: Event dispatch ---" | tee -a "$LOG_FILE"
+  T38B=$SECONDS
+  timeout 600 node scripts/narrate-events.js 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: event dispatch failed" | tee -a "$LOG_FILE"
+  echo "Event dispatch — $((SECONDS - T38B))s" | tee -a "$LOG_FILE"
+  commit_only "Event dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.events-dispatch.json
 else
   echo "--- Stage 3.8: Indicator dispatch (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
 fi

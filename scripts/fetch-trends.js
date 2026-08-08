@@ -15,6 +15,7 @@ import { writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
+import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
@@ -93,6 +94,25 @@ if (process.env.FRED_API_KEY) {
   }
 }
 
+// The money rail's events block: the hand-curated catalog (central banks,
+// OPEC+, major non-US releases, summits/elections — nothing here is fetched
+// live, see `event-catalog.js`) merged with FRED's own recognised releases,
+// windowed to the next EVENTS_WINDOW_DAYS. FOMC is deliberately not re-derived
+// from `releaseCalendar` here — the catalog already carries it from the Fed's
+// own published calendar, and matching it again would print the same
+// decision twice a quarter.
+const EVENTS_WINDOW_DAYS = 120
+const eventsWindowEnd = new Date(Date.now() + EVENTS_WINDOW_DAYS * 86400_000)
+  .toISOString()
+  .slice(0, 10)
+const fredEvents = releaseCalendar.map(matchFredRelease).filter(Boolean)
+const events = [...EVENT_CATALOG, ...fredEvents]
+  .filter((e) => e.date >= today && e.date <= eventsWindowEnd)
+  .sort((a, b) => a.date.localeCompare(b.date))
+if (events.length > 0) {
+  console.log(`  · events: ${events.length} in next ${EVENTS_WINDOW_DAYS}d`)
+}
+
 // ── Write snapshot ─────────────────────────────────────────────────────────
 
 mkdirSync(TRENDS_DIR, { recursive: true })
@@ -101,6 +121,7 @@ const snapshot = {
   fetchedAt: new Date().toISOString(),
   asOf: today,
   releaseCalendar,
+  events,
   indicators,
 }
 

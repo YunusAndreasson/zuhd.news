@@ -47,8 +47,8 @@ import { spawnSync } from 'node:child_process'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateNumbers, validateProperNouns } from './lib/grounding.js'
-import { parseFrontmatter } from './lib/frontmatter.js'
-import { canonicalIndicatorId, matchesAnyTag } from './lib/entity-registry.js'
+import { matchesAnyTag } from './lib/entity-registry.js'
+import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -56,8 +56,6 @@ const CACHE_PATH = join(ROOT, 'content', '.indicator-dispatch.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
 const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
-const FEED_SNAP_DIR = join(ROOT, 'content', '.feed-snapshots-merged')
-const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
 
 const MODEL = process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5'
@@ -117,99 +115,10 @@ const ledger = existsSync(LEDGER_PATH)
   ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8')).stories || []
   : []
 
-/**
- * Our published articles in the window.
- *
- * Filename-prefixed by date, so the window is a string comparison over
- * `readdirSync` rather than a parse of 7,800 files.
- */
-const loadArticles = () => {
-  if (!existsSync(ARTICLES_DIR)) return []
-  const cutoff = iso(windowStart)
-  const out = []
-  for (const f of readdirSync(ARTICLES_DIR)) {
-    if (!f.endsWith('.md') || f.slice(0, 10) < cutoff) continue
-    try {
-      const { meta, body } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, f), 'utf8'))
-      if (!meta?.title) continue
-      const concepts = (Array.isArray(meta.concepts) ? meta.concepts : [])
-        .map((c) => (c && typeof c === 'object' ? c.label : c))
-        .filter((s) => typeof s === 'string')
-      out.push({
-        slug: f.replace(/\.md$/, ''),
-        title: meta.title,
-        date: meta.date || f.slice(0, 10),
-        location: meta.location || '',
-        // The lead sentence carries the fact; the rest of a 350-character
-        // article is the why-it-matters the model would only paraphrase.
-        lead: String(body || '')
-          .trim()
-          .split('\n')[0]
-          .replace(/\[([^\]]+)\]\((?:country|https?):[^)]*\)/g, '$1')
-          .slice(0, 260),
-        entityIds: (Array.isArray(meta.entities) ? meta.entities : [])
-          .map((e) => e?.indicatorId)
-          .filter(Boolean)
-          .map(canonicalIndicatorId),
-        hay: [meta.title, meta.location, ...concepts].join(' ').toLowerCase(),
-      })
-    } catch {
-      /* A malformed article is the corpus test's problem, not this stage's. */
-    }
-  }
-  return out.sort((a, b) => String(b.date).localeCompare(String(a.date)))
-}
-
-/**
- * Every distinct story the feed carried in the window, published or not.
- *
- * This is the half of the grounding that our own corpus cannot supply: we
- * publish ~10 stories a cycle out of ~200 fetched, and the question "why is
- * this being read about" is very often answered by one of the 190.
- *
- * Deduped on `link` because consecutive snapshots re-carry the same story —
- * five times a day for as long as it stays in the feed.
- */
-const loadFeedWindow = () => {
-  if (!existsSync(FEED_SNAP_DIR)) return []
-  const cutoff = iso(windowStart)
-  const files = readdirSync(FEED_SNAP_DIR)
-    .filter((f) => f.endsWith('.json') && f.slice(0, 10) >= cutoff)
-    .sort()
-  const byLink = new Map()
-  for (const f of files) {
-    let snap
-    try {
-      snap = JSON.parse(readFileSync(join(FEED_SNAP_DIR, f), 'utf8'))
-    } catch {
-      continue
-    }
-    for (const key of ['multiSourceStories', 'nicheStories']) {
-      for (const s of Array.isArray(snap[key]) ? snap[key] : []) {
-        const link = s?.link || s?.title
-        if (!link || byLink.has(link)) continue
-        const concepts = Array.isArray(s.concepts) ? s.concepts : []
-        byLink.set(link, {
-          title: s.title || '',
-          date: String(s.pubDate || '').slice(0, 10),
-          source: s.source || '',
-          outlets: Number(s.eventCoverage) || 0,
-          // Wikipedia article titles, which is what `wiki-*` ids are minted
-          // from — the join that makes the attention block explicable.
-          conceptTitles: concepts
-            .map((c) => String(c?.uri || '').split('/wiki/')[1] || '')
-            .filter(Boolean)
-            .map((t) => decodeURIComponent(t).replace(/_/g, ' ').toLowerCase()),
-          hay: [s.title, ...concepts.map((c) => c?.label || '')].join(' ').toLowerCase(),
-        })
-      }
-    }
-  }
-  return [...byLink.values()].sort((a, b) => b.outlets - a.outlets)
-}
-
-const articles = loadArticles()
-const feedWindow = loadFeedWindow()
+// `loadArticles`/`loadFeedWindow` live in `lib/coverage-window.js` — the same
+// join `narrate-events.js` needs, extracted so the two stages cannot drift.
+const articles = loadArticles(windowStart)
+const feedWindow = loadFeedWindow(windowStart)
 console.log(
   `Dispatch window ${WINDOW_DAYS}d: ${articles.length} published articles, ` +
     `${feedWindow.length} distinct feed stories, trends ${trendsPath ? iso(Date.now()) : 'MISSING'}`,

@@ -2436,6 +2436,10 @@ body.doc-page {
   --map-underline: #5c6678;
   --map-pos: #9aab86;
   --map-neg: #c08a6a;
+  /* A row's third state — flat, or too old to trust the direction of — reusing
+     `MAP_COLOURS.neutral`, the canvas's own tone for "nothing to report" on a
+     mark, for the same fact in the chrome. */
+  --map-stale: #8d97a6;
 
   /* The two data hues the chrome has to name.
      Category and overlay colours belong to `_map/style.ts` — MapLibre paints
@@ -4660,9 +4664,10 @@ body.map-wide .map-ground {
 .map-money,
 .map-markets-head,
 .map-markets-world,
+.map-markets-straits,
 .map-markets-odds,
 .map-markets-attention,
-.map-markets-next,
+.map-markets-events,
 .map-markets-move { display: none; }
 
 /* Outside the rail the row wrapper dissolves and its switch goes with it.
@@ -4681,11 +4686,6 @@ body.map-wide .map-ground {
    and the phone's line closed up to `markets13 14 3 flat18 closed`. Passed
    through rather than restated, so the run's rhythm is still declared once. */
 .map-markets-item { display: contents; gap: inherit; }
-
-/* Straits has counts nowhere — it is a label and a line, and the line is a
-   desktop thing — so on the phone it would print a heading with nothing under
-   it. The other four groups all carry their tallies there. */
-.map-markets-item.is-straits { display: none; }
 
 body.map-wide {
   & .map-money,
@@ -4717,9 +4717,18 @@ body.map-wide {
     &:not(:first-child) { margin-top: 0.85rem; }
   }
 
+  /* One column always (2026-08-08). This used to be a two-column `auto-fill`
+     grid above a ~1600px rail — free width was real, but a reader scanning
+     down the column hit a different layout in the one section that had it,
+     which cost more than the extra height it saved. `.map-markets-row` is now
+     the same single-column flex as every other block in the rail, so the rail
+     is one repeating shape top to bottom regardless of viewport. */
+  & .map-markets-row,
   & .map-markets-world,
+  & .map-markets-straits,
   & .map-markets-odds,
-  & .map-markets-attention {
+  & .map-markets-attention,
+  & .map-markets-events {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -4727,108 +4736,23 @@ body.map-wide {
     min-width: 0;
   }
 
-  /* Two rows abreast where the labels are short, and the column count is nobody's
-     decision (2026-08-07).
-
-     ── What was wrong ───────────────────────────────────────────────────────
-     A money row measured **346px of box carrying 44px of ink**: a 107px label at
-     the left edge, a tick and a figure at the right, and 177px of nothing
-     between them — because `.map-markets-move` grows to fill the row and, with
-     the sparkline gone, has nothing in it but a glyph and five characters. A
-     384px column was being read as a 100px one, twice over, eighteen times down.
-     The gap is not whitespace doing work; the eye has to cross it on every row
-     to join a name to its number.
-
-     ── Why two columns rather than a narrower rail ──────────────────────────
-     Narrowing the rail spends the width on the map, which the map does not need
-     — the globe is bound by the *shorter* side and gains nothing from it. The
-     width is genuinely free, so the honest thing is to put a second reading in
-     it: the money block goes 5 rows → 3 lines and attention 10 → 5, which is the
-     same information in **half the height** and with the canyon gone from both.
-
-     ── `auto-fill`, so this is not a third layout ───────────────────────────
-     This file records that the HUD had three layouts and two breakpoints and
-     that the third was deleted because *which* layout a reader got depended on
-     the shape of their window. A media query here would rebuild exactly that. An
-     intrinsic track list does not: the block is as many columns as fit at the
-     minimum, so it is two at a 21rem rail, one at the 15rem floor and one on a
-     phone, continuously and without a threshold anyone has to maintain.
-
-     **9.6rem is the widest row's own min-content, measured**, not a taste. Inside
-     a cell the label is content-width rather than the shared `--map-row-label-w`
-     column — `CURRENCIES` sets at 72px against the column's 77 — and with the
-     glyph, the figure, the caret and their gaps the widest money row will not go
-     below **154px**. Anything smaller declared here is a track the content
-     overflows, which is where a `minmax()` floor stops meaning anything.
-
-     What that buys is stated plainly rather than oversold: **two columns on a
-     383px rail and one on a 287px rail**, which is 1600px of viewport and up.
-     Two 154px cells and their gap need 318px and the rail below that step is
-     287, so the pair does not fit and `auto-fill` gives one column — the right
-     answer, arrived at by arithmetic rather than by a threshold someone has to
-     maintain. Shrinking the parts to force it was tried: at 8.6rem the tracks
-     were narrower than the rows in them and `CURRENCIES` overflowed its own
-     cell, which is worse than a canyon.
-
-     The figures stay flush right *within each track*, so both columns keep an
-     edge; a label's own right edge is not something anyone reads down.
-
-     ── Money only, and `attention` was tried and looks wrong ────────────────
-     The rule is the one this file already draws between a `.map-markets-label`
-     and a `.map-markets-caption`: **a code pairs up, a phrase takes a line.**
-     `MARKETS ⌃+0.3%  CURRENCIES —0.1%` sets cleanly in a 172px track because
-     those are four-to-ten-character codes. Attention's labels are subjects —
-     rendered 2-up at the same width, `Strait of Hormuz` and `Artificial
-     intelligence` each wrapped to two lines while their neighbours stayed on
-     one, so the block came out a ragged grid of 30px and 39px cells that reads
-     as broken rather than as dense. Measured, then reverted; the height it would
-     have saved is not worth a block that looks like a layout fault.
-
-     `align-items: start` stays, because a money row can still outgrow its
-     neighbour at the rail's floor and stretching the short one to match would
-     centre a one-line reading in a two-line box. */
-  & .map-markets-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9.6rem, 1fr));
-    column-gap: 0.6rem;
-    row-gap: 0;
-    align-items: start;
-    min-width: 0;
-
-    /* The outdent goes. Every row in this rail outdents by its own padding so
-       its hover box reaches past the content edge — and on a grid cell that same
-       negative margin makes each track overhang its neighbour, so two adjacent
-       hover boxes overlap by 0.8rem and the pointer lights both. A clean seam
-       between the columns is worth more than a bled outer edge, and the outer
-       edge is the only thing that loses it. */
-    & .map-markets-item,
-    & .map-markets-summary { margin-inline: 0; }
-
-    /* Content-width, not the shared column — see the arithmetic above. The
-       block-level rule that gives a money label the mark column's width and gap
-       is a *flex-basis*, so this has to unset the basis rather than the width. */
-    & .map-markets-label { flex: 0 1 auto; }
-  }
-
-  & .map-markets-next { display: block; }
-
   /* The attribute beats the layout, or a block the trends payload has not
      filled yet renders as a heading over nothing. Restated inside this block
      because `body.map-wide .map-markets-world` would otherwise outrank a bare
      `[hidden]` rule — and every block added since inherits that hazard, which
      is why they are enumerated rather than left to a shared selector. */
   & .map-markets-world[hidden],
+  & .map-markets-straits[hidden],
   & .map-markets-odds[hidden],
   & .map-markets-attention[hidden],
-  & .map-markets-next[hidden],
+  & .map-markets-events[hidden],
   & .map-markets-head[hidden] { display: none; }
 
   /* A money row is now a switch column and a summary, side by side — the
      switch is a sibling because a `<button>` inside a `<button>` is invalid and
      browsers drop the inner one. The box is what makes the pair behave as one
      row for hover and for alignment. */
-  & .map-markets-item,
-  & .map-markets-item.is-straits {
+  & .map-markets-item {
     display: flex;
     align-items: center;
     gap: 0.45rem;
@@ -4908,14 +4832,13 @@ body.map-wide {
 
   /* The tick in the reading box, on every block (2026-08-07).
 
-     It used to be here for `odds` and `attention` alone: they refuse the signed
-     palette on purpose — `--map-pos`/`--map-neg` read as good and bad, and a
-     green *US invade Iran +35 pts* is this map calling a likelier war good news
-     — which left them saying identity and magnitude and never direction. The
-     other eight rows were exempt because a tinted **line** was saying it for
-     them, and there is no line here any more. So the third channel is spent
-     whole: identity in the hue, magnitude in the figure, direction in the tick,
-     and only the first of the three is ever allowed to be a verdict. */
+     It used to be built for `odds` and `attention` alone, back when those two
+     blocks read their tone from the topic palette instead of the signed one and
+     needed the tick to carry direction on its own. All ten blocks share one
+     tone system now (2026-08-08) — see `is-stale`/`is-pos`/`is-neg` on
+     `.map-markets-move` — but the tick stays everywhere: it was never only
+     there to cover for a missing colour, it is also what lets a reader tell up
+     from down without reading a sign off a number. */
   & .map-markets-move .map-markets-tick {
     display: inline-flex;
     flex: 0 0 auto;
@@ -5014,6 +4937,7 @@ body.map-wide {
 
     &.is-pos { color: var(--map-pos); }
     &.is-neg { color: var(--map-neg); }
+    &.is-stale { color: var(--map-stale); }
   }
 
   /* The change, in a column of its own.
@@ -5168,8 +5092,10 @@ body.map-wide {
      The caret takes a column of its own rather than being a `::after` at the end
      of a flex line, which is what the old `--map-caret-w` reservation and
      `.map-markets-break` existed to fake. Both are gone. */
+  & .map-markets-straits .map-markets-summary,
   & .map-markets-odds .map-markets-summary,
-  & .map-markets-attention .map-markets-summary {
+  & .map-markets-attention .map-markets-summary,
+  & .map-markets-events .map-markets-summary {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto var(--map-caret-w);
     column-gap: 0.45rem;
@@ -5280,45 +5206,12 @@ body.map-wide {
      to a third line at 1280 — were all flex deciding a wrap on a *base* size,
      which is a question a grid never asks. */
 
-  /* The tone is the block's own hue, never the money's signed pair.
-
-     `--map-pos`/`--map-neg` read as good and bad. On a basket of currencies
-     that is a convention; on the odds of an invasion it is a verdict, and a
-     green **US invade Iran +35 pts** is this map calling a likelier war good
-     news — the trap the layer trends already record for a green
-     *DISASTERS +40%*. Identity rides on hue, direction on the tick, magnitude
-     on the figure, and none of the three is a judgement.
-
-     `--cat` arrives inline from `CATEGORY_COLOUR`, the way a filter chip
-     receives its layer's colour, so the rail is one palette and no hue is
-     named here. The `.is-pos`/`.is-neg` classes are still written by
-     `sparkInto` — they are how the money rows work — so these have to outrank
-     them, which is what the extra compound is for. **The tick inherits this
-     through `currentColor`**, which is what lets these two blocks state a
-     direction without stating a verdict about it. */
-  & .map-markets-odds .map-markets-move,
-  & .map-markets-attention .map-markets-move,
-  & .map-markets-odds .map-markets-move.is-pos,
-  & .map-markets-odds .map-markets-move.is-neg,
-  & .map-markets-attention .map-markets-move.is-pos,
-  & .map-markets-attention .map-markets-move.is-neg {
-    color: var(--cat, var(--map-ink-dim));
-  }
-
-  /* The one forward-looking line in the rail, closing the money block.
-
-     Set like a caption rather than a row: no glyph column, no fixed label
-     width, flush with the block's own left edge, so it reads as a note under
-     the readings rather than as a reading with three columns missing. That is
-     the same distinction `.map-group-label`'s missing indent draws one level
-     up, which is why this borrows its ink and its size and not its tracking —
-     the headings are all-caps and this is a sentence fragment. */
-  & .map-markets-next {
-    margin: 0.15rem 0 0;
-    color: var(--map-ink-muted);
-    font-size: var(--size-2xs);
-    letter-spacing: 0;
-  }
+  /* The events block needs no rule of its own here — it reached its row
+     grammar (2026-08-08) by going through the same caption-grid selector
+     `.map-markets-odds`/`.map-markets-attention` already use, rather than
+     the bespoke `<p>` styling `.map-markets-next` had when it was one
+     unheaded caption line closing the money block. See `eventRow` in
+     `markets.ts`. */
 }
 
 /* The caret's column, held open on the line the caret is not on.
@@ -5387,11 +5280,14 @@ body.map-page.map-wide.map-aside-off {
      The spine keeps the money, whose labels are codes; these rows are 71px wide
      and a prediction market is only readable as the question it asks. A block
      whose every label would ellipsis to two words is not a reading at that
-     size, it is a list of stubs. */
+     size, it is a list of stubs. `.map-markets-events` is the same case: an
+     event's caption is a sentence like "FOMC rate decision", not a code. */
   & .map-status,
   & .map-range-group,
   & .map-hud-more,
   & .map-signals,
+  & .map-markets-events,
+  & .map-markets-events-head,
   & .map-more { display: none; }
 
   & .map-markets-summary {
@@ -5423,10 +5319,7 @@ body.map-page.map-wide.map-aside-off {
      keep a 55px sparkline, which is a smudge standing in for a fact the row
      could simply have printed. */
   & .map-markets-level,
-  & .map-markets-age,
-  /* Measured folded: `next · US jobs · 7 Aug` wraps to three lines and 37px in
-     a 71px column, which is a sentence rendered as a stack. */
-  & .map-markets-next { display: none; }
+  & .map-markets-age { display: none; }
 }
 
 /* --- The sparkline -------------------------------------------------------
