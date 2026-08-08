@@ -113,6 +113,14 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
+// A leading `Location — ` prefix, matched wherever the body's own dateline
+// needs to be found or removed — `buildArticle` below re-styles it into a
+// separate span, and the map's lead sentences (`mapLeads`) strip it outright
+// because the popup already states the place in its kicker line, and printing
+// it a second time as the paragraph's own first word pushed the sentence a
+// city name to the right of every other row's margin.
+const DATELINE_RE = /^([^\n—]+?)\s+—\s+/
+
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
@@ -132,7 +140,7 @@ const buildArticle = (filename) => {
   // the markdown source before HTML rendering (so smartQuotes doesn't
   // curl our attribute quotes), then inject the styled span back into
   // the first paragraph of the rendered HTML.
-  const datelineMatch = body.match(/^([^\n—]+?)\s+—\s+/)
+  const datelineMatch = body.match(DATELINE_RE)
   const strippedBody = datelineMatch ? body.slice(datelineMatch[0].length) : body
   let renderedHtml = markdownToHtml(strippedBody)
   if (datelineMatch) {
@@ -1656,8 +1664,14 @@ for (const a of sorted) {
   // Body copy is markdown, and the pipeline writes country tags as
   // `[Iran](country:IR)`. The popup renders plain text, so unwrap links to
   // their label and apply the same typographic quotes the rest of the site uses.
+  // The dateline is stripped outright rather than re-styled the way
+  // `buildArticle` does it — the popup's kicker already prints the place, so
+  // the body's own "City — " would be a second copy pushing the sentence
+  // itself out from the paragraph's left edge.
+  const datelineMatch = a.body.match(DATELINE_RE)
+  const bodyForLead = datelineMatch ? a.body.slice(datelineMatch[0].length) : a.body
   const lead = smartQuotes(
-    splitBlocks(a.body)
+    splitBlocks(bodyForLead)
       .slice(0, 2)
       .join(' ')
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')

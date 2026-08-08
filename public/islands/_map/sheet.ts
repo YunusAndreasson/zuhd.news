@@ -824,6 +824,12 @@ export function createSheet(): Sheet {
           if (cited.length) grown.push(...relatedList(cited, 'Read from'))
           grown.push(readMore(`/e/${encodeURIComponent(entry.id)}`, 'Full record →'))
           host.replaceChildren(...grown)
+          // The card grew after `placeDocked` last measured it — the fetch above
+          // resolves well after `open()`'s own clamp, so the dispatch paragraph
+          // and the related list landed below whatever `window.innerHeight`
+          // allowed at open time. Re-clamping is a no-op off `isDocked`/`dialog.open`
+          // for a peek or a card the reader has since closed.
+          placeDocked()
         })
       }
       render(nodes, pin, docked)
