@@ -2,13 +2,214 @@
   "version": 1,
   "stories": [
     {
+      "id": "bc-wildfire-perimeter-evacuation-rate-of-spread",
+      "label": "Wildfire forces 20,000 evacuations in Canada's British Columbia",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-bc-wildfire-perimeter-evacuation-rate-of-spread"
+      ],
+      "eventUri": "eng-11905961",
+      "summary": "More than 20,000 people were evacuated overnight in British Columbia and air evacuations are running for those trapped behind the fire perimeter — lead with the phrase 'behind the fire perimeter', because it names the failure mode that makes modern wildfire deadly: the fire moved faster than the road network could clear. The mechanism the reader should carry is why fire behaviour has changed rather than merely worsened — a longer drying season lowers fuel moisture across whole landscapes at once, so ignition is no longer followed by a slow build but by a run, and evacuation planning built on a 1990s rate of spread now budgets hours that no longer exist. Establish the hectares burned, the number of active fires and the state-of-emergency powers Eby invoked, how many people remain isolated, and the smoke plume's trajectory, which is where the consequence spreads far beyond Canada. Keep the proportion honest: this is a rich province with aircraft, and the same fire behaviour in Indonesia's peat, Algeria's Kabylie or Türkiye's coast arrives without an air fleet — say so in one sentence rather than assuming it. FEED NOTE for the audit: this is the only usable multi-source cluster in the entire 04:00 feed — the other two are both the 12 August eclipse, which this file has already covered three times, and one of those is an astrology piece. The two-multi-source-per-category floors for politics and economy could not be met from this feed at all; the rejected multi-source stories were the two eclipse clusters, rejected as already covered rather than as weak.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Wildfire",
+        "http://en.wikipedia.org/wiki/British_Columbia",
+        "http://en.wikipedia.org/wiki/Canada",
+        "http://en.wikipedia.org/wiki/State_of_emergency",
+        "http://en.wikipedia.org/wiki/Provinces_and_territories_of_Canada",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Necessity_(criminal_law)",
+        "http://en.wikipedia.org/wiki/Hectare"
+      ]
+    },
+    {
+      "id": "hub-dam-full-industry-dry-allocation-losses",
+      "label": "Hub industries face acute water crisis",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-hub-dam-full-industry-dry-allocation-losses"
+      ],
+      "eventUri": null,
+      "summary": "Industry across Hub is shutting down for lack of water while the Hub Dam stands almost full — lead with that contradiction, because it is the entire story and it is not a drought. The mechanism our reader should carry is that water scarcity in South Asia is overwhelmingly an allocation problem wearing the costume of a supply problem: a full reservoir with dry taps means the losses are in conveyance, unauthorised extraction along the line, and a priority order that is decided administratively rather than by any published rule. Establish the dam's current storage against capacity, the contracted allocation between Karachi's municipal supply and Hub's industrial and agricultural users, the actual delivered volume, and where the difference goes — and name the authority that sets the split, because that authority is the accountable party. Who is affected: factory workers stood down without pay, farmers in the Hub river command, and residents who are the last claimants in every allocation dispute. The HCCI is an interested party alleging systematic deprivation — attribute its claims as claims and seek what WAPDA, the Sindh and Balochistan irrigation departments, and the Hub Dam authority say the numbers are. The broader point worth one sentence: an economy that cannot move water 50 kilometres from a full reservoir has an institutional deficit, not a hydrological one. OIC sourcing satisfied: Dawn (PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "wheat-import-tender-delay-price-signal-pakistan",
+      "label": "Flour prices rising as govt yet to issue import tender",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-wheat-import-tender-delay-price-signal-pakistan"
+      ],
+      "eventUri": null,
+      "summary": "Wheat and flour prices are still climbing in Pakistan while the federal government has announced an intention to import a million tonnes and has not yet issued the tender — lead with the gap between the announcement and the tender, because that gap is the price. The mechanism our reader should carry is how a state signals into a grain market: announcing an import without buying tells every holder of stock exactly what the government thinks the shortfall is, and gives them weeks to price it in before a single ship is chartered — so the announcement raises the price it was meant to lower, and the longer the tender is delayed the more of the intervention is captured by traders rather than consumers. Establish the Sensitive Price Index movement for 20kg flour, 10kg wheat and fine flour against a year ago, the current release price from provincial reserves, PASSCO's stock position, and the shipping and financing lead time between a tender and delivered grain — that lead time is why August decisions set December prices. Consequence: wheat flour is the single largest line in a low-income Pakistani household's food budget, and this lands on the same households already carrying the petroleum levy this file covered yesterday. Name who decides — the Ministry of National Food Security and the ECC — and what they say the delay is for. OIC sourcing satisfied: Dawn (PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "turkiye-saudi-pakistan-defence-offsets-localisation",
+      "label": "Türkiye, Saudi & Pakistan deepen defence cooperation",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-07-turkiye-saudi-pakistan-defence-offsets-localisation"
+      ],
+      "eventUri": null,
+      "summary": "Three OIC states with complementary defence-industrial bases — Turkish drones and naval design, Saudi capital and a localisation mandate, Pakistani manpower and strategic weight — are formalising cooperation, and the story to write is the industrial one, not the communiqué. Lead with what each party brings and what each lacks, because that asymmetry explains the arrangement: Türkiye has products and not enough capital, Saudi Arabia has capital and a Vision 2030 target to build half its defence spend domestically, and Pakistan has production capacity and export ambitions but no financing. The mechanism our reader should carry is offsets and technology transfer — a defence purchase in this bloc is increasingly a demand for local assembly, licensed production and eventually design authority, which is how a buyer becomes a supplier over a decade, and it is the same path Türkiye itself walked after Western export restrictions. Then the strategic consequence: this is procurement diversification away from US platforms with end-use restrictions attached, and every joint production line is a reduction in the leverage those restrictions provide. Establish exactly what was signed, by whom, and at what value; whether any specific platform, joint venture or production line is named; and what prior agreements between these three have actually delivered versus announced — the honest answer to that last question is the discipline this story needs, because defence MoUs in the region have a poor conversion record. OIC sourcing: Salaam Gateway (AE) is a regional outlet, but no Turkish, Saudi or Pakistani outlet in this feed carried the item — a feed-side gap worth auditing given all three principals are OIC states.",
+      "conceptUris": []
+    },
+    {
+      "id": "balochistan-by-polls-partial-postponement-writ-map",
+      "label": "LG by-polls in Balochistan's Khuzdar, Kalat, Hub postponed",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-balochistan-by-polls-partial-postponement-writ-map"
+      ],
+      "eventUri": null,
+      "summary": "The Election Commission of Pakistan postponed local-government by-elections in Khuzdar, Kalat and Hub for law-and-order reasons while going ahead the same day in Zhob, Loralai and Sibi — lead with the split, because a partial postponement is a map. The mechanism our reader should carry is that security-based electoral deferral is self-reinforcing: the districts where the state's writ is weakest are the districts that get no local government, so the vacuum that produced the insecurity is administered from Quetta instead of filled by an elected council, and the next postponement is easier to justify than the last. This is the same instrument this file tracked in Azad Kashmir's Poonch division yesterday, in a different province — worth one sentence linking them. Establish which specific seats were deferred and for how long, who requested the postponement (the ECP, the provincial home department, or the deputy commissioners), what security incidents are cited, how long these seats have been vacant, and how many Balochistan local-government seats remain unfilled from earlier rounds. Who is affected: residents of three districts with no elected local tier deciding water, sanitation and municipal spending — in Hub, the same district whose industries are shut for lack of water in this cycle's other Balochistan story. Attribute the security justification to the body that made it and note what Baloch political parties say about it, because 'law and order' is both a real condition in Balochistan and a contested category. OIC sourcing satisfied: Dawn (PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "africom-strike-tempo-self-assessment-casualty-gap",
+      "label": "The Dangerous Consequences of Trump's Deadly Strikes in Africa",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-africom-strike-tempo-self-assessment-casualty-gap"
+      ],
+      "eventUri": null,
+      "summary": "US Africa Command has resumed airstrikes at a tempo not seen in years — write the accounting, not the argument. Lead with the numbers that can be verified: strikes conducted this year against the same period last year, the countries they fall in (Somalia above all), the casualty figures AFRICOM itself declares, and the civilian-casualty count that Amnesty and Airwars document from the same strikes. The gap between those two counts is the story, because it is the measure of an accountability system: AFRICOM assesses its own strikes, publishes its own findings, and no external body has access to the sites. The mechanism our reader should carry is what changed procedurally rather than politically — loosening the target-approval threshold moves a strike decision from a policy review with civilian-harm scrutiny to a commander's judgement in theatre, and that single administrative change explains both the tempo and the casualty divergence. Establish which authority governs strikes now, whether Somalia's federal government consents to each one or to a standing arrangement, and what al-Shabaab's territorial position has actually done over the period the strikes intensified — the honest answer is what tests the policy. Who is affected: Somali civilians in Lower Shabelle and Galmudug, who have neither a court to petition nor a record of their own dead. SOURCING DISCIPLINE: this is an analysis piece from an advocacy-adjacent outlet — take the framing from it and every number from AFRICOM releases, Airwars or Amnesty, and say plainly which is which. Africa remains the audit's thinnest region and no African outlet in this feed covered the item, which is a feed-side gap; Somalia is an OIC member.",
+      "conceptUris": []
+    },
+    {
+      "id": "data-centre-nda-siting-public-comment-closure",
+      "label": "City That Arrested Person for Clapping at Data Center Meeting Moves to Virtual Meetings for 'Public Safety'",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-07-data-centre-nda-siting-public-comment-closure"
+      ],
+      "eventUri": null,
+      "summary": "A small Kansas town that arrested a resident for clapping at a data-centre hearing has now moved its council meetings online and ended public comment, citing death threats against officials. Lead with the sequence and hold both halves of it: the threats are real and the response removes the only lawful channel residents had. The mechanism our reader should carry is why data centres in particular produce this collision — the facility is sited by a private agreement negotiated under a non-disclosure agreement, and the tax abatement and the water and power draw are settled before the public hearing occurs, so the hearing is procedurally decorative and residents correctly perceive it as such. That is what turns a zoning meeting into a confrontation, and it is a structural feature of hyperscale siting, not a Kansas peculiarity. Establish what the project is and whose it is, the disclosed and undisclosed terms, the water and megawatt figures, what the arrest was actually charged as and what happened to it, and what the state's open-meetings law requires — a virtual meeting without comment may be unlawful, and that is a checkable question. Then the reason this matters far beyond Kansas: the same buildout is landing in Malaysia's Johor, in the Gulf, in Ireland and in South Africa, and everywhere it lands the pattern repeats — a facility consuming local water and power for compute sold globally, negotiated in confidence with a council that has no comparable legal capacity. This is 404 Media's own reporting; attribute the threat claims to the officials making them and the arrest facts to the record.",
+      "conceptUris": []
+    },
+    {
+      "id": "sydney-ground-movement-near-miss-controller-margin",
+      "label": "'Not enough air traffic controllers': safety concerns at Sydney airport after Jetstar and Qatar planes involved in near-miss",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-sydney-ground-movement-near-miss-controller-margin"
+      ],
+      "eventUri": "eng-11905879",
+      "summary": "A Jetstar A320 braked hard on the tarmac at Australia's busiest airport when a Qatar Airways 777 was towed into its path, and the union and the state premier are both pointing at a controller shortage. Lead with the tow, because it identifies the failure class: this was a ground-movement conflict, not an approach conflict, and ground movement is the least automated part of aviation — the surveillance, conflict alerting and redundancy that protect aircraft in the air largely stop at the runway edge, so the taxiway is still worked by human memory, radio and line of sight. The mechanism our reader should carry is that aviation's extraordinary safety record is bought with staffing margin as much as with technology: controllers are trained for years, cannot be surged, and the system degrades first in exactly this way — a near-miss that produces no injuries and therefore no headline until one does. Establish Airservices Australia's actual staffing position against its established requirement, how many ground-movement incidents Sydney has logged this year and the trend, whether the ATSB is investigating, and what surface-movement radar and conflict alerting Sydney has installed. Who is accountable: the national air navigation provider and the minister above it, both of whom have been warned in writing. The wider point, kept to a sentence: the same controller shortage is reported at airports from the US to South Asia, and the Gulf carriers whose aircraft was involved here operate into all of them. This also fills the audit's flagged Oceania gap — zero articles for two consecutive days.",
+      "conceptUris": []
+    },
+    {
+      "id": "binder-jet-silicon-nitriding-thickness-limit",
+      "label": "Porous reaction-bonded silicon nitride: Size effects for pressureless nitriding of binder jet additively manufactured silicon",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-binder-jet-silicon-nitriding-thickness-limit"
+      ],
+      "eventUri": null,
+      "summary": "Researchers 3D-printed silicon parts and then converted them to porous silicon nitride by reacting them with nitrogen gas at ambient pressure, and found the hard limit: above a certain thickness the conversion stops short of complete. Lead with that thickness number, because a manufacturing process is defined by the part it cannot make. The mechanism is teachable in three sentences: nitrogen has to diffuse inward through the part while the reaction it drives is strongly exothermic, so a thick section either starves of gas at the core or overheats and melts the silicon before it converts — the porosity that makes the printed part convertible at all is the same porosity that must survive the reaction. Why our reader should care beyond ceramics: reaction-bonded nitriding needs no press, no die and no hot isostatic furnace, which is exactly what puts it within reach of a manufacturer that cannot buy a hundred-million-dollar tool chain — binder jetting plus pressureless conversion is a route to high-temperature components (burner nozzles, filters, molten-metal handling, catalyst supports) for industrial bases in Türkiye, Malaysia, Egypt or Pakistan that will never host a conventional ceramics plant. Give the actual conversion percentages against thickness, the nitriding schedule, the resulting porosity and strength, and state honestly what remains unsolved — dimensional shrinkage, batch repeatability, and whether anything at production scale has been made this way. This is a journal paper with no other coverage; describe what was measured and do not extrapolate past it.",
+      "conceptUris": []
+    },
+    {
+      "id": "salmonella-calreticulin-conjugate-tumour-hypoxia",
+      "label": "Calreticulin-targeting L-asparaginase-flagellin conjugate enhances Salmonella-mediated antitumor efficacy",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-salmonella-calreticulin-conjugate-tumour-hypoxia"
+      ],
+      "eventUri": null,
+      "summary": "A team engineered Salmonella to deliver an enzyme-flagellin conjugate that homes to calreticulin on tumour cells, and reports improved antitumor efficacy in animal models. Lead with the strangeness of the platform and then justify it, because the reason bacteria are used is genuinely elegant: solid tumours have hypoxic, necrotic cores that chemotherapy and immune cells reach poorly, and those same conditions are where anaerobic bacteria preferentially grow — so the tumour's best defence against conventional treatment is precisely what makes it colonisable. The mechanism to explain: calreticulin surfaces on stressed and dying tumour cells and acts as an 'eat me' signal to the immune system, so targeting it concentrates the payload where immune attention is already directed; L-asparaginase starves cells that cannot synthesise asparagine, the same principle behind a decades-old leukaemia drug; and flagellin is itself a potent immune stimulant, so the conjugate is doing three things at once. Give the tumour models used, the efficacy figures against controls, the toxicity observed, and the sample sizes. Then the discipline this story needs above all: this is an unedited early-access manuscript reporting animal work, bacterial cancer therapy has a century-long history of promising preclinical results that did not survive human trials, and the honest framing is a mechanism worth understanding rather than a treatment worth hoping for — say that explicitly rather than in a closing hedge.",
+      "conceptUris": []
+    },
+    {
+      "id": "plastic-rafting-crab-bottle-species-dispersal",
+      "label": "Crab Odyssey: Crustacean Wandered the Seas in a Bottle for Months, Scientists Find",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-plastic-rafting-crab-bottle-species-dispersal"
+      ],
+      "eventUri": null,
+      "summary": "Scientists recovered a crab that had been living inside a drifting plastic bottle for months, eating the algae growing on its walls and the small fish that swam in. Lead with the animal and then turn it, because the charm is the delivery mechanism for the finding: the bottle was not a trap, it was a functioning habitat — and that is the part that should unsettle the reader. The mechanism our reader should carry is ocean rafting: species have always crossed oceans on driftwood and pumice, but those rafts rot, sink and arrive rarely, whereas plastic does not degrade, floats indefinitely and now moves in quantities that turn what was a once-in-a-century dispersal event into continuous traffic. That is how marine invasive species establish, and it is why plastic pollution is an ecological-connectivity problem and not only a toxicity or entanglement one. Establish what was actually observed — the species, where the bottle was found, how long it had drifted and how the researchers estimated that, what the crab had been eating, and whether it was carried outside its native range. Consequence for our readers specifically: the Indian Ocean and Arabian Sea gyres accumulate debris from the whole basin, and the fisheries of Oman, Pakistan, India and East Africa sit downstream of it. Keep proportion — this is one animal and an anecdote with a mechanism behind it, not a population study; say so.",
+      "conceptUris": []
+    },
+    {
+      "id": "wrangles-over-expropriation-act-and-metro-cops-risk-sinking",
+      "label": "Wrangles over Expropriation Act and Metro Cops risk sinking to needless GNU depths",
+      "firstSeen": "2026-08-09T04:12:10.227Z",
+      "lastCovered": "2026-08-09T04:12:10.227Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-09-wrangles-over-expropriation-act-and-metro-cops-risk-sinking"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] It was a weird week in the life of the Government of National Unity (GNU). There was Ashor Sarupen, the deputy minister of finance, leading a DA delegation to the Western Cape High Court to challenge his own government's Expropriation Act. He was there as the chairperson of the DA's Federal Council ",
+      "conceptUris": []
+    },
+    {
       "id": "hormuz-reparations-demand-irreversible-closure",
       "label": "Iran makes dramatic new demands around Strait of Hormuz",
       "firstSeen": "2026-08-08T22:12:41.674Z",
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-hormuz-reparations-demand-irreversible-closure"
@@ -33,7 +234,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-pakistan-petroleum-levy-sit-ins-nfc-bypass"
@@ -49,7 +250,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-dram-2027-capacity-allocation-hbm-crowding"
@@ -65,7 +266,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-nigeria-tcn-tower-vandalism-grid-asymmetry"
@@ -81,7 +282,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-ice-custody-death-rate-oversight-removal"
@@ -97,7 +298,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-flying-focus-dephasing-plasma-accelerator"
@@ -113,7 +314,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-aldosteronism-screening-gap-southeast-asia"
@@ -129,7 +330,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-bip110-uasf-node-versus-hashpower"
@@ -145,7 +346,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-russia-hardware-wallets-custody-versus-control"
@@ -161,7 +362,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-ssbn-netting-drone-threat-port-survivability"
@@ -177,7 +378,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-trump-highlights-peace-in-south-caucasus-as-aliyev-hails-us"
@@ -202,7 +403,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-08-ajk-polls-voting-in-remaining-poonch-division-seats-may-be-h"
@@ -218,7 +419,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-abu-safiya-detention-appeal-retaliation"
@@ -234,7 +435,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-gaza-plan-stage-dispute-board-of-peace"
@@ -250,7 +451,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-bulgaria-drone-nato-airspace-detection-gap"
@@ -275,7 +476,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-hormuz-closure-conditions-oman-mediation"
@@ -291,7 +492,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-berkshire-cash-drawdown-buyback-signal"
@@ -307,7 +508,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-memecoin-etf-wrapper-fiduciary-distribution"
@@ -323,7 +524,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-typhoon-dolphin-preemptive-port-closure"
@@ -339,7 +540,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-radiofrequency-noise-avian-magnetoreception"
@@ -355,7 +556,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-shark-borne-sensors-subsurface-heat-intensity"
@@ -371,7 +572,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-brazil-self-custody-transfer-delay-rule"
@@ -387,7 +588,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-nigeria-2027-synthetic-media-language-asymmetry"
@@ -403,7 +604,7 @@
       "lastCovered": "2026-08-08T17:08:44.588Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-asi-commissioner-esa-vote-concentration"
@@ -419,7 +620,7 @@
       "lastCovered": "2026-08-08T22:12:41.674Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-08-eclipse-12-august-totality-path-retinopathy",
@@ -447,7 +648,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-womens-quota-delimitation-deferred-precondition"
@@ -472,7 +673,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-aes-nigeria-summons-regional-security-attribution"
@@ -488,7 +689,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-armenia-azerbaijan-year-one-corridor-implementation"
@@ -513,7 +714,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-karachi-exhumation-medical-board-forensic-control"
@@ -529,7 +730,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk"
@@ -545,7 +746,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-caspian-seabed-undivided-trans-caspian-gas"
@@ -561,7 +762,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-la-nina-duration-bering-ice-teleconnection"
@@ -577,7 +778,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-royan-namira-curated-microrna-cancer-database"
@@ -593,7 +794,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-gut-cell-turnover-cytoplasm-crowding-hunger-sensor"
@@ -609,7 +810,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-perseverance-autonav-distance-record-light-time"
@@ -625,7 +826,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-satellite-diplomacy-capacity-without-control"
@@ -641,7 +842,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-clarity-act-procedural-vote-stablecoin-yield"
@@ -657,7 +858,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-08-08-xrp-ledger-confidential-transfers-validator-governance",
@@ -674,7 +875,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-yemen-saudi-strike-escalation-doctrine"
@@ -690,7 +891,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-sindh-spsc-exam-pass-rate-legitimacy"
@@ -706,7 +907,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-nilin-ramallah-checkpoint-movement-control"
@@ -722,7 +923,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-07-us-1-2bn-payment-halt-offshore-wind"
@@ -738,7 +939,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-secondary-sanctions-strategic-autonomy"
@@ -763,7 +964,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-gulf-nuclear-dispersion-transboundary-dose"
@@ -779,7 +980,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-silver-nanocatalyst-reversible-solid-oxide-cells"
@@ -795,7 +996,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-btcpay-lightning-node-drain-hot-custody"
@@ -811,7 +1012,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-iris2-implementation-sovereign-constellation-cost"
@@ -827,7 +1028,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-param-pragya-india-sovereign-ai-compute"
@@ -852,7 +1053,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-hassankhel-drone-strikes-unacknowledged-kp"
@@ -868,7 +1069,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-minnesota-primary-super-pac-independent-expenditure"
@@ -884,7 +1085,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-uyghur-government-in-exile-recognition-evidence"
@@ -900,7 +1101,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-egypt-turkey-normalisation-sequence-brotherhood"
@@ -916,7 +1117,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-timema-asexual-genome-unused-genes-decay"
@@ -932,7 +1133,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-solar-evening-peak-storage-coal"
@@ -948,7 +1149,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-bip-110-fork-replay-protection-holder-risk"
@@ -964,7 +1165,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-tsmc-arizona-supplier-ecosystem-concentration"
@@ -980,240 +1181,13 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-08-mq-25-carrier-control-centre-combat-radius"
       ],
       "eventUri": null,
       "summary": "The first US carrier now has the compartment from which uncrewed aircraft will be flown — and the aircraft it was built for will not fly operationally until 2029, years late. Lead with that gap, because a ship modified for a capability that does not yet exist is the clearest measure of how slowly military aviation actually changes. The mechanism our reader should carry is why a refuelling drone is the first uncrewed aircraft on a carrier deck and why refuelling is the whole strategic argument: a carrier air wing's combat radius is roughly 800km, anti-ship missiles now outrange it substantially, and the only way to launch from outside that threat envelope is to refuel in the air — which the Navy currently does by burning out its own F/A-18s in the tanker role. The MQ-25 exists to buy back range, and range is the entire question of whether a carrier remains usable against a peer. Then the part that matters more than the airframe: the control centre is the precedent. Once a carrier has a room where uncrewed aircraft are commanded, the argument about what else can be flown from it — strike, surveillance, decoys — becomes an argument about software and doctrine rather than about steel, and that is how a fleet changes composition without a single new ship. Establish the actual schedule slips and their causes, the programme cost, what the compartment does, and how many carriers are to be modified. Mark Navy timelines as Navy timelines: this programme's dates have moved before. Keep it mechanical — this is a capability story, not a hardware appreciation.",
-      "conceptUris": []
-    },
-    {
-      "id": "spain-reciprocal-border-checks-schengen-erosion",
-      "label": "Spain imposes border checks on Italy amid Ceuta migration row",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-spain-reciprocal-border-checks-schengen-erosion"
-      ],
-      "eventUri": "spa-4297016",
-      "summary": "Spain has now actually imposed the reciprocal controls it threatened — this file reported the ultimatum and Italy's refusal this morning, and the retaliation is the new fact, so lead with the checks being live rather than with the row. The mechanism to carry: Schengen has no arbiter empowered to end another member's 'temporary' internal border control, so the only enforcement instrument is mutual restriction, and the free-movement area erodes by tit-for-tat rather than by any decision — two founding members are now each policing the other's travellers over an arrival surge at an African enclave. Who is affected first and must not vanish from a story about two European governments: the people who crossed into Ceuta, a Spanish enclave on Moroccan soil, who are the object of every measure and party to none — count them, say where they are held, say what happens to them. Establish what each control actually consists of (which crossings, which documents, how long), whether the European Commission has acted, and what Meloni and Sánchez each said on the record. Second entry in this arc; report today's escalation, not yesterday's dispute. Al Jazeera (QA) carries it; no Moroccan or enclave outlet appears in the feed, which is a feed-side gap worth auditing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Ceuta",
-        "http://en.wikipedia.org/wiki/Human_migration",
-        "http://en.wikipedia.org/wiki/Rome",
-        "http://en.wikipedia.org/wiki/Schengen_Area",
-        "http://en.wikipedia.org/wiki/Morocco",
-        "http://en.wikipedia.org/wiki/Giorgia_Meloni"
-      ]
-    },
-    {
-      "id": "zelenskyy-serbia-visit-non-alignment-ammunition",
-      "label": "Ukraine's Zelenskyy makes landmark visit to Serbia",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-zelenskyy-serbia-visit-non-alignment-ammunition"
-      ],
-      "eventUri": "eng-11902338",
-      "summary": "Zelenskyy's first official visit to Serbia — the one European state that has refused to sanction Russia while its factories have supplied, by indirect routes, a large share of the artillery ammunition Ukraine fires. Lead with that contradiction, because it is the whole reason the trip is news: Belgrade sells the shells and withholds the politics. The mechanism our reader should carry is how a small state monetises non-alignment: Vučić keeps EU accession, Russian gas contracts and a defence-export business running simultaneously, and each leg is only viable because he has not committed to the other two — this is the same hedging logic the Gulf states are now practising with Washington, seen in a poorer country with less room. Establish what is actually on the agenda (security, energy, reconstruction contracts), what each side says publicly, and what Serbia's ammunition exports have amounted to on the record versus in claim. Note that TASS and TRT are reporting the same visit with opposite emphases and say which facts both carry. Non-Western actors with agency, not a setting for someone else's policy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Serbia",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Aleksandar_Vučić",
-        "http://en.wikipedia.org/wiki/Belgrade",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/President_of_Ukraine",
-        "http://en.wikipedia.org/wiki/European_Union"
-      ]
-    },
-    {
-      "id": "tirah-displaced-return-plan-compensation-gap",
-      "label": "Displaced Tirah residents express reservations over government's commitment, October return plan",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-tirah-displaced-return-plan-compensation-gap"
-      ],
-      "eventUri": null,
-      "summary": "Thousands of families displaced from Tirah Valley in Khyber district say the compensation and reconstruction promised when they were moved out earlier this year has not arrived, and they do not believe the October return date. Continuation of displacement is the development — lead with what the families say is missing, itemised, and with how many households are involved and where they have been living since. The mechanism our reader should carry is how a security operation converts into an indefinite displacement: clearance is announced as temporary, compensation is scheduled against a return date, the return date is set by the security assessment rather than by whether homes exist to return to, and the displaced have no standing to contest either — so the state's obligation expires on a timetable it sets for itself. Who holds power: the KP provincial government, the federal disaster authority, and the military that ordered the clearance; name which body owes which payment. Who is affected: Pashtun families from a valley that has been cleared and repopulated repeatedly since 2008. Follows this file's KP militancy-policy entry from a different end — that story was about civilian oversight of operations, this is what the operations cost the people moved by them. OIC sourcing satisfied: Dawn (PK) is the national record.",
-      "conceptUris": []
-    },
-    {
-      "id": "maasai-loliondo-green-grabbing-customary-land",
-      "label": "Whose conservation, whose development? The Maasai struggle over land in northern Tanzania",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-maasai-loliondo-green-grabbing-customary-land"
-      ],
-      "eventUri": null,
-      "summary": "Maasai communities in Loliondo and Ngorongoro are being moved off land they hold under customary title, and the legal instrument doing it is conservation — protected-area designation that forecloses grazing while opening the same ground to trophy hunting concessions and luxury tourism. Lead with a named village and a hectare figure, not with the concept. The mechanism our reader should carry is 'green grabbing': conservation status is the one land classification that is internationally legible and domestically unchallengeable, so a state that could not simply expropriate pastoralists can reclassify their rangeland and achieve the same result with donor approval — the dispossession arrives with an environmental certificate attached. Then the specific unfairness our reader will grasp immediately: the Maasai are being removed from land whose ecological condition is the product of their own grazing regime, in the name of protecting it. Establish the legal record — which designations, which court rulings and how they were complied with, which concessions and to whom, what the Tanzanian government says, and what the international conservation bodies that hold the standing say when asked. Africa was the audit's weakest region at 2 of 56 articles; this is a structural land-and-power story, not a wildlife feature. No Tanzanian outlet in today's feed carried it — a feed-side gap worth auditing.",
-      "conceptUris": []
-    },
-    {
-      "id": "senate-secondary-tariffs-russian-oil-buyers",
-      "label": "Opinion | Russia Hears From Lindsey Graham",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-senate-secondary-tariffs-russian-oil-buyers"
-      ],
-      "eventUri": "eng-11903094",
-      "summary": "The US Senate has passed a bill authorising 100% tariffs on the largest purchasers of Russian oil and gas — lead with who those purchasers actually are, because the bill is written about Russia and lands on India, China and Turkey. The mechanism our reader should carry is the secondary-tariff instrument and how it differs from a sanction: a sanction restricts a transaction, a 100% tariff on the purchaser's unrelated exports converts every barrel of discounted Russian crude into a tax on that country's textiles, steel and electronics — so the pressure is applied not to Moscow but to third states, whose refiners then have to price the political risk of a cargo rather than its landed cost. Establish the actual text: what threshold triggers it, what discretion the president retains, whether it has passed the House, and when it could bite. Then the consequence for our reader's countries: India refines Russian crude for re-export, Turkey is both a buyer and a transit route, and Pakistan and Egypt buy the refined product downstream — a tariff aimed at Moscow arrives as a fuel-price event in South Asia. SOURCING DISCIPLINE: both the WSJ and RT entries in this cluster are opinion columns with opposite framings; take the legislative facts from the TRT World report and the bill text, use WSJ and RT only to show how the same vote is being narrated in Washington and Moscow, and carry neither framing as a finding. Regional voice present: TRT World (TR).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Lindsey_Graham",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Tariff",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin"
-      ]
-    },
-    {
-      "id": "cook-removal-second-attempt-fed-independence",
-      "label": "Trump Again Moves to Fire Cook, Reviving Fed Independence Fight",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-cook-removal-second-attempt-fed-independence"
-      ],
-      "eventUri": "eng-11903467",
-      "summary": "Trump has moved a second time to remove Federal Reserve Governor Lisa Cook over unproven mortgage-fraud allegations, in a letter dated Wednesday — and the load-bearing fact is that the first attempt already produced a Supreme Court ruling. Lead with what that ruling held and why the White House believes this letter is different, because a second attempt after an adverse decision is a test of compliance, not of law. The mechanism our reader should carry is why removal protection is the entire architecture of central-bank independence: a governor serves a fourteen-year term removable only 'for cause' precisely so that monetary policy can be unpopular, and the cause alleged here concerns conduct predating her appointment and unconnected to her office — so if it suffices, the standard is whatever the executive says it is, and the term length becomes decorative. Then the point our reader will care about most, which US coverage will not make: this lands the same week the dollar hit its weakest since May and the market is pricing a hike into a supply-shock regime, and a Fed suspected of political direction gets a term premium rather than a policy debate — the cost is paid globally, in the rate at which every dollar-indebted economy refinances. Establish the letter, the allegations and their status, Cook's response, the procedural route, and what the Court actually said. Direct continuation of yesterday's dollar entry.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Lisa_D._Cook",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Governor",
-        "http://en.wikipedia.org/wiki/Mortgage_fraud"
-      ]
-    },
-    {
-      "id": "iran-stablecoin-sanctions-issuer-chokepoint",
-      "label": "U.S. sanctions Iran-linked crypto exchanges Shelbit and Aban Tether",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-iran-stablecoin-sanctions-issuer-chokepoint"
-      ],
-      "eventUri": "eng-11903397",
-      "summary": "The US Treasury has sanctioned two exchanges it says moved Iranian money outside the banking system — lead with the fact that the instrument being sanctioned is a dollar stablecoin, because that is what has changed. The mechanism our reader should carry is that stablecoins reproduce dollar settlement without correspondent banks: a sanctioned economy that cannot obtain dollars through SWIFT can obtain dollar-denominated tokens peer-to-peer, and the enforcement point therefore moves from the bank to the issuer, who can freeze a wallet by contract in a way no foreign bank could be compelled to. So the story is a demonstration that the 'permissionless' rail has an owner, and the owner is reachable from Washington. Establish exactly what OFAC alleges Shelbit and Aban Tether did, the volumes, whether the issuer has frozen anything, and what the exchanges say. Then the consequence beyond Iran: every country that has been told stablecoins are a hedge against dollar dependence — and this file's readers in Pakistan, Egypt, Nigeria and Turkey live in the economies where that pitch is loudest — now has a worked example of the hedge being switched off. Mark clearly what is a Treasury allegation versus an established fact; designations are not findings. SOURCING NOTE: no Iranian or regional outlet in today's feed covered this designation, though Mehr (IR) is present in the feed on other Iran items — a feed-side gap worth auditing.",
-      "conceptUris": []
-    },
-    {
-      "id": "screwworm-mexico-sterile-insect-barrier-failure",
-      "label": "Flesh-eating screwworms feast on humans in Mexico; human cases top 500",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-screwworm-mexico-sterile-insect-barrier-failure"
-      ],
-      "eventUri": null,
-      "summary": "Human screwworm infestations in Mexico have passed 500 cases since the fly reinvaded in 2024, per the health ministry's July surveillance report and a new paper in Emerging Infectious Diseases. Lead with the collapse of a control programme, not with the parasite: the New World screwworm was eradicated from North and Central America by decades of sterile-insect releases — irradiated males mass-reared and dropped by aircraft — and the barrier that held it south of Panama has now failed. The mechanism our reader should carry is that sterile-insect technique is not a one-time cure but a permanently funded wall: it works only while releases exceed the wild population every generation, so the eradication is an annuity, and defunding it does not preserve the gain, it reverses it on the timescale of the insect's life cycle. That generalises directly to malaria vector control, polio and measles — every elimination that must be paid for forever. Give the case numbers, who is being infested (rural, livestock-adjacent, disproportionately poor), the livestock losses, the trade consequences for Mexican cattle exports, and what the eradication programme's budget and coverage actually did before it slipped. Latin America appeared only inside the aggregate Americas bucket in yesterday's audit; this is a Mexican public-health story, not a US border story.",
-      "conceptUris": []
-    },
-    {
-      "id": "silicon-anode-interphase-battery-energy-density",
-      "label": "Spatiotemporally coupled sulfur chemistry for stable silicon-90+ anodes",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-silicon-anode-interphase-battery-energy-density"
-      ],
-      "eventUri": null,
-      "summary": "A Nature Communications paper reports stable cycling of anodes that are more than 90% silicon — lead with why that number is the barrier and not a milestone. The mechanism our reader should carry is the reason silicon has been the obvious next anode material for twenty years and is still not in most cells: silicon stores roughly ten times the lithium of graphite per gram, but it swells about 300% doing it, and the expansion cracks the particle and shreds the passivating film that forms on its surface, so capacity dies over tens of cycles. Every commercial 'silicon' battery today is graphite with a few per cent silicon blended in, which is a way of not solving that problem. What this work claims is a sulfur chemistry that builds the interphase in the right place at the right time so the film survives the swelling — explain the interphase plainly, because it is the part non-specialists never hear about and it is where battery lifetime actually lives. Then the honesty this deserves and most battery coverage omits: this is an unedited accepted manuscript, the numbers to check are cycle count, areal loading, coulombic efficiency and whether the cell is a coin cell or a pouch — most silicon-anode results that never shipped looked exactly like this at coin-cell scale. Say what would have to be true for it to matter: energy density per pack, at automotive rates, at cost. Pure materials science, and the one such story in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "mesh-messaging-shutdowns-github-geoblock-distribution",
-      "label": "The offline messaging apps challenging internet shutdowns",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-mesh-messaging-shutdowns-github-geoblock-distribution"
-      ],
-      "eventUri": null,
-      "summary": "During India's internet blackout, downloads of Bluetooth mesh messengers surged — and the government's response was to have GitHub geoblock the repository. Lead with that second move, because it is the finding: the state could not block the protocol, so it blocked the place the code is distributed from. The mechanism our reader should carry is what a mesh messenger actually does and does not do: phones relay encrypted messages to each other over Bluetooth in hops, so there is no tower, no ISP and nothing for a shutdown order to switch off — but range is tens of metres, throughput is tiny, delivery needs a chain of participating handsets, and metadata still leaks to anyone within radio range, so it is a tool for a dense crowd and not a replacement for the internet. Then the point our reader will carry furthest: India orders more internet shutdowns than any other country, and shutdowns are now standard practice in Pakistan, Iran, Iraq, Sudan and Ethiopia — the same instrument, imposed on the same kind of moment, and the same technical answer being tried in each. The real battleground the piece identifies is distribution: app stores and code hosts are jurisdictionally reachable in a way peer-to-peer software is not, so censorship migrates from the network to the supply chain. Establish the download numbers, the specific geoblock and its legal basis, and what GitHub says.",
-      "conceptUris": []
-    },
-    {
-      "id": "rural-water-utilities-volunteer-defence-ics-exposure",
-      "label": "Water utilities group partners with DEF CON offshoot for Water Watch Center",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-rural-water-utilities-volunteer-defence-ics-exposure"
-      ],
-      "eventUri": null,
-      "summary": "The National Rural Water Association has partnered with a DEF CON offshoot to staff a defence centre for small water utilities — lead with the fact that the organisation now defending American drinking water from state-linked intrusions is a volunteer hacker project, because that is the accountability gap stated as a fact rather than as a complaint. The mechanism our reader should carry is the structure of the problem: water in the US is delivered by tens of thousands of independent utilities, most serving a few thousand people, each running programmable logic controllers that were internet-exposed decades before anyone considered it a target, and each with no security staff and no budget line for one — so the sector's attack surface is enormous and its defensive unit of account is a part-time operator. Regulation has repeatedly failed to attach because there is no single regulator with reach over all of them. Establish what the centre will actually do (monitoring, incident response, free tooling — and for how many utilities), who funds it, and which past intrusions prompted it. Then the transferable point for our reader: the same fragmentation describes municipal water in Pakistan, Nigeria, Indonesia and across the Gulf, where the controllers are the same imported hardware and there is no volunteer corps at all — critical-infrastructure defence is being improvised everywhere, and the US is the case where someone at least counted.",
-      "conceptUris": []
-    },
-    {
-      "id": "copernicus-wildfire-imagery-open-detection",
-      "label": "Europe's free satellite service just made it easier to track wildfires",
-      "firstSeen": "2026-08-07T22:10:40.513Z",
-      "lastCovered": "2026-08-07T22:10:40.513Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-copernicus-wildfire-imagery-open-detection"
-      ],
-      "eventUri": null,
-      "summary": "The Copernicus Browser now ships a wildfire visualisation anyone can run over Sentinel-2 imagery — lead with the fact that the script is nearly a decade old and was written by a user, because the story is not a new capability but a public one finally becoming usable. The mechanism our reader should carry is what the imagery actually measures: shortwave-infrared bands see through smoke and register the thermal signature of active burning, so the same pixels that look like grey cloud in visible light resolve into a fire front — and Copernicus publishes those bands free, globally, with no licence, which is the part that matters. Then the consequence, which is about who gets to know: fire detection in most of the world is a commercial product or a government prerogative, and communities downwind of a burn are told what is happening rather than able to check. A free browser-based tool moves that capability to any journalist, farmer or local official with a connection — in Indonesia's peatland fires, in the Sahel, in Pakistan's crop-burning season and across the Amazon, where the official count and the observable count have historically disagreed. Establish the resolution, the revisit interval and the honest limits (cloud, timing, no thermal alerting), and say how it compares with NASA FIRMS. Practical: our reader should be able to open it and use it after reading.",
       "conceptUris": []
     }
   ]
