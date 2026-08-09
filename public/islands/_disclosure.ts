@@ -29,6 +29,11 @@ export const GROW_EASE = 'cubic-bezier(0.2, 0.7, 0.3, 1)'
 
 export const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches
 
+// Per-node call generation, keyed off the element rather than a module-level
+// counter: `growTo` is called on whichever box is growing, and two different
+// boxes racing each other must not make either think it lost.
+const growGen = new WeakMap<HTMLElement, number>()
+
 /**
  * Animate a box between the height it has and the height its contents want.
  *
@@ -40,6 +45,20 @@ export const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)'
  * No `fill`, so the box returns to its own `auto` height the moment this ends
  * and a reader who later opens the chart's own `<details>` is not fighting an
  * inline height left behind. Nothing to unwind but the clip.
+ *
+ * **A second call on the same node before the first settles must not let the
+ * first call's `finally` win.** The story card's preview→article swap reuses
+ * one `.maplibregl-popup-content` across both renders, so a fast fetch can
+ * start a second `growTo` while the first's `animate().finished` is still
+ * pending. Both captured `node.style.overflow` as `''` and each would restore
+ * to what it captured — if call one's `finally` runs *after* call two's, it
+ * restores `overflow` to `''` correctly, but the reverse order leaves it
+ * clipped at `'hidden'` forever, since call two's restore already ran and
+ * nothing runs again. That is not a corner case here: it silently ate the
+ * card's own scroll fix below, and with it the Share row, on every card whose
+ * content overflowed the box. `growGen` makes only the *last* call's `finally`
+ * allowed to touch the property, the same guard `disclosure()`'s `seq` already
+ * uses for the identical race one scope up.
  */
 export const growTo = async (
   node: HTMLElement,
@@ -52,6 +71,8 @@ export const growTo = async (
   // Under a couple of pixels there is nothing to see, and an animation that
   // cannot be perceived is a frame budget spent on nothing.
   if (Math.abs(to - from) < 2) return
+  const gen = (growGen.get(node) ?? 0) + 1
+  growGen.set(node, gen)
   const overflow = node.style.overflow
   node.style.overflow = 'hidden'
   try {
@@ -63,7 +84,7 @@ export const growTo = async (
     // A cancelled animation is an ordinary outcome here — a second chip
     // pressed mid-flight — and not a failure to report.
   } finally {
-    node.style.overflow = overflow
+    if (growGen.get(node) === gen) node.style.overflow = overflow
   }
 }
 

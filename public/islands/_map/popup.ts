@@ -334,6 +334,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     offset: 14,
     className: 'map-popup',
     /**
+     * MapLibre's default autofocuses "the first focusable element in tree
+     * order" on every `setDOMContent`. The close button is appended to
+     * `._content` *after* the card's own children (`_createCloseButton` runs
+     * post-append), so in tree order it comes last despite sitting top-right
+     * by CSS — the walk lands on the first Sources link instead, leaving a
+     * visible focus ring boxing "protothemanews.com" and blotting out the
+     * comma after it on every card open, on every viewport.
+     */
+    focusAfterOpen: false,
+    /**
      * Hide the card when its story is on the far side of the planet.
      *
      * A popup is DOM, positioned over the canvas — it has no idea the world is
