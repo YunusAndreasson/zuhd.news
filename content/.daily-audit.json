@@ -1,34 +1,36 @@
 {
-  "date": "2026-08-08",
+  "date": "2026-08-09",
   "metrics": {
-    "articles": { "value": 46, "detail": "5 cycles scheduled, 3 published (avg 15/cycle); 04:00 and 17:00 produced zero" },
-    "freshness": { "median": 0.6, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 13, "economy": 11, "science": 10, "tech": 12 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
+    "articles": { "value": 55, "detail": "5 cycles ran and all 5 wrote articles (11/12/13/13/12); 2 committed and deployed themselves, 2 were swept into the manual dev-session commits, and the 22:00 batch of 12 is still uncommitted" },
+    "freshness": { "median": 0.8, "p90": 1.3, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 13, "science": 12, "tech": 9 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 16, "AM": 12, "EU": 7, "AS": 7, "AF": 3, "GL": 1 }
+      "breakdown": { "ME": 17, "EU": 13, "AM": 10, "AS": 9, "AF": 5, "OC": 1 }
     },
-    "sciTech": { "ratio": 48, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 28,
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn / Nature (tied, 8 each)", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 35,
     "duplicates": 0,
-    "avgCycleDuration": 826
+    "avgCycleDuration": 1160
   },
-  "experiment": "Skipped — every goal metric is inside target, no experiment is active, and no pause gate applies. The day's two failures are pipeline faults, not parameter faults; no tunable in the daily-tuning scope would have prevented either, and adding a variable now would only muddy the baseline against which the writer flake needs measuring.",
-  "weakestArea": "Cycle completion, not any content metric. Three of five cycles published: 04:00 lost its writer to a sandbox refusal ('File access to /tmp/zuhd-selection.json is blocked in this session') on both the first attempt and the retry, and 17:00 wrote and validated 12 articles that were then thrown away when build.js died with ENOENT writing dist/a/2026-07-30-damietta-drone-confirmed-cause-withheld-attribution.html. That is roughly 24 articles lost. Behind the content numbers, source breadth is the softest: unique sources fell 43 to 28 while output fell only 55 to 46, and CoinDesk sits at 7 articles (15%) alongside Dawn at 7 — both under the 20% ceiling, but the concentration is tighter than any day this week.",
+  "experiment": "Skipped — every goal metric is inside target, no experiment is active, and no pause gate applies. The day's failures are all in the build/deploy stage, which no tunable parameter in this scope touches; opening a variable now would only add noise to a day whose content numbers are already clean.",
+  "weakestArea": "Deploy, not content. Three of five cycles reached Stage 3b and never shipped: 12:00 died with ENOTEMPTY inside build.js's rmSync of dist/, and 17:00 and 22:00 both found .build.lock held by a live PID and exited. The lock behaved exactly as designed — it was added on 2026-08-03 for this race and it prevented a second corrupted build — but the holder was a long-running local build from the map-engine work, so scheduled cycles queued behind an interactive session for ten hours. Of the content metrics, tech is softest: 9 articles against a floor of 4 is comfortable, but it fell from 14 yesterday and the 17:00 cycle logged a post-dedup floor violation (tech 2 < 3).",
   "watching": [
-    "Writer /tmp refusals are now a pattern, not a one-off: 08-01 12:00, 08-03 17:02, 08-06 04:04 and 08-08 04:01 all hit it, and two of those four cost the whole cycle. The existing did-it-write-an-article retry fires correctly but re-issues an identical prompt, so it reproduces the same refusal.",
-    "build.js ENOENT on dist/a/*.html at scripts/build.js:1775 — first occurrence in the log history, and the 22:00 cycle built cleanly, so it is transient. The mkdirSync for dist/a runs immediately above the write loop, which makes a concurrent removal of dist/ the likelier cause than a missing directory.",
-    "The 04:00 cycle also logged a post-dedup floor violation (economy 1 < 3) before the writer failed, so that cycle was thin upstream as well as broken downstream.",
-    "Sci-tech at 48% is the highest this week (35% yesterday) and tech at 12 outran politics-adjacent output; healthy against the 25% floor, but a swing this wide in one day is mix noise rather than a trend."
+    "The 22:00 cycle's 12 articles are written, validated and still untracked in content/articles/ — they are not on the live site until someone commits and runs a build; .build.lock is now clear, so a plain publish will take them.",
+    "The build lock has no wait or retry: run-cycle.sh treats a held lock as a build failure and skips deploy outright, so any concurrent local build silently costs a whole cycle's publication. Two cycles today, both recoverable only by hand.",
+    "The ENOTEMPTY at 12:00 is the same dist/ race the lock was written to stop, but it happened to the process that won the lock — a second writer was inside dist/ without holding it, which points at something other than build.js touching that tree.",
+    "Multi-source supply upstream stayed thin: 12:00 saw only 4 multi-source clusters and could not meet the economy floor at all (both economy clusters were the same 12 August eclipse). Published multi-source still landed at 9, so the selector is spending what little the feed gives it.",
+    "FIRMS_MAP_KEY is still absent from the service file — the thermal snapshot skipped on all five cycles and the map continues to serve a stale layer."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles for a second consecutive day; Africa at 3 is down from 6 and is the thinnest non-empty bucket.",
-    "One story carried a 'GL' (global) region tag rather than a dateline region, which neither helps nor hurts the six-bucket count but hides where the story actually sits.",
-    "Only 3 multi-source clusters reached the 17:00 feed against 59 niche items, so multi-source supply upstream stayed at the low end of its usual 8–14 range."
+    "Oceania produced a single article for the third consecutive day, and Africa at 5 remains the thinnest region with real output.",
+    "The Middle East took 17 of 55 slots (31%) — inside every stated target, but the widest single-region share this week.",
+    "Tech fell to 9 from 14 with the 17:00 cycle unable to fill its floor of 3; the shortfall was upstream feed composition, not selector behaviour.",
+    "acronymViol=379 in the 22:00 quality snapshot is far above the rest of the style panel and nothing currently gates it."
   ],
-  "context": "Output held at 46 articles despite losing two of five cycles, because the three that ran published 10, 12 and the balance. Average cycle duration fell 1174s to 826s, with the selector at 250s, writer 221s and editor 104s — all far inside their timeouts. Freshness held at a 0.6-day median. The experiment slate is empty and the queued numerical-density experiment remains blocked on its own preflight (replicate the bench gain at n>=20 first); it targets scripts/write-prompt.md, which is outside daily-tuning scope regardless. Both of today's failures live in scripts/run-cycle.sh and scripts/build.js, also outside that scope — the writer refusal in particular looks addressable by granting the writer session explicit access to /tmp rather than relying on the retry, but that is an operator call."
+  "context": "Content-side the day was healthy: 55 articles (up from 51), zero duplicates, 35 unique sources against 29 yesterday, freshness median 0.8 with a 1.5-day maximum, and no source above 15% share. Cycle wall-time averaged 1160s with the selector at 269s, writer 312s and editor 91s — all far inside their timeouts, and the writer's /tmp sandbox refusal did not recur after the --add-dir /tmp fix. The experiment slate is empty and the queued numerical-density experiment stays blocked on its own preflight (replicate the bench gain at n>=20 first); it targets scripts/write-prompt.md, which is outside daily-tuning scope in any case. Every failure today lives in scripts/build.js and scripts/run-cycle.sh, also outside that scope — the operator call worth making is whether a held build lock should make run-cycle.sh wait and retry rather than abandon the deploy."
 }
