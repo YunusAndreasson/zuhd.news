@@ -32,7 +32,7 @@
 // Fast path: redirect mobile visitors to their store from <head>, BEFORE the body
 // paints, so Android/iOS don't pay for rendering a page they never see. Desktop /
 // unknown clients fall through to the rendered page with both store buttons.
-(function () {
+(() => {
   var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
   var IOS = "https://apps.apple.com/app/id6760964753";
   var ua = navigator.userAgent || "";
@@ -88,7 +88,7 @@
   <script>
   // Desktop / unknown visitors stay here — wire both buttons with the same params
   // so a manual click-through is still attributed store-side.
-  (function () {
+  (() => {
     var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
     var IOS = "https://apps.apple.com/app/id6760964753";
     var qs = (location.search || "").replace(/^\?/, "");

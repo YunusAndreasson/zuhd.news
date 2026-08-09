@@ -27,6 +27,10 @@ content/.breaking-pick.json
 .shots-*/
 .refs/
 .diag.mjs
+
+# CSS coverage candidate list (scripts/perf/css-usage.mjs). Repo-root by
+# default; re-run output, not a report anyone commits.
+.css-usage*.txt
 .probe.mjs
 
 # Credential backups. `.env` was already ignored but its timestamped copies were
@@ -38,24 +42,45 @@ content/.breaking-pick.json
 # creates two sources of truth for the same dependency tree.
 pnpm-lock.yaml
 
-# One-off length/character counting scratch. These accumulate at the repo root
-# and in scripts/ every time an article-length question comes up.
-check_*.py
-check_*.sh
-check_*.js
-count_*.js
-checklen*.py
-checklen*.sh
-count_chars.*
-verify_articles.py
-_tmp_*.py
-_wc_*.py
-scripts/_check*.py
-scripts/_char_check.py
-scripts/_checklen.py
-scripts/_wordcount_check.py
+# One-off length/character/word counting scratch. These accumulate at the repo
+# root and in scripts/ every time an article-length question comes up, under
+# whatever name occurs to the session (check*, wordcheck*, count*, verify*,
+# with or without underscores). Match the shape, not each name that's shown up
+# so far — the exact-name list this replaced grew a line per naming variant
+# and still missed the untracked ones (checkbody.js, checkwriter.py, ...).
+/*check*.py
+/*check*.js
+/*check*.sh
+/count*.py
+/count*.js
+/count*.sh
+/verify*.py
+/_tmp*.py
+/_tmp*.js
+/_tmp*.sh
+/tmp_*.py
+/tmp_*.js
+/tmp_*.sh
+/tmp-*.py
+/tmp-*.js
+/tmp-*.sh
+scripts/*check*.py
+scripts/*check*.js
+scripts/*check*.sh
+scripts/count*.py
+scripts/count*.js
+scripts/count*.sh
+scripts/verify*.py
+scripts/_tmp*.py
+scripts/_tmp*.js
+scripts/_tmp*.sh
+scripts/tmp_*.py
+scripts/tmp_*.js
+scripts/tmp_*.sh
 scripts/tmp-*.py
 scripts/tmp-*.js
-scripts/tmp_*.py
-scripts/tmp_*.sh
-tmp_check*.py
+scripts/tmp-*.sh
+
+# build.js's own concurrency guard (see scripts/build.js) — removed on exit,
+# but a killed build can leave it behind.
+.build.lock

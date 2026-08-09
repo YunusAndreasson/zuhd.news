@@ -39,7 +39,7 @@ rung below it went up one step on 2026-07-27, and `--size-md` (18px) is new.
   scrubber head already followed, with the footer as the last holdout:
   `.footer-links` was `--text-secondary` at `opacity: 0.5` (**2.73:1**) and
   `.footer-social a` at `0.62 × 0.85` (**2.21:1**) — both under AA, on the only
-  links that reach /about, /sources and /privacy. `colour-system.test.js` cannot
+  links that reach /about, /contact and /privacy. `colour-system.test.js` cannot
   see this class of bug, because opacity is not a colour literal. That is what
   makes it worth restating rather than assuming.
 - **The footer was not the last holdout** (2026-08-02). `.map-seam-toggle` — the

@@ -36,6 +36,7 @@ import {
   CATEGORY_ORDER,
   densityCssRamp,
   densityRamp,
+  FALLBACK_CATEGORY_COLOUR,
   globeFitZoom,
   GLOBE_ZOOM,
   LAND_NO_DATA,
@@ -3186,7 +3187,7 @@ export function mount(
           0, 3.4,
           1, 7.5,
         ],
-        'circle-color': catColour('#8a8a8a'),
+        'circle-color': catColour(FALLBACK_CATEGORY_COLOUR),
         'circle-opacity': ['get', 'a'],
         // Hover is a per-feature state flip rather than a style rewrite: the
         // expression is compiled once and only the one feature's state changes.

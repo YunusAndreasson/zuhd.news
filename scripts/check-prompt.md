@@ -35,34 +35,37 @@ Check first, before any style rules.
 <editorial>
 - **Specificity test:** Does sentence 1 lead with a concrete, verifiable detail? Rewrite abstractions ("faces criticism," "announces plan") with the specific fact that makes the story newsworthy.
 - **Title-echo test:** Does the hook just restate the title with a verb change? ("Microsoft Pause Threatens Carbon Removal" / hook: "Microsoft is pausing carbon removal purchases.") If the hook still holds when the title is hidden, rewrite it around a number, name, or consequence *not* in the title — pull from later sentences if needed.
-- **Mechanism test:** Does sentence 2 teach *how* or *why*? If it merely adds facts from the same source, rewrite to explain the structural cause, the constraint, or the precedent.
-- **Stakes test:** Does sentence 3 name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
+- **Why-it-matters test:** Does sentence 2 name a distinct consequence or stake — not the hook's fact restated with an adjective? "The strike is a major escalation" is the hook wearing an adjective, not a why-it-matters sentence. It should answer "so what": who this affects, what it changes, what it puts at risk.
+- **Mechanism test:** Does sentence 3 teach *how* or *why this happened*? If it merely adds facts from the same source, or repeats the why-it-matters sentence, rewrite to explain the structural cause, the constraint, or the precedent.
+- **Stakes test:** Does sentence 4 name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
 - **Causal-claim test:** Flag and rewrite any sentence that asserts causation the sources didn't explicitly claim: "X gave Y cover to do Z," "X gains credibility with Y," "the gap widens with every Z," "this addresses the wrong bottleneck." These are editorial theories. Either attribute to a named analyst/researcher in the source or cut. Wire copy reports; it does not interpret.
 - **Floating-number test:** Any load-bearing figure (casualty counts, production volumes, inventory, specific percentages) needs either an inline attribution ("DoD figures," "the central bank said," "according to the study") or verification against the source material. Unattributed specifics that the writer appears to have stated on their own authority must be attributed or cut.
 </editorial>
 
 <structure>
 - Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ) — same list as the body rule. Copy-desk check: commas present where needed ("Apple, Google" not "Apple Google"); singular/plural agreement correct ("Alumnus" for one person, "Alumni" for more); no typos.
-- Body: one paragraph, exactly 3 sentences, 40-55 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
+- Body: 4 markdown paragraphs, one sentence each, 48-60 words total. Hook (≤8 words) → Why it matters (≤14 words) → Context (≤20 words) → Future (≤16 words). If out of order, reorder. If 5+ sentences, cut to 4.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
 - `location` in frontmatter must be **identical** to the dateline text — the part before ` — ` in the first sentence — with **no `, Country` suffix**. If the body opens `Gujranwala — ` then `location` must be `Gujranwala`, not `Gujranwala, Pakistan`; a country suffix breaks the mobile dateline strip. Fix the frontmatter field (not the dateline) when they disagree. Coordinates (`lat`/`lng`) must fall on land inside a country — not in a body of water or ocean.
-- **Length:** Body text (everything after the closing `---`) targets ≤350 characters with a hard ceiling of 400. Do not rewrite a body just because it sits between 350 and 400 — only articles flagged OVER in the `<body-lengths>` block appended below (>400 chars) **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
+- **Length:** Body text (everything after the closing `---`) targets ≤360 characters with a hard ceiling of 440. Do not rewrite a body just because it sits between 360 and 440 — only articles flagged OVER in the `<body-lengths>` block appended below (>440 chars) **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 4 sentences and reads naturally.
 </structure>
 
 <clarity>
 - One idea per sentence. Comma + new subject = split into two sentences.
+- **No semicolons.** A semicolon joining two clauses is two ideas — split into two sentences, or cut the weaker one. Flag every semicolon in the body.
 - No nesting. Introduce a person, then state their action in the next sentence.
 - One new proper noun per sentence.
 - **Acronyms:** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. If the title uses an acronym, the body must expand it. Scan the body word-by-word for any 2-5 letter all-caps token that is not on the recognised list (e.g. DAWN, IEA, NEA, HHS, DOJ, FCC, DMA) and expand it on its one and only appearance.
 - Summarize lists: "the UK and 4 allies" over enumerating all 5.
-- Active voice. Digits for numbers.
+- **Active voice, every sentence — not just the hook.** Name the actor. "Some vessels were turned back" hides who did it; rewrite to "Turkey's coast guard turned back some vessels." Digits for numbers.
 </clarity>
 
 <word_choice>
 - Start with the fact. Cut filler openings ("In a significant development," "This comes as").
 - Cut hedging: "significant," "major," "key," "amid," "raising questions." State the fact.
 - Cut speculation: "could reshape," "may signal," "is poised to."
+- **Concrete caveats:** rewrite nominalized hedges into a plain active sentence. "No independent assessment of the claim exists" → "No one has verified this." "Confirmation is pending" → name who hasn't confirmed it yet.
 - Vary attribution verbs: confirmed, warned, denied, dismissed, acknowledged. "Said" once is fine; three times is dead. Avoid "claimed" (implies doubt) and "admitted" (implies guilt).
 - Identify people with role on first mention. Skip obvious facts.
 </word_choice>
@@ -102,8 +105,8 @@ FIX: Names the actor. Active voice. No "clashes" for asymmetric violence.
 
 <example>
 BEFORE: A US-funded vaccine trial faces global condemnation. The WHO said the study is unethical. The trial planned to give half of 14,500 newborns a hepatitis B vaccine. The WHO Director-General said withholding the vaccine exposes newborns to infection. Guinea-Bissau's government said it suspended the trial.
-AFTER: A US-funded trial enrolled 14,500 Guinea-Bissau newborns to withhold hepatitis B vaccine. WHO called the study unethical — half the infants would not receive a shot despite evidence it prevents 70-95% of transmission. Guinea-Bissau suspended the trial, but the US Centers for Disease Control has not withdrawn funding.
-FIX: 5 sentences → 3. Concrete hook. Mechanism in context. Tension in future.
+AFTER: A US-funded trial enrolled 14,500 Guinea-Bissau newborns. Half would go unprotected despite evidence the vaccine prevents 70-95% of transmission. WHO called the study unethical for withholding the shot from consenting newborns' families. Guinea-Bissau suspended the trial, but the US Centers for Disease Control has not withdrawn funding.
+FIX: 5 sentences → 4. Concrete hook. Distinct why-it-matters. Mechanism in context. Tension in future.
 </example>
 
 </examples>

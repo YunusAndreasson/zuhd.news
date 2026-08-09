@@ -6,7 +6,7 @@
 // retired — the list is scannable on its own, and each row is a link.
 
 import { NARROW_PX, type MapPoint } from './types'
-import { CATEGORY_COLOUR } from './style'
+import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR } from './style'
 import { relativeTime } from './format'
 
 export interface Feed {
@@ -332,7 +332,7 @@ export function createFeed(opts: FeedOptions): Feed {
     // same way the HUD chips take their layer's colour — so a read row can
     // switch the dot from a disc to a ring in the stylesheet without the
     // stylesheet ever naming a category hue.
-    dot.style.setProperty('--cat', CATEGORY_COLOUR[p.cat] ?? '#888')
+    dot.style.setProperty('--cat', CATEGORY_COLOUR[p.cat] ?? FALLBACK_CATEGORY_COLOUR)
 
     const body = document.createElement('div')
     body.className = 'map-feed-body'

@@ -134,8 +134,8 @@ touching only `content/`.
 - `/c/{cat}`, `/country/{ISO2}`, `/e/{id}` — category, country profile, indicator
 - `/s/{slug}` — **the only dynamic path** (`functions/s/[slug].js`): the map with
   that story's card open, carrying the article's OG meta and canonical
-- `/about`, `/contact`, `/sources`, `/privacy`, `/support`, `/mcp` — static, and
-  opened over the current page by the `doc-sheet` island
+- `/about`, `/contact`, `/privacy`, `/mcp` — static, and opened over the
+  current page by the `doc-sheet` island
 - `/feed.xml`, `/sitemap.xml`, `/api/og/**` (generated share cards)
 - JSON APIs for mobile (`articles`, `feed`, `feed-lite`, `heatmap`, `context`,
   `trends`, `meta`, …) and for the map (`map`, `map-leads`, `story/{slug}`,

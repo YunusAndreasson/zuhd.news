@@ -12,6 +12,17 @@
 //   - Respects prefers-reduced-motion (static stars, no parallax)
 //   - Touch devices: no mouse tracking (pointer: coarse)
 
+import { MAP_COLOURS, STAR_TINT } from './_map/style'
+
+const rgbOf = (hex: string): [number, number, number] => [
+  Number.parseInt(hex.slice(1, 3), 16),
+  Number.parseInt(hex.slice(3, 5), 16),
+  Number.parseInt(hex.slice(5, 7), 16),
+]
+const STAR_RGB = rgbOf(MAP_COLOURS.star)
+const WARM_RGB = rgbOf(MAP_COLOURS.starWarm)
+const COOL_RGB = rgbOf(MAP_COLOURS.starCool)
+
 interface Star {
   x: number
   y: number
@@ -75,6 +86,17 @@ export const mount = (container: HTMLElement) => {
   let stars: Star[][] = [[], [], []]
   let canvasW = 0             // CSS-pixel dimensions for fade calc
   let canvasH = 0
+  // `--bg`'s dark value, read live off `body` rather than duplicated as a
+  // literal — this canvas sits directly in front of the site's own
+  // background (article/country pages mount on a plain `<body>`, not
+  // `body.map-page`), so it must track `--bg` exactly rather than
+  // approximate it. `--bg` is `light-dark()`, which only resolves through an
+  // applied property (body's own `background: var(--bg)`), not through a raw
+  // custom-property read — hence reading `backgroundColor`, not the token.
+  // Refreshed on resize rather than every frame; the literal stays only as
+  // the fallback for a `getComputedStyle` failure, which is what it already
+  // coincidentally equals.
+  let bgFill = '#080808'
   let animId = 0
   let resizeTimer: ReturnType<typeof setTimeout> | null = null
   let pageVisible = true
@@ -150,15 +172,26 @@ export const mount = (container: HTMLElement) => {
     { count: 8,   rMin: 0.9, rMax: 1.8, alphaMin: 0.05, alphaMax: 0.09, z: 1.0, glint: true  },
   ]
 
-  // Color temperature variants — weighted toward cool white (inlined)
+  // Color temperature variants — weighted toward cool white.
+  //
+  // The endpoints are the map's own star anchors (`_map/starfield.ts`'s
+  // `STAR_RGB`/`WARM_RGB`/`COOL_RGB`, from `MAP_COLOURS`) rather than a
+  // fourth independently-guessed set of literals — these are the same real
+  // stars seen from the same near-black sky, so there is no reason for this
+  // field to measure its own palette. `STAR_TINT` is the map's own cap on how
+  // far a star may travel from its base colour toward either anchor; the
+  // four-bucket weighting (blue / warm / bright / neutral) is unchanged, only
+  // the RGB values moved onto the shared constants.
+  const mixToward = (target: readonly [number, number, number], k: number): string => {
+    const c = STAR_RGB.map((v, i) => Math.round(v + (target[i] - v) * k))
+    return `rgb(${c[0]},${c[1]},${c[2]})`
+  }
   const chooseColor = (rand: () => number, bright: boolean): string => {
     const roll = rand()
-    let r: number, g: number, b: number
-    if (roll < 0.05) { r = 200; g = 214; b = 255 }       // blue
-    else if (roll < 0.20) { r = 255; g = 238; b = 210 }  // warm
-    else if (bright) { r = 200; g = 208; b = 230 }       // dim bright
-    else { r = 234; g = 238; b = 255 }                   // cool white
-    return `rgb(${r},${g},${b})`
+    if (roll < 0.05) return mixToward(COOL_RGB, STAR_TINT)        // blue
+    if (roll < 0.20) return mixToward(WARM_RGB, STAR_TINT)        // warm
+    if (bright) return mixToward(COOL_RGB, STAR_TINT * 0.4)       // dim bright
+    return `rgb(${STAR_RGB[0]},${STAR_RGB[1]},${STAR_RGB[2]})`    // cool white / neutral
   }
 
   const generateStars = (w: number, h: number): Star[][] => {
@@ -214,7 +247,7 @@ export const mount = (container: HTMLElement) => {
     // parabola so the central sky reads as depth, not emptiness
     const xFrac = sx / canvasW
     const distFromEdge = Math.min(xFrac, 1 - xFrac) // 0 at edges, 0.5 at center
-    const hFade = 1 - clamp(Math.pow(distFromEdge * 2, 1.4) * 0.55, 0, 0.55)
+    const hFade = 1 - clamp((distFromEdge * 2) ** 1.4 * 0.55, 0, 0.55)
     return vFade * hFade
   }
 
@@ -224,7 +257,7 @@ export const mount = (container: HTMLElement) => {
 
     // Solid dark backdrop
     ctx.globalCompositeOperation = 'source-over'
-    ctx.fillStyle = '#080808'
+    ctx.fillStyle = bgFill
     ctx.fillRect(0, 0, w, h)
 
     // Smooth mouse follow — slow lerp so stars drift, not snap
@@ -340,6 +373,7 @@ export const mount = (container: HTMLElement) => {
   // --- Sizing ---
 
   const resize = () => {
+    bgFill = getComputedStyle(document.body).backgroundColor || '#080808'
     // Deliberately 1 device pixel per CSS pixel, not devicePixelRatio: this is
     // a backdrop of sub-pixel dots at 0.85 opacity, and paying 4× the fill rate
     // for it on a retina phone buys nothing anyone can see. The stars are

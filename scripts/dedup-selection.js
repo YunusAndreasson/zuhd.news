@@ -2,12 +2,20 @@
 // Removes entries from /tmp/zuhd-selection.json whose article already exists.
 // Runs between selector and writer to avoid wasting LLM turns on duplicates.
 //
-// Three dedup layers (via shared lib/dedup.js):
+// Four dedup layers (via shared lib/dedup.js):
 // 1. Exact slug match — article file already exists
 // 2. eventUri match — same event already covered by a published article
-// 3. Fuzzy title match — title word overlap ≥ 60% with a recent article's slug
+// 3. Fuzzy slug match — word overlap ≥ 55% against a recently *published* article
+// 4. Intra-batch fuzzy match — the same, against other stories in *this* selection
+//
+// Layer 4 exists because layers 1-3 only ever check against
+// content/articles/*.md, which is empty for anything still in this selection —
+// so two picks describing the same event (corpus.test.js's same-day ratchet:
+// skyroot-vikram-1-india-first-private-orbital-launch /
+// skyroot-vikram-1-india-private-orbital-rocket, both 2026-07-18, 83% overlap)
+// sailed through as two "new" stories and both got written.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { CATEGORY_FLOORS, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { CATEGORY_FLOORS, buildWordSets, fuzzyMatch, loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 if (!existsSync(SELECTION)) process.exit(0)
@@ -16,6 +24,7 @@ const selection = JSON.parse(readFileSync(SELECTION, 'utf-8'))
 const before = selection.length
 
 const ctx = loadDedupContext()
+const batchWordSets = []
 
 const filtered = selection.filter(s => {
   const result = wouldDedup(s, ctx)
@@ -23,6 +32,12 @@ const filtered = selection.filter(s => {
     console.log(`Removed (${result.reason}): ${s.suggestedSlug} — matches ${result.match}`)
     return false
   }
+  const batchMatch = fuzzyMatch(s.suggestedSlug, batchWordSets)
+  if (batchMatch) {
+    console.log(`Removed (intra-batch): ${s.suggestedSlug} — matches ${batchMatch}`)
+    return false
+  }
+  batchWordSets.push(...buildWordSets([s.suggestedSlug]))
   return true
 })
 

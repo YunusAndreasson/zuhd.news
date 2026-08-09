@@ -994,5 +994,133 @@
         "economy": 78
       }
     }
+  },
+  {
+    "week": "2026-08-02",
+    "windowDays": 7,
+    "articleCount": 383,
+    "metrics": {
+      "charLengthAvg": 318,
+      "charOver350Pct": 15.9,
+      "charOver400Pct": 0,
+      "wordCountAvg": 48,
+      "wordInRangePct": 90.1,
+      "titleEchoRatePct": 20.1,
+      "passiveHookRatePct": 0.8,
+      "causalClaimHits": 0,
+      "pressEraHits": 5,
+      "hedgeRatePct": 0.5,
+      "acronymViolations": 413,
+      "topAcronymViolators": [
+        [
+          "PK",
+          30
+        ],
+        [
+          "IR",
+          24
+        ],
+        [
+          "IN",
+          19
+        ],
+        [
+          "IL",
+          18
+        ],
+        [
+          "RU",
+          16
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 12.5,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 24
+        },
+        {
+          "name": "Nature",
+          "count": 24
+        },
+        {
+          "name": "CoinDesk",
+          "count": 21
+        }
+      ],
+      "multiSourceRatePct": 19.3,
+      "categoryBalance": {
+        "politics": 135,
+        "science": 72,
+        "economy": 93,
+        "tech": 83
+      }
+    }
+  },
+  {
+    "week": "2026-08-08",
+    "windowDays": 7,
+    "articleCount": 386,
+    "metrics": {
+      "charLengthAvg": 315,
+      "charOver350Pct": 8.5,
+      "charOver400Pct": 0,
+      "wordCountAvg": 47,
+      "wordInRangePct": 39.4,
+      "titleEchoRatePct": 19.7,
+      "passiveHookRatePct": 1.6,
+      "passiveBodyRatePct": 3.6,
+      "semicolonRatePct": 49.7,
+      "causalClaimHits": 1,
+      "pressEraHits": 4,
+      "hedgeRatePct": 1.3,
+      "acronymViolations": 353,
+      "topAcronymViolators": [
+        [
+          "IR",
+          27
+        ],
+        [
+          "PK",
+          26
+        ],
+        [
+          "IN",
+          20
+        ],
+        [
+          "RU",
+          15
+        ],
+        [
+          "IL",
+          15
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 15,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 32
+        },
+        {
+          "name": "Nature",
+          "count": 30
+        },
+        {
+          "name": "CoinDesk",
+          "count": 23
+        }
+      ],
+      "multiSourceRatePct": 22.8,
+      "categoryBalance": {
+        "politics": 137,
+        "tech": 82,
+        "economy": 100,
+        "science": 67
+      }
+    }
   }
 ]

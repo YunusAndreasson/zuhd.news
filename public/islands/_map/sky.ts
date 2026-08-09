@@ -130,10 +130,27 @@ export function calibrate(
   pitch: number,
 ): SkyCamera | null {
   // Bearing and pitch are both fixed at 0 on this map (`dragRotate` and
-  // `pitchWithRotate` are off and touch rotation is disabled), and the screen
-  // basis below is measured rather than assumed — but a camera that has been
-  // tilted is one whose disc centre is no longer `project(getCenter())`, and
-  // there is no cheap way to find it. Draw nothing instead.
+  // `pitchWithRotate` are off, touch rotation is disabled, and `maxPitch` is 0),
+  // and the screen basis below is measured rather than assumed — but a camera
+  // that has been tilted is one whose disc centre is no longer
+  // `project(getCenter())`, and there is no cheap way to find it. Draw nothing
+  // instead.
+  //
+  // **Padding looks like it belongs in that list and measurement says it does
+  // not** (2026-08-08). The reasoning for adding it was sound on its face:
+  // `origin` below *is* the assumed disc centre, MapLibre's padding offsets the
+  // principal point, and on a phone `applyPadding` writes a bottom inset for
+  // the story drawer — so the whole sky, including the ring that draws the
+  // planet's night edge, should have sat off the limb by half that inset. It
+  // does not, because `project` is evaluated through the *same* padded matrix:
+  // `project(getCenter())` lands on the padded centre point, which is where the
+  // disc is drawn. Measured on a 390×844 phone against the built page, reading
+  // the ring off the sky canvas and the limb off the composited frame on the
+  // same row — drawer closed, row 200: ring 81–97 and 292–308, limb 89 and 301;
+  // row 300: ring 5–14 and 375–384, limb 9 and 380; drawer open, row 220: ring
+  // 1–9 and 380–388, limb 4 and 382. The annulus straddles the edge in every
+  // case, which is exactly what `drawHalo` draws it to do. **Refusing on
+  // padding would have taken the sky off every phone to fix nothing.**
   if (bearing !== 0 || pitch !== 0) return null
 
   const [lng, lat] = centre

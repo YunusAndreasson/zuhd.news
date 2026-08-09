@@ -65,10 +65,8 @@ function setupDom() {
   // here is about what the DOM ends up holding, not how long it took to get
   // there. The animated path is the same mutation with a measurement round it.
   window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} })
-  window.Element.prototype.scrollIntoView = function () {}
-  window.Element.prototype.getBoundingClientRect = function () {
-    return { x: 0, y: 0, width: 0, height: 0, top: 0, left: 0, right: 0, bottom: 0 }
-  }
+  window.Element.prototype.scrollIntoView = () => {}
+  window.Element.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, width: 0, height: 0, top: 0, left: 0, right: 0, bottom: 0 })
 
   const globals = [
     'window',

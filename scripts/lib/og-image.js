@@ -14,6 +14,7 @@ import { Resvg } from '@resvg/resvg-js'
 import { geoOrthographic, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 import { escXml } from './html.js'
+import { SHARE_PALETTE } from './share-palette.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
@@ -49,10 +50,21 @@ export const getAssets = () => {
  * Nothing else moves: `rule` still draws the hairlines and the country outlines,
  * so the only thing this changes is the picture.
  */
-export const themeFor = (variant = 'light') =>
-  variant === 'dark'
-    ? { bg: '#141414', fg: '#d4d4d4', soft: '#1a1a1a', rule: '#2a2a2a', dim: '#a3a3a3', dot: '#e8b84c', land: '#2a2a2a' }
-    : { bg: '#ffffff', fg: '#1a1a1a', soft: '#f0f0f0', rule: '#e2e2e2', dim: '#555555', dot: '#c9a84c', land: '#c9c9c9' }
+// `fg`/`rule`/`dim` are drawn from `SHARE_PALETTE` (the site's `--text` /
+// `--rule` / `--text-secondary`) rather than hand-picked near-misses — this
+// file's own `rule` used to be `#e2e2e2`/`#2a2a2a` against the site's
+// `#e8e8e8`/`#181818`, a materially lighter grey for the "same" hairline on
+// share cards as on the live page. `bg`/`soft`/`land`/`dot` stay as they are:
+// `bg` is card chrome (the dark card is deliberately `#141414`, not the
+// site's `#080808`, and untouched by the ghost-globe fix above), `soft` and
+// `land` are the globe-specific palette that fix already corrected, and
+// `dot` matches the live site's `--brand` exactly in both variants.
+export const themeFor = (variant = 'light') => {
+  const p = SHARE_PALETTE[variant === 'dark' ? 'dark' : 'light']
+  return variant === 'dark'
+    ? { bg: '#141414', fg: p.text, soft: '#1a1a1a', rule: p.rule, dim: p.textSecondary, dot: '#c9a84c', land: '#2a2a2a' }
+    : { bg: p.bg, fg: p.text, soft: '#f0f0f0', rule: p.rule, dim: p.textSecondary, dot: '#c9a84c', land: '#c9c9c9' }
+}
 
 const W = 1200
 const H = 630

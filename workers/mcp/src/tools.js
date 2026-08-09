@@ -150,7 +150,7 @@ export function registerTools(server) {
         const articles = feed.categories[cat]
         if (!Array.isArray(articles)) continue
         const found = articles.find(a => a.slug === args.article_slug)
-        if (found && found.threadLabel) {
+        if (found?.threadLabel) {
           // Derive thread ID from label
           threadId = found.threadLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
           break
@@ -168,7 +168,7 @@ export function registerTools(server) {
       return { content: [{ type: 'text', text: JSON.stringify(ctx, null, 2) }] }
     } catch {
       // Check contexts embedded in feed
-      if (feed.contexts && feed.contexts[threadId]) {
+      if (feed.contexts?.[threadId]) {
         return { content: [{ type: 'text', text: feed.contexts[threadId] }] }
       }
       return { content: [{ type: 'text', text: `No context found for thread "${threadId}".` }] }

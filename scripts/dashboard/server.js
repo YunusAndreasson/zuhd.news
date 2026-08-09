@@ -158,7 +158,7 @@ function computeStatus(lastCycle, metaAge) {
   else if (metaAge < 12) s.siteFreshness = 'amber'
   else s.siteFreshness = 'red'
 
-  if (!lastCycle || !lastCycle.completed) {
+  if (!lastCycle?.completed) {
     s.lastCycle = lastCycle ? 'red' : 'unknown'
     s.cycleTiming = 'unknown'
     s.pubRate = 'unknown'
@@ -1008,7 +1008,7 @@ function handleLive(req, res) {
     // Watch logs dir for new files
     let dirWatcher
     try {
-      dirWatcher = watch(LOGS_DIR, (event, fn) => {
+      dirWatcher = watch(LOGS_DIR, (_event, fn) => {
         if (fn && /^cycle-.*\.log$/.test(fn)) {
           res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
         }
@@ -1054,7 +1054,7 @@ function handleLive(req, res) {
   // Also watch for new log files appearing
   let dirWatcher
   try {
-    dirWatcher = watch(LOGS_DIR, (event, fn) => {
+    dirWatcher = watch(LOGS_DIR, (_event, fn) => {
       if (fn && /^cycle-.*\.log$/.test(fn) && fn !== logFiles[0]) {
         res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
       }

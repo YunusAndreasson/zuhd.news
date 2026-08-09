@@ -28,7 +28,7 @@ import { shareUrl } from '@shared/share'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
-import { CATEGORY_COLOUR, rampColour } from './style'
+import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
 
 /** How the map paints the indicator panel. The article page's copy of this
@@ -318,7 +318,7 @@ const cardFoot = (url: string, title: string): Node[] => {
 const kickerFor = (p: MapPoint, now: number, extra?: string | null) => {
   const kicker = el('p', 'map-popup-kicker')
   const dot = el('span', 'map-popup-dot')
-  dot.style.background = CATEGORY_COLOUR[p.cat] ?? '#8a8a8a'
+  dot.style.background = CATEGORY_COLOUR[p.cat] ?? FALLBACK_CATEGORY_COLOUR
   kicker.append(
     dot,
     [p.cat, p.loc || null, fmt.relativeTime(p.t, now), extra || null].filter(Boolean).join(' · '),

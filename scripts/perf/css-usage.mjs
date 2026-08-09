@@ -169,6 +169,26 @@ const STATES = [
   { label: 'country /country/PS · desktop 1440', path: '/country/PS', width: 1440, height: 900 },
   { label: 'indicator page · desktop 1440', path: null, width: 1440, height: 900, entity: true },
   { label: 'about · desktop 1440', path: '/about', width: 1440, height: 900 },
+  // The article state's own doc-sheet attempt tries `[data-island="share-bar"]
+  // button` and `.doc-link` first — neither selector exists anywhere in the
+  // codebase (share-bar mounts via `data-island-auto`, not `data-island`, and
+  // `.doc-link` was never a real class) — so it falls through to a bare
+  // `footer a`, whichever anchor that resolves to. A dedicated state with the
+  // real trigger (`site-chrome.js`'s `data-island="doc-sheet"`) is what
+  // actually opens `.doc-sheet` and its `::backdrop` on purpose.
+  {
+    label: 'map · desktop 1440 · doc sheet opened from the footer',
+    path: '/',
+    width: 1440,
+    height: 900,
+    async drive(page) {
+      const link = await page.$('[data-island="doc-sheet"]')
+      if (link) {
+        await link.click().catch(() => {})
+        await page.waitForTimeout(600)
+      }
+    },
+  },
 ]
 
 /** The newest built article and one indicator page, so the sweep has real routes. */

@@ -65,7 +65,7 @@ for (const entry of selection) {
     if (bestMatch) { full = bestMatch; layer = 'keyword' }
   }
 
-  if (full && full.sources) {
+  if (full?.sources) {
     entry.sources = full.sources
     enriched++
     matchLayers[layer]++

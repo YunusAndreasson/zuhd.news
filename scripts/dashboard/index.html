@@ -15,7 +15,7 @@
   <div class="clock" id="clock"></div>
 </div>
 
-<div class="status-bar" id="status-bar" role="navigation" aria-label="pipeline health">
+<nav class="status-bar" id="status-bar" aria-label="pipeline health">
   <button type="button" class="status-chip" id="chip-cycle" data-target-tab="pipeline" data-target-scroll="cycle-history" title="jump to 7-day cycle history">
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">last cycle</span></span>
     <span class="chip-value">—</span>
@@ -36,17 +36,17 @@
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">site fresh</span></span>
     <span class="chip-value">—</span>
   </button>
-</div>
-
-<nav class="tab-strip" role="tablist">
-  <button class="tab-btn" role="tab" aria-selected="true" data-tab="pipeline">pipeline</button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="autoresearch">autoresearch</button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
-  <button class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
 </nav>
+
+<div class="tab-strip" role="tablist">
+  <button type="button" class="tab-btn" role="tab" aria-selected="true" data-tab="pipeline">pipeline</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="autoresearch">autoresearch</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
+</div>
 
 <!-- ── Pipeline ──────────────────────────────────────────────── -->
 <div class="tab-panel active" id="panel-pipeline">
@@ -1074,7 +1074,7 @@ async function loadImagePreview() {
   const gridEl = document.getElementById('image-preview-grid')
   if (!summaryEl || !gridEl) return
   const data = await api('/api/article-images')
-  if (!data || !data.articles?.length) {
+  if (!data?.articles?.length) {
     summaryEl.textContent = ''
     gridEl.innerHTML = '<span class="empty">no articles yet</span>'
     return
@@ -1116,7 +1116,7 @@ async function loadComplianceChart() {
     { key: 'titleEchoRatePct',   label: 'title echo %',  target: 10, color: '#e8a64a' },
     { key: 'passiveHookRatePct', label: 'passive hook %', target: 15, color: '#6db4d6' },
     { key: 'hedgeRatePct',       label: 'hedges %',       target: 5,  color: '#c87c98' },
-    { key: 'charOver350Pct',     label: 'over 350 char %', target: 5,  color: '#88b985' },
+    { key: 'charOver350Pct',     label: 'over char cap %', target: 5,  color: '#88b985' },
   ]
   const history = wq.history
   const n = history.length
@@ -1184,7 +1184,7 @@ async function loadSpecificity() {
   const statsEl = document.getElementById('specificity-stats')
   const trendEl = document.getElementById('specificity-trend')
   const worstEl = document.getElementById('specificity-worst')
-  if (!data || !data.current) {
+  if (!data?.current) {
     sumEl.innerHTML = '<span class="empty">no scoring data yet</span>'
     statsEl.innerHTML = ''; trendEl.innerHTML = ''; worstEl.innerHTML = ''
     return
@@ -1233,7 +1233,7 @@ async function loadSpecificity() {
   }
 
   // Bottom 5 — useful for spotting outliers pulling the average down
-  if (data.worst && data.worst.length) {
+  if (data.worst?.length) {
     worstEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">lowest specificity (drag on average)</div>' +
       data.worst.map(w =>
         `<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.2rem"><span style="display:inline-block;min-width:3rem"><strong>${w.specificity}</strong></span><span>${esc(w.file)}</span></div>`
@@ -1246,7 +1246,7 @@ async function loadWritingQuality() {
   const sumEl = document.getElementById('writing-quality-summary')
   const statsEl = document.getElementById('writing-quality-stats')
   const trendEl = document.getElementById('writing-quality-trend')
-  if (!wq || !wq.current) {
+  if (!wq?.current) {
     sumEl.innerHTML = '<span class="empty">no metrics yet — computed Sunday 22:00 utc</span>'
     statsEl.innerHTML = ''
     trendEl.innerHTML = ''
@@ -1258,7 +1258,7 @@ async function loadWritingQuality() {
     const v = d[k]
     if (v === undefined) return ''
     const sign = v > 0 ? '+' : ''
-    const color = v === 0 ? 'var(--text-secondary)' : (['titleEchoRatePct','passiveHookRatePct','causalClaimHits','pressEraHits','hedgeRatePct','acronymViolations','countryNullCount','charOver350Pct','topOutletSharePct'].includes(k)
+    const color = v === 0 ? 'var(--text-secondary)' : (['titleEchoRatePct','passiveHookRatePct','passiveBodyRatePct','semicolonRatePct','causalClaimHits','pressEraHits','hedgeRatePct','acronymViolations','countryNullCount','charOver350Pct','topOutletSharePct'].includes(k)
       ? (v > 0 ? 'var(--amber)' : 'var(--green, #4a9)')
       : (v > 0 ? 'var(--green, #4a9)' : 'var(--amber)'))
     return `<span style="color:${color};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v}${suffix})</span>`
@@ -1267,6 +1267,8 @@ async function loadWritingQuality() {
   const rows = [
     { k: 'titleEchoRatePct',   l: 'title echo',       v: m.titleEchoRatePct,   u: '%',  target: '<10%' },
     { k: 'passiveHookRatePct', l: 'passive hook',     v: m.passiveHookRatePct, u: '%',  target: '<15%' },
+    { k: 'passiveBodyRatePct', l: 'passive (any sentence)', v: m.passiveBodyRatePct, u: '%', target: '<15%' },
+    { k: 'semicolonRatePct',   l: 'semicolons',       v: m.semicolonRatePct,   u: '%',  target: '0%' },
     { k: 'hedgeRatePct',       l: 'hedges',           v: m.hedgeRatePct,       u: '%',  target: '<5%' },
     { k: 'causalClaimHits',    l: 'causal claims',    v: m.causalClaimHits,    u: '',   target: '0' },
     { k: 'pressEraHits',       l: 'press-era phrase', v: m.pressEraHits,       u: '',   target: '0' },
@@ -1274,10 +1276,10 @@ async function loadWritingQuality() {
     { k: 'countryNullCount',   l: 'country:null',     v: m.countryNullCount,   u: '',   target: '0' },
     { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
     { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
-    { k: 'charOver350Pct',     l: 'over 350 char',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
-    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '40-50' },
+    { k: 'charOver350Pct',     l: 'over char cap',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
+    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '48-60' },
     { k: 'wordInRangePct',     l: 'words in range',   v: m.wordInRangePct,     u: '%',  target: '>75%' },
-    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '280-330' },
+    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '300-360' },
   ]
   statsEl.innerHTML = rows.map(r =>
     `<div class="stat"><span class="stat-value">${r.v}${r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
@@ -1305,12 +1307,14 @@ async function loadWritingQuality() {
     const series = [
       { key: 'titleEchoRatePct', label: 'title echo %' },
       { key: 'passiveHookRatePct', label: 'passive hook %' },
+      { key: 'passiveBodyRatePct', label: 'passive (any sentence) %' },
+      { key: 'semicolonRatePct', label: 'semicolons %' },
       { key: 'hedgeRatePct', label: 'hedges %' },
       { key: 'causalClaimHits', label: 'causal claims' },
       { key: 'pressEraHits', label: 'press-era hits' },
       { key: 'multiSourceRatePct', label: 'multi-source %' },
       { key: 'topOutletSharePct', label: 'top-3 outlet %' },
-      { key: 'charOver350Pct', label: 'over 350 char %' },
+      { key: 'charOver350Pct', label: 'over char cap %' },
       { key: 'countryNullCount', label: 'country:null' },
       { key: 'acronymViolations', label: 'acronym viol.' },
       { key: 'wordCountAvg', label: 'avg word count' },
@@ -1339,7 +1343,7 @@ async function loadLogs() {
   if (!logCycles) {
     logCycles = await api('/api/cycles')
   }
-  if (!logCycles || !logCycles.length) return
+  if (!logCycles?.length) return
 
   const select = document.getElementById('log-select')
   if (!select.children.length) {
@@ -1648,7 +1652,7 @@ async function loadExperiment() {
   const expHistory = document.getElementById('exp-history')
   const tabDot = document.getElementById('exp-tab-dot')
 
-  const activeList = data.activeAll && data.activeAll.length ? data.activeAll : (data.active ? [data.active] : [])
+  const activeList = data.activeAll?.length ? data.activeAll : (data.active ? [data.active] : [])
   if (activeList.length) {
     tabDot.hidden = false
     const t = data.tracking
@@ -1955,8 +1959,10 @@ async function updateStatusBar(overview) {
       const breaches = []
       if (m.titleEchoRatePct > 10) breaches.push('title echo')
       if (m.passiveHookRatePct > 15) breaches.push('passive hook')
+      if (m.passiveBodyRatePct > 15) breaches.push('passive (body)')
+      if (m.semicolonRatePct > 0) breaches.push('semicolons')
       if (m.hedgeRatePct > 5) breaches.push('hedges')
-      if (m.charOver350Pct > 5) breaches.push('over 350')
+      if (m.charOver350Pct > 5) breaches.push('over char cap')
       if (m.multiSourceRatePct < 40) breaches.push('multi-source')
       if (m.acronymViolations > 0) breaches.push('acronyms')
       if (m.causalClaimHits > 0) breaches.push('causal claims')

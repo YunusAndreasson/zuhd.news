@@ -592,7 +592,7 @@ footer {
 /* --- Mobile --- */
 @media (max-width: 640px) {
   body {
-    font-size: 1.25rem;
+    font-size: var(--size-base);
     padding: var(--space-sm);
     padding-top: var(--space-md);
     padding-bottom: var(--space-sm);
@@ -1321,7 +1321,7 @@ body.archetype-page-body .article-page-header {
 .country-header .country-iso { grid-area: iso; justify-self: end; }
 .country-header .country-flag {
   grid-area: flag;
-  font-size: 3rem;
+  font-size: var(--size-d1);
   line-height: 1;
   align-self: center;
 }
@@ -1341,9 +1341,15 @@ body.archetype-page-body .article-page-header {
   }
 }
 
-.country-section-title {
-  margin-bottom: var(--space-md);
+/* Shared `.label` modifier for a heading that introduces a sub-list —
+   "Metrics", "Recent coverage · N", "Lately", "Mentioned in · N", and the
+   category page's per-day date headings (which also carry their own
+   border-bottom — see `.category-day-heading`). Was two identical copies,
+   `.country-section-title` and `.archive-section-title`, that differed only
+   in name. */
+.section-title {
   display: block;
+  margin-bottom: var(--space-sm);
 }
 
 .metric-list {
@@ -1439,9 +1445,15 @@ body.archetype-page-body .article-page-header {
   gap: var(--space-xs);
 }
 
-.country-coverage-row {
+/* --- The dated list row ---
+   Date · title (· source) (· category), used by the category page, the
+   country page's coverage section, and the entity page's "Lately" and
+   "Mentioned in" sections. One shape, four variants that differ only in
+   which fields are present and how the columns are sized — see
+   `scripts/lib/list-row.js`, which is the only place that decides which
+   variant a given row is. */
+.list-row {
   display: grid;
-  grid-template-columns: 6em 1fr auto;
   align-items: baseline;
   gap: var(--space-sm);
   padding: var(--space-xs) 0;
@@ -1451,20 +1463,21 @@ body.archetype-page-body .article-page-header {
   transition: color var(--dur-fast);
 }
 
-.country-coverage-row:hover { color: var(--text-emphasis); }
+.list-row:hover { color: var(--text-emphasis); }
 
-.country-coverage-row time {
+.list-row-date {
   color: var(--text-secondary);
   font-size: var(--size-sm);
   font-variant-numeric: lining-nums tabular-nums;
   white-space: nowrap;
 }
 
-.country-coverage-title {
+.list-row-title {
+  font-size: var(--size-base);
   line-height: var(--leading-heading);
 }
 
-.country-coverage-cat {
+.list-row-category {
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
   letter-spacing: 0.05em;
@@ -1472,56 +1485,33 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-xs);
 }
 
-/* --- Article archive list (entity / future archive surfaces) ---
-   Date · title · source row used on entity pages and other archive
-   sections. Tabular date column, ellipsised source on the right. */
-.archive-section-title {
-  display: block;
-  margin-bottom: var(--space-sm);
-}
-
-.archive-article-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.archive-article-row {
-  display: grid;
-  grid-template-columns: 7em 1fr 11em;
-  align-items: baseline;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--rule-soft);
-  text-decoration: none;
-  color: var(--text);
-  transition: color var(--dur-fast);
-}
-
-.archive-article-row:hover { color: var(--text-emphasis); }
-
-.archive-article-row time {
-  color: var(--text-secondary);
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
-  white-space: nowrap;
-}
-
-.archive-article-row .t-source-host {
+.list-row-source {
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.list-row--date-title-source { grid-template-columns: 7em 1fr 11em; }
+.list-row--date-title-category { grid-template-columns: 6em 1fr auto; }
+.list-row--title-source { grid-template-columns: 1fr 11em; }
+.list-row--date-title { grid-template-columns: 7em 1fr; }
+
 @media (max-width: 640px) {
-  .archive-article-row {
+  .list-row {
     grid-template-columns: 1fr;
     gap: var(--space-xxs);
   }
-  .archive-article-row .t-source-host { text-align: left; }
+  .list-row-source, .list-row-category { text-align: left; }
+}
+
+/* --- Article archive list (entity / future archive surfaces) --- */
+.archive-article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* --- Entity page (/e/{id}) --- */
@@ -1536,6 +1526,10 @@ body.archetype-page-body .article-page-header {
   flex-direction: column;
   gap: var(--space-xs);
   padding-bottom: var(--space-md);
+  /* Same override as `.category-page-header` — the bare `header {}` rule's
+     masthead margin-bottom otherwise stacks on top of `.entity-page`'s own
+     gap to the content below. */
+  margin-bottom: 0;
   border-bottom: 1px solid var(--rule);
   contain: layout style;
 }
@@ -1612,6 +1606,11 @@ body.archetype-page-body .article-page-header {
   flex-direction: column;
   gap: var(--space-xxs);
   padding-bottom: var(--space-md);
+  /* Overrides the bare `header {}` rule's masthead margin (up to 3rem,
+     viewport-height-scaled) — this header is a flex item inside
+     `.category-page`, whose own `gap` is the real spacing to the list below.
+     Left unset, the two stacked and the list sat ~140px under the title. */
+  margin-bottom: 0;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -1630,14 +1629,12 @@ body.archetype-page-body .article-page-header {
 
 .category-day-group { display: block; }
 
+/* Caps/tracking/weight/color/size come from `.label`; this is only what a
+   date heading needs beyond that: tighter margin than `.section-title`'s
+   default (a run of day-groups is denser than a metrics/lately section) and
+   its own rule underneath. */
 .category-day-heading {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.06em;
-  font-size: var(--size-xs);
-  font-weight: var(--weight-semibold);
-  color: var(--text-secondary);
-  margin: 0 0 var(--space-xs);
+  margin-bottom: var(--space-xs);
   padding-bottom: var(--space-xxs);
   border-bottom: 1px solid var(--rule);
 }
@@ -1650,44 +1647,7 @@ body.archetype-page-body .article-page-header {
   flex-direction: column;
 }
 
-.category-article-row {
-  display: grid;
-  grid-template-columns: 1fr 11em;
-  align-items: baseline;
-  gap: var(--space-sm);
-  padding: var(--space-xs) 0;
-  border-bottom: 1px solid var(--rule-soft);
-  text-decoration: none;
-  color: var(--text);
-  transition: color var(--dur-fast);
-}
-
-.category-day-list li:last-child .category-article-row { border-bottom: none; }
-
-.category-article-row:hover { color: var(--text-emphasis); }
-
-.category-article-title {
-  font-size: var(--size-base);
-  line-height: var(--leading-heading);
-}
-
-.category-article-row .t-source-host {
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--text-secondary);
-  font-size: var(--size-sm);
-}
-
-@media (max-width: 640px) {
-  .category-article-row {
-    grid-template-columns: 1fr;
-    gap: var(--space-xxs);
-  padding: var(--space-xs) 0;
-  }
-  .category-article-row .t-source-host { text-align: left; }
-}
+.category-day-list li:last-child .list-row { border-bottom: none; }
 
 /* Inline country tags in article bodies — open the country-preview
    sheet. The hairline dotted underline alone signals "interactive"
@@ -1724,7 +1684,7 @@ body.archetype-page-body .article-page-header {
   margin-bottom: var(--space-md);
 }
 .country-preview-flag {
-  font-size: 56px;
+  font-size: var(--size-d1);
   line-height: 1;
 }
 .country-preview-titleblock {
@@ -1761,7 +1721,7 @@ body.archetype-page-body .article-page-header {
 }
 .country-preview-metric {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(1.5rem, 2.75rem) auto;
   gap: var(--space-md);
   align-items: baseline;
   padding: var(--space-xs) 0;
@@ -1778,6 +1738,23 @@ body.archetype-page-body .article-page-header {
 .country-preview-metric-value {
   color: var(--text);
   font-variant-numeric: oldstyle-nums proportional-nums;
+}
+/* Same module and the same fill/track pairing country-pages.js already uses
+   for this exact data on the full /country/{ISO2} page (`.metric-strip`) —
+   the map's own country card shows this as a ramp-coloured swatch, which is
+   only legible next to the map painting the same tint; there is no map open
+   here, so this stays the site-palette bar. */
+.country-preview-metric-strip {
+  height: 2px;
+  align-self: center;
+  background: var(--rule-soft, var(--rule));
+  overflow: hidden;
+}
+.country-preview-metric-fill {
+  display: block;
+  height: 100%;
+  width: var(--fill, 0%);
+  background: var(--accent);
 }
 .country-preview-metric-rank {
   color: var(--text-secondary);
@@ -1912,7 +1889,7 @@ body.archetype-page-body .article-page-header {
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   border-radius: 999px;
-  font-size: 1.1rem;
+  font-size: var(--size-md);
   outline: none;
   transition: color var(--dur-fast);
 }
@@ -3025,7 +3002,7 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   flex-direction: column;
   min-height: 0;
   border-right: 1px solid var(--map-line-soft);
-  background: var(--map-sunken);
+  background: color-mix(in srgb, var(--map-sunken) 92%, transparent);
   /* The site footer is `position: fixed` over the bottom of this column.
      Reserving its height ends the scrolling list at the footer's top edge;
      without it the list ran 62px underneath, and the last visible story was
@@ -3512,11 +3489,9 @@ body.map-wide .map-range-group { display: block; }
      itself against that number. Left implicit, a change to `.map-range`'s
      padding would move the row and silently un-align the clock again. */
   min-height: var(--map-hud-row-h);
-  /* The gutter that says "the time range is its own group". Every other group
-     on the strip is bounded by a `.map-filter-sep`, and this one cannot be —
-     there is no element between the last range chip and the first category. So
-     the boundary is width: 0.85rem of HUD gap plus this, against 0.85rem
-     between chips inside a group. */
+  /* The gutter that says "the time range is its own group" — there is no
+     element between the last range chip and the first category to draw that
+     boundary otherwise. */
   margin-right: 0.55rem;
 }
 
@@ -3665,12 +3640,6 @@ body.map-wide .map-range-group { display: block; }
   color: var(--map-ink-muted);
 }
 
-.map-filter-sep {
-  width: 1px;
-  height: 0.85rem;
-  background: var(--map-line);
-}
-
 /* --- Map key ---
    Decodes the three channels the beacons spend their ink on: radius, alpha and
    the contested ring — and, since 2026-07-26, only those. The genocide mark
@@ -3703,7 +3672,6 @@ body.map-wide .map-range-group { display: block; }
 }
 
 .map-key-item[hidden] { display: none; }
-.map-filter-sep[hidden] { display: none; }
 
 /* --- The legend, behind a press ---
    What the marks mean: the beacon key, and the sentence behind whichever metric
@@ -3977,7 +3945,7 @@ body.map-wide .map-hud {
   padding: 0.95rem clamp(0.9rem, 1.1vw, 1.15rem) 1.1rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--map-sunken);
+  background: color-mix(in srgb, var(--map-sunken) 92%, transparent);
   border-left: 1px solid var(--map-line-soft);
   /* The strip was `pointer-events: none` so the map stayed draggable through
      the gaps between its chips. A rail has no gaps over the map. */
@@ -4093,7 +4061,6 @@ body.map-wide .map-mapctl {
   /* 0.35rem, not 0.5. A control box is read as one object and its rows are not
      four separate groups; the gap only has to keep a `<select>` off a gradient. */
   gap: 0.35rem;
-  width: 13rem;
   /* A phone never sees this box, but a 901px window with both rails open leaves
      the canvas about 340px — narrow enough that a stated width is a claim the
      frame cannot always honour. */
@@ -4141,8 +4108,13 @@ body.map-wide .map-mapctl {
    `.map-canvas-host`, which is its own grid column and already ends where the
    instrument rail begins. `.map-reset` needs one because it hangs off the root
    instead. */
+/* `is-left` holds only the `layers` trigger and its disclosed chips — none of
+   them as wide as `is-right`'s `<select>` needs to be (a metric name is the
+   widest thing there; see `.map-ground-select`), so it sizes to its own
+   content instead of sharing that box's stated width. `is-right` keeps the
+   13rem the ground picker's longest name was measured against. */
 body.map-wide .map-mapctl.is-left { left: var(--space-sm); }
-body.map-wide .map-mapctl.is-right { right: var(--space-sm); }
+body.map-wide .map-mapctl.is-right { right: var(--space-sm); width: 13rem; }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
    absolutely-positioned line with no room beside it, and the scrubber's readout
@@ -4514,16 +4486,6 @@ body.map-wide .map-filter-mark {
    row carries no switch. A reading answers "what is the world's money doing"
    and a switch answers "what is drawn on the map", and they were only ever
    sharing a row because both happened to be about markets. */
-
-/* The group boundary, drawn rather than implied. This is the phone panel's own
-   treatment — the separator that is a 1px vertical tick between chips on a strip
-   is a rule across the column here, which is the same fact stated in the
-   dimension that has room for it. */
-body.map-wide .map-filter-sep {
-  width: 100%;
-  height: 1px;
-  margin: 0.5rem 0;
-}
 
 /* Where the readings end and the controls begin.
 
@@ -5976,7 +5938,12 @@ body.map-wide .map-key {
   inset: auto auto 0 0;
   margin: 0;
   width: max-content;
-  max-width: min(24rem, calc(100vw - 2rem));
+  /* `width: max-content` means this only ever takes what a short list (six
+     currencies) actually needs — the cap only binds a genuinely long one
+     (fifteen exchanges), so raising it a little (24rem → 27rem, a reader's
+     report that a rail card was cutting content off) costs a short list
+     nothing and gives a long one more room per row before it wraps. */
+  max-width: min(27rem, calc(100vw - 2rem));
   max-height: min(24rem, calc(100vh - 8rem));
   overflow-y: auto;
   padding: var(--space-sm) var(--space-sm) 0.35rem;
@@ -6418,7 +6385,7 @@ body.map-wide .map-key {
   min-height: 24px;
   padding: 0;
   font: inherit;
-  font-size: 1rem;
+  font-size: var(--size-sm);
   line-height: 1;
   color: var(--map-ink-dim);
   cursor: pointer;
@@ -6466,7 +6433,9 @@ body.map-wide .map-key {
     letter-spacing: var(--track-caps);
     font-weight: 600;
     color: var(--map-ink);
-    margin-right: 0.5em;
+    margin-right: 0;
+    display: block;
+    margin-bottom: 0.4em;
   }
 
   .article-sources-flat {
@@ -6735,7 +6704,7 @@ a.map-popup-source-name {
   .map-popup-title { margin: 0; }
 }
 
-.map-country-flag { font-size: 1.15rem; line-height: 1; flex: 0 0 auto; }
+.map-country-flag { font-size: var(--size-md); line-height: 1; flex: 0 0 auto; }
 
 /* Why this country is that colour.
    Set apart from the highlights list rather than being its first row: it
@@ -7111,7 +7080,13 @@ a.map-popup-source-name {
   position: fixed;
   inset: 0 auto auto 0;
   margin: 0;
-  width: min(32rem, calc(100vw - var(--map-rail-w) - 4rem));
+  /* Wider than a peek's 25rem — a reader reported this card cutting content
+     at the bottom, and this canvas usually has the width to spare (`map.md`'s
+     "surplus width is free" argument): more room on a line is less wrapping,
+     which is less height a 70vh card has to find in the first place. The
+     `calc()` term still yields on a narrower desktop, where there is none to
+     spare. */
+  width: min(38rem, calc(100vw - var(--map-rail-w) - 4rem));
   max-height: 70vh;
   border-radius: 2px;
   border: 1px solid var(--map-line);
@@ -7160,6 +7135,16 @@ a.map-popup-source-name {
   overscroll-behavior: contain;
   scrollbar-width: thin;
   max-height: calc(90vh - 3rem);
+}
+
+/* `.is-docked` tightens the dialog's own ceiling to 70vh (see the rule
+   above), but this inner scroll budget was still the base 90vh one — so
+   content between 70vh and ~87vh tall found the inner container's own
+   `overflow-y: auto` never engaging (it still fit *that* budget) while the
+   outer dialog's `overflow: hidden` clipped it anyway, with no scrollbar to
+   reach the rest. A reader reported the odds card doing exactly this. */
+.map-sheet.is-docked .island-sheet-inner {
+  max-height: calc(70vh - 3rem);
 }
 
 .map-sheet-lead {
@@ -7916,12 +7901,6 @@ body.doc-page .chart {
   .map-filter {
     padding: 0.3rem 0;
     gap: 0.45rem;
-  }
-
-  .map-filter-sep {
-    width: 100%;
-    height: 1px;
-    margin: 0.15rem 0;
   }
 
   /* Back, after being hidden on every phone since it was written. It was cut

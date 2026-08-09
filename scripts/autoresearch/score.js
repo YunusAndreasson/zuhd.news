@@ -31,16 +31,16 @@ const CLUSTER_WEIGHTS = { picking: 0.30, writing: 0.20, briefing: 0.20, sourcing
 
 // ── Public entry point ─────────────────────────────────────────────────────
 
-export async function scoreReplay({ worktree, newArticles, cycle, cycleDir, skipJudges = false }) {
+export async function scoreReplay({ worktree, newArticles, cycle, skipJudges = false }) {
   const articles = loadArticles(worktree, newArticles)
   const briefs = loadBriefsForArticles(worktree, articles.map((a) => a.slug))
 
-  const guardrails = checkGuardrails(articles, briefs)
+  const guardrails = checkGuardrails(articles)
   const writing = scoreWriting(articles)
   const sourcing = scoreSourcing(articles)
   const coverage = scoreCoverage(articles)
   const briefing = await scoreBriefing(briefs, { skipJudges })
-  const picking = await scorePicking(worktree, articles, cycle, { skipJudges })
+  const picking = await scorePicking(articles, cycle, { skipJudges })
 
   // Per-article rollup — actionable form of the metric. For each article
   // we attach the deterministic clusters that scope down (writing, sourcing,
@@ -148,7 +148,7 @@ function loadBriefsForArticles(worktree, slugs) {
 
 // ── Guardrails (hard binary checks) ────────────────────────────────────────
 
-function checkGuardrails(articles, briefs) {
+function checkGuardrails(articles) {
   const failures = []
   // Validate-articles is run by the orchestrator; we re-derive from articles
   // here with a soft check (frontmatter present + body non-empty).
@@ -367,14 +367,14 @@ async function scoreBriefing(briefs, { skipJudges = false } = {}) {
 
 // ── Picking cluster: judge selection vs feed; headline novelty ────────────
 
-async function scorePicking(worktree, articles, cycle, { skipJudges = false } = {}) {
+async function scorePicking(articles, cycle, { skipJudges = false } = {}) {
   let judgeScore = 50 // default if judge fails
   /** @type {Record<string, any>} */
   let judgeDetail = { error: null }
   if (!skipJudges) {
     try {
       const feedSnap = JSON.parse(readFileSync(join(REPO_ROOT, cycle.feedSnapshot), 'utf-8'))
-      const judge = await selectionJudge(feedSnap, articles, worktree)
+      const judge = await selectionJudge(feedSnap, articles)
       judgeScore = clamp(judge.score, 0, 100)
       judgeDetail = { score: judge.score, missed: judge.missed?.length || 0, weakPicks: judge.weakPicks?.length || 0, rationale: judge.rationale }
     } catch (err) {
@@ -399,7 +399,7 @@ async function scorePicking(worktree, articles, cycle, { skipJudges = false } = 
 
 // ── Judge invocations ─────────────────────────────────────────────────────
 
-async function selectionJudge(feedSnap, articles, worktree) {
+async function selectionJudge(feedSnap, articles) {
   const stories = (feedSnap.stories || []).slice(0, 50).map((s) => ({
     title: s.title,
     category: s.category,

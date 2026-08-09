@@ -221,7 +221,7 @@ for (const cycle of cycles) {
   // --- Score this cycle ---
   writeProgress({ stage: 'scoring', cycle: cycle.id })
   try {
-    const cycleScore = await scoreReplay({ worktree, newArticles, cycle, cycleDir, skipJudges: noJudges })
+    const cycleScore = await scoreReplay({ worktree, newArticles, cycle, skipJudges: noJudges })
     result.score = cycleScore
     console.log(`  RVS: ${cycleScore.rvs.toFixed(1)}  picking=${cycleScore.clusters.picking.toFixed(0)}  writing=${cycleScore.clusters.writing.toFixed(0)}  briefing=${cycleScore.clusters.briefing.toFixed(0)}  sourcing=${cycleScore.clusters.sourcing.toFixed(0)}  coverage=${cycleScore.clusters.coverage.toFixed(0)}`)
   } catch (err) {

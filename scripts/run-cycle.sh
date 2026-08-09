@@ -273,7 +273,14 @@ T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
 
 run_writer() {
-  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 --exclude-dynamic-system-prompt-sections -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  # --add-dir /tmp: without it, whether the model treats /tmp/zuhd-selection.json
+  # as reachable is left to its own judgement, and since ~2026-08-01 it has
+  # sometimes decided no ("File access ... is blocked in this session — it's
+  # outside the allowed working directory"), killing the cycle. Observed 4 of
+  # ~40 cycles (08-01, 08-03, 08-06, 08-08), 2 of them zero-publish; the retry
+  # below re-issues the same prompt and reproduces the refusal rather than
+  # clearing it, so this is the actual fix rather than the safety net.
+  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --add-dir /tmp --max-turns 60 --exclude-dynamic-system-prompt-sections -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 }
 
 run_writer

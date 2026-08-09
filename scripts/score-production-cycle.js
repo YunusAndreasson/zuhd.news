@@ -47,7 +47,6 @@ async function main() {
     worktree: ROOT,
     newArticles,
     cycle,
-    cycleDir: '/tmp',
     skipJudges: true,
   })
 

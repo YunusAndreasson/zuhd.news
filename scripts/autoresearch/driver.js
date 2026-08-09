@@ -66,7 +66,7 @@ console.log(`Logs: ${RUNS_LOG}`)
 
 console.log(`\n--- Iter 0: baseline ---`)
 const baselineRes = runReplay(0, null)
-if (!baselineRes || !baselineRes.aggregate) {
+if (!baselineRes?.aggregate) {
   console.error('Baseline failed — cannot continue')
   process.exit(2)
 }
@@ -123,7 +123,7 @@ for (let iter = 1; iter <= maxIters; iter++) {
 
   // Run replay with diff
   const res = runReplay(iter, diffPath)
-  if (!res || !res.aggregate) {
+  if (!res?.aggregate) {
     appendRun({ iter, kind: 'replay-error', diff, error: 'no aggregate score' })
     consecutiveRejects++
     continue

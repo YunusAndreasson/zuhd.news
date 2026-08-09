@@ -14,6 +14,8 @@ import { join } from 'node:path'
 import { largestPolygonCentroid } from '../lib/geo-point.js'
 import { buildCountryOgPng } from '../lib/og-image.js'
 import { escHtml } from '../lib/html.js'
+import { footerStatusLine } from '../lib/site-chrome.js'
+import { listRow } from '../lib/list-row.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
@@ -205,16 +207,16 @@ export const buildCountryPages = async ({
     const recent = articlesByCountry[name] || []
     const coverageSection = recent.length
       ? `<section class="country-coverage">
-          <h2 class="label country-section-title">Recent coverage · ${recent.length}</h2>
+          <h2 class="label section-title">Recent coverage · ${recent.length}</h2>
           <ol class="country-coverage-list">
-            ${recent.map((a) => `
-              <li>
-                <a href="/a/${a.slug}" class="country-coverage-row">
-                  <time datetime="${escHtml(a.meta.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
-                  <span class="country-coverage-title">${escHtml(a.title)}</span>
-                  <span class="category country-coverage-cat">${escHtml(a.meta.category || '')}</span>
-                </a>
-              </li>`).join('')}
+            ${recent.map((a) => `<li>${listRow({
+              title: a.title,
+              url: `/a/${a.slug}`,
+              date: a.meta.date,
+              dateFormatted: a.dateFormatted,
+              category: a.meta.category || '',
+              variant: 'date-title-category',
+            })}</li>`).join('')}
           </ol>
         </section>`
       : ''
@@ -262,6 +264,7 @@ export const buildCountryPages = async ({
       .replace(/{{metaLine}}/g, escHtml(metaLine))
       .replace(/{{metricRows}}/g, metricRows)
       .replace(/{{coverageSection}}/g, coverageSection)
+      .replace(/{{footerStatus}}/g, footerStatusLine({ sources: 'REST Countries · World Bank · OWID' }))
 
     writeFileSync(join(distDir, 'country', `${iso2}.html`), html)
 

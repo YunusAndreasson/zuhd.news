@@ -707,16 +707,16 @@ export function createSheet(): Sheet {
       const focal =
         entry.unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : fmt.pctChange(windowPct)
       /**
-       * Neutral for the two blocks whose direction is not a verdict.
+       * The same sign the row already carries.
        *
-       * Green and red mean good and bad. On a currency basket that is a
-       * convention; on *US invade Iran* it is the card telling a reader that a
-       * likelier war is good news — the objection the rail already answers by
-       * tinting those two blocks from the topic palette instead. The card has no
-       * hue to spend on identity, so it spends none on direction either: the
-       * sign is in the figure and the shape is in the chart below.
+       * `sparkInto` tints every `.map-markets-move` by `toneClass(pct)` —
+       * green, red or the flat grey-blue — with no exemption for `odds` or
+       * `attention`; there is no `--cat` override for those two blocks
+       * anywhere in this stylesheet. So a card that went neutral for exactly
+       * those two groups was disagreeing with the row that opened it: a
+       * reader saw a coloured move on the rail and pressed through to find it
+       * gone, on the two rows most likely to prompt a closer look.
        */
-      const verdict = entry.group === 'odds' || entry.group === 'attention'
       nodes.push(
         hero(
           focal,
@@ -731,7 +731,7 @@ export function createSheet(): Sheet {
           ]
             .filter(Boolean)
             .join(' · '),
-          verdict ? undefined : windowPct < 0 ? 'neg' : 'pos',
+          windowPct < 0 ? 'neg' : 'pos',
         ),
       )
 
@@ -825,11 +825,16 @@ export function createSheet(): Sheet {
           if (record.recent) grown.push(el('p', 'map-sheet-lead', record.recent))
           // The cited stories, which are the ones the sentence above was built
           // from — not every article mentioning the instrument. `mentions` is
-          // that, and it stays on `/e/{id}` where a reader has asked for the
-          // whole record.
+          // that, and this card does not carry it: a "Full record →" link used
+          // to send a reader from here to the standalone `/e/{id}` page, which
+          // leaves the map for a full, differently-themed document — the
+          // ceremony this whole interface exists to avoid for a card opened in
+          // place. Removed rather than converted to an in-place disclosure,
+          // since `mentions` is not the crossreference this card is answering
+          // (that is `cited`, above); a reader who wants the full record can
+          // still reach it from an article's own entity strip.
           const cited = record.cited ?? []
           if (cited.length) grown.push(...relatedList(cited, 'Read from'))
-          grown.push(readMore(`/e/${encodeURIComponent(entry.id)}`, 'Full record →'))
           host.replaceChildren(...grown)
           // The card grew after `placeDocked` last measured it — the fetch above
           // resolves well after `open()`'s own clamp, so the dispatch paragraph

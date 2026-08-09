@@ -269,7 +269,7 @@ async function fetchHackerNews() {
       all.push({ title: h.title, url: h.url, score: h.points, comments: h.num_comments || 0, time: h.created_at_i })
     }
     for (const b of bestItems) {
-      if (!b || !b.url || seen.has(String(b.id))) continue
+      if (!b?.url || seen.has(String(b.id))) continue
       if ((b.score || 0) < 100) continue
       seen.add(String(b.id))
       all.push({ title: b.title, url: b.url, score: b.score, comments: b.descendants || 0, time: b.time })

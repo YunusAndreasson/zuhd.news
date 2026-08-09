@@ -17,7 +17,8 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { escHtml } from '../lib/html.js'
-import { ARCHETYPE_HEADER } from '../lib/site-chrome.js'
+import { footerStatusLine } from '../lib/site-chrome.js'
+import { listRow } from '../lib/list-row.js'
 import { canonicalIndicatorId } from '../lib/entity-registry.js'
 import { loadShared } from './shared-ts.js'
 
@@ -174,77 +175,18 @@ const buildEntityRecord = (ind, mentions, dispatch, bySlug) => {
   }
 }
 
-const entityTemplate = `<!-- بسم الله الرحمن الرحيم -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-__HEAD__
-  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
-  <title>__LABEL__ — zuhd.news</title>
-  <meta name="description" content="__DESC__">
-  <link rel="canonical" href="https://zuhd.news/e/__ID__">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="zuhd.news">
-  <meta property="og:title" content="__LABEL__ — zuhd.news">
-  <meta property="og:description" content="__DESC__">
-  <meta property="og:url" content="https://zuhd.news/e/__ID__">
-  <meta property="og:image" content="https://zuhd.news/og-image.png?v=2">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="__LABEL__ on zuhd.news">
-  <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=2">
-  <meta name="twitter:image:alt" content="__LABEL__ on zuhd.news">
-</head>
-<body class="archetype-page-body">
-  ${ARCHETYPE_HEADER}
-  <main class="article-page-main">
-    <article class="entity-page">
-      <header class="entity-header">
-        <span class="label">__KIND__ · __SOURCE__</span>
-        <h1 class="t-display entity-label">__LABEL__</h1>
-        <div class="entity-hero">
-          <span class="t-data-numeral entity-current">__CURRENT__</span>
-          <span class="entity-delta t-tabular __DELTA_TONE__">__DELTA__</span>
-        </div>
-      </header>
-      __STANDING__
-      <!--
-        The static chart is complete on its own; the island swaps in the
-        interactive one on top of it. The series travels in a JSON script
-        rather than a fetch — this page's entire content is that series, and
-        making the reader wait for a second request to be able to hover it
-        would be a round trip to deliver bytes already on the page.
-      -->
-      <div class="entity-chart" data-island-auto="series-chart">
-        __SPARK__
-        <script type="application/json" class="chart-source">__SERIES__</script>
-      </div>
-      __RECENT__
-      __MENTIONED__
-    </article>
-    __SHARE_ROW__
-  </main>
-  <footer>
-    <span class="update-status">__AS_OF__</span>
-    __FOOTER_NAV__
-  </footer>
-  <script type="module" src="/island-loader.js__ISLAND_V__" defer></script>
-</body>
-</html>`
-
 /**
- * @param {{ sorted: any[], distDir: string, headCommon: string,
- *           footerNav?: string, islandV?: string,
+ * @param {{ sorted: any[], distDir: string, template: string,
  *           shareRowHtml?: (target: string, title: string) => string,
  *           dispatch?: Record<string, {standing?: string, recent?: string, citations?: string[]}>,
  *           extraIndicators?: any[] }} opts
- *        `shareRowHtml` and `footerNav` are passed in rather than imported
- *        because build.js owns both — the footer is built once there from the
- *        loaded `share.ts`, and this module cannot load TypeScript itself.
- *        `shareRowHtml`'s default is a no-op for callers that do not want a
+ *        `template` arrives already resolved — see the note on the same
+ *        parameter in `country-pages.js`; this module used to carry its own
+ *        copy of the document shell as a JS template literal, with its own
+ *        `${ARCHETYPE_HEADER}` interpolation alongside every other template's
+ *        `{{token}}` substitution.
+ *        `shareRowHtml` is passed in rather than imported because build.js
+ *        owns it; the default is a no-op for callers that do not want a
  *        share row.
  *        Its signature has to be declared here — a default of `() => ''` infers
  *        a zero-argument function, which makes the two real call sites read as
@@ -253,9 +195,7 @@ __HEAD__
 export const buildEntityPages = async ({
   sorted,
   distDir,
-  headCommon,
-  footerNav = '',
-  islandV = '',
+  template,
   shareRowHtml = () => '',
   dispatch = {},
   extraIndicators = [],
@@ -328,17 +268,18 @@ export const buildEntityPages = async ({
     const cited = record.cited || []
     const recentSection = record.recent
       ? `<section class="entity-recent">
-          <h2 class="label archive-section-title">Lately</h2>
+          <h2 class="label section-title">Lately</h2>
           <p class="entity-recent-body">${escHtml(record.recent)}</p>
           ${
             cited.length
               ? `<ol class="archive-article-list entity-recent-sources">
-            ${cited.map((a) => `<li>
-              <a class="archive-article-row" href="/a/${a.slug}">
-                <time datetime="${escHtml(a.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
-                <span class="archive-article-title">${escHtml(a.title)}</span>
-              </a>
-            </li>`).join('')}
+            ${cited.map((a) => `<li>${listRow({
+              title: a.title,
+              url: `/a/${a.slug}`,
+              date: a.date,
+              dateFormatted: a.dateFormatted,
+              variant: 'date-title',
+            })}</li>`).join('')}
           </ol>`
               : ''
           }
@@ -347,54 +288,48 @@ export const buildEntityPages = async ({
 
     const mentionedSection = mentions.length
       ? `<section class="entity-mentioned">
-          <h2 class="label archive-section-title">Mentioned in · ${mentions.length}</h2>
+          <h2 class="label section-title">Mentioned in · ${mentions.length}</h2>
           <ol class="archive-article-list">
-            ${mentions.map((a) => `<li>
-              <a class="archive-article-row" href="/a/${a.slug}">
-                <time datetime="${escHtml(a.meta.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
-                <span class="archive-article-title">${escHtml(a.title)}</span>
-                ${a.sources[0]?.name ? `<span class="t-source-host">${escHtml(a.sources[0].name)}</span>` : ''}
-              </a>
-            </li>`).join('')}
+            ${mentions.map((a) => `<li>${listRow({
+              title: a.title,
+              url: `/a/${a.slug}`,
+              date: a.meta.date,
+              dateFormatted: a.dateFormatted,
+              source: a.sources[0]?.name || '',
+              variant: 'date-title-source',
+            })}</li>`).join('')}
           </ol>
         </section>`
       : ''
 
-    const html = entityTemplate
-      .replace(/__HEAD__/g, headCommon)
-      .replace(/__FOOTER_NAV__/g, footerNav)
-      // Was a bare `/island-loader.js`. Pages pins `.js` to its own four-hour
-      // max-age and `_headers` cannot lower it, so without the build's cache
-      // key an entity page kept loading whichever loader the edge last cached —
-      // harmless while these pages mounted no islands, and not once they do.
-      .replace(/__ISLAND_V__/g, islandV ? `?v=${islandV}` : '')
-      .replace(/__SHARE_ROW__/g, shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
-      .replace(/__ID__/g, escHtml(ind.id))
-      .replace(/__LABEL__/g, escHtml(ind.label))
+    const html = template
+      .replaceAll('{{shareRow}}', shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
+      .replaceAll('{{id}}', escHtml(ind.id))
+      .replaceAll('{{label}}', escHtml(ind.label))
       // The standing sentence where there is one. The fallback it replaces —
       // "<label> — <source>. N related articles on zuhd.news." — described the
       // page rather than the subject, so every search result and every share
       // card for 57 instruments said the same thing with a different number in
       // it. Trimmed to a length a description meta tag is actually shown at.
-      .replace(
-        /__DESC__/g,
+      .replaceAll(
+        '{{description}}',
         escHtml(
           record.standing ||
             `${ind.label} — ${ind.sourceLabel || ind.source}. ${mentions.length} related articles on zuhd.news.`,
         ).slice(0, 300),
       )
-      .replace(/__KIND__/g, escHtml(record.kind))
-      .replace(/__SOURCE__/g, escHtml(record.sourceLabel))
-      .replace(/__CURRENT__/g, escHtml(record.currentFormatted))
-      .replace(/__DELTA__/g, escHtml(record.deltaLabel))
-      .replace(/__DELTA_TONE__/g, record.deltaTone)
-      .replace(/__SPARK__/g, chartHtml(chart, record))
+      .replaceAll('{{kind}}', escHtml(record.kind))
+      .replaceAll('{{source}}', escHtml(record.sourceLabel))
+      .replaceAll('{{current}}', escHtml(record.currentFormatted))
+      .replaceAll('{{delta}}', escHtml(record.deltaLabel))
+      .replaceAll('{{deltaTone}}', record.deltaTone)
+      .replaceAll('{{spark}}', chartHtml(chart, record))
       // `</` is the only sequence that can end a script element early, and
       // escaping it is what keeps a label like "S&P 500 </script>" from being
       // a way to write markup into this page. JSON keeps `<` as a `<` on
       // parse, so the payload is unchanged.
-      .replace(
-        /__SERIES__/g,
+      .replaceAll(
+        '{{series}}',
         JSON.stringify({
           values: record.values,
           periods: record.periods,
@@ -404,10 +339,16 @@ export const buildEntityPages = async ({
           caption: record.caption,
         }).replace(/</g, '\\u003c'),
       )
-      .replace(/__STANDING__/g, standingSection)
-      .replace(/__RECENT__/g, recentSection)
-      .replace(/__MENTIONED__/g, mentionedSection)
-      .replace(/__AS_OF__/g, escHtml(`As of ${record.asOf || trends.asOf || today}`))
+      .replaceAll('{{standing}}', standingSection)
+      .replaceAll('{{recent}}', recentSection)
+      .replaceAll('{{mentioned}}', mentionedSection)
+      .replaceAll(
+        '{{footerStatus}}',
+        footerStatusLine({
+          sources: record.sourceLabel,
+          dateHtml: escHtml(record.asOf || trends.asOf || today),
+        }),
+      )
 
     writeFileSync(join(distDir, 'e', `${ind.id}.html`), html)
 

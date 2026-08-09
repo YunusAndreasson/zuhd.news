@@ -1,0 +1,60 @@
+<!-- بسم الله الرحمن الرحيم -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{headCommon}}
+  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
+  <title>{{label}} — zuhd.news</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="https://zuhd.news/e/{{id}}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="zuhd.news">
+  <meta property="og:title" content="{{label}} — zuhd.news">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="https://zuhd.news/e/{{id}}">
+  <meta property="og:image" content="https://zuhd.news/og-image.png?v=2">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{label}} on zuhd.news">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=2">
+  <meta name="twitter:image:alt" content="{{label}} on zuhd.news">
+</head>
+<body class="archetype-page-body">
+  {{archetypeHeader}}
+  <main class="article-page-main">
+    <article class="entity-page">
+      <header class="entity-header">
+        <span class="label">{{kind}} · {{source}}</span>
+        <h1 class="t-display entity-label">{{label}}</h1>
+        <div class="entity-hero">
+          <span class="t-data-numeral entity-current">{{current}}</span>
+          <span class="entity-delta t-tabular {{deltaTone}}">{{delta}}</span>
+        </div>
+      </header>
+      {{standing}}
+      <!--
+        The static chart is complete on its own; the island swaps in the
+        interactive one on top of it. The series travels in a JSON script
+        rather than a fetch — this page's entire content is that series, and
+        making the reader wait for a second request to be able to hover it
+        would be a round trip to deliver bytes already on the page.
+      -->
+      <div class="entity-chart" data-island-auto="series-chart">
+        {{spark}}
+        <script type="application/json" class="chart-source">{{series}}</script>
+      </div>
+      {{recent}}
+      {{mentioned}}
+    </article>
+    {{shareRow}}
+  </main>
+  <footer>
+    <span class="update-status">{{footerStatus}}</span>
+    {{footerNav}}
+  </footer>
+  <script type="module" src="/island-loader.js?v={{v}}" defer></script>
+</body>
+</html>

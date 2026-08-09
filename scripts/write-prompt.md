@@ -50,16 +50,18 @@ concepts:
 
 Hook block — one tight sentence.
 
-Context block — one tight sentence; or two short sentences if both are load-bearing.
+Why-it-matters block — one tight sentence.
+
+Context block — one tight sentence.
 
 Future block — one tight sentence.
 ```
 
-The body is **three markdown paragraphs (blocks), separated by a blank line**. The blank line is what creates the visible vertical gap between blocks on the reader's screen — both the web reader (`<p>` tags rendered with CSS margin) and the mobile app (`<Text>` elements with marginBottom). Three paragraphs in the markdown = three blocks on screen. No blank line = no gap = the blocks collapse into one. Write the blank line.
+The body is **four markdown paragraphs (blocks), separated by a blank line**. The blank line is what creates the visible vertical gap between blocks on the reader's screen — both the web reader (`<p>` tags rendered with CSS margin) and the mobile app (`<Text>` elements with marginBottom). Four paragraphs in the markdown = four blocks on screen. No blank line = no gap = the blocks collapse into one. Write the blank line.
 
-40-55 words total across the three blocks (body text only, excluding frontmatter). Follow the per-block word limits in `<rhythm>`.
+48-60 words total across the four blocks (body text only, excluding frontmatter). Follow the per-block word limits in `<rhythm>`.
 
-**Body text (everything after the closing `---`): target ≤350 characters, hard ceiling 400.** Bodies over 400 get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit. The two blank-line separators between blocks count for ~4 characters total — negligible.
+**Body text (everything after the closing `---`): target ≤360 characters, hard ceiling 440.** Bodies over 440 get rewritten shorter before publish, wasting cycle time. Aim for 300-360 characters; under-spending is better than overspending. A rough check: 55 words at ~6 chars/word ≈ 330 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit. The three blank-line separators between blocks count for ~6 characters total — negligible.
 
 List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
 
@@ -67,25 +69,29 @@ List every source from the selection's `sources` array (see task step 2). `event
 
 <rhythm>
 
-Every article is **3 blocks**. Always 3. Each block is a markdown paragraph separated from the next by a blank line. Hook → Context → Future:
+Every article is **4 blocks**. Always 4. Each block is a markdown paragraph separated from the next by a blank line, and each block is exactly one sentence. Hook → Why it matters → Context → Future:
 
-1. **Hook block** (≤8 words, one sentence) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
+1. **Hook block** (≤8 words) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
 
-2. **Context block** (≤22 words, one sentence — or two short sentences only if both are load-bearing) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If the hook tells you *what*, this block tells you *why*.
+2. **Why-it-matters block** (≤14 words) — the one consequence or stake that makes this worth the reader's 5 seconds. Not the hook's fact said again — a distinct "so what": who this affects, what it changes, what it puts at risk. If you can't name a stake that isn't already in the hook, you haven't found the story yet.
 
-3. **Future block** (≤18 words, one sentence) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
+3. **Context block** (≤20 words) — *how* this happened or *how big* it is. Teach the mechanism, not just more facts. The hook tells you *what*, the why-it-matters block tells you *why it's worth caring about*, this block tells you *how it works*.
+
+4. **Future block** (≤16 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake next, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
 
 </rhythm>
 
 <principles>
 
-**Clarity.** One idea per sentence. Active voice. Digits for numbers. Each sentence earns its place.
+**Clarity.** One idea per sentence — no semicolons. A semicolon joining two clauses is two ideas; split them into two sentences (two blocks, or cut the weaker one). Active voice in every sentence, not just the hook — name the actor. "Some vessels were turned back" hides who did it; "Turkey's coast guard turned back some vessels" doesn't. Digits for numbers. Each sentence earns its place.
 
-**Precision.** Lead with the specific: "14,500 newborns" not "thousands." "49% recession odds" not "growing risk." Every article teaches one mechanism the reader didn't know.
+**Directness.** Caveats and uncertainty get a named subject and an active verb too. "No one has verified this" not "no independent assessment of the claim exists." An abstract noun standing in for a person or action ("assessment exists," "confirmation is pending") is a hedge in a lab coat — write who did or didn't do what.
+
+**Precision.** Lead with the specific: "14,500 newborns" not "thousands." "49% recession odds" not "growing risk." If a sentence's sharpest number sits inside a subordinate clause, move it to the front or give it its own sentence — a number the reader has to dig for might as well not be there. Every article teaches one mechanism the reader didn't know.
 
 **Neutrality.** Center the affected, not the powerful. Consistent terminology for all states ("government" for all, never "regime" for some). Name the actor in violence. Attribute all labels symmetrically.
 
-**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each block must introduce new information — if the future block restates the context block with different words, rewrite it with what happens next.
+**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each block must introduce information none of the earlier blocks carried — if a later block restates an earlier one with different words, rewrite it.
 
 **Attribute non-routine numbers.** Contested figures — casualty counts, production volumes, market-share claims, specific statistics — earn a 2-3 word inline attribution: "the central bank said," "DoD figures show," "according to the study." Routine, self-evident facts (ages, dates, geography) don't. If a figure is load-bearing and lacks a named authority in the source material, drop or soften it — don't float it as if it were common knowledge.
 
@@ -97,7 +103,7 @@ Every article is **3 blocks**. Always 3. Each block is a markdown paragraph sepa
 
 **Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
 
-**Strategic depth.** The context sentence must teach a mechanism, not restate the hook with more words. "Prices rose" is a hook. "The pipeline runs through a chokepoint that carries 20% of global supply" is a mechanism. If the reader already knows the mechanism, teach the constraint — why the obvious solution doesn't work, what makes this problem structural rather than temporary.
+**Strategic depth.** The context sentence must teach a mechanism, not restate the hook or the why-it-matters sentence with more words. "Prices rose" is a hook. "The pipeline runs through a chokepoint that carries 20% of global supply" is a mechanism. If the reader already knows the mechanism, teach the constraint — why the obvious solution doesn't work, what makes this problem structural rather than temporary.
 
 **Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place. The `location:` frontmatter field must be **byte-for-byte identical** to this dateline text (the part before ` — `): city only, with **no `, Country` suffix**. Downstream readers strip the dateline by exact-matching `location` against the first sentence, so `Gujranwala — ` paired with `location: "Gujranwala, Pakistan"` fails to strip and leaves the dateline stranded at the top of the mobile article.
 
@@ -118,7 +124,7 @@ Every article is **3 blocks**. Always 3. Each block is a markdown paragraph sepa
 
 <examples>
 
-Each example body below is **3 blocks** — three markdown paragraphs separated by a blank line. The blank line is mandatory; it is what renders as the visible gap between blocks on web and mobile.
+Each example body below is **4 blocks** — four markdown paragraphs separated by a blank line. The blank line is mandatory; it is what renders as the visible gap between blocks on web and mobile.
 
 <example>
 ---
@@ -143,9 +149,11 @@ concepts:
 
 London — Dart frog toxin killed Alexei Navalny.
 
-5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning.
+It gives European governments a forensic basis to sanction [Russia](country:RU) directly.
 
-[Britain](country:GB) referred [Russia](country:RU) to the chemical weapons watchdog, which has 40 days to open a formal probe.
+5 governments confirmed tissue samples contained epibatidine, the toxin behind his 2024 prison death.
+
+[Britain](country:GB) referred Russia to the weapons watchdog, which has 40 days to open a probe.
 </example>
 
 <example>
@@ -163,6 +171,8 @@ sources:
 ---
 
 Gaza — 4 of 11 remaining hospitals have gone dark.
+
+Newborns on ventilators and dialysis patients lose life support when power fails.
 
 [Israel](country:IL) has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities.
 
@@ -185,7 +195,9 @@ sources:
 
 Hanoi — 20 million unconnected Vietnamese gained satellite broadband.
 
-The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for [Vietnam](country:VN)'s market.
+It is the first Western carrier cleared to compete in [Vietnam](country:VN)'s market.
+
+The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals nationwide.
 
 State-backed Viettel and Vietnam Posts face a February 2027 decision on matching tariffs.
 </example>
@@ -206,9 +218,11 @@ sources:
 
 Karachi — SadaPay collapsed after Gulf strikes.
 
-[Pakistan](country:PK)'s fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users.
+2 rival fintechs remain offline too, stalling digital payments across [Pakistan](country:PK).
 
-SadaPay has set no restoration date; 2 rival fintechs remain offline.
+Pakistan's fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users.
+
+SadaPay has set no date to restore service.
 </example>
 
 </examples>

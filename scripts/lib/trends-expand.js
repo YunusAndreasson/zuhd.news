@@ -117,7 +117,7 @@ function indicatorSourceLabel(indicator) {
  * @returns {object | null}
  */
 export function expandChartRef(chartBlock, snapshot, sourceCtx) {
-  if (!chartBlock || chartBlock.type !== 'chart' || !chartBlock.ref) return null
+  if (chartBlock?.type !== 'chart' || !chartBlock.ref) return null
   const indicator = snapshot?.indicators?.find((i) => i.id === chartBlock.ref)
   if (!indicator || !Array.isArray(indicator.values) || indicator.values.length < 2) return null
 
@@ -163,7 +163,7 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
  * @returns {object | null}
  */
 export function expandMultiChartRef(block, snapshot, sourceCtx) {
-  if (!block || block.type !== 'multi-chart' || !Array.isArray(block.refs)) return null
+  if (block?.type !== 'multi-chart' || !Array.isArray(block.refs)) return null
   const indicators = block.refs
     .map((ref) => snapshot?.indicators?.find((i) => i.id === ref))
     .filter((i) => i && Array.isArray(i.values) && i.values.length >= 2)

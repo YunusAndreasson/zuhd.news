@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-01T08:21:32.150Z",
+  "generated": "2026-08-09T17:18:29.993Z",
   "exchanges": [
     {
       "id": "tadawul",
@@ -9,8 +9,8 @@
       "iso2": "SA",
       "lat": 24.7136,
       "lng": 46.6753,
-      "level": 10720.28,
-      "changePct": 0.147,
+      "level": 10817.01,
+      "changePct": 0.902,
       "currency": "SAR",
       "tz": "Asia/Riyadh",
       "sessionStart": "10:00",
@@ -24,12 +24,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 3",
-          "May 4",
-          "May 5",
-          "May 6",
-          "May 7",
           "May 10",
           "May 11",
           "May 12",
@@ -74,15 +68,10 @@
           "Jul 13",
           "Jul 14",
           "Jul 15",
-          "Jul 16"
+          "Jul 16",
+          "Aug 9"
         ],
         "values": [
-          11187.66,
-          11192.84,
-          11090.65,
-          11006.97,
-          10949.27,
-          11031.32,
           11115.07,
           11158.45,
           11039.23,
@@ -127,10 +116,11 @@
           10801.71,
           10715.61,
           10704.51,
-          10720.28
+          10720.28,
+          10817.01
         ]
       },
-      "asOf": "2026-07-30",
+      "asOf": "2026-08-09",
       "sourceLabel": "Yahoo Finance · SAU",
       "blurb": "The Arab world’s largest exchange by market value, dominated by Aramco. Trades Sunday to Thursday, so it opens the global week before Tokyo.",
       "topicTags": [
@@ -153,8 +143,8 @@
       "iso2": "TR",
       "lat": 41.0082,
       "lng": 28.9784,
-      "level": 13458.1,
-      "changePct": 1.243,
+      "level": 13779.4,
+      "changePct": -0.141,
       "currency": "TRY",
       "tz": "Europe/Istanbul",
       "sessionStart": "10:00",
@@ -168,10 +158,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -228,13 +214,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          14442.6,
-          14369.6,
-          14495.8,
-          14917.4,
           15040.3,
           15062.7,
           15133.5,
@@ -291,10 +278,15 @@
           13687.9,
           13501.6,
           13292.9,
-          13458.1
+          13458.1,
+          13410.5,
+          13687.9,
+          13703.1,
+          13798.8,
+          13779.4
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · IST",
       "blurb": "Türkiye’s only exchange. Priced in lira, so its index level carries the country’s inflation as much as its earnings — read the direction, not the number.",
       "topicTags": [
@@ -317,8 +309,8 @@
       "iso2": "AE",
       "lat": 25.2048,
       "lng": 55.2708,
-      "level": 5795.93,
-      "changePct": -1.696,
+      "level": 5895.93,
+      "changePct": -0.261,
       "currency": "AED",
       "tz": "Asia/Dubai",
       "sessionStart": "10:00",
@@ -332,11 +324,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
-          "May 7",
           "May 11",
           "May 12",
           "May 13",
@@ -372,15 +359,9 @@
           "Jul 13",
           "Jul 14",
           "Jul 15",
-          "Jul 16",
-          "Jul 31"
+          "Jul 16"
         ],
         "values": [
-          5766.05,
-          5779.9,
-          5729.07,
-          5898.42,
-          5931.87,
           5820.18,
           5782.89,
           5759.17,
@@ -416,11 +397,10 @@
           5967.43,
           5890.99,
           5911.36,
-          5895.93,
-          5795.93
+          5895.93
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-09",
       "sourceLabel": "Yahoo Finance · DFM",
       "blurb": "The Gulf’s main listing venue for property and banking. Moved from a Sunday–Thursday week to Monday–Friday in 2022, unlike Riyadh.",
       "topicTags": [
@@ -442,8 +422,8 @@
       "iso2": "MY",
       "lat": 3.139,
       "lng": 101.6869,
-      "level": 1724.9,
-      "changePct": 0.262,
+      "level": 1735.75,
+      "changePct": -0.081,
       "currency": "MYR",
       "tz": "Asia/Kuala_Lumpur",
       "sessionStart": "09:00",
@@ -457,10 +437,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -520,13 +496,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          1722.02,
-          1739.77,
-          1747.43,
-          1756.87,
           1758.85,
           1748.06,
           1745.31,
@@ -586,10 +563,15 @@
           1712.48,
           1715.56,
           1720.4,
-          1724.9
+          1724.9,
+          1725.73,
+          1732.66,
+          1748.17,
+          1737.15,
+          1735.75
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · KLS",
       "blurb": "The world’s largest market for Islamic finance instruments, and the centre of the global sukuk trade.",
       "topicTags": [
@@ -612,8 +594,8 @@
       "iso2": "ID",
       "lat": -6.2088,
       "lng": 106.8456,
-      "level": 6236.13,
-      "changePct": 0.805,
+      "level": 6409.65,
+      "changePct": 1.039,
       "currency": "IDR",
       "tz": "Asia/Jakarta",
       "sessionStart": "09:00",
@@ -627,10 +609,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -686,13 +664,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          6956.8,
-          6971.95,
-          7057.11,
-          7092.47,
           7174.32,
           6969.4,
           6905.62,
@@ -748,10 +727,15 @@
           6130.59,
           6091.39,
           6186.36,
-          6236.13
+          6236.13,
+          6234.5,
+          6319.61,
+          6351.14,
+          6343.71,
+          6409.65
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · JKT",
       "blurb": "The exchange of the world’s largest Muslim-majority country, heavily weighted to commodities and banking.",
       "topicTags": [
@@ -773,8 +757,8 @@
       "iso2": "JP",
       "lat": 35.6762,
       "lng": 139.6503,
-      "level": 64362.02,
-      "changePct": 4.032,
+      "level": 65606.71,
+      "changePct": -0.117,
       "currency": "JPY",
       "tz": "Asia/Tokyo",
       "sessionStart": "09:00",
@@ -788,8 +772,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 1",
           "May 7",
           "May 8",
           "May 11",
@@ -850,11 +832,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          59284.92,
-          59513.12,
           62833.84,
           62713.65,
           62417.88,
@@ -915,10 +900,15 @@
           62364.92,
           61434.19,
           61867.43,
-          64362.02
+          64362.02,
+          63754.9,
+          63957.53,
+          66300.44,
+          65683.26,
+          65606.71
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · OSA",
       "blurb": "Asia’s largest exchange, and the first major market to price each trading day.",
       "topicTags": [
@@ -940,8 +930,8 @@
       "iso2": "HK",
       "lat": 22.3193,
       "lng": 114.1694,
-      "level": 25884.43,
-      "changePct": 0.099,
+      "level": 25668.03,
+      "changePct": 0.54,
       "currency": "HKD",
       "tz": "Asia/Hong_Kong",
       "sessionStart": "09:30",
@@ -955,10 +945,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1017,13 +1003,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          25776.53,
-          26095.88,
-          25898.61,
-          26213.78,
           26626.28,
           26393.71,
           26406.84,
@@ -1082,10 +1069,15 @@
           25310.85,
           25807.92,
           25858.88,
-          25884.43
+          25884.43,
+          26009.4,
+          25852.92,
+          25915.82,
+          25530.28,
+          25668.03
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · HKG",
       "blurb": "Where mainland Chinese companies meet foreign capital — the clearest daily read on sentiment toward China.",
       "topicTags": [
@@ -1107,8 +1099,8 @@
       "iso2": "CN",
       "lat": 31.2304,
       "lng": 121.4737,
-      "level": 3832.26,
-      "changePct": 0.725,
+      "level": 3940.04,
+      "changePct": 1.018,
       "currency": "CNY",
       "tz": "Asia/Shanghai",
       "sessionStart": "09:30",
@@ -1122,8 +1114,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1184,11 +1174,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          4112.16,
-          4160.17,
           4180.09,
           4179.95,
           4225.02,
@@ -1249,10 +1242,15 @@
           3813.31,
           3828.47,
           3804.69,
-          3832.26
+          3832.26,
+          3809.66,
+          3822.28,
+          3878.43,
+          3900.35,
+          3940.04
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · SHH",
       "blurb": "Mainland China’s main board. Largely closed to foreign investors, so it tracks domestic policy more than global risk appetite.",
       "topicTags": [
@@ -1274,8 +1272,8 @@
       "iso2": "KR",
       "lat": 37.5665,
       "lng": 126.978,
-      "level": 6595.45,
-      "changePct": 17.911,
+      "level": 6258.77,
+      "changePct": -0.597,
       "currency": "KRW",
       "tz": "Asia/Seoul",
       "sessionStart": "09:00",
@@ -1289,9 +1287,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1350,12 +1345,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          6598.87,
-          6936.99,
-          7384.56,
           7490.05,
           7498,
           7822.24,
@@ -1414,10 +1411,15 @@
           6023.66,
           5663.24,
           5593.56,
-          6595.45
+          6595.45,
+          6257.45,
+          6358.95,
+          6598.26,
+          6296.38,
+          6258.77
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · KSC",
       "blurb": "Dominated by Samsung and SK Hynix — a proxy for the global semiconductor cycle.",
       "topicTags": [
@@ -1440,8 +1442,8 @@
       "iso2": "IN",
       "lat": 19.076,
       "lng": 72.8777,
-      "level": 78094.64,
-      "changePct": 0.214,
+      "level": 78499.17,
+      "changePct": -0.577,
       "currency": "INR",
       "tz": "Asia/Kolkata",
       "sessionStart": "09:15",
@@ -1455,10 +1457,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1518,13 +1516,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          76913.5,
-          77269.4,
-          77017.79,
-          77958.52,
           77844.52,
           77328.19,
           76015.28,
@@ -1584,10 +1583,15 @@
           76765.92,
           77654.6,
           77928.15,
-          78094.64
+          78094.64,
+          78639.03,
+          78428.95,
+          78581,
+          78954.76,
+          78499.17
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · BSE",
       "blurb": "Asia’s oldest exchange, founded 1875, and the benchmark for Indian equities.",
       "topicTags": [
@@ -1609,8 +1613,8 @@
       "iso2": "SG",
       "lat": 1.3521,
       "lng": 103.8198,
-      "level": 5628.5,
-      "changePct": -0.795,
+      "level": 5698.43,
+      "changePct": 1.054,
       "currency": "SGD",
       "tz": "Asia/Singapore",
       "sessionStart": "09:00",
@@ -1624,10 +1628,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1687,13 +1687,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          4912.69,
-          4924.31,
-          4920.61,
-          4927.38,
           4941.96,
           4921.9,
           4942.77,
@@ -1753,10 +1754,15 @@
           5616.11,
           5713.19,
           5673.58,
-          5628.5
+          5628.5,
+          5612.28,
+          5612.25,
+          5581.37,
+          5638.99,
+          5698.43
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · SES",
       "blurb": "Southeast Asia’s financial hub, weighted to banks and regional property.",
       "topicTags": [
@@ -1777,8 +1783,8 @@
       "iso2": "TW",
       "lat": 25.033,
       "lng": 121.5654,
-      "level": 43119.75,
-      "changePct": 7.979,
+      "level": 44225.91,
+      "changePct": -0.385,
       "currency": "TWD",
       "tz": "Asia/Taipei",
       "sessionStart": "09:00",
@@ -1792,10 +1798,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -1855,13 +1857,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          38926.63,
-          40705.14,
-          40769.29,
-          41138.85,
           41933.78,
           41603.94,
           41790.06,
@@ -1921,10 +1924,15 @@
           41603.36,
           40039.18,
           39933.3,
-          43119.75
+          43119.75,
+          43386.41,
+          43360.66,
+          44611.6,
+          44396.7,
+          44225.91
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · TAI",
       "blurb": "TSMC alone is roughly a third of the index, which makes this the most concentrated major market on the map.",
       "topicTags": [
@@ -1961,9 +1969,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2016,9 +2021,6 @@
           "Jul 17"
         ],
         "values": [
-          1493.69,
-          1490.1,
-          1516.91,
           1507.53,
           1500.36,
           1489.29,
@@ -2071,7 +2073,7 @@
           1639.04
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · SET",
       "blurb": "Thailand’s benchmark, sensitive to tourism flows and regional energy prices.",
       "topicTags": [
@@ -2108,10 +2110,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2164,10 +2162,6 @@
           "Jul 17"
         ],
         "values": [
-          5833.64,
-          5942.16,
-          5898.08,
-          5967.21,
           6034.27,
           5960.97,
           5986.85,
@@ -2220,7 +2214,7 @@
           6404.11
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · PHS",
       "blurb": "A small, domestically-driven market where remittance flows move the index.",
       "topicTags": [
@@ -2242,8 +2236,8 @@
       "iso2": "AU",
       "lat": -33.8688,
       "lng": 151.2093,
-      "level": 8976.8,
-      "changePct": 0.101,
+      "level": 9263.6,
+      "changePct": -0.086,
       "currency": "AUD",
       "tz": "Australia/Sydney",
       "sessionStart": "10:00",
@@ -2257,11 +2251,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 1",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2322,14 +2311,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          8665.8,
-          8729.8,
-          8697.1,
-          8680.5,
-          8793.6,
           8878.1,
           8744.4,
           8701.8,
@@ -2390,10 +2379,15 @@
           8947.8,
           9038.6,
           8967.7,
-          8976.8
+          8976.8,
+          9019.3,
+          9145.8,
+          9227.8,
+          9271.6,
+          9263.6
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · ASX",
       "blurb": "Mining and banking. Often the first major market to react to Chinese demand data.",
       "topicTags": [
@@ -2414,8 +2408,8 @@
       "iso2": "ZA",
       "lat": -26.2041,
       "lng": 28.0473,
-      "level": 111493.1,
-      "changePct": -0.339,
+      "level": 117518.4,
+      "changePct": 1.918,
       "currency": "ZAR",
       "tz": "Africa/Johannesburg",
       "sessionStart": "09:00",
@@ -2429,10 +2423,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2493,13 +2483,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          115180.5,
-          114660.8,
-          115017,
-          119165.5,
           119153.9,
           117888.9,
           118443,
@@ -2560,10 +2551,15 @@
           109904.1,
           110440.3,
           111872.7,
-          111493.1
+          111493.1,
+          112675.4,
+          114256.3,
+          115415.7,
+          115306.3,
+          117518.4
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · JNB",
       "blurb": "Africa’s largest exchange by far, and the continent’s only one with a usable public daily series.",
       "topicTags": [
@@ -2584,8 +2580,8 @@
       "iso2": "BR",
       "lat": -23.5505,
       "lng": -46.6333,
-      "level": 177999,
-      "changePct": 0.474,
+      "level": 172513,
+      "changePct": -1.728,
       "currency": "BRL",
       "tz": "America/Sao_Paulo",
       "sessionStart": "10:00",
@@ -2599,10 +2595,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2663,13 +2655,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          187318,
-          185600,
-          186754,
-          187691,
           183218,
           184108,
           181909,
@@ -2730,10 +2723,15 @@
           176565,
           173885,
           177159,
-          177999
+          177999,
+          178000,
+          177895,
+          177726,
+          175546,
+          172513
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · SAO",
       "blurb": "Latin America’s largest exchange, driven by iron ore, oil and Brazilian rates.",
       "topicTags": [
@@ -2755,8 +2753,8 @@
       "iso2": "MX",
       "lat": 19.4326,
       "lng": -99.1332,
-      "level": 66936.99,
-      "changePct": -0.525,
+      "level": 66938.64,
+      "changePct": 0.817,
       "currency": "MXN",
       "tz": "America/Mexico_City",
       "sessionStart": "08:30",
@@ -2770,10 +2768,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -2835,13 +2829,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          67858.09,
-          67283.6,
-          68590.57,
-          69855.23,
           70019.45,
           69855.58,
           70246.3,
@@ -2903,10 +2898,15 @@
           67307.54,
           66479.89,
           67290.4,
-          66936.99
+          66936.99,
+          66697.22,
+          66833.16,
+          66525.18,
+          66396.15,
+          66938.64
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · MEX",
       "blurb": "Mexico’s benchmark, tightly coupled to US demand and the peso.",
       "topicTags": [
@@ -2927,8 +2927,8 @@
       "iso2": "AR",
       "lat": -34.6037,
       "lng": -58.3816,
-      "level": 3291323,
-      "changePct": -0.411,
+      "level": 3086785,
+      "changePct": -0.45,
       "currency": "ARS",
       "tz": "America/Argentina/Buenos_Aires",
       "sessionStart": "11:00",
@@ -2942,10 +2942,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -3004,13 +3000,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          2832851,
-          2767137,
-          2759257,
-          2881352,
           2834283,
           2769127,
           2833120,
@@ -3069,10 +3066,15 @@
           3256362,
           3233105,
           3304918,
-          3291323
+          3291323,
+          3274443,
+          3188971,
+          3156332,
+          3100732,
+          3086785
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · BUE",
       "blurb": "Priced in a currency that has lost most of its value repeatedly, so the index rises even in bad years. Direction over a day means something; the level does not.",
       "topicTags": [
@@ -3092,8 +3094,8 @@
       "iso2": "CA",
       "lat": 43.6532,
       "lng": -79.3832,
-      "level": 35226.1,
-      "changePct": -0.788,
+      "level": 36381.2,
+      "changePct": 0.678,
       "currency": "CAD",
       "tz": "America/Toronto",
       "sessionStart": "09:30",
@@ -3107,11 +3109,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 1",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -3171,14 +3168,13 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          33964.3,
-          33891.2,
-          33638.9,
-          33566.9,
-          33981.8,
           33856.6,
           34077.8,
           34138.9,
@@ -3238,10 +3234,14 @@
           35749.7,
           35333.8,
           35505.8,
-          35226.1
+          35226.1,
+          35801.6,
+          36146.4,
+          36136.3,
+          36381.2
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · TSI",
       "blurb": "Energy, mining and banks — a commodity index wearing an equity index’s clothes.",
       "topicTags": [
@@ -3262,8 +3262,8 @@
       "iso2": "US",
       "lat": 40.7069,
       "lng": -74.0113,
-      "level": 7489.72,
-      "changePct": 0.7,
+      "level": 7757.64,
+      "changePct": 0.618,
       "currency": "USD",
       "tz": "America/New_York",
       "sessionStart": "09:30",
@@ -3277,11 +3277,6 @@
       ],
       "series": {
         "periods": [
-          "May 1",
-          "May 4",
-          "May 5",
-          "May 6",
-          "May 7",
           "May 8",
           "May 11",
           "May 12",
@@ -3339,14 +3334,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          7230.12,
-          7200.75,
-          7259.22,
-          7365.12,
-          7337.11,
           7398.93,
           7412.84,
           7400.96,
@@ -3404,10 +3399,15 @@
           7428.78,
           7316.15,
           7437.63,
-          7489.72
+          7489.72,
+          7600.5,
+          7736.52,
+          7723.55,
+          7709.96,
+          7757.64
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · SNP",
       "blurb": "The largest equity market on earth. Its close sets the tone every other market opens against.",
       "topicTags": [
@@ -3429,8 +3429,8 @@
       "iso2": "GB",
       "lat": 51.5155,
       "lng": -0.0922,
-      "level": 10868.1,
-      "changePct": -0.268,
+      "level": 10901.1,
+      "changePct": 0.305,
       "currency": "GBP",
       "tz": "Europe/London",
       "sessionStart": "08:00",
@@ -3444,10 +3444,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 1",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -3508,13 +3504,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          10378.8,
-          10363.9,
-          10219.1,
-          10438.7,
           10277,
           10233.1,
           10269.4,
@@ -3575,10 +3572,15 @@
           10871,
           10908.4,
           10897.3,
-          10868.1
+          10868.1,
+          10857.7,
+          10879.4,
+          10888.3,
+          10867.9,
+          10901.1
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · FGI",
       "blurb": "Most FTSE 100 revenue is earned abroad, so a falling pound tends to push the index up.",
       "topicTags": [
@@ -3600,8 +3602,8 @@
       "iso2": "DE",
       "lat": 50.1109,
       "lng": 8.6821,
-      "level": 25629.24,
-      "changePct": 0.067,
+      "level": 26319.45,
+      "changePct": 0.686,
       "currency": "EUR",
       "tz": "Europe/Berlin",
       "sessionStart": "09:00",
@@ -3615,10 +3617,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -3680,13 +3678,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          24292.38,
-          23991.27,
-          24401.7,
-          24918.69,
           24663.61,
           24338.63,
           24350.28,
@@ -3748,10 +3747,15 @@
           25464.01,
           25460.48,
           25612.03,
-          25629.24
+          25629.24,
+          26001.31,
+          26202.35,
+          26126.3,
+          26140.13,
+          26319.45
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · GER",
       "blurb": "Germany’s industrial and chemical base — Europe’s clearest export barometer.",
       "topicTags": [
@@ -3772,8 +3776,8 @@
       "iso2": "FR",
       "lat": 48.8566,
       "lng": 2.3522,
-      "level": 8509.64,
-      "changePct": 0.283,
+      "level": 8714.93,
+      "changePct": 0.175,
       "currency": "EUR",
       "tz": "Europe/Paris",
       "sessionStart": "09:00",
@@ -3787,10 +3791,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -3852,13 +3852,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          8114.84,
-          7976.12,
-          8062.31,
-          8299.42,
           8202.08,
           8112.57,
           8056.38,
@@ -3920,10 +3921,15 @@
           8458.78,
           8408.27,
           8485.64,
-          8509.64
+          8509.64,
+          8613.82,
+          8666.63,
+          8669.3,
+          8699.71,
+          8714.93
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · PAR",
       "blurb": "Luxury goods and energy dominate — unusually exposed to Chinese consumer demand.",
       "topicTags": [
@@ -3944,8 +3950,8 @@
       "iso2": "NL",
       "lat": 52.3676,
       "lng": 4.9041,
-      "level": 1099.18,
-      "changePct": -0.499,
+      "level": 1111.47,
+      "changePct": -0.09,
       "currency": "EUR",
       "tz": "Europe/Amsterdam",
       "sessionStart": "09:00",
@@ -3959,10 +3965,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4024,13 +4026,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          1014.09,
-          1004.98,
-          1014.5,
-          1031.44,
           1019.42,
           1017.5,
           1015.13,
@@ -4092,10 +4095,15 @@
           1092.5,
           1093.1,
           1104.69,
-          1099.18
+          1099.18,
+          1102.22,
+          1112.49,
+          1111.34,
+          1112.47,
+          1111.47
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · AMS",
       "blurb": "The world’s oldest exchange, now carried largely by ASML.",
       "topicTags": [
@@ -4117,8 +4125,8 @@
       "iso2": "ES",
       "lat": 40.4168,
       "lng": -3.7038,
-      "level": 19782.9,
-      "changePct": 0.128,
+      "level": 20176,
+      "changePct": -0.022,
       "currency": "EUR",
       "tz": "Europe/Madrid",
       "sessionStart": "09:00",
@@ -4132,10 +4140,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4197,13 +4201,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          17781,
-          17356.1,
-          17667.7,
-          18104.3,
           18060.8,
           17889.4,
           17852.5,
@@ -4265,10 +4270,15 @@
           19727,
           19412.7,
           19757.7,
-          19782.9
+          19782.9,
+          19982.6,
+          20023.6,
+          20057,
+          20180.4,
+          20176
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · MCE",
       "blurb": "Spanish banks with heavy Latin American exposure make this a proxy for both regions.",
       "topicTags": [
@@ -4289,8 +4299,8 @@
       "iso2": "IT",
       "lat": 45.4642,
       "lng": 9.19,
-      "level": 52173,
-      "changePct": 0.132,
+      "level": 53717,
+      "changePct": 0.063,
       "currency": "EUR",
       "tz": "Europe/Rome",
       "sessionStart": "09:00",
@@ -4304,10 +4314,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4369,13 +4375,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          48246,
-          47478,
-          48558,
-          49697,
           49291,
           49290,
           49665,
@@ -4437,10 +4444,15 @@
           51698,
           51443,
           52104,
-          52173
+          52173,
+          52872,
+          53541,
+          53447,
+          53683,
+          53717
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · MIL",
       "blurb": "Banks and utilities, and the market most sensitive to Italian sovereign debt spreads.",
       "topicTags": [
@@ -4461,8 +4473,8 @@
       "iso2": "CH",
       "lat": 47.3769,
       "lng": 8.5417,
-      "level": 14346.14,
-      "changePct": -0.322,
+      "level": 14544.91,
+      "changePct": 0.18,
       "currency": "CHF",
       "tz": "Europe/Zurich",
       "sessionStart": "09:00",
@@ -4476,10 +4488,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4539,13 +4547,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          13136.27,
-          13003.33,
-          13052.17,
-          13283.26,
           13135.43,
           13100.63,
           13101.33,
@@ -4605,10 +4614,15 @@
           14571.33,
           14486.1,
           14392.49,
-          14346.14
+          14346.14,
+          14371.77,
+          14463.23,
+          14551.56,
+          14518.75,
+          14544.91
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · EBS",
       "blurb": "Nestlé, Roche and Novartis carry the index, which makes it defensive when the world turns risk-off.",
       "topicTags": [
@@ -4630,8 +4644,8 @@
       "iso2": "SE",
       "lat": 59.3293,
       "lng": 18.0686,
-      "level": 3246.92,
-      "changePct": 0.417,
+      "level": 3312.34,
+      "changePct": -0.324,
       "currency": "SEK",
       "tz": "Europe/Stockholm",
       "sessionStart": "09:00",
@@ -4645,10 +4659,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4708,13 +4718,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          3060.49,
-          3035.49,
-          3072.42,
-          3159.33,
           3111.32,
           3073.69,
           3079.45,
@@ -4774,10 +4785,15 @@
           3224.22,
           3219.11,
           3233.44,
-          3246.92
+          3246.92,
+          3274.43,
+          3326.28,
+          3326.93,
+          3323.1,
+          3312.34
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · STO",
       "blurb": "Nordic industrials and telecoms, and a useful early read on European capital spending.",
       "topicTags": [
@@ -4799,8 +4815,8 @@
       "iso2": "IL",
       "lat": 32.0853,
       "lng": 34.7818,
-      "level": 4071.76,
-      "changePct": 1.245,
+      "level": 4065.6,
+      "changePct": 0.822,
       "currency": "ILS",
       "tz": "Asia/Jerusalem",
       "sessionStart": "09:00",
@@ -4814,11 +4830,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 30",
-          "May 1",
-          "May 4",
-          "May 5",
-          "May 6",
           "May 7",
           "May 8",
           "May 11",
@@ -4877,14 +4888,14 @@
           "Jul 28",
           "Jul 29",
           "Jul 30",
-          "Jul 31"
+          "Jul 31",
+          "Aug 3",
+          "Aug 4",
+          "Aug 5",
+          "Aug 6",
+          "Aug 7"
         ],
         "values": [
-          4313.88,
-          4371.32,
-          4440.51,
-          4481.04,
-          4473.08,
           4443.43,
           4476.59,
           4463.33,
@@ -4943,10 +4954,15 @@
           4023.47,
           3985.02,
           4021.68,
-          4071.76
+          4071.76,
+          4032.4,
+          4050.62,
+          4023.14,
+          4032.47,
+          4065.6
         ]
       },
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-07",
       "sourceLabel": "Yahoo Finance · TLV",
       "blurb": "Trades Sunday to Thursday. Heavily weighted to banks, defence and technology.",
       "topicTags": [

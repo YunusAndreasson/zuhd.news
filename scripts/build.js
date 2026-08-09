@@ -22,7 +22,8 @@ import {
   renderIsnad,
 } from './lib/article-chain.js'
 import { escHtml, escXml } from './lib/html.js'
-import { ARCHETYPE_HEADER, siteFooter, WORDMARK } from './lib/site-chrome.js'
+import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
+import { listRow } from './lib/list-row.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -335,6 +336,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{dateFormatted}}/g, dateFormatted)
     .replace(/{{isoDate}}/g, isoDate)
     .replace(/{{timeAgo}}/g, escHtml(timeAgo))
+    .replace(
+      /{{footerStatus}}/g,
+      footerStatusLine({ dateLabel: 'Published', dateHtml: `<time datetime="${isoDate}">${dateFormatted}</time>` }),
+    )
     // In the kicker, beside the timestamp, because a correction a reader has to
     // scroll to find is not issued openly — it is filed. The link goes to the
     // block itself, so the mark is both the notice and the way to read it.
@@ -358,7 +363,39 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
 // Main build
 console.log('Building zuhd.news...')
 
-if (existsSync(DIST_DIR)) rmSync(DIST_DIR, { recursive: true })
+// A second build.js writing dist/ at the same time is what produced both
+// `ENOTEMPTY` on the rmSync below and a mid-loop `ENOENT` writing an article
+// page (cycle-2026-08-08_1700, cycle-2026-08-09_1203) — the second process's
+// rm/mkdir raced the first's writes. run-cycle.sh already flocks itself
+// against overlapping *cycles*; this guards build.js directly against any
+// invocation (manual, `npm run dev`, a future caller) racing the current one.
+const LOCK_FILE = join(ROOT, '.build.lock')
+const acquireBuildLock = () => {
+  try {
+    writeFileSync(LOCK_FILE, String(process.pid), { flag: 'wx' })
+    return true
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err
+    const heldPid = Number(readFileSync(LOCK_FILE, 'utf-8').trim())
+    try {
+      process.kill(heldPid, 0)
+      return false // still running
+    } catch {
+      rmSync(LOCK_FILE) // owner process is gone — stale lock
+      writeFileSync(LOCK_FILE, String(process.pid), { flag: 'wx' })
+      return true
+    }
+  }
+}
+if (!acquireBuildLock()) {
+  console.error(`Another build is already running (lock: ${LOCK_FILE}) — exiting.`)
+  process.exit(1)
+}
+process.on('exit', () => {
+  try { rmSync(LOCK_FILE) } catch {}
+})
+
+if (existsSync(DIST_DIR)) rmSync(DIST_DIR, { recursive: true, maxRetries: 3, retryDelay: 200 })
 mkdirSync(DIST_DIR, { recursive: true })
 
 if (existsSync(join(ROOT, 'public')))
@@ -596,6 +633,8 @@ const articleTemplate = loadTemplate('article.html')
 const staticPageTemplate = loadTemplate('static-page.html', headCommonDark)
 
 const countryTemplate = loadTemplate('country.html')
+
+const entityTemplate = loadTemplate('entity.html')
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
@@ -1907,49 +1946,7 @@ if (process.env.SKIP_OG === '1') {
 // Per-category pages at /c/{category}.html — chronological list of
 // every article in the category within the build window. Each category
 // page is a simple archetype: header + headline list, no reader chrome.
-const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  __HEAD__
-  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
-  <title>__CAT_CAP__ — zuhd.news</title>
-  <meta name="description" content="__DESC__">
-  <link rel="canonical" href="https://zuhd.news/c/__CAT__">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="zuhd.news">
-  <meta property="og:title" content="__CAT_CAP__ — zuhd.news">
-  <meta property="og:description" content="__DESC__">
-  <meta property="og:url" content="https://zuhd.news/c/__CAT__">
-  <meta property="og:image" content="https://zuhd.news/api/og/c/__CAT__.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="__CAT_CAP__ on zuhd.news">
-  <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zuhd.news/api/og/c/__CAT__.png">
-  <meta name="twitter:image:alt" content="__CAT_CAP__ on zuhd.news">
-</head>
-<body class="archetype-page-body">
-  ${ARCHETYPE_HEADER}
-  <main class="article-page-main">
-    <article class="category-page">
-      <header class="category-page-header">
-        <span class="label">Category</span>
-        <h1 class="t-display category-page-title">__CAT_CAP__</h1>
-        <p class="t-caption">__COUNT__ articles · last __DAYS__ days</p>
-      </header>
-      <ol class="category-article-list">__ROWS__</ol>
-    </article>
-    __SHARE_ROW__
-  </main>
-  <footer>
-    ${FOOTER_NAV}
-  </footer>
-  <script type="module" src="/island-loader.js?v=${ISLAND_V}" defer></script>
-</body>
-</html>`
+const categoryPageTemplate = loadTemplate('category.html')
 
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 mkdirSync(join(DIST_DIR, 'c'), { recursive: true })
@@ -1987,23 +1984,22 @@ for (const cat of CATEGORY_ORDER) {
     groups[groups.length - 1].items.push(a)
   }
   const rows = groups.map(g => `<li class="category-day-group">
-      <h2 class="category-day-heading"><time datetime="${g.day}">${formatDayHeading(g.day)}</time></h2>
-      <ol class="category-day-list">${g.items.map(a => `<li>
-        <a class="category-article-row" href="/a/${a.slug}">
-          <span class="category-article-title">${escHtml(a.title)}</span>
-          ${a.sources[0]?.name ? `<span class="t-source-host">${escHtml(a.sources[0].name)}</span>` : ''}
-        </a>
-      </li>`).join('')}</ol>
+      <h2 class="label section-title category-day-heading"><time datetime="${g.day}">${formatDayHeading(g.day)}</time></h2>
+      <ol class="category-day-list">${g.items.map(a => `<li>${listRow({
+        title: a.title,
+        url: `/a/${a.slug}`,
+        source: a.sources[0]?.name || '',
+        variant: 'title-source',
+      })}</li>`).join('')}</ol>
     </li>`).join('\n')
   const html = categoryPageTemplate
-    .replace(/__HEAD__/g, headCommon)
-    .replace(/__SHARE_ROW__/g, shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
-    .replace(/__CAT__/g, cat)
-    .replace(/__CAT_CAP__/g, capitalize(cat))
-    .replace(/__COUNT__/g, String(items.length))
-    .replace(/__DAYS__/g, String(BUILD_WINDOW_DAYS))
-    .replace(/__DESC__/g, escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
-    .replace(/__ROWS__/g, rows)
+    .replaceAll('{{shareRow}}', shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
+    .replaceAll('{{cat}}', cat)
+    .replaceAll('{{catCap}}', capitalize(cat))
+    .replaceAll('{{count}}', String(items.length))
+    .replaceAll('{{days}}', String(BUILD_WINDOW_DAYS))
+    .replaceAll('{{description}}', escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
+    .replaceAll('{{rows}}', rows)
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 
   // The desk's own share card. Four files, no disk cache — the render is a
@@ -2049,9 +2045,7 @@ console.log('  Built: og-image.png (site share card)')
 const entityResult = await buildEntityPages({
   sorted,
   distDir: DIST_DIR,
-  headCommon,
-  footerNav: FOOTER_NAV,
-  islandV: ISLAND_V,
+  template: entityTemplate,
   shareRowHtml,
   dispatch,
   extraIndicators,

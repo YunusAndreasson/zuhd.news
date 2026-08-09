@@ -22,6 +22,7 @@ import {
   useState,
   type Island,
 } from './_framework'
+import { rankStrip } from '@shared/chart/rank-strip'
 
 interface PreviewHighlight {
   label: string
@@ -119,6 +120,12 @@ const CountryPreview: Island<Props> = ({ iso, href }) => {
                             <li class="country-preview-metric" key=${i}>
                               <span class="country-preview-metric-label">${h.label}</span>
                               <span class="country-preview-metric-value t-tabular">${h.value}</span>
+                              <span class="country-preview-metric-strip" aria-hidden="true"
+                                ><span
+                                  class="country-preview-metric-fill"
+                                  style=${`--fill:${rankStrip(h.rank, h.total).css}`}
+                                ></span
+                              ></span>
                               ${h.rank != null
                                 ? html`<span
                                     class="country-preview-metric-rank t-tabular"

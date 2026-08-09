@@ -350,6 +350,19 @@ export const CATEGORY_COLOUR: Record<string, string> = {
 export const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
 /**
+ * A story whose category matched none of the four above.
+ *
+ * A separate export rather than a fifth key in `CATEGORY_COLOUR`: that object
+ * is iterated by the HUD-chip loops, and an `unknown` entry there would draw
+ * a fifth chip nobody asked for. Two values did this job before —
+ * `situation-map.ts` and `popup.ts` both fell back to `#8a8a8a`, `feed.ts`
+ * fell back to `#888` — none of it visible to `colour-system.test.js`, which
+ * reads only `style.css` and this file's own designated blocks. `#8a8a8a`
+ * kept, as the majority value.
+ */
+export const FALLBACK_CATEGORY_COLOUR = '#8a8a8a'
+
+/**
  * The three overlay layers, in the colour each one draws itself.
  *
  * Here rather than inline in the layer paint because the HUD chips now carry
@@ -644,15 +657,22 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
  * for, since it is the only thing on this map that can say a region is busy.
  *
  * **The top stop is where the busiest *region* lands, not the busiest place.**
- * 1.20, measured: Washington alone reaches 0.669 and sits mid-scale, which is
+ * 1.30, measured: Washington alone reaches 0.69 and sits mid-scale, which is
  * right — one busy capital is not the loudest thing a fortnight of world news
- * produces. The US northeast (Washington 62 + New York 22 + Atlanta 4, kernels
- * overlapping at world zoom) reaches 1.238 and tops the scale; London + Paris +
- * Brussels reach 1.018. Anchoring the top on a single place instead would have
+ * produces. The US northeast (Washington 66 + New York 30 + Atlanta 5, kernels
+ * overlapping at world zoom) reaches 1.35 and tops the scale; London + Paris +
+ * Brussels reach 1.04. Anchoring the top on a single place instead would have
  * flattened every one of those regions into the same saturated plate.
  *
- * So a place with 10 stories lands at alpha 0.110, Washington at 0.244, London's
- * neighbourhood at 0.307 and the US northeast at the 0.340 ceiling — a real
+ * **Moved from 1.20 to 1.30 on 2026-08-09**, for the same reason the peak came
+ * down below: the corpus this ramp is calibrated against keeps growing, and the
+ * US northeast had climbed from 1.238 to 1.35 — past the 1.20 top's 10% grace
+ * band, which is what `map-geo.test.js` caught. There is no way to peg this
+ * exactly; it has to be re-measured against the live corpus and nudged when the
+ * ratchet trips, the same as the label-contrast peak below.
+ *
+ * So a place with 10 stories lands at alpha 0.101, Washington at 0.216, London's
+ * neighbourhood at 0.264 and the US northeast at the 0.300 ceiling — a real
  * gradient from "barely crowding" to "the busiest region on the planet".
  *
  * The first visible stop is deliberately **under** the land ramp's own largest
@@ -679,7 +699,7 @@ export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
   [0.1, 0],
   [0.3, 0.12],
   [0.65, 0.21],
-  [1.2, 0.3],
+  [1.3, 0.3],
 ] as const
 
 /**

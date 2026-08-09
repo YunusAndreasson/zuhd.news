@@ -41,7 +41,29 @@ writeFileSync(
       this.layout = Object.create(null)
       this.featureState = Object.create(null)
       this.padding = null
-      this.touchZoomRotate = { disableRotation() {} }
+      // The gesture handlers, recorded rather than merely tolerated: which
+      // point a wheel zooms about is a decision this island makes and a test
+      // below reads back off \`zoomAnchors\`.
+      this.zoomAnchors = []
+      this.touchZoomRotate = {
+        disableRotation: () => { this.rotationDisabled = true },
+        enable: (o) => this.zoomAnchors.push(['touch', o?.around ?? null]),
+      }
+      // Modelled with MapLibre's own guard, because the guard is the bug: the
+      // real enable() begins if (this.isEnabled()) return, so an option passed
+      // to a live map sets nothing and the anchor silently stays on the
+      // pointer. A stub that always accepted would let that regression back in
+      // with a green test.
+      this.scrollZoomEnabled = true
+      this.scrollZoom = {
+        enable: (o) => {
+          if (this.scrollZoomEnabled) return
+          this.scrollZoomEnabled = true
+          this.zoomAnchors.push(['scroll', o?.around ?? null])
+        },
+        disable: () => { this.scrollZoomEnabled = false },
+      }
+      this.keyboard = { disableRotation: () => { this.keyboardRotationDisabled = true } }
       queueMicrotask(() => {
         for (const f of this.handlers.load || []) f()
         for (const f of this.onceHandlers_load || []) f()
@@ -108,6 +130,11 @@ writeFileSync(
       if (ref && ref.id != null) delete this.featureState[ref.id]
       else this.featureState = {}
     }
+    // Read on 'moveend' to re-ask the hit test where the pointer ended up. The
+    // answer only has to be a LngLat: nothing here checks that the inverse of
+    // project above is exact, and a stub that threw would take the whole
+    // settle path with it -- see the note on setLight.
+    unproject() { return { lng: 12, lat: 22 } }
     isSourceLoaded(id) { return id in this.sources }
     setPadding(p) { this.padding = p }
     queryRenderedFeatures() { return [] }
@@ -255,9 +282,7 @@ function setupDom() {
   // anything, and every assertion about it passes against a canvas that never
   // ran. `clientWidth`/`clientHeight` below are stubbed for the same reason;
   // this is the same lie told to the one caller that asks a different way.
-  window.HTMLCanvasElement.prototype.getBoundingClientRect = function () {
-    return { x: 0, y: 0, top: 0, left: 0, right: 1200, bottom: 600, width: 1200, height: 600, toJSON() {} }
-  }
+  window.HTMLCanvasElement.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, top: 0, left: 0, right: 1200, bottom: 600, width: 1200, height: 600, toJSON() {} })
   window.ResizeObserver = class {
     observe() {}
     unobserve() {}
@@ -1122,6 +1147,64 @@ test('the sky is painted behind MapLibre, and paints nothing into it', async () 
 
     teardown()
     assert.equal(env.host.querySelector('canvas.map-sky'), null, 'teardown removes the sky')
+  } finally {
+    env.restore()
+    delete globalThis.__zuhdMaps
+  }
+})
+
+test('the camera has one pose, and the wheel zooms about the planet', async () => {
+  // Four claims, and every one of them is a bug this map has actually had.
+  //
+  // **The zoom anchor.** MapLibre knows a globe must not zoom about a point
+  // that is not on the sphere — `handler_manager.ts` says so — but its guard
+  // lands one line after `deltasForHelper` has already snapshotted `around`, so
+  // it reaches `preZoomAroundLoc` and never reaches
+  // `VerticalPerspectiveCameraHelper.handleMapControlsRollPitchBearingZoom`.
+  // What that runs instead is a documented-glitchy `setLocationAtPoint` on a
+  // cursor snapped to the nearest point of the visible limb. A disc inscribed
+  // in a 16:9 frame leaves 39–60% of this canvas empty *by design*, so it is
+  // the ordinary case here, not the corner one: measured on the built page,
+  // one wheel notch with the pointer in an empty corner moved Gaza 35px
+  // sideways. `around: 'center'` makes the whole heuristic unreachable.
+  //
+  // **The pose.** `dragRotate: false` and `pitchWithRotate: false` turn off the
+  // mouse paths only. `touchPitch` defaults on, the keyboard rotates on
+  // Shift+Arrow, and `maxPitch` defaults to 60 — and `calibrate` refuses any
+  // camera with a bearing or a pitch, so one keypress used to take the stars,
+  // the sun, the moon and the airglow off the map until `resetView`.
+  //
+  // **Antialiasing.** MapLibre defaults it off. The limb is a circle made of
+  // tile-mesh triangles, so without MSAA the one edge this whole design is
+  // built around is a stepped polygon that jumps by whole pixels while the
+  // analytic airglow drawn against it moves continuously.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    assert.equal(map.opts.maxPitch, 0, 'the camera cannot be pitched')
+    assert.equal(map.opts.touchPitch, false, 'two fingers cannot pitch it either')
+    assert.equal(map.opts.dragRotate, false, 'and it cannot be rotated')
+    assert.equal(
+      map.opts.canvasContextAttributes?.antialias,
+      true,
+      'the canvas is multisampled, so the limb is a circle rather than a polygon',
+    )
+    assert.ok(map.rotationDisabled, 'touch rotation is off')
+    assert.ok(map.keyboardRotationDisabled, 'keyboard rotation is off')
+
+    // Both wheel paths are anchored, and anchored to the same thing.
+    const anchored = Object.fromEntries(map.zoomAnchors)
+    assert.equal(anchored.scroll, 'center', 'the wheel zooms about the planet, not the pointer')
+    assert.equal(anchored.touch, 'center', 'and so does a pinch')
+
+    teardown()
   } finally {
     env.restore()
     delete globalThis.__zuhdMaps

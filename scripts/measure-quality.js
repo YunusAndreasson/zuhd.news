@@ -46,12 +46,16 @@ if (articles.length === 0) {
 const meaningfulWords = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 2)
 const afterDateline = body => body.replace(/^[^—]+—\s*/, '')
 const hookOf = body => afterDateline(body).split(/\.\s+/)[0]
+const sentencesOf = body => afterDateline(body).split(/\.\s+/).filter(Boolean)
+const PASSIVE_RE = /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/
 
 // ── Metric 1: character & word length ───────────────────────
 const charLengths = articles.map(a => a.body.length)
 // Visible length matches the editor rule: link markup ([Iran](country:IR)) doesn't
-// count against the budget. 350 is the soft target (informational, kept on the raw
-// basis for trend continuity); 400 is the hard ceiling (actionable).
+// count against the budget. 360 is the soft target (informational, kept on the raw
+// basis for trend continuity); 440 is the hard ceiling (actionable). Raised from
+// 350/400 and the 40-55 word window below raised to 48-60 when the body grew a
+// fourth block (why it matters) — see write-prompt.md/check-prompt.md.
 const visibleLen = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').length
 const visibleLengths = articles.map(a => visibleLen(a.body))
 const wordCounts = articles.map(a => a.body.split(/\s+/).filter(Boolean).length)
@@ -68,9 +72,17 @@ const echoHits = articles.filter(a => {
 // ── Metric 3: passive-voice hook ───────────────────────────
 // First sentence starts with noun-ish + was/were + past-participle.
 // Noisy; calibrate against first weeks of data.
-const passiveHookHits = articles.filter(a =>
-  /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/.test(hookOf(a.body))
-).length
+const passiveHookHits = articles.filter(a => PASSIVE_RE.test(hookOf(a.body))).length
+
+// ── Metric 3b: passive voice, full body ────────────────────
+// Same pattern, scanned across every sentence — the "active voice everywhere"
+// rule in write-prompt.md/check-prompt.md covers the whole body, not just the hook.
+const passiveBodyHits = articles.filter(a => sentencesOf(a.body).some(s => PASSIVE_RE.test(s))).length
+
+// ── Metric 3c: semicolons ──────────────────────────────────
+// write-prompt.md/check-prompt.md ban semicolons — a semicolon joining two
+// clauses is two ideas that should be two sentences.
+const semicolonHits = articles.filter(a => a.body.includes(';')).length
 
 // ── Metric 4: causal-claim patterns ────────────────────────
 const CAUSAL_PATTERNS = [
@@ -147,12 +159,14 @@ const snapshot = {
   articleCount: articles.length,
   metrics: {
     charLengthAvg: avg(charLengths),
-    charOver350Pct: pct(charLengths.filter(c => c > 350).length, articles.length),
-    charOver400Pct: pct(visibleLengths.filter(c => c > 400).length, articles.length),
+    charOver350Pct: pct(charLengths.filter(c => c > 360).length, articles.length),
+    charOver400Pct: pct(visibleLengths.filter(c => c > 440).length, articles.length),
     wordCountAvg: avg(wordCounts),
-    wordInRangePct: pct(wordCounts.filter(w => w >= 40 && w <= 55).length, articles.length),
+    wordInRangePct: pct(wordCounts.filter(w => w >= 48 && w <= 60).length, articles.length),
     titleEchoRatePct: pct(echoHits, articles.length),
     passiveHookRatePct: pct(passiveHookHits, articles.length),
+    passiveBodyRatePct: pct(passiveBodyHits, articles.length),
+    semicolonRatePct: pct(semicolonHits, articles.length),
     causalClaimHits,
     pressEraHits,
     hedgeRatePct: pct(hedgeArticles, articles.length),
@@ -182,6 +196,6 @@ writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
 const m = snapshot.metrics
 console.log(`Quality metrics: ${articles.length} articles in last ${WINDOW_DAYS}d`)
 console.log(`  length: charAvg=${m.charLengthAvg} over350=${m.charOver350Pct}% over400=${m.charOver400Pct}%  wordAvg=${m.wordCountAvg} inRange=${m.wordInRangePct}%`)
-console.log(`  style:  titleEcho=${m.titleEchoRatePct}% passiveHook=${m.passiveHookRatePct}% hedge=${m.hedgeRatePct}%`)
+console.log(`  style:  titleEcho=${m.titleEchoRatePct}% passiveHook=${m.passiveHookRatePct}% passiveBody=${m.passiveBodyRatePct}% semicolon=${m.semicolonRatePct}% hedge=${m.hedgeRatePct}%`)
 console.log(`  rules:  causal=${m.causalClaimHits} pressEra=${m.pressEraHits} acronymViol=${m.acronymViolations} countryNull=${m.countryNullCount}`)
 console.log(`  source: top3Share=${m.topOutletSharePct}% multiSrc=${m.multiSourceRatePct}%`)

@@ -13,6 +13,12 @@ import { Resvg } from '@resvg/resvg-js'
 import jpeg from 'jpeg-js'
 import { escXml } from './html.js'
 import { themeFor, buildGlobe, formatLongDate } from './og-image.js'
+
+// The dark card's globe ocean — a touch more presence than the flat theme
+// greys so the globe reads on the dark card without competing with the type.
+// Was '#1e1e1e' on the landscape/X card and '#1c1c1c' on the portrait/feed
+// card for the same semantic role; one value.
+const IG_DARK_OCEAN = '#1e1e1e'
 import { fitText, loadFont } from './font-metrics.js'
 
 /**
@@ -183,7 +189,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
       r: H * 0.62,
       scaleMul: 2.0,
       clipId: 'ig-globe-clip',
-      ocean: variant === 'dark' ? '#1e1e1e' : theme.soft,
+      ocean: variant === 'dark' ? IG_DARK_OCEAN : theme.soft,
       land: variant === 'dark' ? '#383838' : theme.land,
       // Country borders — delicate lines between nations (see feed branch).
       landStroke: variant === 'dark' ? '#6b6b6b' : '#c4c4c4',
@@ -238,9 +244,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
     r: globeR,
     scaleMul: 1.9,
     clipId: 'ig-globe-clip',
-    // A touch more presence than the flat theme greys so the globe reads on
-    // the dark card without competing with the type.
-    ocean: variant === 'dark' ? '#1c1c1c' : theme.soft,
+    ocean: variant === 'dark' ? IG_DARK_OCEAN : theme.soft,
     land: variant === 'dark' ? '#3d3d3d' : theme.land,
     // Country borders: each country is its own stroked path, so this draws the
     // dividing lines between nations. Kept delicate but with enough contrast

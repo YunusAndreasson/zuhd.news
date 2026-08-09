@@ -1,5 +1,5 @@
-// The furniture every page wears: the wordmark, the archetype header, and the
-// footer's three navs.
+// The furniture every page wears: the wordmark, the archetype header, the
+// footer's status line, and the footer's three navs.
 //
 // This was six copies. `templates/{index,article,country,static-page}.html` each
 // carried the footer verbatim, `scripts/build.js` carried a fifth inside the
@@ -23,6 +23,8 @@
 //
 // `share-surface.test.js` walks this file for the same store and account links
 // it walks the templates for; it is where most of them now live.
+
+import { escHtml } from './html.js'
 
 /** The masthead, as it is set everywhere it appears. */
 export const WORDMARK =
@@ -74,13 +76,34 @@ const DOCS = [
 ]
 
 /**
+ * The footer's one line of "how current is this", in one shape everywhere it
+ * appears: named sources (if any), then a labelled date (if any), joined by
+ * the same middot the rest of the chrome uses. A page with neither prints
+ * nothing — category, homepage and the static pages have no single fact to
+ * state here, and a blank line is honester than a fabricated one.
+ *
+ * This used to be four independent vocabularies — an absolute `<time>` on the
+ * article, a hardcoded provenance sentence with no date on the country page,
+ * a prose-prefixed `As of {date}` on the entity page — so a reader who
+ * learned what this line meant on one page type had to relearn it on the
+ * next. The *content* still differs per page (a country has sources but no
+ * single vintage date; an article has a date and no separate source list);
+ * only the sentence shape is now shared.
+ *
+ * @param {{ sources?: string, dateLabel?: string, dateHtml?: string }} opts
+ */
+export const footerStatusLine = ({ sources, dateLabel = 'Updated', dateHtml } = {}) => {
+  const parts = []
+  if (sources) parts.push(`Sources: ${escHtml(sources)}`)
+  if (dateHtml) parts.push(`${escHtml(dateLabel)} ${dateHtml}`)
+  return parts.join(' · ')
+}
+
+/**
  * The footer's three navs: documents, the masthead's own channels, the maker.
  *
- * The `<footer>` element and the status line above these stay in each template,
- * because that line is the one part that genuinely differs — the article dates
- * itself, the country page names its data sources, the entity page prints its
- * `as of`, and the map, the static pages and the category pages have nothing to
- * say there.
+ * The `<footer>` element stays in each template; the status line above these
+ * is `footerStatusLine()`, called per page with whatever it has to state.
  *
  * @param {{ SOCIAL_X: string, SOCIAL_INSTAGRAM: string, APP_IOS: string,
  *           APP_ANDROID: string }} share  the loaded `shared/share.ts`

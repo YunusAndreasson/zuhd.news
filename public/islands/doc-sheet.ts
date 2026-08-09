@@ -1,4 +1,4 @@
-// About, contact, privacy and mcp — shown over the map instead of instead of it.
+// About, contact, privacy and mcp — shown over the map instead of leaving it.
 //
 // These pages are short prose that exists to answer a question the reader had
 // while looking at the map. Navigating away to answer it throws out the view
@@ -23,8 +23,14 @@ interface Props {
 
 const cache = new Map<string, Doc>()
 
+// `support` and `sources` were retired 2026-04-25 (support folded into contact,
+// sources dropped with /search) — build.js's `staticPages` only emits about,
+// contact, privacy and mcp. Leaving those two in ALLOWED meant an old bookmark
+// or inbound link could still open a sheet here, spend a fetch on
+// `/api/doc/{page}.json`, and land on "Could not load this page." instead of
+// being told outright that the page doesn't exist.
 /** Only these can be opened, so a crafted `data-doc` cannot fetch elsewhere. */
-const ALLOWED = new Set(['about', 'contact', 'privacy', 'mcp', 'support', 'sources'])
+const ALLOWED = new Set(['about', 'contact', 'privacy', 'mcp'])
 
 export function mount(container: HTMLElement, props: Props) {
   const page = String(props.doc || '').toLowerCase()

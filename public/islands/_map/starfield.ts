@@ -21,6 +21,10 @@
 // a loop here would be a fan spinning up on a picture that is not moving. The
 // sky repaints on `move`, which is a frame MapLibre is drawing anyway, and on
 // the 120-second solar tick that already exists for the terminator.
+//
+// A `move` repaint is the sky **without its star field** — see `draw`'s two
+// densities. The catalogue walk and the ~200 arcs it ends in were the whole of
+// what made a drag expensive, and they are 0.03% of the ink on the canvas.
 
 import { moonIllumination, moonPhaseName, moonPosition } from './lunar'
 import { daysSinceJ2000, gmstHours, sunEquatorial } from './solar'
@@ -229,8 +233,11 @@ export interface Starfield {
   element: HTMLCanvasElement
   /** Hand it the parsed `/basemap/stars.json`. Safe to never call. */
   setCatalogue(raw: unknown): void
-  /** Repaint. Idempotent, allocation-free, safe to call per `move`. */
-  draw(now?: Date): void
+  /**
+   * Repaint. Idempotent, allocation-free, safe to call per `move` — which is
+   * what `'quiet'` is for: the sky without its star field, for a moving camera.
+   */
+  draw(now?: Date, detail?: 'full' | 'quiet'): void
   /** Re-read the element's box. Call on resize before `draw`. */
   resize(): void
   /** What is under this canvas point, if anything. */
@@ -590,7 +597,29 @@ export function createStarfield(view: SkyView): Starfield {
     return r
   }
 
-  const draw = (at?: Date) => {
+  /**
+   * The sky, at one of two densities.
+   *
+   * `'quiet'` is the sky without its stars, and it is what a **moving** camera
+   * gets. The star field is far the most expensive thing on this canvas — a
+   * walk of the whole 2,887-entry catalogue, a `place()` solve for every
+   * survivor and ~200 individual `fill()` calls — and every one of those ran
+   * on the main thread inside the frame being dragged, once per `move` event.
+   * It is also the least of what is on screen: `sky.md` measures the entire
+   * visible star field at **about 300 square pixels of ink on a canvas of a
+   * million**, which is what makes it the right thing to drop first.
+   *
+   * What is kept is what would be *missed*. The airglow is not decoration — on
+   * the night side it is the only thing drawing the planet's edge at all — so a
+   * globe that lost it mid-drag would read as less solid exactly while it is
+   * being turned, which is the opposite of what this mode is for. The sun and
+   * the moon are kept because they are 13px discs rather than 1px points, so
+   * they are the two things here whose disappearing and reappearing at each end
+   * of a gesture a reader would actually see; the stars are below that bar by
+   * two orders of magnitude, and go without a fade because nothing is there to
+   * fade.
+   */
+  const draw = (at?: Date, detail: 'full' | 'quiet' = 'full') => {
     if (!ctx) return
     now = at ?? new Date()
     clear()
@@ -616,7 +645,12 @@ export function createStarfield(view: SkyView): Starfield {
     const sunDir = parallaxCorrect(sunGeo, (sunEq.au * AU_KM) / EARTH_RADIUS_KM, cam, frame)
     const sunPlaced = place(sunDir, cam, frame)
 
-    drawStars(cam, frame, fade)
+    // The hit table describes stars at the positions they were last *drawn* at,
+    // and `hit` answers a pointer from it. Emptied rather than left stale when
+    // the stars are skipped: the next settled frame refills it, and in the
+    // meantime a press on empty sky is the true answer.
+    if (detail === 'quiet') hitCount = 0
+    else drawStars(cam, frame, fade)
     drawHalo(cam, sunPlaced, fade)
 
     const moon = moonPosition(now)
