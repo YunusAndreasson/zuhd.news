@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-07-17T04:19:39.221Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-07-17-us-expands-iran-strikes-bridges-tanker-blockade-hormuz",
-        "title": "US Bombs Iran's Bridges",
-        "category": "politics",
-        "eventCoverage": 691,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-17-trump-election-integrity-speech-midterm-fraud-claims",
-        "title": "Trump Revives Fraud Claims",
-        "category": "politics",
-        "eventCoverage": 79,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-syria-transitional-justice-tadamon-massacre-wrongly-accused",
-        "title": "Syria's Justice Problem",
-        "category": "politics",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-17-nicaragua-italy-diplomatic-break-moro-casimirri-extradition",
-        "title": "Nicaragua Cuts Ties Over Fugitive",
-        "category": "politics",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-bellingcat-crypto-entrepreneur-leaked-images-forum-osint",
-        "title": "OSINT Unmasks Abuse-Forum Owner",
-        "category": "economy",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-new-zealand-india-trade-agreement-china-hedge-indo-pacific",
-        "title": "New Zealand Pivots to India",
-        "category": "economy",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-gcc-banks-credit-growth-2026-sp-gulf-resilience",
-        "title": "Gulf Banks Keep Lending",
-        "category": "economy",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-17-egyptian-princesses-warriors-bone-evidence-middle-kingdom",
-        "title": "Egypt's Warrior Princesses",
-        "category": "science",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-suno-ai-scraped-youtube-deezer-genius-training-data-leak",
-        "title": "Hack Exposes Suno's Scraping",
-        "category": "tech",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-canada-lawful-access-surveillance-bill-wyden-warning",
-        "title": "Senator Fights Canada Surveillance",
-        "category": "tech",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-implementing-an-identification-tool-to-accurately-capture-no",
-        "title": "Hospital Fixes Fracture Blind Spot",
-        "category": "science",
-        "eventCoverage": 1,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-disrupted-cerebellar-interactions-in-the-cerebellar-thalamo",
-        "title": "Cerebellum's Role In Psychosis",
-        "category": "tech",
-        "eventCoverage": 1,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-17-us-expands-iran-strikes-bridges-tanker-blockade-hormuz",
-      "title": "US Bombs Iran's Bridges",
-      "category": "politics",
-      "body": "US strikes hit five bridges, killing three, Iran",
-      "eventCoverage": 691,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US strikes destroy five bridges near Bandar Abbas, killing three, Iran says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 21
-    }
-  },
-  {
     "timestamp": "2026-07-17T08:20:38.588Z",
     "candidateCount": 9,
     "candidates": [
@@ -10357,6 +10250,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran demands war reparations, warns Strait of Hormuz closure irreversible",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 12
+    }
+  },
+  {
+    "timestamp": "2026-08-09T04:24:32.110Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-08-09-bc-wildfire-perimeter-evacuation-rate-of-spread",
+        "title": "Fire Outruns Evacuation",
+        "category": "science",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-hub-dam-full-industry-dry-allocation-losses",
+        "title": "Full Dam, Dry Taps",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-wheat-import-tender-delay-price-signal-pakistan",
+        "title": "Wheat Tender Delay Costs",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-balochistan-by-polls-partial-postponement-writ-map",
+        "title": "Balochistan Splits Its Vote",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-08-africom-strike-tempo-self-assessment-casualty-gap",
+        "title": "West Africa Strikes Widen",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-07-data-centre-nda-siting-public-comment-closure",
+        "title": "Town Ends Public Comment",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-sydney-ground-movement-near-miss-controller-margin",
+        "title": "Towed Jet Nearly Hits Plane",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-binder-jet-silicon-nitriding-thickness-limit",
+        "title": "3D-Printed Ceramic Hits Limit",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-salmonella-calreticulin-conjugate-tumour-hypoxia",
+        "title": "Bacteria Ferry Cancer Drug",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-08-plastic-rafting-crab-bottle-species-dispersal",
+        "title": "Crab Survives Months In Bottle",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-09-wrangles-over-expropriation-act-and-metro-cops-risk-sinking",
+        "title": "Coalition Partners Sue Each Other",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-09-bc-wildfire-perimeter-evacuation-rate-of-spread",
+      "title": "Fire Outruns Evacuation",
+      "category": "science",
+      "body": "Air rescues pull residents trapped behind the",
+      "eventCoverage": 70,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "British Columbia declares emergency as wildfire outpaces evacuation near Summerland",
     "response": {
       "pushed": 1,
       "skipped": 0,
