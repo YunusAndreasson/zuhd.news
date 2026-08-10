@@ -387,6 +387,47 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   const contentBox = () =>
     (popup.getElement()?.querySelector('.maplibregl-popup-content') as HTMLElement | null) ?? null
 
+  /**
+   * A card hidden on the far side has to stop taking the pointer, not just stop
+   * being seen.
+   *
+   * `locationOccludedOpacity` is the whole of MapLibre's occlusion handling —
+   * `_updateOpacity` writes `container.style.opacity` and touches nothing else.
+   * But `opacity: 0` is a paint instruction, not a hit-testing one: the element
+   * is still there, still laid out, still first in line for every click. And the
+   * container's own `pointer-events: none` (MapLibre's stylesheet) does not save
+   * it, because `.maplibregl-popup-content` turns them back on — that is how the
+   * card is clickable in the first place.
+   *
+   * So an occluded card leaves an **invisible 524×440 block sitting over the
+   * globe** (measured at 1896×913 with the Cali story hidden), and inside it, at
+   * a spot the reader cannot see, a 24×24 close button. Clicking a story mark
+   * under that rectangle does nothing; one click in the wrong 24px of it
+   * *destroys* the card — which is precisely the outcome
+   * `locationOccludedOpacity`'s comment above promises cannot happen, since
+   * "not closed, only hidden" is only true while nothing can close it. Found by
+   * spinning the globe away from an open card and clicking empty ocean near
+   * Tunis: the card was gone from the DOM, and no longer came back when the
+   * globe did.
+   *
+   * Mirrored off the inline opacity rather than re-deriving it, because the
+   * predicate is `transform.isLocationOccluded` — private, and a second copy of
+   * a clipping test is a second thing to disagree. `move` carries the change and
+   * `moveend` guarantees the settled state: our listener is registered before
+   * MapLibre's own (it binds `_update` in `addTo`/`setLngLat`, both later), so
+   * during a drag this reads one event behind, and the last `move` before
+   * `moveend` is what makes that harmless.
+   */
+  const syncOccludedPointer = () => {
+    const root = popup.getElement()
+    const box = contentBox()
+    if (!root || !box) return
+    const want = root.style.opacity === '0' ? 'none' : ''
+    if (box.style.pointerEvents !== want) box.style.pointerEvents = want
+  }
+  map.on('move', syncOccludedPointer)
+  map.on('moveend', syncOccludedPointer)
+
   const swap = (root: HTMLElement) => {
     const before = popup.isOpen() ? contentBox() : null
     const from = before?.getBoundingClientRect().height ?? 0
@@ -982,6 +1023,23 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         // Trusted content: this HTML is produced by our own build from the
         // article markdown, the same string the /a/{slug} page renders.
         body.innerHTML = story.bodyHtml
+        // And because it is that same string, it opens with the article's own
+        // `City — ` dateline, which `.map-popup-prose` restyles onto a line of
+        // its own exactly as the article page does — directly under a kicker
+        // that has already printed the place. Measured on the built map: the
+        // card said `economy · Ranchi · 3h ago`, then the headline, then
+        // **RANCHI** again two lines later. `mapLeads` strips the same prefix
+        // out of the preview's lead sentence for the same reason (`build.js`,
+        // `DATELINE_RE`); the pinned card renders the whole article and so
+        // never went through that path, which is why the fix reached one of the
+        // two cards and not the other.
+        //
+        // Removed rather than hidden, so it leaves the accessibility tree with
+        // the pixels — a screen reader was hearing the place twice too. And
+        // only when the kicker really does carry it: `kickerFor` drops `loc`
+        // when a story has none, and there the body's dateline is the card's
+        // only statement of where this happened.
+        if (p.loc) body.querySelector('.article-dateline')?.remove()
         root.append(body)
         // Directly under the prose, because that is where the tags are. A
         // disclosure that opens somewhere else is a navigation.

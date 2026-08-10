@@ -1884,9 +1884,47 @@ export function mount(
     // `enable` puts the rotate half back unless it has been told not to, and
     // this map never rotates.
     map.touchZoomRotate.disableRotation()
+    // The third zoom gesture, and the only one with no `around` to hand it —
+    // see `dblclick` below for why it is switched off rather than configured.
+    if (centred) map.doubleClickZoom.disable()
+    else map.doubleClickZoom.enable()
   }
   let zoomAnchorCentred = true
   setZoomAnchor(true)
+
+  /**
+   * Double-click, the zoom gesture that could not be told where to anchor.
+   *
+   * Everything the comment above argues about the wheel applies here and is
+   * worse, because `ClickZoomHandler` has no options object: it always eases to
+   * `around: unproject(point)`. On the sphere MapLibre will not honour that —
+   * `VerticalPerspectiveCameraHelper.handleEaseTo` warns *"Easing around a point
+   * is not supported under globe projection"* and then runs
+   * `setLocationAtPoint(around, aroundPoint)` on every frame of the ease anyway,
+   * which is the same unsatisfiable pin the wheel path was rewritten to avoid.
+   *
+   * Off the disc it is not a wobble but a teleport. `unproject` answers a point
+   * that is not on the sphere with the **nearest point on the visible limb** —
+   * 90° of arc from the centre, by construction — and the ease then tries to
+   * hold that limb point under a cursor sitting outside the disc, which no
+   * camera satisfies. Measured from the home view at 1896×969: one double-click
+   * on empty canvas 1.3 disc-radii west of centre moved the centre from Makkah
+   * (39.8°E) to about 7°W — **~47° of longitude, near 5,000km** — while the zoom
+   * did the ordinary +1. The reader asked for one step in and was put on another
+   * continent, and `.map-mapctl`'s own corner measurement says 39% of this
+   * canvas at 1600×900 (60% at 3440) is exactly that empty space.
+   *
+   * So the built-in is disabled wherever the anchor is centred and this stands
+   * in for it, matching `ClickZoomHandler` exactly — 300ms, ±1, shift to zoom
+   * out — minus the `around` it cannot express. `getZoomSnap()` is 0 here (the
+   * MapLibre default, never set), so `evaluateZoomSnap` is the identity and the
+   * arithmetic is the whole of it. Past `GLOBE_ZOOM.plane` the handler goes back
+   * to MapLibre, where zoom-to-cursor is correct and free.
+   */
+  map.on('dblclick', (e) => {
+    if (!zoomAnchorCentred) return
+    map.easeTo({ duration: 300, zoom: map.getZoom() + (e.originalEvent.shiftKey ? -1 : 1) })
+  })
 
   // Chrome that covers the canvas moves the map's true centre away from the
   // viewport's, and telling MapLibre once means every flyTo, easeTo and cluster
@@ -1949,13 +1987,35 @@ export function mount(
     }
 
     const rail = inset(feed.element)
+    /**
+     * The instrument rail, which now intersects too.
+     *
+     * This measured only the story rail for as long as the canvas was its own
+     * grid column — then *neither* rail intersected it, `inset` returned null on
+     * the first line and the zero padding that followed was right by accident
+     * rather than by measurement. The canvas spans the whole grid now so the
+     * rails can be seen through, which turns both of them into real overlaps,
+     * and measuring one of two is worse than measuring neither: the camera gets
+     * pushed right by half the story rail and nothing pushes it back. Measured
+     * at 1896×913 the disc centred at **x=1109 against a visible-gap centre of
+     * 924** — 185px off, which reads as a globe adrift toward the instruments
+     * with a band of dead sky down the left.
+     *
+     * Guarded on being a genuine side column: on a phone the rail is a bar
+     * across the foot and the money block lives inside the scrubber, so a
+     * full-width intersection is the *bottom* being eaten and belongs to the
+     * union below, not to a left or right inset.
+     */
+    const asideBox = inset(hud)
+    const aside = asideBox && asideBox.w < canvas.width - 1 ? asideBox.w : 0
+
     if (!rail) {
-      writePadding({ top: 0, bottom: 0, right: 0, left: 0 })
+      writePadding({ top: 0, bottom: 0, right: aside, left: 0 })
       return
     }
 
     if (rail.w < canvas.width - 1) {
-      writePadding({ top: 0, bottom: 0, right: 0, left: rail.w })
+      writePadding({ top: 0, bottom: 0, right: aside, left: rail.w })
       return
     }
 
@@ -5677,7 +5737,13 @@ export function mount(
     // is inside the rail's padding — docking to it put the panel's right edge
     // 9px inside the rail, measured, which reads as a panel that failed to
     // clear the thing it came out of rather than as one attached to it.
-    marketStrip.setDock(wide ? hud : null)
+    // `mapCtlRight` goes with it: the ground picker stands in the canvas's
+    // top-right corner and the panel is anchored to the rail's inner edge, so
+    // the two share a corner and a panel opened from the money block's top rows
+    // covered the `key` button outright. Only in the wide layout — below
+    // `NARROW_PX` the controls are back in `.map-hud-more` and there is no
+    // floating cluster for a panel to land on.
+    marketStrip.setDock(wide ? hud : null, wide ? mapCtlRight : null)
   }
 
   // The scrubber is replaced wholesale when a refresh moves the window, so the

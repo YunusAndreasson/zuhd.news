@@ -63,6 +63,17 @@ writeFileSync(
         },
         disable: () => { this.scrollZoomEnabled = false },
       }
+      // The third zoom gesture, and the only one with nowhere to put an anchor:
+      // \`ClickZoomHandler\` has no options object and always eases to
+      // \`around: unproject(point)\`, which the globe camera helper answers with
+      // a warning and a \`setLocationAtPoint\` — so the island turns the handler
+      // off on the sphere and does the centred zoom itself. Whether it is
+      // enabled *is* that decision, so the stub records it, not swallows it.
+      this.doubleClickZoomEnabled = true
+      this.doubleClickZoom = {
+        enable: () => { this.doubleClickZoomEnabled = true },
+        disable: () => { this.doubleClickZoomEnabled = false },
+      }
       this.keyboard = { disableRotation: () => { this.keyboardRotationDisabled = true } }
       queueMicrotask(() => {
         for (const f of this.handlers.load || []) f()
@@ -184,6 +195,15 @@ writeFileSync(
     remove() { this.removed = true }
   }
   export class NavigationControl {}
+  const makeStubPopupEl = () => {
+    const root = document.createElement('div')
+    root.className = 'maplibregl-popup'
+    const content = document.createElement('div')
+    content.className = 'maplibregl-popup-content'
+    root.append(content)
+    return root
+  }
+
   export class Popup {
     constructor(opts) { this.opts = opts; this.open = false; this.handlers = {} }
     // MapLibre's Popup extends Evented and fires 'close' when it is removed —
@@ -206,6 +226,11 @@ writeFileSync(
       return this
     }
     isOpen() { return this.open }
+    // The container MapLibre writes \`locationOccludedOpacity\` onto. Null until
+    // the card is open, which is what the real one does too — and the island
+    // reads it on every \`move\` to keep a card hidden behind the planet from
+    // going on hit-testing, so a stub without it throws on the first pan.
+    getElement() { return this.open ? (this.container ||= makeStubPopupEl()) : null }
   }
   // The worker-pool lifecycle. Recorded rather than ignored, because the pair
   // has to stay a pair: \`prewarm\` without \`clearPrewarmedResources\` leaves a
@@ -1203,6 +1228,20 @@ test('the camera has one pose, and the wheel zooms about the planet', async () =
     const anchored = Object.fromEntries(map.zoomAnchors)
     assert.equal(anchored.scroll, 'center', 'the wheel zooms about the planet, not the pointer')
     assert.equal(anchored.touch, 'center', 'and so does a pinch')
+
+    // And so does a double-click, by being switched off and replaced. The
+    // anchor it could not be given is the whole reason: measured on the built
+    // page from the home view at 1896x969, one double-click on empty canvas
+    // 1.3 disc-radii west of centre moved the centre from Makkah (39.8E) to
+    // about 7W — ~47 degrees, near 5,000km — because `unproject` answers a
+    // point off the sphere with the nearest point of the limb and the ease then
+    // tries to pin that under a cursor no camera can put it under. The map
+    // opens on the sphere, so the handler must be off here.
+    assert.equal(
+      map.doubleClickZoomEnabled,
+      false,
+      'double-click does not zoom about the pointer while the map is a globe',
+    )
 
     teardown()
   } finally {

@@ -29,7 +29,7 @@ const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOve
 const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
-  createMarketStrip, BLOCK_ROWS,
+  createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -878,4 +878,118 @@ test('a redrawn chokepoint block has exactly one row per strait, ranked by delta
     assert.deepEqual(clicked, ['malacca'], 'a press flies straight to the strait, once')
     strip.destroy()
   })
+})
+
+/**
+ * The detail panel opens over the map, and the map has furniture up there.
+ *
+ * `placePanel` anchors the panel's right edge to the rail's inner edge and its
+ * top to the row that was pressed. `.map-mapctl.is-right` — the ground picker,
+ * its ramp and the `key` disclosure — stands in the canvas's top-right corner,
+ * which is the *same* corner: the two always overlap horizontally, so whether
+ * they collide is decided entirely by the pressed row's height. Measured on the
+ * built map at 1896×913, the money block's first row opened a panel at y=65
+ * over a control box running 16→107, covering the whole 190×24 `key` button and
+ * slicing the ramp through the middle. Two of thirty rows can reach it, which is
+ * why it survived: nobody presses `markets` while reading the legend.
+ *
+ * The side is not what gives. Four panels opened from four rows have to start on
+ * one column — the argument `placePanel`'s own docblock makes at length — so the
+ * top moves instead, and only as far as the window's foot still allows.
+ */
+test('a panel opened from the top of the rail clears the map’s own controls', () => {
+  // The measured geometry: control box 16→107, the money block's first row at
+  // 65, a 384px panel (the `max-height` cap a fifteen-exchange list hits).
+  const top = dockedPanelTop({ rowTop: 65, clearBottom: 107, panelH: 384, viewportH: 913 })
+  assert.equal(top, 117, 'pushed below the control box, not left over it')
+  assert.ok(top >= 107 + 10, 'and clear of it by the same gap every other edge uses')
+})
+
+test('a row already below the controls is not moved at all', () => {
+  // `attention`, mid-rail. The push is a `max`, so it is a no-op wherever the
+  // row is already lower — the row still decides the top for 28 of 30 rows.
+  assert.equal(
+    dockedPanelTop({ rowTop: 430, clearBottom: 107, panelH: 384, viewportH: 913 }),
+    430,
+  )
+})
+
+test('the window’s foot outranks the controls, so a panel is never below the fold', () => {
+  // A short viewport that cannot hold the control box and the panel together.
+  // Overlapping the controls again is the right failure: a covered control is
+  // one press from being uncovered, and a panel hanging off the screen is not.
+  const top = dockedPanelTop({ rowTop: 300, clearBottom: 107, panelH: 384, viewportH: 460 })
+  assert.equal(top, 66, 'clamped to the foot')
+  assert.ok(top + 384 <= 460 - 10, 'the panel ends inside the window')
+})
+
+test('with no control box the term drops out entirely', () => {
+  // The layout below `NARROW_PX`, where the controls are back in the panel the
+  // phone opens and there is no floating cluster to clear.
+  assert.equal(
+    dockedPanelTop({ rowTop: 20, clearBottom: null, panelH: 200, viewportH: 913 }),
+    20,
+  )
+  // And the top edge is still a floor, so a row scrolled above the viewport
+  // cannot drag the panel off it.
+  assert.equal(
+    dockedPanelTop({ rowTop: -40, clearBottom: null, panelH: 200, viewportH: 913 }),
+    10,
+  )
+})
+
+/**
+ * The exchange tally is windowed against the market's week, not the calendar's.
+ *
+ * `blockEdge` was added on 2026-08-03 for the `world` block, on an argument
+ * written entirely about weekday instruments: a three-day window ending on a
+ * Monday is `[Fri, Mon]` — one close and two days on which nothing traded — so
+ * `covered` finds a single observation and every row in the block draws a
+ * dotted rule. It reached `worldEntries` and **not the exchange tally**, which
+ * is a composite of thirty stock exchanges and therefore the most weekday-bound
+ * row on the rail.
+ *
+ * Measured live on Monday 2026-08-10 at the map's own default range, the row
+ * printed `24h +0.2%, 3d nothing, 7d +0.5%, 30d +1.7%, 90d +3.6%` — a control
+ * whose middle rung is emptier than the rungs either side, which this suite's
+ * own record calls unreadable, sitting beside `metals`, `crypto` and
+ * `currencies` which all printed. Only the 24h step escaped, and only because
+ * `FRESH_DAYS` tolerates three days back when no edge is supplied.
+ */
+test('a Monday does not empty the exchange composite', () => {
+  // Three exchanges, closing Mon–Fri, last printing Friday 7 August.
+  const members = ['a', 'b', 'c'].map(() => ({
+    values: [100, 101, 102, 103, 104],
+    periods: ['Aug 3', 'Aug 4', 'Aug 5', 'Aug 6', 'Aug 7'],
+    asOf: '2026-08-07',
+    pct: 0.5,
+  }))
+  const monday = Date.UTC(2026, 7, 10, 12)
+
+  // The bug: windowed against the wall clock, a 3d window is [Aug 7, Aug 10]
+  // and holds one close, so there is no segment to measure and no figure.
+  assert.equal(
+    sparkInput(members, 3, monday),
+    null,
+    'against the clock, a Monday leaves the block with one observation',
+  )
+
+  // The fix: the block's own last traded day is the right edge, so the window
+  // is [Aug 4, Aug 7] and holds four closes.
+  const edge = lastTradedDay(members)
+  assert.equal(edge, Date.UTC(2026, 7, 7), 'the edge is Friday, from the labels')
+  const withEdge = sparkInput(members, 3, monday, edge)
+  assert.ok(withEdge, 'with the market’s own edge the composite draws')
+  assert.ok(withEdge.values.length >= 2, 'and it is a segment, not a dot')
+})
+
+test('the block edge is the newest close any member reached', () => {
+  // Tadawul trades Sun–Thu, so it legitimately prints on a day the Mon–Fri
+  // exchanges do not — and the edge is the block's, so it takes the later one.
+  const gulf = { values: [1, 2], periods: ['Aug 6', 'Aug 9'], asOf: '2026-08-09', pct: 0 }
+  const west = { values: [1, 2], periods: ['Aug 6', 'Aug 7'], asOf: '2026-08-07', pct: 0 }
+  assert.equal(lastTradedDay([west, gulf]), Date.UTC(2026, 7, 9))
+  // A member with no usable dates cannot drag the edge anywhere.
+  assert.equal(lastTradedDay([west, { values: [1, 2], pct: 0 }]), Date.UTC(2026, 7, 7))
+  assert.equal(lastTradedDay([{ values: [1, 2], pct: 0 }]), undefined, 'no dates, no edge')
 })

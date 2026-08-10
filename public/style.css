@@ -2916,9 +2916,24 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
 .map-canvas-host {
   position: relative;
   /* Both items are pinned to row 1 explicitly. The map is appended before the
-     rail but declares column 2, and sparse auto-placement would push the rail
-     into an implicit second row — collapsing the map's row to zero height. */
-  grid-column: 2;
+     rail but declares its column, and sparse auto-placement would push the rail
+     into an implicit second row — collapsing the map's row to zero height.
+
+     The planet runs the **whole** width and the rails float over it. It used to
+     stop at column 2, and that is why the rails' own translucency had never once
+     been visible: they were beside the canvas rather than over it, so the 8% they
+     let through was 8% of the page behind them. Composited, `92% #0a0c10` over
+     `#080a0d` is `#0a0c10` — the same colour to under one 8-bit step per channel,
+     which is a transparency that cannot appear no matter what it is set to.
+
+     Nothing about the globe's framing moves with this. The disc is
+     `min(canvasW, canvasH)` and it was already height-bound at every width this
+     layout has (the note above `.map-shell` measures the canvas 39% empty at
+     1600×900 and 60% at 3440), so widening the canvas changes `min` not at all;
+     `writePadding` measures the rail/canvas intersection rather than assuming
+     one, and has said since it was written that it "stays right if the rail ever
+     becomes an overlay again". This is that. */
+  grid-column: 1 / -1;
   grid-row: 1;
   height: 100%;
   overflow: hidden;
@@ -3001,8 +3016,32 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  /* Stacked over the canvas, which now runs the full width beneath it. `static`
+     took no `z-index` at all, so this needs a position before it can sit on top
+     of a sibling that comes earlier in the DOM. */
+  position: relative;
+  z-index: 2;
   border-right: 1px solid var(--map-line-soft);
-  background: color-mix(in srgb, var(--map-sunken) 92%, transparent);
+  /* See `.map-canvas-host`: this is the alpha that was always declared and never
+     had anything behind it. The blur keeps a coastline or a story mark passing
+     under the rail a wash rather than an edge competing with a headline, and
+     6px is `.map-mapctl`'s, because those boxes are the same bargain already —
+     a panel floating on the planet — and two answers to one question is how the
+     nine near-blacks got here in the first place.
+
+     **80% is a contrast floor, not a taste.** What binds it is the quietest ink
+     the rail carries — `.map-feed-count`, the "138 STORIES · NEWEST 120 LISTED"
+     line, at `rgb(130,130,130)` (L 0.2232) — over the brightest ground the
+     metric paints, which `_map/style.ts` pins by measuring `#8d97a6` at 2.76:1
+     on it (so L 0.0788). Composited that way the ink reads **4.57:1 at 80%**
+     and falls under AA the moment the rail gets thinner: 4.39:1 at 75% and
+     4.29:1 at 72%. `colour-system.test.js` cannot see this — it checks declared
+     tokens, and this background is only decided at paint time against a
+     backdrop that moves — which is exactly why the number is written down
+     here. Going further needs the quiet inks lifted first, not the alpha
+     dropped. */
+  background: color-mix(in srgb, var(--map-sunken) 80%, transparent);
+  backdrop-filter: blur(6px) saturate(1.1);
   /* The site footer is `position: fixed` over the bottom of this column.
      Reserving its height ends the scrolling list at the footer's top edge;
      without it the list ran 62px underneath, and the last visible story was
@@ -3945,7 +3984,10 @@ body.map-wide .map-hud {
   padding: 0.95rem clamp(0.9rem, 1.1vw, 1.15rem) 1.1rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: color-mix(in srgb, var(--map-sunken) 92%, transparent);
+  /* The instrument rail's half of the same change, and the same 80% floor —
+     see `.map-feed` for what measures it. */
+  background: color-mix(in srgb, var(--map-sunken) 80%, transparent);
+  backdrop-filter: blur(6px) saturate(1.1);
   border-left: 1px solid var(--map-line-soft);
   /* The strip was `pointer-events: none` so the map stayed draggable through
      the gaps between its chips. A rail has no gaps over the map. */
@@ -4104,17 +4146,29 @@ body.map-wide .map-mapctl {
    lives inside it, and a legend two boxes from the control it decodes is the
    fault this whole move exists to end.
 
-   `--map-aside-w` needs no term in either offset: these are children of
-   `.map-canvas-host`, which is its own grid column and already ends where the
-   instrument rail begins. `.map-reset` needs one because it hangs off the root
-   instead. */
+   Both offsets carry a rail term, and that is new. These are children of
+   `.map-canvas-host`, which **used to be its own grid column** and so already
+   ended where each rail began — the offsets could be bare and the comment here
+   said so. The canvas now spans the whole grid so the rails can be seen through
+   (see `.map-canvas-host`), which means its corners are the *window's* corners:
+   left it is, `is-left` sits under the story rail and `is-right` under the
+   instruments, both of them invisible behind a rail they used to sit beside.
+   `.map-reset` already carried these terms because it hangs off the root, and
+   now every box in the canvas's corners is measured the same way.
+
+   Folding a rail needs no rule of its own: `body.map-page.map-rail-off` sets
+   `--map-rail-w: 0px` and the spine sets `--map-aside-w`, so each `calc` gives
+   the bare inset back exactly when the rail it dodges is gone. */
 /* `is-left` holds only the `layers` trigger and its disclosed chips — none of
    them as wide as `is-right`'s `<select>` needs to be (a metric name is the
    widest thing there; see `.map-ground-select`), so it sizes to its own
    content instead of sharing that box's stated width. `is-right` keeps the
    13rem the ground picker's longest name was measured against. */
-body.map-wide .map-mapctl.is-left { left: var(--space-sm); }
-body.map-wide .map-mapctl.is-right { right: var(--space-sm); width: 13rem; }
+body.map-wide .map-mapctl.is-left { left: calc(var(--map-rail-w) + var(--space-sm)); }
+body.map-wide .map-mapctl.is-right {
+  right: calc(var(--map-aside-w) + var(--space-sm));
+  width: 13rem;
+}
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
    absolutely-positioned line with no room beside it, and the scrubber's readout
@@ -6427,6 +6481,12 @@ body.map-wide .map-key {
     color: var(--map-ink-body);
   }
 
+  /* The fallback, and only the fallback. The card's kicker prints the place,
+     so `popup.ts` removes this element outright on every story that has a
+     `loc` — which, measured against a real payload, is all 848 of them. What
+     is left for this rule is the story that has none, where the body's own
+     dateline is the only thing on the card saying where it happened, and there
+     it takes the article page's treatment: its own line, above the lead. */
   .article-dateline {
     font-variant-caps: all-small-caps;
     font-feature-settings: "case" 1;

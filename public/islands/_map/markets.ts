@@ -1461,8 +1461,15 @@ export const attentionEntries = (
  * contains one close and two days of nothing — see `sparkInput`'s `blockEdge`
  * for the failure this exists to end. Undefined when no member carries usable
  * dates, which leaves the window ending at the clock, as it did before.
+ *
+ * Typed structurally rather than as `TrendIndicator[]`, because the exchange
+ * tally needs the same edge and its members are `SparkMember`s: thirty stock
+ * exchanges are the most weekday-bound block on this rail, and for five days
+ * this function existed and was called by `worldEntries` alone.
  */
-const lastTradedDay = (inds: TrendIndicator[]): number | undefined => {
+export const lastTradedDay = (
+  inds: ReadonlyArray<{ periods?: readonly string[] | undefined; asOf?: string | undefined }>,
+): number | undefined => {
   let max = 0
   for (const ind of inds) {
     const dates = seriesDates(ind.periods, ind.asOf)
@@ -1604,8 +1611,12 @@ export interface MarketStrip {
    *
    * Set by whoever re-parents the strip: the placement follows where the strip
    * is standing, and only the island knows that.
+   *
+   * `clearOf` is a box the panel must not open over — the map's own right-hand
+   * control cluster, which stands in the same corner the panel is anchored to.
+   * Optional, and `null` in the layout that has no such cluster.
    */
-  setDock(box: HTMLElement | null): void
+  setDock(box: HTMLElement | null, clearOf?: HTMLElement | null): void
   /**
    * The window the rail is showing, in days, so a card opened from a row can
    * draw the same period the row does.
@@ -1692,6 +1703,44 @@ export const ribbonPoints = (delta: number): string => {
 const toneClass = (pct: number, stale = false): string =>
   stale || Math.abs(pct) <= FLAT_PCT ? ' is-stale' : pct < 0 ? ' is-neg' : ' is-pos'
 
+/**
+ * Where a rail-docked detail panel's top edge goes, as arithmetic.
+ *
+ * Extracted from `placePanel` so it can be pinned: the geometry it settles is
+ * three rules that only ever disagree at the ends of the rail, which is exactly
+ * where nobody looks, and jsdom has no layout to catch it with.
+ *
+ * The row decides the top. Then the window's foot pulls it back up, because a
+ * group near the bottom of a scrolled rail would otherwise open a panel whose
+ * own bottom is off-screen and this dialog does not scroll the page. And
+ * `clearBottom` — the foot of the map's own right-hand control box — pushes it
+ * down, because that box stands in the canvas's top-right corner while the
+ * panel is anchored to the rail's inner edge, which is the same corner. Before
+ * this, the money block's first row opened a panel that covered the whole `key`
+ * button and cut the ground ramp in half.
+ *
+ * **The foot wins.** It is applied last and outside the push, so a viewport too
+ * short to hold both simply lets the panel overlap the controls again rather
+ * than hanging off the screen — a covered control is recoverable in one press
+ * and a panel below the fold is not. `null` for `clearBottom` is the layout with
+ * no such box, where the whole term drops out.
+ */
+export const dockedPanelTop = ({
+  rowTop,
+  clearBottom,
+  panelH,
+  viewportH,
+  gap = 10,
+}: {
+  rowTop: number
+  clearBottom: number | null
+  panelH: number
+  viewportH: number
+  gap?: number
+}): number => {
+  const pushed = clearBottom == null ? rowTop : Math.max(rowTop, clearBottom + gap)
+  return Math.round(Math.max(gap, Math.min(pushed, viewportH - panelH - gap)))
+}
 
 /**
  * A ranked readout of what the world's exchanges did.
@@ -1993,9 +2042,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    *
    * `dock` is the element to align to — the island passes the money box when it
    * puts the strip in the rail, and null when it does not, so this module never
-   * has to ask which layout is live.
+   * has to ask which layout is live. `dockClear` is the map's own right-hand
+   * control box, which the panel opens straight over; see `placePanel`.
    */
   let dock: HTMLElement | null = null
+  let dockClear: HTMLElement | null = null
 
   const placePanel = (btn: HTMLElement) => {
     const r = btn.getBoundingClientRect()
@@ -2008,10 +2059,29 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       panel.style.left = 'auto'
       panel.style.right = `${Math.round(Math.max(gap, window.innerWidth - d.left + gap))}px`
       panel.style.bottom = 'auto'
-      // Pinned to the row, then pushed back inside the window — a group near
-      // the foot of a scrolled rail would otherwise open a panel whose bottom
-      // is below the viewport, and this dialog does not scroll the page.
-      panel.style.top = `${Math.round(Math.max(gap, Math.min(r.top, window.innerHeight - h - gap)))}px`
+      // The row decides the top, and then two things are allowed to move it.
+      //
+      // The window's foot, because a group near the bottom of a scrolled rail
+      // would otherwise open a panel whose own bottom is below the viewport,
+      // and this dialog does not scroll the page.
+      //
+      // And `.map-mapctl.is-right`, because the ground picker stands in the
+      // canvas's top-right corner and this panel is anchored to the rail's
+      // inner edge — the *same* corner, by construction, so the two overlap
+      // horizontally always and vertically whenever the pressed row is near
+      // the head of the rail. Measured at 1896×913: the first row (`markets`)
+      // opened a panel that covered the whole of the `key` button and sliced
+      // the ground ramp through the middle, so a control the reader can see
+      // half of was drawn as a rendering fault. Only the money block's top two
+      // rows can reach it. The side is not what gives, for the reason written
+      // above — four panels opened from four rows have to start on one column.
+      panel.style.top = `${dockedPanelTop({
+        rowTop: r.top,
+        clearBottom: dockClear ? dockClear.getBoundingClientRect().bottom : null,
+        panelH: h,
+        viewportH: window.innerHeight,
+        gap,
+      })}px`
       return
     }
 
@@ -2520,7 +2590,22 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // The world's equity market as one figure, composited from the thirty
     // indices this map already draws. `series.values` has been in the payload
     // since the layer shipped and nothing but the exchange card ever read it.
-    const pct = sparkInto(tallyMove, exchangeMembers())
+    //
+    // Windowed against the last day an exchange actually traded, not the wall
+    // clock — the same `blockEdge` `worldEntries` computes, which this row was
+    // never given even though it is the block the argument was written about.
+    // A calendar window ending on a Monday is `[Fri, Mon]`: one close and two
+    // days on which no exchange on earth was open, so `covered` finds a single
+    // observation and the row draws a dotted rule. Measured on Monday
+    // 2026-08-10 at the map's own default range: **24h +0.2%, 3d nothing, 7d
+    // +0.5%, 30d +1.7%, 90d +3.6%** — a range control whose middle rung is
+    // emptier than the rungs either side, which this file already records as
+    // unreadable when `vix` did it, beside three neighbours that all printed a
+    // figure. The 24h step only escaped because `FRESH_DAYS` tolerates three
+    // days back when there is no edge; supplying one makes that tolerance
+    // unnecessary and the calendar steps correct.
+    const members = exchangeMembers()
+    const pct = sparkInto(tallyMove, members, undefined, lastTradedDay(members))
     tallyGroup.setAttribute(
       'aria-label',
       `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}${
@@ -2941,8 +3026,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     setVisible(on: boolean) {
       root.hidden = !on
     },
-    setDock(box: HTMLElement | null) {
+    setDock(box: HTMLElement | null, clearOf: HTMLElement | null = null) {
       dock = box
+      dockClear = clearOf
       // A panel open across a move would keep the geometry of the layout it was
       // opened in — and the two are not adjustments of each other, they are a
       // popover and a drawer. Shutting it is the honest answer.
