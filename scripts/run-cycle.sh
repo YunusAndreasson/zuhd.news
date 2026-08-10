@@ -577,9 +577,26 @@ $BODY_LENGTHS
   timeout 120 npm run typecheck 2>&1 | tee -a "$LOG_FILE" \
     || echo "WARNING: typecheck failed (non-fatal — see above)" | tee -a "$LOG_FILE"
 
-  # Build
-  node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
-  BUILD_EXIT=$?
+  # Build — retry on a held lock instead of abandoning the deploy outright.
+  # The lock (added 2026-08-09) stops two builds racing dist/ writes, but a
+  # long-lived local `npm run dev` (scripts/watch.js) rebuilds on every
+  # article write and can hold the lock right when this stage starts,
+  # costing an entire cycle's publication with no wait or retry (08-09 17:22
+  # → 08-10 17:33, 6 of 7 cycles). A dev build finishes in seconds; three
+  # tries at 20s apart clears that without meaningfully delaying a stuck cycle.
+  BUILD_ATTEMPT=1
+  while :; do
+    BUILD_OUTPUT=$(node scripts/build.js 2>&1)
+    BUILD_EXIT=$?
+    echo "$BUILD_OUTPUT" | tee -a "$LOG_FILE"
+    if [ "$BUILD_EXIT" -eq 0 ] || [ "$BUILD_ATTEMPT" -ge 3 ] \
+      || ! echo "$BUILD_OUTPUT" | grep -q "Another build is already running"; then
+      break
+    fi
+    echo "Build lock held — retrying in 20s (attempt $BUILD_ATTEMPT/3)" | tee -a "$LOG_FILE"
+    sleep 20
+    BUILD_ATTEMPT=$((BUILD_ATTEMPT + 1))
+  done
   echo "Build exit: $BUILD_EXIT" | tee -a "$LOG_FILE"
 
   if [ "$BUILD_EXIT" -eq 0 ]; then
