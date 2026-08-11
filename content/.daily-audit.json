@@ -1,36 +1,37 @@
 {
-  "date": "2026-08-09",
+  "date": "2026-08-11",
   "metrics": {
-    "articles": { "value": 55, "detail": "5 cycles ran and all 5 wrote articles (11/12/13/13/12); 2 committed and deployed themselves, 2 were swept into the manual dev-session commits, and the 22:00 batch of 12 is still uncommitted" },
-    "freshness": { "median": 0.8, "p90": 1.3, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 13, "science": 12, "tech": 9 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
+    "articles": { "value": 56, "detail": "5 cycles, all 5 completed, committed and deployed; each wrote 13, dedup and validation trimmed to ~11 published per cycle" },
+    "freshness": { "median": 0.2, "p90": 0.9, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 14, "science": 10, "tech": 10 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 17, "EU": 13, "AM": 10, "AS": 9, "AF": 5, "OC": 1 }
+      "breakdown": { "ME": 14, "AM": 13, "AS": 11, "AF": 10, "EU": 7, "OC": 1 }
     },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn / Nature (tied, 8 each)", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 35,
-    "duplicates": 0,
-    "avgCycleDuration": 1160
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 39,
+    "duplicates": 1,
+    "avgCycleDuration": 1371
   },
-  "experiment": "Skipped — every goal metric is inside target, no experiment is active, and no pause gate applies. The day's failures are all in the build/deploy stage, which no tunable parameter in this scope touches; opening a variable now would only add noise to a day whose content numbers are already clean.",
-  "weakestArea": "Deploy, not content. Three of five cycles reached Stage 3b and never shipped: 12:00 died with ENOTEMPTY inside build.js's rmSync of dist/, and 17:00 and 22:00 both found .build.lock held by a live PID and exited. The lock behaved exactly as designed — it was added on 2026-08-03 for this race and it prevented a second corrupted build — but the holder was a long-running local build from the map-engine work, so scheduled cycles queued behind an interactive session for ten hours. Of the content metrics, tech is softest: 9 articles against a floor of 4 is comfortable, but it fell from 14 yesterday and the 17:00 cycle logged a post-dedup floor violation (tech 2 < 3).",
+  "experiment": "Skipped — every goal metric is inside target, no experiment is active, and no pause gate applies. The one real defect today (a cross-cycle duplicate) lives in scripts/lib/dedup.js, which is not a tunable parameter in this scope, and no feed or floor parameter would have prevented it.",
+  "weakestArea": "Duplicates. The 12:00 and 22:00 cycles both published the same SciDev.Net feature on Liberian contraceptive stockouts — identical source URL, ten hours apart. All four dedup layers missed it for a structural reason: the slugs share no words (a-health-system-held-as-a-subscription vs liberia-contraception-donor-funding-cuts) so layer 3 fails, and the titles share only 'Cuts' so layer 4's three-word recap threshold fails. Nothing in wouldDedup() compares source URLs, even though both stories carried the same one verbatim — a fifth layer keyed on normalised source URL would have caught this deterministically at zero token cost. Everything else is comfortable: freshness median 0.2 against a 1.0 target, sci-tech at 36%, top source at 13%.",
   "watching": [
-    "The 22:00 cycle's 12 articles are written, validated and still untracked in content/articles/ — they are not on the live site until someone commits and runs a build; .build.lock is now clear, so a plain publish will take them.",
-    "The build lock has no wait or retry: run-cycle.sh treats a held lock as a build failure and skips deploy outright, so any concurrent local build silently costs a whole cycle's publication. Two cycles today, both recoverable only by hand.",
-    "The ENOTEMPTY at 12:00 is the same dist/ race the lock was written to stop, but it happened to the process that won the lock — a second writer was inside dist/ without holding it, which points at something other than build.js touching that tree.",
-    "Multi-source supply upstream stayed thin: 12:00 saw only 4 multi-source clusters and could not meet the economy floor at all (both economy clusters were the same 12 August eclipse). Published multi-source still landed at 9, so the selector is spending what little the feed gives it.",
-    "FIRMS_MAP_KEY is still absent from the service file — the thermal snapshot skipped on all five cycles and the map continues to serve a stale layer."
+    "The dedup ladder has no source-URL layer, so an identical URL reframed with a fresh slug and headline passes cleanly — this is the third same-URL duplicate in three days (2 yesterday, 1 today) and every one would fall to an exact URL comparison.",
+    "acronymViolations sat at 379 in the latest weekly snapshot, but the top five violators are IR, PK, IN, RU and CN — the regex in measure-quality.js:128 scans the raw body, so it is counting the ISO-2 codes inside (country:XX) link markup, not unexpanded prose acronyms. The metric is measuring syntax and is not actionable as written.",
+    "Cycle health fully recovered from yesterday: 5 of 5 completed today against 1 of 5 on 2026-08-10, and the build-lock contention that cost four cycles is gone. Wall-time rose to 1371s average (selector 303s, writer 363s, editor 101s) — still far inside every timeout.",
+    "Article throughput fell 71 to 56 while the per-cycle written count held at 13, so the drop is downstream trimming rather than thin selection; worth a second day of observation before reading anything into it.",
+    "multiSourceRatePct in the weekly snapshot slipped 22.8 to 20.9. Two prior experiments established that the feed's ~9 multi-source clusters per cycle cap this near 22%, so the lever is upstream feed clustering, not the selector floors.",
+    "FIRMS_MAP_KEY is still absent from the systemd service file — the thermal snapshot skipped on all five cycles again and the map continues to serve a stale layer."
   ],
   "coverageGaps": [
-    "Oceania produced a single article for the third consecutive day, and Africa at 5 remains the thinnest region with real output.",
-    "The Middle East took 17 of 55 slots (31%) — inside every stated target, but the widest single-region share this week.",
-    "Tech fell to 9 from 14 with the 17:00 cycle unable to fill its floor of 3; the shortfall was upstream feed composition, not selector behaviour.",
-    "acronymViol=379 in the 22:00 quality snapshot is far above the rest of the style panel and nothing currently gates it."
+    "Oceania produced a single article for the fifth consecutive day and remains the only region that never clears one.",
+    "Europe fell to 7 from 12 yesterday, the sharpest single-region swing of the day, while Africa rose to 10 — its strongest showing this week.",
+    "Science and tech tied at 10 each, both down from 13 and 19 yesterday; the ratio still clears 25% comfortably but the absolute floor for tech (3/cycle) is the binding constraint on light feed days.",
+    "Politics took 22 of 56 slots (39%), the widest category share of the day, though no stated target governs it."
   ],
-  "context": "Content-side the day was healthy: 55 articles (up from 51), zero duplicates, 35 unique sources against 29 yesterday, freshness median 0.8 with a 1.5-day maximum, and no source above 15% share. Cycle wall-time averaged 1160s with the selector at 269s, writer 312s and editor 91s — all far inside their timeouts, and the writer's /tmp sandbox refusal did not recur after the --add-dir /tmp fix. The experiment slate is empty and the queued numerical-density experiment stays blocked on its own preflight (replicate the bench gain at n>=20 first); it targets scripts/write-prompt.md, which is outside daily-tuning scope in any case. Every failure today lives in scripts/build.js and scripts/run-cycle.sh, also outside that scope — the operator call worth making is whether a held build lock should make run-cycle.sh wait and retry rather than abandon the deploy."
+  "context": "A clean day on every measured axis: 56 articles across five completed cycles, freshness median 0.2 with a 1.3-day maximum, 39 unique sources with no outlet above 13%, six regions, and eight multi-source stories against a floor of four. The experiment slate is empty and stays empty — proposing a variable against metrics this healthy would only add noise. The queued numerical-density experiment remains blocked on its own preflight (replicate the n=3 bench gain at n>=20 first) and targets scripts/write-prompt.md, outside daily-tuning scope regardless. The two findings worth an operator decision both sit outside that scope: adding a source-URL layer to scripts/lib/dedup.js, and either excluding (country:XX) markup from the acronym regex in scripts/measure-quality.js or retiring the metric, since at present it reports a number that cannot go down."
 }
