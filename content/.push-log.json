@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-07-18T12:16:27.296Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-07-18-sonam-wangchuk-hunger-strike-ladakh-autonomy",
-        "title": "Wangchuk Refuses Medical Treatment",
-        "category": "politics",
-        "eventCoverage": 22,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-17-us-iran-mutual-infrastructure-strikes-escalation",
-        "title": "Iran War Targets Infrastructure",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-quetta-martyred-police-families-sit-in-balochistan",
-        "title": "Quetta Families End Sit-In",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-16-liquid-cocaine-trafficking-latin-america-interdiction",
-        "title": "Traffickers Turn To Liquid Cocaine",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-ekiti-nigeria-internally-generated-revenue-tax-compliance",
-        "title": "Ekiti Revenue Climbs Without Taxes",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-h1b-no-second-lottery-fy2027-skilled-worker-cap",
-        "title": "USCIS Hits H-1B Cap",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-gene-augmentation-therapy-night-blindness-lrit3-retina",
-        "title": "Gene Therapy Restores Night Vision",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-egyptian-royal-women-weapons-bioarchaeology",
-        "title": "Egyptian Princesses Wielded Real Weapons",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-ai-prior-authorization-health-insurance-denials",
-        "title": "AI Automates Care Denials",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-18-sonam-wangchuk-hunger-strike-ladakh-autonomy",
-      "title": "Wangchuk Refuses Medical Treatment",
-      "category": "politics",
-      "body": "Wangchuk has lost 9.5 kilograms",
-      "eventCoverage": 22,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Sonam Wangchuk refuses medical treatment on day 20 of hunger strike",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 20
-    }
-  },
-  {
     "timestamp": "2026-07-18T17:21:46.998Z",
     "candidateCount": 12,
     "candidates": [
@@ -10347,6 +10261,120 @@
       "pushed": 1,
       "skipped": 0,
       "tokens": 12
+    }
+  },
+  {
+    "timestamp": "2026-08-11T22:24:02.017Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-08-11-andras-baka-elected-hungarian-president",
+        "title": "Ousted Judge Elected President",
+        "category": "politics",
+        "eventCoverage": 363,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade",
+        "title": "US Missiles Hit Blockade Runner",
+        "category": "politics",
+        "eventCoverage": 111,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-venezuela-israel-restore-consular-ties",
+        "title": "Venezuela Restores Israel Ties",
+        "category": "politics",
+        "eventCoverage": 101,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-guinea-bissau-somaliland-recognition-collapse",
+        "title": "Somaliland Recognition Deal Collapses",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-myanmar-rohingya-repatriation-promise",
+        "title": "Myanmar Pledges Rohingya Return",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-romania-drones-neptun-deep-gas",
+        "title": "Drones Drift Near Gas Field",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-nigeria-aviation-unions-strike-faan",
+        "title": "Nigeria Airport Unions Strike",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-cftc-kalshi-new-york-prediction-markets",
+        "title": "Regulator Overrides State Ban",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-india-heatwave-disaster-fund-notification",
+        "title": "India Adds Heat to Disaster List",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-liberia-contraception-donor-funding-cuts",
+        "title": "Donor Cuts Empty Liberian Clinics",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-chrome-device-bound-session-credentials",
+        "title": "Chrome Locks Stolen Cookies",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-china-ai-companion-crackdown",
+        "title": "China Deletes AI Boyfriends",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-11-nsa-general-counsel-appointment",
+        "title": "NSA Names New Top Lawyer",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade",
+      "title": "US Missiles Hit Blockade Runner",
+      "category": "politics",
+      "body": "Two Hellfire missiles crippled a civilian cargo",
+      "eventCoverage": 111,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US missiles strike cargo ship enforcing Iran blockade, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 11
     }
   }
 ]
