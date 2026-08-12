@@ -2,13 +2,230 @@
   "version": 1,
   "stories": [
     {
+      "id": "pentagon-yemen-civilian-casualty-report-undercount",
+      "label": "Pentagon says it killed at least 150 Yemeni civilians last year",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-pentagon-yemen-civilian-casualty-report-undercount"
+      ],
+      "eventUri": null,
+      "summary": "The Pentagon has admitted in its annual civilian-casualty report to Congress that Operation Rough Rider killed 153 Yemeni civilians and wounded 243 — an acknowledgement it refused to make at the time, citing operational security. Lead with the number and with where the strikes landed: a port, a residential building, and a migrant detention centre in Saada. The mechanism to teach is the reporting instrument itself. The annual 1057 civilian-harm report is the only official count that exists, it is produced by the command that conducted the strikes (CENTCOM assessing itself), it uses the standard 'more likely than not', and it arrives a year late — so the number that becomes the historical record is the lowest defensible one. That is why it is 153 against the Yemen Data Project's 238 killed and 467 injured, and why 15 Yemen assessments remain 'pending'. The second mechanism is the gap the report leaves open: it assessed zero civilians killed in eleven months of Caribbean boat strikes, which CIVIC's Annie Shiel calls extrajudicial killing on the record, and it contains nothing at all on the war on Iran that began in late February — 13,000 targets in 40 days by Airwars director Emily Tripp's count, ten times the Yemen campaign, against HRANA's estimate of at least 1,700 Iranian civilians killed including more than 100 children at a girls' school in Minab. A serving Pentagon official told the Intercept this year's report was worthless. Establish what the report says, who compiled it, the strike locations and dates, the independent counts and their methodologies, and what Congress can actually do (the appropriations lever Shiel names). Then the stake: an occupying or striking power that audits itself produces a number, and the number becomes the law's factual basis — dignity requires that the Yemeni dead be counted by someone who did not kill them. SOURCING: Responsible Statecraft is advocacy-adjacent, but every load-bearing claim here is a public document (the DoD report to Congress) or a named monitoring organisation — anchor to the report text and to Yemen Data Project, Airwars and HRANA directly, and attribute the advocacy quotes as advocacy. Yemen, Iraq, Somalia and Iran are OIC members and no regional outlet covered this report in today's feed — a feed-side gap worth auditing.",
+      "conceptUris": []
+    },
+    {
+      "id": "ice-shock-gloves-procurement-manual-sudden-death",
+      "label": "ICE to Spend $20 Million on Electric-Shock Gloves for Agents",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-ice-shock-gloves-procurement-manual-sudden-death"
+      ],
+      "eventUri": "eng-11915735",
+      "summary": "US Immigration and Customs Enforcement plans to spend up to $20 million on gloves that deliver electric shocks to detainees — and 404 Media has obtained the manual, which warns the device may contribute to 'sudden death'. Consolidate both accounts: Bloomberg has the procurement, 404 Media has the document, and the document is the story. Lead with the manufacturer's own warning against the purchase order, because a state buying a weapon whose maker concedes it can kill is making a documented choice about acceptable risk to people in its custody. The mechanism to teach is procurement as policy. The device is bought under a bland line item — a 'generated low output voltage emitter' — so no legislature votes on it, no use-of-force policy is published alongside it, and the first public account of what it does comes from a leaked manual rather than from ICE. The second mechanism is what a hand-worn shock device changes about restraint: unlike a Taser, it is always on the agent's body during the physical act of handcuffing and moving a person, which removes the deliberate draw-and-aim step that use-of-force review is built around and makes the shock a feature of ordinary handling rather than an escalation anyone logs. Establish the contract value and vehicle, the vendor, exactly what the manual says about output, contraindications and death risk, what ICE's use-of-force policy currently permits, what the ACLU and medical examiners say about existing conducted-energy deaths in custody, and whether any oversight body reviewed the buy. Then the reader's stake: the people this touches are detainees not convicted of anything, held in an administrative system with no right to appointed counsel — and the same category of vendor sells the same category of device to detention ministries worldwide. Multi-source US/GB (Bloomberg, BBC) with the 404 Media document as the primary evidentiary anchor.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Homeland_Security",
+        "http://en.wikipedia.org/wiki/Glove",
+        "http://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/American_Civil_Liberties_Union"
+      ]
+    },
+    {
+      "id": "brazil-discord-livestream-suspension-order",
+      "label": "Brazil orders Discord to suspend livestreams after teen's death",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-brazil-discord-livestream-suspension-order"
+      ],
+      "eventUri": "por-1311356",
+      "summary": "Brazil has ordered Discord to switch off livestreaming across the entire country after a 13-year-old girl died by suicide following a stream in which authorities say she was encouraged to harm herself. Lead with the remedy, not the tragedy alone, because the remedy is the precedent: a state has disabled one product feature nationwide rather than fining the company or ordering takedowns, which is a form of regulatory power almost no jurisdiction has previously exercised on a live platform. The mechanism to teach is why livestreaming is the hardest surface to moderate and therefore the first to be switched off — there is no pre-publication review possible on a real-time feed, automated classifiers act on frames rather than on the escalating social dynamic in a small private channel, and the harm here happened inside a semi-closed server that no public-facing moderation queue ever sees. The second mechanism is Brazil's institutional position: since the Marco Civil da Internet and the 2024 X shutdown, Brazilian courts have been the most willing in the democratic world to impose platform-level sanctions, and companies comply because the market is too large to abandon — so Brazil is now effectively writing global product policy for platforms that will not accept it from smaller states. Establish which authority issued the order and under what law, the compliance deadline and penalties, what Discord says and whether it has complied, the investigation into what happened in that channel, and what Brazil has done to X, Telegram and Rumble before this. Then the reader's stake: the countries most exposed to platform harms have the least leverage to demand changes, and the shape of what a mid-sized state can force from a US platform is being determined in São Paulo courtrooms, not in Brasília or Brussels. Multi-source QA/DE (Al Jazeera, Deutsche Welle), low sentiment divergence (0.13) — both frame it as child protection rather than censorship.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Discord",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Adolescence",
+        "http://en.wikipedia.org/wiki/Child",
+        "http://en.wikipedia.org/wiki/Suicide",
+        "http://en.wikipedia.org/wiki/Self-harm",
+        "http://en.wikipedia.org/wiki/Violence"
+      ]
+    },
+    {
+      "id": "ajk-la17-haveli-form-27-result-dispute",
+      "label": "AJK polls: Rathore's LA-17 Haveli victory disputed, local PML-N announces indefinite strike",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-ajk-la17-haveli-form-27-result-dispute"
+      ],
+      "eventUri": "eng-11911076",
+      "summary": "A returning officer in Azad Jammu and Kashmir issued Form 27 declaring the sitting AJK prime minister, PPP's Faisal Mumtaz Rathore, the winner in LA-17 Haveli — after the rival PML-N candidate says he was assured the form would not be issued pending his challenge. Lead with Form 27, because the whole contest turns on one piece of paper: it is the final consolidated result, and once a returning officer signs and issues it the remedy shifts from an administrative recount, which is fast and cheap, to an election tribunal petition, which in Pakistan routinely outlasts a large part of the assembly's term. Timing the signature is therefore the decision, not the count. The mechanism to teach is that election theft in a formally functioning system does not need forged ballots — it needs control of the sequence: when consolidation happens, whether Form 45 polling-station counts are reconciled against the Form 47/27 consolidation, and who holds the door open for how long. That is the same procedural argument that defined Pakistan's 2024 general election and it is now being run at constituency scale in AJK. The second mechanism is why AJK matters more than its size suggests: it has its own assembly and prime minister but its budget and much of its administration run through Islamabad, so a disputed seat there is a proxy for federal party alignment in a territory whose people vote for a government that does not fully control its own finances. Establish what the RO actually did and under which rules, what PML-N alleges and what it is demanding, the margin and the disputed stations, what the AJK Election Commission says, the strike call and its scope, and how many AJK seats are under challenge. Then the reader's stake: this site covered the ECP's delisting of Awaam Pakistan yesterday — the pattern connecting them is that Pakistan's electoral disputes are increasingly decided by administrators and paperwork rather than by voters or courts. Pakistan is an OIC member and Dawn is the regional source and the sole account in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "hormuz-transit-passage-blockade-iran-talks-stall",
+      "label": "Trump declares US will 'keep' Hormuz as MoU deadline nears",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall"
+      ],
+      "eventUri": "eng-11916268",
+      "summary": "Trump posted that the United States has 'total control over the Strait of Hormuz' and 'I THINK WE WILL KEEP IT' — while a senior Iranian source tells Middle East Eye there has been no progress on reviving the interim deal and no ceasefire extension was discussed. Consolidate the two: the claim and the stalled talks are one story, and the second is what makes the first consequential. Lead with the legal impossibility inside the boast, because it is the mechanism our reader will want: Hormuz is not American, and it is not Iranian either. It is a strait overlapped by the territorial seas of Iran and Oman, in which the right of transit passage under the law of the sea cannot be suspended or 'kept' by anyone — a naval blockade of it is not control, it is an act that converts a right of passage into a permission granted by whoever has the ships. The second mechanism is who pays for a blockade regardless of who wins the argument: roughly a fifth of the world's seaborne oil and a large share of its LNG passes through, and the price is set by war-risk insurance, which does not wait for a legal ruling — every additional week of an unresolved MoU deadline reprices fuel and freight for Pakistan, Egypt, India, Bangladesh and East Africa, none of which are party to the war. Establish exactly what Trump said and where, what the MoU is and when it expires, what Iran's stated position on the interim deal now is, the current state of shipping traffic, tanker rates and insurance premiums through the strait, what Oman and the GCC states say about their own waters, and what the transit-passage regime actually provides. Then the stake: a strait is a piece of the commons, and the claim to 'keep' one is the clearest statement yet of what this war is about. Two regional outlets carry it (The New Arab, Middle East Eye); Iran, Oman and the Gulf states are OIC members.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Strait",
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps"
+      ]
+    },
+    {
+      "id": "nigeria-deep-offshore-tax-incentives-output-decline",
+      "label": "EXPLAINER: What Tinubu's new deep offshore tax incentives mean for Nigeria",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-nigeria-deep-offshore-tax-incentives-output-decline"
+      ],
+      "eventUri": "eng-11913375",
+      "summary": "President Bola Tinubu approved a new tax-incentive framework for deep offshore oil and gas on Tuesday, pitched at attracting up to $50 billion — and on the same day the regulator reported July crude output down 4% month-on-month. Consolidate both Premium Times accounts: the incentive is the policy, the production number is the evidence it is responding to, and the pairing is the story. Lead with the trade the framework makes, because it is measurable: the state forgoes tax on the most capital-intensive barrels in exchange for barrels that would allegedly not otherwise be produced, so the entire policy rests on an unverifiable counterfactual about what the operators would have done anyway. That is the definition of a tax expenditure, it never appears in the budget as spending, and Nigeria's own history — the 1993 Production Sharing Contracts whose deep-offshore royalty terms went unrevised for two decades while oil prices tripled — is the textbook case of what happens when the counterfactual is guessed wrong. The second mechanism is where the money actually leaks: production is already above Nigeria's OPEC quota for a third month even as it falls, so the binding constraint on revenue is not the tax rate but metering, theft and the reconciliation gap this site covered in the Senate's audit-query ultimatum to Seplat — a state that cannot verify how many barrels left the terminal cannot know what it just gave away. Establish the specific incentives (rates, ring-fencing, sunset clauses, qualifying fields), who lobbied for them, the NUPRC July figures and the OPEC quota, what the Petroleum Industry Act already provided, what NEITI's reconciliations show, and what the government projects in return. Then the reader's stake: this is the standard resource-state bargain from Abuja to Baghdad to Jakarta — sovereignty over a resource is exercised through a tax schedule, and the schedule is negotiated with the only people who know what the resource is worth. Nigeria is an OIC member and Premium Times is the regional source and the sole account in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "afghan-women-business-mahram-intermediary-cost",
+      "label": "What it is like to run a business as a woman in Taliban-controlled Afghanistan",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-afghan-women-business-mahram-intermediary-cost"
+      ],
+      "eventUri": null,
+      "summary": "First-hand accounts from Afghan women still running businesses under Taliban rule, five years in. Lead with the arithmetic of what remains rather than with the closure of what does not: these are women operating enterprises in an economy where they cannot travel without a mahram, cannot in most provinces deal face to face with male officials or suppliers, and cannot educate the daughters who would have been their successors — so every transaction requires a male intermediary who takes a cut, and the intermediary tax is the mechanism. That is what makes this an economy story and not only a rights story: the restrictions convert a woman's business into a business with a mandatory partner, which is a transfer of income as well as a denial of dignity. The second mechanism is the sector shape it produces — home-based tailoring, food processing, handicraft, online sales — all low-capital, all invisible to formal credit, because a bank branch visit is itself restricted, and all dependent on the mobile internet and payment rails that a single decree could close. Establish who the women interviewed are and what they actually run, the specific decrees constraining them and when each was issued, what has changed since the education and employment bans took full effect, what the World Bank and UN Women estimate the exclusion costs Afghan GDP, and what happens to the households these businesses support. Then the reader's stake: Afghanistan is an OIC member of 40 million whose government claims Islamic legitimacy for measures with no basis in the trading tradition of a Prophet whose own employer was a merchant woman — state that as fact, not as polemic, and let the women interviewed carry the argument. Original ground reporting via Global Voices' contributor network; no Afghan outlet appears in today's feed, so attribute the account to Global Voices and its named interviewees, protect identifying detail as the original does, and verify each decree against the record.",
+      "conceptUris": []
+    },
+    {
+      "id": "crispr-y-chromosome-female-clones-mice",
+      "label": "Scientists just created female clones of male mice",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-crispr-y-chromosome-female-clones-mice"
+      ],
+      "eventUri": null,
+      "summary": "A team in Japan used CRISPR to delete the Y chromosome from male mouse cells and produced female clones of male mice — 'no one has done this before,' says reproductive biologist Monika Ward. Lead with the precise claim and its limit, because the headline invites an overread: this is a chromosome deleted from a cell line and an embryo brought to term, not a sex change in a living animal. The mechanism to teach is what the Y chromosome actually does, which is far less than most readers assume — mammalian sex is switched by a single gene, SRY, sitting on it; remove the chromosome and the default developmental pathway proceeds, which is why the result works at all and why 'female' is the outcome of an absence rather than of an addition. The second mechanism is why anyone would want it, and the honest answer is unglamorous and important: XY and XX cells differ in ways that confound every experiment in biology, so producing genetically identical animals differing only in sex chromosomes gives researchers a control that has never existed for questions about why disease incidence, drug metabolism and immune response differ between men and women — an area where clinical medicine has historically just used male subjects and generalised. The third point is the boundary, and it should be stated plainly rather than sensationally: the technique produces animals, the same manipulation in human embryos is prohibited in essentially every jurisdiction that regulates it, and the reason to say so is that the reader will otherwise supply the speculation themselves. Establish the institution and the paper, the method and its efficiency rate, how many pups were born and their health, what independent researchers including Ward say is and is not shown, and what the immediate research applications are.",
+      "conceptUris": []
+    },
+    {
+      "id": "drc-bundibugyo-ebola-vaccine-ring-trial",
+      "label": "Talks on launch of clinical trial of Ebola vaccine in DRC advance, WHO says",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-drc-bundibugyo-ebola-vaccine-ring-trial"
+      ],
+      "eventUri": "eng-11909727",
+      "summary": "The WHO and Congolese authorities are negotiating to expedite a multi-arm Phase 3 trial of vaccines against Bundibugyo virus in the north-east of the DRC, during an outbreak. Lead with the fact most readers will not know: the Ebola vaccine that exists — Ervebo, stockpiled and deployed since 2019 — works against the Zaire species and does not protect against Bundibugyo, so a country in the middle of an outbreak has the world's most famous vaccine and it is the wrong one. The mechanism to teach is the ring trial, and it is genuinely elegant: you cannot run a placebo trial during a lethal outbreak, so investigators vaccinate the contacts and the contacts-of-contacts of each confirmed case, randomising when the ring is vaccinated rather than whether — the design that proved Ervebo in Guinea in 2015 and the reason a vaccine can be tested and deployed by the same act. The second mechanism is the economics that decide which filovirus gets a licensed vaccine: Ervebo exists because Zaire ebolavirus caused the West African epidemic that reached Europe and the US, and Bundibugyo and Sudan species vaccines remain unlicensed candidates because their outbreaks have stayed in Uganda and the DRC — the market for a vaccine is defined by who the disease frightens, not by whom it kills. Establish what the WHO said and who said it, which candidate vaccines are in the multi-arm trial and who makes them, the current outbreak's case and death counts and its location, why Ervebo does not apply, what the regulatory and consent arrangements are, and what the DRC's health ministry says about the terms. Then the reader's stake: a trial conducted on Congolese patients during their outbreak produces a product licensed elsewhere and priced elsewhere, and the question of who owns the resulting vaccine is one the reporting should answer, not assume.",
+      "conceptUris": []
+    },
+    {
+      "id": "litellm-supply-chain-credential-leak",
+      "label": "Terabytes of credentials leaked in massive supply-chain attack",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-litellm-supply-chain-credential-leak"
+      ],
+      "eventUri": "eng-11917091",
+      "summary": "Terabytes of credentials belonging to Microsoft, Amazon, Cisco, Samsung, Salesforce and others were exposed through a supply-chain attack on LiteLLM, an open-source tool that routes requests between applications and AI model providers. Lead with what LiteLLM is, because the position it occupies is the entire story: it is a proxy that sits between a company's code and every model API it uses, which means by design it holds the keys to all of them — a single package that has become the place where an organisation's most valuable secrets are concentrated, adopted at enormous speed and maintained by a very small team. The mechanism to teach is the shape of a supply-chain compromise: nobody breached Microsoft, and Microsoft's own defences were irrelevant, because the trust relationship was inherited — you are exposed through what your developers imported, and the blast radius is set by the dependency graph rather than by your perimeter. The second mechanism is what is specifically new about the AI era's version of it: API keys to model providers are bearer tokens with billing attached and usually no IP binding, so a stolen key is simultaneously a data-exfiltration channel, an unlimited spend on someone else's account, and an authenticated seat inside whatever internal data the application feeds its model — three categories of harm from one leaked string. Establish exactly how the compromise happened and when, which versions are affected, what was exposed and how it was discovered, which organisations have confirmed impact, what the maintainers have shipped, and the concrete rotation steps a reader running LiteLLM should take tonight. Then the reader's stake: our audience includes people who run this in production — this piece should be useful to them by the third paragraph, and the structural lesson is that the AI stack has rebuilt, in eighteen months, exactly the single-point-of-trust concentration that twenty years of security engineering was spent dismantling.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-smart-glasses-covert-recording-harassment-study",
+      "label": "Researchers Show How Meta's 'Pervert Glasses' Are Used to Harass Women",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-meta-smart-glasses-covert-recording-harassment-study"
+      ],
+      "eventUri": null,
+      "summary": "A new academic study documents how pickup-artist influencers use Meta's Ray-Ban smart glasses to film women without consent and monetise the footage on Instagram — on a platform Meta also owns. Lead with that closed loop, because it is the accountability finding and no press release will state it: one company sells the covert camera, hosts the resulting video, and takes a share of the revenue from the content, so every incentive in the chain runs the same direction and none of them belongs to the woman being filmed. The mechanism to teach is what the glasses changed technically, which is small and decisive: the capture indicator is a small LED that is unreadable in daylight or from conversational distance, and the wearer's eyeline is the frame, so the recording is indistinguishable from being looked at — consent law in most countries turns on a reasonable expectation of privacy in public, a standard written for a world where pointing a camera was a visible act. The second mechanism is why the platform layer, not the device layer, is where this could actually be stopped: the harm becomes commercial at upload, so Instagram's own rules on non-consensual imagery are the binding constraint that is not being enforced — and researchers, not the company, are the ones counting. Establish who conducted the study and its method and sample, what it found about volume, tactics and the connection between covert recording and downstream harm, what Meta's stated policies for the glasses and for Instagram say, whether the accounts named remain live, and what the EU AI Act, GDPR and state two-party-consent laws actually reach. Then the reader's stake: these glasses are on sale worldwide including across the Gulf and South Asia, into legal systems with far weaker image-consent recourse and far higher social cost to a woman who is filmed — and the modesty this reader values is not a matter of what a woman wears, it is a matter of who is permitted to record her. Original reporting from a specialist outlet; anchor every claim to the study.",
+      "conceptUris": []
+    },
+    {
+      "id": "kazakhstan-egov-data-leak-identity-consolidation",
+      "label": "Data of 15 Million Kazakhstanis Allegedly Leaked",
+      "firstSeen": "2026-08-12T22:14:17.853Z",
+      "lastCovered": "2026-08-12T22:14:17.853Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-kazakhstan-egov-data-leak-identity-consolidation"
+      ],
+      "eventUri": null,
+      "summary": "A hacker claims to hold the personal data of 15 million Kazakhstanis taken from eGov, the state's single digital services portal; the authorities say they are investigating. Lead with the ratio and let it do the work: Kazakhstan's population is about 20 million, so the claim is roughly three quarters of the country, and in a state where eGov is the mandatory front door to identity documents, property records, tax, pensions and healthcare, the leaked record is not a marketing list — it is the citizen's whole administrative self. The mechanism to teach is the cost of consolidation. A single digital-government portal is genuinely better for citizens on every ordinary day, and that is why it is built; the same architecture means one compromise yields the joined-up record that a dozen separate breaches would not, because the joining has already been done by the state. The second mechanism is what recourse exists, and the answer is the story's real finding: a national identification number cannot be reissued the way a card can, so the harm is permanent and the only available remedies are downstream — verification requirements at banks and registries — which shifts the cost of the state's breach onto every institution and every citizen who must now prove they are themselves. Establish how the claim surfaced and what sample the hacker published, what eGov holds and how many services route through it, what the ministry of digital development has said and what it has confirmed or denied, whether the claim has been independently verified and by whom, the country's data-protection law and any penalty for a state operator, and Kazakhstan's earlier breaches. Then the reader's stake: this is the same identity architecture being deployed in Egypt, Pakistan, Indonesia and the Gulf, sold on the same convenience argument, with the same single point of failure — and the state that loses the data is also the regulator that would sanction the loss. Kazakhstan is an OIC member; no Central Asian outlet covered this in today's feed, so attribute to The Diplomat and verify against official statements.",
+      "conceptUris": []
+    },
+    {
       "id": "india-cpi-fed-split-imported-inflation",
       "label": "India Retail Inflation Rises To 4.45% In July From 4.38% In June",
       "firstSeen": "2026-08-12T17:13:00.139Z",
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-india-cpi-fed-split-imported-inflation"
@@ -31,7 +248,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-gulf-tourism-job-losses-migrant-remittances"
@@ -47,7 +264,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-pakistan-iran-tuna-fuel-barter-sanctions"
@@ -63,7 +280,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-awaam-pakistan-ecp-delisting-party-symbol"
@@ -79,7 +296,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-aegean-pushback-deaths-accountability-gap"
@@ -95,7 +312,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bukele-model-emergency-regimes-latin-america"
@@ -111,7 +328,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-uzbekistan-latin-script-reform-stalemate"
@@ -127,7 +344,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fifa-africa-development-grants-voting-bloc"
@@ -143,7 +360,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fractal-uncertainty-principle-quantum-chaos"
@@ -159,7 +376,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-uk-zev-mandate-rollback-driver-costs"
@@ -175,7 +392,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-egypt-sim-fraud-biometric-registration"
@@ -191,7 +408,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-arab-cybercrime-laws-speech-elastic-clauses"
@@ -207,7 +424,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fusion-centers-flock-camera-critics-monitoring"
@@ -223,7 +440,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-acro-breaches-dwell-time-ico-reprimand"
@@ -239,7 +456,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet"
@@ -264,7 +481,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-zhu-rongji-soe-restructuring-wto-accession"
@@ -289,7 +506,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-senate-seplat-audit-ultimatum"
@@ -305,7 +522,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mecca-pact-houthi-test-mutual-defence"
@@ -321,7 +538,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-egypt-ethiopia-gerd-red-sea-encirclement"
@@ -337,7 +554,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-siraya-indigenous-recognition-taiwan"
@@ -353,7 +570,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sazan-island-kushner-resort-albania"
@@ -369,7 +586,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-glueball-besiii-particle-made-of-force"
@@ -385,7 +602,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bactrian-camel-reference-genome"
@@ -401,7 +618,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-10-ice-lexisnexis-palantir-data-brokers"
@@ -417,7 +634,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
@@ -433,7 +650,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ai-election-infrastructure-opacity"
@@ -449,7 +666,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-novorossiysk-port-strike-cpc-oil-terminal"
@@ -474,7 +691,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-north-korea-ballistic-test-drills-calendar"
@@ -499,7 +716,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-warraq-island-sit-in-cairo-development"
@@ -515,7 +732,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-china-afghanistan-taliban-five-years-minerals"
@@ -531,7 +748,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-iran-brics-new-development-bank-accession"
@@ -547,7 +764,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-gold-ten-week-high-cpi-household-savings"
@@ -563,7 +780,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-golden-dome-funding-impasse-interceptor-economics"
@@ -579,7 +796,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-total-solar-eclipse-geometry-prediction"
@@ -604,7 +821,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bali-lombok-ferry-fire-roro-manifest"
@@ -629,7 +846,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-chitral-cloudbursts-lower-dir-debris-flows"
@@ -645,7 +862,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tokenized-stock-derivatives-counterparty-ownership"
@@ -661,7 +878,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-rocket-lab-germany-subsidiary-sovereign-launch"
@@ -677,7 +894,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-rfid-baggage-tracking-accountability"
@@ -693,7 +910,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ceuta-crossing-migrants-stranded-morocco"
@@ -709,7 +926,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-journalists-killed-gaza-press-record"
@@ -725,7 +942,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-australia-indigenous-youth-detention"
@@ -741,7 +958,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-venezuela-earthquake-missing-la-guaira"
@@ -757,7 +974,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-central-asia-consultative-summit-azerbaijan"
@@ -773,7 +990,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tata-sons-chairman-exit-rbi-listing"
@@ -798,7 +1015,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-eu-diversification-law-supply-chains"
@@ -814,7 +1031,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sovereign-ai-fund-token-spend"
@@ -830,7 +1047,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mumbai-kurla-landslide-chawl"
@@ -854,7 +1071,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-colombia-canals-built-without-rulers"
@@ -870,7 +1087,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-age-verification-anonymity-lobbying"
@@ -886,7 +1103,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-meta-muse-glimmer-local-agent-model"
@@ -902,7 +1119,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-modeling-and-ai-optimization-of-visible-light-driven-acid-or"
@@ -918,7 +1135,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade"
@@ -943,7 +1160,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-andras-baka-elected-hungarian-president"
@@ -967,7 +1184,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-venezuela-israel-restore-consular-ties"
@@ -990,7 +1207,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-guinea-bissau-somaliland-recognition-collapse"
@@ -1006,7 +1223,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-myanmar-rohingya-repatriation-promise"
@@ -1022,7 +1239,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-romania-drones-neptun-deep-gas"
@@ -1038,7 +1255,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-nigeria-aviation-unions-strike-faan"
@@ -1054,7 +1271,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-cftc-kalshi-new-york-prediction-markets"
@@ -1070,7 +1287,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-india-heatwave-disaster-fund-notification"
@@ -1086,7 +1303,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-liberia-contraception-donor-funding-cuts"
@@ -1102,7 +1319,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-chrome-device-bound-session-credentials"
@@ -1118,7 +1335,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-china-ai-companion-crackdown"
@@ -1134,248 +1351,13 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-nsa-general-counsel-appointment"
       ],
       "eventUri": null,
       "summary": "Kerianne Tobitsch, most recently a senior lawyer at the Department of Homeland Security, is the National Security Agency's new general counsel. Lead with what that office does, because the appointment is invisible unless you know: the NSA's general counsel is the lawyer who decides what the agency may legally collect — the office that signs off on Section 702 targeting procedures, on the minimisation rules for incidentally collected communications, and on the far broader overseas collection conducted under Executive Order 12333, which no court reviews at all. There is no judge in most of that chain; there is a lawyer. The mechanism to teach is that surveillance limits are set by interpretation rather than statute, which is why personnel is policy here: the same text of 702 permitted very different programmes under different counsels, and the changes were only ever visible in retrospect through declassified opinions and leaks. The second point is the DHS provenance — homeland security lawyering is domestic-facing, immigration-adjacent work, and the wall between foreign intelligence collection and domestic use of it is precisely the thing this office polices. Establish who she is and her record, how the post is filled and whether it needs confirmation, what 702's current reauthorisation status and reforms are, and what privacy litigators say. Then the stake for our reader, which is direct: everyone outside the United States is, in this legal architecture, a foreign target by default with no standing to object — so the person appointed to interpret those rules has more say over a Pakistani or Egyptian reader's communications than that reader's own government does. Original reporting from Recorded Future News; single-source, so anchor to documents and named responses.",
-      "conceptUris": []
-    },
-    {
-      "id": "huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone",
-      "label": "Huge fire breaks out at Libya's Zawiya refinery after drone attack",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone"
-      ],
-      "eventUri": "eng-11910632",
-      "summary": "Libya's National Oil Corporation has declared its highest emergency level and warned it may shut the country's largest operating refinery after repeated drone strikes on Zawiya. Lead with what a refinery is to Libya rather than the fire: Zawiya refines for the domestic market, so this is not an export story about world oil prices — it is a fuel-queue story about Libyans, and the first measurable effect will be petrol rationing and generator fuel in Tripoli, 45km east. The mechanism to teach is that Libya's oil infrastructure is the arena of its politics because it is the only revenue: the NOC is the one institution both rival governments have agreed to leave standing, precisely so that the money keeps arriving, and striking a refinery rather than seizing it is how a militia negotiates with an institution it cannot capture. Establish who is being blamed and by whom (name the claims and label them as claims — attribution here is contested), which units burned and what Zawiya's throughput is against Libya's total refining and import needs, how much refined fuel Libya already imports despite being an oil producer, and what the NOC's force-majeure and emergency declarations actually trigger. Then the reader's stake: this is the second Libyan energy target hit in days, and a country that exports crude while importing petrol is one strike away from a fuel crisis in a state with no functioning central government to ration it. Multi-source (RT/RU + Al Jazeera/QA); the OIC-region regional voice here is Al Jazeera. Drop Site's 11 August briefing independently notes multiple attacks on the refinery — use it to corroborate that the strikes are repeated, not a single incident. Africa has been this site's thinnest region for four consecutive days.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Libya",
-        "http://en.wikipedia.org/wiki/Zawiya,_Libya",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/National_Oil_Corporation",
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Tripoli,_Libya"
-      ]
-    },
-    {
-      "id": "death-toll-of-houthi-attack-on-cargo-ship-rises-to-six-yemen",
-      "label": "Death toll of Houthi attack on cargo ship rises to six: Yemeni coastguard",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-death-toll-of-houthi-attack-on-cargo-ship-rises-to-six-yemen"
-      ],
-      "eventUri": "eng-11911902",
-      "summary": "Six crew are dead on a cargo vessel struck near Bab al-Mandeb, according to Yemen's internationally-recognised government's coastguard, which also accuses the Houthis of attacking a rescue effort. Lead with the crew, because they are the people this site is obliged to count and almost no coverage does: merchant seafarers on Red Sea routes are overwhelmingly Filipino, Indian, Pakistani, Indonesian and Syrian, they are employed through manning agencies under flags of convenience, and when a hull is hit the war is being fought on the bodies of workers with no stake in it and no state that will retrieve them. Name them and their nationalities if the reporting allows. The mechanism to teach is who bears the cost of a chokepoint campaign: the strikes are framed as pressure on Israel and on Western shipping, but the ships that still transit Bab al-Mandeb are the ones that cannot afford the Cape of Good Hope detour — smaller operators serving African and South Asian ports — so the traffic that remains is the poorest traffic. The second mechanism is the attack on the rescue: striking a vessel responding to a distress call, if established, is a distinct violation, since the duty to render assistance at sea is one of the oldest obligations in maritime law and is owed regardless of the flag. Establish what the coastguard actually said and what it can verify, the ship's name, flag, owner, cargo and crew, whether the Houthis have claimed it, what UKMTO and Ambrey have logged, and current transit volumes and war-risk premiums through the strait against pre-2024 levels. ATTRIBUTION: the coastguard is a party to Yemen's civil war and its account is contested — carry it as its claim, seek the Houthi statement, and do not report the attribution as settled. Continues our Bab al-Mandeb thread from the 11 August Puntland piece — that story was about who bases forces near the strait; this is what the strait costs the people who sail it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Strait"
-      ]
-    },
-    {
-      "id": "escalated-israeli-assault-on-west-bank-504-attacks-in-a-week",
-      "label": "Escalated Israeli assault on West Bank with 504 attacks in one week",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-escalated-israeli-assault-on-west-bank-504-attacks-in-a-week"
-      ],
-      "eventUri": null,
-      "summary": "504 Israeli military and settler attacks across the occupied West Bank in a single week. Lead with the count and then immediately with what a count is: this is the arithmetic of an occupation running at a tempo nobody calls a war, which is exactly why it does not lead a bulletin anywhere — a raid, a checkpoint killing, an uprooted olive grove and a demolition order are each too small to be news, and 504 of them in seven days is the news. Continuation of ẓulm is the development. The mechanism to teach is the division of labour between the settler and the soldier: settler violence establishes a zone people stop farming or grazing, the army then closes it as a security area, and the closure becomes permanent — so land changes hands with no order signed by anyone. Establish where the 504 figure comes from (OCHA's protection-of-civilians database and the Palestinian Authority's wall-and-settlement commission are the two registries that publish weekly; cite the registry, not the aggregator), the breakdown by type — raids, injuries, killings, demolitions, settler attacks, land seizures — the death and detention toll for the week including children, which governorates took the worst of it, and what the Israeli military says. Then the structural why our reader should carry: the West Bank has no ceasefire to breach and no negotiation to collapse, so the metric that matters is not incidents but hectares and permits — how much land is inside settlement master plans now versus a year ago. ATTRIBUTION: Drop Site's daily briefing is the only account in today's feed and it is a digest — treat the 504 figure as a pointer to the underlying registry and verify it there before publishing; do not attribute a weekly tally to a newsletter. No Palestinian, Israeli or regional outlet appears in today's feed on this, which is itself the finding.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-threat-prompted-secret-trump-flight-from-turkiye-report",
-      "label": "Iran threat prompted secret Trump flight from Turkiye: Reports",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-iran-threat-prompted-secret-trump-flight-from-turkiye-report"
-      ],
-      "eventUri": "eng-11911433",
-      "summary": "An Iranian assassination threat reportedly caused Trump to switch aircraft in secret leaving Turkiye last month, with Air Force One flown as a decoy while he left on a smaller military jet. Do not write this as a thriller — lead with what the decoy concedes. A president who started a war against Iran in February can no longer move on the aircraft that exists to signal that he can go anywhere, and the American security establishment's own assessment of the risk is legible in that substitution. The mechanism to teach is that the cost of a war is paid partly in the freedom of movement of the people who ordered it, and that this is an old pattern: the same ruse was used for Clinton's 2000 Pakistan visit, and the reader should be told why — a head of state's itinerary is the most valuable intelligence product in a conflict, so the counter-move is to make the itinerary a lie. Establish what the Washington Post and CNN actually reported and who their sources are, when and where the switch happened and what Trump had said publicly about his departure, what the White House and Secret Service will confirm, what Tehran has said, and where the US-Iran memorandum negotiations stand — The War Zone counts more than 20 US warships and two carrier groups still on station with under a week left on that clock. Then the frame: this is being reported in the US as a story about one man's safety; for our reader the same fact is a measurement of how far the February war is from over. Multi-source across QA, US and IN with a sentiment divergence of 0.25 — Al Jazeera reads it as escalation, CNN as a security procedure. Note that the threat itself is a reported US intelligence assessment, not an established fact; attribute it that way throughout.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Air_Force_One",
-        "http://en.wikipedia.org/wiki/The_Washington_Post",
-        "http://en.wikipedia.org/wiki/Ankara",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "sara-duterte-impeachment-trial-day-14-unusual-names-in-confi",
-      "label": "Sara Duterte impeachment trial Day 14: Unusual names in confidential fund list, disbursements with 'zero' results",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-sara-duterte-impeachment-trial-day-14-unusual-names-in-confi"
-      ],
-      "eventUri": "eng-11910805",
-      "summary": "A Commission on Audit official testified in the impeachment trial of Philippine Vice President Sara Duterte about implausible names on the acknowledgement receipts for her confidential funds, and disbursements that produced nothing. Lead with the receipts, not the trial theatre: 'confidential funds' are public money released in cash against signatures that are never published, audited only after the fact and only by a body the executive appoints, and the whole category exists because someone argued that intelligence work cannot be receipted. The mechanism to teach is the audit trail as an accountability instrument — a state auditor able to say a named payee does not appear to exist is the single most powerful check any republic has over discretionary spending, and it works only where the auditor is independent and testifies in public. That is precisely what is happening here, and it is rare. Establish the amounts, the department they came from (education, which is the detail that stings), what COA's Xylene del Campo actually found and what standard she applied, what the defence has said and why the prosecution says it was stood up, the Senate's procedural posture and the constitutional timetable, and what the acquittal threshold is. Then the transferable point for our reader: nearly every state has this line item — Pakistan's secret service funds, Nigeria's security votes, Indonesia's dana taktis, Egypt's sovereign accounts — and the Philippines is running the experiment of testing one in open court. Southeast Asia and accountability of the powerful; single national-broadcaster account, so source the figures to COA's testimony and the Senate record rather than the outlet's framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sara_Duterte",
-        "http://en.wikipedia.org/wiki/Commission_on_Audit_of_the_Philippines",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_Philippines",
-        "http://en.wikipedia.org/wiki/Impeachment_trial",
-        "http://en.wikipedia.org/wiki/Department_of_Education_(Philippines)",
-        "http://en.wikipedia.org/wiki/Audit"
-      ]
-    },
-    {
-      "id": "goods-transporters-to-continue-strike-as-negotiations-with-g",
-      "label": "Goods transporters to continue strike as negotiations with govt end without resolution",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-goods-transporters-to-continue-strike-as-negotiations-with-g"
-      ],
-      "eventUri": null,
-      "summary": "Talks between Islamabad and the All Pakistan Goods Transport Itehad collapsed on Tuesday, so a countrywide wheel-jam strike over daily petrol and diesel price fixing continues. Lead with the word 'daily', because the frequency is the grievance: Pakistan moved from fortnightly to daily fuel price adjustment to satisfy an IMF condition that subsidies not be smuggled back in through a lagging administered price, and a haulier who quotes a freight rate in the morning cannot recover a diesel increase that lands the same afternoon. The mechanism to teach is that pass-through needs an instrument. In a formal freight market, contracts carry a fuel surcharge clause; Pakistan's road freight is owner-operators on cash bookings with no index and no forward market, so a policy designed for price transparency lands as unhedgeable risk on the smallest balance sheets in the supply chain, and their only instrument is to stop the trucks. Establish the union's specific demands and what the government offered, how the daily pricing mechanism actually works and who sets it (OGRA and the finance ministry), the diesel price now against six and twelve months ago, the petroleum levy per litre and what the IMF programme commits Pakistan to, and what a multi-day wheel-jam does to wholesale food markets, port clearance at Karachi and Qasim, and Afghan transit trade. Then the reader's stake: this is the third link in a chain this site has already traced — Hormuz sets the barrel, the barrel sets the import bill, and here is where it reaches a truck driver and then a vegetable price in Lahore. Do not write it as a labour-dispute report; the fuel-pricing mechanism is the story. OIC-region story carried by the regional outlet (Dawn, PK), which is the sole account in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "cocoa-farmers-in-southeast-cameroon-are-adapting-to-eu-regul",
-      "label": "Cocoa farmers in southeast Cameroon are adapting to EU regulations, but they still want a fair price",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-10-cocoa-farmers-in-southeast-cameroon-are-adapting-to-eu-regul"
-      ],
-      "eventUri": null,
-      "summary": "Cameroonian cocoa growers have done what Brussels asked — geolocated plots, deforestation-free certification, traceability records — and are still paid a price set on a futures exchange in London that contains no line for any of it. Lead with that asymmetry, in a farmer's own words and with the actual per-kilo numbers. The mechanism to teach is where compliance cost lands in a commodity chain: the EU Deforestation Regulation places the legal duty on the European importer, but the importer discharges it by demanding documentation from suppliers, so the cost of proving a plot is legal is borne by a smallholder with a few hectares while the liability it removes belongs to a company in Amsterdam or Hamburg. A regulation designed to make the buyer responsible has been converted, through the contract, into an entry barrier for the seller. The second mechanism is why the price cannot absorb it: cocoa is priced on the ICE terminal markets and a Cameroonian farmer is a price-taker at the end of a chain of buying agents, so record cocoa prices in 2024-25 reached the farmgate as a fraction — establish what share of the export price the farmgate actually captures, and what Cameroon's stabilisation and licensed-buyer system does to it. Establish what the EUDR requires and its current application date after the delays, what certification costs a cooperative and who paid, how many of Cameroon's roughly 600,000 cocoa households can comply at all, and what the government and the cooperatives say. Then the structural point our reader should carry: this is the shape of every green trade rule now being written — the environmental standard is set in the consuming country, the burden of proof is exported to the producing one, and the price is set in a third. Africa is this site's thinnest region; Cameroon is an OIC member and no Cameroonian outlet appears in today's feed, so quote the farmers and cooperatives the reporting names directly.",
-      "conceptUris": []
-    },
-    {
-      "id": "jellyfish-swarms-knock-out-3-2-gigawatts-of-french-nuclear-p",
-      "label": "Jellyfish Swarms Knock Out 3.2 Gigawatts of French Nuclear Power",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-jellyfish-swarms-knock-out-3-2-gigawatts-of-french-nuclear-p"
-      ],
-      "eventUri": "fra-1333224",
-      "summary": "A 'massive influx' of jellyfish clogged the cooling-water intakes at Gravelines, shutting three reactors and cutting a fourth — 3.2GW off the grid during a heatwave that is driving demand up. Lead with the collision of two facts: the largest nuclear station in western Europe was stopped by an animal with no brain, and it happened on the day the grid needed it most. The mechanism to teach is that a thermal power station is fundamentally a water machine — every reactor, coal and gas plant on a coast or river draws enormous volumes of cooling water through screens, and biofouling by jellyfish, mussels and algae is a known, recurring failure mode that scales with sea temperature. This is the second-order climate risk nobody prices: not that the plant floods, but that the sea gets warm enough for gelatinous zooplankton to bloom, and that warm-water blooms and peak electricity demand are the same weather. Establish which units tripped and when, what Gravelines' total capacity is and what share of French output it represents, EDF's current fleet availability and the history of jellyfish and heat-related outages there, what French spot power prices did, and what marine ecologists actually say about whether blooms are increasing versus better observed — that debate is real and the piece should not overstate it. Then the stake beyond France: the same intake design sits on the Gulf coast at Barakah and Bushehr, on Karachi's coast at KANUPP, and along the Indian and Chinese seaboards, all in waters warming faster than the North Sea, and France exports power to five neighbours — an outage in Gravelines is a price in Milan. Bloomberg is the sole account; cite EDF's own outage notices and RTE grid data.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jellyfish",
-        "http://en.wikipedia.org/wiki/Nuclear_reactor",
-        "http://en.wikipedia.org/wiki/Électricité_de_France",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
-        "http://en.wikipedia.org/wiki/Gravelines",
-        "http://en.wikipedia.org/wiki/Gravelines_Nuclear_Power_Station",
-        "http://en.wikipedia.org/wiki/North_Sea"
-      ]
-    },
-    {
-      "id": "shipping-on-rivers-packs-a-surprisingly-large-climate-punch",
-      "label": "Shipping on rivers packs a surprisingly large climate punch",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-shipping-on-rivers-packs-a-surprisingly-large-climate-punch"
-      ],
-      "eventUri": null,
-      "summary": "Boats on inland waterways produced nearly a quarter of all shipping CO2 in 2022, on water bodies that are under 1% of the world's navigable area — from an analysis of billions of AIS ship-tracking records by researchers at the Chinese Academy of Sciences. Lead with that ratio, because it inverts what everyone assumes about shipping: the received wisdom is that sea freight is the most carbon-efficient way to move a tonne, and it is, but the efficiency belongs to the ocean-going hull. The mechanism to teach is why river vessels are so much dirtier per tonne-kilometre — small old engines, no scale economies, constant manoeuvring at low speed, and above all almost no regulation. The IMO's carbon rules, sulphur cap and efficiency indices apply to international voyages; a barge on the Yangtze, the Rhine, the Ganges or the Mekong never leaves national waters, so it falls into a gap between a global regime that does not reach it and national rules that mostly do not exist. The second mechanism is measurement: this finding required AIS transponder records at a scale nobody had processed before, which is a reminder that a whole category of emissions was invisible because it was unmeasured rather than absent. Establish the actual numbers and how the study derived emissions from tracking data, which river systems dominate the total, what the uncertainty is and what the authors concede AIS misses (small unequipped craft, which likely means an undercount in South Asia and Africa), and what regulators have said. Then the stake for our reader: inland waterway freight is being expanded deliberately as the low-carbon option in India's National Waterways programme, in China, in Bangladesh and along the Nile — this study says that switch is a real gain only if the engines and fuels are governed, and right now nobody governs them. Nature is the sole account; cite the underlying paper and its authors, not the news item.",
-      "conceptUris": []
-    },
-    {
-      "id": "crispr-armed-phages-help-treat-severe-superbug-infection-new",
-      "label": "CRISPR-armed phages help treat severe superbug infection",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-crispr-armed-phages-help-treat-severe-superbug-infection-new"
-      ],
-      "eventUri": "ita-933569",
-      "summary": "A 65-year-old kidney transplant patient with an antibiotic-resistant E. coli infection improved after being given bacteriophages engineered to carry CRISPR systems that destroy the bacterium's DNA. Lead with what the phage is: a virus that eats bacteria, found in sewage and river water, used as medicine in Georgia and the former Soviet bloc for a century while the West took antibiotics instead — and now returning as an engineered product because the antibiotics are failing. The mechanism to teach is the two-layer kill. A phage attaches to a specific receptor on a specific bacterium and hijacks it, which is why it spares the rest of a patient's microbiome where a broad-spectrum antibiotic does not; arming it with CRISPR adds a second, sequence-targeted cut that also removes the escape route, because a bacterium that mutates the receptor to resist the phage is still cut by the guide RNA. Establish exactly what was done and by whom, whether this was a trial or compassionate-use, how the patient was assessed and over what period, what happened to the mass that grew after the transplant, and — this matters — what a single case can and cannot establish, since phage therapy's literature is largely n-of-1 successes and the field's problem has always been that a bespoke virus for one patient's strain is not a drug a regulator knows how to approve. Then the stake our reader should carry: antimicrobial resistance already kills more people than malaria and HIV combined, the burden falls hardest in South Asia and sub-Saharan Africa, and a therapy that must be matched to an individual isolate needs a sequencing lab and a phage bank — so the question this case raises is not whether it works but who will ever be able to get it. Pairs with the AMR thread running through this week's coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "company-offering-100-human-written-never-ai-medical-research",
-      "label": "Company Offering '100% Human-Written, Never AI' Medical Research Is Entirely AI",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-company-offering-100-human-written-never-ai-medical-research"
-      ],
-      "eventUri": null,
-      "summary": "Research Gold sells medical manuscripts and peer review on a guarantee of '100% human-written, never AI'; 404 Media found its team of human methodologists are AI-generated faces, or real people's identities used without permission. Lead with the guarantee, because the fraud is elegantly self-describing: the market for proving something was not made by a machine is itself the most profitable thing to fake, and the certificate is cheaper to forge than the work. The mechanism to teach is the paper mill and why medicine is where it lands. Doctors and academics in systems that require a publication count for promotion — and the reporting should name which ones — buy authorship or drafting services, journals cannot verify authorship at all, and the AI-detection tools everyone now leans on are unreliable in both directions, so 'human-written' has become an unverifiable claim sold as a product. The second mechanism is identity: using photographs of real researchers to staff a fake methodology team is a specific harm to named people, and it works because a reader's only check on a website's credibility is a page of faces. Establish exactly what 404 Media found and how they verified it (reverse image search, the named researchers' responses), what Research Gold charges and what it delivers, which journals have published work traceable to it, and what publishers and integrity bodies say. Then the stake for our reader, who may be a doctor: this contaminates clinical evidence, and retraction rates are already at records driven by paper mills. Systematic reviews and treatment guidelines pool published trials without being able to tell which were written by anyone at all — so the failure does not stay in a fake company's website, it reaches a prescription. Original investigative reporting from a source no one else in the feed matches.",
-      "conceptUris": []
-    },
-    {
-      "id": "cyberattack-on-logistics-giant-ceva-hits-retailers-and-steam",
-      "label": "Cyberattack on logistics giant Ceva hits retailers and Steam customers across Europe",
-      "firstSeen": "2026-08-11T17:09:55.836Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-cyberattack-on-logistics-giant-ceva-hits-retailers-and-steam"
-      ],
-      "eventUri": null,
-      "summary": "A cyberattack has disrupted eight European warehouses of CEVA Logistics, and the outage is surfacing at companies most people would never connect to it — Bol, De Bijenkorf, Ace & Tate, and Steam's physical hardware customers. Lead with that list, because it is the finding: nobody buying a Steam Deck or a pair of glasses knows they are a customer of a French contract logistics firm owned by CMA CGM, and the attack is what makes the dependency visible. The mechanism to teach is third-party concentration risk. Retailers outsourced fulfilment to a handful of 3PLs to convert a fixed cost into a variable one, which was rational for each of them individually and produced a shared single point of failure none of them owns, cannot audit, and cannot fail over from — you can switch cloud regions in an hour and you cannot switch a warehouse, because the goods are physically inside it. The second mechanism is why warehouses are now targets: modern fulfilment is robotics, conveyors and a warehouse management system, so encrypting the WMS stops the building even if every machine still works, and the ransom clock is a perishable-inventory clock. Establish what CEVA has confirmed and what it has not, which sites and which client brands, whether ransomware and whether any group has claimed it, what data may have moved, how long recovery is expected to take, and how EU rules — NIS2 and DORA-style third-party requirements — treat a logistics provider of this size. Then the stake beyond Europe: CEVA and its parent run terminals and contract logistics across Africa, South Asia and the Gulf, and the same consolidation that makes a Dutch retailer fragile is far more advanced in markets with one dominant handler and no disclosure rule at all. Continues this week's OT and infrastructure-attack thread; The Record is the sole account.",
       "conceptUris": []
     }
   ]
