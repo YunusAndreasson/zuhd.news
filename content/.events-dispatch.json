@@ -2,23 +2,23 @@
   "items": {
     "fred-us-cpi-2026-08-12": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "2419ef1e4a5a6b7e",
-      "standing": "The monthly consumer price index from the US Bureau of Labor Statistics, the headline measure of what American households pay for goods and services. It sets the reference point for Federal Reserve policy and reprices bonds, currencies and rate expectations worldwide.",
-      "recent": "The Fed held rates at 350-375 basis points on 29 July, citing elevated inflation, and the dollar has since fallen to its weakest since May. Fuel is the live channel: US diesel costs $5.36 a gallon, feeding through to food prices. This release is the first hard read on whether that war premium has reached the consumer basket.",
+      "recentFingerprint": "9fa84abac38d9eed",
+      "standing": "The Bureau of Labor Statistics' monthly reading of US consumer prices, the benchmark measure of American inflation. It sets the reference point for Federal Reserve policy and reprices bonds, the dollar and every rate-sensitive asset.",
+      "recent": "The Fed held rates at 350-375 basis points on July 29, citing elevated inflation, and the dollar has since fallen to its weakest since May with a rate hike in doubt. US diesel at $5.36 a gallon is feeding a war premium through to food prices. This release sets the fuel-led inflation path the committee said it was watching.",
       "citations": [
         "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau",
-        "2026-08-09-war-premium-diesel-pass-through-food-prices",
-        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime"
+        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
+        "2026-08-09-war-premium-diesel-pass-through-food-prices"
       ],
-      "generatedAt": "2026-08-11T04:40:14.174Z"
+      "generatedAt": "2026-08-12T04:38:35.305Z"
     },
     "fred-us-ppi-2026-08-13": {
       "standingFingerprint": "2edeeef889391405",
-      "recentFingerprint": "3b7979789fe30a66",
-      "standing": "The Bureau of Labor Statistics' producer price index, released monthly, measures what US producers receive for their output. It is read as an early signal of cost pressure moving through supply chains toward consumer prices.",
-      "recent": "The Bureau of Labor Statistics reports US PPI on 13 August. The release will set the month's reading on producer-level cost pressure ahead of consumer prices.",
+      "recentFingerprint": "bd667a7f4ca087e6",
+      "standing": "The Bureau of Labor Statistics' monthly Producer Price Index, which measures the prices US producers receive for their output. It is read as a leading signal for consumer inflation, since input and wholesale costs eventually reach retail prices.",
+      "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-10T04:39:09.511Z"
+      "generatedAt": "2026-08-12T04:38:42.123Z"
     },
     "fred-us-retail-sales-2026-08-14": {
       "standingFingerprint": "88dc24dc4edbc81f",
@@ -30,114 +30,111 @@
     },
     "ecb-2026-09": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "d8590af7b209b770",
-      "standing": "The European Central Bank's Governing Council, which sets interest rates for the euro area on a roughly six-week schedule. Its decisions set the cost of credit across twenty member economies and anchor the euro against every currency it trades against.",
-      "recent": "",
-      "citations": [],
-      "generatedAt": "2026-08-11T04:40:30.062Z"
+      "recentFingerprint": "918145243fe5cbae",
+      "standing": "The European Central Bank's Governing Council, which sets interest rates for the euro area on a roughly six-week cycle. Its decisions set the cost of borrowing across the currency bloc's governments, banks and households, and move the euro against other currencies.",
+      "recent": "The decision follows a run of holds elsewhere: the Bank of England kept rates at 3.75% with three of nine policymakers dissenting for a rise, the Bank of Japan held at 1% while warning underlying inflation is exceeding its 2% target, and the RBA held as housing softened. The dollar has fallen to its lowest level since May.",
+      "citations": [
+        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock",
+        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
+        "2026-08-11-the-rate-set-last-year-decides-this-one"
+      ],
+      "generatedAt": "2026-08-12T04:38:51.419Z"
     },
     "fomc-2026-09": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "e3cf888a45ff1ec4",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move the cost of borrowing across the dollar economy and every asset priced against it.",
-      "recent": "The Fed held at 350-375 basis points in July, citing elevated inflation, after investors had priced a hike. Since then the dollar has fallen to its weakest since May, and Trump has renewed his bid to remove Cook, reviving the fight over Fed independence. This meeting settles whether the fuel-led inflation of the summer changes the rate.",
+      "recentFingerprint": "fad2cfa9c7c42bb9",
+      "standing": "The Federal Open Market Committee, the Federal Reserve's rate-setting body, which meets eight times a year to set the target range for overnight interbank lending. Its decisions set the cost of borrowing across the dollar economy.",
+      "recent": "The Fed held at 350-375 basis points in July, citing elevated inflation, and the dollar has since fallen to its weakest level since May as a rate hike came into doubt. Trump has moved again to fire Cook, reviving the fight over Fed independence. September settles both the rate path and how much that fight has cost.",
       "citations": [
         "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau",
         "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
-        "2026-08-07-cook-removal-second-attempt-fed-independence",
-        "2026-07-26-fed-hike-oil-shock-dollar-transmission-emerging-market-debt",
-        "2026-07-29-fed-decision-forward-guidance-independence-dollar-rate"
+        "2026-08-07-cook-removal-second-attempt-fed-independence"
       ],
-      "generatedAt": "2026-08-09T04:36:43.427Z"
+      "generatedAt": "2026-08-12T04:39:00.836Z"
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "cb2e78cf6bd4a105",
-      "standing": "The Bank of England's Monetary Policy Committee, nine members who meet eight times a year to set Bank Rate. Its decisions set the floor for UK mortgage, business and government borrowing costs, and move sterling against the dollar and euro.",
-      "recent": "At its July 30 meeting the committee held Bank Rate at 3.75%, with three of nine voting to raise and the Bank saying it was waiting to see the impact of the Iran war. UK house prices rose 0.1% in July as buyers stayed cautious on rates. September's vote will show whether that hawkish minority has grown.",
+      "recentFingerprint": "316594d7eef33c20",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote individually on Bank Rate at eight scheduled meetings a year. Bank Rate sets the floor for UK mortgage, business and government borrowing costs, and anchors sterling.",
+      "recent": "The committee held at 3.75% on 30 July with three of nine voting to raise, the widest split in the current cycle, while it waited to see the impact of the Iran war on supply. UK house prices rose 0.1% in July as buyers stayed cautious. September settles whether that dissenting minority has grown.",
       "citations": [
         "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
       ],
-      "generatedAt": "2026-08-11T04:40:38.580Z"
+      "generatedAt": "2026-08-12T04:39:11.148Z"
     },
     "boj-2026-09": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "236d976eaf83f13a",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions set the price of the world's cheapest major funding currency, which makes them felt in the yen and in borrowing far beyond Japan.",
-      "recent": "The Bank of Japan held at 1% on July 31 while warning underlying inflation is running above its 2% target, and Tokyo sold dollars for yen hours before that decision. Washington then joined a historic intervention on August 3, pushing the dollar to a one-month low. This meeting is the first test of whether the rate itself moves.",
+      "recentFingerprint": "3f17ee04ab4b42fa",
+      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate for the world's third-largest economy. Because Japanese rates anchor global carry trades, its decisions move the yen and funding costs far beyond Japan.",
+      "recent": "The Bank of Japan held at 1% on July 31 while warning that underlying inflation is exceeding its 2% target, and the yen slid despite Tokyo selling dollars hours earlier. Days later the US joined a historic joint intervention to prop up the yen. This meeting is the board's first scheduled test of that arrangement.",
       "citations": [
         "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
         "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
       ],
-      "generatedAt": "2026-08-11T04:40:48.111Z"
+      "generatedAt": "2026-08-12T04:39:20.642Z"
     },
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "8c07a6e13662d301",
-      "standing": "The Office for National Statistics' monthly measure of UK consumer prices, released mid-month for the preceding month. It sets the reference point for Bank of England rate decisions, index-linked gilts, and a range of benefits and contracts uprated by inflation.",
-      "recent": "The Office for National Statistics reports September consumer price inflation on 21 October. The release will settle where UK price growth stands going into the Bank of England's autumn decisions.",
+      "recentFingerprint": "2bb73a1346546f23",
+      "standing": "The Office for National Statistics' monthly measure of UK consumer price inflation, published a few weeks after the month it covers. It sets the reference point for Bank of England rate decisions and for index-linked wages, benefits and gilts.",
+      "recent": "The Office for National Statistics reports September consumer price inflation on 21 October, the reading that will settle where UK price growth stands going into the autumn. Traders are already positioning around inflation prints elsewhere, with CoinDesk noting bitcoin stuck at $63,000 as CPI inflation looms.",
       "citations": [],
-      "generatedAt": "2026-08-09T04:37:18.179Z"
+      "generatedAt": "2026-08-12T04:39:35.072Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "d6aec5eb0621bd4a",
-      "standing": "The rate-setting committee of the US Federal Reserve, which meets eight times a year to set the target range for overnight bank lending. Its decisions set the price of dollar credit worldwide, moving currencies, sovereign borrowing costs and every asset priced in dollars.",
-      "recent": "The Fed held at 350-375 basis points in July, citing elevated inflation, after investors had priced a hike and Citadel bet on one. Since then the dollar has fallen to its weakest since May with a hike in doubt, and Trump has moved again to fire Cook, reviving the fight over Fed independence.",
+      "recentFingerprint": "1f3b6a322d513d24",
+      "standing": "The rate-setting committee of the Federal Reserve, which meets eight times a year to set the target range for overnight lending between US banks. Its decisions set the cost of borrowing across the dollar economy and reprice assets worldwide.",
+      "recent": "The Fed held at 350-375 basis points in July, citing elevated inflation, and the dollar has since fallen to its weakest since May as a rate hike is thrown into doubt. Trump has moved again to fire Cook, reviving the fight over Fed independence. This decision settles whether the hold becomes a pause or a turn.",
       "citations": [
         "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau",
         "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
         "2026-08-07-cook-removal-second-attempt-fed-independence",
-        "2026-07-29-fed-decision-forward-guidance-independence-dollar-rate",
-        "2026-07-26-fed-hike-oil-shock-dollar-transmission-emerging-market-debt"
+        "2026-07-29-fed-decision-forward-guidance-independence-dollar-rate"
       ],
-      "generatedAt": "2026-08-09T04:37:28.939Z"
+      "generatedAt": "2026-08-12T04:39:45.570Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "455c444cdca9347d",
-      "standing": "The European Central Bank's Governing Council, which sets the policy rates for the euro area's twenty-plus member economies at roughly six-week intervals. Its decisions transmit to borrowing costs across the bloc and to the euro's exchange rate.",
+      "recentFingerprint": "a61b9d39c12df77c",
+      "standing": "The European Central Bank's Governing Council, which sets interest rates for the euro area on a roughly six-weekly schedule. Its decisions set the cost of borrowing across twenty member economies and move the euro against every currency it trades against.",
       "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-11T04:40:58.885Z"
+      "generatedAt": "2026-08-12T04:39:54.692Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "ecfcd7308b4cd89e",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions set the price of the world's cheapest major funding currency, transmitting to the yen and to carry trades built on borrowing it.",
-      "recent": "The Bank of Japan held at 1% on July 31 while warning underlying inflation is exceeding its 2% target, and Tokyo sold dollars for yen hours before that decision. The US then joined a historic joint intervention on August 3, pushing the dollar to a one-month low. This meeting is the first policy setting since that coordination.",
+      "recentFingerprint": "c23f9fea194bc4cf",
+      "standing": "Japan's central bank sets short-term policy rates for the world's third-largest economy, meeting eight times a year. Because the yen funds cross-border carry trades, its decisions transmit into currency and bond markets well beyond Japan.",
+      "recent": "The Bank of Japan held at 1% on July 31 while warning underlying inflation is exceeding its 2% target, and the yen slid anyway. Days later Tokyo and Washington confirmed a joint intervention to prop up the currency, a first that Bloomberg called a new normal in coordination. This meeting sets the rate against that backdrop.",
       "citations": [
         "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
-        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
+        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure",
+        "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-11T04:41:08.605Z"
+      "generatedAt": "2026-08-12T04:40:03.783Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "455c444cdca9347d",
-      "standing": "The Bank of England's Monetary Policy Committee, nine members who meet eight times a year to set Bank Rate. Its decisions set the floor for UK mortgage, business and government borrowing costs, and move sterling against every major currency.",
-      "recent": "The committee held at 3.75% on 30 July with three of nine voting to raise, a split driven by the supply shock from the Iran war. UK house prices rose 0.1% in July as buyers stayed cautious on rates. This meeting settles whether the dissenting minority has grown.",
+      "recentFingerprint": "a61b9d39c12df77c",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Its decisions set the floor for UK mortgage costs, gilt yields and sterling, and transmit through every loan priced off the Bank's rate.",
+      "recent": "The committee held rates at 3.75% on 30 July as it waited to see the impact of the Iran war, with three of nine policymakers voting to raise instead. That split, and a UK housing market where prices rose 0.1% in July as buyers stayed cautious, is what this meeting has to resolve.",
       "citations": [
         "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
       ],
-      "generatedAt": "2026-08-11T04:41:17.188Z"
+      "generatedAt": "2026-08-12T04:40:12.590Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "d6aec5eb0621bd4a",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions set the cost of borrowing across the dollar economy and reprice every asset quoted against the dollar.",
-      "recent": "The Fed held at 350-375 basis points in July, citing elevated inflation, and the dollar has since fallen to its weakest since May as a rate hike came into doubt. Trump has moved again to fire Cook, reviving the fight over Fed independence, and the Bank of England held at 3.75% with three dissents.",
-      "citations": [
-        "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau",
-        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
-        "2026-08-07-cook-removal-second-attempt-fed-independence",
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
-      ],
-      "generatedAt": "2026-08-11T04:41:26.839Z"
+      "recentFingerprint": "1f3b6a322d513d24",
+      "standing": "The Federal Reserve's Federal Open Market Committee, which meets eight times a year to set the target range for overnight interbank lending in the United States. Its decisions set the price of dollar credit and reprice assets worldwide.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-12T04:40:22.296Z"
     }
   },
-  "generatedAt": "2026-08-11T04:41:26.839Z",
+  "generatedAt": "2026-08-12T04:40:22.297Z",
   "windowDays": 14
 }
