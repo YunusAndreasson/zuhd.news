@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-07-19T04:22:10.420Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-07-19-pdp-aip-to-skip-nc-s-jantar-mantar-protest-for-statehood",
-        "title": "Kashmir Parties Skip Protest",
-        "category": "politics",
-        "eventCoverage": 47,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-kashmir-cloudburst-flash-floods-amarnath-yatra",
-        "title": "Flash Floods Halt Pilgrimage",
-        "category": "science",
-        "eventCoverage": 46,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-17-gaza-attacks-highest-since-ceasefire",
-        "title": "Gaza Toll Hits Ceasefire High",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-nigeria-civilian-jtf-new-commander-general",
-        "title": "Nigeria Names Militia Commander",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-gwadar-trade-gateway-hormuz-transhipment",
-        "title": "Gwadar Port Defies Tensions",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-pakistan-record-ckd-imports-localisation",
-        "title": "Pakistan's Auto Imports Surge",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-gilgit-baltistan-special-climate-fund-glaciers",
-        "title": "Gilgit-Baltistan Demands Climate Fund",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-france-isp-block-polymarket-prediction-market",
-        "title": "France Blocks Polymarket",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-bhutan-himalaya-crustal-shear-wave-splitting",
-        "title": "Bhutan's Quakes Map Faults",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-19-pdp-aip-to-skip-nc-s-jantar-mantar-protest-for-statehood",
-      "title": "Kashmir Parties Skip Protest",
-      "category": "politics",
-      "body": "PDP won't join Sunday's rally without Article 370's",
-      "eventCoverage": 47,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Kashmir's PDP, AIP skip statehood protest over Article 370 demands",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 19
-    }
-  },
-  {
     "timestamp": "2026-07-19T08:18:53.725Z",
     "candidateCount": 10,
     "candidates": [
@@ -10371,6 +10285,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Drone strike kills 8-year-old girl in Russian port city Novorossiysk",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 11
+    }
+  },
+  {
+    "timestamp": "2026-08-12T12:27:53.198Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet",
+        "title": "Putin Threatens Ship Seizures",
+        "category": "economy",
+        "eventCoverage": 217,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-zhu-rongji-soe-restructuring-wto-accession",
+        "title": "Zhu Rongji Dies at 97",
+        "category": "economy",
+        "eventCoverage": 78,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-nigeria-senate-seplat-audit-ultimatum",
+        "title": "Senate Gives Oil Firms Ultimatum",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-mecca-pact-houthi-test-mutual-defence",
+        "title": "Mecca Pact Faces First Test",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-egypt-ethiopia-gerd-red-sea-encirclement",
+        "title": "Egypt-Ethiopia Feud Widens",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-siraya-indigenous-recognition-taiwan",
+        "title": "Siraya Reclaim Indigenous Status",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-sazan-island-kushner-resort-albania",
+        "title": "Kushner Eyes Albanian Island",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-glueball-besiii-particle-made-of-force",
+        "title": "Physicists Find Glueball Particle",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-bactrian-camel-reference-genome",
+        "title": "Camel Genome Fully Mapped",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-10-ice-lexisnexis-palantir-data-brokers",
+        "title": "US Agency Buys Deportation Data",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot",
+        "title": "UK Tests Stablecoin Settlement",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-ai-election-infrastructure-opacity",
+        "title": "Algorithms Quietly Run Elections",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-12-zhu-rongji-soe-restructuring-wto-accession",
+      "title": "Zhu Rongji Dies at 97",
+      "category": "economy",
+      "body": "Tens of millions lost jobs under his",
+      "eventCoverage": 78,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Former Chinese Premier Zhu Rongji, architect of market reforms, dies at 97",
     "response": {
       "pushed": 1,
       "skipped": 0,
