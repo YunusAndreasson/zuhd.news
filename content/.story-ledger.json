@@ -2,13 +2,244 @@
   "version": 1,
   "stories": [
     {
+      "id": "india-cpi-fed-split-imported-inflation",
+      "label": "India Retail Inflation Rises To 4.45% In July From 4.38% In June",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-india-cpi-fed-split-imported-inflation"
+      ],
+      "eventUri": "eng-11912823",
+      "summary": "Two consumer price prints landed the same day — India's July CPI at 4.45% (up from 4.38%) and the US CPI that has the Federal Reserve openly split on whether it should already have raised rates. Lead with the divergence, because it is the mechanism: India's inflation is a food-price story driven by monsoon and vegetable supply, so the Reserve Bank is managing a harvest; the Fed's is a services and tariff story, so it is managing a policy choice. The reason the second one matters more to a reader in Karachi or Cairo than the first is that only one of the two sets the price of dollar credit for everyone else — a Fed that holds or hikes strengthens the dollar, and every import bill and every dollar-denominated repayment in South Asia and the Middle East reprices without a single domestic decision being taken. Establish India's actual CPI components (food, core, fuel) against the RBI's 4% target band, what the US July print showed and what the FOMC dissenters are arguing, and what the Guardian's read of the data adds. Then the stake: the phrase 'imported inflation' describes a transfer, not an accident. NOTE: this cluster's primary link is the NYT Fed piece; the India CPI number is the News18 account and is the accurate anchor for the headline — verify both prints separately.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Consumer_price_index",
+        "http://en.wikipedia.org/wiki/Federal_Reserve",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Core_inflation",
+        "http://en.wikipedia.org/wiki/Bureau_of_Labor_Statistics"
+      ]
+    },
+    {
+      "id": "gulf-tourism-job-losses-migrant-remittances",
+      "label": "Gulf tourism sector set to lose 137,000 jobs as Iran conflict hits demand",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-gulf-tourism-job-losses-migrant-remittances"
+      ],
+      "eventUri": null,
+      "summary": "A forecast 137,000 tourism jobs lost across the Gulf because of the Iran conflict — lead with the number and with who holds those jobs, because the answer is the story: Gulf hospitality is staffed overwhelmingly by migrant workers from India, Pakistan, Bangladesh, Nepal and the Philippines on employer-tied visas, so a demand shock does not produce unemployment in the Gulf, it produces deportation and a collapse in remittances to households 3,000km away. The mechanism to teach is how a war nobody in that workforce chose reaches their wage: war-risk insurance and airspace closures raise airfares and reroute flights, leisure travellers substitute away from the entire region rather than the specific country at risk, so Dubai, Doha and Riyadh absorb the loss of an event happening in Iranian and Iraqi airspace — contagion by map, not by damage. The second mechanism is the visa: kafala-derived sponsorship means loss of the job is loss of the legal right to remain, which is why Gulf labour markets show almost no unemployment statistic and enormous unrecorded displacement. Establish whose forecast this is and its methodology, which countries and segments are hit, current occupancy and arrival figures against 2025, what the airlines have cut, and what Gulf tourism authorities say. Then the stake: the remittance corridors to Kerala, Punjab and Chittagong are the largest single external inflow those regions have.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-iran-tuna-fuel-barter-sanctions",
+      "label": "No catch for the day: Pakistan's tuna trade caught in US-Iran crossfire",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-pakistan-iran-tuna-fuel-barter-sanctions"
+      ],
+      "eventUri": null,
+      "summary": "Pakistani fishermen have been trading subsidised Iranian fuel for high-value tuna in Iranian waters, and US-Iran escalation is closing the trade down. Lead with the barter itself, because it is the most economically literate thing in today's feed: two goods exchanged directly, no dollar involved, no bank involved — which is exactly what a sanctioned border produces. The mechanism to teach is why it exists. Iran subsidises diesel to a fraction of the regional price, fuel is the single largest cost in small-boat tuna fishing, and Pakistani boats cannot buy dollars easily or bank across the border; so the fishermen arbitrage a fuel subsidy with a fish, and both sides get a price no formal market would give them. The second mechanism is who bears the cost of closing it: not Tehran and not Washington, but named men like Shah Zamin Khan in Balochistan's coastal towns, where there is no alternative employer and where the same trade is called smuggling by the state that provides nothing in its place. Establish the scale and value of the tuna trade, the fuel price differential, what specifically has changed at sea (patrols, seizures, closures), how many boats and households depend on it, and what Pakistani fisheries authorities say. Then the stake: sanctions are enforced against economies but paid by the smallest participants in them, and the informal economy that sanctions create is the one the poorest people live inside. Pakistan is an OIC member and Dawn is the regional source and the only account in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "awaam-pakistan-ecp-delisting-party-symbol",
+      "label": "Awaam Pakistan calls ECP delisting 'unwarranted', seeks urgent hearing",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-awaam-pakistan-ecp-delisting-party-symbol"
+      ],
+      "eventUri": null,
+      "summary": "The Election Commission of Pakistan has delisted a party led by a former prime minister over an alleged failure to hold internal elections — and the party calls the move arbitrary and unprecedented. Lead with the instrument, not the personalities: intra-party election rules exist to force democracy inside parties, and in Pakistan they have repeatedly been used to remove parties from the ballot instead. The mechanism to teach is enrolment as a chokepoint. A delisted party loses its registered election symbol, which on a ballot read by voters with low literacy is the party itself — the same device that pushed PTI candidates to run as independents in 2024 and then stripped them of reserved seats. Nothing bans anyone; the paperwork simply makes them unrecognisable. The second mechanism is who adjudicates: the ECP is both the regulator and the first instance of appeal against itself, so a party's remedy is an urgent hearing before the body that acted. Establish what the ECP's order says and under which section of the Elections Act, what Awaam Pakistan's letter argues, what Shahid Khaqan Abbasi's party actually did or failed to do about intra-party polls, which other parties have been delisted on the same ground and what became of them, and what the ECP has said publicly. Then the stake for our reader: the most durable way to remove a competitor from an election is not to arrest anyone, it is to find them non-compliant. Pakistan is an OIC member; Dawn is the regional source and the sole account in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "aegean-pushback-deaths-accountability-gap",
+      "label": "Will There Be Accountability for Deaths on Europe's Refugee Trail?",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-aegean-pushback-deaths-accountability-gap"
+      ],
+      "eventUri": null,
+      "summary": "People died in an alleged pushback off a Greek island, and the question the reporting asks is whether anyone will ever be found responsible. Lead with the deaths and with the named victims if the reporting names them — dignity requires that people drowned at a European border be counted with the precision this site applies to any other killing. The mechanism to teach is why pushbacks are almost never prosecuted: the act occurs at sea, outside any camera and any jurisdiction the survivors can reach; the only witnesses are the survivors and the officers; coastguard logs and radar tracks are held by the accused state; and the legal violation — refoulement, returning someone to danger without hearing their claim — is a breach of the Refugee Convention and the ECHR that binds states rather than individuals, so the remedy is a judgment in Strasbourg years later against a treasury, not a charge against a crew. The second mechanism is deniability by contractor: Frontex coordinates, national coastguards act, and the Libyan and Turkish forces that intercept are funded rather than commanded — each layer holding just enough distance from the water. Establish what happened, the confirmed and missing dead, who they were and where they were from, what Greek authorities say, what documentation exists (Frontex serious-incident reports, ECtHR rulings, prior Aegean cases), and what any prosecution has ever produced. Then the stake: most of the dead on this trail are from Syria, Afghanistan, Somalia and Sudan, and a border that kills without producing a defendant is a policy, not a failure.",
+      "conceptUris": []
+    },
+    {
+      "id": "bukele-model-emergency-regimes-latin-america",
+      "label": "The 'Bukele Effect' on Latin America's Security",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-bukele-model-emergency-regimes-latin-america"
+      ],
+      "eventUri": null,
+      "summary": "Governments across Latin America and the Caribbean are copying Nayib Bukele's mass-incarceration playbook, and this reporting asks the only question that matters: is it working? Lead with what is actually being exported — not a policy but a legal state, the régimen de excepción, in which suspension of due process is renewed indefinitely by a legislature that no longer contests it. The mechanism to teach is how the model produces its own evidence: suspend the requirement of a warrant and of a hearing, arrest by tattoo, appearance and neighbourhood, and homicide statistics fall while tens of thousands of people are held without trial — so the metric that vindicates the policy is generated by the same act that violates the law, and there is no counter-metric because the wrongly held cannot file. The second mechanism is why it spreads anyway: it is genuinely popular, because in Honduras, Ecuador and Trinidad the alternative on offer has been extortion and a murder rate, and a public that has been abandoned will accept a state that is finally present in any form. Establish which countries have adopted emergency regimes and when, El Salvador's incarceration rate and detention numbers against its homicide figures, documented deaths in custody and wrongful detentions, what human rights bodies have found, and where the copies have failed. Then the stake: the trade being offered is security for due process, and every state with a security crisis and an election is now being offered it — including several outside the region.",
+      "conceptUris": []
+    },
+    {
+      "id": "uzbekistan-latin-script-reform-stalemate",
+      "label": "The Cyrillic Stalemate: Why Uzbekistan's Alphabet Reform is Still Stuck 30 Years Later",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-uzbekistan-latin-script-reform-stalemate"
+      ],
+      "eventUri": null,
+      "summary": "Uzbekistan legislated a switch from Cyrillic to Latin script in 1993 and, thirty years on, still has not made it. Lead with the failure as a measurable thing — signage, schoolbooks, courts and the civil service each on a different script — because a country that cannot change its alphabet in three decades is telling you precisely where the limits of its state capacity sit. The mechanism to teach is that an alphabet is infrastructure, not a symbol: every law, land record, court judgment, textbook and archive is written in the old script, so conversion means retraining every teacher, reprinting every text, re-keying every register and accepting a generation that cannot read what its parents wrote — a cost states routinely legislate and then decline to fund. The second mechanism is the geopolitics under the letters: Cyrillic came with Soviet rule and is the script of the Russian-language media and labour market that millions of Uzbek migrant workers still depend on, while Latin aligns with Turkey and the Turkic world — so the reform is a slow referendum on which centre Tashkent orients toward, and the stalemate is an accurate reading of a country that cannot afford to choose. Establish the legislative history and the successive deadlines missed, the current status by domain, the cost estimates, what Uzbek officials say now, and how Kazakhstan's parallel and equally delayed switch compares. Then the stake: Uzbekistan is an OIC member of 37 million whose own script was changed three times in a century by outside power — Arabic to Latin to Cyrillic — and the fourth change is the first it has chosen for itself. No Central Asian outlet covered this in today's feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "fifa-africa-development-grants-voting-bloc",
+      "label": "The Politics Behind Africa's Support for Gianni Infantino",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-fifa-africa-development-grants-voting-bloc"
+      ],
+      "eventUri": null,
+      "summary": "African football federations are FIFA president Gianni Infantino's most reliable bloc of support, and most of them depend on FIFA money to function. Lead with that dependency stated as a number, because it converts a story about sport into a story about how votes are bought lawfully: FIFA's development programme pays each member association a fixed annual grant regardless of size, so Djibouti and Germany carry one vote each while only one of them needs the money — a franchise designed for equality that produces leverage instead. The mechanism to teach is one-member-one-vote plus centrally distributed revenue, the same structure that decides outcomes at the IOC and, in a different currency, at the IMF in reverse. The second mechanism is what Africa has actually received in return: hosting rights, tournament slots, executive positions — measurable things that can be checked against what was promised, and the honest answer may be that the bloc is being paid in grants rather than in power. Establish what Infantino's contested plans are and who opposes them, the value and terms of FIFA's payments to African associations, how CAF's leadership aligned with him, what governance and audit conditions attach to the grants, and what African federation officials say on the record. Then the stake for our reader: this is the shape of every institution where the Global South holds the votes and the North holds the budget — and the question of whether representation without revenue is representation at all is not a question about football.",
+      "conceptUris": []
+    },
+    {
+      "id": "fractal-uncertainty-principle-quantum-chaos",
+      "label": "Graduate Student Proves a Quantum Uncertainty Principle for Fractals",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-fractal-uncertainty-principle-quantum-chaos"
+      ],
+      "eventUri": null,
+      "summary": "A graduate student has proved the fractal uncertainty principle, a result mathematicians are calling foundational. Lead with what the statement says in plain language: a wave cannot be concentrated on a fractal set in both position and frequency at once — the ordinary Heisenberg trade-off, but applied to sets that are full of holes at every scale rather than to intervals. The mechanism to teach is why anyone wanted it. In quantum chaos, the question is whether a quantum particle in a chaotic system can stay trapped where the classical trajectories are trapped, and those trapped classical trajectories form a fractal; the principle says the quantum wave leaks out anyway, which is why chaotic quantum systems dissipate rather than localise — a bridge between three fields that had no reason to meet. The second point belongs in any honest mathematics piece: this is a proof, not a measurement, so the claim is certainty of a kind no experiment provides, and the interesting fact about the result is that the obstruction it removes had blocked progress for a decade. Establish who proved it and where, what the precise statement is and what was previously known (the one-dimensional case, the Bourgain-Dyatlov result), who has verified it, and what it unlocks. Then the note our reader will appreciate: the underlying question — how a wave can be localised in space and in frequency simultaneously — is the same one that governs signal processing, and it was first made rigorous by mathematicians working on the very structures al-Khwarizmi's successors handed forward. Keep that light; the mathematics carries the piece.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-zev-mandate-rollback-driver-costs",
+      "label": "Analysis: Weaker EV targets could cost UK consumers £3bn a year by 2030",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-uk-zev-mandate-rollback-driver-costs"
+      ],
+      "eventUri": null,
+      "summary": "Weakening the UK's electric-vehicle sales mandate would cost drivers about £3bn a year by 2030 — lead with the inversion, because the political argument for weakening it is that green rules are what make life expensive. The mechanism to teach is where the £3bn actually comes from: an EV costs far less per mile to run than a petrol car (electricity against fuel duty-laden diesel, and far fewer serviceable parts), so a mandate that puts more EVs on the road puts more cheap miles into the second-hand market, and slowing it keeps households in expensive cars for longer. The saving is a running cost, not a subsidy. The second mechanism is what a sales mandate is and why manufacturers lobby against it: the ZEV mandate sets a percentage of each maker's annual sales that must be zero-emission, with fines and tradeable credits for shortfalls — a quota on the seller, not a tax on the buyer, which is why the cost of relaxing it lands on drivers rather than on the firms asking for the relaxation. Establish Carbon Brief's methodology and assumptions, the consultation actually being proposed, the current mandate percentages and compliance flexibilities, what carmakers and the government say, and how the second-hand EV market is priced today. Then the stake for our reader: this is the standard shape of a climate rollback argued as cost-of-living relief, and the same arithmetic applies to every fuel-subsidy and vehicle-import debate from Cairo to Jakarta — the question is always who is counting which costs over what horizon.",
+      "conceptUris": []
+    },
+    {
+      "id": "egypt-sim-fraud-biometric-registration",
+      "label": "'Privacy chaos': From fraudulent SIM registration to biometric data collection?",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-egypt-sim-fraud-biometric-registration"
+      ],
+      "eventUri": null,
+      "summary": "Egyptians are discovering SIM cards registered fraudulently in their names, and the state's proposed answer is to collect biometrics. Lead with the failure and the remedy in one breath, because the sequence is the finding: identity-linked SIM registration was itself sold as the fix for anonymous phone crime, it failed at the point of sale where a retailer holds a customer's national ID and can register anything, and the response to a failed identity system is a more intrusive identity system. The mechanism to teach is what a fraudulently registered SIM does to a person: it is a legal identity attached to calls, messages, mobile wallet transactions and location that they never made, and the burden of disproving it falls on them — a phone-derived record is treated as evidence of who was where, and this is the substrate of criminal cases. The second mechanism is why biometrics change the risk category rather than reduce it: a leaked password is replaced, a leaked fingerprint or face is not, and the databases being proposed sit with telecom operators and the interior ministry under a data-protection law whose executive regulations have not been issued — so the safeguard exists on paper and not in force. Establish how many fraudulent registrations are documented and how they came to light, what the National Telecom Regulatory Authority has proposed and required, the status of Egypt's personal data protection law and its unissued regulations, what operators say, and what recourse an affected person actually has. Then the stake: Egypt is an OIC member of 110 million and Mada Masr, one of the last independent Egyptian newsrooms, is the only account in the feed — this is the identity architecture being built across the Gulf and South Asia, tested here first.",
+      "conceptUris": []
+    },
+    {
+      "id": "arab-cybercrime-laws-speech-elastic-clauses",
+      "label": "How governments design laws against you and call it cybersecurity",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-arab-cybercrime-laws-speech-elastic-clauses"
+      ],
+      "eventUri": null,
+      "summary": "A joke about the electricity supply, and weeks later a summons under a law with 'cybercrime' in the title. Lead with that gap, because it is the whole architecture: laws written to prosecute fraud, intrusion and child exploitation are being used to prosecute speech, and the reason they work for that purpose is drafting rather than abuse. The mechanism to teach is the elastic clause. Arab cybercrime statutes typically criminalise content that harms 'public order', 'national unity', 'social values' or the 'reputation of the state' — undefined terms placed inside a technical statute, which imports the vagueness of a morality law into a framework carrying prison sentences, pretrial detention and the seizure of devices. The second mechanism is procedural, and it is where the real punishment sits: these laws grant investigators access to traffic data and device contents without a judicial warrant, and the process — the arrest, the confiscated phone, the months awaiting trial — is the deterrent whether or not a conviction follows. Establish which countries' laws SMEX documents and their specific provisions, documented prosecutions with names and sentences, how the model diffused between jurisdictions and which template texts were copied, and what the states say the laws are for. Then the stake for our reader: the same drafting is now being exported into AI and disinformation bills in the same region, and a reader who understands the mechanism can identify the clause before the law passes. SMEX is a Beirut-based digital rights organisation doing original documentation; attribute its findings and anchor every provision to the statute text.",
+      "conceptUris": []
+    },
+    {
+      "id": "fusion-centers-flock-camera-critics-monitoring",
+      "label": "The Government is Monitoring Anti-Flock TikTok and Instagram Accounts",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-fusion-centers-flock-camera-critics-monitoring"
+      ],
+      "eventUri": null,
+      "summary": "Documents from law enforcement fusion centres show police being warned about 'extensive and ongoing chatter on social media' from accounts opposing Flock's licence-plate reader cameras. Lead with the loop that closes here: a surveillance vendor's cameras generate opposition, and the surveillance apparatus then monitors the opponents — the objection to being watched becomes an intelligence subject. The mechanism to teach is the fusion centre, which most readers have never heard of and which is the load-bearing institution in the story: state-level intelligence hubs created after 2001 to share terrorism information, funded federally, staffed jointly by police and private-sector 'partners', and operating outside the reporting requirements that bind either — so a bulletin about people criticising a camera company circulates to hundreds of agencies with no publication, no oversight hearing and no notice to the people named. The second mechanism is the vendor's position: Flock is a private company whose cameras feed a searchable national network of vehicle movements sold to towns by subscription, meaning the surveillance is procured rather than legislated, and the public's only lever is the city council vote that the monitored accounts were organising for. Establish which documents these are and how they were obtained, exactly what they say and which accounts or hashtags they name, how many agencies received them, what Flock and the fusion centres say, and what legal line separates monitoring public posts from targeting protected speech. Then the stake: automatic plate readers from the same vendors are being sold to Gulf and South Asian ministries with none of the council votes, and this is what the oversight looks like where oversight exists.",
+      "conceptUris": []
+    },
+    {
+      "id": "acro-breaches-dwell-time-ico-reprimand",
+      "label": "Three intrusions at UK criminal records office went undetected for two years",
+      "firstSeen": "2026-08-12T17:13:00.139Z",
+      "lastCovered": "2026-08-12T17:13:00.139Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-12-acro-breaches-dwell-time-ico-reprimand"
+      ],
+      "eventUri": null,
+      "summary": "Britain's criminal records office was breached three separate times over two years and noticed none of them — the regulator's reprimand blames unread antivirus alerts and an unpatched content management system. Lead with the banality, because that is the accountability finding: the failure was not a sophisticated adversary but an alert nobody opened, in the body that holds criminal record data on people applying for visas, jobs and residence abroad. The mechanism to teach is dwell time. Detection, not prevention, is what determines the damage from an intrusion — an attacker inside an unmonitored network for two years has had time to enumerate, extract and sell, so the meaningful metric in any breach is the gap between compromise and discovery, and two years is close to the worst end of it. The second mechanism is the regulatory instrument and its weakness: the ICO issued a reprimand, which is a public statement rather than a fine, because the offender is a public body and fining it moves money from one part of the state to another — so the sanction for losing the public's data is being told off in writing, and the affected individuals get no compensation and often no individual notification. Establish what ACRO holds and on whom, the timeline of the three intrusions and what data was exposed, what the reprimand notice specifically found, whether anyone was notified, and what the ICO's record of reprimand-versus-fine for public bodies shows. Then the stake: ACRO's records are police certificates used for immigration worldwide, so the people exposed are disproportionately migrants — the group least able to learn about a breach, and least able to do anything about it.",
+      "conceptUris": []
+    },
+    {
       "id": "putin-cargo-ship-seizure-retaliation-shadow-fleet",
       "label": "Putin Threatens Retaliation Over EU Moves to Seize Russian Ships",
       "firstSeen": "2026-08-12T12:14:25.752Z",
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet"
@@ -33,7 +264,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-zhu-rongji-soe-restructuring-wto-accession"
@@ -58,7 +289,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-senate-seplat-audit-ultimatum"
@@ -74,7 +305,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mecca-pact-houthi-test-mutual-defence"
@@ -90,7 +321,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-egypt-ethiopia-gerd-red-sea-encirclement"
@@ -106,7 +337,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-siraya-indigenous-recognition-taiwan"
@@ -122,7 +353,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sazan-island-kushner-resort-albania"
@@ -138,7 +369,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-glueball-besiii-particle-made-of-force"
@@ -154,7 +385,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bactrian-camel-reference-genome"
@@ -170,7 +401,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-10-ice-lexisnexis-palantir-data-brokers"
@@ -186,7 +417,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
@@ -202,7 +433,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ai-election-infrastructure-opacity"
@@ -218,7 +449,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-novorossiysk-port-strike-cpc-oil-terminal"
@@ -243,7 +474,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-north-korea-ballistic-test-drills-calendar"
@@ -268,7 +499,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-warraq-island-sit-in-cairo-development"
@@ -284,7 +515,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-china-afghanistan-taliban-five-years-minerals"
@@ -300,7 +531,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-iran-brics-new-development-bank-accession"
@@ -316,7 +547,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-gold-ten-week-high-cpi-household-savings"
@@ -332,7 +563,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-golden-dome-funding-impasse-interceptor-economics"
@@ -348,7 +579,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-total-solar-eclipse-geometry-prediction"
@@ -373,7 +604,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bali-lombok-ferry-fire-roro-manifest"
@@ -398,7 +629,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-chitral-cloudbursts-lower-dir-debris-flows"
@@ -414,7 +645,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tokenized-stock-derivatives-counterparty-ownership"
@@ -430,7 +661,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-rocket-lab-germany-subsidiary-sovereign-launch"
@@ -446,7 +677,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-rfid-baggage-tracking-accountability"
@@ -462,7 +693,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ceuta-crossing-migrants-stranded-morocco"
@@ -478,7 +709,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-journalists-killed-gaza-press-record"
@@ -494,7 +725,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-australia-indigenous-youth-detention"
@@ -510,7 +741,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-venezuela-earthquake-missing-la-guaira"
@@ -526,7 +757,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-central-asia-consultative-summit-azerbaijan"
@@ -542,7 +773,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tata-sons-chairman-exit-rbi-listing"
@@ -567,7 +798,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-eu-diversification-law-supply-chains"
@@ -583,7 +814,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sovereign-ai-fund-token-spend"
@@ -599,7 +830,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mumbai-kurla-landslide-chawl"
@@ -623,7 +854,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-colombia-canals-built-without-rulers"
@@ -639,7 +870,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-age-verification-anonymity-lobbying"
@@ -655,7 +886,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-meta-muse-glimmer-local-agent-model"
@@ -671,7 +902,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-modeling-and-ai-optimization-of-visible-light-driven-acid-or"
@@ -687,7 +918,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade"
@@ -712,7 +943,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-andras-baka-elected-hungarian-president"
@@ -736,7 +967,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-venezuela-israel-restore-consular-ties"
@@ -759,7 +990,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-guinea-bissau-somaliland-recognition-collapse"
@@ -775,7 +1006,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-myanmar-rohingya-repatriation-promise"
@@ -791,7 +1022,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-romania-drones-neptun-deep-gas"
@@ -807,7 +1038,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-nigeria-aviation-unions-strike-faan"
@@ -823,7 +1054,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-cftc-kalshi-new-york-prediction-markets"
@@ -839,7 +1070,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-india-heatwave-disaster-fund-notification"
@@ -855,7 +1086,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-liberia-contraception-donor-funding-cuts"
@@ -871,7 +1102,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-chrome-device-bound-session-credentials"
@@ -887,7 +1118,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-china-ai-companion-crackdown"
@@ -903,7 +1134,7 @@
       "lastCovered": "2026-08-11T22:12:58.989Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-11-nsa-general-counsel-appointment"
@@ -919,7 +1150,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone"
@@ -944,7 +1175,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-death-toll-of-houthi-attack-on-cargo-ship-rises-to-six-yemen"
@@ -969,7 +1200,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-escalated-israeli-assault-on-west-bank-504-attacks-in-a-week"
@@ -985,7 +1216,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-iran-threat-prompted-secret-trump-flight-from-turkiye-report"
@@ -1010,7 +1241,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-sara-duterte-impeachment-trial-day-14-unusual-names-in-confi"
@@ -1033,7 +1264,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-goods-transporters-to-continue-strike-as-negotiations-with-g"
@@ -1049,7 +1280,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-10-cocoa-farmers-in-southeast-cameroon-are-adapting-to-eu-regul"
@@ -1065,7 +1296,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-jellyfish-swarms-knock-out-3-2-gigawatts-of-french-nuclear-p"
@@ -1090,7 +1321,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-shipping-on-rivers-packs-a-surprisingly-large-climate-punch"
@@ -1106,7 +1337,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-crispr-armed-phages-help-treat-severe-superbug-infection-new"
@@ -1122,7 +1353,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-company-offering-100-human-written-never-ai-medical-research"
@@ -1138,7 +1369,7 @@
       "lastCovered": "2026-08-11T17:09:55.836Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-11-cyberattack-on-logistics-giant-ceva-hits-retailers-and-steam"
@@ -1146,217 +1377,6 @@
       "eventUri": null,
       "summary": "A cyberattack has disrupted eight European warehouses of CEVA Logistics, and the outage is surfacing at companies most people would never connect to it — Bol, De Bijenkorf, Ace & Tate, and Steam's physical hardware customers. Lead with that list, because it is the finding: nobody buying a Steam Deck or a pair of glasses knows they are a customer of a French contract logistics firm owned by CMA CGM, and the attack is what makes the dependency visible. The mechanism to teach is third-party concentration risk. Retailers outsourced fulfilment to a handful of 3PLs to convert a fixed cost into a variable one, which was rational for each of them individually and produced a shared single point of failure none of them owns, cannot audit, and cannot fail over from — you can switch cloud regions in an hour and you cannot switch a warehouse, because the goods are physically inside it. The second mechanism is why warehouses are now targets: modern fulfilment is robotics, conveyors and a warehouse management system, so encrypting the WMS stops the building even if every machine still works, and the ransom clock is a perishable-inventory clock. Establish what CEVA has confirmed and what it has not, which sites and which client brands, whether ransomware and whether any group has claimed it, what data may have moved, how long recovery is expected to take, and how EU rules — NIS2 and DORA-style third-party requirements — treat a logistics provider of this size. Then the stake beyond Europe: CEVA and its parent run terminals and contract logistics across Africa, South Asia and the Gulf, and the same consolidation that makes a Dutch retailer fragile is far more advanced in markets with one dominant handler and no disclosure rule at all. Continues this week's OT and infrastructure-attack thread; The Record is the sole account.",
       "conceptUris": []
-    },
-    {
-      "id": "the-manifesto-is-a-capex-document",
-      "label": "Mark Zuckerberg Posts Deranged 6,500-Word Essay About Giving Everyone AI Superintelligence",
-      "firstSeen": "2026-08-11T08:10:04.188Z",
-      "lastCovered": "2026-08-11T17:09:55.836Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-11-the-manifesto-is-a-capex-document",
-        "2026-08-10-as-ai-eats-the-web-the-internet-s-collective-memory-is-disap"
-      ],
-      "eventUri": null,
-      "summary": "Meta's chief executive published a 6,500-word essay promising 'personal superintelligence' for everyone; 404 Media's reading is that the future it describes is primarily good for Meta. Do not write a review of an essay — lead with what the document is for, because a founder manifesto is a corporate instrument with a job: it justifies capital expenditure to shareholders, recruits researchers who want a mission, and pre-frames regulation by defining the technology in the company's own vocabulary before a regulator does. The mechanism to teach is who bears the cost of the word 'everyone'. Meta's product is attention sold to advertisers, and a personal superintelligence is by construction a system that knows a user well enough to be useful and therefore well enough to target — the same architecture, described twice. The second mechanism is that these essays are load-bearing for the capex story: Meta is spending tens of billions a year on data centres against a revenue line that is still advertising, and a mission statement is what stands in for a business model in the gap. Establish what the essay actually claims and commits to in Zuckerberg's own words rather than paraphrase, Meta's current AI capital spending and how it is funded, what Llama's licence does and does not permit, and what independent researchers say about the 'superintelligence' framing. Then the stake for our reader, which is not American: Meta's platforms are the internet for hundreds of millions of people in Pakistan, Nigeria, Indonesia and Egypt — often via zero-rated data plans — so what one man decides an assistant should be becomes, for those users, what an assistant is. Pairs with our 08-10 piece on AI capex and the gas plant next to the datacentre: this is the sentence that justifies the plant.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-seat-cairo-could-not-afford",
-      "label": "Why Cairo didn't turn up for the Quad defense pact party",
-      "firstSeen": "2026-08-11T08:10:04.188Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-11-the-seat-cairo-could-not-afford",
-        "2026-08-11-a-sentence-that-reaches-the-officer-not-the-president"
-      ],
-      "eventUri": null,
-      "summary": "Egyptian reporting on why Egypt was not in Mecca when Saudi Arabia, Turkey and Pakistan signed their defence pact. ARC NOTE: this advances the Mecca pact arc our 08-10 piece opened and must not restate it — that article covered the signing, the deliberate nuclear ambiguity, and Fidan's claim that Egypt could join once 'technical issues' are resolved. This one is the answer from Cairo's side, reported in Cairo, and it corrects the Turkish framing: an absence explained as technical by Ankara is explained as political by Egyptians. Lead with what Cairo would have to give up. Egypt's army is funded and equipped by Washington under a settlement that begins at Camp David, its Gulf financing comes from a Saudi state it now watches building a security architecture with Turkey, and its rivalry with Ankara over Libya, the eastern Mediterranean gas fields and the Muslim Brotherhood file did not end when the two governments restored ambassadors. The mechanism our reader should carry is that alliance-joining is a constraint problem, not an enthusiasm problem — a state with an existing patron, an existing creditor and an existing rival inside the same pact has no free variable left to move. Establish exactly what Mada Masr reports about the Egyptian position and who its sources are, what Cairo has said publicly, what the Egyptian military's US dependency actually consists of in dollars and platforms, and what Egypt would gain that it does not already get bilaterally from Riyadh. Mada Masr is one of the last independent newsrooms operating from Egypt and is the only account of this angle anywhere in today's feed; attribute its sourcing as its own and treat Cairo as a principal weighing its own interests, not as a defector from someone else's bloc.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bashar_al-Assad",
-        "http://en.wikipedia.org/wiki/Syria",
-        "http://en.wikipedia.org/wiki/Capital_punishment",
-        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
-        "http://en.wikipedia.org/wiki/Damascus",
-        "http://en.wikipedia.org/wiki/War_crime",
-        "http://en.wikipedia.org/wiki/Trial_in_absentia",
-        "http://en.wikipedia.org/wiki/Torture"
-      ]
-    },
-    {
-      "id": "an-agreement-with-no-text-and-no-capital",
-      "label": "US military marching into Puntland as Red Sea tensions escalate",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-an-agreement-with-no-text-and-no-capital"
-      ],
-      "eventUri": null,
-      "summary": "AFRICOM's special operations commander signed a security agreement with Puntland — a semi-autonomous Somali region — to expand the US base at Bosaso, negotiated without Mogadishu and with no public text. Lead with the missing document, because the informality is the instrument: an agreement with no treaty, no ratification and no published terms lets Washington claim it respects Somali sovereignty while contracting with a government that Somalia's federal government does not control. The mechanism to teach is how a state is unmade by being dealt with in pieces — every direct arrangement with Puntland, Jubaland or Somaliland transfers a sovereign function to a region and prices Mogadishu's consent at zero, and the fragmentation Washington cites as its reason for the workaround is the fragmentation the workaround produces. The driver is not Somalia at all: it is the Red Sea. Bosaso sits near Bab al-Mandab, through which 10-12% of global shipping passes, and Djibouti has refused to let Camp Lemonnier be used to strike the Houthis. Establish what the Puntland statement actually says, whether AFRICOM or anyone in Washington has confirmed it, the strike counts (124 in Somalia last year, 78 so far in 2026, against 51 across Biden's term), what Mogadishu has said, and what Somalis in Bosaso get or lose. ATTRIBUTION: the source is an advocacy-aligned outlet, but its factual anchor is the Puntland government's own published statement plus named academics — carry the statement as the evidence, label the analysts' readings as analysis, and do not report an unconfirmed US position as fact. Africa has been this site's thinnest region for three consecutive days; no regional Somali outlet appears in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-life-measured-in-an-instrument",
-      "label": "What Remains of a Musician's Life After the Bombs Fell on Iran",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-a-life-measured-in-an-instrument"
-      ],
-      "eventUri": null,
-      "summary": "Parvaneh played double bass in the Tehran Symphony Orchestra; a US-Israeli strike destroyed her home and shattered the instrument she had spent years paying for. Lead with the instrument, because it is the whole argument in one object: a double bass is a working life measured in savings, and there is no line in any damage assessment for it. The mechanism to teach is how the cost of a strike is counted and by whom — militaries publish target lists and civilian-casualty estimates, and everything between the dead and the destroyed building goes unrecorded: the job lost before the war, the profession that cannot be practised without a tool that cannot be replaced under sanctions, the currency collapse that turned a five-year purchase into a ten-year one. Establish who she is and what she lost in her own words, when and where the strike hit and what was named as its target, what has happened to the Tehran Symphony and to Iran's musicians since, and what an imported instrument now costs against an Iranian salary. Then the frame our reader should carry: Iranians are being reported almost everywhere this year as a nuclear file, a proxy network, or a negotiating position, and almost nowhere as people with occupations. Karāmah requires that the civilians of a state we cover as an adversary of the West are counted the same way we count anyone else's. Ground reportage from inside the war; no Iranian outlet in today's feed carries this account.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-release-valve-nobody-legislated",
-      "label": "Can Andy Burnham finally escape his prison blues?",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-a-release-valve-nobody-legislated"
-      ],
-      "eventUri": "eng-11911184",
-      "summary": "Britain's new prime minister is fast-tracking prison construction after an uproar over an early-release scheme that would free a man convicted in a police officer's death. Lead with the arithmetic, not the outrage: England and Wales jail a higher share of their population than any other western European country, the estate is effectively full, and when occupancy hits capacity the state must either build, sentence less, or release early — there is no fourth option, and every government eventually discovers this in its first weeks. The mechanism to teach is that an early-release scheme is not a policy about mercy, it is a capacity valve, and it is triggered by decades of sentence inflation legislated by governments that never funded the cells those sentences require. So a prime minister who inherits the valve is blamed for opening it. Establish the current prison population against certified capacity, how many have been released under the scheme and on what criteria, what Burnham has actually committed to build and by when (and how long a prison takes to build), what the Justice Secretary has said, and the specific case driving the uproar. Then the part that travels: the same arithmetic is running in Pakistan, Nigeria, Indonesia and Egypt at far worse ratios, with the difference that undertrial detainees — people not convicted of anything — make up most of the overcrowding there. Note the sentiment divergence of 0.46: Bloomberg reads this as a governing crisis, The Independent as a moral one.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Andy_Burnham",
-        "http://en.wikipedia.org/wiki/Manslaughter",
-        "http://en.wikipedia.org/wiki/Privy_Council_(United_Kingdom)",
-        "http://en.wikipedia.org/wiki/Harper's_Magazine",
-        "http://en.wikipedia.org/wiki/Secretary_of_State_for_Justice_(UK)",
-        "http://en.wikipedia.org/wiki/Downing_Street",
-        "http://en.wikipedia.org/wiki/Parliament_of_the_United_Kingdom",
-        "http://en.wikipedia.org/wiki/Andrew_Harper"
-      ]
-    },
-    {
-      "id": "a-dismissal-that-closes-the-only-open-venue",
-      "label": "US court permanently dismisses criminal case against Gautam Adani",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-a-dismissal-that-closes-the-only-open-venue"
-      ],
-      "eventUri": "eng-11910175",
-      "summary": "A US federal judge has dismissed with prejudice the criminal case against Gautam Adani and his nephew Sagar — the bribery and securities-fraud indictment that had hung over the ports-to-energy group for nearly two years. Lead with 'with prejudice', because that phrase is the story: the charges cannot be refiled, so this is not an acquittal by a jury weighing evidence but a permanent closure requested by the prosecutors who brought it. The mechanism to teach is extraterritorial enforcement and what happens when it is withdrawn. The Foreign Corrupt Practices Act is the main reason an Indian conglomerate's alleged bribery of Indian officials was ever heard in a Brooklyn courtroom at all — it reaches conduct anywhere in the world that touches US investors or dollars — which made the US Department of Justice, in practice, the accountability venue for corporate conduct in countries whose own regulators do not prosecute. Establish exactly what the indictment alleged (the amounts, the solar contracts, the officials), why the DoJ moved to dismiss and what Judge Garaufis said in granting it, what the parallel SEC matter's status is, what SEBI and Indian authorities have done or not done since Hindenburg, and what Adani's group has said. Then the reader's stake: Adani builds and runs ports, airports and power in Bangladesh, Sri Lanka, Israel, Tanzania and Australia, and if the FCPA is being wound down as an enforcement priority, the question is not whether an Indian billionaire got a break — it is which body, in which country, now examines a foreign infrastructure contract at all. Single Indian-agency account of a US court ruling; cite the docket order itself.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nicholas_Garaufis",
-        "http://en.wikipedia.org/wiki/Adani_Group",
-        "http://en.wikipedia.org/wiki/Gautam_Adani",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
-        "http://en.wikipedia.org/wiki/Conspiracy_theory"
-      ]
-    },
-    {
-      "id": "a-port-that-fell-without-being-taken",
-      "label": "Russia's lockdown of Odessa ports could be a grim turning point in war",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-a-port-that-fell-without-being-taken"
-      ],
-      "eventUri": null,
-      "summary": "Since 22 July, Russian air and missile strikes have effectively closed the Odessa port complex to all shipping — the terminals that handled roughly 90% of Ukraine's agricultural trade — and Ukrainian officials warn exports may fall by half. Lead with what closure means without occupation: Russia has not taken a metre of the Black Sea coast, it has made the approach uninsurable, and a port that no master will enter is a port that has fallen. The mechanism to teach is denial rather than capture — the cheapest way to landlock a country is to price the risk of calling at its harbour above the freight, and the instrument is not a blockade fleet but a war-risk premium. Establish which terminals have been hit and when, what tonnage moved through Odessa before and since, the actual cost and capacity of the Danube, rail and road alternatives, where the grain deal stands and who brokered what, and current war-risk insurance rates for the route. Then the consequence our reader lives with, which is not Ukrainian: Egypt, Indonesia, Bangladesh and Tunisia buy Black Sea wheat, and Egypt is the world's largest wheat importer with bread subsidies that are a fiscal and political load-bearing wall — a 50% export fall is a subsidy bill and a flour price in Cairo and Dhaka long before it is a line in a European aid package. Note the source is analysis from an advocacy-aligned institute arguing for a negotiated settlement: carry the port closure and export figures as reportable facts, attribute the 'steel porcupine' and demographic argument to the author as argument, and verify the population figures independently.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-only-question-the-rupiah-priced",
-      "label": "Indonesia's President Nominates Central Bank Deputy as New Governor",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-the-only-question-the-rupiah-priced"
-      ],
-      "eventUri": null,
-      "summary": "Prabowo has nominated Bank Indonesia's deputy governor Destry Damayanti to run the central bank, and the rupiah rose slightly on the news. Lead with the currency move, because it is the market pricing one variable only: whether the new governor will finance the president's spending. The mechanism to teach is that central-bank independence is not a law, it is a set of relationships — Indonesia's statute already guarantees it, and what actually decides the question is whether the nominee is an internal career official or a political appointment, whether the House confirms without conditions, and whether 'burden sharing' (the central bank buying government bonds directly to fund the budget) resumes. Indonesia did that during the pandemic and it is the precedent everyone in Jakarta is watching, because Prabowo's free-meals programme and sovereign fund are large fiscal commitments looking for funding. Establish who Damayanti is and her record at BI, the confirmation process and timetable in the DPR, the current policy rate, inflation, the rupiah's level and reserve cover, and what the president and BI have said about deficit financing. Then the reader's stake: Indonesia is the largest Muslim-majority economy and its rupiah is one of the emerging-market currencies most exposed to a rising US Treasury yield, so a governor who cannot say no to the palace and a barrel priced near Hormuz arrive at the same household in Surabaya. A US-based Asia specialist outlet is the only account in today's feed; no Indonesian outlet is present, and the writer should cite Bank Indonesia and DPR statements directly.",
-      "conceptUris": []
-    },
-    {
-      "id": "an-attack-that-needs-the-machine-already-lost",
-      "label": "New Pass-ta-key attack reveals all the things we didn't know about passkeys",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-an-attack-that-needs-the-machine-already-lost"
-      ],
-      "eventUri": "eng-11912064",
-      "summary": "A researcher's 'novel attack surface' in passkeys turns out to be neither novel nor specific to passkeys — the attacks require malware already running on the device, which defeats every authentication method equally. Lead with the correction rather than the claim, because the useful thing here is the boundary: passkeys were designed to kill phishing and credential stuffing by making the secret unphishable and site-bound, and they do that; they were never designed to survive an attacker who already owns your machine, and nothing is. The mechanism to teach is the threat model — a security claim is only meaningful with the attacker's capabilities stated, and the reason this research travelled is that almost no coverage of authentication states one. Establish precisely what the researcher demonstrated, what preconditions each step requires, what the FIDO Alliance and the platform vendors say, and what a hardware-backed passkey in a TPM or secure enclave actually protects against versus a passkey synced through a cloud password manager — that difference is real and is the part worth the reader's attention. Then the reader's stake, which is practical: hundreds of millions of people are being migrated to passkeys right now by their bank and their government ID app, often on shared or older Android devices in Pakistan, Nigeria and Indonesia where the sync provider and the device integrity are exactly the assumptions in question. The right takeaway is not 'passkeys are broken' or 'passkeys are safe' — it is what you are trusting when you enrol one, and who holds it.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-network-voting-on-whether-friday-happened",
-      "label": "Bitcoin-linked Ravencoin falls 17% as miners move to rewrite transactions since Friday",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-a-network-voting-on-whether-friday-happened"
-      ],
-      "eventUri": null,
-      "summary": "Attackers exploited a critical block flaw in Ravencoin, and its miners are now deciding whether to erase four days of transactions; Bitvavo and South Korea's Upbit have frozen deposits and withdrawals while the network chooses which version of history to accept. Lead with the freeze and the choice, because together they undo the premise: a settled transaction is supposed to be a fact, and here a committee of miners and a handful of exchanges are voting on whether last Friday happened. Do NOT rewrite our 08-11 piece on the BIP-110 fork's difficulty trap — that story was about a chain too weak to reach its own repair; this one is about a chain strong enough to repair itself by deleting the record, and the distinct lesson is that finality on a proof-of-work chain is a probability that people convert into a decision. The mechanism to teach: a deep reorganisation is not an attack on the protocol, it is the protocol working as specified — the longest valid chain wins, and a coordinated majority of hashpower can therefore always author a longer one. Establish what the flaw was and whether it minted coins out of nothing, how many blocks and how many days are at stake, which exchanges halted and when, who decides and by what process, and who bears the loss if a rollback happens — the trader whose withdrawal is unwound, or the exchange that credited it. Then the transferable point: every custody chain a user touches has a human at the end of it, and the property blockchains are marketed on — irreversibility — is the first thing suspended when it becomes expensive.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-staircase-that-lost-its-first-step",
-      "label": "Engineering degrees get a new-age makeover",
-      "firstSeen": "2026-08-11T12:13:40.166Z",
-      "lastCovered": "2026-08-11T12:13:40.166Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-the-staircase-that-lost-its-first-step"
-      ],
-      "eventUri": "eng-11911035",
-      "summary": "India's engineering degree plus an entry-level IT job has been the most dependable route into formal white-collar work for three decades, and companies automating exactly those junior tasks are now breaking it. Lead with the pyramid, because that is the mechanism nobody names: Indian IT services is a labour-arbitrage business whose economics rest on a wide base of billable juniors doing testing, maintenance and support at low cost, and generative AI removes the base while leaving the apex — so the industry does not shrink so much as stop hiring the cohort it used to absorb. Roughly 1.5 million engineering graduates a year were being priced against that model. The second mechanism is that seniority has no other entrance: an engineer becomes senior by doing junior work for three years, so removing the first rung does not make everyone start higher, it removes the staircase. Establish what curricula are actually changing and at which institutions, what the campus-placement numbers and entry-level salaries have done over the last three hiring seasons, what NASSCOM and the major services firms say about headcount, and what a fresher who does not get placed does instead. Then the wider stake our reader should carry: this is the first large, measurable instance of AI removing an entry-level pathway in a developing economy, and Pakistan, Bangladesh, Nigeria, Egypt and the Philippines all built the same outsourcing ladder behind India — the aspiration that a technical degree converts into a formal-sector job is a load-bearing promise in every one of them. A single Indian business-daily account; source the placement data to institutions and industry bodies rather than to the article's framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Workflow",
-        "http://en.wikipedia.org/wiki/Productivity",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Decision-making",
-        "http://en.wikipedia.org/wiki/Chatbot"
-      ]
     }
   ]
 }
