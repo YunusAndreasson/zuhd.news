@@ -1,37 +1,35 @@
 {
-  "date": "2026-08-11",
+  "date": "2026-08-12",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles, all 5 completed, committed and deployed; each wrote 13, dedup and validation trimmed to ~11 published per cycle" },
-    "freshness": { "median": 0.2, "p90": 0.9, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 14, "science": 10, "tech": 10 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, avg 10/cycle (yesterday 56)" },
+    "freshness": { "median": 0.6, "p90": 17, "max": 30.3, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 14, "tech": 15, "science": 12 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 14, "AM": 13, "AS": 11, "AF": 10, "EU": 7, "OC": 1 }
+      "breakdown": { "ME": 23, "AM": 12, "EU": 11, "AS": 8, "AF": 6, "OC": 2 }
     },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 39,
-    "duplicates": 1,
-    "avgCycleDuration": 1371
+    "sciTech": { "ratio": 44, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 6, "target": 20, "met": true },
+    "uniqueSources": 58,
+    "duplicates": 0,
+    "avgCycleDuration": 1283
   },
-  "experiment": "Skipped — every goal metric is inside target, no experiment is active, and no pause gate applies. The one real defect today (a cross-cycle duplicate) lives in scripts/lib/dedup.js, which is not a tunable parameter in this scope, and no feed or floor parameter would have prevented it.",
-  "weakestArea": "Duplicates. The 12:00 and 22:00 cycles both published the same SciDev.Net feature on Liberian contraceptive stockouts — identical source URL, ten hours apart. All four dedup layers missed it for a structural reason: the slugs share no words (a-health-system-held-as-a-subscription vs liberia-contraception-donor-funding-cuts) so layer 3 fails, and the titles share only 'Cuts' so layer 4's three-word recap threshold fails. Nothing in wouldDedup() compares source URLs, even though both stories carried the same one verbatim — a fifth layer keyed on normalised source URL would have caught this deterministically at zero token cost. Everything else is comfortable: freshness median 0.2 against a 1.0 target, sci-tech at 36%, top source at 13%.",
+  "experiment": "Skipped — all four goal metrics are within target and no experiment is active. The experiment slot stays open rather than manufacturing a change against healthy numbers.",
+  "weakestArea": "Sourcing depth, not any goal metric. 87 source slots across 62 articles is ~1.4 sources per article, so roughly three-quarters of today's output is single-source; multiSource clears its floor of 4 at 13 only because the floor is low. History (2026-05-09-multi-source-floor-3, reverted) established that the selector-floor lever is tapped — the feed's per-cycle multi-source supply is the binding constraint, so any real gain has to come from upstream event clustering rather than from a tunable parameter.",
   "watching": [
-    "The dedup ladder has no source-URL layer, so an identical URL reframed with a fresh slug and headline passes cleanly — this is the third same-URL duplicate in three days (2 yesterday, 1 today) and every one would fall to an exact URL comparison.",
-    "acronymViolations sat at 379 in the latest weekly snapshot, but the top five violators are IR, PK, IN, RU and CN — the regex in measure-quality.js:128 scans the raw body, so it is counting the ISO-2 codes inside (country:XX) link markup, not unexpanded prose acronyms. The metric is measuring syntax and is not actionable as written.",
-    "Cycle health fully recovered from yesterday: 5 of 5 completed today against 1 of 5 on 2026-08-10, and the build-lock contention that cost four cycles is gone. Wall-time rose to 1371s average (selector 303s, writer 363s, editor 101s) — still far inside every timeout.",
-    "Article throughput fell 71 to 56 while the per-cycle written count held at 13, so the drop is downstream trimming rather than thin selection; worth a second day of observation before reading anything into it.",
-    "multiSourceRatePct in the weekly snapshot slipped 22.8 to 20.9. Two prior experiments established that the feed's ~9 multi-source clusters per cycle cap this near 22%, so the lever is upstream feed clustering, not the selector floors.",
-    "FIRMS_MAP_KEY is still absent from the systemd service file — the thermal snapshot skipped on all five cycles again and the map continues to serve a stale layer."
+    "Hormuz transit-passage blockade language hardening while Iran talks stall — a chokepoint story with live market transmission.",
+    "The Mecca Pact's first Houthi test of mutual-defence obligations, which would convert a paper alignment into a commitment.",
+    "Egypt–Ethiopia GERD friction now framed via Red Sea encirclement — a water dispute acquiring a naval dimension.",
+    "DRC Bundibugyo Ebola ring-vaccination trial, where trial design will determine whether containment is measurable.",
+    "Novorossiysk port strike plus shadow-fleet cargo seizures — two separate pressure points on the same Russian export route."
   ],
   "coverageGaps": [
-    "Oceania produced a single article for the fifth consecutive day and remains the only region that never clears one.",
-    "Europe fell to 7 from 12 yesterday, the sharpest single-region swing of the day, while Africa rose to 10 — its strongest showing this week.",
-    "Science and tech tied at 10 each, both down from 13 and 19 yesterday; the ratio still clears 25% comfortably but the absolute floor for tech (3/cycle) is the binding constraint on light feed days.",
-    "Politics took 22 of 56 slots (39%), the widest category share of the day, though no stated target governs it."
+    "Oceania at 2 articles (2 yesterday, 1 the day before) is a persistent thin spot beyond Australian domestic stories; Pacific island states are effectively unrepresented.",
+    "Africa fell from 10 to 6 day-over-day, and half of today's total is Nigeria — sub-Saharan breadth outside Nigeria and the DRC is narrow.",
+    "Science leans heavily on physics and genomics (glueball, fractal uncertainty, camel genome, CRISPR); climate and earth science appear only via disaster reporting, not research."
   ],
-  "context": "A clean day on every measured axis: 56 articles across five completed cycles, freshness median 0.2 with a 1.3-day maximum, 39 unique sources with no outlet above 13%, six regions, and eight multi-source stories against a floor of four. The experiment slate is empty and stays empty — proposing a variable against metrics this healthy would only add noise. The queued numerical-density experiment remains blocked on its own preflight (replicate the n=3 bench gain at n>=20 first) and targets scripts/write-prompt.md, outside daily-tuning scope regardless. The two findings worth an operator decision both sit outside that scope: adding a source-URL layer to scripts/lib/dedup.js, and either excluding (country:XX) markup from the acronym regex in scripts/measure-quality.js or retiring the metric, since at present it reports a number that cannot go down."
+  "context": "The freshness p90 of 17 days and max of 30.3 are artifacts, not staleness: three advance-preview articles about today's total solar eclipse carry source dates from 12 and 26 July, since the previews were written weeks ahead of a scheduled event. The metric also only measures the 16 of 62 articles backdated past midnight — same-day articles compute a negative age and are filtered out — so the tail is drawn from a small, self-selecting sample. Median lag of 0.6 days on that sample is the number that matters, and it is inside target."
 }
