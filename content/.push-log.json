@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-07-20T04:18:41.350Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-07-20-south-africa-mchunu-fazel-intelligence-oversight-affidavit",
-        "title": "Fazel Alleges Political Sabotage",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-venezuela-earthquake-death-toll-5208-displacement",
-        "title": "Venezuela Earthquake Toll Hits 5,208",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-us-iran-strikes-ninth-day-american-killed-hormuz",
-        "title": "US Strikes Iran Ninth Day",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-norway-breivik-massacre-memorial-15th-anniversary",
-        "title": "Norway Unveils Breivik Memorial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-taliban-conquest-to-control-badakhshan-statebuilding",
-        "title": "Taliban's Conquest Outpaces Control",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-irgc-tankers-destroyed-strait-of-hormuz-oil-shipping",
-        "title": "IRGC Blows Up Tankers",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-china-russia-lng-imports-sanctions-discount",
-        "title": "China's Russian LNG Imports Surge",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-china-pakistan-digital-skills-training-cpec-it",
-        "title": "China To Train Pakistani Youth",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-benin-deep-water-coral-reef-alive-underwater-drones",
-        "title": "Benin Reef Found Alive",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-20-tungsten-bronze-ferroelectrics-mlcc-energy-storage",
-        "title": "Capacitor Coating Boosts Storage",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-claude-code-bun-rust-runtime-migration",
-        "title": "Claude Code Migrates To Bun",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-ancient-princesses-were-weapon-wielding-badasses-scientists",
-        "title": "Egyptian Princesses Wielded Weapons",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-18-the-kimi-k3-moment",
-        "title": "Kimi K3 Undercuts Claude",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 13 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-07-20T08:20:49.061Z",
     "candidateCount": 10,
     "candidates": [
@@ -10441,6 +10341,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Maersk raises full-year profit guidance to $6.5 billion",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 11
+    }
+  },
+  {
+    "timestamp": "2026-08-13T12:21:04.651Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi",
+        "title": "Pact Builds Joint Command",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-kordofan-ambaz-millet-price-displacement-hunger",
+        "title": "Displaced Eat Animal Feed",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-myanmar-federal-steering-council-unified-resistance",
+        "title": "Myanmar Resistance Unifies",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-mufg-jgb-real-time-settlement-collateral-velocity",
+        "title": "MUFG Tests Instant Bond Settlement",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-vietnam-rare-earth-refining-chokepoint-china-plus-one",
+        "title": "Vietnam's Rare Earth Trap",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-self-driving-lab-gallium-oxide-growth-rules",
+        "title": "Robot Lab Learns Crystal Rules",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-anthropic-watermark-processed-content-ai-act",
+        "title": "Claude Marks Edited Text Too",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-12-fbi-credential-stuffing-intimate-image-market",
+        "title": "FBI Warns of Photo Theft Ring",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-open-weight-models-ai-infrastructure-sovereignty",
+        "title": "Mozilla Wants Open AI",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-cernavoda-danube-low-water-reactor-shutdown",
+        "title": "Drought Halts Nuclear Reactor",
+        "category": "science",
+        "eventCoverage": 204,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-izmail-danube-grain-port-interceptor-rationing",
+        "title": "Grain Port Burns, Missiles Rationed",
+        "category": "politics",
+        "eventCoverage": 127,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-sukhbir-badal-hazur-sahib-attack-bargari-penance",
+        "title": "Badal Attacked at Shrine",
+        "category": "politics",
+        "eventCoverage": 116,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-ofwat-3-4bn-bill-rise-water-debt-dividends",
+        "title": "Regulator Clears Bill Hikes",
+        "category": "economy",
+        "eventCoverage": 34,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-13-izmail-danube-grain-port-interceptor-rationing",
+      "title": "Grain Port Burns, Missiles Rationed",
+      "category": "politics",
+      "body": "Russia set Ukraine's largest Danube grain port ablaze",
+      "eventCoverage": 127,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russia strikes Ukraine's largest Danube grain port, sets ablaze",
     "response": {
       "pushed": 1,
       "skipped": 0,
