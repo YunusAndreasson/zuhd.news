@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-07-19T17:23:21.198Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-07-19-tate-brothers-arrested-miami-uk-extradition-trafficking",
-        "title": "Tate Brothers Arrested",
-        "category": "politics",
-        "eventCoverage": 620,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-trump-iran-russia-sanctions-bill-secondary-tariffs-india",
-        "title": "Trump Pushes Iran Sanctions",
-        "category": "economy",
-        "eventCoverage": 90,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-caspian-pipeline-black-sea-tanker-drone-strike-kazakhstan",
-        "title": "Drones Hit Caspian Oil Terminal",
-        "category": "economy",
-        "eventCoverage": 55,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-iaea-iran-darkhovin-nuclear-plant-strike-radiation",
-        "title": "US Strikes Iran Nuclear Site",
-        "category": "science",
-        "eventCoverage": 43,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-canada-congo-ebola-travel-ban-who-advice",
-        "title": "Canada Bars Congo Travelers",
-        "category": "politics",
-        "eventCoverage": 35,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-greece-western-thrace-turkish-minority-schools-lausanne",
-        "title": "Greece Shuts Minority Schools",
-        "category": "politics",
-        "eventCoverage": 34,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-samsung-nj-layoffs-texas-hq-move-chip-consolidation",
-        "title": "Samsung Cuts New Jersey Jobs",
-        "category": "tech",
-        "eventCoverage": 31,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-tether-usdt-us-stablecoin-rules-two-year-countdown",
-        "title": "USDT Faces US Exit Clock",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-polar-bear-trade-cites-sustainable-use-exploitation",
-        "title": "Legal Trade Hunts Polar Bears",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-carnaby-cockatoos-pesticide-wheatbelt-seed-spills",
-        "title": "Pesticide Poisons Endangered Cockatoos",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-19-bitcoin-bip110-saylor-consensus-spam-debate",
-        "title": "Saylor Fights Bitcoin Proposal",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-19-tate-brothers-arrested-miami-uk-extradition-trafficking",
-      "title": "Tate Brothers Arrested",
-      "category": "politics",
-      "body": "US Marshals seized Andrew and Tristan",
-      "eventCoverage": 620,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US marshals arrest Andrew and Tristan Tate on UK extradition warrant",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 19
-    }
-  },
-  {
     "timestamp": "2026-07-19T22:17:59.499Z",
     "candidateCount": 11,
     "candidates": [
@@ -10434,6 +10334,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "ICE to spend $20 million on 380-volt electric shock gloves for agents",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 11
+    }
+  },
+  {
+    "timestamp": "2026-08-13T04:19:13.656Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-08-13-karnataka-bandh-cauvery-water-tribunal-bengaluru",
+        "title": "Water Order Shuts Karnataka",
+        "category": "economy",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-iraq-coalition-withdrawal-september-deadline-final",
+        "title": "Iraq Sets Exit Deadline",
+        "category": "politics",
+        "eventCoverage": 30,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-trump-cyber-memo-private-contractors-criminal-networks",
+        "title": "Trump Outsources Cyber Strikes",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-islamabad-scam-compound-sub-jail-foreign-detainees",
+        "title": "Islamabad Jails Scam Compound",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-uyghur-camp-teacher-testimony-xinjiang-witness",
+        "title": "Camp Teacher Breaks Silence",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-delhi-2047-master-plan-yamuna-floodplain-development",
+        "title": "Delhi Opens Floodplain to Builders",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-sngpl-faisalabad-gas-leak-deaths-negligence-case",
+        "title": "Gas Utility Chief Booked",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-twitch-streams-amazon-ai-training-default-opt-out",
+        "title": "Twitch Defaults Streams to AI",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-taiwan-ai-driven-hacking-campaign-attribution",
+        "title": "AI Agents Breached Taiwan",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-france-telemarketing-ban-opt-in-consent-default",
+        "title": "France Flips Cold-Call Default",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-openai-head-of-ethics-departure-safety-governance",
+        "title": "OpenAI Ethics Chief Exits",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-cynodont-fossil-live-birth-mammal-origins",
+        "title": "Fossil Predates Live Birth",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-13-car-t-bispecific-therapy-infection-burden-access",
+        "title": "Cancer Therapies' Infection Cost",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-13-iraq-coalition-withdrawal-september-deadline-final",
+      "title": "Iraq Sets Exit Deadline",
+      "category": "politics",
+      "body": "Al-Zaidi called the deadline final.",
+      "eventCoverage": 30,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Iraq sets Sept. 30 deadline to end U.S.-led coalition presence",
     "response": {
       "pushed": 1,
       "skipped": 0,
