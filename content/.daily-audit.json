@@ -1,35 +1,37 @@
 {
-  "date": "2026-08-12",
+  "date": "2026-08-13",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, avg 10/cycle (yesterday 56)" },
-    "freshness": { "median": 0.6, "p90": 17, "max": 30.3, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 14, "tech": 15, "science": 12 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, avg 10/cycle (yesterday 63)" },
+    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.7, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 16, "tech": 13, "science": 10 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 23, "AM": 12, "EU": 11, "AS": 8, "AF": 6, "OC": 2 }
+      "breakdown": { "AM": 18, "ME": 16, "AS": 14, "EU": 8, "AF": 5, "OC": 1 }
     },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 6, "target": 20, "met": true },
-    "uniqueSources": 58,
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 1283
+    "avgCycleDuration": 1265
   },
-  "experiment": "Skipped — all four goal metrics are within target and no experiment is active. The experiment slot stays open rather than manufacturing a change against healthy numbers.",
-  "weakestArea": "Sourcing depth, not any goal metric. 87 source slots across 62 articles is ~1.4 sources per article, so roughly three-quarters of today's output is single-source; multiSource clears its floor of 4 at 13 only because the floor is low. History (2026-05-09-multi-source-floor-3, reverted) established that the selector-floor lever is tapped — the feed's per-cycle multi-source supply is the binding constraint, so any real gain has to come from upstream event clustering rather than from a tunable parameter.",
+  "experiment": "Skipped — all four goal metrics are inside target, no experiment is active, and no pause gate applies. The slot stays open rather than manufacturing a change against healthy numbers.",
+  "weakestArea": "Regional distribution, not any goal metric. Six regions clears the floor of four, but the tail is thin: Oceania 1 and Africa 5 out of 62, against 18 for the Americas. Africa's five are Sudan, Nigeria and three Egypt/Morocco-adjacent stories, so sub-Saharan breadth outside Sudan is effectively one article. This is a feed-supply property rather than a tunable one — GAP_COUNTRIES already lists the underweight markets, and the 2026-05-09 floor experiment established that pushing selector floors against a feed that does not supply the stories just moves rejections around.",
   "watching": [
-    "Hormuz transit-passage blockade language hardening while Iran talks stall — a chokepoint story with live market transmission.",
-    "The Mecca Pact's first Houthi test of mutual-defence obligations, which would convert a paper alignment into a commitment.",
-    "Egypt–Ethiopia GERD friction now framed via Red Sea encirclement — a water dispute acquiring a naval dimension.",
-    "DRC Bundibugyo Ebola ring-vaccination trial, where trial design will determine whether containment is measurable.",
-    "Novorossiysk port strike plus shadow-fleet cargo seizures — two separate pressure points on the same Russian export route."
+    "Tanker strikes off the UAE pushing war-risk premia into Hormuz shipping — the first attack on ADNOC-linked hulls, with Maersk already guiding on rerouted volumes.",
+    "The Makkah Pact moving from paper to a joint command structure, which would give the Pakistan–Türkiye–Saudi alignment an operational test.",
+    "Iraq's September coalition-withdrawal deadline now fixed, against a US carrier holding a 250-day deployment in the same theatre.",
+    "The WHO Phase III Ebola trial for the Bundibugyo strain, where trial design decides whether ring vaccination is measurable at all.",
+    "Two Danube stories converging — Izmail's grain port burning under rationed interceptors and Cernavodă throttling a reactor on low water — the same river as war target and climate constraint."
   ],
   "coverageGaps": [
-    "Oceania at 2 articles (2 yesterday, 1 the day before) is a persistent thin spot beyond Australian domestic stories; Pacific island states are effectively unrepresented.",
-    "Africa fell from 10 to 6 day-over-day, and half of today's total is Nigeria — sub-Saharan breadth outside Nigeria and the DRC is narrow.",
-    "Science leans heavily on physics and genomics (glueball, fractal uncertainty, camel genome, CRISPR); climate and earth science appear only via disaster reporting, not research."
+    "Oceania at one article is the third consecutive thin day; Pacific island states remain unrepresented outside Australian regulatory stories.",
+    "Sub-Saharan Africa is carried by Sudan and Nigeria; no coverage of the Sahel, East African economies or southern Africa today.",
+    "Latin America appears only via Venezuela's transition talks — the Americas' 18 are overwhelmingly US domestic and US-policy stories.",
+    "Science is strong on physics, palaeontology and materials but reaches climate only through the US Arctic-report cuts, not through research output."
   ],
-  "context": "The freshness p90 of 17 days and max of 30.3 are artifacts, not staleness: three advance-preview articles about today's total solar eclipse carry source dates from 12 and 26 July, since the previews were written weeks ahead of a scheduled event. The metric also only measures the 16 of 62 articles backdated past midnight — same-day articles compute a negative age and are filtered out — so the tail is drawn from a small, self-selecting sample. Median lag of 0.6 days on that sample is the number that matters, and it is inside target."
+  "context": "Freshness is the cleanest it has been in a week: median 0.3 with a max of 1.7 days, versus yesterday's 17-day p90 and 30.3-day max, which were artifacts of advance-written solar-eclipse previews carrying July source dates. Nothing in the tail today needs explaining away. Throughput held at 62 across five completed cycles with zero duplicates and 52 unique sources, and Dawn's 13% top-source share is the only concentration worth noting — it reflects a heavy South Asia day (Balochistan, Karachi, Islamabad, Karnataka, Delhi) rather than source over-reliance.",
+  "queued": "2026-05-08-numerical-density remains queued and still blocked on its own preflight — it targets scripts/write-prompt.md, which is outside daily-tuning scope."
 }
