@@ -284,8 +284,6 @@ html {
   accent-color: var(--accent);
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Selected text was the last uncontrolled colour on the page: the UA default
