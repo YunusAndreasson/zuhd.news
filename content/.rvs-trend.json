@@ -1,22 +1,5 @@
 [
   {
-    "ts": "2026-05-25T08:27:46.121Z",
-    "cycleId": "2026-05-25T08-27",
-    "cycleHour": "08",
-    "rvs": 70.99,
-    "clusters": {
-      "picking": null,
-      "writing": 84.09,
-      "briefing": 72.58,
-      "sourcing": 40.91,
-      "coverage": 81.47
-    },
-    "articleCount": 11,
-    "briefCount": 11,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
     "ts": "2026-05-25T12:40:48.413Z",
     "cycleId": "2026-05-25T12-40",
     "cycleHour": "12",
@@ -6656,6 +6639,24 @@
     "guardrailFailures": [
       "article 2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall has source with country:null"
     ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-08-13T04:20:12.400Z",
+    "cycleId": "2026-08-13T04-20",
+    "cycleHour": "04",
+    "schema": 2,
+    "rvs": 69.33,
+    "clusters": {
+      "picking": null,
+      "writing": 78.85,
+      "briefing": null,
+      "sourcing": 31.28,
+      "coverage": 94.69
+    },
+    "articleCount": 13,
+    "briefCount": 0,
+    "guardrailFailures": [],
     "degenerate": false
   }
 ]
