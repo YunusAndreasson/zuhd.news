@@ -2,13 +2,239 @@
   "version": 1,
   "stories": [
     {
+      "id": "iraq-coalition-withdrawal-september-deadline-final",
+      "label": "Iraq says September 30 withdrawal deadline for US-led coalition 'final'",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-iraq-coalition-withdrawal-september-deadline-final"
+      ],
+      "eventUri": "eng-11916872",
+      "summary": "Iraqi PM Ali al-Zaidi told CENTCOM's commander to his face that September 30 is 'fixed and final' for ending the US-led coalition mission — a sovereign state setting a date on a foreign force that has been present since 2014. Lead with the 48-day countdown and the fact that the statement came out of a meeting with CENTCOM, not a parliamentary speech. The mechanism to explain: the coalition's legal basis is an invitation Baghdad can withdraw, and Iraqi Kurdistan is where the residual-presence argument will be fought. Ties into the wider US force-posture question across the Gulf while the Iran confrontation continues.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Baghdad",
+        "http://en.wikipedia.org/wiki/Islamic_State",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_States_Central_Command",
+        "http://en.wikipedia.org/wiki/Iraqi_Kurdistan",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "trump-cyber-memo-private-contractors-criminal-networks",
+      "label": "Trump signed memo to allow use of cyber tools to target transnational criminal organizations, White House says",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-trump-cyber-memo-private-contractors-criminal-networks"
+      ],
+      "eventUri": "eng-11917699",
+      "summary": "A national security presidential memorandum authorises offensive cyber operations against cartels and trafficking networks — and explicitly directs the government to 'leverage the capability and innovation of the private sector' to run them. Lead with that clause: the novel thing is not the target list but the outsourcing of state cyber force to contractors under nominal government 'direction, control, and authority'. Who is affected: anyone in Latin America whose infrastructure sits next to a designated network, since cyber effects do not respect the boundary of a criminal organisation. The accountability gap to name — a private contractor conducting a covert operation abroad has no clear line of legal responsibility, and the memo itself is not public.",
+      "conceptUris": []
+    },
+    {
+      "id": "islamabad-scam-compound-sub-jail-foreign-detainees",
+      "label": "Islamabad's building with 500 foreign inmates converted into jail",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-islamabad-scam-compound-sub-jail-foreign-detainees"
+      ],
+      "eventUri": null,
+      "summary": "Pakistani authorities wrapped barbed wire around a commercial building in an Islamabad housing society holding more than 500 foreign nationals and declared it a sub-jail — an administrative act that converted a scam compound into a detention site overnight. Lead with the number and the improvisation: 500 people, no purpose-built facility, a housing-society block reclassified by order. The structural why: cyber-scam compounds, long associated with Myanmar and Cambodia, have migrated into South Asia, and the states hosting them have no legal category for the workers inside — who are simultaneously suspects and, in most documented cases elsewhere, trafficking victims. Name the unanswered question: which nationalities, and whether any consular access exists.",
+      "conceptUris": []
+    },
+    {
+      "id": "uyghur-camp-teacher-testimony-xinjiang-witness",
+      "label": "'Silence Is Not an Option': The Quest to Bear Witness to China's Uyghur Camps",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-uyghur-camp-teacher-testimony-xinjiang-witness"
+      ],
+      "eventUri": null,
+      "summary": "Kalbinur Sidik, a Uyghur teacher assigned to instruct Mandarin inside Xinjiang's camps, has published 'Heart Full of Light' — a first-hand account from someone who was staff, not inmate, and therefore saw the system's administration rather than only its cruelty. Lead with that vantage point: the testimony is rare because it comes from inside the apparatus. The structural point for our reader: the camps have largely fallen out of Western news cycles while the detentions and the surveillance architecture continue, and continuation is the development. Handle the survivor's account with precision — attribute what is testimony as testimony, and pair it with what is independently documented.",
+      "conceptUris": []
+    },
+    {
+      "id": "karnataka-bandh-cauvery-water-tribunal-bengaluru",
+      "label": "Bangalore bandh today August 13: Will taxi, bus, metro, airport, rail service be affected? Check strike timings, areas and services that may be affected in Bengaluru",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-karnataka-bandh-cauvery-water-tribunal-bengaluru"
+      ],
+      "eventUri": "eng-11909831",
+      "summary": "A statewide shutdown closed India's software capital for a day over river water — the Cauvery, which Karnataka is being ordered to release downstream to Tamil Nadu. Lead with the collision the reader will not expect: a 19th-century water-sharing dispute halting the city that runs a large share of the world's back-office and engineering work. Who is affected: daily-wage workers and transport operators lose a day outright, while the political actors (Vatal Nagaraj's Karnataka Okkuta, pro-Kannada groups) are pressuring the state government not to comply. The mechanism to explain: India's interstate water tribunals allocate volumes fixed in wetter decades, so every deficit monsoon converts a legal quota into a street confrontation — and Mekedatu, the proposed reservoir, is the next flashpoint. This is a climate-adaptation failure wearing the costume of a language-politics protest.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Karnataka",
+        "http://en.wikipedia.org/wiki/Bandh",
+        "http://en.wikipedia.org/wiki/Kaveri",
+        "http://en.wikipedia.org/wiki/Kannada",
+        "http://en.wikipedia.org/wiki/Tamil_Nadu",
+        "http://en.wikipedia.org/wiki/Bangalore",
+        "http://en.wikipedia.org/wiki/Vatal_Nagaraj",
+        "http://en.wikipedia.org/wiki/Mekedatu"
+      ]
+    },
+    {
+      "id": "delhi-2047-master-plan-yamuna-floodplain-development",
+      "label": "DDA clears Delhi 2047 plan, opens door to development in 70 villages, parts of Yamuna floodplain",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-delhi-2047-master-plan-yamuna-floodplain-development"
+      ],
+      "eventUri": "eng-11915723",
+      "summary": "The Delhi Development Authority approved a master plan to 2047 that relaxes protection on part of the Yamuna floodplain and permits commercial construction in 70 peri-urban villages. Lead with the reversal: the floodplain is the land Delhi's own planners had ruled unbuildable, and the city flooded in living memory. Who holds power — an appointed development authority, not an elected city government, setting land use for two decades. Who bears the cost — the villages absorbed into the commercial map, whose residents get land value and lose land use, and everyone downstream of a floodplain that has been narrowed. The mechanism worth teaching: master plans monetise flood risk by converting a hydrological buffer into a real-estate asset, and the bill arrives on a monsoon timescale, not an electoral one.",
+      "conceptUris": []
+    },
+    {
+      "id": "sngpl-faisalabad-gas-leak-deaths-negligence-case",
+      "label": "Three deaths in house fire incident in Faisalabad: SNGPL GM, contractor among 13 booked for 'negligence'",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-sngpl-faisalabad-gas-leak-deaths-negligence-case"
+      ],
+      "eventUri": null,
+      "summary": "Police booked the Faisalabad general manager of Sui Northern Gas Pipelines — a state-owned utility — along with a contractor and eleven others after a gas-leak blast killed three people in a house fire. Lead with the rarity, not the tragedy: in Pakistan an FIR naming a utility's regional GM personally for infrastructure negligence is the exception, and it is the accountability mechanism the reader should watch. The structural why: SNGPL's distribution network is decades old and its leak-repair work is contracted out, so responsibility diffuses across a chain until a criminal case forces someone to hold it. What's next — whether the case survives to prosecution or dissolves the way earlier utility cases have.",
+      "conceptUris": []
+    },
+    {
+      "id": "twitch-streams-amazon-ai-training-default-opt-out",
+      "label": "Twitch is Mining Peoples' Streams to Train Amazon's AI",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-twitch-streams-amazon-ai-training-default-opt-out"
+      ],
+      "eventUri": null,
+      "summary": "Twitch turned on a setting that feeds streamers' video, audio and chat into training data for Amazon's AI models — default on, opt-out buried. Lead with the asymmetry: creators built libraries of their own faces and voices on a platform that has now reclassified that archive as a corpus. The mechanism to explain plainly, including how to switch it off. The structural point: 'we updated our terms' converts consent into inertia, and a creator's likeness is the one asset they cannot re-license once a model has absorbed it. Amazon owns Twitch — name the corporate line, since the value transfer is between subsidiaries, not with a third party.",
+      "conceptUris": []
+    },
+    {
+      "id": "taiwan-ai-driven-hacking-campaign-attribution",
+      "label": "Taiwan says it was targeted last month in AI-driven hacking campaign",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-taiwan-ai-driven-hacking-campaign-attribution"
+      ],
+      "eventUri": "eng-11917933",
+      "summary": "Taipei says an AI-driven intrusion campaign hit Taiwanese targets last month — the state attribution matters less than the claimed method. Lead with what 'AI-driven' concretely means in an intrusion: automated reconnaissance and exploit generation compress the attacker's timeline from weeks to hours, which breaks defences built on human-speed detection. Who is affected beyond Taiwan: every smaller state whose cyber defence budget assumed an attacker had to pay for skilled labour. Frame carefully — Taiwan has an interest in the attribution, so separate the government's claim from the technical description, and note what evidence has and has not been published.",
+      "conceptUris": []
+    },
+    {
+      "id": "france-telemarketing-ban-opt-in-consent-default",
+      "label": "France to ban unsolicited telemarketing calls",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-france-telemarketing-ban-opt-in-consent-default"
+      ],
+      "eventUri": null,
+      "summary": "From 11 August a company may only call a French consumer who has explicitly agreed to be called — France inverted the default from opt-out to opt-in for an entire industry. Lead with the inversion, not the nuisance: every do-not-call registry in the world places the burden on the person being called, and France just moved it to the caller. Who is affected: an outsourced call-centre industry, much of it staffed in Morocco, Tunisia and Madagascar, whose business model assumed cold contact was lawful by default. The structural lesson for our reader: consent defaults are the whole of privacy regulation, and this is the cleanest live test of whether flipping one actually works.",
+      "conceptUris": []
+    },
+    {
+      "id": "openai-head-of-ethics-departure-safety-governance",
+      "label": "OpenAI's head of ethics leaves less than a year after joining",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-openai-head-of-ethics-departure-safety-governance"
+      ],
+      "eventUri": null,
+      "summary": "OpenAI's head of ethics has left after under a year — the latest exit in a pattern where the internal check departs and the product schedule does not change. Lead with the tenure, not the name: under twelve months is the number that tells the story. The structural why for a technically literate reader: safety and ethics functions at frontier labs hold no budget, no shipping veto and no statutory footing, so their only instrument is resignation — which is why departures are the observable signal of internal disagreement and there is no other. What's next: whether the role is refilled, and at what reporting level, is the concrete thing to watch.",
+      "conceptUris": []
+    },
+    {
+      "id": "cynodont-fossil-live-birth-mammal-origins",
+      "label": "A 236-million-year-old fossil challenges the story of mammalian live birth",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-cynodont-fossil-live-birth-mammal-origins"
+      ],
+      "eventUri": null,
+      "summary": "A cynodont fossil from 236 million years ago carries the first compelling evidence that these pre-mammalian ancestors gave birth to live young — pushing viviparity tens of millions of years earlier than assumed. Lead with the date and what it displaces: live birth was treated as a mammalian innovation, and this puts it before mammals existed. The mechanism to explain: how a fossil can testify to reproduction at all — what preserved arrangement of skeletons distinguishes an embryo from a meal, which is the whole evidentiary crux. Keep the hedge honest; the study says 'may have been', and one specimen rewrites a timeline only provisionally.",
+      "conceptUris": []
+    },
+    {
+      "id": "car-t-bispecific-therapy-infection-burden-access",
+      "label": "Infectious complications following bispecific antibody or CAR T therapy in adult patients with hematologic malignancies: a retrospective database analysis",
+      "firstSeen": "2026-08-13T04:08:47.485Z",
+      "lastCovered": "2026-08-13T04:08:47.485Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-13-car-t-bispecific-therapy-infection-burden-access"
+      ],
+      "eventUri": null,
+      "summary": "A retrospective database study in Blood Cancer Journal quantifies how often patients given CAR-T or bispecific antibody therapy for blood cancers are then hospitalised with infections — the cost side of therapies usually reported only by remission rate. Lead with the trade-off: T-cell redirection works by turning the immune system against the tumour, and the same mechanism strips the defences that keep ordinary pathogens out. Who is affected globally: these are the most expensive treatments in oncology, and the infection burden is what determines whether they can be delivered outside a well-resourced transplant centre — which is the access question for every health system that is not American or European. Flag that this is an early-access, pre-final-edit manuscript.",
+      "conceptUris": []
+    },
+    {
       "id": "pentagon-yemen-civilian-casualty-report-undercount",
       "label": "Pentagon says it killed at least 150 Yemeni civilians last year",
       "firstSeen": "2026-08-12T22:14:17.853Z",
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-pentagon-yemen-civilian-casualty-report-undercount"
@@ -24,7 +250,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ice-shock-gloves-procurement-manual-sudden-death"
@@ -48,7 +274,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-brazil-discord-livestream-suspension-order"
@@ -72,7 +298,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ajk-la17-haveli-form-27-result-dispute"
@@ -88,7 +314,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall"
@@ -113,7 +339,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-deep-offshore-tax-incentives-output-decline"
@@ -129,7 +355,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-afghan-women-business-mahram-intermediary-cost"
@@ -145,7 +371,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-crispr-y-chromosome-female-clones-mice"
@@ -161,7 +387,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-drc-bundibugyo-ebola-vaccine-ring-trial"
@@ -177,7 +403,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-litellm-supply-chain-credential-leak"
@@ -193,7 +419,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-meta-smart-glasses-covert-recording-harassment-study"
@@ -209,7 +435,7 @@
       "lastCovered": "2026-08-12T22:14:17.853Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-12-kazakhstan-egov-data-leak-identity-consolidation"
@@ -225,7 +451,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-india-cpi-fed-split-imported-inflation"
@@ -248,7 +474,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-gulf-tourism-job-losses-migrant-remittances"
@@ -264,7 +490,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-pakistan-iran-tuna-fuel-barter-sanctions"
@@ -280,7 +506,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-awaam-pakistan-ecp-delisting-party-symbol"
@@ -296,7 +522,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-aegean-pushback-deaths-accountability-gap"
@@ -312,7 +538,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bukele-model-emergency-regimes-latin-america"
@@ -328,7 +554,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-uzbekistan-latin-script-reform-stalemate"
@@ -344,7 +570,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fifa-africa-development-grants-voting-bloc"
@@ -360,7 +586,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fractal-uncertainty-principle-quantum-chaos"
@@ -376,7 +602,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-uk-zev-mandate-rollback-driver-costs"
@@ -392,7 +618,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-egypt-sim-fraud-biometric-registration"
@@ -408,7 +634,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-arab-cybercrime-laws-speech-elastic-clauses"
@@ -424,7 +650,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-fusion-centers-flock-camera-critics-monitoring"
@@ -440,7 +666,7 @@
       "lastCovered": "2026-08-12T17:13:00.139Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-12-acro-breaches-dwell-time-ico-reprimand"
@@ -456,7 +682,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet"
@@ -481,7 +707,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-zhu-rongji-soe-restructuring-wto-accession"
@@ -506,7 +732,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-senate-seplat-audit-ultimatum"
@@ -522,7 +748,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mecca-pact-houthi-test-mutual-defence"
@@ -538,7 +764,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-egypt-ethiopia-gerd-red-sea-encirclement"
@@ -554,7 +780,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-siraya-indigenous-recognition-taiwan"
@@ -570,7 +796,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sazan-island-kushner-resort-albania"
@@ -586,7 +812,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-glueball-besiii-particle-made-of-force"
@@ -602,7 +828,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bactrian-camel-reference-genome"
@@ -618,7 +844,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-10-ice-lexisnexis-palantir-data-brokers"
@@ -634,7 +860,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
@@ -650,7 +876,7 @@
       "lastCovered": "2026-08-12T12:14:25.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ai-election-infrastructure-opacity"
@@ -666,7 +892,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-novorossiysk-port-strike-cpc-oil-terminal"
@@ -691,7 +917,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-north-korea-ballistic-test-drills-calendar"
@@ -716,7 +942,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-warraq-island-sit-in-cairo-development"
@@ -732,7 +958,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-china-afghanistan-taliban-five-years-minerals"
@@ -748,7 +974,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-iran-brics-new-development-bank-accession"
@@ -764,7 +990,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-gold-ten-week-high-cpi-household-savings"
@@ -780,7 +1006,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-golden-dome-funding-impasse-interceptor-economics"
@@ -796,7 +1022,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-total-solar-eclipse-geometry-prediction"
@@ -821,7 +1047,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-bali-lombok-ferry-fire-roro-manifest"
@@ -846,7 +1072,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-chitral-cloudbursts-lower-dir-debris-flows"
@@ -862,7 +1088,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tokenized-stock-derivatives-counterparty-ownership"
@@ -878,7 +1104,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-rocket-lab-germany-subsidiary-sovereign-launch"
@@ -894,7 +1120,7 @@
       "lastCovered": "2026-08-12T08:12:58.210Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-nigeria-rfid-baggage-tracking-accountability"
@@ -910,7 +1136,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-ceuta-crossing-migrants-stranded-morocco"
@@ -926,7 +1152,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-journalists-killed-gaza-press-record"
@@ -942,7 +1168,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-australia-indigenous-youth-detention"
@@ -958,7 +1184,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-venezuela-earthquake-missing-la-guaira"
@@ -974,7 +1200,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-central-asia-consultative-summit-azerbaijan"
@@ -990,7 +1216,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-tata-sons-chairman-exit-rbi-listing"
@@ -1015,7 +1241,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-eu-diversification-law-supply-chains"
@@ -1031,7 +1257,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-sovereign-ai-fund-token-spend"
@@ -1047,7 +1273,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-mumbai-kurla-landslide-chawl"
@@ -1071,7 +1297,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-colombia-canals-built-without-rulers"
@@ -1087,7 +1313,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-age-verification-anonymity-lobbying"
@@ -1103,7 +1329,7 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-meta-muse-glimmer-local-agent-model"
@@ -1119,245 +1345,13 @@
       "lastCovered": "2026-08-12T04:12:55.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-12-modeling-and-ai-optimization-of-visible-light-driven-acid-or"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for science floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nIndustrial wastewater contamination",
-      "conceptUris": []
-    },
-    {
-      "id": "us-military-fires-on-cargo-vessel-iran-blockade",
-      "label": "US military fires on cargo vessel it said sought to break Iran blockade",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade"
-      ],
-      "eventUri": "eng-11913672",
-      "summary": "US forces fired on a Panama-flagged cargo ship in the Gulf of Oman for trying to enter an Iranian port. Lead with what the shooting concedes: a blockade is not a diplomatic posture, it is a standing order to shoot at merchant ships, and the people at the wrong end of it are a civilian crew on a flag-of-convenience hull with no stake in the war — count them, name their nationalities and the cargo if the reporting allows. The mechanism to teach is that a blockade of a state's ports is, in the law of armed conflict, an act of war requiring declaration, notification and impartial enforcement; calling it an 'interdiction' or a 'quarantine' is the device by which a belligerent avoids saying so, and the precedent runs from Cuba 1962 to Yemen today. Establish exactly what CENTCOM says happened, the ship's name, flag, owner and destination, whether anyone was hurt, what Tehran says, and what the blockade has done to Iranian imports of food, medicine and refined fuel — that is where the civilian cost of a naval cordon actually lands. Follows this week's Bab al-Mandeb and Hormuz thread: those were about who bears a chokepoint's cost; this is about a chokepoint being manufactured deliberately. Multi-source across QA, GB, HK and RU — the divergence is small (0.13) but the framing is not: Al Jazeera reads a blockade, SCMP an enforcement action.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Helicopter",
-        "http://en.wikipedia.org/wiki/Panama",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Ship",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command"
-      ]
-    },
-    {
-      "id": "andras-baka-elected-hungarian-president",
-      "label": "Former judge András Baka elected Hungarian president",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-andras-baka-elected-hungarian-president"
-      ],
-      "eventUri": "eng-11911223",
-      "summary": "Hungary's parliament made head of state the judge Viktor Orbán removed from the Supreme Court — and whose removal the European Court of Human Rights ruled unlawful in Baka v. Hungary. Lead with that sentence, because the biography is the constitutional argument: a man sacked by a legislature for criticising it now holds the office that signs its laws. The mechanism to teach is how a captured state is uncaptured, and how slowly: Orbán's system was built with ordinary majorities appointing loyal officials to fixed terms — courts, prosecutors, the media council, the audit office — so a new government inherits the institutions rather than the power, and each seat comes free only when a term expires. The presidency is largely ceremonial, but it holds a veto-by-referral to the Constitutional Court, which is exactly the instrument a successor government needs and exactly the one Orbán's appointees still staff. Establish the vote and the arithmetic behind it, what Baka's ECtHR case actually decided and what Hungary did about it, what Prime Minister Péter Magyar has committed to dismantle, which offices remain held by Orbán-era appointees and until when, and what Fidesz says. Then the transferable point for our reader: judicial capture is legislated, not decreed, and the reversal takes longer than the capture did — a lesson that reads directly onto Turkey, Pakistan, India and Egypt. Multi-source GB/IN/SG/QA.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Hungary",
-        "http://en.wikipedia.org/wiki/Viktor_Orbán",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/Hungarians",
-        "http://en.wikipedia.org/wiki/Tisza",
-        "http://en.wikipedia.org/wiki/European_Court_of_Human_Rights",
-        "http://en.wikipedia.org/wiki/President_(government_title)"
-      ]
-    },
-    {
-      "id": "venezuela-israel-restore-consular-ties",
-      "label": "Venezuela and Israel restore consular ties as relations warm",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-venezuela-israel-restore-consular-ties"
-      ],
-      "eventUri": "spa-4301446",
-      "summary": "Caracas and Tel Aviv are restoring relations severed for 17 years — Venezuela broke them in 2009 over Gaza, and the restoration comes from an acting president, Delcy Rodríguez, who has been realigning towards Washington since January. Lead with what the 17 years were for: solidarity with Palestinians was a load-bearing plank of Venezuela's foreign policy and a real source of its standing in the Global South, and it is being spent as currency. The mechanism to teach is that diplomatic recognition is a tradeable asset for a sanctioned state — an unelected caretaker with an economy under US sanctions has few things left to offer that cost nothing to give, and normalisation with Israel is the one Washington values most, which is why the same instrument was used by Sudan, Morocco and the UAE and why the price paid to each is the thing worth naming. Establish exactly what both governments announced and at what level (consular, not full embassies — the difference matters), how Rodríguez came to be acting president and what her mandate is, what Venezuela's oil sanctions position is now, what the Palestinian Authority and Venezuela's own opposition say, and what happened to the Palestinian mission in Caracas. Then the reader's stake: recognition of Israel is being harvested one state at a time from governments that need something from Washington, and the running total is the map of who is for sale and at what price. Multi-source US/TR/QA, divergence 0.21.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Venezuela",
-        "http://en.wikipedia.org/wiki/Diplomacy",
-        "http://en.wikipedia.org/wiki/Hugo_Chávez",
-        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
-        "http://en.wikipedia.org/wiki/Caracas"
-      ]
-    },
-    {
-      "id": "guinea-bissau-somaliland-recognition-collapse",
-      "label": "How Guinea-Bissau's planned recognition of Somaliland fell apart",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-guinea-bissau-somaliland-recognition-collapse"
-      ],
-      "eventUri": null,
-      "summary": "Guinea-Bissau was days from becoming the first African state to recognise Somaliland — following Israel's recognition in December — and the deal collapsed. Lead with the price, because recognition here is a transaction and Mada Masr's reporting is about who was paying: a small, coup-prone West African state with a tiny budget was being offered something in exchange for a vote that costs Bissau nothing and costs Mogadishu its territorial claim. The mechanism to teach is that sovereignty is manufactured by accumulation — a self-declared republic needs a first peer to recognise it, because the second is far cheaper than the first, and that is why the campaign targets the states most susceptible to inducement rather than the states most concerned. The second mechanism is the counter-pressure: the African Union's founding principle is the inviolability of colonial borders, so every AU member with a secessionist region of its own has a direct interest in this never happening, and that bloc is what broke the deal. Establish exactly what Mada Masr reports and how it is sourced, who was brokering (the UAE's Berbera port stake and Israel's December recognition are the two levers), what Hargeisa and Mogadishu say, and what Bissau's government has confirmed. Then the reader's stake: Somaliland sits on the Gulf of Aden opposite Yemen, and this week's Bosaso and Bab al-Mandeb stories are the same map — the Red Sea's basing race is being conducted in recognitions as much as in troops. Guinea-Bissau and Somalia are OIC members and Mada Masr, one of the last independent Egyptian newsrooms, is the only account of this in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "myanmar-rohingya-repatriation-promise",
-      "label": "Symbolic Concessions, No Implementation: Myanmar's Promises of Rohingya Repatriation",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-myanmar-rohingya-repatriation-promise"
-      ],
-      "eventUri": null,
-      "summary": "Myanmar has pledged to take back 300,000 Rohingya — the latest in a sequence of pledges that has produced almost no returns since 2017. Lead with the arithmetic of the promise rather than the promise: roughly a million people are in Cox's Bazar, the announced figure covers under a third of them, and previous agreements in 2017 and 2018 repatriated a number in the dozens. The mechanism to teach is why the pledge recurs and never executes: repatriation announcements are made to relieve external pressure — ASEAN meetings, ICJ proceedings at The Hague, donor conferences, Bangladeshi domestic politics — so the announcement is the product and implementation was never the point. The second mechanism is what would have to change for a return to be real, and it is not logistics: Myanmar's 1982 citizenship law makes the Rohingya stateless by design, the townships they fled are now cleared or resettled, and Rakhine is currently contested by the Arakan Army rather than controlled by the junta that is signing the promise. Establish who announced what and to whom, the verified return numbers from every previous agreement, conditions in Cox's Bazar now including the ration cuts as donor funding falls, what Dhaka, UNHCR and Rohingya representatives themselves say, and where the ICJ genocide case stands. Then the obligation our reader will recognise: a people are being negotiated over by two states and an international system that has been announcing their return for nine years, and karāmah requires the piece be reported from the position of the refugees, not the negotiating table. The Diplomat is the sole account and its piece is analysis — carry its argument as argument and source the figures to UNHCR and the agreements themselves. No Bangladeshi or regional Muslim-world outlet covered this in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "romania-drones-neptun-deep-gas",
-      "label": "Romania destroys Russian drones drifting near vital European offshore gas site",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-romania-drones-neptun-deep-gas"
-      ],
-      "eventUri": "ukr-361141",
-      "summary": "Romanian navy divers blew up two Russian-made drones found floating in the Black Sea beside Neptun Deep, the offshore field meant to make Romania the EU's largest gas producer next year. Lead with the object: a drone that has run out of fuel and drifted is not an attack, it is debris — and debris is now a routine hazard in the waters an entire European gas project depends on. The mechanism to teach is that offshore energy infrastructure has no perimeter. A platform is a fixed, unarmoured, unmissable point on a sea where a war is being fought with cheap one-way aircraft and naval mines, and no NATO article covers a drifting hull; the defence available is divers with explosives, which tells the reader exactly how much of this is improvised. The second mechanism is insurance and finance: what makes a field like this stop is not a hit but a war-risk premium and a contractor that will not sail, the same denial-by-cost logic that has closed Odessa's ports to shipping since 22 July. Establish what the Romanian defence ministry actually said and showed, Neptun Deep's timeline, capacity and who owns it (OMV Petrom and Romgaz), what Romania and Bulgaria have logged in their waters and airspace this year, and what NATO's Black Sea posture is. Then the stake: Europe replaced Russian pipeline gas with a map of new supply points, and the marginal molecule of that replacement now sits inside a war zone — which is a price signal for Egypt, Turkey and Pakistan, who buy LNG on the same market. Ars Technica is the sole account; source the ministry statement and the operators directly.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-aviation-unions-strike-faan",
-      "label": "Airport operations will continue amid aviation unions' strike - FAAN",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-nigeria-aviation-unions-strike-faan"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's aviation unions are on strike and the federal airports authority is assuring passengers nothing will stop. Do not write the reassurance — write what the workers are striking over and who they are, because the authority's statement is the only voice in the wire copy and that asymmetry is itself the finding. The mechanism to teach is who actually holds an airport open: air traffic controllers, ground handlers, engineers and marshals are the people a national aviation system runs on, they are typically the lowest-paid technical staff in it, and their leverage exists only in the days before management proves it can operate without them. The second mechanism is Nigeria-specific and structural: FAAN's revenue is denominated partly in dollars while its wage bill is in naira, so a currency that has lost most of its value since the 2023 float converts an unchanged salary scale into a real-terms collapse — which is why the same dispute over allowances and the minimum wage recurs across Nigerian public entities rather than being settled once. Establish which unions (NUATE, ATSSSAN, ANAP, NAAPE) called the action and over what specific demands, what the government has offered, what happened at Lagos and Abuja on the first day, what a shutdown costs Nigerian carriers and passengers daily, and whether controllers are covered — that determines whether the airspace closes. Africa has been this site's thinnest region for four consecutive days, and this is Nigerian reporting on Nigerian records; balance the authority's claim with the unions' own statement, which the feed does not carry.",
-      "conceptUris": []
-    },
-    {
-      "id": "cftc-kalshi-new-york-prediction-markets",
-      "label": "CFTC orders Kalshi to continue offering prediction markets in New York after state lawsuit",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-cftc-kalshi-new-york-prediction-markets"
-      ],
-      "eventUri": "eng-11913941",
-      "summary": "A federal regulator used emergency authority to order a company to keep operating in a state that is suing to shut it down. Lead with that inversion — regulators normally order firms to stop — because the instrument is the story: the CFTC is asserting that a federally designated contract market cannot be closed by a state, which converts a gambling-law dispute into a preemption fight over who governs a market. The mechanism to teach is the definitional arbitrage underneath it. A bet on an election or a hurricane is a wager under state law and an 'event contract' under commodities law, and the same transaction is legal or criminal depending only on which statute the venue registers under — so the way to legalise gambling nationally is not to change gambling law but to be reclassified as a derivatives exchange. Establish what New York's attorney general alleged, what the CFTC's emergency order actually says and on what authority, how Kalshi is designated and by whom, the tribal and state cases already running against it, and what the sports and election contracts turn over. Then the stake beyond the US: prediction markets are being pitched worldwide as forecasting infrastructure and are already accessible by crypto rails from countries where both gambling and unlicensed derivatives are prohibited — including most of the Muslim world, where the objection is not regulatory but maysir, and where no domestic regulator is party to a case that decides what the product is called.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-heatwave-disaster-fund-notification",
-      "label": "India unlocks disaster risk funds for heatwaves",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-india-heatwave-disaster-fund-notification"
-      ],
-      "eventUri": null,
-      "summary": "On 4 August India added heatwaves and lightning to its schedule of notified natural disasters, which for the first time lets states draw down national disaster funds for heat. Lead with the money, not the weather: a heatwave was already killing people every summer, and what changed is that it became a category a treasury can pay against. The mechanism to teach is that disaster finance is list-based — relief funds are legally restricted to enumerated calamities, so a hazard that is not on the list generates no compensation for a dead labourer's family, no funding for cooling shelters, and no reason for a district officer to act early. Adding a line to a schedule is therefore a bigger intervention than any warning system. The second mechanism is measurement: heat deaths are undercounted almost everywhere because death certificates record the cardiac or renal event rather than the ambient temperature, so a payout requires an attribution rule, and how India writes that rule — a temperature threshold, a duration, a district-level trigger — decides who is compensated and who is not. Establish exactly what was notified and under which authority, what the National and State Disaster Response Funds can now be spent on and how much sits in them, what the eligibility criteria and per-death compensation are, India's official heat mortality figures against independent estimates, and what heat-action-plan researchers say is still missing. Then the stake: three in four Indian workers are outdoors or in unconditioned workplaces, wet-bulb limits are being approached first in South Asia and the Gulf, and Pakistan, Bangladesh and Nigeria all run relief funds with the same list-based design and heat still off the list.",
-      "conceptUris": []
-    },
-    {
-      "id": "liberia-contraception-donor-funding-cuts",
-      "label": "Funding cuts leave Liberian girls without contraception",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-liberia-contraception-donor-funding-cuts"
-      ],
-      "eventUri": null,
-      "summary": "Liberian clinics have run out of contraceptives because donor funding stopped, and health workers expect the consequence to arrive as unsafe abortions and teenage pregnancies. Lead with a named girl and an empty shelf, then with the number of months between a budget decision in a donor capital and a stockout in a rural clinic — that interval is the whole mechanism. What to teach: Liberia's family-planning commodities were never bought by Liberia. They came through UNFPA Supplies, USAID and the Global Fund, which means the ministry of health does not hold the procurement contract, the forecast or the shipping, so when an appropriation is cut there is no domestic line item to fall back on and no legal ability to reallocate — the supply chain is the donor's, and the patients are the state's. The second mechanism is what a stockout actually converts into, in measurable terms: contraceptive prevalence falls, unintended pregnancy rises, and in a country where abortion is legally restricted the result is unsafe procedures, which is a leading cause of maternal death — so the health outcome of an aid cut is a maternal mortality rate, and it is possible to say roughly how much. Establish which funders cut what and when, which commodities are out and in how many facilities, Liberia's contraceptive prevalence, maternal mortality and adolescent birth rates, what the health ministry says it can cover from its own budget, and what the girls and clinicians in the reporting say in their own words. Then the wider stake: the same donor withdrawal is emptying shelves across West Africa and the Sahel, and the countries with the thinnest domestic health budgets were the ones told for two decades to rely on the funds now being withdrawn.",
-      "conceptUris": []
-    },
-    {
-      "id": "chrome-device-bound-session-credentials",
-      "label": "Chrome adopts what may be the best protection yet against account takeovers",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-chrome-device-bound-session-credentials"
-      ],
-      "eventUri": null,
-      "summary": "Chrome is rolling out device-bound session credentials, which tie a logged-in session to a private key held in the machine's secure chip so a stolen cookie is useless anywhere else. Lead with the attack it kills, because most readers do not know it exists: infostealer malware does not need your password or your second factor — it copies the session cookie your browser holds after you have already passed both, and replays it. That is why two-factor adoption did not stop account takeovers; it moved the theft one step later in the sequence. The mechanism to teach is binding: a bearer token is anything-goes to whoever holds it, and DBSC converts it into a proof-of-possession token by making the browser periodically re-sign a challenge with a key that cannot leave the TPM or secure enclave, so exfiltrating the cookie file no longer exfiltrates the session. Establish exactly what Google shipped and to whom, which sites must opt in and how, what it requires of the device, and the honest limits — it does not stop malware already running on your machine from acting inside your live session, which is the same boundary yesterday's passkey research ran into. Then the reader's stake, which is not American: session-cookie theft is the entry point in most large corporate breaches now, the protection requires a modern device with a working secure element, and hundreds of millions of users in Pakistan, Nigeria, Indonesia and Egypt are on older or shared Android hardware where that assumption is exactly what fails — a security feature that arrives with a hardware requirement is a security feature that arrives unevenly.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-ai-companion-crackdown",
-      "label": "Beijing is forcing a mass breakup with AI lovers",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-china-ai-companion-crackdown"
-      ],
-      "eventUri": null,
-      "summary": "China is writing the first real rules for emotionally intelligent chatbots, and the immediate effect is that millions of users — overwhelmingly young women — have had companion personas they used daily deleted or neutered overnight. Lead with the users and the loss, not the regulator: whatever one thinks of a relationship with a language model, the attachment was real, and the thing that ended it was a product decision made under state pressure, which is the same category of event as a platform closing an account. The mechanism to teach is that China regulates AI at the level of the interaction rather than the model — content filters, real-name binding, minor-mode restrictions and an obligation on the operator to interrupt emotional dependency — which is a fundamentally different regulatory object from the EU's risk-tiered AI Act or America's near-absence of one. It is also the first regime anywhere to treat parasocial attachment to software as a harm to be engineered against. Establish exactly which rules apply and to which products (ByteDance's Doubao and the companion apps), what users report losing, what the platforms changed, and what the stated public-health rationale is. Then the stake our reader should carry: every state now has to decide whether a chatbot that says it loves you is a consumer product, a mental-health intervention or a speech act, and China's answer will be the one available for import — Gulf and Southeast Asian regulators already borrow its content-governance architecture, and the same tooling that ends an AI romance ends a conversation about anything else. Rest of World reports from the users' side; keep it there.",
-      "conceptUris": []
-    },
-    {
-      "id": "nsa-general-counsel-appointment",
-      "label": "NSA installs DHS lawyer as new general counsel",
-      "firstSeen": "2026-08-11T22:12:58.989Z",
-      "lastCovered": "2026-08-11T22:12:58.989Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-11-nsa-general-counsel-appointment"
-      ],
-      "eventUri": null,
-      "summary": "Kerianne Tobitsch, most recently a senior lawyer at the Department of Homeland Security, is the National Security Agency's new general counsel. Lead with what that office does, because the appointment is invisible unless you know: the NSA's general counsel is the lawyer who decides what the agency may legally collect — the office that signs off on Section 702 targeting procedures, on the minimisation rules for incidentally collected communications, and on the far broader overseas collection conducted under Executive Order 12333, which no court reviews at all. There is no judge in most of that chain; there is a lawyer. The mechanism to teach is that surveillance limits are set by interpretation rather than statute, which is why personnel is policy here: the same text of 702 permitted very different programmes under different counsels, and the changes were only ever visible in retrospect through declassified opinions and leaks. The second point is the DHS provenance — homeland security lawyering is domestic-facing, immigration-adjacent work, and the wall between foreign intelligence collection and domestic use of it is precisely the thing this office polices. Establish who she is and her record, how the post is filled and whether it needs confirmation, what 702's current reauthorisation status and reforms are, and what privacy litigators say. Then the stake for our reader, which is direct: everyone outside the United States is, in this legal architecture, a foreign target by default with no standing to object — so the person appointed to interpret those rules has more say over a Pakistani or Egyptian reader's communications than that reader's own government does. Original reporting from Recorded Future News; single-source, so anchor to documents and named responses.",
       "conceptUris": []
     }
   ]
