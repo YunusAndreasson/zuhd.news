@@ -1,22 +1,5 @@
 [
   {
-    "ts": "2026-05-26T04:41:27.911Z",
-    "cycleId": "2026-05-26T04-41",
-    "cycleHour": "04",
-    "rvs": 67.12,
-    "clusters": {
-      "picking": null,
-      "writing": 79.17,
-      "briefing": 74.17,
-      "sourcing": 20,
-      "coverage": 88.8
-    },
-    "articleCount": 12,
-    "briefCount": 12,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
     "ts": "2026-05-26T08:54:07.677Z",
     "cycleId": "2026-05-26T08-54",
     "cycleHour": "08",
@@ -6664,6 +6647,24 @@
     "guardrailFailures": [
       "article 2026-08-13-cia-low-confidence-israeli-iran-plot-ankara has source with country:null"
     ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-08-13T22:26:09.448Z",
+    "cycleId": "2026-08-13T22-26",
+    "cycleHour": "22",
+    "schema": 2,
+    "rvs": 76.22,
+    "clusters": {
+      "picking": null,
+      "writing": 90.38,
+      "briefing": null,
+      "sourcing": 46.23,
+      "coverage": 87.32
+    },
+    "articleCount": 13,
+    "briefCount": 0,
+    "guardrailFailures": [],
     "degenerate": false
   }
 ]
