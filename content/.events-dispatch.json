@@ -1,13 +1,5 @@
 {
   "items": {
-    "fred-us-ppi-2026-08-13": {
-      "standingFingerprint": "2edeeef889391405",
-      "recentFingerprint": "bd667a7f4ca087e6",
-      "standing": "The Bureau of Labor Statistics' monthly Producer Price Index, which measures the prices US producers receive for their output. It is read as a leading signal for consumer inflation, since input and wholesale costs eventually reach retail prices.",
-      "recent": "",
-      "citations": [],
-      "generatedAt": "2026-08-12T04:38:42.123Z"
-    },
     "fred-us-retail-sales-2026-08-14": {
       "standingFingerprint": "88dc24dc4edbc81f",
       "recentFingerprint": "bd667a7f4ca087e6",
@@ -18,15 +10,11 @@
     },
     "ecb-2026-09": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "dfd3f8d5e09bf7ad",
-      "standing": "The European Central Bank's governing council, which meets roughly every six weeks to set interest rates for the euro area. Its decisions set the cost of borrowing across twenty economies and shape the euro's value against every other currency.",
-      "recent": "This decision comes after a run of holds elsewhere: the Bank of England kept rates at 3.75% with three of nine policymakers dissenting, the Bank of Japan held at 1% while warning underlying inflation is exceeding its 2% target, and the RBA held steady. The dollar has fallen to its lowest level since May.",
-      "citations": [
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock",
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
-        "2026-08-11-the-rate-set-last-year-decides-this-one"
-      ],
-      "generatedAt": "2026-08-13T04:36:36.212Z"
+      "recentFingerprint": "b6f041d640ae96c6",
+      "standing": "The European Central Bank's Governing Council, which sets policy rates for the euro area on a roughly six-week cycle. Its decisions set the cost of credit across twenty member economies and anchor the euro against every currency it trades with.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-14T04:38:36.287Z"
     },
     "fomc-2026-09": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -44,25 +32,27 @@
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "9679e0d9e440300a",
-      "standing": "The Bank of England's Monetary Policy Committee, which sets Bank Rate for the United Kingdom at eight scheduled meetings a year. Its votes set the cost of sterling borrowing, from mortgages to gilt yields, and are published with each member's position.",
-      "recent": "The committee held at 3.75% on 30 July, waiting to see the impact of the Iran war, and three of nine policymakers voted to raise. That split is what this meeting inherits. UK house prices rose 0.1% in July as buyers stayed cautious on rates, and the dollar fell to its lowest level since May with a rate hike in doubt.",
+      "recentFingerprint": "e477b06bb8a06c11",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, feeding into mortgages, sterling and gilt yields.",
+      "recent": "The committee meets after a run of holds elsewhere: the Bank of Japan kept rates at 1% while warning underlying inflation is exceeding its 2% target, and the RBA held steady as its housing market softened. In the UK, house prices rose 0.1% in July as buyers stayed cautious on interest rates.",
       "citations": [
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
+        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
+        "2026-08-11-the-rate-set-last-year-decides-this-one"
       ],
-      "generatedAt": "2026-08-13T04:36:55.672Z"
+      "generatedAt": "2026-08-14T04:38:45.716Z"
     },
     "boj-2026-09": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "40389fae6dd3e67e",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions set the price of yen funding, which anchors the yen's exchange rate and the global carry trades built on cheap Japanese money.",
-      "recent": "The Bank of Japan held at 1% on 31 July while warning underlying inflation is exceeding its 2% target, and Tokyo sold dollars for yen hours before that decision. The US then joined a historic joint intervention on 3 August, and the dollar fell to its lowest level since May. This meeting is the board's first rate call since that coordination.",
+      "recentFingerprint": "48f413fa2b6637bb",
+      "standing": "Japan's central bank, whose policy board sets the short-term interest rate roughly eight times a year. Its decisions set the price of the world's cheapest funding currency, and move the yen, Japanese government bonds and carry trades built on them.",
+      "recent": "The board held at 1% on July 31 while warning that underlying inflation is exceeding its 2% target, and Tokyo sold dollars for yen hours earlier. Washington then joined a historic joint intervention on August 3. A weak yen has been lifting exporters, with Toyota's quarterly profit reaching $9.4 billion.",
       "citations": [
         "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
+        "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c",
         "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
       ],
-      "generatedAt": "2026-08-13T04:37:05.412Z"
+      "generatedAt": "2026-08-14T04:38:55.425Z"
     },
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
@@ -87,37 +77,36 @@
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "c1dfdbf1c1613906",
-      "standing": "The European Central Bank's Governing Council, which sets policy rates for the euro area's twenty economies. Its decisions transmit through bank lending across the bloc and set the euro's yield against the dollar and the yen.",
-      "recent": "The decision comes after a run of holds at the major central banks: the Bank of England held at 3.75% with three of nine policymakers voting to raise, the Bank of Japan held at 1% while warning underlying inflation is exceeding its 2% target, and the RBA held as its housing market softened. The dollar has fallen to its lowest level since May.",
+      "recentFingerprint": "85c13f4be43c28a8",
+      "standing": "The European Central Bank's governing council, which sets interest rates for the euro area on a schedule of eight meetings a year. Its decisions set borrowing costs across twenty member economies and transmit to the euro's value against every major currency.",
+      "recent": "The decision lands after a stretch in which the other major central banks have chosen to wait: the Bank of Japan held at 1% while warning that underlying inflation is exceeding its 2% target, and the RBA held steady as its housing market softened. The dollar has fallen to its lowest level since May.",
       "citations": [
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock",
         "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-11-the-rate-set-last-year-decides-this-one"
       ],
-      "generatedAt": "2026-08-13T04:37:32.471Z"
+      "generatedAt": "2026-08-14T04:39:03.468Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "bbe0bf161a39200a",
-      "standing": "Japan's central bank sets the country's policy rate, with its board meeting roughly eight times a year. Its decisions drive the yen, Japanese government bond yields, and the cheap-funding trades built on decades of near-zero Japanese rates.",
-      "recent": "The Bank of Japan held at 1% on 31 July while warning that underlying inflation is exceeding its 2% target, and Tokyo sold dollars for yen hours before that decision. Days later Japan confirmed a historic joint yen intervention with the US. This meeting is the first test of whether rates, rather than intervention, carry the yen.",
+      "recentFingerprint": "db85122aad76d595",
+      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions set the price of the world's cheapest funding currency, and move the yen, Japanese government bonds and global carry trades.",
+      "recent": "The Bank of Japan held at 1% on July 31 while warning underlying inflation is exceeding its 2% target, and the yen slid anyway. Tokyo sold dollars for yen around that decision, and on August 3 the US joined a joint intervention that pushed the dollar to a one-month low. The gap between the rate and the currency is what this meeting has to close.",
       "citations": [
         "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
         "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
       ],
-      "generatedAt": "2026-08-13T04:37:42.252Z"
+      "generatedAt": "2026-08-14T04:39:12.789Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "f81836a9d3f596de",
-      "standing": "The Bank of England's Monetary Policy Committee, whose nine members vote to set Bank Rate, the benchmark for borrowing across the UK economy. Its decisions transmit to mortgages, business credit and sterling.",
-      "recent": "The committee held at 3.75% on 30 July with three of nine voting to raise, a split that leaves the next decision genuinely open. It held while waiting to see the impact of the Iran war on supply, and UK house prices rose just 0.1% in July as buyers stayed cautious on rates. November settles whether that pause holds.",
+      "recentFingerprint": "357c62607651b898",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, from mortgages to corporate credit, and move sterling.",
+      "recent": "UK house prices rose 0.1% in July as buyers stayed cautious on interest rates. The Bank of England has meanwhile expanded its digital pound pilot with Polygon and stablecoins, testing settlement outside the rate channel. This meeting decides Bank Rate as the dollar sits at its lowest level since May.",
       "citations": [
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
+        "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
       ],
-      "generatedAt": "2026-08-13T04:37:50.644Z"
+      "generatedAt": "2026-08-14T04:39:21.001Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -134,6 +123,6 @@
       "generatedAt": "2026-08-13T04:38:02.953Z"
     }
   },
-  "generatedAt": "2026-08-13T04:38:02.954Z",
+  "generatedAt": "2026-08-14T04:39:21.035Z",
   "windowDays": 14
 }
