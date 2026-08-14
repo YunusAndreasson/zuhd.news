@@ -1,37 +1,35 @@
 {
-  "date": "2026-08-13",
+  "date": "2026-08-14",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, avg 10/cycle (yesterday 63)" },
-    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.7, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 16, "tech": 13, "science": 10 },
-    "multiSource": { "value": 11, "target": 4, "met": true },
+    "articles": { "value": 59, "detail": "5 cycles (4 completed, 22:00 in flight), avg 9/cycle" },
+    "freshness": { "median": 0.5, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 12, "tech": 12, "science": 10 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 18, "ME": 16, "AS": 14, "EU": 8, "AF": 5, "OC": 1 }
+      "breakdown": { "EU": 17, "AM": 15, "ME": 13, "AS": 9, "AF": 5, "OC": 0 }
     },
     "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 54,
     "duplicates": 0,
-    "avgCycleDuration": 1265
+    "avgCycleDuration": 1361
   },
-  "experiment": "Skipped — all four goal metrics are inside target, no experiment is active, and no pause gate applies. The slot stays open rather than manufacturing a change against healthy numbers.",
-  "weakestArea": "Regional distribution, not any goal metric. Six regions clears the floor of four, but the tail is thin: Oceania 1 and Africa 5 out of 62, against 18 for the Americas. Africa's five are Sudan, Nigeria and three Egypt/Morocco-adjacent stories, so sub-Saharan breadth outside Sudan is effectively one article. This is a feed-supply property rather than a tunable one — GAP_COUNTRIES already lists the underweight markets, and the 2026-05-09 floor experiment established that pushing selector floors against a feed that does not supply the stories just moves rejections around.",
+  "experiment": "Skipped — every goal metric is met and no experiment is active. No pause gate is set; the slot is open if a future day shows a real deficit.",
+  "weakestArea": "Nothing misses target, so the weakest signal is structural rather than numeric: politics is 42% of output (25 of 59), the highest single-category share of the week, and Oceania fell to zero after a single article yesterday. Both are the shape of a heavy conflict news day (Iran-US drone exchanges, Sudan, Ukraine ports) crowding the regional tail rather than a pipeline fault.",
   "watching": [
-    "Tanker strikes off the UAE pushing war-risk premia into Hormuz shipping — the first attack on ADNOC-linked hulls, with Maersk already guiding on rerouted volumes.",
-    "The Makkah Pact moving from paper to a joint command structure, which would give the Pakistan–Türkiye–Saudi alignment an operational test.",
-    "Iraq's September coalition-withdrawal deadline now fixed, against a US carrier holding a 250-day deployment in the same theatre.",
-    "The WHO Phase III Ebola trial for the Bundibugyo strain, where trial design decides whether ring vaccination is measurable at all.",
-    "Two Danube stories converging — Izmail's grain port burning under rationed interceptors and Cernavodă throttling a reactor on low water — the same river as war target and climate constraint."
+    "Hormuz blockade fallout is now reaching third parties — Pakistani pump prices and Iranian market reaction both ran today, so the economic transmission story is broadening beyond the strait itself.",
+    "Two separate drone shoot-downs in one day (NATO over Balvi, Iran over Bandar Abbas) plus a US-led drone coalition forming in Doha — an escalation cluster worth tracking as one thread.",
+    "RSF opening a Blue Nile front at Kurmuk extends Sudan's war into a new geography; prior coverage has been Darfur- and Kordofan-centred.",
+    "Both Russia and Ukraine struck export ports (Izmail) — grain-corridor disruption is a likely follow-on economy story."
   ],
   "coverageGaps": [
-    "Oceania at one article is the third consecutive thin day; Pacific island states remain unrepresented outside Australian regulatory stories.",
-    "Sub-Saharan Africa is carried by Sudan and Nigeria; no coverage of the Sahel, East African economies or southern Africa today.",
-    "Latin America appears only via Venezuela's transition talks — the Americas' 18 are overwhelmingly US domestic and US-policy stories.",
-    "Science is strong on physics, palaeontology and materials but reaches climate only through the US Arctic-report cuts, not through research output."
+    "Oceania produced zero articles today and one yesterday; the only adjacent item was an Australian surveillance-jet deployment datelined Clark, Philippines.",
+    "Latin America appears almost entirely through Washington's lens (Machado lobbyists, Morena visa revocation, Caracas realignment) rather than through regional outlets.",
+    "Central Asia is absent again — no Kazakh, Uzbek or Kyrgyz dateline in either day's output.",
+    "Science skews heavily to London datelines (4 of 10), thinning non-Western research coverage."
   ],
-  "context": "Freshness is the cleanest it has been in a week: median 0.3 with a max of 1.7 days, versus yesterday's 17-day p90 and 30.3-day max, which were artifacts of advance-written solar-eclipse previews carrying July source dates. Nothing in the tail today needs explaining away. Throughput held at 62 across five completed cycles with zero duplicates and 52 unique sources, and Dawn's 13% top-source share is the only concentration worth noting — it reflects a heavy South Asia day (Balochistan, Karachi, Islamabad, Karnataka, Delhi) rather than source over-reliance.",
-  "queued": "2026-05-08-numerical-density remains queued and still blocked on its own preflight — it targets scripts/write-prompt.md, which is outside daily-tuning scope."
+  "context": "The 22:00 cycle was still running when metrics were taken, so today's 59 will settle higher and the category mix will shift slightly. Source concentration is unusually healthy — 54 unique outlets across 59 articles, top share 12% — and duplicates have held at zero for two days, consistent with the layer-4 recap dedup rule kept on 2026-05-09. The one queued experiment (numerical density) targets scripts/write-prompt.md, which is outside the tunable-parameter scope of this daily pass and must be promoted by the operator."
 }
