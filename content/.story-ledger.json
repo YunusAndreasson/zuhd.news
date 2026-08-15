@@ -2,13 +2,239 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-qatar-pilots-icrc-pow-notification",
+      "label": "Iran urges ICRC to pursue case of 3 pilots held in Qatar",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-iran-qatar-pilots-icrc-pow-notification"
+      ],
+      "eventUri": "eng-11925440",
+      "summary": "Iran's commander for missing personnel has written to the ICRC president asking her to trace three Iranian pilots it says Qatar has held since the March airspace incident; Qatar flatly denies holding anyone. Lead with the contradiction, because the mechanism is what the ICRC is for: when two states give incompatible accounts of who is in custody, the Third Geneva Convention makes the detaining power's obligation to notify a neutral intermediary the only check that exists — a downed pilot is a prisoner of war with a right to be registered, visited and repatriated, and a state that denies holding him owes no such duty. That is why the letter is addressed to Geneva rather than to Doha. The second mechanism is the position Qatar occupies: a Gulf state hosting the largest US air base in the region while mediating between Washington and Tehran, so a confirmed detention would collapse a role it has spent two years building. Establish Bagherzadeh's exact wording, the date and circumstances of the shoot-downs, Qatar's denial in its own words, and whether the ICRC has said anything at all. SOURCING NOTE: Mehr and IRNA are Iranian state media and Haberler is aggregating — attribute the Iranian claim as an Iranian official statement, the denial to Qatar, and use BBC and SCMP for anything either side asserts as fact. Qatar and Iran are both OIC members and the cluster carries Iranian and Turkish outlets; no Qatari outlet (Al Jazeera, The Peninsula) appeared in the feed on this event, which is itself worth noting.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/International_Committee_of_the_Red_Cross",
+        "http://en.wikipedia.org/wiki/Sukhoi_Su-24",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "khula-decree-interval-femicide-precedent",
+      "label": "Women exercising lawful rights should not be subjected to violence with impunity: SC",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-khula-decree-interval-femicide-precedent"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Supreme Court upheld the conviction of a man who killed his former wife two days after a court dissolved their marriage, and wrote that women who exercise lawful rights must not face violence with impunity. Lead with the two days, because the interval is the finding: the decree that freed her is what marked her, so the legal remedy and the killing are the same event seen from either end. The mechanism to teach is the gap between a right and its enforcement — khula gives a woman a unilateral route out of a marriage, and Pakistani courts grant thousands of these decrees a year, but the state's duty ends at the courtroom door: there is no protection order, no notification, no interval of supervision between a decree and the moment she goes home. That is what makes this ruling matter more than a sentence upheld: an apex court naming the pattern creates a citable precedent for the next trial court that would otherwise reach for grave-and-sudden-provocation mitigation. Establish the case name and bench, the exact passage the court wrote, what sentence stands, and whether the court directed anything beyond dismissing the appeal. Ask the harder question the judgment implies: how many of Pakistan's recorded femicides follow a family-court decree, and does anyone count. Pakistan is an OIC member and Dawn is the regional outlet, reporting from the judgment text.",
+      "conceptUris": []
+    },
+    {
+      "id": "sandf-deployment-gang-homicide-presence-policing",
+      "label": "Troops on the streets, but gang violence continues to soar",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-sandf-deployment-gang-homicide-presence-policing"
+      ],
+      "eventUri": null,
+      "summary": "South Africa put 2,200 soldiers on the streets of five provinces from 1 March to support police against gangs, and gang killings have risen anyway. Lead with the deployment date and the trend line together, because five and a half months is long enough for the experiment to have an answer. The mechanism to teach is why soldiers do not reduce gang homicide: an army is a presence force, it holds ground and checkpoints, while gang violence is driven by drug-market turf, extortion and retaliation cycles that need investigation, witness protection and prosecution to break — capabilities the SANDF does not have and the SAPS detective service is short of. So a deployment converts a policing shortfall into a visible answer to it, and the visibility is the point. The second thread is who bears the result: Gqeberha's Northern Areas residents whose outcry drove the deployment now have both the soldiers and the shootings. Establish the actual homicide figures before and after, what the acting police minister said in response to the outcry, when the deployment is due to expire, and what it costs. This is Africa's most industrialised state answering a chronic security problem with a temporary instrument, which is a pattern readers will recognise from Rio to Karachi.",
+      "conceptUris": []
+    },
+    {
+      "id": "akp-fara-filing-washington-influence-register",
+      "label": "Erdogan's party pours millions into new DC pied-a-terre",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-akp-fara-filing-washington-influence-register"
+      ],
+      "eventUri": null,
+      "summary": "Turkey's ruling AKP bought the former French Embassy on Washington's 16th Street for about $4.9 million in 2024 and, per its 12 July FARA filing, has since moved another $1.3 million into the property — while logging 85 political activities in six months, run by Erdogan's cousin Halil Mutlu. Lead with the filing rather than the mansion, because the mechanism is the document: the Foreign Agents Registration Act forces anyone acting for a foreign principal to publish who they met, when and what they spent, which is why a foreign ruling party's influence operation in Washington is legible at all — the register is the accountability instrument, and almost nobody reads it. The second mechanism is what the meetings map: Mutlu's listed contacts are the specific think-tank analysts arguing Turkey should be the US partner stabilising Syria, at exactly the moment Israeli officials are pressing the opposite case and the F-35 sale and CAATSA relief are live. That is two states lobbying the same capital about each other, and the register shows one side's side of it. VERIFY BEFORE PUBLISHING: Responsible Statecraft is an advocacy outlet and the feed carries no second source — the underlying FARA filing is public and every figure (purchase price, $1.3m, 85 activities, filing date) must be checked against the registry, and any claim not traceable to the filing should be dropped rather than attributed. SOURCING NOTE: Turkey is an OIC member and no Turkish outlet (Anadolu, TRT, Daily Sabah) appeared anywhere in the feed on this, so Ankara's account is absent — seek AKP or embassy comment.",
+      "conceptUris": []
+    },
+    {
+      "id": "russia-mining-ban-interruptible-load-grid",
+      "label": "Why the world's second-largest Bitcoin mining power is shutting down rigs in its capital city",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-russia-mining-ban-interruptible-load-grid"
+      ],
+      "eventUri": null,
+      "summary": "Russia — the world's second-largest bitcoin mining jurisdiction, which legalised registered mining only in 2024 — has now banned it in Moscow, the Moscow Region and parts of Kursk through 31 December 2032, bringing the count of banned regions to eleven. Lead with the length of the ban, because seven years is not a curb, it is a permanent zoning decision dressed as a temporary measure. The mechanism to teach is that bitcoin mining is an electricity business wearing a technology costume: a miner is an interruptible load that will pay up to the value of the coin it produces, so wherever grid capacity is tight it outbids households and industry for the marginal megawatt — which is why states that welcome mining for the export earnings then ban it region by region as demand grows. Russia legalised and restricted within two years, and that compressed cycle is the lesson for every country now courting miners for hard currency, from Kazakhstan and Paraguay to Ethiopia. The second thread is where the machines go: banned hashrate does not switch off, it relocates to whichever grid is currently underpriced, exporting the same problem. Establish the decree, which regions are covered, what share of Russian hashrate sits inside them, and what the government says the electricity is needed for instead.",
+      "conceptUris": []
+    },
+    {
+      "id": "black-sea-hull-count-war-risk-premium-grain",
+      "label": "Russian forces target over 130 ships serving Ukrainian army since July",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-black-sea-hull-count-war-risk-premium-grain"
+      ],
+      "eventUri": null,
+      "summary": "TASS says Russian forces have struck more than 130 vessels — including bulk carriers — at Ukrainian ports and in the Black Sea since July, a tally it compiled itself from defence ministry briefings. Lead with what a bulk carrier is, because that word is the whole story: a bulk carrier moves grain, not soldiers, and Moscow's own count of 130 hulls is therefore an admission about the grain corridor rather than a claim about the Ukrainian navy. The mechanism to teach is war-risk insurance — commercial shipping does not stop because a port is dangerous, it stops because underwriters reprice or withdraw cover, so a strike campaign against hulls works by moving a premium rather than by sinking a fleet, and the freight cost lands on the importing country. Ukraine's wheat, maize and sunflower oil go disproportionately to Egypt, Bangladesh, Indonesia and North Africa, so the price of this tally is paid at bread counters far from the Black Sea. CRITICAL SOURCING: TASS is Russian state media and this is its own arithmetic from military briefings, not independent verification — attribute every figure to TASS explicitly, say plainly that no neutral confirmation exists in the feed, and set it against what is independently checkable: Black Sea grain export volumes, war-risk premiums for Odesa and Izmail calls, and any Ukrainian or insurer statement. Follows this week's Izmail port-strike coverage; the shift from single strikes to a cumulative hull count is the development.",
+      "conceptUris": []
+    },
+    {
+      "id": "high-fens-peat-fire-mutual-aid-capacity",
+      "label": "Hundreds of villagers evacuate as Belgium battles record wildfire",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-high-fens-peat-fire-mutual-aid-capacity"
+      ],
+      "eventUri": "fra-1334486",
+      "summary": "More than 2,700 hectares of eastern Belgium have burned in the country's worst recorded wildfire, with hundreds of residents evacuated and helicopters brought in. Lead with the place, not the size: the High Fens is a peat bog, and peat is the difference between a fire and a problem — it is stored carbon that burns downward, smoulders underground for weeks, survives rain, and cannot be extinguished by aerial water drops, which is why a wet northern European moor is a worse fire than its hectare count suggests. The economic mechanism to teach is adaptation cost as an unbudgeted line: Belgium has no wildfire-fighting fleet because it never needed one, so it is borrowing helicopters and capacity from neighbours under EU civil-protection arrangements, and the countries it borrows from are fighting their own fires in the same weeks. That is the structural squeeze — mutual-aid systems assume disasters are not simultaneous, and a warming continent breaks the assumption. The second thread: the High Fens supplies water to Wallonia and stores decades of carbon that a burn releases at once, so the loss is measured in reservoirs and emissions, not insurance claims. Establish the hectares, evacuation numbers, cause if known, what equipment came from where, and Belgium's previous record fire for comparison.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Belgium",
+        "http://en.wikipedia.org/wiki/Hectare",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/High_Fens",
+        "http://en.wikipedia.org/wiki/Wildfire",
+        "http://en.wikipedia.org/wiki/Helicopter",
+        "http://en.wikipedia.org/wiki/Firefighter",
+        "http://fr.wikipedia.org/wiki/Wallonie"
+      ]
+    },
+    {
+      "id": "negative-acoustic-radiation-force-scattering",
+      "label": "Generation of negative acoustic radiation forces",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-negative-acoustic-radiation-force-scattering"
+      ],
+      "eventUri": null,
+      "summary": "A paper in Scientific Reports reports generating negative acoustic radiation forces — sound that pulls an object toward the source instead of pushing it away. Lead with the inversion, because it contradicts the intuition every reader already has: a wave carries momentum forward, so it should push, and a beam that pulls looks like something for nothing. The mechanism to teach is that it is not: the force comes from how the object scatters the incident field, so shaping the beam so that more momentum is scattered forward than arrives leaves the object with a net pull — the momentum books balance, they just balance in the object's favour. That is the same trick optical tweezers use with light, but sound carries far more momentum per watt and passes through tissue and opaque material, which is why the acoustic version is the one with a route to medicine and industry: contactless manipulation of a particle, a drug capsule or a kidney stone inside a body no lens can see into. Say plainly what this is — an unedited accepted manuscript, a physics result with a demonstration, not a device — and state the frequencies, the object sizes, and the medium it works in, because those numbers decide whether it ever reaches a clinic. Establish the authors and institution and what the paper explicitly does not claim.",
+      "conceptUris": []
+    },
+    {
+      "id": "spinel-site-occupancy-hydrogen-storage-electrode",
+      "label": "Synergistic effect and comparative study of CoMn2O4 and MnCo2O4 spinel nanoparticles as promising materials for electrochemical hydrogen storage",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-spinel-site-occupancy-hydrogen-storage-electrode"
+      ],
+      "eventUri": null,
+      "summary": "Two spinel oxides made of the same three elements in swapped proportions — CoMn2O4 and MnCo2O4 — store markedly different amounts of hydrogen electrochemically, and the paper reports which and why. Lead with that swap, because it is the most teachable thing in the paper: the atoms are identical, only which metal sits in which lattice site changes, and that alone moves the performance — chemistry at this level is architecture, not ingredients. The mechanism to teach is what electrochemical hydrogen storage is and why anyone wants it: hydrogen is normally stored as a gas at 700 bar or as a cryogenic liquid, both of which need heavy vessels and lose energy to compression, whereas driving hydrogen into an electrode from an alkaline solution at ambient pressure turns a tank problem into a battery problem. That is the whole appeal, and the reason it stays in the lab is capacity per kilogram and cycle life — so those two numbers, and how they compare with existing metal hydrides, are the article. The structural why for this reader: cobalt is the constraint, mined overwhelmingly in the DRC under conditions this site has covered, so a storage chemistry that leans on cobalt inherits that supply chain. Say plainly this is an unedited accepted manuscript reporting electrode materials, not a working store.",
+      "conceptUris": []
+    },
+    {
+      "id": "animal-health-emissions-intensity-denominator",
+      "label": "How healthier farm animals can cut greenhouse gas emissions",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-animal-health-emissions-intensity-denominator"
+      ],
+      "eventUri": null,
+      "summary": "When a dairy cow miscarries, the feed, land, water and methane of an entire pregnancy have been spent and nothing is produced — and the research argues that treating animal disease is therefore a climate intervention. Lead with that arithmetic, because it reframes the whole livestock-emissions argument: emissions are counted per litre of milk or kilo of meat, so a sick animal does not emit more, it emits the same and delivers less, and the denominator is where the loss shows up. The mechanism to teach is emissions intensity versus absolute emissions — the single most-misread number in agricultural climate policy — and why it matters most where herds are least healthy: a cow in the Sahel or South Asia produces a fraction of the milk of a Dutch one on comparable methane, so veterinary care, vaccination and fertility management cut far more carbon per dollar in low-income herds than any feed additive does in high-income ones. That inverts the usual framing in which livestock emissions are a problem to be solved by consumers eating less in rich countries. Establish who did the work and where, the specific diseases and losses quantified, the size of the emissions reduction claimed, and the honest limit: intensity gains can be swallowed by herd growth, so say whether the study addresses that.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-datacentre-consent-indigenous-water-land",
+      "label": "Chadian environmental activist Hindou Oumarou: 'AI governance must respect Indigenous peoples'",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-ai-datacentre-consent-indigenous-water-land"
+      ],
+      "eventUri": null,
+      "summary": "Hindou Oumarou Ibrahim, a Mbororo pastoralist from Chad and one of the most prominent Indigenous voices in climate negotiations, argues that AI governance is repeating the extraction pattern she has spent twenty years fighting in climate policy. Lead with the physical claim rather than the ethical one, because it is the part readers underestimate: an AI data centre is a water and land installation before it is a computer, drawing millions of litres a year for cooling and siting itself where power and land are cheap — which in Africa means near the communities with the least ability to contest a permit. The mechanism to teach is free, prior and informed consent: it is a binding standard in Indigenous-rights instruments and in climate finance, it has no equivalent in any AI governance framework, and that absence is why community knowledge and territory can be used as inputs without anyone having to ask. The second thread is the corpus side of the same asymmetry — Indigenous languages and ecological knowledge are scraped as training data while the resulting models are neither available in those languages nor accountable to their speakers. Establish what she specifically calls for, which fora she is addressing, and the concrete African data-centre projects that make this immediate rather than abstract. This is an interview: quote her directly and do not launder her argument into the reporter's voice. SOURCING NOTE: Chad is an OIC member; no Chadian or regional African outlet on this appeared in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "r66-contractor-pilot-pipeline-flight-hour-cost",
+      "label": "Army To Use Robinson R66 For Its New Helicopter Pilot Training Concept",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-r66-contractor-pilot-pipeline-flight-hour-cost"
+      ],
+      "eventUri": null,
+      "summary": "The US Army will train new helicopter pilots on the Robinson R66 — a five-seat civilian light turbine helicopter — under a contractor-run programme rather than in uniform on military airframes. Lead with the aircraft itself, because the choice is the argument: the R66 is the machine flight schools and news stations buy, and putting it at the front of the Army's pilot pipeline is a bet that the first hundred hours of learning to fly a helicopter are the same everywhere and do not need a military trainer or a military instructor. The mechanism to teach is the economics that forces it: rotary training is priced in flight hours, a military trainer costs several times a civil turbine per hour to operate, and pilot production is the binding constraint on Army aviation — so the cheapest hour that still teaches the skill wins, and the cheapest hour is bought from a contractor. The second mechanism is what the outsourcing transfers: the Army keeps the pilots but the instructors, maintenance, aircraft and the training data become a vendor's, which is a dependency that is easy to enter and slow to exit, and it is the same move air forces from the UK to the Gulf have already made. Establish the contract, the vendor, the hours involved, what airframe it replaces, and what the Army says the old pipeline cost.",
+      "conceptUris": []
+    },
+    {
+      "id": "model-drift-unversioned-api-eval-baseline",
+      "label": "Why does Opus 5 feel worse to work with?",
+      "firstSeen": "2026-08-15T22:09:18.983Z",
+      "lastCovered": "2026-08-15T22:09:18.983Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-model-drift-unversioned-api-eval-baseline"
+      ],
+      "eventUri": null,
+      "summary": "A post arguing that a frontier model has quietly degraded drew 931 points and 829 comments on Hacker News — and the interesting thing is that nobody in the thread can prove it either way. Lead with that impasse, because it is the story: tens of thousands of developers depend on a system whose behaviour they cannot version, cannot pin and cannot test against a fixed baseline, so a genuine regression and a shift in the user's own expectations produce identical evidence. The mechanism to teach is why: a model served behind an API can change through weight updates, quantisation, routing, system-prompt edits or inference-time settings while keeping the same name and the same price, and none of those are disclosed — which means the thing being bought is not specified, and a buyer with no specification has no basis for a complaint. That is unusual for infrastructure; a cloud provider that silently halved a CPU's clock would be in breach of contract. The second thread is what would fix it — held-out private evals run over time, which almost nobody maintains, and version pinning with deprecation notice, which providers have offered inconsistently. Be precise about evidence: report the claim as user perception and community argument, say plainly that the post presents no controlled measurement, and do not assert degradation as fact. DISCLOSURE: this publication's own pipeline is produced with Claude models — say so in the article.",
+      "conceptUris": []
+    },
+    {
       "id": "yasukuni-offering-minister-visit-deniability",
       "label": "Japan PM Takaichi Skips Visit To Disputed Shrine On World War II Anniversary",
       "firstSeen": "2026-08-15T17:12:09.380Z",
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-yasukuni-offering-minister-visit-deniability"
@@ -33,7 +259,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-turkey-reexport-congressional-record-arms-consent"
@@ -58,7 +284,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-wadi-al-mollak-labour-transport-accident-classification"
@@ -74,7 +300,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-upper-dir-girls-schools-closure-attrition"
@@ -90,7 +316,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-jakarta-communique-one-china-legal-accretion"
@@ -106,7 +332,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-kp-at-source-deduction-divisible-pool"
@@ -122,7 +348,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-crypto-licence-moat-11-2-billion"
@@ -138,7 +364,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iraq-wellness-tourism-oil-revenue-concentration"
@@ -154,7 +380,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mitochondrial-transfer-myeloid-delivery-route"
@@ -170,7 +396,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dark-photon-plasma-screening-reopened-limits"
@@ -186,7 +412,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-manifest-v3-ublock-origin-last-browser"
@@ -202,7 +428,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-qwen-open-weights-fp8-sovereign-inference"
@@ -218,7 +444,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-14-why-we-need-real-privacy-laws-in-our-region"
@@ -234,7 +460,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-modi-intellectual-naxal-category-uapa"
@@ -259,7 +485,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-osun-poll-day-147-arrests-inec-metrics"
@@ -284,7 +510,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-samara-progress-plant-dual-use-strike"
@@ -309,7 +535,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iran-tajikistan-fuel-supply-sanctions-routing"
@@ -325,7 +551,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-windfall-levy-nil-crack-spread"
@@ -350,7 +576,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mercury-skin-lightening-creams-enforcement-gap"
@@ -366,7 +592,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-hibernation-synapse-loss-memory-survives"
@@ -382,7 +608,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dibang-flash-flood-warning-time-siting"
@@ -407,7 +633,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-secondhand-books-ai-training-corpus-scarcity"
@@ -423,7 +649,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-quasiperiodic-pcsel-tunable-laser"
@@ -439,7 +665,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-14-pics-how-independence-day-was-celebrated-across-india"
@@ -464,7 +690,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-biggest-mistake-in-history-instagram-changes-its-wordmark-af"
@@ -480,7 +706,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ansar-nabatieh-strike-truce-violation-count"
@@ -505,7 +731,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-hormuz-territorial-claim-transit-passage-unclos"
@@ -521,7 +747,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-korean-armistice-peace-treaty-who-signs"
@@ -546,7 +772,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-katsina-zamfara-peacebuilding-grant-cycle-cliff"
@@ -562,7 +788,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-exam-leak-protests-credential-queue"
@@ -587,7 +813,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-peshawar-mashhad-route-sanctions-pilgrimage"
@@ -603,7 +829,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-incretin-discontinuation-metabolic-defence-cost"
@@ -619,7 +845,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-rhine-low-water-draught-salt-intrusion"
@@ -635,7 +861,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-emals-steam-reversal-technical-lock-in"
@@ -651,7 +877,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-avio-fd1-sardinia-filings-launch-sovereignty"
@@ -667,7 +893,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-minister-directs-early-start-of-port-qasim-authority-cricket"
@@ -683,7 +909,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-s-per-lig-osimhen-scores-twice-as-galatasaray-held-by-newly"
@@ -699,7 +925,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-quneitra-farmland-lebanon-truce-violation-monitoring"
@@ -715,7 +941,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-warraq-ferry-dock-materials-access-displacement"
@@ -731,7 +957,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-asaba-black-box-overwritten-nsib-disclosure-delay"
@@ -747,7 +973,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-venezuela-criminal-economy-survives-decapitation"
@@ -763,7 +989,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-fabs-nuclear-2047-power-arithmetic"
@@ -788,7 +1014,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-pakistan-dealer-margin-strike-administered-price-stack"
@@ -812,7 +1038,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-benguela-whale-sightings-survey-effort-correction"
@@ -828,7 +1054,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ozone-model-transferability-voc-monitoring-gap"
@@ -844,7 +1070,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-qwen-27b-fp8-single-gpu-sovereignty"
@@ -860,7 +1086,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-korea-dopamine-sites-engagement-without-purchase"
@@ -876,7 +1102,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-two-killed-in-separate-incidents-in-balochistan"
@@ -892,7 +1118,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-14-behind-the-blog-endless-scam-parade"
@@ -908,7 +1134,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-rsf-blue-nile-kurmuk-multi-front-offensive"
@@ -924,7 +1150,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-irgc-mq9-hormozgan-strait-surveillance-denial"
@@ -940,7 +1166,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan"
@@ -956,7 +1182,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-lopez-beltran-visa-revocation-discretionary-leverage"
@@ -981,7 +1207,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-pirro-criminal-activism-charging-discretion-farris"
@@ -1006,7 +1232,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-jane-street-july-loss-market-maker-liquidity-risk"
@@ -1031,7 +1257,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-world-liberty-occ-conditional-charter-payment-access"
@@ -1047,7 +1273,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-white-house-ballroom-mootness-by-construction"
@@ -1072,7 +1298,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-nadra-qr-identity-card-offline-verification-loss"
@@ -1088,7 +1314,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-macos-screen-sharing-port-5900-active-exploitation"
@@ -1104,7 +1330,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-banking-hack-arrests-germany-brazil-instant-payment-rails"
@@ -1120,7 +1346,7 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-alpine-thermophilization-weak-warming-correlation"
@@ -1136,257 +1362,13 @@
       "lastCovered": "2026-08-14T22:12:21.722Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-cranial-ct-sex-estimation-model-population-transfer"
       ],
       "eventUri": null,
       "summary": "A neural network is trained to estimate biological sex from the low-dose CT scout image — the single flat positioning scan taken before the real scan begins. Lead with the input, because the choice of image is the finding: forensic sex estimation normally requires the pelvis or a measured skull, and a scout is the cheapest, fastest, most universally archived picture in radiology, so a method that works on it is a method that works on records that already exist in every hospital on earth. The mechanism to teach is what the model is and is not doing: it learns statistical shape differences in cranial morphology that overlap heavily between populations and between individuals, so its output is a probability, not a fact, and its accuracy is inherited from the population it was trained on — a model built on one country's scans will drift when applied to another's, which is the standing failure of every forensic anthropology standard from the moment it leaves the collection it was derived from. Ask what the training set was and where those people lived. The second mechanism is why this matters beyond a methods paper, and it is the reason to run it: identification of the dead is the last accountability step in every mass-casualty event, and Gaza, Sudan and Ukraine have made it a mass problem — where remains are fragmentary, records are destroyed and DNA is slow and expensive, an automated estimate from an existing scan changes what is possible, and also creates a route by which a contested identification can be asserted with machine authority. That tension is the article. Establish the reported accuracy and on what test set, the training data's size and provenance, whether external validation across populations was done, the ages included (cranial dimorphism is unreliable before puberty), and what the authors say about forensic deployment. Note this is an unedited early-access manuscript and has not completed editing.",
-      "conceptUris": []
-    },
-    {
-      "id": "france-conseil-constitutionnel-under-15-social-media-ban",
-      "label": "France's top court blocks social media ban for under-15s",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-france-conseil-constitutionnel-under-15-social-media-ban"
-      ],
-      "eventUri": "fra-1334279",
-      "summary": "France's Constitutional Council struck down the under-15 social media ban that lawmakers passed in July — the first such ban in Europe — on freedom-of-expression grounds, while upholding the assisted-dying law in the same session. Lead with the constitutional test, not the age: the court did not rule that minors are safe online, it ruled that a blanket prohibition on a medium of expression is a disproportionate means, which is a much narrower and more portable holding than 'France backs down'. The mechanism to teach is proportionality review — the standard by which a court asks whether a less restrictive measure would have achieved the same protective aim — because it is the doctrine that will decide every age-verification law now moving through the EU, the UK, Australia and Indonesia. The second mechanism is enforcement architecture: an age gate requires identifying every user, so a child-protection law is in practice a universal identity-verification law, and that is the freedom-of-expression cost the court priced. The reader's stake: the same age-verification templates are being drafted in Jakarta, Islamabad and the Gulf, where they will sit alongside cybercrime statutes with no constitutional council to strike them down. Establish the Council's actual reasoning and the article of the Declaration it rested on, what the July law required of platforms, what the government says it will do next, and where the comparable Australian and UK regimes stand.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Constitutional_Council_(France)",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Social_network",
-        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
-        "http://en.wikipedia.org/wiki/Freedom_of_speech",
-        "http://en.wikipedia.org/wiki/Censorship",
-        "http://en.wikipedia.org/wiki/Social_media",
-        "http://en.wikipedia.org/wiki/Parliament"
-      ]
-    },
-    {
-      "id": "osun-election-violence-tracker-turnout-suppression",
-      "label": "34 Violent Incidents, 18 Deaths: Tracking political violence in #OsunDecides2026",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-osun-election-violence-tracker-turnout-suppression"
-      ],
-      "eventUri": null,
-      "summary": "At least 34 election-related violent incidents and 18 deaths have been logged in Nigeria's Osun State since May, on the eve of Saturday's governorship vote, according to the CJID Conflict Tracker. Lead with the count and with who produced it, because the method is half the story: this is not a wire report of a single clash but a civil-society tracker that has been counting incidents for three months, which converts 'tensions ahead of polls' — the phrase that lets every such election pass unexamined — into a number a state electoral commission can be asked about. The mechanism to teach is how pre-election violence works as a turnout instrument rather than a battle for the ballot box: violence concentrated in specific local government areas suppresses participation exactly where the opposing party's base sits, so the result is shaped before a vote is cast and no ballot needs to be rigged. Name the LGAs and the parties where the tracker locates the incidents. The second mechanism is the accountability gap our reader should carry: Nigeria is Africa's largest democracy and an OIC member, and 18 deaths in one state's campaign produces essentially no international coverage — the threshold for a Nigerian election to be reported abroad is a coup, not a body count. Establish the tracker's methodology and what it counts, the incidents and deaths by area and date, INEC's and the police deployment posture, the candidates and the 2022 turnout baseline, and what happened in Osun's previous cycle. Then the stake: whether the count moves turnout is measurable on Saturday, and that comparison is the follow-up.",
-      "conceptUris": []
-    },
-    {
-      "id": "gaza-cancer-excess-mortality-siege-oncology",
-      "label": "Hormuz grinds to a halt again; Gaza's cancer patients dying at 2-3 times prewar rate; DHS surveilled left-wing groups in Minnesota",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-gaza-cancer-excess-mortality-siege-oncology"
-      ],
-      "eventUri": null,
-      "summary": "Take one item from this Drop Site daily and build the article on it: Gaza's cancer patients are dying at two to three times the prewar rate. Do not write the roundup — the Hormuz item duplicates this site's blockade reporting from today's earlier cycle, and the DHS surveillance item is a separate story. Lead with the multiple, because it is the rarest kind of number in this war: it counts deaths that no strike caused. The mechanism to teach is how a health system kills by subtraction — oncology is the most infrastructure-dependent medicine there is, requiring uninterrupted electricity for radiotherapy, a cold chain for cytotoxic drugs, functioning pathology labs to stage a tumour and exit permits for treatment unavailable inside Gaza, and destroying any one link converts a survivable cancer into a terminal one without a single casualty being recorded as war-related. That is why excess-mortality ratios, not casualty counts, are how the cost of a siege is actually measured. The second mechanism is the referral system: Gaza's cancer patients were treated in East Jerusalem and Egypt under a permit regime, so the closure of crossings is itself an oncological intervention, and the named authority controlling those permits is the accountable party. The reader's stake is the principle this site holds — every life counted with equal weight, including the ones that end quietly in a bed. Establish Drop Site's sourcing and which health authority or study produced the ratio, the prewar baseline and the current figure, the status of Gaza's remaining oncology capacity and the two destroyed cancer facilities by name, permit approval rates for medical exit, and what WHO has documented. SOURCING NOTE: Palestine is an OIC member and today's feed carried no regional outlet on this item — seek Al Jazeera, Middle East Eye or WHO's own situation report for corroboration before publication, and attribute the ratio precisely rather than asserting it.",
-      "conceptUris": []
-    },
-    {
-      "id": "herat-arrests-vice-virtue-enforcement-ambiguity",
-      "label": "The Herat arrests are a defining moment of Taliban repression in Afghanistan",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-herat-arrests-vice-virtue-enforcement-ambiguity"
-      ],
-      "eventUri": null,
-      "summary": "A wave of arrests in Herat has made ordinary movement — a market trip, a medical appointment, a family gathering — a calculated risk for the city's residents. Lead with that texture rather than the arrest count, because the reportable finding is the change in what daily life costs: repression that has to detain people is expensive and visible, repression that makes them stay home is neither, and Herat is the point where one became the other. The mechanism to teach is enforcement by ambiguity, the same instrument this site described in Arab cybercrime statutes one cycle ago: the vice-and-virtue rules are not published as a code with defined offences, so no one can know in advance what is prohibited, and the resulting self-restriction costs the ministry nothing to maintain. Undefined rules are cheaper than prisons. The second mechanism is why Herat specifically: it is Afghanistan's most Persian-speaking, Iran-facing and historically liberal city, with the country's highest female literacy before 2021 — so the arrests read as a centre imposing a Kandahari reading on a province that had its own, which is a fight inside the Taliban as much as against the population. The reader's stake is one this publication should state without flinching: this is authority exercised in the name of Islam against Muslims, and reporting it precisely is the accountability owed. Establish who was arrested, how many, on what stated grounds and by which directorate; what the Ministry for the Propagation of Virtue has said; whether anyone has been released or charged; and what UNAMA has documented. SOURCING NOTE: Afghanistan is an OIC member and no Afghan or regional outlet appears in today's feed on this — Global Voices publishes citizen-contributor accounts, so attribute claims to their originating witnesses and seek TOLOnews, Etilaatroz or Amu TV corroboration before publication.",
-      "conceptUris": []
-    },
-    {
-      "id": "lavrov-contact-line-armistice-refusal-supply-lines",
-      "label": "Russian top diplomat's takes on why Ukraine conflict cannot be halted along contact line",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-lavrov-contact-line-armistice-refusal-supply-lines"
-      ],
-      "eventUri": "eng-11922096",
-      "summary": "Lavrov says the war cannot end along the current line of contact, and that Moscow will take 'much tougher measures to destroy everything that fuels the Ukrainian military machine from the West'. Lead with what the first half rules out, because it is the most concrete thing any Russian official has said about war termination: a ceasefire in place is the default shape of almost every negotiated end to a war, and rejecting it means Russia intends to hold territory it does not currently occupy — so the sentence is a claim about how much more fighting is required, stated as a matter of honour. The mechanism to teach is the contact line itself: an armistice line freezes possession and defers title, which is how Korea, Cyprus and Kashmir all ended, and a party that refuses one is telling you the war has an objective the map does not yet satisfy. The second half is the escalation half, and it points at Western supply lines, which is the same target logic this site tracked in yesterday's Izmail and Ust-Luga strikes on export infrastructure. Report the sourcing honestly and make it part of the article: TASS and RT are Russian state outlets carrying a Russian minister, and the three accounts in this cluster diverge more sharply in framing than any other story in today's feed — The Hindu leads on Russia demanding answers from Washington, RT on the threat. That divergence is worth showing the reader explicitly as an example of how the same remarks are packaged for three audiences. Establish the forum and exact wording, what Kyiv and Washington have said about a contact-line freeze, the current front-line position, and what 'measures' Russia has previously taken against Western-supplied materiel.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Kiev",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "reliance-rolls-royce-amca-engine-technology-transfer",
-      "label": "Indian firm to make fighter jet engines with Rolls-Royce",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-reliance-rolls-royce-amca-engine-technology-transfer"
-      ],
-      "eventUri": "eng-11922876",
-      "summary": "Reliance Industries and Rolls-Royce will jointly design and build engines for India's Advanced Medium Combat Aircraft — India's largest private conglomerate, an oil and telecoms company, entering military jet propulsion. Lead with why the engine is the whole story: India has flown indigenous airframes for four decades and never built a working military turbofan, because a high-bypass combat engine is the single hardest artefact in aerospace — single-crystal turbine blades, thermal-barrier coatings and the metallurgy behind them are controlled technology that only five countries hold, and the Kaveri programme spent thirty years failing at exactly this. An airframe you can design; an engine you have to be given. The mechanism to teach is therefore technology transfer as the actual negotiation: what matters is not the joint venture but which processes are licensed, which remain in Derby, and whether India ends up with the capability or with a screwdriver plant — the same question that decides every offset deal from Turkey's TF-X to Brazil's Gripen line. The second mechanism is who is doing it: a private conglomerate with no aerospace heritage taking on a state-monopoly capability marks the deliberate breakup of HAL and DRDO's hold on Indian defence production, and concentration of strategic industry in one family-controlled group is its own accountability question. The reader's stake is regional: Dawn is reporting this from Pakistan, and an indigenous Indian fighter engine changes the sortie-rate arithmetic across the LoC in the 2030s. Establish what the two companies actually announced and what is signed versus intended, the AMCA timeline and current engine choice, Rolls-Royce's stated position on technology transfer, the Kaveri history and the collapsed GE F414 talks, and what Indian defence officials say.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Reliance_Industries",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/HAL_AMCA",
-        "http://en.wikipedia.org/wiki/Rolls-Royce_Holdings",
-        "http://en.wikipedia.org/wiki/Indigenous_peoples",
-        "http://en.wikipedia.org/wiki/Aerospace",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/Aircraft_engine"
-      ]
-    },
-    {
-      "id": "chiba-rainfall-design-storm-stationarity-flood-defences",
-      "label": "Japan: 8 dead due to 'unprecedented' torrential rains",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-chiba-rainfall-design-storm-stationarity-flood-defences"
-      ],
-      "eventUri": "eng-11919631",
-      "summary": "Three months of rain fell on Chiba Prefecture in twelve hours, killing at least eight people and stranding thousands east of Tokyo, with Narita disrupted. Lead with the ratio rather than the millimetres, because the ratio is what defeated the defences: Japan has the most engineered flood infrastructure on earth — the Kasukabe underground discharge channel, hardened river levees, a warning system that reaches every phone — and all of it is sized against a design storm derived from the historical record. A twelve-hour delivery of a three-month total is not a bigger version of that storm; it is outside the distribution the concrete was poured for. The mechanism to teach is stationarity and its end: engineering standards assume the statistics of the past describe the future, and a warming atmosphere holding roughly 7% more water per degree makes that assumption false, so every drainage system in the world is now protecting against a storm that no longer bounds the risk. Japan is the control case — if the best-defended flood plain on the planet loses eight people, the question for Karachi, Jakarta, Dhaka and Lagos is not whether their systems are worse but by how many orders. The second mechanism is the economic tail, which is where this belongs as an economy story: reconstruction cost, agricultural loss in a prefecture that supplies Tokyo, and the reinsurance repricing that follows every such event and is ultimately paid by policyholders in the countries least able to buy cover. Establish the rainfall figures and JMA's warning level, the death and evacuation counts by municipality, what infrastructure held and what failed, and JMA's own attribution language. Do not let the death toll be a statistic — name the dead if the reporting permits.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Chiba_Prefecture",
-        "http://en.wikipedia.org/wiki/Tokyo",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/Landslide",
-        "http://en.wikipedia.org/wiki/Japan_Meteorological_Agency",
-        "http://en.wikipedia.org/wiki/Narita_International_Airport",
-        "http://en.wikipedia.org/wiki/Chiba_(city)"
-      ]
-    },
-    {
-      "id": "deutsche-bank-rmb-clearing-europe-payment-rails",
-      "label": "Deutsche Bank becomes first foreign yuan clearing bank in Europe",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-13-deutsche-bank-rmb-clearing-europe-payment-rails"
-      ],
-      "eventUri": null,
-      "summary": "The People's Bank of China has designated Deutsche Bank as a renminbi clearing bank in Europe — the first non-Chinese institution ever given the role, which until now has always gone to a branch of Bank of China or ICBC. Lead with that first, because the concession is the finding: Beijing has spent fifteen years insisting that the plumbing of its currency stay in Chinese hands, and handing a German bank the keys is an admission that a currency cleared only by its own state's banks will never be used by anyone who fears that state. The mechanism to teach is what a clearing bank actually does, because almost no one knows: it is the entity that holds the accounts through which offshore renminbi payments settle, so whoever clears sees every transaction and can, in principle, stop one — which is precisely the power the dollar system exercises through correspondent banking and OFAC, and precisely the power countries under sanctions are trying to route around. Designating a foreign clearer is an attempt to make the renminbi credible as a neutral rail rather than a Chinese one. The second mechanism is the honest scale check: renminbi share of global payments remains in the low single digits against the dollar's dominance, and capital controls — not plumbing — are the binding constraint, so this is an incremental fix to one of several problems, and the article should say so rather than announce de-dollarisation. The reader's stake is direct: Gulf oil settlement, Pakistan's and Egypt's swap lines, Russia's and Iran's trade routing and Indonesian and Malaysian local-currency arrangements all depend on whether renminbi settlement can be reached without a Chinese counterparty. Establish the PBOC announcement and its date, what Deutsche Bank will clear and from where, the existing European clearing arrangements it supplements, current CIPS and SWIFT renminbi volumes, and what the bank says. SOURCING NOTE: the link is an aggregator surfaced via Hacker News with 405 points — verify against the PBOC's and Deutsche Bank's own statements before publication.",
-      "conceptUris": []
-    },
-    {
-      "id": "donato-android-app-store-friction-remedy-enforcement",
-      "label": "Google ordered to make it easier to download alternative Android app stores",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-donato-android-app-store-friction-remedy-enforcement"
-      ],
-      "eventUri": "eng-11923210",
-      "summary": "Judge James Donato reviewed the third-party app-store download flow Google shipped this week and ruled it still contains 'anticompetitive friction' — the court personally walking through the install process for the first rival store and finding the compliance inadequate. Lead with that image, because it is what makes this newsworthy rather than routine: a federal judge testing the user interface himself is antitrust remedy enforcement descending to the level of tap counts and warning screens, which is where platform power actually lives. The mechanism to teach is friction as a control surface: Google was ordered to permit rival stores, complied literally, and then rebuilt the barrier out of scare dialogs, extra confirmations and buried settings — so the enforceable question shifts from 'is it allowed' to 'how many taps', and remedies written in the language of permission are defeated by design. This is the single most transferable idea in the story, because the same technique defeats every consent, portability and interoperability mandate in the DMA and in India's and Brazil's competition cases. The second mechanism is who bears the cost of the closed store: a 30% commission on a market of billions is paid disproportionately by developers in Lagos, Lahore, Cairo and Jakarta earning in weak currencies, and alternative distribution is how local app economies escape a tax set in Mountain View. The reader's stake is concrete — Aptoide and its peers are the stores that matter in exactly those markets. Establish the ruling's specific findings and what Google must change and by when, what Google shipped this week, the Epic v. Google posture and appeal status, and what Google says. Then the stake: compliance you have to be walked through by a judge is not compliance.",
-      "conceptUris": []
-    },
-    {
-      "id": "glm-53-open-weights-cyber-capability-export-controls",
-      "label": "GLM-5.3: Frontier coding with emergent cyber capabilities",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-glm-53-open-weights-cyber-capability-export-controls"
-      ],
-      "eventUri": null,
-      "summary": "Zhipu AI released GLM-5.3 and, unusually, put 'emergent cyber capabilities' in the title — a Chinese lab advertising offensive-security performance as a headline feature, to 897 points on Hacker News. Lead with the phrasing, because a company choosing to market what every Western lab describes only in a safety appendix is the reportable decision: the same benchmark result is a risk disclosure in one jurisdiction and a selling point in another, and that asymmetry is now a competitive advantage. The mechanism to teach is what 'cyber capability' means concretely in a coding model — finding exploitable memory-safety bugs in unfamiliar source, chaining them into a working proof of concept, and doing it at a cost per attempt low enough to run against every repository rather than a chosen target. The change is not that a model can do it once; it is the price, because vulnerability research has always been rationed by scarce expert attention and this removes the rationing from both attack and defence simultaneously. The second mechanism is the release posture, and it is the part with policy consequences: if the weights are open, US export controls on frontier capability have been routed around by publication rather than smuggling, and every downstream government that wanted a sovereign model gets one that already does this. For readers in Pakistan, Indonesia, the Gulf and Nigeria, an open frontier-class model is the difference between renting intelligence from three American companies and hosting it — and the same release hands their attackers the same tool. Establish exactly what Zhipu published, the licence and whether weights are downloadable, the specific benchmarks and their evaluation methodology, independent verification if any exists, and how it compares with the closed frontier models on the same tests. Report the claims as claims — this is a vendor blog post, and benchmark self-reporting in this field has a poor record.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-patent-glasses-bystander-facial-recognition-gallery",
-      "label": "Meta Patents AI Glasses to Use Facial Recognition to Identify People, Make Highlight Reels of Your Dinner Party",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-meta-patent-glasses-bystander-facial-recognition-gallery"
-      ],
-      "eventUri": null,
-      "summary": "A Meta patent published Thursday describes glasses that run facial recognition on the people around the wearer, identify them, and assemble the footage into a highlight reel of the evening. Lead with the party guest, not the wearer, because the patent's own framing hides the actual subject: consent in this system is collected from exactly one person in the room, and the other eleven are enrolled in a face database by sitting down to eat. Everything follows from that asymmetry. The mechanism to teach is the difference between recognition and identification, which the coverage of this technology consistently blurs: matching a face to a face is a camera feature, matching a face to a name requires a gallery of labelled faces — and the company operating the largest labelled face gallery ever assembled is the one filing this patent. The capability is not in the glasses; it is in what the glasses can query. The second mechanism is the legal geography our reader should hold: this is likely unlawful under the EU's AI Act and GDPR and under Illinois's biometric statute, which is precisely why it will ship first in jurisdictions with no biometric privacy law — most of the Muslim world included, where the same absent legislation SMEX has been documenting leaves no basis to object. A patent is not a product, and the article must say so plainly rather than treat a filing as a launch; the news is the direction of travel and the fact that the design brief treats bystander identification as a feature to be claimed. Establish the patent number, filing and publication dates and what it actually claims, what Meta's shipping glasses currently do and what the company says about facial recognition, the status of the EU and Illinois rules, and 404 Media's own sourcing.",
-      "conceptUris": []
-    },
-    {
-      "id": "amoc-sediment-cores-abrupt-shifts-itcz-monsoon",
-      "label": "Sediments off Brazil's northeast coast reveal sudden changes in heat transport in the Atlantic",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-amoc-sediment-cores-abrupt-shifts-itcz-monsoon"
-      ],
-      "eventUri": null,
-      "summary": "Brazilian and German researchers reading sediment cores off Brazil's northeast coast find that the Atlantic's overturning circulation has switched intensity abruptly in the past — including while it was already in a weakened state. Lead with that last clause, because it is the whole finding and it inverts the reassuring version of this story: the common assumption is that a weakened AMOC is a slow slide with time to adapt, and the cores say a weakened system is the one that jumps. Weakness is not the safe part of the curve. The mechanism to teach is how a sediment core becomes a current meter: sinking particles are sorted by flow speed, so grain size at a given depth records how fast water was moving, and isotope ratios in the shells deposited alongside record where that water came from — which lets a seabed sample in Brazil measure a circulation that no one was there to observe. Explain that method properly; it is the reason a reader should believe a claim about the ocean of ten thousand years ago. The second mechanism is the consequence that matters most to this readership, and it is not European winters: the AMOC's position sets where the intertropical convergence zone sits, and the ITCZ is the West African and South Asian monsoon — so an abrupt shift in Atlantic heat transport is, downstream, a change in when it rains in the Sahel, in Nigeria and in Bangladesh. The Sahel drought of the 1970s and 80s is the worked example, and it killed on a scale Europe has never experienced from this system. Establish the study, its authors and journal, the core sites and the period covered, how abrupt 'abrupt' is in years, what the authors explicitly do and do not claim about the present-day AMOC, and how this sits against the existing observational record. This also addresses a gap the site's own audit flagged: climate reaching us through research output rather than only through policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "cell-atlas-ageing-programme-composition-shift",
-      "label": "Why Aging May Be a Program, Not a Breakdown",
-      "firstSeen": "2026-08-14T17:11:58.988Z",
-      "lastCovered": "2026-08-14T17:11:58.988Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-cell-atlas-ageing-programme-composition-shift"
-      ],
-      "eventUri": null,
-      "summary": "Junyue Cao's lab profiled millions of individual mouse cells across the lifespan and found that ageing looks less like accumulated damage than a coordinated 'remodeling of the cell society' — the proportions of cell types shifting on a schedule rather than tissues simply wearing out. Lead with what that reframing would change, because the claim is only interesting if it has consequences: damage is something you repair one lesion at a time, a programme is something that could in principle be read and interrupted, and every anti-ageing intervention now funded assumes the first model. The mechanism to teach is single-cell atlasing and why it was the enabling method: bulk tissue measurement averages a liver into one number, so a tissue in which one cell population quietly triples while another halves reads as 'unchanged' — the composition shift was invisible until the technique could count cell types one at a time. Method changed the answer, which is the most honest lesson in the piece. The second thing the article owes the reader is scepticism, stated as such: programmed ageing is a contested position with a long history of overreach, evolutionary theory has strong objections to selection favouring a death programme, and mice are not people. Distinguish carefully between what was measured — cell-type composition changing with age in a reproducible, ordered way — and the interpretation, which is Cao's. Establish who Cao is and where, what was published and in which journal, the number of cells and tissues and the ages sampled, what specific compositional shifts were found, what critics of programmed ageing say, and what the finding would need to look like in humans to matter clinically. The reader's stake is plain enough without being sold: populations across the Muslim world are ageing faster than their health systems are building capacity, and what ageing fundamentally is determines whether that is a nursing problem or a biology problem.",
       "conceptUris": []
     }
   ]
