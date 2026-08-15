@@ -1,128 +1,112 @@
 {
   "items": {
-    "fred-us-retail-sales-2026-08-14": {
-      "standingFingerprint": "88dc24dc4edbc81f",
-      "recentFingerprint": "bd667a7f4ca087e6",
-      "standing": "The Census Bureau's monthly estimate of receipts at US retail and food-service businesses, released around the middle of the following month. It is the earliest broad read on consumer spending, which drives roughly two-thirds of the US economy.",
-      "recent": "",
-      "citations": [],
-      "generatedAt": "2026-08-13T04:36:26.982Z"
-    },
     "ecb-2026-09": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "b6f041d640ae96c6",
-      "standing": "The European Central Bank's Governing Council, which sets policy rates for the euro area on a roughly six-week cycle. Its decisions set the cost of credit across twenty member economies and anchor the euro against every currency it trades with.",
-      "recent": "",
-      "citations": [],
-      "generatedAt": "2026-08-14T04:38:36.287Z"
+      "recentFingerprint": "7e3223d82adec683",
+      "standing": "The European Central Bank's Governing Council, which sets policy rates for the euro area at scheduled meetings through the year. Its decisions set the cost of credit across the currency bloc and transmit to bond yields, bank lending and the euro itself.",
+      "recent": "The decision lands into a run of central banks holding rather than moving: the RBA held its rate steady as the housing market softened, while a hike remains possible. The dollar has fallen to its lowest level since May with a rate hike in doubt, and inflation prints elsewhere are drifting up, with India's retail rate rising to 4.45% in July from 4.38% in June.",
+      "citations": [
+        "2026-08-11-the-rate-set-last-year-decides-this-one"
+      ],
+      "generatedAt": "2026-08-15T04:37:32.411Z"
     },
     "fomc-2026-09": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "3d595a26a4821463",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and price every asset quoted against the dollar.",
-      "recent": "The committee meets with the dollar at its weakest since May and gold near $4,392 an ounce, and with Trump moving a second time to fire Cook, reviving the fight over Fed independence. The Bank of England held at 3.75% with three of nine dissenting and the Bank of Japan held at 1%, leaving the Fed the outlier still to decide.",
+      "recentFingerprint": "d0458db457c6eaf8",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions set the cost of borrowing across the dollar economy and reprice every asset quoted against the dollar.",
+      "recent": "The committee meets with its own composition in dispute: Trump is trying again to fire Cook, reviving the Fed independence fight. The dollar fell to its weakest since May as a rate hike came into doubt, and gold hit $4,392 an ounce. This decision settles the rate that a low-hire, low-fire labor market will carry into next year.",
       "citations": [
-        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
         "2026-08-07-cook-removal-second-attempt-fed-independence",
-        "2026-08-12-gold-ten-week-high-cpi-household-savings",
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock",
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint"
+        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
+        "2026-08-12-gold-ten-week-high-cpi-household-savings"
       ],
-      "generatedAt": "2026-08-13T04:36:46.759Z"
+      "generatedAt": "2026-08-15T04:37:41.616Z"
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "e477b06bb8a06c11",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, feeding into mortgages, sterling and gilt yields.",
-      "recent": "The committee meets after a run of holds elsewhere: the Bank of Japan kept rates at 1% while warning underlying inflation is exceeding its 2% target, and the RBA held steady as its housing market softened. In the UK, house prices rose 0.1% in July as buyers stayed cautious on interest rates.",
+      "recentFingerprint": "58ef9a51776e9046",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, feeding into mortgage rates, gilt yields and sterling.",
+      "recent": "The Bank of England has been expanding a digital pound pilot with Polygon, testing settlement alongside stablecoins — work that sits beside the rate-setting question rather than inside it. On the rates side, the meeting follows the RBA's decision to hold steady as its housing market softens, and a dollar that has fallen to its lowest level since May.",
       "citations": [
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
+        "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot",
         "2026-08-11-the-rate-set-last-year-decides-this-one"
       ],
-      "generatedAt": "2026-08-14T04:38:45.716Z"
+      "generatedAt": "2026-08-15T04:37:50.126Z"
     },
     "boj-2026-09": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "48f413fa2b6637bb",
-      "standing": "Japan's central bank, whose policy board sets the short-term interest rate roughly eight times a year. Its decisions set the price of the world's cheapest funding currency, and move the yen, Japanese government bonds and carry trades built on them.",
-      "recent": "The board held at 1% on July 31 while warning that underlying inflation is exceeding its 2% target, and Tokyo sold dollars for yen hours earlier. Washington then joined a historic joint intervention on August 3. A weak yen has been lifting exporters, with Toyota's quarterly profit reaching $9.4 billion.",
+      "recentFingerprint": "42ba2f66b20f1998",
+      "standing": "The Bank of Japan's policy board, which sets Japan's short-term interest rate at eight scheduled meetings a year. Its decisions move the yen, Japanese government bond yields, and the global carry trades funded in cheap Japanese money.",
+      "recent": "The meeting follows a historic joint US-Japan intervention on 3 August that pushed the dollar to a one-month low, an unusual move by Washington against yen weakness. That same weakness nearly doubled Toyota's quarterly profit to $9.4 billion. The decision will settle how far the board goes to support the currency by policy rather than intervention.",
       "citations": [
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
-        "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c",
-        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
+        "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-14T04:38:55.425Z"
+      "generatedAt": "2026-08-15T04:37:59.383Z"
     },
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "fd57a24fbc5f4f2a",
-      "standing": "The UK's monthly consumer price index, published by the Office for National Statistics, measuring how much prices paid by households have changed over the past year. It is the reference number for Bank of England rate decisions, index-linked gilts, and a range of benefits and rail fares.",
-      "recent": "The release lands as inflation data drives markets elsewhere: India's retail inflation rose to 4.45% in July from 4.38% in June on food prices, and crypto traders moved around US CPI day, with bitcoin near $63,500. This print will set the annual UK rate the Bank of England weighs at its next meeting.",
+      "recentFingerprint": "c2a0182615210a99",
+      "standing": "The Office for National Statistics' monthly measure of UK consumer price inflation, covering the change in prices paid by households for a basket of goods and services. It anchors Bank of England rate policy, index-linked gilts and a range of benefit and pension upratings.",
+      "recent": "The release lands as inflation prints elsewhere move markets: India's retail inflation rose to 4.45% in July from 4.38% in June, driven by food prices. This reading will settle where UK price growth sits against the Bank of England's target, and it feeds the uprating decisions that follow the September figure.",
       "citations": [],
-      "generatedAt": "2026-08-13T04:37:14.138Z"
+      "generatedAt": "2026-08-15T04:38:08.358Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "3593834daa605b6c",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move the cost of borrowing across the dollar economy, and with it assets priced against the dollar.",
-      "recent": "The committee meets with its own composition in dispute: Trump is trying again to fire Cook, reviving the Fed independence fight. The dollar has already fallen to its weakest since May with a rate hike in doubt, gold hit $4,392 an ounce, and other central banks have split — three of nine BoE policymakers voted to raise.",
+      "recentFingerprint": "d3f35c29f2a24fff",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move the cost of borrowing across the dollar economy and every asset priced against the dollar.",
+      "recent": "The committee meets while Trump renews his bid to fire Cook, reviving a fight over Fed independence. The dollar has fallen to its weakest since May, gold hit $4,392 an ounce, and traders are looking past CPI to the Fed's next tests. This decision settles the target range those positions are built against.",
       "citations": [
         "2026-08-07-cook-removal-second-attempt-fed-independence",
         "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
-        "2026-08-12-gold-ten-week-high-cpi-household-savings",
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
+        "2026-08-12-gold-ten-week-high-cpi-household-savings"
       ],
-      "generatedAt": "2026-08-13T04:37:23.704Z"
+      "generatedAt": "2026-08-15T04:38:17.016Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "85c13f4be43c28a8",
-      "standing": "The European Central Bank's governing council, which sets interest rates for the euro area on a schedule of eight meetings a year. Its decisions set borrowing costs across twenty member economies and transmit to the euro's value against every major currency.",
-      "recent": "The decision lands after a stretch in which the other major central banks have chosen to wait: the Bank of Japan held at 1% while warning that underlying inflation is exceeding its 2% target, and the RBA held steady as its housing market softened. The dollar has fallen to its lowest level since May.",
+      "recentFingerprint": "a038f9287fa86f12",
+      "standing": "The European Central Bank's governing council sets interest rates for the euro area, meeting on a fixed schedule through the year. Its decisions set the cost of credit across the currency bloc and transmit to bond yields and the euro's exchange rate.",
+      "recent": "The decision lands after a stretch in which other central banks have stayed put rather than moved: the RBA held its rate steady in August as the housing market softened, without ruling out another hike. Currency markets have already repriced, with the dollar falling to its lowest level since May as a rate hike came into doubt.",
       "citations": [
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-11-the-rate-set-last-year-decides-this-one"
       ],
-      "generatedAt": "2026-08-14T04:39:03.468Z"
+      "generatedAt": "2026-08-15T04:38:25.961Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "db85122aad76d595",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions set the price of the world's cheapest funding currency, and move the yen, Japanese government bonds and global carry trades.",
-      "recent": "The Bank of Japan held at 1% on July 31 while warning underlying inflation is exceeding its 2% target, and the yen slid anyway. Tokyo sold dollars for yen around that decision, and on August 3 the US joined a joint intervention that pushed the dollar to a one-month low. The gap between the rate and the currency is what this meeting has to close.",
+      "recentFingerprint": "bd44cca0c8d8c0ba",
+      "standing": "Japan's central bank, whose policy board sets the short-term policy rate and decides the pace of its bond purchases at eight scheduled meetings a year. Its decisions drive the yen and the world's largest pool of low-cost carry-trade funding.",
+      "recent": "This decision follows a historic joint US-Japan yen intervention on August 3, which pushed the dollar to a one-month low and marked Washington's move against Japanese yen weakness. The cheap yen has flattered exporters — Toyota's quarterly profit nearly doubled to $9.4 billion. At stake is whether the bank tightens to support the currency itself.",
       "citations": [
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
-        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
+        "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-14T04:39:12.789Z"
+      "generatedAt": "2026-08-15T04:38:34.758Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "357c62607651b898",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, from mortgages to corporate credit, and move sterling.",
-      "recent": "UK house prices rose 0.1% in July as buyers stayed cautious on interest rates. The Bank of England has meanwhile expanded its digital pound pilot with Polygon and stablecoins, testing settlement outside the rate channel. This meeting decides Bank Rate as the dollar sits at its lowest level since May.",
-      "citations": [
-        "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
-      ],
-      "generatedAt": "2026-08-14T04:39:21.001Z"
+      "recentFingerprint": "87a326107cc9fcbe",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the sterling economy — mortgages, business credit and the pound's exchange rate.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:38:43.035Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "3593834daa605b6c",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move the cost of borrowing across the dollar economy, and with it every asset priced against the dollar.",
-      "recent": "The dollar fell to its weakest since May as a rate hike came into doubt, and gold hit $4,392 an ounce. Trump has moved again to fire Cook, reviving the fight over Fed independence. The BOJ held at 1% while three of nine Bank of England policymakers voted to raise, leaving the committee split against a divided global backdrop.",
+      "recentFingerprint": "d3f35c29f2a24fff",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and every asset priced against the dollar.",
+      "recent": "The committee arrives at this meeting split, with a supply-shock regime complicating the read on inflation and a low-hire, low-fire labour market. The dollar has already fallen to its weakest since May with a rate hike in doubt, gold has run to $4,392 an ounce, and Trump's renewed move to fire Cook has reopened the fight over Fed independence.",
       "citations": [
+        "2026-08-12-india-cpi-fed-split-imported-inflation",
         "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime",
         "2026-08-07-cook-removal-second-attempt-fed-independence",
-        "2026-08-12-gold-ten-week-high-cpi-household-savings",
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
-        "2026-07-30-boe-holds-375-three-dissents-hormuz-supply-shock"
+        "2026-08-12-gold-ten-week-high-cpi-household-savings"
       ],
-      "generatedAt": "2026-08-13T04:38:02.953Z"
+      "generatedAt": "2026-08-15T04:38:52.749Z"
     }
   },
-  "generatedAt": "2026-08-14T04:39:21.035Z",
+  "generatedAt": "2026-08-15T04:38:52.751Z",
   "windowDays": 14
 }
