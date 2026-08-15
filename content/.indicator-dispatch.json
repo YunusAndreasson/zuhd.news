@@ -2,44 +2,42 @@
   "items": {
     "wiki-iran": {
       "standingFingerprint": "1ce88d321f40e3eb",
-      "recentFingerprint": "15172f58b48473f2",
-      "standing": "Wikipedia pageviews for the article on Iran, a daily count of how many people look the country up. Attention series like this rise when a place enters a crisis and decay as the story settles, so the shape tracks public alarm more than events themselves.",
-      "recent": "The decline follows the shift from open war to bargaining over the Strait of Hormuz: Trump halted the attack on Iran's infrastructure on 2 August, and by 4 August talks with Oman and the US to reopen the strait were reported making progress. Fighting continues at the margins — US Hellfire missiles crippled a cargo ship in the Gulf of Oman — but Iran has reopened its damaged airports.",
+      "recentFingerprint": "a6644819b4774027",
+      "standing": "Daily readership of the English Wikipedia article on Iran — a rough gauge of how many people worldwide are looking up the country's basics, and one that rises when Iran is at the centre of an unfolding story.",
+      "recent": "Attention has drained since the Hormuz standoff peaked in mid-July, falling roughly a third to its lowest reading on 13 August even as the confrontation continued: Trump claimed the US \"owns\" the Strait of Hormuz, US missiles crippled a cargo ship in the Gulf of Oman, and the Guard Corps said it downed an MQ-9 Reaper near Bandar Abbas.",
       "citations": [
         "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall",
-        "2026-08-10-hormuz-lanes-deal-reopening-still-conditional",
         "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade",
-        "2026-08-10-iran-reopens-its-airports-parts-are-the-hard-part"
+        "2026-08-14-irgc-mq9-hormozgan-strait-surveillance-denial"
       ],
-      "generatedAt": "2026-08-14T04:30:41.313Z"
+      "generatedAt": "2026-08-15T04:29:09.085Z"
     },
     "brent": {
       "standingFingerprint": "669cc3f1cef7f136",
-      "recentFingerprint": "6e2873751b080113",
+      "recentFingerprint": "699b44abdf46b200",
       "standing": "The price of a barrel of North Sea crude, and the benchmark most of the world's oil is priced against. It moves on supply — a strike, a sanction, a strait — and fuel, freight and fertiliser move after it.",
-      "recent": "Hormuz is the whole story. Two ADNOC tankers were struck transiting the strait on 13 August, and Trump's claim that the US controls it followed a halted attack on Iran and stalled talks. War-risk premiums, not barrels, are doing the work: Pakistan lifted diesel to 383.95 rupees a litre. Drone strikes hit Novorossiysk and Libya's Zawiya refinery.",
+      "recent": "Brent has fallen roughly a fifth over the window, from $116.70 on May 18 to $93.26, with a low of $68.53 on Jul 2. The Strait of Hormuz has driven the recent trade: two ADNOC tankers were struck transiting it, and the US threatened an indefinite blockade of Iran — news that moved Brent 12 cents. The cost has landed instead on war-risk premia and pumps, with Pakistani diesel at 383.95 rupees a litre.",
       "citations": [
+        "2026-08-14-iran-indefinite-blockade-brent-war-risk-pricing",
         "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium",
-        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall",
         "2026-08-14-pakistan-fuel-price-hike-hormuz-war-risk-levy",
-        "2026-08-11-huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone",
-        "2026-08-12-novorossiysk-port-strike-cpc-oil-terminal"
+        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall"
       ],
-      "generatedAt": "2026-08-14T04:25:24.097Z"
+      "generatedAt": "2026-08-15T04:24:09.113Z"
     },
     "wti": {
       "standingFingerprint": "08e1fef935440e49",
-      "recentFingerprint": "ab66dd2090185694",
-      "standing": "The price of a barrel of US light sweet crude, the benchmark American oil is priced against and the reference for US refiners and drillers. It moves on supply, policy and demand, and fuel and freight costs move after it.",
-      "recent": "Attacks on oil infrastructure kept a war premium in the price: two ADNOC tankers were struck transiting Hormuz, a third drone strike hit Libya's Zawiya refinery, and a Ukrainian drone attack on Nizhnekamsk killed 13 deep inside Russia. US diesel reached $5.36 a gallon. The barrel is still well below its May high.",
+      "recentFingerprint": "d3d180c09e5fb67c",
+      "standing": "The US benchmark crude price, quoted at Cushing, Oklahoma, and the barrel most American refiners buy against. It moves on supply and policy, and gasoline, diesel and freight rates follow it down the chain.",
+      "recent": "Supply fear did the opposite of what the map suggests: WTI is down roughly a quarter over the window, from $112.30 on May 18 to $84.77, and traders have priced repeated strikes on production as a rounding error. Two ADNOC tankers were struck transiting Hormuz, a third drone strike hit Libya's Zawiya refinery, and 12 missiles hit Yemen's oil provinces.",
       "citations": [
         "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium",
         "2026-08-11-huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone",
+        "2026-08-07-hadramout-marib-houthi-offensive-oil-provinces",
         "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
-        "2026-08-09-war-premium-diesel-pass-through-food-prices",
         "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution"
       ],
-      "generatedAt": "2026-08-14T04:25:34.165Z"
+      "generatedAt": "2026-08-15T04:24:20.018Z"
     },
     "natgas-hh": {
       "standingFingerprint": "88ce6fa3d20f8dbe",
@@ -54,27 +52,29 @@
     },
     "wheat": {
       "standingFingerprint": "11ab04e705d8dc00",
-      "recentFingerprint": "dba296bf2f42bdb6",
-      "standing": "The world reference price for milling wheat, quoted per tonne. It is the input cost behind bread, flour and animal feed, so a move in it lands on household food bills — hardest in countries that import most of what they eat.",
-      "recent": "Russia set ablaze Ukraine's largest Danube grain port at Izmail, while drought across Europe dried soils through a record-hot summer. The FAO price index reached 131.1, and in Karachi a 20kg flour bag now costs Rs3,000 after a wheat import tender delay.",
+      "recentFingerprint": "4f77752070a98f87",
+      "standing": "The world price of milling wheat, the grain that feeds more people directly than any other. Its level sets the cost of bread and flour across importing countries, and governments that subsidise the loaf carry the difference on their own budgets.",
+      "recent": "Prices have risen through the summer as war and drought hit the supply chain at once: Russia set Izmail, Ukraine's largest Danube grain port, ablaze and struck its rail station, while drought across Europe ran the Danube low enough to shut a reactor at Cernavoda. The FAO's food price index reached 131.1.",
       "citations": [
         "2026-08-13-izmail-danube-grain-port-interceptor-rationing",
+        "2026-08-14-izmail-rail-ust-luga-export-infrastructure-strikes",
         "2026-08-07-fao-food-price-index-cereals-oils-import-bill",
-        "2026-08-09-wheat-import-tender-delay-price-signal-pakistan",
-        "2026-08-10-europe-record-summer-dry-soil-feeds-the-heat"
+        "2026-08-14-europe-drought-grass-dormancy-water-allocation",
+        "2026-08-13-cernavoda-danube-low-water-reactor-shutdown"
       ],
-      "generatedAt": "2026-08-14T04:25:56.328Z"
+      "generatedAt": "2026-08-15T04:24:30.430Z"
     },
     "rice": {
       "standingFingerprint": "e45de072b750b5f0",
-      "recentFingerprint": "9a7aa79a7a187d50",
-      "standing": "The world price of a tonne of milled rice, the staple grain for roughly half the planet. It is set by a thin export market — a handful of countries sell most of it — so an export ban or a bad monsoon in one of them lands on import bills everywhere.",
-      "recent": "Rice has moved the other way from the rest of the food basket: the series is down 29% to $400 a tonne, well below its Aug 2024 high of $563.8 and near the Oct 2025 low of $330.6. That falls against the Food and Agriculture Organization's index hitting 131.1, a three-year high driven by heatwaves and wars pushing up crop costs.",
+      "recentFingerprint": "8a4561311a731ab0",
+      "standing": "The benchmark export price for a tonne of milled rice, the staple grain for roughly half the world's population. It is thinly traded relative to wheat or maize, so export bans by a single large supplier can move it sharply.",
+      "recent": "Rice has fallen against a wider food-price rise: the Food and Agriculture Organization's index hit 131.1, a three-year high driven by heatwaves and wars pushing up crop costs, while diesel at $5.36 a gallon added freight cost to other staples. A record El Nino threatens 49 million with acute hunger in southern Africa.",
       "citations": [
         "2026-08-07-fao-food-price-index-cereals-oils-import-bill",
-        "2026-08-09-war-premium-diesel-pass-through-food-prices"
+        "2026-08-09-war-premium-diesel-pass-through-food-prices",
+        "2026-08-05-el-nino-wfp-49-million-acute-food-insecurity-southern-africa"
       ],
-      "generatedAt": "2026-08-13T04:21:06.412Z"
+      "generatedAt": "2026-08-15T04:24:39.597Z"
     },
     "copper": {
       "standingFingerprint": "677d103c33226d6f",
@@ -98,37 +98,32 @@
     },
     "sp500": {
       "standingFingerprint": "d0701a236d25469c",
-      "recentFingerprint": "c80852f360eacefa",
-      "standing": "A capitalisation-weighted index of 500 large US-listed companies, and the standard benchmark for American equities. Most US retirement money tracks it, so its level is the number against which pensions, funds and corporate valuations are measured.",
-      "recent": "The index climbed to its 61-day high on Aug 13, up roughly 5 percent from its Jun 10 low. Little in the record explains the run directly: the visible corporate news was Tata Group stocks falling with TCS down nearly 4 percent, Tesla's denial of a report on selling its China business, and McDonald's delaying store expansion plans. Oil eased and stocks gained on Hormuz reopening hopes on Aug 4.",
+      "recentFingerprint": "7cbb87f364583cd2",
+      "standing": "The main US stock index, tracking the 500 largest listed American companies. It is the reference return for most of the world's pension and reserve portfolios, so a move here is felt far beyond New York.",
+      "recent": "The index sits near the top of its 62-day range, having risen roughly 5% from its 10 June low to a 13 August peak of 7,799. The AI trade drove the swing: Nvidia partnered with lenders to finance AI infrastructure, Palantir short sellers took a $3 billion hit after a 30% surge, and Jane Street took a $15 billion loss in July as AI stocks slumped.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:26:37.698Z"
+      "generatedAt": "2026-08-15T04:24:57.044Z"
     },
     "nasdaq100": {
       "standingFingerprint": "fe79f43829f32e9c",
-      "recentFingerprint": "e035d1c424fe6fda",
-      "standing": "A stock index tracking the 100 largest non-financial companies listed on the Nasdaq exchange, weighted by market value. Chipmakers, cloud providers and consumer platforms dominate it, so it moves as a proxy for the technology trade.",
-      "recent": "The index sits near the top of its 61-day range after recovering from a Jul 29 low. The stories driving the sector are capital ones: Nvidia arranged $500 billion in financing through six lenders to fund purchases of its own chips, Amazon is funding a Texas gas plant next to a datacentre, and DRAM prices jumped from $39 to $145.",
-      "citations": [
-        "2026-08-10-nvidia-arranges-the-debt-that-buys-its-chips",
-        "2026-08-10-memory-is-why-the-phone-costs-more",
-        "2026-08-10-the-plant-next-to-the-datacentre",
-        "2026-08-11-the-manifesto-is-a-capex-document"
-      ],
-      "generatedAt": "2026-08-14T04:26:47.175Z"
+      "recentFingerprint": "9e49e55212c41535",
+      "standing": "A stock index tracking the 100 largest non-financial companies listed on the Nasdaq exchange, weighted by market value. It is dominated by a handful of US technology firms, so it moves less with the broad economy than with the fortunes of chipmakers, cloud providers and phone makers.",
+      "recent": "The index sits near the top of its 62-day range after recovering from a Jul 29 low of 27,190, a 3.6% rise across the window that leaves it just short of the Jun 2 high of 30,660. The input does not identify what drove the turn.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:25:05.165Z"
     },
     "us-gas-retail": {
       "standingFingerprint": "d51352d827c63ba8",
-      "recentFingerprint": "12a0010d2a604115",
-      "standing": "The average price American drivers pay at the pump, tracked weekly across the country. It follows crude oil with a lag of a week or two, and because almost every household buys it, it feeds into inflation expectations faster than any other consumer price.",
-      "recent": "Refineries have been the target rather than the crude itself: Ukrainian drones hit two Russian refineries on 6 August and reached Nizhnekamsk on 10 August, 1,600 km from the border, while a third drone strike burned Libya's Zawiya refinery on 11 August. Retail has still eased from the May 18 high of $4.49 to $4.01.",
+      "recentFingerprint": "baad9313cad9e875",
+      "standing": "The average price American drivers pay at the pump for a gallon of regular gasoline, tracked weekly by the EIA. It follows crude oil with a lag of a week or two, and it is the price through which distant supply shocks reach household budgets.",
+      "recent": "Refineries have been the target rather than the wells: Ukrainian drones hit two Russian refineries on 6 August and killed 13 at Nizhnekamsk on 10 August, a third drone strike burned Libya's Zawiya refinery, and a fire hit an Aramco facility at Jizan. The pump price still sits near $4.01, down about a tenth over the window and above the $3.78 low of 6 July.",
       "citations": [
-        "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
         "2026-08-11-huge-fire-breaks-out-at-libya-s-zawiya-refinery-after-drone",
+        "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
         "2026-08-06-ukraine-says-two-russian-oil-refineries-hit-as-moscow-target",
         "2026-08-06-yaroslavl-refinery-strike-refining-not-crude-discount"
       ],
-      "generatedAt": "2026-08-14T04:26:57.837Z"
+      "generatedAt": "2026-08-15T04:25:15.402Z"
     },
     "natgas-ttf": {
       "standingFingerprint": "81b08ce6610fc8c8",
@@ -140,309 +135,301 @@
     },
     "vix": {
       "standingFingerprint": "ba7859027213e4c4",
-      "recentFingerprint": "df85af5f123c6ad7",
-      "standing": "A CBOE index of expected S&P 500 swings over the coming month, derived from options prices. It is the market's price of insurance against a fall, so it rises when equity investors pay up for protection.",
-      "recent": "Volatility has drained out of markets across the window, with the index at its lowest reading of the period on Aug 12 after peaking at 22.22 on Jun 10. The same calm shows up elsewhere: bitcoin volatility nearly vanished as ETFs took in $754 million, and traders read the sell-off from $65,000 as thin volume rather than panic.",
+      "recentFingerprint": "44918b6cb4c630ef",
+      "standing": "A measure of how much volatility traders expect in the S&P 500 over the next 30 days, priced off index options. It rises when investors pay up for protection, which is why it is read as the market's fear gauge.",
+      "recent": "The gauge has drifted down through the summer, from 22.22 on Jun 10 to 14.55 on Aug 12, its lowest of the period. The calm is not confined to equities: bitcoin volatility nearly vanished over the same stretch as ETFs took in $754 million, and traders read the sell-off from $65,000 as thin volume rather than panic.",
       "citations": [
         "2026-08-07-bitcoin-volatility-collapse-etf-bid-put-skew"
       ],
-      "generatedAt": "2026-08-14T04:26:27.159Z"
+      "generatedAt": "2026-08-15T04:24:48.994Z"
     },
     "fx-pkr": {
       "standingFingerprint": "aad652f7217ba31f",
-      "recentFingerprint": "5cbacfe4485e7f0e",
-      "standing": "The exchange rate of Pakistan's rupee against the US dollar. Pakistan imports its fuel, edible oil and much of its industrial input in dollars, so the rate sets the domestic price of energy and food and the size of the country's import bill.",
-      "recent": "The rupee has held in a narrow band near 277.8 while the import bill did the moving: Ogra's fortnightly revision put high-speed diesel at 383.95 rupees a litre, with war-risk premiums in Hormuz feeding into landed crude costs. Islamabad has asked Washington for a $10 billion dollar line to shore up reserves.",
+      "recentFingerprint": "9b869bcbc3567891",
+      "standing": "Pakistan's currency against the US dollar. A country that imports its fuel, edible oil and much of its machinery pays for them in dollars, so the rupee's level sets the price of a litre of diesel and the size of the import bill.",
+      "recent": "The rupee has been close to flat over the month, ranging between 278.2 on Jul 22 and 276.6 on Jul 31 and ending at 277.6 — steadiness that has not spared the import bill. Diesel now costs 383.95 rupees a litre after a war-risk levy tied to Hormuz, and Islamabad has asked Washington for $10 billion in dollars to shore up reserves.",
       "citations": [
-        "2026-08-14-pakistan-fuel-price-hike-hormuz-war-risk-levy",
         "2026-08-13-pakistan-us-treasury-swap-line-reserves-renminbi",
-        "2026-08-08-pakistan-petroleum-levy-sit-ins-nfc-bypass"
+        "2026-08-14-pakistan-fuel-price-hike-hormuz-war-risk-levy",
+        "2026-08-15-pakistan-dealer-margin-strike-administered-price-stack"
       ],
-      "generatedAt": "2026-08-14T04:27:16.560Z"
+      "generatedAt": "2026-08-15T04:25:25.741Z"
     },
     "fx-ngn": {
       "standingFingerprint": "5d4ba920c8532878",
-      "recentFingerprint": "0d55f49f83aa8570",
-      "standing": "The exchange rate between Nigeria's naira and the US dollar. Nigeria earns most of its foreign currency from crude oil exports, so the rate tracks oil receipts and central-bank reserves, and it sets the cost of nearly everything the country imports.",
-      "recent": "The naira held in a narrow band, easing about 1.2% over the month from its Jul 22 high of 1381 to 1363. Abuja approved deep offshore tax incentives pitched at unlocking $50 billion in oil investment, and the Senate opened audit hearings that Seplat Energy skipped — but neither moved the rate far, and the input does not explain the drift.",
+      "recentFingerprint": "707cbc30f586a18d",
+      "standing": "Nigeria's currency, quoted as naira per US dollar. West Africa's largest economy runs on imported fuel, food and machinery, so the rate sets domestic prices, and oil exports are the main source of the dollars that back it.",
+      "recent": "The naira has been steady through a month of political rather than monetary news: the Osun election drew allegations of rigging and 34 violent incidents with 18 deaths before Saturday's vote, and an EFCC freeze on Osun's account was vacated on Tinubu's order. On the oil side, Abuja is forgoing tax to unlock $50 billion in deep offshore investment as output declines.",
       "citations": [
+        "2026-08-14-osun-election-violence-tracker-turnout-suppression",
         "2026-08-12-nigeria-deep-offshore-tax-incentives-output-decline",
         "2026-08-12-nigeria-senate-seplat-audit-ultimatum"
       ],
-      "generatedAt": "2026-08-13T04:22:40.854Z"
+      "generatedAt": "2026-08-15T04:25:34.931Z"
     },
     "fx-egp": {
       "standingFingerprint": "4c35620e9ae156e3",
-      "recentFingerprint": "b14e3a52e70f141c",
-      "standing": "The exchange rate of Egypt's currency against the dollar. Egypt imports most of its wheat, fuel and medicine, so the rate sets the domestic price of staples and the cost of servicing the state's foreign debt.",
-      "recent": "The pound has firmed from its late-July low, but the earlier devaluation is still working through Cairo's shelves: a drug pricing freeze set against import costs has left pharmacies empty, and the government is weighing flexible pricing in response. Egypt's feud with Ethiopia and its absence from the Mecca defence pact frame the same constraint.",
+      "recentFingerprint": "1bb213e42f60b49b",
+      "standing": "Egypt's currency, quoted as pounds per US dollar. A managed float in an economy that imports much of its food and medicine, so its level sets what an import-dependent household pays and what dollar-denominated debt costs to service.",
+      "recent": "The pound has held near 50 to the dollar through the month, easing from 51.37 on 25 July to a low of 49.56 on 8 August. The earlier devaluation is still working through domestic prices: Cairo is weighing flexible drug pricing after a pricing freeze left pharmacy shelves empty, with importers unable to cover costs at the fixed rate.",
       "citations": [
-        "2026-08-02-a-shortage-or-a-price-the-pharmacy-counter-takes-the-devaluation",
-        "2026-08-11-the-seat-cairo-could-not-afford",
-        "2026-08-12-egypt-ethiopia-gerd-red-sea-encirclement"
+        "2026-08-02-a-shortage-or-a-price-the-pharmacy-counter-takes-the-devaluation"
       ],
-      "generatedAt": "2026-08-14T04:27:26.361Z"
+      "generatedAt": "2026-08-15T04:25:43.723Z"
     },
     "fx-try": {
       "standingFingerprint": "9d88dfe3bd9d9001",
-      "recentFingerprint": "966c8ac509c4725f",
-      "standing": "The exchange rate of Turkey's currency against the dollar, quoted as lira per dollar so a rising number means a weaker lira. It is the price at which a large emerging economy imports its energy and services its foreign-currency debt.",
-      "recent": "The lira drifted to a fresh 30-day low as Ankara reshaped its security position: Turkey, Saudi Arabia and Pakistan signed the Mecca joint defence pact on 7 August and Ankara's defence ministry said standing political and military mechanisms would follow, while parliament passed a Kurdish disarmament law and Turkey rationed Bosphorus passage for vessels bound for Novorossiysk.",
+      "recentFingerprint": "caa94031b9c194e2",
+      "standing": "The Turkish lira's exchange rate against the US dollar. Turkey runs persistent inflation and a large external financing need, so the rate is a live gauge of confidence in its monetary policy and of the cost of everything the country imports.",
+      "recent": "The lira drifted to a 30-day low of 47.88 on Aug 14, roughly 1.5 percent weaker across the month, through a period dominated by Ankara's foreign policy rather than its economy: the Mecca defence pact signed with Saudi Arabia and Pakistan on Aug 7, and the Kurdish disarmament law passed Aug 10. Nothing in the record ties either to the currency.",
       "citations": [
-        "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi",
         "2026-08-07-mecca-joint-deterrence-agreement-signed-trigger-question",
-        "2026-08-10-pkk-disarmament-law-what-the-statute-does-not-say",
-        "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk"
+        "2026-08-10-pkk-disarmament-law-what-the-statute-does-not-say"
       ],
-      "generatedAt": "2026-08-14T04:27:36.990Z"
+      "generatedAt": "2026-08-15T04:25:53.705Z"
     },
     "fx-bdt": {
       "standingFingerprint": "ec9ebed3b93561ee",
-      "recentFingerprint": "0a3818151029aa9c",
-      "standing": "Bangladesh's currency against the US dollar. It prices the country's garment export earnings and its imports of fuel, food and cotton, and it sets the local cost of the remittances that millions of families abroad send home.",
-      "recent": "The taka held a narrow band through the window, easing from 124 on Aug 7 to 122.7 on Aug 14 — a move of well under half a percent. The month's politics ran hotter than the currency: Dhaka pressed Delhi over ex-prime minister Hasina's planned virtual address, which India denied any involvement in.",
-      "citations": [
-        "2026-08-04-india-dhaka-presses-delhi-on-stance-ahead-of-hasina-speech"
-      ],
-      "generatedAt": "2026-08-14T04:27:46.225Z"
+      "recentFingerprint": "607b7ae1d50de8b3",
+      "standing": "The exchange rate of Bangladesh's currency against the US dollar. It sets the import cost of fuel, food and industrial inputs for a country whose economy runs on garment exports, and it prices the remittances sent home by millions of workers abroad.",
+      "recent": "The taka strengthened from 124 on Aug 7 to 122.7 on Aug 15, its firmest level of the month. The available reporting on Bangladesh in this window covers Dhaka's approach to Delhi over ex-PM Hasina's planned speech and India's denial of involvement, and does not explain the currency's move.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:26:02.321Z"
     },
     "fx-idr": {
       "standingFingerprint": "1e949777b6295e4a",
-      "recentFingerprint": "08dd900ceb2fc9d4",
-      "standing": "Indonesia's currency, quoted as rupiah per US dollar, so a higher number means a weaker rupiah. Southeast Asia's largest economy prices its commodity exports and dollar debt against it, and Bank Indonesia defends it.",
-      "recent": "The rupiah firmed to 17,840 after Prabowo nominated a Bank Indonesia deputy as the central bank's new governor on 11 August, a continuity pick that settled the main open question for the currency. It has recovered from 18,110 on 28 July, touching 17,800 on 8 August.",
+      "recentFingerprint": "1b01eacb1178a55c",
+      "standing": "The exchange rate of Indonesia's currency against the US dollar, quoted as rupiah per dollar, so a rising number means a weaker rupiah. It prices Southeast Asia's largest economy, and Indonesia's imported fuel, food and dollar debt are settled through it.",
+      "recent": "The rupiah has firmed roughly two thirds of a percent over the month, from 18,110 on 28 July to 17,800 on 8 August and 17,830 now. The one currency story in the window is Prabowo's nomination of a Bank Indonesia deputy as the central bank's new governor on 11 August, on which the rupiah rose slightly.",
       "citations": [
         "2026-08-11-the-only-question-the-rupiah-priced"
       ],
-      "generatedAt": "2026-08-14T04:27:54.737Z"
+      "generatedAt": "2026-08-15T04:26:10.586Z"
     },
     "fx-lbp": {
       "standingFingerprint": "595af2b56ca9c58d",
-      "recentFingerprint": "f766dcf3b010c6b5",
-      "standing": "The Lebanese pound's exchange rate against the US dollar. Long fixed by the central bank, it collapsed during Lebanon's banking crisis and now trades at a rate that sets the price of nearly everything in a country that imports most of what it consumes.",
-      "recent": "The pound has barely moved, holding near the top of its 30-day range after peaking on Aug 7. The pressure on Lebanon is physical rather than monetary: Israeli strikes and demolitions across the south, a seventh round of direct talks in Rome, and 4,333 killed in the south since March by the Lebanese count.",
+      "recentFingerprint": "df061faf604e99eb",
+      "standing": "The Lebanese pound's exchange rate against the US dollar. After the 2019 banking collapse the currency lost most of its value, and the rate now set by the central bank is the price at which salaries, imports and savings are measured for a country that buys nearly everything abroad.",
+      "recent": "The pound has been effectively flat over the past month, moving less than a fifth of a percent between 89,180 on Jul 31 and 89,720 on Aug 7 — a peg holding steady rather than a market clearing. It has not moved with the war: Israeli strikes on Hula and south Lebanon, demolitions near Mansouri that registered magnitude 3.8, and a seventh round of direct talks in Rome all passed without a mark on the rate.",
       "citations": [
-        "2026-08-09-south-lebanon-demolitions-buffer-by-attrition",
+        "2026-08-01-lebanon-explosions-seismic-yield-casualty-record",
         "2026-08-04-lebanon-and-israel-hold-new-round-of-direct-talks-in-rome",
-        "2026-07-30-turk-lebanon-gaza-pattern-documentation-no-enforcement",
-        "2026-08-05-lebanon-strikes-resume-ceasefire-sequencing-soldiers-killed"
+        "2026-08-09-south-lebanon-demolitions-buffer-by-attrition",
+        "2026-08-15-quneitra-farmland-lebanon-truce-violation-monitoring"
       ],
-      "generatedAt": "2026-08-13T04:23:29.682Z"
+      "generatedAt": "2026-08-15T04:26:20.814Z"
     },
     "fx-cny": {
       "standingFingerprint": "1114c728f606dd76",
-      "recentFingerprint": "c46363ae9fc05a40",
-      "standing": "The exchange rate of China's currency against the US dollar, quoted as yuan per dollar so a lower number means a stronger yuan. Beijing manages it within a daily band, making it a policy signal as much as a price, and it sets the cost of Chinese goods worldwide.",
-      "recent": "The yuan drifted to the strong end of its 30-day range, reaching 6.744 on Aug 14 from 6.775 on Jul 18 — a move of about a third of a percent, well inside normal daily variation. Nothing in the month's China news, from Beijing's tightened drone export controls to the US accusation that China is evading tariffs, explains a move that small.",
-      "citations": [],
-      "generatedAt": "2026-08-14T04:28:04.332Z"
+      "recentFingerprint": "e36911ffc951b9fa",
+      "standing": "China's currency, quoted as yuan per dollar, and the price at which the world's largest exporter's goods are converted into everyone else's money. Beijing manages it within a daily band, so its level is a policy signal as much as a market one.",
+      "recent": "The yuan sat at its 30-day strongest against the dollar, drifting a few tenths of a percent firmer since mid-July with no single event behind it. Zhu Rongji, the premier who restructured China's state enterprises and steered WTO accession, died on 12 August; Washington accused Beijing of evading tariffs, and Beijing tightened drone exports.",
+      "citations": [
+        "2026-08-12-zhu-rongji-soe-restructuring-wto-accession"
+      ],
+      "generatedAt": "2026-08-15T04:26:30.746Z"
     },
     "fx-inr": {
       "standingFingerprint": "cdb57c3327866878",
-      "recentFingerprint": "f6d14cf724918ad0",
-      "standing": "The exchange rate between India's currency and the US dollar. It sets the local price of India's imported crude, fertiliser and electronics, and it moves on oil, US interest rates and foreign flows into Indian markets.",
-      "recent": "The rupee has firmed roughly 1% over the month, from 96.65 on 18 July to 95.05 on 5 August, tracking the 4.5% fall in oil after a remark on Iran — India buys its crude in dollars, so cheaper barrels shrink the import bill. It has since eased back to 95.43 as July retail inflation rose to 4.45% from 4.38%, with onion prices up 22.54%.",
+      "recentFingerprint": "e02d335258106d26",
+      "standing": "The rupee's price against the US dollar, quoted as rupees per dollar, so a rising number means a weaker rupee. India imports most of its crude, so the rate sets the domestic cost of fuel and of the dollar debt its companies carry.",
+      "recent": "The rupee has firmed about 0.9% over the past month, from 96.65 on 18 July to 95.05 on 5 August before easing to 95.45. Oil falling 4.5% on a remark about Iran cut the import bill that drives dollar demand. Retail inflation rose to 4.45% in July from 4.38% in June, with onion prices up 22.54%.",
       "citations": [
         "2026-08-03-crude-falls-4-5-percent-on-a-sentence-the-war-premium-priced",
         "2026-08-12-india-cpi-fed-split-imported-inflation"
       ],
-      "generatedAt": "2026-08-14T04:28:14.289Z"
+      "generatedAt": "2026-08-15T04:26:40.288Z"
     },
     "fx-brl": {
       "standingFingerprint": "196c4b151e387eb8",
-      "recentFingerprint": "3f70adab778ec83a",
-      "standing": "The exchange rate of Brazil's currency against the US dollar, quoted as reais per dollar, so a rising number means a weaker real. It is the price at which the region's largest economy imports, borrows and sells its iron ore, soy and oil.",
-      "recent": "The real has drifted weaker across the month, with the softest reading on 14 August. Washington revoked the visa of Brazil's ambassador on 4 August, tying its restoration to Brasília accepting its own choice of envoy, and the Workers' Party nominated Lula da Silva for a fourth presidential term on 2 August.",
+      "recentFingerprint": "b220545698dec3ef",
+      "standing": "Brazil's currency, quoted as reais per US dollar — so a rising number means a weaker real. It prices Latin America's largest economy, and swings in it move the cost of the soy, beef, iron ore and coffee Brazil sells the world.",
+      "recent": "The real slid to its weakest of the month against the dollar on Aug 15, capping a 2.1% decline from Jul 23. Washington revoked the visa of Brazil's ambassador on Aug 4, saying it would restore it only if Brasília accepted its own envoy pick, and the Workers' Party nominated Lula for a fourth term two days earlier.",
       "citations": [
         "2026-08-04-us-revokes-brazil-ambassador-visa-agrement-leverage",
         "2026-08-02-a-fourth-term-and-no-successor-deferral-has-a-date"
       ],
-      "generatedAt": "2026-08-14T04:28:23.183Z"
+      "generatedAt": "2026-08-15T04:26:50.117Z"
     },
     "fx-mxn": {
       "standingFingerprint": "54a44ae61455d1c7",
-      "recentFingerprint": "0240a251b3c786aa",
-      "standing": "The exchange rate of Mexico's peso against the US dollar, one of the most heavily traded emerging-market currencies. Mexico sends most of its exports to the United States, so the rate carries trade policy, remittances and cross-border investment.",
-      "recent": "The peso strengthened to its 30-day high after Mexico and Peru restored diplomatic relations, ending an asylum row. Domestic security news dominated the period: the US offered $25 million for a CJNG leader, and an alleged betrayal split the Sinaloa Cartel in two. None of it explains the currency's drift directly.",
+      "recentFingerprint": "e1cf50c1b64ea47e",
+      "standing": "The exchange rate of Mexico's peso against the US dollar, one of the most heavily traded emerging-market currencies. It is a standing proxy for the US-Mexico relationship, and it moves on trade policy, remittances and the rate gap between the two central banks.",
+      "recent": "The peso has firmed through the window, reaching its strongest level of the month on Aug 15 despite a steady run of friction with Washington: a $25 million bounty on a Mexican cartel leader, the fragmentation of the Sinaloa Cartel, and the revocation of Andrés Manuel López Beltrán's US visa, which Claudia Sheinbaum condemned. None of it dented the currency.",
       "citations": [
+        "2026-08-14-lopez-beltran-visa-revocation-discretionary-leverage",
         "2026-08-05-cjng-bounties-kingpin-strategy-fragmentation-record-reward",
         "2026-08-05-sinaloa-cartel-fragmentation-territorial-rivals"
       ],
-      "generatedAt": "2026-08-14T04:28:33.260Z"
+      "generatedAt": "2026-08-15T04:26:59.706Z"
     },
     "fx-eur": {
       "standingFingerprint": "844f9f7601d0c8ce",
-      "recentFingerprint": "3ccd08007d15f7dc",
-      "standing": "The exchange rate between the euro and the US dollar, quoted here as euros per dollar. It is the world's most heavily traded currency pair, and the rate sets the import price of energy and commodities — sold in dollars — for the whole euro area.",
-      "recent": "",
+      "recentFingerprint": "0c9f2c5573ed1dad",
+      "standing": "The price of one euro in US dollars, the most traded currency pair in the world. It moves on the gap between what the European Central Bank and the Federal Reserve do with interest rates, and it sets the import price of energy and food for 350 million people.",
+      "recent": "The euro drifted down about 1.1 percent over the month from its 26 July high to 0.8643 on 15 August. Nothing in the European news of the period explains it: the run of stories was regulatory and domestic — an EU sourcing law in draft, France's court striking down its under-15 social media ban, jellyfish shutting three nuclear reactors at Gravelines.",
       "citations": [],
-      "generatedAt": "2026-08-13T04:24:17.170Z"
+      "generatedAt": "2026-08-15T04:27:09.380Z"
     },
     "fx-jpy": {
       "standingFingerprint": "b4ec3d37ee3531c2",
-      "recentFingerprint": "dde9d9bae88fe6a6",
-      "standing": "The exchange rate between Japan's currency and the US dollar, quoted as yen per dollar, so a higher number means a weaker yen. It is the funding leg of the global carry trade and it sets the price of everything Japan exports and every barrel it imports.",
-      "recent": "Tokyo sold dollars for yen hours before the Bank of Japan held rates at 1% on 31 July, and the US joined the intervention on 3 August, pushing the dollar to a one-month low — the yen's strongest point of the window at 156.5. It has drifted back toward 159.4 since. Toyota's quarterly profit of $9.4 billion showed who benefits from the weaker side of the trade.",
+      "recentFingerprint": "fb53c93311195b09",
+      "standing": "Japan's currency, the second-most traded in the world and the funding leg of the global carry trade. It moves on the gap between Japanese and foreign interest rates, and a cheap yen flatters exporters' earnings while raising the price of everything Japan imports.",
+      "recent": "The yen's strongest reading of the month, 156.5 on Aug 3, came with a joint US-Japan intervention that pushed the dollar to a one-month low — historic in that Washington took part at all. It has since given back part of that ground to 159.3. The cheap yen showed up in earnings a day later, when Toyota's quarterly profit reached $9.4 billion.",
       "citations": [
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
-        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure",
         "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-14T04:28:43.214Z"
+      "generatedAt": "2026-08-15T04:27:18.943Z"
     },
     "fx-rub": {
       "standingFingerprint": "76e6b807bd329c79",
-      "recentFingerprint": "fd3fc3a492274901",
-      "standing": "The exchange rate of Russia's currency against the dollar, and the cleanest daily read on how sanctions, oil receipts and war spending are landing on the Russian economy. It sets the price of every import Russia still buys.",
-      "recent": "The ruble weakened through a month of deepening strikes on Russian soil: a drone attack on Nizhnekamsk killed 13 some 1,600 km from the Ukrainian border, Ukraine hit the Novorossiysk naval base and port, and nearly $2 billion in Wildberries stock burned in depots. Moscow also ruled out a Ukraine freeze on Aug 9.",
+      "recentFingerprint": "752f7f9d19146d58",
+      "standing": "The exchange rate of Russia's currency against the dollar, and the cleanest daily read on how sanctions, oil revenue and war spending are landing on Russia's economy. A weaker ruble raises the cost of every import Russians still buy.",
+      "recent": "The ruble weakened through a fortnight in which Ukrainian strikes reached Russia's export and industrial interior: a drone attack on Nizhnekamsk killed 13 some 1,600 km from the Ukrainian border, the Baltic oil hub at Ust-Luga was hit, and drones burned nearly $2 billion of stock in Wildberries depots. Lavrov then rejected freezing the war at the current front line.",
       "citations": [
+        "2026-08-14-lavrov-contact-line-armistice-refusal-supply-lines",
+        "2026-08-14-izmail-rail-ust-luga-export-infrastructure-strikes",
         "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
-        "2026-08-10-nizhnekamsk-uzbek-workers-bear-the-strike",
         "2026-08-13-wildberries-drone-strikes-sellers-dual-use",
-        "2026-08-09-moscow-rejects-freeze-root-causes-as-terms"
+        "2026-08-10-nizhnekamsk-uzbek-workers-bear-the-strike"
       ],
-      "generatedAt": "2026-08-14T04:28:53.139Z"
+      "generatedAt": "2026-08-15T04:27:29.347Z"
     },
     "fx-zar": {
       "standingFingerprint": "0672ce7a27a2cf60",
-      "recentFingerprint": "cb7e9aaf4b770eef",
-      "standing": "The exchange rate of South Africa's currency against the US dollar, quoted as rand per dollar so a higher number means a weaker rand. It is one of the most heavily traded emerging-market currencies and moves with commodity prices, global risk appetite and domestic politics.",
-      "recent": "The rand strengthened from 16.83 on Jul 25 to 16.15 by Aug 8, its firmest of the period, before easing to 16.19. Nothing in the material accounts for the move; domestic news over the window ran to governance stories — the Prasa security-contract case in Pretoria, undelivered vet clinic buses, and municipal electricity bills rising up to 14%.",
-      "citations": [
-        "2026-07-31-nersa-municipal-surcharge-food-basket-substitution",
-        "2026-08-07-prasa-security-contracts-papadopulo-investigation",
-        "2026-08-05-south-africa-vet-clinics-undelivered-milestone-payments"
-      ],
-      "generatedAt": "2026-08-14T04:29:02.074Z"
+      "recentFingerprint": "601f1fd924ec52d0",
+      "standing": "The price of one US dollar in South African rand, and the most heavily traded currency in Africa. It carries the country's exposure to commodity prices and global risk appetite, so it moves on metal demand and foreign rate decisions as much as on domestic news.",
+      "recent": "The rand has firmed steadily over the past month, from 16.83 on 25 July to a low of 16.15 on 8 August before settling at 16.17. The available material does not identify what drove the move.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:27:37.693Z"
     },
     "btc": {
       "standingFingerprint": "d93a7ac85f79e157",
-      "recentFingerprint": "2aa167d3ac08ddb5",
-      "standing": "The price of one bitcoin, the largest cryptocurrency and the one most held by funds, treasuries and exchange-traded products. It is priced against the dollar around the clock, and the rest of the crypto market tends to move with it.",
-      "recent": "A run of security failures set the tone: a Coldcard hack drained $120 million and congested the mempool with the attacker's own transactions, then attackers drained Foundation's and Citadel21's Lightning nodes. Bitcoin fell 4% against every other market signal and lagged a stock rally, sitting 49% below its record even as ETFs took in $754 million.",
+      "recentFingerprint": "0b3f53cedf31c972",
+      "standing": "The first cryptocurrency and the largest by market value, traded around the clock on exchanges worldwide. It is held both by individuals in self-custody wallets and, increasingly, by funds and corporate treasuries, which ties its price to conventional finance.",
+      "recent": "The Coldcard exploit set the tone: losses spread to 4,500 addresses and neared $89 million, and bitcoin slipped under $63,000 as holders sent coins back to exchanges. The attacker's own transactions congested the network. Bitcoin now sits 49% below its record, lagging a stock rally even as ETFs took in $754 million.",
       "citations": [
         "2026-08-05-coldcard-hack-self-custody-mempool-fee-externality",
         "2026-08-03-not-your-keys-what-self-custody-removes-along-with-the-bank",
-        "2026-08-08-btcpay-lightning-node-drain-hot-custody",
         "2026-08-05-bitcoin-equities-decoupling-store-of-value",
         "2026-08-07-bitcoin-volatility-collapse-etf-bid-put-skew"
       ],
-      "generatedAt": "2026-08-14T04:30:00.297Z"
+      "generatedAt": "2026-08-15T04:28:30.053Z"
     },
     "eth": {
       "standingFingerprint": "528a80da5461595a",
-      "recentFingerprint": "60d0a16487d7fd52",
-      "standing": "The second-largest cryptocurrency by value, and the settlement layer for most stablecoins, tokenized assets and decentralised trading. Its price moves with risk appetite across crypto, and with demand for the blockspace those applications consume.",
-      "recent": "Ether drifted through a narrow band, ending near $1,885 after a low of $1,841 on Jul 18 and a high of $1,952 on Jul 27. Regulation set the tone: Treasury sanctioned an Iranian dollar-token exchange, Brazil imposed a 24-hour delay on $10,000-plus transfers, and the Senate's Clarity Act missed its pre-recess vote window.",
+      "recentFingerprint": "637a2d45d433dac0",
+      "standing": "The second-largest cryptocurrency by market value, and the settlement layer for most stablecoins, tokenised assets and decentralised trading. Its price is a proxy for how much capital is willing to sit inside that system.",
+      "recent": "Ether moved little across the month, ending near the middle of a narrow band. Prices declined in early August as the Coldcard wallet exploit — eventually put at $120 million — entered a fifth day, then recovered as the sweeps receded. Bernstein warned that failure of the Clarity Act, which missed its pre-recess vote window in the Senate, could spark another selloff.",
       "citations": [
         "2026-08-08-clarity-act-procedural-vote-stablecoin-yield",
-        "2026-08-07-iran-stablecoin-sanctions-issuer-chokepoint",
-        "2026-08-08-brazil-self-custody-transfer-delay-rule"
+        "2026-08-09-crypto-shakeout-token-emission-versus-real-fees"
       ],
-      "generatedAt": "2026-08-14T04:30:12.026Z"
+      "generatedAt": "2026-08-15T04:28:39.082Z"
     },
     "paxg": {
       "standingFingerprint": "b88bb363e3cfaace",
-      "recentFingerprint": "814be06bc249abc9",
-      "standing": "A claim on a fixed weight of gold, priced per troy ounce and issued as a token backed by bars in a vault. It tracks the metal that central banks hold as reserves and that savers buy when they doubt currencies or the institutions behind them.",
-      "recent": "Gold ran to a ten-week high, with spot hitting $4,392 an ounce Wednesday as markets braced for US inflation data — the series peaked at $4,404 on Aug 13. The metal's institutional demand also drew attention that day, when KPMG completed Tether's first full audit by physically counting the gold bars behind the stablecoin's reserves.",
+      "recentFingerprint": "7bc43e1391b16670",
+      "standing": "A claim on a fixed weight of gold, priced per troy ounce, held as a store of value outside any government's balance sheet. It rises when investors doubt currencies, central banks or the durability of returns elsewhere.",
+      "recent": "Gold rebounded toward a ten-week high as markets braced for US inflation data, with spot hitting $4,392 an ounce on Wednesday, and the series peaked at $4,404 on Aug 13. The metal's role as a reserve asset drew separate scrutiny that week when KPMG counted Tether's gold bars by hand for the stablecoin issuer's first audit.",
       "citations": [
         "2026-08-12-gold-ten-week-high-cpi-household-savings",
         "2026-08-13-tether-kpmg-audit-attestation-treasury-reserves"
       ],
-      "generatedAt": "2026-08-14T04:30:21.335Z"
+      "generatedAt": "2026-08-15T04:28:48.292Z"
     },
     "wiki-artificial-intelligence": {
       "standingFingerprint": "12b5cde86f3ba379",
-      "recentFingerprint": "f9f5961ce2b738dc",
-      "standing": "A measure of how many people open Wikipedia's overview article on artificial intelligence each day — a rough gauge of how far the subject has spread beyond the people who work on it, rather than of anything the technology itself is doing.",
-      "recent": "Readership climbed alongside a run of concrete disputes rather than one launch: invisible text in a Hartford legal filing that told AI models to side with the plaintiff, a company selling 'human-written' medical research that was itself AI, and Google's AI telling users a sunset had already happened. Seoul put $880 billion behind chips and power in the same window.",
+      "recentFingerprint": "bb87e985212bed17",
+      "standing": "A field of computer science building systems that perform tasks once requiring human judgement, and now the organising bet of the technology industry. What it can do sets what work it displaces, what it fabricates and what states try to govern.",
+      "recent": "Readership climbed through a fortnight of governance stories: all 193 UN states met in Geneva on AI rules, Anthropic extended watermarking to text Claude only edits, and Spotify moved to stop promoting AI-tagged artists. Underneath sat the labour question — AI now completes junior developers' starter tasks in San Francisco and New Delhi alike.",
       "citations": [
-        "2026-08-13-prompt-injection-legal-filing-automated-decisions",
-        "2026-08-11-company-offering-100-human-written-never-ai-medical-research",
-        "2026-08-10-as-ai-eats-the-web-the-internet-s-collective-memory-is-disap",
-        "2026-08-13-south-korea-ai-spending-hbm-chokepoint-power"
+        "2026-08-13-ai-election-infrastructure-opaque-systems-audit",
+        "2026-08-13-anthropic-watermark-processed-content-ai-act",
+        "2026-08-14-behind-the-blog-endless-scam-parade",
+        "2026-08-14-ai-junior-rung-apprenticeship-offshore-it-exports",
+        "2026-08-11-the-staircase-that-lost-its-first-step"
       ],
-      "generatedAt": "2026-08-14T04:30:53.072Z"
+      "generatedAt": "2026-08-15T04:28:59.148Z"
     },
     "wiki-russia": {
       "standingFingerprint": "6fadb179c8ab5c2c",
-      "recentFingerprint": "ec41a1bbb39cf728",
-      "standing": "The Wikipedia article on Russia, and the daily count of people who open it. Attention to a country page runs on the news cycle rather than on the country, so it rises with wars, elections and disasters and falls back within days.",
-      "recent": "Readership climbed through the second week of August as Ukrainian drones reached far into Russia: a strike on Nizhnekamsk, 1,600 km from the border, killed 13 including a child, and Novorossiysk's naval base and port were hit on 12 August. Putin then threatened cargo-ship seizures from a warship off Sakhalin.",
+      "recentFingerprint": "58edbcf6b0c50daa",
+      "standing": "The Wikipedia article on Russia, and a daily count of how many people open it. Attention to a country's overview page rises when something happens there that sends readers looking for the basics — the size of it, who runs it, how it got here.",
+      "recent": "The peak on Aug 8 came amid the deepest strikes yet inside Russia: a Ukrainian drone attack on Nizhnekamsk, 1,600 km from the Ukrainian border, killed 13 including a child, and drones burned nearly $2 billion of stock in Wildberries depots. Ukraine then hit the Novorossiysk naval base, and Putin threatened to seize cargo ships.",
       "citations": [
         "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
         "2026-08-10-nizhnekamsk-uzbek-workers-bear-the-strike",
-        "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet",
-        "2026-08-09-moscow-rejects-freeze-root-causes-as-terms"
+        "2026-08-13-wildberries-drone-strikes-sellers-dual-use",
+        "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet"
       ],
-      "generatedAt": "2026-08-14T04:31:02.855Z"
+      "generatedAt": "2026-08-15T04:29:18.729Z"
     },
     "wiki-pakistan": {
       "standingFingerprint": "270bcc8efc7b5741",
-      "recentFingerprint": "6fc8a4e1fc22e13d",
-      "standing": "Daily readership of the English Wikipedia article on Pakistan — a country of some 250 million people, a nuclear-armed army, and a chronically fragile external account. Attention to it usually tracks war, elections or the economy rather than anything domestic.",
-      "recent": "Pakistan signed the Makkah Joint Defence Agreement in Mecca with Saudi Arabia and Turkiye, and Ankara says the three will now build standing political and military mechanisms plus defence-industry cooperation. Days earlier, a suicide attack on a protest in Swat district killed 14 at a peace rally.",
+      "recentFingerprint": "b3be1bdd59c4b004",
+      "standing": "Wikipedia's article on Pakistan, a nuclear-armed country of some 250 million people, and one of the reference pages readers reach for when the region is in the news. Its daily readership rises with events rather than with any schedule.",
+      "recent": "The peak on 29 July sits well above the 25 July low, and the input does not explain that swing. What the window does carry is Pakistan's alignment: the Makkah pact signed with Saudi Arabia and Turkiye on 7 August, now building a standing joint command, and a suicide attack on a peace rally in Swat on 2 August that killed 14.",
       "citations": [
-        "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi",
-        "2026-08-12-mecca-pact-houthi-test-mutual-defence"
+        "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi"
       ],
-      "generatedAt": "2026-08-14T04:31:13.739Z"
+      "generatedAt": "2026-08-15T04:29:28.161Z"
     },
     "wiki-china": {
       "standingFingerprint": "f6b6d18705802166",
-      "recentFingerprint": "05314faf27b060f4",
-      "standing": "Wikipedia's article on China, and a daily count of how many people open it. Attention to a country page tends to follow the days that country makes news, so the series works as a rough public-curiosity gauge rather than a measure of anything happening inside the country.",
-      "recent": "Zhu Rongji, the premier who restructured China's state-owned enterprises and steered its WTO accession, died on 12 August at 97 — reforms under which tens of millions lost jobs. Typhoon Dolphin drove the earlier rise: China evacuated over a million people and closed major ports a day before landfall.",
+      "recentFingerprint": "19ecf60c244c21f6",
+      "standing": "The daily count of people reading Wikipedia's article on China. Attention series like this one move when a country enters a story large enough to send ordinary readers looking for background, so the shape of the curve marks the days the news broke.",
+      "recent": "The 13 August peak followed a week in which China ran through several stories at once: Zhu Rongji, the premier whose restructuring cost tens of millions of jobs and carried China into the WTO, died on 12 August at 97; Beijing's regulator cleared Apple's China-only AI model, built with Alibaba; and Indonesian warships drilled with China's navy east of Taiwan.",
       "citations": [
         "2026-08-12-zhu-rongji-soe-restructuring-wto-accession",
-        "2026-08-09-typhoon-dolphin-warm-water-landfall-intensity",
-        "2026-08-08-typhoon-dolphin-preemptive-port-closure"
+        "2026-08-14-apple-china-model-refusal-boundary-alibaba",
+        "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan"
       ],
-      "generatedAt": "2026-08-14T04:31:34.214Z"
+      "generatedAt": "2026-08-15T04:29:38.482Z"
     },
     "wiki-strait-of-hormuz": {
       "standingFingerprint": "d9d923029ed514e7",
-      "recentFingerprint": "bf4ab59ec09c40de",
-      "standing": "The 21-mile-wide sea lane between Iran and Oman that every tanker leaving the Gulf must pass through. Roughly a fifth of the world's oil and a third of seaborne LNG moves through it, so its risk premium lands on import bills far away.",
-      "recent": "Readership tracked the closure fight rather than the strait itself. Iran has kept Hormuz shut behind six conditions and a reparations demand, transits fell by a third, and Trump claimed \"We own it\" as the deal window narrowed. Two ADNOC tankers were struck transiting on 13 August.",
+      "recentFingerprint": "2cc65fac9c5058bc",
+      "standing": "The sea lane between Iran and Oman through which a fifth of the world's traded oil leaves the Gulf. It is narrow, has no overland substitute at scale, and any interruption to it prices into crude, freight and war-risk insurance worldwide.",
+      "recent": "Readership followed the strait's closure and the bargaining over reopening it: Iran set six conditions and added a reparations clause as the 60-day deal window narrowed, while Trump declared \"We own it\" and Oman mediated talks Tehran called messages rather than negotiations. Transits fell by a third, and two ADNOC tankers were struck.",
       "citations": [
-        "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium",
-        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall",
         "2026-08-08-hormuz-closure-conditions-oman-mediation",
         "2026-08-08-hormuz-reparations-demand-irreversible-closure",
-        "2026-08-07-hormuz-transit-down-third-second-corridor-denial"
+        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall",
+        "2026-08-09-iran-message-channel-versus-negotiation-hormuz",
+        "2026-08-07-hormuz-transit-down-third-second-corridor-denial",
+        "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium"
       ],
-      "generatedAt": "2026-08-14T04:31:24.189Z"
+      "generatedAt": "2026-08-15T04:29:59.124Z"
     },
     "wiki-bitcoin": {
       "standingFingerprint": "eac9b344d71cd867",
-      "recentFingerprint": "0ab6556e7d59690d",
-      "standing": "A count of how many people open the Bitcoin article on Wikipedia each day — a rough gauge of public curiosity about the asset rather than its price. Attention tends to arrive with the events that make holding it feel risky.",
-      "recent": "The month's stories were about custody failing rather than price. A Coldcard hack drained $120 million and one firmware bug at a Toronto wallet maker let thieves take $88 million; attackers separately drained Foundation's and Citadel21's Lightning nodes, and an audit turned up 4,962 findings in a day. Bitcoin sits 49% below its record.",
+      "recentFingerprint": "f4de41de593b1112",
+      "standing": "The most-read Wikipedia article about Bitcoin, tracked as daily pageviews. It measures public curiosity rather than price, and tends to move when the network, its custody tools or its regulation make news.",
+      "recent": "The window sits between two custody failures: a Coldcard hack that drained $120 million, whose own transactions then congested Bitcoin, and a firmware bug through which thieves stole $88 million, prompting a wallet maker in Toronto to destroy inventory. Attackers also drained Foundation's and Citadel21's Lightning nodes.",
       "citations": [
         "2026-08-05-coldcard-hack-self-custody-mempool-fee-externality",
         "2026-08-03-bitcoin-hardware-wallet-maker-destroys-some-inventory-after",
         "2026-08-08-btcpay-lightning-node-drain-hot-custody",
-        "2026-08-06-bitcoin-audit-85-critical-bugs-ai-review-asymmetry",
-        "2026-08-05-bitcoin-equities-decoupling-store-of-value"
+        "2026-08-03-not-your-keys-what-self-custody-removes-along-with-the-bank"
       ],
-      "generatedAt": "2026-08-14T04:32:27.625Z"
+      "generatedAt": "2026-08-15T04:30:59.062Z"
     },
     "wiki-saudi-arabia": {
       "standingFingerprint": "1319627368bcba88",
-      "recentFingerprint": "54a87adfc311c4c1",
-      "standing": "A daily count of how many people read the English Wikipedia article on Saudi Arabia — a rough gauge of when the kingdom enters the global conversation, and of which events send outsiders looking for background on it.",
-      "recent": "The 23 July peak preceded the run-up to the Mecca defence pact, signed 7 August by Saudi Arabia, Turkey and Pakistan and read abroad as a 'Sunni NATO'. Readership held up through the Houthi strike that wounded 11 civilians in Najran and the Marib missile attacks, then eased as attention turned to the Strait of Hormuz talks.",
+      "recentFingerprint": "393f4956dfbf79f1",
+      "standing": "A count of how many people open the English Wikipedia article on Saudi Arabia each day. It rises when the kingdom is at the centre of a story, and tracks general curiosity rather than markets or policy.",
+      "recent": "Three states signed a collective-defence pact at Mecca on Friday, and Egypt stayed out; the deal names no obligations and never states whose nuclear deterrent applies. Houthi missiles then hit Marib and Najran, wounding 11 including a 4-year-old, and Yemen said its forces struck a Saudi military site.",
       "citations": [
         "2026-08-07-mecca-joint-deterrence-agreement-signed-trigger-question",
-        "2026-08-07-saudi-turkey-pakistan-defence-pact-commitments-undefined",
+        "2026-08-09-mecca-defense-pact-egypt-absent-realignment",
+        "2026-08-10-mecca-pact-the-guarantee-nobody-will-write-down",
         "2026-08-07-najran-houthi-strike-migrant-casualties-escalation",
         "2026-08-07-hadramout-marib-houthi-offensive-oil-provinces",
-        "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi"
+        "2026-08-08-yemen-saudi-strike-escalation-doctrine"
       ],
-      "generatedAt": "2026-08-14T04:32:04.233Z"
+      "generatedAt": "2026-08-15T04:30:09.499Z"
     },
     "wiki-donald-trump": {
       "standingFingerprint": "36c377ba43bd159e",
@@ -459,113 +446,112 @@
     },
     "wiki-india": {
       "standingFingerprint": "6f012bb525b307b9",
-      "recentFingerprint": "ef6680f5bc21d5a4",
-      "standing": "The Wikipedia article on India, the world's most populous country and its largest democracy. Daily readership rises when the country is in the news — elections, budgets, cricket, border incidents — and it is a rough proxy for global curiosity about India.",
-      "recent": "Readership was flat across the month, holding near 29,570 views a day. The 6 August peak coincided with Modi inaugurating the Param Pragya AI supercomputer at Sonipat and with New Delhi geoblocking Bitchat's GitHub code during a shutdown; a US Senate bill threatening 100% tariffs on India was in the same week.",
+      "recentFingerprint": "d5922ace7e4a7bfb",
+      "standing": "Daily readership of the English Wikipedia article on India — a rough gauge of how many people worldwide are looking up the country at all, and one that rises when something there reaches an audience beyond those who follow it already.",
+      "recent": "The peak on 6 August fell in a run of governance stories out of New Delhi: a US Senate bill threatening 100% tariffs on India, a caste count restarted after 1931, and heatwaves added to the disaster list on 4 August. Attention held into Modi's Independence Day pledge of eight chip plants and nuclear reactors.",
       "citations": [
-        "2026-08-08-param-pragya-india-sovereign-ai-compute",
-        "2026-08-06-bluetooth-mesh-india-shutdown-github-geoblock",
-        "2026-08-08-india-secondary-sanctions-strategic-autonomy"
+        "2026-08-08-india-secondary-sanctions-strategic-autonomy",
+        "2026-08-14-india-census-caste-enumeration-reservation-cap",
+        "2026-08-11-india-heatwave-disaster-fund-notification",
+        "2026-08-15-india-fabs-nuclear-2047-power-arithmetic"
       ],
-      "generatedAt": "2026-08-14T04:32:47.911Z"
+      "generatedAt": "2026-08-15T04:30:19.301Z"
     },
     "wiki-israel": {
       "standingFingerprint": "24012c7e90caec68",
-      "recentFingerprint": "d432389d9d46ee23",
-      "standing": "Wikipedia's article on Israel, and the number of people who open it each day. Readership climbs when the country is at the centre of a story, so the curve is a rough gauge of how far a Middle East event has travelled beyond the region.",
-      "recent": "The peak on Aug 11 came as Ramallah reported more than 500 attacks in the West Bank in a week and Caracas ended 17 years of severed ties with Israel. Around it: Israel's demolitions in south Lebanon, Netanyahu's rejection of the Gaza roadmap before the October 27 election, and soldiers emptying the besieged village of Qusra.",
+      "recentFingerprint": "f23e50a55874632f",
+      "standing": "Wikipedia's article on Israel, and how many people open it each day. Attention to a country page rises with the events that put it in front of readers, so the count works as a rough gauge of how widely a story has travelled beyond the region it happened in.",
+      "recent": "The peak on Aug 11 came as Venezuela restored consular ties with Israel after 17 years, the sharpest of a run of Latin American reversals that also saw Chile and Honduras return ambassadors and Colombia recognise Israeli sovereignty over the occupied Golan Heights. The same day, more than 500 attacks were recorded in the West Bank in a week.",
       "citations": [
-        "2026-08-11-escalated-israeli-assault-on-west-bank-504-attacks-in-a-week",
         "2026-08-11-venezuela-israel-restore-consular-ties",
-        "2026-08-10-gaza-roadmap-rejected-on-an-election-calendar",
-        "2026-08-09-south-lebanon-demolitions-buffer-by-attrition",
-        "2026-08-13-qusra-settler-siege-closed-military-zone"
+        "2026-08-14-latin-america-israel-recognition-as-washington-currency",
+        "2026-08-11-escalated-israeli-assault-on-west-bank-504-attacks-in-a-week"
       ],
-      "generatedAt": "2026-08-14T04:32:16.401Z"
+      "generatedAt": "2026-08-15T04:30:38.234Z"
     },
     "wiki-ukraine": {
       "standingFingerprint": "585a743f03cf9fd7",
-      "recentFingerprint": "31dd1ec9914a91c2",
-      "standing": "A daily count of how many people open the English Wikipedia article on Ukraine — a rough gauge of how far public attention to the war extends beyond the people already following it, and how quickly it fades between shocks.",
-      "recent": "Readership peaked on 22 July and has drifted down since, even as the war widened: Ukrainian drones killed 13 at Nizhnekamsk on 10 August, 1,600 km from the border, and hit Novorossiysk naval base on 12 August, while Russia burned the Danube grain port at Izmail and struck a Kyiv children's hospital.",
+      "recentFingerprint": "8a364f34bb60ab80",
+      "standing": "Daily pageviews for the English Wikipedia article on Ukraine — a rough gauge of how many people worldwide are reading up on the country. Attention here tends to move with the war rather than with anything internal to the encyclopedia.",
+      "recent": "The month's peak came before the current run of strikes on infrastructure. Since then: Russia set Izmail, Ukraine's largest Danube grain port, ablaze and hit its rail station; war-risk premiums have priced ships out of calling at Odessa; and a Ukrainian drone strike on Nizhnekamsk, 1,600 km from the border, killed 13. Lavrov rejected freezing the war at today's contact line.",
       "citations": [
-        "2026-08-10-nizhnekamsk-uzbek-workers-bear-the-strike",
         "2026-08-13-izmail-danube-grain-port-interceptor-rationing",
-        "2026-08-11-the-interceptor-runs-out-before-the-drone-does",
-        "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior"
+        "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
+        "2026-08-11-a-port-that-fell-without-being-taken",
+        "2026-08-14-lavrov-contact-line-armistice-refusal-supply-lines",
+        "2026-08-14-izmail-rail-ust-luga-export-infrastructure-strikes"
       ],
-      "generatedAt": "2026-08-14T04:31:43.840Z"
+      "generatedAt": "2026-08-15T04:29:49.225Z"
     },
     "wiki-nigeria": {
       "standingFingerprint": "3243519da4795433",
-      "recentFingerprint": "40b55b6ae3328a8e",
-      "standing": "A daily count of how many people open the English Wikipedia article on Nigeria — Africa's most populous country and its largest oil producer. It is a rough gauge of when a country pulls in readers who were not already following it.",
-      "recent": "Attention fell back from the late-July peak toward a story about money and the state: a currency dealer moved 785 million naira to coup plotters, and the EFCC's freeze on Osun's accounts was vacated on Tinubu's orders. The August news turned domestic — aviation unions struck in Lagos, and the Senate summoned oil firms over a skipped audit hearing.",
+      "recentFingerprint": "5adc2054ca940684",
+      "standing": "The Wikipedia page for Nigeria, Africa's most populous country and its largest oil producer. Daily readership of a country's page tracks how much of the world is looking at it on any given day.",
+      "recent": "Nigeria's aviation system broke down in early August: airport unions struck in Lagos, barricades sealed Air Peace's terminals in two cities and airlines suspended flights as terminal access was restricted, while investigators in Asaba lost crash evidence to a return flight that overwrote the black box. In Osogbo, 34 incidents and 18 deaths were recorded before Saturday's vote.",
       "citations": [
-        "2026-08-04-exclusive-this-is-how-former-gov-sylva-s-alleged-coup-donati",
         "2026-08-11-nigeria-aviation-unions-strike-faan",
-        "2026-08-12-nigeria-senate-seplat-audit-ultimatum"
+        "2026-08-11-the-regulator-that-collects-the-levy-it-must-enforce",
+        "2026-08-15-asaba-black-box-overwritten-nsib-disclosure-delay",
+        "2026-08-14-osun-election-violence-tracker-turnout-suppression"
       ],
-      "generatedAt": "2026-08-14T04:32:37.769Z"
+      "generatedAt": "2026-08-15T04:30:28.826Z"
     },
     "cp:hormuz": {
       "standingFingerprint": "b9887c1501602bbe",
-      "recentFingerprint": "11a04430df0ecbe6",
+      "recentFingerprint": "9bdde972867a11f8",
       "standing": "One-fifth of global seaborne oil passes through this 21-mile strait between Iran and Oman.",
-      "recent": "Iran keeps the strait closed and has set six conditions for reopening, adding a reparations clause as the deal window narrows; 8 to 15 ships now cross daily. Two ADNOC tankers were struck transiting Hormuz on 13 August, and US Hellfire missiles crippled a cargo ship in the Gulf of Oman. Diesel in Pakistan now costs 383.95 rupees a litre.",
+      "recent": "Traffic has collapsed under a blockade: US missiles crippled a civilian cargo ship in the Gulf of Oman on 11 August, two ADNOC tankers were struck transiting the strait, and Tehran has made reopening conditional, with 8 to 15 ships crossing daily against a June peak of 44. The cost has already reached Pakistan's pumps, where diesel is 383.95 rupees a litre.",
       "citations": [
-        "2026-08-08-hormuz-closure-conditions-oman-mediation",
         "2026-08-10-hormuz-lanes-deal-reopening-still-conditional",
-        "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium",
         "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade",
-        "2026-08-08-hormuz-reparations-demand-irreversible-closure",
-        "2026-08-14-pakistan-fuel-price-hike-hormuz-war-risk-levy"
+        "2026-08-13-adnoc-vessels-hormuz-attack-war-risk-premium",
+        "2026-08-14-pakistan-fuel-price-hike-hormuz-war-risk-levy",
+        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall"
       ],
-      "generatedAt": "2026-08-14T04:33:08.171Z"
+      "generatedAt": "2026-08-15T04:31:45.762Z"
     },
     "cp:bab-el-mandeb": {
       "standingFingerprint": "4be03a313cf40327",
-      "recentFingerprint": "360d1fcfc230ce26",
+      "recentFingerprint": "c96b38c8709d463e",
       "standing": "Between Yemen and Djibouti — the Red Sea’s southern gate. Houthi attacks since 2023 have pushed container shipping to reroute around Africa.",
-      "recent": "Traffic fell as Houthi missiles and drones widened past shipping to the coasts around it: a strike on Mokha, a claimed hit on the Jazan refinery, and a Bab al-Mandeb strike that killed six sailors. Escort requests are up 39% since February. Maersk, routing around the Cape, raised profit guidance to $6.5 billion.",
+      "recent": "Traffic sits about a fifth below its 90-day baseline as Houthi fire spread from the shipping lane to the coast: a projectile sank the Indian-flagged MSV Faize Noore Oliya on 4 August, missiles and drones hit the port of Mokha on 9 August, and six sailors died in a Bab al-Mandeb strike reported 11 August. Maersk raised profit guidance to $6.5 billion on the rerouting.",
       "citations": [
         "2026-08-11-death-toll-of-houthi-attack-on-cargo-ship-rises-to-six-yemen",
+        "2026-08-04-red-sea-indian-flagged-vessel-sunk-war-risk-premium",
         "2026-08-09-mokha-strike-internal-front-red-sea-coast",
-        "2026-08-09-jazan-refinery-strike-red-sea-bypass-redundancy",
-        "2026-07-31-red-sea-escort-surge-saudi-tankers-bab-el-mandeb",
         "2026-08-13-maersk-guidance-red-sea-routing-port-investment",
-        "2026-08-04-red-sea-indian-flagged-vessel-sunk-war-risk-premium"
+        "2026-08-03-ship-traffic-drops-sharply-at-bab-el-mandeb"
       ],
-      "generatedAt": "2026-08-14T04:33:18.882Z"
+      "generatedAt": "2026-08-15T04:31:57.069Z"
     },
     "cp:suez": {
       "standingFingerprint": "ab5426faad19a60b",
-      "recentFingerprint": "8f978aac2ac20bc3",
+      "recentFingerprint": "2d701c2a5fe124e3",
       "standing": "Egypt’s 120-mile artery carries roughly 12% of global trade. The 2021 closure disrupted supply chains for weeks; Red Sea instability keeps it volatile.",
       "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-14T04:33:28.528Z"
+      "generatedAt": "2026-08-15T04:32:11.102Z"
     },
     "cp:malacca": {
       "standingFingerprint": "35533e3640a78767",
-      "recentFingerprint": "1371268d31319aee",
+      "recentFingerprint": "143aebe3cf15fae6",
       "standing": "Between Malaysia and Sumatra — the fastest route between the Indian and Pacific Oceans. Over 80,000 ships a year, including most of China’s oil imports.",
-      "recent": "Traffic has run close to its 90-day baseline, near the top of a range whose low came on 19 July. The Hormuz closure has cut Gulf crude arriving in Malaysia and Hormuz vessel transits have fallen to a fraction, redirecting rather than reducing what moves through the strait.",
+      "recent": "Traffic is essentially flat against its own 90-day baseline, and the swing from 263 vessels on Jun 22 to 170 on Jul 19 is not explained by the strait itself. The Hormuz closure has cut Gulf crude arriving in Malaysia, redrawing which cargoes reach Asian refineries rather than how many ships transit here.",
       "citations": [
         "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution",
         "2026-08-10-hormuz-closure-reaches-malaysian-refineries"
       ],
-      "generatedAt": "2026-08-14T04:33:37.449Z"
+      "generatedAt": "2026-08-15T04:32:20.828Z"
     },
     "cp:taiwan": {
       "standingFingerprint": "148e0592c05e2ced",
-      "recentFingerprint": "c3db892e6806de10",
+      "recentFingerprint": "510a1bb188aa30fa",
       "standing": "Between mainland China and Taiwan — roughly 40% of the world’s container traffic passes through, and the flashpoint of any US–China confrontation.",
-      "recent": "Traffic sits about 15% below its 90-day baseline, and the collapse to 28 vessels on 10 July preceded the 401-vessel rebound two days later — a spike-after-halt pattern typical of weather backlogs rather than closure. Chinese coast guard ships have since patrolled east of Taiwan, off Orchid Island, and Typhoon Dolphin forced flight cancellations and evacuations in China on 9 August.",
+      "recent": "Traffic is running about 15% below its 90-day baseline, with the sharpest swing between a low of 28 vessels on Jul 10 and a high of 401 two days later. Typhoon Dolphin forced flight cancellations and evacuations in China on 9 August, and Indonesian warships drilled with China's navy east of Taiwan. Neither the storm nor the exercise is tied in the input to a specific day of the traffic swing.",
       "citations": [
-        "2026-07-31-china-coast-guard-east-of-taiwan-jurisdiction-claim"
+        "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan"
       ],
-      "generatedAt": "2026-08-14T04:33:46.911Z"
+      "generatedAt": "2026-08-15T04:32:30.578Z"
     },
     "cp:panama": {
       "standingFingerprint": "36e4acfc57e8e685",
@@ -577,62 +563,57 @@
     },
     "cp:bosporus": {
       "standingFingerprint": "a24f203ca4b17a12",
-      "recentFingerprint": "086fa4354871d242",
+      "recentFingerprint": "c95592428c6d43e7",
       "standing": "Istanbul’s 20-mile waterway links the Black Sea to the Mediterranean — the only route for Russian naval access and Ukrainian grain exports.",
-      "recent": "Turkey began rationing passage, turning back some vessels bound for Novorossiysk, as a drone campaign spread across the Black Sea: drones struck the Turkish-operated cargo ship Nadezhda near Novorossiysk on 4 August, one killed a crewman on a coal-hauling tanker, and Ukraine hit the Novorossiysk naval base on 12 August. Grain and crude traffic carries the cost.",
+      "recent": "Traffic has thinned as the war reached the shipping lanes: drones struck the Turkish-operated Nadezhda near Novorossiysk, another killed a crewman on a coal-hauling tanker, and Ukraine hit the Novorossiysk naval base and port on 12 August. Turkey has since turned back some vessels bound for Novorossiysk.",
       "citations": [
         "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk",
         "2026-08-04-turkish-cargo-ship-hit-in-suspected-ukrainian-attack-near-ru",
-        "2026-08-09-reyhan-sari-war-risk-premium-forum-problem",
-        "2026-08-03-a-port-does-not-close-it-becomes-uninsurable"
+        "2026-08-09-reyhan-sari-war-risk-premium-forum-problem"
       ],
-      "generatedAt": "2026-08-14T04:34:07.150Z"
+      "generatedAt": "2026-08-15T04:32:40.320Z"
     },
     "cp:gibraltar": {
       "standingFingerprint": "80402d9f6b7df633",
-      "recentFingerprint": "3b31efc8f5da0682",
+      "recentFingerprint": "42d1a57a05cf8249",
       "standing": "8 miles between Morocco and Spain — the only Atlantic–Mediterranean link. A surveillance chokepoint for Russian submarines and sanctioned oil.",
-      "recent": "Traffic sits near its own 90-day baseline, with the count down from a 13 June high of 163 vessels a day. The coverage names no closure or weather event here; wave heights stayed under a metre, and the disruption in the strait's news — the Ceuta crossings, where 72,000 people rushed a city of 84,000 — was a land border, not a shipping one.",
+      "recent": "Traffic sits near the low end of its own range, and the input does not explain why. The strait's shores have been busy for other reasons: Spain imposed reciprocal border checks on Italy, and roughly 72,000 people crossed from Morocco into Ceuta, a city of 84,000. Neither event touches vessel movement.",
       "citations": [
         "2026-08-10-ceuta-europe-without-leaving-africa",
-        "2026-08-07-ceuta-influx-italy-spain-schengen-reciprocity"
+        "2026-08-07-spain-reciprocal-border-checks-schengen-erosion"
       ],
-      "generatedAt": "2026-08-14T04:34:17.196Z"
+      "generatedAt": "2026-08-15T04:32:50.411Z"
     },
     "cp:dover": {
       "standingFingerprint": "6a7479faed0c50d3",
-      "recentFingerprint": "5c2eb760d34198d9",
+      "recentFingerprint": "5757fd881b91026d",
       "standing": "The busiest shipping lane on Earth — 400+ ships a day squeeze through the English Channel’s 21-mile narrows.",
-      "recent": "Traffic drifted lower across the window, from 210 vessels a day on May 23 to a low of 126 on Aug 3, and sits near 168 now — a couple of percent under its own 90-day baseline with calm seas and no weather alert. The stories on this water have been the migrant crossings rather than the freight: 157 people on one dinghy off Boulogne-sur-Mer when its engine caught fire.",
+      "recent": "Traffic has drifted down through the summer, with the low of 126 vessels on Aug 3 falling in the same week a dinghy carrying about 160 people caught fire off Boulogne-sur-Mer and drew rescue craft into the strait. Nothing in the record explains the wider decline; seas have stayed calm, peaking at 0.9m.",
       "citations": [
         "2026-08-04-channel-migrant-boat-fire-160-aboard"
       ],
-      "generatedAt": "2026-08-14T04:34:27.105Z"
+      "generatedAt": "2026-08-15T04:32:59.156Z"
     },
     "cp:cape-of-good-hope": {
       "standingFingerprint": "662b8dc55c689d4d",
-      "recentFingerprint": "df98ada3d33e3143",
+      "recentFingerprint": "236b55beeb1a4d3b",
       "standing": "The 3,000-mile detour around southern Africa — the alternative when the Red Sea is closed. The new default for tankers since Houthi attacks began.",
-      "recent": "Traffic has fallen by about a fifth from its May 16 peak of 150 vessels a day, settling near 83 with rough seas and waves to 3m on the route. The pressure that pushed ships this way persists further north: a tanker reported two explosions near Hormuz on 6 August, Iran's Guard claimed two tankers disabled, and a sanctioned tanker off Oman is leaking a 400 square kilometre slick.",
-      "citations": [
-        "2026-08-06-hormuz-kumzar-explosions-transit-count-war-risk-premium",
-        "2026-07-31-irgc-tanker-strikes-hormuz-transit-passage-claim",
-        "2026-08-10-shadow-fleet-spill-oman-uninsurable-hull"
-      ],
-      "generatedAt": "2026-08-14T04:34:37.736Z"
+      "recent": "Traffic has fallen back through the window, from 123 vessels a day on Jul 31 to 83, and now runs 5.9% below its own 90-day baseline. Nothing in the record explains the drop: seas stayed moderate, with a 2.3-metre maximum wave height and no weather alert.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:33:08.213Z"
     },
     "cp:kerch": {
       "standingFingerprint": "f43f6976483f155d",
-      "recentFingerprint": "86550f23dad2d346",
+      "recentFingerprint": "e17eb6cc7fcbfa79",
       "standing": "Between Crimea and Russia — the only access to the Sea of Azov. A flashpoint since 2014 and contested throughout the Russia–Ukraine war.",
-      "recent": "Traffic has gone to zero as strikes have made the northern Black Sea uninsurable for merchant shipping: war-risk premiums now price ships out of calling at Odessa, Russia burned Ukraine's largest Danube grain port at Izmail, and Ukrainian drones hit the Novorossiysk naval base. Putin has also threatened to seize cargo ships.",
+      "recent": "Traffic has fallen to nothing, in line with a Black Sea in which war risk now decides who sails. Strikes have closed Odessa's ports, with war-risk premiums pricing ships out of calling there, Russia hit the railway station at the Danube grain port of Izmail, and Ukrainian drones struck the Novorossiysk naval base. Putin has threatened to seize cargo ships.",
       "citations": [
         "2026-08-11-a-port-that-fell-without-being-taken",
+        "2026-08-14-izmail-rail-ust-luga-export-infrastructure-strikes",
         "2026-08-12-putin-cargo-ship-seizure-retaliation-shadow-fleet",
-        "2026-08-13-izmail-danube-grain-port-interceptor-rationing",
-        "2026-08-09-reyhan-sari-war-risk-premium-forum-problem"
+        "2026-08-13-izmail-danube-grain-port-interceptor-rationing"
       ],
-      "generatedAt": "2026-08-14T04:34:47.944Z"
+      "generatedAt": "2026-08-15T04:33:19.063Z"
     },
     "mkt:tadawul": {
       "standingFingerprint": "aa862b078df136c8",
@@ -649,16 +630,16 @@
     },
     "mkt:bist": {
       "standingFingerprint": "76ebc4daafeda41c",
-      "recentFingerprint": "8e96a8e06c86b504",
+      "recentFingerprint": "8166c75da7ea4703",
       "standing": "Türkiye’s only exchange. Priced in lira, so its index level carries the country’s inflation as much as its earnings — read the direction, not the number.",
-      "recent": "The index has drifted lower over the window while Ankara reshaped its security position: Turkey signed a collective-defence pact with Saudi Arabia and Pakistan in Mecca on 7 August, and passed a law on Kurdish disarmament on 10 August. Shipping risk sits closer to home — drones struck a Turkish-operated ship near Novorossiysk, and Turkey began rationing Bosphorus passage.",
+      "recent": "The index has drifted down roughly 3% over two months, off its 14830 high on Jun 18. Turkey signed a mutual defence pact with Saudi Arabia and Pakistan in Mecca on 7 August and passed a Kurdish disarmament law on 10 August, while drones struck a Turkish-operated ship near Novorossiysk and Ankara began rationing Bosphorus passage.",
       "citations": [
         "2026-08-07-mecca-joint-deterrence-agreement-signed-trigger-question",
         "2026-08-10-pkk-disarmament-law-what-the-statute-does-not-say",
         "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk",
         "2026-08-04-turkish-cargo-ship-hit-in-suspected-ukrainian-attack-near-ru"
       ],
-      "generatedAt": "2026-08-14T04:35:08.436Z"
+      "generatedAt": "2026-08-15T04:33:29.108Z"
     },
     "mkt:dfm": {
       "standingFingerprint": "cdceb2a2af330c97",
@@ -675,118 +656,110 @@
     },
     "mkt:bursa-malaysia": {
       "standingFingerprint": "ee8da1644fd934c9",
-      "recentFingerprint": "3adf62b22afcfa3f",
+      "recentFingerprint": "46efe14024d76a97",
       "standing": "The world’s largest market for Islamic finance instruments, and the centre of the global sukuk trade.",
-      "recent": "The index has drifted lower since peaking at 1748 on Aug 5, the day before Gulf crude exports to Malaysia dipped on the Hormuz closure. Vessel transits through the strait have fallen to a fraction of normal, and the squeeze has since reached Malaysian refineries.",
+      "recent": "The index has drifted down from its Aug 5 high of 1748 as the Hormuz closure reached Malaysian refineries, cutting Gulf crude arrivals to a fraction of normal volumes and forcing import substitution. Domestic politics added to the drag: Anwar Ibrahim's coalition lost Negeri Sembilan to a Malay-nationalist wave, and the DAP scheduled a vote on staying in the unity government.",
       "citations": [
         "2026-08-10-hormuz-closure-reaches-malaysian-refineries",
-        "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution"
+        "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution",
+        "2026-08-03-anwar-ibrahim-s-coalition-suffers-another-state-level-electo"
       ],
-      "generatedAt": "2026-08-13T04:32:09.465Z"
+      "generatedAt": "2026-08-15T04:33:39.956Z"
     },
     "mkt:idx": {
       "standingFingerprint": "c9d8fbfbb254bb80",
-      "recentFingerprint": "214e060c9100ba2a",
+      "recentFingerprint": "8d63a8d87f13aa2a",
       "standing": "The exchange of the world’s largest Muslim-majority country, heavily weighted to commodities and banking.",
-      "recent": "The index sits well below its May 18 high of 6,599 after a June 8 trough of 5,342, down about 4% over the window. On August 11 Prabowo nominated a Bank Indonesia deputy as the central bank's new governor, and the rupiah rose slightly on the news; the index has since been close to flat.",
+      "recent": "The index has given up roughly 3% across the window, and the clearest domestic marker in that stretch was Prabowo's nomination of a central bank deputy as the new governor on 11 August, on which the rupiah rose slightly. The 1.6% single-day gain came alongside news that Indonesian warships had drilled with China's navy east of Taiwan.",
       "citations": [
-        "2026-08-11-the-only-question-the-rupiah-priced"
+        "2026-08-11-the-only-question-the-rupiah-priced",
+        "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan"
       ],
-      "generatedAt": "2026-08-14T04:35:27.338Z"
+      "generatedAt": "2026-08-15T04:33:49.465Z"
     },
     "mkt:tse": {
       "standingFingerprint": "e485d1dc57edc1d5",
-      "recentFingerprint": "17f63550c7d7bd4e",
+      "recentFingerprint": "65cc22ecaa3e6f41",
       "standing": "Asia’s largest exchange, and the first major market to price each trading day.",
-      "recent": "The index has climbed roughly a tenth over the window on a weak yen and the profits it delivers: Toyota's quarterly profit nearly doubled to $9.4 billion on the cheap yen, and the Bank of Japan held rates at 1% on 31 July. Currency policy has cut the other way, with a joint US-Japan intervention on 3 August pushing the dollar to a one-month low.",
+      "recent": "Toyota's quarterly profit hit $9.4 billion, nearly doubling on a cheap yen — the clearest read on how much the currency has been worth to Japanese exporters. That prop was pulled on 3 August, when a joint US-Japan intervention pushed the dollar to a one-month low. The index has slipped from its 72,370 high on Jun 25.",
       "citations": [
         "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c",
-        "2026-07-31-boj-holds-one-percent-rate-check-carry-trade-constraint",
-        "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
-        "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure"
+        "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last"
       ],
-      "generatedAt": "2026-08-14T04:35:37.743Z"
+      "generatedAt": "2026-08-15T04:33:58.881Z"
     },
     "mkt:hkex": {
       "standingFingerprint": "6a051d1054819efb",
-      "recentFingerprint": "f8378cc56feaee6f",
+      "recentFingerprint": "26a4ac113751c332",
       "standing": "Where mainland Chinese companies meet foreign capital — the clearest daily read on sentiment toward China.",
-      "recent": "The index has drifted down over the quarter, from its May high to a June low and back to a level still well below where it started. The coverage points to friction rather than a single shock: Washington has accused Beijing of evading tariffs, Beijing has tightened drone exports, and Typhoon Dolphin forced port closures and the evacuation of over a million people. None of it explains the move on its own.",
-      "citations": [
-        "2026-08-08-typhoon-dolphin-preemptive-port-closure",
-        "2026-08-09-typhoon-dolphin-warm-water-landfall-intensity"
-      ],
-      "generatedAt": "2026-08-14T04:35:47.439Z"
+      "recent": "The index sits near the lower end of its range after a run of frictions between Beijing and Washington: the US accused China of evading tariffs, and Beijing tightened drone exports, setting up another trade clash. HSBC, a heavyweight in the index, launched a $1 billion share buyback after profits surged.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:34:07.758Z"
     },
     "mkt:sse": {
       "standingFingerprint": "f7f8bfad3ecd27d9",
-      "recentFingerprint": "a7a50dc903241d2e",
+      "recentFingerprint": "f72942b97e5a5906",
       "standing": "Mainland China’s main board. Largely closed to foreign investors, so it tracks domestic policy more than global risk appetite.",
-      "recent": "The index sits well below its May high, drifting through a stretch dominated by trade friction rather than domestic growth news: Beijing tightened drone exports as another US-China trade clash brewed, and Washington accused China of evading tariffs. Typhoon Dolphin closed major ports and cancelled flights in the same window.",
+      "recent": "The index sits about 6% below its mid-May peak of 4,178, having bottomed at 3,764 on 17 July before recovering to 3,927. Nothing in the period's China news explains the drift: the week's stories were Zhu Rongji's death at 97, Alibaba's open-model release, Apple's regulator-cleared China-only AI, and a fresh US accusation that Beijing is evading tariffs.",
       "citations": [
-        "2026-08-08-typhoon-dolphin-preemptive-port-closure",
-        "2026-08-09-typhoon-dolphin-warm-water-landfall-intensity",
-        "2026-08-12-zhu-rongji-soe-restructuring-wto-accession"
+        "2026-08-12-zhu-rongji-soe-restructuring-wto-accession",
+        "2026-08-14-apple-china-model-refusal-boundary-alibaba",
+        "2026-08-15-qwen-27b-fp8-single-gpu-sovereignty"
       ],
-      "generatedAt": "2026-08-14T04:35:57.141Z"
+      "generatedAt": "2026-08-15T04:34:17.488Z"
     },
     "mkt:krx": {
       "standingFingerprint": "fdcf90aee48de3de",
-      "recentFingerprint": "772a47e23b23c145",
+      "recentFingerprint": "8222479c484be598",
       "standing": "Dominated by Samsung and SK Hynix — a proxy for the global semiconductor cycle.",
-      "recent": "The index is a memory trade: it fell hard through late July, then posted its largest single-day gain ever on 31 July, surging a record 18% to reclaim 6,500 on a chip rally after its steepest three-day rout. SK Hynix then dropped 5% on a $38bn fab commitment, with all 2027 memory capacity already sold out and Seoul staking $880bn on AI.",
+      "recent": "The index has fallen more than a tenth over the window, bottoming on Jul 30 before recovering. The memory trade drove both directions: SK Hynix dropped 5% on 7 August after approving $38B in new fabs, even as all 2027 memory capacity is already sold out and $880 billion rides on Korea's AI bet. North Korea fired a ballistic missile ahead of US-South Korea drills.",
       "citations": [
-        "2026-07-31-kospi-record-18-percent-memory-index-concentration",
         "2026-08-07-sk-hynix-38bn-fabs-memory-cycle-concentration",
         "2026-08-08-dram-2027-capacity-allocation-hbm-crowding",
-        "2026-08-13-south-korea-ai-spending-hbm-chokepoint-power"
+        "2026-08-13-south-korea-ai-spending-hbm-chokepoint-power",
+        "2026-08-06-north-korea-wonsan-launch-us-south-korea-drills"
       ],
-      "generatedAt": "2026-08-14T04:36:07.079Z"
+      "generatedAt": "2026-08-15T04:34:28.015Z"
     },
     "mkt:bse": {
       "standingFingerprint": "b1c014e9a7800657",
-      "recentFingerprint": "7903f58947b4047b",
+      "recentFingerprint": "5453648bf766823c",
       "standing": "Asia’s oldest exchange, founded 1875, and the benchmark for Indian equities.",
-      "recent": "The index climbed to 78,950 on Aug 6 before easing, with domestic policy and corporate news dominating: parliament passed a mineral tax bill stripping states of mining royalty powers, and Tata Sons faced a leadership question as Chandrasekaran weighed quitting before an August 18 vote. July onion prices rose 22.54%, keeping imported inflation in view.",
-      "citations": [
-        "2026-08-13-india-mineral-tax-bill-states-royalty-federalism",
-        "2026-08-12-tata-sons-chairman-exit-rbi-listing",
-        "2026-08-13-tata-sons-succession-trusts-listing-pressure",
-        "2026-08-12-india-cpi-fed-split-imported-inflation"
-      ],
-      "generatedAt": "2026-08-14T04:36:17.202Z"
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:34:39.536Z"
     },
     "mkt:sgx": {
       "standingFingerprint": "59c0ffe878ddaec0",
-      "recentFingerprint": "08874e8bbccafafd",
+      "recentFingerprint": "ed109280bd1b6ba2",
       "standing": "Southeast Asia’s financial hub, weighted to banks and regional property.",
-      "recent": "",
+      "recent": "The index has gained about 15 percent over the past two months, reaching a high of 5,754 on Aug 11 before easing slightly. The input does not explain what drove the run.",
       "citations": [],
-      "generatedAt": "2026-08-13T04:33:27.842Z"
+      "generatedAt": "2026-08-15T04:34:49.598Z"
     },
     "mkt:twse": {
       "standingFingerprint": "c7437ac8db36cc86",
-      "recentFingerprint": "b447950134c21555",
+      "recentFingerprint": "3e4f871a479b73d8",
       "standing": "TSMC alone is roughly a third of the index, which makes this the most concentrated major market on the map.",
-      "recent": "The index is up 11% over the quarter, with the low on 30 July falling within days of two Chinese coast guard ships drifting off Orchid Island, east of Taiwan, and the run to 45,940 has since resumed. Taipei says AI agents extracted passwords over four days in a hacking campaign, and Arizona has been pitching 100 Taiwanese investors on tax breaks to build beyond chips.",
+      "recent": "The index sits well above its 30 July low after a run driven by chip demand, though Taiwan's gains are narrow: chipmaking employs few of the island's workers, a two-speed economy Arizona is now trying to court beyond chips, pitching 100 Taiwanese investors on tax breaks and industrial parks. Security news ran the other way — Indonesian warships drilled with China's navy east of Taiwan, and AI agents extracted passwords over four days in a hacking campaign Taipei attributed last month.",
       "citations": [
-        "2026-07-31-china-coast-guard-east-of-taiwan-jurisdiction-claim",
-        "2026-08-13-taiwan-ai-driven-hacking-campaign-attribution",
-        "2026-08-09-arizona-tsmc-anchor-tenant-ecosystem-gap"
+        "2026-08-06-taiwan-two-speed-ai-economy-fab-concentration",
+        "2026-08-09-arizona-tsmc-anchor-tenant-ecosystem-gap",
+        "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan",
+        "2026-08-13-taiwan-ai-driven-hacking-campaign-attribution"
       ],
-      "generatedAt": "2026-08-13T04:33:38.536Z"
+      "generatedAt": "2026-08-15T04:35:00.009Z"
     },
     "mkt:set": {
       "standingFingerprint": "c72adccbd6c47c97",
-      "recentFingerprint": "908fab2f4addd283",
+      "recentFingerprint": "e948ce95d78c3325",
       "standing": "Thailand’s benchmark, sensitive to tourism flows and regional energy prices.",
-      "recent": "The index sits near the top of its 47-day range after climbing from May, with the day's fall coming amid a run of unsettled domestic news: the Nonthaburi school shooting that killed eight and prompted the Thai PM to promise stricter gun laws, Bangkok's reception of Min Aung Hlaing, and a crackdown on USDT transactions tied to scam compounds.",
+      "recent": "The index sits at its 45-day high after a 6.5% climb from the 19 May low, holding through a run of domestic shocks: the Nonthaburi school shooting on 7 August that killed eight and wounded 15, and Bangkok's reception of Min Aung Hlaing, which widened ASEAN fractures over Myanmar.",
       "citations": [
         "2026-08-07-nonthaburi-school-shooting-thailand-firearm-stock",
-        "2026-08-06-thailand-min-aung-hlaing-asean-consensus-rohingya",
-        "2026-07-31-thailand-usdt-scam-compound-settlement-layer"
+        "2026-08-06-thailand-min-aung-hlaing-asean-consensus-rohingya"
       ],
-      "generatedAt": "2026-08-13T04:33:48.414Z"
+      "generatedAt": "2026-08-15T04:35:10.098Z"
     },
     "mkt:pse": {
       "standingFingerprint": "ca8bb96ff36bce90",
@@ -800,151 +773,145 @@
     },
     "mkt:asx": {
       "standingFingerprint": "8699f61b33ade231",
-      "recentFingerprint": "1590c6238b906019",
+      "recentFingerprint": "2817899f880df301",
       "standing": "Mining and banking. Often the first major market to react to Chinese demand data.",
-      "recent": "The index sits near its 6 August high of 9,272 after a 5% climb across the window. The RBA held rates steady on 11 August as the housing market softened, leaving another hike possible, and China's steel stock has aged into recycling — a scrap transition that skips Australian iron ore, the export the index's largest miners depend on.",
+      "recent": "The index sits near the high it set on Aug 6, having climbed roughly a twentieth over the window, though it slipped on the latest session. The RBA held its cash rate steady on Aug 11 as the housing market softened, and China's steel stock has aged enough to recycle — a shift toward scrap that skips Australian iron ore, the index's largest export earner.",
       "citations": [
         "2026-08-11-the-rate-set-last-year-decides-this-one",
         "2026-08-06-china-steel-scrap-transition-australia-iron-ore-demand"
       ],
-      "generatedAt": "2026-08-14T04:36:36.176Z"
+      "generatedAt": "2026-08-15T04:35:19.318Z"
     },
     "mkt:jse": {
       "standingFingerprint": "5e87183d5d03ebef",
-      "recentFingerprint": "2fd94442731e613f",
+      "recentFingerprint": "69e1f7a153f846c9",
       "standing": "Africa’s largest exchange by far, and the continent’s only one with a usable public daily series.",
-      "recent": "The index has drifted down from its Aug 7 high, retracing much of the climb off its Jul 23 low. The domestic backdrop is a squeeze on household spending: electricity bills rose up to 14% this month after municipal surcharges, pushing shoppers toward cheaper food baskets.",
-      "citations": [
-        "2026-07-31-nersa-municipal-surcharge-food-basket-substitution"
-      ],
-      "generatedAt": "2026-08-14T04:36:44.981Z"
+      "recent": "The index sits at 114,100, roughly 2.8% below where it started the window. It peaked at 117,500 on Aug 7 and bottomed at 108,300 on Jul 23. Nothing in the available material explains the swing.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:35:27.014Z"
     },
     "mkt:b3": {
       "standingFingerprint": "022ee1a8bc864dee",
-      "recentFingerprint": "7072ae04fae18604",
+      "recentFingerprint": "bd1c1c634ba8ec6e",
       "standing": "Latin America’s largest exchange, driven by iron ore, oil and Brazilian rates.",
-      "recent": "The index sits at the bottom of its 66-day range, down from 178,400 in mid-May. Brazil's dispute with Washington has run through the period — the US revoked the visa of Brazil's ambassador on 4 August, saying it would restore it if Brasília accepted its choice of envoy — and Lula was nominated for a fourth term on 2 August, at 81 by inauguration.",
+      "recent": "The index sits at the bottom of its 66-day range after a summer of Brasília-Washington friction: Washington revoked the visa of Brazil's ambassador on 4 August, tying its restoration to Brasília accepting its own envoy pick, and Lula was nominated for a fourth term two days earlier. Domestic rulemaking added to it, with Brazil imposing a 24-hour delay on crypto transfers above $10,000.",
       "citations": [
         "2026-08-04-us-revokes-brazil-ambassador-visa-agrement-leverage",
-        "2026-08-02-a-fourth-term-and-no-successor-deferral-has-a-date"
+        "2026-08-02-a-fourth-term-and-no-successor-deferral-has-a-date",
+        "2026-08-08-brazil-self-custody-transfer-delay-rule"
       ],
-      "generatedAt": "2026-08-14T04:36:54.484Z"
+      "generatedAt": "2026-08-15T04:35:36.844Z"
     },
     "mkt:bmv": {
       "standingFingerprint": "8e5b82b940439554",
-      "recentFingerprint": "4b22ebaf21454969",
+      "recentFingerprint": "9d46783ce6f94c7c",
       "standing": "Mexico’s benchmark, tightly coupled to US demand and the peso.",
-      "recent": "The index sits near the bottom of its 67-day range, well below its 13 May high of 70,190, and the domestic news flow has been about security and public health rather than earnings: the US put a $25 million bounty on a top Mexican cartel leader on 5 August, and human screwworm cases passed 500. Nothing in the record ties either directly to the move.",
+      "recent": "The index has drifted down through a run of US friction with Mexico City: Washington cancelled Andrés Manuel López Beltrán's US visa, drawing a public rebuke from Claudia Sheinbaum, and offered $25 million for a Mexican cartel leader. A screwworm outbreak passing 500 human cases adds a hit to the livestock trade.",
       "citations": [
+        "2026-08-14-lopez-beltran-visa-revocation-discretionary-leverage",
         "2026-08-05-cjng-bounties-kingpin-strategy-fragmentation-record-reward",
         "2026-08-07-screwworm-mexico-sterile-insect-barrier-failure"
       ],
-      "generatedAt": "2026-08-14T04:37:05.718Z"
+      "generatedAt": "2026-08-15T04:35:46.070Z"
     },
     "mkt:byma": {
       "standingFingerprint": "aefb58be30938613",
-      "recentFingerprint": "9a4a5adc17b3bc1f",
+      "recentFingerprint": "02e3fbf8f9392703",
       "standing": "Priced in a currency that has lost most of its value repeatedly, so the index rises even in bad years. Direction over a day means something; the level does not.",
-      "recent": "The index sits near 3,001,000 ARS, roughly a tenth above where it started the 64-day window but well below the 3,380,000 high of 22 July, having drifted down through the weeks since that peak. Nothing in the material here explains the reversal.",
+      "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-14T04:37:14.677Z"
+      "generatedAt": "2026-08-15T04:35:54.043Z"
     },
     "mkt:tsx": {
       "standingFingerprint": "e1eb7b43f808e7c3",
-      "recentFingerprint": "5dcf7f395ced4a7c",
+      "recentFingerprint": "521f8fe6ca17cab7",
       "standing": "Energy, mining and banks — a commodity index wearing an equity index’s clothes.",
-      "recent": "",
+      "recent": "The index has climbed roughly 7 percent over the window, reaching a high of 36,760 on Aug 13 before easing. The coverage from Canada in this period concerns wildfires in British Columbia, where 20,000 people were evacuated, and a WestJet flight attendants' strike — neither of which explains the move.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:37:24.085Z"
+      "generatedAt": "2026-08-15T04:36:02.326Z"
     },
     "mkt:nyse": {
       "standingFingerprint": "98779b090cc7a8eb",
-      "recentFingerprint": "178e5671888e4197",
+      "recentFingerprint": "9e09ffee415a7c63",
       "standing": "The largest equity market on earth. Its close sets the tone every other market opens against.",
-      "recent": "The index closed at a 63-day high on Aug 13, up about 4% since the Jun 10 low of 7267. Nothing in the material explains the climb: the period's news is dominated by the Strait of Hormuz standoff, with Trump halting attacks on Iran on Aug 2 and talks with Iran to reopen the strait reported making progress on Aug 4.",
-      "citations": [],
-      "generatedAt": "2026-08-14T04:37:32.399Z"
+      "recent": "The index climbed roughly 5% over the quarter, reaching 7799 on Aug 13, as the Strait of Hormuz standoff moved toward a deal rather than a war: Trump halted planned attacks on Iran's infrastructure on Aug 2 and talks involving Oman were reported making progress. It slipped 0.17% after the IRGC downed a US MQ-9 over Hormozgan.",
+      "citations": [
+        "2026-08-14-irgc-mq9-hormozgan-strait-surveillance-denial",
+        "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade"
+      ],
+      "generatedAt": "2026-08-15T04:36:12.058Z"
     },
     "mkt:lse": {
       "standingFingerprint": "2655057590b56662",
-      "recentFingerprint": "025f4ede95ad896e",
+      "recentFingerprint": "4760c33e4811dde3",
       "standing": "Most FTSE 100 revenue is earned abroad, so a falling pound tends to push the index up.",
-      "recent": "The index sits near the top of its range after climbing from the May low, with domestic regulatory decisions the main UK-facing news: Ofwat provisionally cleared £3.4bn in extra water bill rises, and a weakening of the UK's EV sales mandate that could cost drivers £3bn a year. Nothing in the window explains the day's fall.",
+      "recent": "The index sits near the top of its 66-day range, having climbed from 10,200 in mid-May to a high of 10,910 on 29 July before easing back to 10,750. Domestic news has been political and regulatory rather than market-moving: Nigel Farage reclaimed his Clacton seat in a by-election, and Ofwat provisionally cleared £3.4bn in extra water bill rises.",
       "citations": [
-        "2026-08-13-ofwat-3-4bn-bill-rise-water-debt-dividends",
-        "2026-08-12-uk-zev-mandate-rollback-driver-costs"
+        "2026-08-13-ofwat-3-4bn-bill-rise-water-debt-dividends"
       ],
-      "generatedAt": "2026-08-14T04:37:41.588Z"
+      "generatedAt": "2026-08-15T04:36:20.372Z"
     },
     "mkt:xetra": {
       "standingFingerprint": "af175368176df5f4",
-      "recentFingerprint": "90351d3071000344",
+      "recentFingerprint": "0db5aed16f0c32b2",
       "standing": "Germany’s industrial and chemical base — Europe’s clearest export barometer.",
-      "recent": "The index touched a series high of 26,390 on Aug 11 before easing 0.2%, up nearly 10% across the window. Commerzbank said on Aug 6 that teaming up with UniCredit could create value, softening Berlin's position that the takeover was a sovereignty threat, and Adidas reported strong growth on the World Cup.",
+      "recent": "The index reached its highest level of the period on Aug 14, up roughly 8% since May. Bank shares had support from Commerzbank saying a tie-up with UniCredit could create value, a deal Berlin had previously called a sovereignty threat. Little else in the window points at Frankfurt directly.",
       "citations": [
         "2026-08-06-commerzbank-unicredit-mittelstand-credit-banking-union"
       ],
-      "generatedAt": "2026-08-13T04:35:21.442Z"
+      "generatedAt": "2026-08-15T04:36:29.789Z"
     },
     "mkt:euronext-paris": {
       "standingFingerprint": "638aa7a915f60fa9",
-      "recentFingerprint": "6fb3184948eb573d",
+      "recentFingerprint": "a51a54f9a52ab202",
       "standing": "Luxury goods and energy dominate — unusually exposed to Chinese consumer demand.",
-      "recent": "The index sits near its 8,726 high of Aug 10 after climbing roughly 9% over the window, and slipped 0.46% on the day. Nothing in the record explains the move: the French news of the period runs to jellyfish shutting 3.2 gigawatts of nuclear capacity at Gravelines, a record-hot June and July, and TotalEnergies buying Shell's European onshore renewables arm.",
+      "recent": "The index reached 8,726 on Aug 10 and has drifted since, ending at 8,637. The domestic news in the window was not market-moving: France's top court struck down the under-15 social media ban, and jellyfish swarms shut three nuclear reactors, knocking out 3.2 gigawatts. Nothing here explains the drift.",
       "citations": [
-        "2026-08-11-jellyfish-swarms-knock-out-3-2-gigawatts-of-french-nuclear-p",
-        "2026-08-03-shell-agrees-to-sell-european-onshore-renewables-business"
+        "2026-08-11-jellyfish-swarms-knock-out-3-2-gigawatts-of-french-nuclear-p"
       ],
-      "generatedAt": "2026-08-13T04:35:31.305Z"
+      "generatedAt": "2026-08-15T04:36:38.709Z"
     },
     "mkt:euronext-amsterdam": {
       "standingFingerprint": "6cef54a3bf7ee4aa",
-      "recentFingerprint": "69d255a13293684e",
+      "recentFingerprint": "b6ee99f813c187b5",
       "standing": "The world’s oldest exchange, now carried largely by ASML.",
-      "recent": "The index reached its highest level of the window on Aug 13, up roughly a tenth over 67 days from its May 13 low. The material here does not explain the climb: the Amsterdam news in the window covers a hack that froze eight CEVA warehouses across Europe and Shell's agreement to sell its European onshore renewables business, neither of which accounts for the trend.",
+      "recent": "The index climbed to a high of 1,120 on Aug 13, up about 9 percent over the past 67 days from a low of 1,010 on May 15, and slipped 0.16 percent on the latest session. The coverage from Amsterdam in this window is on cyberattacks and data residency rather than on the listed companies, and does not explain the move.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:37:50.195Z"
+      "generatedAt": "2026-08-15T04:36:46.901Z"
     },
     "mkt:bme": {
       "standingFingerprint": "365576536c147311",
-      "recentFingerprint": "4eead7800209dfc8",
+      "recentFingerprint": "36dd37c2394880df",
       "standing": "Spanish banks with heavy Latin American exposure make this a proxy for both regions.",
-      "recent": "The index has climbed steadily to 20,210 on Aug 11, its highest of the window, with no single Spanish event behind the run. The period's domestic news was Ceuta, where 72,000 people crossed into a city of 84,000, and the reciprocal border checks that followed Italy's Schengen suspension — neither of which touched the listed banks and utilities.",
-      "citations": [
-        "2026-08-07-spain-reciprocal-border-checks-schengen-erosion",
-        "2026-08-10-ceuta-europe-without-leaving-africa",
-        "2026-07-31-italy-schengen-suspension-spain-article-25-ceuta"
-      ],
-      "generatedAt": "2026-08-14T04:38:00.358Z"
+      "recent": "The index reached 20,210 on 11 August, near the top of a run of roughly 13% since a 17,620 low on 15 May. Nothing in the Spanish news of the period explains the climb: the domestic stories were the Ceuta crossings, where 72,000 people entered a city of 84,000, and reciprocal border checks with Italy — neither of which touched the listed banks and utilities that dominate the index.",
+      "citations": [],
+      "generatedAt": "2026-08-15T04:36:56.540Z"
     },
     "mkt:borsa-italiana": {
       "standingFingerprint": "35afdeda3bf8149b",
-      "recentFingerprint": "9890d31b19dc8ef6",
+      "recentFingerprint": "c6c4a506c59a9feb",
       "standing": "Banks and utilities, and the market most sensitive to Italian sovereign debt spreads.",
-      "recent": "The index climbed through a summer of Italian political friction without breaking stride, setting a high of 53,720 on 7 August — the day Spain imposed reciprocal border checks on Italy, a week after Rome suspended Schengen over the 72,000 people who rushed the Ceuta enclave. Milan dealmaking continued regardless: Bending Spoons agreed to buy Airtable for $1.28bn on 4 August.",
+      "recent": "The index sits near the top of its 67-day range, having climbed roughly 7% from its 19 May low of 48,360 to a 7 August high of 53,720. Nothing in the record explains the run: the Italian news of the period was Spain's reciprocal border checks, the resignation of three directors at the space agency, and Milan-based Bending Spoons buying Airtable for $1.28bn.",
       "citations": [
-        "2026-08-07-spain-reciprocal-border-checks-schengen-erosion",
-        "2026-07-31-italy-schengen-suspension-spain-article-25-ceuta",
-        "2026-08-04-bending-spoons-to-buy-airtable-for-1-28b",
-        "2026-08-07-ceuta-influx-italy-spain-schengen-reciprocity"
+        "2026-08-04-bending-spoons-to-buy-airtable-for-1-28b"
       ],
-      "generatedAt": "2026-08-13T04:35:52.305Z"
+      "generatedAt": "2026-08-15T04:37:05.954Z"
     },
     "mkt:six": {
       "standingFingerprint": "e3160e9ae91da4ec",
-      "recentFingerprint": "a675afb1db567719",
+      "recentFingerprint": "788e0ab46b76a5a9",
       "standing": "Nestlé, Roche and Novartis carry the index, which makes it defensive when the world turns risk-off.",
-      "recent": "The index closed at 14,480, up about 10 percent across the window and near the 14,630 high set on 10 August, well above the 13,210 low of 13 May. Nothing in the available material explains the climb.",
+      "recent": "The index sits near the top of its 65-day range, up about 9% over the window and roughly a fifth of a percent below the 14,630 high set on Aug 10, after a low of 13,220 on Jun 3. The available material does not explain what drove the climb.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:38:08.922Z"
+      "generatedAt": "2026-08-15T04:37:15.435Z"
     },
     "mkt:nasdaq-stockholm": {
       "standingFingerprint": "ba5772f299c2ed69",
-      "recentFingerprint": "b29c8281db61c5fc",
+      "recentFingerprint": "9ac47e74f683b0ff",
       "standing": "Nordic industrials and telecoms, and a useful early read on European capital spending.",
-      "recent": "The index sits near the top of its range after climbing through the summer, peaking on Aug 5. The one European industrial story in the window is Porsche SE pressing Volkswagen over excess capacity, which does not explain a Stockholm move; the input carries no Swedish or Nordic driver for the run-up.",
+      "recent": "The index sits near the top of its 65-day range after climbing roughly 8 percent from its 15 May low of 3036, peaking at 3327 on 5 Aug before easing. The coverage in this window does not explain the move.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:38:17.879Z"
+      "generatedAt": "2026-08-15T04:37:23.711Z"
     },
     "mkt:tase": {
       "standingFingerprint": "6f57f1899dfce3cf",
@@ -954,84 +921,112 @@
       "citations": [],
       "generatedAt": "2026-08-14T04:38:25.371Z"
     },
-    "xag": {
-      "standingFingerprint": "ae1131ba8d9e4bc5",
-      "recentFingerprint": "170ac35d9e6db03f",
-      "standing": "A silver-backed digital token tracking the spot price of an ounce of silver. Silver is both a monetary metal and an industrial input — for solar panels, electronics and brazing alloys — so it moves on investment demand and factory demand at once.",
-      "recent": "The move follows Washington's polysilicon price floor, which raises the cost of the other core solar-panel input and puts pressure on the metals used alongside it. Silver-backed KAG has climbed from $29.80 on Aug 6 to $64.41 on Aug 14, more than doubling within the month-long window.",
-      "citations": [
-        "2026-08-06-polysilicon-price-floor-tariff-global-solar-costs"
-      ],
-      "generatedAt": "2026-08-14T04:30:30.837Z"
-    },
     "wiki-spain": {
       "standingFingerprint": "a8b9216b149ceefe",
-      "recentFingerprint": "0113b637c7936b6e",
-      "standing": "Wikipedia's article on Spain, and how many people read it each day. Attention to a country page rises when that country is the setting for something — a disaster, an election, a border crisis, or an event people travel to see.",
-      "recent": "Two Spanish stories ran through the window. Ceuta absorbed 72,000 crossings into a city of 84,000, with 57 bodies recovered, and Italy suspended Schengen over it before Spain imposed reciprocal checks on the Italian border. Then Wednesday's total eclipse crossed Burgos, Zaragoza and Teruel, where totality lasted 81 seconds.",
+      "recentFingerprint": "a961e470a29f52e9",
+      "standing": "Daily readership of the English Wikipedia article on Spain — a country page whose traffic sits near a baseline until something draws the world's eye to Spanish territory, then jumps as readers arrive looking for context.",
+      "recent": "The 20 July peak came ahead of the first total solar eclipse to cross Europe in 30 years, whose path of totality ran over Spain — under two minutes at Burgos, 81 seconds at Teruel — before the August 12 event itself. Ceuta added a second draw: 72,000 people crossed into a city of 84,000.",
       "citations": [
-        "2026-07-31-ceuta-57-dead-hot-returns-asylum-route",
-        "2026-07-31-italy-schengen-suspension-spain-article-25-ceuta",
-        "2026-08-07-spain-reciprocal-border-checks-schengen-erosion",
-        "2026-08-12-total-solar-eclipse-geometry-prediction",
+        "2026-08-12-europe-total-solar-eclipse-first-in-30-years",
+        "2026-08-09-august-12-totality-path-geometry-and-safety",
         "2026-08-08-eclipse-totality-horizon-geometry-spain",
         "2026-08-10-ceuta-europe-without-leaving-africa"
       ],
-      "generatedAt": "2026-08-13T04:29:09.385Z"
+      "generatedAt": "2026-08-15T04:31:09.051Z"
     },
     "poly-will-there-be-no-change-in-fed-interest-rates-af": {
-      "standingFingerprint": "36a53fae4661b1bc",
-      "recentFingerprint": "9ee352c13ccaea36",
-      "standing": "A Polymarket contract on whether the Federal Reserve leaves its policy rate unchanged at the next meeting. It prices what traders will pay for that outcome, so it moves with anything that shifts the central bank's hand — inflation data, labour figures, or pressure on the institution itself.",
-      "recent": "The contract climbed from 39 on Aug 1 to 73 on Aug 14, with the move building after Trump again sought to fire Fed governor Cook on Aug 7, reviving the fight over Fed independence — a dispute that argues for the Fed holding steady rather than acting under pressure. Polymarket separately overhauled its rules on Aug 7 after a study found fraud.",
-      "citations": [],
-      "generatedAt": "2026-08-14T04:29:20.205Z"
+      "standingFingerprint": "9110e29c0f3c464b",
+      "recentFingerprint": "56662da32978cddc",
+      "standing": "A prediction market on whether the US Federal Reserve leaves its policy rate untouched at its September meeting. The price is what traders will pay for that outcome, and it moves as the case for a cut or a hike strengthens.",
+      "recent": "The contract climbed from 39% on Aug 1 to 75% on Aug 15, and the input does not carry a Fed policy story that explains the shift. The month's Polymarket news was about the venue rather than the rate: JPMorgan cut the market's banking relationship, and a federal order required Kalshi to keep operating in New York after a state lawsuit.",
+      "citations": [
+        "2026-08-14-polymarket-jpmorgan-debanking-de-risking",
+        "2026-08-11-cftc-kalshi-new-york-prediction-markets"
+      ],
+      "generatedAt": "2026-08-15T04:27:47.012Z"
     },
     "wiki-turkey": {
       "standingFingerprint": "e74e852694209216",
-      "recentFingerprint": "21b029a902181891",
-      "standing": "Daily pageviews for the English Wikipedia article on Turkey, a proxy for how many people are looking the country up. Attention series like this spike when a country enters a story most readers only half-know.",
-      "recent": "Turkey signed a collective-defence pact with Saudi Arabia and Pakistan at Mecca on 7 August, with defence chiefs and military heads now forming a standing joint command, and Egypt staying out. Ankara also passed a law on PKK disarmament that never names Abdullah Öcalan's release, and rationed Bosphorus passage under Montreux.",
+      "recentFingerprint": "8e67e74cf8c25d85",
+      "standing": "A count of how many people open the Wikipedia article on Turkey each day. It rises when the country enters a story large enough to send readers looking for the basics — a war on its border, a treaty, a domestic rupture.",
+      "recent": "Readership tracked Turkey's move into two hard commitments. On 7 August Saudi Arabia, Turkey and Pakistan signed the Mecca joint defence pact, a bloc whose obligations and nuclear guarantee were left unwritten, and Egypt stayed out. Three days later Ankara passed the Kurdish disarmament law, which never names Abdullah Öcalan's release.",
       "citations": [
         "2026-08-07-mecca-joint-deterrence-agreement-signed-trigger-question",
-        "2026-08-07-saudi-turkey-pakistan-defence-pact-commitments-undefined",
         "2026-08-10-pkk-disarmament-law-what-the-statute-does-not-say",
         "2026-08-09-mecca-defense-pact-egypt-absent-realignment",
-        "2026-08-13-makkah-pact-mechanisms-pakistan-turkiye-saudi",
-        "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk"
+        "2026-08-10-mecca-pact-the-guarantee-nobody-will-write-down",
+        "2026-08-07-saudi-turkey-pakistan-defence-pact-commitments-undefined"
       ],
-      "generatedAt": "2026-08-14T04:32:57.657Z"
+      "generatedAt": "2026-08-15T04:30:48.892Z"
     },
-    "poly-will-nigel-farage-win-at-least-80-of-votes-in-th": {
-      "standingFingerprint": "206e917a6e9f9559",
-      "recentFingerprint": "46607dec67d22694",
-      "standing": "A Polymarket contract on whether Nigel Farage clears an 80% vote share in a British election. Prediction markets price outcomes as tradable odds, so the number is what traders will pay for that result rather than a poll or a forecast.",
-      "recent": "Polls opened Thursday in the Clacton by-election, where Farage faces a field the two main British parties declined to contest — including the novelty candidate Count Binface. With the majors standing aside but minor candidates on the ballot, traders cut the odds of an 80% share from 23% to 5% on the same day.",
+    "poly-putin-out-before-2027-346": {
+      "standingFingerprint": "5f6fa0b43db69d1d",
+      "recentFingerprint": "a57119a248cab610",
+      "standing": "A Polymarket contract paying out if Vladimir Putin ceases to be Russia's leader before the end of 2026. Traders price it as a probability, so the number is a bet on the durability of one man's hold on power, not a forecast anyone has issued.",
+      "recent": "The contract has drifted down over the past month, from 10% in mid-July to 8%, as Moscow signalled it intends to keep fighting rather than settle: Lavrov rejected freezing the war at today's contact line, and Deputy Foreign Minister Galuzin ruled out a freeze days earlier. Ukrainian drones reaching Nizhnekamsk, 1,600 km inside Russia, have not moved it.",
+      "citations": [
+        "2026-08-14-lavrov-contact-line-armistice-refusal-supply-lines",
+        "2026-08-09-moscow-rejects-freeze-root-causes-as-terms",
+        "2026-08-10-nizhnekamsk-refinery-strike-reaches-the-interior",
+        "2026-08-10-nizhnekamsk-uzbek-workers-bear-the-strike"
+      ],
+      "generatedAt": "2026-08-15T04:27:57.453Z"
+    },
+    "poly-will-2-fed-rate-cuts-happen-in-2026": {
+      "standingFingerprint": "11c2cb7dcf69686c",
+      "recentFingerprint": "155c375087c8da1a",
+      "standing": "A Polymarket contract on whether the US Federal Reserve cuts its policy rate twice during 2026. The price is what traders will pay for that outcome, so it moves whenever the odds of easing shift — and the Fed's rate sets the floor under mortgages, corporate borrowing and the dollar.",
+      "recent": "The contract sits near the bottom of its range, at 4% after a low of 2% on Jul 17 and a high of 4% on Jul 27 — small absolute moves in a market pricing two cuts as unlikely. The clearest event in the window was Trump's renewed move to fire Fed governor Cook on Aug 7, reviving the fight over Fed independence.",
       "citations": [],
-      "generatedAt": "2026-08-14T04:29:10.664Z"
+      "generatedAt": "2026-08-15T04:28:06.412Z"
     },
-    "poly-will-marco-rubio-win-the-2028-us-presidential-el": {
-      "standingFingerprint": "ec716dde8cfffed5",
-      "recentFingerprint": "78b27fb66fe57a02",
-      "standing": "A Polymarket contract on whether Marco Rubio wins the 2028 US presidential election. The price is what traders will pay for that outcome, quoted as a percentage, and it moves as candidates enter, exit or stumble rather than on any poll.",
-      "recent": "Nothing in the material explains the move. The contract drifted down over the month, from 14% on 15 July to a low of 12% on 27 July, and sits at 13%. The prediction-market news in the window concerns the venues themselves — a federal regulator overriding a state ban on Kalshi in New York, and payout concentration on Polymarket — not the field.",
+    "poly-us-iran-60-day-negotiation-period-extended-20260": {
+      "standingFingerprint": "77dd7163017f2de4",
+      "recentFingerprint": "02bf25c0ac81402e",
+      "standing": "A Polymarket contract on whether Washington and Tehran extend their 60-day negotiating window. It prices what traders will pay for diplomacy holding, so it falls when the two sides trade fire rather than terms.",
+      "recent": "The price collapsed from 75% on Aug 6 to 14% as the Gulf turned kinetic rather than diplomatic: US missiles crippled a cargo ship in the Gulf of Oman, the Guard Corps says it downed a US MQ-9 Reaper over Bandar Abbas, and Trump said of the Strait of Hormuz, \"We own it.",
       "citations": [
-        "2026-08-11-cftc-kalshi-new-york-prediction-markets",
-        "2026-08-10-prediction-markets-one-percent-took-most"
+        "2026-08-11-us-military-fires-on-cargo-vessel-iran-blockade",
+        "2026-08-14-irgc-mq9-hormozgan-strait-surveillance-denial",
+        "2026-08-12-hormuz-transit-passage-blockade-iran-talks-stall",
+        "2026-08-14-iran-indefinite-blockade-brent-war-risk-pricing"
       ],
-      "generatedAt": "2026-08-14T04:29:30.417Z"
+      "generatedAt": "2026-08-15T04:28:19.308Z"
     },
-    "poly-will-venezuela-recognize-israel-by-december-31": {
-      "standingFingerprint": "b3ab85390ebf07fd",
-      "recentFingerprint": "7f01cbe973434dd4",
-      "standing": "A Polymarket contract that pays out if Venezuela formally recognises Israel before the year ends. The price is what traders will pay for that outcome — a bet on Caracas breaking with a long alignment against Israel.",
-      "recent": "Caracas restored consular ties with Israel on 11 August, ending 17 years of severed relations, and the price ran to 56 by 13 August. Consular ties are not recognition, and the market has since given the entire move back, trading at 13.",
+    "stocks:SPOT": {
+      "standingFingerprint": "d42bc9c6c68803ab",
+      "recentFingerprint": "92af8cbcdbad966d",
+      "standing": "Shares in the Swedish streaming company that carries the largest share of the world's paid music listening, listed in New York. Its price tracks subscriber growth and the royalty terms it strikes with labels and artists.",
+      "recent": "Spotify said it will stop promoting artists tagged as AI-generated, a change to how the platform surfaces music on its service. The stock closed at $512.80, up from a low of $469 on Jul 23 and short of the $524 reached on Jul 29.",
       "citations": [
-        "2026-08-11-venezuela-israel-restore-consular-ties"
+        "2026-08-14-behind-the-blog-endless-scam-parade"
       ],
-      "generatedAt": "2026-08-14T04:29:50.006Z"
+      "generatedAt": "2026-08-15T04:31:17.154Z"
+    },
+    "stocks:AAPL": {
+      "standingFingerprint": "3d69f3e19e890e0d",
+      "recentFingerprint": "40fc21e061bb15d9",
+      "standing": "Apple's listed shares. The company sells iPhones, Macs and services at global scale, so the price carries both consumer hardware demand and the cost of the components — chips, memory, displays — that go into every device it ships.",
+      "recent": "The slide from the 28 July high of $340.10 to $302.30 on 12 August ran alongside a squeeze on component costs: TrendForce put DRAM at $145, up from $39, and iPhone 18 Pro BOM cost is estimated to be up by 40%. On 14 August China's regulator cleared Apple's home-grown AI model.",
+      "citations": [
+        "2026-08-10-memory-is-why-the-phone-costs-more",
+        "2026-08-14-apple-china-model-refusal-boundary-alibaba"
+      ],
+      "generatedAt": "2026-08-15T04:31:26.146Z"
+    },
+    "stocks:BABA": {
+      "standingFingerprint": "b8b0fb4375e3563d",
+      "recentFingerprint": "4accf9e281a96083",
+      "standing": "Shares in Alibaba, the Chinese e-commerce and cloud group whose retail platforms and Qwen model family make it one of the main proxies for Chinese consumer demand and for China's domestic AI stack.",
+      "recent": "The stock's climb tracked a run of AI announcements out of Hangzhou: Alibaba's Qwen team claimed a coding benchmark lead in early August, and the shares peaked at $132.30 on Aug 10, days before the release of a 27-billion-parameter open model. China's regulator also cleared Apple's home-grown AI model for the market.",
+      "citations": [
+        "2026-08-03-qwen3-8-max-a-new-bar-for-coding-and-cowork",
+        "2026-08-15-qwen-27b-fp8-single-gpu-sovereignty",
+        "2026-08-14-apple-china-model-refusal-boundary-alibaba"
+      ],
+      "generatedAt": "2026-08-15T04:31:35.973Z"
     }
   },
-  "generatedAt": "2026-08-14T04:38:25.372Z",
+  "generatedAt": "2026-08-15T04:37:23.738Z",
   "windowDays": 14
 }
