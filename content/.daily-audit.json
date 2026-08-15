@@ -1,35 +1,35 @@
 {
-  "date": "2026-08-14",
+  "date": "2026-08-15",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles (4 completed, 22:00 in flight), avg 9/cycle" },
-    "freshness": { "median": 0.5, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 12, "tech": 12, "science": 10 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 54, "detail": "5 cycles, all completed, avg 11/cycle" },
+    "freshness": { "median": 0.2, "p90": 0.8, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 13, "science": 11, "tech": 11 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 17, "AM": 15, "ME": 13, "AS": 9, "AF": 5, "OC": 0 }
+      "breakdown": { "EU": 14, "ME": 14, "AS": 11, "AM": 9, "AF": 6, "OC": 0 }
     },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 54,
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature / Dawn (tied)", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 42,
     "duplicates": 0,
-    "avgCycleDuration": 1361
+    "avgCycleDuration": 1237
   },
-  "experiment": "Skipped — every goal metric is met and no experiment is active. No pause gate is set; the slot is open if a future day shows a real deficit.",
-  "weakestArea": "Nothing misses target, so the weakest signal is structural rather than numeric: politics is 42% of output (25 of 59), the highest single-category share of the week, and Oceania fell to zero after a single article yesterday. Both are the shape of a heavy conflict news day (Iran-US drone exchanges, Sudan, Ukraine ports) crowding the regional tail rather than a pipeline fault.",
+  "experiment": "Skipped — every goal metric is met, no experiment is active, and no pause gate is set. The slot stays open for a day with a real deficit.",
+  "weakestArea": "Source breadth is the softest signal even though it passes: unique outlets fell 55 → 42 and multi-source articles 14 → 8 day-over-day on similar volume (62 → 54), so the same stories are being carried by fewer, more repeated outlets (Nature 6, Dawn 6, Phys.org 5, Mehr 4 — 39% of output from four names). Multi-source at 8 is still double the floor of 4, and the 2026-05-16 evaluation established that selector floors cannot lift this further; the lever is upstream feed clustering, not a tunable parameter.",
   "watching": [
-    "Hormuz blockade fallout is now reaching third parties — Pakistani pump prices and Iranian market reaction both ran today, so the economic transmission story is broadening beyond the strait itself.",
-    "Two separate drone shoot-downs in one day (NATO over Balvi, Iran over Bandar Abbas) plus a US-led drone coalition forming in Doha — an escalation cluster worth tracking as one thread.",
-    "RSF opening a Blue Nile front at Kurmuk extends Sudan's war into a new geography; prior coverage has been Darfur- and Kordofan-centred.",
-    "Both Russia and Ukraine struck export ports (Izmail) — grain-corridor disruption is a likely follow-on economy story."
+    "Hormuz is now a legal story as well as an economic one — the transit-passage/UNCLOS claim ran alongside continued fuel-price transmission in Pakistan and India.",
+    "Lebanon truce-violation accounting is becoming a running series (Nabatieh strike count, Quneitra farmland monitoring), which is worth consolidating rather than re-reporting each incident.",
+    "Iran's external supply routing appears in three separate stories today (Tajikistan fuel, Peshawar–Mashhad pilgrimage route, Qatar pilot ICRC notification) — one sanctions-evasion thread told in fragments.",
+    "India's power arithmetic for the 2047 fab/nuclear build-out is the kind of long-horizon claim that will need a follow-up when the first capacity numbers land."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles today and one yesterday; the only adjacent item was an Australian surveillance-jet deployment datelined Clark, Philippines.",
-    "Latin America appears almost entirely through Washington's lens (Machado lobbyists, Morena visa revocation, Caracas realignment) rather than through regional outlets.",
-    "Central Asia is absent again — no Kazakh, Uzbek or Kyrgyz dateline in either day's output.",
-    "Science skews heavily to London datelines (4 of 10), thinning non-Western research coverage."
+    "Oceania produced zero articles for a second consecutive day; no Australian, New Zealand or Pacific-island dateline in either day's output.",
+    "Africa is at 6 of 54 and almost entirely Nigerian (Asaba black box, Osun poll, Katsina–Zamfara grants, Punch, Vanguard) — no East or Horn of Africa dateline despite Sudan being an active thread yesterday.",
+    "Central Asia remains absent apart from Iran–Tajikistan fuel routing, which is reported from the Iranian side.",
+    "Latin America is one story (Venezuela criminal economy); the region has no economy or science coverage at all today."
   ],
-  "context": "The 22:00 cycle was still running when metrics were taken, so today's 59 will settle higher and the category mix will shift slightly. Source concentration is unusually healthy — 54 unique outlets across 59 articles, top share 12% — and duplicates have held at zero for two days, consistent with the layer-4 recap dedup rule kept on 2026-05-09. The one queued experiment (numerical density) targets scripts/write-prompt.md, which is outside the tunable-parameter scope of this daily pass and must be promoted by the operator."
+  "context": "A clean operational day: 5 of 5 cycles completed, zero duplicates for a third consecutive day, freshness at its best reading of the week (median 0.2, max 1.3), and cycle duration down to 1237s from 1361s. Politics fell from 42% to 35% of output while science and tech both rose to 11, giving the strongest sci-tech ratio (41%) since the 2026-04-12 tech-floor experiment. The one queued experiment (numerical density) targets scripts/write-prompt.md, which sits outside this pass's tunable-parameter scope and must be promoted by the operator."
 }
