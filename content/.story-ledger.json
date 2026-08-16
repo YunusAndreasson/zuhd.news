@@ -2,13 +2,205 @@
   "version": 1,
   "stories": [
     {
+      "id": "kyiv-ballistic-strike-interceptor-inventory",
+      "label": "Russia Attacks Kyiv Again with Ballistic Missiles",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-kyiv-ballistic-strike-interceptor-inventory"
+      ],
+      "eventUri": "por-1313490",
+      "summary": "Four explosions over central Kyiv at 2:50 a.m. — the freshest event in the feed and the only multi-source politics cluster it carries. Lead with the weapon class, because ballistic is the whole point: a ballistic missile arrives on a steep terminal trajectory at several times the speed of sound, which is why it is the one munition Ukraine's layered air defence mostly cannot stop and why an interception rate quoted for drones tells the reader nothing about this. The mechanism to teach is the arithmetic of interceptor scarcity — Patriot-class rounds are made in the low thousands a year worldwide, cost millions each, and are allocated by a foreign government, so a defender's real limit is inventory, not radar. This is a developing story: establish casualties, the districts hit, what Klitschko and the air force actually claimed, and be explicit about what is unconfirmed at press time. Pair with the same night's reported drone attack near Moscow's MKAD if it holds up — both capitals were struck in the same darkness.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Vitali_Klitschko",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+        "http://en.wikipedia.org/wiki/Mayor"
+      ]
+    },
+    {
+      "id": "osun-collation-irev-transmission-integrity",
+      "label": "#OsunDecides2026: Adeleke in early lead after results from 15 LGAs",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-osun-collation-irev-transmission-integrity"
+      ],
+      "eventUri": "eng-11926457",
+      "summary": "Follows yesterday's Osun polling-day piece: incumbent Ademola Adeleke leads after 15 of 30 LGAs, with final collation now under way in Osogbo. Lead with the collation itself rather than the tally, because collation is where Nigerian elections are actually won and lost — the votes are counted publicly at the polling unit, then carried up through ward, LGA and state levels by returning officers, and every documented case of large-scale alteration since 2019 has happened in that transmission, not at the ballot box. The mechanism to teach is what IReV and BVAS were built to fix: uploading the unit-level result sheet at the unit is meant to freeze the numbers before they travel, so the test of this election is whether the collated figures match the uploaded sheets, and whether anyone checks. Set the result against the 147 arrests and the 207 units that opened late from polling day. Do not write this as a liveblog: wait for the declared figures, name the returning officer who declares, and give the margin. Nigeria is an OIC member and Premium Times is the regional outlet, reporting from the collation centre.",
+      "conceptUris": []
+    },
+    {
+      "id": "swabi-tobacco-monopsony-notified-price-floor",
+      "label": "Growers suffer as tobacco prices crash",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-swabi-tobacco-monopsony-notified-price-floor"
+      ],
+      "eventUri": null,
+      "summary": "Flue-cured Virginia tobacco growers in Swabi are being offered more than 50 per cent below the government-notified minimum price, in the middle of the purchase season. Lead with that gap, because the number is the whole mechanism: Pakistan sets an official indicative price for tobacco and then leaves enforcement to nobody, so the notified rate functions as a public statement of what a fair price would be and as documentary proof of how far below it the farmer is actually paid. The structural why is monopsony — a perishable, licence-controlled crop with a handful of legal buyers, where the grower cannot store it, cannot export it, and cannot wait, so the buyer sets the price and the state's price floor is a suggestion. The second thread is the fiscal irony a reader in Khyber Pakhtunkhwa will feel immediately: tobacco is one of the most heavily taxed products in the country and the federal cess on it is collected per kilo at the buying stage, so the state extracts revenue from the same transaction in which it declines to enforce its own floor. Establish the notified price, the offered rates, the acreage and grower numbers involved, and what the Pakistan Tobacco Board says. Pakistan is an OIC member and Dawn is the regional outlet, reporting from Swabi.",
+      "conceptUris": []
+    },
+    {
+      "id": "index-inclusion-passive-flows-price-discovery",
+      "label": "Reddit shares jump 11% on inclusion in S&P 500",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-index-inclusion-passive-flows-price-discovery"
+      ],
+      "eventUri": "eng-11921141",
+      "summary": "Reddit gained 11 per cent because a committee added it to a list — no product shipped, no earnings changed. Lead with that disconnection, because it is the most teachable thing in markets this week: roughly half of US equity money is now passive, so index membership is not a description of value but a purchase order, and every fund tracking the S&P 500 must buy the stock before 18 August whatever it thinks of the company. The mechanism to teach is who decides — a private committee at S&P Dow Jones Indices selects constituents by discretion, not by formula, which means an unelected body at a for-profit index provider directs hundreds of billions of retirement savings by publishing a list. The structural point for this reader is what it does to price discovery: if most buying is mandatory, the market's signal about what a company is worth degrades, and index inclusion becomes a self-fulfilling flow rather than a judgement. Note the sentiment spread across the cluster (0.29) and that the AOL version leads with an investment advertisement — say what a stock-promotion wrapper is when you see one. Establish which company Reddit displaces and the estimated index-tracking assets that must buy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/S&P_500_Index",
+        "http://en.wikipedia.org/wiki/Reddit",
+        "http://en.wikipedia.org/wiki/S&P_Dow_Jones_Indices",
+        "http://en.wikipedia.org/wiki/AvalonBay_Communities",
+        "http://en.wikipedia.org/wiki/Social_media",
+        "http://en.wikipedia.org/wiki/Equity_Residential",
+        "http://en.wikipedia.org/wiki/Benchmarking"
+      ]
+    },
+    {
+      "id": "ukraine-aid-procurement-audit-nabu-independence",
+      "label": "US launches 49 probes into weapons supplies to Ukraine",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-ukraine-aid-procurement-audit-nabu-independence"
+      ],
+      "eventUri": null,
+      "summary": "Forty-nine investigations are reported open into procurement and supply of weapons to Ukraine, run by US agencies alongside Ukraine's anti-corruption bureau NABU, the SAPO prosecutors and the prosecutor general's office. Lead with the count and with who is investigating whom, because the joint composition is the mechanism: military aid delivered as money rather than as materiel has to be spent through contracts, and contracts are the point at which aid becomes divertible — so the auditing of a war is a procurement audit, and it is conducted by the donor's inspectors general inside the recipient's legal system. The second mechanism is why NABU and SAPO exist at all: they were built as EU and IMF conditionality after 2014, deliberately outside the prosecutor general's chain of command, and the 2025 attempt to subordinate them is what made their independence a live question — so their appearance in these cases is a test of whether that independence survived. CRITICAL SOURCING: TASS is Russian state media and is the only outlet carrying this in the feed; the underlying figure is attributed to US and Ukrainian agencies, so the story is not publishable until the count is traced to a named inspector-general report, NABU statement or DoD IG document. If it cannot be traced, write what is documented — the published inspector-general caseload — and say TASS's figure is unverified. Do not repeat the framing that aid is generally being stolen; report the caseload, not the insinuation.",
+      "conceptUris": []
+    },
+    {
+      "id": "phage-search-problem-amr-antibiotic-pipeline",
+      "label": "Nature has spent billions of years fighting bacteria. AI could help us learn its secrets",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-phage-search-problem-amr-antibiotic-pipeline"
+      ],
+      "eventUri": null,
+      "summary": "Bacteriophages — viruses that kill bacteria — are being read with machine learning to work out how they do it. Lead with the stake rather than the method, because antimicrobial resistance is not a future problem: it is already among the leading causes of death worldwide, and it kills disproportionately in South Asia and sub-Saharan Africa, where infections are common and second-line antibiotics are unaffordable. The mechanism to teach is why phages were abandoned and why AI changes the arithmetic: a phage is exquisitely specific, usually killing one strain of one species, so treating a patient means finding the right phage from a library of billions in time to matter — a search problem, which is exactly the kind of problem sequence models are good at, so the bottleneck moves from luck to compute. The second thread is the political economy that made this necessary: no large pharmaceutical company has brought a genuinely new class of antibiotic to market in decades because a drug used sparingly and briefly cannot repay its development, and that market failure — not biology — is why resistance outran the pipeline. Establish who is doing the work, what specifically the models predict, and the honest distance to a treated patient.",
+      "conceptUris": []
+    },
+    {
+      "id": "radar-palaeochannel-mapping-fossil-aquifer-depletion",
+      "label": "Enhancing groundwater potential mapping in arid regions through integrated microwave remote sensing, statistical analysis, and geophysical-based modeling",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-radar-palaeochannel-mapping-fossil-aquifer-depletion"
+      ],
+      "eventUri": null,
+      "summary": "A method for finding groundwater in arid land from orbit: radar that sees below dry surface sand, combined with statistics and ground geophysics, to map where water probably is before anyone drills. Lead with the cost of being wrong, because that is what the paper is really about — a dry borehole in a Sahel or Arabian aridzone community costs tens of thousands of dollars and takes a rig months to reach the site, so a mapping method that raises the hit rate is not an academic gain, it is the difference between a village getting a well and a donor writing off a failure. The mechanism to teach is why microwave radar can do this at all: long-wavelength radar penetrates several metres of dry sand where optical imagery only sees dune, which is how palaeochannels — river beds buried since the Sahara was green — were first found from space, and those buried channels are where the water is. The honest limit is the one to state plainly: potential is not water, the method ranks probability and cannot measure how much is there or how fast it recharges, and an aquifer mapped is an aquifer that will be pumped — fossil groundwater under the Sahara and Arabia does not refill on any human timescale, so better location technology accelerates depletion unless abstraction is governed. Establish the study area and country, the validation against existing wells, and the accuracy claimed.",
+      "conceptUris": []
+    },
+    {
+      "id": "grid-anomaly-benchmark-base-rate-vendor-claims",
+      "label": "A reproducible evaluation framework for benchmarking machine learning and hybrid ensemble models in power system anomaly detection",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-grid-anomaly-benchmark-base-rate-vendor-claims"
+      ],
+      "eventUri": null,
+      "summary": "The paper's contribution is not a better grid-attack detector — it is a fixed test that lets rival detectors be compared at all. Lead with that, because it names a failure readers will recognise from every AI security claim they have read: each vendor and each paper reports accuracy on its own private dataset with its own split, so 99 per cent from one and 97 per cent from another are not comparable numbers, and a buyer choosing between them is reading marketing. The mechanism to teach is the base-rate problem that makes grid anomaly detection specifically treacherous — attacks are vanishingly rare against millions of normal sensor readings, so a model that flags nothing scores near-perfect accuracy, and the only figures that mean anything are false-positive rate at a fixed detection rate and how many alerts a human operator must triage per shift. The stake is concrete and not Western: utilities from Karachi to Lagos are buying digital substation monitoring right now, and grid operators are the buyers least able to independently evaluate a machine-learning claim. Say plainly this is an unedited accepted manuscript proposing a benchmark, not a deployed system, and report which models it finds actually hold up. Establish the authors, the datasets used, and whether the framework and code are public — a reproducibility paper that ships no code is a claim, not a tool.",
+      "conceptUris": []
+    },
+    {
+      "id": "acoustic-link-terrain-underwater-autonomy-limits",
+      "label": "Shielded planning with acoustic link awareness enables USV and AUV cooperation",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-acoustic-link-terrain-underwater-autonomy-limits"
+      ],
+      "eventUri": null,
+      "summary": "A surface drone boat and an underwater drone are made to work as a pair by planning their routes around where they can still hear each other. Lead with the constraint, because it is the fact most readers do not know: radio does not travel through seawater, so an underwater vehicle cannot use GPS, cannot stream video and cannot be teleoperated — it talks in sound, at roughly the bandwidth of a 1980s modem and with seconds of delay, which is why underwater autonomy is a genuinely harder problem than aerial autonomy and why there is no underwater equivalent of the consumer drone. The mechanism to teach is what 'link awareness' means: the acoustic channel's quality depends on depth, temperature layering and geometry, so the planner treats communication as terrain — it routes to stay inside the region where the two can hear each other, accepting a worse path to keep the link. The stake for this reader is who is buying: the same capability underlies seabed cable and pipeline inspection, offshore survey, mine hunting and hull surveillance, and the Gulf, the Red Sea and the Strait of Hormuz are where cable cuts and limpet-mine incidents have made it operational rather than academic. Say plainly this is an unedited accepted manuscript, and report whether it was tested in water or only in simulation — that distinction is the whole credibility of the result.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-blue-origin-fixed-price-procurement-orbit-access",
+      "label": "Ni gute Elon Musk na Jeff Bezos batera inkunga irushanwa ryabo riberekeza mu isanzure?",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-spacex-blue-origin-fixed-price-procurement-orbit-access"
+      ],
+      "eventUri": null,
+      "summary": "How the two richest men on earth actually finance a private space race — the question a BBC African-language service put to its readers, and one almost never asked in English coverage. Lead with the answer, because it inverts the story everyone knows: SpaceX and Blue Origin are not funded by private fortune in any meaningful sense, they are funded by government contracts. NASA and the Pentagon are SpaceX's anchor customers, the Artemis lander and national-security launch awards are public money, and Blue Origin's engine and lander work runs on the same procurement. The mechanism to teach is what those contracts changed: NASA moved from cost-plus, where the state owns the rocket and pays whatever it costs, to fixed-price commercial services, where the state buys a ride and the contractor keeps the vehicle — which transferred publicly funded launch capability into private ownership, and that transfer, not any billionaire's cheque, is what built the industry. Bezos additionally sells Amazon stock to fund Blue Origin, so state the two funding routes separately and do not blur them. The reader's stake is who now controls access to orbit: a single company launches the majority of the world's payload mass, so a state without its own launch capacity negotiates with a firm rather than a government. Note where this ran — BBC Gahuza, in Kirundi — and write it in English from verifiable contract figures.",
+      "conceptUris": []
+    },
+    {
+      "id": "5-gunned-down-in-michigan-suspect-found-dead",
+      "label": "5 gunned down in Michigan; suspect found dead",
+      "firstSeen": "2026-08-16T04:13:04.076Z",
+      "lastCovered": "2026-08-16T04:13:04.076Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-15-5-gunned-down-in-michigan-suspect-found-dead"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] NEW YORK/WASHINGTON: A man suspected of shooting and killing five people in northern Michigan on Friday was found dead after a manhunt, Michigan State Police said in a statement on social media.\n\nOne victim remained hospitalised in critical condition, the police said. Troopers were dispatched around",
+      "conceptUris": []
+    },
+    {
       "id": "iran-qatar-pilots-icrc-pow-notification",
       "label": "Iran urges ICRC to pursue case of 3 pilots held in Qatar",
       "firstSeen": "2026-08-15T22:09:18.983Z",
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iran-qatar-pilots-icrc-pow-notification"
@@ -33,7 +225,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-khula-decree-interval-femicide-precedent"
@@ -49,7 +241,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-sandf-deployment-gang-homicide-presence-policing"
@@ -65,7 +257,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-akp-fara-filing-washington-influence-register"
@@ -81,7 +273,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-russia-mining-ban-interruptible-load-grid"
@@ -97,7 +289,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-black-sea-hull-count-war-risk-premium-grain"
@@ -113,7 +305,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-high-fens-peat-fire-mutual-aid-capacity"
@@ -138,7 +330,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-negative-acoustic-radiation-force-scattering"
@@ -154,7 +346,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-spinel-site-occupancy-hydrogen-storage-electrode"
@@ -170,7 +362,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-animal-health-emissions-intensity-denominator"
@@ -186,7 +378,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ai-datacentre-consent-indigenous-water-land"
@@ -202,7 +394,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-r66-contractor-pilot-pipeline-flight-hour-cost"
@@ -218,7 +410,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-15-model-drift-unversioned-api-eval-baseline"
@@ -234,7 +426,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-yasukuni-offering-minister-visit-deniability"
@@ -259,7 +451,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-turkey-reexport-congressional-record-arms-consent"
@@ -284,7 +476,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-wadi-al-mollak-labour-transport-accident-classification"
@@ -300,7 +492,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-upper-dir-girls-schools-closure-attrition"
@@ -316,7 +508,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-jakarta-communique-one-china-legal-accretion"
@@ -332,7 +524,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-kp-at-source-deduction-divisible-pool"
@@ -348,7 +540,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-crypto-licence-moat-11-2-billion"
@@ -364,7 +556,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iraq-wellness-tourism-oil-revenue-concentration"
@@ -380,7 +572,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mitochondrial-transfer-myeloid-delivery-route"
@@ -396,7 +588,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dark-photon-plasma-screening-reopened-limits"
@@ -412,7 +604,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-manifest-v3-ublock-origin-last-browser"
@@ -428,7 +620,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-qwen-open-weights-fp8-sovereign-inference"
@@ -444,7 +636,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-14-why-we-need-real-privacy-laws-in-our-region"
@@ -460,7 +652,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-modi-intellectual-naxal-category-uapa"
@@ -485,7 +677,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-osun-poll-day-147-arrests-inec-metrics"
@@ -510,7 +702,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-samara-progress-plant-dual-use-strike"
@@ -535,7 +727,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iran-tajikistan-fuel-supply-sanctions-routing"
@@ -551,7 +743,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-windfall-levy-nil-crack-spread"
@@ -576,7 +768,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mercury-skin-lightening-creams-enforcement-gap"
@@ -592,7 +784,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-hibernation-synapse-loss-memory-survives"
@@ -608,7 +800,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dibang-flash-flood-warning-time-siting"
@@ -633,7 +825,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-secondhand-books-ai-training-corpus-scarcity"
@@ -649,7 +841,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-quasiperiodic-pcsel-tunable-laser"
@@ -665,7 +857,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-14-pics-how-independence-day-was-celebrated-across-india"
@@ -690,7 +882,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-biggest-mistake-in-history-instagram-changes-its-wordmark-af"
@@ -706,7 +898,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ansar-nabatieh-strike-truce-violation-count"
@@ -731,7 +923,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-hormuz-territorial-claim-transit-passage-unclos"
@@ -747,7 +939,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-korean-armistice-peace-treaty-who-signs"
@@ -772,7 +964,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-katsina-zamfara-peacebuilding-grant-cycle-cliff"
@@ -788,7 +980,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-exam-leak-protests-credential-queue"
@@ -813,7 +1005,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-peshawar-mashhad-route-sanctions-pilgrimage"
@@ -829,7 +1021,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-incretin-discontinuation-metabolic-defence-cost"
@@ -845,7 +1037,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-rhine-low-water-draught-salt-intrusion"
@@ -861,7 +1053,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-emals-steam-reversal-technical-lock-in"
@@ -877,7 +1069,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-avio-fd1-sardinia-filings-launch-sovereignty"
@@ -893,7 +1085,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-minister-directs-early-start-of-port-qasim-authority-cricket"
@@ -909,7 +1101,7 @@
       "lastCovered": "2026-08-15T08:14:21.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-s-per-lig-osimhen-scores-twice-as-galatasaray-held-by-newly"
@@ -925,7 +1117,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-quneitra-farmland-lebanon-truce-violation-monitoring"
@@ -941,7 +1133,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-warraq-ferry-dock-materials-access-displacement"
@@ -957,7 +1149,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-asaba-black-box-overwritten-nsib-disclosure-delay"
@@ -973,7 +1165,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-venezuela-criminal-economy-survives-decapitation"
@@ -989,7 +1181,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-fabs-nuclear-2047-power-arithmetic"
@@ -1014,7 +1206,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-pakistan-dealer-margin-strike-administered-price-stack"
@@ -1038,7 +1230,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-benguela-whale-sightings-survey-effort-correction"
@@ -1054,7 +1246,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ozone-model-transferability-voc-monitoring-gap"
@@ -1070,7 +1262,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-qwen-27b-fp8-single-gpu-sovereignty"
@@ -1086,7 +1278,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-korea-dopamine-sites-engagement-without-purchase"
@@ -1102,7 +1294,7 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-two-killed-in-separate-incidents-in-balochistan"
@@ -1118,257 +1310,13 @@
       "lastCovered": "2026-08-15T04:11:18.979Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-behind-the-blog-endless-scam-parade"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] This week, we discuss the mainstreaming of Flock, media appearances, and Spotify's AI move.",
-      "conceptUris": []
-    },
-    {
-      "id": "rsf-blue-nile-kurmuk-multi-front-offensive",
-      "label": "Sudan Nashra: In cross-border offensive, RSF seizes Blue Nile’s Geisan, recaptures Kurmuk | Military repels major RSF attack on North Kordofan’s Gabra al-Sheikh | After clashes inside Kauda, SPLM-N-Otoro fighting spreads to nearby villages | Kordofan governor in RSF-led govt defects | Back-to-back Sudanese visits to Juba in mutual push to contain border, Abyei tensions",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-rsf-blue-nile-kurmuk-multi-front-offensive"
-      ],
-      "eventUri": null,
-      "summary": "Do not write the roundup — build the article on the geography. The RSF has opened a front in Blue Nile, taking Geisan and retaking Kurmuk on the Ethiopian border, roughly 900km from its Darfur base, while a Kordofan governor in its own parallel government defects. Lead with Kurmuk, because the direction of travel is the finding: a force that was supposed to be contained in the west is now fighting on Sudan's southeastern frontier, which means the war is no longer about holding a capital but about controlling border crossings — and border crossings are how a militia is resupplied and how its gold leaves. The mechanism to teach is simultaneity as a resource claim: military officers told Mada Masr the multi-front offensive is an attempt to offset heavy losses in North Kordofan, so opening four fronts at once is what a force does when it needs to prove solvency to its backers, not when it is winning. That is why the defection matters more than any single town — a governor leaving the RSF-led administration is the same signal read from the other side. The second mechanism is the civilian arithmetic our reader should carry: Blue Nile and the Nuba Mountains, where SPLM-N-Otoro fighting is spreading around Kauda, are the areas with the least humanitarian access in Sudan, so a front opening there means displacement into a corridor no agency can reach. Sudan is an OIC member and the largest displacement crisis in the world, and it produces a fraction of the coverage of any European front. Establish which places changed hands and when, who confirms each claim, the governor's name and stated reasons, the Juba visits and what Khartoum and Juba each want from them, and current displacement figures for Blue Nile and Kordofan. Mada Masr is talking to military officers directly — attribute that sourcing explicitly and mark what is single-sourced.",
-      "conceptUris": []
-    },
-    {
-      "id": "irgc-mq9-hormozgan-strait-surveillance-denial",
-      "label": "IRGC shoots down US MQ-9 drone over Hormozgan",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-irgc-mq9-hormozgan-strait-surveillance-denial"
-      ],
-      "eventUri": "eng-11920286",
-      "summary": "The IRGC says it downed an American MQ-9 Reaper over Hormozgan, the province that fronts the Strait of Hormuz — and on the same day Trump told Fox News that if Iran strikes, the US response will be '100 times harder' while insisting Washington is not seeking to destroy Iran (TASS, 14 Aug). Lead with the location, not the aircraft: Hormozgan is where the blockade this site reported yesterday is physically enforced, so a shootdown there is a claim about who holds the airspace over the tanker lanes. The mechanism to teach is what an MQ-9 is doing there and why losing one is cheap but meaningful: the Reaper is a slow, non-stealthy surveillance platform that provides the persistent overhead picture a maritime interdiction requires, so downing one is not an attrition event — a single airframe is a rounding error against a carrier group — it is an assertion that Iranian air defence can deny persistent surveillance over the strait, which is exactly the capability a blockade depends on. The second mechanism is the escalation ladder and its rungs: unmanned losses have historically been the deliberately deniable step, chosen precisely because no one dies and neither side is forced to respond — so the interesting question is not the shootdown but whether Washington treats it as an attack, which is the threshold Trump's '100 times harder' formula leaves undefined. The reader's stake: every increment here is priced into war-risk insurance on hulls transiting Hormuz and lands at the pump in Karachi and Dhaka, the chain this site has followed from ADNOC tankers to Pakistan's fuel levy. Establish the IRGC's exact statement and its date, whether US Central Command confirms or denies a loss, the previous MQ-9 losses in this theatre and how each was handled, what Iranian air-defence systems are involved (IRGC statements this week also claim uninterrupted domestic air-defence production), and the current disposition of US naval forces. Report Iranian state claims as claims and say plainly that no independent confirmation exists at time of writing.",
-      "conceptUris": []
-    },
-    {
-      "id": "indonesia-china-naval-exercise-east-of-taiwan",
-      "label": "Taiwan Wants to Know Why Indonesia Joined China in a Naval Exercise East of Taiwan",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-indonesia-china-naval-exercise-east-of-taiwan"
-      ],
-      "eventUri": null,
-      "summary": "Indonesian warships exercised with the Chinese navy in the waters east of Taiwan, and Taipei has asked Jakarta to explain. Lead with the map: east of Taiwan is the wrong side. Exercises in the South China Sea are routine and contested; the water east of the island is the approach the US Navy would use to reach Taiwan from Guam, and it sits between Japan's southwestern islands and the Philippines — so the location, not the exercise, is the message, and it is the first time Indonesia has helped send it. The mechanism to teach is what bebas-aktif — Indonesia's founding 'free and active' non-alignment doctrine — actually permits: it has always meant exercising with everyone, and Jakarta has drilled with the US, Australia and China alike, which is precisely why the doctrine gives cover for a step that is not neutral in effect. Non-alignment is a posture that can be spent. The second mechanism is why Indonesia is worth a country's attention rather than a paragraph: it is the world's largest Muslim-majority state, it holds the Malacca, Sunda and Lombok straits, and it has an unresolved dispute with Beijing over the Natuna waters — so a state that China pressures at home is now exercising with China abroad, and the price of that is the question our reader should hold. The reader's stake is the strait arithmetic: whatever alignment Jakarta chooses governs the sea lanes through which most of East Asia's oil, including China's, physically moves. Establish what the exercise involved, which ships and when, what Indonesia's foreign and defence ministries have said, what Taipei asked and through what channel, Japanese and Philippine reaction, and the Natuna dispute's current status. SOURCING NOTE: Indonesia is an OIC member and today's feed carries no Indonesian outlet on this — seek Jakarta Post, Tempo or Antara for Jakarta's own account before publication, and do not let a Taipei-framed question stand as the whole story.",
-      "conceptUris": []
-    },
-    {
-      "id": "lopez-beltran-visa-revocation-discretionary-leverage",
-      "label": "Claudia Sheinbaum slams US for revoking visa of former Mexican president's son",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-lopez-beltran-visa-revocation-discretionary-leverage"
-      ],
-      "eventUri": "spa-4305346",
-      "summary": "Washington cancelled the US visa of Andrés Manuel López Beltrán — son of former president López Obrador, senior Morena figure, and a candidate for congress next year — and Sheinbaum has called it foreign interference. Lead with the timing rather than the family name: a visa revoked from a sitting party official who is preparing to run for office is an intervention in an election, and it costs the revoking state nothing and requires no evidence to be stated. The mechanism to teach is that a US visa is a discretionary instrument with no due process attached: consular revocation is not a charge, generates no public record, admits no appeal, and the government need never say why — which makes it the cheapest available sanction against a foreign politician and the hardest to contest. That asymmetry is the story, and it is why 'we don't comment on individual visa cases' is a policy, not a dodge. The second mechanism is the leverage structure beneath it: Mexico's elite — political, business and media — is bound to the United States by travel, property and children in school there, so the ability to withdraw entry is a standing lever over a class that a tariff cannot reach. Sheinbaum's phrase, reported here as 'coordination, not subordination', is the doctrine being tested. The reader's stake is portable: the same instrument is applied to officials, academics and journalists from Pakistan, Nigeria, Egypt and the Gulf, usually without a president to object on their behalf. Establish what the State Department has and has not said, what López Beltrán says happened and when, Sheinbaum's exact words and forum, the security and trade files currently open between the two governments, and whether other Morena figures have been affected.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mexico",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Claudia_Sheinbaum",
-        "http://en.wikipedia.org/wiki/Travel_visa",
-        "http://en.wikipedia.org/wiki/Andrés_Manuel_López_Obrador",
-        "http://en.wikipedia.org/wiki/Politician",
-        "http://en.wikipedia.org/wiki/Politics",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "pirro-criminal-activism-charging-discretion-farris",
-      "label": "Pirro's 'criminal activism' suspect says she's homeless and being 'stalked' by feds",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-pirro-criminal-activism-charging-discretion-farris"
-      ],
-      "eventUri": "eng-11923199",
-      "summary": "The US Attorney for Washington, Jeanine Pirro, announced two federal felony charges against a person she described as engaged in 'criminal activism' for spray-painting the World War II Memorial. The person is Melissa Farris, 41, homeless, whose own videos show her standing in a fountain asking to be rescued and saying she is being followed. Lead with the gap between the two descriptions, because the gap is the entire finding: the same act is either a political offence or a mental-health emergency, and which one it becomes is decided by a prosecutor's press release before any court sees it. The mechanism to teach is charging discretion as narrative power — a federal prosecutor chooses the statute, the count and the adjective, and 'criminal activism' is not a legal category but a frame that converts an unhoused woman into a movement, because a movement justifies the resources being spent on it. Two felonies for paint is the measurable part; the label is the reportable part. The second mechanism is the substitution our reader should recognise anywhere: when a state has no shelter capacity and no psychiatric capacity, the criminal system becomes the only agency that will respond to a person in crisis, so prosecution stands in for care and is then counted as enforcement success. The dignity principle this site holds says name her, quote her, and give her account the same weight as the prosecutor's. Establish the charges and the statutes by name, what Pirro said and where, Farris's own account and her lawyer's if she has one, whether a competency evaluation has been sought, the sentence exposure, and what comparable memorial-vandalism cases have drawn.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vandalism",
-        "http://en.wikipedia.org/wiki/Jeanine_Pirro",
-        "http://en.wikipedia.org/wiki/World_War_II_Memorial",
-        "http://en.wikipedia.org/wiki/Felony",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/World_War_II",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "jane-street-july-loss-market-maker-liquidity-risk",
-      "label": "Jane Street Took $15 Billion Loss in July as AI Stocks Slumped",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-jane-street-july-loss-market-maker-liquidity-risk"
-      ],
-      "eventUri": "eng-11921334",
-      "summary": "Jane Street lost $15 billion in a single month as the AI-focused hedge fund Situational Awareness slumped and dragged equity prices down with it. Lead with what Jane Street is, because almost no reader knows and the identity is the whole risk: it is not a hedge fund making bets, it is one of the largest market makers on earth — the firm that quotes both sides of the trade in ETFs and options so that everyone else's orders can execute. A market maker taking a $15bn directional loss means the plumbing took a position. The mechanism to teach is that distinction and why it matters: a fund losing money is a story about its investors; a liquidity provider losing money is a story about everyone, because a wounded market maker widens its spreads or steps back, and the depth that made markets look calm disappears exactly when it is needed. That is the transmission from one firm's July to a market-wide event. The second mechanism is circularity, which is the defining feature of this cycle: Jane Street invests in Situational Awareness, which invests in AI, and Jane Street also invests in AI ventures directly — so the same capital appears at multiple points in the chain and the same losses are counted more than once on the way down. That is what a bubble's internal wiring looks like from the inside. The reader's stake: AI capex has been the load-bearing column of global equity returns, and the pension funds, sovereign wealth vehicles and central-bank reserve portfolios of the Gulf, Malaysia and Singapore are long that column. Establish Bloomberg's sourcing and that the firm has not confirmed the figure, Jane Street's scale and role in market structure, Situational Awareness's July move and its holdings, the wider AI-equity drawdown, and what the firm says. Report the number as attributed to a person familiar, not as disclosed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Scott_Bessent",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "world-liberty-occ-conditional-charter-payment-access",
-      "label": "Trump-backed World Liberty wins conditional bank charter from federal regulator",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-world-liberty-occ-conditional-charter-payment-access"
-      ],
-      "eventUri": "eng-11924105",
-      "summary": "The Office of the Comptroller of the Currency has granted a conditional national trust charter to World Liberty Trust Co., the banking arm of the crypto venture in which the sitting president's family holds an interest. Lead with who granted it: the OCC is an executive-branch agency whose comptroller the president appoints, so this is a regulator the president controls chartering a bank the president's family profits from, and the conflict is structural rather than alleged. The mechanism to teach is what a national trust charter actually confers, because the value is not prestige: it lets the holder custody assets and access parts of the federal payment system directly, without renting a relationship from an existing bank — which removes exactly the chokepoint that has kept crypto firms dependent on, and deniable by, the banking sector. This site reported that chokepoint one cycle ago from the other end, when JPMorgan cut Polymarket off; a charter is the escape from being cut off. The second mechanism is 'conditional', the word doing the most work: conditional charters carry supervisory undertakings that are negotiated privately and can be waived by the same agency that imposed them, so the enforceable content is invisible from outside. Ask for the conditions. The reader's stake is precedential: a dollar-stablecoin issuer with direct federal payment access is the private extension of dollar dominance into exactly the markets — Nigeria, Pakistan, Turkey, Argentina — where citizens hold stablecoins because their own currency is failing, which makes their monetary policy someone else's business decision. Establish the OCC letter's date and terms, what World Liberty may and may not do under it, the ownership structure and the family's stake, the OCC's chartering record for comparable firms, ethics-office and congressional reaction, and what the company says.",
-      "conceptUris": []
-    },
-    {
-      "id": "white-house-ballroom-mootness-by-construction",
-      "label": "Trump asks US Supreme Court to allow $400m ballroom project to proceed",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-white-house-ballroom-mootness-by-construction"
-      ],
-      "eventUri": "eng-11922995",
-      "summary": "The administration has asked the Supreme Court to let construction of a 90,000-square-foot, $400m White House ballroom continue while its legality is still being litigated — ten months after the East Wing was demolished to make room for it. Lead with the sequence, not the price: the building that was in the way is already gone, and that is what the courts are now being asked to accommodate. The mechanism to teach is mootness by construction — the doctrine that a court will not rule on a dispute once there is nothing left to remedy — so a party that builds fast enough converts an unresolved legal question into a finished fact, and the interim relief stage becomes the only stage that ever mattered. This is the same lesson as the Android app-store ruling this site covered yesterday from the opposite direction: a remedy that arrives after the conduct is complete is not a remedy. The second mechanism is the money, which is where this belongs as an economy story: the project is financed by private donors rather than appropriated by Congress, which places a nine-figure alteration of federal property outside the appropriations process entirely — so the accountability question is not the taste but who the donors are and what a donation to a president's building buys. The reader's stake is the general principle, not the American particulars: the demolition of public heritage by an executive acting faster than its courts is a pattern our readers will recognise from Istanbul to Jakarta to Cairo, and the legal test is always speed. Establish what the solicitor general has asked for and on what schedule, the DC Circuit's actual holding and its language questioning legality, who is suing and on what statutory basis, the donor structure and what is publicly known about it, and the demolition timeline.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/United_States_Congress",
-        "http://en.wikipedia.org/wiki/Ballroom",
-        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
-        "http://en.wikipedia.org/wiki/Solicitor_General_of_the_United_States",
-        "http://en.wikipedia.org/wiki/United_States_Court_of_Appeals_for_the_District_of_Columbia_Circuit"
-      ]
-    },
-    {
-      "id": "nadra-qr-identity-card-offline-verification-loss",
-      "label": "Nadra launches locally made QR code-based identity cards",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-nadra-qr-identity-card-offline-verification-loss"
-      ],
-      "eventUri": "eng-11923489",
-      "summary": "Pakistan's National Database and Registration Authority has replaced the imported microchip in the national identity card, used for fourteen years, with a printed QR code — manufactured domestically by the National Security Printing Company. Lead with what was removed, because the framing of import substitution hides an architectural reversal: a smartcard chip is an active device that can hold a secret, sign a challenge and prove it is genuine without revealing what it stores, while a QR code is a passive printed string that can be photographed, copied and replayed by anyone who sees the card. The saving is in foreign exchange; the cost is in the security model. The mechanism to teach is exactly that difference — cryptographic authentication versus a pointer to a database — because a QR card can only be verified by querying Nadra's servers, which means every verification becomes an online transaction Nadra sees. That is the second mechanism and the one with consequences: a card that cannot be checked offline moves the trust from the citizen's pocket into a central register, and Nadra's register is already the gate for SIM registration, bank KYC, passports, land records and BISP welfare payments — so a design change quietly converts identity checks into a centrally logged event stream for 120 million people. The reader's stake is regional and immediate: India's Aadhaar took the same architectural path and the litigation over it is still running, and Gulf and North African registries are procuring from the same template. Establish exactly what Nadra announced and when the rollout begins, what the QR encodes and whether it is signed, whether offline verification is possible, what the chip cost in imports, what Nadra says about privacy and logging, and what independent security researchers in Pakistan say. Note that the announcement is Nadra's own and there is no independent security assessment in the public record yet.",
-      "conceptUris": []
-    },
-    {
-      "id": "macos-screen-sharing-port-5900-active-exploitation",
-      "label": "Vulnerability giving attackers full control of Macs is under active exploitation",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-macos-screen-sharing-port-5900-active-exploitation"
-      ],
-      "eventUri": null,
-      "summary": "The Dutch national cyber-security centre has warned that a high-severity macOS flaw allowing remote code execution is being actively exploited on systems exposing port 5900. Lead with the port, because it is the actionable fact and the diagnostic one: 5900 is screen sharing — Apple's remote-desktop service — and the machines being taken over are the ones whose owners turned it on to reach their computer from somewhere else and left it reachable from everywhere else. The mechanism to teach is why a remote-desktop port is the highest-value surface on any machine: it is designed to grant a stranger full interactive control, so an authentication bypass in that service does not need privilege escalation afterwards — it is already the whole computer, camera and keychain included. The second mechanism is who reported it, and it deserves a paragraph: the warning came from a national CERT in the Netherlands acting on notifications from its own constituents, not from the vendor, which is how exploitation is usually detected in practice — a state body aggregating incident reports sees the pattern before anyone with a patch does. Most of the world has no equivalent body, and that absence is why the same campaigns run longer in Pakistan, Nigeria or Egypt than in the Netherlands: nobody is counting. The reader's stake is practical and this article should be usable — say plainly which macOS versions are affected, what patch to install, and how to turn screen sharing off. Establish the CVE and its severity score, Apple's advisory and patch dates, what the NCSC actually observed and how many systems, whether the flaw is in Apple's own service or in a third-party VNC component, and how many hosts are exposed on the public internet.",
-      "conceptUris": []
-    },
-    {
-      "id": "banking-hack-arrests-germany-brazil-instant-payment-rails",
-      "label": "Investigation of banking hack leads to arrests in Germany, Brazil",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-banking-hack-arrests-germany-brazil-instant-payment-rails"
-      ],
-      "eventUri": null,
-      "summary": "Germany's BKA arrested three suspects in Europe and Brazil's federal police four more, in a single co-ordinated action against a banking intrusion. Lead with the geography, because it is what almost never happens: cybercrime cases stall at borders, and an operation that closes simultaneously in Germany and Brazil means two forces shared attribution evidence in near real time and executed together — which is the rare part, not the hack. The mechanism to teach is why simultaneity is the whole craft of these operations: any arrest anywhere alerts everyone else in the group, and digital evidence is destroyed in seconds, so the entire investigation is timed to one moment across jurisdictions with different warrant standards, different data-retention rules and no shared court. Getting seven doors opened at once is a diplomatic achievement wearing a police uniform. The second mechanism is the Brazil connection specifically, which is where the story stops being procedural: Brazil runs Pix, the instant-payment system whose speed has made it the most attacked banking rail in the world, and Brazilian intrusion crews have become the operational specialists in real-time payment fraud — an expertise that exports directly to every country now launching an instant-payment scheme, including Pakistan's Raast, India's UPI, Nigeria's NIP and the Gulf's new rails. Instant settlement removes the reversal window that used to be the last defence. Establish what was breached and when, the losses and which institutions, the charges in each jurisdiction, whether the intrusion touched an instant-payment rail, what BKA and the Polícia Federal each say, and whether Europol or Interpol coordinated. Names are usually withheld at this stage — say so rather than implying more is known.",
-      "conceptUris": []
-    },
-    {
-      "id": "alpine-thermophilization-weak-warming-correlation",
-      "label": "Europe's mountain summits are warming—vegetation is responding in surprisingly different ways",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-alpine-thermophilization-weak-warming-correlation"
-      ],
-      "eventUri": null,
-      "summary": "A team led from the University of Vienna, the Austrian Academy of Sciences and BOKU finds Europe's alpine plant communities have shifted decisively toward warmth-loving species — but that the shift correlates only weakly with how much each summit actually warmed. Lead with the mismatch, because the negative result is the finding and it is the harder one to publish: the vegetation is moving, and the local thermometer does not explain where or how fast. The mechanism to teach is why that decoupling happens, and it is the most useful idea in ecology for a reader who follows climate: temperature sets what can survive, but snow cover, soil depth, water availability and the sheer time a plant takes to arrive and establish set what actually does — so a summit that warmed a lot but stayed dry, or one whose colonists have nowhere to walk from, does not track its own temperature record. Climate change reaches an ecosystem through the slowest link, not the fastest. The second mechanism is the method, which is why this study exists at all: European summits have been resurveyed against botanical records going back more than a century, so the comparison is against real plots counted by real people at known dates — a continuity no other continent's mountains have, and the reason Europe's peaks are the calibration set for everyone else's. The reader's stake is the transfer: the Karakoram, the Atlas, the Zagros and the Ethiopian highlands are where South Asian, Maghrebi and Nile-basin water begins, and if summit vegetation does not follow temperature in the Alps, then temperature-only projections for those ranges are predicting the wrong thing about snow retention and water release. Establish the study in Nature Ecology & Evolution, its authors and the number of summits and years, what thermophilization means and how it is measured, the size of the observed shift, what the authors say explains the weak correlation, and what they explicitly do not claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "cranial-ct-sex-estimation-model-population-transfer",
-      "label": "Deep learning for sex estimation from cranial CT scout images",
-      "firstSeen": "2026-08-14T22:12:21.722Z",
-      "lastCovered": "2026-08-14T22:12:21.722Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-14-cranial-ct-sex-estimation-model-population-transfer"
-      ],
-      "eventUri": null,
-      "summary": "A neural network is trained to estimate biological sex from the low-dose CT scout image — the single flat positioning scan taken before the real scan begins. Lead with the input, because the choice of image is the finding: forensic sex estimation normally requires the pelvis or a measured skull, and a scout is the cheapest, fastest, most universally archived picture in radiology, so a method that works on it is a method that works on records that already exist in every hospital on earth. The mechanism to teach is what the model is and is not doing: it learns statistical shape differences in cranial morphology that overlap heavily between populations and between individuals, so its output is a probability, not a fact, and its accuracy is inherited from the population it was trained on — a model built on one country's scans will drift when applied to another's, which is the standing failure of every forensic anthropology standard from the moment it leaves the collection it was derived from. Ask what the training set was and where those people lived. The second mechanism is why this matters beyond a methods paper, and it is the reason to run it: identification of the dead is the last accountability step in every mass-casualty event, and Gaza, Sudan and Ukraine have made it a mass problem — where remains are fragmentary, records are destroyed and DNA is slow and expensive, an automated estimate from an existing scan changes what is possible, and also creates a route by which a contested identification can be asserted with machine authority. That tension is the article. Establish the reported accuracy and on what test set, the training data's size and provenance, whether external validation across populations was done, the ages included (cranial dimorphism is unreliable before puberty), and what the authors say about forensic deployment. Note this is an unedited early-access manuscript and has not completed editing.",
       "conceptUris": []
     }
   ]
