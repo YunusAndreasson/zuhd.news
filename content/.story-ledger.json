@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "drone-saturation-interceptor-cost-moscow-strike",
+      "label": "Ukraine Launches One of Its Largest Attacks of War",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-drone-saturation-interceptor-cost-moscow-strike"
+      ],
+      "eventUri": "eng-11926687",
+      "summary": "Russia's own defence ministry says it destroyed 822 Ukrainian drones overnight, roughly 600 of them heading for the Moscow region, and a Wildberries e-commerce warehouse in the capital burned. Lead with the number 822, because it is Moscow's number and it concedes the thing Moscow would least like to concede: the scale of what now reaches its own capital. Scope this strictly to the Ukrainian deep-strike direction — this site covered the Kyiv ballistic strike at 04:00 and the Kremenchug refinery claim at 08:00 today, so do not re-report either. The mechanism to teach is the arithmetic that makes this work: a long-range strike drone costs tens of thousands of dollars and is built from commercial components in dispersed workshops, while the interceptors and radars that stop it cost orders of magnitude more and are made in a handful of factories — so saturation is a manufacturing strategy, not a tactic, and a defender that intercepts 822 of them has still paid more than the attacker. The second point is the target class: Wildberries is Russia's largest online retailer, not a weapons plant, so establish plainly what was hit, whether it was a legitimate military-logistics target, and what the casualties were on both sides. RT reports a civilian killed by the drone attack; count Russian and Ukrainian civilian dead with the same care. Sentiment divergence across this cluster is low (0.15) but the framing is not: the Indonesian and Indian carriers pair it with Russian strikes on a Ukrainian steel plant, which is the honest frame — both sides spent the night hitting the other's industry because the front line has not moved.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Missile",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy"
+      ]
+    },
+    {
+      "id": "flores-quake-severed-road-response-geometry",
+      "label": "Thousands evacuate after Indonesia quake kills 53, aftershocks hamper rescue efforts",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-flores-quake-severed-road-response-geometry"
+      ],
+      "eventUri": "eng-11926548",
+      "summary": "A magnitude-7.7 earthquake in eastern Indonesia has killed at least 53, injured more than 130 — many with broken bones — and put around 5,000 people into evacuation, with landslides across the roads rescuers need. Lead with the landslides, not the magnitude, because the blocked road is the mechanism: Sikka regency sits on Flores in East Nusa Tenggara, one of the poorest and most remote provinces in the archipelago, and a disaster response there has to arrive by sea or air into a district whose single coastal road has just been cut. Teach the geometry that makes Indonesia's disaster arithmetic different from anyone else's: the national agency BNPB coordinates from Jakarta, more than 1,800km west, across a country of 17,000 islands, so the binding constraint on survival is not equipment but hours of transit, and the first 72 hours are spent moving. The history belongs here and the reader will not know it: Maumere, the town at the centre of this, was destroyed by a magnitude-7.8 quake and tsunami in December 1992 that killed roughly 2,000 people — so this is the same fault system striking the same town within one lifetime, and the question that follows is what was rebuilt and to what standard. Unreinforced masonry with heavy tile roofing is what kills in Indonesian quakes, and the injury profile reported here — broken bones rather than crush deaths — is worth reading carefully for what it says about how buildings failed. Establish the depth and epicentre, whether a tsunami warning was issued and lifted, the aftershock sequence, and what BNPB has actually deployed. SOURCING NOTE: Indonesia is an OIC member and the feed carries this only via AOL syndicating Reuters — no Indonesian outlet (Jakarta Post, Tempo, Antara) appeared on this event, though Tempo appears elsewhere in the feed on Ukraine. Seek BNPB and BMKG statements directly and attribute the toll to the named Indonesian authority, not to the wire.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Earthquake",
+        "http://en.wikipedia.org/wiki/Sikka_Regency",
+        "http://en.wikipedia.org/wiki/Landslide",
+        "http://en.wikipedia.org/wiki/East_Nusa_Tenggara",
+        "http://en.wikipedia.org/wiki/Aftershock",
+        "http://en.wikipedia.org/wiki/Provinces_of_Indonesia",
+        "http://en.wikipedia.org/wiki/Maumere"
+      ]
+    },
+    {
+      "id": "chehelom-commemoration-succession-signal-iran",
+      "label": "Tehran, Mashhad to host ceremonies honoring martyred Leader",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-chehelom-commemoration-succession-signal-iran"
+      ],
+      "eventUri": null,
+      "summary": "The office of the Leader has announced commemorations in Tehran, Qom and Mashhad for the fortieth day after the funeral of Ayatollah Ali Khamenei. Lead with the fortieth day itself, because the date is the political instrument and most readers will not know why: in Shia practice the arbaʿīn or chehelom marks the end of formal mourning and is the largest single gathering of a mourning cycle, and in Iran it has functioned as a political calendar since 1978, when successive forty-day commemorations of the dead compounded into the revolution that brought this office into being. So the state is convening the same ritual that once dismantled a state, and the turnout will be read — by Iranians and by everyone watching — as a measure of the system's standing. Teach what the office actually is, since the reader needs the institution and not the personality: the velayat-e faqih makes the Leader commander-in-chief and the appointer of the judiciary, the IRGC command and half the Guardian Council, and the Assembly of Experts is the body constitutionally charged with choosing the successor. The reportable questions are therefore who convenes and leads these ceremonies, and in whose name the statement is issued — because in this system the person who presides over the fortieth day is a signal about who now holds or brokers the office. Establish the three cities and their significance (Qom as the seminary, Mashhad as the shrine of Imam Reza and the country's largest pilgrimage city), the exact dates, and what the Assembly of Experts has announced about succession. Iran is an OIC member and Mehr is the regional outlet — but it is also state media reporting on the state's own commemoration, so attribute the announcement as an official statement, report only what the office has said, and do not infer a succession outcome the source does not state.",
+      "conceptUris": []
+    },
+    {
+      "id": "osun-concession-tribunal-path-collation-test",
+      "label": "Atiku, Obi, Kwankwaso, Saraki congratulate Adeleke on Osun re-election",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-osun-concession-tribunal-path-collation-test"
+      ],
+      "eventUri": "eng-11926831",
+      "summary": "Follows this morning's Osun collation piece: Ademola Adeleke has been declared re-elected, and the notable thing is who accepted it — Atiku Abubakar, Peter Obi, Rabiu Kwankwaso and Bukola Saraki have all congratulated him, and Adeleke says President Tinubu telephoned. Consolidate both Premium Times items into one story and lead with the concessions rather than the margin, because in Nigeria concession is the rare event: the normal path after a governorship poll is an election petition tribunal, then the Court of Appeal, and a sitting governor can spend two of four years defending the mandate in court — so a result that opposition leaders and the president of the rival APC accept within a day is a statement that the collation held. That is the mechanism to teach and it connects directly to yesterday's reporting: BVAS accreditation and IReV upload exist to freeze polling-unit figures before they travel up through ward and LGA collation, and the test of whether they worked is precisely whether the losing side sees a reason to litigate. Do not treat the congratulations as proof — establish whether the APC candidate Oyebamiji has actually conceded or signalled a petition, the declared figures and margin, the returning officer who declared, and set them against polling day's 147 arrests and 207 late-opening units. The wider point for the reader: Nigeria's electoral credibility is not decided by the presence of technology but by whether anyone bothers to check it against the collated sheet, and an uncontested off-cycle governorship is the cheapest place to find out. Nigeria is an OIC member and Premium Times is the regional outlet, reporting from the state.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Osun_State",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Ademola_Adeleke",
+        "http://en.wikipedia.org/wiki/Democracy",
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/Peter_Obi",
+        "http://en.wikipedia.org/wiki/Independent_National_Electoral_Commission",
+        "http://en.wikipedia.org/wiki/Bola_Tinubu"
+      ]
+    },
+    {
+      "id": "kp-constable-attrition-local-recruitment-exposure",
+      "label": "Cop martyred in 'terrorist' attack in KP's Bannu: police",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-kp-constable-attrition-local-recruitment-exposure"
+      ],
+      "eventUri": null,
+      "summary": "Constable Saifullah Khan was shot dead by unidentified gunmen in the Sorani area of Bannu on Sunday morning — one man, named, from the neighbourhood he was policing. Lead with the fact that he was a constable and a resident of Surani, because that combination is the whole structure of this violence: Khyber Pakhtunkhwa's police are recruited locally, live at home unprotected, and are killed at home, which is why the casualty burden of Pakistan's militancy falls on the lowest-paid tier of the state rather than on the army that is nominally fighting it. Teach the division of labour that produces this: the military conducts operations and withdraws to cantonments, while the police hold checkpoints, guard polio teams and register cases permanently and visibly, so they are the softest target and the most consequential one — killing constables is how an insurgency evacuates the state from a district without ever fighting it. The second mechanism is attrition arithmetic: KP police have lost hundreds of personnel a year since the TTP's post-2022 resurgence, recruitment into the force in the southern districts becomes harder with each funeral, and a constable's compensation package is the only thing the state offers against that calculation — establish what it is and whether it is paid. Bannu specifically is the epicentre and should be placed for the reader: it borders North Waziristan, hosts displaced populations from a decade of operations, and its police lines have themselves been stormed. Establish the police statement, the year's toll for KP police, whether any group claimed the attack, and what the provincial government has said. Pakistan is an OIC member and Dawn is the regional outlet. Note the feed miscategorised this as economy; it is a security and governance story.",
+      "conceptUris": []
+    },
+    {
+      "id": "hormuz-rhetoric-war-risk-premium-transmission",
+      "label": "Trump must be worried for his security: Senior Iranian MP",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-hormuz-rhetoric-war-risk-premium-transmission"
+      ],
+      "eventUri": "eng-11926558",
+      "summary": "Ebrahim Azizi, who chairs Iran's parliamentary National Security Commission, has told Trump to worry about his own security rather than issue 'endless threats' about the Strait of Hormuz. Write this as an economy story about how threats are priced, not as a quote exchange, and pair it with this morning's Hormuz transit-passage piece — the legal claim and the rhetoric are the same policy stated twice. Lead with the mechanism the reader will not have seen named: nothing has to happen in Hormuz for Hormuz to cost money. Roughly a fifth of the world's seaborne oil and a comparable share of LNG passes a channel whose shipping lanes are two miles wide, and the instruments that respond first are not tankers but underwriters — war-risk premiums on Gulf calls are quoted per voyage as a percentage of hull value, and they move on statements. So a commission chairman's social-media post is a transaction cost, paid by importers in India, China, Japan and Korea long before any vessel is touched, and it is the cheapest coercive instrument either government has. The second point is the coverage number itself: this cluster carries an eventCoverage of just 16, and outside Mehr the only outlet carrying it is Breitbart — a story about the world's most important oil chokepoint is being transmitted to English readers almost entirely through Iranian state media and one American partisan site, which is a fact worth stating plainly about how this conflict reaches its audience. Establish Azizi's exact words and the Trump statements he is answering, the current war-risk premium and tanker rates for Gulf transits, and daily Hormuz throughput. Iran is an OIC member and Mehr is the regional outlet; attribute the Iranian claim as an official Iranian statement and do not launder the threat framing as analysis.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Islamic_Consultative_Assembly",
+        "http://en.wikipedia.org/wiki/Ebrahim_Azizi",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Foreign_Policy"
+      ]
+    },
+    {
+      "id": "technology-transfer-condition-import-substitution-limits",
+      "label": "Western business may return to Russia only via pragmatic partnerships -- presidential aide",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-technology-transfer-condition-import-substitution-limits"
+      ],
+      "eventUri": null,
+      "summary": "Anton Kobyakov, a presidential aide and executive secretary of the Eastern Economic Forum organising committee, says Western firms may only return to Russia through 'pragmatic partnerships' involving transfer of technologies the country needs — adding that no country wants to voluntarily build an autarky. Lead with that last clause, because it is an admission and should be read as one: four years of official insistence that import substitution was working has just been summarised by a Kremlin aide as nobody wants autarky. Teach what a technology-transfer condition actually is, since it is one of the oldest instruments in development economics: a state with a market and without a capability charges admission in know-how rather than in tariffs — China's joint-venture requirement for automakers is the canonical case, and it worked. The reason to doubt it here is the asymmetry Russia cannot fix by decree: the firms that left took the maintenance contracts, the software licences and the spare-parts chains with them, and the sectors where substitution failed hardest — civil aviation, machine tools, semiconductor lithography, oilfield services — are precisely the ones where the technology is embodied in people and support relationships rather than in a machine you can buy once. So the offer is being made from weakness, and the price of re-entry is a claim about leverage the seller may not have. The second thread is the venue: the Eastern Economic Forum is Russia's Vladivostok-facing investment event, built to court Asian capital, so a statement about Western return delivered through that channel is aimed at least as much at Beijing and Delhi as at Berlin. SOURCING: TASS is Russian state media and this is a Russian official's framing with no corroboration in the feed — attribute every assertion to Kobyakov via TASS, seek no-comment or comment from any named Western firm, and anchor the piece in checkable numbers: how many Western companies exited after 2022, how many have returned, and Russia's FDI and machine-tool import figures.",
+      "conceptUris": []
+    },
+    {
+      "id": "broad-peak-high-altitude-labour-insurance-floor",
+      "label": "Gilgit-Baltistan bids farewell to Sohail Sakhi as mountaineer laid to rest in hometown",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-broad-peak-high-altitude-labour-insurance-floor"
+      ],
+      "eventUri": null,
+      "summary": "Sohail Sakhi, one of ten people lost when an avalanche hit a Broad Peak expedition on 30 July, was buried in Aliabad in Hunza on Sunday, seventeen days after the mountain took him. Lead with those seventeen days, because the interval is the economics: a body recovered from above 7,000 metres requires a helicopter, a weather window and someone to pay for both, and who pays is the question this story exists to ask. Write it as the economy story it is — Gilgit-Baltistan sells the highest-risk labour in the tourism industry. Teach the structure plainly: five of the world's fourteen eight-thousanders stand in Pakistan, foreign clients pay tens of thousands of dollars for a guided attempt, and the fixing of ropes, the load-carrying through icefalls and the setting of high camps is done by Hunza and Shimshal men on a seasonal wage — so the risk is transferred downward at the same time as the summit photograph is transferred upward. The mechanism that makes it worse than an ordinary dangerous job is the absence of an insurance floor: Nepal at least mandates a minimum life-insurance sum for Sherpa staff, and readers should be told what Pakistan requires of expedition operators, whether Sakhi and his colleagues were covered, and by whom. Establish who the ten were and how many are still unrecovered, what the Alpine Club of Pakistan and the GB government have said, what the recovery cost and who bore it, and what high-altitude workers earn per season against what a client pays. The wider point: Gilgit-Baltistan is one of the poorest regions of Pakistan with no provincial representation, and a mountaineering economy is one of the few things it has to sell. Pakistan is an OIC member and Dawn is the regional outlet, reporting from the funeral.",
+      "conceptUris": []
+    },
+    {
+      "id": "wildfire-pm25-unregulable-source-prenatal-exposure",
+      "label": "Wildfire smoke now bigger prenatal threat than human sources of air pollution",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-wildfire-pm25-unregulable-source-prenatal-exposure"
+      ],
+      "eventUri": "eng-11926906",
+      "summary": "Wildfire smoke has overtaken industrial and vehicle emissions as the dominant source of fine-particle exposure for pregnant women in the United States. Lead with the reversal, because it retires an assumption half a century old: the Clean Air Act of 1970 is the most successful environmental statute ever written, and the finding here is that the pollution it was built to regulate has fallen below the pollution it cannot touch. Teach why that gap exists in law and not in chemistry — a statute reaches emitters it can license, inspect and fine, and a burning forest has no permit, no operator and no address, so the regulatory instrument simply does not apply to the largest remaining source. The exposure matters specifically in pregnancy: PM2.5 is small enough to cross from lung to bloodstream, and prenatal exposure is associated with low birth weight and preterm birth — a harm delivered to someone who will not be born for months and will carry it for life, which is the cleanest illustration available of why 'the environment' is a health story and not an aesthetic one. Establish the study, its authors and institution, the exposure window and the size of the effect, and what it does and does not demonstrate about causation. The point that makes this global rather than American, and the one to close on: the same mechanism governs Indonesian peat fires that blanket Sumatra, Malaysia and Singapore each dry season, Amazonian clearing smoke, and Sahel burning — jurisdictions with far weaker baseline air regulation are absorbing the same substitution, and almost none of them measure it. Ars Technica is a reader-aligned source; keep the arithmetic honest and do not let the framing suggest the Clean Air Act failed — it worked, and the world changed underneath it.",
+      "conceptUris": []
+    },
+    {
+      "id": "fmd-serotype-baseline-sudan-livestock-export",
+      "label": "Molecular epidemiology of foot-and-mouth disease viruses collected from Khartoum, Blue Nile, and Northern States of Sudan (2019-2022)",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-fmd-serotype-baseline-sudan-livestock-export"
+      ],
+      "eventUri": null,
+      "summary": "Sudanese and collaborating researchers sequenced foot-and-mouth disease virus from cattle in Khartoum, Blue Nile and Northern states over 2019-2022, and identified which serotypes are actually circulating. Lead with what a serotype is and why it decides everything, because that single fact carries the story: FMD vaccine confers almost no cross-protection between serotypes, so vaccinating a herd against the wrong one is an expenditure with no effect, and a country that does not know its circulating serotypes is buying immunity it does not get. Teach the stake, which is economic before it is veterinary: livestock is Sudan's largest non-oil export, sheep and cattle move by the million to Saudi Arabia and Egypt, and an importing state's response to an FMD outbreak is a border closure — so serotype surveillance is what stands between a pastoralist economy and an export ban, and the herders who bear that loss in Kordofan and the Blue Nile are among the poorest people in the country. The detail that makes this urgent rather than academic: the sampling window closes in 2022, months before the April 2023 war between the army and the RSF collapsed Sudan's veterinary services, emptied Khartoum and put Blue Nile and Kordofan beyond any laboratory's reach — so this dataset is very likely the last systematic baseline anyone holds for a national herd that has since been looted, displaced and driven across borders unvaccinated. Say that plainly. Establish the serotypes and lineages found, whether they match the vaccine strains in regional use, the institutions involved, and note this is an unedited accepted manuscript. Sudan is an OIC member; no Sudanese outlet covered this and the research itself is the regional voice — seek Radio Dabanga or FAO reporting on the current state of livestock vaccination.",
+      "conceptUris": []
+    },
+    {
+      "id": "label-free-resonator-shift-reagent-free-diagnostics",
+      "label": "Microwave metamaterial sensor for label-free dielectric characterization of biological equivalent media",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-label-free-resonator-shift-reagent-free-diagnostics"
+      ],
+      "eventUri": null,
+      "summary": "A microwave metamaterial resonator that identifies biological media by their dielectric properties, with no chemical label and no reagent. Lead with the two words 'label-free', because they carry the consequence: almost every diagnostic test in use requires a consumable — an antibody, an enzyme, a dye — that must be manufactured, shipped, refrigerated and paid for per test, and in most of the world the binding constraint on diagnosis is not the instrument but that cold chain and that recurring cost. A sensor that reads a sample electrically has a marginal cost per test of approximately zero. Teach the physics simply, because it is elegant and a technically literate reader will enjoy it: every material has a dielectric constant describing how it responds to an electric field, water and tissue and blood each have their own, and a resonator is a structure that rings at a specific frequency — put a sample near it and the frequency shifts by an amount that depends on the sample's dielectric constant, so the measurement is just 'how far did the ring move'. The metamaterial part is engineered sub-wavelength structure that concentrates the field into a very small volume, which is what makes a microwave-scale device sensitive to a droplet. Then state the limit the title itself concedes and the article must not bury: this was tested on 'biological equivalent media' — engineered phantoms formulated to mimic tissue, not tissue, and certainly not a patient — so the honest distance to a clinic is long, and the failure mode of every such sensor is specificity, since many different things shift a resonance and the device cannot tell you which one did. Establish the authors and institution, the frequency band, the sensitivity claimed, what phantoms were used, and note this is an unedited accepted manuscript.",
+      "conceptUris": []
+    },
+    {
+      "id": "variable-reward-design-simulated-consumption-korea",
+      "label": "The online shopping trend where you buy nothing",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-16-variable-reward-design-simulated-consumption-korea"
+      ],
+      "eventUri": null,
+      "summary": "On South Korean 'dopamine sites', users browse, curate carts and track deliveries that will never arrive, and the pleasure is in the ritual rather than the purchase. Lead with the inversion, because it exposes something the reader half-knows and has never seen stated: an e-commerce platform is not a shop with software attached, it is an engagement product whose checkout is optional — and here users have stripped away the transaction and kept the part that was actually engineered to be addictive. The mechanism to teach is variable-reward design applied to commerce: infinite scroll, the wishlist, the countdown timer, the flash-sale banner and above all the parcel-tracking screen are interfaces built to produce anticipation, and anticipation is the reward — so the delivery was never the payoff, it was the interruption of one. That is why a user can get the full experience for zero won, and why the pattern is genuinely new. The second thread is the economics underneath, and Rest of World is the right outlet for it: South Korea has among the highest household-debt-to-GDP ratios in the world, a brutal youth job market and a cost-of-living squeeze, so simulated consumption is what aspiration looks like when actual consumption is unaffordable — the ritual is a substitute, not a hobby. Establish which platforms and communities this happens on, how users describe it in their own words, whether the platforms tolerate or encourage it, and what it does to conversion metrics. The point that carries beyond Korea: every reader here uses these interfaces daily, and the finding is that their pull is separable from anything you actually want to own. Do not write it as a quirky-Asia trend piece — it is a design story with a debt story under it.",
+      "conceptUris": []
+    },
+    {
+      "id": "qwen-3-8-27b",
+      "label": "Qwen 3.8 27B",
+      "firstSeen": "2026-08-16T12:10:28.542Z",
+      "lastCovered": "2026-08-16T12:10:28.542Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-14-qwen-3-8-27b"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] 1391 points, 779 comments on Hacker News",
+      "conceptUris": []
+    },
+    {
       "id": "romania-airspace-intercept-article-4-cost-asymmetry",
       "label": "Russian strikes kill Ukrainian woman as NATO jet downs drone over Romania",
       "firstSeen": "2026-08-16T08:12:33.163Z",
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-romania-airspace-intercept-article-4-cost-asymmetry"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-herat-arrests-unwritten-rules-self-restriction"
@@ -49,7 +293,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-kebbi-judge-ransom-targeting-camp-impunity"
@@ -65,7 +309,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-gaza-oncology-collapse-permit-cold-chain-mortality"
@@ -81,7 +325,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-birbhum-mla-death-district-machine-ticket-distribution"
@@ -106,7 +350,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-m3-coach-crash-night-service-drivers-hours"
@@ -131,7 +375,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-kremenchug-refinery-strike-import-margin-fuel-cover"
@@ -147,7 +391,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-artemisinin-mitochondrial-targeting-pancreatic-repurposing"
@@ -163,7 +407,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-single-cell-ageing-programme-cell-society-remodelling"
@@ -179,7 +423,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-security-awareness-survey-user-blame-system-design"
@@ -195,7 +439,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-16-knowledge-tracing-behavioural-inputs-mastery-estimates"
@@ -211,7 +455,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-14-ai-needs-public-feedback-at-scale-before-it-s-too-late"
@@ -227,7 +471,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-kyiv-ballistic-strike-interceptor-inventory"
@@ -251,7 +495,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-osun-collation-irev-transmission-integrity"
@@ -267,7 +511,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-swabi-tobacco-monopsony-notified-price-floor"
@@ -283,7 +527,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-index-inclusion-passive-flows-price-discovery"
@@ -307,7 +551,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-ukraine-aid-procurement-audit-nabu-independence"
@@ -323,7 +567,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-phage-search-problem-amr-antibiotic-pipeline"
@@ -339,7 +583,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-radar-palaeochannel-mapping-fossil-aquifer-depletion"
@@ -355,7 +599,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-grid-anomaly-benchmark-base-rate-vendor-claims"
@@ -371,7 +615,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-acoustic-link-terrain-underwater-autonomy-limits"
@@ -387,7 +631,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-16-spacex-blue-origin-fixed-price-procurement-orbit-access"
@@ -403,7 +647,7 @@
       "lastCovered": "2026-08-16T04:13:04.076Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-15-5-gunned-down-in-michigan-suspect-found-dead"
@@ -419,7 +663,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iran-qatar-pilots-icrc-pow-notification"
@@ -444,7 +688,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-khula-decree-interval-femicide-precedent"
@@ -460,7 +704,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-sandf-deployment-gang-homicide-presence-policing"
@@ -476,7 +720,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-akp-fara-filing-washington-influence-register"
@@ -492,7 +736,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-russia-mining-ban-interruptible-load-grid"
@@ -508,7 +752,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-black-sea-hull-count-war-risk-premium-grain"
@@ -524,7 +768,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-high-fens-peat-fire-mutual-aid-capacity"
@@ -549,7 +793,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-negative-acoustic-radiation-force-scattering"
@@ -565,7 +809,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-spinel-site-occupancy-hydrogen-storage-electrode"
@@ -581,7 +825,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-animal-health-emissions-intensity-denominator"
@@ -597,7 +841,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-ai-datacentre-consent-indigenous-water-land"
@@ -613,7 +857,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-r66-contractor-pilot-pipeline-flight-hour-cost"
@@ -629,7 +873,7 @@
       "lastCovered": "2026-08-15T22:09:18.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-15-model-drift-unversioned-api-eval-baseline"
@@ -645,7 +889,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-yasukuni-offering-minister-visit-deniability"
@@ -670,7 +914,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-turkey-reexport-congressional-record-arms-consent"
@@ -695,7 +939,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-wadi-al-mollak-labour-transport-accident-classification"
@@ -711,7 +955,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-upper-dir-girls-schools-closure-attrition"
@@ -727,7 +971,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-jakarta-communique-one-china-legal-accretion"
@@ -743,7 +987,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-kp-at-source-deduction-divisible-pool"
@@ -759,7 +1003,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-crypto-licence-moat-11-2-billion"
@@ -775,7 +1019,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iraq-wellness-tourism-oil-revenue-concentration"
@@ -791,7 +1035,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mitochondrial-transfer-myeloid-delivery-route"
@@ -807,7 +1051,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dark-photon-plasma-screening-reopened-limits"
@@ -823,7 +1067,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-manifest-v3-ublock-origin-last-browser"
@@ -839,7 +1083,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-15-qwen-open-weights-fp8-sovereign-inference"
@@ -855,7 +1099,7 @@
       "lastCovered": "2026-08-15T17:12:09.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-14-why-we-need-real-privacy-laws-in-our-region"
@@ -871,7 +1115,7 @@
       "lastCovered": "2026-08-16T08:12:33.163Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-08-15-hormuz-territorial-claim-transit-passage-unclos",
@@ -888,7 +1132,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-modi-intellectual-naxal-category-uapa"
@@ -913,7 +1157,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-osun-poll-day-147-arrests-inec-metrics"
@@ -938,7 +1182,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-samara-progress-plant-dual-use-strike"
@@ -963,7 +1207,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-iran-tajikistan-fuel-supply-sanctions-routing"
@@ -979,7 +1223,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-india-windfall-levy-nil-crack-spread"
@@ -1004,7 +1248,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-mercury-skin-lightening-creams-enforcement-gap"
@@ -1020,7 +1264,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-hibernation-synapse-loss-memory-survives"
@@ -1036,7 +1280,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-dibang-flash-flood-warning-time-siting"
@@ -1061,7 +1305,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-secondhand-books-ai-training-corpus-scarcity"
@@ -1077,7 +1321,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-quasiperiodic-pcsel-tunable-laser"
@@ -1093,7 +1337,7 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-14-pics-how-independence-day-was-celebrated-across-india"
@@ -1118,216 +1362,13 @@
       "lastCovered": "2026-08-15T12:12:39.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-15-biggest-mistake-in-history-instagram-changes-its-wordmark-af"
       ],
       "eventUri": "eng-11920123",
       "summary": "[Auto-backfill for tech floor] Image credit : X | Instagram Gets A Wordmark Glow-Up After 10 Years, But Internet Says 'What Happened?'\n\nInstagram has officially changed something most of us probably never thought about changing: the way its name looks at the top of the app.\n\nAfter keeping its wordmark largely unchanged for around",
-      "conceptUris": []
-    },
-    {
-      "id": "ansar-nabatieh-strike-truce-violation-count",
-      "label": "7 killed in Israeli attack on southern Lebanon",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-ansar-nabatieh-strike-truce-violation-count"
-      ],
-      "eventUri": "eng-11924975",
-      "summary": "An Israeli strike on a house on the outskirts of Ansar, in Lebanon's Nabatieh district, killed seven and wounded three overnight, with attacks intensifying across several southern towns. Lead with the house and the seven dead, named where the NNA names them — this site covered the same truce yesterday through burned Quneitra farmland, and the escalation from crops to a dwelling in one day is the development. The mechanism to teach is what a ceasefire is when nobody counts: the Lebanon truce has no penalty schedule and no publishing monitor, so violations accumulate as a permission structure rather than a breach, and the question to put to UNIFIL is not whether it condemns but whether it logs. The second mechanism is the target class — a house is not a launch site, and the burden of stating what was struck and why sits with the striking party. Establish NNA's account and casualty figures, the towns hit overnight, whether the Israeli military has commented, whether UNIFIL has logged the strikes, and the cumulative violation count since the truce took effect. Lebanon is an OIC member and Al Jazeera is the regional outlet here; Mehr is Iranian state media reporting at second hand, so attribute each claim to its originating outlet.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Southern_Lebanon",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Al_Ansar_FC",
-        "http://en.wikipedia.org/wiki/Airstrike",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Nabatieh"
-      ]
-    },
-    {
-      "id": "korean-armistice-peace-treaty-who-signs",
-      "label": "South Korea's Lee urges talks with North Korea about finally ending Korean war",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-korean-armistice-peace-treaty-who-signs"
-      ],
-      "eventUri": "rus-2109877",
-      "summary": "President Lee Jae Myung called for talks with Pyongyang to replace the 1953 armistice with a peace treaty, while saying Seoul would still seek safeguards against North Korea's nuclear capabilities. Lead with the armistice itself, because the fact is stranger than the proposal: the Korean War has never ended, and for 73 years the world's eleventh-largest economy has operated under a ceasefire signed by commanders rather than a peace made by states — which is why 28,000 US troops, wartime operational control and the entire Northeast Asian security architecture rest on a document that was meant to last weeks. The mechanism to teach is why an armistice is so hard to convert: a peace treaty requires agreeing who the parties are, and the two Koreas, the United States and China have never agreed on that, so the legal question of who signs is the same question as who is sovereign on the peninsula. The second mechanism is the condition Lee attached and why it has failed before: coupling a peace treaty to denuclearisation makes the treaty the reward for disarmament, and Pyongyang's stated position is that its arsenal exists precisely because there is no treaty — a circularity that has defeated every round since 1994. Note the sentiment spread across the cluster: SCMP and the Times of India read the same speech negatively while Straits Times and the Guardian read it positively, which is itself a map of who benefits from a Korean peace. The reader's stake is the precedent for every frozen conflict they follow — Kashmir, Cyprus, Western Sahara, and now Ukraine, where an armistice is being proposed as an endpoint. Establish Lee's exact proposal and forum, Pyongyang's response if any, what the 1953 armistice provides and who signed it, previous peace-declaration attempts and why each failed, and Washington's and Beijing's positions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/North_Korea",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Pyongyang",
-        "http://en.wikipedia.org/wiki/Seoul",
-        "http://en.wikipedia.org/wiki/Korean_War",
-        "http://en.wikipedia.org/wiki/Armistice",
-        "http://en.wikipedia.org/wiki/Kim_Jong-un",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin"
-      ]
-    },
-    {
-      "id": "katsina-zamfara-peacebuilding-grant-cycle-cliff",
-      "label": "IOM says scarce funds threaten North-west peacebuilding",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-katsina-zamfara-peacebuilding-grant-cycle-cliff"
-      ],
-      "eventUri": "eng-11924394",
-      "summary": "An EU-funded IOM peacebuilding project in Katsina and Zamfara has completed about 87 per cent of its planned activities, and the agency warns the gains may not survive the end of the 18-month intervention because the follow-on funding is not there. Lead with the two numbers together — 87 per cent and 18 months — because their combination is the mechanism: farmer–herder conflict in Nigeria's north-west is a dispute over water, grazing corridors and land that has been running for decades, and it is being addressed on a project cycle set by a donor's budget year. The mechanism to teach is the grant cycle as a governance instrument: an 18-month intervention cannot outlast a generational conflict, so what it actually produces is a set of local structures — mediation committees, water points, early-warning networks — that exist only while the money does, and the collapse is scheduled from the day the contract is signed. Ask what happens to a mediation committee whose stipends stop. The second mechanism is who is missing: this is a Nigerian security problem financed by the European Union and implemented by a UN agency, which is worth stating plainly rather than as criticism — the federal and state budgets' contribution is the number that tells you whether anything here is sustainable, and it is the number nobody publishes. The reader's stake is that Katsina and Zamfara are the epicentre of the mass school abductions and rural banditry that have displaced hundreds of thousands, and this is the well-funded part. Nigeria is an OIC member and Premium Times is the regional outlet. Establish the project's name, budget and dates, what the 87 per cent consists of, what IOM says is at risk, displacement and casualty figures for the two states, and what the Katsina and Zamfara governments and the federal government have committed.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-exam-leak-protests-credential-queue",
-      "label": "Modi promises free exam coaching after India's 'cockroach' protests",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-india-exam-leak-protests-credential-queue"
-      ],
-      "eventUri": "eng-11924749",
-      "summary": "Weeks after Gen Z protesters took to the streets over leaked competitive exam papers and the absence of jobs, Modi answered with free coaching and AI training — and did not mention the protests. Build the article on the protests, not the speech: this site covered the Red Fort address one cycle ago through its fabs-and-nuclear arithmetic, and the story left uncovered is the one the crowd brought. Lead with why an exam paper leak produces a street movement in India when it would produce a lawsuit elsewhere: for tens of millions of young Indians the public examination is the only lottery ticket to a salaried job, families spend years of income on coaching for it, and a leak means someone bought the ticket that others studied for — so the leak is not a cheating scandal, it is the visible proof that the meritocratic promise is priced. The mechanism to teach is credentialism as an economy: the coaching industry, worth billions, exists because the state cannot supply the jobs the credential is supposed to unlock, and offering free coaching adds supply to a queue rather than shortening it. The arithmetic to run is the one the announcement avoids — the number of aspirants against the number of posts. The second mechanism is the substitution of training for demand: 'AI training for the youth' is the same instrument every government from Cairo to Jakarta to Riyadh now reaches for, and it converts an employment failure into an individual skills deficit. The reader's stake is direct and regional: Pakistan, Bangladesh, Egypt and Indonesia run the same exam-and-coaching machinery under the same demographic pressure. Establish what was announced and what it is funded at, what the exam leaks actually involved and which examinations, why the protests were called the 'cockroach' protests, current youth unemployment and applicant-to-post ratios, and what the government has done about exam integrity itself.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Independence_Day_(United_States)",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/Red_Fort",
-        "http://en.wikipedia.org/wiki/Middle_class",
-        "http://en.wikipedia.org/wiki/New_Delhi"
-      ]
-    },
-    {
-      "id": "peshawar-mashhad-route-sanctions-pilgrimage",
-      "label": "Kundi, Iranian envoy discuss Peshawar-Mashhad direct flights",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-peshawar-mashhad-route-sanctions-pilgrimage"
-      ],
-      "eventUri": null,
-      "summary": "Khyber Pakhtunkhwa's governor and Iran's consul general in Peshawar discussed opening a direct Peshawar–Mashhad air link and expanding bilateral trade. Lead with the timing, because a small item becomes a significant one when you place it on the calendar: Pakistan is negotiating new air and trade links with Iran in the sixth month of a war in which the United States is striking Iranian ports and power plants and threatening to declare the Strait of Hormuz its own territory. A route is a position. The mechanism to teach is secondary sanctions and how they actually bite: a direct route requires aviation insurance, fuel uplift, overflight and payment settlement, each of which touches an institution exposed to US enforcement, so the question is not whether Islamabad wants the route but whether any bank or underwriter will service it — which is how sanctions govern the conduct of states that never agreed to them. The second mechanism is what the route is for and why Peshawar to Mashhad specifically: Mashhad is the site of the Imam Reza shrine and one of the largest pilgrimage destinations in the Muslim world, so this is religious traffic, and pilgrimage is the category of movement that survives politics longest — which is precisely why it becomes the pressure point. The third thread is the frontier beneath it: Pakistan and Iran share a 900km border through Balochistan that both states struggle to police, and formal connectivity is the alternative to the informal economy already running across it. The reader's stake is a neighbour's choice made under duress. Pakistan and Iran are both OIC members and Dawn is the regional outlet. Establish what was actually agreed versus discussed, existing Pakistan–Iran air and trade links and their current volumes, the sanctions exposure of PIA and Pakistani banks, annual pilgrim numbers to Mashhad, and what Islamabad's foreign office says.",
-      "conceptUris": []
-    },
-    {
-      "id": "incretin-discontinuation-metabolic-defence-cost",
-      "label": "What next? Sustaining anti-obesity pharmacotherapy success through metabolic maintenance",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-incretin-discontinuation-metabolic-defence-cost"
-      ],
-      "eventUri": null,
-      "summary": "A review in the International Journal of Obesity asks the question the incretin drugs have not answered: what happens after. Lead with the structural fact that makes it urgent — these are not a course of treatment but a subscription, because stopping the drug reverses most of the weight loss, so the clinical question and the economic question are the same question. The mechanism to teach is why the body defends its weight: fat loss lowers leptin and raises ghrelin, resting energy expenditure falls below what body size predicts, and appetite rises — an adaptive response evolved against famine that treats a therapeutic weight loss as a threat. Incretin drugs work by overriding that signal from outside, which is exactly why removing them restores it. That is the whole of 'metabolic maintenance' and it is the most useful physiological idea a reader can carry about their own body. The second mechanism is the one with global consequences: a drug that must be taken for life prices its own eligibility, and the countries with the fastest-rising obesity and type 2 diabetes burdens — the Gulf states, Egypt, Malaysia, Pakistan, Mexico — are precisely those where an indefinite monthly cost cannot be borne by a health system, so a genuine medical advance becomes a mechanism for stratifying who stays well. Ask what the second-generation agents cost and whether any generic pathway exists. The reader's stake is that this is the largest pharmaceutical expansion of the decade and its exit strategy is unwritten. Establish who the authors are and their disclosed industry ties, what the evidence on discontinuation and weight regain actually shows and over what follow-up, what maintenance strategies the review proposes and how strong the evidence for each is, what the cardiorenal benefits are and whether they persist after stopping, and what the review explicitly does not claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "rhine-low-water-draught-salt-intrusion",
-      "label": "Faced with historic drought, the Dutch rethink water management",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-rhine-low-water-draught-salt-intrusion"
-      ],
-      "eventUri": null,
-      "summary": "On the Waal at Nijmegen, swimmers are sunbathing on a beach that did not exist a few months ago, because the Rhine's Dutch branch has dropped far enough to expose it. Lead with that beach, because it is the image that carries the reversal: the country that spent a thousand years engineering water out is now engineering to keep water in, and every canal, polder and pumping station in the Netherlands was built for the opposite problem. The mechanism to teach is why a drought upstream becomes an economic event downstream: the Rhine is a working freight corridor, barge loading is set by draught, and a river that falls by a metre does not stop shipping — it halves each barge's cargo, which raises the delivered cost of coal, chemicals and grain across the German and Dutch industrial belt without a single vessel being cancelled. Low water is a tax, not a blockade. The second mechanism is saltwater intrusion, the part that decides whether people can drink: when river discharge falls, the sea pushes further up the delta, and freshwater intakes for drinking water and irrigation have to close — which is the same physics now threatening the Nile delta, the Mekong, the Indus at Kotri and the Shatt al-Arab in Basra, where it has already made tap water undrinkable. The Dutch are simply the best-instrumented case. The reader's stake is that delta engineering knowledge is an export, and every Muslim-majority delta on that list is buying it. Establish how low the Rhine and Waal actually are against their records, what specific measures the Dutch are adopting and what they cost, the shipping and agricultural losses so far, how salt intrusion is being measured and managed, and what hydrologists say about whether this is now the normal summer.",
-      "conceptUris": []
-    },
-    {
-      "id": "emals-steam-reversal-technical-lock-in",
-      "label": "Bringing Back Steam Catapults On Carriers Is A Huge Risk",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-emals-steam-reversal-technical-lock-in"
-      ],
-      "eventUri": null,
-      "summary": "Trump has long objected to the electromagnetic catapults and elevators on the Ford-class carriers, and The War Zone lays out what reversing to steam would actually cost a force already under strain. Lead with the engineering fact that makes the reversal near-impossible rather than merely expensive: EMALS is not a component bolted into a ship, it is an electrical architecture — the Ford class generates several times the power of its predecessors specifically to run it, and the hull, distribution and machinery spaces were designed around that choice. Undoing it is not swapping a part, it is redesigning the ship. The mechanism to teach is technical lock-in, and it is the most portable idea here: every large system accumulates dependencies that make a decision irreversible long before anyone notices it was final, which is why the moment to argue about an architecture is at specification and never afterwards — a lesson that applies equally to a national identity register, a payment rail or a power grid. The second mechanism is procurement by preference: a head of state's stated dislike of a technology becoming a programme decision is a governance failure independent of whether steam or electromagnetic is better, and the test is whether an engineering case exists on the record — EMALS has a documented and genuinely poor reliability history, which is what makes this arguable rather than absurd, and the honest article gives both the failure rates and the reversal cost. The reader's stake is comparative rather than American: the same argument is live in every navy now buying carriers, including India's, China's and Turkey's, and the industrial dependency it creates is the reason it matters who supplies the catapult. Establish what has actually been ordered or proposed and by whom, EMALS's measured reliability against its requirement, the cost and schedule estimates for any reversal, the ships affected and where they are in build, and what the Navy says on the record.",
-      "conceptUris": []
-    },
-    {
-      "id": "avio-fd1-sardinia-filings-launch-sovereignty",
-      "label": "Avio Filings Shed Light on FD1 Rocket Demonstrator Test Flight",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-avio-fd1-sardinia-filings-launch-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "Environmental documents filed in Sardinia — not a press release — revealed the details of Avio's FD1 suborbital demonstrator: a 6.3-tonne single-stage vehicle, a temporary launch pad at the Salto di Quirra range, and a €181.6 million Italian government contract. Lead with where the information came from, because the sourcing is a lesson in itself: the specifications a company would not publish were filed with a planning authority because the law required it, which is how public-record reporting works and why an environmental filing regime is an accountability instrument long before it is an environmental one. Name the document. The mechanism to teach is what FD1 is for and why a single-stage demonstrator matters: this is a reusability test article, the propulsive-landing problem is one of controlled descent and relight rather than of raw thrust, and the reason Europe is building one now is that reusable launch has cut the price of orbit by roughly an order of magnitude and a continent without it buys access from a competitor. The second mechanism is sovereignty by launch site: Salto di Quirra is a military test range, and the pattern to note is that Europe's answer is a state contract on state land, while the capability it is chasing was built commercially — a difference in method that will show up in the cost per kilogram. The reader's stake is that satellite access is now infrastructure for navigation, agriculture, weather and communications, and the countries deciding whether to build, buy or rent it include Turkey, Indonesia, Saudi Arabia and Pakistan — each of which is watching whether a state-funded European catch-up works. Establish what the filings disclose and their date, FD1's specification and planned flight profile, the contract's terms and funding source, how it fits Avio's Vega line and ESA's reusability programme, and how the timeline compares with the competitors it is chasing.",
-      "conceptUris": []
-    },
-    {
-      "id": "minister-directs-early-start-of-port-qasim-authority-cricket",
-      "label": "Minister directs early start of Port Qasim Authority cricket, hockey stadium projects",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-minister-directs-early-start-of-port-qasim-authority-cricket"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for economy floor] ISLAMABAD: Maritime Affairs Minister Mohammad Junaid Anwar has directed the Port Qasim Authority (PQA) to expedite work on a delayed cricket stadium and academy project in Karachi and begin the process for construction of a hockey stadium at the authority's housing complex.\n\nAccording to PQA officia",
-      "conceptUris": []
-    },
-    {
-      "id": "s-per-lig-osimhen-scores-twice-as-galatasaray-held-by-newly",
-      "label": "Süper Lig: Osimhen scores twice as Galatasaray held by newly promoted Çorum",
-      "firstSeen": "2026-08-15T08:14:21.998Z",
-      "lastCovered": "2026-08-15T08:14:21.998Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-15-s-per-lig-osimhen-scores-twice-as-galatasaray-held-by-newly"
-      ],
-      "eventUri": "eng-11923422",
-      "summary": "[Auto-backfill for tech floor] While Osimhen's brace rescued a point, Galatasaray will need to improve significantly if they are to defend their Süper Lig crown successfully\n\nSuper Eagles striker Victor Osimhen made an immediate impact on the opening day of the new Süper Lig season, scoring twice as defending champions Galatasara",
       "conceptUris": []
     }
   ]
