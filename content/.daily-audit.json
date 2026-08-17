@@ -1,36 +1,37 @@
 {
-  "date": "2026-08-16",
+  "date": "2026-08-17",
   "metrics": {
-    "articles": { "value": 57, "detail": "5 cycles completed, avg 10/cycle (55 yesterday)" },
-    "freshness": { "median": 0, "p90": 1.3, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 15, "tech": 12, "science": 9 },
-    "multiSource": { "value": 14, "target": 4, "met": true },
+    "articles": { "value": 64, "detail": "5 cycles completed, avg 10/cycle (58 yesterday)" },
+    "freshness": { "median": 0, "p90": 0.7, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 18, "tech": 13, "science": 11 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 20, "ME": 20, "AF": 7, "AS": 6, "AM": 4, "OC": 0 }
+      "breakdown": { "AM": 20, "ME": 15, "AS": 13, "EU": 10, "AF": 5, "GL": 1, "OC": 0 }
     },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 61,
     "duplicates": 0,
-    "avgCycleDuration": 1209
+    "avgCycleDuration": 1294
   },
-  "experiment": "Skipped — every goal metric is inside target and no experiment is active. Adding a variable now would only add noise to a healthy baseline.",
-  "weakestArea": "Regional balance. Unique regions (5) clears the target of 4, but the distribution is the most concentrated in recent days: EU (20) and ME (20) together carry 70% of output, while the Americas fell from 10 yesterday to 4 and Oceania is absent entirely. This is composition, not a threshold breach — the Iran/Hormuz and Russia-Ukraine clusters are genuinely dominant news, so no lever should be pulled for it yet.",
+  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and today is the strongest diversity day in recent weeks. Introducing a variable now would only add noise to a healthy baseline.",
+  "weakestArea": "Regional composition, specifically Africa and Oceania. The region count of 6 clears the target of 4 and the distribution is far flatter than yesterday's EU/ME 70% concentration — the Americas rose from 4 to 20 and Asia from 7 to 13. But Africa fell 7 to 5 across a day that carried Sudan's blocked medical corridors, DRC's Ebola ring vaccination, Nigeria's Osun violence probe and Ayetoro shoreline loss, and Oceania is at zero for a second consecutive day. Neither is a threshold breach, and no tunable parameter targets region mix directly, so this is composition to watch rather than a lever to pull.",
   "watching": [
-    "Iran cluster is the single largest thread today — Hormuz control legislation, oil pricing rhetoric, Azadegan field repairs, bounties on US troops, satellite claims and fortieth-day rites; six-plus articles risks reading as a single-country feed if it persists.",
-    "Russia-Ukraine strike exchange escalating on both ends: drone barrage on Moscow, ballistic missiles on Kyiv, a claimed refinery strike, a NATO drone downing over Romania, and Kremlin return terms.",
-    "Sudan on two tracks — Burhan's amnesty terms and serotype mapping during the outbreak response.",
-    "Nigeria's Osun result held through both the count and rival acceptance; clean close worth noting after several disputed-count cycles.",
-    "Super El Niño approaching record strength — a slow-moving science story with economy spillover to watch across cycles."
+    "Hormuz is now at zero commercial transits with war-risk insurance, not military action, doing the closing — tracked today across the Oman mediation channel, the US-Iran MOU expiry and ADNOC's Fujairah bypass.",
+    "Gaza roadmap has moved to timetable-and-enforcement-trigger shuttle diplomacy, a phase where slippage is measurable rather than rhetorical.",
+    "Russia-Ukraine strikes continue in a reciprocal band (Koloskovo/Belgorod civilian toll), alongside a wildfire radionuclide-resuspension story that ties fire-service attrition to contamination risk.",
+    "AI provenance and poisoning surfaced three separate ways — character-level output watermarking, an LLM-poisoning FARA filing at the retrieval layer, and a scan-destroy training-corpus pipeline for tracked rare books.",
+    "Circular AI financing is becoming its own thread: Nvidia's SpaceX stake (supplier owns customer) next to Alibaba divesting Lingxi games to fund capex.",
+    "Colorado River: Mead and Powell at record lows against a compact that was over-allocated from the start, with the power pool now in range."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles today; Australia, New Zealand and the Pacific states have been absent from the region mix.",
-    "Latin America is unrepresented within an already thin Americas count of 4 — no Brazil, Mexico, Argentina or Andean coverage.",
-    "Science leaned heavily on Nature (9 of 45 source appearances); science sourcing outside Nature and Phys.org remains narrow.",
-    "China and Southeast Asia are light — Asia's 6 articles skew to South Asia (Pakistan, India) with only single-outlet touches on the rest."
+    "Oceania produced zero articles for a second straight day; Australia, New Zealand and the Pacific states remain absent from the mix.",
+    "Africa slipped to 5 articles despite several live threads (Sudan, DRC, Nigeria, South Africa), the thinnest share of any populated region.",
+    "China coverage is present but narrow — retail data, the robotics parts ban and the Xi/Jiang centenary piece, with little from the provinces or domestic policy.",
+    "Science sourcing widened today (Nature 4, Quanta, Carbon Brief, Phys.org) but still rests on a handful of outlets; no regional science press appeared."
   ],
-  "context": "Throughput and quality are both steady: 57 articles across 5 completed cycles, zero duplicates, 45 unique sources with no outlet above 11%, and multi-source count at 14 — more than triple the target of 4 and up from 8 yesterday. Freshness median is 0 days with a p90 of 1.3, so the tail loosened slightly versus yesterday's 0.8 but stays well inside the 1-day goal. The experiment slot has been empty since the 2026-05-18 editor-effort entry closed as void; the queued numerical-density experiment remains blocked because it edits scripts/write-prompt.md, which is outside the tunable-parameter set for daily tuning."
+  "context": "A strong day on every measured axis: 64 articles across 5 completed cycles, zero duplicates, 61 unique sources with no outlet above 7% (Dawn at 6), multi-source count 13 against a target of 4, and freshness median 0 with p90 of 0.7 — the tightest tail this week. Source concentration improved markedly over yesterday, where Nature alone held 11%. Cycle duration averaged 1294s, up modestly from 1209s, driven by the writer stage at 380s. The experiment slot has been empty since the 2026-05-18 editor-effort entry closed as void; the queued numerical-density experiment stays blocked because it edits scripts/write-prompt.md, which is outside the tunable-parameter set for daily tuning."
 }
