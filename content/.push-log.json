@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-07-24T22:19:06.075Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-07-24-icc-prosecutor-karim-khan-removed-misconduct",
-        "title": "ICC Ousts Netanyahu Prosecutor",
-        "category": "politics",
-        "eventCoverage": 369,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-pakistan-justice-babar-sattar-residence-notice",
-        "title": "Pakistan Judge Faces Eviction",
-        "category": "politics",
-        "eventCoverage": 369,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-intel-capex-outlook-ai-demand-analyst-caution",
-        "title": "Intel Raises AI Capex",
-        "category": "economy",
-        "eventCoverage": 230,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-open-weight-ai-letter-us-export-controls",
-        "title": "Tech Firms Resist AI Curbs",
-        "category": "tech",
-        "eventCoverage": 155,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-us-measles-2318-cases-surpass-2025-record",
-        "title": "US Measles Breaks Record",
-        "category": "politics",
-        "eventCoverage": 116,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-trump-threat-seize-frozen-iranian-assets-precedent",
-        "title": "Trump Threatens Iranian Assets",
-        "category": "economy",
-        "eventCoverage": 77,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-anthropic-opus-5-token-efficiency-not-capability",
-        "title": "Anthropic's Opus 5 Cuts Costs",
-        "category": "tech",
-        "eventCoverage": 53,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-dmfi-pac-routing-michigan-primary-ad-spend",
-        "title": "Group Hides Michigan Ad Funds",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-alphafold-redesigned-gene-editing-proteins-safety",
-        "title": "AlphaFold Cuts Gene-Editing Errors",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-cepi-first-human-trial-bundibugyo-ebola-vaccine",
-        "title": "First Bundibugyo Vaccine Trial Begins",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-24-nasa-deep-space-network-antenna-fire-risk",
-        "title": "Wildfire Hits Deep-Space Antenna",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-24-icc-prosecutor-karim-khan-removed-misconduct",
-      "title": "ICC Ousts Netanyahu Prosecutor",
-      "category": "politics",
-      "body": "82 of 125 states ousted the ICC's chief",
-      "eventCoverage": 369,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "ICC member states vote to remove chief prosecutor Karim Khan",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 17
-    }
-  },
-  {
     "timestamp": "2026-07-25T08:19:16.689Z",
     "candidateCount": 10,
     "candidates": [
@@ -10413,6 +10313,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Landslide kills one in Geoje, South Korea after record rainfall",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-08-17T08:23:04.380Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-08-17-gaza-roadmap-timetable-enforcement-trigger-shuttle",
+        "title": "Hamas Demands Roadmap Timetable",
+        "category": "politics",
+        "eventCoverage": 462,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-eu-autumn-sanctions-package-third-country-enforcement-limit",
+        "title": "EU Plans Broadest Russia Sanctions",
+        "category": "politics",
+        "eventCoverage": 127,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-xi-tiananmen-defence-struggle-language-jiang-centenary",
+        "title": "Xi Defends Tiananmen Crackdown",
+        "category": "politics",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-china-july-retail-flat-household-precaution-surplus-export",
+        "title": "China Retail Sales Stall",
+        "category": "economy",
+        "eventCoverage": 22,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-india-e20-mandate-food-versus-fuel-cost-transfer-older-vehicles",
+        "title": "Adviser Challenges India Ethanol Mandate",
+        "category": "economy",
+        "eventCoverage": 19,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-16-hasina-return-pledge-extradition-host-state-liability",
+        "title": "Hasina's Return Pledge Strains Delhi",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-two-pot-withdrawals-food-debt-retirement-adequacy-tax",
+        "title": "Pension Withdrawals Fund Groceries",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-hanover-institute-llm-poisoning-fara-filing-retrieval-layer",
+        "title": "Fake Think Tank Targets Chatbots",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-ai-intrusion-cost-per-attempt-long-tail-target-shift",
+        "title": "AI Hacks Redraw Cyber Risk",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-bitcoin-open-interest-depth-mismatch-liquidation-cascade",
+        "title": "Bitcoin Futures Exit Door Narrows",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-ayetoro-shoreline-loss-subsidence-sediment-starvation-abandoned-seawall",
+        "title": "Atlantic Swallows Nigerian Town",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-17-gpx4-ferroptosis-isoniazid-liver-injury-tb-regimen-completion",
+        "title": "Plant Compound Protects TB Livers",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-17-xi-tiananmen-defence-struggle-language-jiang-centenary",
+      "title": "Xi Defends Tiananmen Crackdown",
+      "category": "politics",
+      "body": "Xi defended the 1989 Tiananmen crackdown at a state",
+      "eventCoverage": 40,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Xi Jinping praises 1989 Tiananmen crackdown at state ceremony",
     "response": {
       "pushed": 1,
       "skipped": 0,
