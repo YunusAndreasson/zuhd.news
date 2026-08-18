@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-07-26T22:24:37.407Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-07-26-iran-us-pause-second-day-no-text-no-verification",
-        "title": "Iran, US Pause Holds",
-        "category": "politics",
-        "eventCoverage": 107,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-gaza-stabilisation-force-mandate-consent-rules-of-engagement",
-        "title": "Israel Approves Gaza Force",
-        "category": "politics",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-fed-hike-oil-shock-dollar-transmission-emerging-market-debt",
-        "title": "Fed Weighs Rate Hike",
-        "category": "economy",
-        "eventCoverage": 61,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-gatwick-water-outage-ses-monopoly-resilience-regulation",
-        "title": "Gatwick Loses Water Supply",
-        "category": "economy",
-        "eventCoverage": 61,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-ajk-elections-kashmir-council-reserved-powers-self-rule-ceiling",
-        "title": "Azad Kashmir Votes, Powers Capped",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-futa-teaching-hospital-strike-unenforceable-agreement-nigeria",
-        "title": "Nigeria Hospital Workers Strike",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-joburg-billing-errors-burden-of-proof-municipal-revenue",
-        "title": "Joburg Bills Wrong Owners",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-boreal-carbon-sink-productivity-not-warming-budget-uncertainty",
-        "title": "Forest Growth Drives Carbon Sink",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-cookie-banner-consent-dark-pattern-browser-signal",
-        "title": "Campaign Targets Cookie Banners",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-nelson-mandela-bay-surveillance-vehicle-opex-oversight-gap",
-        "title": "Spy Vehicle May Return",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-graphene-reconfigurable-surface-6g-beam-steering-standards",
-        "title": "Graphene Steers 6G Signals",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-26-a-probilistic-markov-model-based-framework-for-indoor-locali",
-        "title": "Markov Model Tracks Indoors",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-26-gaza-stabilisation-force-mandate-consent-rules-of-engagement",
-      "title": "Israel Approves Gaza Force",
-      "category": "politics",
-      "body": "Israel's cabinet cleared 200 foreign troops to",
-      "eventCoverage": 80,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israel approves international stabilization force to deploy in Gaza",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 17
-    }
-  },
-  {
     "timestamp": "2026-07-27T04:23:49.216Z",
     "candidateCount": 12,
     "candidates": [
@@ -10574,6 +10467,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran missiles trigger Dubai's first air raid alert in months",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-08-18T22:23:34.363Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-08-18-cerimedo-arrest-bolivia-transnational-adviser-judicial-reach",
+        "title": "Adviser Arrested Over Shooting",
+        "category": "politics",
+        "eventCoverage": 331,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-icc-sanctions-judges-designation-court-operational-capacity",
+        "title": "US Sanctions ICC Judges",
+        "category": "politics",
+        "eventCoverage": 250,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-ukraine-wartime-election-demand-martial-law-mandate-gap",
+        "title": "Fedorov Demands Wartime Vote",
+        "category": "politics",
+        "eventCoverage": 232,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-uae-iran-trade-suspension-reexport-channel-payments-closure",
+        "title": "UAE Suspends Iran Trade",
+        "category": "economy",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-gaza-schooling-system-collapse-certification-lost-cohort",
+        "title": "Gaza School System Collapses",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-kyrgyzstan-liquidations-secondary-sanctions-overcompliance",
+        "title": "Kyrgyzstan Liquidates Sanctioned Firms",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-nelson-mandela-bay-fuel-failure-procurement-cycle-emergency-response",
+        "title": "Fuel Failure Strands Fire Trucks",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-kaduna-dam-cracks-downstream-jurisdiction-warning-chain",
+        "title": "Cracks Found In Kaduna Dam",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-apple-eu-fee-removal-jurisdictional-partition-dma",
+        "title": "Apple Cuts EU App Fees",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-park-service-flock-alpr-shared-network-query-access",
+        "title": "Rangers Balk At Park Cameras",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-medusa-victim-count-raas-labour-substitution-undercount",
+        "title": "Medusa Ransomware Victims Surge",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-nih-score-disclosure-change-margin-visibility-bias-detection",
+        "title": "NIH Drops Numerical Grant Scores",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-18-pnsb-inoculant-jasmine-rice-nitrogen-substitution-field-gap",
+        "title": "Bacteria Boost Jasmine Rice Yield",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-18-uae-iran-trade-suspension-reexport-channel-payments-closure",
+      "title": "UAE Suspends Iran Trade",
+      "category": "economy",
+      "body": "The UAE cut off all Iran trade and finance",
+      "eventCoverage": 86,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "UAE suspends all trade and financial transactions with Iran",
     "response": {
       "pushed": 1,
       "skipped": 0,
