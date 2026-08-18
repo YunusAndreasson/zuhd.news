@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "icc-sanctions-judges-designation-court-operational-capacity",
+      "label": "US sanctions 'undermine the rule of law': ICC",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-icc-sanctions-judges-designation-court-operational-capacity"
+      ],
+      "eventUri": "eng-11928435",
+      "summary": "Washington has sanctioned the International Criminal Court's president and its senior trial lawyer and said it intends to dismantle the court. Lead with what a sanction on a judge concretely does — asset freezes and travel bans applied to the individuals hearing cases, which means the penalty falls on the person adjudicating, not on a state or an army. Teach the mechanism our reader should carry: the ICC has no police force and depends entirely on member-state cooperation, so the durable attack on it is not legal argument but making it operationally impossible for its officers to bank, travel or hire staff. Establish exactly who was designated and under which executive authority, what cases those two officials are seated on (the Palestine investigation is the stated grievance), which member states have said they will still cooperate, what the Rome Statute's Article 70 says about obstructing the court, and what happened after the earlier round of designations against the prosecutor — did the work slow measurably or not. Note the sourcing spread: Bloomberg (US), Deutsche Welle (DE) and TRT World (TR) frame this differently and sentiment divergence is 0.3 — attribute framings rather than blending them, and use TRT for the Turkish and wider Muslim-world reaction that the Western wires do not carry.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Criminal_Court",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Marco_Rubio",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State",
+        "http://en.wikipedia.org/wiki/Senegal",
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "uae-iran-trade-suspension-reexport-channel-payments-closure",
+      "label": "UAE suspends trade and financial transactions with Iran",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-uae-iran-trade-suspension-reexport-channel-payments-closure"
+      ],
+      "eventUri": "eng-11934187",
+      "summary": "The UAE has suspended all trade exchanges and financial transactions with Iran until further notice, hours after saying two Iranian ballistic missiles were fired toward the country. Lead with the trade suspension, not the missiles — the missiles fell into the sea, but Dubai is the single most important re-export and financial channel Iran has under sanctions, and closing it is the most consequential thing the Gulf has done to Tehran in this war. Teach the mechanism our reader will recognise from the whole Hormuz thread: Iran's sanctioned economy runs on intermediation, and the UAE is the intermediary — Iranian firms hold Dubai accounts, Iranian goods clear through Jebel Ali, and Iranian households receive remittances through UAE exchange houses. Suspending that is not a diplomatic gesture, it is the removal of a substantial share of Iran's remaining access to the dollar system. Establish exactly what the foreign ministry statement covers and what it exempts (humanitarian goods, existing contracts), what the annual UAE-Iran trade volume is and how much of it is re-export, how many Iranian nationals and firms are resident in Dubai, what this does to the exchange rate in Tehran, and whether the suspension is reversible on a ministry decision or requires more. Then the cost question: sanctions and closures like this are borne first by Iranian households buying imported medicine and food, not by the state being punished. Regional sourcing intact — The National (AE) is the outlet and carried the announcement first; this is a single-source pick because no wire had it at fetch time. Continues this week's Hormuz-closure arc from the insurance side to the payments side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Missile",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Territorial_waters",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Defense"
+      ]
+    },
+    {
+      "id": "gaza-schooling-system-collapse-certification-lost-cohort",
+      "label": "Gaza's Teachers Struggle to Fill the Void of a School System Decimated by Israel",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-gaza-schooling-system-collapse-certification-lost-cohort"
+      ],
+      "eventUri": null,
+      "summary": "Gaza's teachers are running makeshift schools in tents and damaged buildings because the school system itself has been destroyed. Lead with a number and a name from the reporting — how many children are out of school and for how long — because the scale of an interrupted generation is the story, not the improvisation. Teach the mechanism plainly: destroying a school system is not the same as destroying schools. It removes the buildings, kills and displaces the teachers, ends certification and record-keeping, and severs the examination chain that lets a student progress or leave — so even a full reconstruction returns children to a system that cannot say what grade they are in. Establish how many of Gaza's schools are damaged or destroyed and how many are still serving as shelters, how many teachers have been killed, what these community-run spaces actually provide and who pays for them, whether UNRWA's education role has been restored or replaced, and what happens to the cohort that has now missed multiple academic years. Who bears the cost: Palestinian children, and the ummah's reader should be given the concrete arithmetic of what a lost decade of schooling does to a population's earnings, health and mobility. Original ground reporting from Drop Site — attribute its findings to it explicitly. No regional Palestinian or Arab outlet carried this specific piece in the feed; note that as a feed-side gap rather than a reason to soften the account.",
+      "conceptUris": []
+    },
+    {
+      "id": "ukraine-wartime-election-demand-martial-law-mandate-gap",
+      "label": "Ukraine's ousted defence minister calls for wartime election",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-ukraine-wartime-election-demand-martial-law-mandate-gap"
+      ],
+      "eventUri": "deu-2163621",
+      "summary": "Mykhailo Fedorov, sacked as defence minister, has posted a nine-minute address accusing Zelenskyy's government of corruption serious enough to be losing the war, and demanded elections held under martial law. Lead with the fact that Ukraine has not voted since 2019 and that its own constitution forbids elections while martial law stands — so the demand is not for a ballot, it is a demand that the president suspend the legal basis of his own continued term. Teach the mechanism: wartime emergency powers are always justified as temporary and always outlast the emergency, and the test of whether a government is defending a democracy or merely governing without one is whether anyone inside the system can force the question. Fedorov is doing that, which is why this is more than a fired minister's grievance. Establish precisely what corruption he alleges and whether he offers evidence, why he was removed and when, what his standing in polling is, what the constitutional and Rada position on wartime elections actually is, what Zelenskyy's office has said in response, and how Washington and European capitals — who fund the budget — have reacted. Note the sentiment divergence across the cluster is 0.32: the Financial Times (GB), Bloomberg (US) and Le Monde (FR) read this as anything from a legitimate reform push to a destabilising bid, and the piece should say who is saying which rather than settling it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/London",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Democracy"
+      ]
+    },
+    {
+      "id": "kyrgyzstan-liquidations-secondary-sanctions-overcompliance",
+      "label": "Kyrgyzstan Liquidates More Companies Over Sanctions Risks",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-kyrgyzstan-liquidations-secondary-sanctions-overcompliance"
+      ],
+      "eventUri": null,
+      "summary": "Kyrgyzstan has ordered 19 more of its own companies liquidated and let its state-owned banks cut off more than 140 others, all to avoid Western secondary sanctions over Russia-linked trade. Lead with the inversion: this is a sovereign state closing its own firms on behalf of a sanctions regime it is not party to, and no Western government had to issue a single designation to make it happen. Teach the mechanism, which is the most underrated instrument in the sanctions toolkit — secondary sanctions do not need enforcement, only credible threat, because a bank that loses dollar correspondent access dies instantly. So the compliance is performed pre-emptively by the target country's own regulators and banks, who over-comply to protect the one relationship they cannot survive without. That is why the cost lands on small Central Asian traders rather than on Moscow. Establish which companies were liquidated and in what sectors, what the 140 cut-off firms were doing, which specific US or EU designations or warnings triggered this round, how much Kyrgyz-Russian trade has grown since 2022 and how much is re-export, what Bishkek's government says publicly versus what the banks are doing quietly, and how Kazakhstan, Armenia and Georgia have handled the same pressure. Who bears the cost: Kyrgyz importers and their employees, in one of the poorest states in the region, for a war they have no part in. Fills the Central Asia and OIC-region gap; The Diplomat is the only outlet carrying it in the feed and no Kyrgyz or regional outlet appeared — note that gap rather than treating the account as corroborated.",
+      "conceptUris": []
+    },
+    {
+      "id": "cerimedo-arrest-bolivia-transnational-adviser-judicial-reach",
+      "label": "Milei adviser arrested over hit on lawyer 'ex-girlfriend'",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-cerimedo-arrest-bolivia-transnational-adviser-judicial-reach"
+      ],
+      "eventUri": "spa-4309082",
+      "summary": "Fernando Cerimedo — the digital strategist who ran Javier Milei's campaign and now advises Bolivia's president — was arrested in Santa Cruz after gunmen posing as delivery drivers shot Nadia Beller, a 33-year-old lawyer, in a hotel. Lead with the victim and what happened to her, not the political celebrity of the man arrested; she is the person who was shot. Then the structural point: Cerimedo is the connective tissue of a transnational political operation, the same consultant moving between Argentina's and Bolivia's presidencies, and an arrest at that level tests whether a Latin American judiciary can hold someone attached to a sitting head of state's inner circle. Teach the mechanism our reader should watch for — extradition friction, jurisdictional shuffling between Argentina and Bolivia, and the pattern by which a case against a politically connected defendant dies procedurally rather than on the merits. Establish Beller's condition and whether she was pregnant as one wire reported, exactly what the Bolivian police allege and what evidence produced the arrest, Cerimedo's formal role in the Bolivian government and whether he has been suspended, what Milei's office and the Bolivian presidency have each said, and whether the gunmen have been identified. Note the sourcing spread — the Telegraph (GB), Al Jazeera (QA) and Bloomberg (US) diverge on the victim's circumstances; state which claim belongs to whom. Fills the Latin America gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bolivia",
+        "http://en.wikipedia.org/wiki/Santa_Cruz_de_la_Sierra",
+        "http://en.wikipedia.org/wiki/Javier_Milei",
+        "http://en.wikipedia.org/wiki/Argentina",
+        "http://en.wikipedia.org/wiki/Lawyer",
+        "http://en.wikipedia.org/wiki/Activism",
+        "http://en.wikipedia.org/wiki/Hotel",
+        "http://en.wikipedia.org/wiki/President_(government_title)"
+      ]
+    },
+    {
+      "id": "nelson-mandela-bay-fuel-failure-procurement-cycle-emergency-response",
+      "label": "Nelson Mandela Bay emergency and service vehicles immobilised by yet another fuel crisis",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-nelson-mandela-bay-fuel-failure-procurement-cycle-emergency-response"
+      ],
+      "eventUri": null,
+      "summary": "For at least 24 hours on 5 August, fire engines and municipal service vehicles in Nelson Mandela Bay could not refuel — the metro's third fuel-supply failure since May. Lead with what a fire engine that cannot refuel means for the person whose house is burning, then with the word 'third', because a repeated failure is a procurement fact, not an accident. Teach the mechanism precisely, since it generalises to municipalities across the Global South: a metro that runs out of fuel has almost never run out of money for fuel — it has failed to renew a supply contract, or has fallen far enough behind on payment that a supplier stopped delivering, and the reason the failure recurs is that the tender cycle and the payment cycle are managed by different offices with no one accountable for the gap between them. Establish which services were affected and for how long, whether any emergency call went unanswered, what the municipality says caused it and whether that explanation has changed across the three incidents, the state of the fuel supply contract and who holds it, what NMB's creditor position and audit findings look like, and whether the provincial government or National Treasury has intervened. Who bears the cost: residents of a metro of 1.2 million, where the failure of a purchase order becomes an unattended emergency. Regional sourcing intact — Daily Maverick (ZA), original reporting, no wire carried it. Fills the Africa gap the daily audit has now flagged four consecutive days.",
+      "conceptUris": []
+    },
+    {
+      "id": "kaduna-dam-cracks-downstream-jurisdiction-warning-chain",
+      "label": "Niger agency raises alarm over cracks at Kaduna dam, warns of flood risk",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-kaduna-dam-cracks-downstream-jurisdiction-warning-chain"
+      ],
+      "eventUri": null,
+      "summary": "Niger State's emergency agency has reported cracks in a dam in neighbouring Kaduna State and is asking the federal government, NEMA, the hydrological and meteorological agencies and the dam authorities to urgently inspect it — because the flooding would happen downstream, in Niger State. Lead with that geography, since it is the whole mechanism: the dam sits in one state, the people at risk live in another, and no single authority owns both the asset and the consequence. Teach how Nigeria's dam governance actually splits — federal river-basin authorities own the large dams, states own the emergency response, and warning travels through a chain of agencies each of which can defer to the next — which is why an alarm is raised by the party with no power to act on it. Establish which dam this is and its capacity, who operates it, what the reported cracks are and who observed them, how many people live in the downstream communities and what happened to them in the last release or failure, whether the reservoir is currently near capacity in the middle of the rainy season, and what each named agency has said since the alarm was raised. Ground it in the record: Nigeria's 2022 and 2024 floods, and the 2020 Kaduna releases, killed and displaced people downstream after warnings that read very much like this one. Who bears the cost: farming communities on the floodplain, warned by a state government that cannot inspect the structure threatening them. Regional sourcing intact — Premium Times (NG). Second Africa pick this cycle against the audit's four-day gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "apple-eu-fee-removal-jurisdictional-partition-dma",
+      "label": "Apple Removes Some Fees for App Developers in European Union",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-apple-eu-fee-removal-jurisdictional-partition-dma"
+      ],
+      "eventUri": "eng-11930626",
+      "summary": "Apple is dropping several App Store fees for EU developers to settle its long-running Digital Markets Act dispute with Brussels. Lead with the concession, then with the fact that it applies in one jurisdiction only — a developer in Lagos, Jakarta or Karachi shipping the same app pays the old rate, because the rules that changed are European. Teach the mechanism our reader should carry beyond this story: platform regulation produces geographic price discrimination, not global reform, and the Brussels Effect — the idea that EU rules propagate worldwide because compliance is cheaper than partitioning — fails precisely where a company can partition cheaply. App Store terms are a config change, so Apple partitions. Establish exactly which fees are being removed and which survive (the Core Technology Fee is the one to check), what the Commission had found and what fine was in play, whether this closes the case or merely pauses it, what developers and the Coalition for App Fairness say the effective rate now is, and what Apple charges developers in the markets with no equivalent regulator. Then the structural question for the reader: the largest developer populations outside the US and EU have no regulator with the leverage Brussels has, so the cost of the platform is highest where incomes are lowest.",
+      "conceptUris": []
+    },
+    {
+      "id": "park-service-flock-alpr-shared-network-query-access",
+      "label": "The National Park Service Is Using Flock. Rangers Are Pissed",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-park-service-flock-alpr-shared-network-query-access"
+      ],
+      "eventUri": null,
+      "summary": "The US National Park Service has deployed Flock automatic licence-plate readers, and its own rangers are objecting — one warning of the day a visitor is stopped at gunpoint because a reader misread a plate. Lead with the rangers' objection, because internal dissent from the agency operating the cameras is the rare, credible evidence in a surveillance story. Teach the mechanism, which is the reason this is not a parks story: Flock's value is not any single camera but the shared network, so a plate read at a park entrance joins a queryable national database accessible to agencies far outside the Park Service — including immigration enforcement — and every new deployment expands the graph rather than adding an isolated camera. That is how surveillance infrastructure spreads: not by a decision to build a national system, but by hundreds of local procurement decisions that each look modest. Establish which parks have the cameras and under what contract and cost, what retention and sharing policy the Park Service agreed to, who can query the data and whether any audit log exists, what the rangers specifically objected to and through what channel, Flock's documented misread rate and the stops it has already caused, and what the Park Service says the cameras are for. The reader should leave able to ask the right question of any camera in their own city: not who owns it, but who can search what it recorded. Original reporting from 404 Media — attribute to it.",
+      "conceptUris": []
+    },
+    {
+      "id": "medusa-victim-count-raas-labour-substitution-undercount",
+      "label": "More than 200 victims of Medusa ransomware identified over the last year, CISA says",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-medusa-victim-count-raas-labour-substitution-undercount"
+      ],
+      "eventUri": null,
+      "summary": "CISA and the FBI now count more than 500 Medusa ransomware victims as of April 2026, up from 300 a year earlier — over 200 new organisations, many in critical infrastructure. Lead with the growth rate rather than the total: a group that added two thirds again to its victim count during a year of sustained international takedown operations is evidence that enforcement is not constraining the model. Teach the mechanism our reader should generalise: ransomware-as-a-service separates the people who build the encryptor from the affiliates who break in, so arresting affiliates removes interchangeable labour while the tooling, infrastructure and payment rails persist — which is why victim counts rise even as arrest counts do. Establish what changed in the updated advisory (which initial-access vectors and CVEs Medusa is exploiting now), which sectors the 500 fall into and how many are hospitals, schools or utilities, what share is believed to have paid and the typical demand, why an advisory is the main policy instrument available and what its limits are, and whether any Medusa operator has been charged anywhere. Then widen it past the US numbers: CISA counts what US organisations report, so the true global figure — and especially the count in countries with no mandatory reporting regime — is unknown and structurally undercounted, which is itself the finding.",
+      "conceptUris": []
+    },
+    {
+      "id": "nih-score-disclosure-change-margin-visibility-bias-detection",
+      "label": "NIH proposes major revamp of how it scores research grant proposals",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-nih-score-disclosure-change-margin-visibility-bias-detection"
+      ],
+      "eventUri": null,
+      "summary": "The US National Institutes of Health has proposed changing both how it scores grant proposals and what it tells applicants about the outcome — ending five decades of reporting precise numerical peer-review scores. Lead with the disclosure change rather than the scoring change, because it is the one that removes something: a numerical score told a rejected researcher how close they came and gave outside observers a comparable series across decades, and a categorical verdict tells them neither. Teach the mechanism our reader should carry into any allocation system: transparency about a decision's margin is what makes bias detectable, since patterns by institution, career stage, gender or race are only visible in the distribution of scores, not in a yes-or-no. Establish exactly what NIH proposes to replace the score with, what the stated rationale is, who has commented in support and against, what the existing evidence on score-based disparities in NIH funding shows, whether the change is subject to a public comment period and when it would take effect, and how NIH's system compares to the ERC's and Wellcome's. Then why this matters far beyond Washington: NIH is the largest single funder of biomedical research on earth, its scoring conventions are copied by funders in dozens of countries, and its published score data has been the raw material for most of what is known about how peer review actually behaves. Changing it does not just alter who gets funded — it alters what can be studied about who gets funded.",
+      "conceptUris": []
+    },
+    {
+      "id": "pnsb-inoculant-jasmine-rice-nitrogen-substitution-field-gap",
+      "label": "Dual-functional purple non-sulfur photosynthetic bacteria enhance growth and yield of Jasmine rice under greenhouse conditions",
+      "firstSeen": "2026-08-18T22:11:59.043Z",
+      "lastCovered": "2026-08-18T22:11:59.043Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-18-pnsb-inoculant-jasmine-rice-nitrogen-substitution-field-gap"
+      ],
+      "eventUri": null,
+      "summary": "Researchers report that purple non-sulfur photosynthetic bacteria raised the growth and yield of Jasmine rice 105 in greenhouse trials. Lead with what the bacteria replace, not what they add: nitrogen fertiliser is the single largest cash cost in smallholder rice farming and its price is set by natural gas markets thousands of kilometres away, so a microbe that fixes nitrogen and produces the growth hormone indole-3-acetic acid in the same inoculant is an attempt to substitute biology for a commodity the farmer cannot hedge. Teach the mechanism carefully and honestly — how these bacteria fix nitrogen and why 'dual-functional' means the same organism supplies both the nutrient and the hormone, and then the standing problem with every such result: greenhouse conditions are not a paddy. Inoculants that perform in controlled trials routinely fail in the field because they lose to the native soil microbiome, and the paper should be read for whether it addresses persistence at all. Establish which strains were used, the actual yield increase and against which control and fertiliser rate, whether nitrogen application was reduced or merely supplemented, the sample size and replication, what the authors say about field trials and shelf life, and what an inoculant of this kind costs to produce per hectare versus urea at current prices. Then why it belongs in a global cycle: Jasmine rice 105 is Thailand's principal export cultivar, and Thai, Vietnamese and Indonesian smallholders are the ones exposed to a fertiliser price that has moved with every energy shock since 2022. This is an early-access accepted manuscript — say so plainly.",
+      "conceptUris": []
+    },
+    {
       "id": "syria-grants-iaea-access-to-assad-era-undeclared-nuclear-sit",
       "label": "Syria grants IAEA access to Assad-era undeclared nuclear site",
       "firstSeen": "2026-08-18T17:12:59.530Z",
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-syria-grants-iaea-access-to-assad-era-undeclared-nuclear-sit"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-explainer-how-the-super-el-ni-o-will-reshape-the-world-s-wea"
@@ -49,7 +293,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-u-p-sit-report-on-ram-temple-embezzlement-an-eyewash-to-save"
@@ -74,7 +318,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-sudan-battlefield-shifts-as-rsf-intensifies-operations-in-bl"
@@ -96,7 +340,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-staying-on-warraq-residents-formally-demand-land-within-new"
@@ -112,7 +356,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-govt-to-implement-court-order-on-imran-khan-s-hospital-trans"
@@ -132,7 +376,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-eight-strikes-hit-airbase-in-syria-s-idlib"
@@ -157,7 +401,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-iran-launches-missiles-towards-uae-dubai-residents-receive-e"
@@ -182,7 +426,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-two-more-greek-vessels-attacked-in-black-sea-with-one-of-the"
@@ -204,7 +448,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-fairphone-brings-the-repairable-fairphone-gen-6-to-the-us"
@@ -227,7 +471,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-x-s-algorithm-feeds-off-ragebait-and-impacts-democrats-more"
@@ -243,7 +487,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-anthropic-s-text-watermarking-proves-ai-companies-do-not-car"
@@ -259,7 +503,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-18-berlin-cuts-two-state-ministries-off-government-network-afte"
@@ -275,7 +519,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-ml1-resettlement-right-of-way-tenure-compensable-title"
@@ -291,7 +535,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-wassim-assad-captagon-enforcement-network-asset-confiscation"
@@ -316,7 +560,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-daraa-poisonings-reconciliation-amnesty-deniable-assassination"
@@ -332,7 +576,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-kuril-visit-presence-as-sovereignty-peace-treaty-foreclosure"
@@ -357,7 +601,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-ndlea-courier-channel-seizure-west-africa-transit-node"
@@ -373,7 +617,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-foz-do-amazonas-equatorial-margin-frontier-barrel-substitution"
@@ -398,7 +642,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-china-ev-export-ratio-overcapacity-global-south-industrial-base"
@@ -414,7 +658,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-nsfas-improper-funding-recovery-means-test-error-direction"
@@ -430,7 +674,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-cyanobacteria-ultrasound-gas-vesicles-toxin-release-tradeoff"
@@ -446,7 +690,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-dependency-maps-from-slides-imputation-chain-assay-cost"
@@ -462,7 +706,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-ai-usage-data-vendor-disclosure-no-independent-measurement"
@@ -478,7 +722,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-chatgpt-teens-age-assurance-partitioned-safety-after-harm"
@@ -503,7 +747,7 @@
       "lastCovered": "2026-08-18T12:10:32.279Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-18-swiss-ransomware-trial-developer-liability-division-of-labour"
@@ -519,7 +763,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-zamboanga-shooting-agency-issued-firearm-custody-audit-gap"
@@ -544,7 +788,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-abu-al-duhur-strike-disused-airfield-reconstitution-ceiling"
@@ -569,7 +813,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-settler-friction-doctrine-outpost-expansion-displacement-sequence"
@@ -585,7 +829,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-m23-north-kivu-mineral-rents-territorial-administration"
@@ -601,7 +845,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-oil-ninety-one-mou-lapse-inflation-expectations-yield-passthrough"
@@ -617,7 +861,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-starlink-poland-roaming-reversal-procurement-leverage-orbital-dependency"
@@ -633,7 +877,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-monad-buyback-refused-vesting-overhang-insider-price-signal"
@@ -649,7 +893,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-gallium-anomaly-cross-section-recalculation-sterile-neutrino"
@@ -665,7 +909,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-perennial-rotation-soil-functionality-drought-buffer-stock"
@@ -681,7 +925,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-geran-launch-infrastructure-sortie-generation-osint-imagery"
@@ -697,7 +941,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-thailand-russia-cyber-cooperation-treaty-ally-alignment-shift"
@@ -713,7 +957,7 @@
       "lastCovered": "2026-08-18T08:11:47.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-anonymous-intake-aggregation-evidence-student-grievances-macedonia"
@@ -729,7 +973,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-hormuz-vessel-struck-projectile-kinetic-versus-insurance-closure"
@@ -745,7 +989,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-zambia-hichilema-second-term-copper-debt-restructuring-cost-of-living"
@@ -770,7 +1014,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-save-act-india-voter-id-documentary-proof-exclusion-filter"
@@ -795,7 +1039,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-michigan-student-charges-dismissed-prosecution-as-punishment"
@@ -811,7 +1055,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-akwa-ibom-assembly-stalled-tourism-capex-oversight-displaced"
@@ -827,7 +1071,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-iran-war-economy-ppp-versus-market-rate-cash-transfers"
@@ -843,7 +1087,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-kazakhstan-oil-export-share-caspian-route-landlocked-permission"
@@ -859,7 +1103,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-vietnam-aid-transition-insurance-covers-treatment-not-prevention"
@@ -875,7 +1119,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-leh-nullah-rawalpindi-flood-impervious-runoff-floodplain"
@@ -891,7 +1135,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-theban-tomb-tt209-reuse-stratigraphy-burial-economy"
@@ -907,7 +1151,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-github-outage-transitive-dependency-single-point-of-failure"
@@ -923,7 +1167,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-digital-exclusion-older-adults-channel-migration-health-outcomes"
@@ -939,7 +1183,7 @@
       "lastCovered": "2026-08-18T04:14:55.194Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-maienergy-dataset-domain-data-gap-benchmark-defines-competence"
@@ -955,7 +1199,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-oman-mediator-threat-channel-closure-hormuz-transits"
@@ -980,7 +1224,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-kasur-kiln-lynching-acquittal-mob-identification-impunity"
@@ -996,7 +1240,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-guerrero-ardillos-displacement-return-municipal-territorial-control"
@@ -1012,7 +1256,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-bjp-executive-reshuffle-up-polls-minority-representation-gap"
@@ -1037,7 +1281,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-pakistan-fuel-revision-levy-share-diesel-freight-passthrough"
@@ -1053,7 +1297,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-adnoc-fujairah-bypass-hormuz-closure-comparative-advantage"
@@ -1069,7 +1313,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-single-payer-administrative-overhead-deferred-care-arithmetic"
@@ -1085,7 +1329,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-robotic-steel-fabrication-bespoke-parts-labour-advantage"
@@ -1101,7 +1345,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-fluid-theory-symmetry-derivation-bottom-up-reformulation"
@@ -1117,7 +1361,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-biodiversity-data-lag-taxonomic-bottleneck-tropical-undercount"
@@ -1133,7 +1377,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-aylo-mindgeek-settlement-anonymous-upload-monetisation"
@@ -1149,7 +1393,7 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-lead-generation-breach-inquiry-data-retention-unauditable-exposure"
@@ -1165,254 +1409,13 @@
       "lastCovered": "2026-08-17T22:10:55.969Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-17-alpr-retention-defaults-cross-agency-search-design-choice"
       ],
       "eventUri": "eng-11927801",
       "summary": "As US cities reconsider their contracts, the argument over Flock's automated licence-plate readers has been framed as solved crimes versus civil liberties — and the reporting's point is that the trade-off was not inherent, it was designed. Lead with a specific design choice and its consequence, because that is what lifts this above a surveillance-is-bad piece. Teach the mechanism: an ALPR network's power comes not from any single camera but from default retention and cross-agency search — how long records are kept and who can query them nationally — and both are configurable settings the vendor chose, so a system that answers 'where was this car on Tuesday' could equally have been built to answer only 'is this plate on a hot list right now'. Retention converts a targeted tool into a retrospective movement database for everyone. Establish the actual retention period and search-access policy, the documented misuse cases including officers searching for people they knew, how many jurisdictions have cancelled or declined contracts and on what grounds, and what Flock says. Why our reader should care outside the US: this is the export template — the same vendors and the same defaults are being sold to Gulf and South Asian ministries where there is no city council to cancel the contract.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-iran-mou-expiry-lebanon-strikes-hormuz-transits",
-      "label": "U.S.-Iran MOU expires without agreement; Israeli strikes kill 11 in Lebanon; DNC votes to abolish ICE",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-us-iran-mou-expiry-lebanon-strikes-hormuz-transits"
-      ],
-      "eventUri": null,
-      "summary": "The 60-day Islamabad MoU between Washington and Tehran expired today with nothing signed, and the same day Israeli strikes killed 11 people in Lebanon. Lead with the two facts together and the eleven dead first — named, counted, located — because a deadline lapsing is abstract and the bodies are not. Teach the mechanism: the MoU was a clock, not a treaty, and its only enforcement was the threat of what resumes when it runs out, so expiry converts a pause into a standing licence for both sides. Establish exactly what the MoU committed each party to, which promise Tehran says Washington reneged on, and what an Iranian official actually told Reuters about shifting from a 'defensive' to a 'fully offensive' posture — quote it, do not paraphrase it into a threat. Carry the hard indicator alongside it: Strait of Hormuz transits have fallen to single digits, three vessels on Sunday against twelve on Friday, per The National, which is what the expiry costs in physical terms for every Gulf and Asian economy that ships through it. Follow-up context: this continues the Hormuz-closure and Gaza-roadmap arcs this site has carried all week, and the Lebanon strikes are the part no wire is leading with. Regional sourcing is required here — Mehr (IR) for Tehran's account, The National (AE) for the shipping data, Drop Site for the Lebanon toll — and each claim should be attributed to whichever of them made it.",
-      "conceptUris": []
-    },
-    {
-      "id": "burnham-impostor-messages-verification-gap-head-of-government",
-      "label": "UK PM Burnham exchanged messages with Trump aide impostor: reports",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-burnham-impostor-messages-verification-gap-head-of-government"
-      ],
-      "eventUri": "eng-11928436",
-      "summary": "A sitting British prime minister held a message exchange with someone impersonating the White House chief of staff, and only became suspicious partway through. Lead with how far it got before it broke down, not with the embarrassment. The mechanism worth teaching: at head-of-government level there is no verification layer at all — contact happens on consumer messaging apps through personal numbers passed between aides, so authentication rests entirely on the recipient recognising a writing style. That is the same failure surface as the Wiles impersonation campaign US officials were already warned about, and cheap voice and text synthesis has removed the last informal check. Establish what was actually discussed, over which platform, how the impostor obtained the contact route, whether any classified or negotiating material was exposed, and what the Cabinet Office says its protocol is. Who bears the cost: not Burnham, but every counterpart government that must now assume an inbound message from London may not be from London. Note the sourcing carefully — this is reported by other outlets and picked up by SCMP, Yahoo and a Times of Israel liveblog entry; attribute the original reporting rather than treating the aggregation as confirmation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Andy_Burnham",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Politico",
-        "http://en.wikipedia.org/wiki/Susie_Wiles",
-        "http://en.wikipedia.org/wiki/National_security"
-      ]
-    },
-    {
-      "id": "scotus-second-cert-denial-carroll-verdict-final",
-      "label": "Supreme Court won't rehear Trump's appeal of $5 million E. Jean Carroll case",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-scotus-second-cert-denial-carroll-verdict-final"
-      ],
-      "eventUri": "eng-11929506",
-      "summary": "For the second time, the US Supreme Court has declined to disturb a jury's finding that a sitting president is liable for sexual abuse and defamation — an unsigned order, no dissent noted, reiterating a position it took in January. Lead with the finality, not the litigation history: the jury verdict now stands as the settled legal record while the man it names holds office. Teach the mechanism a reader outside the US will not know: certiorari denial is not an endorsement of the verdict, it is a refusal to review, and a second denial closes the ordinary federal route entirely — which is why 'the court declined' is a stronger outcome here than 'the court ruled'. Establish the actual finding (the jury found sexual abuse and defamation, not rape, and the distinction was litigated), the $5m award and where the separate $83.3m defamation judgment stands, and what remains outstanding. The accountability point, stated plainly and without editorial: the office confers immunity for official acts, and the courts have now twice held that this conduct was not one.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Defamation",
-        "http://en.wikipedia.org/wiki/E._Jean_Carroll",
-        "http://en.wikipedia.org/wiki/Sexual_abuse",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Sexual_assault"
-      ]
-    },
-    {
-      "id": "duterte-confidential-funds-disbursing-officer-audit-exemption",
-      "label": "Witness says VP Duterte ordered release of P125 M to security officer",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-duterte-confidential-funds-disbursing-officer-audit-exemption"
-      ],
-      "eventUri": "eng-11928434",
-      "summary": "The Philippine vice-president's own former special disbursing officer told the impeachment court that Sara Duterte ordered P125 million in confidential funds handed to a security officer. Lead with the witness and the number — an insider naming the instruction is what moves an impeachment from allegation to evidence. Teach the mechanism, because it is the whole story and it generalises across the region: 'confidential funds' are a budget line that is exempt from ordinary audit disclosure on national-security grounds, so the money is appropriated publicly, spent invisibly, and liquidated with receipts the Commission on Audit cannot publish — which makes the category itself, not any single transfer, the accountability failure. Establish how much confidential funding the Office of the Vice President was allocated and over what period, what COA has already flagged, who the security officer is, what the defence says, and where the impeachment trial procedurally stands and what conviction would require in the Senate. Who is affected: this is discretionary public money in a country where the education and health budgets it competes with are named line by line. Fills the Southeast Asia gap the audit flagged; Rappler is the outlet that has carried this from the start.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sara_Duterte",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_Philippines",
-        "http://en.wikipedia.org/wiki/Impeachment",
-        "http://en.wikipedia.org/wiki/Impeachment_trial",
-        "http://en.wikipedia.org/wiki/Francis_Escudero",
-        "http://en.wikipedia.org/wiki/Prosecutor"
-      ]
-    },
-    {
-      "id": "osun-election-violence-probe-security-deployment-federal-control",
-      "label": "Lawmakers demand probe into Osun election violence, security deployment",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-osun-election-violence-probe-security-deployment-federal-control"
-      ],
-      "eventUri": null,
-      "summary": "Members of Nigeria's House of Representatives are demanding an investigation into violence around the Osun governorship election and into how security forces were deployed during it — including a circulated video involving Osun East Senator Francis Fadahunsi. This is the correction to a story we carried as a clean close: the count held and the loser conceded, but the conduct around the vote did not. Lead with the specific demand and who is making it, not with 'lawmakers react'. Teach the mechanism that makes security deployment the real contested ground in Nigerian elections: INEC runs the ballot, but the police and army decide which polling units are reachable and which are effectively closed, and deployment orders come from federal authority — so an election can be procedurally sound and still be shaped before a vote is cast. Establish what the video shows and what is disputed about it, the documented incidents and any deaths or injuries, what INEC and the police have said, and whether the National Assembly can compel testimony from the security services or only request it. Who is affected: Osun voters in the units where deployment failed, whose turnout is now a number nobody will audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "tomahawk-surge-contract-munitions-lead-times-magazine-depth",
-      "label": "Pentagon signs multibillion-dollar Tomahawk deal amid missile shortage concerns",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-tomahawk-surge-contract-munitions-lead-times-magazine-depth"
-      ],
-      "eventUri": "eng-11929301",
-      "summary": "A $22.9bn contract to Raytheon to accelerate Tomahawk deliveries, signed because the war with Iran has drawn down US missile stocks faster than they can be replaced. Lead with the number and what it admits: the acting Navy secretary's promise of deliveries 'at unprecedented speed' is a public statement that the magazine is running low. Teach the economics, which is the transferable lesson and the reason this is an economy story rather than a defence one — precision munitions are built on a thin, single-supplier industrial base with multi-year lead times on solid rocket motors and seeker electronics, so money cannot buy inventory quickly; a surge contract mostly buys a place in a queue that ends years from now. That is the structural constraint on how long any state, including this one, can sustain a standoff-strike campaign, and it is why munition stocks are a better predictor of war duration than rhetoric. Establish the actual expenditure rate against Iran where it is documented, current Tomahawk production capacity and unit cost, the delivery schedule this contract buys, and what competing demand from Pacific planning does to it. Who bears the cost: the US taxpayer directly, and everyone under the flight path of what gets replenished.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tomahawk_(missile)",
-        "http://en.wikipedia.org/wiki/Raytheon_Technologies",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/United_States_Navy",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_States_dollar"
-      ]
-    },
-    {
-      "id": "ppl-sujawal-chiltan-discovery-play-derisking-lng-import-bill",
-      "label": "Pakistan Petroleum Limited announces gas and condensate discovery in Sindh's Sujawal",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-ppl-sujawal-chiltan-discovery-play-derisking-lng-import-bill"
-      ],
-      "eventUri": "eng-11929439",
-      "summary": "State-owned PPL has struck gas and condensate at the Dolphin X-1 well in Sujawal, Sindh — and the detail that matters is geological, not corporate: it is described as the first hydrocarbon discovery from the Jurassic-age Chiltan Formation in the area. Lead with that, because a first discovery in a previously unproductive formation reprices an entire basin, turning acreage that nobody would drill into acreage that everybody will. Teach the mechanism for a reader who does not follow energy: exploration risk is concentrated in the first well into a new play, so the value of Dolphin X-1 is not the flow rate of one well but the derisking of every structure in the same formation. Then the economics that decide whether any of it reaches a household — Pakistan's gas shortfall is met by imported LNG bought in dollars, so domestic gas substitutes directly for import bill and for the circular debt that flows from selling that LNG below cost. Establish the tested flow rates, the reserve estimate if any exists yet, PPL's working interest and its partners, how long from discovery to first production at comparable Sindh fields, and what Pakistan currently spends on LNG imports. Be sober about the gap between a discovery announcement and delivered gas — the honest framing is a first data point, not relief.",
-      "conceptUris": []
-    },
-    {
-      "id": "nvidia-spacex-stake-circular-financing-supplier-owns-customer",
-      "label": "Nvidia discloses $21B stake in SpaceX",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-nvidia-spacex-stake-circular-financing-supplier-owns-customer"
-      ],
-      "eventUri": "eng-11923065",
-      "summary": "Nvidia's SEC filing shows it held nearly 123 million SpaceX shares worth about $21bn at the end of June. Lead with the direction of the money, because that is the surprise: the chipmaker is not just selling to the AI build-out, it owns equity in the customers doing the building. Teach the mechanism, which is the one thing a reader needs to judge every AI valuation headline for the next two years — when a supplier invests in its buyers, the buyer's purchase of chips converts the supplier's own capital back into the supplier's revenue, so demand and investment stop being independent signals. That is circular financing, it is legal and disclosed, and it is exactly why revenue growth at a $5.5tn company is no longer evidence of unrelated customers wanting the product. Establish the full disclosed position list from the filing, what stake this represents in SpaceX and at what implied valuation, Nvidia's other announced investments in customers, and how much of Nvidia's reported revenue traces to entities it has funded. Say plainly what is not known: a 13F-style disclosure shows the holding, not the terms. Who is exposed: pension funds and index investors worldwide now hold this concentration whether or not they chose it.",
-      "conceptUris": []
-    },
-    {
-      "id": "mead-powell-record-lows-compact-over-allocation-power-pool",
-      "label": "Analysis: The two largest reservoirs in the US have hit record-low levels",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-mead-powell-record-lows-compact-over-allocation-power-pool"
-      ],
-      "eventUri": "eng-11928774",
-      "summary": "Lake Powell hit a record-low water height on Saturday, days after Lake Mead broke its own record — the two largest reservoirs in the United States, both on the Colorado River, both at the lowest levels ever measured. Lead with the two records in one week and the population behind them: seven states plus Mexico and thirty-odd tribal nations draw on this river. Teach the mechanism, because 'drought' is the lazy answer and the real one is structural: the Colorado Compact allocated the river in the 1920s using an unusually wet decade as the baseline, so the system has been over-allocated on paper ever since, and reservoirs were the buffer that hid it — declining storage is that accounting error finally becoming visible. Add the physics that makes it accelerate: below defined elevations, Glen Canyon and Hoover lose hydropower generation before they lose water supply, and evaporative loss rises as surface area shrinks relative to volume. Establish the actual elevations against the power-pool and dead-pool thresholds, current storage as a percentage of capacity, the negotiated cuts already in force and the 2026 expiry of the interim guidelines, and Mexico's treaty entitlement. Why it belongs in a global cycle: this is the best-instrumented example of a problem the Indus, Tigris-Euphrates and Nile basins all have — a river divided by treaty on the assumption that its historical flow was normal.",
-      "conceptUris": []
-    },
-    {
-      "id": "land-use-emissions-third-decline-net-accounting-forest-sink",
-      "label": "Why land-use emissions have fallen by a third this century – in six charts",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-land-use-emissions-third-decline-net-accounting-forest-sink"
-      ],
-      "eventUri": null,
-      "summary": "Emissions from land-use change — deforestation, peatland loss, forest degradation — have fallen by roughly a third since 2000. Lead with the decline, because it cuts against the assumption our reader almost certainly holds, and then do the harder work of explaining what it is and is not. The mechanism: land-use emissions are a net figure, gross clearing minus regrowth on abandoned and reforested land, so the total can fall while a given country's forests still shrink — and the biggest single driver of the global number is what happened in Brazil and Indonesia, which means enforcement policy in two states moved a planetary line. Be exact about the accounting, since it is where the story teaches most: different bookkeeping models disagree on the size of the land sink, and the gap between national inventories and independent estimates is itself a live dispute in the climate negotiations. Then the uncomfortable half — land use fell while fossil emissions did not, so its share of the total shrank partly because the denominator grew. Establish the figures and the sources behind each chart, the country breakdown, what has happened since the recent Amazon and Congo Basin trends, and what fraction of the fall is enforcement versus commodity prices versus land already cleared. Who this matters for: the DRC, Indonesia and Brazil are being asked to keep forests standing while the emissions that dominate the total are produced elsewhere.",
-      "conceptUris": []
-    },
-    {
-      "id": "tracked-rare-books-amazon-scan-destroy-training-corpus",
-      "label": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-tracked-rare-books-amazon-scan-destroy-training-corpus"
-      ],
-      "eventUri": null,
-      "summary": "404 Media put a tracking device inside a shipment of rare books to find out which AI company was buying them, and followed it to an Amazon facility where books are scanned and then destroyed. Lead with the method and the destination — a reporter's tracker, a warehouse, a debinding machine — because the physical evidence is what makes this reportable rather than inferred, and because destruction is the detail nobody expects. Teach the mechanism and why the destruction is deliberate rather than careless: the legal theory that makes scanning defensible depends on the scanned copy replacing rather than multiplying the original, so cutting the spine off a book and shredding it is a compliance step, not waste. Establish which facility, what volume of books is moving through this trade, who the sellers are and whether they know, what Amazon says the scans are used for, and where the relevant copyright litigation currently stands. The consequence for our reader, who is the kind of person who owns books: a market has emerged in which a rare edition is worth more as training tokens than as an object, and the transaction ends with the object gone — a rights question about authors that turns out also to be a physical question about what survives.",
-      "conceptUris": []
-    },
-    {
-      "id": "expert-witness-chatgpt-3m-explosion-conclusion-first-testimony",
-      "label": "'Show How 3M Is 0% at Fault:' Expert Witness Used ChatGPT to Write Report Defending Company in Deadly Explosion Lawsuit",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-expert-witness-chatgpt-3m-explosion-conclusion-first-testimony"
-      ],
-      "eventUri": null,
-      "summary": "Three people died in an explosion, a $61 million lawsuit followed, and the expert witness defending 3M produced his report by prompting ChatGPT to 'show how 3M is 0% at fault'. Lead with the prompt verbatim — it is the entire story, because it states the conclusion first and asks the machine to construct the reasoning backwards, which is the exact inversion of what an expert opinion is supposed to be. Teach the mechanism that makes this dangerous beyond one case: expert testimony is admitted because a qualified person attests that a methodology was applied to evidence, and courts have no procedure for verifying that the methodology existed rather than being generated to fit a desired answer. A model asked to argue a fixed conclusion will always produce a fluent, internally consistent argument, so fluency stops being any evidence of rigour precisely where courts have relied on it. Establish how the prompts became public, which case and court, what the report claimed, whether it was admitted or struck, what sanctions or Daubert challenges followed, and what 3M and the witness say. Who is affected: the families of the three dead, who were opposed by an argument nobody actually made — and every plaintiff facing a corporate defendant who can now buy expert-shaped text by the page.",
-      "conceptUris": []
-    },
-    {
-      "id": "lebanon-starlink-preorders-licensing-vacuum-telecom-collapse",
-      "label": "An Unknown Company Is Advertising Starlink in Lebanon. But the Service Hasn't Launched Yet.",
-      "firstSeen": "2026-08-17T17:09:30.385Z",
-      "lastCovered": "2026-08-17T17:09:30.385Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-lebanon-starlink-preorders-licensing-vacuum-telecom-collapse"
-      ],
-      "eventUri": null,
-      "summary": "An unidentified company began selling Starlink pre-orders to Lebanese customers in June for a service that has not launched and has no announced launch date, while the Ministry of Telecommunications has published no roadmap at all. Lead with the pre-order — money taken for a service that legally cannot yet be delivered — and name what is known and unknown about who is taking it. Teach the mechanism, which is what makes this more than a scam story: Lebanon's internet runs through a state monopoly that collapsed with the currency, so demand for any alternative is desperate, and satellite service sits in a regulatory vacuum where no ministry has issued a licence, meaning there is no authority a defrauded customer can appeal to and no legal channel for the real service either. That vacuum is the product, and the same conditions exist across Sudan, Yemen and Syria wherever terrestrial networks have failed. Establish what the ad actually offered and at what price, what is discoverable about the company, what the ministry and Starlink say, whether any licence application exists, and how many people paid. Who is affected: Lebanese households already paying twice for electricity and water, now asked to prepay for connectivity. SMEX is the Beirut digital-rights organisation that found it — say so.",
       "conceptUris": []
     }
   ]
