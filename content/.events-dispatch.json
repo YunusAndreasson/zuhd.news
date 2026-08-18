@@ -20,25 +20,23 @@
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "58ef9a51776e9046",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the UK economy, feeding into mortgage rates, gilt yields and sterling.",
-      "recent": "The Bank of England has been expanding a digital pound pilot with Polygon, testing settlement alongside stablecoins — work that sits beside the rate-setting question rather than inside it. On the rates side, the meeting follows the RBA's decision to hold steady as its housing market softens, and a dollar that has fallen to its lowest level since May.",
+      "recentFingerprint": "72c41d468fac08fa",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions set the cost of borrowing across the British economy, from mortgages to corporate credit, and move sterling and gilt yields.",
+      "recent": "The committee meets after the Bank of England expanded its digital pound pilot with Polygon and stablecoins, testing settlement rails alongside private issuers. The decision will settle where Bank Rate sits into the autumn, and what it signals about the path from here.",
       "citations": [
-        "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot",
-        "2026-08-11-the-rate-set-last-year-decides-this-one"
+        "2026-08-12-boe-digital-pound-polygon-stablecoin-pilot"
       ],
-      "generatedAt": "2026-08-15T04:37:50.126Z"
+      "generatedAt": "2026-08-18T04:38:50.182Z"
     },
     "boj-2026-09": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "42ba2f66b20f1998",
-      "standing": "The Bank of Japan's policy board, which sets Japan's short-term interest rate at eight scheduled meetings a year. Its decisions move the yen, Japanese government bond yields, and the global carry trades funded in cheap Japanese money.",
-      "recent": "The meeting follows a historic joint US-Japan intervention on 3 August that pushed the dollar to a one-month low, an unusual move by Washington against yen weakness. That same weakness nearly doubled Toyota's quarterly profit to $9.4 billion. The decision will settle how far the board goes to support the currency by policy rather than intervention.",
+      "recentFingerprint": "ec1893eaf283bed3",
+      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate and guide the yield curve. Its decisions move the yen, Japanese government bond yields, and the global carry trades funded in cheap Japanese money.",
+      "recent": "The yen's weakness has been feeding Japanese corporate earnings — Toyota's quarterly profit nearly doubled to $9.4 billion on a cheap yen and solid car sales. Meanwhile the dollar has fallen to its lowest level since May as markets trim rate hike bets, and China's economy showed signs of weakness in July. This meeting sets the policy rate that anchors the yen.",
       "citations": [
-        "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
         "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-15T04:37:59.383Z"
+      "generatedAt": "2026-08-18T04:38:58.679Z"
     },
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
@@ -72,14 +70,13 @@
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "bd44cca0c8d8c0ba",
-      "standing": "Japan's central bank, whose policy board sets the short-term policy rate and decides the pace of its bond purchases at eight scheduled meetings a year. Its decisions drive the yen and the world's largest pool of low-cost carry-trade funding.",
-      "recent": "This decision follows a historic joint US-Japan yen intervention on August 3, which pushed the dollar to a one-month low and marked Washington's move against Japanese yen weakness. The cheap yen has flattered exporters — Toyota's quarterly profit nearly doubled to $9.4 billion. At stake is whether the bank tightens to support the currency itself.",
+      "recentFingerprint": "b22e61bed86fa5ea",
+      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate and guide government bond yields. Its decisions move the yen, Japanese bond yields, and the global carry trades funded in cheap yen.",
+      "recent": "Japanese exporters have been earning on a weak yen: Toyota's quarterly profit nearly doubled to $9.4 billion, helped by the cheap currency. The dollar has since fallen against the euro as markets trim rate hike bets, and China's economy showed signs of weakness in July. This meeting sets where Japan's rate stands against that backdrop.",
       "citations": [
-        "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last",
         "2026-08-04-japan-s-toyota-reports-hefty-profit-on-cheap-yen-and-solid-c"
       ],
-      "generatedAt": "2026-08-15T04:38:34.758Z"
+      "generatedAt": "2026-08-18T04:39:07.822Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
@@ -104,11 +101,13 @@
     },
     "fred-us-gdp-2026-08-26": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "8ee0d13278a80577",
-      "standing": "The Bureau of Economic Analysis's quarterly estimate of US gross domestic product, released in successive vintages as more source data arrives. It is the broadest single measure of the world's largest economy, and sets the frame for rate expectations and the dollar.",
-      "recent": "The release lands as growth readings elsewhere come in thin: Russia's economy ministry put annualized GDP gains at 0.6% in the first half, and Ukraine's budget deficit is running toward a record 35% of GDP in 2026. This estimate will settle how much momentum the US carried into the quarter.",
-      "citations": [],
-      "generatedAt": "2026-08-17T04:34:49.099Z"
+      "recentFingerprint": "c8761dc0d61ec7b1",
+      "standing": "The Bureau of Economic Analysis's quarterly estimate of US economic output, released in three successive revisions after each quarter ends. It is the broadest single measure of the world's largest economy, and sets the frame for rate expectations and the dollar.",
+      "recent": "The release lands while the dollar falls against the euro as markets trim rate hike bets, and while China's economy shows signs of weakness in July, with retail sales up just 0.6%. This estimate is the first hard read on whether US output is holding up as the largest economy in Asia slows.",
+      "citations": [
+        "2026-08-17-china-july-retail-flat-household-precaution-surplus-export"
+      ],
+      "generatedAt": "2026-08-18T04:38:41.935Z"
     },
     "fred-us-pce-2026-08-26": {
       "standingFingerprint": "f7794ed88caf73b9",
@@ -120,13 +119,13 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "816d494a15cef257",
-      "standing": "The annual meeting of leaders of the world's twenty largest economies, rotating through a presidency that sets the agenda. It has no treaty power; its output is a communiqué that signals where the major economies intend to align on trade, finance and debt.",
+      "recentFingerprint": "a8f647f0964234f9",
+      "standing": "The annual summit of the Group of Twenty, where leaders of the world's largest economies and the European Union meet to coordinate on economic policy, trade and financial regulation. The presidency rotates yearly and shapes the agenda.",
       "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-16T04:36:04.959Z"
+      "generatedAt": "2026-08-18T04:39:16.687Z"
     }
   },
-  "generatedAt": "2026-08-17T04:34:58.609Z",
+  "generatedAt": "2026-08-18T04:39:16.688Z",
   "windowDays": 14
 }
