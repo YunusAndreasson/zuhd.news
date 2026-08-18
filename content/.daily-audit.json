@@ -1,37 +1,38 @@
 {
-  "date": "2026-08-17",
+  "date": "2026-08-18",
   "metrics": {
-    "articles": { "value": 64, "detail": "5 cycles completed, avg 10/cycle (58 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.7, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 18, "tech": 13, "science": 11 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 64, "detail": "5 cycles completed, avg 10/cycle (64 yesterday)" },
+    "freshness": { "median": 0, "p90": 0.4, "max": 0.4, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 17, "tech": 15, "science": 10 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 20, "ME": 15, "AS": 13, "EU": 10, "AF": 5, "GL": 1, "OC": 0 }
+      "breakdown": { "ME": 17, "AM": 15, "EU": 14, "AF": 10, "AS": 8, "OC": 0 }
     },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 61,
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "TRT World", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 54,
     "duplicates": 0,
-    "avgCycleDuration": 1294
+    "avgCycleDuration": 1283
   },
-  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and today is the strongest diversity day in recent weeks. Introducing a variable now would only add noise to a healthy baseline.",
-  "weakestArea": "Regional composition, specifically Africa and Oceania. The region count of 6 clears the target of 4 and the distribution is far flatter than yesterday's EU/ME 70% concentration — the Americas rose from 4 to 20 and Asia from 7 to 13. But Africa fell 7 to 5 across a day that carried Sudan's blocked medical corridors, DRC's Ebola ring vaccination, Nigeria's Osun violence probe and Ayetoro shoreline loss, and Oceania is at zero for a second consecutive day. Neither is a threshold breach, and no tunable parameter targets region mix directly, so this is composition to watch rather than a lever to pull.",
+  "experiment": "Skipped — all four goal areas clear their targets, no experiment is active, and the freshness tail is the tightest recorded (p90 0.4, max 0.4). No tunable parameter addresses the one soft spot (region mix), so a change today would add noise without a lever.",
+  "weakestArea": "Regional composition. Region count fell 6 to 5 and now sits one above the floor of 4 — the narrowest margin of any metric. Asia dropped from 13 articles to 8 despite live Pakistan, Kyrgyzstan, Kazakhstan and Thailand threads, and Oceania recorded a third consecutive zero. Africa recovered strongly (5 to 10, spanning Sudan, DRC, Nigeria, South Africa and Zambia), so the loss is concentrated in Asia and the Pacific rather than being a general narrowing.",
   "watching": [
-    "Hormuz is now at zero commercial transits with war-risk insurance, not military action, doing the closing — tracked today across the Oman mediation channel, the US-Iran MOU expiry and ADNOC's Fujairah bypass.",
-    "Gaza roadmap has moved to timetable-and-enforcement-trigger shuttle diplomacy, a phase where slippage is measurable rather than rhetorical.",
-    "Russia-Ukraine strikes continue in a reciprocal band (Koloskovo/Belgorod civilian toll), alongside a wildfire radionuclide-resuspension story that ties fire-service attrition to contamination risk.",
-    "AI provenance and poisoning surfaced three separate ways — character-level output watermarking, an LLM-poisoning FARA filing at the retrieval layer, and a scan-destroy training-corpus pipeline for tracked rare books.",
-    "Circular AI financing is becoming its own thread: Nvidia's SpaceX stake (supplier owns customer) next to Alibaba divesting Lingxi games to fund capex.",
-    "Colorado River: Mead and Powell at record lows against a compact that was over-allocated from the start, with the power pool now in range."
+    "Hormuz has escalated from insurance-driven closure to physical attrition — a vessel hit off Muscat, a third tanker attack in days, missile alerts over Dubai and the UAE suspending Iran trade, with oil above $91.",
+    "Syria's post-regime accounting is producing several strands at once: Israeli strikes doubling around Idlib, the Daraa poisoning of former rebels, an Assad cousin sentenced to death, and a voluntary nuclear-site disclosure.",
+    "AI provenance advanced concretely with Anthropic shipping text watermarking, set against a Stanford finding that no one audits AI usage and a separate study on X amplifying ragebait.",
+    "Central Asian energy logistics are tightening in parallel — Kazakh export squeezes and Kyrgyz liquidation of sanctioned firms both trace back to the same sanctions perimeter.",
+    "Gaza's school system collapse and the Qusra settler siege mark the civil-infrastructure phase of the conflict rather than the front line.",
+    "Nigeria produced four distinct stories (Akwa Ibom, Kaduna dam cracks, record cocaine seizure, Ayetoro follow-through), the densest single-country African coverage in weeks."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles for a second straight day; Australia, New Zealand and the Pacific states remain absent from the mix.",
-    "Africa slipped to 5 articles despite several live threads (Sudan, DRC, Nigeria, South Africa), the thinnest share of any populated region.",
-    "China coverage is present but narrow — retail data, the robotics parts ban and the Xi/Jiang centenary piece, with little from the provinces or domestic policy.",
-    "Science sourcing widened today (Nature 4, Quanta, Carbon Brief, Phys.org) but still rests on a handful of outlets; no regional science press appeared."
+    "Oceania produced zero articles for a third straight day; Australia, New Zealand and the Pacific states remain entirely absent.",
+    "Asia halved from 13 to 8 with nothing from Japan, Korea or Southeast Asia beyond Bangkok and Hanoi.",
+    "China appears only via EV export surplus and Beijing macro — no provincial, domestic-policy or Taiwan-strait coverage.",
+    "Science leans on a narrow outlet set (Nature 7 of 10 science-tagged sources); no regional science press appeared for a second day.",
+    "Unique sources fell 61 to 54 while output held flat, so per-source concentration rose slightly even though the top share stayed low at 9%."
   ],
-  "context": "A strong day on every measured axis: 64 articles across 5 completed cycles, zero duplicates, 61 unique sources with no outlet above 7% (Dawn at 6), multi-source count 13 against a target of 4, and freshness median 0 with p90 of 0.7 — the tightest tail this week. Source concentration improved markedly over yesterday, where Nature alone held 11%. Cycle duration averaged 1294s, up modestly from 1209s, driven by the writer stage at 380s. The experiment slot has been empty since the 2026-05-18 editor-effort entry closed as void; the queued numerical-density experiment stays blocked because it edits scripts/write-prompt.md, which is outside the tunable-parameter set for daily tuning."
+  "context": "A healthy day across every measured axis: 64 articles from 5 completed cycles, zero duplicates, freshness median 0 with both p90 and max at 0.4, multi-source count 12 against a target of 4, and sci-tech at 39% against a 25% target. Top-source share is 9% (TRT World 6), well inside the 20% ceiling. Cycle duration averaged 1283s, essentially flat on yesterday's 1294s, with the editor stage fast at 123s. The experiment slot has been empty since the 2026-05-18 editor-effort entry closed as void; the queued numerical-density experiment remains blocked because it edits scripts/write-prompt.md, outside the tunable-parameter set for daily tuning. There is no active pause gate."
 }
