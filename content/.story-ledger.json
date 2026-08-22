@@ -2,13 +2,262 @@
   "version": 1,
   "stories": [
     {
+      "id": "visa-ban-struck-down-statutory-authority-not-rights",
+      "label": "US judge strikes down Trump immigrant visa ban affecting 75 countries",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-visa-ban-struck-down-statutory-authority-not-rights"
+      ],
+      "eventUri": "eng-11944503",
+      "summary": "Judge Jeannette Vargas voided the suspension not on rights grounds but on statutory authority: the Secretary of State, she found, cannot use a delegated power to build an immigration category Congress never wrote. Lead with the mechanism, because it is the durable part — the ban dies by administrative-law limits, which means it can be rebuilt with different paperwork, and the reader should understand that a win on authority is not a win on principle. Establish exactly which 75 countries were covered and how heavily they skew toward OIC and African states, how many approved petitions were frozen and for how long, what a suspended immigrant visa does to a family already through consular processing, whether the ruling is stayed pending appeal, and what remedy the plaintiffs actually get. Who bears the cost: petitioners in Nigeria, Pakistan, Yemen, Sudan and Afghanistan whose approvals sat unusable. Regional sourcing intact — Al Jazeera (QA) carries the story alongside USA Today (US) and The Independent (GB); sentiment divergence is low at 0.08, so the factual account is not contested, only its framing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Travel_visa",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Marco_Rubio",
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/Statute",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "abu-al-duhur-strike-bad-intelligence-no-deconfliction",
+      "label": "US Envoy Warns Israel on Syria Base Attack Near Turkish Border",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-abu-al-duhur-strike-bad-intelligence-no-deconfliction"
+      ],
+      "eventUri": "eng-11944970",
+      "summary": "The US ambassador to Ankara says the intelligence behind Israel's strike on the abandoned Abu al-Duhur air base was simply wrong — Washington found no evidence Türkiye was moving assets there. Lead with what that admission means rather than the strike itself: two US-aligned militaries came within one bad target package of shooting at each other inside a third country, and the only thing that stopped it was an ambassador contradicting an ally in public. Teach the mechanism — northern Syria now has no deconfliction authority that both Israel and Türkiye recognise, so target validation happens unilaterally and the error margin is a war. Establish what Abu al-Duhur is and who actually held it, what Israel said it was striking, what Barrack said and in what forum, whether Türkiye had personnel or equipment anywhere near it, how many Israeli strikes have landed in Syria this month, and the same envoy's separate statement that Israel's Golan occupation runs against UN resolutions and international law — a US official contradicting his own government's recognition. Fold in the further Israeli strike near Damascus that killed occupants of a civilian vehicle, which Damascus is holding Israel responsible for; it is the same campaign, not a second story. Regional sourcing strong: TRT World (TR) primary, with Dawn (PK), The New Arab and Middle East Eye alongside Bloomberg (US) and India Today (IN). Divergence 0.31 — Bloomberg and The New Arab read the same remarks very differently, so quote Barrack directly rather than paraphrasing anyone's framing. Continues the Syria post-regime accounting arc.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Syria",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/Thomas_J._Barrack_Jr.",
+        "http://en.wikipedia.org/wiki/Ankara",
+        "http://en.wikipedia.org/wiki/Golan_Heights",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu"
+      ]
+    },
+    {
+      "id": "kryvyi-rih-mall-double-tap-strike-on-rescuers",
+      "label": "Ukraine: Russian drone strike hits Kryvyi Rih mall",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-kryvyi-rih-mall-double-tap-strike-on-rescuers"
+      ],
+      "eventUri": "eng-11945215",
+      "summary": "Sixteen people are now dead at the Sun Gallery shopping centre, and the load-bearing word in the report is 'double-tap' — a second drone timed for the people who arrive after the first. Lead with that pattern, not the toll: a double-tap is not a targeting error, it is a decision to strike rescuers, and it is the specific thing that makes this a war-crimes question rather than a collateral-damage one. Establish how many were killed and injured, how much time separated the two impacts, whether emergency responders were among the dead, what the building was and how full it would have been on a Saturday, what Russia's defence ministry claims it hit in Kryvyi Rih, and what the Geneva Conventions and the Rome Statute say about attacks on those rendering aid. Note that Germany's foreign minister Johann Wadephul was in Kyiv as the toll rose. Single-source (DW) on this specific update — attribute the death toll to Ukrainian emergency services and say so plainly.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Minister_for_Foreign_Affairs_(Germany)",
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Johann_Wadephul",
+        "http://en.wikipedia.org/wiki/Humanitarian_aid"
+      ]
+    },
+    {
+      "id": "burhan-temporary-immunity-dialogue-as-leverage",
+      "label": "Sudan Nashra: Burhan offers temporary immunity for internal dialogue participants | AU Peace, Security Council in Khartoum | Khartoum, Riyadh establish bilateral coordination council | Second-largest single group RSF defection arrive in Northern State",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-burhan-temporary-immunity-dialogue-as-leverage"
+      ],
+      "eventUri": null,
+      "summary": "Burhan is offering temporary immunity — including suspension of live criminal proceedings — to anyone who joins his intra-Sudanese dialogue, and the immediate beneficiaries are the Sumud opposition leaders currently facing charges. Lead with the trade being made: a transitional authority is buying participation with the one currency it controls, which is prosecution, and that tells you the dialogue's legitimacy problem is legal, not political. Teach the mechanism our reader should carry — 'temporary' immunity that expires with the talks makes every participant permanently recallable, so it is leverage dressed as amnesty, and it forecloses accountability for the war's own crimes in the same motion. Establish who exactly is covered and what charges are suspended, how long 'temporary' runs, who has agreed to attend and who has refused, what the AU Peace and Security Council delegation in Khartoum said, what the new Khartoum–Riyadh bilateral coordination council commits either side to, and the scale of the reported RSF defection into Northern State — the second-largest single-group defection so far, which is the clearest battlefield signal in the bulletin. Who bears the cost: Sudanese civilians whose claims against both SAF and RSF sit outside every framework here. Sudan is an OIC state and Mada Masr (EG) is the regional source; note that no Sudanese outlet appears in this feed for the bulletin.",
+      "conceptUris": []
+    },
+    {
+      "id": "south-china-sea-reef-to-runway-in-twelve-months",
+      "label": "China’s Massive New Artificial Island In The South China Sea Emerges, Primed For Militarization",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-south-china-sea-reef-to-runway-in-twelve-months"
+      ],
+      "eventUri": null,
+      "summary": "A submerged reef a year ago is now 1,500 acres of dry land with a runway under construction. Lead with the tempo, because it is the argument: twelve months from reef to airstrip means dredging capacity, not legal claim, is what now fixes sovereignty in the South China Sea, and no arbitration timeline moves that fast. Establish which feature this is and whose EEZ it falls in, the acreage and runway length against the earlier Fiery Cross, Subi and Mischief build-outs, what imagery shows of hardened shelters, radar or harbour works, what the 2016 Permanent Court of Arbitration ruling actually said about artificial islands generating no maritime entitlement, and what the Philippines, Vietnam and Malaysia have said. Who bears the cost: Filipino, Vietnamese and Malaysian fishing fleets whose grounds are enclosed one dredger at a time — Malaysia, Indonesia and Brunei are OIC states with claims here, and the feed carries no Southeast Asian outlet on this, which is worth auditing feed-side. Satellite-imagery evidence, single-source — attribute the measurements to the imagery analysis and date the images. Fills the China and Southeast Asia gaps the daily audit has flagged.",
+      "conceptUris": []
+    },
+    {
+      "id": "samara-refinery-strike-crude-is-fungible-refining-is-not",
+      "label": "Ukraine Drones Strike Samara Oil Refinery, E-Commerce Warehouse",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-samara-refinery-strike-crude-is-fungible-refining-is-not"
+      ],
+      "eventUri": "eng-11944811",
+      "summary": "Ukrainian drones hit a Samara refinery and an Ozon logistics centre while Russia struck fuel tanks and port warehouses at Chornomorsk and Pivdennyi. Lead with the target class, not the exchange: both sides have moved from front-line targets to the civilian logistics that convert fuel and goods into money, because refining and distribution capacity is the one thing neither can replace quickly. Teach the mechanism our reader should carry — crude is fungible and refining is not, so a refinery strike does not reduce a country's oil, it strands it; that is why Russia has domestic fuel shortages while still exporting barrels. Establish which Samara plant was hit and its nameplate throughput, how much of Russian refining capacity is now offline across the campaign, what Ozon's warehouse loss means for delivery in the region, what Russia claims it destroyed at the Odesa-region ports, and what a fuel-tank strike does to Ukrainian import logistics. Multi-source with an adversarial pair — Bloomberg (US) and Ukrainska Pravda (UA), divergence 0.03, so the physical facts are broadly agreed; each defence ministry's damage claim should still be attributed, not stated.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Samara_Oblast",
+        "http://en.wikipedia.org/wiki/Ozon_(company)",
+        "http://en.wikipedia.org/wiki/Logistics"
+      ]
+    },
+    {
+      "id": "novak-lower-class-fuel-admission-refining-not-crude",
+      "label": "Russian deputy premier names main sources for dealing with fuel shortages in Russia",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-novak-lower-class-fuel-admission-refining-not-crude"
+      ],
+      "eventUri": null,
+      "summary": "Deputy Prime Minister Alexander Novak says Russia will close its fuel gap by importing more and producing lower-class fuel — an official, on the record, in state media. Lead with the second half: dropping to a lower fuel class is a public admission that the shortage is a refining-capacity problem, not a crude problem, because the only reason to sell worse petrol is that you cannot make the good kind. Teach the mechanism — octane and sulphur class are set by secondary units (reformers, hydrotreaters, cat crackers), the exact units drone strikes destroy and the exact units sanctions make hardest to repair, so downgrading the standard is what a refinery-constrained state does instead of rationing. Establish which fuel classes are being relaxed and by what instrument, where the imports come from and at what volume, what the current rationing looks like at the pump and in which regions, how a lower class affects modern engines and emissions, and what Russia's export volumes are doing meanwhile. Who bears the cost: Russian motorists and hauliers, who pay for the war's attrition in engine wear. Advances the Moscow fuel-rationing arc opened on 2026-08-19 with the policy response, distinct from today's strike story. State-media single-source — attribute everything to Novak and to TASS explicitly, and treat the framing as the government's own.",
+      "conceptUris": []
+    },
+    {
+      "id": "tokenized-stocks-refragmenting-settlement",
+      "label": "Tokenized stocks risk a digital repeat of Wall Street's 'Paperwork Crisis'",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-tokenized-stocks-refragmenting-settlement"
+      ],
+      "eventUri": null,
+      "summary": "The warning is that tokenized equities are rebuilding the 1960s Paperwork Crisis in software: rival venues each issuing their own non-interoperable claim on the same underlying share. Lead with the historical mechanism, because it is the teaching moment — the 1968-70 crisis shut the NYSE on Wednesdays, killed roughly a hundred brokerages, and was solved not by faster clerks but by creating a central depository and dematerialising the certificate. Tokenization inverts that fix: it re-fragments the settlement layer into competing ledgers, and a claim that cannot move between venues is a certificate in a vault again. Establish what a tokenized stock legally is and who holds the real share, how many venues now issue them and on which chains, what happens in a default or corporate action when the token and the register disagree, what the 1960s crisis actually cost, and which regulators have said anything about custody and settlement finality. Who bears the cost: retail holders outside the US buying exposure they cannot redeem. Sourcing note: this is a named-executive interview, so attribute the thesis to Fairmint's CEO and carry the historical record independently.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-art-interruption-resistance-not-just-relapse",
+      "label": "Nigerians turn to faith healers as HIV aid dries up",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-nigeria-art-interruption-resistance-not-just-relapse"
+      ],
+      "eventUri": null,
+      "summary": "US aid cuts interrupted free antiretroviral supply in Nigeria, and patients who cannot buy the drugs are being told by unproven 'cures' to stop taking them. Lead with the clinical consequence, not the funding decision: interrupted ART is not the same as untreated HIV — it drives viral rebound and selects for drug-resistant strains, so a break in supply creates a harder epidemic than the one that existed before the programme started. Establish how many Nigerians were on donor-funded ART and how many have missed doses, which programme was cut and when, the price of a month's supply against a median wage, what the resistance data shows about interruption, what NACA and the federal health ministry are doing to bridge, and what the faith healers actually claim and charge. Who holds power: the donor government that switched off a supply chain it had made countries dependent on; who bears the cost: patients whose only visible option is prayer sold at a price. Nigeria is an OIC member and the feed carries no Nigerian outlet on this story — SciDev.Net (GB) is the sole source; flag that gap for feed-side audit. Also answers the audit's note that science has leaned on a single narrow outlet set.",
+      "conceptUris": []
+    },
+    {
+      "id": "discrepancy-bound-improved-first-time-in-thirty-years",
+      "label": "‘Huge Breakthrough’ in the Math of Imbalance",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-discrepancy-bound-improved-first-time-in-thirty-years"
+      ],
+      "eventUri": null,
+      "summary": "For the first time in thirty years, computer scientists have improved the bound on discrepancy — how evenly a set of objects can be split into two groups. Lead with why a splitting problem is worth thirty years: discrepancy theory is the mathematics of fair division under constraint, and its bounds set the limit on randomised algorithms, experiment design, sampling and load balancing, so an improvement here quietly tightens everything built on them. Establish what the previous bound was and who proved it, what the new result improves it to, whether the proof is constructive (an algorithm you can run) or existential (a guarantee you cannot realise), who the authors are and where the work appeared, and one concrete downstream use — clinical-trial arm assignment or data-centre scheduling — where a better bound changes an actual number. Keep the technical claim exact: state precisely which discrepancy quantity is bounded, since the popular framing 'splitting evenly' loses the whole result. Single-source Quanta (US), a specialist science outlet reporting on published work.",
+      "conceptUris": []
+    },
+    {
+      "id": "border-phone-wipe-felony-a-duty-to-preserve",
+      "label": "Felony charges for citizen deleting phone data at US Border",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-border-phone-wipe-felony-a-duty-to-preserve"
+      ],
+      "eventUri": null,
+      "summary": "A US citizen who wiped his phone before a border inspection is facing felony charges — the theory being evidence destruction, applied to a device the government had not yet obtained a warrant for. Lead with the precedent, which is the whole story: if deleting your own data ahead of a warrantless search is a felony, then the border search exception has acquired a duty to preserve, and every traveller now carries an obligation to hand over a device intact. Establish who has been charged and under which statute, exactly what he did and when relative to the inspection, what CBP's warrantless device-search authority actually covers after Riley and the circuit split on forensic searches, how many device searches CBP performed last year, whether any court has upheld this charging theory before, and what the defence argues. Who holds power: the prosecutors choosing to test the theory; who bears the cost: journalists, lawyers and anyone crossing with a client's or source's data on them. Attribute to the New York Times reporting; the story reached the feed via Hacker News at 981 points, a strong public-attention signal from exactly our technical readership.",
+      "conceptUris": []
+    },
+    {
+      "id": "cisa-cuts-nobody-measured-what-was-lost",
+      "label": "Lawmakers call for investigation into impact of CISA staffing cuts",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-cisa-cuts-nobody-measured-what-was-lost"
+      ],
+      "eventUri": null,
+      "summary": "Lawmakers want a formal investigation because nobody can say what CISA lost — the agency cut staff without any accounting of which capabilities went with them. Lead with that absence: the request is not 'the cuts were too deep', it is 'we have no instrument that would tell us', and an unmeasured reduction in a defensive agency is a risk that only surfaces during an incident. Teach the mechanism — CISA's value is concentrated in threat-hunting teams, the Known Exploited Vulnerabilities catalogue, and the federal incident-response bench, all of which are people-shaped and none of which appear on a headcount line, so institutional knowledge leaves without leaving a trace in the budget. Establish how many positions went and from which divisions, who is asking, which oversight body would conduct the review, what CISA has said about backfilling, whether advisory or KEV publication cadence has measurably changed, and what state and local governments — who rely on CISA precisely because they cannot staff this themselves — report. Single-source The Record (US), a specialist security outlet.",
+      "conceptUris": []
+    },
+    {
+      "id": "honor-humanoid-sprint-phone-supply-chain-robotics",
+      "label": "Usain Bolt's 100m record broken at World Humanoid Robot Games",
+      "firstSeen": "2026-08-22T17:31:10.751Z",
+      "lastCovered": "2026-08-22T17:31:10.751Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-honor-humanoid-sprint-phone-supply-chain-robotics"
+      ],
+      "eventUri": "eng-11945143",
+      "summary": "A humanoid built by Honor — a smartphone maker — ran 100m in 9.32 seconds at 14.5 m/s peak. Lead with who built it, not what it beat: the sprint record is a demonstration that phone-industry supply chains (actuators, batteries, thermal design, volume manufacturing) have reached the point where a consumer-electronics firm can field a competitive bipedal robot, and that is the industrial fact underneath the sports headline. Teach the mechanism our reader should carry — bipedal running is a power-density and control-latency problem, so the number encodes actuator torque-to-weight and control-loop frequency, both of which transfer directly to warehouse and industrial robotics; and be precise that a robot 'beating' Bolt is not a like-for-like comparison, since the machine runs a prepared surface under different rules. Establish the rules and track conditions, what Lightning weighs and what actuators it uses, which other records fell at the Games, how many Chinese firms competed and which state programmes fund them, and what China's humanoid production volumes now look like against US and Japanese output. Sourced by Al Jazeera (QA) and ESPN (US); divergence 0.35 — treat the state-broadcaster timing claim as reported, not verified.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Humanoid_robot",
+        "http://en.wikipedia.org/wiki/Usain_Bolt",
+        "http://en.wikipedia.org/wiki/World_record",
+        "http://en.wikipedia.org/wiki/100_metres",
+        "http://en.wikipedia.org/wiki/Robot",
+        "http://en.wikipedia.org/wiki/Beijing"
+      ]
+    },
+    {
       "id": "iran-europe-basing-targets-host-state-exposure",
       "label": "Iran Eyes US Military Targets in Europe if War Escalates",
       "firstSeen": "2026-08-19T12:11:19.918Z",
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-iran-europe-basing-targets-host-state-exposure"
@@ -33,7 +282,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-kolkata-hotel-fire-bangladeshi-medical-travellers-exit-code"
@@ -58,7 +307,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-kazakhstan-kurultai-election-agency-versus-administration"
@@ -74,7 +323,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-nord-stream-arrest-subsea-infrastructure-legal-void"
@@ -99,7 +348,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-moscow-fuel-rationing-refinery-capacity-not-crude"
@@ -124,7 +373,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-psx-selloff-hormuz-transmission-importer-balance-sheet"
@@ -140,7 +389,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-landspace-steel-booster-recovery-material-bet-reuse"
@@ -165,7 +414,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-liquid-theory-rebuilt-shear-wave-cutoff-collective-modes"
@@ -181,7 +430,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-china-urban-renewal-livability-measured-weights-and-geography"
@@ -197,7 +446,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-openai-slows-after-autonomous-cyberattack-evals-that-missed-it"
@@ -213,7 +462,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-19-digital-yuan-thirty-banks-deposit-liability-design"
@@ -229,7 +478,7 @@
       "lastCovered": "2026-08-19T12:11:19.918Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-17-an-unknown-company-is-advertising-starlink-in-lebanon-but-th"
@@ -245,7 +494,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-aid-worker-deaths-record-gaza-majority-witness-removal"
@@ -270,7 +519,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-uss-lincoln-conditions-pentagon-coordinated-messaging-denial-pattern"
@@ -286,7 +535,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-nabu-searches-presidential-office-institutional-insulation-test"
@@ -311,7 +560,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-cma-drip-pricing-probe-comparison-failure-jurisdictional-enforcement"
@@ -336,7 +585,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-hormuz-throughput-slows-uninsurable-risk-chokepoint-arithmetic"
@@ -352,7 +601,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-universal-coverage-model-administrative-multiplicity-cost-of-fragmentation"
@@ -368,7 +617,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-west-africa-biomedical-waste-unfunded-downstream-disposal-chain"
@@ -384,7 +633,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-skilled-birth-attendance-sub-saharan-africa-community-versus-household"
@@ -400,7 +649,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-unccd-cop17-mongolia-desertification-finance-asymmetry"
@@ -416,7 +665,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-maya-protocol-bridge-exploit-compound-failure-defensive-surface"
@@ -432,7 +681,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-unitree-listing-component-base-export-control-other-side"
@@ -448,7 +697,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-ukraine-equalizer-glide-bomb-donor-independence-glide-kit-economics"
@@ -464,7 +713,7 @@
       "lastCovered": "2026-08-19T08:14:02.770Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-19-india-singapore-ministerial-roundtable-2026-sitharaman-goyal"
@@ -489,7 +738,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-19-iran-strangulation-strategy-shift-attrition-civilian-cost"
@@ -514,7 +763,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-byain-phyu-massacre-testimony-collective-punishment-rakhine"
@@ -530,7 +779,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-shield-of-americas-boat-strikes-accountability-diffusion"
@@ -546,7 +795,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-18-karachi-free-will-marriage-killing-court-order-protection-gap"
@@ -562,7 +811,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-17-sudan-blocked-supply-chains-checkpoint-economy-chronic-illness"
@@ -578,7 +827,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-19-clarity-act-cuomo-okx-ice-competitiveness-frame"
@@ -594,7 +843,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-19-us-army-korean-howitzer-contract-industrial-capacity-inversion"
@@ -610,7 +859,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-17-colorado-reservoirs-record-low-over-allocation-buffer-exhaustion"
@@ -626,7 +875,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-19-nih-budget-cut-model-training-pipeline-lag-2050"
@@ -642,7 +891,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-17-china-robotics-component-ban-substitution-assumption"
@@ -658,7 +907,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-19-google-pakistan-office-platform-localisation-jurisdiction"
@@ -674,7 +923,7 @@
       "lastCovered": "2026-08-19T04:10:51.087Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-17-youtube-view-definition-change-ranking-versus-payment-metric"
@@ -699,7 +948,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-icc-sanctions-judges-designation-court-operational-capacity"
@@ -724,7 +973,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-uae-iran-trade-suspension-reexport-channel-payments-closure"
@@ -749,7 +998,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-gaza-schooling-system-collapse-certification-lost-cohort"
@@ -765,7 +1014,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-ukraine-wartime-election-demand-martial-law-mandate-gap"
@@ -790,7 +1039,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-kyrgyzstan-liquidations-secondary-sanctions-overcompliance"
@@ -806,7 +1055,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-cerimedo-arrest-bolivia-transnational-adviser-judicial-reach"
@@ -831,7 +1080,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-nelson-mandela-bay-fuel-failure-procurement-cycle-emergency-response"
@@ -847,7 +1096,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-kaduna-dam-cracks-downstream-jurisdiction-warning-chain"
@@ -863,7 +1112,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-apple-eu-fee-removal-jurisdictional-partition-dma"
@@ -879,7 +1128,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-park-service-flock-alpr-shared-network-query-access"
@@ -895,7 +1144,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-medusa-victim-count-raas-labour-substitution-undercount"
@@ -911,7 +1160,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-nih-score-disclosure-change-margin-visibility-bias-detection"
@@ -927,7 +1176,7 @@
       "lastCovered": "2026-08-18T22:11:59.043Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-18-pnsb-inoculant-jasmine-rice-nitrogen-substitution-field-gap"
@@ -943,7 +1192,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-syria-grants-iaea-access-to-assad-era-undeclared-nuclear-sit"
@@ -968,7 +1217,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-explainer-how-the-super-el-ni-o-will-reshape-the-world-s-wea"
@@ -984,7 +1233,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-u-p-sit-report-on-ram-temple-embezzlement-an-eyewash-to-save"
@@ -1009,7 +1258,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-sudan-battlefield-shifts-as-rsf-intensifies-operations-in-bl"
@@ -1031,7 +1280,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-staying-on-warraq-residents-formally-demand-land-within-new"
@@ -1047,7 +1296,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-govt-to-implement-court-order-on-imran-khan-s-hospital-trans"
@@ -1067,7 +1316,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-eight-strikes-hit-airbase-in-syria-s-idlib"
@@ -1092,7 +1341,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-iran-launches-missiles-towards-uae-dubai-residents-receive-e"
@@ -1117,7 +1366,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-two-more-greek-vessels-attacked-in-black-sea-with-one-of-the"
@@ -1139,7 +1388,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-fairphone-brings-the-repairable-fairphone-gen-6-to-the-us"
@@ -1162,7 +1411,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-x-s-algorithm-feeds-off-ragebait-and-impacts-democrats-more"
@@ -1178,7 +1427,7 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-anthropic-s-text-watermarking-proves-ai-companies-do-not-car"
@@ -1194,257 +1443,13 @@
       "lastCovered": "2026-08-18T17:12:59.530Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-18-berlin-cuts-two-state-ministries-off-government-network-afte"
       ],
       "eventUri": null,
       "summary": "Berlin has isolated its urban-development and transport ministries from the state government network since Friday as a precaution after a breach. Lead with the precaution itself as the story, not the breach: cutting two ministries off the shared network for days means either the intrusion's scope could not be quickly bounded, or the network architecture does not allow surgical isolation of a single compromised system — both are findings about government cyber-resilience more consequential than the initial breach. Teach the mechanism: shared government networks trade convenience for blast radius, and the length of an isolation period is a rough proxy for how deeply an attacker moved before detection. Establish what is known about the breach's origin and vector, what services residents have lost access to during the isolation, whether any data exfiltration has been confirmed, and how this compares to Germany's other recent state-level government breaches — establishing whether this is an isolated incident or part of a pattern targeting German state infrastructure.",
-      "conceptUris": []
-    },
-    {
-      "id": "ml1-resettlement-right-of-way-tenure-compensable-title",
-      "label": "The inclusive resettlement of ML-1 clears the track of living obstacles",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-ml1-resettlement-right-of-way-tenure-compensable-title"
-      ],
-      "eventUri": null,
-      "summary": "Nearly 15,000 people in Karachi, Hyderabad and Lahore stand to lose their homes to Pakistan's Main Line-1 railway upgrade, with work starting in January. Lead with the 15,000 and the word 'inclusive' in the resettlement framework's own title — that gap is the story. Teach the mechanism: a resettlement action plan is the instrument that converts eviction into procedure. Once a household is counted, categorised and offered compensation, the displacement becomes administratively complete regardless of whether anyone can actually rebuild a life on the sum offered, and the people living on railway right-of-way are precisely those with the weakest tenure documents — informal settlers whose decades of occupancy generate no compensable title. Establish the ML-1 cost and financing (this is the flagship CPEC rail project), which settlements along the Karachi-Hyderabad-Lahore alignment are affected and how the 15,000 figure was arrived at, what compensation category each household falls into and at what rate, whether resettlement sites have been identified, and what Pakistan Railways and the provincial governments say. Who bears the cost: katchi abadi residents in three cities, cleared so that a passenger can reach Lahore faster. Regional sourcing intact — Dawn (PK) is the outlet and no wire carried this.",
-      "conceptUris": []
-    },
-    {
-      "id": "wassim-assad-captagon-enforcement-network-asset-confiscation",
-      "label": "Syrian court sentences Wassim al-Assad to death",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-wassim-assad-captagon-enforcement-network-asset-confiscation"
-      ],
-      "eventUri": "deu-2163736",
-      "summary": "A Syrian court has sentenced Wassim al-Assad — a cousin of the ousted president — to death for crimes against humanity, with charges spanning armed-group leadership, captagon trafficking and premeditated murder, and ordered his assets confiscated. Lead with the charge sheet rather than the sentence, because the combination is the mechanism: the Assad system's enforcement and its narcotics economy ran through the same people, and this is the first case where a court has said so on the record. Teach what a domestic transitional-justice trial can and cannot do — it establishes a factual record and seizes assets inside the country, but it cannot reach the money already offshore, and a death sentence forecloses the testimony a living defendant could have given about the network above him. Establish exactly what the court found, which intelligence branch and which trafficking routes were named, what assets were confiscated and their value, whether the defence was independent and whether appeal lies, how many Assad-era figures have now been tried and how many remain outside Syria. Be precise about the tension our reader will feel: accountability delivered by capital punishment in a court built months ago is a fragile foundation, and this site should say so without diminishing the victims. Regional sourcing intact — TRT World (TR) and Al Jazeera (QA) both carry it; note the wide sentiment divergence (0.57) across the cluster and attribute framings rather than blending them.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Syria",
-        "http://en.wikipedia.org/wiki/Bashar_al-Assad",
-        "http://en.wikipedia.org/wiki/Capital_punishment",
-        "http://en.wikipedia.org/wiki/Damascus",
-        "http://en.wikipedia.org/wiki/War_crime",
-        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
-        "http://en.wikipedia.org/wiki/Torture",
-        "http://en.wikipedia.org/wiki/Illegal_drug_trade"
-      ]
-    },
-    {
-      "id": "daraa-poisonings-reconciliation-amnesty-deniable-assassination",
-      "label": "How the Assad Regime Poisoned Former Rebels in Southern Syria",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-daraa-poisonings-reconciliation-amnesty-deniable-assassination"
-      ],
-      "eventUri": null,
-      "summary": "Original reporting: after Daraa fell to regime forces in 2018 under 'reconciliation' agreements, at least 24 people — former rebel commanders, civilians and two children — were poisoned in assassination attempts traced to Assad's intelligence branches. Lead with the reconciliation deal and what it promised, because the betrayal of that guarantee is the mechanism: surrender agreements work by exchanging disarmament for amnesty, and the amnesty is only as good as the state offering it. Poison is the instrument that lets a state honour an amnesty in public while voiding it in private — deaths that read as illness, no strike to attribute, no body of evidence, and years of deniability. Teach the reader why this matters beyond Syria: the international system brokers surrender-for-amnesty deals constantly, and this is a documented case of what happens when the guarantor and the killer are the same government. Establish how the reporting identified the 24 cases and the branches involved, name the victims including the two children, what substances were used and how families and doctors detected them, whether any perpetrator has been identified since the government fell, and whether Syria's new judicial process is examining these cases at all. This is single-source investigative reportage from an outlet that does original work — attribute its findings to it explicitly and flag that no Syrian or regional outlet carried this account in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "kuril-visit-presence-as-sovereignty-peace-treaty-foreclosure",
-      "label": "Russia protests Japan PM's comments after Putin's Kuril visit",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-kuril-visit-presence-as-sovereignty-peace-treaty-foreclosure"
-      ],
-      "eventUri": "eng-11930996",
-      "summary": "Moscow summoned Japan's ambassador over Prime Minister Sanae Takaichi's remarks following Putin's first-ever visit to one of the disputed Kuril Islands. Lead with the visit, not the protest: a head of state setting foot on contested territory is a sovereignty act performed with his body, and it is the cheapest, least reversible way to close a territorial question. Teach the mechanism our reader can apply to every frozen dispute from Kashmir to the South China Sea: unresolved claims survive on ambiguity, and ambiguity is destroyed by presence — infrastructure, garrisons, civil administration and finally a leader's footprint. Japan and Russia have never signed a peace treaty ending the Second World War because of these four islands, and Putin's visit is a statement that the treaty will not be signed on any terms Tokyo could accept. Establish which island Putin visited and what he announced there, exactly what Takaichi said, what Russia's foreign ministry demanded, the current state of the peace-treaty talks and when they last moved, and what has happened to Japanese economic cooperation on the islands since 2022. Then the wider frame: Japan under a new prime minister is rearming and recalibrating, and this is the first hard test of whether that changes anything. Note the sourcing spread — Al Jazeera (QA), TASS (RU) and a US wire each frame the summons differently; state which claim belongs to whom rather than merging them, and treat TASS as the Russian government's account.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Kuril_Islands",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Tokyo",
-        "http://en.wikipedia.org/wiki/Iturup",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Russia)"
-      ]
-    },
-    {
-      "id": "ndlea-courier-channel-seizure-west-africa-transit-node",
-      "label": "NDLEA seizes cocaine worth N39bn, arrests two suspected cartel members",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-ndlea-courier-channel-seizure-west-africa-transit-node"
-      ],
-      "eventUri": "eng-11932583",
-      "summary": "Nigeria's NDLEA says it intercepted 184.5kg of cocaine worth about N39 billion ($27.7 million) — the largest courier-channel seizure in the agency's history — and arrested two alleged cartel members. Lead with 'courier channel', because the route is the story: 184.5kg does not move through a parcel service by accident, and a record interception in that channel means either enforcement improved or the traffic did. Teach the mechanism: as European maritime enforcement tightened on the direct Latin America-Iberia route, traffickers re-routed through West African transit hubs, where the volumes are broken down, re-consolidated and forwarded by air and courier — which converts Nigeria from a destination problem into a logistics node, with the local costs (corrupted customs, domestic consumption, violence) accruing to a country that consumes almost none of it. Establish where the consignment originated and where it was bound, how it was concealed and detected, who the two arrested are and whether either is above courier level, the NDLEA's seizure totals for the year against previous years, and how the naira valuation was calculated — a headline figure quoted at street prices in a currency that has depreciated sharply inflates easily, and our reader will want the kilogram number as the honest metric. Who bears the cost: Nigerians, in a country made a corridor by two continents' appetites. Regional sourcing intact — Premium Times (NG). Fills the Africa gap the daily audit has now flagged for three consecutive days.",
-      "conceptUris": []
-    },
-    {
-      "id": "foz-do-amazonas-equatorial-margin-frontier-barrel-substitution",
-      "label": "Brazil's Petrobras detects signs of oil off Amazon coast",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-foz-do-amazonas-equatorial-margin-frontier-barrel-substitution"
-      ],
-      "eventUri": "por-1314291",
-      "summary": "Lula, standing on a Petrobras drillship, called oil near the mouth of the Amazon 'a passport to the country's future' after a new find in the Foz do Amazonas basin. Lead with that sentence said in that place, because the contradiction is the whole economics: the government that hosts the world's loudest forest-protection diplomacy is opening a frontier oil province at the river's mouth. Teach the mechanism rather than scoring the hypocrisy — this is the resource-state arithmetic every Global South producer faces. Deepwater crude is the only asset Brazil can monetise at the scale its fiscal commitments require, the discovery window is closing as the world's demand peak approaches, and a barrel left in the ground is not a barrel unburned but a barrel supplied by Guyana or Angola instead. That is why 'keep it in the ground' has no purchase on a treasury, and why the honest question is what the revenue is bound to. Establish what Petrobras actually found and its stage (signs of hydrocarbons in a well is not a commercial reserve — be precise), the Equatorial Margin's estimated potential, what IBAMA licensed and over what objections, the spill-response and indigenous-consultation record at the river mouth, and Brazil's current output and export position. Then the systemic note: the Equatorial Margin is geologically continuous with Guyana's Stabroek and French Guiana, so a proven play here re-rates the whole northern coast of South America. Sourcing gap worth stating — the cluster is a US wire plus Free Malaysia Today; no Brazilian outlet appeared, so attribute Lula and Petrobras statements to the wire that carried them.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Petrobras",
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
-        "http://en.wikipedia.org/wiki/Amapá",
-        "http://en.wikipedia.org/wiki/Well",
-        "http://en.wikipedia.org/wiki/Hydrocarbon",
-        "http://en.wikipedia.org/wiki/President_of_Brazil"
-      ]
-    },
-    {
-      "id": "china-ev-export-ratio-overcapacity-global-south-industrial-base",
-      "label": "Chinese carmakers now sell one EV abroad for every two at home",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-china-ev-export-ratio-overcapacity-global-south-industrial-base"
-      ],
-      "eventUri": null,
-      "summary": "China's electric-vehicle makers now export one car for every two they sell domestically, and the destinations are Brazil, Thailand and the Gulf. Lead with that ratio, because it is a measurement of a domestic failure being exported: the shift is driven by dwindling sales at home, not by winning abroad. Teach the mechanism, which is the most consequential industrial story of the decade for the Global South: capacity built for a domestic market that stopped growing does not shut down, because plants have fixed costs and provincial governments have employment targets, so the surplus is pushed outward at whatever price clears it. For Brazil, Thailand, the UAE and Indonesia this is genuinely cheap electrification arriving years earlier than any policy could have delivered — and simultaneously the arrival of a competitor no domestic assembler can match on cost, in exactly the countries that spent decades building local auto industries behind tariffs. Establish the actual export and domestic volumes and the price gaps, which manufacturers and which models are moving where, what local-content rules, tariffs and plant announcements those countries have responded with, and what the after-sales and charging-infrastructure picture looks like — a cheap car with no service network is a different product. Then the question worth posing plainly: a country receiving these cars gets faster decarbonisation and a weaker industrial base, and no one is offering it both.",
-      "conceptUris": []
-    },
-    {
-      "id": "nsfas-improper-funding-recovery-means-test-error-direction",
-      "label": "Public Protector says NSFAS failed to fulfil its mandate as students pay the price",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-nsfas-improper-funding-recovery-means-test-error-direction"
-      ],
-      "eventUri": "eng-11929678",
-      "summary": "South Africa's Public Protector has found the National Student Financial Aid Scheme failed its mandate: more than 40,000 students at 76 institutions were improperly funded to an estimated R5.1 billion, of which just over R2 billion has been recovered. Lead with the recovery, because it is the cruellest number — the money is clawed back from students, so an administrative failure by the scheme becomes a debt owed by the person it was meant to help. Teach the mechanism: means-tested aid requires verifying household income against records that poor and informally employed families frequently cannot produce, so the scheme either underfunds eligible students or overfunds ineligible ones, and every attempt to tighten eligibility pushes error into the first category. When the error runs the other way, recovery has no proportionality test — a student who accepted money in good faith is treated identically to one who misrepresented. Establish precisely what the Public Protector found and what remedial action she directed, how the 40,000 and R5.1bn were determined, how recovery is being enforced (withheld results, blocked graduation, credit listing), how many of the improperly funded were themselves eligible under a different threshold, and what NSFAS and the Department of Higher Education say. Who bears the cost: first-generation students for whom this scheme is the only route through university. Fills the Africa gap the daily audit has flagged for three consecutive days.",
-      "conceptUris": []
-    },
-    {
-      "id": "cyanobacteria-ultrasound-gas-vesicles-toxin-release-tradeoff",
-      "label": "Evaluation of low-frequency ultrasound as a safe and sustainable method for the removal and inactivation of cyanobacteria in water",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-cyanobacteria-ultrasound-gas-vesicles-toxin-release-tradeoff"
-      ],
-      "eventUri": null,
-      "summary": "Researchers tested low-frequency ultrasound as a way to remove and inactivate cyanobacteria in water without chemicals. Lead with the reason the method matters rather than the method itself: the standard response to a toxic algal bloom in a drinking-water reservoir is to dose it with an algaecide, and killing the cells ruptures them, releasing the cyanotoxins they contain into the water you were trying to clean. Teach that mechanism carefully, because it is genuinely counterintuitive and it is the whole case for the alternative — a treatment that lyses cells trades a manageable biomass problem for a dissolved-toxin problem, and copper sulphate accumulates in sediment besides. Ultrasound instead targets the gas vesicles cyanobacteria use to control buoyancy, sinking the colonies out of the sunlit layer so they stop growing, which is why the intactness of the cells is the finding to test. Establish which species and frequencies were tested, at what scale (laboratory, mesocosm or reservoir — this determines what it means), whether cell integrity and toxin release were actually measured, what removal rates were achieved and over what exposure, energy cost per volume, and what effect on non-target zooplankton and fish the authors report or do not. Then why it belongs in a global cycle: cyanobacterial blooms are expanding with warming and fertiliser runoff, and they hit hardest where treatment plants are least equipped — Lake Victoria, the Indus and Nile systems, Chinese and Brazilian reservoirs — so a low-chemical, low-infrastructure method is a question about who can afford safe water. Note this is an early-access accepted manuscript and describe it as such.",
-      "conceptUris": []
-    },
-    {
-      "id": "dependency-maps-from-slides-imputation-chain-assay-cost",
-      "label": "Inferring tumor dependency maps from histopathology through imputed transcriptomics - npj Precision Oncology",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-dependency-maps-from-slides-imputation-chain-assay-cost"
-      ],
-      "eventUri": null,
-      "summary": "Researchers infer gene-dependency maps — which genes a tumour cannot survive without — from ordinary histopathology slides, by first imputing gene expression from the image and then predicting dependencies from that. Lead with what a dependency map is and what it costs today, because the economics are the point: dependency data comes from CRISPR screens across cancer cell lines, which require a lab, a cultured tumour and weeks of work, and precision-oncology sequencing panels remain out of reach for most of the world's cancer patients. A stained slide under a microscope, by contrast, exists for essentially every cancer diagnosed anywhere. Teach the inference chain honestly and note where error compounds: image to expression is a prediction, expression to dependency is a second prediction, and a two-stage model inherits the biases of both — including that the training data are overwhelmingly from cell lines and patients of European ancestry, so a method sold as democratising access may transfer worst to the populations it would most help. Establish which cohorts and cancer types were used, how the imputed expression was validated against measured transcriptomics, what accuracy the dependency predictions achieved and against what baseline, whether any prediction was tested prospectively, and what the authors say is not yet clinically usable. Then the structural point for our reader: the constraint on cancer care in most countries is not knowledge but assay cost, and methods that extract more signal from cheap, already-collected material are the ones that change who gets treated. This is an unedited early-access manuscript — say so.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-usage-data-vendor-disclosure-no-independent-measurement",
-      "label": "We still don't know how people are really using AI",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-ai-usage-data-vendor-disclosure-no-independent-measurement"
-      ],
-      "eventUri": null,
-      "summary": "Anthropic and OpenAI publish usage reports on how people use their products, and researchers point out the obvious thing nobody can do about it: there is no independent source to corroborate any of it. Lead with that sentence from Stanford's Anka Reuel, because it is an accountability finding, not a methodology quibble. Teach the mechanism, which our reader will recognise from every other regulated industry: when the only entity that can measure an effect is the entity causing it, the published data is not evidence but disclosure, and disclosure is shaped by what the discloser wants known. Bank stress tests, drug trials and emissions figures all had this structure until independent measurement was mandated into existence — AI has no equivalent, so claims about how many people use chatbots for therapy, for medical advice, or for schoolwork rest entirely on vendor summaries of their own logs. Establish what the companies actually publish and at what granularity, which specific questions researchers say the reports cannot answer, what independent measurement approaches exist (surveys, panels, network data) and why they undercount, whether any regulator has demanded audited usage reporting, and what the companies say when asked for underlying data. Then the part with teeth: the same numbers are being cited to legislatures drafting AI rules and to investors funding data centres, so an unauditable metric is now load-bearing for both public policy and capital allocation. Connect it to this site's running AI-provenance thread — measurement capture is the same failure as provenance capture, one step upstream.",
-      "conceptUris": []
-    },
-    {
-      "id": "chatgpt-teens-age-assurance-partitioned-safety-after-harm",
-      "label": "OpenAI launches ChatGPT for Teens with new safety features",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-chatgpt-teens-age-assurance-partitioned-safety-after-harm"
-      ],
-      "eventUri": "eng-11932425",
-      "summary": "OpenAI has launched a teen-specific ChatGPT with parental controls and stronger guardrails, while facing multiple lawsuits alleging the product harmed minors. Lead with the sequence — product first, litigation, then safety tier — because the order is the mechanism and it is the oldest one in consumer technology: ship to everyone, discover the harm through the people it lands on, then partition the product so the vulnerable class gets the protections that were always technically possible. Teach how a teen tier actually works and where it fails: age assurance is either self-declared (defeated instantly) or requires identity verification (which means collecting documents from children), and a guardrail tuned to refuse self-harm and eating-disorder content is a classifier with a false-negative rate, deployed against users who are motivated to route around it. Establish what specifically differs in the teen version, how age is determined, what parents can see and whether the teen is told, what the lawsuits allege and at what stage they stand, whether the changes are being applied worldwide or only where regulators have moved, and what the $852bn valuation implies about the cost of shipping this earlier. Then widen it: age-verification mandates are arriving in the UK, EU, Australia, Indonesia and several Gulf states, and each one trades child safety against an identity-collection regime that applies to every adult too — that trade is the durable story, and our reader should see both sides of it stated plainly. Multi-source cluster: Reuters (GB), BBC (GB), News18 (IN) — News18 carries the India-specific rollout detail.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/ChatGPT",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Chatbot",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Self-harm",
-        "http://en.wikipedia.org/wiki/Suicide",
-        "http://en.wikipedia.org/wiki/Eating_disorder",
-        "http://en.wikipedia.org/wiki/Minor_(law)"
-      ]
-    },
-    {
-      "id": "swiss-ransomware-trial-developer-liability-division-of-labour",
-      "label": "Ukrainian software developer faces 12 years in Swiss ransomware trial",
-      "firstSeen": "2026-08-18T12:10:32.279Z",
-      "lastCovered": "2026-08-18T12:10:32.279Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-swiss-ransomware-trial-developer-liability-division-of-labour"
-      ],
-      "eventUri": null,
-      "summary": "A 52-year-old Ukrainian software developer is on trial in Switzerland facing 12 years over an international ransomware operation that hit train manufacturer Stadler Rail and other firms. Lead with the job title, because 'developer' is the legal question the trial actually turns on: ransomware is built by a division of labour — someone writes the encryptor, someone runs the affiliate programme, someone gains access, someone launders the payment — and prosecutions almost never reach the people who touch the victims. Teach the mechanism our reader should carry: ransomware-as-a-service was designed so that each participant can claim to have done something legal in isolation, and the developer is the cleanest case of it, since writing encryption code is not a crime anywhere. What makes this trial matter is that it tests whether building the tool, knowing its use, carries the weight of the harm — a question with direct parallels in spyware, exploit brokerage and open-source tooling. Establish what the prosecution alleges he specifically did, which operation and which victims, how Swiss jurisdiction was established over a Ukrainian defendant, how much Stadler Rail and the others lost and whether any paid, what precedent Swiss law provides, and how many of this operation's other members have been charged anywhere. Note the wartime complication honestly: Ukrainian cybercrime prosecutions now happen against a background where the same skills are being recruited by states, and the line between a defendant and an asset is drawn by whoever gets there first.",
       "conceptUris": []
     }
   ]
