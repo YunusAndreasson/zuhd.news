@@ -6,6 +6,7 @@ import { parseFrontmatter } from './lib/frontmatter.js'
 import { isThermallyRelevant, nearestStories } from './lib/firms.js'
 import { ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDay } from './lib/ipc.js'
 import { splitBlocks } from './lib/blocks.js'
+import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-payload.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
@@ -1225,6 +1226,44 @@ writeFileSync(join(DIST_DIR, 'api', 'feed-lite.json'), JSON.stringify({
   briefing: briefingInfo
 }))
 console.log(`  Built: api/feed-lite.json (${apiArticles.length} articles, mobile)`)
+
+// ── The Swedish payload, for islam.se ──────────────────────────────────────
+//
+// islam.se carries a small "Världen just nu" band and a /nyheter/ page, both
+// fed from here. Nothing Swedish is rendered on zuhd.news: this endpoint is
+// linked from no page, is in neither sitemap nor feed.xml, and carries
+// `X-Robots-Tag: noindex` in `public/_headers`.
+//
+// It is a NEW endpoint rather than fields on `feed.json`, because the JSON
+// APIs are a published contract and the app is live in both stores.
+//
+// Built from `sorted` rather than from `apiCategories`, deliberately. The two
+// differ in both window and shape: `apiCategories` is a 24h window with a
+// per-category backfill and carries the full English article, while this is a
+// flat 48h list of Swedish text. Deriving it from the grouped object would
+// mean unpicking the grouping and then discarding most of each article — the
+// anti-drift guarantee that matters here is the assertion in
+// `sv-payload.test.js` that the shared fields agree, not a shared expression.
+//
+// 48h, where the UI shows 24h: the extra day is what keeps a link shared
+// yesterday evening resolvable this morning rather than falling back.
+const svSrc = join(ROOT, 'content', '.sv.json')
+const svTranslations = existsSync(svSrc)
+  ? JSON.parse(readFileSync(svSrc, 'utf8')).articles || {}
+  : {}
+const svCutoff = Date.now() - SV_WINDOW_MS
+const svArticles = sorted
+  .filter(a => svTranslations[a.slug] && svEventTime(a.meta, a.addedAt) >= svCutoff)
+  .sort((a, b) => svEventTime(b.meta, b.addedAt) - svEventTime(a.meta, a.addedAt))
+  .map(a => svFeedItem(a, svTranslations[a.slug], SHARE.shareUrl(a.slug)))
+
+mkdirSync(join(DIST_DIR, 'api', 'sv'), { recursive: true })
+writeFileSync(join(DIST_DIR, 'api', 'sv', 'feed.json'), JSON.stringify({
+  generated,
+  fonster: 'PT48H',
+  artiklar: svArticles
+}))
+console.log(`  Built: api/sv/feed.json (${svArticles.length} articles, sv, 48h)`)
 
 // Event time for geo layers. `addedAt` is the markdown file's mtime — when
 // zuhd published — which drifts from when the thing actually happened and

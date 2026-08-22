@@ -535,6 +535,24 @@ $BODY_LENGTHS
   timeout 300 node scripts/extract-source-angles.js 2>&1 | tee -a "$LOG_FILE"
   echo "Source angles exit: $? — $((SECONDS - T37))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.75: Swedish desk — translate the 48h window into Swedish for
+  # islam.se, which carries a small news band fed from /api/sv/feed.json.
+  # Nothing Swedish is rendered on zuhd.news.
+  #
+  # It scans the window rather than this cycle's new articles, so a failed
+  # cycle self-heals on the next one instead of leaving a hole in islam.se's
+  # afternoon; the fingerprint cache in content/.sv.json is what keeps that
+  # from re-translating ~110 articles every time.
+  #
+  # Behind `|| echo WARNING` like every advisory stage: a translation failure
+  # must never be able to stop the publish.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.75: Swedish desk ---" | tee -a "$LOG_FILE"
+  T375=$SECONDS
+  timeout 600 node scripts/translate-swedish.js 2>&1 | tee -a "$LOG_FILE" \
+    || echo "WARNING: swedish translation failed (non-fatal — islam.se keeps the previous payload)" | tee -a "$LOG_FILE"
+  echo "Swedish desk exit: $? — $((SECONDS - T375))s" | tee -a "$LOG_FILE"
+
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
   echo "" | tee -a "$LOG_FILE"
@@ -603,7 +621,7 @@ $BODY_LENGTHS
     # Commit
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     commit_only "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" \
-      content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json
+      content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
     # --autostash: the working tree always carries uncommitted churn (.analytics.json,
     # .block-cache.json, rotated feed-snapshots) that a plain `pull --rebase` refuses to
     # run over ("You have unstaged changes"), which let the remote drift unmerged and every

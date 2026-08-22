@@ -173,3 +173,13 @@
 
 /api/ig/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# The Swedish payload, read cross-origin by islam.se's news band. Not linked
+# from any page here, absent from both sitemaps and feed.xml, and noindex — the
+# Swedish translations are for islam.se and are not part of this site.
+# stale-if-error so a failed build serves the last good payload rather than
+# emptying islam.se's front page.
+/api/sv/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: noindex
