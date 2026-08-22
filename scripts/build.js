@@ -802,6 +802,36 @@ const apiCategories = Object.fromEntries(
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c).filter(Boolean),
         eventCoverage: meta.eventCoverage != null ? Number(meta.eventCoverage) : null,
         sentimentDivergence: meta.sentimentDivergence != null ? Number(meta.sentimentDivergence) : null,
+        /*
+         * Tappable rich-noun references — oil, Hormuz, the lira.
+         *
+         * The app has shipped an EntitySheet since before this comment, and it
+         * has never opened once: `entities[]` was written into
+         * `/api/story/*.json` for the map and dropped here, so
+         * `Article.entities` was always `undefined` on the only endpoint the
+         * app reads. 1,395 of the 8,420 articles in the corpus carry the data.
+         *
+         * Forwarded in the frontmatter's own shape (`mention`/`indicatorId`/
+         * `kind`), not the map's `{id,label}` reshape below — two consumers,
+         * two shapes, and the app's is a published type.
+         *
+         * Canonicalised but deliberately unfiltered: the map's strip filters
+         * against `indicatorMap`, which is this build's trends snapshot, while
+         * the app resolves each id against the live `/api/trends.json` it
+         * already downloads on launch. Filtering here against a staler catalog
+         * could only remove chips the app would have resolved fine, and the
+         * app drops what it cannot resolve rather than rendering a dead one.
+         */
+        ...(() => {
+          const entities = (Array.isArray(meta.entities) ? meta.entities : [])
+            .filter(e => e?.indicatorId && e?.mention)
+            .map(e => ({
+              mention: String(e.mention),
+              indicatorId: canonicalIndicatorId(e.indicatorId),
+              ...(e.kind ? { kind: e.kind } : {}),
+            }))
+          return entities.length ? { entities } : {}
+        })(),
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
         lng: meta.lng != null ? Number(meta.lng) : null,

@@ -1,11 +1,4 @@
-import type {
-  Article,
-  Chokepoint,
-  ConflictEvent,
-  Entity,
-  GdacsAlert,
-  HeatmapPoint,
-} from '@shared/types';
+import type { Chokepoint, ConflictEvent, Entity, GdacsAlert, HeatmapPoint } from '@shared/types';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import {
   memo,
@@ -38,18 +31,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
-import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
+import type { RiverArticle } from '../lib/news-order';
 import { recordArticleSnap } from '../lib/onboarding-store';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
-const BREAKING_THRESHOLD = 100;
-
 // Article backdrop gradient stops. Hoisted to the list container so a single
-// gradient view is rendered per category — cells scroll through a fixed
+// gradient view is rendered per column — cells scroll through a fixed
 // fade pattern rather than each cell carrying its own.
 const BG_FADE_LOCATIONS: number[] = [0, 0.02, 0.14, 0.28, 0.48, 0.72, 1];
 
@@ -59,23 +50,32 @@ export interface ArticleListRef {
 }
 
 interface ArticleListProps {
-  articles: Article[];
+  /** The whole feed as one ordered column. Each article carries its real
+   *  category, which the card shows as a kicker and the bookmark store files
+   *  it under — neither has to infer it from which page you were on. */
+  articles: RiverArticle[];
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
   viewportHeight: number;
-  catIndex: number;
+  /** Slot this column owns in `progressesSV` — the horizontal axis carries
+   *  sections now, and news is one of them rather than four of them. */
+  sectionIndex: number;
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
-  onEndReached?: (catIndex: number) => void;
+  onEndReached?: () => void;
   onCaughtUp?: () => void;
   onCountryPress?: (result: TapResult) => void;
-  onBookmarkPress?: (article: Article) => void;
-  onSourcesPress?: (article: Article) => void;
-  onTimeAgoPress?: (article: Article) => void;
+  onBookmarkPress?: (article: RiverArticle) => void;
+  onSourcesPress?: (article: RiverArticle) => void;
+  onTimeAgoPress?: (article: RiverArticle) => void;
   onEntityPress?: (entity: Entity) => void;
-  onArticleChange?: (article: Article, catIndex: number) => void;
+  /** Indicator ids the entity sheet can actually open. Threaded through so
+   *  `ArticlePage` can strip the mentions that would look tappable and
+   *  do nothing. */
+  resolvableEntityIds?: ReadonlySet<string>;
+  onArticleChange?: (article: RiverArticle) => void;
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
@@ -89,13 +89,14 @@ export const ArticleList = memo(function ArticleList({
   gdacsAlerts,
   conflictEvents,
   viewportHeight,
-  catIndex,
+  sectionIndex,
   lastSeenAt,
   onCountryPress,
   onBookmarkPress,
   onSourcesPress,
   onTimeAgoPress,
   onEntityPress,
+  resolvableEntityIds,
   onArticleChange,
   onRefresh,
   onEndReached,
@@ -129,24 +130,14 @@ export const ArticleList = memo(function ArticleList({
     [bgAlpha],
   );
   const { width: screenWidth } = useWindowDimensions();
-  // Chronological sort, but within the same time bucket (e.g. all "1h ago")
-  // breaking stories (eventCoverage >= 100) float to top of their bucket.
-  // Buckets depend on Date.now() — `tick` from useArticles invalidates the
-  // memo on app-resume so crossing-bucket sort stays accurate.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` is the intentional re-memo signal for the Date.now() buckets
-  const sortedArticles = useMemo(() => {
-    // Pre-bucket once so the comparator is pure (no Date.now() per comparison)
-    const buckets = new Map<Article, string>();
-    for (const a of articles) buckets.set(a, formatTimeAgo(a.addedAt));
-    return [...articles].sort((a, b) => {
-      if (buckets.get(a) === buckets.get(b)) {
-        const aBreaking = (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
-        const bBreaking = (b.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
-        if (bBreaking !== aBreaking) return bBreaking - aBreaking;
-      }
-      return b.addedAt - a.addedAt;
-    });
-  }, [articles, tick]);
+  // Already ordered by `orderNewsRiver` before it got here — by how many
+  // newsrooms covered the event, then by recency, then de-clumped so the top
+  // of the column is not one category's wall. This component used to do its
+  // own chronological sort with a breaking-story float inside each time
+  // bucket; that logic moved into the ordering function, where it is a pure
+  // function with tests rather than a memo that had to be invalidated by a
+  // clock tick.
+  const sortedArticles = articles;
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
@@ -172,7 +163,7 @@ export const ArticleList = memo(function ArticleList({
 
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
-  const listRef = useAnimatedRef<Animated.FlatList<Article>>();
+  const listRef = useAnimatedRef<Animated.FlatList<RiverArticle>>();
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
   const containerTopRef = useRef(0);
@@ -183,7 +174,7 @@ export const ArticleList = memo(function ArticleList({
     }, 800);
   }, [overscrollFired, overscrollTimer]);
   const fireEndReached = useEffectEvent(() => {
-    onEndReached?.(catIndex);
+    onEndReached?.();
   });
   // Bundled into one hop from the scroll worklet. As three separate
   // `scheduleOnRN` calls the haptic, the toast and the debounce reset were
@@ -218,8 +209,8 @@ export const ArticleList = memo(function ArticleList({
   // Report current article to parent (initial + on snap/sort change)
   useEffect(() => {
     const article = sortedArticles[currentIndex];
-    if (article) onArticleChange?.(article, catIndex);
-  }, [currentIndex, sortedArticles, catIndex, onArticleChange]);
+    if (article) onArticleChange?.(article);
+  }, [currentIndex, sortedArticles, onArticleChange]);
 
   // When the data array changes (resume refresh, prepended new articles, sort
   // re-bucketing), keep the user on the same slug. Without this, prepended
@@ -263,7 +254,7 @@ export const ArticleList = memo(function ArticleList({
       const progress = Math.max(0, Math.min(event.contentOffset.y / total, 1));
       progressesSV.modify((arr) => {
         'worklet';
-        arr[catIndex] = progress;
+        arr[sectionIndex] = progress;
         return arr;
       });
 
@@ -309,7 +300,7 @@ export const ArticleList = memo(function ArticleList({
   );
 
   const getItemLayout = useCallback(
-    (_: ArrayLike<Article> | null | undefined, index: number) => ({
+    (_: ArrayLike<RiverArticle> | null | undefined, index: number) => ({
       length: itemHeight,
       offset: itemHeight * index,
       index,
@@ -318,7 +309,7 @@ export const ArticleList = memo(function ArticleList({
   );
 
   const renderItem = useCallback(
-    ({ item, index }: { item: Article; index: number }) => (
+    ({ item, index }: { item: RiverArticle; index: number }) => (
       <ArticlePage
         article={item}
         itemHeight={itemHeight}
@@ -328,6 +319,7 @@ export const ArticleList = memo(function ArticleList({
         onSourcesPress={onSourcesPress}
         onTimeAgoPress={onTimeAgoPress}
         onEntityPress={onEntityPress}
+        resolvableEntityIds={resolvableEntityIds}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
@@ -343,12 +335,13 @@ export const ArticleList = memo(function ArticleList({
       onSourcesPress,
       onTimeAgoPress,
       onEntityPress,
+      resolvableEntityIds,
       earlierIndex,
       tick,
     ],
   );
 
-  const keyExtractor = useCallback((item: Article) => item.slug, []);
+  const keyExtractor = useCallback((item: RiverArticle) => item.slug, []);
 
   if (sortedArticles.length === 0)
     return (

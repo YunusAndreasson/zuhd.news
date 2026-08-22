@@ -13,7 +13,12 @@ import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
-import { PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
+import {
+  PERSIST_MAX_AGE_MS,
+  persister,
+  queryClient,
+  shouldDehydrateQuery,
+} from '../lib/query-client';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -89,7 +94,11 @@ export default function RootLayout() {
         <Suspense fallback={<View style={styles.root} />}>
           <PersistQueryClientProvider
             client={queryClient}
-            persistOptions={{ persister, maxAge: PERSIST_MAX_AGE_MS }}
+            persistOptions={{
+              persister,
+              maxAge: PERSIST_MAX_AGE_MS,
+              dehydrateOptions: { shouldDehydrateQuery },
+            }}
           >
             {/* No BottomSheetModalProvider: gorhom needed one to own the portal
                 every modal sheet rendered into. Platform sheets present

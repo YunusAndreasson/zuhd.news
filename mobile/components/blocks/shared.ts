@@ -40,13 +40,41 @@ export const blockSharedStyles = StyleSheet.create({
   swatch: { width: 10, height: 10, borderRadius: RADIUS.handle },
 });
 
-/** Format a block metric value: thousands-grouped integers, one decimal for
- *  fractions, with a unit suffix that hugs single-char/`%` units and spaces
- *  multi-char ones ("1,234", "5.2%", "95 km/h"). Shared by TrendBlock,
- *  RankBlock and TreemapBlock so the number grammar reads identically. */
+/**
+ * Currency symbols that go in *front* of the number.
+ *
+ * The rule this file used to apply was "a one-character unit hugs the number",
+ * which is right for `%` and wrong for every currency — it printed an Ethereum
+ * axis as `2515.0$` on a card whose own reading said `$2,418`, so the same
+ * number carried two different grammars a hundred points apart. Length is not
+ * the question; which side the symbol belongs on is.
+ */
+const PREFIX_UNITS = new Set(['$', '€', '£', '¥', '₹']);
+
+/** Format a block metric value: thousands-grouped, at most one decimal, with
+ *  the unit on the side its grammar wants — currency symbols in front
+ *  ("$1,234"), `%` hugging behind ("5.2%"), everything else spaced after
+ *  ("95 km/h", "4,599.4 $/oz"). `TrendBlock` is the only caller left — the
+ *  rank and treemap blocks this was also written for went with the rest of
+ *  `ArticleBlock` — but it stays here rather than moving into that file so a
+ *  second chart block cannot invent a second number grammar.
+ *
+ *  Grouping is applied to fractions too. `toFixed(1)` was used for those and
+ *  it drops the separators, so one chart could show `78317.8` above `62,802`
+ *  — same axis, same series, two different ways of writing a number. */
 export function formatBlockNumber(n: number, unit?: string): string {
-  const s = Number.isInteger(n) ? n.toLocaleString() : n.toFixed(1);
-  return unit ? `${s}${unit.length === 1 || unit === '%' ? '' : ' '}${unit}` : s;
+  const s = n.toLocaleString(undefined, { maximumFractionDigits: 1 });
+  if (!unit) return s;
+  if (PREFIX_UNITS.has(unit)) return `${unit}${s}`;
+  if (unit === '%') return `${s}${unit}`;
+  // The space is the only place this label may break. A chart axis is narrow
+  // enough that "4,599.4 $/oz" wraps, and left to itself the layout broke it
+  // at the slash — "4,599.4 $/" over "oz", which reads as a number whose unit
+  // is "dollars per". Word joiners make the unit one atom, so the break falls
+  // between the number and its unit, which is the only division that means
+  // anything. They are zero-width and screen readers ignore them, so the
+  // scrub tooltip and the accessibility label are unaffected.
+  return `${s} ${unit.replace(/\//g, '\u2060/\u2060')}`;
 }
 
 /** Background fill for a typed block tone. Untyped tones fall back to a

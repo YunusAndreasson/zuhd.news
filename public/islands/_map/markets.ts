@@ -1344,7 +1344,10 @@ const selectEntries = (
 const oddsShort = (label: string): string =>
   label
     .replace(/\?\s*$/, '')
-    .replace(/^will\s+(the\s+)?/i, '')
+    // The article is required — see the matching note in
+    // `scripts/lib/trends-sources/polymarket.js`. A bare "Will " strip leaves
+    // "there be no change in Fed interest rates", which is not a phrase.
+    .replace(/^will\s+the\s+/i, '')
     .replace(/(\b[A-Z][a-z]{2,8}\.?\s+\d{1,2}),?\s+\d{4}\b/g, '$1')
     .trim()
 

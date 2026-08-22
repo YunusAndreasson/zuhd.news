@@ -1,5 +1,10 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
+import {
+  defaultShouldDehydrateQuery,
+  focusManager,
+  onlineManager,
+  QueryClient,
+} from '@tanstack/react-query';
 import { File, Paths } from 'expo-file-system';
 import * as Network from 'expo-network';
 import Storage from 'expo-sqlite/kv-store';
@@ -73,3 +78,23 @@ export const persister = createAsyncStoragePersister({
 });
 
 export const PERSIST_MAX_AGE_MS = DAY_MS;
+
+/**
+ * Query `meta` marker: never write this query's result to disk.
+ *
+ * Everything else in the app is cache-first on purpose — a reader on a train
+ * should see yesterday's feed rather than a spinner. One class of payload is
+ * the exception. A genocide determination is a citation of a named body's
+ * named document, and showing one from disk means asserting it on a launch
+ * where nothing confirmed it is still the current finding. The layer was
+ * reverted once already (`41732ffc`) and its own revert note says to re-land
+ * it "behind a network-only hook with no synchronous fallback". This is that
+ * hook's half of the arrangement.
+ */
+export const NEVER_PERSIST = { persist: false } as const;
+
+/** Persist everything the library would, minus anything tagged NEVER_PERSIST. */
+export function shouldDehydrateQuery(query: Parameters<typeof defaultShouldDehydrateQuery>[0]) {
+  if (query.meta?.persist === false) return false;
+  return defaultShouldDehydrateQuery(query);
+}

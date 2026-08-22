@@ -1,4 +1,4 @@
-import type { ConflictEvent } from '@shared/types';
+import type { ConflictEvent, ConflictSnapshot } from '@shared/types';
 import { useMemo } from 'react';
 import { API_BASE } from '../constants/theme';
 import { isConflictSnapshot } from '../lib/validate';
@@ -31,12 +31,23 @@ function filterToLastDay(events: ConflictEvent[]): ConflictEvent[] {
  *  narrows to the most-recent calendar day to keep marker density
  *  readable at globe scale (~40 markers vs ~250). The filter runs once
  *  per snapshot reference change, not per render. */
-export function useConflictEvents(): { events: ConflictEvent[]; ready: boolean } {
+export function useConflictEvents(): {
+  events: ConflictEvent[];
+  /** The unfiltered snapshot, window dates and all. The globe wants the most
+   *  recent day so the markers stay readable; the conditions card wants the
+   *  whole week and has to be able to name the window it is summarising. */
+  snapshot: ConflictSnapshot | null;
+  ready: boolean;
+} {
   const { data, ready } = useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot, {
     refreshOnResume: true,
   });
   return useMemo(
-    () => ({ events: data ? filterToLastDay(data.events) : EMPTY_EVENTS, ready }),
+    () => ({
+      events: data ? filterToLastDay(data.events) : EMPTY_EVENTS,
+      snapshot: data,
+      ready,
+    }),
     [data, ready],
   );
 }

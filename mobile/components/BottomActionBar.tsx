@@ -13,6 +13,27 @@ interface BottomActionBarProps {
   onBriefingPress: () => void;
   onZoomPress: () => void;
   onSharePress: () => void;
+  /**
+   * Whether the section behind the bar is the article river.
+   *
+   * Two of the three pills only mean anything there, and they were showing on
+   * all six sections:
+   *
+   *   zoom   cycles the globe's clip, and the globe is on `news` only. On a
+   *          card column the pill was inert — a control that answers a tap by
+   *          doing nothing, which is worse than an absent one because the
+   *          reader spends a tap finding out.
+   *   share  shares `activeArticleRef`, the last article read. Standing on a
+   *          Brent card and tapping it sent whoever received it a link to an
+   *          unrelated story. Not dead chrome — wrong chrome.
+   *
+   * `listen` survives everywhere: the briefing is the day's news read aloud
+   * and is not about whatever is on screen, so it is reachable from anywhere.
+   *
+   * Sharing a *card* is worth having and is not this change: it needs a URL
+   * per card, and only the indicator-backed ones have one (`/e/{id}`).
+   */
+  articleActions: boolean;
 }
 
 function ActionPill({
@@ -51,6 +72,7 @@ export function BottomActionBar({
   onBriefingPress,
   onZoomPress,
   onSharePress,
+  articleActions,
 }: BottomActionBarProps) {
   return (
     <View
@@ -66,20 +88,22 @@ export function BottomActionBar({
 
       <View style={styles.bottomSpacer} />
 
-      <View style={styles.articleActions}>
-        <ActionPill
-          label={zoomLabel}
-          onPress={onZoomPress}
-          accessibilityLabel="Globe zoom"
-          accessibilityHint="Cycles through zoom levels"
-        />
-        <ActionPill
-          label="share"
-          onPress={onSharePress}
-          accessibilityLabel="Share article"
-          accessibilityHint="Opens the system share sheet"
-        />
-      </View>
+      {articleActions ? (
+        <View style={styles.articleActions}>
+          <ActionPill
+            label={zoomLabel}
+            onPress={onZoomPress}
+            accessibilityLabel="Globe zoom"
+            accessibilityHint="Cycles through zoom levels"
+          />
+          <ActionPill
+            label="share"
+            onPress={onSharePress}
+            accessibilityLabel="Share article"
+            accessibilityHint="Opens the system share sheet"
+          />
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -92,7 +116,7 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    // Mirror `CategoryBar` and the article body: pill outer edges land on
+    // Mirror `SectionBar` and the article body: pill outer edges land on
     // the same vertical as the article column, so chrome top and bottom
     // share one rhythm. Previously `SPACING.md` (16) left a 2px outdent
     // against the body's `articlePadding` (14).

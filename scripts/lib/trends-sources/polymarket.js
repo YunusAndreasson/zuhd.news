@@ -88,9 +88,18 @@ function sanitizeSlug(s) {
  *  which is why Haiku is the primary path. */
 function shortenTitleRegex(raw) {
   if (!raw || typeof raw !== 'string') return 'Untitled market'
-  const TARGET = 42
+  // 52, not the original 42. The app gives each contract a whole card with a
+  // two-line title, and the extra ten characters are what stop a question
+  // being cut off mid-clause there. The web's odds rail trims further on its
+  // own (`oddsShort` in `_map/markets.ts`), so the narrow surface is unaffected.
+  const TARGET = 52
   const s = raw.trim()
-    .replace(/^Will\s+(the\s+)?/i, '')
+    // The article is required, and that is the whole fix. Stripping a bare
+    // "Will " turned "Will there be no change in Fed interest rates?" into
+    // "there be no change in Fed interest rates" — which is not English, and
+    // was shipping as a card title. "Will the US invade Iran?" → "US invade
+    // Iran?" still reads as a headline, so that case keeps its shortening.
+    .replace(/^Will\s+the\s+/i, '')
     .replace(/^the\s+U\.?S\.?\s+/i, 'US ')
     .replace(/\bU\.S\./g, 'US')
     .replace(/\s+/g, ' ')
@@ -99,6 +108,41 @@ function shortenTitleRegex(raw) {
   const lastSpace = cut.lastIndexOf(' ')
   const head = lastSpace > TARGET - 15 ? cut.slice(0, lastSpace) : cut
   return `${head.replace(/[?.!,;:]+$/, '')}…`
+}
+
+/**
+ * Is the model's shortened title still a title?
+ *
+ * The app gives every contract a whole card and prints this label as the
+ * headline, so a label that is not English is a broken screen. Two of the
+ * three live markets were shipping one:
+ *
+ *   "Will there be no change in Fed interest rates…?"
+ *      → "there be no change in Fed interest rates…"
+ *   "Will Alexandria Ocasio-Cortez win the 2028 US presidential election?"
+ *      → "Alexandria Ocasio-Cortez win the 2028 US…"
+ *
+ * Both are the same mistake: the model dropped the fronted auxiliary and left
+ * a subject with a bare infinitive. `shortenTitleRegex` already knows the rule
+ * — a leading "Will" survives unless it is followed by "the", because "Will
+ * the US invade Iran?" → "US invade Iran?" still reads as a headline and
+ * "Will there be…" → "there be…" does not. This applies the same rule to the
+ * model's answer, and falls back to the regex shortener when it fails.
+ *
+ * Cheap and worth it: the model is not asked again, the fallback is the code
+ * path that already existed for a failed Haiku call, and the failure mode this
+ * replaces was silent.
+ */
+function isUsableShortTitle(raw, short) {
+  if (typeof short !== 'string' || short.trim().length === 0) return false
+  const s = short.trim()
+  // A headline does not start in lower case. This alone catches the class;
+  // the auxiliary test below catches the rest of it.
+  if (/^[a-z]/.test(s)) return false
+  // "Will X …" keeps its "Will" — anything else has dropped the verb the
+  // question was built around.
+  if (/^Will\s+(?!the\s)/i.test(raw.trim()) && !/^Will\b/i.test(s)) return false
+  return true
 }
 
 /** Batch-shorten Polymarket titles via Haiku. One call, all titles, ~2s.
@@ -394,15 +438,27 @@ export async function fetchPolymarketTop() {
   if (deduped.length > 0) {
     const enriched = await shortenTitlesViaHaiku(deduped.map((r) => r.rawTitle))
     let tagged = 0
+    let rejected = 0
     for (let i = 0; i < deduped.length; i++) {
       // A title already inside the header budget keeps its own words: the model
       // is here for the countries, and re-writing a label that did not need it
       // is a change nobody asked for and nobody can review.
-      if (deduped[i].rawTitle.length > 42) deduped[i].label = enriched[i].label
+      if (deduped[i].rawTitle.length > 42) {
+        const proposed = enriched[i].label
+        if (isUsableShortTitle(deduped[i].rawTitle, proposed)) {
+          deduped[i].label = proposed
+        } else {
+          rejected++
+          deduped[i].label = shortenTitleRegex(deduped[i].rawTitle)
+        }
+      }
       deduped[i].countryTags = enriched[i].countryTags
       if (enriched[i].countryTags.length) tagged++
     }
     console.log(`  · polymarket: ${tagged}/${deduped.length} questions tagged with a country`)
+    if (rejected > 0) {
+      console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
+    }
   }
   for (const r of deduped) delete r.rawTitle
 

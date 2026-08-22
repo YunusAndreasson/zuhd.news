@@ -43,10 +43,168 @@ in-tree dependents accept it (`expo-router` peers `*` optional,
 `react-native-drawer-layout` peers `>= 2.0.0`), so there is one deduped copy,
 which matters: two copies would mean two native gesture registries.
 
-`expo install --check` will keep reporting `react-native`, `react-native-reanimated`
-and `react-native-worklets` as behind the SDK pin. That is deliberate and
-predates this: builds 288/289 shipped the pinned set (0.86.2 / 4.5.1 / 0.10.1)
-and crashed on launch anyway.
+`react-native`, `react-native-reanimated` and `react-native-worklets` now sit
+**on** the SDK 57 pin (0.86.2 / 4.5.1 / 0.10.1), and `expo install --check` is
+clean — nothing in this app is deliberately behind any more.
+
+They were held off that pin for weeks for the wrong reason. Builds 288/289/292
+shipped exactly this set and crashed on launch, so the versions were blamed and
+reverted; the revert changed nothing, because the cause was an inline array
+callback inside a worklet (see the worklets entry in the memory index) that a
+worklets upgrade had turned from latent to fatal. Version numbers are not what
+makes this set safe — the absence of that shape is. Before touching these three,
+scan worklet regions for inline functions passed to `.map`/`.filter`/`.forEach`/…;
+a release build cannot name the offender if one survives.
+
+## The two axes
+
+Horizontal swipe = section (`news` · `commodities` · `money` · `outlook`), vertical
+paging = item inside one. Every column but `news` is a `CardPager` over a
+`Card[]`; `news` is `ArticleList` over the ordered river and owns the only
+globe. `SectionBar` follows the pager and draws a rule after `news`.
+
+- **The axis is cut by reader question, not by asset class.** It was six
+  sections split the second way and the split is what broke it: `markets` held
+  food, energy, rates, shipping, Wikipedia pageviews and a calendar — eight
+  cards, three of them not markets by any reading — beside `crypto`, `metals`
+  and `currencies` at two or three cards each, all three asking one question.
+  Now `commodities` is what things cost, `money` is what your money is worth
+  and what borrowing costs, `outlook` is what is not yet a fact. The first two
+  take the FT's and Reuters' own word for that ground rather than an invented
+  one — `prices`/`money` was the first pair and the two words read as the same
+  question. Four labels also *fit* (~330pt all-in against a 360pt phone, where
+  six measured past 440 in type alone), so the whole axis is visible at once.
+  - The two placements to know, because both look wrong until you know why:
+    **VIX is in `outlook`**, since what saved it from the cut that took the S&P
+    and the NASDAQ was its *fear* reading, and a price on what traders expect
+    is a contract by another name. **Crypto is in `money`**, which is what its
+    own first sentence says it is.
+- **A card ships because it changed.** Standing conditions (famine, conflict,
+  hazards, genocide determinations) were a section until an audit killed it:
+  median famine analysis seven months old, conflict window 145 days behind, one
+  determination 2,902 days old. They now gate on their own data being new and
+  lead `commodities` on the day one is. Apply the same test to anything new — the
+  eleven-strait table and the release calendar both failed it later and are now
+  gone and gated respectively.
+- **A gated card says so, and `lead` is how.** A condition card and a disrupted
+  strait are on screen because their data moved this morning; the nisab and the
+  gold-to-silver ratio are standing reference that happens to have moved a
+  little. They arrived in identical typographic weight, so the distinction was
+  one only a reader who already knew the gating could make. `CardFrame` now
+  prints `today ·` before the kicker — an ink step, never a colour, because the
+  chromatic budget is spent on `CardDelta` and `colors.determination`.
+- **The straits are the globe's, not a column's.** `MiniGlobe` draws all eleven
+  as tappable rings and `ChokepointSheet` carries the blurb, the standing
+  paragraph, what is happening there now, the weather and the series — so a
+  flat sorted table of the same eleven names was a worse copy of something the
+  reader could already touch. Only `straitMovedCard` survives, gated on
+  `CHOKEPOINT_DISRUPTED` and leading `commodities` on the day it fires. Same rule
+  for anything else the globe already carries.
+- **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
+  page swipes in a row before `scrubbable={false}` existed. Cards pass it;
+  sheets do not.
+- **Nothing may steal the vertical one either, and the fix for that once ate
+  the content instead.** A card taller than the page carries an inner
+  `ScrollView`. Handing its leftover overscroll up to the pager parks the list
+  between two pages — the parent moves having never been dragged, so
+  `pagingEnabled`, which only snaps a gesture the list received itself, has
+  nothing to snap, and both cards sit at half opacity. The response was to turn
+  `nestedScrollEnabled` off. On Android that is the default anyway, which meant
+  the parent intercepted *every* vertical drag and the inner scroll never ran
+  at all: a card taller than the page did not scroll, it silently truncated.
+  Four did it at default type — the Kerch strait, the fifteen-currency table,
+  the nisab, wheat-and-rice — each losing its source caption and, on two of
+  them, a whole related-stories section. **A card citing IMF PortWatch never
+  said so.** Three guards now, and all three are load-bearing:
+  - the inner scroll arms only when content is genuinely taller than the page,
+    which means `CardFrame` must add `COLUMN_PAD_V` back — that padding is on
+    the ScrollView's `contentContainerStyle`, *outside* the view whose height
+    `onContentLayout` measures, so the naive comparison is 80pt optimistic and
+    was the truncation's proximate cause;
+  - `nestedScrollEnabled` is **on**, because without it the first guard is moot;
+  - `CardPager.settleToPage` corrects the resting offset — and it is armed from
+    the *scroll worklet*, not only from `onScrollEndDrag`. That matters: the
+    handoff produces neither a drag end nor a momentum end on the parent, so a
+    drag-armed timer can never see it. The worklet hop is throttled to 10/sec
+    and declines while `draggingRef`/`momentumRef` are set, so it never fires
+    under a finger or cuts a fling short.
+
+  The lesson worth keeping: the first two guards make the parked page rare, the
+  third makes it impossible, and removing the second to avoid the first trades
+  a visible layout glitch for silent data loss — which is the worse bug,
+  because nobody reports it.
+- **The bottom bar is not global.** `zoom` drives the globe, which lives on
+  `news` alone, and `share` shares `activeArticleRef` — so on a card column one
+  pill did nothing and the other sent a link to an unrelated article. Both are
+  gated on `articleActions` now; `listen` stays everywhere because the briefing
+  is not about what is on screen. Sharing a card needs a per-card URL and only
+  the indicator-backed ones have one (`/e/{id}`).
+
+- **Card content is not written in the app.** Part four of every card — why the
+  number reaches an ordinary life — is the pipeline's `standing` paragraph,
+  rendered verbatim. 48 of the 50 indicators, all 11 chokepoints and all 12
+  calendar events carry one, and nothing rendered any of them before this.
+- **`standing` is authoritative, so part two usually does not render.** The two
+  were written by different hands and were saying the same thing on *every*
+  reading card — brent, us-10y and vix each carried two definitions of
+  themselves separated by a chart. The 25-character prefix guard that was meant
+  to catch this missed all three by a word: a same-opening test cannot catch a
+  same-meaning collision. `definitionUnlessStanding` is structural instead — if
+  the pipeline wrote one, the app does not add a second. Same rule per column
+  is why the "what a prediction contract is" explainer appears on the first
+  belief card only; three cards deep it was the identical 200 characters three
+  times over.
+- **Quote the thing the reader owns, or the sign fights the colour.** The FX
+  table printed the *rate* — rupees per dollar — where up means your money buys
+  less, so it showed "+5.6%" in rose beside "−0.8%" in sage. No caption fixes
+  that; a reader does not re-derive the denominator, they read the sign. Rows
+  and the mover chips report the currency's own move now (`currencyMove`, the
+  exact reciprocal — a rate up 5.6% is a currency down 5.3%, not 5.6%), which
+  also retired the three lines of part two that existed only to explain the
+  inversion.
+- **One module decides what a move means, and every move is coloured.**
+  `lib/valence.ts`. Up is not good here — oil rising is a fuel bill, an FX rate
+  rising is a currency that weakened, bitcoin rising is neither — so
+  `riseMeansFor` answers per *published series* and `valenceOf` applies it to
+  the direction, which is why a fall in something whose rise hurts reads
+  favorable. Getting that inverted is the first bug this shipped with.
+  - **`neutral` is a colour, not the absence of one.** The chip used to fall
+    back to `emphasis` ink wherever the app had no claim, which was two thirds
+    of the readings and the same near-white as the label text beside them — so
+    the reader's first question was whether a chip was coloured at all, and
+    only then which way it pointed. Slate says *no claim* out loud. `valence`
+    is required on `CardDelta` for that reason, and a `CompareRow` that prints
+    a move always sets `tone`.
+  - **It was four answers to one question and three of them disagreed.** A card
+    chip in sage/rose; `EntitySheet` tinting on *magnitude* in dome gold, the
+    globe's hue, so brent read rose on the card and gold in the sheet that card
+    opens; `ChokepointSheet` calling a strait disrupted at 15% where
+    `markets.ts` said 10%, so the same strait could be rose on the card and
+    grey in its own sheet. Nothing in any of those files mentioned the others.
+    A fifth answer is the regression; a row in `RISE_MEANS` is the change.
+  - **Pass a literal `riseMeans` only when the card has inverted the quantity.**
+    The FX table and the mover cards quote `currencyMove`, the reciprocal of
+    the published rate, so they invert the meaning with it. Everywhere else,
+    call the table — that is what stops a card and its sheet drifting.
+- **The builders are pure and tested** (`lib/cards/`). Card arithmetic is
+  pinned in `__tests__/cards-*.test.ts`, not eyeballed in a simulator, because
+  the failure mode is a plausible wrong number rather than a crash. Two of them
+  already bit: a relative-percent change printed as "points" on a probability,
+  and a `windowChange` on a *daily* series described as month-on-month.
+- **`threadSummary` must never be rendered.** It reads like a summary and is
+  the desk's instruction to the writer ("Lead with the mechanism, not the
+  outrage"). All 40 articles carry one.
+- **A thread kicker needs `threadArticleCount > 1`.** Every article carries
+  `threadArc` and `threadDay`; 38 of 40 carry them with a count of one, where
+  "developing, day 13" is a claim the data does not support.
+- **`useDeterminations` is the one network-only hook.** A genocide
+  determination is a citation, and rendering one from disk asserts a finding on
+  a launch where nothing confirmed it. `NEVER_PERSIST` keeps it off disk and
+  there is no bundled fallback — no network, no card. This is the arrangement
+  `41732ffc`'s revert note asked for.
+- **`colors.determination` is for that card and nothing else.** A second
+  chromatic accent only works while it means one thing; spend it on a falling
+  market and it stops meaning this.
 
 ## Primitives live at
 

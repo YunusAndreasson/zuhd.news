@@ -13,7 +13,7 @@ export const MAX_RELATED = 3;
 /** Last-resort feed-category guess from concept tags. Concepts are entity
  *  tags ("Somalia", "OPEC"), not categories, so this almost always lands on
  *  the politics fallback — prefer articles that carry their real `category`
- *  (HomeScreen's flatArticles attaches it). The tap handler re-resolves the
+ *  (HomeScreen's news river attaches it). The tap handler re-resolves the
  *  true category from the feed either way; this only feeds the row label. */
 export function resolveCategory(article: Article): Category {
   return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';

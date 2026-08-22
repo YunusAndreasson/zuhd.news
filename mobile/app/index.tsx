@@ -21,10 +21,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BottomActionBar } from '../components/BottomActionBar';
 import { BriefingBar } from '../components/BriefingBar';
-import { CategoryBar } from '../components/CategoryBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { CardPager, type CardPagerRef } from '../components/cards/CardPager';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
@@ -35,16 +35,19 @@ import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
+import { SectionBar } from '../components/SectionBar';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL } from '../constants/theme';
+import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
+import { useDeterminations } from '../hooks/useDeterminations';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useIpc } from '../hooks/useIpc';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -52,10 +55,33 @@ import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
+import { buildConditionCards } from '../lib/cards/conditions';
+import { buildInstrumentCards } from '../lib/cards/markets';
+import type { Card } from '../lib/cards/types';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
 
-const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
+/** `news` is leftmost because it is the section with something new to say five
+ *  times a day. The rail's order is the app's claim about what matters, and it
+ *  is written down once — in `SECTIONS`. */
+const NEWS = SECTIONS.indexOf('news');
+
+/** One pager per instrument column, indexed the same way as `SECTIONS` so a
+ *  section's slot in the progress array, its ref and its label all agree. */
+const cardPagerRefs = SECTIONS.map(() => createRef<CardPagerRef>());
+const newsListRef = createRef<ArticleListRef>();
+
+/** Empty-state copy per instrument column. A column is empty when the
+ *  snapshot did not carry its series, which is a quiet degrade, not an error. */
+const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
+  commodities: {
+    message: 'no prices yet',
+    hint: 'Metals, grain and crude arrive with the next cycle',
+  },
+  money: { message: 'no rates yet', hint: 'Exchange rates and yields arrive with the next cycle' },
+  outlook: { message: 'nothing priced yet', hint: 'Contracts are listed when they open' },
+};
 
 // Give the reader time to arrive at the caught-up boundary and read it before
 // anything asks them for something. The delay used to be measured against the
@@ -84,12 +110,15 @@ export default function HomeScreen() {
   const disambiguationSheetRef = useRef<BottomSheetMethodsRef>(null);
   const entitySheetRef = useRef<BottomSheetMethodsRef>(null);
   const pagerRef = useRef<PagerView>(null);
-  const pendingArticleNavigationRef = useRef<{ page: number; slug: string } | null>(null);
+  // There is one article column now, so a pending navigation is just a slug
+  // waiting for the pager to finish arriving at `news`.
+  const pendingSlugRef = useRef<string | null>(null);
   const completeArticleNavigation = useCallback((page: number) => {
-    const pending = pendingArticleNavigationRef.current;
-    if (!pending || pending.page !== page) return;
-    pendingArticleNavigationRef.current = null;
-    listRefs[page]?.current?.scrollToSlug(pending.slug);
+    if (page !== NEWS) return;
+    const slug = pendingSlugRef.current;
+    if (!slug) return;
+    pendingSlugRef.current = null;
+    newsListRef.current?.scrollToSlug(slug);
   }, []);
   const {
     grouped,
@@ -106,8 +135,10 @@ export default function HomeScreen() {
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
-  const { events: conflictEvents } = useConflictEvents();
-  const { byId: indicatorsById } = useTrendsSnapshot();
+  const { events: conflictEvents, snapshot: conflictSnapshot } = useConflictEvents();
+  const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
+  const { snapshot: ipc } = useIpc();
+  const { determinations } = useDeterminations();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
@@ -115,11 +146,11 @@ export default function HomeScreen() {
   // Active article tracking (for bottom action bar). Kept in a ref — the
   // selected article only feeds callbacks (share, context), never JSX, so
   // state here would re-render the whole HomeScreen tree on every snap.
-  const currentArticlesRef = useRef<(Article | null)[]>([null, null, null, null]);
-  const activeArticleRef = useRef<Article | null>(null);
+  const activeArticleRef = useRef<RiverArticle | null>(null);
 
   // Sheet payloads (refs come from useSheetRefs above)
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
+  const [sheetDivergence, setSheetDivergence] = useState<number | null>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
   const [activeAlert, setActiveAlert] = useState<GdacsAlert | null>(null);
@@ -131,6 +162,9 @@ export default function HomeScreen() {
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
+  // The ids `EntitySheet` can actually resolve. Derived once here rather than
+  // per article page — every page would otherwise rebuild the same set.
+  const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
   const activeIndicator = useMemo(
     () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
     [activeEntity, indicatorsById],
@@ -138,40 +172,42 @@ export default function HomeScreen() {
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
       menuSheetRef.current?.dismiss();
-      // `category` can be a caller's best guess (related-story strips,
-      // notification payloads) — trust the feed first and navigate to the
-      // category that actually contains the article.
+      // `category` is still in the signature because callers (bookmarks,
+      // notification payloads, related-story rows) know it and the feed is
+      // still grouped by it underneath. Navigation no longer depends on it:
+      // every article lives in one column now.
       const actual = CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug));
-      const target = actual ?? category;
-      const catIndex = CATEGORIES.indexOf(target);
-      if (catIndex < 0) return;
 
       // If the article rotated out of the feed, inject the bookmarked copy
       if (!actual) {
         const bookmark = getBookmarks().find((b) => b.article.slug === slug);
         if (bookmark) {
-          injectArticle(bookmark.article, target);
+          injectArticle(bookmark.article, category);
         } else {
           toastRef.current?.show('Article no longer available');
           return;
         }
       }
 
-      pendingArticleNavigationRef.current = { page: catIndex, slug };
-      if (catIndex === currentCategoryRef.current) {
+      pendingSlugRef.current = slug;
+      if (currentSectionRef.current === NEWS) {
         // Same-page navigation has no onPageSelected event. Defer one frame so
         // a just-injected bookmarked article has committed to the FlatList.
-        requestAnimationFrame(() => completeArticleNavigation(catIndex));
+        requestAnimationFrame(() => completeArticleNavigation(NEWS));
       } else {
-        pagerRef.current?.setPage(catIndex);
+        programmaticPageRef.current = true;
+        pagerRef.current?.setPage(NEWS);
       }
     },
     [completeArticleNavigation, injectArticle],
   );
 
-  const handleArticleBookmark = useCallback((article: Article) => {
-    const catIndex = currentCategoryRef.current;
-    const category = CATEGORIES[catIndex] ?? 'politics';
+  const handleArticleBookmark = useCallback((article: RiverArticle) => {
+    // The article carries its own category now. It used to be inferred from
+    // which tab you were on, which was right only because the tab *was* the
+    // category — an assumption that would have silently mis-filed every
+    // bookmark the moment the axis started carrying sections.
+    const category = article.category;
     const added = toggleBookmark(article, category);
     markHintDone('bookmark');
     hapticNotification();
@@ -209,6 +245,7 @@ export default function HomeScreen() {
     hapticImpact();
     markHintDone('sources');
     setSheetSources(article.sources);
+    setSheetDivergence(article.sentimentDivergence ?? null);
     sourcesSheetRef.current?.present();
   }, []);
 
@@ -237,11 +274,8 @@ export default function HomeScreen() {
     ).catch(() => {});
   }, []);
 
-  const handleArticleChange = useCallback((article: Article, catIndex: number) => {
-    currentArticlesRef.current[catIndex] = article;
-    if (catIndex === currentCategoryRef.current) {
-      activeArticleRef.current = article;
-    }
+  const handleArticleChange = useCallback((article: RiverArticle) => {
+    activeArticleRef.current = article;
   }, []);
 
   // Ref for handleCountryPress, kept stable so the memoized renderItem in
@@ -253,13 +287,48 @@ export default function HomeScreen() {
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
 
-  // Flat feed across categories — memoized so downstream memos keyed on it
-  // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
-  // Each article carries its real feed category so related-story rows don't
-  // have to guess it back from concept tags (which never name a category).
-  const flatArticles = useMemo(
-    () => CATEGORIES.flatMap((c) => grouped[c].map((a) => ({ ...a, category: c }))),
-    [grouped],
+  // The news column: every article, ordered by how many newsrooms covered the
+  // event rather than by which lane it arrived in. See `lib/news-order.ts` —
+  // the four categories became a kicker on the card when the horizontal axis
+  // was needed for sections.
+  //
+  // Memoized because downstream memos key on it (ChokepointSheet's
+  // findRelatedArticles, the card builders' tie-to-the-news), and because
+  // every article carries its real category so nothing downstream has to
+  // guess it back from concept tags, which never name one.
+  const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
+
+  // Both card columns are pure functions of payloads already in memory. The
+  // builders return a shorter column rather than a broken screen when a
+  // payload is missing, so neither of these needs a loading state.
+  const columns = useMemo(
+    () => buildInstrumentCards({ trends, chokepoints, articles: river }),
+    [trends, chokepoints, river],
+  );
+  // Standing conditions are events, not furniture: each is gated on its own
+  // data being new, so this is empty on almost every day and leads the column
+  // on the day a determination is published or a fresh famine analysis lands.
+  // See the header of `lib/cards/conditions.ts` for the audit that settled it.
+  const conditionCards = useMemo(
+    () =>
+      buildConditionCards({
+        ipc,
+        conflict: conflictSnapshot,
+        gdacsAlerts,
+        determinations,
+      }),
+    [ipc, conflictSnapshot, gdacsAlerts, determinations],
+  );
+
+  // A standing condition that has just changed outranks the nisab and the oil
+  // price, so it leads rather than trails. There is no general column since
+  // the axis was cut by reader question, and `commodities` is the closest honest
+  // home: famine is food, a hazard is what closes a harvest or a strait. On
+  // almost every day `conditionCards` is empty and this is exactly
+  // `columns.commodities`.
+  const sectionCards = useMemo<Record<string, Card[]>>(
+    () => ({ ...columns, commodities: [...conditionCards, ...columns.commodities] }),
+    [columns, conditionCards],
   );
 
   // Active GDACS alerts whose primary or affected-country list includes the
@@ -378,15 +447,15 @@ export default function HomeScreen() {
 
   const toastRef = useRef<ToastRef>(null);
 
-  const [currentCategory, setCurrentCategory] = useState(0);
+  const [currentSection, setCurrentSection] = useState(NEWS);
 
   // Refs for values used inside stable callbacks — avoids breaking downstream memos
   const groupedRef = useRef(grouped);
   groupedRef.current = grouped;
   const lastSeenAtRef = useRef(lastSeenAt);
   lastSeenAtRef.current = lastSeenAt;
-  const currentCategoryRef = useRef(currentCategory);
-  currentCategoryRef.current = currentCategory;
+  const currentSectionRef = useRef(currentSection);
+  currentSectionRef.current = currentSection;
 
   const [pagerHeight, setPagerHeight] = useState(0);
   const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
@@ -394,7 +463,7 @@ export default function HomeScreen() {
   }, []);
 
   const pagerOffset = useSharedValue(0);
-  const categoryProgresses = useSharedValue([0, 0, 0, 0]);
+  const sectionProgresses = useSharedValue(SECTIONS.map(() => 0));
 
   // Set when a tab tap dispatches `setPage`, so the `onPageSelected` that
   // lands ~250ms later (once the pager transition finishes) doesn't tick a
@@ -411,8 +480,7 @@ export default function HomeScreen() {
       } else {
         hapticTick();
       }
-      setCurrentCategory(page);
-      activeArticleRef.current = currentArticlesRef.current[page] ?? null;
+      setCurrentSection(page);
       completeArticleNavigation(page);
     },
     [completeArticleNavigation, pagerOffset],
@@ -425,10 +493,13 @@ export default function HomeScreen() {
     [pagerOffset],
   );
 
-  const onCategoryPress = useCallback(
+  // Tapping the label you are already on returns that column to the top —
+  // the one gesture the rail offers beyond saying where you are.
+  const onSectionPress = useCallback(
     (index: number) => {
-      if (index === currentCategory && index < CATEGORIES.length) {
-        listRefs[index]?.current?.scrollToTop();
+      if (index === currentSection) {
+        if (index === NEWS) newsListRef.current?.scrollToTop();
+        else cardPagerRefs[index]?.current?.scrollToTop();
       } else {
         // Claim the haptic here rather than letting `onPageSelected` fire it
         // when the transition lands — feedback belongs on the touch, not a
@@ -438,7 +509,7 @@ export default function HomeScreen() {
       }
       hapticTick();
     },
-    [currentCategory],
+    [currentSection],
   );
 
   // --- Onboarding: hint pills + notification primer ---
@@ -489,10 +560,8 @@ export default function HomeScreen() {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
 
-  const handleEndReached = useCallback((catIndex: number) => {
-    const cat = CATEGORIES[catIndex];
-    if (!cat) return;
-    toastRef.current?.show('Back to top', () => listRefs[catIndex]?.current?.scrollToTop());
+  const handleEndReached = useCallback(() => {
+    toastRef.current?.show('Back to top', () => newsListRef.current?.scrollToTop());
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -507,7 +576,7 @@ export default function HomeScreen() {
         const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
         toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
         // Scroll to top so new/breaking articles are visible
-        listRefs[currentCategoryRef.current]?.current?.scrollToTop();
+        newsListRef.current?.scrollToTop();
       } else {
         toastRef.current?.show('Already up to date', undefined, 'top');
       }
@@ -566,53 +635,77 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.screen, { backgroundColor: colors.bg }]}>
-      <CategoryBar
+      <SectionBar
         pagerOffset={pagerOffset}
-        categoryProgresses={categoryProgresses}
-        currentCategory={currentCategory}
-        onCategoryPress={onCategoryPress}
+        sectionProgresses={sectionProgresses}
+        currentSection={currentSection}
+        onSectionPress={onSectionPress}
         onMenuPress={handleMenuPress}
       />
 
+      {/* The stories, then one page per family of instruments. The globe lives
+          on the first page only — it is the backdrop to the stories it
+          locates, and there is nothing on a wheat price for it to point at.
+          One instance now instead of one per category, which is also the
+          cheapest perf win in this change. */}
       <PagerView
         ref={pagerRef}
         style={styles.pager}
-        initialPage={0}
+        initialPage={NEWS}
         onPageSelected={onPageSelected}
         onPageScroll={onPageScroll}
         onLayout={onPagerLayout}
         overdrag
         offscreenPageLimit={1}
       >
-        {CATEGORIES.map((cat, catIndex) => (
-          <View key={cat} collapsable={false}>
-            {pagerHeight > 0 && (
-              <ArticleList
-                ref={listRefs[catIndex]}
-                articles={grouped[cat]}
-                heatmapPoints={heatmapPoints}
-                chokepoints={chokepoints}
-                gdacsAlerts={gdacsAlerts}
-                conflictEvents={conflictEvents}
-                viewportHeight={pagerHeight}
-                catIndex={catIndex}
-                lastSeenAt={lastSeenAt}
-                onRefresh={handleRefresh}
-                onEndReached={handleEndReached}
-                onCaughtUp={handleCaughtUp}
-                onBookmarkPress={handleArticleBookmark}
-                onSourcesPress={handleSourcesPress}
-                onTimeAgoPress={handleTimeAgoPress}
-                onEntityPress={handleEntityPress}
-                onCountryPress={handleCountryPress}
-                onArticleChange={handleArticleChange}
-                progressesSV={categoryProgresses}
-                zoomClipOverride={currentZoom.clip}
-                tick={tick}
-              />
-            )}
-          </View>
-        ))}
+        <View key={SECTIONS[NEWS]} collapsable={false}>
+          {pagerHeight > 0 && (
+            <ArticleList
+              ref={newsListRef}
+              articles={river}
+              heatmapPoints={heatmapPoints}
+              chokepoints={chokepoints}
+              gdacsAlerts={gdacsAlerts}
+              conflictEvents={conflictEvents}
+              viewportHeight={pagerHeight}
+              sectionIndex={NEWS}
+              lastSeenAt={lastSeenAt}
+              onRefresh={handleRefresh}
+              onEndReached={handleEndReached}
+              onCaughtUp={handleCaughtUp}
+              onBookmarkPress={handleArticleBookmark}
+              onSourcesPress={handleSourcesPress}
+              onTimeAgoPress={handleTimeAgoPress}
+              onEntityPress={handleEntityPress}
+              resolvableEntityIds={resolvableEntityIds}
+              onCountryPress={handleCountryPress}
+              onArticleChange={handleArticleChange}
+              progressesSV={sectionProgresses}
+              zoomClipOverride={currentZoom.clip}
+              tick={tick}
+            />
+          )}
+        </View>
+
+        {SECTIONS.filter((s) => s !== 'news').map((section) => {
+          const index = SECTIONS.indexOf(section);
+          const copy = EMPTY_COPY[section];
+          return (
+            <View key={section} collapsable={false}>
+              {pagerHeight > 0 && (
+                <CardPager
+                  ref={cardPagerRefs[index]}
+                  cards={sectionCards[section] ?? []}
+                  viewportHeight={pagerHeight}
+                  sectionIndex={index}
+                  progressesSV={sectionProgresses}
+                  emptyMessage={copy?.message ?? 'nothing here yet'}
+                  emptyHint={copy?.hint}
+                />
+              )}
+            </View>
+          );
+        })}
       </PagerView>
 
       <Toast ref={toastRef} />
@@ -625,6 +718,7 @@ export default function HomeScreen() {
           zoomLabel={currentZoom.label}
           onBriefingPress={handleBriefingPress}
           onZoomPress={handleZoomToggle}
+          articleActions={currentSection === NEWS}
           onSharePress={handleBottomShare}
         />
       )}
@@ -708,7 +802,7 @@ export default function HomeScreen() {
       <ChokepointSheet
         sheetRef={chokepointSheetRef}
         chokepoint={activeChokepoint}
-        articles={flatArticles}
+        articles={river}
         bottomInset={insets.bottom}
         onDismiss={() => setActiveChokepoint(null)}
         onArticlePress={(slug, category) => {
@@ -721,7 +815,7 @@ export default function HomeScreen() {
         sheetRef={entitySheetRef}
         entity={activeEntity}
         indicator={activeIndicator}
-        articles={flatArticles}
+        articles={river}
         bottomInset={insets.bottom}
         onDismiss={() => setActiveEntity(null)}
         onArticlePress={(slug, category) => {
@@ -733,8 +827,12 @@ export default function HomeScreen() {
       <SourcesSheet
         sheetRef={sourcesSheetRef}
         sources={sheetSources}
+        divergence={sheetDivergence}
         bottomInset={insets.bottom}
-        onDismiss={() => setSheetSources([])}
+        onDismiss={() => {
+          setSheetSources([]);
+          setSheetDivergence(null);
+        }}
       />
 
       <NotificationPrimerSheet

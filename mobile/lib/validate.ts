@@ -12,8 +12,11 @@ import type {
   GdacsAlert,
   GdacsDetail,
   GdacsSnapshot,
+  GenocideSnapshot,
   HeatmapPoint,
   Indicator,
+  IpcArea,
+  IpcSnapshot,
   MetaResponse,
   TrendsSnapshot,
 } from '@shared/types';
@@ -249,6 +252,57 @@ export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot =>
   typeof v.asOf === 'string' &&
   Array.isArray(v.indicators) &&
   v.indicators.every(isIndicator);
+
+const isIpcArea = (v: unknown): v is IpcArea => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || typeof v.area !== 'string') return false;
+  if (typeof v.iso3 !== 'string' || typeof v.iso2 !== 'string') return false;
+  if (typeof v.phase !== 'number' || v.phase < 1 || v.phase > 5) return false;
+  if (typeof v.phaseName !== 'string') return false;
+  if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
+  if (typeof v.vintage !== 'string') return false;
+  if (!isObject(v.pop)) return false;
+  // The population bands are the only fields a card does arithmetic on, so
+  // they are the only ones worth being strict about: a string here would sum
+  // by concatenation and print a ten-million-digit famine.
+  const { total, p3plus, p4, p5 } = v.pop;
+  return (
+    isFiniteNumber(total) && isFiniteNumber(p3plus) && isFiniteNumber(p4) && isFiniteNumber(p5)
+  );
+};
+
+export const isIpcSnapshot = (v: unknown): v is IpcSnapshot =>
+  isObject(v) &&
+  typeof v.generated === 'string' &&
+  typeof v.source === 'string' &&
+  isStringArray(v.countries) &&
+  Array.isArray(v.areas) &&
+  v.areas.every(isIpcArea);
+
+const isDetermination = (v: unknown): boolean => {
+  if (!isObject(v)) return false;
+  // Every field here is load-bearing: the app is not making this finding, it
+  // is reporting one, and a card that cannot name the body and the document
+  // has no business rendering the word.
+  return (
+    typeof v.id === 'string' &&
+    typeof v.name === 'string' &&
+    typeof v.iso2 === 'string' &&
+    v.finding === 'determination' &&
+    typeof v.body === 'string' &&
+    v.body.length > 0 &&
+    typeof v.document === 'string' &&
+    v.document.length > 0 &&
+    typeof v.date === 'string' &&
+    typeof v.summary === 'string' &&
+    typeof v.url === 'string' &&
+    isFiniteNumber(v.lat) &&
+    isFiniteNumber(v.lng)
+  );
+};
+
+export const isGenocideSnapshot = (v: unknown): v is GenocideSnapshot =>
+  isObject(v) && Array.isArray(v.situations) && v.situations.every(isDetermination);
 
 export const isPreferences = (v: unknown): v is Preferences => {
   if (!isObject(v)) return false;

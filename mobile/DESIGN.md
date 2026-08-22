@@ -48,6 +48,44 @@ The sentiment palette splits into background and foreground variants:
 - **`colors.toneFavorable / toneUnfavorable / toneNeutral`** — background fills only. Tuned for `BLACK` foreground text on the tone (CompareBlock pills, TimelineBlock spans, TreemapBlock cells). Do not use as foreground text on `bg`: in light mode the contrast is ~3.4:1 (AA-large only).
 - **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — foreground text variants. Hue-aligned with the bg-tones, but luminance-deepened in light mode to clear AA body (≥ 4.5:1) on cream `bg`. In dark mode the values are identical to the bg-tones (dark `bg` already has ample headroom). The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these.
 
+**Direction is not sentiment, and every move is coloured.** The rule lives in
+`lib/valence.ts` and nowhere else. Two channels that must not be collapsed into
+one: the **caret** says which way the number went, and the **colour** says what
+that direction does to the person holding it. In this app up is not good — oil
+rising is a fuel bill, an FX rate rising is a currency that weakened, bitcoin
+rising is neither — so `riseMeansFor` declares what a rise in each *published
+series* means, and `valenceOf` applies it to the direction, which is why a fall
+in something whose rise hurts is `favorable`.
+
+The third value is the part that is easy to get wrong. Where the app has no
+honest claim the answer is **`neutral` — slate — not the absence of a colour**.
+It was an absence, and the absence was the bug: two thirds of the app's
+readings sat in `emphasis` ink, indistinguishable from the label text beside
+them, so a reader's first job was working out whether a chip was coloured
+before working out which way it pointed. Slate says *the app will not tell you
+whether this is good news* in the same channel as sage and rose, which is a
+claim it can stand behind. A comparison row that prints a move follows the same
+rule: `tone` is always set, never left undefined.
+
+Three surfaces used to answer this question separately and all three disagreed
+— a card chip in sage/rose, `EntitySheet` tinting on *magnitude* in the globe's
+dome gold, `ChokepointSheet` calling a strait disrupted at 15% where the card
+said 10%. They read `lib/valence.ts` now. Adding a fourth answer is the
+regression; extending the table there is the change.
+
+A corollary: **quote the quantity whose sign matches its meaning.** A comparison
+row's `value` carries the sign and its `tone` carries the meaning, so the two
+must agree — the FX table quoting rates (up = your money buys less) put a plus
+sign in rose, and the fix was to report the currency's move rather than caption
+the inversion. This is also the one case where a builder passes `riseMeans` as
+a literal instead of calling `riseMeansFor`: the table has inverted the quoted
+quantity, so it inverts the meaning with it.
+
+A count is not a move. Condition-card rows (IPC phase tallies, conflict events
+by country, hazard levels) carry no `tone`, because nothing about them points
+up or down — the direction channel has nothing to say and spending colour there
+would make it mean two things.
+
 **Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
 
 ## Primitives — `components/primitives/`
@@ -116,6 +154,76 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
 
+### Cards (`components/cards/`) — every column except `news`
+
+- **The rule that decides what exists.** A card earns a screen if a reader who
+  gives it four seconds can tell someone else something true they did not know.
+  Everything that fails becomes a row on a comparison card, or it is not in the
+  app. That is why fifteen currencies are one card, thirty exchanges are none,
+  and 101 famine areas are one. Applied to the live payloads it cuts ~80
+  candidate cards to ~25.
+- **Five parts, in reading order**, owned by `CardFrame`: the reading (one
+  number at arm's length, with its unit and its **delta chip** on the line
+  below) · what it is (one sentence for someone who has never heard of it) ·
+  what changed (with the window named) · **why it reaches you** · the tie to
+  today's stories. Part four is the one that makes the section worth existing,
+  and it is **never composed in the app** — it is the pipeline's `standing`
+  paragraph, rendered verbatim. Every indicator, chokepoint and calendar event
+  carries one.
+- **`lead` says why the card is here at all.** A builder that gated a card on
+  its own data being new sets `lead: true`, and `CardFrame` prints `today ·`
+  before the kicker. Without it a famine analysis published this quarter and
+  the gold-to-silver ratio arrive in identical weight, and the reader can only
+  tell them apart by already knowing which cards the app gates — which is
+  knowing the implementation. It is an **ink step, never a colour**: the
+  chromatic budget is spent on `CardDelta` and `colors.determination`, and a
+  third accent costs both of them their meaning. Every card in
+  `buildConditionCards` carries it, as does a strait that cleared
+  `CHOKEPOINT_DISRUPTED`.
+- **One definition per screen, and `standing` is the one.** Part two is written
+  here and part four is written by the pipeline, and they were saying the same
+  thing on *every* reading card — brent, us-10y and vix each carried two
+  paragraphs of the same definition separated by a chart. The prefix-comparison
+  guard that was supposed to catch this missed all three by a word, because a
+  same-opening test cannot catch a same-meaning collision. The rule is
+  structural now (`definitionUnlessStanding`): if the pipeline wrote a
+  `standing`, the hand-written sentence does not render. Same rule, applied per
+  column, is why the prediction explainer appears on the first belief card
+  only — three cards deep it was the identical 200 characters three times.
+- **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
+  not prose and gains nothing from being set as prose; what is left for part
+  three is whatever the chip cannot show — the baseline a strait is measured
+  against, the range a belief has travelled, the second window on a monthly
+  series. A percentage that appears in both is the same fact twice.
+- **Four kinds, one dispatcher.** `Reading · Comparison · Belief · Condition`,
+  switched in `CardView`. This is the deliberate exception to the "no
+  data-driven dispatcher" rule below: a builder emits a union and `CardPager`
+  renders whatever comes out, so unlike a sheet there is no call site that
+  could know the kind.
+- **A card ships because it changed, not because it matters.** This is a news
+  app: a screen earns its place by having something new on it this morning.
+  The audit that settled it — median famine analysis seven months old, conflict
+  window 145 days behind, one genocide determination 2,902 days old — is in the
+  header of `lib/cards/conditions.ts`, and those cards are now gated on their
+  own data being new. Apply the same test to anything added here.
+- **Builders are pure functions in `lib/cards/`**, not components —
+  `buildInstrumentCards` (one column per section), `buildConditionCards`. They
+  return a shorter column
+  rather than a placeholder when a payload is missing, so a partial snapshot
+  degrades to fewer cards and never a broken screen. Because they are pure,
+  the arithmetic is pinned by tests rather than by looking at a simulator.
+- **Number grammar lives in `lib/cards/format.ts`, and using it is not
+  optional.** Two rules there exist because getting them wrong produces a
+  plausible, wrong sentence: a change is always measured over a window the card
+  can name (`windowChange` returns the period labels with the percentage,
+  because a "daily" series holds observations, not days), and anything already
+  in percent moves in **points** (`windowPointChange`) — a contract going 26 →
+  86 moved 60 points, and "+231%" is arithmetic pretending to be journalism.
+- Cards reuse `TrendBlock` and `CompareBlock` at `variant="article"`. A
+  comparison row's `weight` is the magnitude and its `value` string carries the
+  sign; `tone` is only for a direction that means something to the person
+  holding it (a currency weakening), never for "number went down".
+
 ### Blocks (`components/blocks/`)
 - Three data-display components, used directly by the sheets that need them:
   `TrendBlock` and `SourceCaption` (`EntitySheet`, `ChokepointSheet`) and
@@ -136,6 +244,53 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
+- **Two axes, and they are the whole navigation.** Horizontal swipe moves
+  between the four sections (`news` · `commodities` · `money` · `outlook`); vertical
+  paging moves between full-screen items inside one. Nothing should require the
+  reader to aim at a small target.
+- **The sections are cut by reader question, not by asset class.** It was six
+  cut the second way, and that produced a `markets` column of eight cards —
+  food, energy, rates, shipping, Wikipedia pageviews, a calendar — beside three
+  columns two cards deep that were all facets of one question. Asset class is
+  how a data provider files a series; it is not how anybody wakes up wondering
+  about one. Before adding a section, check the question is not already asked.
+- **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber spans the
+  chart, and on a card that is most of the screen — five page swipes in a row
+  did nothing but drag a dot along a line. Charts on cards pass
+  `scrubbable={false}`; scrubbing lives in sheets, where there is no pager to
+  compete with. Any new gesture on a card owes the same check.
+- `SectionBar` follows the pager. Four labels fit (~330pt all-in against a
+  360pt phone) where six measured past 440 and forced a scroller the reader could
+  never see the end of; the scroller stays for large Dynamic Type and is inert
+  below it. Abbreviating ("curr") was never the alternative. Driven by the
+  settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
+  drag fights the drag, while the indicator tracking the finger is the part
+  that should feel live.
+- **The rail groups, because the sections are not peers.** A rule sits after
+  `news`: it is a river of forty articles and the other three are decks of four
+  to seven cards, and drawing all four at identical weight was a claim about
+  symmetry the content does not keep. Full point, not `hairlineWidth` — a
+  10pt vertical hairline disappears at some Android densities, and a group rule
+  nobody can see does not group.
+- **A card that overflows scrolls; it must never truncate.** The five parts are
+  prose, so at large Dynamic Type — and at default type for four cards today —
+  a card outgrows its page. `CardFrame` arms an inner `ScrollView` when that
+  happens, and getting the measurement right means adding `COLUMN_PAD_V` back:
+  the column's padding lives on the `contentContainerStyle`, outside the view
+  being measured. `nestedScrollEnabled` is on (Android defaults it off, which
+  silently disabled the whole mechanism), and `CardPager` corrects any resting
+  offset the handoff leaves behind. The cost is one extra swipe to leave a tall
+  card; the alternative was losing the source caption off the bottom.
+- **A card arrives; it does not appear.** `CardFrame` runs the same
+  scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
+  outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use
+  the shared interpolation rather than a mount animation: with three pages held
+  in a list, a mount animation plays two screens away and is over unseen.
+  Gated on `useReducedMotion()`, like the reader's.
+- The four categories are a vertical ordering inside `news`, not lanes — see
+  `lib/news-order.ts`. The globe lives on `news` only: it is the backdrop to
+  the stories it locates, and there is nothing on a wheat price for it to
+  point at.
 - For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.
 
 ### Onboarding (contextual hint pills + notification primer)

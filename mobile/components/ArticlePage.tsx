@@ -1,6 +1,6 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
-import type { Article, Entity } from '@shared/types';
+import type { Entity } from '@shared/types';
 import { memo, useCallback, useMemo, useState } from 'react';
 import {
   type AccessibilityActionEvent,
@@ -24,12 +24,13 @@ import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
+import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { Text } from './primitives';
 
 // Title's distance from the container top. Smaller than the prior 32px gap
-// so the headline sits closer to the CategoryBar; the article backdrop
+// so the headline sits closer to the SectionBar; the article backdrop
 // gradient (rendered once in ArticleList) handles the top map-bleed.
 const CONTENT_PADDING_TOP = 18;
 
@@ -37,19 +38,23 @@ const CONTENT_PADDING_TOP = 18;
 // reader feels a touch more relaxed than the rest of the app, paired with
 // the slightly tighter `SPACING.articlePadding` to widen the column. The
 // scale lives local because it's a per-surface tuning; the padding lives
-// in `SPACING` so `CategoryBar` can mirror it.
+// in `SPACING` so `SectionBar` can mirror it.
 const READER_TEXT_SCALE = 1.04;
 
 interface ArticlePageProps {
-  article: Article;
+  article: RiverArticle;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onBookmarkPress?: (article: Article) => void;
-  onSourcesPress?: (article: Article) => void;
-  onTimeAgoPress?: (article: Article) => void;
+  onBookmarkPress?: (article: RiverArticle) => void;
+  onSourcesPress?: (article: RiverArticle) => void;
+  onTimeAgoPress?: (article: RiverArticle) => void;
   /** Tap handler for in-body entity mentions (oil, Hormuz, Bitcoin…). */
   onEntityPress?: (entity: Entity) => void;
+  /** Indicator ids the app can actually open a sheet for, from the live
+   *  trends catalog. See `tappableEntities` below for why this is a prop and
+   *  not something the renderer works out for itself. */
+  resolvableEntityIds?: ReadonlySet<string>;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -107,6 +112,7 @@ export const ArticlePage = memo(function ArticlePage({
   onSourcesPress,
   onTimeAgoPress,
   onEntityPress,
+  resolvableEntityIds,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -148,6 +154,22 @@ export const ArticlePage = memo(function ArticlePage({
     };
   });
 
+  // The kicker names the desk, and — only when the ledger actually holds more
+  // than one report on the same story — how long that story has been running.
+  //
+  // The guard is the whole point. Every article carries `threadDay` and
+  // `threadArc`, and 38 of today's 40 carry them with an article count of one,
+  // where "developing, day 13" would be a claim the data does not support.
+  // A thread is worth mentioning when there is a thread.
+  const kicker = useMemo(() => {
+    const count = article.threadArticleCount ?? 0;
+    if (count < 2) return article.category;
+    const arc = article.threadArc ?? 'developing';
+    const day = article.threadDay;
+    const run = day && day > 1 ? `${arc}, day ${day}` : arc;
+    return `${article.category} · ${run} · ${count} reports`;
+  }, [article.category, article.threadArc, article.threadDay, article.threadArticleCount]);
+
   const fontScale = useMemo(
     () => computeFontScale(article.title, article.sentences),
     [article.title, article.sentences],
@@ -164,6 +186,29 @@ export const ArticlePage = memo(function ArticlePage({
     () => makeMarkdownStyles(colors, font, typography),
     [colors, font, typography],
   );
+
+  /**
+   * Only the mentions that lead somewhere.
+   *
+   * An entity run is accent-coloured prose, and the app teaches readers that
+   * an accent-coloured word opens a sheet. A mention whose indicator is not in
+   * the catalog would keep the colour and do nothing, which is the one
+   * outcome `handleEntityPress` in `app/index.tsx` already refuses to produce
+   * — this makes the affordance itself honest rather than the tap.
+   *
+   * The filter is here rather than in the build because the app's catalog is
+   * the live `trends.json` it downloads on launch, which is a fresher and
+   * sometimes different set from the snapshot the site build read. Chokepoint
+   * entities (`cp:hormuz`) legitimately fall out here: they have pages on the
+   * web and no indicator in the app's catalog.
+   */
+  const tappableEntities = useMemo(() => {
+    const all = article.entities;
+    if (!all?.length) return undefined;
+    if (!resolvableEntityIds) return undefined;
+    const usable = all.filter((e) => resolvableEntityIds.has(e.indicatorId));
+    return usable.length > 0 ? usable : undefined;
+  }, [article.entities, resolvableEntityIds]);
 
   const rawOpenLink = useOpenLink();
   // Intercept `country:XX` markdown links and dispatch them through the same
@@ -206,13 +251,13 @@ export const ArticlePage = memo(function ArticlePage({
         timeAgo,
         openLink,
         onTimeAgoPress ? handleTimeAgoPress : undefined,
-        article.entities,
+        tappableEntities,
         onEntityPress,
       ),
     [
       article.sentences,
       article.location,
-      article.entities,
+      tappableEntities,
       mdStyles,
       typography,
       bodyFontSize,
@@ -319,6 +364,15 @@ export const ArticlePage = memo(function ArticlePage({
         accessibilityActions={accessibilityActions}
         onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
       >
+        {/* The category used to be the tab you were standing on. The column
+            is mixed now — ordered by how many newsrooms covered the event, not
+            by desk — so the story has to name its own. A `labelXs` kicker,
+            not a control: nothing here is tappable, and foundation.md's rule
+            that information appears exactly once is why it is the only place
+            the category is stated. */}
+        <Text variant="labelXs" tone="secondary" style={styles.kicker}>
+          {kicker}
+        </Text>
         <Text
           variant="display"
           tone="emphasis"
@@ -420,6 +474,9 @@ const styles = StyleSheet.create({
   earlierNote: {
     marginTop: SPACING.sm,
     textAlign: 'center',
+  },
+  kicker: {
+    marginBottom: SPACING.xxs,
   },
   title: {
     marginBottom: SPACING.md,

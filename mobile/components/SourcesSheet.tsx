@@ -2,7 +2,7 @@ import type { ArticleSource } from '@shared/types';
 import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { SPACING } from '../constants/theme';
+import { EDITORIAL, SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
@@ -12,6 +12,32 @@ import { SourceRow } from './SourceRow';
 
 interface SourcesSheetProps extends BaseSheetProps {
   sources: ArticleSource[];
+  /** How far apart the outlets' framing sits, 0–1, computed by the pipeline
+   *  from the spread of their sentiment scores. Published on every article
+   *  since the field existed and read by nothing until now. */
+  divergence?: number | null;
+}
+
+/**
+ * How much the outlets disagreed, in one line.
+ *
+ * The sheet already showed each outlet's own lean. What it never showed was
+ * the relationship between them, which is the thing worth knowing: two sources
+ * agreeing is a story, two sources at opposite ends is a different story, and
+ * the reader could only get there by comparing pills themselves.
+ *
+ * Silent below the moderate threshold. A small spread between two outlets is
+ * noise, and a line that appears on every article stops being read.
+ */
+function divergenceNote(divergence: number | null | undefined, count: number): string | null {
+  if (divergence == null || count < 2) return null;
+  if (divergence >= EDITORIAL.divergenceHigh) {
+    return 'These outlets told this story very differently.';
+  }
+  if (divergence >= EDITORIAL.divergenceModerate) {
+    return 'These outlets told this story differently.';
+  }
+  return null;
 }
 
 /** Dedicated sheet for the article's sources. Opens from the tappable source
@@ -20,6 +46,7 @@ interface SourcesSheetProps extends BaseSheetProps {
 export const SourcesSheet = memo(function SourcesSheet({
   sheetRef,
   sources,
+  divergence,
   bottomInset,
   onDismiss,
 }: SourcesSheetProps) {
@@ -44,7 +71,7 @@ export const SourcesSheet = memo(function SourcesSheet({
              *  Uses the sectionHeading font family at an xs size so it visually
              *  reads as smaller than a normal italic body line. */}
             <Text variant="sectionHeading" scale={0.85} style={styles.explainer}>
-              How each outlet framed this story.
+              {divergenceNote(divergence, sources.length) ?? 'How each outlet framed this story.'}
             </Text>
             {sources.map((s, i) => (
               <Animated.View key={s.name} entering={staggerEnter(i)}>

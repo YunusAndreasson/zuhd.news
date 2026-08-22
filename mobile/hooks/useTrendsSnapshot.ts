@@ -1,4 +1,4 @@
-import type { Indicator } from '@shared/types';
+import type { Indicator, TrendsSnapshot } from '@shared/types';
 import { useMemo } from 'react';
 import { API_BASE } from '../constants/theme';
 import { isTrendsSnapshot } from '../lib/validate';
@@ -12,6 +12,10 @@ import { useFetchJson } from './useFetchJson';
 export function useTrendsSnapshot(): {
   byId: Map<string, Indicator>;
   indicators: Indicator[];
+  /** The whole snapshot — `events`, `releaseCalendar` and all. The market
+   *  card builder needs more than the indicator list, and the payload was
+   *  already being downloaded whole. */
+  snapshot: TrendsSnapshot | null;
   ready: boolean;
 } {
   const { data, ready } = useFetchJson(`${API_BASE}/api/trends.json`, isTrendsSnapshot, {
@@ -25,5 +29,5 @@ export function useTrendsSnapshot(): {
     return m;
   }, [indicators]);
 
-  return { byId, indicators, ready };
+  return { byId, indicators, snapshot: data, ready };
 }

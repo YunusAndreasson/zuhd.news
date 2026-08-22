@@ -319,6 +319,29 @@ export interface Chokepoint {
   series: { periods: string[]; total: number[] };
   asOf: string;
   weather?: ChokepointWeather;
+  /** What the chokepoint *is* — stable geography and why the world's freight
+   *  cares about it. Written by the narration stage and joined at build time,
+   *  the same way `Indicator.standing` is. Absent on a build that ran before
+   *  that stage wrote a dispatch. */
+  standing?: string;
+  /** What is happening there now, tied to recent coverage. */
+  recent?: string;
+  /** The articles `recent` was built from, most relevant first. */
+  relatedArticles?: RelatedArticleRef[];
+}
+
+/**
+ * A pointer from a non-article surface (a chokepoint, a calendar event) back
+ * into the corpus, resolved at build time. The dispatch files that carry these
+ * are committed, and an article can be renamed or withdrawn between the run
+ * that wrote one and the build that reads it — so the resolution happens
+ * server-side and a consumer never has to handle a dangling slug.
+ */
+export interface RelatedArticleRef {
+  slug: string;
+  title: string;
+  date?: string;
+  dateFormatted?: string;
 }
 
 export interface ChokepointSnapshot {
@@ -536,6 +559,22 @@ export interface Indicator {
   latest?: number | null;
   previous?: number | null;
   marketUrl?: string;
+  /**
+   * One written paragraph saying what this indicator is and why a move in it
+   * reaches an ordinary life — "fuel, freight and fertiliser move after it".
+   *
+   * This is the difference between a reading and a fact. Every card that shows
+   * a number owes the reader this sentence, and the pipeline has been writing
+   * it for every indicator (48 of 50 today) since long before anything
+   * rendered it. Optional because two indicators still lack one and because a
+   * snapshot written before the narration stage existed has none at all.
+   */
+  standing?: string;
+  /** Why it matters right now, tied to recent coverage. Written for events
+   *  today; reserved here so an indicator can carry one without a type change. */
+  recent?: string;
+  /** The articles `recent` was built from, most relevant first. */
+  relatedArticles?: RelatedArticleRef[];
 }
 
 /** One scheduled statistical release, from FRED's calendar. */
@@ -579,12 +618,7 @@ export interface TrendEvent {
    * dispatch file is committed and an article can be renamed or withdrawn
    * between the run that wrote it and the build that reads it.
    */
-  relatedArticles?: Array<{
-    slug: string;
-    title: string;
-    date?: string;
-    dateFormatted?: string;
-  }>;
+  relatedArticles?: RelatedArticleRef[];
 }
 
 export interface TrendsSnapshot {
@@ -600,4 +634,92 @@ export interface TrendsSnapshot {
    *  snapshots written before this field existed. */
   events?: TrendEvent[];
   indicators: Indicator[];
+}
+
+// ── IPC / Cadre Harmonisé acute food insecurity ────────────────────────────
+//
+// Served from /api/ipc.json, sourced from OCHA's Humanitarian Data Exchange
+// (CC0). One record per analysed *area* — a district, a governorate, a camp —
+// not per country, which is why 101 records cover 6 countries.
+
+/** IPC acute food insecurity phase. 1 Minimal · 2 Stressed · 3 Crisis ·
+ *  4 Emergency · 5 Catastrophe/Famine. Phase 3 is the threshold at which the
+ *  classification calls for urgent action, which is why `p3plus` — not the
+ *  headline phase — is the number that describes the scale of a crisis. */
+export type IpcPhase = 1 | 2 | 3 | 4 | 5;
+
+export interface IpcArea {
+  id: string;
+  area: string;
+  /** Admin-1 name where the source publishes one; empty string otherwise. */
+  level1: string;
+  iso3: string;
+  iso2: string;
+  phase: IpcPhase;
+  /** The source's own name for the phase — "Emergency", "Crisis". Use it
+   *  rather than re-deriving a label from the number. */
+  phaseName: string;
+  confidence?: number;
+  lat: number;
+  lng: number;
+  /** Human-readable analysis vintage, e.g. "Jun 2026". */
+  vintage: string;
+  ageMonths: number;
+  from: string;
+  to: string;
+  /** Population in each band. `p3plus` is cumulative (phase 3, 4 and 5
+   *  together); `p4` and `p5` are the tails inside it, so they must never be
+   *  added to `p3plus`. */
+  pop: {
+    total: number;
+    p3plus: number;
+    p4: number;
+    p5: number;
+  };
+  /** Present when a newer analysis covers the same area; the record is kept
+   *  so a projection and its update can both be shown. */
+  supersededBy?: { from: string; to: string };
+}
+
+export interface IpcSnapshot {
+  generated: string;
+  source: string;
+  license: string;
+  ageLimitMonths: number;
+  /** ISO-3 codes with at least one area in `areas`. */
+  countries: string[];
+  areas: IpcArea[];
+}
+
+// ── Genocide determinations ────────────────────────────────────────────────
+//
+// Served from /api/genocide.json. Deliberately narrow: a situation appears
+// here only when a named body has published a named document reaching a
+// finding. The document is part of the payload because the citation is the
+// claim — the app never makes this determination itself, it reports one.
+
+export interface Determination {
+  id: string;
+  name: string;
+  iso2: string;
+  /** Country profile name, where it differs from the situation name
+   *  ("Rakhine" → "Myanmar"). */
+  profile: string;
+  lat: number;
+  lng: number;
+  finding: 'determination';
+  /** The body that made the finding, in full. */
+  body: string;
+  /** The document it was published in, with its symbol. */
+  document: string;
+  /** ISO date of the document. */
+  date: string;
+  summary: string;
+  url: string;
+  /** Month the situation is dated from, "YYYY-MM". */
+  since: string;
+}
+
+export interface GenocideSnapshot {
+  situations: Determination[];
 }

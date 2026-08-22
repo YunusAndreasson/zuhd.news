@@ -6,6 +6,7 @@ import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { makeStaggerEnter } from '../lib/stagger';
+import { chokepointValence, type Valence } from '../lib/valence';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
@@ -33,12 +34,17 @@ function formatCount(n: number): string {
   return n < 10 ? n.toFixed(1) : Math.round(n).toString();
 }
 
-function formatDelta(delta: number): { text: string; tone: CompareRow['tone'] } {
+/** A vessel class against its own 90-day normal.
+ *
+ *  The tone comes from `chokepointValence` rather than from a threshold of its
+ *  own. It used to hold one: 15% here against the card's 10%, so the same
+ *  strait could read disrupted on the card and quiet in the sheet that card
+ *  opens, and nothing in either file said the other existed. */
+function formatDelta(delta: number): { text: string; tone: Valence } {
   const pct = Math.round(delta * 100);
   if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  const tone: CompareRow['tone'] = Math.abs(pct) > 15 ? 'unfavorable' : 'neutral';
-  return { text: `${sign}${pct}% vs 90d`, tone };
+  return { text: `${sign}${pct}% vs 90d`, tone: chokepointValence(delta) };
 }
 
 function findRelatedArticles(chokepoint: Chokepoint, articles: Article[]): Article[] {
@@ -98,8 +104,11 @@ export const ChokepointSheet = memo(function ChokepointSheet({
     (primary && VESSEL_LABELS.find((v) => v.field === primary)?.label.toLowerCase()) || 'transits';
   const current = (primary && chokepoint?.last7Avg[primary]) ?? 0;
   const delta = (primary && chokepoint?.delta7vs90[primary]) ?? 0;
-  const { text: deltaText, tone } = formatDelta(delta);
-  const deltaTone = tone === 'unfavorable' ? 'accent' : 'secondary';
+  // The headline delta reads in the same channel as the rows below it and as
+  // the card that opened this sheet. It used to resolve to dome gold on a big
+  // move and grey on a small one — magnitude in a hue the app spends on the
+  // globe, in place of the direction a reader came here for.
+  const { text: deltaText, tone: deltaTone } = formatDelta(delta);
 
   return (
     <SheetLayout

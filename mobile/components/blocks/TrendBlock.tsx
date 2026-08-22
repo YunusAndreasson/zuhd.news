@@ -45,7 +45,13 @@ const ENDPOINT_RING_R = 8;
 const LABEL_ROW_HEIGHT = 14;
 const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
 const CHART_BOTTOM_PAD = 14;
-const CHART_RIGHT_PAD = 44;
+// 56, not 44. This is both the plot's right inset and the width of the box the
+// range labels live in, and 44 could not hold one: "$78,317.8" is a single
+// token with nowhere to break, so it simply ran off the edge, and "4,599.4
+// $/oz" wrapped to a second line the box then clipped through the middle of
+// the glyphs. 56 fits the widest label the live payloads produce on one line
+// (a seven-figure currency reading) and costs ~4% of the plot width.
+const CHART_RIGHT_PAD = 56;
 const CHART_LEFT_PAD = 2;
 const MAX_SERIES = 3;
 const SCRUB_LABEL_W_SINGLE = 96;
@@ -301,6 +307,17 @@ interface TrendBlockProps {
   variant?: BlockVariant;
   onPress?: () => void;
   sourceLabel?: string;
+  /**
+   * Whether dragging across the chart scrubs it.
+   *
+   * On by default, and off on a card. A card lives inside a horizontal pager
+   * and the app's one navigational rule is that you move by swiping left and
+   * right — a scrubber spanning most of the screen swallows that swipe, and
+   * the reader is stuck on Bitcoin dragging a dot along a line they did not
+   * ask to interrogate. Inside a sheet there is no pager to compete with, so
+   * scrubbing stays where it has always been.
+   */
+  scrubbable?: boolean;
 }
 
 export const TrendBlock = memo(function TrendBlock({
@@ -316,6 +333,7 @@ export const TrendBlock = memo(function TrendBlock({
   variant = 'article',
   onPress,
   sourceLabel,
+  scrubbable = true,
 }: TrendBlockProps) {
   const { colors, font } = useTheme();
   const isContext = variant === 'context';
@@ -449,6 +467,10 @@ export const TrendBlock = memo(function TrendBlock({
   const panConfig = useMemo<PanGestureConfig>(() => {
     const pointsX = points.map((p) => p.x);
     return {
+      // Disabled rather than unmounted: the detector stays in the tree so the
+      // chart's layout is identical either way, and the horizontal drag falls
+      // straight through to whatever owns the page.
+      enabled: scrubbable,
       activeOffsetX: [-5, 5],
       failOffsetY: [-10, 10],
       onActivate: (e) => {
@@ -484,7 +506,7 @@ export const TrendBlock = memo(function TrendBlock({
         scrubIdx.value = -1;
       },
     };
-  }, [points, scrubIdx]);
+  }, [points, scrubIdx, scrubbable]);
   const pan = usePanGesture(panConfig);
 
   const firstPeriod = periods?.[0];
@@ -594,13 +616,23 @@ export const TrendBlock = memo(function TrendBlock({
                 </View>
               ) : null}
 
+              {/* Both boxes are two `LABEL_ROW_HEIGHT` rows tall, which is
+                  what the label needs when its unit wraps ("4,599.4" over
+                  "$/oz"). `tabular` leads at 1.55 though — 17pt a line, 34pt
+                  for two — so the second line overflowed a 28pt box and the
+                  chart clipped it through the middle of the glyphs. Setting
+                  the leading to the row height the box was built from is the
+                  whole fix; 11pt over 14pt is tighter than body text and
+                  looser than `leadingTight`, which is the right register for
+                  two stacked axis labels. `numberOfLines` caps it so no unit
+                  can ever reach a third line and clip again. */}
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
-                <Text variant="tabular" tone="secondary">
+                <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
                   {formatBlockNumber(max, unit)}
                 </Text>
               </View>
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
-                <Text variant="tabular" tone="secondary">
+                <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
                   {formatBlockNumber(min, unit)}
                 </Text>
               </View>
@@ -687,6 +719,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     paddingRight: 2,
+  },
+  yAxisText: {
+    lineHeight: LABEL_ROW_HEIGHT,
+    textAlign: 'right',
   },
   yAxisMax: {
     top: CHART_TOP_PAD - LABEL_ROW_HEIGHT,

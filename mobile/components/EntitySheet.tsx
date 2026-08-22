@@ -5,6 +5,7 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { makeStaggerEnter } from '../lib/stagger';
+import { riseMeansFor, type Valence, valenceOfChange } from '../lib/valence';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
@@ -37,12 +38,23 @@ function formatLatest(value: number, unit?: string): string {
   return rounded.toLocaleString('en-US');
 }
 
+/**
+ * The indicator's last move, in the app's one colour channel.
+ *
+ * This used to tint on *magnitude*: dome gold at five per cent or more, grey
+ * below it. Two things were wrong with that. Gold is the globe's hue and
+ * spending it here made a routine tick look like a finding; and a reader who
+ * had just seen brent's card chip in rose met the same indicator in this sheet
+ * in gold, which is the app saying two different things about one number.
+ * `riseMeansFor` is the same lookup the card uses, so it now cannot.
+ */
 function formatDelta(
+  indicator: Indicator,
   latest?: number | null,
   previous?: number | null,
 ): {
   text: string;
-  tone: 'default' | 'secondary' | 'accent';
+  tone: Valence;
 } {
   if (
     latest == null ||
@@ -50,16 +62,14 @@ function formatDelta(
     !Number.isFinite(latest) ||
     !Number.isFinite(previous)
   ) {
-    return { text: '', tone: 'secondary' };
+    return { text: '', tone: 'neutral' };
   }
-  if (previous === 0) return { text: '', tone: 'secondary' };
+  if (previous === 0) return { text: '', tone: 'neutral' };
   const delta = (latest - previous) / Math.abs(previous);
   const pct = Math.round(delta * 100);
-  if (pct === 0) return { text: 'steady', tone: 'secondary' };
+  if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  // Accent (dome gold) draws attention on big moves; secondary for minor ones.
-  const tone: 'secondary' | 'accent' = Math.abs(pct) >= 5 ? 'accent' : 'secondary';
-  return { text: `${sign}${pct}% vs prev`, tone };
+  return { text: `${sign}${pct}% vs prev`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
 }
 
 function findRelatedArticles(indicator: Indicator, articles: Article[]): Article[] {
@@ -93,7 +103,9 @@ export const EntitySheet = memo(function EntitySheet({
 
   const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
   const previous = indicator?.previous ?? indicator?.values[indicator.values.length - 2];
-  const delta = formatDelta(latest, previous);
+  const delta = indicator
+    ? formatDelta(indicator, latest, previous)
+    : { text: '', tone: 'neutral' as const };
   const handleTitle = indicator?.label ?? entity?.mention ?? '';
 
   return (

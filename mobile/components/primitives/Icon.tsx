@@ -29,6 +29,11 @@ export interface IconProps {
  * back to Ionicons for that name (no missing-glyph placeholder).
  */
 const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
+  // The delta chip's direction arrows. A filled triangle rather than a line
+  // arrow: at 14px beside 13pt type a stroked glyph reads as noise, and the
+  // triangle is the mark a reader already associates with a price move.
+  'caret-up': 'arrowtriangle.up.fill',
+  'caret-down': 'arrowtriangle.down.fill',
   'chevron-back': 'chevron.left',
   'chevron-forward': 'chevron.right',
   'chevron-up': 'chevron.up',
