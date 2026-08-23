@@ -135,10 +135,36 @@ export function indexRow(card: Card): IndexRow {
  * is never touched by it: the line is redundant to a reader running an eye
  * down a column and not at all redundant to someone hearing one row in
  * isolation. That is the same split `tickUnit` already makes.
+ *
+ * ── The exemption, which is not an exception to the rule but a limit on it ──
+ *
+ * A `lead` row is exempt, because on those rows the note is not a
+ * distinguisher — it is a *disclosure*, and the premise above does not reach
+ * it. "today · ships a day, week to 16 Aug" is the app saying this card is
+ * here because its data moved, and then saying which week the figure actually
+ * closed in; `FRESH_DAYS_STRAIT` allows fourteen days between those two
+ * things, and the note is the whole of what stands between a fortnight-old
+ * reading and a reader taking it for this morning's.
+ *
+ * It became reachable the day `commodities` started leading with every
+ * disrupted strait rather than only the worst. Seven of the eleven straits are
+ * read on a vessel class, but four — Kerch, Gibraltar, Dover, the Cape — are
+ * read on `n_total`, so two of those disrupted in one week produce
+ * byte-identical notes and the dedupe would blank both. Silently, on the two
+ * rows in the app that carry the `today` mark.
+ *
+ * This still drops rather than invents, which is the rule that matters here:
+ * the exemption makes the projection keep more of what the card already
+ * holds, never compose anything new.
  */
 export function indexRows(cards: Card[]): IndexRow[] {
   const rows = cards.map(indexRow);
   const seen = new Map<string, number>();
-  for (const row of rows) seen.set(row.note, (seen.get(row.note) ?? 0) + 1);
-  return rows.map((row) => ((seen.get(row.note) ?? 0) > 1 ? { ...row, note: '' } : row));
+  for (const row of rows) {
+    if (row.lead) continue;
+    seen.set(row.note, (seen.get(row.note) ?? 0) + 1);
+  }
+  return rows.map((row) =>
+    !row.lead && (seen.get(row.note) ?? 0) > 1 ? { ...row, note: '' } : row,
+  );
 }

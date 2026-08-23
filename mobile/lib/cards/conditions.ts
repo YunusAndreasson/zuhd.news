@@ -237,6 +237,22 @@ const ALERT_GLOSS: Record<string, string> = {
   Red: 'international assistance likely needed',
 };
 
+/** GDACS ships a two-letter hazard code; a reader is owed the word. Plural,
+ *  because the only place this renders counts a set. */
+const HAZARD_TYPE: Record<string, string> = {
+  EQ: 'earthquakes',
+  TC: 'tropical cyclones',
+  FL: 'floods',
+  WF: 'wildfires',
+  DR: 'droughts',
+  VO: 'volcanic eruptions',
+};
+
+/** The share one hazard type has to hold before the card calls it "most of
+ *  them". Half, because that is what the words mean — below it the sentence
+ *  would be describing a plurality as a majority. */
+const HAZARD_MAJORITY = 0.5;
+
 /**
  * What a global disaster monitor is currently tracking.
  *
@@ -267,6 +283,26 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
   const total = alerts.length;
   const escalated = counts.Orange + counts.Red;
 
+  // What the hundred actually are.
+  //
+  // `byType` was computed here and never read again — the one field in this
+  // file the card built and then dropped on the floor. It is worth a clause
+  // because "100 alerts" and "70 of them wildfires" are different facts about
+  // a summer, and the second is the one a reader can do anything with.
+  //
+  // A clause rather than a second `figures` block: the card already carries
+  // one (red / orange / green) and two figure lists on a card whose argument
+  // *is* that ratio would bury it under its own furniture.
+  //
+  // Only when a type is genuinely the bulk of the list. A "most of them" on a
+  // 30/28/24/18 spread is a sentence describing a plurality as a majority,
+  // which is the kind of true-sounding wrong number this file exists to
+  // prevent.
+  const ranked = [...byType.entries()].sort((a, b) => b[1] - a[1]);
+  const top = ranked[0];
+  const commonest =
+    top && top[1] / total >= HAZARD_MAJORITY ? `${HAZARD_TYPE[top[0]] ?? 'events'}` : undefined;
+
   const figures: CardFigure[] = (['Red', 'Orange', 'Green'] as const)
     .filter((level) => counts[level] > 0)
     .map((level) => ({
@@ -291,9 +327,10 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
     // response expected to be sufficient". The old phrasing invented a second
     // way of saying what the legend beside it already said.
     changed:
-      escalated === 0
+      (escalated === 0
         ? `All ${total} are Green — none modelled to need more than a local response.`
-        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no more than a local response.`,
+        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no more than a local response.`) +
+      (commonest ? ` Most of them are ${commonest}.` : ''),
     // Two sentences, not three. The third — "What is being predicted is how
     // many people it reaches, which is the only thing a response can be
     // planned against" — restated the first in more words, and the second had

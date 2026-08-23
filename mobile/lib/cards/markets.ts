@@ -930,18 +930,53 @@ function primaryDelta(c: Chokepoint): number | null {
  * per cent down (noise on a very large number) and drops Hormuz entirely, and
  * `Chokepoint` carries no share-of-trade field to weight by. The card says
  * exactly what it ranked on, and what it says is true.
+ *
+ * ── Why this returns a list, and why that used to be `ranked[0]` ───────────
+ *
+ * The paragraph above describes a real failure and then accepts it. It is
+ * only forced while the column can afford exactly one strait, and that has
+ * stopped being true: a column is an index now, and a strait costs a *row*.
+ * Today three clear the gate — Kerch at −95.5%, Hormuz at −69.4% on tankers,
+ * the Bosporus at −27.9% on dry bulk — and shipping `ranked[0]` alone means a
+ * fifth of the world's oil moving at a third of its normal rate is not in the
+ * app at all. Ranking is still the right way to *order* them; it was never a
+ * good way to choose one.
+ *
+ * The cap is three rather than none because the gate is a threshold, not a
+ * quota: a genuinely bad week could clear it on six or seven straits, and
+ * seven near-identical rows would bury the four cards `commodities` exists to
+ * carry. Three is the most that can lead a column without becoming the column.
  */
-function straitMovedCard(chokepoints: Chokepoint[], now: Date): ReadingCard | null {
+const MAX_STRAIT_CARDS = 3;
+
+/** "the widest gap", "the second-widest", "the third-widest".
+ *
+ *  The superlative is a claim about the column, and only the first card can
+ *  make it. Three cards each saying "the widest gap of the 11 straits
+ *  tracked" would be three cards contradicting each other one swipe apart —
+ *  the same failure `formatReading` and `axisDecimals` exist to prevent, in
+ *  words instead of digits. Bounded by `MAX_STRAIT_CARDS`. */
+const GAP_RANK = ['the widest gap', 'the second-widest gap', 'the third-widest gap'];
+
+function straitMovedCards(chokepoints: Chokepoint[], now: Date): ReadingCard[] {
   const ranked = chokepoints
     .map((c) => ({ c, d: primaryDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
     .filter((x) => x.d <= -CHOKEPOINT_DISRUPTED)
     .filter((x) => isFresh(x.c.asOf, now, FRESH_DAYS_STRAIT))
-    .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-  const top = ranked[0];
-  if (!top) return null;
+    .sort((a, b) => Math.abs(b.d) - Math.abs(a.d))
+    .slice(0, MAX_STRAIT_CARDS);
 
-  const { c, d } = top;
+  // The denominator is the set actually behind the claim, not a literal.
+  // `fxMoverCards` already derives its own ("the claim cannot outgrow the set
+  // behind it") and this line did not — it said "of the 11 straits tracked"
+  // whatever arrived, so the day PortWatch adds a twelfth the card would have
+  // gone on saying eleven with nothing to catch it.
+  const tracked = chokepoints.length;
+  return ranked.map(({ c, d }, position) => straitCard(c, d, position, tracked));
+}
+
+function straitCard(c: Chokepoint, d: number, position: number, tracked: number): ReadingCard {
   const last7 = c.last7Avg[c.primaryField];
   const base = c.baseline90Avg[c.primaryField];
   const vessels = VESSEL_LABEL[c.primaryField] ?? 'ships';
@@ -986,7 +1021,7 @@ function straitMovedCard(chokepoints: Chokepoint[], now: Date): ReadingCard | nu
     // straits has moved from", which is nine words doing the work of four.
     changed:
       base != null
-        ? `Its 90-day normal is ${formatQuantity(base)} a day — the widest gap of the 11 straits tracked.`
+        ? `Its 90-day normal is ${formatQuantity(base)} a day — ${GAP_RANK[position] ?? 'among the widest gaps'} of the ${tracked} straits tracked.`
         : undefined,
     why: straitWhy(c),
     series: {
@@ -1082,6 +1117,13 @@ function describeBeliefRange(
   return `Between ${low}% (${extremes.minAt}) and ${high}% (${extremes.maxAt}) over the period shown.`;
 }
 
+/** How many contracts `outlook` will carry, however many arrive.
+ *
+ *  Four leaves room for the other three cards the column exists to hold —
+ *  attention, VIX, the calendar — which is the difference between a column
+ *  about what is not yet a fact and a column about Polymarket. */
+const BELIEF_LIMIT = 4;
+
 function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
   return (
     snapshot.indicators
@@ -1109,6 +1151,26 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
       // actually met was `position === 1` and the column rendered with no
       // explainer at all. Sorting made index 0 meaningful; this makes it true.
       .filter((indicator): indicator is Indicator => latestOf(indicator) != null)
+      // Capped, and the cap goes exactly here: after the sort, after the
+      // `latestOf` filter, before the map.
+      //
+      // Both neighbours are load-bearing and the comments above say why, so
+      // this one has to respect both — slice before the sort and the column
+      // keeps whichever contracts the feed listed first; slice after the map
+      // and `position === 0` has already been handed to a card that may be
+      // about to be dropped, taking the once-per-column explainer with it.
+      //
+      // There was no cap at all, which was safe only because the pipeline
+      // ships three contracts. It ships three because
+      // `scripts/lib/trends-sources/polymarket.js` takes the top 20 by 24-hour
+      // volume before its decided-band and dedupe filters run, and the day
+      // that number is raised — which is the only way to get more predictions,
+      // since nothing in this app was ever limiting them — an uncapped builder
+      // turns `outlook` into a Polymarket mirror. The axis is cut by reader
+      // question, and "what is not yet a fact" is a question, not a feed:
+      // where curiosity went and the price of insuring against a fall belong
+      // on that screen too.
+      .slice(0, BELIEF_LIMIT)
       .map((indicator, position) => {
         const value = latestOf(indicator) as number;
         const extremes = seriesExtremes(indicator);
@@ -1324,10 +1386,6 @@ function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | nu
 // What is scheduled
 // ---------------------------------------------------------------------------
 
-/** How many of the calendar's entries reach the card. Four fits a screen and
- *  covers the near horizon; the rest are a list nobody reads standing up. */
-const CALENDAR_LIMIT = 4;
-
 /**
  * How close the next entry has to be before the calendar is worth a screen.
  *
@@ -1354,41 +1412,91 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
   const horizon = new Date(now.getTime() + CALENDAR_HORIZON_DAYS * 86_400_000)
     .toISOString()
     .slice(0, 10);
-  const upcoming: TrendEvent[] = events
-    .filter((e) => e.date >= today)
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(0, CALENDAR_LIMIT);
-  const next = upcoming[0];
-  // Nothing inside the horizon means nothing to say this morning. The old
+  // The horizon is the whole gate, and it is applied to every entry rather
+  // than only to the first.
+  //
+  // It used to filter on `date >= today`, take the first four by date, and
+  // then test only *that first one* against the horizon. So the card shipped
+  // four entries of which two routinely sat weeks past the window that had
+  // justified showing any of them: on 23 August it listed 26 Aug, 26 Aug,
+  // 10 Sep and 16 Sep — eighteen and twenty-four days out, under a ten-day
+  // gate whose entire purpose is "close enough to be news".
+  //
+  // Filtering both ends makes `shown.length` a fact about the world rather
+  // than about `CALENDAR_LIMIT`, which is why that constant is gone. The old
+  // reading was `String(shown.length)` — a headline number that changed when
+  // someone edited a limit and never when anything happened, which is "say
+  // what it is, not what the app does" broken at the top of a card. It also
+  // makes "a headline count must equal what the table paints" true by
+  // construction here instead of by coincidence: one array feeds both.
+  const shown: TrendEvent[] = events
+    .filter((e) => e.date >= today && e.date <= horizon)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const next = shown[0];
+  // Nothing inside the horizon means nothing to say this morning. The older
   // fallback here — show the first four entries whatever their dates — is
   // what made this furniture: on a day with no upcoming events it printed
   // *past* ones rather than admitting the column was shorter.
-  if (!next || next.date > horizon) return null;
-  const shown = upcoming;
+  if (!next) return null;
 
   return {
     id: 'calendar',
     kind: 'condition',
     kicker: 'ahead',
     title: 'What is already scheduled',
-    reading: String(shown.length),
-    // Not "decisions and releases coming" — the title is "What is already
-    // scheduled" and the kicker is "ahead". The note's job is to say what the
-    // number counts, and it was spending a third of itself on the tense.
-    readingNote: 'decisions and releases',
+    // The date, not the count.
+    //
+    // This read `String(shown.length)` — the row on the column index was the
+    // word "scheduled" over the numeral **4**, which is the least informative
+    // projection a collection has. It is also the one no calendar anywhere
+    // uses: the FT's economic diary prints the next date and what lands on
+    // it, because "when, and what" is the entire question a reader brings to
+    // a calendar. The count answers a question nobody asks.
+    //
+    // The count survives in the note, where it belongs — it is the scope of
+    // the list below, not the headline. And the reading stays inside
+    // `LONG_READING` (9 characters) so it keeps display size on the card.
+    reading: formatEventDate(next.date),
+    // Not "decisions and releases" — that named the *kind* of thing, which
+    // the title and the kicker ("ahead") between them already say twice. What
+    // neither of them can say is which one is next.
+    readingNote: shown.length > 1 ? `${next.title}, and ${shown.length - 1} more` : next.title,
     whatItIs:
       'Central-bank decisions and statistical releases are scheduled months ahead. The date is never the surprise; only the number is.',
-    changed: undefined,
+    // Part three, at last. This was `undefined` on the one card in the app
+    // about the future, while the pipeline wrote a `recent` paragraph on 13 of
+    // the 16 events and nothing rendered any of them. Its own doc comment in
+    // `shared/types.ts` reads "why it matters right now, tied to recent
+    // coverage", which is part three's job stated in part three's words.
+    //
+    // The strait card joins `recent` into part *four* instead (`straitWhy`),
+    // and that is the deviation, not this: `types.ts` says part four is
+    // `standing`, verbatim. Worth reconciling — one field with two homes is
+    // how this app has produced most of its silent bugs — but not by copying
+    // the deviation into a second builder.
+    changed: next.recent,
     // The next release's paragraph, said to be the next release's. Four dates
     // are listed above it and this explains one of them — a reader met a
     // paragraph on the quarterly output estimate under a card whose reading
-    // is "4" and whose title is "What is already scheduled".
-    ...labelledWhy(next.standing, `on ${next.title}, ${formatEventDate(next.date)}`),
+    // was the numeral "4" and whose title is "What is already scheduled".
+    // The reading names that release now, which makes the label agree with
+    // the top of the card rather than merely rescue it.
+    // The label names the release and no longer dates it. The date is the
+    // card's reading now, two lines above, and the app's rule about repetition
+    // is explicit that the failure mode is a fact arriving twice from two
+    // files neither of which can see the other.
+    ...labelledWhy(next.standing, `on ${next.title}`),
     figures: shown.map((e) => ({
       label: formatEventDate(e.date),
       value: e.title,
       note: e.institution,
     })),
+    // Part five, also new, and scoped to `next` alone. 11 of the 16 events
+    // carry build-time-resolved refs of exactly this type — the articles the
+    // `recent` paragraph above was written from — so these are the stories
+    // that back the sentence a reader has just read, and not a union across
+    // every date on the card. A tie to the wrong story is worse than no tie.
+    related: next.relatedArticles,
     sourceLabel: 'FRED · central-bank calendars',
   };
 }
@@ -1452,9 +1560,11 @@ const EMPTY_COLUMNS: InstrumentColumns = {
  * `commodities` opens with the nisab. It moves daily, it is the one price in the
  * app that is also an obligation, and it is the card no other news app
  * carries; the documented eat-then-burn order runs beneath it. On a day when a
- * strait has actually gone quiet, that card takes the head instead — freight
- * that has stopped moving is a price story before it is anything else, and it
- * arrives carrying the `today` mark.
+ * strait has actually gone quiet, those cards take the head instead — freight
+ * that has stopped moving is a price story before it is anything else, and
+ * they arrive carrying the `today` mark. Plural: every strait that clears the
+ * gate leads, ranked, up to `MAX_STRAIT_CARDS`. Shipping only the worst of
+ * them put Hormuz on the floor at −69% on tankers.
  *
  * `money` opens with fifteen currencies, because "did mine move" is the
  * question, and the rows that were news follow it. The ten-year and the two
@@ -1480,7 +1590,7 @@ export function buildInstrumentCards({
 
   return {
     commodities: keep([
-      straitMovedCard(chokepoints, now),
+      ...straitMovedCards(chokepoints, now),
       nisabCard(trends),
       staplesCard(trends, articles),
       indicatorCard(

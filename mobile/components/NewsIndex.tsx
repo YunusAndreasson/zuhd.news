@@ -264,6 +264,7 @@ export const NewsIndex = memo(function NewsIndex({
             addedAt={article.addedAt}
             category={article.category}
             location={article.location}
+            eventCoverage={article.eventCoverage}
             onPress={onSelect}
             onLongPress={onLongPress}
           />

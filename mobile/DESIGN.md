@@ -172,7 +172,18 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
     projection and it is where a row's contents are decided; a formatter in
     `IndicatorRow` would be a second opinion about a number `lib/cards/
     format.ts` has already spelled, one tap from the card that spells it the
-    first way.
+    first way. The corollary, when a row reads badly: **fix the builder, not
+    the projection.** The calendar row printed "4" and the answer was to
+    change what `calendarCard` puts in `card.reading`, never to let `row.ts`
+    compose a better line.
+  - **`indexRows` drops a note that repeats down a column — except on a `lead`
+    row.** There the note is a *disclosure* rather than a distinguisher: a
+    gated card's "week to 16 Aug" is the qualifier on the `today ·` mark
+    beside it, and `FRESH_DAYS_STRAIT` allows a fortnight between the two.
+    Two straits read on `n_total` disrupted in one week produce identical
+    notes, and blanking both would have removed the freshness disclosure from
+    the only rows that carry the mark. The exemption keeps *more* of what the
+    card holds; it never lets the projection invent.
   - **Two lines, four zones.** Title (`title`, `titleFontScale`, up to two
     lines) over the unit (`labelXs`, up to two lines — truncating it cost the
     Kerch strait the week its count belongs to); a `Sparkline`; then the
@@ -196,6 +207,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   app. That is why fifteen currencies are one card, thirty exchanges are none,
   and 101 famine areas are one. Applied to the live payloads it cuts ~80
   candidate cards to ~25.
+  - **The index did not repeal it.** A column being a list of rows makes a
+    marginal card cheaper to *skip* — one line of scan instead of six swipes —
+    but every row still opens a card, so nothing gets in at row prices. What
+    the index bought is a longer tail inside the families that already pass:
+    every disrupted strait rather than the worst one, four contracts rather
+    than however many the feed sends. It bought nothing at all for the
+    families that were cut.
 - **Five parts, in reading order**, owned by `CardFrame`: the reading (one
   number at arm's length, with its unit and its **delta chip** on the line
   below) · what it is (one sentence for someone who has never heard of it) ·

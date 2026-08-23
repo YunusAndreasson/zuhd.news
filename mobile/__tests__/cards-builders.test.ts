@@ -472,6 +472,372 @@ describe('buildInstrumentCards', () => {
     expect(gbp?.tone).toBe('neutral');
   });
 
+  it('leads with every disrupted strait, ranked, not only the worst of them', () => {
+    // The bug this pins. `straitMovedCard` returned `ranked[0]`, so on a week
+    // when three straits were disrupted the app carried one — and because the
+    // ranking is distance from a strait's *own* normal, the one it carried
+    // could be Kerch at 6 ships a day while the Strait of Hormuz, which
+    // carries a fifth of the world's oil, was 74% down and absent entirely.
+    const inputs = {
+      trends: snapshot([indicator({ id: 'brent' })]),
+      chokepoints: [
+        strait('dover', 'Dover Strait', 157, 162.2, -0.032),
+        strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902),
+        strait('hormuz', 'Strait of Hormuz', 1, 3.9, -0.741),
+      ],
+      articles: [],
+    };
+    const columns = buildInstrumentCards(inputs);
+    const cards = allOf(columns);
+
+    // Both disrupted straits ship; the one three per cent off its normal is
+    // weather and still does not.
+    expect(find(cards, 'strait-kerch')).toBeDefined();
+    expect(find(cards, 'strait-hormuz')).toBeDefined();
+    expect(find(cards, 'strait-dover')).toBeUndefined();
+
+    // Ranked by distance from their own normals, and leading the column.
+    expect(columns.commodities[0]?.id).toBe('strait-kerch');
+    expect(columns.commodities[1]?.id).toBe('strait-hormuz');
+
+    const moved = find(cards, 'strait-kerch');
+    expect(moved?.reading).toBe('0.9');
+    // The distance from its own normal is the chip; the baseline it is
+    // measured against stays in the sentence, because a percentage with
+    // nothing to divide by is not a fact.
+    expect(moved?.delta).toMatchObject({
+      direction: 'down',
+      magnitude: '90%',
+      window: 'vs its 90-day normal',
+      // Freight not moving reaches an ordinary life as the price of
+      // everything that had to sail.
+      valence: 'unfavorable',
+    });
+    expect(moved?.changed).toContain('8.8');
+    // It is on screen because it moved, and it says so.
+    expect(moved?.lead).toBe(true);
+
+    // Only one card may claim the superlative, and the denominator counts the
+    // set actually behind the claim rather than a literal 11.
+    expect(moved?.changed).toContain('the widest gap of the 3 straits tracked');
+    expect(find(cards, 'strait-hormuz')?.changed).toContain(
+      'the second-widest gap of the 3 straits tracked',
+    );
+
+    // The eleven-strait comparison table is still gone. The globe on `news`
+    // draws all eleven as tappable rings and `ChokepointSheet` says more about
+    // any of them than a flat sorted list of the same names could.
+    expect(find(cards, 'straits')).toBeUndefined();
+  });
+
+  it('caps the straits so a bad week cannot become the whole column', () => {
+    const columns = buildInstrumentCards({
+      trends: snapshot([indicator({ id: 'brent' })]),
+      chokepoints: [
+        strait('a', 'A Strait', 1, 10, -0.9),
+        strait('b', 'B Strait', 1, 10, -0.8),
+        strait('c', 'C Strait', 1, 10, -0.7),
+        strait('d', 'D Strait', 1, 10, -0.6),
+        strait('e', 'E Strait', 1, 10, -0.5),
+      ],
+      articles: [],
+    });
+    const straits = columns.commodities.filter((c) => c.id.startsWith('strait-'));
+    expect(straits).toHaveLength(3);
+    // The three worst, in order — the cap slices after the sort, never before.
+    expect(straits.map((c) => c.id)).toEqual(['strait-a', 'strait-b', 'strait-c']);
+    // And the instrument cards are still reachable underneath them — the
+    // straits lead the column, they do not become it.
+    expect(find(columns.commodities, 'brent')).toBeDefined();
+  });
+
+  it('drops a stale strait even when it is the most disrupted', () => {
+    // `isFresh` bounds both ends, and the gate runs before the cap — so a
+    // fortnight-old reading cannot take a slot from a current one.
+    const columns = buildInstrumentCards({
+      trends: snapshot([indicator({ id: 'brent' })]),
+      chokepoints: [
+        strait('stale', 'Stale Strait', 1, 10, -0.95, isoDaysAgo(40)),
+        strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902),
+      ],
+      articles: [],
+    });
+    expect(find(columns.commodities, 'strait-stale')).toBeUndefined();
+    expect(columns.commodities[0]?.id).toBe('strait-kerch');
+  });
+
+  it('puts the currency mark in front of the number and the denominator in English', () => {
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([
+          indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl', values: [80, 88.9] }),
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    const brent = find(cards, 'brent');
+    expect(brent?.reading).toBe('$89');
+    expect(brent?.readingNote).toBe('a barrel');
+  });
+
+  it('renders `standing` verbatim as the why — the app does not rewrite the desk', () => {
+    const standing = 'It moves on supply, and fuel, freight and fertiliser move after it.';
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent', label: 'Brent crude', standing })]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    expect(find(cards, 'brent')?.why).toBe(standing);
+  });
+
+  it('draws wheat and rice as two lines on one axis, and only when they align', () => {
+    const wheat = indicator({
+      id: 'wheat',
+      label: 'Wheat',
+      unit: '$/mt',
+      cadence: 'monthly',
+      values: [175, 220, 199.65],
+      periods: ['Aug 2024', 'May 2026', 'Jun 2026'],
+    });
+    const rice = indicator({
+      id: 'rice',
+      label: 'Rice',
+      unit: '$/mt',
+      cadence: 'monthly',
+      values: [563, 396, 400],
+      periods: ['Aug 2024', 'May 2026', 'Jun 2026'],
+    });
+    const paired = allOf(
+      buildInstrumentCards({
+        trends: snapshot([wheat, rice]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    const staples = find(paired, 'staples');
+    expect(staples?.kind).toBe('reading');
+    expect(staples?.kind === 'reading' ? staples.series?.multi?.length : 0).toBe(2);
+    expect(staples?.changed).toContain('wheat +14%');
+    expect(staples?.changed).toContain('rice −29%');
+
+    // Misaligned periods would put two different time axes on one chart.
+    const misaligned = allOf(
+      buildInstrumentCards({
+        trends: snapshot([
+          wheat,
+          { ...rice, values: [396, 400], periods: ['May 2026', 'Jun 2026'] },
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    expect(find(misaligned, 'staples')).toBeUndefined();
+  });
+
+  it('names the binding metal and says which way the threshold moved', () => {
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([
+          indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
+          // Silver down, so the threshold falls and MORE wealth is zakatable —
+          // the counter-intuitive half of the card.
+          indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 52.56] }),
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    const card = find(cards, 'nisab');
+    expect(card?.reading).toBe('$1,005');
+    expect(card?.readingNote).toBe('set by silver');
+    expect(card?.changed).toContain('fell');
+    expect(card?.changed).toContain('more wealth is zakatable');
+    expect(card?.why).toContain('85');
+    expect(card?.why).toContain('595');
+  });
+
+  it('reports a currency move as a relative percentage and a contract as points', () => {
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([
+          indicator({
+            id: 'fx-rub',
+            label: 'Russian ruble',
+            source: 'oer',
+            unit: 'RUB / USD',
+            values: [77.02483, 82.265959],
+            periods: ['Jul 11', 'Aug 9'],
+            countryTags: ['RU'],
+          }),
+          // The comparison card needs at least three rows to be a comparison.
+          indicator({
+            id: 'fx-jpy',
+            label: 'Japanese yen',
+            source: 'oer',
+            values: [161.67, 157.8],
+            periods: ['Jul 11', 'Aug 9'],
+            countryTags: ['JP'],
+          }),
+          indicator({
+            id: 'fx-egp',
+            label: 'Egyptian pound',
+            source: 'oer',
+            values: [49.626, 49.79],
+            periods: ['Jul 11', 'Aug 9'],
+            countryTags: ['EG'],
+          }),
+          indicator({
+            id: 'poly-ceasefire',
+            label: 'Will the ceasefire hold?',
+            source: 'polymarket',
+            unit: '%',
+            values: [26, 86],
+            periods: ['Jul 17', 'Aug 9'],
+          }),
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    const fx = find(cards, 'currencies');
+    // The row quotes the *currency*, not its rate. The ruble's rate rose 6.8%,
+    // which is the ruble itself falling 6.4% — the exact reciprocal, not the
+    // negated percentage. Quoting the rate printed "+6.8%" in rose, a plus
+    // sign coloured as bad news, which is a card arguing with itself.
+    expect(fx?.kind === 'comparison' ? fx.rows[0]?.value : '').toBe('−6.4%');
+    // Sign and colour now agree: a minus is rose, a plus is sage.
+    expect(fx?.kind === 'comparison' ? fx.rows[0]?.tone : '').toBe('unfavorable');
+    expect(fx?.kind === 'comparison' ? fx.rows.at(-1)?.value?.startsWith('+') : false).toBe(true);
+    expect(fx?.kind === 'comparison' ? fx.rows.at(-1)?.tone : '').toBe('favorable');
+    // One, not two. The Egyptian pound's rate moved a third of a per cent over
+    // the window, which is under the noise floor, so its row is painted slate
+    // — the app's word for *no claim* — and a headline that counted it made
+    // the card contradict its own table. The invariant, not the number: the
+    // count is exactly the rows the table paints as weakened.
+    expect(fx?.reading).toBe('1 of 3');
+    expect(
+      fx?.kind === 'comparison' ? fx.rows.filter((r) => r.tone === 'unfavorable').length : -1,
+    ).toBe(1);
+
+    // The card that follows says the same thing about the same currency, and
+    // says the word — a caret pointing down beside a reading of 82 rubles to
+    // the dollar needs something on the line naming what fell.
+    const mover = find(cards, 'fx-rub-mover');
+    expect(mover?.delta).toMatchObject({
+      direction: 'down',
+      magnitude: '6.4%',
+      valence: 'unfavorable',
+    });
+    expect(mover?.delta?.window).toContain('weaker');
+
+    const belief = find(cards, 'poly-ceasefire');
+    // The move is the chip now, and it is still in points: 26 → 86 is 60
+    // points, and "+231%" is the arithmetic-pretending-to-be-journalism this
+    // has always guarded against.
+    expect(belief?.delta).toMatchObject({ direction: 'up', magnitude: '60 points' });
+    expect(JSON.stringify(belief)).not.toContain('231');
+    // A belief takes no position — a ceasefire holding and a candidate
+    // winning move the same way on screen — and says so in slate rather than
+    // by leaving the chip the colour of the label text beside it.
+    expect(belief?.delta?.valence).toBe('neutral');
+    // What is left for the sentence is the range, which is the part that says
+    // how settled the belief is. This contract closes the window at its own
+    // maximum, so the sentence says that rather than dating the high — "as
+    // high as 86% (Aug 9)" printed under a reading of 86% today invites a
+    // reader to look for a fall that never happened.
+    // "the period shown", not "the window held here": the scope still has to be
+    // stated — the app holds about a month and must not imply an all-time high
+    // — but the chart below now draws exactly that period with a date at each
+    // end, so the sentence can point at it instead of describing the app's own
+    // storage in five words the reader cannot check.
+    expect(belief?.changed).toBe('A high for the period shown, against a low of 26% (Jul 17).');
+  });
+
+  it('leaves nothing on screen in the colour of the label text beside it', () => {
+    // The goal, as an invariant rather than as a screenshot: every move the
+    // app shows is in the colour channel, and the ones it will not editorialise
+    // over say so in slate. Before this, brent/us-10y/vix and the FX table
+    // carried sage and rose and everything else — crypto, both ratios, nisab,
+    // attention, every prediction, a strait at its normal — sat in near-white,
+    // so the reader's first question was whether a chip was coloured at all.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl' }),
+        indicator({ id: 'btc', label: 'Bitcoin', unit: '$' }),
+        indicator({ id: 'eth', label: 'Ether', unit: '$' }),
+        indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
+        indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 52.56] }),
+        indicator({ id: 'wheat', label: 'Wheat', values: [220, 231] }),
+        indicator({ id: 'rice', label: 'Rice', values: [500, 486] }),
+        indicator({ id: 'fx-rub', label: 'Russian ruble', source: 'oer', countryTags: ['RU'] }),
+        indicator({ id: 'fx-jpy', label: 'Japanese yen', source: 'oer', countryTags: ['JP'] }),
+        // Below the noise floor: a tenth of a per cent in a month is the rate
+        // ticking, not the currency moving.
+        indicator({
+          id: 'fx-gbp',
+          label: 'Pound sterling',
+          source: 'oer',
+          values: [0.78, 0.7802],
+          countryTags: ['GB'],
+        }),
+        indicator({ id: 'poly-x', label: 'Something?', source: 'polymarket', unit: '%' }),
+        indicator({
+          id: 'wiki-a',
+          label: 'A — Wikipedia views',
+          source: 'wikipedia',
+          values: [10, 10, 10, 14],
+        }),
+        indicator({
+          id: 'wiki-b',
+          label: 'B — Wikipedia views',
+          source: 'wikipedia',
+          values: [10, 10, 10, 7],
+        }),
+        indicator({
+          id: 'wiki-c',
+          label: 'C — Wikipedia views',
+          source: 'wikipedia',
+          values: [10, 10, 10, 10],
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const cards = allOf(columns);
+    expect(cards.length).toBeGreaterThan(5);
+
+    for (const card of cards) {
+      if (card.delta) {
+        expect(card.delta.valence).toBeDefined();
+      }
+      // A comparison row prints a move too, and an untinted pill is the same
+      // gap in the same channel.
+      if (card.kind === 'comparison') {
+        for (const row of card.rows) {
+          expect(row.tone).toBeDefined();
+        }
+      }
+    }
+
+    // And the colour still means something: the three the app speaks for are
+    // not slate, and the ones it does not are.
+    const valenceOfCard = (id: string) => cards.find((c) => c.id === id)?.delta?.valence;
+    expect(valenceOfCard('brent')).toBe('unfavorable');
+    expect(valenceOfCard('btc')).toBe('neutral');
+    expect(valenceOfCard('eth')).toBe('neutral');
+    expect(valenceOfCard('staples')).toBe('neutral');
+    expect(valenceOfCard('metals')).toBe('neutral');
+
+    // The pound moved a fifth of a per cent, which is nothing — slate rather
+    // than the sage that would claim a reader gained something.
+    const fx = cards.find((c) => c.id === 'currencies');
+    const gbp = fx?.kind === 'comparison' ? fx.rows.find((r) => r.cc === 'GB') : undefined;
+    expect(gbp?.tone).toBe('neutral');
+  });
+
   it('picks the strait that moved furthest from its own baseline, not the busiest', () => {
     const cards = allOf(
       buildInstrumentCards({
@@ -634,6 +1000,90 @@ describe('buildInstrumentCards', () => {
     expect(
       find(calendarCards([{ id: 'past', title: 'US CPI', date: '2026-08-12' }]), 'calendar'),
     ).toBeUndefined();
+  });
+
+  it('reads the date of the next release, never the number of them', () => {
+    // The reading was `String(shown.length)` against a limit of four, so the
+    // headline of the one card in the app about the future was a numeral that
+    // changed when somebody edited a constant and never when anything
+    // happened. On the column index it was the word "scheduled" over "4".
+    const calendar = find(
+      calendarCards([
+        { id: 'a', title: 'US GDP', date: '2026-08-26' },
+        { id: 'b', title: 'US PCE', date: '2026-08-26' },
+      ]),
+      'calendar',
+    );
+    expect(calendar?.reading).toBe('26 Aug');
+    expect(calendar?.readingNote).toBe('US GDP, and 1 more');
+    // Inside `LONG_READING`, so the card keeps display size for it.
+    expect((calendar?.reading ?? '').length).toBeLessThanOrEqual(9);
+  });
+
+  it('names the single release rather than counting to one', () => {
+    const calendar = find(
+      calendarCards([{ id: 'a', title: 'US GDP', date: '2026-08-26' }]),
+      'calendar',
+    );
+    expect(calendar?.readingNote).toBe('US GDP');
+  });
+
+  it('applies the horizon to every entry, not only to the first', () => {
+    // The gate tested `upcoming[0]` and then listed four by date, so a card
+    // justified by something three days out routinely carried entries three
+    // weeks out. What the table paints is now what the gate admitted.
+    const calendar = find(
+      calendarCards([
+        { id: 'near', title: 'US GDP', date: '2026-08-26' },
+        { id: 'far', title: 'FOMC', date: '2026-09-16' },
+        { id: 'further', title: 'ECB', date: '2026-10-29' },
+      ]),
+      'calendar',
+    );
+    const figures = calendar?.kind === 'condition' ? calendar.figures : undefined;
+    expect(figures?.map((f) => f.value)).toEqual(['US GDP']);
+    // And the note's count is a fact about the world rather than about a
+    // limit: one entry inside the horizon means no "and N more".
+    expect(calendar?.readingNote).toBe('US GDP');
+  });
+
+  it('carries the two fields the calendar card never rendered', () => {
+    // 13 of the 16 live events carry a `recent` paragraph and 11 carry
+    // resolved article refs; part three was `undefined` and part five did not
+    // exist. Both are scoped to the next event alone — a tie to the wrong
+    // story is worse than no tie.
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })], {
+          events: [
+            {
+              id: 'a',
+              title: 'US GDP',
+              date: '2026-08-26',
+              institution: 'BEA',
+              kind: 'econ-release' as const,
+              recent: 'The release lands with the other large economies slowing.',
+              relatedArticles: [{ slug: 'a-slug', title: 'China Retail Sales Stall' }],
+            },
+            {
+              id: 'b',
+              title: 'US PCE',
+              date: '2026-08-27',
+              institution: 'BEA',
+              kind: 'econ-release' as const,
+              recent: 'A different paragraph that must not appear.',
+              relatedArticles: [{ slug: 'b-slug', title: 'Not This One' }],
+            },
+          ],
+        }),
+        chokepoints: [],
+        articles: [],
+        now: new Date('2026-08-23T00:00:00Z'),
+      }),
+    );
+    const calendar = find(cards, 'calendar');
+    expect(calendar?.changed).toBe('The release lands with the other large economies slowing.');
+    expect(calendar?.related?.map((r) => r.slug)).toEqual(['a-slug']);
   });
 });
 
@@ -800,6 +1250,68 @@ describe('buildConditionCards', () => {
     const card = find(buildConditionCards({ ...emptyInputs, gdacsAlerts }), 'disasters');
     expect(card?.reading).toBe('3');
     expect(card?.changed).toContain('1 of 3 is above Green');
+    // All three are earthquakes, so the clause says so in words rather than
+    // in the two-letter code GDACS ships.
+    expect(card?.changed).toContain('Most of them are earthquakes.');
+  });
+
+  it('says what the hundred are, and only when one kind is genuinely most of them', () => {
+    // `byType` was computed in this builder and never read — a free fact
+    // about a summer sitting in a local variable. It renders as a clause
+    // because the card already carries one figure list and its argument *is*
+    // that list.
+    const alert = (eventid: string, eventtype: string, alertlevel: 'Green' | 'Orange') =>
+      ({
+        eventid,
+        eventtype,
+        alertlevel,
+        name: 'hazard',
+        country: 'X',
+        iso3: 'XXX',
+        affectedCountries: [],
+        lat: 0,
+        lng: 0,
+        fromDate: daysAgo(3),
+        toDate: null,
+        modifiedDate: daysAgo(1),
+        severityText: '',
+        severityValue: null,
+        severityUnit: '',
+        description: '',
+        source: '',
+        reportUrl: null,
+      }) as GdacsSnapshot['alerts'][number];
+
+    const majority = find(
+      buildConditionCards({
+        ...emptyInputs,
+        gdacsAlerts: [
+          alert('a', 'WF', 'Green'),
+          alert('b', 'WF', 'Green'),
+          alert('c', 'WF', 'Green'),
+          alert('d', 'EQ', 'Orange'),
+        ],
+      }),
+      'disasters',
+    );
+    expect(majority?.changed).toContain('Most of them are wildfires.');
+
+    // A plurality is not a majority, and calling one "most" is exactly the
+    // true-sounding wrong number this file exists to stop.
+    const plurality = find(
+      buildConditionCards({
+        ...emptyInputs,
+        gdacsAlerts: [
+          alert('a', 'WF', 'Green'),
+          alert('b', 'WF', 'Green'),
+          alert('c', 'EQ', 'Green'),
+          alert('d', 'FL', 'Green'),
+          alert('e', 'TC', 'Orange'),
+        ],
+      }),
+      'disasters',
+    );
+    expect(plurality?.changed).not.toContain('Most of them');
   });
 
   it('carries the body and the document, because the citation is the claim', () => {
@@ -1237,7 +1749,10 @@ describe('whose paragraph part four is', () => {
     );
     const calendar = find(cards, 'calendar');
     expect(calendar?.why).toContain('quarterly estimate');
-    expect(calendar?.whyLabel).toBe('on US GDP, 26 Aug');
+    // The date came off the label when the card's reading became the date.
+    // It sits two lines above this now, and the app's repetition rule is
+    // about facts arriving twice as much as about words.
+    expect(calendar?.whyLabel).toBe('on US GDP');
   });
 
   it('leaves a single-instrument card unlabelled — the title is already the answer', () => {
@@ -1350,6 +1865,61 @@ describe('what a card says twice', () => {
 });
 
 describe('which belief leads the column', () => {
+  it('caps the contracts so the pipeline cannot turn outlook into a feed mirror', () => {
+    // There was no cap here at all, and that was safe only because the
+    // pipeline ships three contracts. The moment `TOP_N` is raised in
+    // `scripts/lib/trends-sources/polymarket.js` — which is the only way to
+    // get more predictions, since nothing in this app was limiting them —
+    // an uncapped builder buries attention, VIX and the calendar under a
+    // Polymarket mirror, on an axis cut by reader question.
+    const belief = (id: string, values: number[]) =>
+      indicator({ id, label: `${id}?`, source: 'polymarket', unit: '%', values });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({ id: 'vix' }),
+        // Ascending recent movement, so the feed order is the exact reverse
+        // of the rank — the cap must slice after the sort, never before.
+        belief('poly-a', [50, 50, 50, 50, 50, 50, 51]),
+        belief('poly-b', [50, 50, 50, 50, 50, 50, 55]),
+        belief('poly-c', [50, 50, 50, 50, 50, 50, 60]),
+        belief('poly-d', [50, 50, 50, 50, 50, 50, 65]),
+        belief('poly-e', [50, 50, 50, 50, 50, 50, 70]),
+        belief('poly-f', [50, 50, 50, 50, 50, 50, 75]),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const beliefs = columns.outlook.filter((c) => c.kind === 'belief');
+    expect(beliefs).toHaveLength(4);
+    // The four that moved most, in order — not the four the feed listed first.
+    expect(beliefs.map((c) => c.id)).toEqual(['poly-f', 'poly-e', 'poly-d', 'poly-c']);
+    // And the column is still a column rather than a contract list.
+    expect(find(columns.outlook, 'vix')).toBeDefined();
+  });
+
+  it('keeps the once-per-column explainer on the card the cap left at the front', () => {
+    // `position === 0` is what carries the explainer, and it is handed out in
+    // the `.map` — so a slice placed after the map would drop the card
+    // holding it and render the column with no explainer at all.
+    const belief = (id: string, values: number[]) =>
+      indicator({ id, label: `${id}?`, source: 'polymarket', unit: '%', values });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        belief('poly-a', [50, 50, 50, 50, 50, 50, 51]),
+        belief('poly-b', [50, 50, 50, 50, 50, 50, 55]),
+        belief('poly-c', [50, 50, 50, 50, 50, 50, 60]),
+        belief('poly-d', [50, 50, 50, 50, 50, 50, 65]),
+        belief('poly-e', [50, 50, 50, 50, 50, 50, 70]),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const beliefs = columns.outlook.filter((c) => c.kind === 'belief');
+    expect(beliefs[0]?.whatItIs).toBeDefined();
+    // Exactly one, on the card the reader meets first.
+    expect(beliefs.filter((c) => c.whatItIs).map((c) => c.id)).toEqual([beliefs[0]?.id]);
+  });
+
   it('opens with the contract that moved, not the one the feed listed first', () => {
     // Feed order opened `outlook` with a contract flat for a fortnight and
     // buried one that moved eight points in three days. "A card ships because

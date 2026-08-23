@@ -311,6 +311,57 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
   lead `commodities` on the day one is. Apply the same test to anything new — the
   eleven-strait table and the release calendar both failed it later and are now
   gone and gated respectively.
+- **A row costs a line; that lowers the cost of a miss, not the bar for a
+  hit.** `markets.ts`'s cut list — thirty exchanges, the S&P, the NASDAQ,
+  TSMC, copper, TTF, retail gasoline, WTI — was priced against a *screen*
+  ("none of them get a screen"), and a column is an index now, so the
+  temptation is to re-admit them at row prices. Don't: **there is no such
+  thing as a row without a card.** Every row opens one and the reader will
+  tap it, so "does it earn a line" is the same question with a discount that
+  does not exist. What genuinely changed is that a marginal card used to cost
+  six swipes to get past and now costs one line of scan — so a column can
+  carry a longer *tail of the families that already pass*. Raise limits
+  inside those (the straits, the contracts, the calendar's horizon); do not
+  re-admit the families that were cut.
+- **Column length is the app's cheapest report of how much happened.** Six
+  rows on a quiet day and nine on a busy one is information a reader gets for
+  free. Padding every column to the fold with a table the same length every
+  morning would make a quiet Tuesday and a war look identical — which is why
+  the empty half-screen under `money` is not a bug to fill. It is the correct
+  statement that nothing else in `money` moved.
+- **A headline number that changes when you edit a constant is not a
+  reading.** The calendar card's was `String(shown.length)` against a
+  `CALENDAR_LIMIT` of four, so the one card in the app about the future was
+  headed by a numeral that moved when someone edited a limit and never when
+  anything happened — "say what it is, not what the app does", at the top of
+  a card. Worse, the ten-day horizon was tested against `upcoming[0]` only
+  and the slice then took four by date, so a card justified by something
+  three days out routinely listed entries three weeks out. The horizon now
+  filters every entry and the limit is gone, which also makes "a headline
+  count must equal what the table paints" true by construction — one array
+  feeds both. The reading is the next date, which is what every diary ever
+  printed prints.
+- **`outlook` needed the cap it never had.** `beliefCards` has no `.slice`,
+  which was safe only because the pipeline ships three contracts. It ships
+  three because `scripts/lib/trends-sources/polymarket.js` takes the top 20
+  by 24-hour volume *before* its decided-band and event-dedupe filters run —
+  so **more predictions is a pipeline change, not an app one**, and the app
+  is what stops that change turning the column into a feed mirror.
+  `BELIEF_LIMIT` slices after the sort and after the `latestOf` filter and
+  before the `.map`, because both neighbours are load-bearing: earlier and
+  the column keeps whatever the feed listed first, later and `position === 0`
+  has already been handed to a card about to be dropped, taking the
+  once-per-column explainer with it.
+- **The news row prints `eventCoverage`, and only on the news index.** It is
+  the sort key of the whole column (`lib/news-order.ts`) and the reader was
+  never shown it — the top of the list is a 140-newsroom story sitting
+  silently above a 41-newsroom one. It is an optional prop that `NewsIndex`
+  alone passes, because `ArticleRow` also draws search results, saved
+  stories and the related strips, and those are ordered by something else: a
+  prominence number beside a list not ranked by prominence is the app
+  asserting an order it does not have. Absent, not zero, where the feed ships
+  no count. It goes in the `accessibilityLabel` too — `Pressable` merges its
+  children, so the meta line under the headline is not announced at all.
 - **A gated card says so, and `lead` is how.** A condition card and a disrupted
   strait are on screen because their data moved this morning; the nisab and the
   gold-to-silver ratio are standing reference that happens to have moved a
@@ -322,9 +373,39 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
   as tappable rings and `ChokepointSheet` carries the blurb, the standing
   paragraph, what is happening there now, the weather and the series — so a
   flat sorted table of the same eleven names was a worse copy of something the
-  reader could already touch. Only `straitMovedCard` survives, gated on
-  `CHOKEPOINT_DISRUPTED` and leading `commodities` on the day it fires. Same rule
+  reader could already touch. Only the gated card survives, on
+  `CHOKEPOINT_DISRUPTED`, leading `commodities` on the day it fires. Same rule
   for anything else the globe already carries.
+  - **…but the gate produces a list, and shipping `ranked[0]` threw the rest
+    away.** `straitMovedCard` returned one card. On 23 August three straits
+    cleared the gate — Kerch at −95.5%, Hormuz at −69.4% on tankers, the
+    Bosporus at −27.9% on dry bulk — and the app carried Kerch, because the
+    ranking is distance from a strait's *own* normal and Kerch is six ships a
+    day. So a fifth of the world's seaborne oil moving at a third of its usual
+    rate, with a `standing` paragraph, a `recent` paragraph, related stories
+    and an 84-point series already fetched, **was not in the app at all**. The
+    docstring had recorded the failure and accepted it; it was only forced
+    while a column could afford exactly one strait, which stopped being true
+    the day a column became an index. `straitMovedCards`, capped at
+    `MAX_STRAIT_CARDS` — a threshold is not a quota, and a bad week could
+    clear it on seven.
+  - **Three cards cannot all be the widest gap.** The `changed` line read "the
+    widest gap of the 11 straits tracked", which is a claim about the column
+    that only its first card can make; `GAP_RANK` gives the ordinal. The `11`
+    was a literal too, in a file where `fxMoverCards` already derives its own
+    denominator on the rule that *the claim cannot outgrow the set behind it*.
+    Both were latent the moment the builder went plural.
+- **A `lead` row is exempt from the note-dedupe, because there the note is a
+  disclosure and not a distinguisher.** `indexRows` blanks a note that repeats
+  down a column, and it is right to: `outlook` shipped three "priced today" in
+  a vertical run. But a gated row's note carries the qualifier on its own
+  freshness claim — "ships a day, **week to 16 Aug**" under a `today ·` mark
+  that `FRESH_DAYS_STRAIT` lets be a fortnight old. Four of the eleven straits
+  are read on `n_total`, so two of those disrupted in one week produce
+  byte-identical notes and both would have been blanked, silently, on the only
+  rows in the app carrying that mark. The exemption still only ever drops
+  *less* — it never lets the projection compose anything, which is the rule
+  `row.ts` may not break.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;
   sheets do not.

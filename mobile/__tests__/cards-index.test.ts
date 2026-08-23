@@ -239,4 +239,49 @@ describe('indexRows', () => {
     const one = indexRow(withNote('a', 'priced today'));
     expect(rows[0]).toEqual({ ...one, note: '' });
   });
+
+  it('keeps the note on a lead row, because there it is a disclosure', () => {
+    // The bug this pins is silent and lands on the two rows in the app that
+    // carry the `today` mark. `commodities` now leads with every disrupted
+    // strait, and four of the eleven — Kerch, Gibraltar, Dover, the Cape —
+    // are read on `n_total`, so two of those disrupted in one week produce
+    // byte-identical notes. The dedupe would blank both, and what disappears
+    // is `week to 16 Aug`: the whole of what stands between a fortnight-old
+    // reading and a reader taking it for this morning's, under a mark that
+    // says the data moved today.
+    const leadNote = (id: string, note: string): Card =>
+      reading({ id, title: id, readingNote: note, lead: true });
+    const rows = indexRows([
+      leadNote('strait-kerch', 'ships a day, week to 16 Aug'),
+      leadNote('strait-dover', 'ships a day, week to 16 Aug'),
+    ]);
+    expect(rows.map((r) => r.note)).toEqual([
+      'ships a day, week to 16 Aug',
+      'ships a day, week to 16 Aug',
+    ]);
+    expect(rows.every((r) => r.lead)).toBe(true);
+  });
+
+  it('still drops a repeat among the rows that are not disclosures', () => {
+    // The exemption is a limit on the rule, not a hole in it: a lead row in
+    // the column must not rescue an ordinary repeat elsewhere in it.
+    const leadNote = (id: string, note: string): Card =>
+      reading({ id, title: id, readingNote: note, lead: true });
+    const rows = indexRows([
+      leadNote('strait-kerch', 'ships a day, week to 16 Aug'),
+      withNote('a', 'priced today'),
+      withNote('b', 'priced today'),
+    ]);
+    expect(rows.map((r) => r.note)).toEqual(['ships a day, week to 16 Aug', '', '']);
+  });
+
+  it('does not let a lead row count toward a repeat it is exempt from', () => {
+    // A lead row sharing a note with one ordinary row must not push that row
+    // over the threshold: the ordinary note is still the only one a reader
+    // sees it on, so it still distinguishes.
+    const leadNote = (id: string, note: string): Card =>
+      reading({ id, title: id, readingNote: note, lead: true });
+    const rows = indexRows([leadNote('strait-kerch', 'a barrel'), withNote('a', 'a barrel')]);
+    expect(rows.map((r) => r.note)).toEqual(['a barrel', 'a barrel']);
+  });
 });
