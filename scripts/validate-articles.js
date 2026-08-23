@@ -4,6 +4,7 @@
 import { readFileSync, existsSync, renameSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { splitBlocks } from './lib/blocks.js'
+import { parseFrontmatter } from './lib/frontmatter.js'
 
 const files = readFileSync('/tmp/zuhd-new-articles.txt', 'utf8').trim().split('\n').filter(Boolean)
 let bad = 0
@@ -22,6 +23,18 @@ for (const f of files) {
   const fm = raw.match(/^---\n([\s\S]*?)\n---/)
   if (!fm) {
     markBad('no frontmatter')
+    continue
+  }
+
+  // Parse with the same function build.js uses, not just string-match it.
+  // The string checks below pass on frontmatter that js-yaml rejects, so an
+  // unparseable article reached Stage 3b and took the whole build down with
+  // it — a no-publish cascade off one file. Quarantining it here is what the
+  // .bad mechanism is for: 12 good articles ship, the broken one does not.
+  try {
+    parseFrontmatter(raw)
+  } catch (err) {
+    markBad(`unparseable frontmatter: ${err.reason || err.message}`)
     continue
   }
 

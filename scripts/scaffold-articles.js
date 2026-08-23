@@ -8,6 +8,19 @@ import { resolve } from 'node:path'
 const SELECTION_PATH = '/tmp/zuhd-selection.json'
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 
+// Frontmatter is assembled as text, not serialised, so every interpolated value
+// has to be escaped here or it terminates its own scalar. A Wikidata concept
+// label carrying literal quotes (`Ecologist Party "The Greens"`) produced YAML
+// that js-yaml rejected, and because parseFrontmatter is deliberately loud the
+// whole build died — three cycles in a row published nothing off one label.
+const yamlStr = v =>
+  `"${String(v)
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r')
+    .replace(/\t/g, '\\t')}"`
+
 if (!existsSync(SELECTION_PATH) || !existsSync(NEW_ARTICLES_PATH)) {
   console.log('Scaffold: no selection or article list — skipping')
   process.exit(0)
@@ -43,7 +56,7 @@ for (const f of files) {
   const hasConcepts = yaml.match(/^concepts:\s*\n\s+- /m)
   if (story.concepts?.length > 0 && !hasConcepts) {
     yaml = yaml.replace(/^concepts:.*$/m, '').trimEnd()
-    yaml += `\nconcepts:\n${story.concepts.slice(0, 5).map(c => `  - "${typeof c === 'object' ? c.label : c}"`).join('\n')}`
+    yaml += `\nconcepts:\n${story.concepts.slice(0, 5).map(c => `  - ${yamlStr(typeof c === 'object' ? c.label : c)}`).join('\n')}`
     changed = true
   }
 
@@ -64,7 +77,7 @@ for (const f of files) {
     for (const selSrc of story.sources) {
       if (selSrc.sentiment == null) continue
       // Find matching source in YAML by name and add sentiment if missing
-      const namePattern = `name: "${selSrc.name}"`
+      const namePattern = `name: ${yamlStr(selSrc.name)}`
       const nameIdx = yaml.indexOf(namePattern)
       if (nameIdx === -1) continue
       // Check if sentiment already exists for this source
@@ -88,7 +101,7 @@ for (const f of files) {
   if (story.sources?.some(s => s.image)) {
     for (const selSrc of story.sources) {
       if (!selSrc.image) continue
-      const namePattern = `name: "${selSrc.name}"`
+      const namePattern = `name: ${yamlStr(selSrc.name)}`
       const nameIdx = yaml.indexOf(namePattern)
       if (nameIdx === -1) continue
       const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
@@ -101,9 +114,7 @@ for (const f of files) {
       const insertAfter = sentimentLine ? sentimentLine[0] : (countryLine ? countryLine[0] : (urlLine ? urlLine[0] : null))
       if (insertAfter) {
         const insertIdx = yaml.indexOf(insertAfter, nameIdx) + insertAfter.length
-        // YAML-escape the URL: quote it
-        const escaped = String(selSrc.image).replace(/"/g, '\\"')
-        yaml = `${yaml.slice(0, insertIdx)}\n    image: "${escaped}"${yaml.slice(insertIdx)}`
+        yaml = `${yaml.slice(0, insertIdx)}\n    image: ${yamlStr(selSrc.image)}${yaml.slice(insertIdx)}`
         changed = true
       }
     }
@@ -112,8 +123,8 @@ for (const f of files) {
   // Fill empty sources array from selection
   if (yaml.includes('sources: []') && story.sources?.length > 0) {
     const sourcesYaml = `sources:\n${story.sources.map(s => {
-      let entry = `  - name: "${s.name}"\n    url: "${s.url}"`
-      if (s.country) entry += `\n    country: "${s.country}"`
+      let entry = `  - name: ${yamlStr(s.name)}\n    url: ${yamlStr(s.url)}`
+      if (s.country) entry += `\n    country: ${yamlStr(s.country)}`
       return entry
     }).join('\n')}`
     yaml = yaml.replace(/^sources:\s*\[\]/m, sourcesYaml)
