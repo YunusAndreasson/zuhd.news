@@ -65,7 +65,7 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
 - **Every column is an index, and a row opens the detail.** One model, four
   columns: `NewsIndex` → `ArticleList`, and `ColumnIndex` → `CardPager` on the
   other three. `openItem` in `app/index.tsx` is the whole of it — `{section,
-  index}` or null — and a section change clears it, so a column is always
+  key}` or null — and a section change clears it, so a column is always
   re-entered through its own front door.
   - **`news` was the exception for one commit and it was the wrong one.** The
     three instrument columns got an index; the column a reader actually lands
@@ -78,11 +78,13 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
   - **Nothing about the river changed.** It is what a row opens: the globe, the
     isnad, the sources sheet, the entity links, the bookmark gesture, the
     caught-up boundary, all untouched. What it stopped being is the front door.
-  - **Entering at index *n* has to seed the scroll offset** — `ArticlePage`
-    fades in off `scrollY`, exactly as `CardFrame` does, so an unseeded river
-    opened at article twelve paints it invisible. `useScrollState({offset,
-    index})` is the same fix in both, and seeding the index is also what stops
-    the arrival firing a haptic and tripping the caught-up boundary.
+  - **A detail opens at its own page zero, so nothing needs seeding.** Both
+    detail views slice their list from the item that was tapped, which is what
+    makes the pull-down free (see below). The scroll offset a detail opens at
+    is therefore zero, and the trap `useScrollState`'s header describes — a
+    page whose scroll-linked arrival opacity computes as if it were twelve
+    pages away, and paints invisible — cannot arise. Seeding existed to
+    compensate for a condition the slice removes.
   - **`NewsIndex` is a `ScrollView`, and that is the opposite call to the one
     virtualisation suggests.** A `FlatList` cannot restore its own scroll
     position: `scrollToOffset` moves a view only as tall as
@@ -96,11 +98,13 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
     itself hangs off `onContentSizeChange` with a latch, not off mount, for
     the same reason: a scroll to an offset the content has not reached yet is
     clamped silently.
-  - **The offset outlives the component.** `NewsIndex` is unmounted for the
-    whole time the answer matters, so the shared value lives in `HomeScreen`.
-    Every list in the medium restores its place; this one is not special, and
-    a reader who taps the twentieth headline and comes back to the first will
-    stop using the list.
+  - **The offset outlives the component** — `NewsIndex.scrollOffset`, a shared
+    value owned by `HomeScreen`. Every list in the medium restores its place;
+    this one is not special, and a reader who taps the twentieth headline and
+    comes back to the first will stop using the list. It is belt-and-braces
+    now that the index stays mounted behind the sheet and keeps its position
+    natively, and worth keeping for exactly that reason: it is the thing that
+    still works if the index ever goes back to unmounting.
   - **The bottom bar's `articleActions` is not "the section is news" any more.**
     `zoom` drives the globe and `share` shares the article on screen, and the
     news index has neither — so it is `openItem?.section === 'news'`. The
@@ -183,10 +187,45 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
       that a detail is dismissible is the same as not drawing it. Shape and
       size stay identical; only the ink is `textSecondary`.
     - **Every feedback channel reports the same fact: what releasing will do.**
-      The handle brightens and stretches, the page reaches its smallest, and
-      the haptic ticks — all keyed to `CLOSE_DISTANCE`, all at the same moment.
-      One number, exported from `usePullToClose`, because two copies would let
-      the bar say "committed" at a distance that does not commit.
+      The handle brightens and stretches, the page reaches its smallest, the
+      backdrop comes fully forward and the haptic ticks — all keyed to
+      `CLOSE_DISTANCE`, all at the same moment. One number, exported from
+      `usePullToClose`, because two copies would let the bar say "committed" at
+      a distance that does not commit.
+    - **The index stays mounted behind the sheet, and that is what makes it a
+      modal rather than a page that shrinks.** `SheetStage` settles the column
+      back to 0.94 and dims it while a detail is presented, and the pull walks
+      all of it forward again — so a reader can see where they are going before
+      they commit to going there. Pulling over an empty background could never
+      give them that half.
+      - **Mounting both is close to free, and may be cheaper.** The index
+        stopped unmounting on open and re-mounting on close; what is paid is
+        peak memory, not time. Its scroll position is now preserved natively,
+        which makes `NewsIndex.scrollOffset` belt-and-braces rather than the
+        only thing holding it.
+      - **The sheet needs its own floor.** A detail used to be the only thing
+        on its page and could let the screen's colour show through. With the
+        index behind it, `usePullToClose.sheetStyle` has to paint `colors.bg`
+        or the headline list reads straight through the article.
+      - **And the sheet must not fade.** It did, back when what showed through
+        was the app background. With a backdrop the same fade renders the list
+        *through* the article, which reads as a rendering fault rather than a
+        page leaving. No sheet a reader has ever dismissed goes translucent on
+        the way out: it moves, it gets smaller, and the thing behind comes
+        forward to meet it.
+      - **The backdrop takes no touches while presented.** The sliver above
+        the sheet is a row of the index, and tapping it would open a second
+        detail behind the first.
+      - **The detail hands the rail back on unmount.** The index used to reset
+        `progressesSV` on its way back in; it never leaves now, so the detail
+        has to zero its own slot or the rail keeps showing how far through a
+        card the reader got, under a column they are no longer in.
+      - **`stageSection` lags `openItem`.** One progress value serves the whole
+        screen, so each stage is told whether it is the one holding it — and
+        if that flag flipped the instant `openItem` cleared, closing would snap
+        the ground forward instead of animating it. Cleared on a JS timer,
+        because worklets 0.10.0 aborts the process when `scheduleOnRN` is
+        called from a `withTiming` completion callback.
 
 - **The other three columns have a front door, and it is not a card.** A column
   opens as `ColumnIndex` — one `IndicatorRow` per card, six on a normal day, the
@@ -197,9 +236,16 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
   column, when the number, its direction and what that direction means were
   already computed and already coloured and were simply arriving underneath four
   paragraphs.
-  - **The page is swapped, never overlaid**, because an overlay would eat the
-    horizontal pan and that is the one thing nothing may take (below). Every
-    gesture that crosses sections still belongs to `PagerView`.
+  - **The detail is presented over the index, and this used to say the
+    opposite.** The rule was "swapped, never overlaid", on the grounds that an
+    overlay would eat the horizontal pan. The fear was right and the diagnosis
+    was not: that pan belongs to `PagerView`, whose *page* is what the detail
+    fills, and a child cannot take a gesture the page never gave it — which is
+    why a swapped detail of exactly these dimensions could always cross
+    sections while open. What would eat the pan is an overlay above the pager.
+    `SheetStage` is not one, and crossing sections from an open detail is
+    re-verified on device. Every gesture that crosses sections still belongs to
+    `PagerView`.
   - **A row may print only strings the card already holds.** `lib/cards/row.ts`
     is a pure projection for exactly that reason, and it is tested rather than
     eyeballed. A `toFixed` in a row would let the index and the card it opens

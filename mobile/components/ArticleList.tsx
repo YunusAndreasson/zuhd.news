@@ -95,6 +95,9 @@ interface ArticleListProps {
   entrySlug?: string;
   /** Back to the news index. Absent when the river is the whole column. */
   onClose?: () => void;
+  /** The stage's presentation, driven backwards by the pull — see
+   *  `SheetStage` and `usePullToClose`. */
+  sheetProgress?: SharedValue<number>;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -121,6 +124,7 @@ export const ArticleList = memo(function ArticleList({
   tick,
   entrySlug,
   onClose,
+  sheetProgress,
   ref,
 }: ArticleListProps) {
   const { bgAlpha } = useTheme();
@@ -195,6 +199,7 @@ export const ArticleList = memo(function ArticleList({
   const { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull } = usePullToClose({
     scrollY,
     onClose,
+    progress: sheetProgress,
   });
 
   const currentIndexRef = useRef(currentIndex);
@@ -263,6 +268,24 @@ export const ArticleList = memo(function ArticleList({
       }
     },
   }));
+
+  /**
+   * Hand the rail back to the index on the way out.
+   *
+   * The index used to unmount when a detail opened and reset this on its way
+   * back in. It stays mounted behind the sheet now, so that reset never fires
+   * — and without this the rail would keep showing how far through the detail
+   * the reader had got, under a column they are no longer in.
+   */
+  useEffect(() => {
+    return () => {
+      progressesSV.modify((arr) => {
+        'worklet';
+        arr[sectionIndex] = 0;
+        return arr;
+      });
+    };
+  }, [progressesSV, sectionIndex]);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {

@@ -16,6 +16,7 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, RADIUS } from '../constants/theme';
 import { hapticImpact, hapticTick } from '../lib/haptics';
+import { useTheme } from './useTheme';
 
 /**
  * Pull a detail view down to leave it.
@@ -122,13 +123,28 @@ export interface PullToClose {
 export function usePullToClose({
   scrollY,
   onClose,
+  progress,
 }: {
   /** The pager's offset — zero only at the first page. */
   scrollY: SharedValue<number>;
   /** Absent when the detail is the whole column and there is nothing to
    *  return to; the gesture then does nothing at all. */
   onClose?: () => void;
+  /**
+   * The stage's presentation, 0 to 1 — see `SheetStage`.
+   *
+   * The pull drives it *backwards* under the finger, so the index behind the
+   * sheet grows and brightens as the sheet leaves. That is the half a page
+   * shrinking into an empty background could never give a reader: they can see
+   * where they are going before they commit to going there.
+   *
+   * Mapped against `CLOSE_DISTANCE` rather than the full travel, so the ground
+   * is all the way forward at exactly the moment releasing would close — the
+   * same fact the handle, the shrink and the haptic each report.
+   */
+  progress?: SharedValue<number>;
 }): PullToClose {
+  const { colors } = useTheme();
   const pull = useSharedValue(0);
   const armed = useSharedValue(false);
   const committed = useSharedValue(false);
@@ -190,6 +206,7 @@ export function usePullToClose({
         if (!armed.value) return;
         const next = Math.min(MAX_PULL, Math.max(0, e.translationY * DAMPING));
         pull.value = next;
+        if (progress) progress.value = 1 - Math.min(1, next / CLOSE_DISTANCE);
         // Say it before the release, not after. A reader holding at 90 needs
         // to know whether letting go closes.
         if (!committed.value && next >= CLOSE_DISTANCE) {
@@ -208,6 +225,10 @@ export function usePullToClose({
         const released = pull.value;
         armed.value = false;
         committed.value = false;
+        if (progress)
+          progress.value = withTiming(released >= CLOSE_DISTANCE ? 0 : 1, {
+            duration: ANIMATION.fast,
+          });
         if (released >= CLOSE_DISTANCE && onClose) {
           // Carry the motion through rather than snapping back and then
           // vanishing: the page keeps going the way the finger sent it, and
@@ -228,9 +249,22 @@ export function usePullToClose({
         if (!armed.value) return;
         armed.value = false;
         pull.value = withTiming(0, { duration: ANIMATION.fast });
+        if (progress) progress.value = withTiming(1, { duration: ANIMATION.fast });
       },
     }),
-    [armed, committed, decided, innerOffset, listGesture, onClose, pull, scrollY, startX, startY],
+    [
+      armed,
+      committed,
+      decided,
+      innerOffset,
+      listGesture,
+      onClose,
+      progress,
+      pull,
+      scrollY,
+      startX,
+      startY,
+    ],
   );
 
   const gesture = usePanGesture(panConfig);
@@ -245,12 +279,18 @@ export function usePullToClose({
    *   it shrinks                 an object getting smaller is an object going
    *                              away; this is the cue that separates
    *                              "dismissing" from "scrolling"
-   *   it fades, a little         shallow, because the reader is still reading
-   *                              it until they let go
+   *
+   * It does *not* fade, and it used to. A fade was right while a detail was
+   * the only thing on its page and what showed through was the app's own
+   * background. With the index mounted behind it the same fade reads the
+   * headline list straight *through* the article on top of it — which does
+   * not look like a page leaving, it looks like a rendering fault. No sheet a
+   * reader has ever dismissed goes translucent on the way out; they move and
+   * they get smaller, and the thing behind comes forward to meet them.
    *
    * The shrink is keyed to `CLOSE_DISTANCE` rather than to the raw travel, so
    * the page is at its smallest exactly when releasing would close — the same
-   * fact the haptic and the handle report, in a third channel. Norman's point
+   * fact the haptic, the handle and the backdrop each report. Norman's point
    * about feedback is that it has to say *what will happen*, not merely that
    * something is happening.
    */
@@ -258,23 +298,30 @@ export function usePullToClose({
     'worklet';
     const p = pull.value;
     const t = Math.min(1, p / CLOSE_DISTANCE);
-    return {
-      transform: [{ translateY: p }, { scale: 1 - 0.06 * t }],
-      opacity: 1 - Math.min(0.35, p / MAX_PULL),
-    };
+    return { transform: [{ translateY: p }, { scale: 1 - 0.06 * t }] };
   });
 
-  /** The corner, which does not move. A detail sits under the section rail
-   *  with a rounded top edge at rest — the shape of a docked sheet at full
-   *  height — because the affordance has to be there before the gesture is,
-   *  not appear once the reader has already guessed. */
+  /**
+   * The sheet's own surface: a rounded top edge, and a floor.
+   *
+   * The corner does not move. A detail sits under the section rail with a
+   * rounded top at rest — the shape of a docked sheet at full height —
+   * because the affordance has to be there before the gesture is, not appear
+   * once the reader has already guessed.
+   *
+   * The background is not decoration either. A detail used to be the only
+   * thing on its page and could let the screen's own colour show through;
+   * now the index is mounted behind it, and without an opaque floor the
+   * headline list reads straight through the article on top of it.
+   */
   const sheetStyle = useMemo<ViewStyle>(
     () => ({
+      backgroundColor: colors.bg,
       borderTopLeftRadius: RADIUS.sheet,
       borderTopRightRadius: RADIUS.sheet,
       overflow: 'hidden',
     }),
-    [],
+    [colors.bg],
   );
 
   return { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull };

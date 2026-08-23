@@ -64,6 +64,9 @@ interface CardPagerProps {
   onClose?: () => void;
   /** Open one of the stories a card's part five names — see `CardFrame`. */
   onArticlePress?: (slug: string) => void;
+  /** The stage's presentation, driven backwards by the pull — see
+   *  `SheetStage` and `usePullToClose`. */
+  sheetProgress?: SharedValue<number>;
   ref?: React.Ref<CardPagerRef>;
 }
 
@@ -89,6 +92,7 @@ export const CardPager = memo(function CardPager({
   entryId,
   onClose,
   onArticlePress,
+  sheetProgress,
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
@@ -115,6 +119,7 @@ export const CardPager = memo(function CardPager({
   const { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull } = usePullToClose({
     scrollY,
     onClose,
+    progress: sheetProgress,
   });
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
@@ -239,6 +244,24 @@ export const CardPager = memo(function CardPager({
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
   const lastArmAt = useSharedValue(0);
+
+  /**
+   * Hand the rail back to the index on the way out.
+   *
+   * The index used to unmount when a detail opened and reset this on its way
+   * back in. It stays mounted behind the sheet now, so that reset never fires
+   * — and without this the rail would keep showing how far through the detail
+   * the reader had got, under a column they are no longer in.
+   */
+  useEffect(() => {
+    return () => {
+      progressesSV.modify((arr) => {
+        'worklet';
+        arr[sectionIndex] = 0;
+        return arr;
+      });
+    };
+  }, [progressesSV, sectionIndex]);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {

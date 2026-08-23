@@ -23,7 +23,7 @@ import PagerView, {
   type PagerViewOnPageScrollEvent,
   type PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
-import { useSharedValue } from 'react-native-reanimated';
+import { useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BottomActionBar } from '../components/BottomActionBar';
@@ -46,10 +46,11 @@ import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
 import { SectionBar } from '../components/SectionBar';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
+import { SHEET_INSET, SheetStage } from '../components/SheetStage';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { IS_ANDROID } from '../constants/platform';
-import { CATEGORIES, EDITORIAL, SECTIONS, type Section } from '../constants/theme';
+import { ANIMATION, CATEGORIES, EDITORIAL, SECTIONS, type Section } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -549,6 +550,35 @@ export default function HomeScreen() {
   openItemRef.current = openItem;
 
   const closeItem = useCallback(() => setOpenItem(null), []);
+
+  /**
+   * The modal stage — see `SheetStage`.
+   *
+   * `sheetProgress` is 0 when a column is just its index and 1 when its detail
+   * is fully presented; `usePullToClose` drives it backwards under the finger
+   * so the index grows and brightens as the sheet leaves.
+   *
+   * `stageSection` lags `openItem` on the way out. The progress value is
+   * screen-wide (one detail is open at a time), so each stage has to be told
+   * whether it is the one holding it — and if that flag flipped the instant
+   * `openItem` cleared, closing a detail would snap the ground forward
+   * instead of animating it. It is cleared a beat later, once the timing has
+   * had time to land.
+   */
+  const sheetProgress = useSharedValue(0);
+  const [stageSection, setStageSection] = useState<Section | null>(null);
+  useEffect(() => {
+    if (openItem) {
+      setStageSection(openItem.section);
+      sheetProgress.value = withTiming(1, { duration: ANIMATION.normal });
+      return;
+    }
+    sheetProgress.value = withTiming(0, { duration: ANIMATION.normal });
+    // A JS timer rather than a `withTiming` completion callback: worklets
+    // 0.10.0 aborts the process when `scheduleOnRN` is called from one.
+    const t = setTimeout(() => setStageSection(null), ANIMATION.normal + 40);
+    return () => clearTimeout(t);
+  }, [openItem, sheetProgress]);
   /** The same exit, from the bar. `closeItem` is handed to `IconButton`s,
    *  which fire their own haptic; an `ActionPill` passes `haptic="none"` so
    *  each call site can pick its own, so this one carries the tick. */
@@ -834,47 +864,57 @@ export default function HomeScreen() {
         offscreenPageLimit={1}
       >
         <View key={SECTIONS[NEWS]} collapsable={false}>
-          {pagerHeight > 0 &&
-            (openItem?.section === 'news' ? (
-              <ArticleList
-                ref={newsListRef}
-                articles={river}
-                heatmapPoints={heatmapPoints}
-                chokepoints={chokepoints}
-                gdacsAlerts={gdacsAlerts}
-                conflictEvents={conflictEvents}
-                viewportHeight={pagerHeight}
-                sectionIndex={NEWS}
-                lastSeenAt={lastSeenAt}
-                onEndReached={handleEndReached}
-                onCaughtUp={handleCaughtUp}
-                onBookmarkPress={handleArticleBookmark}
-                onSourcesPress={handleSourcesPress}
-                onTimeAgoPress={handleTimeAgoPress}
-                onEntityPress={handleEntityPress}
-                resolvableEntityIds={resolvableEntityIds}
-                onCountryPress={handleCountryPress}
-                onArticleChange={handleArticleChange}
-                progressesSV={sectionProgresses}
-                zoomClipOverride={currentZoom.clip}
-                tick={tick}
-                entrySlug={openItem.key}
-                onClose={closeItem}
-              />
-            ) : (
-              <NewsIndex
-                ref={newsIndexRef}
-                articles={river}
-                viewportHeight={pagerHeight}
-                sectionIndex={NEWS}
-                progressesSV={sectionProgresses}
-                lastSeenAt={lastSeenAt}
-                onSelect={openStory}
-                onLongPress={handleHeadlineLongPress}
-                onRefresh={handleRefresh}
-                scrollOffset={newsIndexOffset}
-              />
-            ))}
+          {pagerHeight > 0 && (
+            <SheetStage
+              progress={sheetProgress}
+              active={stageSection === 'news'}
+              presented={openItem?.section === 'news'}
+              backdrop={
+                <NewsIndex
+                  ref={newsIndexRef}
+                  articles={river}
+                  viewportHeight={pagerHeight}
+                  sectionIndex={NEWS}
+                  progressesSV={sectionProgresses}
+                  lastSeenAt={lastSeenAt}
+                  onSelect={openStory}
+                  onLongPress={handleHeadlineLongPress}
+                  onRefresh={handleRefresh}
+                  scrollOffset={newsIndexOffset}
+                />
+              }
+              sheet={
+                openItem?.section === 'news' ? (
+                  <ArticleList
+                    ref={newsListRef}
+                    articles={river}
+                    heatmapPoints={heatmapPoints}
+                    chokepoints={chokepoints}
+                    gdacsAlerts={gdacsAlerts}
+                    conflictEvents={conflictEvents}
+                    viewportHeight={pagerHeight - SHEET_INSET}
+                    sectionIndex={NEWS}
+                    lastSeenAt={lastSeenAt}
+                    onEndReached={handleEndReached}
+                    onCaughtUp={handleCaughtUp}
+                    onBookmarkPress={handleArticleBookmark}
+                    onSourcesPress={handleSourcesPress}
+                    onTimeAgoPress={handleTimeAgoPress}
+                    onEntityPress={handleEntityPress}
+                    resolvableEntityIds={resolvableEntityIds}
+                    onCountryPress={handleCountryPress}
+                    onArticleChange={handleArticleChange}
+                    progressesSV={sectionProgresses}
+                    zoomClipOverride={currentZoom.clip}
+                    tick={tick}
+                    entrySlug={openItem.key}
+                    onClose={closeItem}
+                    sheetProgress={sheetProgress}
+                  />
+                ) : null
+              }
+            />
+          )}
         </View>
 
         {SECTIONS.filter((s) => s !== 'news').map((section) => {
@@ -882,31 +922,41 @@ export default function HomeScreen() {
           const copy = EMPTY_COPY[section];
           return (
             <View key={section} collapsable={false}>
-              {pagerHeight > 0 &&
-                (openItem?.section === section ? (
-                  <CardPager
-                    cards={sectionCards[section] ?? []}
-                    viewportHeight={pagerHeight}
-                    sectionIndex={index}
-                    progressesSV={sectionProgresses}
-                    emptyMessage={copy?.message ?? 'nothing here yet'}
-                    emptyHint={copy?.hint}
-                    entryId={openItem.key}
-                    onClose={closeItem}
-                    onArticlePress={handleCardArticlePress}
-                  />
-                ) : (
-                  <ColumnIndex
-                    ref={columnIndexRefs[index]}
-                    cards={sectionCards[section] ?? []}
-                    viewportHeight={pagerHeight}
-                    sectionIndex={index}
-                    progressesSV={sectionProgresses}
-                    emptyMessage={copy?.message ?? 'nothing here yet'}
-                    emptyHint={copy?.hint}
-                    onCardPress={openCardHandlers[section]}
-                  />
-                ))}
+              {pagerHeight > 0 && (
+                <SheetStage
+                  progress={sheetProgress}
+                  active={stageSection === section}
+                  presented={openItem?.section === section}
+                  backdrop={
+                    <ColumnIndex
+                      ref={columnIndexRefs[index]}
+                      cards={sectionCards[section] ?? []}
+                      viewportHeight={pagerHeight}
+                      sectionIndex={index}
+                      progressesSV={sectionProgresses}
+                      emptyMessage={copy?.message ?? 'nothing here yet'}
+                      emptyHint={copy?.hint}
+                      onCardPress={openCardHandlers[section]}
+                    />
+                  }
+                  sheet={
+                    openItem?.section === section ? (
+                      <CardPager
+                        cards={sectionCards[section] ?? []}
+                        viewportHeight={pagerHeight - SHEET_INSET}
+                        sectionIndex={index}
+                        progressesSV={sectionProgresses}
+                        emptyMessage={copy?.message ?? 'nothing here yet'}
+                        emptyHint={copy?.hint}
+                        entryId={openItem.key}
+                        onClose={closeItem}
+                        onArticlePress={handleCardArticlePress}
+                        sheetProgress={sheetProgress}
+                      />
+                    ) : null
+                  }
+                />
+              )}
             </View>
           );
         })}
