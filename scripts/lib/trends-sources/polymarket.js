@@ -13,7 +13,32 @@ const GAMMA_BASE = 'https://gamma-api.polymarket.com'
 const CLOB_BASE = 'https://clob.polymarket.com'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
-const TOP_N = 20
+// How many candidate markets survive the category filter and go on to cost a
+// price-history call each.
+//
+// It was 20, and 20 is where the app's three contracts come from — not from
+// anything in `mobile/`, which renders every contract it receives. Three
+// prediction cards is thin for a column whose whole subject is what is not yet
+// a fact, and the ceiling was here.
+//
+// Raising it is sub-linear, and measured rather than guessed: 20 → 40 took the
+// yield from 3 contracts to 5. The two logs below say where the rest go — on
+// the run that set this, 100 markets came back, **10 survived the category and
+// keyword filter**, and half of those were already decided on price.
+//
+// So `.slice(0, TOP_N)` is no longer the binding constraint; `KEEP_CATEGORIES`
+// and the ummah-relevance regex are. Raising this number again will do nothing
+// on its own — widen the filter, or accept the ceiling. That is worth knowing
+// before someone spends a cycle on it, because the slice is the obvious knob
+// and it has stopped being the one that moves.
+//
+// The cost is one CLOB history call per surviving candidate, serially, plus a
+// slightly larger batched Haiku label call.
+//
+// `mobile/lib/cards/markets.ts` caps what a column will show (`BELIEF_LIMIT`),
+// so a generous number here widens the pool the ranking chooses from rather
+// than lengthening the column.
+const TOP_N = 40
 
 // Minimum daily points to chart usefully — a 2-point line is just a slope.
 const MIN_HISTORY_POINTS = 5
@@ -344,27 +369,47 @@ export async function fetchPolymarketTop() {
   console.log(`  · polymarket: ${markets.length} fetched, ${filtered.length} kept after filter`)
 
   const results = []
+  // Where the candidates actually die. The one log line above counts what
+  // survives the category filter, and everything after it was invisible — so
+  // the answer to "why does the app only have three contracts" could not be
+  // read off a cycle, only guessed at by re-running the fetcher by hand. Each
+  // of these stages exists for a good reason and none should be relaxed
+  // blind; this is what says which one to look at.
+  const lost = { decidedPrice: 0, noTokens: 0, historyError: 0, tooShort: 0, decidedSeries: 0 }
   for (const m of filtered) {
     // Decided markets pre-filter: lastTradePrice pinned to an extreme means the
     // chart is a flat line — skip BEFORE paying for the CLOB history call.
     // isDecidedSeries() below still catches tail-decided markets this misses.
     const ltp = Number(m.lastTradePrice)
-    if (Number.isFinite(ltp) && (ltp >= 0.97 || ltp <= 0.03)) continue
+    if (Number.isFinite(ltp) && (ltp >= 0.97 || ltp <= 0.03)) {
+      lost.decidedPrice += 1
+      continue
+    }
 
     const tokens = parseOutcomeTokens(m)
-    if (!tokens) continue
+    if (!tokens) {
+      lost.noTokens += 1
+      continue
+    }
 
     let history = []
     try {
       history = await fetchPriceHistory(tokens.tokenId)
     } catch (err) {
       console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
+      lost.historyError += 1
       continue
     }
-    if (history.length < MIN_HISTORY_POINTS) continue
+    if (history.length < MIN_HISTORY_POINTS) {
+      lost.tooShort += 1
+      continue
+    }
 
     const values = history.map((h) => Math.round((h.p || 0) * 100))
-    if (isDecidedSeries(values)) continue
+    if (isDecidedSeries(values)) {
+      lost.decidedSeries += 1
+      continue
+    }
 
     const periods = history.map((h) => formatPeriod(h.t))
     const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
@@ -399,6 +444,12 @@ export async function fetchPolymarketTop() {
       _volume24hr: Number(m.volume24hr) || 0,
     })
   }
+
+  console.log(
+    `  · polymarket: ${filtered.length} candidates → ${results.length} charted ` +
+      `(dropped ${lost.decidedPrice} already decided, ${lost.tooShort} too short, ` +
+      `${lost.decidedSeries} flat, ${lost.noTokens} unparseable, ${lost.historyError} errored)`,
+  )
 
   // Dedupe by event: many "neg-risk" markets (e.g. Fed +25/no change/-25/-50)
   // share one event. Keep the highest-volume outcome per event so the editor
