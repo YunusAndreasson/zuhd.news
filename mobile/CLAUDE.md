@@ -158,6 +158,27 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
       in `onTouchesMove` now, where declining costs nothing: not armed → fail,
       sideways → fail (that is `PagerView`'s), upward → fail (that is the next
       story), downward and at rest → activate.
+    - **Do not damp the primary drag, and do not measure it in distance
+      alone.** Both were wrong in the first tuning and both made the gesture
+      feel like hauling. The page followed the finger at *half* its travel
+      against a 96pt threshold, so committing took 192pt of real movement — a
+      quarter of the screen, dragged, every time. A sheet does not lag its own
+      drag: tracking is 1:1 to the commit point and resistance lives only
+      *past* it, where resistance is doing the job it is for. And distance
+      alone ignores the half of the gesture people actually use — a throw. A
+      flick over `FLICK_VELOCITY` closes at any distance beyond a small guard,
+      because that is what a hand does when it is putting something down
+      rather than placing it.
+    - **`manualActivation` re-bases the pan's own `translationY`, and that ate
+      the flick.** The zero is set at the moment of activation, so on a
+      gesture that is over inside a hundred milliseconds there is almost
+      nothing left for the pan to measure: an 82pt throw reached the release
+      handler as `translationY: 0` with a velocity of 694. Nothing warned, and
+      no amount of lowering the threshold would have fixed it — the movement
+      was invisible, not small. The pull is measured from the *touch* now,
+      against a `startY` latched at touch-down, which also recovers the
+      `ACTIVATE_Y` spent deciding. Found with one `console.log` on a device;
+      three rounds of guessing at numbers before that found nothing.
     - **`armed` reads two offsets, not one.** An article longer than the screen
       and a card taller than the page carry their own scroll, and a reader
       dragging down inside one is scrolling back up through their own content.

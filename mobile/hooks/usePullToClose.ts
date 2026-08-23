@@ -77,24 +77,66 @@ import { useTheme } from './useTheme';
  * drag that starts legal stays legal for its whole life.
  */
 
-/** Distance the pull has to cover before releasing closes. Generous: this is
- *  a destructive-ish gesture on a reading surface and an accidental one costs
- *  the reader their place. Exported because `PullHandle` shows the reader how
- *  close they are to it, and two copies of the number would let the bar say
- *  "committed" at a distance that does not commit. */
-export const CLOSE_DISTANCE = 96;
+/**
+ * Distance the pull has to cover before releasing closes.
+ *
+ * Read this together with the tracking below, because the pair is what a
+ * reader actually feels. It was 96 against a page that followed the finger at
+ * *half* its travel — so committing took 192pt of real movement, a quarter of
+ * the screen, dragged, every single time. That is hauling something, not
+ * putting it down, and putting it down is the whole gesture.
+ *
+ * 64 is about seven per cent of a phone screen — a short, deliberate push
+ * rather than a haul. It can afford to be light because of what the gesture
+ * is filtered through before it gets here: it arms only at the top of both
+ * scrolls and only downward, and at the top of an article a downward drag has
+ * no other meaning to be confused with. There is nothing for an over-eager
+ * threshold to steal.
+ *
+ * Exported because `PullHandle` shows the reader how close they are to it,
+ * and two copies of the number would let the bar say "committed" at a
+ * distance that does not commit.
+ */
+export const CLOSE_DISTANCE = 64;
 
-/** Resistance. The page follows the finger at a fraction of its travel, the
- *  way a sheet does — the drag reads as elastic rather than as dragging a
- *  window, and the ceiling stops a hard fling throwing the page off screen
- *  before the release is even read. */
-const DAMPING = 0.5;
+/**
+ * The page tracks the finger exactly, until it has gone far enough to close.
+ *
+ * A sheet does not lag its own drag. Damping the primary movement is what
+ * made this heavy: every pixel of intent bought half a pixel of response, so
+ * the gesture read as resistance rather than as direct manipulation — the
+ * thing that makes a drag feel like moving an object instead of operating a
+ * control.
+ *
+ * Resistance belongs *past* the commit point, where it does the job
+ * resistance is for: saying there is nothing further to be had by pulling
+ * harder. So the first `CLOSE_DISTANCE` is 1:1 and everything beyond it eases,
+ * with `MAX_PULL` as the ceiling so a hard fling cannot throw the page off
+ * screen before the release is read.
+ */
+const TAIL_RESISTANCE = 0.35;
 const MAX_PULL = 220;
+
+/**
+ * A flick closes it, whatever the distance.
+ *
+ * Distance alone is the wrong measure, and it is the other half of why this
+ * needed a long drag. Every sheet a reader has dismissed answers a *throw* —
+ * a short, fast downward movement, which is what a hand does when it is
+ * putting something down rather than placing it. Requiring the full travel
+ * every time ignores the half of the gesture people actually use.
+ *
+ * The minimum distance is the guard: velocity alone would fire on the flick
+ * *out* of a scroll, a fast downward twitch that was never a dismissal, and
+ * none of those travel 24pt.
+ */
+const FLICK_VELOCITY = 600;
+const FLICK_MIN_DISTANCE = 20;
 
 /** How far down the drag has to get before the pan takes over. Small, because
  *  by the time it is consulted the drag is already known to be downward, at
  *  the top of both scrolls, and not a section swipe. */
-const ACTIVATE_Y = 12;
+const ACTIVATE_Y = 10;
 
 /** A drag this far off vertical is a section swipe, and belongs to the pager. */
 const FAIL_X = 16;
@@ -154,6 +196,7 @@ export function usePullToClose({
   const startX = useSharedValue(0);
   const startY = useSharedValue(0);
   const decided = useSharedValue(false);
+  const engaged = useSharedValue(false);
 
   const listGesture = useNativeGesture(useMemo<NativeGestureConfig>(() => ({}), []));
 
@@ -169,46 +212,72 @@ export function usePullToClose({
         startX.value = t.absoluteX;
         startY.value = t.absoluteY;
         decided.value = false;
+        engaged.value = false;
         committed.value = false;
         // Latched here, not read live: both offsets change *because of* this
         // drag, so a live check would arm and disarm mid-gesture.
         armed.value = scrollY.value <= TOP_EPS && innerOffset.value <= TOP_EPS;
         if (!armed.value) GestureStateManager.fail(e.handlerTag);
       },
+      /**
+       * Decide, then track — both from the touch, and the second part is the
+       * one that took a log line on a device to find.
+       *
+       * `manualActivation` re-bases the pan's own `translationY` at the moment
+       * of activation. On a flick the whole gesture can be over inside a
+       * hundred milliseconds, so by the time the decision is made there is
+       * almost nothing left for the pan to measure: a real 82pt throw reached
+       * the release handler as `translationY: 0` with a velocity of 694, and
+       * neither the distance test nor anything downstream could see the
+       * movement that had just happened.
+       *
+       * Touch positions have no such baseline. `startY` is latched at
+       * touch-down and every move is measured against it, so the pull is the
+       * distance the finger has actually travelled — including the
+       * `ACTIVATE_Y` spent deciding, which the pan would also have discarded.
+       */
       onTouchesMove: (e) => {
         'worklet';
-        if (decided.value) return;
-        if (!armed.value) {
-          GestureStateManager.fail(e.handlerTag);
-          return;
-        }
         const t = e.allTouches[0];
         if (!t) return;
         const dx = t.absoluteX - startX.value;
         const dy = t.absoluteY - startY.value;
-        // A drag this far off vertical is a section swipe. Checked before the
-        // downward test so a diagonal never reads as a pull.
-        if (Math.abs(dx) > FAIL_X) {
-          decided.value = true;
-          GestureStateManager.fail(e.handlerTag);
-          return;
+
+        if (!decided.value) {
+          if (!armed.value) {
+            GestureStateManager.fail(e.handlerTag);
+            return;
+          }
+          // A drag this far off vertical is a section swipe. Checked before
+          // the downward test so a diagonal never reads as a pull.
+          if (Math.abs(dx) > FAIL_X) {
+            decided.value = true;
+            GestureStateManager.fail(e.handlerTag);
+            return;
+          }
+          if (dy > ACTIVATE_Y) {
+            decided.value = true;
+            engaged.value = true;
+            GestureStateManager.activate(e.handlerTag);
+          } else if (dy < -ACTIVATE_Y) {
+            decided.value = true;
+            GestureStateManager.fail(e.handlerTag);
+            return;
+          } else {
+            return;
+          }
         }
-        if (dy > ACTIVATE_Y) {
-          decided.value = true;
-          GestureStateManager.activate(e.handlerTag);
-        } else if (dy < -ACTIVATE_Y) {
-          decided.value = true;
-          GestureStateManager.fail(e.handlerTag);
-        }
-      },
-      onUpdate: (e) => {
-        'worklet';
-        if (!armed.value) return;
-        const next = Math.min(MAX_PULL, Math.max(0, e.translationY * DAMPING));
+
+        if (!engaged.value) return;
+        const raw = Math.max(0, dy);
+        // 1:1 to the commit point, easing after it — see `TAIL_RESISTANCE`.
+        const eased =
+          raw <= CLOSE_DISTANCE ? raw : CLOSE_DISTANCE + (raw - CLOSE_DISTANCE) * TAIL_RESISTANCE;
+        const next = Math.min(MAX_PULL, eased);
         pull.value = next;
         if (progress) progress.value = 1 - Math.min(1, next / CLOSE_DISTANCE);
-        // Say it before the release, not after. A reader holding at 90 needs
-        // to know whether letting go closes.
+        // Say it before the release, not after. A reader holding just short of
+        // the line needs to know whether letting go closes.
         if (!committed.value && next >= CLOSE_DISTANCE) {
           committed.value = true;
           scheduleOnRN(hapticTick);
@@ -216,7 +285,7 @@ export function usePullToClose({
           committed.value = false;
         }
       },
-      onDeactivate: () => {
+      onDeactivate: (e) => {
         'worklet';
         if (!armed.value) return;
         // Latch before starting the animation — once `withTiming` is assigned,
@@ -224,12 +293,14 @@ export function usePullToClose({
         // let go. Same trap `SwipeableRow` documents.
         const released = pull.value;
         armed.value = false;
+        engaged.value = false;
         committed.value = false;
-        if (progress)
-          progress.value = withTiming(released >= CLOSE_DISTANCE ? 0 : 1, {
-            duration: ANIMATION.fast,
-          });
-        if (released >= CLOSE_DISTANCE && onClose) {
+        // Far enough, or thrown hard enough — see `FLICK_VELOCITY`.
+        const closing =
+          released >= CLOSE_DISTANCE ||
+          (e.velocityY >= FLICK_VELOCITY && released >= FLICK_MIN_DISTANCE);
+        if (progress) progress.value = withTiming(closing ? 0 : 1, { duration: ANIMATION.fast });
+        if (closing && onClose) {
           // Carry the motion through rather than snapping back and then
           // vanishing: the page keeps going the way the finger sent it, and
           // the list is revealed underneath.
@@ -246,6 +317,7 @@ export function usePullToClose({
         // never reaches `onDeactivate`. Without this the page would stay where
         // the finger left it.
         decided.value = false;
+        engaged.value = false;
         if (!armed.value) return;
         armed.value = false;
         pull.value = withTiming(0, { duration: ANIMATION.fast });
@@ -256,6 +328,7 @@ export function usePullToClose({
       armed,
       committed,
       decided,
+      engaged,
       innerOffset,
       listGesture,
       onClose,
