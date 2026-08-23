@@ -8,10 +8,13 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
+import { RADIUS, SPACING } from '../../constants/theme';
 import { useScrollState } from '../../hooks/useScrollState';
+import { useTheme } from '../../hooks/useTheme';
 import type { Card } from '../../lib/cards/types';
 import { hapticTick } from '../../lib/haptics';
 import { EmptyState } from '../EmptyState';
+import { Icon, IconButton } from '../primitives';
 import { CardView } from './CardView';
 
 /**
@@ -43,8 +46,22 @@ interface CardPagerProps {
    *  pipeline has not written yet. */
   emptyMessage: string;
   emptyHint?: string;
+  /** Which card to open on. The column index hands this over on a row tap;
+   *  entered from the top it is 0 and this behaves exactly as it always did. */
+  initialIndex?: number;
+  /** Back to the column index. Absent when the pager is the whole column. */
+  onClose?: () => void;
   ref?: React.Ref<CardPagerRef>;
 }
+
+/** A round target rather than a bare glyph. The control floats over a card
+ *  that scrolls under it, so the ink behind it is whatever paragraph happens
+ *  to be there — the same problem `BottomActionBar` has over the globe, and
+ *  the same answer: a low-lift `pillBg` fill with a hairline edge, because the
+ *  fill alone blends into a dark backdrop. Definition, not elevation; no
+ *  shadow. 34pt clears the 44pt target once `HIT_SLOP` is added, which
+ *  `IconButton` applies for us. */
+const CLOSE_SIZE = 34;
 
 export const CardPager = memo(function CardPager({
   cards,
@@ -53,11 +70,19 @@ export const CardPager = memo(function CardPager({
   progressesSV,
   emptyMessage,
   emptyHint,
+  initialIndex = 0,
+  onClose,
   ref,
 }: CardPagerProps) {
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const listRef = useAnimatedRef<Animated.FlatList<Card>>();
-  const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
+  // Seeded at the first render, not in an effect — `useScrollState`'s header
+  // has the reason, and it is a card painted at opacity 0.
+  const { scrollY, currentIndex, setCurrentIndex } = useScrollState({
+    offset: initialIndex * viewportHeight,
+    index: initialIndex,
+  });
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
@@ -245,29 +270,62 @@ export const CardPager = memo(function CardPager({
   }
 
   return (
-    <Animated.FlatList
-      ref={listRef}
-      style={styles.list}
-      data={cards}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      getItemLayout={getItemLayout}
-      pagingEnabled
-      showsVerticalScrollIndicator={false}
-      onScroll={scrollHandler}
-      onScrollBeginDrag={handleBeginDrag}
-      onMomentumScrollBegin={handleMomentumBegin}
-      onMomentumScrollEnd={handleMomentumEnd}
-      onScrollEndDrag={handleEndDrag}
-      scrollEventThrottle={16}
-      initialNumToRender={2}
-      maxToRenderPerBatch={2}
-      windowSize={3}
-      ListFooterComponent={safeAreaFooter}
-    />
+    <View style={styles.fill}>
+      <Animated.FlatList
+        ref={listRef}
+        style={styles.list}
+        data={cards}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        getItemLayout={getItemLayout}
+        pagingEnabled
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        onScrollBeginDrag={handleBeginDrag}
+        onMomentumScrollBegin={handleMomentumBegin}
+        onMomentumScrollEnd={handleMomentumEnd}
+        onScrollEndDrag={handleEndDrag}
+        scrollEventThrottle={16}
+        initialNumToRender={2}
+        maxToRenderPerBatch={2}
+        windowSize={3}
+        initialScrollIndex={initialIndex}
+        ListFooterComponent={safeAreaFooter}
+      />
+      {/* A sibling of the list, never a child of a card.
+          `CardFrame.onContentLayout` measures its content against the page to
+          decide whether the inner scroll arms at all, and a control inside
+          that view would add its own height to the comparison — which is the
+          measurement that once let four cards truncate in silence. Absolutely
+          positioned here it cannot reach that number. */}
+      {onClose ? (
+        <IconButton
+          onPress={onClose}
+          accessibilityLabel="Back to the list"
+          style={[styles.close, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+        >
+          <Icon name="close-sharp" size="md" tone="secondary" />
+        </IconButton>
+      ) : null}
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
+  fill: { flex: 1 },
   list: { flex: 1 },
+  // Level with the kicker: `SPACING.md` is `styles.column`'s own `paddingTop`
+  // in `CardFrame`, and `articlePadding` its horizontal inset, so the control
+  // sits on the card's grid rather than floating over it.
+  close: {
+    position: 'absolute',
+    top: SPACING.md,
+    right: SPACING.articlePadding,
+    width: CLOSE_SIZE,
+    height: CLOSE_SIZE,
+    borderRadius: RADIUS.floating,
+    borderWidth: StyleSheet.hairlineWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

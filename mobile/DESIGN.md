@@ -156,6 +156,40 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 ### Cards (`components/cards/`) — every column except `news`
 
+- **A column is an index; a card is what a row opens.** `ColumnIndex` renders
+  one `IndicatorRow` per card — six on a normal day, all on one screen — and
+  tapping one swaps the page for `CardPager` entered at that card. This is a
+  change of entry point, not of content: every card still ships with every
+  part. What it fixes is that answering "did anything move this morning?" used
+  to cost six swipes and six readings per column, because the number, its
+  direction and the meaning of that direction were already computed and already
+  coloured but arrived underneath four paragraphs.
+  - **Swapped, never overlaid.** An absolutely-positioned overlay would eat the
+    horizontal pan. The swap keeps the section axis inside `PagerView`, where
+    it has always been. See "Nothing may steal the horizontal swipe" below.
+  - **A row prints only strings the card already holds** — `card.reading`,
+    `card.delta.magnitude`, `card.readingNote`. `lib/cards/row.ts` is that
+    projection and it is where a row's contents are decided; a formatter in
+    `IndicatorRow` would be a second opinion about a number `lib/cards/
+    format.ts` has already spelled, one tap from the card that spells it the
+    first way.
+  - **Two lines, four zones.** Title (`title`, `titleFontScale`, up to two
+    lines) over the unit (`labelXs`, up to two lines — truncating it cost the
+    Kerch strait the week its count belongs to); a `Sparkline`; then the
+    reading over the delta in a **fixed-width** right cluster. Fixed because
+    content-sizing it made each row absorb a different amount of slack, and the
+    sparklines started and ended at six different x positions down one screen.
+  - **`Sparkline` is not a small `TrendBlock`.** 56×24, no axes, no labels, no
+    scrubber, and its amplitude is not allowed to mean anything: each line
+    autoscales to its own domain and — unlike the web rail — the series in one
+    column do not share a calendar window. Magnitude is carried by the chip
+    beside it, and no row is ranked or thresholded on the picture.
+  - **A missing series is drawn, not skipped.** A dotted 2/3 hairline where the
+    line would be, because "a drawn absence is a measurement; a gap is a bug".
+    Same for a multi-line series: wheat and rice read as the ratio between
+    them, so the first line alone would be the wrong series under that number.
+    A card with no `delta` prints no chip at all rather than a flat one —
+    `attention`'s reading *is* its move.
 - **The rule that decides what exists.** A card earns a screen if a reader who
   gives it four seconds can tell someone else something true they did not know.
   Everything that fails becomes a row on a comparison card, or it is not in the
@@ -219,7 +253,9 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   because a "daily" series holds observations, not days), and anything already
   in percent moves in **points** (`windowPointChange`) — a contract going 26 →
   86 moved 60 points, and "+231%" is arithmetic pretending to be journalism.
-- Cards reuse `TrendBlock` and `CompareBlock` at `variant="article"`. A
+- Cards reuse `TrendBlock` and `CompareBlock` at `variant="context"`, not
+  `"article"` — the article-sized chart (180pt against 148) pushed the source
+  caption and half of part four below the fold on the very first card. A
   comparison row's `weight` is the magnitude and its `value` string carries the
   sign; `tone` is only for a direction that means something to the person
   holding it (a currency weakening), never for "number went down".

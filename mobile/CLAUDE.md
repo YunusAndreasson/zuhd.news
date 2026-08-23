@@ -59,9 +59,41 @@ a release build cannot name the offender if one survives.
 ## The two axes
 
 Horizontal swipe = section (`news` · `commodities` · `money` · `outlook`), vertical
-paging = item inside one. Every column but `news` is a `CardPager` over a
-`Card[]`; `news` is `ArticleList` over the ordered river and owns the only
-globe. `SectionBar` follows the pager and draws a rule after `news`.
+paging = item inside one. `news` is `ArticleList` over the ordered river and owns
+the only globe. `SectionBar` follows the pager and draws a rule after `news`.
+
+- **The other three columns have a front door, and it is not a card.** A column
+  opens as `ColumnIndex` — one `IndicatorRow` per card, six on a normal day, the
+  whole column on one screen — and a row tap swaps the page for `CardPager`
+  entered at that card. Nothing was cut: every card still carries all five
+  parts. What changed is that the question a reader actually arrives with — did
+  anything move this morning — used to cost six swipes and six readings per
+  column, when the number, its direction and what that direction means were
+  already computed and already coloured and were simply arriving underneath four
+  paragraphs.
+  - **The page is swapped, never overlaid**, because an overlay would eat the
+    horizontal pan and that is the one thing nothing may take (below). Every
+    gesture that crosses sections still belongs to `PagerView`.
+  - **A row may print only strings the card already holds.** `lib/cards/row.ts`
+    is a pure projection for exactly that reason, and it is tested rather than
+    eyeballed. A `toFixed` in a row would let the index and the card it opens
+    describe one figure two ways, one tap apart — the `EntitySheet.formatLatest`
+    and `ChokepointSheet.formatCount` bug, re-introduced one level up.
+  - **Entering at index *n* has to seed the scroll offset.** `CardFrame`'s
+    arrival is a *scroll-linked* style off `scrollY`, not a mount animation, so
+    a pager opened three pages in with the offset still reading 0 computes that
+    card's opacity as if it were three pages away and paints it invisible.
+    `useScrollState({ offset, index })` exists for that and for the phantom
+    haptic the first settle would otherwise fire.
+  - **The right-hand cluster is a fixed width and the sparkline is small.**
+    Content-sizing the cluster let each row absorb a different amount of slack,
+    so six sparklines started and ended at six different x positions down one
+    screen; the web rail pins its own level and move columns for the same
+    reason. And a sparkline's amplitude means nothing here — each autoscales to
+    its own domain and, unlike the rail, the series in one column do not share a
+    calendar window (a strait is 90 days, an FX mover a month, a contract six
+    observations). Magnitude belongs to the chip; nothing is ranked on the
+    picture.
 
 - **The axis is cut by reader question, not by asset class.** It was six
   sections split the second way and the split is what broke it: `markets` held

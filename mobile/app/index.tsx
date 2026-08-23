@@ -11,7 +11,14 @@ import type {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Platform, Share, StyleSheet, View } from 'react-native';
+import {
+  BackHandler,
+  type LayoutChangeEvent,
+  Platform,
+  Share,
+  StyleSheet,
+  View,
+} from 'react-native';
 import PagerView, {
   type PagerViewOnPageScrollEvent,
   type PagerViewOnPageSelectedEvent,
@@ -24,7 +31,8 @@ import { BriefingBar } from '../components/BriefingBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
-import { CardPager, type CardPagerRef } from '../components/cards/CardPager';
+import { CardPager } from '../components/cards/CardPager';
+import { ColumnIndex, type ColumnIndexRef } from '../components/cards/ColumnIndex';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
@@ -39,7 +47,8 @@ import { SectionBar } from '../components/SectionBar';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
+import { IS_ANDROID } from '../constants/platform';
+import { CATEGORIES, EDITORIAL, SECTIONS, type Section } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -67,9 +76,11 @@ import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-st
  *  is written down once — in `SECTIONS`. */
 const NEWS = SECTIONS.indexOf('news');
 
-/** One pager per instrument column, indexed the same way as `SECTIONS` so a
- *  section's slot in the progress array, its ref and its label all agree. */
-const cardPagerRefs = SECTIONS.map(() => createRef<CardPagerRef>());
+/** One index per instrument column, indexed the same way as `SECTIONS` so a
+ *  section's slot in the progress array, its ref and its label all agree. The
+ *  ref belongs to the index rather than to the pager now: the pager is what a
+ *  row opens, and the way out of it is `onClose`, not a scroll to the top. */
+const columnIndexRefs = SECTIONS.map(() => createRef<ColumnIndexRef>());
 const newsListRef = createRef<ArticleListRef>();
 
 /** Empty-state copy per instrument column. A column is empty when the
@@ -457,6 +468,51 @@ export default function HomeScreen() {
   const currentSectionRef = useRef(currentSection);
   currentSectionRef.current = currentSection;
 
+  /**
+   * The card a reader opened on an instrument column, if any.
+   *
+   * A column shows its index — six rows a glance takes in — until a row is
+   * tapped, and then the same page shows `CardPager` entered at that card.
+   * Swapping what the page renders rather than laying an overlay over it is
+   * what keeps the horizontal swipe where it has always been: inside
+   * `PagerView`, which still owns every gesture that crosses sections.
+   *
+   * One value rather than one per column, because a section change closes it —
+   * a column is always re-entered through its own front door.
+   */
+  const [openCard, setOpenCard] = useState<{ section: Section; index: number } | null>(null);
+  const openCardRef = useRef(openCard);
+  openCardRef.current = openCard;
+
+  const closeCard = useCallback(() => setOpenCard(null), []);
+
+  /** One stable open-handler per column. `ColumnIndex` and every `IndicatorRow`
+   *  under it are memoized, and an inline arrow in the render below would hand
+   *  each of them a fresh identity on every render of this screen — which is
+   *  the whole of those memos, spent. */
+  const openCardHandlers = useMemo(() => {
+    // `Record<Section, …>` rather than `Record<string, …>`: the key set is
+    // known, so the lookup in the render below is not an unchecked index.
+    const handlers = {} as Record<Section, (index: number) => void>;
+    for (const section of SECTIONS) {
+      handlers[section] = (index: number) => setOpenCard({ section, index });
+    }
+    return handlers;
+  }, []);
+
+  /** Android hardware back leaves the card rather than the app. Registered
+   *  only while a card is open, so a column index still backgrounds normally.
+   *  Same shape as `useSheetBackNavigation`, which cannot serve here — it is
+   *  wired to a sheet ref and this is not a sheet. */
+  useEffect(() => {
+    if (!IS_ANDROID || !openCard) return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      setOpenCard(null);
+      return true;
+    });
+    return () => sub.remove();
+  }, [openCard]);
+
   const [pagerHeight, setPagerHeight] = useState(0);
   const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
     setPagerHeight(e.nativeEvent.layout.height);
@@ -481,6 +537,10 @@ export default function HomeScreen() {
         hapticTick();
       }
       setCurrentSection(page);
+      // A column is re-entered through its index, never mid-column. Leaving a
+      // card open behind a section change would mean swiping back to a screen
+      // the reader never chose to be on.
+      setOpenCard(null);
       completeArticleNavigation(page);
     },
     [completeArticleNavigation, pagerOffset],
@@ -494,12 +554,15 @@ export default function HomeScreen() {
   );
 
   // Tapping the label you are already on returns that column to the top —
-  // the one gesture the rail offers beyond saying where you are.
+  // the one gesture the rail offers beyond saying where you are. On an
+  // instrument column "the top" is the index, so an open card closes first and
+  // a second tap scrolls the index it returned to.
   const onSectionPress = useCallback(
     (index: number) => {
       if (index === currentSection) {
         if (index === NEWS) newsListRef.current?.scrollToTop();
-        else cardPagerRefs[index]?.current?.scrollToTop();
+        else if (openCardRef.current) setOpenCard(null);
+        else columnIndexRefs[index]?.current?.scrollToTop();
       } else {
         // Claim the haptic here rather than letting `onPageSelected` fire it
         // when the transition lands — feedback belongs on the touch, not a
@@ -692,17 +755,30 @@ export default function HomeScreen() {
           const copy = EMPTY_COPY[section];
           return (
             <View key={section} collapsable={false}>
-              {pagerHeight > 0 && (
-                <CardPager
-                  ref={cardPagerRefs[index]}
-                  cards={sectionCards[section] ?? []}
-                  viewportHeight={pagerHeight}
-                  sectionIndex={index}
-                  progressesSV={sectionProgresses}
-                  emptyMessage={copy?.message ?? 'nothing here yet'}
-                  emptyHint={copy?.hint}
-                />
-              )}
+              {pagerHeight > 0 &&
+                (openCard?.section === section ? (
+                  <CardPager
+                    cards={sectionCards[section] ?? []}
+                    viewportHeight={pagerHeight}
+                    sectionIndex={index}
+                    progressesSV={sectionProgresses}
+                    emptyMessage={copy?.message ?? 'nothing here yet'}
+                    emptyHint={copy?.hint}
+                    initialIndex={openCard.index}
+                    onClose={closeCard}
+                  />
+                ) : (
+                  <ColumnIndex
+                    ref={columnIndexRefs[index]}
+                    cards={sectionCards[section] ?? []}
+                    viewportHeight={pagerHeight}
+                    sectionIndex={index}
+                    progressesSV={sectionProgresses}
+                    emptyMessage={copy?.message ?? 'nothing here yet'}
+                    emptyHint={copy?.hint}
+                    onCardPress={openCardHandlers[section]}
+                  />
+                ))}
             </View>
           );
         })}
