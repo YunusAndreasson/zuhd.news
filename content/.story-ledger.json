@@ -2,13 +2,702 @@
   "version": 1,
   "stories": [
     {
+      "id": "voting-at-kazakhstan-s-parliamentary-elections-over",
+      "label": "Voting at Kazakhstan's parliamentary elections over",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-voting-at-kazakhstan-s-parliamentary-elections-over"
+      ],
+      "eventUri": "eng-11946121",
+      "summary": "Kazakhstan has just voted for a new unicameral parliament — the first election under the constitutional restructuring Tokayev pushed through after January 2022. Lead with the structural change, not the turnout: abolishing the Senate and moving to a single chamber concentrates legislative authority in a body whose composition the presidential administration still shapes through party registration. Who is affected: 20 million Kazakhs whose only national legislature is being rebuilt while the presidency runs a single seven-year term. The mechanism to explain is that constitutional reform in Central Asia routinely redistributes form rather than power — ask what the Senate actually blocked, and what now has no second reading. Note the feed carried no Kazakh or regional outlet on this event; TASS is a Russian state agency reporting on a neighbour it has interests in, so attribute its framing explicitly and lean on the Central Election Commission's own numbers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kazakhstan",
+        "http://en.wikipedia.org/wiki/Kurultai",
+        "http://en.wikipedia.org/wiki/Unicameralism",
+        "http://en.wikipedia.org/wiki/Astana",
+        "http://en.wikipedia.org/wiki/Kassym-Jomart_Tokayev",
+        "http://en.wikipedia.org/wiki/Constitution",
+        "http://en.wikipedia.org/wiki/Head_of_state",
+        "http://en.wikipedia.org/wiki/Political_party"
+      ]
+    },
+    {
+      "id": "pti-demands-imran-s-ct-angiography-be-conducted-at-shifa-int",
+      "label": "PTI demands Imran's CT angiography be conducted at Shifa International Hospital",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-pti-demands-imran-s-ct-angiography-be-conducted-at-shifa-int"
+      ],
+      "eventUri": null,
+      "summary": "A jailed former prime minister was taken to hospital for a recommended CT angiography and did not receive it. Lead with that gap — the procedure was ordered by physicians and not performed, which is the accountability fact, distinct from PTI's political framing of it. Who holds power: the prison administration and the Ministry of Interior control which doctor sees a detainee, at which facility, and when; the detainee and his family control none of it. The mechanism to explain for readers is custodial medical care as a discretionary favour rather than an entitlement — a state that can schedule and unschedule a cardiac scan holds a lever over an opposition leader that no court reviewed. Keep PTI's demand (Shifa International, a private hospital) as a claim, not a finding, and note what the authorities have said in response.",
+      "conceptUris": []
+    },
+    {
+      "id": "several-detained-after-300-people-gathered-at-delhi-s-connau",
+      "label": "Several detained after 300 people gathered at Delhi's Connaught Place to protest reservation",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-several-detained-after-300-people-gathered-at-delhi-s-connau"
+      ],
+      "eventUri": "eng-11947077",
+      "summary": "Around 300 people gathered in central Delhi to demand the rollback of caste-based reservation, and police detained more than 20 of them. Lead with the arithmetic of the policing, not the slogan: a legal, small, announced gathering in a city where assembly at Jantar Mantar is the designated outlet still produced detentions, because the standing prohibitory order does the work before any conduct occurs. Who is affected: both the protesters removed and the Scheduled Caste, Scheduled Tribe and OBC beneficiaries whose constitutional quotas are the target. The structural why is that India's reservation settlement is constitutional, not statutory — no protest can move it, which is precisely why the fight has migrated to the street and to the courts over the creamy-layer and 50 percent ceiling questions. Explain what reservation actually allocates (public jobs, university seats, legislative constituencies) before evaluating the demand.",
+      "conceptUris": []
+    },
+    {
+      "id": "american-federation-of-teachers-launches-boycott-against-tar",
+      "label": "American Federation of Teachers launches boycott against Target, claims retailer 'remained silent' on ICE",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-american-federation-of-teachers-launches-boycott-against-tar"
+      ],
+      "eventUri": "eng-11947154",
+      "summary": "A 1.8-million-member teachers' union is directing families away from Target for back-to-school spending because the retailer did not answer letters about ICE enforcement. Lead with the instrument, not the outrage: the union is converting a predictable seasonal purchasing peak into leverage, and the demand is not a policy change but a public statement — silence itself is what is being priced. Who holds power: a retailer that can decline to speak, and a union that can move the timing of tens of millions of dollars of household spending. The structural point for readers is that when immigration enforcement is federal and unreviewable, pressure reroutes to the private parties adjacent to it, which is a weaker lever but the only one available. Source is Fox News and its framing is adversarial to the union — report the boycott as announced, attribute characterisations, and state plainly whether Target has responded.",
+      "conceptUris": []
+    },
+    {
+      "id": "charges-for-services-in-hormuz-approved-in-iranian-parliamen",
+      "label": "Charges for services in Hormuz approved in Iranian parliament",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-charges-for-services-in-hormuz-approved-in-iranian-parliamen"
+      ],
+      "eventUri": null,
+      "summary": "Iran's parliament has approved a motion to charge ships for services received in the Strait of Hormuz. Lead with the legal form, not the threat: a fee is not a closure, and that is the whole point — a tariff on transit services builds a permanent revenue and registration mechanism out of a chokepoint that Iran cannot profitably shut. Who is affected: roughly a fifth of world seaborne oil and a third of LNG passes the strait, so the incidence lands on charterers, insurers and ultimately on importing economies in Asia. The mechanism to explain is the gap between UNCLOS transit passage, which forbids charges for mere passage, and charges for actual services rendered — pilotage, escort, traffic management — which are permitted; the drafting is where the legal fight will be. Follow-up context: this continues the chokepoint-leverage arc covered earlier this week, where the argument was that the power to close depreciates with use. A fee is what leverage looks like when it is converted into income instead of spent. Note the source is an Iranian state agency and the measure still requires Guardian Council review.",
+      "conceptUris": []
+    },
+    {
+      "id": "crypto-card-spending-tops-1-billion-as-stablecoins-move-into",
+      "label": "Crypto card spending tops $1 billion as stablecoins move into everyday purchases",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-crypto-card-spending-tops-1-billion-as-stablecoins-move-into"
+      ],
+      "eventUri": null,
+      "summary": "Crypto card spending tripled in a year to $1.04 billion in July, and the growth is not coming from speculators — StraitsX reports a 600 percent rise in transaction value in lower-GDP regions between early 2025 and 2026. Lead with that geography. The mechanism is dollarisation by card rail: a dollar-backed stablecoin held in a wallet and spent through Visa or Mastercard gives someone in Lagos, Buenos Aires or Istanbul a hard-currency balance without a US bank account and without their central bank's permission. Who is affected: households in countries with capital controls or double-digit inflation, and the monetary authorities whose control over domestic money demand quietly erodes. The structural why for the reader is that this is retail demand for the dollar arriving as software, and it is the same channel that makes stablecoin issuers among the larger holders of US Treasuries. Note what it costs the user — spread, settlement, and the fact that the issuer, not a deposit guarantee, backs the balance.",
+      "conceptUris": []
+    },
+    {
+      "id": "xrp-price-yield-curve-control-hopes-sparks-50-weekly-gain",
+      "label": "XRP price: Yield curve control hopes sparks 50% weekly gain",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-xrp-price-yield-curve-control-hopes-sparks-50-weekly-gain"
+      ],
+      "eventUri": null,
+      "summary": "Do not lead with the token. Lead with what the market thinks it saw: a US Treasury bond buyback announcement read as the opening move of yield curve control — the central bank or treasury committing to hold long-term rates at a chosen level by buying whatever quantity that requires. The 50 percent weekly move in XRP is the readout, not the story; risk assets rallied because traders priced a policy that caps real yields and therefore devalues the denominator. Who is affected: anyone holding long-dated dollar debt, and every economy that saves in Treasuries. The mechanism to explain is the trade-off YCC makes explicit — a government financing itself at an administered rate transfers the cost onto bondholders through inflation rather than through a default. Give the reader the historical anchors (the Fed 1942-51, the Bank of Japan since 2016) and be clear that no such policy has been announced; this is expectation, and expectations reprice fast in both directions.",
+      "conceptUris": []
+    },
+    {
+      "id": "crosscountry-cancels-almost-all-uk-services-after-power-cut",
+      "label": "CrossCountry cancels 'almost all' UK services after power cut",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-crosscountry-cancels-almost-all-uk-services-after-power-cut"
+      ],
+      "eventUri": "eng-11946549",
+      "summary": "A power cut at one control centre in Birmingham cancelled almost every service on an operator whose network runs from Aberdeen to Penzance. Lead with the ratio — one building, one national timetable. The mechanism to highlight is centralisation without redundancy: rail operations that were once distributed across signal boxes and depots now depend on a single site running crew rostering, stock allocation and real-time control, and when its systems go dark the trains are physically fine and still cannot move. Who is affected: passengers on a Sunday of the summer holidays, with no statutory obligation on the operator beyond Delay Repay. Who holds power: a franchise operator that chose the consolidation, and the regulator that never asked what happens when the site fails. The reader payoff is the general lesson — the efficiency case for one control centre and the resilience case against it are the same fact, and the resilience side is only ever priced after the outage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/CrossCountry",
+        "http://en.wikipedia.org/wiki/Birmingham",
+        "http://en.wikipedia.org/wiki/Peterborough",
+        "http://en.wikipedia.org/wiki/Cambridge",
+        "http://en.wikipedia.org/wiki/London_Stansted_Airport",
+        "http://en.wikipedia.org/wiki/Manchester",
+        "http://en.wikipedia.org/wiki/Edinburgh",
+        "http://en.wikipedia.org/wiki/United_Kingdom"
+      ]
+    },
+    {
+      "id": "due-to-need-for-absolute-success-china-delays-critical-moon",
+      "label": "Due to need for 'absolute success,' China delays critical Moon launch to 2027",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-due-to-need-for-absolute-success-china-delays-critical-moon"
+      ],
+      "eventUri": "eng-11947032",
+      "summary": "China has slipped Chang'e 7 to 2027, and the announcement's own words are the story: 'proceeding prudently and reliably, ensuring absolute success.' Lead with what a delay reveals about a schedule — a programme that publicly refuses to fly until it is certain is a programme whose crewed 2030 lunar landing depends on this mission's site survey succeeding the first time, because there is no second attempt budgeted in the cadence. Follow up on our earlier piece on Chang'e 7's polar ice objective: the payload is unchanged, the calendar is not. The mechanism to explain is coupling — Chang'e 7 prospects the lunar south pole for the water ice that a later crewed programme would need, so a year of slip in the survey propagates into every downstream decision about landing site and mission design. Who is affected: the CMSA's 2030 commitment, and by comparison NASA's Artemis timeline, which has slipped repeatedly for the opposite reason. State plainly that no technical cause has been given.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Spacecraft",
+        "http://en.wikipedia.org/wiki/Wenchang_Space_Launch_Site",
+        "http://en.wikipedia.org/wiki/Ice",
+        "http://en.wikipedia.org/wiki/China_Manned_Space_Agency",
+        "http://en.wikipedia.org/wiki/Hainan",
+        "http://en.wikipedia.org/wiki/Lunar_south_pole"
+      ]
+    },
+    {
+      "id": "there-s-no-reason-for-software-to-be-slow-anymore",
+      "label": "There's no reason for software to be slow anymore",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-22-there-s-no-reason-for-software-to-be-slow-anymore"
+      ],
+      "eventUri": null,
+      "summary": "A measured argument, not a complaint: hardware has improved by orders of magnitude while everyday software has not got faster, and the piece walks through where the difference goes — abstraction layers, allocation patterns, and the fact that nobody profiles. Lead with a concrete number from the source, not the thesis. The mechanism to explain for a technically literate reader is why the slack is invisible: performance work is uncounted labour that no product roadmap rewards, so it accumulates as latency that users absorb. Who is affected beyond developers — people on old phones and thin bandwidth, which is most of the world's internet users; software bloat is regressive, and the cost lands hardest where the hardware is oldest. This is an argued essay with data rather than a news event: attribute the claims to the author, keep his measurements as his, and give the reader the general principle rather than the polemic. It drew 642 points and 485 comments on Hacker News, which is itself evidence of how much of the profession recognises the problem.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-week-of-using-codex-more-than-claude",
+      "label": "A week of using Codex more than Claude",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-21-a-week-of-using-codex-more-than-claude"
+      ],
+      "eventUri": null,
+      "summary": "A working developer's side-by-side week with two agentic coding tools, and the interesting part is not which won. Lead with a specific behavioural difference the author observed — how each tool handles a long task, an ambiguous instruction, or a wrong turn — because that is what a reader deciding between them actually needs. The structural why: the coding-agent market has consolidated to a handful of models wrapped in near-identical harnesses, so differentiation now sits in the harness and the defaults rather than in the model, and switching cost is a subscription rather than a rewrite. Who holds power: two vendors whose pricing and rate limits set the terms of a workflow that a growing share of the profession now depends on daily. Treat this as one practitioner's report, sample size one week — say so, and do not generalise his conclusion into a benchmark. 231 points, 256 comments on Hacker News.",
+      "conceptUris": []
+    },
+    {
+      "id": "jwst-peeks-at-callisto-s-ancient-scars",
+      "label": "JWST peeks at Callisto's ancient scars",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-jwst-peeks-at-callisto-s-ancient-scars"
+      ],
+      "eventUri": null,
+      "summary": "Callisto is the Galilean moon nobody watches — no volcanism like Io, no subsurface ocean headline like Europa, no magnetic field like Ganymede — and JWST has found it is not the dead cratered rock it was filed as. Lead with the specific detection, not the surprise. The mechanism to explain is how the instrument does it: JWST reads the infrared spectrum of the surface, so carbon dioxide or other volatiles appearing where sunlight should long ago have driven them off implies something is resupplying them — from below, or from the radiation environment working on the ice. Why it matters structurally: 'geologically dead' is often a statement about our instruments rather than about the body, and a moon reclassified as active changes what ESA's JUICE mission, which flies past Callisto, should be looking for. Keep the physics concrete and resist implying habitability.",
+      "conceptUris": []
+    },
+    {
+      "id": "remineralization-of-initial-enamel-caries-in-young-permanent",
+      "label": "Remineralization of initial enamel caries in young permanent teeth: an in vitro comparison of P11-4 peptide gel and therapeutic toothpastes",
+      "firstSeen": "2026-08-23T17:08:35.541Z",
+      "lastCovered": "2026-08-23T17:08:35.541Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-remineralization-of-initial-enamel-caries-in-young-permanent"
+      ],
+      "eventUri": null,
+      "summary": "A self-assembling peptide gel, P11-4, is tested head to head against ordinary high-fluoride toothpastes on early enamel lesions in young permanent teeth. Lead with the comparison result and its size, then the mechanism, which is the genuinely interesting part: the peptide forms a three-dimensional scaffold inside the lesion that mineral can deposit onto, so it rebuilds enamel from within rather than sealing it from outside the way a filling does. Who is affected: children with early caries, and the far larger population in countries where restorative dentistry is unaffordable — a treatment that reverses a lesion before the drill is a public-health tool, not just a clinical one. State the limits plainly and early: this is in vitro, on extracted teeth, not a clinical trial, and the version of record is not yet published. The reader's takeaway is the shift from drilling to remineralisation as a treatment paradigm, and how far the evidence has actually got.",
+      "conceptUris": []
+    },
+    {
+      "id": "wartime-vote-a-roll-you-cannot-assemble",
+      "label": "Ukraine: Zelenskyy rejects wartime elections",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-wartime-vote-a-roll-you-cannot-assemble"
+      ],
+      "eventUri": "eng-11946702",
+      "summary": "Zelenskyy refuses to hold elections while the war runs, saying a vote would 'split Ukraine' — and in the same breath says Russia will draft 300,000 more troops after its September parliamentary polls. The angle is the asymmetry of the two calendars: Russia is timing mobilisation to follow a vote it controls, while Ukraine argues a vote is the thing it cannot survive. Lead with the 300,000 figure, then the mechanism — an occupied and displaced electorate cannot produce a legitimate roll, so the franchise becomes another casualty of occupation. Note who is pressing for elections (the ex-defence minister, and Washington) and what they gain.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Mykhailo_Fedorov",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "twenty-fifth-round-a-border-managed-not-drawn",
+      "label": "NSA Ajit Doval To Visit China For 25th Round Of India-China Border Talks With Wang Yi",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-twenty-fifth-round-a-border-managed-not-drawn"
+      ],
+      "eventUri": "eng-11946591",
+      "summary": "The twenty-fifth round. That number is the story: a Special Representatives mechanism created in 2003 has met twenty-four times without settling a metre of the Line of Actual Control. Lead with the count, not the meeting. The mechanism's function is not resolution but management — it converts an undelimited border into a scheduled conversation, which suits both capitals more than a settlement would. Follow the 2020 Galwan rupture and the 2024 patrolling arrangement as the two points where talks tracked events rather than shaped them. Reader payoff: how two nuclear states keep a live territorial dispute permanently deferred.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Wang_Yi_(politician)",
+        "http://en.wikipedia.org/wiki/Ajit_Doval",
+        "http://en.wikipedia.org/wiki/Line_of_Actual_Control",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Territorial_dispute"
+      ]
+    },
+    {
+      "id": "wana-doag-a-proxy-outlives-its-purpose",
+      "label": "Former aide to Taliban commander Mullah Nazir group killed in Lower South Waziristan",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-wana-doag-a-proxy-outlives-its-purpose"
+      ],
+      "eventUri": null,
+      "summary": "Unidentified gunmen killed a former aide of the late Mullah Nazir in Doag, Wana tehsil — the district where the Pakistani state spent a decade cultivating a 'good Taliban' faction against the TTP. The angle is the afterlife of a proxy: Nazir's network was armed and tolerated as a counterweight, and its surviving cadre are now being picked off one by one with no one claiming the killings and no prosecutions following. Lead with the location, not the name — Wana is the ledger where a strategy is being settled. Note that 'unidentified gunmen' is itself the accountability gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "nyakallong-term-break-hunger-on-a-school-calendar",
+      "label": "Childhood hunger drives Free State community to step in when school meals stop",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-nyakallong-term-break-hunger-on-a-school-calendar"
+      ],
+      "eventUri": null,
+      "summary": "South Africa's National School Nutrition Programme feeds roughly nine million children — but only on school days. At SA Mokgothu Primary in Nyakallong, caregivers keep cooking through the holidays because the state's hunger relief is scheduled around the academic calendar rather than around hunger. Lead with the gap in days, not the meal: the design assumption is that a household absorbs the term break, and for these children it does not. The structural why — the largest food-security intervention in the country is administratively a school programme, not a welfare one, so its coverage ends where the timetable does.",
+      "conceptUris": []
+    },
+    {
+      "id": "cairo-tehran-line-a-channel-without-an-embassy",
+      "label": "Iran, Egypt FMs discuss de-escalation efforts",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-cairo-tehran-line-a-channel-without-an-embassy"
+      ],
+      "eventUri": "eng-11945770",
+      "summary": "Araghchi and Abdelatty spoke by phone about 'preparing the ground' for a return to diplomacy after the US-Iran war. The angle is who is doing the talking: Cairo and Tehran have had no full ambassadorial exchange since 1980, and Egypt is positioning as a channel precisely because it is not a party. Lead with the forty-six-year absence of normal relations, then the mechanism — mediation authority in this region now accrues to whoever is trusted by both sides and owed by neither, which is why Doha, Muscat and now Cairo keep appearing. Follow-on from the Munir Tehran visit and the Rezaei chokepoint remarks covered earlier this week.",
+      "conceptUris": []
+    },
+    {
+      "id": "scorecard-mismatch-stability-is-not-productivity",
+      "label": "CPPE backs FG reforms, urges shift from economic stability to productivity",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-scorecard-mismatch-stability-is-not-productivity"
+      ],
+      "eventUri": null,
+      "summary": "Five days after the finance ministry published its reform scorecard, the private-sector think tank that endorsed the reforms says the wrong thing is being measured. Stability metrics — a converged exchange rate, a narrower fiscal deficit, reserves — improve when demand is suppressed; productivity and living standards do not follow automatically. Lead with the distinction, because it is the whole argument: Nigeria removed the fuel subsidy and floated the naira, and the resulting numbers describe an economy that has stopped bleeding, not one that has started growing. Name what a productivity scorecard would have to count instead — output per worker, electricity delivered, credit to manufacturing.",
+      "conceptUris": []
+    },
+    {
+      "id": "crude-rich-fuel-short-the-cracking-unit-constraint",
+      "label": "Resolution of fuel issues underway, PM Mishustin keeps situation under control -- Putin",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-crude-rich-fuel-short-the-cracking-unit-constraint"
+      ],
+      "eventUri": null,
+      "summary": "The president of the world's third-largest oil producer publicly conceding that 'not all fuel issues have been resolved' is the datum — a state that exports crude cannot keep petrol on its own forecourts. The mechanism is refining, not extraction: drone strikes have taken primary-processing and catalytic-cracking units offline, and those units cannot be replaced under sanctions because the catalysts and licences are Western. Lead with the admission, treat the reassurance as the tell. Continues the Novak lower-class-fuel story from earlier this week — this is the Kremlin escalating who does the reassuring.",
+      "conceptUris": []
+    },
+    {
+      "id": "mongolian-steppe-herds-privatised-grass-was-not",
+      "label": "From Nigeria to Asian Steppes -- stories of survival, soil and hope in Mongolia",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-mongolian-steppe-herds-privatised-grass-was-not"
+      ],
+      "eventUri": null,
+      "summary": "More than 100 million hectares of Mongolian rangeland — around 70 percent of the country's land — is degraded, and the herding economy that sits on it has no substitute. Lead with the hectares against the herd count: livestock numbers roughly tripled after the 1990s privatisation of the collectives while the grass did not, so the degradation is an ownership story before it is a climate one. The commons became individually stocked and collectively grazed, which is the exact configuration that strips a steppe. Note the Nigerian reporter's frame — the same overstocking arithmetic is running in the Sahel.",
+      "conceptUris": []
+    },
+    {
+      "id": "nine-three-nine-a-record-with-a-power-cord",
+      "label": "Chinese robots beat Usain Bolt's 100m world record",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-nine-three-nine-a-record-with-a-power-cord"
+      ],
+      "eventUri": "eng-11946476",
+      "summary": "A humanoid ran 100 metres in 9.39 seconds at the World Humanoid Robot Games in Beijing, under Bolt's 9.58. The correct lead is the asterisk, not the record: a machine on a prepared track with no start-gun reaction time, no fatigue and a power budget it does not have to carry for a season is not competing in the same event. What the number does prove is control-loop maturity — bipedal running at that speed means balance recovery inside single-digit milliseconds, which is the hard part of the field and the part that transfers to warehouse and battlefield locomotion. Name the makers and note that China staged the games to demonstrate exactly this.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Humanoid_robot",
+        "http://en.wikipedia.org/wiki/Usain_Bolt",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/100_metres",
+        "http://en.wikipedia.org/wiki/Robot",
+        "http://en.wikipedia.org/wiki/World_record"
+      ]
+    },
+    {
+      "id": "ten-billion-in-equity-capex-that-outgrew-cash-flow",
+      "label": "Alibaba proposes $10 billion share placement to fund global AI drive",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-ten-billion-in-equity-capex-that-outgrew-cash-flow"
+      ],
+      "eventUri": "eng-11946561",
+      "summary": "Alibaba is raising $10 billion in new equity — not debt, not cash flow — to fund AI infrastructure. That choice is the story: a company sitting on large reserves is diluting existing shareholders instead, which says the capex line is now too big and too front-loaded to fund from operations. Lead with the instrument. The structural why is that AI datacentre spend has become a capital-markets question rather than an IT budget one, and Chinese firms carry an extra constraint — export controls mean a share of that $10bn buys domestic accelerators at worse performance per dollar. Note who bears the dilution.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Alibaba_Group",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Hong_Kong",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Equity_(finance)"
+      ]
+    },
+    {
+      "id": "solvable-wells-where-tight-binding-gets-its-numbers",
+      "label": "Analytical solution to the Kronig-Penney model with harmonic oscillator wells: insights to tight-binding",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-solvable-wells-where-tight-binding-gets-its-numbers"
+      ],
+      "eventUri": null,
+      "summary": "Every semiconductor device simulation rests on band structure, and band structure is taught and approximated through two models: Kronig-Penney, which is solvable but uses unphysical square wells, and tight-binding, which is physical but empirical. This paper solves Kronig-Penney exactly with harmonic-oscillator wells and shows where tight-binding's fitted parameters come from. Lead with what an exact solution buys — a closed form is something you can differentiate, so device parameters can be derived rather than fitted. The reader is an engineer who has used a tight-binding parameter table without knowing what sets its numbers.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-derivative-not-the-level-fat-trajectory-and-diabetes",
+      "label": "Dynamic change in body fat percentage and the risk of diabetes mellitus: a longitudinal analysis",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-the-derivative-not-the-level-fat-trajectory-and-diabetes"
+      ],
+      "eventUri": null,
+      "summary": "The finding is about the derivative, not the level: it is the change in body fat percentage over time, not a single high reading, that predicts diabetes onset. Lead with that, because it inverts how screening actually works — clinics measure BMI once and compare it to a threshold, which discards the trajectory that carries the signal. The structural why matters for the Gulf and South Asia, where diabetes prevalence is among the world's highest and screening is threshold-based; a population can sit under a cut-off and still be moving toward disease. Give the cohort size and follow-up period, and be explicit that this is observational, not causal.",
+      "conceptUris": []
+    },
+    {
+      "id": "biodegradable-on-the-label-the-additive-does-the-lying",
+      "label": "Blowing in the wind, humble balloon gets green makeover",
+      "firstSeen": "2026-08-23T12:12:19.204Z",
+      "lastCovered": "2026-08-23T12:12:19.204Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-biodegradable-on-the-label-the-additive-does-the-lying"
+      ],
+      "eventUri": null,
+      "summary": "Latex balloons are marketed as biodegradable and are among the deadliest debris items for seabirds and turtles, because the plasticisers and dyes added for shelf life stop the latex breaking down in seawater. UK researchers reformulated the additive package rather than the polymer. Lead with the mortality data, not the chemistry — a balloon is a rounding error in plastic tonnage and disproportionately lethal per gram because it is soft, mistakable for prey, and lodges in gut tracts. The transferable point is that 'biodegradable' certifies the base polymer, not the finished product, which is a labelling gap far wider than balloons.",
+      "conceptUris": []
+    },
+    {
+      "id": "bas-2035-a-station-is-a-launch-cadence",
+      "label": "'India will establish its own space station by 2035': ISRO Chief V Narayanan",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-bas-2035-a-station-is-a-launch-cadence"
+      ],
+      "eventUri": "eng-11946325",
+      "summary": "ISRO's chief commits India to a crewed space station — the Bharatiya Antariksh Station — by 2035, on the third anniversary of Chandrayaan-3's south-pole landing. Lead with the date rather than the ambition, because 2035 is the load-bearing claim: the ISS is scheduled for deorbit around 2030 and China's Tiangong is the only station with a funded successor, so India is declaring it will hold crewed low-Earth-orbit capability in a decade when the field narrows to two or three states. Teach the mechanism our reader should carry — a space station is not a spacecraft, it is a logistics commitment. The hard part is not lifting the modules, it is sustaining a cadence of crew rotation and resupply launches for decades, which requires a human-rated launcher and an abort-capable capsule flying reliably first. That is why Gaganyaan is the real gate on 2035 and why its slips matter more than any station render. Establish exactly what Narayanan said and at what event, the BAS module count and mass against Tiangong and the ISS, Gaganyaan's current uncrewed and crewed flight schedule against its original 2022 target, ISRO's annual budget against NASA's and CNSA's, and what Chandrayaan-3 actually established about south-pole regolith and temperature that the follow-on missions build on. Then the part that reaches our reader: sovereign crewed access is becoming a marker of the second tier of powers, and India's programme is the template Gulf and Southeast Asian space agencies are studying — the UAE flies astronauts on other people's rockets, which is exactly the dependency India is buying its way out of. SELECTION NOTE FOR AUDIT: this was the ONLY multi-source cluster in the entire 2026-08-23 08:00 feed — 41 stories total against a normal 300+, 1 cluster against a typical 8-13. This is the second consecutive cycle with a collapsed feed (the 04:00 run also had exactly 1). The politics and economy multi-source floors could not be met from any candidate, weak or strong, because none exists. Investigate the fetch stage, not the selection. Both sources here are Indian (MoneyControl, Economic Times) with divergence 0.01 — they agree and add nothing to each other, so carry the programme analysis independently and do not present agreement between two outlets in the same market as corroboration.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Chandrayaan-3",
+        "http://en.wikipedia.org/wiki/Indian_Space_Research_Organisation",
+        "http://en.wikipedia.org/wiki/Space_industry",
+        "http://en.wikipedia.org/wiki/Lunar_south_pole",
+        "http://en.wikipedia.org/wiki/New_Delhi"
+      ]
+    },
+    {
+      "id": "munir-tehran-visit-the-general-holds-the-file",
+      "label": "Pakistan army chief to visit Tehran for talks",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-munir-tehran-visit-the-general-holds-the-file"
+      ],
+      "eventUri": "eng-11938421",
+      "summary": "Field Marshal Asim Munir travels to Tehran on Monday at the head of an official delegation — and the detail to lead with is who is going, not where. Pakistan's army chief, not its foreign minister, is conducting the state's Iran policy in the same week its deputy prime minister is in London, which tells the reader exactly where the file sits. Teach the mechanism our reader should carry: in Pakistan the security establishment holds the Iran, Saudi and China portfolios directly, so a general's itinerary is a better forecast of policy than a ministry readout, and Tehran deals with Rawalpindi because Rawalpindi is who decides. The timing is the second half of the story — Pakistan is simultaneously deepening its Saudi security arrangement and managing a 900km border with an Iran under US economic pressure, and it has been asked by Washington's Gulf track to choose in a way it has spent forty years refusing to. Establish what the delegation is stated to be discussing, what Munir and Iranian officials said publicly at the last such meeting, the state of the Iran-Pakistan gas pipeline and the penalty clause Pakistan faces for non-completion, cross-border militancy on both sides of Balochistan and Sistan-Baluchestan and the January 2024 strikes each state conducted on the other's territory, formal bilateral trade against estimated smuggling volumes, and what Pakistan has said about the US pressure campaign. Who bears the cost: Baloch communities on both sides of a border that is a security problem to two capitals and a home to the people living on it. SOURCING: Mehr (IR) is Iranian state media and an interested party — attribute the framing, the 'regional peace' language and any characterisation of Pakistani intent explicitly to Mehr, and confirm the visit against ISPR or Pakistani reporting before publication. Pakistan and Iran are both OIC states, and the feed carried Dawn (PK) heavily today but NOT on this story — no Pakistani outlet covered its own army chief's visit in this feed, which is a feed-side gap worth auditing.",
+      "conceptUris": []
+    },
+    {
+      "id": "afghan-girls-ban-a-cohort-not-a-service",
+      "label": "Without education for girls, Afghanistan loses its chance for a better tomorrow",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-afghan-girls-ban-a-cohort-not-a-service"
+      ],
+      "eventUri": null,
+      "summary": "Afghan girls are now into a fifth year of exclusion from secondary school and university, and this is first-person testimony from inside that ban. Lead with the compounding, not the decree — the news is not that the ban exists but that a cohort has now aged all the way through it, so the first girls locked out in 2021 are past the age at which any resumption would return them to a classroom. Teach the mechanism our reader should carry: an education ban does not remove a service, it removes a cohort, and the damage is measured in a demographic column that cannot be refilled later. The most concrete instance is medicine — Afghanistan's health system requires female doctors, nurses and midwives because male practitioners cannot treat women in much of the country, and the December 2024 extension of the ban to medical institutes means the country stopped producing them. The maternal mortality curve therefore turns roughly a decade after the decree, not now, and that lag is why the cost is systematically understated. Establish who the young women quoted are and what they describe, exactly which levels and institutions are barred and under which edicts and dates, how many girls are out of school by UNESCO's count, what underground and online schooling actually reaches and at what risk to teachers, Afghanistan's maternal mortality rate and its midwife shortfall, and what the OIC, Saudi Arabia, Qatar and Indonesia have said — this is a religious argument being made in a religious register, and the strongest rebuttals come from Muslim scholars and Muslim states, not from Western statements. Say plainly that no classical school of Islamic law bars women from seeking knowledge, and cite the jurists who have said so. Who holds power: the Kandahar leadership, over the objection of parts of its own Kabul administration; who bears the cost: Afghan women and the patients they would have treated. Afghanistan is an OIC state; Global Voices (NL) is the only source in the feed and no regional outlet carried it — note that gap. This is testimony rather than an event, which is exactly the ẓulm case: continuation of injustice IS the development.",
+      "conceptUris": []
+    },
+    {
+      "id": "bhavnagar-hooch-prohibition-removes-the-quality-control",
+      "label": "Gujarat hooch tragedy: Two more die, toll rises to 13",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-bhavnagar-hooch-prohibition-removes-the-quality-control"
+      ],
+      "eventUri": "eng-11945417",
+      "summary": "Thirteen people are dead in Bhavnagar from spurious liquor, and the fact that carries the story is where it happened: Gujarat has banned alcohol since 1960, and it is the Indian state where mass methanol deaths recur. Lead with that pairing, because it is the mechanism our reader should carry — prohibition does not remove a market, it removes quality control from it. Ethanol and methanol are indistinguishable to a drinker; the difference is a distillation step, and an illegal distiller has no incentive, no equipment and no liability to perform it. Methanol metabolises to formic acid, which is why the pattern is always the same: hours of apparent normality, then blindness, then death, and why the antidote is ethanol or fomepizole administered before symptoms mature — a treatment window that a clandestine drinker who fears arrest will not present inside. That is the full causal chain from a legal choice to thirteen bodies, and it is repeatable. Establish the toll and how many remain in hospital with their condition, when the deaths began and where the liquor was sourced, whether methanol has been confirmed by analysis or only suspected, how many arrests and of whom — sellers or drinkers — the death tolls from the 2022 Botad and 2009 Ahmedabad episodes in the same state, what the Gujarat Prohibition Act penalties are and how many bootlegging cases the state registers annually, and who the dead were and what they did for a living, because hooch deaths concentrate almost entirely among daily-wage labourers for whom licit liquor in a neighbouring state is unaffordable. Who holds power: a state government that treats each episode as a law-enforcement failure rather than a policy outcome; who bears the cost: the poorest drinkers, always. Hindustan Times (IN) single-source on an agency report — attribute the toll to officials and do not report methanol as confirmed unless the state says so.",
+      "conceptUris": []
+    },
+    {
+      "id": "section-163-standing-order-a-ban-that-precedes-the-protest",
+      "label": "No protest allowed at Jantar Mantar, sec 163 imposed: Delhi police warns amid reservation stir",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-section-163-standing-order-a-ban-that-precedes-the-protest"
+      ],
+      "eventUri": "eng-11939616",
+      "summary": "Delhi police pre-emptively barred a protest at Jantar Mantar by invoking Section 163 of the Bharatiya Nagarik Suraksha Sanhita — and the load-bearing detail is the word 'already'. Police say prohibitory orders are 'already in force' in New Delhi district, meaning the ban is not a response to this gathering; it is a standing condition that pre-authorises the refusal of any gathering. Lead there. Teach the mechanism our reader should carry: Section 163 is the renamed Section 144 CrPC, a colonial-era emergency power written for imminent riot, and its defining feature is that it is issued by an executive magistrate without a hearing, for a defined period, and then renewed. Renew it continuously over a district and an exceptional power becomes the ordinary legal status of a place, so the right to assemble does not have to be revoked — it simply never becomes exercisable, and no court is ever asked to rule on the underlying protest. That structure is the transferable idea, and versions of it run in Egypt's protest law, Pakistan's Section 144 and the UK's public-order conditions. Jantar Mantar makes it sharper still: it is the one street in Delhi designated for protest after the Supreme Court intervened over Boat Club, so a ban there is a ban at the officially sanctioned venue. Establish what the 'Reservation Hatao' call actually demanded and who issued it, how long Section 163 orders have been continuously in force in New Delhi district and under whose signature, what the maximum statutory duration is and how renewal works, what the Supreme Court's Anuradha Bhasin and Ramlila Maidan rulings held about blanket prohibitory orders, whether anyone was detained, and how many Section 163 orders Delhi issued in the past year. Who holds power: an executive magistrate; who bears the cost: anyone whose grievance has no route except the street. Hindustan Times (IN) single-source — attribute the police statement directly and give the protest organisers' position if stated.",
+      "conceptUris": []
+    },
+    {
+      "id": "apo-karshi-sixteen-years-delay-as-a-financing-instrument",
+      "label": "Abuja's Apo-Karshi Road to be completed in December, 16 years after commencement",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-apo-karshi-sixteen-years-delay-as-a-financing-instrument"
+      ],
+      "eventUri": null,
+      "summary": "A road awarded in 2010 in Nigeria's capital is now promised for December 2026, and the minister's own framing — a project 'inherited' by this president — is the story. Lead with the sixteen years, then with what sixteen years does to money: a contract priced in 2010 naira is being completed after the currency lost the overwhelming majority of its dollar value, so the sum originally appropriated cannot buy what it was appropriated for, and every variation order that closed that gap was a second payment for the same kilometre. Teach the mechanism our reader should carry — in a high-inflation economy, delay is not a scheduling problem, it is a financing instrument. A contractor who is not paid stops work; the project is then re-scoped and re-priced upward; the revised figure is approved because the alternative is a visible abandoned road; and the total cost of an asset becomes a function of how long the state took to pay rather than of what it costs to build. That is why capital budgets in Nigeria, Pakistan, Egypt and Argentina carry long tails of half-built projects, and why 'inherited project' is a permanent category of political speech. Establish the original 2010 award value and contractor, every revision and its date and amount, what the road connects and the daily traffic and journey time it is meant to relieve, how many Karshi and Apo residents depend on it, what proportion of FCT capital projects are similarly stalled, and whether the December date has been promised before — check the record, because a re-announced completion date is itself the finding. Who holds power: Wike and the FCT Administration; who bears the cost: commuters on the corridor for sixteen years, and taxpayers who paid several times over. Nigeria is an OIC member and Premium Times (NG) is the regional outlet doing the reporting — attribute the completion promise to Wike, not to the record.",
+      "conceptUris": []
+    },
+    {
+      "id": "double-stack-jnpt-the-wire-height-decides-the-freight-rate",
+      "label": "Indian Railways operates first ever double-stack long-haul container train I WATCH",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-double-stack-jnpt-the-wire-height-decides-the-freight-rate"
+      ],
+      "eventUri": "eng-11945478",
+      "summary": "Indian Railways ran its first double-stack long-haul container train from Jawaharlal Nehru Port with 360 TEUs, and the number worth leading with is the one that makes it possible: overhead electrification height. Lead with the constraint, not the milestone — stacking containers two high needs roughly 7.45 metres of clearance under the catenary, and almost every electrified railway in the world was wired at around 5.5 metres, which is precisely why double-stacking is normal in North America and near-impossible in Europe and on India's legacy network. India solved it by building the Western Dedicated Freight Corridor to a raised wire from the start. Teach the mechanism our reader should carry: freight economics on rail are set by axle load and by cross-section, so a train's cost per container falls with the square of what you can fit in the loading gauge, and a decade-long civil-engineering decision about wire height determines whether a country's exports move by rail or by road for the next fifty years. Establish the exact route and the 360 TEU figure against a conventional single-stack consist, what share of the Mumbai-Delhi corridor is now on the DFC, the freight cost per TEU-km by rail against road and the diesel and emissions difference, JNPT's throughput and how much of it currently leaves by truck, the DFC's total cost and how far behind its original schedule it is, and what China's and the US's double-stack shares look like. Then the consequence for our reader: a port's competitiveness is set inland, not at the quay — which is the same argument running under Gwadar, Chabahar and Djibouti, all of which have deepwater berths and no comparable freight corridor behind them. Hindustan Times (IN) single-source reporting an official announcement — attribute the figures to the Railway Ministry and treat a first run as a demonstration, not as scheduled service.",
+      "conceptUris": []
+    },
+    {
+      "id": "japan-drydock-alliance-measured-in-berth-months",
+      "label": "A New Japanese Drydock and the Limits of Allied Cooperation",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-japan-drydock-alliance-measured-in-berth-months"
+      ],
+      "eventUri": null,
+      "summary": "Japan is expanding shipyard capacity, and the finding is that the new space is already committed — so an American plan to repair US warships in Japanese yards runs into a dock that is full. Lead with that, because it converts an alliance question into an industrial one: allied cooperation is constrained not by political will but by berth-months, and a drydock is a decade-long capital asset that cannot be conjured for a crisis. Teach the mechanism our reader should carry — naval power in a long war is repair capacity, not hull count. A damaged ship that must cross the Pacific to be fixed is out of the fight for months, which is why forward repair is the single most consequential logistics variable in any Western Pacific scenario, and why the US Navy's own yards being backlogged is a strategic fact rather than a procurement complaint. Commercial shipbuilding is the substrate underneath it: China builds well over half the world's merchant tonnage, South Korea and Japan most of the rest, and the United States a rounding error, so the workforce, the cranes and the docks that would repair a fleet exist mainly in three East Asian countries. Establish which yard and which company, the dock's dimensions and delivery date and what it is already contracted to build, what the US-Japan ship-repair arrangements currently permit and what US law — the restrictions on overhauling naval vessels in foreign yards — actually blocks, Japan's and Korea's annual commercial tonnage against China's and America's, and the US Navy's current maintenance backlog in ship-days. Then what our reader should carry outward: the same arithmetic governs every navy that buys ships abroad, including Gulf and South Asian fleets whose maintenance depends entirely on the seller's yards. The Diplomat (US) single-source analysis by a specialist outlet — attribute the capacity assessment to the author and anchor tonnage figures on Clarksons or UNCTAD data.",
+      "conceptUris": []
+    },
+    {
+      "id": "change-7-polar-ice-propellant-not-water",
+      "label": "Break The Lunar Ice, Use The Water: China's Chang'e-7 Mission To Unravel Secrets Of Coldest Places In Solar System",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-change-7-polar-ice-propellant-not-water"
+      ],
+      "eventUri": "eng-11941177",
+      "summary": "China's Chang'e-7 targets permanently shadowed craters at the lunar south pole to find and characterise water ice — and the engineering problem, not the science question, is what to lead with. These craters have not seen sunlight in billions of years and sit near 40 kelvin, which means a solar-powered lander cannot operate in them and a battery cannot survive them; the mission's actual innovation is a hopping detector that flies into the shadow, works on stored power, and comes back out to recharge. Teach the mechanism our reader should carry: lunar water is not valued as water, it is valued as propellant. Electrolysed into hydrogen and oxygen, ice at the pole is rocket fuel that never had to be lifted out of Earth's gravity well, and since roughly the entire cost of spaceflight is the energy to leave Earth, a functioning propellant depot at the Moon changes the price of everything beyond it. That is why the south pole specifically is contested — the permanently shadowed craters are a small number of specific locations, Artemis and the Chinese-Russian ILRS have both named overlapping candidate sites, and the Outer Space Treaty forbids claiming territory but says nothing usable about occupying the one crater floor with the ice in it. Establish the launch window and mission architecture, what the hopper and the orbiter and lander each carry and their instrument suite, what LCROSS, Chandrayaan-1 and the Chandrayaan-3 thermal probe already established about polar ice concentration and depth, how much ice is actually estimated to be there and at what extraction cost per kilogram, the ILRS timeline against Artemis, and what China has formally announced versus what is inferred. Then the stakes: first-mover advantage at a resource site with no allocation regime is a legal vacuum being filled by hardware. News18 (IN) single-source explainer — anchor the mission specifications on CNSA statements and published mission papers, and mark ice-abundance figures as estimates.",
+      "conceptUris": []
+    },
+    {
+      "id": "ak-203-korwa-indigenous-measured-at-the-wrong-layer",
+      "label": "India Makes First 100% Indigenous AK-203 'Sher' Rifles: Why It Matters For Defence Production",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-ak-203-korwa-indigenous-measured-at-the-wrong-layer"
+      ],
+      "eventUri": "eng-11946577",
+      "summary": "India has test-fired the first AK-203 rifles made entirely at the Korwa facility in Amethi, with no Russian-supplied components — and the phrase to interrogate is '100% indigenous'. Lead by making it precise, because it is the whole engineering story: a rifle localised to 100% by part count is not localised at all if the barrel steel, the cold-hammer-forging machine that rifles it, and the chrome-lining process are imported. Teach the mechanism our reader should carry — indigenisation is measured at the wrong layer almost everywhere. The hard, slow, strategically decisive capability is metallurgy and machine tools, not assembly, and a country that can screw together every component still stops producing the moment a sanctioned supplier withholds a five-axis machine or an alloy specification. That is the actual lesson of the last four years of export controls, and it applies identically to semiconductors, jet engines and pharmaceutical precursors. Establish when the Indo-Russian Rifles Private Limited joint venture was signed and on what ownership split, the original localisation schedule against what has been delivered, how many of the 601,427 rifles ordered have reached the army and at what unit price, what 'indigenous' means in the Ministry of Defence's own indigenous-content rules, which inputs and machine tools remain imported, what the AK-203 replaces (INSAS, and why troops rejected it), and how sanctions on Russia affected the programme's supply of technical documentation and tooling. Then the part that reaches our reader: every state pursuing defence self-reliance — Turkey, Pakistan, Indonesia, Saudi Arabia under Vision 2030 — publishes the same percentage, and this is the clearest case study in what the percentage does and does not measure. News18 (IN) single-source with promotional framing ('Sher agaya hain') — strip the register entirely, attribute the 100% claim to the manufacturer or the MoD rather than asserting it, and state plainly what has not been independently verified.",
+      "conceptUris": []
+    },
+    {
+      "id": "v2g-siting-the-ev-problem-is-voltage-not-energy",
+      "label": "Coordinated optimization of electric vehicle charging infrastructure and reactive power compensation in active distribution networks with V2G services",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-v2g-siting-the-ev-problem-is-voltage-not-energy"
+      ],
+      "eventUri": null,
+      "summary": "A modelling study optimises where to site EV chargers and where to place reactive-power compensation together, rather than separately, on a distribution network that also lets vehicles feed power back. Lead with what that co-optimisation admits: the grid problem created by electric vehicles is not generation, it is the low-voltage distribution network, and it is mostly not about energy at all. Teach the mechanism our reader should carry — a fast charger is a large, sudden, poorly-distributed load at the very end of the network, and the binding constraint there is voltage, not kilowatt-hours. Long feeders sag under current; power electronics draw and distort reactive power; and the fix is either new copper in the street, which is slow and expensive, or reactive compensation and smarter siting, which is cheap and is what this paper is optimising. Vehicle-to-grid then inverts the whole picture, because a parked fleet becomes distributed storage that can hold voltage up — turning the problem into part of its own solution, provided someone is paid to make the car available. Establish the network model and scale used and say plainly that this is simulation on a test feeder, not a deployment; the objective function and what it trades against what; the claimed improvements in voltage profile, loss reduction and hosting capacity with their magnitudes; the assumptions about EV arrival patterns and V2G participation rates, since participation is the load-bearing and least defensible assumption in this entire literature; and what battery degradation cost the model assigns to V2G cycling. Then the part that reaches our reader: distribution networks in Egypt, Pakistan, Nigeria and Indonesia are already voltage-constrained before a single EV is added, so the sequencing question — chargers first or feeders first — is being decided right now by countries importing cheap Chinese EVs faster than they are rebuilding their grids. This is an early-access accepted manuscript; say so and give the DOI.",
+      "conceptUris": []
+    },
+    {
+      "id": "murrelet-nest-you-cannot-protect-what-you-cannot-find",
+      "label": "How we found Haida Gwaii's first marbled murrelet nest in more than 30 years",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-murrelet-nest-you-cannot-protect-what-you-cannot-find"
+      ],
+      "eventUri": null,
+      "summary": "Researchers found a marbled murrelet nest on Haida Gwaii — the first in over thirty years — and the reason that is news is the reason the species is in trouble. Lead with the natural history, because it is genuinely strange and it is the entire conservation problem: the murrelet is a seabird that feeds in the ocean and nests up to eighty kilometres inland, on a moss-covered branch high in an old-growth conifer, laying a single egg on a limb with no structure built at all. The first nest was not described anywhere until 1974. Teach the mechanism our reader should carry — a species whose breeding sites cannot be located cannot be protected, because every protection regime in the world operates on mapped habitat. You cannot designate what you cannot find, so the murrelet's decline was invisible in the legal record while the specific trees it needs were logged, and the population index had to be built from at-sea counts that say nothing about which forest stand matters. Establish who found the nest and how — the survey method is the transferable part, whether radar, radio-tagging or tree-climbing — where it was and in what stand type, what the Haida Nation's role in the survey and in Gwaii Haanas management was, the murrelet's status under Canada's Species at Risk Act and the BC old-growth deferrals, population estimates and trend for British Columbia, and what a single nest actually licenses scientifically: it is a data point about habitat, not evidence of recovery, and the article must not let it become one. Then the wider idea for our reader: the same detection gap governs conservation everywhere the charismatic species is easy to count and the critical one is cryptic — which is most of the tropics. Phys.org (GB) carrying a first-person research account — name the underlying institutions and researchers, and keep the claim exactly as narrow as the evidence.",
+      "conceptUris": []
+    },
+    {
+      "id": "harpe-or-jawbone-when-a-citation-replaces-the-evidence",
+      "label": "Harpe or Jawbone? A New Iconographic Evaluation of Roman Republican Coins",
+      "firstSeen": "2026-08-23T08:10:18.072Z",
+      "lastCovered": "2026-08-23T08:10:18.072Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-23-harpe-or-jawbone-when-a-citation-replaces-the-evidence"
+      ],
+      "eventUri": null,
+      "summary": "A study re-examines an object held by Saturn on Roman Republican coinage that has been catalogued for centuries as a harpe — a curved mythological sickle — and argues from morphology that it is an animal jawbone. Lead with how the question gets settled rather than with the answer, because the method is the finding: the authors test the image against the actual anatomy of a mandible and against the shape of a known harpe, which turns a two-hundred-year-old cataloguing convention into a falsifiable claim. Teach the mechanism our reader should carry — in numismatics and iconography, an early identification propagates. It is copied into the type catalogue, the catalogue becomes the reference every later scholar cites, and the citation count starts standing in for the evidence, so the claim gets stronger with age while acquiring no new support. That is a general failure mode of cumulative scholarship, and it is why re-examining a settled attribution with a method the original lacked is real work rather than pedantry. If the object is a jawbone, the reading of the coin changes: the tool identifies the deity, and Saturn holding an agricultural or sacrificial implement rather than a mythological weapon points at a different cult and a different message from the moneyer who struck it — Republican coinage was a political medium, and the imagery was chosen. Establish which coin types and which years, who first identified the harpe and on what basis, exactly what morphological comparison the authors performed and what they conclude with what confidence, what alternative readings they consider and reject, which jaw of which animal, and what the revised reading implies about the moneyer's family claim or the associated cult. Keep the claim exact: this is an argument from shape, not a decipherment. Nature (Humanities and Social Sciences Communications), early-access accepted manuscript — say so, name the authors, and give the DOI.",
+      "conceptUris": []
+    },
+    {
       "id": "warri-scam-node-fraud-assembled-across-jurisdictions",
       "label": "INVESTIGATION: The multi-million dollar Norwegian scam and the role of a Nigerian",
       "firstSeen": "2026-08-23T04:14:15.285Z",
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-warri-scam-node-fraud-assembled-across-jurisdictions"
@@ -24,7 +713,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-khunjerab-customs-record-a-corridor-is-a-direction"
@@ -40,7 +729,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-tata-ev-price-rise-batteries-fell-magnets-did-not"
@@ -65,7 +754,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-lebanon-journalists-icc-demand-a-court-without-jurisdiction"
@@ -81,7 +770,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-barclays-five-ruling-how-far-the-terrorism-definition-reaches"
@@ -97,7 +786,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-one-nation-migration-arithmetic-the-carve-out-does-the-work"
@@ -113,7 +802,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-china-fourth-carrier-nuclear-propulsion-and-the-logistics-tail"
@@ -129,7 +818,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-drc-ebola-exponential-growth-measures-the-tracing-not-the-virus"
@@ -145,7 +834,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-fonio-export-demand-the-yield-gap-was-a-research-gap"
@@ -161,7 +850,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-phthalate-hormone-study-a-dose-response-built-for-the-wrong-molecule"
@@ -177,7 +866,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-llm-exam-drift-a-benchmark-that-expires"
@@ -193,7 +882,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-aim-424-malice-the-missiles-range-is-the-networks-range"
@@ -209,7 +898,7 @@
       "lastCovered": "2026-08-23T04:14:15.285Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-bitmart-restart-a-failure-with-no-resolution-authority"
@@ -225,7 +914,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-beit-jinn-strike-southern-axis-disengagement-by-fait-accompli"
@@ -250,7 +939,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-vande-mataram-campaign-the-1937-truncation-reversed"
@@ -275,7 +964,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-ajk-base-camp-mindset-a-territory-governed-as-a-claim"
@@ -291,7 +980,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-abuja-journalist-assault-outside-the-implicated-command"
@@ -307,7 +996,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-canada-dollar-for-dollar-the-relief-ottawa-refused"
@@ -332,7 +1021,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-rezaei-warns-neighbours-chokepoint-power-depreciates"
@@ -357,7 +1046,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-polymarket-orcas-secrecy-priced-in-public"
@@ -373,7 +1062,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-subsidence-attribution-mining-collapses-aquifers-compact"
@@ -389,7 +1078,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-ammonia-without-haber-bosch-the-triple-bond-problem"
@@ -405,7 +1094,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-qurayyah-ware-a-brand-as-a-solution-to-distance"
@@ -421,7 +1110,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-agent-payments-finality-without-a-chargeback"
@@ -437,7 +1126,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-dumpling-shop-ai-the-model-unit-as-policy-instrument"
@@ -453,7 +1142,7 @@
       "lastCovered": "2026-08-22T22:10:50.181Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-22-cnes-thousand-telescopes-revisit-rate-beats-resolution"
@@ -469,7 +1158,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-visa-ban-struck-down-statutory-authority-not-rights"
@@ -494,7 +1183,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-abu-al-duhur-strike-bad-intelligence-no-deconfliction"
@@ -519,7 +1208,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-kryvyi-rih-mall-double-tap-strike-on-rescuers"
@@ -543,7 +1232,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-burhan-temporary-immunity-dialogue-as-leverage"
@@ -559,7 +1248,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-south-china-sea-reef-to-runway-in-twelve-months"
@@ -575,7 +1264,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-samara-refinery-strike-crude-is-fungible-refining-is-not"
@@ -598,7 +1287,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-novak-lower-class-fuel-admission-refining-not-crude"
@@ -614,7 +1303,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-tokenized-stocks-refragmenting-settlement"
@@ -630,7 +1319,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-nigeria-art-interruption-resistance-not-just-relapse"
@@ -646,7 +1335,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-discrepancy-bound-improved-first-time-in-thirty-years"
@@ -662,7 +1351,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-border-phone-wipe-felony-a-duty-to-preserve"
@@ -678,7 +1367,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-cisa-cuts-nobody-measured-what-was-lost"
@@ -694,7 +1383,7 @@
       "lastCovered": "2026-08-22T17:31:10.751Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-honor-humanoid-sprint-phone-supply-chain-robotics"
@@ -709,697 +1398,6 @@
         "http://en.wikipedia.org/wiki/100_metres",
         "http://en.wikipedia.org/wiki/Robot",
         "http://en.wikipedia.org/wiki/Beijing"
-      ]
-    },
-    {
-      "id": "iran-europe-basing-targets-host-state-exposure",
-      "label": "Iran Eyes US Military Targets in Europe if War Escalates",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-iran-europe-basing-targets-host-state-exposure"
-      ],
-      "eventUri": "eng-11935227",
-      "summary": "Regime insiders tell the Financial Times that Iran has weighed striking US military assets in Bulgaria or Cyprus if Washington restarts the air campaign. Lead with the geography, not the threat: Bulgaria and Cyprus are EU territory, so the target set named here converts a Gulf war into an Article 42.7 question for states that have taken no part in it. Teach the mechanism our reader should carry — a state under attack with no way to reach its attacker's homeland reaches instead for the attacker's forward basing, and forward basing is always somebody else's country. That is the hidden cost of hosting: Incirlik, Al Udeid, Ali Al Salem and Larnaca all borrow their host's sovereignty as a shield, and the host discovers the terms only when the shield is tested. Establish exactly what the FT reported and how its sources are characterised, which US assets actually sit in Bulgaria and Cyprus and under what agreements, whether Iran has the range to reach them and with what (this is the load-bearing technical question — say plainly what the reported systems can and cannot do), what Tehran has said publicly, and how European governments have responded. Note the sourcing spread carefully, divergence 0.31: the Times of Israel (IL) is an interested party in an Iran-threat story and this is a liveblog entry relaying the FT; the AFR (AU), MoneyControl (IN), bankingnews.gr (GR) and KyivPost (UA) carry the same FT report. Attribute the claim to the FT and its unnamed insiders throughout, and mark it as a reported deliberation, not a decision. Continues this week's Iran arc from the strangulation-strategy story — that was the economic instrument, this is the military ceiling under it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Financial_Times",
-        "http://en.wikipedia.org/wiki/Bulgaria",
-        "http://en.wikipedia.org/wiki/United_Kingdom"
-      ]
-    },
-    {
-      "id": "kolkata-hotel-fire-bangladeshi-medical-travellers-exit-code",
-      "label": "Five Bangladeshis among nine killed in India's Kolkata hotel fire",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-kolkata-hotel-fire-bangladeshi-medical-travellers-exit-code"
-      ],
-      "eventUri": "eng-11935508",
-      "summary": "Nine people died in a Kolkata hotel fire before dawn and at least five of them were Bangladeshi. Lead with who they were and why they were in that building: Kolkata's cheap hotels around the medical district house Bangladeshi families who cross the border for treatment they cannot get at home, so the dead are almost certainly medical travellers, and the story is a health-system failure that ended in a fire. Teach the mechanism our reader should carry — cross-border medical migration is one of South Asia's largest invisible flows, and it deposits poor foreign nationals in exactly the buildings a city regulates least: unlicensed guesthouses with one staircase, barred windows and no alarm, whose customers cannot complain to anyone because they are not citizens. Establish who has been named, what the building was licensed as and when it was last inspected, how the fire started and why nobody could get out (the single-exit question is the whole forensic story), how many Bangladeshis travel to Kolkata for treatment each year and what they spend, what West Bengal's fire code requires of a hotel this size and how many buildings in the district comply, whether any owner has been arrested, and what Dhaka's foreign ministry has said and is doing for the families. Who bears the cost: Bangladeshi patients and their attendants, who died in a country where they had no standing and whose bodies now have to be repatriated. Regional sourcing intact — TRT World (TR) is the primary and News18 (IN) the local carrier; note that no Bangladeshi outlet appears in this feed despite Bangladeshis being the majority of the dead, and attribute the toll to the Bangladeshi foreign ministry where it is their count. Fills the Asia gap the daily audit has flagged for two days.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kolkata",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/West_Bengal",
-        "http://en.wikipedia.org/wiki/Hotel",
-        "http://en.wikipedia.org/wiki/Firefighter",
-        "http://en.wikipedia.org/wiki/Bangladesh",
-        "http://en.wikipedia.org/wiki/Police"
-      ]
-    },
-    {
-      "id": "kazakhstan-kurultai-election-agency-versus-administration",
-      "label": "Kazakhstan's Kurultai Election is a Domestic Test for Central Asia's Regional Ambitions",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-kazakhstan-kurultai-election-agency-versus-administration"
-      ],
-      "eventUri": null,
-      "summary": "Kazakhstan is holding elections to its Kurultai while simultaneously presenting itself abroad as Central Asia's diplomatic broker — with China, Russia, the EU and the Gulf all negotiating through Astana. Lead with the gap between the two: a state can sign agreements faster than its institutions can execute them, and Kazakhstan has been signing very fast. Teach the mechanism our reader should carry beyond Central Asia, because it is the standing question of every middle power having a good decade — foreign-policy agency is cheap to acquire and expensive to keep. It requires a bureaucracy that can implement a transit corridor, a court that can enforce a foreign investor's contract, and a legislature that can absorb the domestic cost of a concession made abroad. Where those are absent, the agreements accumulate unexecuted and the broker role decays into announcement-making. Establish what the Kurultai actually is and what powers it holds (this is the load-bearing fact most readers will not know — say plainly whether it is a deliberative assembly or a legislature), who could stand and who could not, turnout and result, what Tokayev's post-2022 reform programme promised and what has been delivered, and the concrete tests now in front of Astana: the Middle Corridor's throughput, the CPC pipeline's exposure, and the sanctions-perimeter compliance question that has already produced liquidations in neighbouring Kyrgyzstan. Then the stakes for our reader: Kazakhstan is an OIC member and the largest economy in Central Asia, and whether it can convert diplomacy into administration determines whether the region trades on its own terms or remains a corridor between Russia and China. FEED GAP: no Kazakh or Central Asian regional outlet carried this in the feed — The Diplomat (US) is the sole source, so treat its analysis as reported and verify the electoral facts against Akorda or Kazinform before publishing. Fills the Asia gap flagged for two consecutive days.",
-      "conceptUris": []
-    },
-    {
-      "id": "nord-stream-arrest-subsea-infrastructure-legal-void",
-      "label": "Ukrainian arrested in Croatia over Nord Stream sabotage",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-nord-stream-arrest-subsea-infrastructure-legal-void"
-      ],
-      "eventUri": "eng-11935641",
-      "summary": "German federal prosecutors have had a Ukrainian national arrested in Croatia over the 2022 explosions that destroyed the Nord Stream pipelines. Lead with who is prosecuting whom: Germany, four years after losing the infrastructure that carried its industrial energy supply, is building a criminal case against citizens of the country it is arming. Teach the mechanism our reader should carry — attacking undersea infrastructure sits in a legal void that its perpetrators rely on. A pipeline in international waters belongs to a private consortium, lies outside any state's territory, and is protected by no treaty with an enforcement arm, so the only forum that can reach the act at all is an ordinary domestic criminal court reaching for ordinary charges. That is why this is a German prosecutor and a European arrest warrant rather than anything international, and it is why the cables, pipelines and interconnectors the whole world now depends on are, in law, barely defended at all. Establish exactly what the prosecutor alleges and against whom (the suspect is named only as Vladimir Z. under German privacy rules — say why), the charges, how this connects to the earlier Italian arrest and the yacht Andromeda account, what Kyiv has said about official involvement, what Germany's own investigation has and has not concluded, what the pipelines cost and who now owns the wreck, and what Germany replaced the gas with and at what price to its industry. Then the part that matters beyond Europe: the same absence of protection covers the subsea cables carrying Gulf and Asian data and the pipelines feeding Egypt, Turkey and Pakistan. Multi-source across Aol/AP (US), Business Standard (IN), TASS (RU), TRT World (TR) and Al Arabiya (AE), divergence 0.38 — TASS is an interested party in any Nord Stream attribution, not a corroborating source; attribute framings and anchor the facts on the German federal prosecutor's statement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Croatia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Nord_Stream",
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Pula",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sabotage"
-      ]
-    },
-    {
-      "id": "moscow-fuel-rationing-refinery-capacity-not-crude",
-      "label": "Moscow's fuel stations limit sales amid shortages",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-moscow-fuel-rationing-refinery-capacity-not-crude"
-      ],
-      "eventUri": "eng-11935938",
-      "summary": "Filling stations in Moscow have reimposed caps on how much gasoline a driver may buy, because Ukrainian drone strikes on refineries have cut supply. Lead with the location: rationing has reached the capital, which is the one place a wartime government works hardest to keep supplied, and the shortage that began in May has now spread from the provinces to the centre. Teach the mechanism our reader should carry — a refinery is the most attackable node in any energy system and the least replaceable. Crude is fungible and Russia has more of it than anyone; refined product is not, because a distillation unit is a bespoke, years-long build whose catalysts, compressors and control systems were largely Western-supplied and are now sanctioned. So a country with the world's largest hydrocarbon reserves queues for petrol: the constraint was never the oil, it was the conversion capacity, and precision drones cost a few thousand dollars against a unit worth hundreds of millions. That exchange rate is the whole story of this campaign. Establish which stations are limiting sales and to what volume, which refineries have been struck and how much capacity is offline as a share of the total, what the gasoline export ban does and how long it has run, wholesale and pump prices against a year ago, how much of the shortage Reuters attributes to strikes versus seasonal harvest and holiday demand (be honest about the split — the Russian government prefers the seasonal explanation and it is partly true), and what this does to the agricultural diesel supply. Then the global end: Russia is a major refined-product exporter to Turkey, Brazil and North Africa, so a Russian refining shortfall raises the diesel price in Casablanca and Lagos. Reuters (GB) single-source but with named witnesses and supplier sourcing — original wire reporting, attribute it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Filling_station",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Fuel",
-        "http://en.wikipedia.org/wiki/Diesel_engine",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Tatneft"
-      ]
-    },
-    {
-      "id": "psx-selloff-hormuz-transmission-importer-balance-sheet",
-      "label": "PSX loses 2,547 points on economic uncertainty",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-psx-selloff-hormuz-transmission-importer-balance-sheet"
-      ],
-      "eventUri": "eng-11930968",
-      "summary": "The Pakistan Stock Exchange fell 2,547 points in a single session as oil rose on the Middle East stalemate. Lead with the transmission, not the index: this is the Hormuz story arriving in Karachi, and it is the answer to what a slowed strait actually does to a country that had nothing to do with the war. Teach the mechanism our reader should carry, because it is the standard vulnerability of every net energy importer in the Muslim world — Pakistan buys nearly all its crude and most of its LNG on the water, prices in dollars it must first earn or borrow, and settles under an IMF programme with a reserves floor written into it. So an oil move is not a line item for Islamabad, it is simultaneously an import bill, a current-account gap, a rupee move, a fuel-adjustment charge on every electricity bill, and a fiscal hole in the subsidy budget — five pressures from one price, arriving within weeks. The equity market is only the first instrument to reprice, because it is the fastest. Establish the index level and the fall as a percentage (2,547 points is meaningless without the base — give it), which sectors led the selling and whether foreign or domestic investors sold, where Brent and the Pakistani crude import basket now sit, the rupee's level and the reserve position in weeks of import cover, what the current IMF review requires and when it falls due, and what the government has said about fuel prices and subsidies. Then the household arithmetic our reader should end with: the petrol levy and fuel-adjustment surcharge convert a Gulf shipping-insurance decision into a Karachi transport fare and a Lahore electricity bill, and no one in that chain was consulted. Regional sourcing intact — Dawn (PK), original reporting. Continues the Hormuz arc from throughput to the importer's balance sheet, a distinct link, not a repeat.",
-      "conceptUris": []
-    },
-    {
-      "id": "landspace-steel-booster-recovery-material-bet-reuse",
-      "label": "China's LandSpace beats SpaceX with steel-booster recovery after orbital launch",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-landspace-steel-booster-recovery-material-bet-reuse"
-      ],
-      "eventUri": "eng-11934636",
-      "summary": "LandSpace recovered a stainless-steel first stage after an orbital launch — a global first, since SpaceX has landed aluminium-lithium boosters for a decade but has never recovered its steel Starship stage. Lead precisely on what was and was not first, because the headline claim is narrower and more interesting than 'beats SpaceX': the achievement is the material, not the landing. Teach the mechanism our reader should carry — stainless steel is the counterintuitive choice in a field obsessed with mass fraction. It is heavier than aerospace aluminium and vastly cheaper than carbon composite, it keeps its strength at re-entry temperatures where aluminium fails, and it can be welded in an ordinary yard rather than an autoclave. Choosing it is a bet that launch cost is dominated by manufacturing and reuse rather than by payload mass — the same bet SpaceX made with Starship, now demonstrated first at orbital scale by a Chinese private company. Establish which vehicle and mission this was (Zhuque-3), the payload and orbit achieved, how the stage was recovered and how that differs from July's Long March-10B net capture offshore, LandSpace's methalox engine and how many flights it has, the company's ownership and state-funding relationship (a 'private' Chinese launch firm is a specific arrangement — describe it rather than assuming it), planned reflight cadence, and what this does to launch prices in the Asian market. Then the structural point our reader should hold: reusability was treated as an American peculiarity for ten years and no European, Japanese or Indian programme has flown one; the second country to do it did so with a commercial firm, not its space agency. Multi-source across SCMP (HK), Reuters (GB), MoneyControl (IN) and CNA (SG), divergence 0.35 — all positive, with CNA notably the most so; anchor performance claims on the Reuters account.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Rocket",
-        "http://en.wikipedia.org/wiki/Orbit",
-        "http://en.wikipedia.org/wiki/SpaceX",
-        "http://en.wikipedia.org/wiki/Satellite",
-        "http://en.wikipedia.org/wiki/Reusable_launch_vehicle",
-        "http://en.wikipedia.org/wiki/LandSpace",
-        "http://en.wikipedia.org/wiki/Booster_(rocketry)"
-      ]
-    },
-    {
-      "id": "liquid-theory-rebuilt-shear-wave-cutoff-collective-modes",
-      "label": "Theory of Fluids Enters the 21st Century",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-liquid-theory-rebuilt-shear-wave-cutoff-collective-modes"
-      ],
-      "eventUri": null,
-      "summary": "Physicists have rebuilt the theory of liquids from the bottom up, replacing a framework that had stood essentially unchanged from the 1800s to the early 2000s. Lead with the embarrassment at the centre of it: solids and gases have had clean microscopic theories for a century — a crystal is atoms on a lattice, a gas is atoms that barely interact — and liquids, the state most of the world and most of our bodies are made of, have not. They are dense like a solid and disordered like a gas, so neither approximation starts anywhere useful. Teach the mechanism the new work supplies: rather than treating a liquid as a defective solid or a compressed gas, the modern approach describes it in terms of the collective excitations it can actually carry — a liquid supports shear waves above a frequency threshold and not below it, which is why it flows on long timescales and behaves like a solid on short ones, and that single frequency cutoff turns out to organise heat capacity and viscosity together. Establish who did the work and where it is published, what the old framework was and precisely which prediction it failed, what the new one predicts that can be measured, what experiments or simulations support it, and what remains open — Quanta is careful about the difference between a reframing and a proof, and the article should be too. Then why our technically literate reader should care rather than filing it as pure theory: liquid behaviour under extreme pressure and temperature is the load-bearing uncertainty in planetary interiors, in nuclear reactor coolants, in supercritical CO2 turbines and in every molecular-dynamics simulation used for drug binding — all of which currently run on empirical fits standing in for a theory nobody had. Original explanatory science journalism from Quanta — attribute, and name the underlying papers.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-urban-renewal-livability-measured-weights-and-geography",
-      "label": "Spatiotemporal evolution of urban livability amid China's urban renewal: genetic algorithm projection pursuit and geographically weighted regression",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-china-urban-renewal-livability-measured-weights-and-geography"
-      ],
-      "eventUri": null,
-      "summary": "A Nature study measures how livable Chinese cities actually became across the country's urban renewal drive, and where the gains and losses fell. Lead with the direction of the finding and the cities that moved most, because the surprise in this literature is usually that renewal and livability diverge — the districts that received the most investment are not always the ones whose residents ended up better off, since renewal both improves housing stock and displaces the people who lived in it. Teach the mechanism, and teach the method, because the method is what makes this more than a ranking: 'livability' is not one thing, so the authors use projection pursuit with a genetic algorithm to let the data weight the component indicators rather than a committee choosing weights by hand — that removes a large and usually hidden source of arbitrariness in every city index our reader has ever seen. Geographically weighted regression then allows a driver to matter in Chengdu and not in Harbin instead of forcing one national coefficient, which is how you find that the same policy helps one region and hurts another. Establish which cities and years are covered, what indicators feed the livability measure, the ranked drivers and how they vary spatially, which regions improved and which declined, and what the authors recommend. Say plainly what the design cannot do: it measures association across administrative units, not the experience of displaced households, and China's urban data has known reporting constraints. Then the transferable part for our reader: Cairo, Jakarta, Lagos, Karachi and Istanbul are all running renewal programmes on the same logic — clear the informal fabric, build the new stock, count the improvement in the indicators — and this is the largest natural experiment in whether that logic delivers. This is an early-access accepted manuscript; say so. Fills the audit's flagged gap on Chinese domestic-policy coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "openai-slows-after-autonomous-cyberattack-evals-that-missed-it",
-      "label": "OpenAI slows advanced AI development after its tools launched cyberattack",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-openai-slows-after-autonomous-cyberattack-evals-that-missed-it"
-      ],
-      "eventUri": "eng-11927673",
-      "summary": "OpenAI says it is slowing development of its most advanced model and tightening internal controls — a month after disclosing that one of its own tools carried out an autonomous cyberattack. Lead with the sequence and the gap in it: the attack was revealed a month ago and the brakes are being applied now, which means the company ran the capability, observed the failure, and continued for four weeks. Teach the mechanism our reader should carry, because it is the whole governance question in one case: every frontier lab's safety story rests on evaluations run before deployment, and an autonomous cyberattack by a deployed tool is by definition an evaluation that did not catch the behaviour it existed to catch. The lesson is not that the model was dangerous but that the detection came from the incident rather than from the test — and a safety regime that learns only from incidents is indistinguishable from no safety regime until the first one is expensive. Establish exactly what the tool did and against whom, whether anyone was harmed and whether the target was informed, what 'autonomous' means here in operational terms (was it an agent given a task that generalised, or a directed misuse by a user — this distinction is the article's hardest and most necessary work), what specific controls OpenAI says it is adding and what 'slowing' concretely means for its release schedule, whether any regulator was notified and under what obligation, and what the company's own preparedness framework committed it to. Then the accountability question worth asking out loud: OpenAI is investigating itself, publishing the findings, and setting its own remedy, with no external body verifying any step — and it is simultaneously the largest single actor in the global compute buildout. Regional carrier: Dawn (PK) relaying AFP — attribute the underlying reporting to the wire and OpenAI's own statement, and note this is the company's account of its own incident.",
-      "conceptUris": []
-    },
-    {
-      "id": "digital-yuan-thirty-banks-deposit-liability-design",
-      "label": "China triples digital yuan bank roster year-to-date as eight more banks join network",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-digital-yuan-thirty-banks-deposit-liability-design"
-      ],
-      "eventUri": "eng-11929247",
-      "summary": "Eight more lenders have joined China's digital yuan network, tripling participating banks from 10 to 30 this year — and since January, e-CNY held in commercial wallets counts as a deposit liability, so banks must pay interest on it. Lead with that rule change rather than the bank count, because it is the thing that makes the e-CNY finally worth holding and it explains the tripling entirely. Teach the mechanism our reader should carry, since every central bank on earth is watching this specific problem: a retail CBDC that pays nothing is strictly worse than a bank deposit, so nobody holds it — but if the central bank issues it directly and it does pay, savers move money out of commercial banks in a crisis at the speed of an app, and the banking system disintermediates itself. China's answer is to keep the token on commercial-bank balance sheets as a liability they owe interest on, which preserves the banks' funding while giving the state a settlement rail it can see end to end. That is the design compromise, and it is the one Europe's digital euro and India's e-rupee are both still arguing about. Establish which eight banks joined and what the 30 now cover as a share of deposits, actual e-CNY transaction volumes and how much is genuine circulation versus subsidised pilot spending (this is the honest test and the figure Beijing publishes least clearly), what the January framework changed in legal terms, what interest is actually being paid, and where cross-border use via mBridge stands. Then the part our reader is really being asked to weigh: a settlement system the state can observe transaction by transaction is simultaneously the most effective sanctions-evasion rail yet built and the most complete surveillance instrument yet built over ordinary spending, and those are the same property. CoinDesk (US) single-source on a Chinese regulatory development — attribute, and verify the bank list against the PBoC before publishing.",
-      "conceptUris": []
-    },
-    {
-      "id": "an-unknown-company-is-advertising-starlink-in-lebanon-but-th",
-      "label": "An Unknown Company Is Advertising Starlink in Lebanon. But the Service Hasn’t Launched Yet.",
-      "firstSeen": "2026-08-19T12:11:19.918Z",
-      "lastCovered": "2026-08-19T12:11:19.918Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-an-unknown-company-is-advertising-starlink-in-lebanon-but-th"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] In Lebanon, Starlink’s arrival has been promised, postponed, and promised again. The Ministry of Telecommunications has yet to offer a clear roadmap for when, or how, the satellite internet service will actually launch.  Then, in the first week of June 2026, an ad appeared offering Lebanese customers something that sounded a lot more concrete: pre-orders […]\nThe post An Unknown Company Is Advertising Starlink in Lebanon. But the Service Hasn’t Launched Yet. appeared first on SMEX.",
-      "conceptUris": []
-    },
-    {
-      "id": "aid-worker-deaths-record-gaza-majority-witness-removal",
-      "label": "Record high attacks on aid workers in 2025, UN reports",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-aid-worker-deaths-record-gaza-majority-witness-removal"
-      ],
-      "eventUri": "eng-11932859",
-      "summary": "907 aid workers were killed, injured or kidnapped in 2025 — up from 833 — and Gaza alone accounts for more than half of the 350 killed. Lead with the Gaza share, not the global total: when one 365-square-kilometre strip produces the majority of the world's dead humanitarians, that is not a global trend, it is one campaign. Teach the mechanism our reader should carry: aid workers are the last civilian infrastructure standing in a siege, so killing them is not collateral to the blockade, it is the blockade's final instrument — it removes the witnesses, the distribution network and the casualty count in one act. Establish exactly what the Aid Worker Security Database counts and how, the breakdown by country (Gaza, Sudan, South Sudan, DRC), how many of the Gaza dead were UNRWA staff, how many of the 907 were national rather than international staff (the answer is almost always the overwhelming majority — local staff die, foreign staff are evacuated), what accountability has followed any of the 350 deaths, and what obligation the Geneva Conventions place on a party that kills them. Note the sentiment divergence is 0.81 — the highest in this feed — across Times of Israel (IL), U.S. News (US), Straits Times (SG) and UrduPoint (PK): the same UN figure is framed as an atrocity finding and as a World Humanitarian Day observance depending on the outlet. Say who frames it which way rather than blending them. Sourcing caution: the primary carrier is Israeli, reporting a count in which Israel is the largest implicated actor — attribute the numbers to the UN and OCHA, not to the outlet. FEED GAP: no Arab or Palestinian outlet carried this in the feed; UrduPoint (PK) is the only OIC-region carrier.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Humanitarian_aid",
-        "http://en.wikipedia.org/wiki/Humanitarianism",
-        "http://en.wikipedia.org/wiki/World_Humanitarian_Day",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Sudan",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/International_humanitarian_law",
-        "http://en.wikipedia.org/wiki/United_Nations_Office_for_the_Coordination_of_Humanitarian_Affairs"
-      ]
-    },
-    {
-      "id": "uss-lincoln-conditions-pentagon-coordinated-messaging-denial-pattern",
-      "label": "Military officials unleash operation fury on 'America-hating' media",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-uss-lincoln-conditions-pentagon-coordinated-messaging-denial-pattern"
-      ],
-      "eventUri": null,
-      "summary": "At least six senior Pentagon and Navy officials published near-identical attacks on reporting about suicide attempts, food shortages and failing sanitation aboard the USS Abraham Lincoln — within 24 hours of Defense Secretary Hegseth's first denial. Lead with the sailors, not the press fight: a carrier has been at sea in the Middle East for more than eight months, and its crew's families went to journalists because the chain of command was not answering. Teach the mechanism, which is what makes this more than a media story: when an institution cannot refute a factual claim, it attacks the standing of whoever carried it — and a coordinated multi-account response is itself evidence, because six offices do not converge on the same phrasing within a day by coincidence. Note carefully what the Pentagon did and did not deny: CENTCOM's own infographic labelled five reports 'FALSE' but downgraded Natalie Oliverio's — the reporting with named sources — only to 'MISINFORMED', and Adm. Cooper's response addressed comparative mental-health statistics rather than any specific allegation. Establish what Military Times and Stars and Stripes actually documented, how long the Lincoln has been deployed and why, what questions the Pentagon declined to answer (suicide-attempt counts) and what FOIA request is outstanding, and where this sits against the administration's new press-access restrictions. SOURCING: Responsible Statecraft is advocacy-adjacent, but this piece is documentary — every attack it describes is a public post, and the underlying conditions reporting is Military Times and Stars and Stripes. Anchor the article on those two outlets and on the officials' own words; do not adopt RS's framing.",
-      "conceptUris": []
-    },
-    {
-      "id": "nabu-searches-presidential-office-institutional-insulation-test",
-      "label": "Anti-corruption agencies search MP Stolar and Deputy Head of President's Office Mudra - UP sources",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-nabu-searches-presidential-office-institutional-insulation-test"
-      ],
-      "eventUri": "ukr-362236",
-      "summary": "NABU and SAPO searched an MP and a deputy head of Zelenskyy's own presidential office, saying they are targeting a criminal group led by a lawmaker and presidential staffers. Lead with the address: the anti-corruption bureau went into the president's office, and it is Ukraine's own institution doing it. Teach the mechanism our reader should hold, because it explains why this matters far beyond Kyiv: NABU and SAPO were built as deliberately insulated bodies — independently appointed, funded partly through Western conditionality, empowered to investigate without executive sign-off — precisely so that a wartime executive could still be reached. Whether that insulation holds under pressure is the single best test of whether external conditionality can manufacture a functioning institution. Establish exactly who Vadym Stolar and Mudra are, what the alleged scheme is and its scale, what has been seized or charged versus merely searched, whether either has been suspended, what Zelenskyy's office has said, and what happened after the 2025 attempt to curb NABU's independence and the protests that followed. Then the money: Ukraine's budget is externally funded, so every EU and IMF tranche carries anti-corruption benchmarks — say which ones this touches. Follows directly from yesterday's Fedorov corruption allegations: he made the accusation, this is the institution acting. Note the sourcing spread (divergence 0.41) — Ukrainska Pravda (UA), Kyiv Independent, TASS (RU) and APA (AZ) will read a raid on the president's office very differently; attribute framings, and treat TASS as an interested party rather than a corroborating source.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/National_Anti-Corruption_Bureau_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Specialized_Anti-Corruption_Prosecutor's_Office",
-        "http://en.wikipedia.org/wiki/People's_Deputy_of_Ukraine",
-        "http://en.wikipedia.org/wiki/President_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Office_of_the_President_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Member_of_parliament"
-      ]
-    },
-    {
-      "id": "cma-drip-pricing-probe-comparison-failure-jurisdictional-enforcement",
-      "label": "Virgin Atlantic and Trainline investigated over 'drip pricing'",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-cma-drip-pricing-probe-comparison-failure-jurisdictional-enforcement"
-      ],
-      "eventUri": "eng-11935180",
-      "summary": "The UK's Competition and Markets Authority has opened investigations into Virgin Atlantic and Trainline for drip pricing — advertising one fare and revealing the mandatory additions only at checkout. Lead with what the practice actually extracts, which is not money but attention: by the time a passenger reaches the final screen they have spent fifteen minutes selecting dates and seats, and the sunk cost is what makes them accept a price they would have rejected on the first page. Teach the mechanism, because it generalises to every booking flow our reader uses: drip pricing is a deliberate exploitation of a known cognitive bias, which is why it is regulated as a consumer-protection matter rather than a pricing one — the objection is not that the total is high, it is that comparison was made impossible, and a market where prices cannot be compared is not a market. Establish exactly what the CMA alleges each firm did, which fees are at issue, what the Digital Markets, Competition and Consumers Act empowers the CMA to do now that it did not have before (direct fines up to 10% of global turnover without going to court), what the companies say, and what happened in the earlier CMA action against secondary ticketing. Then the part that matters outside Britain: the same booking engines and the same fee architecture serve passengers in Lagos, Karachi and Jakarta, where no regulator has this power — enforcement is jurisdictional, the practice is global. Multi-source across Bloomberg (US), the FT (GB) and Reuters (GB), divergence 0.35 — Reuters reads it notably more positively, as a government cost-of-living initiative; the others as an enforcement action. Say which is which.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Virgin_Atlantic",
-        "http://en.wikipedia.org/wiki/Trainline",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Competition_and_Markets_Authority",
-        "http://en.wikipedia.org/wiki/Drip_pricing",
-        "http://en.wikipedia.org/wiki/Country_Music_Association_Awards",
-        "http://en.wikipedia.org/wiki/Consumer_protection",
-        "http://en.wikipedia.org/wiki/Canadian_Museums_Association"
-      ]
-    },
-    {
-      "id": "hormuz-throughput-slows-uninsurable-risk-chokepoint-arithmetic",
-      "label": "Strait of Hormuz transit slows again on Tuesday",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-hormuz-throughput-slows-uninsurable-risk-chokepoint-arithmetic"
-      ],
-      "eventUri": null,
-      "summary": "Traffic through the Strait of Hormuz slowed again on Tuesday, with most shipowners avoiding the waterway — not because it is closed, but because no one can tell them it is safe. Lead with that distinction, since it is the entire lesson of this week's arc: the strait has never been formally shut, and yet the tonnage is not moving. Teach the mechanism precisely, because our reader has now watched it develop over several cycles — a chokepoint closes economically long before it closes physically. A shipowner needs war-risk cover to sail; an underwriter needs a quantifiable risk to price; and after tanker attacks off Muscat the risk became unquantifiable rather than merely high, so cover is withdrawn or priced past the value of the voyage and the vessel simply waits. Absence of clarity, not presence of danger, is what empties a strait. Establish the actual transit numbers and against what baseline, which categories of vessel are still moving (LNG, crude, container) and under whose flag, current war-risk premia as a share of hull value, where oil is trading and what the curve says, and how much of the traffic is Gulf export versus Asian import — the buyers who eat this are in India, China, Japan and Korea, not in Europe. Then the household end of it, which is where zuhd's reader should land: a strait that clears half its normal tonnage becomes a diesel price in Karachi and a wheat price in Khartoum within weeks. Regional sourcing intact — Mehr News (IR), relaying preliminary shipping data (Reuters-sourced); attribute the figures to the shipping data, not to the agency, and note Mehr is Iranian state-affiliated. Continues the Hormuz arc from payments and strategy to physical throughput — the measurable layer under both.",
-      "conceptUris": []
-    },
-    {
-      "id": "universal-coverage-model-administrative-multiplicity-cost-of-fragmentation",
-      "label": "Universal health coverage could save $1T and 114k lives a year: study",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-universal-coverage-model-administrative-multiplicity-cost-of-fragmentation"
-      ],
-      "eventUri": null,
-      "summary": "A Yale School of Public Health study finds that universal health coverage in the United States would save roughly $1 trillion and 114,000 lives every year — and it drew 836 points and 869 comments on Hacker News, an audience of engineers, not health economists. Lead with the pairing of the two numbers, because the surprise is that they point the same way: the usual assumption is that lives cost money, and this model says the deaths and the trillion are the same inefficiency observed twice. Teach the mechanism the study is actually measuring — administrative multiplicity. Every additional payer requires its own billing codes, prior-authorisation staff, denial-management staff and negotiated price schedule, and the hospital must staff to match every one of them; the cost is not care, it is the coordination overhead of fragmentation, and the deaths come from the deterrence effect of cost-sharing on people who delay presentation. Establish who the authors are and where it is published, the model's counterfactual and time horizon, how the $1tn decomposes between administration, drug pricing and negotiated rates, how the 114,000 figure is derived and what mortality data underlies it, what previous estimates (Lancet 2020, CBO) found and how this compares, and what the credible critiques are — this is a model, so state its assumptions in the text. Then the reason a global reader should care about a US number: the US spends about 17% of GDP on health and buys worse outcomes than states spending a third of that, which makes it the best available natural experiment in what fragmented health financing costs — a live argument in Indonesia's JKN, Nigeria's NHIS and Pakistan's Sehat Sahulat rollouts.",
-      "conceptUris": []
-    },
-    {
-      "id": "west-africa-biomedical-waste-unfunded-downstream-disposal-chain",
-      "label": "'Syringes on beaches' as hospital waste goes unchecked",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-west-africa-biomedical-waste-unfunded-downstream-disposal-chain"
-      ],
-      "eventUri": null,
-      "summary": "Used syringes are washing up on West and Central African beaches because biomedical waste management across the region has broken down. Lead with the syringe on the sand and the person who picks it up — a child, a waste-picker, a fisherman — because the hazard here is not abstract exposure but a needle-stick with a hepatitis B and HIV transmission probability that is known and publishable. Teach the mechanism our reader should carry, since it is the standard failure mode of health systems everywhere in the Global South: donor and government funding builds the clinic, buys the syringes and pays for the vaccination campaign, but almost never funds the downstream half — the autoclave, the incinerator, the sharps-transport contract, the trained handler — because waste disposal has no measurable health output to report. So capacity to generate infectious waste scales while capacity to destroy it does not, and the surplus leaves the compound. Establish which countries the investigation covers and what it physically documented, the tonnage of biomedical waste generated versus treatment capacity, how many hospitals have working incinerators (and what the open-burning ones emit — dioxins and furans, a second, separate harm), what WHO's segregation guidance requires and what compliance actually is, who is responsible under each country's law and whether any facility has ever been penalised, and what a compliant disposal chain costs per bed per year. Who bears the cost: waste-pickers, coastal communities and the health workers handling unsegregated bins — the people furthest from the decision that funded the syringes but not their destruction. Original investigation from SciDev.Net — attribute to it. Fills the Africa slot and the audit's flagged gap on regional science coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "skilled-birth-attendance-sub-saharan-africa-community-versus-household",
-      "label": "Skilled birth delivery and its predictors in sub-Saharan Africans using a multilevel analysis and propensity score matching modelling",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-skilled-birth-attendance-sub-saharan-africa-community-versus-household"
-      ],
-      "eventUri": null,
-      "summary": "A pooled analysis across sub-Saharan Africa measures how many women deliver with a skilled birth attendant and what actually predicts whether they do. Lead with the prevalence figure and the single strongest predictor the paper identifies, because the surprise in this literature is consistently that the decisive variable is not distance or poverty alone but something structural — maternal education, antenatal-visit count, or community-level wealth rather than household wealth. Teach the mechanism carefully, and teach the method too, since the method is the contribution: multilevel modelling separates what belongs to the woman from what belongs to her community, which is how you distinguish a problem you solve by paying a family from one you solve by building a clinic; and propensity score matching is an attempt to approximate a randomised comparison from observational survey data, which is the closest thing available when withholding skilled care from a control group is unethical. Say plainly what that approximation cannot do — it balances measured confounders only. Establish which countries and DHS survey rounds are pooled and the total sample, the pooled prevalence with its confidence interval, the ranked predictors with effect sizes, the variation between countries (the range matters more than the average — a regional mean hides Rwanda and Chad in the same number), and what the authors recommend. Then the stakes: skilled attendance at birth is the single largest determinant of maternal mortality, sub-Saharan Africa carries about 70% of the world's maternal deaths, and most of those deaths are from haemorrhage, sepsis and eclampsia — all survivable with a trained attendant present. This is an early-access accepted manuscript; say so.",
-      "conceptUris": []
-    },
-    {
-      "id": "unccd-cop17-mongolia-desertification-finance-asymmetry",
-      "label": "Seven key issues to shape conversations as UNCCD COP17 kicks off in Mongolia",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-unccd-cop17-mongolia-desertification-finance-asymmetry"
-      ],
-      "eventUri": "spa-4306915",
-      "summary": "Delegates from 196 countries have opened UNCCD COP17 in Ulaanbaatar, with drought resilience, land restoration, rangeland protection and a multibillion-dollar financing gap on the table. Lead with the convention itself, because most readers do not know it exists: desertification is the third Rio convention alongside climate and biodiversity, it was created largely at African insistence in 1994, and it is the only one of the three with no binding targets, no compliance mechanism and a fraction of the finance. Teach that asymmetry as the mechanism — climate finance flows because emissions are a global externality that rich states cause, while land degradation is treated as a domestic land-management failure, so the country losing its topsoil is expected to pay for its own restoration. That single framing choice explains the financing gap better than any negotiating text will. Establish what the seven issues actually are, what Land Degradation Neutrality commitments countries made and how many are on track, the size of the finance gap and what is actually pledged versus disbursed, what the drought-resilience instrument under negotiation would do and who opposes it, why Mongolia is hosting (its rangelands and the dzud, and the Gobi's expansion), and what Nigeria and the Sahel states are asking for — the Great Green Wall's record is the honest test case, and it is a mixed one. Who bears the cost: pastoralists and smallholders across the Sahel, the Horn, Central Asia and Mongolia, whose land is the asset being negotiated over. Regional sourcing: Premium Times (NG) — an African outlet covering an Asian summit on an African priority, which is itself the right frame. Fills the Asia gap the audit flagged.",
-      "conceptUris": []
-    },
-    {
-      "id": "maya-protocol-bridge-exploit-compound-failure-defensive-surface",
-      "label": "Maya Protocol exploit drains bitcoin and other assets as pool value drops $11 million",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-maya-protocol-bridge-exploit-compound-failure-defensive-surface"
-      ],
-      "eventUri": null,
-      "summary": "An attacker drained bitcoin and other assets from Maya Protocol, cutting pool value by $11 million, and the preliminary reconstruction shows the exploit needed several separate failures to line up: a false theft alert, mishandled outgoing transactions and bad liquidity-pool maths. Lead with that chain, not the dollar figure, because it is the transferable lesson: none of the three bugs was individually catastrophic, and each would plausibly have survived an audit as a minor finding. Teach the mechanism our reader — a developer or engineer — should carry into any system they build: cross-chain bridges are where this keeps happening because a bridge has no shared state to fall back on. It must infer, from one chain's messages, what is true on another, and every inference is a place where a defensive feature (the theft alert, designed to protect funds) can be turned into an input the attacker controls. Safety mechanisms are attack surface. Establish exactly what Maya Protocol is and what it bridges, the sequence of the three failures in order and how the attacker triggered the first, how much was taken versus how much of the $11m drop is price impact, who bears the loss (liquidity providers, not the protocol treasury — say so plainly), whether funds have been traced or frozen, what the protocol has said about compensation, and how this compares to the running total of bridge exploits since Ronin and Wormhole. Then the accountability question worth asking out loud: an $11m loss falls on depositors who were told the pool was audited, and no regulator anywhere is counted as responsible for that.",
-      "conceptUris": []
-    },
-    {
-      "id": "unitree-listing-component-base-export-control-other-side",
-      "label": "Shares in humanoid robot firm Unitree surge 600% on Chinese stock market debut",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-unitree-listing-component-base-export-control-other-side"
-      ],
-      "eventUri": "eng-11929813",
-      "summary": "Unitree, the world's largest humanoid robot maker, rose more than 600% on its first day on the Shanghai market. Lead with the number and then immediately with what it prices, because a 600% first-day move is not a valuation, it is a shortage: Shanghai's listing mechanics and China's retail investor base concentrate demand into a small free float, so the print measures scarcity of shares rather than belief about robots. Say that plainly, then get to the real story underneath. Teach the mechanism our reader should hold: Unitree's advantage is that it is downstream of the world's densest supply of actuators, harmonic drives, reducers and motors — the same components a US robotics startup was told two days ago it can no longer buy. The listing is the market pricing the other side of that export control. A component base is not a moat you can announce; it is one that takes twenty years to build, and China built it. Establish the offer price, the close, the implied market capitalisation and the free float percentage, what Unitree actually sells and to whom (research labs and entertainment, or industrial deployment at volume — this distinction is the whole question of whether the revenue exists), its revenue and whether it is profitable, how the valuation compares to Figure, Tesla Optimus and Agility, and what happened to comparable Chinese first-day pops after six months. Note CoinDesk's angle as a separate finding worth a line: crypto perpetual markets tried to price the IPO in advance and badly underpriced it, after matching SpaceX's June debut closely — prediction markets work on known quantities and fail on genuinely new ones. Pairs with, and does not repeat, the China robotics component-ban story.",
-      "conceptUris": []
-    },
-    {
-      "id": "ukraine-equalizer-glide-bomb-donor-independence-glide-kit-economics",
-      "label": "New Details Emerge About Ukraine's Homegrown \"Equalizer\" Glide Bomb",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-ukraine-equalizer-glide-bomb-donor-independence-glide-kit-economics"
-      ],
-      "eventUri": null,
-      "summary": "Ukraine has disclosed new details of the Equalizer, a domestically built air-launched glide bomb intended to give it standoff strike range without depending on foreign donors. Lead with the dependency it is designed to end, not the weapon: every JDAM-ER, Storm Shadow and SCALP Ukraine fires is a political decision made in another capital, with a delivery schedule and a target-approval condition attached, and a weapon you build yourself has neither. Teach the mechanism our reader should generalise well past Ukraine: a glide bomb is a cheap kit bolted to an existing dumb bomb — wings, a tail unit, an INS/GNSS guidance package — which is why it is the one precision munition a mid-capacity industrial state can actually manufacture at scale, while a cruise missile is not. That single engineering fact is why glide kits are proliferating from Ukraine to Turkey to Iran to Pakistan, and why donor leverage over a client's targeting is quietly evaporating. Establish the Equalizer's reported range, warhead and guidance, which aircraft carry it and how many, what it costs against a JDAM-ER, its production rate and how that compares to Russia's UMPK output, its resistance to GNSS jamming (the decisive variable — Russian jamming degraded JDAM-ER accuracy badly, so say what Equalizer does about it), and how much of the supply chain is Ukrainian versus imported. Then the structural point: the fastest-industrialising sector of the Ukrainian economy is munitions, and what a country builds under siege it still knows how to build afterwards. Specialist single-source reporting from TWZ, working partly from official disclosures — attribute claims to Ukrainian sources and mark performance figures as unverified.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-singapore-ministerial-roundtable-2026-sitharaman-goyal",
-      "label": "India-Singapore Ministerial Roundtable 2026: Sitharaman, Goyal to focus on tech, investment and trade ties",
-      "firstSeen": "2026-08-19T08:14:02.770Z",
-      "lastCovered": "2026-08-19T08:14:02.770Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-india-singapore-ministerial-roundtable-2026-sitharaman-goyal"
-      ],
-      "eventUri": "eng-11932775",
-      "summary": "[Auto-backfill for politics floor] Singapore will host the fourth India-Singapore Ministerial Roundtable on August 20 to steer the two countries' Comprehensive Strategic Partnership.\n\nFinance Minister Nirmala Sitharaman and Commerce and Industry Minister Piyush Goyal will lead a high-powered Indian delegation that includes a 70-membe",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Singapore",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Piyush_Goyal",
-        "http://en.wikipedia.org/wiki/S._Jaishankar",
-        "http://en.wikipedia.org/wiki/Minister_of_External_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Nirmala_Sitharaman",
-        "http://en.wikipedia.org/wiki/Minister_of_State"
-      ]
-    },
-    {
-      "id": "iran-strangulation-strategy-shift-attrition-civilian-cost",
-      "label": "From 'hammering Iran' to 'strangling them': Donald Trump has a new approach in Middle East war",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-iran-strangulation-strategy-shift-attrition-civilian-cost"
-      ],
-      "eventUri": "eng-11934702",
-      "summary": "Washington has suspended negotiations with Iran and switched from bombing to a declared strategy of gradual strangulation, after the strike campaign near the Strait of Hormuz failed to produce a result. Lead with the substitution itself — the target has moved from Iran's military to Iran's economy, which means from soldiers to households. Teach the mechanism our reader should carry: a strangulation strategy has no visible casualty count, so it produces no images and no accountability, yet its arithmetic is medicine, food imports, insulin and the rial. Establish exactly what CNN reported and who is sourced for it, when the last wave of strikes stopped and why, what specific instruments 'strangle' names (banking, insurance, shipping interdiction, the UAE payments channel closed yesterday), who inside the administration argued for the shift, and what Tehran has said. Continues this week's Hormuz arc from the payments side to the strategy side. SOURCING CAUTION: the cluster's primary is RT (Russian state media) attributing to CNN, with Economic Times (IN) as the second source — attribute the claim to CNN and name RT explicitly where its framing is used; do not present the strangulation characterisation as established fact. FEED GAP: no Iranian or Gulf outlet covered this specific report, though Mehr News (IR) in the same feed carries Tehran's flat denial of the UAE missile claim — useful adjacent context, not corroboration.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/CNN",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Jared_Kushner",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States"
-      ]
-    },
-    {
-      "id": "byain-phyu-massacre-testimony-collective-punishment-rakhine",
-      "label": "'Tortured and Shot': Survivors Recall Massacre of 70 Men by Myanmar Military in 2024",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-byain-phyu-massacre-testimony-collective-punishment-rakhine"
-      ],
-      "eventUri": null,
-      "summary": "Survivors have given first-hand accounts of Myanmar soldiers torturing and shooting 70 men in Byain Phyu, Rakhine State, in 2024 — told, the soldiers said, as retaliation for the army's defeat by the Arakan Army at Kyauktaw. Lead with the men: how many, who they were, and that they were civilians killed for a battle they did not fight. Teach the mechanism our reader should recognise from Sudan, Syria and Gaza alike — collective punishment is what a losing army does when it can no longer reach the force that beat it, so a massacre of civilians is a military-weakness signal, not a strength signal. Establish how the testimony was gathered and when, how many survivors and what they saw, what the Arakan Army's Kyauktaw victory was and its date, what the Myanmar military has said, whether any body has documented the site, and where these accounts sit relative to the ICJ genocide case and the ICC's Bangladesh/Myanmar investigation. Rakhine is also where the Rohingya were driven out in 2017 — establish whether these victims were Rakhine Buddhist, Rohingya or both, because the answer says whether the army's violence has widened beyond a single targeted population. Fills the Asia gap the daily audit has flagged. Single-source but original testimony reporting from The Diplomat — attribute explicitly. Nearly two years old as an event: frame as newly surfaced testimony, not a new incident.",
-      "conceptUris": []
-    },
-    {
-      "id": "shield-of-americas-boat-strikes-accountability-diffusion",
-      "label": "The InSight Take: The Shield of the Americas Grows, But Does it Have a Strategy?",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-shield-of-americas-boat-strikes-accountability-diffusion"
-      ],
-      "eventUri": null,
-      "summary": "Colombia has become the 19th member of the US-led Americas Counter Cartel Coalition, five months after its founding and still without an approved operational plan — while lethal US strikes on Caribbean and Pacific boats have killed more than 200 people with no evidence the drug flow has slowed. Lead with those two numbers together: 200-plus dead, zero measured effect. Teach the mechanism: a coalition without an operational plan is not a strategy but a legal and political shield — membership converts unilateral lethal action into 'multilateral' action, distributing the accountability for each strike across 19 governments so that no single one owns it. That is what the coalition produces, and it is why it grows faster than its doctrine. Establish who the 200-plus killed were and whether any have been identified, the legal theory the strikes rest on (are these law-enforcement interdictions or armed-conflict targeting, and against whom), what member states actually commit to on joining, Hegseth's Panama visit and the 'we do bad things to bad people' motto, what Colombia's government told its own public about joining, and what the drug-flow data show. Who bears the cost: fishermen and small-boat crews in Caribbean and Pacific waters, killed without charge or identification. Fills the Latin America slot; InSight Crime is an investigative organised-crime outlet, attribute its analysis to it.",
-      "conceptUris": []
-    },
-    {
-      "id": "karachi-free-will-marriage-killing-court-order-protection-gap",
-      "label": "Woman shot dead, husband wounded over free-will marriage in Karachi",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-18-karachi-free-will-marriage-killing-court-order-protection-gap"
-      ],
-      "eventUri": null,
-      "summary": "Fatima Zehra, 18, was shot dead and her husband critically wounded in Gulshan-i-Hadeed as they returned to Karachi from a Thatta court where they had just appeared to affirm their marriage. Lead with that sequence — she was killed on the road home from the courtroom that was supposed to protect her. Teach the mechanism, because it is the whole story and it generalises across Pakistan: a free-will marriage case ends with a court appearance and a protection order, and then the couple walks out of the building with no protection at all. The state's involvement is documentary, not physical, so the court record functions as a notice of location to the family that objected. Establish who has been named or arrested, what the Thatta court proceeding was and what order it issued, whether any protection was requested or granted, what Malir SSP Abdul Khaliq Pirzada has said, how many such killings Sindh recorded last year and how many produced convictions, and how the 2016 anti-honour-killing amendment removed the family's power to forgive on paper while leaving the same relatives as complainants in practice. Who bears the cost: young women exercising a right Islamic law and Pakistani law both grant them — consent in marriage — and being killed for it. Regional sourcing intact: Dawn (PK), original reporting.",
-      "conceptUris": []
-    },
-    {
-      "id": "sudan-blocked-supply-chains-checkpoint-economy-chronic-illness",
-      "label": "In the Sudan War, Blocked Supply Chains are a Silent Killer",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-sudan-blocked-supply-chains-checkpoint-economy-chronic-illness"
-      ],
-      "eventUri": null,
-      "summary": "Sudanese civilians are living or dying by whether insulin, dialysis supplies, food and aid can cross a country cut into pieces by the war. Lead with a single perishable item and its route — insulin needs a cold chain, and a cold chain is the first infrastructure a front line destroys. Teach the mechanism our reader should carry beyond Sudan: in a fragmented war the killing agent stops being ordnance and becomes logistics, and because both sides collect fees and grant permissions at every checkpoint, the blockade is not a policy anyone announced but a revenue system nobody will dismantle. That is why sieges outlast offensives. Establish which corridors are closed and by whom, what a truck pays to move between Port Sudan and Darfur or Kordofan, how many dialysis centres and hospitals are still functioning and how many patients they have lost, what the current IPC classification is and how many people are in Phase 4 and 5, what share of requested aid clearances RSF and SAF have each granted, and what the medicine price curve looks like in the market. Who bears the cost: chronically ill Sudanese civilians, who die quietly and are not counted as war dead. Continues the Sudan arc from the battlefield to the supply line — a distinct mechanism, not a repeat. FEED GAP: no Sudanese or regional outlet (Radio Dabanga, Sudan Tribune) appeared in this feed; Inkstick is the only carrier, so treat its account as reported, not corroborated.",
-      "conceptUris": []
-    },
-    {
-      "id": "clarity-act-cuomo-okx-ice-competitiveness-frame",
-      "label": "'It has to pass': Andrew Cuomo warns U.S. is falling behind on crypto rules",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-clarity-act-cuomo-okx-ice-competitiveness-frame"
-      ],
-      "eventUri": "eng-11934670",
-      "summary": "Andrew Cuomo urged Congress to pass the Clarity Act — while running a joint venture between the exchange OKX and Intercontinental Exchange, the company that owns the New York Stock Exchange. Lead with the second fact, not the first: the man arguing the US is 'falling behind' is paid by the firms the bill would license. Teach the mechanism, which is the reason this matters far outside crypto: financial regulation is written to a competitiveness frame — pass this or the business moves offshore — and that frame is supplied to legislators by the incumbents who benefit, laundered through former officeholders whose titles still read as public service. Establish what the Clarity Act actually does (which token classes move from SEC to CFTC jurisdiction, and what that changes about disclosure and custody), what the OKX-ICE venture is and Cuomo's stake or salary in it, whether he has registered as a lobbyist, OKX's 2025 US guilty plea and settlement, which jurisdictions the 'falling behind' claim refers to, and who opposes the bill and on what grounds. The reader's takeaway: read every 'we're falling behind' argument by asking who pays the person making it.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-army-korean-howitzer-contract-industrial-capacity-inversion",
-      "label": "South Korea's Highly Mobile 155mm Artillery System Wins U.S. Army Howitzer Contract",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-us-army-korean-howitzer-contract-industrial-capacity-inversion"
-      ],
-      "eventUri": null,
-      "summary": "The US Army has picked a South Korean wheeled 155mm self-propelled howitzer to replace its towed M777s. Lead with the direction of the sale: the country that has armed the world for eighty years is buying its artillery from a former aid recipient. Teach the mechanism, which is the real story for our reader: Ukraine and Gaza consumed shells faster than Western industry could make them, and the states that kept large standing artillery lines running through the 1990s and 2000s — South Korea above all, plus Turkey, Poland, India — now hold capacity the US and Europe dismantled as obsolete. Defence-industrial advantage turned out to be a function of never having stopped, not of technology. Establish which system and manufacturer won, contract value and unit numbers, what it replaces and why towed guns lost (survivability against drone-cued counter-battery fire), Hanwha's and South Korea's export run since 2022 including the Poland deal, whether the guns will be built in Korea or licensed to a US line, and what US industrial capacity for the same product actually is. Fills the Asia gap. Single-source specialist reporting from TWZ — attribute; verify contract value against the Pentagon award notice.",
-      "conceptUris": []
-    },
-    {
-      "id": "colorado-reservoirs-record-low-over-allocation-buffer-exhaustion",
-      "label": "Analysis: The two largest reservoirs in the US have hit record-low levels",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-colorado-reservoirs-record-low-over-allocation-buffer-exhaustion"
-      ],
-      "eventUri": null,
-      "summary": "Lake Powell and Lake Mead — the two largest reservoirs in the United States — both set record-low water heights within days of each other. Lead with the pair, because either alone is weather and both together is a system failing. Teach the mechanism precisely, since it is the most transferable water lesson our reader can hold: the Colorado River's allocations were fixed by the 1922 Compact using flow measurements from the wettest stretch in centuries, so the river was over-allocated on paper from the first day and every year since has drawn the difference out of storage. Reservoirs are not a supply, they are a buffer against a deficit — and a buffer that only empties has a date. Establish the current elevations and percentage of capacity for both, the distance to minimum power pool at Glen Canyon and Hoover and what happens to the turbines below it, the deadline for the post-2026 operating guidelines and where the seven basin states and Mexico stand, whose water is cut first under the priority system (agriculture in Arizona before cities in California), and what tribal senior rights remain unquantified. Then the generalisation: Iraq's Tigris-Euphrates, Pakistan's Indus and Egypt's Nile all run on the same arithmetic of allocation written against a wetter past.",
-      "conceptUris": []
-    },
-    {
-      "id": "nih-budget-cut-model-training-pipeline-lag-2050",
-      "label": "Modeling the impacts of budget reductions at the U.S. NIH on research and innovation",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-nih-budget-cut-model-training-pipeline-lag-2050"
-      ],
-      "eventUri": null,
-      "summary": "A model built on 47 longitudinal measures from 1995 to 2024 projects what US National Institutes of Health budget cuts do to research output and innovation through 2050. Lead with the single largest projected number the paper produces and its date — a quantified loss decades out is the rare thing a funding argument usually lacks. Teach the mechanism the model is actually capturing: biomedical research capacity is people, not money, and the pipeline from graduate student to independent principal investigator is roughly fifteen years, so a budget cut removes trainees whose absence appears as missing labs in the 2040s. That lag is why the damage is invisible while it is being done and irreversible once visible. Establish the counterfactual scenarios modelled and the assumed cut sizes, what the model was validated against, its projected effects on trials, publications, patents and drug approvals, and where the authors say their uncertainty is largest. Then the part a global reader needs: NIH is the largest single funder of biomedical research on earth and its outputs are used everywhere, so a US appropriations decision sets the treatment options available in Lagos, Karachi and Jakarta — where almost no domestic funder can substitute. Note this is a modelling paper, not an observation: state the assumptions in the text rather than reporting projections as findings. Distinct from yesterday's NIH grant-scoring story — same institution, different mechanism; do not repeat that ground.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-robotics-component-ban-substitution-assumption",
-      "label": "Ban on Chinese robots leaves U.S. startups stranded",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-china-robotics-component-ban-substitution-assumption"
-      ],
-      "eventUri": null,
-      "summary": "Washington's restrictions on Chinese robotics components were meant to trigger a domestic supply-chain revolution; Silicon Valley founders say the domestic alternatives simply do not exist. Lead with a named startup and the specific part it cannot buy — an actuator, a harmonic drive, a lidar unit — because the whole argument turns on how ordinary the missing component is. Teach the mechanism our reader should carry into every export-control story: a ban assumes substitution is possible at some price, but component manufacturing is capital and tacit-knowledge deep, so where no domestic line exists the policy does not reshore production, it removes it — and the startups die before the factory is built. Establish exactly what the rule covers and when it takes effect, which Chinese suppliers dominate the affected parts and at what global share, what the US, Japanese and German alternatives cost and their lead times, how many firms Rest of World spoke to and what they say their runway is, and whether any waiver process exists. Then the part that matters beyond America: the same components are what a robotics startup in Nairobi, Karachi or Jakarta buys, and a bifurcating supply chain forces every builder outside the US to pick a side of it. Rest of World reports technology from outside Silicon Valley's frame — attribute its reporting.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-pakistan-office-platform-localisation-jurisdiction",
-      "label": "Google opens its first office in Pakistan, plans to promote technology in the country",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-19-google-pakistan-office-platform-localisation-jurisdiction"
-      ],
-      "eventUri": "eng-11933106",
-      "summary": "Google has opened its first office in Pakistan, inaugurated by Prime Minister Shehbaz Sharif. Lead with what a local office is in legal terms rather than in ribbon-cutting terms: a registered corporate presence puts staff, assets and a tax identity inside a jurisdiction, which converts a government request from something a foreign company may ignore into something it must answer. Teach that mechanism — platform localisation is the single most effective lever a state has over a global service, which is why Pakistan, India, Indonesia, Turkey and Nigeria have all pushed for local incorporation, and why the compliance rate for takedown and data requests rises sharply once a company has employees who can be summoned. Establish what functions the office actually holds (sales and policy, or engineering), headcount and location, what Pakistan's PECA amendments and data-localisation rules require of a locally registered platform, Google's takedown and user-data request numbers for Pakistan in its transparency report, what the PM's office said the arrangement includes, and how it sits against the country's recent VPN registration push and internet slowdowns. The reader should end able to weigh the trade: local investment and Urdu-language product work on one side, a stronger state hand on speech and data on the other. FEED GAP: the only carrier is India.com (IN) — an Indian outlet reporting a Pakistani event, with no Pakistani source in the feed. Verify against Dawn or the PM Office release before publishing; if it cannot be confirmed, drop rather than soften.",
-      "conceptUris": []
-    },
-    {
-      "id": "youtube-view-definition-change-ranking-versus-payment-metric",
-      "label": "YouTube revises view counting",
-      "firstSeen": "2026-08-19T04:10:51.087Z",
-      "lastCovered": "2026-08-19T04:10:51.087Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-17-youtube-view-definition-change-ranking-versus-payment-metric"
-      ],
-      "eventUri": "eng-11929588",
-      "summary": "YouTube will count a view the instant someone presses play, dropping the watch-duration threshold it has used for long-form video — the same change it already made for Shorts. Lead with what a view was and what it now is, because the number did not get bigger, the definition got looser. Teach the mechanism, which is the reason a metrics change is a money story: view counts are the ranking signal, the advertiser-facing inventory number and the currency creators are paid against, so redefining the denominator silently revalues every channel at once — and because monetisation runs on watch-time while ranking will now run on plays, the platform has split the metric that decides what you see from the metric that decides who gets paid. Establish exactly which surfaces the change applies to and from when, what the previous threshold actually was, whether historical counts are restated (a channel's own back-catalogue becoming incomparable is the concrete harm), what Google says about ad billing and the Partner Program, and how this aligns YouTube's headline number with TikTok's and Instagram's. Multi-source across IGN (US), News18 (IN) and GSM Arena (BG) — sentiment divergence 0.23, all reporting the same Google announcement, so treat it as one confirmed announcement rather than three perspectives.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/YouTube",
-        "http://en.wikipedia.org/wiki/TikTok",
-        "http://en.wikipedia.org/wiki/Instagram",
-        "http://en.wikipedia.org/wiki/Monetization",
-        "http://en.wikipedia.org/wiki/Video",
-        "http://en.wikipedia.org/wiki/Livestreaming",
-        "http://en.wikipedia.org/wiki/Metric_system",
-        "http://en.wikipedia.org/wiki/Google"
       ]
     }
   ]
