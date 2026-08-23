@@ -91,11 +91,23 @@ function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
   // Gate on the newest analysis in the file, not on when the file was built.
   // The build runs five times a day; the analyses behind it run quarterly, and
   // it is the analysis that has to be new for this to be news.
-  const newest = ipc.areas.reduce(
-    (min, a) => Math.min(min, daysSince(a.from, now)),
-    Number.POSITIVE_INFINITY,
-  );
-  if (newest > FRESH_DAYS.famine) return null;
+  //
+  // Bounded at both ends, and this is the fifth gate of that shape — the sweep
+  // that converted the other four to `isFresh` reached the plain comparisons
+  // and not this `reduce`. `daysSince` is negative ahead of the clock and a
+  // negative is always the minimum, so a single future-dated area (IPC
+  // publishes projection periods, and `from` is an analysis-period bound) made
+  // `newest` negative, and `negative > 75` is false — shipping the card under
+  // the `today ·` mark however old every real analysis behind it was.
+  //
+  // A future area is discarded rather than allowed to poison the minimum: it
+  // is one unusable record, not a reason to drop an otherwise current file.
+  // All of them unusable leaves `Infinity`, which fails the gate.
+  const newest = ipc.areas.reduce((min, a) => {
+    const age = daysSince(a.from, now);
+    return age >= 0 && age < min ? age : min;
+  }, Number.POSITIVE_INFINITY);
+  if (!(newest <= FRESH_DAYS.famine)) return null;
 
   let p3plus = 0;
   let p4 = 0;
@@ -200,7 +212,10 @@ function conflictCard(conflict: ConflictSnapshot | null, now: Date): ConditionCa
     // The lag sentence has to match the actual lag. This card only ships when
     // upstream has caught up, so "months old" — true when the window was 145
     // days behind — would now be a card contradicting its own date line.
-    changed: `${formatDateRange(conflict.windowStart, conflict.windowEnd)}, published ${Math.round(daysSince(conflict.windowEnd, now))} days after it closed. Nothing here is live: every event was coded by hand first.`,
+    // "Nothing here is live: every event was coded by hand first" was cut. Part
+    // two says the coding is by hand and part four says the lag is the method;
+    // this was the third statement of it, on the same screen.
+    changed: `${formatDateRange(conflict.windowStart, conflict.windowEnd)}, published ${Math.round(daysSince(conflict.windowEnd, now))} days after it closed.`,
     why: 'Counting the dead is contested work. A number that arrives fast is usually a claim by one side; a number that arrives slowly has been checked against several. The lag is the method, not a fault in it.',
     rows: ranked.map(([country, count]) => ({
       label: country,
@@ -270,11 +285,20 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
     readingNote: 'active hazard alerts',
     whatItIs:
       'GDACS models the likely humanitarian impact of an earthquake, storm, flood, wildfire, drought or eruption within hours of it happening, and grades the response it would take.',
+    // "no more than a local response", not "no help from outside the country
+    // they are in" — six words instead of ten, and it is the app's own
+    // vocabulary: the Green gloss two lines above this card reads "local
+    // response expected to be sufficient". The old phrasing invented a second
+    // way of saying what the legend beside it already said.
     changed:
       escalated === 0
-        ? `Every one of them is Green — modelled to need no help from outside the country it is in.`
-        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no help from outside the country they are in.`,
-    why: 'The grade is a forecast of consequence, not of size. A large earthquake under empty desert stays Green; a moderate one under a dense city does not. What is being predicted is how many people it reaches, which is the only thing a response can be planned against.',
+        ? `All ${total} are Green — none modelled to need more than a local response.`
+        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no more than a local response.`,
+    // Two sentences, not three. The third — "What is being predicted is how
+    // many people it reaches, which is the only thing a response can be
+    // planned against" — restated the first in more words, and the second had
+    // already shown it with the only example anyone needs.
+    why: 'The grade is a forecast of consequence, not of size. A large earthquake under empty desert stays Green; a moderate one under a dense city does not.',
     figures,
     sourceLabel: 'GDACS · European Commission JRC',
   };

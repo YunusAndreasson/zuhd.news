@@ -66,7 +66,16 @@ export const IndicatorRow = memo(function IndicatorRow({
   const titleScale = useMemo(() => titleFontScale(row.title.length), [row.title]);
 
   return (
-    <Pressable onPress={handlePress} accessibilityRole="button" accessibilityLabel={row.a11yLabel}>
+    <Pressable
+      onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={row.a11yLabel}
+      // The label is the whole row read aloud; the hint is the one thing it
+      // cannot contain, which is what pressing does. Sighted readers get that
+      // from the chevron below — this is the same signifier, in the channel
+      // that has no chevron.
+      accessibilityHint="Opens the full card"
+    >
       <Box paddingY="md" rule="bottom" style={styles.row}>
         <View style={styles.left}>
           <Text variant="title" scale={titleScale} numberOfLines={2}>
@@ -84,14 +93,23 @@ export const IndicatorRow = memo(function IndicatorRow({
               one thing standing between a fourteen-day-old reading and a
               reader taking it for this morning's. A row grows rather than
               drops a fact — the same rule the cards follow. */}
-          <Text variant="labelXs" tone="secondary" numberOfLines={2} style={styles.note}>
-            {row.lead ? (
-              <Text variant="labelXs" tone="emphasis">
-                {'today · '}
-              </Text>
-            ) : null}
-            {row.note}
-          </Text>
+          {/* Unmounted rather than rendered empty when `indexRows` has dropped
+              a note that said the same thing on every row of the column: an
+              empty `Text` still costs its line box and its `marginTop`, so the
+              row would keep the hole the line used to fill and the column's
+              rhythm would be set by a string nobody can see. The separator
+              goes with it — "today ·" pointing at a blank margin is the same
+              dangling dot `CardFrame.readingMeta` documents. */}
+          {row.note || row.lead ? (
+            <Text variant="labelXs" tone="secondary" numberOfLines={2} style={styles.note}>
+              {row.lead ? (
+                <Text variant="labelXs" tone="emphasis">
+                  {row.note ? 'today · ' : 'today'}
+                </Text>
+              ) : null}
+              {row.note}
+            </Text>
+          ) : null}
         </View>
 
         <Sparkline values={row.spark} tone={row.tone} />

@@ -7,7 +7,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SPACING } from '../../constants/theme';
-import { indexRow } from '../../lib/cards/row';
+import { indexRows } from '../../lib/cards/row';
 import type { Card } from '../../lib/cards/types';
 import { EmptyState } from '../EmptyState';
 import { IndicatorRow } from './IndicatorRow';
@@ -68,7 +68,9 @@ export const ColumnIndex = memo(function ColumnIndex({
     scrollToTop: () => listRef.current?.scrollTo({ y: 0, animated: true }),
   }));
 
-  const rows = useMemo(() => cards.map(indexRow), [cards]);
+  // The whole column at once, not row by row: whether a note is worth its line
+  // is a fact about the column it sits in — see `indexRows`.
+  const rows = useMemo(() => indexRows(cards), [cards]);
 
   /**
    * The rail's fill belongs to whichever of the two views is on screen.

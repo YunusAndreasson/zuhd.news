@@ -1,4 +1,4 @@
-import { indexRow } from '../lib/cards/row';
+import { indexRow, indexRows } from '../lib/cards/row';
 import type {
   BeliefCard,
   Card,
@@ -152,5 +152,91 @@ describe('indexRow', () => {
   it('says nothing about a move on a card that reports none', () => {
     const card: Card = comparison({ delta: undefined });
     expect(indexRow(card).a11yLabel).toBe('Against the dollar. 3 of 15 weakened this month.');
+  });
+});
+
+describe('an inverted series', () => {
+  const fxCard = (values: number[]): ReadingCard =>
+    reading({
+      id: 'zar-mover',
+      title: 'South African rand',
+      reading: '16',
+      readingNote: 'ZAR to the dollar',
+      // The chip quotes the currency, which strengthened. The series is the
+      // published rate, which fell — the same fact, spelled the other way up.
+      delta: delta({ direction: 'up', magnitude: '5.1%', valence: 'favorable' }),
+      series: {
+        values,
+        periods: values.map((_, i) => `p${i}`),
+        label: 'higher is weaker',
+        inverted: true,
+      },
+    });
+
+  it('plots the quantity the chip is talking about', () => {
+    // Rate falling 17 → 16 is the rand strengthening. Un-inverted, the row
+    // drew a line going down beside a caret pointing up, both sage.
+    const spark = indexRow(fxCard([17, 16.5, 16])).spark;
+    expect(spark).toBeDefined();
+    const [a, b, c] = spark as number[];
+    expect(a).toBeLessThan(b as number);
+    expect(b).toBeLessThan(c as number);
+  });
+
+  it('leaves an ordinary series alone', () => {
+    expect(indexRow(reading()).spark).toEqual([90, 92, 95]);
+  });
+
+  it('does not invert the reading, the note or the chip', () => {
+    // Only the picture is flipped. Every string is still the card's own — the
+    // rule this file opens by naming.
+    const row = indexRow(fxCard([17, 16.5, 16]));
+    expect(row.reading).toBe('16');
+    expect(row.note).toBe('ZAR to the dollar');
+    expect(row.delta?.magnitude).toBe('5.1%');
+  });
+});
+
+describe('indexRows', () => {
+  const withNote = (id: string, note: string): Card =>
+    reading({ id, title: id, readingNote: note });
+
+  it('drops a note that is the same on more than one row', () => {
+    // `outlook` shipped three "priced today" in a vertical run: twelve
+    // characters, three times, distinguishing nothing.
+    const rows = indexRows([
+      withNote('a', 'priced today'),
+      withNote('b', 'priced today'),
+      withNote('c', 'priced today'),
+    ]);
+    expect(rows.map((r) => r.note)).toEqual(['', '', '']);
+  });
+
+  it('keeps a note that only one row carries', () => {
+    const rows = indexRows([withNote('a', 'a barrel'), withNote('b', 'priced today')]);
+    expect(rows.map((r) => r.note)).toEqual(['a barrel', 'priced today']);
+  });
+
+  it('drops only the repeated note, not the whole column', () => {
+    const rows = indexRows([
+      withNote('a', 'crypto'),
+      withNote('b', 'crypto'),
+      withNote('c', 'a barrel'),
+    ]);
+    expect(rows.map((r) => r.note)).toEqual(['', '', 'a barrel']);
+  });
+
+  it('never touches what a screen reader hears', () => {
+    // The line is redundant down a column and not at all redundant to someone
+    // hearing one row on its own.
+    const rows = indexRows([withNote('a', 'priced today'), withNote('b', 'priced today')]);
+    expect(rows[0]?.note).toBe('');
+    expect(rows[0]?.a11yLabel).toContain('priced today');
+  });
+
+  it('leaves every other projected field alone', () => {
+    const rows = indexRows([withNote('a', 'priced today'), withNote('b', 'priced today')]);
+    const one = indexRow(withNote('a', 'priced today'));
+    expect(rows[0]).toEqual({ ...one, note: '' });
   });
 });

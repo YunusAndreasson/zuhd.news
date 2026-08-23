@@ -11,6 +11,7 @@ import {
   formatSignedPoints,
   GRAMS_PER_TROY_OUNCE,
   nisab,
+  plotWindow,
   readingParts,
   relatedForTags,
   seriesExtremes,
@@ -56,6 +57,29 @@ describe('windowPointChange', () => {
     expect(formatSignedPoints(1)).toBe('+1 point');
     expect(formatSignedPoints(-1)).toBe('−1 point');
     expect(formatSignedPoints(0)).toBe('unchanged');
+  });
+
+  it('measures a move off zero, which is the largest one a contract can make', () => {
+    // It delegated to `windowChange` and inherited a guard that belongs to
+    // division: a relative change from 0 is undefined, a point change from 0
+    // is just the latest value. A contract priced 0% a week ago and 45% today
+    // returned null — no chip on the card, and a ranking key of 0 that sorted
+    // the biggest mover last in the one column ordered by what moved.
+    const c = windowPointChange(series([0, 20, 45]), 2);
+    expect(c?.pct).toBe(45);
+  });
+
+  it('still refuses a window it cannot measure at all', () => {
+    expect(windowPointChange(series([42]), 2)).toBeNull();
+    expect(windowPointChange(series([Number.NaN, 45]), 1)).toBeNull();
+  });
+});
+
+describe('windowChange keeps the guard that is its own', () => {
+  it('refuses to divide by a zero base', () => {
+    // Unchanged behaviour, asserted so the split above cannot quietly take it
+    // with it: a relative change from 0 has no meaning.
+    expect(windowChange(series([0, 20, 45]), 2)).toBeNull();
   });
 });
 
@@ -317,6 +341,29 @@ describe('isFresh', () => {
     expect(isFresh('', now, 14)).toBe(false);
     expect(isFresh('not a date', now, 14)).toBe(false);
   });
+
+  it('reads an offsetless timestamp as UTC, not as the reader’s local time', () => {
+    // The spec splits on this: a date-only form is UTC, a date-*time* with no
+    // designator is local. GDACS emits the second — "modifiedDate":
+    // "2026-08-23T04:15:01" — and every other dated field the cards gate on is
+    // the first, so one payload was being read in two zones.
+    //
+    // West of UTC the bare string parsed *ahead* of the real instant, so the
+    // freshest hazard alerts in the file looked like they came from the
+    // future, and `isFresh` — whose whole job is rejecting the future — threw
+    // them out. `disasterCard` looks for exactly those alerts, so the card
+    // leading `commodities` vanished for those readers.
+    const at = new Date('2026-08-23T06:00:00Z');
+    expect(isFresh('2026-08-23T04:15:01', at, 14)).toBe(true);
+    // And a genuinely future instant is still refused.
+    expect(isFresh('2026-08-23T09:15:01', at, 14)).toBe(false);
+  });
+
+  it('leaves a stamp that carries its own offset alone', () => {
+    const at = new Date('2026-08-23T06:00:00Z');
+    expect(isFresh('2026-08-23T04:15:01Z', at, 14)).toBe(true);
+    expect(isFresh('2026-08-23T06:15:01+02:00', at, 14)).toBe(true);
+  });
 });
 
 describe('readingParts', () => {
@@ -354,5 +401,75 @@ describe('labelledWhy', () => {
     // string.
     expect(labelledWhy('   ', 'on wheat')).toEqual({});
     expect(labelledWhy(undefined, 'on wheat')).toEqual({});
+  });
+});
+
+describe('plotWindow', () => {
+  /** Sixty-one daily observations, the shape `brent` actually ships. */
+  const series = {
+    values: Array.from({ length: 61 }, (_, i) => 100 + i),
+    periods: Array.from({ length: 61 }, (_, i) => `d${i}`),
+  };
+
+  it('plots the window the chip measured and nothing either side of it', () => {
+    // The bug this exists for: `DAILY_WINDOW` measures thirty observations and
+    // brent ships sixty-one, so the card said "up 33%, since Jul 7" over a
+    // line that opened on 26 May and fell across the width of the screen.
+    const change = windowChange(series, 30);
+    const plot = plotWindow(series, change);
+    expect(plot.values).toHaveLength(31);
+    expect(plot.periods[0]).toBe(change?.from);
+    expect(plot.periods[plot.periods.length - 1]).toBe(change?.to);
+  });
+
+  it('opens the chart at the level the chip is measured from', () => {
+    const change = windowChange(series, 30);
+    const plot = plotWindow(series, change);
+    // The reference line and the chip's denominator are the same number, which
+    // is the whole point of returning them together.
+    expect(plot.baseline).toBe(plot.values[0]);
+    expect(plot.baseline).toBe(series.values[30]);
+  });
+
+  it('leaves a series whose window is the whole of it exactly as it was', () => {
+    // Every FX mover, every contract and the nisab metal take this path: the
+    // chip already spans the series, so the only thing added is the reference.
+    const change = windowChange(series, series.values.length - 1);
+    const plot = plotWindow(series, change);
+    expect(plot.values).toEqual(series.values);
+    expect(plot.periods).toEqual(series.periods);
+    expect(plot.baseline).toBe(series.values[0]);
+  });
+
+  it('keeps the reference on a series too short to cut but not too short to read', () => {
+    // The six-point ceasefire contract, which is both the shortest series in
+    // the app and one whose chart is already exactly its window. A length
+    // guard written against slicing took the reference off the one card with
+    // the least else to go on: no `standing`, one sentence of range, and a
+    // curve through six readings.
+    const short = { values: [83, 88, 90, 86, 89, 91], periods: ['a', 'b', 'c', 'd', 'e', 'f'] };
+    const plot = plotWindow(short, windowChange(short, short.values.length - 1));
+    expect(plot.values).toEqual(short.values);
+    expect(plot.baseline).toBe(83);
+  });
+
+  it('draws no reference when there is no change to reference', () => {
+    // A chip that never rendered cannot have a window, so nothing on the chart
+    // may claim one.
+    const plot = plotWindow(series, null);
+    expect(plot.values).toEqual(series.values);
+    expect(plot.baseline).toBeUndefined();
+  });
+
+  it('keeps the whole series rather than drawing a window too short to be a chart', () => {
+    // A monthly cadence read one month back would ask for two points. No card
+    // reaches this today; the guard is for the cadence the pipeline is free to
+    // introduce tomorrow. It also drops the baseline, because a reference at
+    // the far right of a series it does not span reads as a claim about the
+    // whole of it.
+    const change = windowChange(series, 1);
+    const plot = plotWindow(series, change);
+    expect(plot.values).toEqual(series.values);
+    expect(plot.baseline).toBeUndefined();
   });
 });

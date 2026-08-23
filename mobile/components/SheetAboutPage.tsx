@@ -16,7 +16,7 @@ const LEAD = 'Zuhd \u2014 the discipline of doing without what you do not need.'
 const MANIFESTO = [
   'Information is no longer scarce; attention is. Nothing becomes a shared fact until enough people stop to look at it \u2014 and without shared facts there is nothing left to trust.',
   'In 1971, Herbert Simon observed that a wealth of information creates a poverty of attention. Six centuries earlier, Ibn Taymiyyah had named the discipline \u2014 zuhd: abandon what does not bring benefit. zuhd.news applies that discipline to the present.',
-  'Most systems that process news are optimized for engagement rather than understanding. This one runs on the principles below. The work is automated; the judgment is not.',
+  'Most systems that process news are optimised for engagement rather than understanding. This one runs on the principles below. The work is automated; the judgment is not.',
 ];
 
 const WHATS = ['What happened.', 'Why it matters.', 'What comes next.', 'Then stop.'];

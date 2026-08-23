@@ -36,6 +36,7 @@ import type { RiverArticle } from '../lib/news-order';
 import { recordArticleSnap } from '../lib/onboarding-store';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
+import { BackToIndexButton } from './BackToIndexButton';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
@@ -79,6 +80,11 @@ interface ArticleListProps {
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
+  /** Which article to open on. `NewsIndex` hands this over on a row tap;
+   *  entered from the top it is 0 and this behaves exactly as it always did. */
+  initialIndex?: number;
+  /** Back to the news index. Absent when the river is the whole column. */
+  onClose?: () => void;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -104,6 +110,8 @@ export const ArticleList = memo(function ArticleList({
   progressesSV,
   zoomClipOverride,
   tick,
+  initialIndex = 0,
+  onClose,
   ref,
 }: ArticleListProps) {
   const { colors, bgAlpha } = useTheme();
@@ -141,6 +149,14 @@ export const ArticleList = memo(function ArticleList({
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
+  // Seeded at the first render, not in an effect. `ArticlePage` fades in off
+  // this offset — a scroll-linked style, not a mount animation — so a river
+  // opened at article twelve with the offset still reading 0 computes that
+  // page's opacity as if it were twelve pages away and paints it invisible.
+  // `useScrollState`'s header has the rest of the reason; it is the same trap
+  // `CardPager` fell into. Seeding the index also stops the first settle
+  // reporting a change that never happened, which would fire a haptic on
+  // arrival — and, here, could trip the caught-up boundary on landing.
   const {
     scrollY,
     currentIndex,
@@ -148,7 +164,7 @@ export const ArticleList = memo(function ArticleList({
     overscrollFired,
     caughtUpFired,
     overscrollTimer,
-  } = useScrollState();
+  } = useScrollState({ offset: initialIndex * viewportHeight, index: initialIndex });
 
   const bgFadeStyle = useAnimatedStyle(() => {
     'worklet';
@@ -410,6 +426,7 @@ export const ArticleList = memo(function ArticleList({
         initialNumToRender={2}
         maxToRenderPerBatch={2}
         windowSize={3}
+        initialScrollIndex={initialIndex}
         ListFooterComponent={safeAreaFooter}
         refreshControl={
           <RefreshControl
@@ -422,6 +439,12 @@ export const ArticleList = memo(function ArticleList({
           />
         }
       />
+      {/* A sibling of the list, never a child of a page — `BackToIndexButton`
+          has the reason. Here it also has to sit above the globe's tap zone,
+          which spans the lower half of every article. */}
+      {onClose ? (
+        <BackToIndexButton onPress={onClose} accessibilityLabel="Back to the headlines" />
+      ) : null}
     </View>
   );
 });

@@ -6,13 +6,8 @@ import type {
   TrendEvent,
   TrendsSnapshot,
 } from '@shared/types';
-import {
-  CHOKEPOINT_DISRUPTED,
-  chokepointValence,
-  type RiseMeans,
-  riseMeansFor,
-  valenceOfChange,
-} from '../valence';
+import { CHOKEPOINT_DISRUPTED, chokepointValence, riseMeansFor, valenceOfChange } from '../valence';
+import type { WindowChange } from './format';
 import {
   deltaFrom,
   formatCount,
@@ -25,6 +20,7 @@ import {
   labelledWhy,
   latestOf,
   nisab,
+  plotWindow,
   readingParts,
   relatedForTags,
   seriesExtremes,
@@ -113,17 +109,35 @@ function tickUnit(unit: string | undefined): string | undefined {
 }
 
 /**
- * The move, as the chip under the reading.
+ * The window behind part one: the chip under the reading, and the line under
+ * the title.
  *
- * This used to be a sentence — "−5.2% since 22 Jul." — sitting where part
+ * The chip used to be a sentence — "−5.2% since 22 Jul." — sitting where part
  * three goes. A percentage and a date is not prose and gains nothing from
  * being set as prose; it gains a line of a screen the card is fighting to fit
  * inside, and it loses the one thing it should have, which is being visible
  * without being read. A daily series holds observations rather than calendar
  * days, so the window is still named from the period labels and never as
  * "month on month".
+ *
+ * What this returns is the window itself rather than the finished chip,
+ * because the chart has to draw exactly it. It used to return the chip alone
+ * and the series was then handed to `TrendBlock` whole. On the three FRED
+ * cards those are not the same window: `DAILY_WINDOW` is thirty observations
+ * and `brent` ships sixty-one, so the card read **up 33%, since Jul 7** above
+ * a line running from 26 May to 18 Aug and falling across the width of the
+ * screen. The number and the picture were answering different questions, and
+ * nothing on the card said so.
+ *
+ * Returning the `WindowChange` itself is what makes that impossible rather
+ * than merely fixed: `plotWindow` slices from the same object the chip was
+ * built from, so a second span can never be computed here and drift from the
+ * first.
  */
-function readingDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
+function readingWindow(indicator: Indicator): {
+  change: WindowChange | null;
+  options: { window?: string; unit?: 'points' };
+} {
   const monthly = indicator.cadence === 'monthly';
   const span = monthly ? MONTH : DAILY_WINDOW;
   const window = monthly ? { window: 'on the month' } : {};
@@ -140,9 +154,12 @@ function readingDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | u
   // gives `us-10y` a monthly cadence the fixed bug comes back with no test
   // touching it.
   if (indicator.unit === '%') {
-    return deltaFrom(windowPointChange(indicator, span), riseMeans, { ...window, unit: 'points' });
+    return {
+      change: windowPointChange(indicator, span),
+      options: { ...window, unit: 'points' },
+    };
   }
-  return deltaFrom(windowChange(indicator, span), riseMeans, window);
+  return { change: windowChange(indicator, span), options: window };
 }
 
 /** The year, once the chip has taken the month. Two windows are worth having
@@ -300,6 +317,11 @@ function indicatorCard(
   // argument the sheet this card opens answered it differently.
   const riseMeans = riseMeansFor(indicator);
   const { reading, note } = readingParts(value, indicator.unit);
+  // One window, two renderings of it. The chip names it in words and the chart
+  // draws it, and both come off the same `WindowChange` — see `readingWindow`
+  // for the three cards where they used to differ by a month of trading days.
+  const { change, options } = readingWindow(indicator);
+  const plot = plotWindow(indicator, change);
   return {
     id,
     kind: 'reading',
@@ -307,15 +329,16 @@ function indicatorCard(
     title: indicator.label,
     reading,
     readingNote: note,
-    delta: readingDelta(indicator, riseMeans),
+    delta: deltaFrom(change, riseMeans, options),
     whatItIs: definitionUnlessStanding(whatItIs, indicator.standing),
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
     why: indicator.standing,
     series: {
-      values: indicator.values,
-      periods: indicator.periods,
+      values: plot.values,
+      periods: plot.periods,
+      baseline: plot.baseline,
       label: axisCaption(indicator.unit, indicator.label),
       unit: tickUnit(indicator.unit),
       highlight: indicator.defaultHighlight ?? 'last',
@@ -355,6 +378,7 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
   // sentence below land. No valence: a lower nisab catches more wealth, and
   // whether that is good news is not the app's call to make.
   const delta = deltaFrom(move, null);
+  const nisabPlot = plotWindow(bindingIndicator, move);
   /** "Silver (Kinesis)" is a data label; a sentence says "silver". */
   const metalName = (bindingIndicator.label.split(' (')[0] ?? n.binding).toLowerCase();
   // The counter-intuitive part, and the only half the chip cannot show: a
@@ -389,9 +413,16 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
       },
     ],
     series: {
-      values: bindingIndicator.values,
-      periods: bindingIndicator.periods,
-      label: `${bindingIndicator.label.split(' (')[0]}, ${axisCaption(bindingIndicator.unit, 'dollars an ounce')}`,
+      // The window the chip measured, and only it — the metal's series and
+      // `DAILY_WINDOW` happen to coincide on today's payload, and `plotWindow`
+      // is what keeps them coinciding on a payload that changes length.
+      values: nisabPlot.values,
+      periods: nisabPlot.periods,
+      baseline: nisabPlot.baseline,
+      // Lowercased: every other chart caption in the app is set as a phrase
+      // rather than a proper noun ("dollars a barrel", "the ratio, day by day"),
+      // and this one printed "Silver, dollars an ounce" from the data label.
+      label: `${bindingIndicator.label.split(' (')[0]?.toLowerCase()}, ${axisCaption(bindingIndicator.unit, 'dollars an ounce')}`,
       unit: bindingIndicator.unit,
       highlight: 'last',
     },
@@ -456,7 +487,9 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
   // so the chip vanishes from a card whose chart still shows the move; and
   // any interior gap shifts the window, so `since ${from}` named a period the
   // chart's own ticks had dropped.
-  const delta = deltaFrom(windowChange(ratioPlot, DAILY_WINDOW), null);
+  const ratioChange = windowChange(ratioPlot, DAILY_WINDOW);
+  const delta = deltaFrom(ratioChange, null);
+  const ratioWindow = plotWindow(ratioPlot, ratioChange);
 
   return {
     id: 'metals',
@@ -471,7 +504,10 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
     readingNote: 'ounces of silver to one of gold',
     delta,
     whatItIs:
-      'The two metals wealth has been measured in for as long as it has been measured. The ratio between them is the oldest price still quoted.',
+      // "The two metals wealth has been measured in for as long as it has been
+      // measured" was a sentence that circled back to its own subject and told
+      // the reader nothing. A date does the work an aphorism was doing.
+      'Wealth has been held in these two metals for millennia. The ratio between them is the oldest price still quoted.',
     changed:
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
@@ -505,8 +541,9 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
     // figures directly above it; neither needed a second rendering that
     // teaches less than the figure does.
     series: {
-      values: ratioPlot.values,
-      periods: ratioPlot.periods,
+      values: ratioWindow.values,
+      periods: ratioWindow.periods,
+      baseline: ratioWindow.baseline,
       // Not the `readingNote` verbatim, which is what this was: "ounces of
       // silver to one of gold" printed under the reading and again over the
       // chart, the same thirty-one characters twice on one screen. What the
@@ -614,7 +651,7 @@ function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | n
       'What a month did to each currency against the dollar. A currency that lost ground pays more for imports, fuel and dollar debt at home.',
     changed:
       window && first
-        ? `Measured since ${window.from}. ${first.indicator.label} moved furthest, ${formatSignedPct(currencyMove(first.change.pct))}.`
+        ? `${first.indicator.label} moved furthest since ${window.from}, ${formatSignedPct(currencyMove(first.change.pct))}.`
         : undefined,
     // No `why`. It used to borrow the standing paragraph of whichever
     // currency had moved most, which put "The Russian ruble's exchange rate
@@ -690,6 +727,9 @@ const FX_MOVER_LIMIT = 2;
  * first screen.
  */
 function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard[] {
+  // What "biggest faller" is biggest *of*. Counted from the same filter the
+  // movers are drawn from, so the claim cannot outgrow the set behind it.
+  const tracked = snapshot.indicators.filter((i) => i.source === 'oer').length;
   return snapshot.indicators
     .filter((i) => i.source === 'oer')
     .map((indicator) => {
@@ -707,6 +747,7 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
       // it aloud: how many of these one dollar buys.
       const code = indicator.unit?.split(' / ')[0] ?? '';
       const weakened = change.pct > 0;
+      const plot = plotWindow(indicator, change);
       return {
         id: `${indicator.id}-mover`,
         kind: 'reading' as const,
@@ -735,11 +776,22 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
         // Ranked, not chosen — and the sentence says which rank, because "the
         // biggest move of the month" and "the second-biggest" are different
         // claims and only one of them is true of this card.
-        changed: `${weakened ? 'Weakened' : 'Strengthened'} ${rank === 0 ? 'further than any other currency the app follows' : 'more than all but one of the currencies the app follows'}, over the month to ${change.to}.`,
+        // "Biggest faller", not "Weakened further than any other currency the
+        // app follows". Three things were wrong with that: a newspaper does
+        // not say what it itself follows, "more than all but one" is a riddle
+        // whose answer is "second", and the verb repeated the chip directly
+        // above it. The rank is the news here and it should be the first word.
+        changed: `${rank === 0 ? 'Biggest' : 'Second-biggest'} ${weakened ? 'faller' : 'riser'} of the ${tracked} currencies tracked, in the month to ${change.to}.`,
         why: indicator.standing,
         series: {
-          values: indicator.values,
-          periods: indicator.periods,
+          values: plot.values,
+          periods: plot.periods,
+          // The rate the window opened at. It is the level "weaker since Jul
+          // 24" is measured from, so the line ending above it *is* the chip,
+          // drawn — and on this one card that reads backwards on purpose:
+          // above the reference is a rate that rose, which is a currency that
+          // fell. That is what the caption below is for.
+          baseline: plot.baseline,
           // The one chart in the app that has to name its own direction.
           //
           // The card quotes the currency and the chart quotes the rate, so a
@@ -768,6 +820,10 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
           // showing, wide enough to wrap each label onto two lines.
           unit: tickUnit(indicator.unit),
           highlight: 'last' as const,
+          // The caption above is what the card does about the inversion. The
+          // column index cannot caption a 56×24 line, so it reads this and
+          // plots the reciprocal instead — see `CardSeries.inverted`.
+          inverted: true,
         },
         related: relatedForTags(articles, indicator.topicTags),
         sourceLabel: indicator.sourceLabel,
@@ -923,14 +979,38 @@ function straitMovedCard(chokepoints: Chokepoint[], now: Date): ReadingCard | nu
     // other end, and the app names the squeeze rather than the detour.
     delta: straitDelta(d),
     whatItIs: c.blurb,
+    // One name for the level, not two — "90-day normal" in the first sentence
+    // and "its baseline" in the second were the same number, and the chip above
+    // and the dashed rule on the chart are both pointing at it as well. "The
+    // widest gap of the eleven" replaces "the furthest any of the eleven
+    // straits has moved from", which is nine words doing the work of four.
     changed:
       base != null
-        ? `Its own 90-day normal is ${formatQuantity(base)} a day. This is the furthest any of the eleven straits has moved from its baseline.`
+        ? `Its 90-day normal is ${formatQuantity(base)} a day — the widest gap of the 11 straits tracked.`
         : undefined,
     why: straitWhy(c),
     series: {
       values: c.series.total,
       periods: c.series.periods,
+      // The one card whose chip compares against a *level* rather than a
+      // window — "vs its 90-day normal" — so the reference line is that
+      // normal. The ninety days plotted are the ninety the normal is the mean
+      // of, so the line and the level are measured over the same period.
+      //
+      // `n_total`, not `primaryField`, because `series.total` is the only
+      // series PortWatch ships and it counts every hull. Seven of the eleven
+      // straits have a primary field that is not the total — Panama is read on
+      // container traffic, Hormuz on tankers — and their normals differ by a
+      // factor of four (Panama: 8.1 container against 30.9 all ships). Drawn
+      // from the primary field the rule would have sat a quarter of the way up
+      // a chart it has nothing to do with, and looked exactly like a
+      // measurement. Kerch is `n_total` and would never have shown it.
+      //
+      // What the reading counts is named beside it ("tankers a day") and what
+      // the chart counts is named on the caption ("all ships a day"); this
+      // keeps the chart internally consistent, which is as far as one series
+      // allows.
+      baseline: c.baseline90Avg.n_total,
       label: 'all ships a day',
       unit: 'a day',
       highlight: 'last',
@@ -991,11 +1071,15 @@ function describeBeliefRange(
   const now = Math.round(latest);
   const atHigh = now >= high;
   const atLow = now <= low;
-  if (atHigh)
-    return `The highest it has been inside the window held here, against a low of ${low}% (${extremes.minAt}).`;
-  if (atLow)
-    return `The lowest it has been inside the window held here, against a high of ${high}% (${extremes.maxAt}).`;
-  return `As low as ${low}% (${extremes.minAt}) and as high as ${high}% (${extremes.maxAt}) inside the window held here.`;
+  // "the period shown", not "the window held here". The app holds about a
+  // month and must not imply an all-time high, so the scope has to be stated —
+  // but "the window held here" is five words of the app talking about its own
+  // storage, and the reader has no idea what window that is. The chart draws
+  // exactly this period now, dated at both ends, so pointing at it is both
+  // shorter and the only version a reader can check.
+  if (atHigh) return `A high for the period shown, against a low of ${low}% (${extremes.minAt}).`;
+  if (atLow) return `A low for the period shown, against a high of ${high}% (${extremes.maxAt}).`;
+  return `Between ${low}% (${extremes.minAt}) and ${high}% (${extremes.maxAt}) over the period shown.`;
 }
 
 function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
@@ -1029,6 +1113,7 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         const value = latestOf(indicator) as number;
         const extremes = seriesExtremes(indicator);
         const change = windowPointChange(indicator, indicator.values.length - 1);
+        const beliefPlot = plotWindow(indicator, change);
         const card: BeliefCard = {
           id: indicator.id,
           kind: 'belief',
@@ -1059,9 +1144,29 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
           // section rail does need it once. After that the kicker ("what traders
           // think") and the note under the number ("priced today") carry it, and
           // they carry it in four words instead of forty.
+          //
+          // And it goes through `definitionUnlessStanding` like every other
+          // builder, because "once per column" and "once per screen" are two
+          // different guarantees and this had only the first. The comment above
+          // the sort claims index 0 "lands on the contract that has no
+          // `standing` of its own" — that was a property of the payload it was
+          // written against, not of the ranking, and the live file disproved it:
+          // the US-Iran ceasefire contract sorted first *and* carried a
+          // `standing` paragraph, so the top card of `outlook` printed a
+          // definition of a prediction contract, a chart, and then a second
+          // definition of a prediction contract. That is the collision
+          // `definitionUnlessStanding` exists to make structurally impossible,
+          // and this was the one call site still deciding it by hand.
+          //
+          // It matters more here than anywhere else: this is the first prose on
+          // the first card of the column, so a reader who opens the app every
+          // morning met both copies every morning.
           whatItIs:
             position === 0
-              ? 'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.'
+              ? definitionUnlessStanding(
+                  'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.',
+                  indicator.standing,
+                )
               : undefined,
           // In points, never per cent: a contract going 26 → 86 moved 60 points,
           // and the chip says so. What is left for the sentence is the range,
@@ -1080,8 +1185,12 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
           changed: describeBeliefRange(extremes, value),
           why: indicator.standing,
           series: {
-            values: indicator.values,
-            periods: indicator.periods,
+            values: beliefPlot.values,
+            periods: beliefPlot.periods,
+            // What the contract was priced at when the window opened, so the
+            // sixty points in the chip are a height on the chart rather than a
+            // figure to take on trust.
+            baseline: beliefPlot.baseline,
             label: 'chance priced, per cent',
             unit: '%',
             highlight: 'last',
@@ -1188,8 +1297,18 @@ function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | nu
     // withheld claim does not need a second pill to be withheld in.
 
     whatItIs:
-      'How many people opened each Wikipedia article today, set against that subject’s own recent average. It reads as where curiosity went, which is not where the news is.',
-    changed: `${stripWikiSuffix(mover.indicator.label)} was opened ${formatCount(mover.latest)} times a day against its usual ${formatCount(mover.baseline)}. Everything else is listed against its own normal too, so a small subject can out-move a large one.`,
+      // Says nothing about the normalisation, deliberately: the reading note
+      // ("of normal"), the column header ("against each subject's own average")
+      // and part three ("278 times a day, against its usual 453") all state it
+      // already, and all three are above this line on the same screen. What is
+      // left for part two is what the number *is* and the one caveat nothing
+      // else carries.
+      'How many people opened each Wikipedia article today. It shows where attention went, not where the news was.',
+    // The second sentence — "Everything else is listed against its own normal
+    // too, so a small subject can out-move a large one" — said what the column
+    // header ("against each subject's own average") and part two both already
+    // say. Three statements of one normalisation on one screen.
+    changed: `${stripWikiSuffix(mover.indicator.label)} was opened ${formatCount(mover.latest)} times a day, against its usual ${formatCount(mover.baseline)}.`,
     // The mover's paragraph, said to be the mover's. It is written about one
     // subject — "Daily readership of the English Wikipedia article on Syria" —
     // and sat under a fifteen-row table as if it described the table.
@@ -1253,9 +1372,12 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
     kicker: 'ahead',
     title: 'What is already scheduled',
     reading: String(shown.length),
-    readingNote: 'decisions and releases coming',
+    // Not "decisions and releases coming" — the title is "What is already
+    // scheduled" and the kicker is "ahead". The note's job is to say what the
+    // number counts, and it was spending a third of itself on the tense.
+    readingNote: 'decisions and releases',
     whatItIs:
-      'Central-bank decisions and statistical releases are published on a calendar set months in advance. The date is never the surprise; only the number is.',
+      'Central-bank decisions and statistical releases are scheduled months ahead. The date is never the surprise; only the number is.',
     changed: undefined,
     // The next release's paragraph, said to be the next release's. Four dates
     // are listed above it and this explains one of them — a reader met a
@@ -1378,18 +1500,27 @@ export function buildInstrumentCards({
       // it, on the rule that killed them: it can be explained in one sentence
       // to someone who has never met it, and it says something about an
       // ordinary life. An index *level* cannot do either.
+      // The kickers below say something rather than naming a bucket, for the
+      // reason the VIX comment further down already gives: a kicker is the
+      // one line a reader gets before the number, and on the column index it
+      // is also the fallback for the note under the title. `us-10y` carried
+      // `money` — the name of the column it sits in — so the row read "US 10y
+      // Treasury / MONEY" inside MONEY, and `btc`/`eth` carried `crypto`
+      // twice in a row. An asset class is not what the number counts, and it
+      // is the one thing the reader can already see from where they are
+      // standing.
       indicatorCard(
         trends,
         articles,
         'us-10y',
-        'money',
+        'what borrowing costs',
         'What the United States pays to borrow for ten years. Almost every other long-term rate on earth — mortgages, sovereign debt, project finance — is priced off it.',
       ),
       indicatorCard(
         trends,
         articles,
         'btc',
-        'crypto',
+        'money no state issues',
         'Money that no state issues and no bank clears. That is the argument for it and the argument against it, in the same sentence.',
         // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
         // news for whoever holds it and nothing at all to everyone else, and
@@ -1399,7 +1530,7 @@ export function buildInstrumentCards({
         trends,
         articles,
         'eth',
-        'crypto',
+        'where crypto settles',
         'The network most of the rest of crypto runs on. Tokens, exchanges and contracts settle there, so its price tracks the sector’s activity, not just its own.',
       ),
     ]),

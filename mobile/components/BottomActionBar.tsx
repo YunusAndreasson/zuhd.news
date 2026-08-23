@@ -1,4 +1,6 @@
-import { StyleSheet, View } from 'react-native';
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
+import { useMemo } from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { Pressable, Text } from './primitives';
@@ -6,6 +8,33 @@ import { Pressable, Text } from './primitives';
 // Compact pills — small visible footprint so the globe has more room.
 // Tap target stays ≥48pt thanks to the inflated hitSlop below.
 const PILL_HIT_SLOP = 16;
+
+/**
+ * How far the scrim behind the pills reaches up the page.
+ *
+ * Tall enough that the ramp is a gradient rather than an edge — a short fade
+ * over a line of body text reads as a band across the page, which is a second
+ * artefact rather than a fix for the first — and short enough to stop below
+ * the last line a card actually puts on screen.
+ *
+ * That second bound is measured, not chosen. `CardFrame`'s content ends 64pt
+ * above the page bottom, and the thing sitting on that last line is the source
+ * caption, which is already set quiet. At 96 the ramp still carried ~0.4 alpha
+ * where the caption sits and washed it to the edge of legible — an app whose
+ * own rule is that a card citing IMF PortWatch has to say so cannot dim the
+ * line where it says it. 72 puts the caption at ~0.07.
+ */
+const SCRIM_H = 72;
+
+/**
+ * The stops. Solid under the pills, gone before the card's last line.
+ *
+ * Weighted hard to the bottom: the job is to stop a flat pill reading as a
+ * cell of the list behind it, which only needs the ink immediately around the
+ * pill. Anything reaching further up is dimming content to solve a problem
+ * content never had.
+ */
+const SCRIM_STOPS = [0, 0.55, 0.82, 1];
 
 interface BottomActionBarProps {
   bottomInset: number;
@@ -74,11 +103,50 @@ export function BottomActionBar({
   onSharePress,
   articleActions,
 }: BottomActionBarProps) {
+  const { bgAlpha } = useTheme();
+  const { width: screenWidth } = useWindowDimensions();
+  const scrimColors = useMemo(
+    () => [bgAlpha(0), bgAlpha(0.35), bgAlpha(0.8), bgAlpha(1)],
+    [bgAlpha],
+  );
+
   return (
     <View
       style={[styles.bottomBar, { paddingBottom: Math.max(bottomInset, SPACING.sm) }]}
       pointerEvents="box-none"
     >
+      {/* A scrim, and only on the card columns.
+
+          The pills are flat by design — "definition, not elevation; no shadow"
+          — which works over the globe, where a hairline edge is enough to
+          separate a control from a coastline. Over a column of type it does
+          not: the fifteen-currency table scrolled a row of flags and labels
+          directly under `listen`, and with no depth cue and no backdrop the
+          pill read as a cell of the table that had lost its text rather than
+          as a control floating above one.
+
+          Gated on `!articleActions`, which is already the flag for "the
+          section behind this bar is not the river". On `news` the backdrop is
+          the globe and `ArticleList` draws its own fade; a second one here
+          would dim it twice.
+
+          Skia rather than a CSS gradient for the reason `ArticleList` gives at
+          length: the RN gradient silently fails on iOS release builds, and
+          this is the path the globe has already proven on both platforms.
+          `dither` because a long alpha ramp over the dark background bands. */}
+      {!articleActions ? (
+        <Canvas style={styles.scrim} pointerEvents="none">
+          <Rect x={0} y={0} width={screenWidth} height={SCRIM_H} dither>
+            <LinearGradient
+              start={vec(0, 0)}
+              end={vec(0, SCRIM_H)}
+              colors={scrimColors}
+              positions={SCRIM_STOPS}
+            />
+          </Rect>
+        </Canvas>
+      ) : null}
+
       <ActionPill
         label="listen"
         onPress={onBriefingPress}
@@ -125,6 +193,16 @@ const styles = StyleSheet.create({
   },
   bottomSpacer: {
     flex: 1,
+  },
+  // Anchored to the bar's own bottom edge and drawn upward behind everything
+  // in it. Outside the row's flex flow — `position: absolute` — so it cannot
+  // push the pills or take a share of the width they lay out against.
+  scrim: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: SCRIM_H,
   },
   articleActions: {
     flexDirection: 'row',

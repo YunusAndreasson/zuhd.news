@@ -92,9 +92,13 @@ interface CardBase {
   readingNote?: string;
   /** Part 1c, beside the note: which way it moved and what that means. */
   delta?: CardDelta;
-  /** Part 2. */
+  /** Part 2 — what this is, standing knowledge. Numbered second and *rendered*
+   *  after part three, below the block: it is the one part that reads the same
+   *  tomorrow, and it was leading every card in an app opened daily. See
+   *  `CardFrame`. Absent whenever the pipeline wrote a `why`, so no card ever
+   *  carries two definitions of itself (`definitionUnlessStanding`). */
   whatItIs?: string;
-  /** Part 3. */
+  /** Part 3 — what it did, and the first prose under the block. */
   changed?: string;
   /** Part 4 — `standing`, verbatim. */
   why?: string;
@@ -138,6 +142,43 @@ export interface CardSeries {
    *  `TrendBlock` already does with the same pair of props. Only use it when
    *  the lines share a unit; two units on one axis is a chart that lies. */
   multi?: TrendSeries[];
+  /**
+   * The level this card's stated change opens at, drawn as a dashed reference
+   * across the chart.
+   *
+   * It is the "previous close" line every stock app draws, and it does the one
+   * job the line alone cannot: it turns "up 33%" from a sentence into a
+   * distance. Without it a reader has to find the left-hand end of the line,
+   * hold its height in their head, and compare — which is exactly the work a
+   * chart exists to save them.
+   *
+   * Two things set it. Where the chip measures a window of this same series it
+   * is that window's first value, and `plotWindow` returns the two together so
+   * they cannot be derived apart. Where the chip compares against a *level*
+   * rather than a window — the strait, whose chip reads "vs its 90-day normal"
+   * — it is that level, which is the thing the sentence above the chart is
+   * actually pointing at.
+   *
+   * Single-series only. On two lines a single reference belongs to neither.
+   */
+  baseline?: number;
+  /**
+   * This series runs the opposite way to the quantity the card's chip quotes.
+   *
+   * True on exactly one family of cards: the FX movers, where the chip reports
+   * the *currency* (`currencyMove`) and the series is the published *rate*, so
+   * a ruble 5.3% weaker is a down caret above a line climbing 78 → 83. On the
+   * card that is handled in six words of caption — "higher is weaker" — and
+   * `fxMoverCards` calls it "the one chart in the app that has to name its own
+   * direction".
+   *
+   * A sparkline has no caption and no room for one, so the column index needs
+   * to know rather than to explain: `indexRow` plots the reciprocal, and the
+   * line then points the way the chip and its colour already do. The reason
+   * the card cannot do the same — "an unreadable 0.0121 on the axis" — does
+   * not transfer, because a sparkline has no axis. Nothing else reads this.
+   */
+  inverted?: boolean;
 }
 
 /** One number and its history. Brent, wheat, the strait that moved, nisab. */

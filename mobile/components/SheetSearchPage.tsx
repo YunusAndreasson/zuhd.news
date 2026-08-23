@@ -201,6 +201,10 @@ const styles = StyleSheet.create({
   // when the results overflow it and is inert when they don't.
   emptyFill: {
     flexShrink: 1,
+    // …and a floor, because `EmptyState` centres itself with `flex: 1` and a
+    // zero flex-basis measures to nothing in the auto-height column a sheet
+    // page is. See `LAYOUT.emptyStateMinHeight`.
+    minHeight: LAYOUT.emptyStateMinHeight,
   },
   list: {
     flexShrink: 1,

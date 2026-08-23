@@ -29,9 +29,35 @@ const DAY_MS = 86_400_000;
  * `markets.ts` needs the same arithmetic for the same reason and a second copy
  * is how two gates end up disagreeing about what "new" means.
  */
+/**
+ * An ISO date-*time* carrying no offset, which `Date.parse` reads as local.
+ *
+ * The spec splits on this and the two halves disagree: a date-only form
+ * (`2026-08-23`) is UTC, a date-time form with no designator
+ * (`2026-08-23T04:15:01`) is *local time*. So one payload's fields can be read
+ * in two different zones depending only on whether they carry a clock.
+ *
+ * GDACS is the live case. `/api/gdacs.json` emits
+ * `"modifiedDate":"2026-08-23T04:15:01"` with no `Z`, and every other dated
+ * field the cards gate on is date-only. West of UTC that string parses ahead
+ * of the real instant — five hours ahead in New York — so the freshest alerts
+ * in the file are the ones that look like they are from the future.
+ *
+ * That is invisible until something checks the lower bound, and `isFresh`
+ * exists to check exactly that: it rejects anything dated ahead of the clock,
+ * which is right, and it was rejecting the newest hazard alerts, which is the
+ * one thing `disasterCard` looks for. The card leading `commodities` would
+ * have disappeared for every reader west of the meridian on any morning when
+ * the escalated alerts were revised inside their own UTC offset.
+ */
+const NO_OFFSET = /^\d{4}-\d{2}-\d{2}T[\d:.]+$/;
+
 export function daysSince(iso: string | undefined, now: Date): number {
   if (!iso) return Number.POSITIVE_INFINITY;
-  const t = Date.parse(iso);
+  // Normalised here rather than at the one call site that needs it, because
+  // the trap is in `Date.parse` and every future caller walks into it the same
+  // way. A field that means an instant is read as one instant everywhere.
+  const t = Date.parse(NO_OFFSET.test(iso) ? `${iso}Z` : iso);
   if (Number.isNaN(t)) return Number.POSITIVE_INFINITY;
   return (now.getTime() - t) / DAY_MS;
 }
@@ -77,22 +103,44 @@ export function latestOf(indicator: Pick<Indicator, 'values'>): number | null {
  * so asking for 30 points of a 24-point series measures the whole series and
  * says so in `from`/`to` rather than silently returning NaN.
  */
-export function windowChange(
+/**
+ * The two ends of the window and their labels — everything both change
+ * functions need, and none of the arithmetic either of them does.
+ *
+ * Split out because the two do not share a precondition. Dividing by the
+ * earlier value requires it to be non-zero; subtracting it does not, and
+ * `windowPointChange` was inheriting the divisor's guard by delegating. A
+ * belief contract priced 0% a week ago and 45% today is the largest move a
+ * contract can make, and it was returning null: no chip on the card, and a
+ * ranking key of 0 that sorted it last in the column the sort exists to order.
+ */
+function windowEnds(
   indicator: Pick<Indicator, 'values' | 'periods'>,
   points: number,
-): WindowChange | null {
+): { latest: number; earlier: number; from: string; to: string; span: number } | null {
   const { values, periods } = indicator;
   const n = values.length;
   if (n < 2) return null;
   const span = Math.max(1, Math.min(points, n - 1));
   const latest = values[n - 1];
   const earlier = values[n - 1 - span];
-  if (typeof latest !== 'number' || typeof earlier !== 'number' || earlier === 0) return null;
+  if (typeof latest !== 'number' || typeof earlier !== 'number') return null;
   if (!Number.isFinite(latest) || !Number.isFinite(earlier)) return null;
+  return { latest, earlier, from: periods[n - 1 - span] ?? '', to: periods[n - 1] ?? '', span };
+}
+
+export function windowChange(
+  indicator: Pick<Indicator, 'values' | 'periods'>,
+  points: number,
+): WindowChange | null {
+  const ends = windowEnds(indicator, points);
+  // The guard that belongs to *this* function and not to the one below it.
+  if (!ends || ends.earlier === 0) return null;
+  const { latest, earlier, from, to, span } = ends;
   return {
     pct: ((latest - earlier) / Math.abs(earlier)) * 100,
-    from: periods[n - 1 - span] ?? '',
-    to: periods[n - 1] ?? '',
+    from,
+    to,
     points: span,
   };
 }
@@ -109,12 +157,89 @@ export function windowPointChange(
   indicator: Pick<Indicator, 'values' | 'periods'>,
   points: number,
 ): WindowChange | null {
-  const relative = windowChange(indicator, points);
-  if (!relative) return null;
-  const { values } = indicator;
-  const latest = values[values.length - 1] as number;
-  const earlier = values[values.length - 1 - relative.points] as number;
-  return { ...relative, pct: latest - earlier };
+  // Off `windowEnds`, not off `windowChange`. Delegating to the relative form
+  // meant inheriting its `earlier === 0` guard, which exists only because that
+  // function divides — see `windowEnds`.
+  const ends = windowEnds(indicator, points);
+  if (!ends) return null;
+  return {
+    pct: ends.latest - ends.earlier,
+    from: ends.from,
+    to: ends.to,
+    points: ends.span,
+  };
+}
+
+/**
+ * A window shorter than this is not a chart.
+ *
+ * It guards the *cut*, not the chart: a series whose window already spans it
+ * is left alone whatever its length, which is why the six-point ceasefire
+ * contract still gets its reference line. What this stops is a monthly
+ * indicator read `MONTH` back, which would ask a twenty-four-point series to
+ * throw twenty-two away and call the remaining two a trend. No card in the app
+ * reaches it today; it is a floor for a cadence the pipeline is free to
+ * introduce tomorrow.
+ */
+const MIN_PLOT_POINTS = 8;
+
+export interface PlotWindow {
+  values: number[];
+  periods: string[];
+  /**
+   * The level the window opens at, for the chart's reference line.
+   *
+   * Absent when the plotted series is *wider* than the window the chip
+   * measured, because a reference drawn at the wrong end of a chart is worse
+   * than none: it looks like a claim.
+   */
+  baseline?: number;
+}
+
+/**
+ * The observations the chip's change is measured across — and therefore the
+ * only ones the chart is allowed to draw.
+ *
+ * A card states one change over one window ("up 33%, since Jul 7") and draws
+ * one line. Until this existed the two were computed independently and the
+ * three FRED cards had them disagree: `DAILY_WINDOW` measures thirty
+ * observations, `brent` ships sixty-one, so the card said **up 33% since Jul
+ * 7** above a line that ran from 26 May to 18 Aug and fell about eight per
+ * cent across the width of the screen. Both numbers were right. Nothing on the
+ * card said they were answering different questions, and the picture is the
+ * half a reader trusts without checking.
+ *
+ * This is the arithmetic half of the rule `mobile/CLAUDE.md` states for the
+ * currency table — *a headline count must equal what the table paints* — and
+ * it is also what every finance app does: the period control moves the chart
+ * and the percentage together, and no one ships a three-month line over a
+ * one-month change. The window the chip chose wins, because the chip is where
+ * the editorial decision was made.
+ *
+ * Takes the `WindowChange` the chip was built from rather than a point count,
+ * so the two cannot be computed twice and drift — `windowEnds` clamps its span
+ * to the series length and a second caller would have to clamp it identically.
+ */
+export function plotWindow(
+  series: Pick<Indicator, 'values' | 'periods'>,
+  change: WindowChange | null,
+): PlotWindow {
+  const { values, periods } = series;
+  const start = change ? values.length - 1 - change.points : -1;
+  if (!change || start < 0) return { values, periods };
+  // The window already spans the series — every exchange rate, every contract,
+  // the nisab metal. There is nothing to cut, so the only thing this adds is
+  // the level it opens at, and the length guard below must not reach it: the
+  // six-point ceasefire contract is both the shortest series in the app and
+  // one whose chart is exactly its window, so a guard written against slicing
+  // was taking the reference off the one card that had least else to go on.
+  if (start === 0) return { values, periods, baseline: values[0] };
+  if (change.points < MIN_PLOT_POINTS) return { values, periods };
+  return {
+    values: values.slice(start),
+    periods: periods.slice(start),
+    baseline: values[start],
+  };
 }
 
 /** Highest and lowest observation in the series, with their period labels. */

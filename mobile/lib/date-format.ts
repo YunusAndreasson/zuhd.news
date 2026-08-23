@@ -6,8 +6,18 @@
 // when paired with a month ("MAR '26") and 4-digit when standing alone
 // ("2026"). Day-of-month uses the unpadded number ("MAR 15", not "MAR 05").
 //
-// Use `formatTickLabel(date, ticks)` whenever you draw a time-axis label.
-// The output is already uppercase — pass it straight to a labelXs Text.
+// **`formatTickLabel` and `parseFlexibleDate` currently have no callers.**
+// `TrendBlock` was the only one. It parsed each period into a `Date`, built a
+// `scaleTime` and asked d3 for nice ticks — and that path never once ran on a
+// device: Hermes parses only ISO-ish dates, and every period the pipeline
+// emits for an indicator is `"May 26"` or `"Aug 2024"`, both `Invalid Date`
+// there. It now takes its labels from the period strings themselves, at the
+// index each one belongs to, which is both correct on a series with gaps and
+// free of any year to infer. Kept rather than deleted because a chart with
+// genuine `Date` values would still want them; delete on sight if none turns
+// up.
+//
+// `relativeTime` below is live and unrelated.
 
 import { timeFormat } from 'd3-time-format';
 import { DAY_MS } from './time';

@@ -11,8 +11,9 @@ import Animated, {
 import { MAX_FONT_SCALE, OPACITY, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { Card } from '../../lib/cards/types';
+import { CLOSE_GUTTER } from '../BackToIndexButton';
 import { SourceCaption } from '../blocks/SourceCaption';
-import { Text } from '../primitives';
+import { Pressable, Text } from '../primitives';
 import { DeltaChip } from './DeltaChip';
 
 /**
@@ -20,8 +21,28 @@ import { DeltaChip } from './DeltaChip';
  *
  * Every card in `markets` and `conditions` is this shell with one block in the
  * middle. The order is not decoration — it is the reading order a person
- * actually uses: the number at arm's length, then what it is, then what it
- * did, then why it reaches them, then which of today's stories it touches.
+ * actually uses: the number at arm's length, then what it did, then what it
+ * is, then why it reaches them, then which of today's stories it touches.
+ *
+ * Rendered order, which is no longer the order the parts are numbered in:
+ *
+ *   kicker → reading + note + delta   part 1
+ *   title
+ *   block                             the chart, table or figures
+ *   changed                           part 3
+ *   whatItIs                          part 2
+ *   why                               part 4
+ *   related, source
+ *
+ * Part two is the odd one, and it is deliberate. It is the only part of a card
+ * that is the same sentence tomorrow — what a barrel of crude *is* does not
+ * move — and directly under the title it was the first prose a reader met, so
+ * an app opened every morning led with its most static text and made the
+ * reader travel through it to reach the part that had news in it. Below the
+ * block it is still one scroll from the reading, which is where a reader who
+ * has never met this indicator will look, and out of the way of one who has
+ * met it forty times. The numbering is left alone because `types.ts` and
+ * DESIGN.md describe the anatomy, not the sequence.
  *
  * Part four is the one that justifies the section existing. Without it a card
  * is a tile on a dashboard; with it the reader learns something they can
@@ -48,6 +69,53 @@ const COLUMN_PAD_V = SPACING.md + (SPACING.xxl + SPACING.md);
 const LONG_READING = 9;
 const LONG_READING_SCALE = 1.25;
 
+/**
+ * One pointer from a card into today's corpus.
+ *
+ * Part five named two headlines and then did nothing with them: they rendered
+ * as plain `Text`, so the one place a card says "this number is in that story"
+ * was the one place a reader could not follow it. Getting there meant
+ * remembering the headline, crossing to `news` and swiping the river until it
+ * turned up.
+ *
+ * It stays a caption rather than becoming an `ArticleRow` — the sheets can
+ * afford that row's title-sized type and screen-padding gutters, a card that
+ * has to fit five parts on one page cannot. What it borrows from the row is
+ * the behaviour: a real button, a tick, and the title as its label.
+ *
+ * Non-interactive when no handler reaches it, on `SourceRow`'s rule — a row
+ * with nothing behind it is not a control, and announcing one to a screen
+ * reader is worse than announcing none.
+ */
+const RelatedRow = memo(function RelatedRow({
+  slug,
+  title,
+  onPress,
+}: {
+  slug: string;
+  title: string;
+  onPress?: (slug: string) => void;
+}) {
+  const handlePress = useCallback(() => onPress?.(slug), [onPress, slug]);
+  const body = (
+    <Text variant="caption" tone="default" style={styles.relatedRow}>
+      {title}
+    </Text>
+  );
+  if (!onPress) return body;
+  return (
+    <Pressable
+      haptic="tick"
+      onPress={handlePress}
+      hitSlop={{ top: 4, bottom: 4, left: 16, right: 16 }}
+      accessibilityRole="button"
+      accessibilityLabel={title}
+    >
+      {body}
+    </Pressable>
+  );
+});
+
 interface CardFrameProps {
   card: Card;
   /** Full page height. The card owns the whole screen, like an article does. */
@@ -58,6 +126,9 @@ interface CardFrameProps {
   scrollY: SharedValue<number>;
   /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
+  /** Open one of the stories part five names. Absent where nothing can
+   *  navigate, which is what makes those rows render as plain text. */
+  onArticlePress?: (slug: string) => void;
 }
 
 export const CardFrame = memo(function CardFrame({
@@ -66,6 +137,7 @@ export const CardFrame = memo(function CardFrame({
   index,
   scrollY,
   children,
+  onArticlePress,
 }: CardFrameProps) {
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
@@ -233,7 +305,11 @@ export const CardFrame = memo(function CardFrame({
               spent on the delta chip and on `colors.determination`. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            <Text variant="labelXs" tone="secondary">
+            {/* The kicker is level with the back control on every card,
+              scrolling or not, so it keeps the gutter unconditionally. It
+              costs nothing: the longest kicker in the app is four short words
+              of small caps and stops less than halfway across. */}
+            <Text variant="labelXs" tone="secondary" style={styles.gutter}>
               {card.lead ? (
                 <Text variant="labelXs" tone="emphasis">
                   {'today · '}
@@ -295,15 +371,19 @@ export const CardFrame = memo(function CardFrame({
               </View>
             ) : null}
 
-            <Text variant="title" tone="default" style={styles.title}>
+            {/* The title takes the gutter only on a card that scrolls, which
+              is the only card whose title ever travels up to the control's
+              line. Reserving it unconditionally would cost 42pt of the widest
+              line on every card in the app to fix a state most of them can
+              never enter — and this title wraps rather than truncates, so the
+              bill would be paid in second lines. */}
+            <Text
+              variant="title"
+              tone="default"
+              style={[styles.title, scrollable && styles.gutter]}
+            >
               {card.title}
             </Text>
-
-            {card.whatItIs ? (
-              <Text variant="body" tone="accent" style={styles.part}>
-                {card.whatItIs}
-              </Text>
-            ) : null}
           </Animated.View>
 
           {children ? (
@@ -314,6 +394,32 @@ export const CardFrame = memo(function CardFrame({
             {card.changed ? (
               <Text variant="bodyEmphasis" style={styles.part}>
                 {card.changed}
+              </Text>
+            ) : null}
+
+            {/* The definition, and it sits *below* the block rather than
+              between the title and it.
+
+              This is the one part of a card that does not change. The reading
+              is new every morning, `changed` is new every morning, the related
+              stories are today's — and this sentence is the same sentence it
+              was yesterday, because what a barrel of crude *is* does not move.
+              Directly under the title it was the first prose a reader met, so
+              an app opened every day showed its most static text first and
+              made the reader scroll past it to reach the part that had news in
+              it. On `outlook`'s top card that cost was paid twice over: the
+              generic explanation of a prediction contract, every morning,
+              above the chart that had actually moved.
+
+              Below the block it is still one screen from the reading and still
+              ahead of `standing`, so a reader who has never met this indicator
+              finds it exactly where the unfamiliar number sent them — one
+              scroll down — while a reader who has met it forty times never has
+              to travel through it. Same words, same card, ordered by how often
+              they are worth reading. */}
+            {card.whatItIs ? (
+              <Text variant="body" tone="accent" style={styles.part}>
+                {card.whatItIs}
               </Text>
             ) : null}
 
@@ -345,9 +451,7 @@ export const CardFrame = memo(function CardFrame({
                   {`in ${card.related.length} of today's stories`}
                 </Text>
                 {card.related.map((r) => (
-                  <Text key={r.slug} variant="caption" tone="default" style={styles.relatedRow}>
-                    {r.title}
-                  </Text>
+                  <RelatedRow key={r.slug} slug={r.slug} title={r.title} onPress={onArticlePress} />
                 ))}
               </View>
             ) : null}
@@ -390,6 +494,8 @@ const styles = StyleSheet.create({
   // opacity tier and not a conditional render.
   separatorSpent: { opacity: OPACITY.hidden },
   title: { marginTop: SPACING.smPlus },
+  /** Keeps a header line clear of the pinned back control. See `CLOSE_SIZE`. */
+  gutter: { paddingRight: CLOSE_GUTTER },
   part: { marginTop: SPACING.smPlus },
   block: { marginTop: SPACING.smPlus },
   why: { marginTop: SPACING.md },

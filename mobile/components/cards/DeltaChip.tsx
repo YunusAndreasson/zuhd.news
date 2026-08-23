@@ -36,8 +36,25 @@ export const DeltaChip = memo(function DeltaChip({
   const tone = delta.valence;
   return (
     <View style={styles.delta}>
+      {/* The caret is the direction drawn, and the direction is also spoken —
+          by the magnitude below, which carries it in its own label. Left
+          visible to a screen reader it contributed an empty text node per
+          chip, and a column index prints six of them: six unlabelled stops
+          between the rows, saying nothing when reached.
+
+          Both props, because each covers one platform:
+          `importantForAccessibility` is Android-only and
+          `accessibilityElementsHidden` is iOS-only. Either alone fixes half
+          the readers. On the index rows the point is nearly moot — the
+          surrounding `Pressable` carries a label and groups its children —
+          but `CardFrame` renders this chip into a plain view with no grouping
+          wrapper, so on a card the bare glyph is reachable on its own. */}
       {delta.direction !== 'flat' ? (
-        <View style={styles.deltaCaret}>
+        <View
+          style={styles.deltaCaret}
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden
+        >
           <Icon name={delta.direction === 'up' ? 'caret-up' : 'caret-down'} size="sm" tone={tone} />
         </View>
       ) : null}
@@ -51,6 +68,15 @@ export const DeltaChip = memo(function DeltaChip({
         tone={tone}
         scale={1.15}
         maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+        // The direction rides the number rather than the glyph beside it. On a
+        // card this chip stands on its own, and hearing "33%" without "up" is
+        // half a fact; on an index row the row's own label wins and this is
+        // never reached.
+        accessibilityLabel={
+          delta.direction === 'flat'
+            ? delta.magnitude
+            : `${delta.direction === 'up' ? 'up' : 'down'} ${delta.magnitude}`
+        }
       >
         {delta.magnitude}
       </Text>

@@ -37,11 +37,20 @@ const VESSEL_LABELS: { field: VesselField; label: string }[] = [
  *  own. It used to hold one: 15% here against the card's 10%, so the same
  *  strait could read disrupted on the card and quiet in the sheet that card
  *  opens, and nothing in either file said the other existed. */
-function formatDelta(delta: number): { text: string; tone: Valence } {
+function formatDelta(delta: number, compact = false): { text: string; tone: Valence } {
   const pct = Math.round(delta * 100);
   if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  return { text: `${sign}${pct}% vs 90d`, tone: chokepointValence(delta) };
+  // "vs 90-day normal", not "vs 90d". The card that opens this sheet reads
+  // "vs its 90-day normal" and the chart below marks that level with a dashed
+  // rule; a trader's abbreviation for the same comparison, one tap away, is
+  // the wording half of the divergence this function's own header describes.
+  //
+  // `compact` is the vessel table, where the header two inches above has just
+  // spelled it out and six rows would each carry it again. Same split the
+  // column index makes when it drops a chip's window.
+  const against = compact ? 'vs normal' : 'vs 90-day normal';
+  return { text: `${sign}${pct}% ${against}`, tone: chokepointValence(delta) };
 }
 
 function findRelatedArticles(chokepoint: Chokepoint, articles: Article[]): Article[] {
@@ -83,7 +92,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       if (current == null || baseline == null) return [];
       if (baseline < 0.5 && current < 0.5) return [];
       const delta = chokepoint.delta7vs90[v.field] ?? 0;
-      const { text: deltaText, tone } = formatDelta(delta);
+      const { text: deltaText, tone } = formatDelta(delta, true);
       return [
         {
           label: v.label,
@@ -174,6 +183,14 @@ export const ChokepointSheet = memo(function ChokepointSheet({
                 label="Total transits, last 90 days"
                 unit="ships/day"
                 highlight="last"
+                // The strait's own 90-day normal for *all* hulls, which is
+                // what `series.total` counts — see `straitMovedCard`, where
+                // the same rule applies and reading it off `primaryField`
+                // would put the rule at a quarter of its true height on seven
+                // of the eleven straits. Drawing the same ninety days the card
+                // draws, without the level the card marks, is the card/sheet
+                // divergence `lib/valence.ts` was written to stop.
+                baseline={chokepoint.baseline90Avg.n_total}
                 variant="context"
               />
             </Animated.View>

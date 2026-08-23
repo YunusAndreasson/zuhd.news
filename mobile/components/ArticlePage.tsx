@@ -26,6 +26,7 @@ import { hapticImpact, hapticTick } from '../lib/haptics';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
+import { CLOSE_GUTTER } from './BackToIndexButton';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { Text } from './primitives';
 
@@ -370,7 +371,7 @@ export const ArticlePage = memo(function ArticlePage({
             not a control: nothing here is tappable, and foundation.md's rule
             that information appears exactly once is why it is the only place
             the category is stated. */}
-        <Text variant="labelXs" tone="secondary" style={styles.kicker}>
+        <Text variant="labelXs" tone="secondary" style={[styles.kicker, styles.gutter]}>
           {kicker}
         </Text>
         <Text
@@ -378,7 +379,7 @@ export const ArticlePage = memo(function ArticlePage({
           tone="emphasis"
           scale={readerScale}
           numberOfLines={3}
-          style={styles.title}
+          style={[styles.title, styles.gutter]}
         >
           {article.title}
         </Text>
@@ -474,6 +475,21 @@ const styles = StyleSheet.create({
   earlierNote: {
     marginTop: SPACING.sm,
     textAlign: 'center',
+  },
+  /**
+   * Keep the header clear of the floating back control.
+   *
+   * The river is a detail view now — a row on the news index opens it — so it
+   * carries the same "back to the list" pill every card does, pinned to the
+   * page's top right. `CardFrame` has reserved a gutter for that control for
+   * as long as it has drawn one; this file had never needed to, and the first
+   * headline it met ran its last letter under the pill ("Canada Refuses Tariff
+   * Relief" lost the *f*). Unconditional rather than gated on the control
+   * being drawn, because a header whose measure changes with a chrome element
+   * is a header that re-wraps when something unrelated moves.
+   */
+  gutter: {
+    paddingRight: CLOSE_GUTTER,
   },
   kicker: {
     marginBottom: SPACING.xxs,

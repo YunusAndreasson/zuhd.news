@@ -8,13 +8,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
-import { RADIUS, SPACING } from '../../constants/theme';
 import { useScrollState } from '../../hooks/useScrollState';
-import { useTheme } from '../../hooks/useTheme';
 import type { Card } from '../../lib/cards/types';
 import { hapticTick } from '../../lib/haptics';
+import { BackToIndexButton } from '../BackToIndexButton';
 import { EmptyState } from '../EmptyState';
-import { Icon, IconButton } from '../primitives';
 import { CardView } from './CardView';
 
 /**
@@ -51,6 +49,8 @@ interface CardPagerProps {
   initialIndex?: number;
   /** Back to the column index. Absent when the pager is the whole column. */
   onClose?: () => void;
+  /** Open one of the stories a card's part five names — see `CardFrame`. */
+  onArticlePress?: (slug: string) => void;
   ref?: React.Ref<CardPagerRef>;
 }
 
@@ -60,8 +60,11 @@ interface CardPagerProps {
  *  the same answer: a low-lift `pillBg` fill with a hairline edge, because the
  *  fill alone blends into a dark backdrop. Definition, not elevation; no
  *  shadow. 34pt clears the 44pt target once `HIT_SLOP` is added, which
- *  `IconButton` applies for us. */
-const CLOSE_SIZE = 34;
+ *  `IconButton` applies for us.
+ *
+ *  The number itself lives in `CardFrame`, which has to reserve a gutter for
+ *  it: this control is drawn here and collided with there, and while each file
+ *  held its own copy the header could only be kept clear of it by coincidence. */
 
 export const CardPager = memo(function CardPager({
   cards,
@@ -72,9 +75,9 @@ export const CardPager = memo(function CardPager({
   emptyHint,
   initialIndex = 0,
   onClose,
+  onArticlePress,
   ref,
 }: CardPagerProps) {
-  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const listRef = useAnimatedRef<Animated.FlatList<Card>>();
   // Seeded at the first render, not in an effect — `useScrollState`'s header
@@ -254,9 +257,15 @@ export const CardPager = memo(function CardPager({
 
   const renderItem = useCallback(
     ({ item, index }: { item: Card; index: number }) => (
-      <CardView card={item} itemHeight={itemHeight} index={index} scrollY={scrollY} />
+      <CardView
+        card={item}
+        itemHeight={itemHeight}
+        index={index}
+        scrollY={scrollY}
+        onArticlePress={onArticlePress}
+      />
     ),
-    [itemHeight, scrollY],
+    [itemHeight, scrollY, onArticlePress],
   );
 
   const keyExtractor = useCallback((item: Card) => item.id, []);
@@ -298,15 +307,7 @@ export const CardPager = memo(function CardPager({
           that view would add its own height to the comparison — which is the
           measurement that once let four cards truncate in silence. Absolutely
           positioned here it cannot reach that number. */}
-      {onClose ? (
-        <IconButton
-          onPress={onClose}
-          accessibilityLabel="Back to the list"
-          style={[styles.close, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-        >
-          <Icon name="close-sharp" size="md" tone="secondary" />
-        </IconButton>
-      ) : null}
+      {onClose ? <BackToIndexButton onPress={onClose} /> : null}
     </View>
   );
 });
@@ -314,18 +315,4 @@ export const CardPager = memo(function CardPager({
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   list: { flex: 1 },
-  // Level with the kicker: `SPACING.md` is `styles.column`'s own `paddingTop`
-  // in `CardFrame`, and `articlePadding` its horizontal inset, so the control
-  // sits on the card's grid rather than floating over it.
-  close: {
-    position: 'absolute',
-    top: SPACING.md,
-    right: SPACING.articlePadding,
-    width: CLOSE_SIZE,
-    height: CLOSE_SIZE,
-    borderRadius: RADIUS.floating,
-    borderWidth: StyleSheet.hairlineWidth,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

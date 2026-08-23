@@ -382,9 +382,12 @@ describe('buildInstrumentCards', () => {
     // maximum, so the sentence says that rather than dating the high — "as
     // high as 86% (Aug 9)" printed under a reading of 86% today invites a
     // reader to look for a fall that never happened.
-    expect(belief?.changed).toBe(
-      'The highest it has been inside the window held here, against a low of 26% (Jul 17).',
-    );
+    // "the period shown", not "the window held here": the scope still has to be
+    // stated — the app holds about a month and must not imply an all-time high
+    // — but the chart below now draws exactly that period with a date at each
+    // end, so the sentence can point at it instead of describing the app's own
+    // storage in five words the reader cannot check.
+    expect(belief?.changed).toBe('A high for the period shown, against a low of 26% (Jul 17).');
   });
 
   it('leaves nothing on screen in the colour of the label text beside it', () => {
@@ -759,10 +762,16 @@ describe('buildConditionCards', () => {
     const card = find(buildConditionCards({ ...emptyInputs, conflict }), 'conflict');
     expect(card?.reading).toBe('919');
     expect(card?.changed).toContain('August 2026');
-    expect(card?.changed).toContain('Nothing here is live');
     // The lag is stated as a measured number, so it cannot contradict the
-    // window it sits next to.
+    // window it sits next to — and that number is now the *whole* disclosure.
+    // "Nothing here is live: every event was coded by hand first" used to
+    // follow it and was the third statement of one fact on one screen: part
+    // two already says the coding is by hand, part four says the lag is the
+    // method rather than a fault in it. A date arithmetic a reader can check
+    // beats an assertion they cannot.
     expect(card?.changed).toContain('15 days after it closed');
+    expect(card?.whatItIs).toContain('coded by hand');
+    expect(card?.why).toContain('The lag is the method');
   });
 
   it('leads the hazard card with the ratio, which is the whole point of it', () => {
@@ -897,6 +906,38 @@ describe('buildConditionCards freshness gates', () => {
     expect(
       find(
         buildConditionCards({ ...emptyInputs, ipc: ipcSnapshot([ipcArea('SD', 10, 0, 0, 30)]) }),
+        'famine',
+      ),
+    ).toBeDefined();
+  });
+
+  it('does not let one future-dated area pass a file of stale analyses', () => {
+    // The fifth gate written as `daysSince(...) > limit`, and the one the
+    // sweep that converted the other four did not reach — it was inside a
+    // `reduce`. `daysSince` is negative ahead of the clock and a negative is
+    // always the minimum, so a single future `from` made `newest` negative,
+    // and `negative > 75` is false. The card then led `commodities` under the
+    // `today ·` mark on analyses a year old.
+    expect(
+      find(
+        buildConditionCards({
+          ...emptyInputs,
+          ipc: ipcSnapshot([ipcArea('SD', 10, 0, 0, 400), ipcArea('YE', 5, 0, 0, -30)]),
+        }),
+        'famine',
+      ),
+    ).toBeUndefined();
+  });
+
+  it('still ships when a current analysis sits beside a future-dated one', () => {
+    // The future record is discarded, not treated as a reason to drop an
+    // otherwise current file.
+    expect(
+      find(
+        buildConditionCards({
+          ...emptyInputs,
+          ipc: ipcSnapshot([ipcArea('SD', 10, 0, 0, 30), ipcArea('YE', 5, 0, 0, -30)]),
+        }),
         'famine',
       ),
     ).toBeDefined();
@@ -1330,6 +1371,75 @@ describe('which belief leads the column', () => {
     expect(columns.outlook[0]?.whatItIs).toContain('pays out if this happens');
     expect(columns.outlook[1]?.whatItIs).toBeUndefined();
   });
+
+  it('yields the explainer to the desk when the leading contract has a standing', () => {
+    // The bug this pins shipped: the comment above the sort reasoned that
+    // index 0 "lands on the contract that has no `standing` of its own", which
+    // was true of one payload and not of the ranking. The live file put the
+    // US-Iran ceasefire contract first *with* a standing paragraph, so the top
+    // card of `outlook` printed a definition of a prediction contract, a
+    // chart, and then a second definition of a prediction contract — the
+    // collision `definitionUnlessStanding` exists to prevent, at the one call
+    // site still deciding it by hand.
+    const belief = (id: string, values: number[], standing?: string) =>
+      indicator({ id, label: `${id}?`, source: 'polymarket', unit: '%', values, standing });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        belief('poly-quiet', [13, 13, 13, 13, 13, 13, 13, 13]),
+        belief(
+          'poly-moving',
+          [83, 84, 85, 86, 87, 88, 89, 91],
+          'A Polymarket contract paying out on whether the ceasefire is still holding at a set date.',
+        ),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const lead = columns.outlook[0];
+    expect(lead?.id).toBe('poly-moving');
+    expect(lead?.why).toContain('still holding at a set date');
+    expect(lead?.whatItIs).toBeUndefined();
+  });
+
+  it('never gives one card two definitions of itself', () => {
+    // The invariant, stated once for every builder rather than per card: if
+    // the pipeline wrote a paragraph, the app does not add a second. This is
+    // the guard the whole of `definitionUnlessStanding` exists to enforce, and
+    // it had never been asserted across the union.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'poly-a',
+          label: 'A?',
+          source: 'polymarket',
+          unit: '%',
+          values: [10, 40],
+          standing: 'The desk’s own paragraph about A.',
+        }),
+        indicator({
+          id: 'brent',
+          label: 'Brent crude',
+          source: 'fred',
+          unit: '$/bbl',
+          values: [70, 95],
+          standing: 'The desk’s own paragraph about crude.',
+        }),
+        indicator({
+          id: 'zar',
+          label: 'South African rand',
+          source: 'oer',
+          unit: 'ZAR / USD',
+          values: [17, 16],
+          standing: 'The desk’s own paragraph about the rand.',
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    for (const card of allOf(columns)) {
+      if (card.why) expect(card.whatItIs).toBeUndefined();
+    }
+  });
 });
 
 describe('belief titles', () => {
@@ -1348,5 +1458,159 @@ describe('belief titles', () => {
       articles: [],
     });
     expect(columns.outlook[0]?.title).toBe('US invade Iran before 2027?');
+  });
+});
+
+describe('the chart and the chip cover one window', () => {
+  /**
+   * A day's worth of every kind of card, with the series lengths the live
+   * payload actually has: FRED runs long (61 daily observations against a
+   * 30-observation chip window), the exchange rates and the contracts run
+   * exactly to their window.
+   */
+  const daily = (n: number, from: number, step: number) =>
+    Array.from({ length: n }, (_, i) => from + i * step);
+  const days = (n: number) => Array.from({ length: n }, (_, i) => `d${i}`);
+
+  const columns = () =>
+    buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'brent',
+          label: 'Brent crude',
+          source: 'fred',
+          unit: '$/bbl',
+          cadence: 'daily',
+          values: daily(61, 70, 0.5),
+          periods: days(61),
+        }),
+        indicator({
+          id: 'us-10y',
+          label: 'US 10y Treasury',
+          source: 'fred',
+          unit: '%',
+          cadence: 'daily',
+          values: daily(61, 4, 0.01),
+          periods: days(61),
+        }),
+        indicator({
+          id: 'btc',
+          label: 'Bitcoin',
+          source: 'coingecko',
+          unit: '$',
+          cadence: 'daily',
+          values: daily(31, 60000, 500),
+          periods: days(31),
+        }),
+        indicator({
+          id: 'fx-zar',
+          label: 'South African rand',
+          source: 'oer',
+          unit: 'ZAR / USD',
+          cadence: 'daily',
+          values: daily(30, 18, -0.05),
+          periods: days(30),
+        }),
+        indicator({
+          id: 'poly-a',
+          label: 'Something happens?',
+          source: 'polymarket',
+          unit: '%',
+          cadence: 'daily',
+          values: daily(31, 20, 1),
+          periods: days(31),
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+
+  it('opens every chart on the period its chip names', () => {
+    // The invariant, across the union rather than per builder. A card states
+    // one change over one window and draws one line, and until `plotWindow`
+    // those were computed independently: brent's chip read "since d30" over a
+    // line that opened at d0 and fell across the screen, because
+    // `DAILY_WINDOW` is thirty observations and the series is sixty-one. Both
+    // numbers were right, which is what made it invisible.
+    //
+    // Matched on the chip's own words: `deltaFrom` writes "since ${from}" from
+    // the window's opening period, so the string is the assertion.
+    let checked = 0;
+    for (const card of allOf(columns())) {
+      const series = (card.kind === 'reading' || card.kind === 'belief') && card.series;
+      if (!series || series.multi) continue;
+      const window = card.delta?.window;
+      if (!window?.startsWith('since ')) continue;
+      expect(series.periods[0]).toBe(window.slice('since '.length));
+      checked += 1;
+    }
+    expect(checked).toBeGreaterThanOrEqual(4);
+  });
+
+  it('cuts the long FRED series down to the window and leaves the short ones alone', () => {
+    // The concrete regression, so a failure names the card rather than a
+    // period string. Sixty-one observations in, thirty-one out — and bitcoin,
+    // whose series was already its window, untouched.
+    const all = allOf(columns());
+    const brent = find(all, 'brent');
+    const btc = find(all, 'btc');
+    expect(brent?.kind === 'reading' && brent.series?.values).toHaveLength(31);
+    expect(btc?.kind === 'reading' && btc.series?.values).toHaveLength(31);
+  });
+
+  it('gives every single-series chart the level its chip is measured from', () => {
+    // The reference line. Without it "up 33%" is a figure the reader takes on
+    // trust; with it the line ends a visible distance above a dashed rule.
+    for (const card of allOf(columns())) {
+      const series = (card.kind === 'reading' || card.kind === 'belief') && card.series;
+      if (!series || series.multi || !card.delta?.window?.startsWith('since ')) continue;
+      expect(series.baseline).toBe(series.values[0]);
+    }
+  });
+
+  it('gives the strait its 90-day normal rather than its own first reading', () => {
+    // The one card whose chip compares against a level instead of a window —
+    // "vs its 90-day normal" — so the reference has to be that normal. Taking
+    // `values[0]` here would draw a rule the sentence above it is not talking
+    // about.
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [strait('hormuz', 'Strait of Hormuz', 2, 20, -0.9)],
+        articles: [],
+      }),
+    );
+    const card = find(cards, 'strait-hormuz');
+    expect(card?.kind === 'reading' && card.series?.baseline).toBe(20);
+  });
+
+  it('marks the normal for the hulls the chart counts, not the ones the reading counts', () => {
+    // `series.total` is the only series PortWatch ships and it counts every
+    // hull, while the reading is one vessel class — so on seven of the eleven
+    // straits the two normals differ by a factor of four (Panama: 8.1 container
+    // against 30.9 all ships). Read off `primaryField` the rule sat a quarter
+    // of the way up a chart it had nothing to do with and looked like a
+    // measurement.
+    //
+    // Kerch, the strait that has actually been leading the column, is
+    // `n_total` — so every reading of this on a device would have agreed with
+    // the bug.
+    const panama: Chokepoint = {
+      ...strait('panama', 'Panama Canal', 2, 8.1, -0.75),
+      primaryField: 'n_container',
+      last7Avg: { n_container: 2, n_total: 12 },
+      baseline90Avg: { n_container: 8.1, n_total: 30.9 },
+      delta7vs90: { n_container: -0.75, n_total: -0.6 },
+      series: { periods: ['a', 'b'], total: [30, 12] },
+    };
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [panama],
+        articles: [],
+      }),
+    );
+    const card = find(cards, 'strait-panama');
+    expect(card?.kind === 'reading' && card.series?.baseline).toBe(30.9);
   });
 });

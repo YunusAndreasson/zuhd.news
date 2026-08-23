@@ -64,7 +64,13 @@ function formatDelta(
   const pct = Math.round(delta * 100);
   if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  return { text: `${sign}${pct}% vs prev`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
+  // The period it is measured against, named — not "vs prev". A reader cannot
+  // tell what "prev" is without knowing the cadence, and the cadence is the one
+  // thing this line does not say: on a daily series it means yesterday, on a
+  // monthly one last month. The label is already in the payload.
+  const previousPeriod = indicator.periods[indicator.periods.length - 2];
+  const against = previousPeriod ? `vs ${previousPeriod}` : 'vs previous';
+  return { text: `${sign}${pct}% ${against}`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
 }
 
 function findRelatedArticles(indicator: Indicator, articles: Article[]): Article[] {

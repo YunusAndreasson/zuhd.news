@@ -24,7 +24,9 @@ import { CardFrame } from './CardFrame';
  * that could know the kind. The switch belongs here rather than at every
  * consumer.
  *
- * The four kinds differ only in the block between part two and part three:
+ * The four kinds differ only in the block, which sits between the title and
+ * part three — see `CardFrame` for the rendered order, which stopped matching
+ * the part numbering when part two moved below the block:
  *
  *   reading      a series, plus optional secondary figures
  *   comparison   rows that only mean something against each other
@@ -80,11 +82,14 @@ export const CardView = memo(function CardView({
   itemHeight,
   index,
   scrollY,
+  onArticlePress,
 }: {
   card: Card;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
+  /** Open one of the stories part five names — see `CardFrame`. */
+  onArticlePress?: (slug: string) => void;
 }) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
@@ -92,7 +97,13 @@ export const CardView = memo(function CardView({
   }, [card.link, openLink]);
 
   return (
-    <CardFrame card={card} itemHeight={itemHeight} index={index} scrollY={scrollY}>
+    <CardFrame
+      card={card}
+      itemHeight={itemHeight}
+      index={index}
+      scrollY={scrollY}
+      onArticlePress={onArticlePress}
+    >
       {renderBody(card, onPress)}
     </CardFrame>
   );
@@ -112,6 +123,12 @@ function renderBody(card: Card, onPress: () => void) {
               label={card.series.label}
               unit={card.series.unit}
               highlight={card.series.highlight}
+              // The chip's colour, on the chip's own picture. `TrendBlock`
+              // narrows it away on a multi-series chart, so `staples` is
+              // unaffected; everywhere else the line and the caret above it
+              // now make one claim instead of the chip making it alone.
+              tone={card.delta?.valence}
+              baseline={card.series.baseline}
               variant="context"
               scrubbable={false}
             />
@@ -127,6 +144,13 @@ function renderBody(card: Card, onPress: () => void) {
           label={card.series.label}
           unit={card.series.unit}
           highlight={card.series.highlight}
+          // Slate on every belief card, and deliberately: `beliefCards` passes
+          // no `riseMeans`, so a contract on a ceasefire holding and one on a
+          // candidate winning are the same colour. What the reader gets from
+          // it here is the third state said out loud — the app is not telling
+          // you this is good news — in the same channel as everywhere else.
+          tone={card.delta?.valence}
+          baseline={card.series.baseline}
           variant="context"
           // A card sits in a horizontal pager and the app is navigated by
           // swiping. A chart-width scrubber eats that swipe.

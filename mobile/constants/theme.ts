@@ -393,6 +393,28 @@ export const LAYOUT = {
   handleHeight: 4,
   inputHeight: 40,
   hitSlop: 12,
+  /**
+   * Floor for an empty state that sits inside a shrinkable, content-sized box.
+   *
+   * `EmptyState` centres itself with `fill` — `flex: 1` — and both of the
+   * search sheet's empty states rendered at zero height on device: typing a
+   * term with no matches gave a bare input row and no "no articles found",
+   * and opening search said nothing at all about what it searches. The
+   * surviving row was the input; everything below it measured to nothing.
+   *
+   * It is specific to that sheet's arrangement, not to `EmptyState`: the
+   * bookmarks page renders the same component into the same kind of
+   * content-sized sheet and draws correctly, so the component was left alone
+   * and the floor applied where the collapse was observed. What the two do
+   * not share is the wrapper — search puts its empty states in a
+   * `flexShrink: 1` sibling of a `flexShrink: 1` list, under the sheet's
+   * `maxHeight` cap, and a shrinkable box with nothing incompressible in it
+   * is free to shrink to nothing.
+   *
+   * A floor gives that box a size to centre inside. Anywhere the parent is
+   * genuinely bounded — a full-screen column — it is inert.
+   */
+  emptyStateMinHeight: 180,
 } as const;
 
 /** Editorial thresholds — not layout, but shared across components */

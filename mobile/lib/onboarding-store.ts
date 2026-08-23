@@ -12,7 +12,7 @@ import { getPreferences } from './storage';
 // persist).
 // ---------------------------------------------------------------------------
 
-export type HintId = 'swipe' | 'sources' | 'bookmark' | 'globe';
+export type HintId = 'swipe' | 'sources' | 'bookmark' | 'globe' | 'card';
 /** `expired` = shown in MAX_HINT_SHOWS sessions without being acted on — the
  *  reader has voted; silence over nagging. */
 export type HintStatus = 'pending' | 'done' | 'dismissed' | 'expired';
@@ -35,7 +35,7 @@ export interface OnboardingState {
   primer: { status: PrimerStatus; decidedAt: number };
 }
 
-export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe'];
+export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe', 'card'];
 /** A hint shown in this many separate sessions without being acted on expires. */
 export const MAX_HINT_SHOWS = 3;
 
@@ -58,6 +58,7 @@ function seedHints(status: HintStatus): Record<HintId, HintEntry> {
     sources: { status, showCount: 0 },
     bookmark: { status, showCount: 0 },
     globe: { status, showCount: 0 },
+    card: { status, showCount: 0 },
   };
 }
 
@@ -90,6 +91,35 @@ function isExistingUser(): boolean {
 const HINT_STATUSES: readonly string[] = ['pending', 'done', 'dismissed', 'expired'];
 const PRIMER_STATUSES: readonly string[] = ['pending', 'accepted', 'declined', 'legacy', 'never'];
 
+/**
+ * Fill hint ids that did not exist when this install was last written.
+ *
+ * Without this, adding an id to `HINT_IDS` fails `isOnboardingState` for every
+ * install in the world at once — the validator requires all of them — and a
+ * failed parse reseeds. Reseeding looks survivable and is not: it takes
+ * `snapCount` back to zero and the notification primer back to `pending`, so
+ * a new hint would quietly re-open a question the reader had already answered.
+ * The stored shape is otherwise unchanged, so this is a backfill rather than a
+ * version bump.
+ *
+ * The default is `pending`, including for an install `isExistingUser` would
+ * call a veteran. That is the honest status for the case this exists to serve:
+ * an id is added when the app grows something new to teach, and a reader who
+ * has used the app for a year has seen exactly as much of a new surface as a
+ * reader who installed it this morning.
+ */
+function backfillHints(v: unknown): unknown {
+  if (typeof v !== 'object' || v === null) return v;
+  const s = v as Record<string, unknown>;
+  const hints = s.hints as Record<string, unknown> | undefined;
+  if (!hints) return v;
+  const missing = HINT_IDS.filter((id) => !hints[id]);
+  if (missing.length === 0) return v;
+  const next = { ...hints };
+  for (const id of missing) next[id] = { status: 'pending', showCount: 0 };
+  return { ...s, hints: next };
+}
+
 function isOnboardingState(v: unknown): v is OnboardingState {
   if (typeof v !== 'object' || v === null) return false;
   const s = v as Record<string, unknown>;
@@ -115,10 +145,16 @@ try {
   const stored = Storage.getItemSync(ONBOARDING_KEY);
   const text = stored ?? (ONBOARDING_FILE.exists ? ONBOARDING_FILE.textSync() : null);
   if (text) {
-    const parsed: unknown = JSON.parse(text);
+    const raw: unknown = JSON.parse(text);
+    const parsed = backfillHints(raw);
     if (isOnboardingState(parsed)) {
       state = parsed;
-      if (stored === null) Storage.setItemSync(ONBOARDING_KEY, text);
+      // Write back when the stored copy is not what we are now holding —
+      // either it lived only in the file, or a backfill added an id to it.
+      // Without the second case the fill is recomputed on every cold start
+      // and a hint could never record a showing against it.
+      if (stored === null || parsed !== raw)
+        Storage.setItemSync(ONBOARDING_KEY, JSON.stringify(parsed));
     } else {
       state = seed(isExistingUser());
       justSeeded = true;

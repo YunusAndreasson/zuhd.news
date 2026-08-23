@@ -20,6 +20,7 @@ const HINT_COPY: Record<HintId, string> = {
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
   globe: 'tap a country on the globe',
+  card: 'tap a line for the full card',
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;

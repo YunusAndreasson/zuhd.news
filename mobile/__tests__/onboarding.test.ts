@@ -228,7 +228,7 @@ describe('actions', () => {
 });
 
 describe('eligibleHint', () => {
-  const ctx = { screenReader: false };
+  const ctx = { screenReader: false, surface: 'articleRiver' } as const;
 
   it('fresh state → swipe', () => {
     loadStore();
@@ -269,8 +269,12 @@ describe('eligibleHint', () => {
     s.markHintDone('sources');
     s.markHintDone('bookmark');
     for (let i = 0; i < 3; i++) s.recordArticleSnap();
-    expect(h.eligibleHint(s.getSnapshot(), { screenReader: true })).toBeNull();
-    expect(h.eligibleHint(s.getSnapshot(), { screenReader: false })).toBe('globe');
+    expect(
+      h.eligibleHint(s.getSnapshot(), { screenReader: true, surface: 'articleRiver' } as const),
+    ).toBeNull();
+    expect(
+      h.eligibleHint(s.getSnapshot(), { screenReader: false, surface: 'articleRiver' } as const),
+    ).toBe('globe');
   });
 
   it('an exhausted showCount blocks a still-pending hint', () => {
@@ -297,6 +301,84 @@ describe('eligibleHint', () => {
     const h = loadHints();
     expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
   });
+
+  it('a column index offers the card hint and nothing else', () => {
+    const s = loadStore();
+    const h = loadHints();
+    const onColumn = { screenReader: false, surface: 'cardIndex' } as const;
+    // Fresh state: `swipe` is what the river would offer. It teaches a gesture
+    // whose target is not on this screen.
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('swipe');
+    expect(h.eligibleHint(s.getSnapshot(), onColumn)).toBe('card');
+  });
+
+  it('the article hints never fire on a column index', () => {
+    const s = loadStore();
+    const h = loadHints();
+    s.markHintDone('card');
+    // Every article hint is pending and its depth gate is met; none of them
+    // may speak here, because none of their targets is on screen.
+    for (let i = 0; i < 3; i++) s.recordArticleSnap();
+    expect(
+      h.eligibleHint(s.getSnapshot(), { screenReader: false, surface: 'cardIndex' }),
+    ).toBeNull();
+  });
+
+  it('says nothing at all on the news index or on an open card', () => {
+    // The two surfaces a boolean could not name, and both were being lent a
+    // neighbour's answer. An open card reported the river's value, so a reader
+    // holding a currency table could be told to swipe up for the next story;
+    // the news index did not exist yet and would have inherited the same bug.
+    // A headline needs no pill either — nothing in the medium is more
+    // over-learned than tapping one.
+    const s = loadStore();
+    const h = loadHints();
+    for (let i = 0; i < 3; i++) s.recordArticleSnap();
+    for (const surface of ['newsIndex', 'card'] as const) {
+      expect(h.eligibleHint(s.getSnapshot(), { screenReader: false, surface })).toBeNull();
+    }
+  });
+
+  it('pairs each hint with the surface its target is on', () => {
+    // The rule `eligibleHint` applies when arming, named so the hook can apply
+    // the same one to a pill that is already up. Gating only the arming left
+    // both halves of the bug live: eligibility is computed only while nothing
+    // is showing, so a visible pill survived every change that would have
+    // stopped it arming — and crossing the axis is one swipe away at all
+    // times. Opening a row now crosses surfaces without touching the axis.
+    const h = loadHints();
+    const ALL = ['swipe', 'sources', 'bookmark', 'globe', 'card'] as const;
+    expect(h.hintBelongsOn('card', 'cardIndex')).toBe(true);
+    expect(h.hintBelongsOn('card', 'articleRiver')).toBe(false);
+    for (const id of ['swipe', 'sources', 'bookmark', 'globe'] as const) {
+      expect(h.hintBelongsOn(id, 'articleRiver')).toBe(true);
+      expect(h.hintBelongsOn(id, 'cardIndex')).toBe(false);
+    }
+    // Nothing is at home on the two silent surfaces.
+    for (const surface of ['newsIndex', 'card'] as const) {
+      for (const id of ALL) expect(h.hintBelongsOn(id, surface)).toBe(false);
+    }
+  });
+
+  it('only ever offers a hint that belongs where the reader is', () => {
+    const s = loadStore();
+    const h = loadHints();
+    for (const surface of ['articleRiver', 'cardIndex', 'newsIndex', 'card'] as const) {
+      const id = h.eligibleHint(s.getSnapshot(), { screenReader: false, surface });
+      if (id) expect(h.hintBelongsOn(id, surface)).toBe(true);
+    }
+  });
+
+  it('the card hint never fires on the river', () => {
+    const s = loadStore();
+    const h = loadHints();
+    s.markHintDone('swipe');
+    s.markHintDone('sources');
+    s.markHintDone('bookmark');
+    s.markHintDone('globe');
+    for (let i = 0; i < 3; i++) s.recordArticleSnap();
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
+  });
 });
 
 describe('persistence', () => {
@@ -312,6 +394,63 @@ describe('persistence', () => {
     expect(state.snapCount).toBe(2);
     expect(state.primer.status).toBe('declined');
     expect(state.hints.swipe.status).toBe('done');
+  });
+
+  it('backfills a hint id added after the install was written', () => {
+    // A build that predates the `card` hint, mid-way through onboarding with
+    // a settled primer. The bug this pins: `isOnboardingState` requires every
+    // id in `HINT_IDS`, so adding one rejected this payload, and a rejected
+    // payload reseeds — taking `snapCount` to 0 and the primer back to
+    // `pending`, which re-opens a question the reader already answered.
+    const legacy = {
+      version: 1,
+      seededAt: 1,
+      hints: {
+        swipe: { status: 'done', showCount: 1 },
+        sources: { status: 'dismissed', showCount: 2 },
+        bookmark: { status: 'pending', showCount: 0 },
+        globe: { status: 'pending', showCount: 0 },
+      },
+      snapCount: 7,
+      primer: { status: 'declined', decidedAt: 99 },
+    };
+    mockKv.set('zuhd_onboarding', JSON.stringify(legacy));
+
+    const s = loadStore();
+    const state = s.getSnapshot();
+    // Everything the reader had already settled survives…
+    expect(state.snapCount).toBe(7);
+    expect(state.primer.status).toBe('declined');
+    expect(state.hints.swipe.status).toBe('done');
+    expect(state.hints.sources.showCount).toBe(2);
+    // …and the new id arrives pending, because a veteran has seen exactly as
+    // much of a new surface as anyone else.
+    expect(state.hints.card).toEqual({ status: 'pending', showCount: 0 });
+  });
+
+  it('persists the backfill, so a showing can be recorded against it', () => {
+    const legacy = {
+      version: 1,
+      seededAt: 1,
+      hints: {
+        swipe: { status: 'done', showCount: 1 },
+        sources: { status: 'done', showCount: 1 },
+        bookmark: { status: 'done', showCount: 1 },
+        globe: { status: 'done', showCount: 1 },
+      },
+      snapCount: 3,
+      primer: { status: 'accepted', decidedAt: 1 },
+    };
+    mockKv.set('zuhd_onboarding', JSON.stringify(legacy));
+
+    const first = loadStore();
+    first.recordHintShown('card');
+    first.flushOnboarding();
+
+    // Reload: the fill has to be on disk, or every cold start recomputes it
+    // and the showCount can never climb past one.
+    const second = loadStore();
+    expect(second.getSnapshot().hints.card.showCount).toBe(1);
   });
 
   it('migrates a valid legacy file into SQLite', () => {

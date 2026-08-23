@@ -41,6 +41,7 @@ import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
+import { NewsIndex, type NewsIndexRef } from '../components/NewsIndex';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
 import { SectionBar } from '../components/SectionBar';
@@ -57,7 +58,7 @@ import { useDeterminations } from '../hooks/useDeterminations';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useIpc } from '../hooks/useIpc';
-import { useOnboardingHints } from '../hooks/useOnboardingHints';
+import { type HintSurface, useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
@@ -82,6 +83,7 @@ const NEWS = SECTIONS.indexOf('news');
  *  row opens, and the way out of it is `onClose`, not a scroll to the top. */
 const columnIndexRefs = SECTIONS.map(() => createRef<ColumnIndexRef>());
 const newsListRef = createRef<ArticleListRef>();
+const newsIndexRef = createRef<NewsIndexRef>();
 
 /** Empty-state copy per instrument column. A column is empty when the
  *  snapshot did not carry its series, which is a quiet degrade, not an error. */
@@ -123,12 +125,24 @@ export default function HomeScreen() {
   const pagerRef = useRef<PagerView>(null);
   // There is one article column now, so a pending navigation is just a slug
   // waiting for the pager to finish arriving at `news`.
+  //
+  // Two things have to happen, and which one does the work depends on what
+  // `news` is currently showing. If the river is already open, the list is
+  // mounted and scrolling it is the whole job — `initialIndex` is read once,
+  // at mount, so setting state alone would move nothing. If the index is
+  // showing, the river is not mounted and the state is the whole job. Doing
+  // both unconditionally is correct in either case: the mount opens at the
+  // right article, and the scroll is a no-op against a null ref.
   const pendingSlugRef = useRef<string | null>(null);
+  const riverRef = useRef<RiverArticle[]>([]);
   const completeArticleNavigation = useCallback((page: number) => {
     if (page !== NEWS) return;
     const slug = pendingSlugRef.current;
     if (!slug) return;
     pendingSlugRef.current = null;
+    const idx = riverRef.current.findIndex((a) => a.slug === slug);
+    if (idx < 0) return;
+    setOpenItem({ section: 'news', index: idx });
     newsListRef.current?.scrollToSlug(slug);
   }, []);
   const {
@@ -213,6 +227,27 @@ export default function HomeScreen() {
     [completeArticleNavigation, injectArticle],
   );
 
+  /**
+   * A card's part five, followed.
+   *
+   * `handleSelectArticle` wants a category, and a `RelatedArticleRef` has
+   * never carried one — the pointer is a slug and a title. It does not need
+   * to: the handler re-derives the real category from the feed, and a card's
+   * refs are scored against that same feed by `relatedForTags`, so the lookup
+   * below is the same one it is about to do. The fallback is only ever read by
+   * the bookmark-injection branch, which a card ref cannot reach; handing it
+   * any category lets that branch run to its "no longer available" toast
+   * rather than inventing a silent no-op here.
+   */
+  const handleCardArticlePress = useCallback(
+    (slug: string) => {
+      const category =
+        CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug)) ?? 'politics';
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+
   const handleArticleBookmark = useCallback((article: RiverArticle) => {
     // The article carries its own category now. It used to be inferred from
     // which tab you were on, which was right only because the tab *was* the
@@ -233,6 +268,17 @@ export default function HomeScreen() {
       });
     }
   }, []);
+
+  /** Press and hold a headline to save it — the river's gesture, on the list
+   *  that now precedes the river. `bookmark-store` keys on the article, so the
+   *  row's slug is resolved against the same ordered river the list renders. */
+  const handleHeadlineLongPress = useCallback(
+    (slug: string) => {
+      const article = riverRef.current.find((a) => a.slug === slug);
+      if (article) handleArticleBookmark(article);
+    },
+    [handleArticleBookmark],
+  );
 
   const handleMenuPress = useCallback(() => {
     hapticImpact();
@@ -308,6 +354,10 @@ export default function HomeScreen() {
   // every article carries its real category so nothing downstream has to
   // guess it back from concept tags, which never name one.
   const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
+  // Read by `openStory` and `completeArticleNavigation` to turn a slug into
+  // the place the river will open at. A ref, not a dependency: both handlers
+  // are stable by design and would otherwise be rebuilt on every refresh.
+  riverRef.current = river;
 
   // Both card columns are pure functions of payloads already in memory. The
   // builders return a shorter column rather than a broken screen when a
@@ -469,49 +519,73 @@ export default function HomeScreen() {
   currentSectionRef.current = currentSection;
 
   /**
-   * The card a reader opened on an instrument column, if any.
+   * The row a reader opened, on whichever column they opened it from.
    *
-   * A column shows its index — six rows a glance takes in — until a row is
-   * tapped, and then the same page shows `CardPager` entered at that card.
-   * Swapping what the page renders rather than laying an overlay over it is
-   * what keeps the horizontal swipe where it has always been: inside
-   * `PagerView`, which still owns every gesture that crosses sections.
+   * Every column shows an index until a row is tapped, and then the same page
+   * shows that row's detail — `CardPager` on the three instrument columns,
+   * `ArticleList` on `news` — entered at the row that was tapped. Swapping
+   * what the page renders rather than laying an overlay over it is what keeps
+   * the horizontal swipe where it has always been: inside `PagerView`, which
+   * still owns every gesture that crosses sections.
+   *
+   * It was `openCard`, and covered three columns. `news` was the fourth, and
+   * the odd one out: forty articles reachable only by swiping through them in
+   * order, on the column a reader lands on. One model for all four is worth
+   * more than the river's directness was — and the river is still there,
+   * one tap in, unchanged.
    *
    * One value rather than one per column, because a section change closes it —
    * a column is always re-entered through its own front door.
    */
-  const [openCard, setOpenCard] = useState<{ section: Section; index: number } | null>(null);
-  const openCardRef = useRef(openCard);
-  openCardRef.current = openCard;
+  const [openItem, setOpenItem] = useState<{ section: Section; index: number } | null>(null);
+  const openItemRef = useRef(openItem);
+  openItemRef.current = openItem;
 
-  const closeCard = useCallback(() => setOpenCard(null), []);
+  const closeItem = useCallback(() => setOpenItem(null), []);
 
-  /** One stable open-handler per column. `ColumnIndex` and every `IndicatorRow`
-   *  under it are memoized, and an inline arrow in the render below would hand
-   *  each of them a fresh identity on every render of this screen — which is
-   *  the whole of those memos, spent. */
+  /** One stable open-handler per instrument column. `ColumnIndex` and every
+   *  `IndicatorRow` under it are memoized, and an inline arrow in the render
+   *  below would hand each of them a fresh identity on every render of this
+   *  screen — which is the whole of those memos, spent. */
   const openCardHandlers = useMemo(() => {
     // `Record<Section, …>` rather than `Record<string, …>`: the key set is
     // known, so the lookup in the render below is not an unchecked index.
     const handlers = {} as Record<Section, (index: number) => void>;
     for (const section of SECTIONS) {
-      handlers[section] = (index: number) => setOpenCard({ section, index });
+      handlers[section] = (index: number) => {
+        // The lesson is performed, so the pill retires here rather than
+        // waiting to be dismissed or to burn its three showings. Same
+        // arrangement as `sources` and `bookmark`: a reader who found the
+        // gesture on their own is never told about it again.
+        markHintDone('card');
+        setOpenItem({ section, index });
+      };
     }
     return handlers;
   }, []);
 
-  /** Android hardware back leaves the card rather than the app. Registered
-   *  only while a card is open, so a column index still backgrounds normally.
-   *  Same shape as `useSheetBackNavigation`, which cannot serve here — it is
-   *  wired to a sheet ref and this is not a sheet. */
+  /** A headline, opened. `NewsIndex` hands back the slug its row carries —
+   *  `ArticleRow`'s signature, shared with search and the saved list — and the
+   *  river is entered at that article's place in it. No `markHintDone` here:
+   *  the news index teaches nothing, so there is no pill to retire. */
+  const openStory = useCallback((slug: string) => {
+    const index = riverRef.current.findIndex((a) => a.slug === slug);
+    if (index < 0) return;
+    setOpenItem({ section: 'news', index });
+  }, []);
+
+  /** Android hardware back leaves the open card or article rather than the
+   *  app. Registered only while one is open, so an index still backgrounds
+   *  normally. Same shape as `useSheetBackNavigation`, which cannot serve here
+   *  — it is wired to a sheet ref and this is not a sheet. */
   useEffect(() => {
-    if (!IS_ANDROID || !openCard) return;
+    if (!IS_ANDROID || !openItem) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      setOpenCard(null);
+      setOpenItem(null);
       return true;
     });
     return () => sub.remove();
-  }, [openCard]);
+  }, [openItem]);
 
   const [pagerHeight, setPagerHeight] = useState(0);
   const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
@@ -520,6 +594,9 @@ export default function HomeScreen() {
 
   const pagerOffset = useSharedValue(0);
   const sectionProgresses = useSharedValue(SECTIONS.map(() => 0));
+  /** The news index's scroll position, kept while the river is what the page
+   *  renders. See `NewsIndex.scrollOffset` — it outlives the component. */
+  const newsIndexOffset = useSharedValue(0);
 
   // Set when a tab tap dispatches `setPage`, so the `onPageSelected` that
   // lands ~250ms later (once the pager transition finishes) doesn't tick a
@@ -540,7 +617,7 @@ export default function HomeScreen() {
       // A column is re-entered through its index, never mid-column. Leaving a
       // card open behind a section change would mean swiping back to a screen
       // the reader never chose to be on.
-      setOpenCard(null);
+      setOpenItem(null);
       completeArticleNavigation(page);
     },
     [completeArticleNavigation, pagerOffset],
@@ -553,15 +630,16 @@ export default function HomeScreen() {
     [pagerOffset],
   );
 
-  // Tapping the label you are already on returns that column to the top —
-  // the one gesture the rail offers beyond saying where you are. On an
-  // instrument column "the top" is the index, so an open card closes first and
-  // a second tap scrolls the index it returned to.
+  // Tapping the label you are already on returns that column to the top — the
+  // one gesture the rail offers beyond saying where you are. "The top" is the
+  // index on every column now, so an open row closes first and a second tap
+  // scrolls the index it returned to. The `news` branch used to scroll the
+  // river instead, because the river was the column.
   const onSectionPress = useCallback(
     (index: number) => {
       if (index === currentSection) {
-        if (index === NEWS) newsListRef.current?.scrollToTop();
-        else if (openCardRef.current) setOpenCard(null);
+        if (openItemRef.current) setOpenItem(null);
+        else if (index === NEWS) newsIndexRef.current?.scrollToTop();
         else columnIndexRefs[index]?.current?.scrollToTop();
       } else {
         // Claim the haptic here rather than letting `onPageSelected` fire it
@@ -589,9 +667,26 @@ export default function HomeScreen() {
     activeEntity !== null;
   const sheetOpenRef = useRef(sheetOpen);
   sheetOpenRef.current = sheetOpen;
+  /**
+   * Which of the four surfaces is under the reader, for the hint system.
+   *
+   * Every column is an index until a row is opened, so the state that decides
+   * this is exactly `openItem` plus which column is on screen. Written out
+   * rather than nested into the hook call because the four cases are the whole
+   * rule and a reader of this file should be able to see all of them at once.
+   */
+  const hintSurface: HintSurface =
+    openItem === null
+      ? currentSection === NEWS
+        ? 'newsIndex'
+        : 'cardIndex'
+      : openItem.section === 'news'
+        ? 'articleRiver'
+        : 'card';
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
     suppressed: sheetOpen || briefingVisible,
+    surface: hintSurface,
   });
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
@@ -722,32 +817,48 @@ export default function HomeScreen() {
         offscreenPageLimit={1}
       >
         <View key={SECTIONS[NEWS]} collapsable={false}>
-          {pagerHeight > 0 && (
-            <ArticleList
-              ref={newsListRef}
-              articles={river}
-              heatmapPoints={heatmapPoints}
-              chokepoints={chokepoints}
-              gdacsAlerts={gdacsAlerts}
-              conflictEvents={conflictEvents}
-              viewportHeight={pagerHeight}
-              sectionIndex={NEWS}
-              lastSeenAt={lastSeenAt}
-              onRefresh={handleRefresh}
-              onEndReached={handleEndReached}
-              onCaughtUp={handleCaughtUp}
-              onBookmarkPress={handleArticleBookmark}
-              onSourcesPress={handleSourcesPress}
-              onTimeAgoPress={handleTimeAgoPress}
-              onEntityPress={handleEntityPress}
-              resolvableEntityIds={resolvableEntityIds}
-              onCountryPress={handleCountryPress}
-              onArticleChange={handleArticleChange}
-              progressesSV={sectionProgresses}
-              zoomClipOverride={currentZoom.clip}
-              tick={tick}
-            />
-          )}
+          {pagerHeight > 0 &&
+            (openItem?.section === 'news' ? (
+              <ArticleList
+                ref={newsListRef}
+                articles={river}
+                heatmapPoints={heatmapPoints}
+                chokepoints={chokepoints}
+                gdacsAlerts={gdacsAlerts}
+                conflictEvents={conflictEvents}
+                viewportHeight={pagerHeight}
+                sectionIndex={NEWS}
+                lastSeenAt={lastSeenAt}
+                onRefresh={handleRefresh}
+                onEndReached={handleEndReached}
+                onCaughtUp={handleCaughtUp}
+                onBookmarkPress={handleArticleBookmark}
+                onSourcesPress={handleSourcesPress}
+                onTimeAgoPress={handleTimeAgoPress}
+                onEntityPress={handleEntityPress}
+                resolvableEntityIds={resolvableEntityIds}
+                onCountryPress={handleCountryPress}
+                onArticleChange={handleArticleChange}
+                progressesSV={sectionProgresses}
+                zoomClipOverride={currentZoom.clip}
+                tick={tick}
+                initialIndex={openItem.index}
+                onClose={closeItem}
+              />
+            ) : (
+              <NewsIndex
+                ref={newsIndexRef}
+                articles={river}
+                viewportHeight={pagerHeight}
+                sectionIndex={NEWS}
+                progressesSV={sectionProgresses}
+                lastSeenAt={lastSeenAt}
+                onSelect={openStory}
+                onLongPress={handleHeadlineLongPress}
+                onRefresh={handleRefresh}
+                scrollOffset={newsIndexOffset}
+              />
+            ))}
         </View>
 
         {SECTIONS.filter((s) => s !== 'news').map((section) => {
@@ -756,7 +867,7 @@ export default function HomeScreen() {
           return (
             <View key={section} collapsable={false}>
               {pagerHeight > 0 &&
-                (openCard?.section === section ? (
+                (openItem?.section === section ? (
                   <CardPager
                     cards={sectionCards[section] ?? []}
                     viewportHeight={pagerHeight}
@@ -764,8 +875,9 @@ export default function HomeScreen() {
                     progressesSV={sectionProgresses}
                     emptyMessage={copy?.message ?? 'nothing here yet'}
                     emptyHint={copy?.hint}
-                    initialIndex={openCard.index}
-                    onClose={closeCard}
+                    initialIndex={openItem.index}
+                    onClose={closeItem}
+                    onArticlePress={handleCardArticlePress}
                   />
                 ) : (
                   <ColumnIndex
@@ -794,7 +906,11 @@ export default function HomeScreen() {
           zoomLabel={currentZoom.label}
           onBriefingPress={handleBriefingPress}
           onZoomPress={handleZoomToggle}
-          articleActions={currentSection === NEWS}
+          // `zoom` drives the globe and `share` shares the article on screen,
+          // and the news index has neither — the same reason the three
+          // instrument indexes have never shown them. It was `currentSection
+          // === NEWS`, which was the right test while `news` *was* the river.
+          articleActions={openItem?.section === 'news'}
           onSharePress={handleBottomShare}
         />
       )}

@@ -72,6 +72,20 @@ function sparkValues(card: Card): number[] | undefined {
   if (card.kind !== 'reading' && card.kind !== 'belief') return undefined;
   const series = card.series;
   if (!series || series.multi) return undefined;
+  // The reciprocal where the card says the series runs against the chip.
+  //
+  // Only the FX movers set this, and without it the row contradicted itself in
+  // the two channels a reader takes in first: "South African rand · 16 ·
+  // ▲5.1%" drew a sage caret over a sage line trending *down*, because the
+  // chip quotes the currency and the series is the published rate. The card
+  // solves it with a caption; a 56×24 line has nowhere to put one, so the row
+  // plots the quantity the chip is actually talking about.
+  //
+  // Safe at this size precisely because a sparkline has no axis — the shape is
+  // all that survives, and the shape is the thing that was wrong. A zero rate
+  // would divide to Infinity, which `Sparkline` already drops as non-finite
+  // along with its slot.
+  if (series.inverted) return series.values.map((v) => 1 / v);
   return series.values;
 }
 
@@ -100,4 +114,31 @@ export function indexRow(card: Card): IndexRow {
     tone: card.delta?.valence ?? 'neutral',
     a11yLabel: a11yLabel(card, note),
   };
+}
+
+/**
+ * A whole column of rows, with the notes that say nothing dropped.
+ *
+ * A note earns its line by distinguishing this row from the ones above and
+ * below it. One that is identical on several rows of the same column cannot
+ * do that by construction, and `outlook` shipped three "priced today" in a
+ * vertical run — twelve characters, three times, on the three tallest rows in
+ * the app, every morning. `money` shipped "crypto" twice.
+ *
+ * Dropping is a projection deciding what survives the compression, which is
+ * this file's whole job — it is not the row inventing a string, which is the
+ * thing it may never do. Fixing the kickers upstream removed the pairs; this
+ * removes the class, including the runs the pipeline is free to create
+ * tomorrow without anyone editing this app.
+ *
+ * The screen reader keeps every word. `a11yLabel` is built before the drop and
+ * is never touched by it: the line is redundant to a reader running an eye
+ * down a column and not at all redundant to someone hearing one row in
+ * isolation. That is the same split `tickUnit` already makes.
+ */
+export function indexRows(cards: Card[]): IndexRow[] {
+  const rows = cards.map(indexRow);
+  const seen = new Map<string, number>();
+  for (const row of rows) seen.set(row.note, (seen.get(row.note) ?? 0) + 1);
+  return rows.map((row) => ((seen.get(row.note) ?? 0) > 1 ? { ...row, note: '' } : row));
 }
