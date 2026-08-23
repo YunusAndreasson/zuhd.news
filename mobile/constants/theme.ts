@@ -357,6 +357,21 @@ export const RADIUS = {
   handle: 2,
   pill: 4,
   floating: 14,
+  /**
+   * The corner of a detail view, which is a sheet in everything but its
+   * mounting.
+   *
+   * An article and a card are dismissed by pulling them down, and a gesture
+   * with no affordance is a gesture nobody finds. Two things say it: the
+   * handle (`PullHandle`, the same 36×4 bar every sheet in the app draws) and
+   * this — a rounded top edge under a flat section rail, which is what a
+   * docked sheet looks like at full height. Neither is decoration; together
+   * they are the whole of how a reader learns the pull.
+   *
+   * Larger than `floating`, which is a pill's radius and reads as a control.
+   * A surface wants a softer corner than a button does.
+   */
+  sheet: 20,
 } as const;
 
 /** Icon pixel sizes. Three tiers — anything else is a mistake.

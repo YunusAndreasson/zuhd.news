@@ -15,6 +15,7 @@ import type { Card } from '../../lib/cards/types';
 import { hapticTick } from '../../lib/haptics';
 import { BackToIndexButton } from '../BackToIndexButton';
 import { EmptyState } from '../EmptyState';
+import { PullHandle } from '../PullHandle';
 import { CardView } from './CardView';
 
 /**
@@ -111,7 +112,10 @@ export const CardPager = memo(function CardPager({
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
   const count = pageCards.length;
-  const { gesture, listGesture, pullStyle, innerOffset } = usePullToClose({ scrollY, onClose });
+  const { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull } = usePullToClose({
+    scrollY,
+    onClose,
+  });
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
@@ -308,7 +312,7 @@ export const CardPager = memo(function CardPager({
   return (
     <GestureDetector gesture={gesture}>
       <View style={styles.fill}>
-        <Animated.View style={[styles.fill, pullStyle]}>
+        <Animated.View style={[styles.fill, onClose ? sheetStyle : null, pullStyle]}>
           <GestureDetector gesture={listGesture}>
             <Animated.FlatList
               ref={listRef}
@@ -344,6 +348,7 @@ export const CardPager = memo(function CardPager({
               Inside the pull layer, so it travels with the card it belongs
               to. */}
           {onClose ? <BackToIndexButton onPress={onClose} /> : null}
+          {onClose ? <PullHandle pull={pull} /> : null}
         </Animated.View>
       </View>
     </GestureDetector>

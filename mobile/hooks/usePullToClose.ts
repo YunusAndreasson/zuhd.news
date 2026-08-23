@@ -14,7 +14,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION } from '../constants/theme';
+import { ANIMATION, RADIUS } from '../constants/theme';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 
 /**
@@ -78,8 +78,10 @@ import { hapticImpact, hapticTick } from '../lib/haptics';
 
 /** Distance the pull has to cover before releasing closes. Generous: this is
  *  a destructive-ish gesture on a reading surface and an accidental one costs
- *  the reader their place. */
-const CLOSE_DISTANCE = 96;
+ *  the reader their place. Exported because `PullHandle` shows the reader how
+ *  close they are to it, and two copies of the number would let the bar say
+ *  "committed" at a distance that does not commit. */
+export const CLOSE_DISTANCE = 96;
 
 /** Resistance. The page follows the finger at a fraction of its travel, the
  *  way a sheet does — the drag reads as elastic rather than as dragging a
@@ -108,9 +110,13 @@ export interface PullToClose {
   listGesture: ReturnType<typeof useNativeGesture>;
   /** Put this on the view holding the whole detail. */
   pullStyle: ReturnType<typeof useAnimatedStyle<ViewStyle>>;
+  /** The resting sheet shape, for the same view. Static — see `sheetStyle`. */
+  sheetStyle: ViewStyle;
   /** The page's own scroll offset, for the page component to write. Zero when
    *  the page does not scroll, which is the common case. */
   innerOffset: SharedValue<number>;
+  /** How far the pull has travelled, for `PullHandle` to answer with. */
+  pull: SharedValue<number>;
 }
 
 export function usePullToClose({
@@ -229,17 +235,47 @@ export function usePullToClose({
 
   const gesture = usePanGesture(panConfig);
 
+  /**
+   * What the page does under the finger.
+   *
+   * Three channels, and they are the ones every card-dismiss a reader already
+   * uses runs on — a photo viewer, a now-playing screen, a system sheet:
+   *
+   *   it follows the finger      the movement is the reader's, not the app's
+   *   it shrinks                 an object getting smaller is an object going
+   *                              away; this is the cue that separates
+   *                              "dismissing" from "scrolling"
+   *   it fades, a little         shallow, because the reader is still reading
+   *                              it until they let go
+   *
+   * The shrink is keyed to `CLOSE_DISTANCE` rather than to the raw travel, so
+   * the page is at its smallest exactly when releasing would close — the same
+   * fact the haptic and the handle report, in a third channel. Norman's point
+   * about feedback is that it has to say *what will happen*, not merely that
+   * something is happening.
+   */
   const pullStyle = useAnimatedStyle<ViewStyle>(() => {
     'worklet';
     const p = pull.value;
+    const t = Math.min(1, p / CLOSE_DISTANCE);
     return {
-      transform: [{ translateY: p }],
-      // A little fade with the travel, so the page reads as leaving rather
-      // than as having been nudged. Shallow: the reader is still reading it
-      // until they let go.
+      transform: [{ translateY: p }, { scale: 1 - 0.06 * t }],
       opacity: 1 - Math.min(0.35, p / MAX_PULL),
     };
   });
 
-  return { gesture, listGesture, pullStyle, innerOffset };
+  /** The corner, which does not move. A detail sits under the section rail
+   *  with a rounded top edge at rest — the shape of a docked sheet at full
+   *  height — because the affordance has to be there before the gesture is,
+   *  not appear once the reader has already guessed. */
+  const sheetStyle = useMemo<ViewStyle>(
+    () => ({
+      borderTopLeftRadius: RADIUS.sheet,
+      borderTopRightRadius: RADIUS.sheet,
+      overflow: 'hidden',
+    }),
+    [],
+  );
+
+  return { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull };
 }

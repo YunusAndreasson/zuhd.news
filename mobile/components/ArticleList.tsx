@@ -39,6 +39,7 @@ import { ArticlePage } from './ArticlePage';
 import { BackToIndexButton } from './BackToIndexButton';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
+import { PullHandle } from './PullHandle';
 
 // Article backdrop gradient stops. Hoisted to the list container so a single
 // gradient view is rendered per column — cells scroll through a fixed
@@ -191,7 +192,7 @@ export const ArticleList = memo(function ArticleList({
     return { opacity };
   });
 
-  const { gesture, listGesture, pullStyle, innerOffset } = usePullToClose({
+  const { gesture, listGesture, pullStyle, sheetStyle, innerOffset, pull } = usePullToClose({
     scrollY,
     onClose,
   });
@@ -391,7 +392,7 @@ export const ArticleList = memo(function ArticleList({
           than the list, because the list is not mounted while this is: the
           column swaps what it renders, which is what keeps `PagerView` in
           sole charge of the horizontal axis. */}
-        <Animated.View style={[styles.pullLayer, pullStyle]}>
+        <Animated.View style={[styles.pullLayer, onClose ? sheetStyle : null, pullStyle]}>
           <MiniGlobe
             ref={globeRef}
             articles={sortedArticles}
@@ -463,6 +464,7 @@ export const ArticleList = memo(function ArticleList({
           which spans the lower half of every article. Inside the pull layer,
           so it travels with the page it belongs to. */}
           {onClose ? <BackToIndexButton onPress={onClose} /> : null}
+          {onClose ? <PullHandle pull={pull} /> : null}
         </Animated.View>
       </View>
     </GestureDetector>

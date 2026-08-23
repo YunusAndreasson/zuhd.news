@@ -166,6 +166,27 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
       exactly this offset, so the two were the same drag on the same pixel.
       `NewsIndex` carries refresh, which is where a reader looks for it: the
       list is the surface that gains new stories; an open article is not.
+    - **A gesture with no signifier is a secret.** The first version shipped
+      the pull with nothing on screen to suggest it, which is Norman's
+      distinction exactly: the affordance existed and the *signifier* did not,
+      so the only readers who would ever find it are the ones who tried by
+      accident. Three things say it now, and each is the one every card-dismiss
+      a reader already uses says it with — `PullHandle` (the same 36×4 bar the
+      app's sheets draw), `RADIUS.sheet` on the detail's top corners, and the
+      page shrinking as it is pulled. An object getting smaller is an object
+      going away; that shrink is what separates *dismissing* from *scrolling*.
+    - **The handle does not borrow the sheet's ink, and that is deliberate.**
+      `SheetHandle` draws in `colors.rule` and gets away with it because a
+      sheet is a lighter surface with its own edge and a system animation that
+      has just played. This bar sits on `colors.bg`, where `rule` (#2e2e2e on
+      #0F0F11) measured invisible on a device — which for the app's only signal
+      that a detail is dismissible is the same as not drawing it. Shape and
+      size stay identical; only the ink is `textSecondary`.
+    - **Every feedback channel reports the same fact: what releasing will do.**
+      The handle brightens and stretches, the page reaches its smallest, and
+      the haptic ticks — all keyed to `CLOSE_DISTANCE`, all at the same moment.
+      One number, exported from `usePullToClose`, because two copies would let
+      the bar say "committed" at a distance that does not commit.
 
 - **The other three columns have a front door, and it is not a card.** A column
   opens as `ColumnIndex` — one `IndicatorRow` per card, six on a normal day, the
