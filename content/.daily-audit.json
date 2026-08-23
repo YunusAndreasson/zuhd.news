@@ -1,29 +1,31 @@
 {
-  "date": "2026-08-22",
+  "date": "2026-08-23",
   "metrics": {
-    "articles": { "value": 25, "detail": "7 cycles scheduled, only 2 completed (17:21 → 12 articles, 22:00 → 13); the 04:00/08:00/12:00/17:02 cycles all aborted at the selector on expired OAuth" },
-    "freshness": { "median": 0.4, "p90": 0.8, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 9, "economy": 6, "science": 5, "tech": 5 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 7, "ME": 6, "EU": 5, "AS": 5, "AF": 2, "OC": 0 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "TRT World", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 33,
+    "articles": { "value": 61, "detail": "5 scheduled cycles; only 04:03 and 22:03 deployed — the 08:00/12:04/17:00 batches were written and validated but held on disk by a build failure, then all shipped together at 22:03" },
+    "freshness": { "median": 0, "p90": 1.7, "max": 1.8, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 15, "science": 13, "tech": 11 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 15, "AS": 15, "EU": 14, "AM": 8, "AF": 8, "OC": 1 } },
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 35,
     "duplicates": 0,
-    "avgCycleDuration": 1396
+    "avgCycleDuration": 1115
   },
-  "experiment": "Skipped, and a pause gate set through 2026-08-26. Every published metric today is inside targets, but they describe 2 hand-run cycles, not the pipeline — 16 consecutive scheduled cycles failed on expired OAuth, so there is no clean baseline to experiment against.",
-  "weakestArea": "Not a metric — availability. From 2026-08-19 17:02 through 2026-08-22 17:02 every scheduled cycle died 4 seconds into Stage 1 with 'Failed to authenticate: OAuth session expired and could not be refreshed', publishing 0 articles: 2026-08-20 shipped nothing at all and 2026-08-21 shipped 7. Credentials were re-authed at 17:14 today and the two cycles since have run clean, but the access token expires 2026-08-23T01:14Z, so the 04:00 run is the first real test of whether the refresh path works or whether this recurs.",
+  "experiment": "Skipped — the noNewExperimentsUntil gate runs to 2026-08-26, and no experiments are active. Every published metric is inside target anyway.",
+  "weakestArea": "No published metric is the weakest area today — freshness, diversity, multi-source and sci-tech all clear their targets comfortably. The real weakness is delivery reliability: three of five cycles built nothing. A Wikidata concept label carrying literal quotes (Ecologist Party \"The Greens\") was interpolated raw into a double-quoted YAML scalar, so js-yaml rejected the frontmatter, build.js died, and because the article was never committed it poisoned the 08:00, 12:04 and 17:00 builds in turn. Fixed and committed today in c76ef122 (six unescaped interpolation sites routed through yamlStr, plus a real parse in validate-articles.js that quarantines to .bad instead of string-matching); the 22:03 cycle deployed clean and all 8,508 articles now parse.",
   "watching": [
-    "The 2026-08-23 04:00 cycle — the access token expires at 01:14Z, so that run proves whether the refresh token now works or whether the outage repeats and needs a non-interactive auth fix.",
-    "Sourcing is still the binding RVS cluster at 49 against writing 81 and coverage 96 (production RVS 76.03), consistent with the finding that selector-floor levers are tapped and gains must come from the upstream feed.",
-    "The weekly quality snapshot due Sunday 2026-08-24 22:00 will average across the outage days; read its deltas as artefacts of missing volume, not of writer or editor behaviour.",
-    "Feed supply held up throughout the outage (~380 deduped articles and 8–13 multi-source stories per cycle), so nothing upstream of the Claude CLI needs attention."
+    "Iran plans to charge transiting ships at Hormuz while simultaneously seeking de-escalation with Egypt — two Tehran datelines pulling opposite directions in one day.",
+    "Congo's Ebola outbreak is accelerating; case-count follow-ups will need consistent sourcing rather than one-off science picks.",
+    "China's fourth carrier surfacing at Dalian alongside a delayed crewed Moon landing and a lunar-ice target — a coherent capability story spread across three articles.",
+    "Pakistan military diplomacy is clustering (Munir in Tehran, intelligence chief in Bahrain) without a piece tying the tour together.",
+    "OAuth stability: 2026-08-23 was the first day since 08-19 with zero 'session expired' failures. Two more clean days are needed before the experiment gate lifts on 08-26."
   ],
   "coverageGaps": [
-    "Oceania is absent again today (0 of 25) — the one region that never clears the floor on its own.",
-    "Africa is thin at 2 of 25 despite Premium Times Nigeria, Mada Masr and SciDev.Net all appearing, suggesting single-story-per-outlet rather than a sourcing failure.",
-    "Two full days of coverage (2026-08-20 entirely, 2026-08-21 partially) are simply missing from the corpus and will read as a hole in any archive or trend view."
+    "Latin America is entirely absent — all 8 Americas datelines are US or Canadian (Washington, New York, Baltimore, Reno, Ottawa, Skidegate). No Brazil, Mexico, Argentina or Andean coverage at all.",
+    "Oceania is a single article (One Nation's migration math, Canberra); no Pacific-island, New Zealand or Australian non-political coverage.",
+    "Nature supplied 9 of 61 articles and 7 of 13 science pieces — under the 20% share cap, but science depth rests on one outlet.",
+    "Southeast Asia is thin: Singapore and one Philippine byline, nothing from Indonesia, Vietnam or Thailand despite 15 Asia datelines."
   ],
-  "context": "The queued 2026-05-08-numerical-density experiment remains un-promotable: it edits scripts/write-prompt.md, which daily tuning is not permitted to touch, and its blocker (2026-05-01-title-echo-self-check) closed months ago. It should either be handed to the operator as a prompt change or dropped from the queue rather than left blocking the slot."
+  "context": "The 08-19 to 08-22 OAuth outage that motivated the current experiment gate has cleared — today's five cycles all authenticated and ran end to end. It was immediately replaced by a different single-point failure: one malformed frontmatter file silently blocking three consecutive deploys, which is why 61 articles landed in two batches instead of five. Both the escaping bug and the validator gap that let it through are fixed, so the gate's remaining purpose is simply to accumulate clean baseline days before a new variable is introduced. Nothing in the tunable-parameter set needs moving; leave the gate at 2026-08-26 and re-assess then."
 }
