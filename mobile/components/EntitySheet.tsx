@@ -4,6 +4,13 @@ import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
+// `readingParts`, not a local copy. This file carried one — same rule, same
+// two branches, under the name `formatLatest` — whose comment promised
+// thin-space separators while the code emitted commas, which is the tell
+// that a copy has been edited on its own. The card and the sheet it opens
+// print the same indicator; they cannot be allowed to print it differently,
+// and the unit is half of printing it.
+import { readingParts } from '../lib/cards/format';
 import { makeStaggerEnter } from '../lib/stagger';
 import { riseMeansFor, type Valence, valenceOfChange } from '../lib/valence';
 import { SourceCaption } from './blocks/SourceCaption';
@@ -24,18 +31,6 @@ interface EntitySheetProps extends BaseSheetProps {
   articles: Article[];
   /** Asks the parent to scroll the feed to a specific article slug. */
   onArticlePress?: (slug: string, category: Category) => void;
-}
-
-/** Format indicator `latest` for the headline readout. Large integers (indices,
- *  view counts) are space-separated; sub-10 floats get a decimal; everything
- *  else rounds to integer. Unitless — caller appends `indicator.unit`. */
-function formatLatest(value: number, unit?: string): string {
-  if (!Number.isFinite(value)) return '—';
-  // Percentages / small numbers keep decimals; BTC/$ stay integer-rounded.
-  if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
-  // Large integer values get thin-space separators (e.g. 76 238)
-  const rounded = Math.round(value);
-  return rounded.toLocaleString('en-US');
 }
 
 /**
@@ -102,6 +97,8 @@ export const EntitySheet = memo(function EntitySheet({
   const enter = makeStaggerEnter();
 
   const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
+  const { reading, note } =
+    latest != null ? readingParts(latest, indicator?.unit) : { reading: '', note: undefined };
   const previous = indicator?.previous ?? indicator?.values[indicator.values.length - 2];
   const delta = indicator
     ? formatDelta(indicator, latest, previous)
@@ -115,9 +112,14 @@ export const EntitySheet = memo(function EntitySheet({
           <>
             {latest != null && (
               <Animated.View entering={enter()}>
+                {/* `readingParts`, the same call the card makes. Appending
+                    `indicator.unit` raw is what this did, and the two
+                    disagreed on every indicator carrying one: the ten-year
+                    read "4.69%" on the card and "4.69 %" here, brent "$95 a
+                    barrel" against "95 $/bbl", VIX "16" against "16 index". */}
                 <Text selectable variant="title" tone="emphasis">
-                  {formatLatest(latest, indicator.unit)}
-                  {indicator.unit ? ` ${indicator.unit}` : ''}
+                  {reading}
+                  {note ? ` ${note}` : ''}
                 </Text>
                 {delta.text ? (
                   <Text variant="captionEmphasis" tone={delta.tone} style={styles.delta}>

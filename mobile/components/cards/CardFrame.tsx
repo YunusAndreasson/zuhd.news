@@ -8,7 +8,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { MAX_FONT_SCALE, OPACITY, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { Card, CardDelta } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
@@ -152,6 +152,31 @@ export const CardFrame = memo(function CardFrame({
     [itemHeight],
   );
 
+  /**
+   * The middle dot between the unit and the move, when there is a move.
+   *
+   * `readingMeta` wraps, and a separator is a statement about two things
+   * sharing a line — so on the one card whose unit fills the row ("ounces of
+   * silver to one of gold") the dot stayed behind on line one with nothing
+   * after it, pointing at a blank margin, while the chip it was separating
+   * sat on line two. It is spent rather than unmounted: dropping it would
+   * return ~20pt to line one, which could un-wrap the row, which would bring
+   * the dot back, which would wrap it again. Keeping the width makes the
+   * measurement a fixed point.
+   *
+   * The threshold is half the chip's own height rather than a constant. Under
+   * `alignItems: 'center'` an unwrapped chip sits at y ≈ 0 because it is the
+   * tallest thing in the row; for a shorter chip to clear half its own height
+   * the label beside it would have to be taller than the chip by more than the
+   * chip, which two single-line labels cannot do at any Dynamic Type setting.
+   */
+  const [deltaWrapped, setDeltaWrapped] = useState(false);
+  const onDeltaLayout = useCallback((e: LayoutChangeEvent) => {
+    const { y, height } = e.nativeEvent.layout;
+    const wrapped = y > height / 2;
+    setDeltaWrapped((was) => (was === wrapped ? was : wrapped));
+  }, []);
+
   const pageStart = index * itemHeight;
   const offset = useDerivedValue(() => {
     'worklet';
@@ -283,16 +308,32 @@ export const CardFrame = memo(function CardFrame({
             {card.readingNote || card.delta ? (
               <View style={styles.readingMeta}>
                 {card.readingNote ? (
-                  <Text variant="labelSm" tone="secondary" numberOfLines={1}>
+                  // Two lines, not one. The note is the only place some cards
+                  // name their window — the strait's reads "ships a day, week
+                  // to 16 Aug" — and at a raised Dynamic Type setting a
+                  // one-line clamp takes the tail, which is the date. The card
+                  // then still carries the `today ·` mark with nothing saying
+                  // which week it counted, which is the exact silence the note
+                  // was added to break. Nothing changes at default type: every
+                  // note in the app fits on one line there.
+                  <Text variant="labelSm" tone="secondary" numberOfLines={2}>
                     {card.readingNote}
                   </Text>
                 ) : null}
                 {card.readingNote && card.delta ? (
-                  <Text variant="labelSm" tone="secondary">
+                  <Text
+                    variant="labelSm"
+                    tone="secondary"
+                    style={deltaWrapped ? styles.separatorSpent : undefined}
+                  >
                     ·
                   </Text>
                 ) : null}
-                {card.delta ? <DeltaChip delta={card.delta} /> : null}
+                {card.delta ? (
+                  <View onLayout={onDeltaLayout}>
+                    <DeltaChip delta={card.delta} />
+                  </View>
+                ) : null}
               </View>
             ) : null}
 
@@ -325,6 +366,17 @@ export const CardFrame = memo(function CardFrame({
             {card.why ? (
               <View style={styles.why}>
                 <View style={[styles.rule, { backgroundColor: colors.rule }]} />
+                {/* Whose paragraph this is, when the card holds more than one
+                  thing. Same small-caps register as the related-stories
+                  header, because it does the same job: it labels the block
+                  under it rather than saying anything itself. Absent on a
+                  single-instrument card, where the title is already the
+                  answer. */}
+                {card.whyLabel ? (
+                  <Text variant="labelXs" tone="secondary" style={styles.whyLabel}>
+                    {card.whyLabel}
+                  </Text>
+                ) : null}
                 <Text variant="body">{card.why}</Text>
               </View>
             ) : null}
@@ -389,11 +441,16 @@ const styles = StyleSheet.create({
   // The window is the least important half of the chip and the first thing
   // that may be dropped when the row wraps at large Dynamic Type.
   deltaWindow: { flexShrink: 1 },
+  // Invisible, not absent — see `deltaWrapped`. Removing it from the layout
+  // would change the wrap it was measured from, which is why this is an
+  // opacity tier and not a conditional render.
+  separatorSpent: { opacity: OPACITY.hidden },
   title: { marginTop: SPACING.smPlus },
   part: { marginTop: SPACING.smPlus },
   block: { marginTop: SPACING.smPlus },
   why: { marginTop: SPACING.md },
   rule: { height: 1, marginBottom: SPACING.md },
+  whyLabel: { marginBottom: SPACING.xs },
   related: { marginTop: SPACING.md, gap: SPACING.xxs },
   relatedRow: { marginTop: SPACING.xxs },
   source: { marginTop: SPACING.md },

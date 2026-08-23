@@ -1,6 +1,8 @@
 import type { Article } from '@shared/types';
 import {
   deltaFrom,
+  isFresh,
+  labelledWhy,
   formatMagnitudePct,
   formatMagnitudePoints,
   formatQuantity,
@@ -9,6 +11,7 @@ import {
   formatSignedPoints,
   GRAMS_PER_TROY_OUNCE,
   nisab,
+  readingParts,
   relatedForTags,
   seriesExtremes,
   windowChange,
@@ -74,6 +77,41 @@ describe('formatting', () => {
     expect(formatSignedPct(-9.14)).toBe('−9.1%');
     expect(formatSignedPct(16.2)).toBe('+16%');
     expect(formatSignedPct(0)).toBe('unchanged');
+  });
+
+  it('holds the decimal in a column and drops it in a sentence', () => {
+    // The fifteen-row currency table printed "+1%" beside "+0.8%" and "+3%"
+    // beside "+3.5%" — two decimal positions and two pill widths describing
+    // moves measured the same way over the same window. A reader reads that
+    // as a difference in precision; there isn't one.
+    expect(formatSignedPct(1.04, { tabular: true })).toBe('+1.0%');
+    expect(formatSignedPct(2.96, { tabular: true })).toBe('+3.0%');
+    expect(formatSignedPct(-0.84, { tabular: true })).toBe('−0.8%');
+    // Ten and above keeps its decimal *in a column*, where the prose rule
+    // ("whole numbers at ten and above") would put "+16%" beside "+0.8%" —
+    // the widest pill-width disagreement in the table, on the row the eye
+    // reaches first. In a sentence the rule still holds.
+    expect(formatSignedPct(16.2, { tabular: true })).toBe('+16.2%');
+    expect(formatSignedPct(16.2)).toBe('+16%');
+    // The noise floor does not move with the register.
+    expect(formatSignedPct(0.04, { tabular: true })).toBe('unchanged');
+    // Prose is unchanged: "wheat +1% against a year ago" is not "+1.0%".
+    expect(formatSignedPct(1.04)).toBe('+1%');
+  });
+
+  it('rounds every move by the same rule, in points as in per cent', () => {
+    // `formatSignedPoints` was the last holdout on a plain `Math.round`, so
+    // the same fifteen-basis-point move was "0.2 points" through the chip
+    // formatter and **unchanged** through this one — which is the exact bug
+    // `formatMagnitudePoints` was written to fix, still live one function
+    // down.
+    expect(formatMagnitudePoints(0.24)).toBe('0.2 points');
+    expect(formatSignedPoints(0.24)).toBe('+0.2 points');
+    expect(formatMagnitudePct(0.24)).toBe('0.2%');
+    // And a move that truly rounds to nothing is still the word, not a zero.
+    expect(formatSignedPoints(0.04)).toBe('unchanged');
+    expect(formatMagnitudePoints(0.04)).toBeNull();
+    expect(formatMagnitudePct(0.04)).toBeNull();
   });
 });
 
@@ -242,6 +280,79 @@ describe('magnitude formatters', () => {
   it('says "points" out loud, and gets the singular right', () => {
     expect(formatMagnitudePoints(1)).toBe('1 point');
     expect(formatMagnitudePoints(-60)).toBe('60 points');
-    expect(formatMagnitudePoints(0.4)).toBeNull();
+    // Sub-point moves keep a decimal rather than rounding away, because the
+    // series that needs points most is a yield: the ten-year moved 0.15 over
+    // the window this app holds, an integer round called that nothing, and
+    // the card fell back to reporting "+3.3%" — a relative change printed
+    // under a reading of "4.69%". Below the printable floor it is still null.
+    expect(formatMagnitudePoints(0.4)).toBe('0.4 points');
+    expect(formatMagnitudePoints(0.16)).toBe('0.2 points');
+    expect(formatMagnitudePoints(0.04)).toBeNull();
+  });
+});
+
+describe('isFresh', () => {
+  const now = new Date('2026-08-23T00:00:00Z');
+
+  it('accepts a payload inside the window', () => {
+    expect(isFresh('2026-08-16', now, 14)).toBe(true);
+    expect(isFresh('2026-08-23', now, 14)).toBe(true);
+  });
+
+  it('rejects one that has gone stale', () => {
+    expect(isFresh('2026-08-01', now, 14)).toBe(false);
+  });
+
+  it('rejects a payload dated in the future, which every gate used to accept', () => {
+    // `daysSince` is negative ahead of the clock and every gate was written
+    // `daysSince(...) <= limit`, so clock skew, a foreign timezone or a typed
+    // `2027` all satisfied it — and the card they let through is the one that
+    // tells the reader its data moved this morning.
+    expect(isFresh('2027-08-16', now, 14)).toBe(false);
+    expect(isFresh('2026-08-24', now, 14)).toBe(false);
+  });
+
+  it('treats a date it cannot read as stale, not as fresh', () => {
+    expect(isFresh(undefined, now, 14)).toBe(false);
+    expect(isFresh('', now, 14)).toBe(false);
+    expect(isFresh('not a date', now, 14)).toBe(false);
+  });
+});
+
+describe('readingParts', () => {
+  it('reads a unit aloud instead of printing the data column', () => {
+    expect(readingParts(95.4, '$/bbl')).toEqual({ reading: '$95', note: 'a barrel' });
+    expect(readingParts(4586.2, '$/oz')).toEqual({ reading: '$4,586', note: 'an ounce' });
+    expect(readingParts(4.69, '%')).toEqual({ reading: '4.69%' });
+    expect(readingParts(2409.1, '$')).toEqual({ reading: '$2,409', note: undefined });
+  });
+
+  it('gives an index no note, because "index" cannot say what is counted', () => {
+    expect(readingParts(16.01, 'index')).toEqual({ reading: '16' });
+  });
+
+  it('is what the sheet uses too, so a card and its sheet cannot disagree', () => {
+    // `EntitySheet` appended `indicator.unit` raw: "4.69 %" against the card's
+    // "4.69%", "95 $/bbl" against "$95 a barrel", "16 index" against "16".
+    const { reading, note } = readingParts(4.69, '%');
+    expect(`${reading}${note ? ` ${note}` : ''}`).toBe('4.69%');
+  });
+});
+
+describe('labelledWhy', () => {
+  it('gives a paragraph and its owner together', () => {
+    expect(labelledWhy('The world price of milling wheat…', 'on wheat')).toEqual({
+      why: 'The world price of milling wheat…',
+      whyLabel: 'on wheat',
+    });
+  });
+
+  it('drops both when the paragraph is only whitespace', () => {
+    // Three cards guarded the label on `standing?.trim()` and passed `why`
+    // through unguarded, so "   " drew the rule and an empty body with no
+    // label above it — two fields answering different questions about one
+    // string.
+    expect(labelledWhy('   ', 'on wheat')).toEqual({});
+    expect(labelledWhy(undefined, 'on wheat')).toEqual({});
   });
 });

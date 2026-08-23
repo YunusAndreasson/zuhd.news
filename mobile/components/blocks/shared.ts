@@ -61,9 +61,20 @@ const PREFIX_UNITS = new Set(['$', '€', '£', '¥', '₹']);
  *
  *  Grouping is applied to fractions too. `toFixed(1)` was used for those and
  *  it drops the separators, so one chart could show `78317.8` above `62,802`
- *  — same axis, same series, two different ways of writing a number. */
-export function formatBlockNumber(n: number, unit?: string): string {
-  const s = n.toLocaleString(undefined, { maximumFractionDigits: 1 });
+ *  — same axis, same series, two different ways of writing a number.
+ *
+ *  `decimals` fixes the precision instead of capping it, and a chart should
+ *  always pass one — see `axisDecimals`. Left off, the value keeps its own
+ *  precision up to a tenth, which is what put `$2,515` directly above
+ *  `$1,844.6` on the Ethereum axis: both labels obeyed the cap, and the pair
+ *  still disagreed about how a price is written. */
+export function formatBlockNumber(n: number, unit?: string, decimals?: 0 | 1 | 2): string {
+  const s = n.toLocaleString(
+    undefined,
+    decimals === undefined
+      ? { maximumFractionDigits: 1 }
+      : { minimumFractionDigits: decimals, maximumFractionDigits: decimals },
+  );
   if (!unit) return s;
   if (PREFIX_UNITS.has(unit)) return `${unit}${s}`;
   if (unit === '%') return `${s}${unit}`;
@@ -75,6 +86,48 @@ export function formatBlockNumber(n: number, unit?: string): string {
   // anything. They are zero-width and screen readers ignore them, so the
   // scrub tooltip and the accessibility label are unaffected.
   return `${s} ${unit.replace(/\//g, '\u2060/\u2060')}`;
+}
+
+/**
+ * How many decimals one chart writes all of its numbers to.
+ *
+ * Chosen once, from the axis endpoints, and then used by the two axis labels,
+ * the scrub readout and the accessibility range — so a chart cannot say
+ * `$2,515` at the top, `$1,844.6` at the bottom and `$2,418.37` under a
+ * finger. Precision is a property of the series, not of each value's
+ * happening to be round.
+ *
+ * The rules, in the order they fire:
+ *
+ *   whole endpoints stay whole — a contract priced 39 to 75 gains nothing
+ *     from `39.0`, and most probability series are integers already;
+ *   a tenth of a dollar on a five-figure price is noise the reader will never
+ *     repeat, and it is the same judgement `formatReading` makes about the
+ *     card's own headline — the axis had been contradicting it by two decimal
+ *     places two centimetres away (`$77,074` under `$78,317.8`);
+ *   otherwise the span decides, because that is what the axis is *for*: a
+ *     rand moving 16.04 → 16.80 in a month is a whole story told inside one
+ *     digit, and rounding it away leaves two labels reading `16` and `17`.
+ *
+ * This does **not** always land on `formatReading`'s answer for the same card,
+ * and it should not. On the live payload the two agree on five cards of eight
+ * and part company on three — VIX (`16` over `14.3`–`22.2`), the ruble, the
+ * rand — all of them in the band between ten and a thousand with a span of
+ * only a few units. That is the difference between the two jobs, not a gap
+ * between them: a reading is a *level*, rounded to the digits a reader could
+ * repeat out loud, while an axis is a *range* and has to stay legible as one.
+ * Force the rand's axis onto its headline's precision and both labels read
+ * `16`/`17` for a month that is the card's entire subject. The scrub readout
+ * follows the axis for the same reason — it is reading a point off that
+ * range, not restating the headline.
+ */
+export function axisDecimals(min: number, max: number): 0 | 1 | 2 {
+  if (!Number.isFinite(min) || !Number.isFinite(max)) return 0;
+  if (Number.isInteger(min) && Number.isInteger(max)) return 0;
+  if (Math.max(Math.abs(min), Math.abs(max)) >= 1000) return 0;
+  const span = Math.abs(max - min);
+  if (span >= 10) return 0;
+  return span >= 1 ? 1 : 2;
 }
 
 /** Background fill for a typed block tone. Untyped tones fall back to a

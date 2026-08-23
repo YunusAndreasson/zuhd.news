@@ -98,6 +98,26 @@ interface CardBase {
   changed?: string;
   /** Part 4 — `standing`, verbatim. */
   why?: string;
+  /**
+   * Whose `standing` part four is, on a card that holds more than one thing.
+   *
+   * A single-instrument card needs nothing here: the paragraph is about the
+   * title. A card built from several is a different case, and it was silently
+   * getting it wrong on four screens — wheat's paragraph under "Wheat and
+   * rice", Syria's under "What the world looked up", US GDP's under a list of
+   * four releases. Each read as the card explaining itself and was in fact one
+   * constituent explaining itself, which a reader has no way to detect.
+   *
+   * `currenciesCard` had already solved this by dropping the borrowed
+   * paragraph outright; that works there because part two carries the
+   * mechanism. Where it does not, naming the owner in three words keeps the
+   * desk's sentence and costs nothing — the app still does not rewrite it.
+   *
+   * The other resolution is to ship no `why` at all, and `metalsPairCard` uses
+   * it: a paragraph about a gold-backed *token* is not a mislabelled
+   * explanation of gold, it is the wrong subject.
+   */
+  whyLabel?: string;
   /** Part 5. */
   related?: RelatedArticleRef[];
   /** Attribution, rendered through `SourceCaption`. */

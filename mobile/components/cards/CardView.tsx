@@ -144,8 +144,25 @@ function renderBody(card: Card, onPress: () => void) {
       return (
         <>
           {card.figures ? <Figures figures={card.figures} /> : null}
+          {/* `context`, like the other three kinds. This was the one branch
+              that broke the rule stated at the top of this file, with no
+              comment saying why — and an exception with no reason on record
+              is usually not one.
+
+              It reaches a single card. Of the four condition builders only
+              the conflict card emits `rows`; famine, hazards and the
+              determinations all emit `figures`, which never went through
+              here. On that card it is worth having: `article` spends
+              `SPACING.sm` above and below every row where `context` spends
+              `xs`, so a ranked list of countries pays 8pt a row for padding
+              that comes straight off the bottom of part four. The
+              fifteen-row currency table is the same shape and has always
+              rendered at `context`.
+
+              Not verified on device — the conflict gate had not cleared on
+              the day this changed, so the card was not in the column. */}
           {card.rows ? (
-            <CompareBlock rows={card.rows} label={card.rowsLabel} variant="article" />
+            <CompareBlock rows={card.rows} label={card.rowsLabel} variant="context" />
           ) : null}
         </>
       );

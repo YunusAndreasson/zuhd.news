@@ -1,4 +1,4 @@
-import { formatBlockNumber } from '../components/blocks/shared';
+import { axisDecimals, formatBlockNumber } from '../components/blocks/shared';
 
 /**
  * The number grammar every chart axis is written in.
@@ -62,5 +62,63 @@ describe('formatBlockNumber', () => {
 
   it('leaves a bare number alone when there is no unit to place', () => {
     expect(formatBlockNumber(1234)).toBe('1,234');
+  });
+});
+
+describe('axisDecimals', () => {
+  /**
+   * Read off four live cards on 2026-08-23. Each pair is what the two axis
+   * labels actually printed before one precision was chosen for the chart.
+   */
+  it('writes both ends of an axis the same way', () => {
+    // Ethereum: `$2,515` sat directly above `$1,844.6`. Both obeyed the
+    // one-decimal cap; the pair still disagreed about how a price is written.
+    expect(axisDecimals(1844.6, 2515.04)).toBe(0);
+    // The ruble, same shape one order of magnitude down: `85` above `77.7`.
+    expect(axisDecimals(77.7, 85)).toBe(1);
+  });
+
+  it('refuses a tenth of a dollar on a five-figure price', () => {
+    // Bitcoin's axis said `$78,317.8` two centimetres under a card whose own
+    // reading said `$77,074`. `formatReading` had already ruled on this: the
+    // fourth significant digit is noise the reader will never repeat.
+    expect(axisDecimals(62802.6, 78317.8)).toBe(0);
+  });
+
+  it('leaves whole endpoints whole', () => {
+    // A prediction contract priced 39 to 75 gains nothing from `39.0`.
+    expect(axisDecimals(39, 75)).toBe(0);
+    expect(axisDecimals(8, 13)).toBe(0);
+  });
+
+  it('spends decimals where the span is the whole story', () => {
+    // The rand moved 16.04 → 16.80 in a month. At zero decimals the axis
+    // reads `16` and `17`, which is the one thing the card is about, rounded
+    // away.
+    expect(axisDecimals(16.04, 16.8)).toBe(2);
+    // The ten-year, likewise — and two decimals is also what the card's own
+    // reading uses for a rate ("4.69%").
+    expect(axisDecimals(4.4, 4.8)).toBe(2);
+    // Brent's 68.5–105.3 is a 37-point span; tenths there are weather.
+    expect(axisDecimals(68.5, 105.3)).toBe(0);
+  });
+
+  it('survives a series it cannot measure', () => {
+    expect(axisDecimals(Number.NaN, 10)).toBe(0);
+    expect(axisDecimals(5, Number.POSITIVE_INFINITY)).toBe(0);
+  });
+});
+
+describe('formatBlockNumber with a fixed precision', () => {
+  it('pads as well as caps, so a pair cannot disagree', () => {
+    expect(formatBlockNumber(2515.04, '$', 0)).toBe('$2,515');
+    expect(formatBlockNumber(1844.6, '$', 0)).toBe('$1,845');
+    expect(formatBlockNumber(85, undefined, 1)).toBe('85.0');
+    expect(formatBlockNumber(77.7, undefined, 1)).toBe('77.7');
+    expect(formatBlockNumber(4.8, '%', 2)).toBe('4.80%');
+  });
+
+  it('still groups thousands when a precision is given', () => {
+    expect(formatBlockNumber(78317.8, '$', 0)).toBe('$78,318');
   });
 });

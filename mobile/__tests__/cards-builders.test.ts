@@ -51,9 +51,28 @@ function calendarCards(events: { id: string; title: string; date: string }[]): C
   );
 }
 
+/** An ISO calendar day `days` before now, for a fixture that has to stay fresh
+ *  against a gate without freezing the clock for the whole file. */
+const isoDaysAgo = (days: number) =>
+  new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10);
+
+/** What PortWatch's own lag looks like: in the live payload all eleven straits
+ *  carry an `asOf` six days behind the file that holds them. A fixture dated
+ *  today would be less realistic than this, and would also stop these tests
+ *  from resembling the thing the freshness gate has to tolerate. The gate
+ *  itself is tested against an explicit clock further down. */
+const STRAIT_LAG_DAYS = 6;
+
 /** A strait, measured on `n_total`. `delta` is the fraction it sits away from
  *  its own 90-day normal — the quantity `CHOKEPOINT_DISRUPTED` gates on. */
-function strait(id: string, name: string, last7: number, base: number, delta: number): Chokepoint {
+function strait(
+  id: string,
+  name: string,
+  last7: number,
+  base: number,
+  delta: number,
+  asOf: string = isoDaysAgo(STRAIT_LAG_DAYS),
+): Chokepoint {
   return {
     id,
     name,
@@ -66,7 +85,7 @@ function strait(id: string, name: string, last7: number, base: number, delta: nu
     baseline90Avg: { n_total: base },
     delta7vs90: { n_total: delta },
     series: { periods: ['a', 'b'], total: [base, last7] },
-    asOf: '2026-08-02',
+    asOf,
   };
 }
 
@@ -327,7 +346,15 @@ describe('buildInstrumentCards', () => {
     expect(fx?.kind === 'comparison' ? fx.rows[0]?.tone : '').toBe('unfavorable');
     expect(fx?.kind === 'comparison' ? fx.rows.at(-1)?.value?.startsWith('+') : false).toBe(true);
     expect(fx?.kind === 'comparison' ? fx.rows.at(-1)?.tone : '').toBe('favorable');
-    expect(fx?.reading).toBe('2 of 3');
+    // One, not two. The Egyptian pound's rate moved a third of a per cent over
+    // the window, which is under the noise floor, so its row is painted slate
+    // — the app's word for *no claim* — and a headline that counted it made
+    // the card contradict its own table. The invariant, not the number: the
+    // count is exactly the rows the table paints as weakened.
+    expect(fx?.reading).toBe('1 of 3');
+    expect(
+      fx?.kind === 'comparison' ? fx.rows.filter((r) => r.tone === 'unfavorable').length : -1,
+    ).toBe(1);
 
     // The card that follows says the same thing about the same currency, and
     // says the word — a caret pointing down beside a reading of 82 rubles to
@@ -351,9 +378,13 @@ describe('buildInstrumentCards', () => {
     // by leaving the chip the colour of the label text beside it.
     expect(belief?.delta?.valence).toBe('neutral');
     // What is left for the sentence is the range, which is the part that says
-    // how settled the belief is.
-    expect(belief?.changed).toContain('As low as 26%');
-    expect(belief?.changed).toContain('as high as 86%');
+    // how settled the belief is. This contract closes the window at its own
+    // maximum, so the sentence says that rather than dating the high — "as
+    // high as 86% (Aug 9)" printed under a reading of 86% today invites a
+    // reader to look for a fall that never happened.
+    expect(belief?.changed).toBe(
+      'The highest it has been inside the window held here, against a low of 26% (Jul 17).',
+    );
   });
 
   it('leaves nothing on screen in the colour of the label text beside it', () => {
@@ -507,6 +538,39 @@ describe('buildInstrumentCards', () => {
     expect(cards.filter((c) => c.id.startsWith('strait-'))).toEqual([]);
   });
 
+  it('drops a strait whose reading is no longer this fortnight, mark and all', () => {
+    // The `today` mark is the app saying *this card is here because its data
+    // moved*. There was no freshness test behind it: PortWatch publishes
+    // weekly and lags, so a file that stopped updating would have gone on
+    // leading `commodities` under that word indefinitely. This is the gate
+    // `lib/cards/conditions.ts` exists to enforce, arrived at from the side
+    // the audit did not check.
+    const stale = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902, '2026-08-01')],
+        articles: [],
+        now: new Date('2026-08-22T00:00:00Z'),
+      }),
+    );
+    expect(stale.filter((c) => c.id.startsWith('strait-'))).toEqual([]);
+
+    // Six days behind is the source's own cadence, not staleness, and the
+    // card ships — carrying the week it counted, because that is what the
+    // `today` mark was silently claiming for itself.
+    const fresh = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902, '2026-08-16')],
+        articles: [],
+        now: new Date('2026-08-22T00:00:00Z'),
+      }),
+    );
+    const card = find(fresh, 'strait-kerch');
+    expect(card?.lead).toBe(true);
+    expect(card?.readingNote).toBe('ships a day, week to 16 Aug');
+  });
+
   it('does not print the chokepoint blurb twice when standing repeats it', () => {
     const blurb = 'Between Crimea and Russia — the only access to the Sea of Azov.';
     const cards = allOf(
@@ -527,7 +591,7 @@ describe('buildInstrumentCards', () => {
             baseline90Avg: { n_total: 8.8 },
             delta7vs90: { n_total: -0.902 },
             series: { periods: ['a', 'b'], total: [8.8, 0.9] },
-            asOf: '2026-08-02',
+            asOf: isoDaysAgo(STRAIT_LAG_DAYS),
           },
         ],
         articles: [],
@@ -983,6 +1047,288 @@ describe('one definition per screen', () => {
     expect(columns.outlook[0]?.whatItIs).toContain('pays out if this happens');
     expect(columns.outlook[1]?.whatItIs).toBeUndefined();
     expect(columns.outlook[2]?.whatItIs).toBeUndefined();
+  });
+});
+
+describe('whose paragraph part four is', () => {
+  // Four cards in the app are built from more than one thing, and all four
+  // printed one constituent's `standing` as if it explained the card. The
+  // reader has no way to detect that: the paragraph is well written, it is
+  // about something on the screen, and it is silent about which something.
+  //
+  // `currenciesCard` had already found the two resolutions — name the owner,
+  // or ship no paragraph — and neither had been carried across.
+
+  it('names the grain whose paragraph it is, on a card about two grains', () => {
+    const grain = (id: string, standing?: string) =>
+      indicator({
+        id,
+        label: id,
+        unit: '$/mt',
+        cadence: 'monthly',
+        values: [100, 120],
+        periods: ['Jul 2026', 'Aug 2026'],
+        standing,
+      });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        grain('wheat', 'The world price of milling wheat, quoted per metric tonne.'),
+        grain('rice', 'The benchmark for Asian long-grain rice.'),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const staples = find(columns.commodities, 'staples');
+    // Verbatim, still — the app does not rewrite the desk, it says whose
+    // sentence it is printing.
+    expect(staples?.why).toContain('milling wheat');
+    expect(staples?.whyLabel).toBe('on wheat');
+  });
+
+  it('ships no paragraph at all when the only one available is about a proxy', () => {
+    // `paxg.standing` describes a token backed one-for-one by bullion. Under
+    // the title "Gold against silver" that read as the app's teaching sentence
+    // about gold, and a label saying "on gold" would only have made the
+    // mislabelling explicit — the subject is wrong, not the attribution. The
+    // proxy is disclosed where sourcing belongs, in `sourceLabel`.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'paxg',
+          label: 'Gold',
+          unit: '$/oz',
+          values: [4110, 4352.19],
+          sourceLabel: 'CoinGecko · PAXG (gold-backed)',
+          standing: 'A token backed one-for-one by allocated gold bullion.',
+        }),
+        indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 52.56] }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const metals = find(columns.commodities, 'metals');
+    expect(metals).toBeDefined();
+    expect(metals?.why).toBeUndefined();
+    expect(JSON.stringify(metals)).not.toContain('backed one-for-one');
+    // Part two still teaches the ratio, so nothing was lost with it.
+    expect(metals?.whatItIs).toContain('oldest price');
+    expect(metals?.sourceLabel).toContain('PAXG');
+  });
+
+  it('charts the ratio the card reads, not two lines ninety-four apart', () => {
+    // Wheat and rice sit inside a factor of two and share an axis honestly.
+    // Gold and silver do not: silver rendered as a flat line pinned to the
+    // axis floor, which shows neither its level nor its move nor the one
+    // thing the card exists to say — which of the two is currently cheaper.
+    // `types.ts` guards two *units* on one axis; this was two magnitudes.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4586] }),
+        indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 49] }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const metals = find(columns.commodities, 'metals');
+    expect(metals?.reading).toBe('94:1');
+    const series = metals?.kind === 'reading' ? metals.series : undefined;
+    expect(series?.multi).toBeUndefined();
+    // The caption is not the `readingNote` again. Both said "ounces of silver
+    // to one of gold" — the same thirty-one characters under the reading and
+    // over the chart, on a card fighting to fit five parts on one screen.
+    // What the chart adds to the reading is time, so the caption says that.
+    expect(series?.label).toBe('the ratio, day by day');
+    expect(series?.label).not.toBe(metals?.readingNote);
+    // The chart is the reading's own history, as it is on every other reading
+    // card in the app.
+    expect(series?.values.map((v) => Math.round(v))).toEqual([71, 94]);
+  });
+
+  it('names the subject whose paragraph sits under a fifteen-row attention table', () => {
+    const wiki = (id: string, label: string, values: number[], standing?: string) =>
+      indicator({ id, label, source: 'wikipedia', values, standing });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        wiki(
+          'wiki-syria',
+          'Syria — Wikipedia views',
+          [100, 100, 100, 200],
+          'Daily readership of the English Wikipedia article on Syria.',
+        ),
+        wiki('wiki-iran', 'Iran — Wikipedia views', [100, 100, 100, 100]),
+        wiki('wiki-china', 'China — Wikipedia views', [100, 100, 100, 90]),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const attention = find(columns.outlook, 'attention');
+    expect(attention?.why).toContain('article on Syria');
+    // The suffix the card already strips from the rows is stripped here too.
+    expect(attention?.whyLabel).toBe('on Syria');
+  });
+
+  it('names the release whose paragraph sits under a list of four', () => {
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })], {
+          events: [
+            {
+              id: 'gdp',
+              title: 'US GDP',
+              date: '2026-08-26',
+              institution: 'Bureau of Economic Analysis',
+              kind: 'econ-release',
+              standing: "The Bureau of Economic Analysis's quarterly estimate of US output.",
+            },
+            {
+              id: 'pce',
+              title: 'US PCE',
+              date: '2026-08-26',
+              institution: 'Bureau of Economic Analysis',
+              kind: 'econ-release',
+            },
+          ],
+        }),
+        chokepoints: [],
+        articles: [],
+        now: new Date('2026-08-22T00:00:00Z'),
+      }),
+    );
+    const calendar = find(cards, 'calendar');
+    expect(calendar?.why).toContain('quarterly estimate');
+    expect(calendar?.whyLabel).toBe('on US GDP, 26 Aug');
+  });
+
+  it('leaves a single-instrument card unlabelled — the title is already the answer', () => {
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'brent',
+          label: 'Brent crude',
+          unit: '$/bbl',
+          standing: 'North Sea crude.',
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    expect(find(columns.commodities, 'brent')?.whyLabel).toBeUndefined();
+  });
+});
+
+describe('what a card says twice', () => {
+  it('reports a percentage series in points, not as a percentage of itself', () => {
+    // "4.69%" at display size with "▲3.3%" on the line beneath it: one a
+    // level, one a relative change, nothing on the card separating them.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'us-10y',
+          label: 'US 10y Treasury',
+          unit: '%',
+          values: [4.54, 4.69],
+          periods: ['Jul 9', 'Aug 20'],
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const tenY = find(columns.money, 'us-10y');
+    expect(tenY?.reading).toBe('4.69%');
+    expect(tenY?.delta).toMatchObject({ direction: 'up', magnitude: '0.2 points' });
+    expect(tenY?.delta?.magnitude).not.toContain('%');
+  });
+
+  it('drops the attention chip, because the reading already is the move', () => {
+    // "131% · OF NORMAL · SYRIA · ▲31% AGAINST ITS OWN NORMAL" — one number,
+    // printed twice, four words apart. Everywhere else the reading is a level
+    // and the chip is the move; here they are the same fact.
+    const wiki = (id: string, label: string, values: number[]) =>
+      indicator({ id, label, source: 'wikipedia', values });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        wiki('wiki-syria', 'Syria — Wikipedia views', [100, 100, 100, 131]),
+        wiki('wiki-iran', 'Iran — Wikipedia views', [100, 100, 100, 100]),
+        wiki('wiki-china', 'China — Wikipedia views', [100, 100, 100, 90]),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const attention = find(columns.outlook, 'attention');
+    expect(attention?.reading).toBe('131%');
+    expect(attention?.delta).toBeUndefined();
+  });
+
+  it('names the direction on an FX chart, which quotes the opposite of the chip', () => {
+    // The card quotes the currency and the chart quotes the rate, so a ruble
+    // 6.4% weaker arrives as a down caret above a line that climbs.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'fx-rub',
+          label: 'Russian ruble',
+          source: 'oer',
+          unit: 'RUB / USD',
+          values: [77.02, 82.27],
+          periods: ['Jul 11', 'Aug 9'],
+        }),
+        indicator({ id: 'fx-jpy', label: 'Japanese yen', source: 'oer', values: [161.67, 157.8] }),
+        indicator({ id: 'fx-egp', label: 'Egyptian pound', source: 'oer', values: [49.6, 49.79] }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    const mover = find(columns.money, 'fx-rub-mover');
+    const series = mover?.kind === 'reading' ? mover.series : undefined;
+    // The direction, and only the direction. The caption used to open with
+    // "RUB to the dollar", which is the `readingNote` two lines above it
+    // verbatim; the four words after it are the ones the card has nowhere
+    // else, and they are why this caption exists.
+    expect(series?.label).toBe('higher is weaker');
+    expect(mover?.readingNote).toBe('RUB to the dollar');
+    // And the ticks stop repeating the raw data column the caption was
+    // rewritten to stop showing — "82.3 RUB⁠/⁠USD" on every label, wide enough
+    // to wrap each one onto two lines.
+    expect(series?.unit).toBeUndefined();
+    expect(mover?.delta?.direction).toBe('down');
+  });
+
+  it('drops the empty word under an index reading', () => {
+    // "16 · index" under the number, INDEX as the chart caption, "22.2 index"
+    // and "14.3 index" on the axis — the same word four times, and it never
+    // said what the number counts.
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({ id: 'vix', label: 'VIX', unit: 'index', values: [15.8, 16.01] }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    expect(find(columns.outlook, 'vix')?.readingNote).toBeUndefined();
+  });
+});
+
+describe('which belief leads the column', () => {
+  it('opens with the contract that moved, not the one the feed listed first', () => {
+    // Feed order opened `outlook` with a contract flat for a fortnight and
+    // buried one that moved eight points in three days. "A card ships because
+    // it changed" is the app's rule everywhere else.
+    const belief = (id: string, values: number[]) =>
+      indicator({ id, label: `${id}?`, source: 'polymarket', unit: '%', values });
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        belief('poly-flat', [13, 13, 13, 13, 13, 13, 13, 13]),
+        belief('poly-drifting', [60, 62, 63, 64, 65, 66, 67, 65]),
+        belief('poly-moving', [83, 84, 85, 86, 87, 88, 89, 91]),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    expect(columns.outlook.map((c) => c.id)).toEqual(['poly-moving', 'poly-drifting', 'poly-flat']);
+    // And the once-per-column explainer follows the order, so it lands on the
+    // card a reader arriving from the section rail actually meets.
+    expect(columns.outlook[0]?.whatItIs).toContain('pays out if this happens');
+    expect(columns.outlook[1]?.whatItIs).toBeUndefined();
   });
 });
 

@@ -484,6 +484,13 @@ export const OPACITY = {
   disabled: 0.5,
   pressed: 0.7,
   hover: 0.85,
+  /** Laid out but not drawn. For an element whose *width* is load-bearing
+   *  while its ink is not — `CardFrame`'s reading-meta separator, which is
+   *  suppressed when the delta chip wraps away from it but must keep its
+   *  space, because returning that space would un-wrap the row the
+   *  suppression was measured from. Distinct from not rendering the element,
+   *  which is what every other way of hiding something here means. */
+  hidden: 0,
   // Decorative / chrome layers
   barely: 0.03,
   faint: 0.08,

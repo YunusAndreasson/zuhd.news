@@ -1,6 +1,6 @@
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { ConflictSnapshot, Determination, GdacsAlert, IpcSnapshot } from '@shared/types';
-import { formatCount } from './format';
+import { daysSince, formatCount, isFresh } from './format';
 import type { Card, CardFigure, ConditionCard } from './types';
 
 /**
@@ -44,18 +44,6 @@ import type { Card, CardFigure, ConditionCard } from './types';
  * dataset that is three weeks old is current, and a determination that is
  * three weeks old is front-page.
  */
-
-const DAY_MS = 86_400_000;
-
-/** Days since an ISO date, against an injected clock. Returns Infinity for
- *  anything unparseable, so a malformed date fails the gate rather than
- *  passing it. */
-function daysSince(iso: string | undefined, now: Date): number {
-  if (!iso) return Number.POSITIVE_INFINITY;
-  const t = Date.parse(iso);
-  if (Number.isNaN(t)) return Number.POSITIVE_INFINITY;
-  return (now.getTime() - t) / DAY_MS;
-}
 
 /**
  * How new each source has to be to earn a screen.
@@ -187,7 +175,7 @@ const CONFLICT_COUNTRY_LIMIT = 5;
  */
 function conflictCard(conflict: ConflictSnapshot | null, now: Date): ConditionCard | null {
   if (!conflict || conflict.events.length === 0) return null;
-  if (daysSince(conflict.windowEnd, now) > FRESH_DAYS.conflict) return null;
+  if (!isFresh(conflict.windowEnd, now, FRESH_DAYS.conflict)) return null;
 
   let fatalities = 0;
   const byCountry = new Map<string, number>();
@@ -251,7 +239,7 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
   // ships only when something is actually escalated and actively being
   // revised, which is when the ratio is worth reading again.
   const live = alerts.some(
-    (a) => a.alertlevel !== 'Green' && daysSince(a.modifiedDate, now) <= FRESH_DAYS.hazard,
+    (a) => a.alertlevel !== 'Green' && isFresh(a.modifiedDate, now, FRESH_DAYS.hazard),
   );
   if (!live) return null;
 
@@ -314,7 +302,7 @@ function determinationCard(determinations: Determination[], now: Date): Conditio
   // claim on a screen in a news app — and Rakhine's finding is eight years
   // old. When a new one is published this card leads the column; until then
   // it is reference material, and the app is not a reference book.
-  if (daysSince(latest.date, now) > FRESH_DAYS.determination) return null;
+  if (!isFresh(latest.date, now, FRESH_DAYS.determination)) return null;
 
   return {
     id: 'determinations',

@@ -20,10 +20,15 @@ import {
   formatQuantity,
   formatReading,
   formatSignedPct,
+  formatSignedPoints,
+  isFresh,
+  labelledWhy,
   latestOf,
   nisab,
+  readingParts,
   relatedForTags,
   seriesExtremes,
+  unitDenominator,
   windowChange,
   windowPointChange,
 } from './format';
@@ -67,17 +72,6 @@ const YEAR = 12;
 const byId = (snapshot: TrendsSnapshot, id: string): Indicator | undefined =>
   snapshot.indicators.find((i) => i.id === id);
 
-/** The pipeline writes units the way a data column does — `$/bbl`, `$/mt`. A
- *  card is read aloud, so the denominator becomes English and the currency mark
- *  moves to the front of the number where a reader expects it. */
-const DENOMINATOR: Record<string, string> = {
-  '/bbl': 'a barrel',
-  '/mt': 'a tonne',
-  '/oz': 'an ounce',
-  '/gal': 'a gallon',
-  '/MMBtu': 'per million BTU',
-};
-
 /**
  * The caption above a card's chart.
  *
@@ -91,21 +85,31 @@ function axisCaption(unit: string | undefined, fallback: string): string {
   if (!unit) return fallback;
   if (unit === '%') return 'per cent';
   if (unit.startsWith('$')) {
-    const per = unit.slice(1);
-    return per ? `dollars ${DENOMINATOR[per] ?? per.slice(1)}` : 'dollars';
+    const per = unitDenominator(unit);
+    return per ? `dollars ${per}` : 'dollars';
   }
   return unit;
 }
 
-function money(value: number, unit?: string): { reading: string; note?: string } {
-  const formatted = formatReading(value, unit);
-  if (!unit) return { reading: formatted };
-  if (unit === '%') return { reading: `${formatted}%` };
-  if (unit.startsWith('$')) {
-    const per = unit.slice(1);
-    return { reading: `$${formatted}`, note: per ? (DENOMINATOR[per] ?? per.slice(1)) : undefined };
-  }
-  return { reading: formatted, note: unit };
+/**
+ * The unit as the *tick labels* should carry it, which is not always as the
+ * caption carries it.
+ *
+ * `axisCaption` names the unit once, in English, directly above the chart.
+ * Repeating it on both ticks is a data column pasted onto a card — and it is
+ * not free: "105.3 $/bbl" is wide enough that the axis label wraps to two
+ * lines, so the noise costs layout as well as attention.
+ *
+ * Two units are pure decoration and drop out entirely. `index` is a kind, not
+ * a denominator — the same judgement `readingParts` makes about the note, and
+ * on the VIX card the word appeared three more times after that one was
+ * removed. A currency pair (`ZAR / USD`) is the raw column the caption was
+ * just rewritten to stop showing; leaving it on the ticks kept it on screen.
+ * Both are still spoken: the accessibility label leads with the caption.
+ */
+function tickUnit(unit: string | undefined): string | undefined {
+  if (!unit || unit === 'index' || unit.includes(' / ')) return undefined;
+  return unit;
 }
 
 /**
@@ -119,12 +123,26 @@ function money(value: number, unit?: string): { reading: string; note?: string }
  * days, so the window is still named from the period labels and never as
  * "month on month".
  */
-function dailyDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
-  return deltaFrom(windowChange(indicator, DAILY_WINDOW), riseMeans);
-}
-
-function monthlyDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
-  return deltaFrom(windowChange(indicator, MONTH), riseMeans, { window: 'on the month' });
+function readingDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
+  const monthly = indicator.cadence === 'monthly';
+  const span = monthly ? MONTH : DAILY_WINDOW;
+  const window = monthly ? { window: 'on the month' } : {};
+  // A series already measured in per cent gets its move in points, which
+  // `windowPointChange` documents as mandatory. The ten-year printed "4.69%"
+  // at display size with "▲3.3%" directly beneath it: two percentages on one
+  // line, one a level and one a relative change, and nothing on the card
+  // separating them. The move was fifteen basis points.
+  //
+  // The guard sits above the cadence split rather than inside one half of it.
+  // It was written into the daily branch only, which made a property of the
+  // *unit* conditional on the *cadence* — nothing in today's payload is both
+  // monthly and per cent, so the hole was invisible, and the day the pipeline
+  // gives `us-10y` a monthly cadence the fixed bug comes back with no test
+  // touching it.
+  if (indicator.unit === '%') {
+    return deltaFrom(windowPointChange(indicator, span), riseMeans, { ...window, unit: 'points' });
+  }
+  return deltaFrom(windowChange(indicator, span), riseMeans, window);
 }
 
 /** The year, once the chip has taken the month. Two windows are worth having
@@ -132,9 +150,13 @@ function monthlyDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | u
  *  than last year is two different facts — but only one of them fits in the
  *  chip. */
 function describeYearChange(indicator: Indicator): string | undefined {
-  const yoy = windowChange(indicator, YEAR);
+  // Same rule as the chip above it, for the same reason: a series already in
+  // per cent moves in points, and this sentence would otherwise be the one
+  // place on the card still calling fifteen basis points "+3.3%".
+  const points = indicator.unit === '%';
+  const yoy = points ? windowPointChange(indicator, YEAR) : windowChange(indicator, YEAR);
   if (!yoy) return undefined;
-  const signed = formatSignedPct(yoy.pct);
+  const signed = points ? formatSignedPoints(yoy.pct) : formatSignedPct(yoy.pct);
   return signed === 'unchanged' ? 'Unchanged against a year ago.' : `${signed} against a year ago.`;
 }
 
@@ -200,7 +222,12 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
     whatItIs:
       'The two grains most of the world eats, at the world price an importing government pays — not the price in a shop.',
     changed,
-    why: wheat.standing,
+    // Wheat's paragraph, said to be wheat's. It opens "The world price of
+    // milling wheat…" and never reaches rice, which on a card titled "Wheat
+    // and rice" read as the card explaining half of itself without saying
+    // which half. Rice has a `standing` of its own and both will not fit; the
+    // label is what makes printing one of them honest.
+    ...labelledWhy(wheat.standing, 'on wheat'),
     figures: [
       { label: 'wheat', value: `$${formatReading(wheatNow)}` },
       { label: 'rice', value: `$${formatReading(riceNow)}` },
@@ -272,7 +299,7 @@ function indicatorCard(
   // property of the series, not of the card showing it, and while it was an
   // argument the sheet this card opens answered it differently.
   const riseMeans = riseMeansFor(indicator);
-  const { reading, note } = money(value, indicator.unit);
+  const { reading, note } = readingParts(value, indicator.unit);
   return {
     id,
     kind: 'reading',
@@ -280,7 +307,7 @@ function indicatorCard(
     title: indicator.label,
     reading,
     readingNote: note,
-    delta: monthly ? monthlyDelta(indicator, riseMeans) : dailyDelta(indicator, riseMeans),
+    delta: readingDelta(indicator, riseMeans),
     whatItIs: definitionUnlessStanding(whatItIs, indicator.standing),
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
@@ -290,7 +317,7 @@ function indicatorCard(
       values: indicator.values,
       periods: indicator.periods,
       label: axisCaption(indicator.unit, indicator.label),
-      unit: indicator.unit,
+      unit: tickUnit(indicator.unit),
       highlight: indicator.defaultHighlight ?? 'last',
     },
     related: relatedForTags(articles, indicator.topicTags),
@@ -410,10 +437,26 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
     const sv = silver.values[i];
     return typeof sv === 'number' && typeof g === 'number' && sv !== 0 ? g / sv : Number.NaN;
   });
-  const delta = deltaFrom(
-    windowChange({ values: ratioSeries, periods: gold.periods }, DAILY_WINDOW),
-    null,
+  // The ratio's own history, with any period either metal failed to price
+  // dropped along with its label — `ratioSeries` carries NaN there, and a
+  // chart cannot draw one.
+  const ratioPlot = ratioSeries.reduce<{ values: number[]; periods: string[] }>(
+    (acc, v, i) => {
+      if (Number.isFinite(v)) {
+        acc.values.push(v);
+        acc.periods.push(gold.periods[i] ?? '');
+      }
+      return acc;
+    },
+    { values: [], periods: [] },
   );
+  // Measured on the series the chart draws, not on the one with the holes in
+  // it. Read from `ratioSeries` the chip could disagree with the picture two
+  // ways: a NaN exactly `DAILY_WINDOW` back makes `windowChange` return null,
+  // so the chip vanishes from a card whose chart still shows the move; and
+  // any interior gap shifts the window, so `since ${from}` named a period the
+  // chart's own ticks had dropped.
+  const delta = deltaFrom(windowChange(ratioPlot, DAILY_WINDOW), null);
 
   return {
     id: 'metals',
@@ -433,20 +476,43 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
-    why: gold.standing,
+    // No `why`, and this is the case a label cannot rescue. `paxg.standing`
+    // describes the *instrument the price is read from* — "A token backed
+    // one-for-one by allocated gold bullion, so its price tracks an ounce of
+    // gold" — which arrived under the title "Gold against silver" as the app's
+    // teaching sentence about gold. Calling it "on gold" would only make the
+    // mislabelling explicit. A proxy is a sourcing decision, and this card
+    // already discloses it where sourcing belongs, in `sourceLabel`.
+    //
+    // Nothing is lost: part two teaches the ratio, part three gives both
+    // moves, and the two prices are figures. This is the same resolution
+    // `currenciesCard` reached, for the same reason.
     figures: [
       { label: 'gold', value: `$${formatReading(goldNow)}` },
       { label: 'silver', value: `$${formatReading(silverNow)}` },
     ],
+    // The ratio, which is what the reading and the chip already measure — and
+    // the only reading card in the app whose chart was not its own reading.
+    //
+    // Two lines on one axis is right for wheat and rice, which sit inside a
+    // factor of two of each other. Gold and silver sit at ninety-four to one,
+    // and `types.ts` guards the wrong half of that: it warns against two
+    // *units* on one axis, and this was two magnitudes. Silver rendered as a
+    // flat line pinned to the axis floor for the whole window — the reader
+    // could not see it move, could not read its level off an axis labelled in
+    // thousands, and could not see the one thing the card exists to show,
+    // which is which of the two is currently the cheaper. Both prices are
+    // figures directly above it; neither needed a second rendering that
+    // teaches less than the figure does.
     series: {
-      values: gold.values,
-      periods: gold.periods,
-      label: axisCaption(gold.unit, 'dollars an ounce'),
-      unit: gold.unit,
-      multi: [
-        { values: gold.values, label: 'gold', highlight: 'last' },
-        { values: silver.values, label: 'silver', highlight: 'last' },
-      ],
+      values: ratioPlot.values,
+      periods: ratioPlot.periods,
+      // Not the `readingNote` verbatim, which is what this was: "ounces of
+      // silver to one of gold" printed under the reading and again over the
+      // chart, the same thirty-one characters twice on one screen. What the
+      // chart adds to the reading is time, so the caption says that instead.
+      label: 'the ratio, day by day',
+      highlight: 'last',
     },
     related: relatedForTags(articles, [...(gold.topicTags ?? []), ...(silver.topicTags ?? [])]),
     sourceLabel: gold.sourceLabel,
@@ -479,12 +545,25 @@ function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | n
     .sort((a, b) => b.change.pct - a.change.pct);
   if (scored.length === 0) return null;
 
-  const weakened = scored.filter((s) => s.change.pct > 0);
+  // Counted on the same floor the rows are coloured on, because the headline
+  // and the table have to be answering one question. Counting every positive
+  // rate change instead made the card contradict itself in the live payload:
+  // "4 of 15 weakened" over a table in which the fourth of those four — the
+  // Lebanese pound, a tenth of a per cent — was painted slate, the app's word
+  // for *no claim*. A reader who counts the rose pills gets three, and the two
+  // numbers cannot both be the app's position.
+  const weakened = scored.filter((s) => s.change.pct >= FX_NOISE_FLOOR);
   const rows: CompareRow[] = scored.map(({ indicator, change }) => ({
     // The pipeline's label already reads as a currency name; the unit carries
     // the pairing ("PKR / USD"), so the row does not repeat it.
     label: indicator.label,
-    value: formatSignedPct(currencyMove(change.pct)),
+    // `tabular`, because this is the one place in the app where fifteen of
+    // these stack into a rail. Left to prose rounding the column printed
+    // "+1%" beside "+0.8%" and "+3%" beside "+3.5%" — three pill widths and
+    // two decimal positions describing moves measured the same way over the
+    // same window, which reads as a difference in precision the data does not
+    // have.
+    value: formatSignedPct(currencyMove(change.pct), { tabular: true }),
     // A rate rising means more local currency per dollar — the currency
     // weakened. The sign in the value is the direction; the tone says what
     // that direction means for someone holding it.
@@ -661,8 +740,33 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
         series: {
           values: indicator.values,
           periods: indicator.periods,
-          label: indicator.unit ?? 'per US dollar',
-          unit: indicator.unit,
+          // The one chart in the app that has to name its own direction.
+          //
+          // The card quotes the currency and the chart quotes the rate, so a
+          // ruble 5.3% weaker arrives as a **down** caret above a line
+          // climbing 78 → 83. Both are correct and the reader has to know the
+          // denominator to see it; the standing paragraph says so, four
+          // paragraphs below the chart, which is three parts too late.
+          //
+          // Plotting the reciprocal instead would put an unreadable 0.0121 on
+          // the axis, and indexing to 100 at the window start would invent a
+          // series the source never published. Six words on the caption cost
+          // nothing and are true of the line directly beneath them.
+          //
+          // It was also the last raw data column left on a chart caption —
+          // "RUB / USD" where every other card reads its unit aloud ("dollars
+          // a barrel", "chance priced, per cent").
+          //
+          // Just the direction, because the unit is already on screen: this
+          // caption read "RUB to the dollar · higher is weaker" directly under
+          // a `readingNote` of "RUB to the dollar", two lines apart. The four
+          // words the chart adds are the four the card does not have anywhere
+          // else, and they are the whole reason this caption exists.
+          label: 'higher is weaker',
+          // Not `indicator.unit` — see `tickUnit`. Every tick was printing the
+          // same "ZAR⁠/⁠USD" the caption above had just been rewritten to stop
+          // showing, wide enough to wrap each label onto two lines.
+          unit: tickUnit(indicator.unit),
           highlight: 'last' as const,
         },
         related: relatedForTags(articles, indicator.topicTags),
@@ -695,6 +799,26 @@ function straitWhy(c: Chokepoint): string | undefined {
   const fresh = standing && standing !== blurb ? standing : undefined;
   return [fresh, c.recent?.trim()].filter(Boolean).join('\n\n') || undefined;
 }
+
+/**
+ * How old a PortWatch reading may be and still lead a column.
+ *
+ * The gate this adds is the one `lib/cards/conditions.ts` was written to
+ * enforce, arrived at from the other side: that file killed a whole section
+ * for shipping standing data as news, and this card — the only other one in
+ * the app carrying the `today` mark — had no freshness test at all.
+ *
+ * Fourteen days, not seven, because the source's own cadence is the floor: in
+ * the live payload all eleven straits carry `asOf` six days behind the file
+ * that holds them, so a one-week gate would drop every strait every day and
+ * the gate would read as a bug. Fourteen clears one missed publication and no
+ * more.
+ *
+ * The lag is also why `readingNote` names the week the count belongs to. The
+ * `today` mark says *this card is here because its data moved*, and it was
+ * sitting above a figure a reader would reasonably take for this morning's.
+ */
+const FRESH_DAYS_STRAIT = 14;
 
 /** A strait this far from its own 90-day normal is disrupted rather than
  *  merely quiet. Below it, day-to-day variation in eleven busy waterways would
@@ -751,11 +875,12 @@ function primaryDelta(c: Chokepoint): number | null {
  * `Chokepoint` carries no share-of-trade field to weight by. The card says
  * exactly what it ranked on, and what it says is true.
  */
-function straitMovedCard(chokepoints: Chokepoint[]): ReadingCard | null {
+function straitMovedCard(chokepoints: Chokepoint[], now: Date): ReadingCard | null {
   const ranked = chokepoints
     .map((c) => ({ c, d: primaryDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
     .filter((x) => x.d <= -CHOKEPOINT_DISRUPTED)
+    .filter((x) => isFresh(x.c.asOf, now, FRESH_DAYS_STRAIT))
     .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
   const top = ranked[0];
   if (!top) return null;
@@ -780,7 +905,17 @@ function straitMovedCard(chokepoints: Chokepoint[]): ReadingCard | null {
     kicker: 'chokepoint',
     title: c.name,
     reading: last7 == null ? '—' : formatQuantity(last7),
-    readingNote: `${vessels} a day`,
+    // The window, named. `last7Avg` is a seven-day average and PortWatch
+    // publishes with a lag, so on the live payload this figure closed six days
+    // before the file it arrived in — under a kicker reading "today ·
+    // chokepoint", which is the app telling a reader its data moved this
+    // morning. The mark is right (the card *is* here because the strait went
+    // quiet) and the reading is right; only the silence about which week it
+    // counted was wrong, and the chart's last tick was the sole place a reader
+    // could have found out.
+    // No fallback for a missing `asOf`: `isFresh` above rejects anything it
+    // cannot date, so a chokepoint without one never reaches this line.
+    readingNote: `${vessels} a day, week to ${formatEventDate(c.asOf)}`,
     // Built by hand rather than through `deltaFrom`, because this one is not
     // symmetric and `riseMeans` can only describe a symmetric pair. Quiet is
     // coloured; busy is not. A strait above its own normal is usually traffic
@@ -828,75 +963,140 @@ function straitMovedCard(chokepoints: Chokepoint[]): ReadingCard | null {
  * people are willing to stake, which is a different and more honest thing —
  * and it is only worth a screen because the card can say that out loud.
  */
+/** How far back "recently" reaches when ranking beliefs. A week of
+ *  observations: long enough that one quiet day does not demote a contract,
+ *  short enough that a move a fortnight ago has stopped being the news. */
+const BELIEF_RECENT_WINDOW = 7;
+
+/** How many points a contract has moved lately, as the ranking key. Absolute:
+ *  a belief collapsing is as much the news as one firming. */
+function recentBeliefMove(indicator: Indicator): number {
+  const change = windowPointChange(indicator, BELIEF_RECENT_WINDOW);
+  return change ? Math.abs(change.pct) : 0;
+}
+
+/**
+ * The range a belief has travelled inside the window we hold, as one sentence.
+ *
+ * `null` when the contract has not moved a whole point across the window —
+ * there is no range to describe and the chip has already said "unchanged".
+ */
+function describeBeliefRange(
+  extremes: ReturnType<typeof seriesExtremes>,
+  latest: number,
+): string | undefined {
+  if (!extremes || extremes.max - extremes.min < 1) return undefined;
+  const low = Math.round(extremes.min);
+  const high = Math.round(extremes.max);
+  const now = Math.round(latest);
+  const atHigh = now >= high;
+  const atLow = now <= low;
+  if (atHigh)
+    return `The highest it has been inside the window held here, against a low of ${low}% (${extremes.minAt}).`;
+  if (atLow)
+    return `The lowest it has been inside the window held here, against a high of ${high}% (${extremes.maxAt}).`;
+  return `As low as ${low}% (${extremes.minAt}) and as high as ${high}% (${extremes.maxAt}) inside the window held here.`;
+}
+
 function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
-  return snapshot.indicators
-    .filter((i) => i.source === 'polymarket')
-    .map((indicator, position) => {
-      const value = latestOf(indicator);
-      if (value == null) return null;
-      const extremes = seriesExtremes(indicator);
-      const change = windowPointChange(indicator, indicator.values.length - 1);
-      const card: BeliefCard = {
-        id: indicator.id,
-        kind: 'belief',
-        kicker: 'what traders think',
-        // The label arrives as a question and stays one. An earlier version
-        // stripped the trailing "?" for tidiness, which turned the one mark
-        // that tells a reader this is an open outcome rather than a
-        // measurement into nothing.
-        title: indicator.label,
-        reading: `${Math.round(value)}%`,
-        readingNote: 'priced today',
-        // No valence, and this is the clearest case for the rule: a contract
-        // on a ceasefire holding and a contract on a candidate winning move
-        // the same way on the screen, and the app has no business tinting
-        // either of them green.
-        delta: deltaFrom(change, null, { unit: 'points' }),
-        // Once per column, not once per card.
-        //
-        // This paragraph is the same 200 characters on every prediction card,
-        // and the column is three cards deep — so a reader swiping through it
-        // met the identical explanation of what a prediction contract is three
-        // times in under a minute, while two of the three cards had no
-        // `standing` and therefore nothing else to say. That is the shape of
-        // filler: text that is correct, is not wrong anywhere, and stops being
-        // read after the first screen.
-        //
-        // It stays on the first card because a reader who lands here from the
-        // section rail does need it once. After that the kicker ("what traders
-        // think") and the note under the number ("priced today") carry it, and
-        // they carry it in four words instead of forty.
-        whatItIs:
-          position === 0
-            ? 'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.'
+  return (
+    snapshot.indicators
+      .filter((i) => i.source === 'polymarket')
+      // Ranked by what actually moved, not by the order the feed happened to
+      // list them in — the app's own rule ("a card ships because it changed")
+      // applied to the one column that was still ignoring it.
+      //
+      // The live payload is the argument. Feed order opened `outlook` with the
+      // Fed and closed it with "Ocasio-Cortez wins the 2028 US presidency?",
+      // flat at 13% for twelve straight days, resolving in two years, carrying
+      // no `standing` — so the column's weakest card also took the third screen.
+      // In the middle sat a contract on a US-Iran ceasefire holding to 31
+      // August, eight points in three days, tied to three of today's stories.
+      //
+      // Sorting before the map matters twice: the once-per-column explainer is
+      // keyed on `position === 0`, so it now lands on the card a reader arriving
+      // from the section rail actually meets — and it lands on the contract that
+      // has no `standing` of its own, which is where the column most needed it.
+      .sort((a, b) => recentBeliefMove(b) - recentBeliefMove(a))
+      // Dropped *before* the position is handed out, not after. `position`
+      // decides which card carries the once-per-column explainer, and taking
+      // it from the `.map` index over the unfiltered list meant that if the
+      // top-ranked contract had no usable last value, the card the reader
+      // actually met was `position === 1` and the column rendered with no
+      // explainer at all. Sorting made index 0 meaningful; this makes it true.
+      .filter((indicator): indicator is Indicator => latestOf(indicator) != null)
+      .map((indicator, position) => {
+        const value = latestOf(indicator) as number;
+        const extremes = seriesExtremes(indicator);
+        const change = windowPointChange(indicator, indicator.values.length - 1);
+        const card: BeliefCard = {
+          id: indicator.id,
+          kind: 'belief',
+          kicker: 'what traders think',
+          // The label arrives as a question and stays one. An earlier version
+          // stripped the trailing "?" for tidiness, which turned the one mark
+          // that tells a reader this is an open outcome rather than a
+          // measurement into nothing.
+          title: indicator.label,
+          reading: `${Math.round(value)}%`,
+          readingNote: 'priced today',
+          // No valence, and this is the clearest case for the rule: a contract
+          // on a ceasefire holding and a contract on a candidate winning move
+          // the same way on the screen, and the app has no business tinting
+          // either of them green.
+          delta: deltaFrom(change, null, { unit: 'points' }),
+          // Once per column, not once per card.
+          //
+          // This paragraph is the same 200 characters on every prediction card,
+          // and the column is three cards deep — so a reader swiping through it
+          // met the identical explanation of what a prediction contract is three
+          // times in under a minute, while two of the three cards had no
+          // `standing` and therefore nothing else to say. That is the shape of
+          // filler: text that is correct, is not wrong anywhere, and stops being
+          // read after the first screen.
+          //
+          // It stays on the first card because a reader who lands here from the
+          // section rail does need it once. After that the kicker ("what traders
+          // think") and the note under the number ("priced today") carry it, and
+          // they carry it in four words instead of forty.
+          whatItIs:
+            position === 0
+              ? 'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.'
+              : undefined,
+          // In points, never per cent: a contract going 26 → 86 moved 60 points,
+          // and the chip says so. What is left for the sentence is the range,
+          // which is the part that says how settled the belief is — a number
+          // sitting at 88 having never been below 80 is a different fact from
+          // one that got there from 30 last week.
+          //
+          // When today *is* the extreme the sentence says so instead of dating
+          // it, because dating it reads as a different day: the live ceasefire
+          // contract printed "as high as 91% (Aug 20)" while the number above it
+          // was 91% today, which invites a reader to look for a fall that never
+          // happened. "The highest it has been" is the same arithmetic and the
+          // better fact — a belief at its own ceiling is news; a belief that
+          // touched that ceiling three days ago and came back is a different
+          // story, and the old sentence could not tell them apart.
+          changed: describeBeliefRange(extremes, value),
+          why: indicator.standing,
+          series: {
+            values: indicator.values,
+            periods: indicator.periods,
+            label: 'chance priced, per cent',
+            unit: '%',
+            highlight: 'last',
+          },
+          range: extremes
+            ? { min: extremes.min, max: extremes.max, minAt: extremes.minAt, maxAt: extremes.maxAt }
             : undefined,
-        // In points, never per cent: a contract going 26 → 86 moved 60 points,
-        // and the chip says so. What is left for the sentence is the range,
-        // which is the part that says how settled the belief is — a number
-        // sitting at 88 having never been below 80 is a different fact from
-        // one that got there from 30 last week.
-        changed:
-          extremes && extremes.max - extremes.min >= 1
-            ? `As low as ${Math.round(extremes.min)}% (${extremes.minAt}) and as high as ${Math.round(extremes.max)}% (${extremes.maxAt}) inside the window held here.`
-            : undefined,
-        why: indicator.standing,
-        series: {
-          values: indicator.values,
-          periods: indicator.periods,
-          label: 'chance priced, per cent',
-          unit: '%',
-          highlight: 'last',
-        },
-        range: extremes
-          ? { min: extremes.min, max: extremes.max, minAt: extremes.minAt, maxAt: extremes.maxAt }
-          : undefined,
-        related: relatedForTags(articles, indicator.topicTags),
-        sourceLabel: indicator.sourceLabel,
-        link: indicator.marketUrl,
-      };
-      return card;
-    })
-    .filter((c): c is BeliefCard => c !== null);
+          related: relatedForTags(articles, indicator.topicTags),
+          sourceLabel: indicator.sourceLabel,
+          link: indicator.marketUrl,
+        };
+        return card;
+      })
+      .filter((c): c is BeliefCard => c !== null)
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -973,20 +1173,27 @@ function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | nu
     title: 'What the world looked up',
     reading: `${Math.round(mover.ratio * 100)}%`,
     readingNote: `of normal · ${stripWikiSuffix(mover.indicator.label)}`,
-    // Slate. Curiosity moving is not good news or bad news, and this is the
-    // card that shows what the third tone is for: the arrow says a subject was
-    // opened more than usual, and the colour declines to tell you whether that
-    // is a good thing — which is a claim the app can stand behind, unlike
-    // either sage or rose.
-    delta: deltaFrom(
-      { pct: (mover.ratio - 1) * 100, from: '', to: '', points: mover.indicator.values.length },
-      null,
-      { window: 'against its own normal' },
-    ),
+    // No chip, and this is the one card in the app where that is right.
+    //
+    // Everywhere else the reading is a level and the chip is the move, which
+    // are two facts. Here the reading *is* the move — per cent of a subject's
+    // own normal — so the chip could only restate it, and it did, word for
+    // word: "131% · OF NORMAL · SYRIA · ▲31% AGAINST ITS OWN NORMAL". One
+    // number, printed twice, four words apart, on the line the whole card
+    // hangs from. foundation.md is explicit that information appears exactly
+    // once.
+    //
+    // Nor is the colour an argument for keeping it. The chip was slate — the
+    // app declining to say whether curiosity moving is good news — and a
+    // withheld claim does not need a second pill to be withheld in.
+
     whatItIs:
       'How many people opened each Wikipedia article today, set against that subject’s own recent average. It reads as where curiosity went, which is not where the news is.',
     changed: `${stripWikiSuffix(mover.indicator.label)} was opened ${formatCount(mover.latest)} times a day against its usual ${formatCount(mover.baseline)}. Everything else is listed against its own normal too, so a small subject can out-move a large one.`,
-    why: mover.indicator.standing,
+    // The mover's paragraph, said to be the mover's. It is written about one
+    // subject — "Daily readership of the English Wikipedia article on Syria" —
+    // and sat under a fifteen-row table as if it described the table.
+    ...labelledWhy(mover.indicator.standing, `on ${stripWikiSuffix(mover.indicator.label)}`),
     rows,
     rowsLabel: 'against each subject’s own average',
     related: relatedForTags(articles, mover.indicator.topicTags),
@@ -1050,7 +1257,11 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
     whatItIs:
       'Central-bank decisions and statistical releases are published on a calendar set months in advance. The date is never the surprise; only the number is.',
     changed: undefined,
-    why: next.standing,
+    // The next release's paragraph, said to be the next release's. Four dates
+    // are listed above it and this explains one of them — a reader met a
+    // paragraph on the quarterly output estimate under a card whose reading
+    // is "4" and whose title is "What is already scheduled".
+    ...labelledWhy(next.standing, `on ${next.title}, ${formatEventDate(next.date)}`),
     figures: shown.map((e) => ({
       label: formatEventDate(e.date),
       value: e.title,
@@ -1147,7 +1358,7 @@ export function buildInstrumentCards({
 
   return {
     commodities: keep([
-      straitMovedCard(chokepoints),
+      straitMovedCard(chokepoints, now),
       nisabCard(trends),
       staplesCard(trends, articles),
       indicatorCard(

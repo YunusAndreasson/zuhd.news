@@ -25,6 +25,7 @@ import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import {
+  axisDecimals,
   type BlockVariant,
   blockContainerStyle,
   blockSharedStyles,
@@ -368,6 +369,11 @@ export const TrendBlock = memo(function TrendBlock({
   }, [normalizedSeries, band]);
   const min = flatExtent[0] ?? 0;
   const max = flatExtent[1] ?? 0;
+  // One precision for the whole chart — the two axis labels, the scrub readout
+  // and the accessibility range. Derived from the endpoints rather than left
+  // to each value, which is how `$2,515` came to sit directly above `$1,844.6`
+  // on one axis while the card's own reading said `$2,418`.
+  const decimals = useMemo(() => axisDecimals(min, max), [min, max]);
 
   const progress = useChartDrawProgress();
 
@@ -443,11 +449,11 @@ export const TrendBlock = memo(function TrendBlock({
             .map((s) => {
               const sv = s.values[scrubIdxJs];
               if (sv === undefined) return null;
-              return `${s.label}: ${formatBlockNumber(sv, unit)}`;
+              return `${s.label}: ${formatBlockNumber(sv, unit, decimals)}`;
             })
             .filter((l): l is string => l !== null)
             .join('\n')
-        : formatBlockNumber(v, unit);
+        : formatBlockNumber(v, unit, decimals);
     return {
       idx: scrubIdxJs,
       value: lines,
@@ -516,7 +522,7 @@ export const TrendBlock = memo(function TrendBlock({
   const highlightPeriod = periods?.[defaultHighlightIdx];
   const a11yLabel =
     highlightValue !== undefined
-      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}`
+      ? `${label}, ${formatBlockNumber(highlightValue, unit, decimals)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit, decimals)} to ${formatBlockNumber(max, unit, decimals)}`
       : label;
 
   if (normalizedSeries.length === 0) return null;
@@ -628,12 +634,12 @@ export const TrendBlock = memo(function TrendBlock({
                   can ever reach a third line and clip again. */}
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                 <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(max, unit)}
+                  {formatBlockNumber(max, unit, decimals)}
                 </Text>
               </View>
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
                 <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(min, unit)}
+                  {formatBlockNumber(min, unit, decimals)}
                 </Text>
               </View>
             </>

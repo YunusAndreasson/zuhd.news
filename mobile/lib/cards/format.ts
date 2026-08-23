@@ -17,6 +17,43 @@ import type { CardDelta } from './types';
  *  the ounce; the conversion has to happen somewhere and it happens once. */
 export const GRAMS_PER_TROY_OUNCE = 31.1034768;
 
+const DAY_MS = 86_400_000;
+
+/**
+ * Days since an ISO date, against an injected clock.
+ *
+ * Returns Infinity for anything unparseable, so a malformed date fails a
+ * freshness gate rather than passing it.
+ *
+ * It lives here rather than in `conditions.ts`, which wrote it, because
+ * `markets.ts` needs the same arithmetic for the same reason and a second copy
+ * is how two gates end up disagreeing about what "new" means.
+ */
+export function daysSince(iso: string | undefined, now: Date): number {
+  if (!iso) return Number.POSITIVE_INFINITY;
+  const t = Date.parse(iso);
+  if (Number.isNaN(t)) return Number.POSITIVE_INFINITY;
+  return (now.getTime() - t) / DAY_MS;
+}
+
+/**
+ * Whether a dated payload is new enough to lead a column under the `today ·`
+ * mark, bounded at **both** ends.
+ *
+ * Every gate in `markets.ts` and `conditions.ts` was written as
+ * `daysSince(iso, now) <= limit`, and `daysSince` returns a *negative* number
+ * for anything dated ahead of the clock — so a future `asOf` satisfied every
+ * one of them. Device clock skew, a payload assembled in another timezone and
+ * a typo in a year all arrive as the same shape, and the card they let
+ * through is the one that tells the reader its data moved this morning.
+ *
+ * Unparseable stays stale: `daysSince` gives Infinity, which fails.
+ */
+export function isFresh(iso: string | undefined, now: Date, maxDays: number): boolean {
+  const age = daysSince(iso, now);
+  return Number.isFinite(age) && age >= 0 && age <= maxDays;
+}
+
 export interface WindowChange {
   /** Percentage change across the window, signed. */
   pct: number;
@@ -115,22 +152,155 @@ export function formatReading(value: number, unit?: string): string {
   return Math.round(value).toLocaleString('en-US');
 }
 
-/** `formatReading` with the unit attached, hugging single-character and `%`
- *  units and spacing the rest — "4.69%", "$/bbl 88.90" reads wrong, so units
- *  that lead with a currency mark are placed by the caller. */
-export function formatReadingWithUnit(value: number, unit?: string): string {
-  const s = formatReading(value, unit);
-  if (!unit) return s;
-  return unit.length === 1 || unit === '%' ? `${s}${unit}` : `${s} ${unit}`;
+/**
+ * The pipeline writes units the way a data column does — `$/bbl`, `$/mt`. A
+ * reading is read aloud, so the denominator becomes English and the currency
+ * mark moves to the front of the number where a reader expects it.
+ */
+const DENOMINATOR: Record<string, string> = {
+  '/bbl': 'a barrel',
+  '/mt': 'a tonne',
+  '/oz': 'an ounce',
+  '/gal': 'a gallon',
+  '/MMBtu': 'per million BTU',
+};
+
+/** The denominator of a `$/x` unit in English, or undefined for a bare `$`
+ *  and for anything that is not a currency-per-something. Exported so the
+ *  chart caption and the reading's note cannot name the same unit two ways. */
+export function unitDenominator(unit: string | undefined): string | undefined {
+  if (!unit?.startsWith('$')) return undefined;
+  const per = unit.slice(1);
+  return per ? (DENOMINATOR[per] ?? per.slice(1)) : undefined;
 }
 
-/** A signed percentage, one decimal, with a true minus sign rather than a
- *  hyphen — the column is typographic, not code. */
-export function formatSignedPct(pct: number): string {
+export interface ReadingParts {
+  /** The number with its currency mark, if it takes one. */
+  reading: string;
+  /** What the number counts, in English — or absent when the unit cannot say. */
+  note?: string;
+}
+
+/**
+ * A reading and what it counts, in the app's one grammar.
+ *
+ * This lived in `markets.ts` as `money()` and the sheet that a card opens had
+ * its own arrangement: `formatReading(v, unit)` with `indicator.unit` appended
+ * raw. The two disagreed on every indicator that carries a unit — the
+ * ten-year printed `4.69%` on the card and `4.69 %` in the sheet, brent `$95`
+ * / `a barrel` against `95 $/bbl` — which is the rule in `CLAUDE.md` about a
+ * card and its sheet, broken by the two of them never having met.
+ *
+ * `index` returns no note on purpose. Every other note tells the reader what
+ * the number counts ("a barrel", "an ounce"); "index" is a kind, not a
+ * denominator, and printed as one it produced "16 · index" under a reading of
+ * 16. A note that cannot do the job is better absent.
+ */
+export function readingParts(value: number, unit?: string): ReadingParts {
+  const formatted = formatReading(value, unit);
+  if (!unit) return { reading: formatted };
+  if (unit === '%') return { reading: `${formatted}%` };
+  if (unit.startsWith('$')) return { reading: `$${formatted}`, note: unitDenominator(unit) };
+  if (unit === 'index') return { reading: formatted };
+  return { reading: formatted, note: unit };
+}
+
+/**
+ * The same, flattened to one string, for a call site with nowhere to put a
+ * second line.
+ *
+ * NOTE: currently has no callers. It is left in place, delegating rather than
+ * re-deriving, so it cannot become a fifth spelling of this while it waits for
+ * a decision — but it is a deletion candidate, not a fixture.
+ */
+export function formatReadingWithUnit(value: number, unit?: string): string {
+  const { reading, note } = readingParts(value, unit);
+  return note ? `${reading} ${note}` : reading;
+}
+
+/**
+ * Part four's owner label, and part four, decided together.
+ *
+ * Three cards computed `standing?.trim() ? 'on wheat' : undefined` beside an
+ * unguarded `why: standing`, so a whitespace-only paragraph produced a card
+ * with the horizontal rule drawn, an empty body under it and no label saying
+ * whose it was — the two fields answering different questions about the same
+ * string. One helper, one answer.
+ */
+export function labelledWhy(
+  standing: string | undefined,
+  owner: string,
+): { why?: string; whyLabel?: string } {
+  const why = standing?.trim() ? standing : undefined;
+  return why ? { why, whyLabel: owner } : {};
+}
+
+/**
+ * The one rounding rule every move in this app is reported under: whole
+ * numbers at ten and above, one decimal below.
+ *
+ * It was written four times. `formatSignedPct`, `formatMagnitudePct` and
+ * `formatMagnitudePoints` each carried the same
+ * `Math.abs(v) >= 10 ? Math.round(v) : Number(v.toFixed(1))` line, and
+ * `formatSignedPoints` rounded to an integer always — so a twenty-basis-point
+ * move was "0.2 points" through one of them and **unchanged** through the
+ * other, which is the exact bug `formatMagnitudePoints` was written to fix,
+ * still live one function down. Copies of a rounding rule are only free while
+ * they agree, and these had already stopped.
+ *
+ * Returns null when the move rounds to nothing — every caller's cue to say
+ * "unchanged" rather than print a zero — and null for a non-finite input,
+ * which callers that print a dash separate out first.
+ */
+function roundedMove(
+  value: number,
+  fixedDecimals?: 0 | 1,
+): {
+  value: number;
+  decimals: 0 | 1;
+} | null {
+  if (!Number.isFinite(value)) return null;
+  const decimals = fixedDecimals ?? (Math.abs(value) >= 10 ? 0 : 1);
+  const rounded = Number(value.toFixed(decimals));
+  return rounded === 0 ? null : { value: rounded, decimals };
+}
+
+/**
+ * The magnitude of a rounded move as text, unsigned.
+ *
+ * `tabular` is the whole difference between a sentence and a column. `Number`
+ * drops a trailing zero, which is right in prose — "gold +1%" — and wrong in
+ * the fifteen-row currency table, where it printed "+1%" beside "+0.8%" and
+ * "+3%" beside "+3.5%": two decimal positions and two pill widths in one rail,
+ * for a distinction the reader cannot see and the data does not make.
+ */
+function magnitudeText(move: { value: number; decimals: 0 | 1 }, tabular: boolean): string {
+  const magnitude = Math.abs(move.value);
+  return tabular ? magnitude.toFixed(move.decimals) : String(magnitude);
+}
+
+/**
+ * A signed percentage, with a true minus sign rather than a hyphen — the
+ * column is typographic, not code.
+ *
+ * `tabular` is for output that lands in a column of other percentages rather
+ * than in a sentence, and it suspends the "whole numbers at ten and above"
+ * rule on purpose. That rule is about how a move reads *aloud* — "the lira
+ * lost sixteen per cent" — and a table is not read aloud, it is scanned down.
+ * One decimal for every row is what makes the rail one pill width and the
+ * decimal points one column; letting the rule through gave "+16%" beside
+ * "+0.8%", which is the widest disagreement in the table sitting on the row a
+ * reader's eye goes to first.
+ *
+ * The noise floor is unaffected: a move that rounds to nothing at one decimal
+ * is still the word "unchanged", in both registers.
+ */
+export function formatSignedPct(pct: number, options: { tabular?: boolean } = {}): string {
   if (!Number.isFinite(pct)) return '—';
-  const rounded = Math.abs(pct) >= 10 ? Math.round(pct) : Number(pct.toFixed(1));
-  if (rounded === 0) return 'unchanged';
-  return `${rounded > 0 ? '+' : '−'}${Math.abs(rounded)}%`;
+  const tabular = options.tabular ?? false;
+  const move = roundedMove(pct, tabular ? 1 : undefined);
+  if (!move) return 'unchanged';
+  return `${move.value > 0 ? '+' : '−'}${magnitudeText(move, tabular)}%`;
 }
 
 /**
@@ -174,31 +344,43 @@ export function deltaFrom(
  *  matches `formatSignedPct` so a chip and a sentence can never disagree about
  *  whether something moved. */
 export function formatMagnitudePct(pct: number): string | null {
-  if (!Number.isFinite(pct)) return null;
-  const rounded = Math.abs(pct) >= 10 ? Math.round(pct) : Number(pct.toFixed(1));
-  if (rounded === 0) return null;
-  return `${Math.abs(rounded)}%`;
+  const move = roundedMove(pct);
+  return move ? `${magnitudeText(move, false)}%` : null;
 }
 
-/** The same, in percentage points. See `formatSignedPoints` for why the word
- *  is spelled out. */
+/**
+ * The same, in percentage points. See `formatSignedPoints` for why the word
+ * is spelled out.
+ *
+ * Rounding is `roundedMove`, shared with every other formatter here — whole
+ * numbers at ten and above, one decimal below — rather than an integer
+ * always, which is what this used to do. A prediction
+ * contract moves in whole points and reads the same either way; a yield does
+ * not. The ten-year went 4.54 → 4.69 over the window this app holds, and an
+ * integer round called that **unchanged**, which is how it ended up reported
+ * as "+3.3%" instead: the honest unit was unprintable, so the misleading one
+ * stayed.
+ */
 export function formatMagnitudePoints(points: number): string | null {
-  if (!Number.isFinite(points)) return null;
-  const rounded = Math.round(points);
-  if (rounded === 0) return null;
-  const magnitude = Math.abs(rounded);
+  const move = roundedMove(points);
+  if (!move) return null;
+  const magnitude = Math.abs(move.value);
   return `${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
 }
 
 /** A signed difference in percentage points. Says "points" out loud, because
  *  the whole reason this function exists is that "%" would be read as a
- *  relative change. */
+ *  relative change.
+ *
+ *  On `roundedMove` like its siblings. It was the last holdout on a plain
+ *  `Math.round`, so it called a fifteen-basis-point move **unchanged** while
+ *  the chip beside it, built from the same number, said "0.2 points". */
 export function formatSignedPoints(points: number): string {
   if (!Number.isFinite(points)) return '—';
-  const rounded = Math.round(points);
-  if (rounded === 0) return 'unchanged';
-  const magnitude = Math.abs(rounded);
-  return `${rounded > 0 ? '+' : '−'}${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
+  const move = roundedMove(points);
+  if (!move) return 'unchanged';
+  const magnitude = Math.abs(move.value);
+  return `${move.value > 0 ? '+' : '−'}${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
 }
 
 /**
@@ -206,6 +388,12 @@ export function formatSignedPoints(points: number): string {
  * decimal below ten because a strait averaging 0.9 ships a day is a different
  * fact from one averaging 1, and no decimals above it because the second digit
  * of "128 ships" is weather.
+ *
+ * The same shape as `roundedMove` and deliberately not built on it: this
+ * formats a *level*, so zero is a printable answer ("0 ships a day") where a
+ * move that rounds to zero is the word "unchanged", and a level is grouped
+ * where a move never reaches four figures. Sharing the helper would mean
+ * teaching it both jobs.
  */
 export function formatQuantity(n: number): string {
   if (!Number.isFinite(n)) return '—';

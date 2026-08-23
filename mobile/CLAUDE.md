@@ -154,6 +154,116 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   is why the "what a prediction contract is" explainer appears on the first
   belief card only; three cards deep it was the identical 200 characters three
   times over.
+- **A composite card's part four must say whose it is.** `standing` belongs to
+  one indicator, and four cards are built from several — so each printed one
+  constituent's paragraph as if it explained the card: wheat's under "Wheat and
+  rice", Syria's under a fifteen-row attention table, US GDP's under a list of
+  four releases. Nothing on screen said which one, and the paragraph is well
+  written and about something visible, so there was no tell. `whyLabel` names
+  the owner in three words and keeps the desk's sentence verbatim. Where the
+  paragraph is about the wrong *subject* rather than a partial one it is
+  dropped instead — `paxg.standing` describes a gold-backed **token**, and
+  under "Gold against silver" a label would only have made the mislabelling
+  explicit. `currenciesCard` had already reached both resolutions; neither had
+  been carried across.
+- **A headline count must equal what the table paints.** "4 of 15 weakened"
+  over three rose pills and one slate one, because the count took every
+  positive rate change and the rows took `FX_NOISE_FLOOR`. Two answers to one
+  question, four words apart.
+- **A percentage series moves in points.** The ten-year printed "4.69%" at
+  display size with "▲3.3%" beneath it — a level and a relative change, both
+  spelled `%`. `windowPointChange` says mandatory on its own doc comment and
+  `dailyDelta` was the last call site ignoring it; `formatMagnitudePoints` had
+  to keep a decimal before it could, since an integer round called fifteen
+  basis points *unchanged*, which is how the misleading unit survived.
+- **An axis is a range, a reading is a level — but the axis was not even
+  agreeing with itself.** `formatReading` rounds a price and groups it — "the fourth
+  significant digit of a wheat price is noise the reader will never repeat" —
+  while `formatBlockNumber` capped at one decimal and padded to none, so the
+  bitcoin card printed `$76,867` at display size above an axis reading
+  `$78,317.8`, and Ethereum's two axis labels disagreed with *each other*
+  (`$2,515` over `$1,844.6`). A cap is not a format: it lets each value keep
+  whatever precision it happens to have. `axisDecimals` picks one precision
+  per chart from its endpoints and the axis, the scrub readout and the
+  accessibility range all take it — whole endpoints stay whole (a contract
+  priced 39 to 75), four figures and up lose the tenth, and below that the
+  *span* decides, because a rand moving 16.04 → 16.80 in a month is a story
+  told inside one digit and `16`/`17` throws it away.
+  It deliberately stops short of matching `formatReading` everywhere. The two
+  agree on five live cards of eight and part company on three — VIX, the
+  ruble, the rand — all between ten and a thousand with a span of a few units,
+  and that is the level/range split doing its job rather than a gap left in
+  it. The rand is the proof: agreement there costs the card its subject.
+- **The same rounding rule, written four times, had already stopped
+  agreeing.** `formatSignedPct`, `formatMagnitudePct` and
+  `formatMagnitudePoints` each carried
+  `Math.abs(v) >= 10 ? Math.round(v) : Number(v.toFixed(1))`;
+  `formatSignedPoints` rounded to an integer always, so one twenty-basis-point
+  move was "0.2 points" in a chip and **unchanged** in the sentence beside it
+  — the exact bug the entry above this one records fixing, still live one
+  function down. `roundedMove` is the rule now. The `Number()` in it is also
+  why the fifteen-currency table printed `+1%` beside `+0.8%` and `+3%` beside
+  `+3.5%`: a trailing zero is right in prose and wrong in a column, so
+  `formatSignedPct` takes `tabular` and the rail is one pill width again.
+- **Two more copies of a formatter, in the two sheets a card opens.**
+  `EntitySheet.formatLatest` was `formatReading` under another name — its
+  comment promised thin-space separators over code emitting commas, which is
+  how you can tell a copy has been edited alone. `ChokepointSheet.formatCount`
+  was `formatQuantity` and had *drifted*: `10.0` where the card said `10`,
+  `1235` where the card said `1,235`, and a third meaning for a name
+  `format.ts` already exports. Both now import the original. This is the
+  `RelatedStories` lesson applied to arithmetic — the sheet and the card it
+  opens describe the same number and must not be free to describe it
+  differently.
+- **A chart caption names the unit; the ticks were naming it again.** Every
+  card said its unit in English above the chart ("dollars a barrel") and then
+  pasted the raw data column onto both tick labels — `22.2 index` / `14.3
+  index` on VIX, `82.3 RUB⁠/⁠USD` on every FX mover, wide enough that each
+  label wrapped onto two lines. `tickUnit` drops the two that are pure
+  decoration: `index` is a kind rather than a denominator (the same judgement
+  `readingParts` already made about the note, which had removed one of that
+  word's four appearances and left three), and a currency pair is the column
+  the caption had just been rewritten to stop showing. Accessibility keeps
+  both — the label leads the a11y string.
+- **A caption that repeats the note is not a caption.** The FX chart read
+  "RUB to the dollar · higher is weaker" under a `readingNote` of "RUB to the
+  dollar", and the metals chart repeated "ounces of silver to one of gold"
+  verbatim from thirty-one characters above it. What a chart adds to a reading
+  is the part the reading cannot hold: for FX that is the direction, for the
+  ratio it is time. Both captions say only that now.
+- **A guard on a property of the unit must not live inside a branch on the
+  cadence.** The `%`-means-points rule was written into `dailyDelta` and not
+  `monthlyDelta`, and `describeYearChange` had none at all — so nothing was
+  wrong today only because no indicator is currently both monthly and per
+  cent, and the day the pipeline gives `us-10y` a monthly cadence the fixed
+  bug returns with no test touching it. One `readingDelta`, guard above the
+  split.
+- **`daysSince(x) <= limit` is not a freshness gate — it accepts the
+  future.** `daysSince` is negative ahead of the clock, and every negative
+  satisfies every gate, so device skew, a payload assembled in another
+  timezone or a typed `2027` all sail through and lead a column under the
+  `today ·` mark. Four gates were written that way (the strait, conflict,
+  hazard, determination). `isFresh` bounds both ends, in one place.
+- **Two lines on one axis need one order of magnitude, not one unit.**
+  `types.ts` guards the unit and gold-against-silver failed the other half at
+  ninety-four to one: silver drew as a flat line on the axis floor, showing
+  neither its level nor its move nor which metal was cheaper — the card's whole
+  question. It charts the ratio now, which is what its reading and chip already
+  measure. Wheat and rice stay paired; they sit inside a factor of two.
+- **The `today ·` mark needs a freshness gate behind it, and the strait had
+  none.** PortWatch publishes weekly and lags, so `strait-*` led `commodities`
+  under the word "today" on a reading six days old, and a file that stopped
+  updating would have gone on doing it forever. This is the gate
+  `lib/cards/conditions.ts` was written to enforce, missed on the one other
+  card carrying the mark. Fourteen days (one missed publication), and
+  `readingNote` names the week it counted.
+- **Rank a column by what moved, not by what the feed listed first.**
+  `outlook` opened with a contract flat for a fortnight and resolving in two
+  years, and buried one eight points up in three days tied to three of today's
+  stories. Sorting before the `.map()` matters twice: the once-per-column
+  explainer is keyed on `position === 0`, so it now lands on the card a reader
+  actually meets — and on the one with no `standing` of its own, which is where
+  the column most needed it.
 - **Quote the thing the reader owns, or the sign fights the colour.** The FX
   table printed the *rate* — rupees per dollar — where up means your money buys
   less, so it showed "+5.6%" in rose beside "−0.8%" in sage. No caption fixes

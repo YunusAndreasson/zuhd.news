@@ -5,6 +5,7 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import { formatQuantity } from '../lib/cards/format';
 import { makeStaggerEnter } from '../lib/stagger';
 import { chokepointValence, type Valence } from '../lib/valence';
 import { CompareBlock } from './blocks/CompareBlock';
@@ -29,10 +30,6 @@ const VESSEL_LABELS: { field: VesselField; label: string }[] = [
   { field: 'n_general_cargo', label: 'General cargo' },
   { field: 'n_roro', label: 'Ro-Ro' },
 ];
-
-function formatCount(n: number): string {
-  return n < 10 ? n.toFixed(1) : Math.round(n).toString();
-}
 
 /** A vessel class against its own 90-day normal.
  *
@@ -90,7 +87,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       return [
         {
           label: v.label,
-          value: `${formatCount(current)} / day \u00b7 ${deltaText}`,
+          value: `${formatQuantity(current)} / day \u00b7 ${deltaText}`,
           tone,
         },
       ];
@@ -126,7 +123,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
                   brief title; only these two sites bold a title, so no
                   dedicated bold-title variant yet (<3 call sites). */}
               <Text selectable variant="title" tone="emphasis" style={font.bold}>
-                {formatCount(current)}{' '}
+                {formatQuantity(current)}{' '}
                 <RNText style={{ ...font.regular, color: colors.textSecondary }}>
                   {primaryLabel}/day
                 </RNText>
