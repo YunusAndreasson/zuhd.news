@@ -140,10 +140,7 @@ export default function HomeScreen() {
     const slug = pendingSlugRef.current;
     if (!slug) return;
     pendingSlugRef.current = null;
-    const idx = riverRef.current.findIndex((a) => a.slug === slug);
-    if (idx < 0) return;
-    setOpenItem({ section: 'news', index: idx });
-    newsListRef.current?.scrollToSlug(slug);
+    setOpenItem({ section: 'news', key: slug });
   }, []);
   const {
     grouped,
@@ -391,6 +388,11 @@ export default function HomeScreen() {
     () => ({ ...columns, commodities: [...conditionCards, ...columns.commodities] }),
     [columns, conditionCards],
   );
+  /** Read by `openCardHandlers`, which is memoized empty so that `ColumnIndex`
+   *  and its rows keep their identities. A ref rather than a dependency for
+   *  the same reason `riverRef` is one. */
+  const sectionCardsRef = useRef<Record<string, Card[]>>({});
+  sectionCardsRef.current = sectionCards;
 
   // Active GDACS alerts whose primary or affected-country list includes the
   // currently open country. Phase 1 matches by full country name (GDACS uses
@@ -536,12 +538,24 @@ export default function HomeScreen() {
    *
    * One value rather than one per column, because a section change closes it —
    * a column is always re-entered through its own front door.
+   *
+   * It carries the item's *key* — an article's slug, a card's id — and not its
+   * index, because the detail views slice their list from this item and a
+   * refresh reorders the array underneath. An index would then point at a
+   * different story than the one the reader tapped; a slug cannot.
    */
-  const [openItem, setOpenItem] = useState<{ section: Section; index: number } | null>(null);
+  const [openItem, setOpenItem] = useState<{ section: Section; key: string } | null>(null);
   const openItemRef = useRef(openItem);
   openItemRef.current = openItem;
 
   const closeItem = useCallback(() => setOpenItem(null), []);
+  /** The same exit, from the bar. `closeItem` is handed to `IconButton`s,
+   *  which fire their own haptic; an `ActionPill` passes `haptic="none"` so
+   *  each call site can pick its own, so this one carries the tick. */
+  const handleBottomClose = useCallback(() => {
+    hapticTick();
+    setOpenItem(null);
+  }, []);
 
   /** One stable open-handler per instrument column. `ColumnIndex` and every
    *  `IndicatorRow` under it are memoized, and an inline arrow in the render
@@ -553,25 +567,28 @@ export default function HomeScreen() {
     const handlers = {} as Record<Section, (index: number) => void>;
     for (const section of SECTIONS) {
       handlers[section] = (index: number) => {
+        // `ColumnIndex` knows a row's position, not its id, and the card is
+        // what the pager slices from — so the id is resolved here, off the
+        // same array the index rendered from.
+        const id = sectionCardsRef.current[section]?.[index]?.id;
+        if (!id) return;
         // The lesson is performed, so the pill retires here rather than
         // waiting to be dismissed or to burn its three showings. Same
         // arrangement as `sources` and `bookmark`: a reader who found the
         // gesture on their own is never told about it again.
         markHintDone('card');
-        setOpenItem({ section, index });
+        setOpenItem({ section, key: id });
       };
     }
     return handlers;
   }, []);
 
   /** A headline, opened. `NewsIndex` hands back the slug its row carries —
-   *  `ArticleRow`'s signature, shared with search and the saved list — and the
-   *  river is entered at that article's place in it. No `markHintDone` here:
-   *  the news index teaches nothing, so there is no pill to retire. */
+   *  `ArticleRow`'s signature, shared with search and the saved list — and it
+   *  is the slug the river slices itself from. No `markHintDone` here: the
+   *  news index teaches nothing, so there is no pill to retire. */
   const openStory = useCallback((slug: string) => {
-    const index = riverRef.current.findIndex((a) => a.slug === slug);
-    if (index < 0) return;
-    setOpenItem({ section: 'news', index });
+    setOpenItem({ section: 'news', key: slug });
   }, []);
 
   /** Android hardware back leaves the open card or article rather than the
@@ -829,7 +846,6 @@ export default function HomeScreen() {
                 viewportHeight={pagerHeight}
                 sectionIndex={NEWS}
                 lastSeenAt={lastSeenAt}
-                onRefresh={handleRefresh}
                 onEndReached={handleEndReached}
                 onCaughtUp={handleCaughtUp}
                 onBookmarkPress={handleArticleBookmark}
@@ -842,7 +858,7 @@ export default function HomeScreen() {
                 progressesSV={sectionProgresses}
                 zoomClipOverride={currentZoom.clip}
                 tick={tick}
-                initialIndex={openItem.index}
+                entrySlug={openItem.key}
                 onClose={closeItem}
               />
             ) : (
@@ -875,7 +891,7 @@ export default function HomeScreen() {
                     progressesSV={sectionProgresses}
                     emptyMessage={copy?.message ?? 'nothing here yet'}
                     emptyHint={copy?.hint}
-                    initialIndex={openItem.index}
+                    entryId={openItem.key}
                     onClose={closeItem}
                     onArticlePress={handleCardArticlePress}
                   />
@@ -912,6 +928,7 @@ export default function HomeScreen() {
           // === NEWS`, which was the right test while `news` *was* the river.
           articleActions={openItem?.section === 'news'}
           onSharePress={handleBottomShare}
+          onClosePress={openItem ? handleBottomClose : undefined}
         />
       )}
 

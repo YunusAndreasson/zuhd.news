@@ -56,13 +56,23 @@ export const CLOSE_GUTTER = CLOSE_SIZE + SPACING.sm;
  * would add its own height to the comparison — the measurement that once let
  * four cards truncate in silence.
  */
+/**
+ * One name for the exit, and it is not a prop.
+ *
+ * Two controls do this now — this one and `close` in `BottomActionBar` — and
+ * the moment a call site could rename its own, they disagreed: the river's
+ * corner said "Back to the headlines" and the pill under it said "Back to the
+ * list". A screen reader announced one action twice, under two names, on one
+ * screen. The app's rule about one name per thing is not only about visible
+ * strings.
+ */
+const BACK_LABEL = 'Back to the list';
+
 export const BackToIndexButton = memo(function BackToIndexButton({
   onPress,
-  accessibilityLabel = 'Back to the list',
   style,
 }: {
   onPress: () => void;
-  accessibilityLabel?: string;
   /** Placement only. The size, radius and hairline are fixed here. */
   style?: ViewStyle;
 }) {
@@ -70,7 +80,7 @@ export const BackToIndexButton = memo(function BackToIndexButton({
   return (
     <IconButton
       onPress={onPress}
-      accessibilityLabel={accessibilityLabel}
+      accessibilityLabel={BACK_LABEL}
       style={[styles.button, { backgroundColor: colors.pillBg, borderColor: colors.rule }, style]}
     >
       <Icon name="close-sharp" size="md" tone="secondary" />

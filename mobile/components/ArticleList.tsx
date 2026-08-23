@@ -9,16 +9,15 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import {
   type NativeScrollEvent,
   type NativeSyntheticEvent,
-  RefreshControl,
   StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
+import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -29,6 +28,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
+import { usePullToClose } from '../hooks/usePullToClose';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { hapticNotification, hapticTick } from '../lib/haptics';
@@ -64,7 +64,6 @@ interface ArticleListProps {
    *  sections now, and news is one of them rather than four of them. */
   sectionIndex: number;
   lastSeenAt: number;
-  onRefresh: () => Promise<void>;
   onEndReached?: () => void;
   onCaughtUp?: () => void;
   onCountryPress?: (result: TapResult) => void;
@@ -80,9 +79,19 @@ interface ArticleListProps {
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
-  /** Which article to open on. `NewsIndex` hands this over on a row tap;
-   *  entered from the top it is 0 and this behaves exactly as it always did. */
-  initialIndex?: number;
+  /**
+   * The article this river opens on, and the one it starts at.
+   *
+   * The column is sliced from here, so the story a reader tapped is always
+   * page zero. That is not a convenience — it is what makes the pull-down
+   * work: a downward drag is vertical paging everywhere except the top of the
+   * list, so "the top" has to be where the reader arrives. See
+   * `usePullToClose`.
+   *
+   * A slug rather than an index because a refresh reorders the river beneath
+   * an open article, and an index would then name a different story.
+   */
+  entrySlug?: string;
   /** Back to the news index. Absent when the river is the whole column. */
   onClose?: () => void;
   ref?: React.Ref<ArticleListRef>;
@@ -104,17 +113,16 @@ export const ArticleList = memo(function ArticleList({
   onEntityPress,
   resolvableEntityIds,
   onArticleChange,
-  onRefresh,
   onEndReached,
   onCaughtUp,
   progressesSV,
   zoomClipOverride,
   tick,
-  initialIndex = 0,
+  entrySlug,
   onClose,
   ref,
 }: ArticleListProps) {
-  const { colors, bgAlpha } = useTheme();
+  const { bgAlpha } = useTheme();
   const insets = useSafeAreaInsets();
   // Backdrop stop colors for the Skia gradient below. Skia (not RN's
   // experimental_backgroundImage CSS gradient) is deliberate: the CSS
@@ -145,18 +153,24 @@ export const ArticleList = memo(function ArticleList({
   // bucket; that logic moved into the ordering function, where it is a pure
   // function with tests rather than a memo that had to be invalidated by a
   // clock tick.
-  const sortedArticles = articles;
+  // Sliced at the entry story — see `entrySlug`. Recomputed by slug on every
+  // data change, so a refresh that reorders the river keeps the reader on the
+  // article they opened rather than on whatever now holds its old index. An
+  // entry that has rotated out of the feed falls back to the whole column,
+  // which is the old behaviour and never crashes.
+  const sortedArticles = useMemo(() => {
+    if (!entrySlug) return articles;
+    const at = articles.findIndex((a) => a.slug === entrySlug);
+    return at > 0 ? articles.slice(at) : articles;
+  }, [articles, entrySlug]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
-  // Seeded at the first render, not in an effect. `ArticlePage` fades in off
-  // this offset — a scroll-linked style, not a mount animation — so a river
-  // opened at article twelve with the offset still reading 0 computes that
-  // page's opacity as if it were twelve pages away and paints it invisible.
-  // `useScrollState`'s header has the rest of the reason; it is the same trap
-  // `CardPager` fell into. Seeding the index also stops the first settle
-  // reporting a change that never happened, which would fire a haptic on
-  // arrival — and, here, could trip the caught-up boundary on landing.
+  // Unseeded, and that is a consequence of the slice above rather than an
+  // oversight. The entry article is index 0 of `sortedArticles`, so the
+  // offset this list opens at *is* zero — there is no twelfth page whose
+  // scroll-linked opacity would otherwise compute as invisible, which is the
+  // trap `useScrollState`'s header describes and `CardPager` fell into.
   const {
     scrollY,
     currentIndex,
@@ -164,7 +178,7 @@ export const ArticleList = memo(function ArticleList({
     overscrollFired,
     caughtUpFired,
     overscrollTimer,
-  } = useScrollState({ offset: initialIndex * viewportHeight, index: initialIndex });
+  } = useScrollState();
 
   const bgFadeStyle = useAnimatedStyle(() => {
     'worklet';
@@ -175,6 +189,11 @@ export const ArticleList = memo(function ArticleList({
     const distanceFromSettled = Math.min(fraction, 1 - fraction); // 0 at rest, 0.5 mid-drag
     const opacity = interpolate(distanceFromSettled, [0, 0.4], [1, 0], Extrapolation.CLAMP);
     return { opacity };
+  });
+
+  const { gesture, listGesture, pullStyle, innerOffset } = usePullToClose({
+    scrollY,
+    onClose,
   });
 
   const currentIndexRef = useRef(currentIndex);
@@ -203,24 +222,6 @@ export const ArticleList = memo(function ArticleList({
     fireEndReached();
     resetOverscroll();
   }, [resetOverscroll]);
-  const [localRefreshing, setLocalRefreshing] = useState(false);
-
-  const handleRefresh = useCallback(async () => {
-    setLocalRefreshing(true);
-    // Deliberately try/catch and NOT try/finally: React Compiler cannot lower a
-    // finalizer ("BuildHIR::lowerStatement: Handle TryStatement with a
-    // finalizer") and silently bails out of compiling this entire file when one
-    // is present. Because the catch swallows, control always reaches the reset
-    // below, so this is equivalent to the finally it replaces.
-    try {
-      await onRefresh();
-      hapticNotification();
-    } catch {
-      // Nothing to report here: the injected `onRefresh`
-      // (HomeScreen.handleRefresh) already catches and toasts its own failures.
-    }
-    setLocalRefreshing(false);
-  }, [onRefresh]);
 
   // Report current article to parent (initial + on snap/sort change)
   useEffect(() => {
@@ -301,10 +302,14 @@ export const ArticleList = memo(function ArticleList({
         hapticTick();
       }
       setCurrentIndex(idx);
+      // A newly-arrived page is at its own top, and the pull-down arms on
+      // that. Without this, paging away from a long article you had scrolled
+      // leaves its offset behind and the next page refuses the gesture.
+      innerOffset.value = 0;
       maybeRequestReview();
       recordArticleSnap();
     },
-    [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex],
+    [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex, innerOffset],
   );
 
   const handleMomentumEnd = useCallback(
@@ -337,6 +342,7 @@ export const ArticleList = memo(function ArticleList({
         onEntityPress={onEntityPress}
         resolvableEntityIds={resolvableEntityIds}
         showEarlierDivider={index === earlierIndex}
+        innerOffset={innerOffset}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
@@ -353,6 +359,7 @@ export const ArticleList = memo(function ArticleList({
       onEntityPress,
       resolvableEntityIds,
       earlierIndex,
+      innerOffset,
       tick,
     ],
   );
@@ -367,30 +374,39 @@ export const ArticleList = memo(function ArticleList({
     );
 
   return (
-    <View
-      ref={containerRef}
-      style={styles.container}
-      onLayout={() => {
-        containerRef.current?.measureInWindow((_x, y) => {
-          containerTopRef.current = y;
-        });
-      }}
-    >
-      <MiniGlobe
-        ref={globeRef}
-        articles={sortedArticles}
-        heatmapPoints={heatmapPoints}
-        chokepoints={chokepoints}
-        gdacsAlerts={gdacsAlerts}
-        conflictEvents={conflictEvents}
-        scrollY={scrollY}
-        itemHeight={itemHeight}
-        width={screenWidth}
-        height={viewportHeight}
-        zoomClipOverride={zoomClipOverride}
-        tick={tick}
-      />
-      {/* Single article backdrop fade — sits between MiniGlobe and the
+    <GestureDetector gesture={gesture}>
+      <View
+        ref={containerRef}
+        style={styles.container}
+        onLayout={() => {
+          containerRef.current?.measureInWindow((_x, y) => {
+            containerTopRef.current = y;
+          });
+        }}
+      >
+        {/* Everything the reader sees moves together under the pull — the globe
+          included. A page whose text slides down off a globe that stays put
+          reads as a bug; a page that leaves as one object reads as a page
+          leaving. What is revealed underneath is the app background rather
+          than the list, because the list is not mounted while this is: the
+          column swaps what it renders, which is what keeps `PagerView` in
+          sole charge of the horizontal axis. */}
+        <Animated.View style={[styles.pullLayer, pullStyle]}>
+          <MiniGlobe
+            ref={globeRef}
+            articles={sortedArticles}
+            heatmapPoints={heatmapPoints}
+            chokepoints={chokepoints}
+            gdacsAlerts={gdacsAlerts}
+            conflictEvents={conflictEvents}
+            scrollY={scrollY}
+            itemHeight={itemHeight}
+            width={screenWidth}
+            height={viewportHeight}
+            zoomClipOverride={zoomClipOverride}
+            tick={tick}
+          />
+          {/* Single article backdrop fade — sits between MiniGlobe and the
           FlatList so cells scroll through a fixed fade pattern instead of
           each cell carrying its own. pointerEvents:none keeps the per-cell
           GlobeTapZone reachable through it. Scroll-driven opacity stays on
@@ -399,58 +415,66 @@ export const ArticleList = memo(function ArticleList({
           for why Skia rather than a CSS background. `dither` for the same
           reason as the globe gradients: a long alpha ramp over the dark bg
           quantizes into visible bands without it. */}
-      <Animated.View style={[styles.bgFade, bgFadeStyle]} pointerEvents="none">
-        <Canvas style={styles.bgFadeCanvas}>
-          <Rect x={0} y={0} width={screenWidth} height={viewportHeight} dither>
-            <LinearGradient
-              start={vec(0, 0)}
-              end={vec(0, viewportHeight)}
-              colors={bgFadeColors}
-              positions={BG_FADE_LOCATIONS}
+          <Animated.View style={[styles.bgFade, bgFadeStyle]} pointerEvents="none">
+            <Canvas style={styles.bgFadeCanvas}>
+              <Rect x={0} y={0} width={screenWidth} height={viewportHeight} dither>
+                <LinearGradient
+                  start={vec(0, 0)}
+                  end={vec(0, viewportHeight)}
+                  colors={bgFadeColors}
+                  positions={BG_FADE_LOCATIONS}
+                />
+              </Rect>
+            </Canvas>
+          </Animated.View>
+          <GestureDetector gesture={listGesture}>
+            <Animated.FlatList
+              ref={listRef}
+              data={sortedArticles}
+              extraData={tick}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              getItemLayout={getItemLayout}
+              pagingEnabled
+              showsVerticalScrollIndicator={false}
+              onScroll={scrollHandler}
+              onMomentumScrollEnd={handleMomentumEnd}
+              scrollEventThrottle={16}
+              initialNumToRender={2}
+              maxToRenderPerBatch={2}
+              windowSize={3}
+              // No bounce, no stretch. The pull-to-close translates the page
+              // under the finger, and a list rubber-banding at the same time
+              // is one movement drawn twice — on iOS the two even disagree
+              // about how far.
+              //
+              // Pull-to-refresh went with it, and belongs gone: it lived at
+              // exactly this offset, so the two gestures were the same drag on
+              // the same pixel. `NewsIndex` carries refresh now, which is
+              // where a reader looks for it — the list is the surface that
+              // gains new stories, and an open article is not.
+              bounces={false}
+              overScrollMode="never"
+              ListFooterComponent={safeAreaFooter}
             />
-          </Rect>
-        </Canvas>
-      </Animated.View>
-      <Animated.FlatList
-        ref={listRef}
-        data={sortedArticles}
-        extraData={tick}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        getItemLayout={getItemLayout}
-        pagingEnabled
-        showsVerticalScrollIndicator={false}
-        onScroll={scrollHandler}
-        onMomentumScrollEnd={handleMomentumEnd}
-        scrollEventThrottle={16}
-        initialNumToRender={2}
-        maxToRenderPerBatch={2}
-        windowSize={3}
-        initialScrollIndex={initialIndex}
-        ListFooterComponent={safeAreaFooter}
-        refreshControl={
-          <RefreshControl
-            refreshing={localRefreshing}
-            onRefresh={currentIndex === 0 ? handleRefresh : undefined}
-            enabled={currentIndex === 0}
-            tintColor={colors.textSecondary}
-            progressBackgroundColor={colors.bg}
-            colors={[colors.textSecondary]}
-          />
-        }
-      />
-      {/* A sibling of the list, never a child of a page — `BackToIndexButton`
+          </GestureDetector>
+          {/* A sibling of the list, never a child of a page — `BackToIndexButton`
           has the reason. Here it also has to sit above the globe's tap zone,
-          which spans the lower half of every article. */}
-      {onClose ? (
-        <BackToIndexButton onPress={onClose} accessibilityLabel="Back to the headlines" />
-      ) : null}
-    </View>
+          which spans the lower half of every article. Inside the pull layer,
+          so it travels with the page it belongs to. */}
+          {onClose ? <BackToIndexButton onPress={onClose} /> : null}
+        </Animated.View>
+      </View>
+    </GestureDetector>
   );
 });
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  // The layer the pull translates. Separate from `container` because that one
+  // carries the ref `measureInWindow` reads for the globe's tap offset, and a
+  // transform on it would make that number move with the gesture.
+  pullLayer: { flex: 1 },
   bgFade: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
   bgFadeCanvas: { flex: 1 },
 });

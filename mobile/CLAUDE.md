@@ -110,6 +110,62 @@ paging = item inside one. `SectionBar` follows the pager and draws a rule after
     because two detail views now draw one and the header of each has to keep
     clear of it. It was a style block in `CardPager` and a constant in
     `CardFrame`; a second copy is how the two would have stopped agreeing.
+  - **…and it is also in the bar, because the corner is unreachable.** A 34pt
+    target in the page's top-right is the least reachable point on a phone
+    held in one hand — a right thumb sweeps an arc from the bottom-right and
+    does not get near it without regripping. Android readers had an undisclosed
+    way round it (the system back gesture from the screen edge, which does
+    close a detail); iOS readers had none, because nothing here is a navigator
+    with an interactive pop. `close` is the last pill in `BottomActionBar`
+    whenever `openItem` is set, which is where the thumb already is. The corner
+    control stays rather than moving: it is the conventional place to look, it
+    is what a two-handed or left-handed reader reaches first, and it is the
+    only one still on screen while the briefing player owns the bar's row.
+    Both announce `Back to the list` — a `BACK_LABEL` const, not a prop,
+    because the moment a call site could rename its own they disagreed and a
+    screen reader read one action twice under two names.
+  - **Pull down to close, and the detail opens at its own page zero so that it
+    can.** A downward drag is vertical paging, so the only place it is free is
+    the top of the list — which used not to be where anyone stood, because a
+    detail opened at whatever page had been tapped. So `ArticleList` slices
+    from `entrySlug` and `CardPager` from `entryId`: arrival and "the top" are
+    the same place, and the pull is free at exactly the moment a reader wants
+    it. Down stays honest all the way — page one pulls back to page zero, page
+    zero pulls out to the list — so nothing has to be explained. The cost is
+    swiping back *earlier* than the story you opened, and the index answers
+    that better: one pull away, and it remembers where you were.
+    - **The keys are a slug and a card id, never an index.** A refresh
+      reorders the river and a gated card shifts every index behind it; the
+      slice is recomputed by key on every data change, so the reader stays on
+      the thing they opened. `openItem` in `app/index.tsx` carries the key for
+      the same reason.
+    - **Seeding the scroll offset is gone, and that is a consequence rather
+      than a regression.** The entry item is index 0 now, so the offset a
+      detail opens at *is* zero — there is no third page whose scroll-linked
+      arrival opacity computes as invisible. The slice removed the condition
+      instead of compensating for it.
+    - **`manualActivation`, and this is the one that took a device to find.**
+      The first build used `activeOffsetY`/`failOffsetX` and let the recogniser
+      decide, which meant that on a drag it was going to ignore anyway the pan
+      still *activated* — and an activating pan cancels the touch stream of the
+      views under it. The fifteen-currency card, scrolled down, could no longer
+      be scrolled back up: the drag reached nothing at all. Silent, and exactly
+      the failure this file spends a page warning about. The decision is made
+      in `onTouchesMove` now, where declining costs nothing: not armed → fail,
+      sideways → fail (that is `PagerView`'s), upward → fail (that is the next
+      story), downward and at rest → activate.
+    - **`armed` reads two offsets, not one.** An article longer than the screen
+      and a card taller than the page carry their own scroll, and a reader
+      dragging down inside one is scrolling back up through their own content.
+      `ArticlePage` and `CardFrame` report `innerOffset`; the pager resets it
+      on every settle, since a newly-arrived page is at its own top.
+    - **`bounces={false}` / `overScrollMode="never"` on both detail lists**, or
+      the same movement is drawn twice — and on iOS the two disagree about how
+      far.
+    - **Pull-to-refresh left the river with it, and belongs gone.** It lived at
+      exactly this offset, so the two were the same drag on the same pixel.
+      `NewsIndex` carries refresh, which is where a reader looks for it: the
+      list is the surface that gains new stories; an open article is not.
 
 - **The other three columns have a front door, and it is not a card.** A column
   opens as `ColumnIndex` — one `IndicatorRow` per card, six on a normal day, the

@@ -7,7 +7,6 @@ import {
   type GestureResponderEvent,
   type LayoutChangeEvent,
   Pressable,
-  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -15,6 +14,7 @@ import Animated, {
   Extrapolation,
   interpolate,
   type SharedValue,
+  useAnimatedScrollHandler,
   useAnimatedStyle,
   useDerivedValue,
   useReducedMotion,
@@ -57,6 +57,17 @@ interface ArticlePageProps {
    *  not something the renderer works out for itself. */
   resolvableEntityIds?: ReadonlySet<string>;
   showEarlierDivider?: boolean;
+  /**
+   * Where this page's own scroll sits, reported up to the pull-to-close.
+   *
+   * Only the overflow branch below has a scroll at all, and only the page on
+   * screen can be touched — so a page that fits never writes and this stays
+   * zero, which is what arms the gesture. A reader who has scrolled a long
+   * article down and drags down again is scrolling back up through their own
+   * text, and closing the article under them would be the worst thing this
+   * feature could do. `ArticleList` resets it on every page settle.
+   */
+  innerOffset?: SharedValue<number>;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
@@ -115,6 +126,7 @@ export const ArticlePage = memo(function ArticlePage({
   onEntityPress,
   resolvableEntityIds,
   showEarlierDivider,
+  innerOffset,
   globeRef,
   globeYOffset,
   onCountryPress,
@@ -124,6 +136,16 @@ export const ArticlePage = memo(function ArticlePage({
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
+
+  // Reports this page's own scroll to the pull-to-close — see `innerOffset`.
+  // A worklet rather than an `onScroll` callback so it costs nothing on the JS
+  // thread; the overflow branch is the only caller.
+  const innerScrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      'worklet';
+      if (innerOffset) innerOffset.value = e.contentOffset.y;
+    },
+  });
 
   const offset = useDerivedValue(() => {
     'worklet';
@@ -414,14 +436,16 @@ export const ArticlePage = memo(function ArticlePage({
           lets Android hand the gesture back to the pager at the ends; on iOS
           the reader scrolls the text, then swipes again to page. */}
       {overflows ? (
-        <ScrollView
+        <Animated.ScrollView
           style={styles.scrollFill}
           contentContainerStyle={styles.contentLayout}
           showsVerticalScrollIndicator={false}
+          onScroll={innerScrollHandler}
+          scrollEventThrottle={16}
           nestedScrollEnabled
         >
           {content}
-        </ScrollView>
+        </Animated.ScrollView>
       ) : (
         <View style={styles.contentLayout} pointerEvents="box-none">
           {content}

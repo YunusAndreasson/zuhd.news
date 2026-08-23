@@ -1,9 +1,10 @@
 import { memo, type ReactNode, useCallback, useState } from 'react';
-import { type LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
   type SharedValue,
+  useAnimatedScrollHandler,
   useAnimatedStyle,
   useDerivedValue,
   useReducedMotion,
@@ -129,6 +130,17 @@ interface CardFrameProps {
   /** Open one of the stories part five names. Absent where nothing can
    *  navigate, which is what makes those rows render as plain text. */
   onArticlePress?: (slug: string) => void;
+  /**
+   * Where this card's own scroll sits, reported up to the pull-to-close.
+   *
+   * Only a card taller than the page scrolls at all — `scrollable` below — and
+   * only the card on screen can be touched, so a card that fits never writes
+   * and this stays zero, which is what arms the gesture. A reader who has
+   * scrolled a tall card down and drags down again is scrolling back up
+   * through their own content, and closing the card under them would be the
+   * worst thing this feature could do. `CardPager` resets it on every settle.
+   */
+  innerOffset?: SharedValue<number>;
 }
 
 export const CardFrame = memo(function CardFrame({
@@ -138,6 +150,7 @@ export const CardFrame = memo(function CardFrame({
   scrollY,
   children,
   onArticlePress,
+  innerOffset,
 }: CardFrameProps) {
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
@@ -157,6 +170,13 @@ export const CardFrame = memo(function CardFrame({
    * than the page it sits in. Then every swipe on a card that fits belongs to
    * the pager, which is the behaviour the rest of the app has.
    */
+  const innerScrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      'worklet';
+      if (innerOffset) innerOffset.value = e.contentOffset.y;
+    },
+  });
+
   const [scrollable, setScrollable] = useState(false);
   const onContentLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -253,11 +273,16 @@ export const CardFrame = memo(function CardFrame({
           clipping part four, which is the part worth reading. At default type
           nothing scrolls. `nestedScrollEnabled` hands the gesture back to the
           vertical pager at the ends. */}
-      <ScrollView
+      <Animated.ScrollView
         style={styles.fill}
         contentContainerStyle={styles.column}
         showsVerticalScrollIndicator={false}
         scrollEnabled={scrollable}
+        // Reports this card's own scroll to the pull-to-close — see
+        // `innerOffset`. A worklet rather than a JS callback so a card that
+        // scrolls costs nothing extra on the thread the globe is budgeted on.
+        onScroll={innerScrollHandler}
+        scrollEventThrottle={16}
         // `nestedScrollEnabled`, and the comment that used to sit here argued
         // the opposite. It was right about the failure it feared and wrong
         // about the cost of avoiding it.
@@ -463,7 +488,7 @@ export const CardFrame = memo(function CardFrame({
             ) : null}
           </Animated.View>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 });

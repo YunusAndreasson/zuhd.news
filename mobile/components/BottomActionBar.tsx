@@ -63,6 +63,26 @@ interface BottomActionBarProps {
    * per card, and only the indicator-backed ones have one (`/e/{id}`).
    */
   articleActions: boolean;
+  /**
+   * Leave the open detail, when one is open.
+   *
+   * The way out used to be a 34pt target in the page's top-right corner, and
+   * on a phone held in one hand that corner is the single least reachable
+   * point on the screen — a right thumb sweeps an arc from the bottom-right
+   * and does not get near it without regripping. Android readers had a way
+   * round it that nobody was told about (the system back gesture from the
+   * screen edge); iOS readers had none, because nothing here is a navigator
+   * with an interactive pop.
+   *
+   * So the way out is also down here, at the far right of the bar, which is
+   * where the thumb already is. The corner control stays: it is the
+   * conventional place to look, it is what a two-handed or left-handed reader
+   * reaches for first, and it is the only one still on screen while the
+   * briefing player owns this row.
+   *
+   * Absent on an index — there is nothing open to leave.
+   */
+  onClosePress?: () => void;
 }
 
 function ActionPill({
@@ -102,6 +122,7 @@ export function BottomActionBar({
   onZoomPress,
   onSharePress,
   articleActions,
+  onClosePress,
 }: BottomActionBarProps) {
   const { bgAlpha } = useTheme();
   const { width: screenWidth } = useWindowDimensions();
@@ -156,20 +177,36 @@ export function BottomActionBar({
 
       <View style={styles.bottomSpacer} />
 
-      {articleActions ? (
-        <View style={styles.articleActions}>
-          <ActionPill
-            label={zoomLabel}
-            onPress={onZoomPress}
-            accessibilityLabel="Globe zoom"
-            accessibilityHint="Cycles through zoom levels"
-          />
-          <ActionPill
-            label="share"
-            onPress={onSharePress}
-            accessibilityLabel="Share article"
-            accessibilityHint="Opens the system share sheet"
-          />
+      {/* One row, because two pills that both mean "an action for what is on
+          screen" should not sit in two groups. `close` is last so it lands
+          under the thumb; `zoom` and `share` keep their order and their
+          gate. */}
+      {articleActions || onClosePress ? (
+        <View style={styles.rightActions}>
+          {articleActions ? (
+            <>
+              <ActionPill
+                label={zoomLabel}
+                onPress={onZoomPress}
+                accessibilityLabel="Globe zoom"
+                accessibilityHint="Cycles through zoom levels"
+              />
+              <ActionPill
+                label="share"
+                onPress={onSharePress}
+                accessibilityLabel="Share article"
+                accessibilityHint="Opens the system share sheet"
+              />
+            </>
+          ) : null}
+          {onClosePress ? (
+            <ActionPill
+              label="close"
+              onPress={onClosePress}
+              accessibilityLabel="Back to the list"
+              accessibilityHint="Closes this and returns to the list"
+            />
+          ) : null}
         </View>
       ) : null}
     </View>
@@ -204,7 +241,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: SCRIM_H,
   },
-  articleActions: {
+  rightActions: {
     flexDirection: 'row',
     gap: SPACING.sm,
   },

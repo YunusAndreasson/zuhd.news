@@ -82,12 +82,15 @@ export const CardView = memo(function CardView({
   itemHeight,
   index,
   scrollY,
+  innerOffset,
   onArticlePress,
 }: {
   card: Card;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
+  /** This card's own scroll offset, for the pull-to-close — see `CardFrame`. */
+  innerOffset?: SharedValue<number>;
   /** Open one of the stories part five names — see `CardFrame`. */
   onArticlePress?: (slug: string) => void;
 }) {
@@ -102,6 +105,7 @@ export const CardView = memo(function CardView({
       itemHeight={itemHeight}
       index={index}
       scrollY={scrollY}
+      innerOffset={innerOffset}
       onArticlePress={onArticlePress}
     >
       {renderBody(card, onPress)}

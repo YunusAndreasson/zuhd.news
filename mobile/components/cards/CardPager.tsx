@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import { type NativeScrollEvent, type NativeSyntheticEvent, StyleSheet, View } from 'react-native';
+import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   type SharedValue,
   useAnimatedRef,
@@ -8,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
+import { usePullToClose } from '../../hooks/usePullToClose';
 import { useScrollState } from '../../hooks/useScrollState';
 import type { Card } from '../../lib/cards/types';
 import { hapticTick } from '../../lib/haptics';
@@ -44,9 +46,19 @@ interface CardPagerProps {
    *  pipeline has not written yet. */
   emptyMessage: string;
   emptyHint?: string;
-  /** Which card to open on. The column index hands this over on a row tap;
-   *  entered from the top it is 0 and this behaves exactly as it always did. */
-  initialIndex?: number;
+  /**
+   * The card this pager opens on, and the one it starts at.
+   *
+   * The column is sliced from here, so the card a reader tapped is always page
+   * zero. That is what makes the pull-down work — a downward drag is vertical
+   * paging everywhere except the top of the list, so "the top" has to be where
+   * the reader arrives. See `usePullToClose`.
+   *
+   * An id rather than an index because the builders rebuild the column on
+   * every snapshot, and a gated card appearing or leaving shifts every index
+   * behind it.
+   */
+  entryId?: string;
   /** Back to the column index. Absent when the pager is the whole column. */
   onClose?: () => void;
   /** Open one of the stories a card's part five names — see `CardFrame`. */
@@ -73,23 +85,33 @@ export const CardPager = memo(function CardPager({
   progressesSV,
   emptyMessage,
   emptyHint,
-  initialIndex = 0,
+  entryId,
   onClose,
   onArticlePress,
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
   const listRef = useAnimatedRef<Animated.FlatList<Card>>();
-  // Seeded at the first render, not in an effect — `useScrollState`'s header
-  // has the reason, and it is a card painted at opacity 0.
-  const { scrollY, currentIndex, setCurrentIndex } = useScrollState({
-    offset: initialIndex * viewportHeight,
-    index: initialIndex,
-  });
+  // Sliced at the entry card — see `entryId`. Recomputed by id on every
+  // rebuild, so a snapshot that gates a card in or out keeps the reader on the
+  // card they opened. An id that has left the column falls back to the whole
+  // of it, which never crashes.
+  const pageCards = useMemo(() => {
+    if (!entryId) return cards;
+    const at = cards.findIndex((c) => c.id === entryId);
+    return at > 0 ? cards.slice(at) : cards;
+  }, [cards, entryId]);
+  // Unseeded, and that follows from the slice: the entry card is index 0, so
+  // the offset this list opens at *is* zero. `useScrollState`'s header
+  // describes the trap that seeding was for — a card whose scroll-linked
+  // arrival opacity computes as if it were three pages away — and the slice
+  // removes the condition rather than compensating for it.
+  const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
-  const count = cards.length;
+  const count = pageCards.length;
+  const { gesture, listGesture, pullStyle, innerOffset } = usePullToClose({ scrollY, onClose });
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
@@ -133,8 +155,12 @@ export const CardPager = memo(function CardPager({
       if (idx === currentIndexRef.current) return;
       hapticTick();
       setCurrentIndex(idx);
+      // A newly-arrived card is at its own top, and the pull-down arms on
+      // that. Without this, paging away from a tall card you had scrolled
+      // leaves its offset behind and the next card refuses the gesture.
+      innerOffset.value = 0;
     },
-    [count, itemHeight, listRef, setCurrentIndex],
+    [count, itemHeight, listRef, setCurrentIndex, innerOffset],
   );
 
   const clearSettle = useCallback(() => {
@@ -262,10 +288,11 @@ export const CardPager = memo(function CardPager({
         itemHeight={itemHeight}
         index={index}
         scrollY={scrollY}
+        innerOffset={innerOffset}
         onArticlePress={onArticlePress}
       />
     ),
-    [itemHeight, scrollY, onArticlePress],
+    [itemHeight, scrollY, innerOffset, onArticlePress],
   );
 
   const keyExtractor = useCallback((item: Card) => item.id, []);
@@ -279,36 +306,47 @@ export const CardPager = memo(function CardPager({
   }
 
   return (
-    <View style={styles.fill}>
-      <Animated.FlatList
-        ref={listRef}
-        style={styles.list}
-        data={cards}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        getItemLayout={getItemLayout}
-        pagingEnabled
-        showsVerticalScrollIndicator={false}
-        onScroll={scrollHandler}
-        onScrollBeginDrag={handleBeginDrag}
-        onMomentumScrollBegin={handleMomentumBegin}
-        onMomentumScrollEnd={handleMomentumEnd}
-        onScrollEndDrag={handleEndDrag}
-        scrollEventThrottle={16}
-        initialNumToRender={2}
-        maxToRenderPerBatch={2}
-        windowSize={3}
-        initialScrollIndex={initialIndex}
-        ListFooterComponent={safeAreaFooter}
-      />
-      {/* A sibling of the list, never a child of a card.
-          `CardFrame.onContentLayout` measures its content against the page to
-          decide whether the inner scroll arms at all, and a control inside
-          that view would add its own height to the comparison — which is the
-          measurement that once let four cards truncate in silence. Absolutely
-          positioned here it cannot reach that number. */}
-      {onClose ? <BackToIndexButton onPress={onClose} /> : null}
-    </View>
+    <GestureDetector gesture={gesture}>
+      <View style={styles.fill}>
+        <Animated.View style={[styles.fill, pullStyle]}>
+          <GestureDetector gesture={listGesture}>
+            <Animated.FlatList
+              ref={listRef}
+              style={styles.list}
+              data={pageCards}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              getItemLayout={getItemLayout}
+              pagingEnabled
+              showsVerticalScrollIndicator={false}
+              onScroll={scrollHandler}
+              onScrollBeginDrag={handleBeginDrag}
+              onMomentumScrollBegin={handleMomentumBegin}
+              onMomentumScrollEnd={handleMomentumEnd}
+              onScrollEndDrag={handleEndDrag}
+              scrollEventThrottle={16}
+              initialNumToRender={2}
+              maxToRenderPerBatch={2}
+              windowSize={3}
+              // See `ArticleList`: the pull-to-close moves the page itself,
+              // and a list bouncing under it draws the same movement twice.
+              bounces={false}
+              overScrollMode="never"
+              ListFooterComponent={safeAreaFooter}
+            />
+          </GestureDetector>
+          {/* A sibling of the list, never a child of a card.
+              `CardFrame.onContentLayout` measures its content against the page
+              to decide whether the inner scroll arms at all, and a control
+              inside that view would add its own height to the comparison —
+              which is the measurement that once let four cards truncate in
+              silence. Absolutely positioned here it cannot reach that number.
+              Inside the pull layer, so it travels with the card it belongs
+              to. */}
+          {onClose ? <BackToIndexButton onPress={onClose} /> : null}
+        </Animated.View>
+      </View>
+    </GestureDetector>
   );
 });
 
