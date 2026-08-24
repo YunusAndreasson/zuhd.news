@@ -29,8 +29,17 @@
 //   --window <hours>       override the 48h window
 //   ZUHD_SV_MODEL          default claude-sonnet-5 — register is the whole
 //                          point, and Haiku writes translated English
-//   ZUHD_SV_EFFORT         default low; this is a writing task, not a
-//                          reasoning one
+//   ZUHD_SV_EFFORT         default high. This was `low` until a measured
+//                          A/B said otherwise: nine runs of the same six
+//                          articles, same model, same prompt, scored 1,60
+//                          register defects per run at `low` against 0,25 at
+//                          `high` — a 6x difference for ~15s and a few cents.
+//                          The old note called this "a writing task, not a
+//                          reasoning one", and that is the premise that was
+//                          wrong: choosing »tillskrev« over »krediterade«, or
+//                          knowing that `stablecoin` stays English while
+//                          `watchdog` becomes »tillsynsorgan«, is exactly a
+//                          reasoning task about register and false friends
 //   ZUHD_SV_FORCE=1        ignore the cache and re-translate everything
 
 import { spawnSync } from 'node:child_process'
@@ -41,7 +50,14 @@ import { splitBlocks } from './lib/blocks.js'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { SV_WINDOW_MS, articleFingerprint, eventTime, translationFault } from './lib/sv-payload.js'
+import {
+  SV_WINDOW_MS,
+  articleFingerprint,
+  eventTime,
+  registerFault,
+  translationFault,
+} from './lib/sv-payload.js'
+import { createHash } from 'node:crypto'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -49,7 +65,7 @@ const CACHE_PATH = join(ROOT, 'content', '.sv.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'sv-prompt.md')
 
 const MODEL = process.env.ZUHD_SV_MODEL || 'claude-sonnet-5'
-const EFFORT = process.env.ZUHD_SV_EFFORT || 'low'
+const EFFORT = process.env.ZUHD_SV_EFFORT || 'high'
 const FORCE = process.env.ZUHD_SV_FORCE === '1'
 const DRY_RUN = hasFlag('dry-run')
 const WINDOW_MS = Number(argAt('window')) > 0 ? Number(argAt('window')) * 3600_000 : SV_WINDOW_MS
@@ -64,6 +80,19 @@ const PRUNE_MS = 7 * 24 * 60 * 60 * 1000
 
 const stageT0 = Date.now()
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
+
+// How this translation was produced, not what it says. `articleFingerprint`
+// answers "did the English change"; this answers "did we change how we
+// translate it", and without it a sharpened prompt or a raised effort reaches
+// only articles that happen to be new — everything already cached keeps the
+// Swedish that motivated the change, until it ages out of the window two days
+// later. Editing sv-prompt.md and seeing nothing improve is the failure this
+// prevents. The cost of being wrong in the other direction is one cycle that
+// re-translates the whole window, which is minutes and cents.
+const RECIPE = createHash('sha1')
+  .update(`${basePrompt}\n${MODEL}\n${EFFORT}`)
+  .digest('hex')
+  .slice(0, 12)
 
 const cache = existsSync(CACHE_PATH)
   ? JSON.parse(readFileSync(CACHE_PATH, 'utf8'))
@@ -95,7 +124,8 @@ const pending = candidates.filter((a) => {
   const fp = articleFingerprint(a.title, a.body)
   a.fingerprint = fp
   if (FORCE) return true
-  return cache.articles[a.slug]?.fingerprint !== fp
+  const hit = cache.articles[a.slug]
+  return hit?.fingerprint !== fp || hit?.recipe !== RECIPE
 })
 
 console.log(
@@ -188,7 +218,37 @@ for (let i = 0; i < pending.length; i += BATCH_SIZE) batches.push(pending.slice(
 let translated = 0
 let dropped = 0
 let missing = 0
+let registerWarned = 0
 let totalCostUsd = 0
+
+// Checkpoint after every batch, not once at the end.
+//
+// `run-cycle.sh` runs this stage under `timeout 600`, and a single write at the
+// end means a run that overshoots loses every translation it paid for — and
+// then overshoots identically on the next cycle, because nothing was cached to
+// shorten it. That is a permanent failure loop, and it is reachable whenever
+// the recipe changes and the whole window goes pending at once (102 articles
+// the day `ZUHD_SV_EFFORT` moved to `high`).
+//
+// Writing as we go makes the stage resumable instead: a kill costs the batches
+// still in flight, and the next cycle starts from what survived. Concurrency is
+// safe here because Node runs these callbacks on one thread — the writes
+// interleave between batches, never inside one.
+const persist = () => {
+  cache.generatedAt = new Date().toISOString()
+  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+}
+
+/** Register faults across a whole batch's returned translations. The gate is
+ *  per batch because the retry is: one call returns all six, so one bad draw
+ *  is re-rolled as a unit. */
+const registerFaults = (batch, out) =>
+  batch
+    .map((a) => {
+      const sv = out.get(a.slug)
+      return sv ? registerFault(a, sv) : null
+    })
+    .filter(Boolean)
 
 await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   const label = `${batch[0].slug.slice(0, 24)}+${batch.length - 1}`
@@ -202,11 +262,31 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   // Neither `--allowedTools ""` nor `--disallowedTools` prevents the attempt
   // (both were measured); the `<runtime>` preamble in sv-prompt.md is the
   // primary defence and this catches the residual.
-  if (out.size === 0) {
-    console.log(`  · swedish ${label}: nothing returned — retrying once`)
+  //
+  // The register gate re-rolls on top of that. Measured on the live payload of
+  // 2026-08-24: identical prompt, model and effort produced anywhere from zero
+  // to seven register defects across six articles, and the structural checks
+  // below passed every one of them — the stage reported "0 dropped" while
+  // publishing »krediterade« and »stabilt mynt« to islam.se. Variance, not
+  // configuration, is what reaches the reader, and a second draw is the
+  // cheapest correction available.
+  //
+  // A register fault never drops the article the way a structural one does. It
+  // renders perfectly; it just reads as translated English. Punching a hole in
+  // islam.se's feed over a word choice is the worse failure, so a batch that
+  // trips the gate twice is published with a warning per slug.
+  const faults = out.size === 0 ? [] : registerFaults(batch, out)
+  const why = out.size === 0 ? 'nothing returned' : faults.length ? `register: ${faults[0]}` : ''
+  if (why) {
+    console.log(`  · swedish ${label}: ${why} — retrying once`)
     const again = translateBatch(batch, `${label} retry`)
     totalCostUsd += again.costUsd
-    out = again.out
+    // Keep the retry only when it is actually better. A re-roll that comes back
+    // with more traps than the first draw is a worse payload, and blindly
+    // replacing would ship it.
+    if (again.out.size > 0 && (out.size === 0 || registerFaults(batch, again.out).length < faults.length)) {
+      out = again.out
+    }
   }
 
   for (const article of batch) {
@@ -224,15 +304,25 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
       console.log(`  ✗ ${article.slug}: ${fault}`)
       continue
     }
+    // Survived the re-roll: publish it, but say so. These lines are the only
+    // record of which traps are still getting through, and they are what the
+    // next edit to sv-prompt.md should be written against.
+    const stillOff = registerFault(article, sv)
+    if (stillOff) {
+      registerWarned++
+      console.log(`  ⚠ ${article.slug}: ${stillOff}`)
+    }
     cache.articles[article.slug] = {
       titel: sv.titel.trim(),
       plats: sv.plats.trim(),
       stycken: sv.stycken.map((s) => s.trim()),
       fingerprint: article.fingerprint,
+      recipe: RECIPE,
       translatedAt: new Date().toISOString(),
     }
     translated++
   }
+  persist()
 })
 
 // ── Prune ──────────────────────────────────────────────────────────────────
@@ -257,11 +347,11 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   if (pruned > 0) console.log(`  · swedish: pruned ${pruned} stale translation(s)`)
 }
 
-cache.generatedAt = new Date().toISOString()
-writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+persist()
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
   `Swedish desk: ${translated} translated, ${dropped} dropped, ${missing} not returned, ` +
+    `${registerWarned} register-warned, ` +
     `${Object.keys(cache.articles).length} in payload, $${totalCostUsd.toFixed(2)}, ${elapsed}s`,
 )

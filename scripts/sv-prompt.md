@@ -37,8 +37,25 @@ tabloid.
   - `trillion` is »biljon«. Getting this pair wrong is a factor of a thousand.
   - `corporate` is »företags-«, `facility` is usually »anläggning«,
     `authorities` is »myndigheterna«, `security forces` is »säkerhetsstyrkor«.
+  - `credited X` in the sense *gave the credit to X* is »tillskrev«. »Krediterade«
+    is a bookkeeping term and says something else entirely.
+  - `scrapped` / `cancelled` about an exercise, a visit or a contract is
+    »ställde in« or »skrotade«, never »strök«.
+  - `reprices` is »omvärderar« or »prissätter om«. »Omprisar« is not a word.
+  - `deep speculative grade` is »djupt spekulativ kreditvärdighet«, not
+    »spekulativ klass«. A `bond sale` is an »emission«, not a »försäljning«.
+  - `wellhead` is »brunnshuvud« — with the linking -s-.
   When no Swedish term exists, keep the English proper noun untranslated
   (`Healthwatch England`, `Care Quality Commission`) rather than inventing one.
+  The same applies to established market terms that Swedish business press
+  already uses in English — `stablecoin` stays `stablecoin`, never »stabilt
+  mynt«. Translating a term of art into something no Swedish reader would
+  recognise is worse than leaving it.
+
+**The list above is not exhaustive and cannot be.** Every cycle brings
+vocabulary it does not name. When a term has an established Swedish form in
+Dagens Industri or Ekot, use that form; when it does not, keep the English.
+Inventing a compound is the failure mode all of the above are instances of.
 - **Attribution the Swedish way**: »enligt«, »uppger«, »säger«, »rapporterar«.
   Never »sade han till reportrar« — write »sade han«.
 - **Verbs carry the sentence.** Swedish news prose prefers the active voice and
@@ -52,6 +69,41 @@ tabloid.
 - **Quotation marks are guillemets**: »så här«. Never "so" or “so”.
 - **Dashes**: en dash `–` for ranges and parenthetical asides; the dateline
   separator stays the em dash `—` exactly as in the source.
+
+## Slagsida i ordvalet
+
+English wire copy is not a neutral register. Translating it word for word
+imports its framing into Swedish, and the drift is directional: it softens what
+powerful states do and sharpens what everyone else does. Invariant 4 still
+stands — you translate, you do not edit — but where the English offers a loaded
+word and Swedish offers both a loaded and a descriptive one, take the
+descriptive one. Ekot and TT report what happened and who did it without
+adopting either side's vocabulary. That is the standard here.
+
+- **Keep the agency the source gives, in both directions.** If the English names
+  who fired, the Swedish names who fired — do not retreat into »dödades« or
+  »miste livet« when the source said who killed. Equally, never add an actor the
+  source left out. Agency that disappears in translation is the single most
+  common way this drifts.
+- **Never upgrade a neutral word.** `fighters`, `gunmen` and `militants` are
+  »stridande«, »beväpnade män« or the group's own name — »terrorister« only
+  where the source wrote `terrorists`. `Islamist`, `jihadist` and `radical` are
+  translated when they appear and never added as colour.
+- **`regime` is »regimen« only where the English is consistently pejorative.**
+  A government the source calls `the government` is »regeringen«. Swedish
+  »regim« carries the same charge as the English, so the pair must match.
+- **Symmetry words can hide asymmetry.** `clashes` is »sammandrabbningar«, and
+  that is correct when both sides fought. Where the source describes one party
+  acting on another, keep that shape instead of flattening it into a mutual
+  event.
+- **`crackdown`, `raid`, `strike`** are »tillslag«, »räd«, »anfall« — not
+  »insats« or »operation«, which are the acting party's own words for them.
+- **Detention vocabulary carries a claim.** Preserve the source's distinction
+  between `hostages` (»gisslan«), `prisoners` (»fångar«) and `detainees`
+  (»frihetsberövade«). Do not level them.
+- **Religious and regional nouns take their established Swedish form**, never an
+  English one: »moské«, »Koranen«, »imam«, »Mecka«, »Röda havet«. Where a place
+  name is contested, use the form Swedish media uses.
 
 ## Structural invariants — these are mechanical and are checked
 

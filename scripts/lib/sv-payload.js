@@ -87,6 +87,85 @@ export function translationFault(en, sv) {
 }
 
 /**
+ * The register gate: does this read as Swedish, or as translated English?
+ *
+ * `translationFault` above asks whether the payload *renders*. This asks
+ * whether it is *idiomatic*, and the two are answered separately because the
+ * responses differ. A structural fault is malformed and gets dropped; a
+ * register fault still renders perfectly, so dropping it would punch a hole in
+ * islam.se's feed over a word choice. The stage retries once and publishes what
+ * it has, logging the reason either way.
+ *
+ * Every trap here was produced by a real run of this stage against a real
+ * article — none is hypothetical. Most are source-aware (`en`) because the
+ * Swedish word alone is innocent: `strök` is ordinary Swedish, and only wrong
+ * when the English said `scrapped`; `biljon` is the correct rendering of
+ * `trillion` and a factor-of-1000 error against `billion`. Checking the pair
+ * is what keeps this from firing on prose that was already right.
+ *
+ * This is a denylist and denylists do not scale — hard news mints new
+ * specialist vocabulary daily, and the register rules in `sv-prompt.md` remain
+ * the primary defence. What this catches is the *recurrence*: once a trap has
+ * shipped to readers, it should never ship twice.
+ *
+ * Both parameters are typed loosely on purpose: this runs on the retry path as
+ * well, where it is handed whatever came back before `translationFault` has had
+ * a say, so it must tolerate the shapes that one exists to reject.
+ *
+ * @param {{ blocks?: unknown } | null | undefined} en
+ * @param {{ titel?: unknown, stycken?: unknown } | null | undefined} sv
+ * @returns {string | null} reason when the Swedish trips a known trap
+ */
+export function registerFault(en, sv) {
+  if (!sv || typeof sv.titel !== 'string' || !Array.isArray(sv.stycken)) return null
+  const svText = `${sv.titel}\n${sv.stycken.join('\n')}`
+  const enText = (Array.isArray(en?.blocks) ? en.blocks : []).join('\n')
+
+  for (const trap of REGISTER_TRAPS) {
+    if (!trap.sv.test(svText)) continue
+    if (trap.en && !trap.en.test(enText)) continue
+    if (trap.enNot?.test(enText)) continue
+    return trap.why
+  }
+  return null
+}
+
+/** @type {{ sv: RegExp, why: string, en?: RegExp, enNot?: RegExp }[]} */
+const REGISTER_TRAPS = [
+  {
+    sv: /\bkrediterade\b/i,
+    en: /\bcredit(?:ed|s)\b/i,
+    why: '"credited" → »krediterade« (bokföringsterm; avses »tillskrev«)',
+  },
+  {
+    // Swedish biljon is 10¹², so this is a factor of a thousand — but only when
+    // the English actually said billion. Against `trillion` it is correct.
+    sv: /\bbiljon(?:er|en|erna)?\b/i,
+    en: /\bbillions?\b/i,
+    enNot: /\btrillions?\b/i,
+    why: '"billion" → »biljon« (faktor 1000 fel; avses »miljard«)',
+  },
+  {
+    sv: /\bströk\b/i,
+    en: /\b(?:scrapp|cancell?)/i,
+    why: '"scrapped/cancelled" → »strök« (avses »ställde in«)',
+  },
+  { sv: /\bvakthund(?:en|ar|arna)?\b/i, why: '"watchdog" → »vakthund« (avses »tillsynsorgan«)' },
+  { sv: /\bomprisar?\b/i, why: '»omprisar« är inte svenska (avses »omvärderar«/»prissätter om«)' },
+  {
+    sv: /\bstabil[at]?\s+mynt\b/i,
+    why: '"stablecoin" → »stabilt mynt« (behåll »stablecoin«)',
+  },
+  { sv: /\bspekulativ\s+klass\b/i, why: '"speculative grade" → »spekulativ klass« (avses kreditvärdighet)' },
+  { sv: /\bbrunnhuvud/i, why: '»brunnhuvud« saknar foge-s (»brunnshuvud«)' },
+  {
+    sv: /\bdeal(?:en|s|er|erna)?\b/i,
+    en: /\bdeals?\b/i,
+    why: '"deal" behållet på engelska (avses »avtal«/»uppgörelse«)',
+  },
+]
+
+/**
  * One item of `/api/sv/feed.json`.
  *
  * Swedish keys throughout, because the only consumer is a Swedish site and a

@@ -10,6 +10,7 @@ import {
   articleFingerprint,
   countryTargets,
   eventTime,
+  registerFault,
   svFeedItem,
   translationFault,
 } from './sv-payload.js'
@@ -168,4 +169,59 @@ test('eventTime prefers the frontmatter date and falls back to mtime', () => {
   assert.equal(eventTime({ date: '2026-08-19T00:00:00Z' }, 999), Date.parse('2026-08-19T00:00:00Z'))
   assert.equal(eventTime({ date: 'not a date' }, 999), 999)
   assert.equal(eventTime({}, 999), 999)
+})
+
+// ── The register gate ──────────────────────────────────────────────────────
+//
+// Every case below is a line this stage actually published to islam.se on
+// 2026-08-24, at the same model, prompt and effort that produced clean Swedish
+// on the reruns. They are pinned because the defect was never a bad prompt —
+// it was a bad draw that nothing checked.
+
+const svWith = (...blocks) => ({ titel: 'Rubrik', plats: 'Teheran', stycken: blocks })
+
+test('idiomatic Swedish trips nothing', () => {
+  assert.equal(registerFault(EN, SV), null)
+})
+
+test('"credited" rendered as the bookkeeping verb is caught', () => {
+  const en = { blocks: ["Moody's credited reserves and rollovers, not new exports."] }
+  assert.match(
+    registerFault(en, svWith("Moody's krediterade valutareserver och omläggningar.")),
+    /krediterade/,
+  )
+  // …and »tillskrev« is what it should have said, so that must pass.
+  assert.equal(registerFault(en, svWith("Moody's tillskrev höjningen valutareserverna.")), null)
+})
+
+test('billion→biljon is caught, but trillion→biljon is correct', () => {
+  const billion = { blocks: ['The deficit reached 3 billion dollars.'] }
+  const trillion = { blocks: ['The deficit reached 3 trillion dollars.'] }
+  const sv = svWith('Underskottet nådde 3 biljoner dollar.')
+  assert.match(registerFault(billion, sv), /faktor 1000/)
+  assert.equal(registerFault(trillion, sv), null, 'en svensk biljon ÄR en trillion')
+})
+
+test('»strök« is ordinary Swedish and only wrong against "scrapped"', () => {
+  const scrapped = { blocks: ['Washington scrapped next month exercise.'] }
+  const painted = { blocks: ['The painter coated the hull twice.'] }
+  const sv = svWith('Washington strök nästa månads övning.')
+  assert.match(registerFault(scrapped, sv), /ställde in/)
+  assert.equal(registerFault(painted, sv), null, 'ingen engelsk trigger, ingen anmärkning')
+})
+
+test('the source-independent traps need no English at all', () => {
+  assert.match(registerFault(EN, svWith('Detta omprisar firmans partnerskap.')), /omprisar/)
+  assert.match(registerFault(EN, svWith('Hongkongs stabila mynt lanseras.')), /stablecoin/)
+  assert.match(registerFault(EN, svWith('B3 är djupt spekulativ klass.')), /kreditvärdighet/)
+  assert.match(registerFault(EN, svWith('nära de övergivna brunnhuvudena.')), /foge-s/)
+  assert.match(registerFault(EN, svWith('Ett tillsynsorgan, inte en vakthund.')), /tillsynsorgan/)
+})
+
+test('a malformed translation is the other gate\'s problem, not this one', () => {
+  // registerFault runs after translationFault in the stage, but it must not
+  // throw on the shapes that one rejects — it is called on retry paths too.
+  assert.equal(registerFault(EN, null), null)
+  assert.equal(registerFault(EN, { titel: 'x' }), null)
+  assert.equal(registerFault(undefined, SV), null)
 })
