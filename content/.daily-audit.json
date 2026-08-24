@@ -1,31 +1,36 @@
 {
-  "date": "2026-08-23",
+  "date": "2026-08-24",
   "metrics": {
-    "articles": { "value": 61, "detail": "5 scheduled cycles; only 04:03 and 22:03 deployed — the 08:00/12:04/17:00 batches were written and validated but held on disk by a build failure, then all shipped together at 22:03" },
-    "freshness": { "median": 0, "p90": 1.7, "max": 1.8, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 15, "science": 13, "tech": 11 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 15, "AS": 15, "EU": 14, "AM": 8, "AF": 8, "OC": 1 } },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 35,
+    "articles": { "value": 60, "detail": "5 cycles, all 5 completed, avg 12/cycle" },
+    "freshness": { "median": 0.1, "p90": 1.1, "max": 1.1, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 15, "science": 12, "tech": 14 },
+    "multiSource": { "value": 16, "target": 4, "met": true },
+    "regions": {
+      "count": 6,
+      "target": 4,
+      "met": true,
+      "breakdown": { "ME": 17, "AM": 15, "AS": 14, "EU": 7, "AF": 4, "OC": 3 }
+    },
+    "sciTech": { "ratio": 43, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1115
+    "avgCycleDuration": 1297
   },
-  "experiment": "Skipped — the noNewExperimentsUntil gate runs to 2026-08-26, and no experiments are active. Every published metric is inside target anyway.",
-  "weakestArea": "No published metric is the weakest area today — freshness, diversity, multi-source and sci-tech all clear their targets comfortably. The real weakness is delivery reliability: three of five cycles built nothing. A Wikidata concept label carrying literal quotes (Ecologist Party \"The Greens\") was interpolated raw into a double-quoted YAML scalar, so js-yaml rejected the frontmatter, build.js died, and because the article was never committed it poisoned the 08:00, 12:04 and 17:00 builds in turn. Fixed and committed today in c76ef122 (six unescaped interpolation sites routed through yamlStr, plus a real parse in validate-articles.js that quarantines to .bad instead of string-matching); the 22:03 cycle deployed clean and all 8,508 articles now parse.",
+  "experiment": "Skipped — every goal metric is met and the noNewExperimentsUntil gate (2026-08-26) is still in force. No active experiments to evaluate; activeExperiments remains empty.",
+  "weakestArea": "Regional depth outside the ME/AS/AM core: Africa drew 4 stories and Oceania 3 of 60, versus 17 for the Middle East. The uniqueRegions target of 4 is met comfortably, so no gate fires, but two regions are carried by a single cycle's picks each and would drop out entirely on a thin feed day. Cycle wall-time also rose to 1297s from the ~1033s norm, driven by the writer stage at 328s.",
   "watching": [
-    "Iran plans to charge transiting ships at Hormuz while simultaneously seeking de-escalation with Egypt — two Tehran datelines pulling opposite directions in one day.",
-    "Congo's Ebola outbreak is accelerating; case-count follow-ups will need consistent sourcing rather than one-off science picks.",
-    "China's fourth carrier surfacing at Dalian alongside a delayed crewed Moon landing and a lunar-ice target — a coherent capability story spread across three articles.",
-    "Pakistan military diplomacy is clustering (Munir in Tehran, intelligence chief in Bahrain) without a piece tying the tour together.",
-    "OAuth stability: 2026-08-23 was the first day since 08-19 with zero 'session expired' failures. Two more clean days are needed before the experiment gate lifts on 08-26."
+    "First fully clean day since the OAuth outage — 5/5 scheduled cycles completed, versus 2/5 yesterday; one more clean day clears the pause gate on 2026-08-26.",
+    "Iran escalation cluster: Hormuz shutdown threat, Bessent's dollar-sanctions push, and the rial at a record low are three separate cycles converging on one story.",
+    "Red Sea / Gulf shipping risk after the Houthi strike on a Saudi tanker at Yanbu and the war-risk repricing that followed.",
+    "Chip sovereignty thread — Xiaomi's XRing O3, the Taiwan Nvidia-manager charges, and Nvidia financing its own buyers — worth a linked treatment rather than three standalones.",
+    "Teen-platform bans widening: New Zealand joins Australia, and the EU packaging file shows the same regulatory-spillover pattern."
   ],
   "coverageGaps": [
-    "Latin America is entirely absent — all 8 Americas datelines are US or Canadian (Washington, New York, Baltimore, Reno, Ottawa, Skidegate). No Brazil, Mexico, Argentina or Andean coverage at all.",
-    "Oceania is a single article (One Nation's migration math, Canberra); no Pacific-island, New Zealand or Australian non-political coverage.",
-    "Nature supplied 9 of 61 articles and 7 of 13 science pieces — under the 20% share cap, but science depth rests on one outlet.",
-    "Southeast Asia is thin: Singapore and one Philippine byline, nothing from Indonesia, Vietnam or Thailand despite 15 Asia datelines."
+    "Latin America is absent from the region breakdown — AM's 15 stories are overwhelmingly US-centred.",
+    "Africa at 4 of 60 leans on Nigeria and South Africa; the Sahel, Horn, and Great Lakes went uncovered apart from the Jonglei ambush.",
+    "Climate and environmental science appear only obliquely (floodwater toxins, basin risk) despite science running 12 stories.",
+    "Oceania coverage is policy-only — no Pacific Islands reporting."
   ],
-  "context": "The 08-19 to 08-22 OAuth outage that motivated the current experiment gate has cleared — today's five cycles all authenticated and ran end to end. It was immediately replaced by a different single-point failure: one malformed frontmatter file silently blocking three consecutive deploys, which is why 61 articles landed in two batches instead of five. Both the escaping bug and the validator gap that let it through are fixed, so the gate's remaining purpose is simply to accumulate clean baseline days before a new variable is introduced. Nothing in the tunable-parameter set needs moving; leave the gate at 2026-08-26 and re-assess then."
+  "context": "Metrics are the healthiest in weeks: freshness median 0.1 days, 16 multi-source articles against a target of 4, 43% sci-tech, and a 13% top-source share with 47 unique outlets. The pause gate exists because 2026-08-19→08-22 lost 16 consecutive scheduled runs to expired OAuth, contaminating every rolling window; today is the first clean day of the three needed before a new variable is introduced. Do not auto-extend the gate past 2026-08-26."
 }
