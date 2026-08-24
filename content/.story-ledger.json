@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "h1b-six-figure-fee-rulemaking-not-legislation",
+      "label": "Government Proposes New Six-Figure Fee for H1-B Visas",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-h1b-six-figure-fee-rulemaking-not-legislation"
+      ],
+      "eventUri": "eng-11948766",
+      "summary": "DHS proposes a $103,265 fee on most new H-1B applications — including people already inside the US changing status, which is the detail that turns a hiring tax into a deportation risk for workers mid-career. Lead with the number and who pays it: Indian and Pakistani engineers make up the large majority of H-1B holders, and Dawn is covering it as a Pakistani story, not an American one. The mechanism to explain is that the fee is set by rulemaking, not by Congress, so it takes effect without a vote. Structural why: the US is converting a skilled-migration channel into a revenue and rationing instrument, pricing out startups and mid-size employers while leaving the largest tech firms able to absorb it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/H-1B_visa",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Homeland_Security",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Travel_visa",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Foreign_worker",
+        "http://en.wikipedia.org/wiki/Federal_Register"
+      ]
+    },
+    {
+      "id": "pacific-boat-strike-interdiction-becomes-targeting",
+      "label": "U.S. military says it struck drug boat in eastern Pacific killing 2",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-pacific-boat-strike-interdiction-becomes-targeting"
+      ],
+      "eventUri": "eng-11948416",
+      "summary": "US Southern Command killed two people on a boat in the eastern Pacific and named no victims, filed no charges, and produced no evidence beyond the phrase 'operating along established narcotrafficking routes'. Lead with the asymmetry: two dead, zero due process, first such strike in months — the resumption is the news. The mechanism to explain is legal, not military: designating traffickers as narcoterrorists converts a law-enforcement interdiction, which requires arrest and trial, into a lethal targeting decision made inside a combatant command. Note who is absent from the story — the dead are presumed Latin American and remain unnamed, and no coastal state has been said to consent.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pacific_Ocean",
+        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/United_States_Southern_Command",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Western_Hemisphere",
+        "http://en.wikipedia.org/wiki/Narcoterrorism",
+        "http://en.wikipedia.org/wiki/The_Pentagon"
+      ]
+    },
+    {
+      "id": "munir-tehran-mediation-runs-through-ghq",
+      "label": "Asim Munir visits Tehran as Pakistan revives Iran peace mediation",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-munir-tehran-mediation-runs-through-ghq"
+      ],
+      "eventUri": "eng-11948227",
+      "summary": "Pakistan's army chief, not its foreign minister, is carrying a message to Tehran that Indian reporting says originated with Trump — and he arrived on the day Washington prepared its 'economic D-Day' sanctions package. Lead with the channel, not the trip: Islamabad's mediation runs through the military, with the interior minister attached and the civilian foreign ministry largely absent. Structural why: Pakistan is monetising its position between Washington and Tehran at the moment its own credit is being repriced, and a mediation track that lives in GHQ rather than the foreign office survives changes of government but answers to no parliament. Follow-up context: this is the second leg of a clustering tour after the ISI chief's Bahrain visit, and it lands against Iran's currency record low and the Hormuz transit-fee threat.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Asim_Munir_(general)",
+        "http://en.wikipedia.org/wiki/Chief_of_Army_Staff_(Pakistan)",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Field_marshal"
+      ]
+    },
+    {
+      "id": "pishin-road-crew-softest-point-in-the-corridor",
+      "label": "Four labourers killed by unknown assailants in Balochistan's Pishin district",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-pishin-road-crew-softest-point-in-the-corridor"
+      ],
+      "eventUri": null,
+      "summary": "Four road workers were shot dead by armed men on the Quetta-Chaman highway in Pishin — the victims are labourers on a state infrastructure project, which is precisely why they were reachable. Lead with what they were doing when they were killed: building the road that connects Quetta to the Afghan border. The mechanism to explain is that Balochistan's insurgency now targets the construction workforce rather than the security escort, because unarmed migrant labour from Punjab and Sindh is the softest point in a hard corridor, and each killing raises the security premium on the next contract. Name the victims where Dawn does; count them as workers, not as an incident number.",
+      "conceptUris": []
+    },
+    {
+      "id": "gaza-desalination-plant-water-not-infrastructure",
+      "label": "Gary, Indiana still without power; U.S. to unveil \"economic D-day\" sanctions against Iran; Israel bombs mosque, desalination plant in Gaza",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-gaza-desalination-plant-water-not-infrastructure"
+      ],
+      "eventUri": null,
+      "summary": "Israel struck a mosque and a desalination plant in Gaza on the same day. Write the desalination plant as the lead, not the footnote: Gaza's aquifer is over 95% unfit to drink, so desalination is not infrastructure among others — it is the water supply, and destroying it converts a strike into a months-long thirst for everyone downstream of that pipe. The mechanism to explain is that water plants are protected objects indispensable to civilian survival under Additional Protocol I, which is why their destruction is legally distinct from hitting a barracks. Pair it with the mosque strike as the same pattern: the things a besieged population cannot replace. Ignore the Gary and sanctions items in this digest — they are separate stories.",
+      "conceptUris": []
+    },
+    {
+      "id": "yanbu-tanker-strike-war-risk-repricing",
+      "label": "Houthis say they attacked vessel off Saudi Arabia",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-yanbu-tanker-strike-war-risk-repricing"
+      ],
+      "eventUri": "eng-11948515",
+      "summary": "A Houthi ballistic missile hit the Amzan, a Saudi-owned VLCC capable of carrying two million barrels, in the Red Sea off Yanbu — and the target is the point. Lead with the shift: the Houthis have spent two years hitting Israel-linked and Western shipping; a Bahri supertanker is Saudi state-adjacent tonnage on a Saudi export route, which reopens a front Riyadh believed it had bought out of. The mechanism to explain is insurance, not ordnance: war-risk premiums on Red Sea transits are priced off the last incident, so one hit near Yanbu reprices every cargo leaving the terminal and pushes marginal volumes back around the Cape. Structural why: Yemen's war has become a lever on Gulf export economics that costs the Houthis one missile to pull.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Tanker_(ship)",
+        "http://en.wikipedia.org/wiki/Yanbu",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Port"
+      ]
+    },
+    {
+      "id": "ai-server-smuggling-paperwork-is-the-control",
+      "label": "Nvidia senior manager linked to Supermicro scheme smuggling AI servers to China",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-ai-server-smuggling-paperwork-is-the-control"
+      ],
+      "eventUri": null,
+      "summary": "Taiwan has indicted nine people — reportedly including an Nvidia senior manager and two Supermicro staff — for forging export paperwork to move restricted AI servers into China. Lead with the seniority: this is not a broker in Shenzhen, it is people inside the companies whose compliance departments are the enforcement mechanism. The mechanism to explain is that US export controls on AI accelerators are enforced through documents, not customs inspection — the end-user certificate is the control — so a forged destination field defeats the entire regime at near-zero cost. Structural why: Taiwan, not Washington, brought the charges, which shows where the chokepoint physically sits and how much of US chip policy depends on another state's prosecutors.",
+      "conceptUris": []
+    },
+    {
+      "id": "saudi-giga-project-retrenchment-remittance-side",
+      "label": "Saudi construction hiring slows sharply as giga-project ambitions are scaled back",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-saudi-giga-project-retrenchment-remittance-side"
+      ],
+      "eventUri": null,
+      "summary": "Saudi construction hiring is falling as the giga-projects are trimmed — and the people who absorb that first are migrant labourers from Pakistan, Bangladesh, India, Nepal and the Horn of Africa, whose legal residency is tied to the employer that no longer needs them. Lead with the labour side, which the business coverage of Vision 2030 usually omits. The mechanism to explain is kafala arithmetic: a scaled-back project does not produce unemployment in Saudi Arabia, it produces repatriation and unpaid final wages, and the remittance shortfall lands in the sending country's current account within a quarter. Structural why: NEOM-scale capex was financed against oil at a price that has not held, so the retrenchment is a fiscal signal, not a project-management one.",
+      "conceptUris": []
+    },
+    {
+      "id": "habeas-dockets-unindexed-is-functionally-secret",
+      "label": "How a Network of Volunteers Is Liberating Critical Court Records for Everyone",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-habeas-dockets-unindexed-is-functionally-secret"
+      ],
+      "eventUri": null,
+      "summary": "A volunteer network, Habeas Dockets, is publishing US immigration court records that are technically public but have never been available online — you had to physically walk into a courthouse to read them. Lead with that gap: the records were never sealed, they were just unindexed, and unindexed is functionally secret at national scale. The mechanism to explain is that habeas petitions are where detention without charge becomes visible; scraping and publishing them turns thousands of individually invisible cases into a dataset that shows patterns — which judges, which facilities, how long. Structural why: the reader should see that the modern accountability battle is not over classification but over retrieval cost, and that a handful of volunteers with scrapers can change what a state is able to do quietly.",
+      "conceptUris": []
+    },
+    {
+      "id": "car-infotainment-botnet-ip-is-the-product",
+      "label": "Hackers infecting Android car systems to build proxy botnet",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-car-infotainment-botnet-ip-is-the-product"
+      ],
+      "eventUri": null,
+      "summary": "Malware is infecting Android-based in-car infotainment units and enrolling them as residential proxy nodes. Lead with why a car is the ideal victim: it is an always-on Android device with a mobile data plan, no antivirus, no user who ever checks it, and an update cycle measured in years — the perfect host for traffic laundering. The mechanism to explain is the proxy botnet business model: the attacker does not want your car, it wants your IP address, which is then rented to whoever needs traffic that looks like an ordinary consumer. Structural why: car makers ship a general-purpose computer and then support it like a radio, and there is no recall process for a vehicle that has been quietly turned into infrastructure for someone else's fraud.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-door-handle-recall-china-sets-the-floor",
+      "label": "Tesla to recall almost three million vehicles over hidden door handles",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-tesla-door-handle-recall-china-sets-the-floor"
+      ],
+      "eventUri": "eng-11947935",
+      "summary": "Chinese regulators are forcing Tesla to recall nearly three million vehicles over flush electronic door handles — the concern is that after a crash cuts power, occupants and rescuers cannot open the doors. Lead with the number and the failure mode: a design chosen for drag coefficient and brand identity becomes a trap in exactly the situation doors exist for. The mechanism to explain is regulatory, not mechanical: China is writing a national standard on door handles that binds every EV maker including Xiaomi, XPeng and Geely, and Tesla is simply the largest installed base caught by it. Structural why: the world's biggest EV market now sets the safety floor that Western regulators will inherit, reversing who exports standards to whom.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xiaomi",
+        "http://en.wikipedia.org/wiki/Electric_vehicle",
+        "http://en.wikipedia.org/wiki/XPeng",
+        "http://en.wikipedia.org/wiki/Tesla_Model_3",
+        "http://en.wikipedia.org/wiki/Geely",
+        "http://en.wikipedia.org/wiki/Tesla_Model_Y"
+      ]
+    },
+    {
+      "id": "categories-as-compression-not-filing",
+      "label": "A New Framework for How the Brain Compresses Our Noisy World",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-categories-as-compression-not-filing"
+      ],
+      "eventUri": null,
+      "summary": "Neuroscientists are replacing the filing-cabinet model of categorisation — the brain sorts things into boxes — with a compression model: categories are whatever lets the nervous system predict the next input with the fewest bits. Lead with the reframing, not the experiment. The mechanism to explain is that under this view a category is a lossy code, so the information the brain discards is chosen by what it expects to need, which is why perception is systematically biased rather than merely noisy. Structural why for a technically literate reader: this is the same objective that trains a machine-learning model, and the convergence is the interesting claim — but the piece should be precise about what is demonstrated versus what is analogy.",
+      "conceptUris": []
+    },
+    {
+      "id": "optical-corner-detection-compute-into-the-lens",
+      "label": "Corners in focus: Metasurface enables motion tracking without digital image processing",
+      "firstSeen": "2026-08-24T17:09:50.302Z",
+      "lastCovered": "2026-08-24T17:09:50.302Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-optical-corner-detection-compute-into-the-lens"
+      ],
+      "eventUri": null,
+      "summary": "A City University of Hong Kong team built a metasurface that performs corner detection optically — the edge-finding step normally done in software happens in the light itself, using an azimuthal Hilbert transform, before any sensor reads it. Lead with what is removed: no processor, no frame buffer, no power budget for the operation. The mechanism to explain is that corners are the features tracking algorithms actually key on, so moving that one operation into the optics collapses the front end of a vision pipeline into a passive component. Structural why: the compute cost of machine vision is the reason cameras that watch continuously need mains power and cloud backhaul; optical preprocessing is one of the few routes around it, and this one comes out of Hong Kong rather than a US lab.",
+      "conceptUris": []
+    },
+    {
       "id": "hassoun-incitement-conviction-precedent",
       "label": "'Barrel bomb mufti' Ahmad Hassoun handed life sentence in Syria trial",
       "firstSeen": "2026-08-24T12:11:45.823Z",
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hassoun-incitement-conviction-precedent"
@@ -33,7 +286,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-rial-record-low-announcement-effect"
@@ -58,7 +311,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kyiv-air-defence-pledge-versus-magazine-depth"
@@ -80,7 +333,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-twin-dragons-cancelled-pacific-force-availability"
@@ -105,7 +358,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-unity-state-submerged-wells-produced-water"
@@ -121,7 +374,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-moodys-b3-upgrade-refinancing-not-earnings"
@@ -137,7 +390,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hkd-stablecoin-bank-distribution-permissioned"
@@ -153,7 +406,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kpmg-partner-cuts-audit-consulting-cross-subsidy"
@@ -178,7 +431,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-xring-o3-design-sovereignty-not-fabrication"
@@ -203,7 +456,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-uae-cyber-defence-import-substitution"
@@ -219,7 +472,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-total-account-compromise-recovery-chain"
@@ -235,7 +488,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kok-river-transboundary-contamination-no-jurisdiction"
@@ -251,7 +504,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-qiantang-basin-forty-year-landscape-risk"
@@ -267,7 +520,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-nvidia-vendor-financing-circularity"
@@ -292,7 +545,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-parandur-shelved-farmland-airport-veto"
@@ -317,7 +570,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-warsh-jackson-hole-dollar-rate-signal"
@@ -333,7 +586,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-khan-younis-nasser-delayed-death"
@@ -349,7 +602,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-under-16-ban-age-assurance-cost"
@@ -374,7 +627,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-seized-cargo-sold-butterfly-children"
@@ -390,7 +643,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-riyom-raids-rifles-as-resupply"
@@ -406,7 +659,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-term-finance-governance-bought-not-broken"
@@ -422,7 +675,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-armed-services-revolving-door-defense-startups"
@@ -438,7 +691,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-wifi-8-reliability-over-throughput"
@@ -454,7 +707,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hexokinase-2-cortical-progenitor-metabolism"
@@ -470,7 +723,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-bajaur-mohmand-rooftop-monsoon-storage"
@@ -486,7 +739,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hormuz-shutdown-threat-sanctions-reply"
@@ -510,7 +763,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-shein-hong-kong-listing-everlane-security-review"
@@ -533,7 +786,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-goyal-japan-delegation-semiconductor-inputs"
@@ -556,7 +809,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-razih-shelling-saada-border-strip"
@@ -572,7 +825,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-mbda-ukraine-coproduction-veto-removed"
@@ -588,7 +841,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-lutyens-upkeep-versus-school-audits"
@@ -604,7 +857,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-karachi-hashish-route-crew-convicted"
@@ -620,7 +873,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-lahore-echallan-cnic-database-join"
@@ -636,7 +889,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-frontier-model-price-quality-decoupling"
@@ -652,7 +905,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-clap-and-fling-wing-phase-control"
@@ -668,7 +921,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-phaselis-lime-mortar-recycled-brick-binder"
@@ -684,7 +937,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-mumbai-food-inspections-discretion-not-capacity"
@@ -700,7 +953,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-plesetsk-unnamed-payload-orbit-tells"
@@ -716,7 +969,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-conakry-landfill-collapse-thirty-killed"
@@ -741,7 +994,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-uzbekistan-azerbaijan-middle-corridor-trade-target"
@@ -766,7 +1019,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-borgu-mosque-abduction-federal-policing-gap"
@@ -782,7 +1035,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-isi-chief-bahrain-gulf-security-hedge"
@@ -798,7 +1051,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-belarus-north-korea-visa-waiver-sanctions-channel"
@@ -814,7 +1067,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-iran-fars-gas-field-reserves-not-output"
@@ -839,7 +1092,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-canada-matches-us-tariffs-supply-chain-compounding"
@@ -855,7 +1108,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-sec-regulation-crypto-fundraising-rules"
@@ -871,7 +1124,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-protein-degradation-developmental-clock"
@@ -887,7 +1140,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-federated-learning-farm-sensors-energy-budget"
@@ -903,7 +1156,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-model-design-beats-scale-hallucination"
@@ -919,7 +1172,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-ai-priced-device-unlocking-266-dollars"
@@ -935,7 +1188,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-aesthetic-models-heritage-benchmark-gap"
@@ -951,7 +1204,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-voting-at-kazakhstan-s-parliamentary-elections-over"
@@ -976,7 +1229,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-pti-demands-imran-s-ct-angiography-be-conducted-at-shifa-int"
@@ -992,7 +1245,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-several-detained-after-300-people-gathered-at-delhi-s-connau"
@@ -1008,7 +1261,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-american-federation-of-teachers-launches-boycott-against-tar"
@@ -1024,7 +1277,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-charges-for-services-in-hormuz-approved-in-iranian-parliamen"
@@ -1040,7 +1293,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-crypto-card-spending-tops-1-billion-as-stablecoins-move-into"
@@ -1056,7 +1309,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-xrp-price-yield-curve-control-hopes-sparks-50-weekly-gain"
@@ -1072,7 +1325,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-crosscountry-cancels-almost-all-uk-services-after-power-cut"
@@ -1097,7 +1350,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-due-to-need-for-absolute-success-china-delays-critical-moon"
@@ -1122,7 +1375,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-22-there-s-no-reason-for-software-to-be-slow-anymore"
@@ -1138,7 +1391,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-21-a-week-of-using-codex-more-than-claude"
@@ -1154,7 +1407,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-jwst-peeks-at-callisto-s-ancient-scars"
@@ -1170,250 +1423,13 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-remineralization-of-initial-enamel-caries-in-young-permanent"
       ],
       "eventUri": null,
       "summary": "A self-assembling peptide gel, P11-4, is tested head to head against ordinary high-fluoride toothpastes on early enamel lesions in young permanent teeth. Lead with the comparison result and its size, then the mechanism, which is the genuinely interesting part: the peptide forms a three-dimensional scaffold inside the lesion that mineral can deposit onto, so it rebuilds enamel from within rather than sealing it from outside the way a filling does. Who is affected: children with early caries, and the far larger population in countries where restorative dentistry is unaffordable — a treatment that reverses a lesion before the drill is a public-health tool, not just a clinical one. State the limits plainly and early: this is in vitro, on extracted teeth, not a clinical trial, and the version of record is not yet published. The reader's takeaway is the shift from drilling to remineralisation as a treatment paradigm, and how far the evidence has actually got.",
-      "conceptUris": []
-    },
-    {
-      "id": "wartime-vote-a-roll-you-cannot-assemble",
-      "label": "Ukraine: Zelenskyy rejects wartime elections",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-wartime-vote-a-roll-you-cannot-assemble"
-      ],
-      "eventUri": "eng-11946702",
-      "summary": "Zelenskyy refuses to hold elections while the war runs, saying a vote would 'split Ukraine' — and in the same breath says Russia will draft 300,000 more troops after its September parliamentary polls. The angle is the asymmetry of the two calendars: Russia is timing mobilisation to follow a vote it controls, while Ukraine argues a vote is the thing it cannot survive. Lead with the 300,000 figure, then the mechanism — an occupied and displaced electorate cannot produce a legitimate roll, so the franchise becomes another casualty of occupation. Note who is pressing for elections (the ex-defence minister, and Washington) and what they gain.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Mykhailo_Fedorov",
-        "http://en.wikipedia.org/wiki/President_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "twenty-fifth-round-a-border-managed-not-drawn",
-      "label": "NSA Ajit Doval To Visit China For 25th Round Of India-China Border Talks With Wang Yi",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-twenty-fifth-round-a-border-managed-not-drawn"
-      ],
-      "eventUri": "eng-11946591",
-      "summary": "The twenty-fifth round. That number is the story: a Special Representatives mechanism created in 2003 has met twenty-four times without settling a metre of the Line of Actual Control. Lead with the count, not the meeting. The mechanism's function is not resolution but management — it converts an undelimited border into a scheduled conversation, which suits both capitals more than a settlement would. Follow the 2020 Galwan rupture and the 2024 patrolling arrangement as the two points where talks tracked events rather than shaped them. Reader payoff: how two nuclear states keep a live territorial dispute permanently deferred.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Beijing",
-        "http://en.wikipedia.org/wiki/Wang_Yi_(politician)",
-        "http://en.wikipedia.org/wiki/Ajit_Doval",
-        "http://en.wikipedia.org/wiki/Line_of_Actual_Control",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Territorial_dispute"
-      ]
-    },
-    {
-      "id": "wana-doag-a-proxy-outlives-its-purpose",
-      "label": "Former aide to Taliban commander Mullah Nazir group killed in Lower South Waziristan",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-wana-doag-a-proxy-outlives-its-purpose"
-      ],
-      "eventUri": null,
-      "summary": "Unidentified gunmen killed a former aide of the late Mullah Nazir in Doag, Wana tehsil — the district where the Pakistani state spent a decade cultivating a 'good Taliban' faction against the TTP. The angle is the afterlife of a proxy: Nazir's network was armed and tolerated as a counterweight, and its surviving cadre are now being picked off one by one with no one claiming the killings and no prosecutions following. Lead with the location, not the name — Wana is the ledger where a strategy is being settled. Note that 'unidentified gunmen' is itself the accountability gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "nyakallong-term-break-hunger-on-a-school-calendar",
-      "label": "Childhood hunger drives Free State community to step in when school meals stop",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-nyakallong-term-break-hunger-on-a-school-calendar"
-      ],
-      "eventUri": null,
-      "summary": "South Africa's National School Nutrition Programme feeds roughly nine million children — but only on school days. At SA Mokgothu Primary in Nyakallong, caregivers keep cooking through the holidays because the state's hunger relief is scheduled around the academic calendar rather than around hunger. Lead with the gap in days, not the meal: the design assumption is that a household absorbs the term break, and for these children it does not. The structural why — the largest food-security intervention in the country is administratively a school programme, not a welfare one, so its coverage ends where the timetable does.",
-      "conceptUris": []
-    },
-    {
-      "id": "cairo-tehran-line-a-channel-without-an-embassy",
-      "label": "Iran, Egypt FMs discuss de-escalation efforts",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-cairo-tehran-line-a-channel-without-an-embassy"
-      ],
-      "eventUri": "eng-11945770",
-      "summary": "Araghchi and Abdelatty spoke by phone about 'preparing the ground' for a return to diplomacy after the US-Iran war. The angle is who is doing the talking: Cairo and Tehran have had no full ambassadorial exchange since 1980, and Egypt is positioning as a channel precisely because it is not a party. Lead with the forty-six-year absence of normal relations, then the mechanism — mediation authority in this region now accrues to whoever is trusted by both sides and owed by neither, which is why Doha, Muscat and now Cairo keep appearing. Follow-on from the Munir Tehran visit and the Rezaei chokepoint remarks covered earlier this week.",
-      "conceptUris": []
-    },
-    {
-      "id": "scorecard-mismatch-stability-is-not-productivity",
-      "label": "CPPE backs FG reforms, urges shift from economic stability to productivity",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-scorecard-mismatch-stability-is-not-productivity"
-      ],
-      "eventUri": null,
-      "summary": "Five days after the finance ministry published its reform scorecard, the private-sector think tank that endorsed the reforms says the wrong thing is being measured. Stability metrics — a converged exchange rate, a narrower fiscal deficit, reserves — improve when demand is suppressed; productivity and living standards do not follow automatically. Lead with the distinction, because it is the whole argument: Nigeria removed the fuel subsidy and floated the naira, and the resulting numbers describe an economy that has stopped bleeding, not one that has started growing. Name what a productivity scorecard would have to count instead — output per worker, electricity delivered, credit to manufacturing.",
-      "conceptUris": []
-    },
-    {
-      "id": "crude-rich-fuel-short-the-cracking-unit-constraint",
-      "label": "Resolution of fuel issues underway, PM Mishustin keeps situation under control -- Putin",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-crude-rich-fuel-short-the-cracking-unit-constraint"
-      ],
-      "eventUri": null,
-      "summary": "The president of the world's third-largest oil producer publicly conceding that 'not all fuel issues have been resolved' is the datum — a state that exports crude cannot keep petrol on its own forecourts. The mechanism is refining, not extraction: drone strikes have taken primary-processing and catalytic-cracking units offline, and those units cannot be replaced under sanctions because the catalysts and licences are Western. Lead with the admission, treat the reassurance as the tell. Continues the Novak lower-class-fuel story from earlier this week — this is the Kremlin escalating who does the reassuring.",
-      "conceptUris": []
-    },
-    {
-      "id": "mongolian-steppe-herds-privatised-grass-was-not",
-      "label": "From Nigeria to Asian Steppes -- stories of survival, soil and hope in Mongolia",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-mongolian-steppe-herds-privatised-grass-was-not"
-      ],
-      "eventUri": null,
-      "summary": "More than 100 million hectares of Mongolian rangeland — around 70 percent of the country's land — is degraded, and the herding economy that sits on it has no substitute. Lead with the hectares against the herd count: livestock numbers roughly tripled after the 1990s privatisation of the collectives while the grass did not, so the degradation is an ownership story before it is a climate one. The commons became individually stocked and collectively grazed, which is the exact configuration that strips a steppe. Note the Nigerian reporter's frame — the same overstocking arithmetic is running in the Sahel.",
-      "conceptUris": []
-    },
-    {
-      "id": "nine-three-nine-a-record-with-a-power-cord",
-      "label": "Chinese robots beat Usain Bolt's 100m world record",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-nine-three-nine-a-record-with-a-power-cord"
-      ],
-      "eventUri": "eng-11946476",
-      "summary": "A humanoid ran 100 metres in 9.39 seconds at the World Humanoid Robot Games in Beijing, under Bolt's 9.58. The correct lead is the asterisk, not the record: a machine on a prepared track with no start-gun reaction time, no fatigue and a power budget it does not have to carry for a season is not competing in the same event. What the number does prove is control-loop maturity — bipedal running at that speed means balance recovery inside single-digit milliseconds, which is the hard part of the field and the part that transfers to warehouse and battlefield locomotion. Name the makers and note that China staged the games to demonstrate exactly this.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Humanoid_robot",
-        "http://en.wikipedia.org/wiki/Usain_Bolt",
-        "http://en.wikipedia.org/wiki/Beijing",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/100_metres",
-        "http://en.wikipedia.org/wiki/Robot",
-        "http://en.wikipedia.org/wiki/World_record"
-      ]
-    },
-    {
-      "id": "ten-billion-in-equity-capex-that-outgrew-cash-flow",
-      "label": "Alibaba proposes $10 billion share placement to fund global AI drive",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-ten-billion-in-equity-capex-that-outgrew-cash-flow"
-      ],
-      "eventUri": "eng-11946561",
-      "summary": "Alibaba is raising $10 billion in new equity — not debt, not cash flow — to fund AI infrastructure. That choice is the story: a company sitting on large reserves is diluting existing shareholders instead, which says the capex line is now too big and too front-loaded to fund from operations. Lead with the instrument. The structural why is that AI datacentre spend has become a capital-markets question rather than an IT budget one, and Chinese firms carry an extra constraint — export controls mean a share of that $10bn buys domestic accelerators at worse performance per dollar. Note who bears the dilution.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Alibaba_Group",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Hong_Kong",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Equity_(finance)"
-      ]
-    },
-    {
-      "id": "solvable-wells-where-tight-binding-gets-its-numbers",
-      "label": "Analytical solution to the Kronig-Penney model with harmonic oscillator wells: insights to tight-binding",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-solvable-wells-where-tight-binding-gets-its-numbers"
-      ],
-      "eventUri": null,
-      "summary": "Every semiconductor device simulation rests on band structure, and band structure is taught and approximated through two models: Kronig-Penney, which is solvable but uses unphysical square wells, and tight-binding, which is physical but empirical. This paper solves Kronig-Penney exactly with harmonic-oscillator wells and shows where tight-binding's fitted parameters come from. Lead with what an exact solution buys — a closed form is something you can differentiate, so device parameters can be derived rather than fitted. The reader is an engineer who has used a tight-binding parameter table without knowing what sets its numbers.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-derivative-not-the-level-fat-trajectory-and-diabetes",
-      "label": "Dynamic change in body fat percentage and the risk of diabetes mellitus: a longitudinal analysis",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-the-derivative-not-the-level-fat-trajectory-and-diabetes"
-      ],
-      "eventUri": null,
-      "summary": "The finding is about the derivative, not the level: it is the change in body fat percentage over time, not a single high reading, that predicts diabetes onset. Lead with that, because it inverts how screening actually works — clinics measure BMI once and compare it to a threshold, which discards the trajectory that carries the signal. The structural why matters for the Gulf and South Asia, where diabetes prevalence is among the world's highest and screening is threshold-based; a population can sit under a cut-off and still be moving toward disease. Give the cohort size and follow-up period, and be explicit that this is observational, not causal.",
-      "conceptUris": []
-    },
-    {
-      "id": "biodegradable-on-the-label-the-additive-does-the-lying",
-      "label": "Blowing in the wind, humble balloon gets green makeover",
-      "firstSeen": "2026-08-23T12:12:19.204Z",
-      "lastCovered": "2026-08-23T12:12:19.204Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-biodegradable-on-the-label-the-additive-does-the-lying"
-      ],
-      "eventUri": null,
-      "summary": "Latex balloons are marketed as biodegradable and are among the deadliest debris items for seabirds and turtles, because the plasticisers and dyes added for shelf life stop the latex breaking down in seawater. UK researchers reformulated the additive package rather than the polymer. Lead with the mortality data, not the chemistry — a balloon is a rounding error in plastic tonnage and disproportionately lethal per gram because it is soft, mistakable for prey, and lodges in gut tracts. The transferable point is that 'biodegradable' certifies the base polymer, not the finished product, which is a labelling gap far wider than balloons.",
       "conceptUris": []
     }
   ]
