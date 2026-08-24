@@ -2,13 +2,232 @@
   "version": 1,
   "stories": [
     {
+      "id": "nvidia-vendor-financing-circularity",
+      "label": "Nvidia As The New Banker For AI Gold Rush",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-nvidia-vendor-financing-circularity"
+      ],
+      "eventUri": "eng-11942936",
+      "summary": "Nvidia now finances the customers who buy its chips — equity stakes, backstopped leases and vendor credit to the neoclouds and model labs whose purchase orders become its revenue. Lead with the circularity, not the earnings preview: when the seller funds the buyer, demand and financing are the same number counted twice, which is the mechanism behind every capex boom that ended badly (Lucent and the CLECs in 2000 is the exact precedent). Who is affected: not Nvidia shareholders first, but the pension and index money that owns the largest position in the world through funds nobody chose deliberately, and the sovereign AI programmes in the Gulf and India buying at the top of the cycle. Who holds power: one supplier that sets both the price of compute and the credit terms on which it is bought. Give the reader the arithmetic — what share of the revenue Wall Street is waiting on is financed by Nvidia itself. Note the three sources diverge sharply in tone (sentiment divergence 0.37): Investing.com relays Citi's buy-side optimism, Hindustan Times frames it as Wall Street dependency. Report the disagreement rather than averaging it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+        "http://en.wikipedia.org/wiki/Semiconductor",
+        "http://en.wikipedia.org/wiki/Wall_Street",
+        "http://en.wikipedia.org/wiki/Valuation_(finance)",
+        "http://en.wikipedia.org/wiki/Nasdaq"
+      ]
+    },
+    {
+      "id": "parandur-shelved-farmland-airport-veto",
+      "label": "Why Vijay shelved the Parandur project despite Chennai's need for another airport",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-parandur-shelved-farmland-airport-veto"
+      ],
+      "eventUri": "eng-11948011",
+      "summary": "Tamil Nadu's new chief minister cancelled the Parandur greenfield airport in the Assembly, four years after farmers in thirteen villages began a continuous protest against the land acquisition it required. Lead with what actually moved the project: not a feasibility study but an unbroken village sit-in that outlasted a government. Who is affected on both sides — roughly a thousand families whose paddy land and the Eekkadu lake system were inside the footprint, and a Chennai airport already past its design capacity with no second field. Who holds power: a state that can acquire land under a 2013 law whose consent and social-impact clauses states have systematically diluted. The structural why for the reader: greenfield infrastructure in dense agrarian India has no empty land to use, so every project is a transfer from cultivators to travellers, and the only question is whether the transfer is negotiated or imposed. Say plainly what is unresolved — a replacement site is promised but unnamed, which means the same fight relocates rather than ends. Both sources are Indian; keep the electoral framing thin, the durable fact is the acquisition precedent.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vijay_(actor)",
+        "http://en.wikipedia.org/wiki/Chief_minister",
+        "http://en.wikipedia.org/wiki/Tamil_Nadu",
+        "http://en.wikipedia.org/wiki/Airport",
+        "http://en.wikipedia.org/wiki/Chennai",
+        "http://en.wikipedia.org/wiki/Agriculture",
+        "http://en.wikipedia.org/wiki/Airports_Authority_of_India",
+        "http://en.wikipedia.org/wiki/Dravida_Munnetra_Kazhagam"
+      ]
+    },
+    {
+      "id": "warsh-jackson-hole-dollar-rate-signal",
+      "label": "BTC, ETH price news: Bitcoin pauses near $77,000 ahead of Warsh's Jackson Hole debut",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-warsh-jackson-hole-dollar-rate-signal"
+      ],
+      "eventUri": null,
+      "summary": "Write the Fed story, not the crypto story: Kevin Warsh's first Jackson Hole address as chair is the event every asset class in this report is positioned around — Asian equities down, Brent and Treasury yields lower, bitcoin flat after a 21 percent week. Lead with the asymmetry that matters to a reader outside the US: one unelected official's framing of the policy path reprices the dollar, and therefore reprices the import bill, the debt service and the currency of every country that borrows in it — Egypt, Pakistan, Nigeria, Indonesia. The mechanism to explain is why a Fed chair's tone moves more capital than most governments' budgets: dollar rates are the world's discount rate, and Jackson Hole is where the committee's read on them is signalled before it is voted. Warsh's own record is the substance — a persistent inflation hawk who dissented toward tighter policy after 2008 — so give the reader what a hawkish debut would cost emerging-market borrowers in concrete terms. Treat the 21 percent weekly crypto move as evidence of liquidity expectations, not as the subject. Single US source; attribute the market levels to CoinDesk and keep them as of the Asian session.",
+      "conceptUris": []
+    },
+    {
+      "id": "khan-younis-nasser-delayed-death",
+      "label": "Casualties reported in Israeli attacks on Khan Younis",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-khan-younis-nasser-delayed-death"
+      ],
+      "eventUri": null,
+      "summary": "A man died on Monday morning at Nasser Hospital in Khan Younis of wounds from an Israeli strike the day before; the Israeli military says it struck a Hamas commander and has not said whether he was hit. Continuation of injustice is the development — write the interval, not the incident: the gap between a strike and a death is the collapsed medical system, and Nasser is the last functioning referral hospital in southern Gaza, operating on generator power with rationed blood and no ICU capacity. Who is affected: a named man in a named hospital, and every casualty who becomes a delayed death because there is no surgical theatre free. Who holds power: the party choosing the strike, and the party controlling what crosses into Gaza to treat its results. The mechanism worth teaching the reader is that 'targeted' is a claim about intent, not about outcome, and that an unverified target claim published alongside a confirmed death is not a balance of facts — report the death as established and the targeting as asserted. Sourcing note for honesty: Iranian state media relaying Gaza medical sources is the only account in today's feed; no wire, and no Palestinian outlet, carried it. Attribute the medical source explicitly and give the count as reported.",
+      "conceptUris": []
+    },
+    {
+      "id": "under-16-ban-age-assurance-cost",
+      "label": "New Zealand to introduce bill banning social media for children under 16",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-under-16-ban-age-assurance-cost"
+      ],
+      "eventUri": "eng-11948030",
+      "summary": "Luxon's government will introduce a bill barring under-16s from social media, and the prime minister conceded in the same breath that it 'won't be simple' — that admission is the lead, because the entire policy reduces to a question he has not answered: how a platform establishes a user's age without checking every adult's identity too. Lead with the mechanism, because it is the whole consequence: age assurance means either government ID upload, facial age estimation, or data-broker inference, and all three convert an anonymous account into a verified one for the whole population, not just for children. Who holds power: three or four foreign platforms that will build one compliance system and apply it globally, which is why Australia's 2024 ban matters far beyond Australia — it wrote the template New Zealand is now copying, and the template travels to jurisdictions with no privacy regulator at all. Who is affected: teenagers cut off from the networks where diaspora and minority communities organise, and every adult who will now prove their age to speak. Give the reader the harms Luxon names — addictive design, sleep, mental health — and note honestly what the evidence base for a hard age cutoff does and does not show. Two sources, Philippine and Indian; neither is a New Zealand outlet, so lean on Luxon's quoted words rather than local political framing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Social_media",
+        "http://en.wikipedia.org/wiki/New_Zealand",
+        "http://en.wikipedia.org/wiki/Christopher_Luxon",
+        "http://en.wikipedia.org/wiki/TikTok",
+        "http://en.wikipedia.org/wiki/Instagram",
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Facebook",
+        "http://en.wikipedia.org/wiki/New_Zealand_First"
+      ]
+    },
+    {
+      "id": "seized-cargo-sold-butterfly-children",
+      "label": "Iran seizes, sells US oil cargo for EB patients",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-seized-cargo-sold-butterfly-children"
+      ],
+      "eventUri": null,
+      "summary": "Iran's judiciary says a US oil cargo seized in the Persian Gulf in 2023 was sold under court order and the proceeds directed to patients with epidermolysis bullosa — the rare genetic condition whose sufferers, known in Iran as 'butterfly children', cannot get the imported Mepilex dressings that are their only treatment because sanctions cut the payment channel, not the export licence. Lead with that loop, because it is the entire story: a state monetises a confiscated tanker cargo to buy medicine it is nominally permitted to import but practically cannot pay for. Who is affected: a few hundred children whose skin blisters at contact and who need the dressings weekly; who holds power: the banks that decline the transfer rather than any sanctions regulator, which is the mechanism readers most often miss — humanitarian exemptions exist on paper and fail at the correspondent bank. Report the seizure honestly as an act Washington calls piracy and Tehran calls enforcement of a court judgment, and note that a one-off cargo sale funds a patient group for months, not a health system. Sourced solely to Iranian state media relaying the judiciary; attribute throughout and treat the proceeds figure as claimed. Complements this week's sanctions-and-Hormuz arc from the medical side rather than the oil-price side.",
+      "conceptUris": []
+    },
+    {
+      "id": "riyom-raids-rifles-as-resupply",
+      "label": "Gunmen kill two security operatives, seize rifles in Plateau",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-riyom-raids-rifles-as-resupply"
+      ],
+      "eventUri": null,
+      "summary": "Gunmen attacked Tanjol and Tarai in Jol District of Riyom LGA, killed two security operatives and took their rifles. Lead with the rifles, not the deaths: every successful raid on a checkpoint transfers weapons from the state to the attackers, so the local security force is the armoury, and each attack makes the next one cheaper. That arithmetic is why Plateau's violence compounds rather than burns out. Who is affected: farming villages on the Jos Plateau where the same communities have been raided for a decade along a fault line the shorthand calls farmer-herder but which is really about land tenure — indigene-versus-settler rules that make citizenship in Plateau State hereditary and lock migrants out of land title permanently. Who holds power: Abuja, which owns every armed officer, since Nigerian states have no police of their own — the same constitutional gap that left Niger State issuing statements after the Borgu mosque abduction two days ago. Do not write this as the third instalment of that story; write the weapons-capture mechanism that neither earlier piece covered. Single Nigerian source, casualty count as reported, no group named — say so.",
+      "conceptUris": []
+    },
+    {
+      "id": "term-finance-governance-bought-not-broken",
+      "label": "Ethereum lending app Term Finance loses $8.5 million after attacker buys voting power",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-term-finance-governance-bought-not-broken"
+      ],
+      "eventUri": "eng-11947008",
+      "summary": "Nobody broke Term Finance's code — the attacker bought enough governance tokens to vote themselves the permissions that drained $8.5 million from a vault, then the protocol closed the product and revoked the governance layer that made it possible. Lead with that distinction, because it is the lesson: this was not an exploit of a bug but an exercise of a documented feature at a price the market set. The mechanism to teach is governance capture as a purchasable attack — if control of a contract is a liquid token, then the cost of taking over the contract is a quote on an exchange, and any treasury smaller than the token's float is underwriting its own theft. Who is affected: depositors in a custom vault, and Yearn, which had to state publicly that its standard vaults were untouched because Term's bespoke governance wrapper, not Yearn's code, was the hole. Who holds power: whoever can afford the float. The structural why for the reader: 'decentralised governance' and 'security' are in direct tension — the more freely voting power trades, the cheaper an administrative takeover becomes, and this is the same class of failure as Beanstalk in 2022, which should have settled the question. Single US source; the loss figure is estimated and Term's own account.",
+      "conceptUris": []
+    },
+    {
+      "id": "armed-services-revolving-door-defense-startups",
+      "label": "31 ex-lawmakers, staffers joined military firms in past 10 years",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-armed-services-revolving-door-defense-startups"
+      ],
+      "eventUri": null,
+      "summary": "A Bulletin of the Atomic Scientists count finds 31 former members of Congress and senior armed-services staff moved into weapons firms in a decade — 21 lawmakers who sat on the committees writing the NDAA, plus 10 committee staff directors. Lead with the named case that shows the mechanism working in real time: Chris Vieson, ex-staff director of House Armed Services, now sits on the congressional commission advising on the Navy's future while registered as a lobbyist for Saronic, which builds the unmanned vessels that commission is chartered to promote. The structural why, and the reason this is a tech story: the new arrivals are not Lockheed and Boeing but Anduril, Palantir and Andreessen Horowitz, and the pitch that carries them past the Pentagon's acquisition rules is speed — software cycles beat procurement cycles, so the process built to stop exactly this is waived on the grounds that it is too slow. Who is affected: taxpayers in a budget the report's author says only ever rises, and every country on the receiving end of autonomous systems procured without the review a fighter jet would get. Include the disclosure failures by name (seven armed-services members in STOCK Act violation this year) and the author's own conclusion that disclosure law without prosecution changes nothing. Sourcing discipline: the underlying report is public and its subjects are named — attribute figures to the Bulletin, not to Responsible Statecraft, whose editorial line is restraint-advocacy, and keep its framing out of the piece.",
+      "conceptUris": []
+    },
+    {
+      "id": "wifi-8-reliability-over-throughput",
+      "label": "Wi-Fi 8 is the first wireless upgrade in years that isn't chasing speed",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-wifi-8-reliability-over-throughput"
+      ],
+      "eventUri": null,
+      "summary": "Wi-Fi 8 (802.11bn) keeps the same peak throughput as Wi-Fi 7 and spends its entire engineering budget on reliability instead — the standard's own name for its goal is Ultra High Reliability, and the target is worst-case latency and packet loss at the edge of coverage, not the headline number on the box. Lead with the reversal, because thirty years of this standard sold megabits: the committee concluded the bottleneck is no longer bandwidth but contention, so the new machinery is coordinated scheduling between neighbouring access points and seamless roaming that stops the handoff drop. Who is affected most, and the reason this matters beyond a router review: the places where Wi-Fi actually carries the internet rather than supplementing fibre — apartment blocks in Karachi, Lagos, Cairo and Jakarta where dozens of radios share the same channel and the failure mode has always been congestion, not link rate. The reader is a developer or network operator: give them what changes concretely, and say plainly that Wi-Fi 8 is a draft standard with certification and silicon still ahead, so nothing shipping today implements it. Aggregated to Hacker News (315 points); the underlying write-up is XDA Developers — cite the standard itself where the claims are technical.",
+      "conceptUris": []
+    },
+    {
+      "id": "hexokinase-2-cortical-progenitor-metabolism",
+      "label": "Embryonic loss of hexokinase 2 promotes cortical progenitor proliferation and causes autism-like behaviors in mice",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-hexokinase-2-cortical-progenitor-metabolism"
+      ],
+      "eventUri": null,
+      "summary": "Deleting hexokinase 2 — the enzyme that commits glucose to the first step of glycolysis — from the embryonic mouse brain made cortical progenitor cells divide more, and the resulting mice showed autism-like social and repetitive behaviours. Lead with what is surprising to a reader who thinks of neurodevelopment as a genetic program: the variable here is metabolic, not a synapse gene or a transcription factor, and the finding is that how a progenitor cell burns sugar sets how many neurons it makes. The mechanism to explain is the switch between glycolysis and oxidative phosphorylation as a proliferation signal — dividing progenitors run on glycolysis, differentiating neurons switch to mitochondrial respiration, so removing the glycolytic commitment step holds cells in the dividing state longer and the cortex ends up wrongly sized. Who this matters to: the reader should get the honest boundary — this is a mouse knockout producing behaviours scored as autism-like on rodent assays, which is a model of a mechanism and not a cause of human autism, and the piece must not let the headline word do work the data cannot. What's next: whether the same metabolic window is sensitive to maternal glucose, which is where the finding would connect to something modifiable. Early-access accepted version; note the DOI is permanent but the text may still change.",
+      "conceptUris": []
+    },
+    {
+      "id": "bajaur-mohmand-rooftop-monsoon-storage",
+      "label": "Rainwater harvest initiative launched in Bajaur, Mohmand",
+      "firstSeen": "2026-08-24T08:09:06.857Z",
+      "lastCovered": "2026-08-24T08:09:06.857Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-24-bajaur-mohmand-rooftop-monsoon-storage"
+      ],
+      "eventUri": null,
+      "summary": "Rooftop rainwater harvesting systems have been installed in Bajaur and Mohmand, two of the tribal districts merged into Khyber Pakhtunkhwa in 2018, starting with government buildings in Civil Colony Khar. Lead with the water arithmetic, not the ribbon-cutting: these districts get most of their annual rainfall in a few monsoon weeks and then run dry, and the constraint is not rainfall volume but storage — a roof of a few hundred square metres captures tens of thousands of litres from a single season that currently runs off into ephemeral streams and is gone. Who is affected: households, overwhelmingly the women and girls who carry water, in districts where the alternative is a deepening tube well in an aquifer that monsoon runoff no longer recharges because it never stops long enough to infiltrate. Who holds power: the additional deputy commissioner's office, which is where the merged districts' development budget is actually spent, and which is why the first installation is on an administrative building rather than a village. The structural why: this is adaptation at the cheapest possible unit cost — a tank, a gutter and a filter against a glacier-and-monsoon water system that is becoming less predictable each decade. Be honest about scale: this is a pilot on public buildings, and the piece should say what it would take to reach households. Single Pakistani source, which is the right regional outlet for the story.",
+      "conceptUris": []
+    },
+    {
       "id": "hormuz-shutdown-threat-sanctions-reply",
       "label": "Shares flat in Asia before Iran sanctions news, Nvidia results",
       "firstSeen": "2026-08-24T04:11:37.197Z",
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hormuz-shutdown-threat-sanctions-reply"
@@ -32,7 +251,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-shein-hong-kong-listing-everlane-security-review"
@@ -55,7 +274,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-goyal-japan-delegation-semiconductor-inputs"
@@ -78,7 +297,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-razih-shelling-saada-border-strip"
@@ -94,7 +313,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-mbda-ukraine-coproduction-veto-removed"
@@ -110,7 +329,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-lutyens-upkeep-versus-school-audits"
@@ -126,7 +345,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-karachi-hashish-route-crew-convicted"
@@ -142,7 +361,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-lahore-echallan-cnic-database-join"
@@ -158,7 +377,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-frontier-model-price-quality-decoupling"
@@ -174,7 +393,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-clap-and-fling-wing-phase-control"
@@ -190,7 +409,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-phaselis-lime-mortar-recycled-brick-binder"
@@ -206,7 +425,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-mumbai-food-inspections-discretion-not-capacity"
@@ -222,7 +441,7 @@
       "lastCovered": "2026-08-24T04:11:37.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-24-plesetsk-unnamed-payload-orbit-tells"
@@ -238,7 +457,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-conakry-landfill-collapse-thirty-killed"
@@ -263,7 +482,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-uzbekistan-azerbaijan-middle-corridor-trade-target"
@@ -288,7 +507,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-borgu-mosque-abduction-federal-policing-gap"
@@ -304,7 +523,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-isi-chief-bahrain-gulf-security-hedge"
@@ -320,7 +539,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-belarus-north-korea-visa-waiver-sanctions-channel"
@@ -336,7 +555,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-iran-fars-gas-field-reserves-not-output"
@@ -361,7 +580,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-canada-matches-us-tariffs-supply-chain-compounding"
@@ -377,7 +596,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-sec-regulation-crypto-fundraising-rules"
@@ -393,7 +612,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-protein-degradation-developmental-clock"
@@ -409,7 +628,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-federated-learning-farm-sensors-energy-budget"
@@ -425,7 +644,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-model-design-beats-scale-hallucination"
@@ -441,7 +660,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-ai-priced-device-unlocking-266-dollars"
@@ -457,7 +676,7 @@
       "lastCovered": "2026-08-23T22:11:04.061Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-23-aesthetic-models-heritage-benchmark-gap"
@@ -473,7 +692,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-voting-at-kazakhstan-s-parliamentary-elections-over"
@@ -498,7 +717,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-pti-demands-imran-s-ct-angiography-be-conducted-at-shifa-int"
@@ -514,7 +733,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-several-detained-after-300-people-gathered-at-delhi-s-connau"
@@ -530,7 +749,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-american-federation-of-teachers-launches-boycott-against-tar"
@@ -546,7 +765,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-charges-for-services-in-hormuz-approved-in-iranian-parliamen"
@@ -562,7 +781,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-crypto-card-spending-tops-1-billion-as-stablecoins-move-into"
@@ -578,7 +797,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-xrp-price-yield-curve-control-hopes-sparks-50-weekly-gain"
@@ -594,7 +813,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-crosscountry-cancels-almost-all-uk-services-after-power-cut"
@@ -619,7 +838,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-due-to-need-for-absolute-success-china-delays-critical-moon"
@@ -644,7 +863,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-22-there-s-no-reason-for-software-to-be-slow-anymore"
@@ -660,7 +879,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-21-a-week-of-using-codex-more-than-claude"
@@ -676,7 +895,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-jwst-peeks-at-callisto-s-ancient-scars"
@@ -692,7 +911,7 @@
       "lastCovered": "2026-08-23T17:08:35.541Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-23-remineralization-of-initial-enamel-caries-in-young-permanent"
@@ -708,7 +927,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-wartime-vote-a-roll-you-cannot-assemble"
@@ -731,7 +950,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-twenty-fifth-round-a-border-managed-not-drawn"
@@ -755,7 +974,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-wana-doag-a-proxy-outlives-its-purpose"
@@ -771,7 +990,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-nyakallong-term-break-hunger-on-a-school-calendar"
@@ -787,7 +1006,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-cairo-tehran-line-a-channel-without-an-embassy"
@@ -803,7 +1022,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-scorecard-mismatch-stability-is-not-productivity"
@@ -819,7 +1038,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-crude-rich-fuel-short-the-cracking-unit-constraint"
@@ -835,7 +1054,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-mongolian-steppe-herds-privatised-grass-was-not"
@@ -851,7 +1070,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-nine-three-nine-a-record-with-a-power-cord"
@@ -875,7 +1094,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-ten-billion-in-equity-capex-that-outgrew-cash-flow"
@@ -897,7 +1116,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-solvable-wells-where-tight-binding-gets-its-numbers"
@@ -913,7 +1132,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-the-derivative-not-the-level-fat-trajectory-and-diabetes"
@@ -929,7 +1148,7 @@
       "lastCovered": "2026-08-23T12:12:19.204Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-23-biodegradable-on-the-label-the-additive-does-the-lying"
@@ -945,7 +1164,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-bas-2035-a-station-is-a-launch-cadence"
@@ -970,7 +1189,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-munir-tehran-visit-the-general-holds-the-file"
@@ -986,7 +1205,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-afghan-girls-ban-a-cohort-not-a-service"
@@ -1002,7 +1221,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-bhavnagar-hooch-prohibition-removes-the-quality-control"
@@ -1018,7 +1237,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-section-163-standing-order-a-ban-that-precedes-the-protest"
@@ -1034,7 +1253,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-apo-karshi-sixteen-years-delay-as-a-financing-instrument"
@@ -1050,7 +1269,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-double-stack-jnpt-the-wire-height-decides-the-freight-rate"
@@ -1066,7 +1285,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-japan-drydock-alliance-measured-in-berth-months"
@@ -1082,7 +1301,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-change-7-polar-ice-propellant-not-water"
@@ -1098,7 +1317,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-ak-203-korwa-indigenous-measured-at-the-wrong-layer"
@@ -1114,7 +1333,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-v2g-siting-the-ev-problem-is-voltage-not-energy"
@@ -1130,7 +1349,7 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-murrelet-nest-you-cannot-protect-what-you-cannot-find"
@@ -1146,230 +1365,13 @@
       "lastCovered": "2026-08-23T08:10:18.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-23-harpe-or-jawbone-when-a-citation-replaces-the-evidence"
       ],
       "eventUri": null,
       "summary": "A study re-examines an object held by Saturn on Roman Republican coinage that has been catalogued for centuries as a harpe — a curved mythological sickle — and argues from morphology that it is an animal jawbone. Lead with how the question gets settled rather than with the answer, because the method is the finding: the authors test the image against the actual anatomy of a mandible and against the shape of a known harpe, which turns a two-hundred-year-old cataloguing convention into a falsifiable claim. Teach the mechanism our reader should carry — in numismatics and iconography, an early identification propagates. It is copied into the type catalogue, the catalogue becomes the reference every later scholar cites, and the citation count starts standing in for the evidence, so the claim gets stronger with age while acquiring no new support. That is a general failure mode of cumulative scholarship, and it is why re-examining a settled attribution with a method the original lacked is real work rather than pedantry. If the object is a jawbone, the reading of the coin changes: the tool identifies the deity, and Saturn holding an agricultural or sacrificial implement rather than a mythological weapon points at a different cult and a different message from the moneyer who struck it — Republican coinage was a political medium, and the imagery was chosen. Establish which coin types and which years, who first identified the harpe and on what basis, exactly what morphological comparison the authors performed and what they conclude with what confidence, what alternative readings they consider and reject, which jaw of which animal, and what the revised reading implies about the moneyer's family claim or the associated cult. Keep the claim exact: this is an argument from shape, not a decipherment. Nature (Humanities and Social Sciences Communications), early-access accepted manuscript — say so, name the authors, and give the DOI.",
-      "conceptUris": []
-    },
-    {
-      "id": "warri-scam-node-fraud-assembled-across-jurisdictions",
-      "label": "INVESTIGATION: The multi-million dollar Norwegian scam and the role of a Nigerian",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-warri-scam-node-fraud-assembled-across-jurisdictions"
-      ],
-      "eventUri": null,
-      "summary": "Original investigative reporting: a self-described web developer in an unplastered building in Warri, Delta State, is named as the technical hand behind a multi-million-dollar investment fraud that took money from Norwegian victims. Lead with the geography of the division of labour, because that is the mechanism our reader should carry: transnational investment fraud is now assembled from parts sourced where each part is cheapest — the front (a TikTok-fluent 'financial adviser' persona) built where the victims are, the payment rails where regulation is thinnest, and the site-building and infrastructure work bought in Nigeria for a fraction of a Norwegian wage. The Nigerian developer is simultaneously an instrument and the most legally exposed link in the chain, because he is the one inside a jurisdiction with no mutual-enforcement pathway to the money's destination. Establish who David Erubure is and what he is documented as having built, how much was taken and from how many Norwegian victims, what NRK's own reporting established and what Premium Times adds to it, exactly what the platform promised investors, where the funds moved and through which processors, whether the EFCC has charged anyone and whether Norway has sought extradition or mutual legal assistance, and what recovery victims have actually obtained. Who holds power: the operators who never appear in the jurisdiction where the harm lands; who bears the cost: retail Norwegian savers, and a Nigerian legal system that inherits prosecution of a crime it did not host. Nigeria is an OIC member and Premium Times (NG) is the regional outlet doing the original reporting — attribute characterisations of Erubure's role to the investigation and to any charging document, not to neighbours' descriptions.",
-      "conceptUris": []
-    },
-    {
-      "id": "khunjerab-customs-record-a-corridor-is-a-direction",
-      "label": "Khunjerab Pass generates record Rs15 billion in customs revenue",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-khunjerab-customs-record-a-corridor-is-a-direction"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan Customs collected a record Rs15 billion on imports from China through the Khunjerab Pass in FY2025-26, while goods worth Rs2.8bn went the other way to China and Central Asia. Lead with the ratio, not the record: more than five rupees of duty collected on inbound Chinese goods for every rupee of outbound trade, at the one land crossing that is supposed to be the northern artery of the China-Pakistan Economic Corridor. Teach the mechanism our reader should carry — a corridor is not a trade relationship, it is a direction. Infrastructure built to move goods can only move what a country has to sell, so a pass upgraded for connectivity turns into a highly efficient import channel and a customs-revenue line, which is fiscally welcome and structurally exactly backwards for a country with a chronic current-account problem. Establish the actual figures Wajid Ali gave and the year-on-year change, what the previous record was, what is imported and what is exported through Sust, how many days a year the pass is open (it closes for winter — that constraint is load-bearing and rarely stated), what share of total Pakistan-China trade crosses here against the sea route through Karachi and Gwadar, what the Central Asian transit component actually amounts to, and what CPEC documents projected for this crossing against what it delivers. Who bears the cost: Gilgit-Baltistan, which hosts the crossing, collects federal revenue from it, and holds no provincial status from which to claim a share. Pakistan is an OIC state and Dawn (PK) is the regional source, reporting from Gilgit on customs figures — attribute the numbers to Pakistan Customs. Note the feed's concept extraction mislabelled 'Pakistan Customs' as a cricket team; the entity is the revenue service.",
-      "conceptUris": []
-    },
-    {
-      "id": "tata-ev-price-rise-batteries-fell-magnets-did-not",
-      "label": "Tata Motors To Hike Car Prices By Up To Rs 25,000 From September 1",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-tata-ev-price-rise-batteries-fell-magnets-did-not"
-      ],
-      "eventUri": "eng-11941832",
-      "summary": "Tata Motors raises prices up to Rs 25,000 from 1 September across its whole passenger portfolio — and the detail worth leading with is that the increase covers electric vehicles as well as combustion ones. Everything in the EV cost narrative says battery packs get cheaper every year, so an EV price rise is a claim that some other input moved harder than cells fell. Teach the mechanism our reader should carry: an EV bill of materials is not mostly battery any more — it is rare-earth permanent magnets for the traction motor, power electronics, and imported drivetrain assemblies, all of which sit downstream of Chinese export controls and Indian import duty, so 'cheaper batteries' and 'cheaper electric cars' have quietly stopped being the same sentence. Establish exactly which models and variants rise and by how much, what Tata itself states as the reason and how that compares with what Maruti, Hyundai and Mahindra have announced for the same period, the September 1 effective date against India's festive buying season and what a pre-festive hike signals about expected demand, Tata's EV market share and what its EV volumes have done this year, and whether GST or customs-duty changes on components fall in the same window. Who bears the cost: Indian first-car buyers financing at the margin, for whom Rs 25,000 is roughly a month of median urban income. SELECTION NOTE FOR AUDIT: this was the only multi-source story in the entire 2026-08-23 04:00 feed — 1 cluster against a typical 8-13 — so the politics and economy multi-source floors could not be met this cycle from any candidate, weak or strong. The feed-side collapse, not editorial judgement, is what to investigate. Three Indian sources (NDTV, News18, MoneyControl), divergence 0.04, so there is no framing dispute to adjudicate — the sources agree and add little to each other; carry the component-cost analysis independently.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tata_Motors",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Internal_combustion_engine",
-        "http://en.wikipedia.org/wiki/SUV",
-        "http://en.wikipedia.org/wiki/Electric_vehicle",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Automotive_industry",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "lebanon-journalists-icc-demand-a-court-without-jurisdiction",
-      "label": "Lebanese families demand ICC trial for Israeli criminals",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-lebanon-journalists-icc-demand-a-court-without-jurisdiction"
-      ],
-      "eventUri": null,
-      "summary": "At a memorial in the Lebanese National Theatre called 'Martyrs of the Word and Image', the families of journalists killed in Lebanon by Israeli strikes asked for the ICC rather than for a Lebanese court. Lead with the choice of forum, because it is the whole story: relatives of the dead have concluded that no domestic remedy exists, and they are right for a reason worth stating plainly — Lebanon is not a state party to the Rome Statute, Israel is not either, and the Security Council will not refer, so the venue the families are demanding is one that currently has no jurisdiction over their case. Teach the mechanism our reader should carry: the ICC's reach is built from ratifications and referrals, not from the gravity of the crime, so a killing can be squarely within the court's subject-matter competence and entirely outside its territorial competence at the same time. That gap is not an oversight; it is the design, and Lebanon's own non-accession is part of it. Establish who the journalists were — name them and their outlets — when and where each was killed, how many media workers have been killed in Lebanon since the escalation and how many in Gaza over the same period, what investigations by RSF, CPJ or the UN have concluded about whether the strikes were deliberate, what Israel has said about each incident, what legal routes actually remain (universal jurisdiction in third states, a Lebanese Article 12(3) declaration accepting ICC jurisdiction, the ICJ), and what the Lebanese government has done or declined to do. Who bears the cost: families holding a memorial in place of a trial. SOURCING: Mehr (IR) is Iranian state media and an interested party to this conflict — attribute its account of the ceremony and its characterisations explicitly to Mehr, anchor casualty figures and investigative conclusions on CPJ, RSF or UN reporting, and do not adopt the word 'criminals' from the headline. No Lebanese outlet carried this in the feed; flag that gap for feed-side audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "barclays-five-ruling-how-far-the-terrorism-definition-reaches",
-      "label": "'Barclays 5' Palestine activists will not be tried as terrorists",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-barclays-five-ruling-how-far-the-terrorism-definition-reaches"
-      ],
-      "eventUri": null,
-      "summary": "A judge has ruled that the damage five Palestine activists caused at a Barclays branch does not meet the threshold for terrorism sentencing. Lead with what the ruling concedes by existing: the question was live, which means the prosecution asked a British court to treat window-breaking at a bank as terrorism and got far enough for a judge to have to say no. Teach the mechanism our reader should carry — under the Terrorism Act 2000 a 'terrorist' act includes serious damage to property done to influence a government and advance a political cause, so the statutory definition already reaches ordinary protest damage on its face, and the only thing standing between a protester and a terrorism uplift is prosecutorial discretion plus a judge's reading of seriousness. That is a very thin barrier, and it moves: this ruling is a ceiling placed by one judge, not a rule, so the next case starts from the same statute. Establish who the five are and what they did at which branch and when, the exact charges and what sentencing regime now applies, the judge's stated reasoning and the precise legal test applied, why Barclays was targeted — the campaign's claim about its holdings in arms manufacturers supplying Israel, which should be stated as the activists' claim with whatever documentary support exists — what the CPS argued, and how this sits alongside the proscription of Palestine Action and the arrests that followed it. Who holds power: the prosecutors choosing which statute to charge under; who bears the cost: anyone weighing whether a protest carries a criminal record or a terrorism conviction. SOURCING: Declassified UK is advocacy-forward and must not supply the framing — this entry is selected only because the underlying fact is a court ruling on the public record. Verify the ruling, the court, the judge and the charges against the court listing or mainstream legal reporting before publication, attribute every characterisation to Declassified, and if the ruling cannot be independently confirmed, drop the story rather than soften it.",
-      "conceptUris": []
-    },
-    {
-      "id": "one-nation-migration-arithmetic-the-carve-out-does-the-work",
-      "label": "One Nation MP concedes party's migration target 'not too different' from Labor's once rural workforce included",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-one-nation-migration-arithmetic-the-carve-out-does-the-work"
-      ],
-      "eventUri": "eng-11946236",
-      "summary": "One Nation MP David Farley concedes that his party's migration target is 'not too different' from Labor's once you add the 100,000 rural workers it also wants on top of the 130,000 it calls the 'true' number. Lead with the arithmetic, because the arithmetic is the argument: an anti-immigration party's real number and the governing party's real number converge to roughly the same figure, and the entire distance between them turns out to be which migrants get counted. Teach the mechanism our reader should carry — migration politics almost everywhere runs on the gap between the headline figure and the composition beneath it. Agricultural and care work that citizens will not do at the offered wage has to be filled, so every restrictionist programme quietly carves out a visa class for it, calls that class something other than migration, and campaigns against the residue. The same structure sits under Gulf kafala reform debates, Britain's seasonal worker scheme and the US H-2A visa: the objection is not to the number, it is to permanence and to who becomes a citizen. Establish exactly what Farley said and in what forum, One Nation's stated net overseas migration target and how it is constructed, Labor's current NOM figure and forecast, what Australian agriculture's actual labour shortfall is and what the existing backpacker and Pacific Australia Labour Mobility schemes already supply, what rights and pathway to residency a rural worker visa would carry, and what Farley was previously 'counselled' over. Who bears the cost: the workers admitted as labour but not as future citizens. Australia is the first Oceania story in the corpus in days — the daily audit has flagged the region at zero repeatedly, and this fills it with substance rather than filler.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-fourth-carrier-nuclear-propulsion-and-the-logistics-tail",
-      "label": "China's Next Aircraft Carrier Is Taking Shape",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-china-fourth-carrier-nuclear-propulsion-and-the-logistics-tail"
-      ],
-      "eventUri": null,
-      "summary": "China's fourth carrier is now visible enough in imagery to argue about, and the question that matters is whether it is nuclear-powered. Lead there rather than on the hull: conventional carriers are regional instruments because they are chained to oilers and to friendly ports, while a nuclear carrier is a global one, and the difference decides whether Chinese naval aviation is a Taiwan-and-South-China-Sea capability or an Indian Ocean and Gulf one. Teach the mechanism our reader should carry — the binding constraint on power projection is not the ship, it is the logistics tail. A conventionally powered carrier group burns fuel that must be replenished at sea from tankers that themselves need bases, which is precisely why every distant-water navy in history has needed a chain of coaling stations, and why Djibouti, Gwadar, Hambantota and the Ream facility are read the way they are. Nuclear propulsion removes the ship's own fuel from that chain but not its escorts' or its air wing's, so the upgrade buys reach without buying independence. Establish which yard, what the imagery actually shows and on what dates, the evidence for and against nuclear propulsion and who is making each claim, displacement and catapult type against Fujian and against a Ford-class, how many carriers each of China, the US and India will field this decade, and what China has actually said officially. Who this reaches: littoral states of the Arabian Sea and the Gulf — Pakistan, Oman, the UAE and Saudi Arabia all sit inside the radius this ship would open, and their naval planning is the downstream consequence our reader should weigh. Single-source satellite-imagery analysis from a specialist defence outlet — attribute every measurement to the imagery and date the images, mark nuclear propulsion as unconfirmed inference, not fact, and do not let 'could be' become 'is'. Keep this distinct from the AIM-424 entry in the same cycle: that one is a US missile programme, this is a Chinese hull.",
-      "conceptUris": []
-    },
-    {
-      "id": "drc-ebola-exponential-growth-measures-the-tracing-not-the-virus",
-      "label": "U.S. imposes new Cuba sanctions; Progressive wins California special election; Congo Ebola outbreak \"growing exponentially\"",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-drc-ebola-exponential-growth-measures-the-tracing-not-the-virus"
-      ],
-      "eventUri": null,
-      "summary": "WRITE ONLY THE EBOLA ITEM — the source is a daily bulletin and the other two items in its headline are separate stories that do not belong in this article. The news is that the Democratic Republic of Congo outbreak is described as growing exponentially. Lead with what 'exponentially' means operationally rather than emotionally: in an Ebola outbreak the growth rate is a direct readout of how many transmission chains are unobserved, because every case whose contacts are traced and monitored is a chain that stops, and exponential growth is the signature of chains nobody is watching. Teach the mechanism our reader should carry — Ebola is controlled by contact tracing and ring vaccination, not by treatment, so an outbreak's trajectory measures the surveillance system rather than the virus, and the virus itself has not changed. That is why the same pathogen produces 30 cases in Uganda and 3,000 in a conflict zone. Establish which province and which Ebola species, the case and death counts with their date and their source, the case-fatality rate, when the outbreak was declared, how many contacts are under follow-up against how many are estimated to exist, whether ERVEBO ring vaccination has started and how many doses are in country, how many health workers are infected — always the leading indicator of infection-control failure — what WHO's risk assessment says, and how the 2025-26 cuts to US global health funding and to WHO's emergencies budget have changed the response capacity that exists on the ground now versus in 2019. Who holds power: the donors who fund the surveillance layer; who bears the cost: Congolese families in districts where the tracing team never arrives. SOURCING: anchor every number on WHO African Region situation reports and the DRC health ministry, not on the bulletin — the bulletin is the pointer, not the evidence. Africa was 2 of 25 stories in yesterday's audit; this is the region's most consequential running story and it has not been covered.",
-      "conceptUris": []
-    },
-    {
-      "id": "fonio-export-demand-the-yield-gap-was-a-research-gap",
-      "label": "How changing diets are creating new markets for Africa's Indigenous crops",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-fonio-export-demand-the-yield-gap-was-a-research-gap"
-      ],
-      "eventUri": null,
-      "summary": "Gluten-free demand in wealthy markets is creating export value for African indigenous grains — fonio, teff, sorghum, millet — that agricultural policy spent decades treating as subsistence crops to be replaced. Lead with the reversal and name what caused it: the crops did not change and the agronomy did not change; a coeliac-driven consumer category in Europe and North America changed, and that is now setting the price of a Sahelian grain. Teach the mechanism our reader should carry — indigenous crops were displaced not because they yield less but because research, subsidy and extension services were built around wheat, maize and rice, so the yield gap is an artefact of where breeding money went for seventy years. Export demand can reverse that by funding the research, and it carries a specific hazard with it: once a subsistence grain acquires an export price, the households that grow it start selling the harvest and buying cheaper imported carbohydrate, which is the quinoa pattern, and it moves nutrition in the wrong direction while moving income in the right one. Establish which crops and which countries, actual export volumes and price movement rather than 'growing interest', the nutritional and agronomic case — fonio's 6-8 week cycle and drought tolerance against wheat's water demand is the fact that matters for the Sahel under warming — what breeding or processing investment has followed, who captures the margin between the farmgate and the European shelf, and what the evidence from the Andean quinoa experience actually shows about local consumption after an export boom. Who bears the cost or gains: smallholder women farmers, who hold most indigenous-crop cultivation and least of the export chain. Global Voices (NL) single-source. Fills the Africa gap the daily audit has flagged at 2 of 25.",
-      "conceptUris": []
-    },
-    {
-      "id": "phthalate-hormone-study-a-dose-response-built-for-the-wrong-molecule",
-      "label": "Exploring the association between environmental exposure to phthalates and bisphenol A and changes in reproductive hormones in women: a cross-sectional study",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-phthalate-hormone-study-a-dose-response-built-for-the-wrong-molecule"
-      ],
-      "eventUri": null,
-      "summary": "A cross-sectional study links measured body burdens of phthalates and bisphenol A to shifts in women's reproductive hormone levels. Lead with the exposure route rather than the endocrinology, because the route is what makes this a policy story: these are plasticisers and can linings, so the dose is set by food packaging, water storage and cosmetics, which means exposure is not a behaviour anyone chooses but a property of the supply chain a person can afford. Teach the mechanism our reader should carry — endocrine disruptors work by fitting a receptor well enough to signal, so their effects do not follow the usual dose-response rule that more is worse; low doses can act where high doses do not, which is exactly why the toxicology thresholds most regulators still use were built for the wrong kind of molecule. Be rigorous about what this study can and cannot support: a cross-sectional design measures exposure and hormones at the same moment, so it establishes association and cannot establish direction or causation, and the article must say so in its own voice rather than in a caveat at the end. Establish the cohort size, country and how participants were selected, which metabolites were assayed and in what medium, which hormones moved and by how much with confidence intervals, whether the effect survives adjustment for BMI, age and cycle phase, and what prior longitudinal work has found. Then the part that reaches our reader: regulatory divergence is the real finding — the EU restricts several of these compounds under REACH while much of Asia, Africa and the Gulf does not, so the same product sold in two markets carries different chemistry, and plastic water storage in hot climates raises leaching well above the conditions the safety limits were set under. This is an early-access accepted manuscript; say so and give the DOI.",
-      "conceptUris": []
-    },
-    {
-      "id": "llm-exam-drift-a-benchmark-that-expires",
-      "label": "Comparative performance and temporal variability of large language models on orthodontic questions from a national dental specialty examination",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-llm-exam-drift-a-benchmark-that-expires"
-      ],
-      "eventUri": null,
-      "summary": "Researchers ran several large language models against a national dental specialty examination and measured not only how well each scored but how much the same model's answers moved over time. Lead with the temporal variability, because that is the finding everyone else will bury under the leaderboard: the same model, given the same exam questions on two dates, does not give the same answers — and a system whose output drifts under a fixed input has no stable accuracy figure to quote. Teach the mechanism our reader should carry: a hosted model is a moving target. Providers retrain, quantise, re-route and swap system prompts behind an unchanged API name, so a hospital that validated a tool at 78% and deployed it has validated a version that no longer exists, and there is no version pin, no changelog and no regression suite in the way a medical device would require one. That is the actual regulatory gap in clinical AI, and it is invisible to every benchmark published as a single number. Establish which models were tested and at which dates, the exam and how many questions, the score for each model against the human pass mark, the magnitude of the drift between test rounds and whether it went up or down, whether the authors controlled temperature and sampling — this is essential, because drift from sampling randomness is a different claim from drift from a changed model, and the article must distinguish them — and what the authors recommend. Then the stakes: medical licensing exams are the most common way AI clinical competence is claimed to regulators and to the public, and this result says the claim expires. Relevant well beyond dentistry — Gulf and Southeast Asian health systems procuring diagnostic AI are buying against exactly these benchmarks. Early-access accepted manuscript; say so, give the DOI, and note it is exam performance, not patient outcomes.",
-      "conceptUris": []
-    },
-    {
-      "id": "aim-424-malice-the-missiles-range-is-the-networks-range",
-      "label": "AIM-424 \"Malice\" Very Long-Range Air-To-Air Missile Emerges From The Shadows",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-aim-424-malice-the-missiles-range-is-the-networks-range"
-      ],
-      "eventUri": null,
-      "summary": "The US Navy has acknowledged an extreme-range air-to-air missile, the AIM-424 'Malice', intended for the Super Hornet, the F-35C and the future F/A-XX. Lead with what a very-long-range missile is actually for, because it is not shooting down fighters: at these ranges the targets are the tankers, the airborne early warning aircraft and the jammers that a strike package cannot function without, and killing those is how you push an entire air force back beyond its own combat radius without ever engaging its fighters. Teach the mechanism our reader should carry — long-range air combat is a sensing problem, not a propulsion one. A missile can fly 300km, but something must see and keep seeing the target for the minutes it takes to arrive, which means the shot depends on a datalink chain running through satellites, other aircraft and ships. Every one of those links is jammable, and that is precisely why counter-space and electronic warfare have become air-superiority weapons: the missile's real range is the range of the network that guides it. Establish what the Navy has actually disclosed and when, the claimed range class against AIM-174B, AIM-260 and China's PL-17, which aircraft carry how many and what that does to a carrier's magazine depth, unit cost against the aircraft it is meant to kill, and the programme timeline. Then the consequence that reaches our reader: as these weapons proliferate, the airborne tanker and AEW fleets that every regional air force depends on — including Gulf states operating F-15s, F-16s and Rafales with a handful of irreplaceable support aircraft — become the decisive vulnerability, and a country can lose air superiority having lost no fighters at all. Single-source specialist defence reporting: attribute capability figures to the Navy or to the outlet's analysis and mark the range claims as estimates. Distinct from the China carrier entry this cycle — different programme, different country, do not merge.",
-      "conceptUris": []
-    },
-    {
-      "id": "bitmart-restart-a-failure-with-no-resolution-authority",
-      "label": "BitMart weighs partial restart, creditor payouts weeks after announcing shutdown",
-      "firstSeen": "2026-08-23T04:14:15.285Z",
-      "lastCovered": "2026-08-23T04:14:15.285Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-23-bitmart-restart-a-failure-with-no-resolution-authority"
-      ],
-      "eventUri": "eng-11944371",
-      "summary": "Four weeks after telling users it was closing, BitMart is considering restarting parts of its business while paying creditors — and the fact that it can simply decide this is the story. Lead there: a bank that announces it is shutting does not get to reopen on its own timetable, because a resolution authority takes the decision out of its hands the moment it becomes insolvent. BitMart has no such authority over it, so 'shutdown' and 'restart' are both management choices, and the customers whose assets sit inside are creditors of a firm that is still writing its own procedure. Teach the mechanism our reader should carry — the whole of depositor protection is the separation of the failing firm's interests from the decision about the failing firm. Deposit insurance, bank resolution and even ordinary bankruptcy exist to install an administrator with duties to creditors, and an offshore exchange is engineered to sit outside every one of those, which is why 'not your keys, not your coins' is a legal statement and not a slogan. Establish exactly what BitMart said on 26 July and what it is saying now, what user assets are frozen and at what value, which jurisdiction it is incorporated and licensed in and what insolvency regime would apply there if any, what role White & Case is playing and for whom, whether withdrawals are open, what a 'phased restart' means for someone who filed a claim, and how this compares with the FTX and Celsius estates where a court did appoint an administrator. Who holds power: the exchange's own management, still; who bears the cost: retail users outside the US and EU, for whom offshore exchanges are often the only access to the asset class. CoinDesk (US) single-source and close to the industry it covers — attribute the restructuring plans to the company and to unnamed sources as the outlet does, and do not report a considered restart as a decided one.",
       "conceptUris": []
     }
   ]
