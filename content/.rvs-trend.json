@@ -1,24 +1,5 @@
 [
   {
-    "ts": "2026-06-02T04:33:50.417Z",
-    "cycleId": "2026-06-02T04-33",
-    "cycleHour": "04",
-    "rvs": 68.56,
-    "clusters": {
-      "picking": null,
-      "writing": 86.11,
-      "briefing": 76.12,
-      "sourcing": 35.76,
-      "coverage": 67.9
-    },
-    "articleCount": 9,
-    "briefCount": 9,
-    "guardrailFailures": [
-      "category economy below floor 3 (got 1)"
-    ],
-    "degenerate": false
-  },
-  {
     "ts": "2026-06-02T08:39:29.768Z",
     "cycleId": "2026-06-02T08-39",
     "cycleHour": "08",
@@ -6687,6 +6668,24 @@
       "briefing": null,
       "sourcing": 39.11,
       "coverage": 81.1
+    },
+    "articleCount": 13,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-08-24T04:26:05.628Z",
+    "cycleId": "2026-08-24T04-26",
+    "cycleHour": "04",
+    "schema": 2,
+    "rvs": 66.39,
+    "clusters": {
+      "picking": null,
+      "writing": 69.23,
+      "briefing": null,
+      "sourcing": 36.73,
+      "coverage": 92.25
     },
     "articleCount": 13,
     "briefCount": 0,
