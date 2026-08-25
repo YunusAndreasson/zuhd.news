@@ -1,36 +1,36 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-25",
   "metrics": {
-    "articles": { "value": 60, "detail": "5 cycles, all 5 completed, avg 12/cycle" },
-    "freshness": { "median": 0.1, "p90": 1.1, "max": 1.1, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 15, "science": 12, "tech": 14 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
+    "articles": { "value": 66, "detail": "5 cycles, 5/5 completed, avg 13/cycle" },
+    "freshness": { "median": 0.2, "p90": 1.2, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 16, "science": 14, "tech": 14 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 17, "AM": 15, "AS": 14, "EU": 7, "AF": 4, "OC": 3 }
+      "breakdown": { "AM": 19, "ME": 16, "EU": 14, "AS": 12, "AF": 5, "OC": 0 }
     },
-    "sciTech": { "ratio": 43, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 47,
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 6, "target": 20, "met": true },
+    "uniqueSources": 43,
     "duplicates": 0,
-    "avgCycleDuration": 1297
+    "avgCycleDuration": 1514
   },
-  "experiment": "Skipped — every goal metric is met and the noNewExperimentsUntil gate (2026-08-26) is still in force. No active experiments to evaluate; activeExperiments remains empty.",
-  "weakestArea": "Regional depth outside the ME/AS/AM core: Africa drew 4 stories and Oceania 3 of 60, versus 17 for the Middle East. The uniqueRegions target of 4 is met comfortably, so no gate fires, but two regions are carried by a single cycle's picks each and would drop out entirely on a thin feed day. Cycle wall-time also rose to 1297s from the ~1033s norm, driven by the writer stage at 328s.",
+  "experiment": "Skipped — the noNewExperimentsUntil gate (2026-08-26) is still in force today, and every goal metric is inside target regardless. No active experiments to evaluate. The gate lifts tomorrow; drop the field then, since today is the third consecutive clean day of 5/5 scheduled cycles (08-23, 08-24, 08-25) that the gate was waiting for.",
+  "weakestArea": "Regional spread. The formal target (≥4 regions) is met at 5, but Oceania went to zero today after 3 articles yesterday, and Africa held at 5 of 66 (7.6%) — the same thin share as yesterday's 4. Coverage is concentrated in AM/ME/EU (74% of regional tags), so the region count is passing on breadth that is one dropout away from 4.",
   "watching": [
-    "First fully clean day since the OAuth outage — 5/5 scheduled cycles completed, versus 2/5 yesterday; one more clean day clears the pause gate on 2026-08-26.",
-    "Iran escalation cluster: Hormuz shutdown threat, Bessent's dollar-sanctions push, and the rial at a record low are three separate cycles converging on one story.",
-    "Red Sea / Gulf shipping risk after the Houthi strike on a Saudi tanker at Yanbu and the war-risk repricing that followed.",
-    "Chip sovereignty thread — Xiaomi's XRing O3, the Taiwan Nvidia-manager charges, and Nvidia financing its own buyers — worth a linked treatment rather than three standalones.",
-    "Teen-platform bans widening: New Zealand joins Australia, and the EU packaging file shows the same regulatory-spillover pattern."
+    "Hormuz: closure, a 'clear' declaration, a collapse in traffic and an oil price that did not move — four articles today on the same chokepoint with contradictory signals worth reconciling.",
+    "US–Russia contacts: a spy chief in Moscow, a C-17 at Vnukovo with a transponder gap, and an asset-seizure threat all landed in the same day.",
+    "SDF dissolution into the Syrian army — a structural change in northeast Syria that will generate follow-on stories for weeks.",
+    "Venezuela quake toll passing 6,500 with an unusual injured-to-dead ratio; the death toll is still moving.",
+    "ICE seeking national voter data alongside a voter-rolls contract story — a US data-access thread developing across two cycles."
   ],
   "coverageGaps": [
-    "Latin America is absent from the region breakdown — AM's 15 stories are overwhelmingly US-centred.",
-    "Africa at 4 of 60 leans on Nigeria and South Africa; the Sahel, Horn, and Great Lakes went uncovered apart from the Jonglei ambush.",
-    "Climate and environmental science appear only obliquely (floodwater toxins, basin risk) despite science running 12 stories.",
-    "Oceania coverage is policy-only — no Pacific Islands reporting."
+    "Oceania: zero articles today, down from 3 yesterday; no Pacific, Australian or New Zealand story cleared selection.",
+    "Africa: 5 of 66 articles, and three of them (Mozambique, Nigeria, sanctioned ship off West Africa) are conflict or crime framings — little economy or science from the continent.",
+    "Latin America outside Venezuela and the US boat strike is unrepresented despite AM's 19 tags, which are overwhelmingly US-datelined.",
+    "Science sourcing leans on a narrow set — Nature, Phys.org, Ars Technica and European Spaceflight carry most of the 14 science pieces; the rest are general outlets tagged science."
   ],
-  "context": "Metrics are the healthiest in weeks: freshness median 0.1 days, 16 multi-source articles against a target of 4, 43% sci-tech, and a 13% top-source share with 47 unique outlets. The pause gate exists because 2026-08-19→08-22 lost 16 consecutive scheduled runs to expired OAuth, contaminating every rolling window; today is the first clean day of the three needed before a new variable is introduced. Do not auto-extend the gate past 2026-08-26."
+  "context": "First fully clean tuning day since the 2026-08-19→08-22 OAuth outage: 5/5 cycles completed both today and yesterday, throughput back to 66/day, and duplicates at zero. Rolling windows that touch 08-19→08-22 (the weekly .quality-trend.json snapshot and RVS cluster medians) remain contaminated and should not be read as parameter signal until they roll past 08-22 later this week."
 }
