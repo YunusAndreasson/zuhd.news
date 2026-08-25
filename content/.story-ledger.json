@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "economic-outcast-sixty-entities-and-the-third-country-bind",
+      "label": "US announces plan for 'economic onslaught' on Iran",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-economic-outcast-sixty-entities-and-the-third-country-bind"
+      ],
+      "eventUri": "eng-11950582",
+      "summary": "This is the designation list, not the trailer: Treasury has named the campaign Operation Economic Outcast and will sanction more than 60 entities tied to Iran's nuclear and missile programmes. We already covered the announcement of intent — do not repeat it. Lead instead with what a designation does operationally: adding an entity to the SDN list does not seize anything, it makes every bank in the world that touches that entity a candidate for secondary sanctions, so the enforcement is performed by compliance officers in Shanghai, Dubai, Istanbul and Karachi rather than by anyone in Washington. That is why Dawn and NDTV are covering it as a story about their own countries' exposure — Pakistani and Indian intermediaries, not Iranian ones, are the parties who must now choose between Iranian business and dollar access. Who is affected: Iranians whose imported medicine and food clear through the same correspondent banks the designations frighten off. Carry the sentiment spread (0.29) explicitly — the US framing is 'onslaught', the South Asian framing is pressure on third countries. Say precisely how many entities and of what type, and note that the list itself had not been published at the time of the announcement.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Economic_sanctions",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury"
+      ]
+    },
+    {
+      "id": "jantar-mantar-promise-with-no-enforcement-instrument",
+      "label": "CJP Announces Protest March In Delhi On September 5",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-jantar-mantar-promise-with-no-enforcement-instrument"
+      ],
+      "eventUri": "eng-11946794",
+      "summary": "An online outfit turned pressure group has called a march on Delhi for September 5, accusing the central government of breaking the commitments that ended the Jantar Mantar sit-in. Lead with what the group actually is — a movement that organised online, has no party structure, no seats and no leader in parliament, and yet extracted written commitments from the Centre once already. The mechanism to explain is the life cycle of a concession: a government ends a protest by promising, the promise has no enforcement instrument attached, and the only remedy available to the promisee is to reassemble the crowd. That is why the second march is the test of the first one's settlement, and why 'vishwasghat' — betrayal of trust — is the word being used rather than a policy demand. Who is affected: young unemployed Indians, the constituency the group claims and the one with least institutional access. Three Indian outlets carry it with a sentiment spread of 0.49, which is itself the story — one frames it as a peace march, another as a threatened stir. Report the disagreement rather than picking a side, and be exact about which commitments the group says were broken.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/First_information_report",
+        "http://en.wikipedia.org/wiki/India_Gate",
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Government_of_India",
+        "http://en.wikipedia.org/wiki/New_Delhi",
+        "http://en.wikipedia.org/wiki/Delhi_Police",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_India",
+        "http://en.wikipedia.org/wiki/Suicide"
+      ]
+    },
+    {
+      "id": "icpc-cleared-by-the-office-it-investigates",
+      "label": "Fake Agency Scandal: ICPC clears Gbajabiamila, gives reasons",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-icpc-cleared-by-the-office-it-investigates"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria's anti-corruption commission has cleared Femi Gbajabiamila, the President's chief of staff, of involvement in the appointment at the centre of the fake-agency scandal — in an investigation President Tinubu himself ordered. Lead with that loop, because it is the accountability mechanism failing in plain sight: the ICPC's chair is a presidential appointee, the terms of reference came from the presidency, and the subject is the presidency's most senior official. The mechanism to explain is what 'cleared' means procedurally — the commission says it found no evidence linking him to the appointment, which is a narrower finding than exoneration and leaves untouched the question of how a non-existent agency acquired an office, a head and a budget line. Give the reader the reasons the ICPC published and the specific question each one does not answer. Who is affected: Nigerians whose public money moved through an entity that had no legal existence; who holds power: the office being investigated by a body it staffs. Africa is under-covered in our recent cycles and this is a domestic accountability story reported by a Nigerian investigative outlet, not a foreign correspondent's summary. Attribute the ICPC's findings as its own claims, and say what the commission has not yet said.",
+      "conceptUris": []
+    },
+    {
+      "id": "barricade-charges-consent-on-paper-refusal-on-the-ground",
+      "label": "Indigenous leaders face criminal charges for setting up anti-mining barricades in the Philippines",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-barricade-charges-consent-on-paper-refusal-on-the-ground"
+      ],
+      "eventUri": null,
+      "summary": "Indigenous leaders in the Philippines are facing criminal charges for building barricades against a mining operation on their own ancestral land. Lead with the inversion: the people with the recognised claim to the land are the defendants, and the company operating on it is the complainant. The mechanism to explain is how that becomes legally possible — the Philippines requires free, prior and informed consent from Indigenous communities before mining, but consent is certified through a process the company funds and the state administers, so a community that says no on the ground can still be recorded as having said yes on paper; the barricade is what remains when the consent process has already been exhausted. Then explain the second mechanism, criminalisation as cost transfer: obstruction and coercion charges do not need to succeed to work, because defending them costs a subsistence farmer years and money they do not have. Who is affected: named community leaders — use their names and the community's name, since the whole technique depends on them being anonymous. Structural why for a global reader: the same legal shape recurs wherever transition-mineral demand meets Indigenous land, from Mindanao to the Andes to the Congo basin. Single specialist source — attribute the charges and the community's account, and state what the mining company has said.",
+      "conceptUris": []
+    },
+    {
+      "id": "ghaggar-phatak-twenty-years-of-temporary",
+      "label": "To be a Karachi Bugti who yearns for watan and dry wood",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-ghaggar-phatak-twenty-years-of-temporary"
+      ],
+      "eventUri": null,
+      "summary": "Twenty years after Nawab Akbar Bugti was killed by the Pakistani military, the villages that emptied then are still empty, and their people are living in stitched-together huts at Ghaggar Phatak on the edge of Karachi. Lead with the twenty years, because the passage of time is the finding: displacement that lasts two decades is not an aftermath, it is a settled arrangement nobody has to defend. The mechanism to explain is how temporary displacement becomes permanent — people who fled Dera Bugti hold no title to the land they left and no tenancy in the city they reached, so they are ineligible for compensation in one place and for services in the other, which is why the huts are made of canvas and the fuel is scavenged wood in a city with piped gas. Who is affected: a named community that our reader will otherwise only meet as a security-page abstraction; who holds power: the state whose operation emptied Dera Bugti and which has never counted these people as displaced. Structural why: Balochistan's insurgency is usually written from the corridor and the checkpoint — this is the same conflict written from the people it moved, which is the version almost nobody publishes. Follow our Pishin road-crew piece as the other end of the same conflict. Keep the reporting concrete and let the details Dawn gathered carry it; do not sentimentalise.",
+      "conceptUris": []
+    },
+    {
+      "id": "fasset-fee-margin-is-the-shariah-native-model",
+      "label": "Fasset raises $68 million in Series C funding to scale neobanking",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-fasset-fee-margin-is-the-shariah-native-model"
+      ],
+      "eventUri": null,
+      "summary": "A UAE-based Islamic neobank has raised $68 million to scale, and the interesting number is not the raise but the market it implies: Fasset's growth markets are Indonesia, Pakistan, Turkey and the Gulf diaspora — populations that are heavily banked-adjacent rather than banked, holding phones and remittance flows but not accounts. Lead with what a neobank actually is, because the word hides the mechanism: it has no branches and usually no banking licence of its own, riding a partner bank's licence and earning on interchange, FX spread and remittance margin rather than on lending. That matters doubly for an Islamic institution, where interest income is unavailable anyway — so the fee-and-spread model that makes neobanks fragile in the West is the model shariah compliance already requires, which is the structural reason Islamic fintech has clustered here. Who is affected: migrant workers paying 5-6% to send money home, the margin this business is built to undercut. Cross-reference the Rakbank Islamic crypto piece rather than repeating it — both are the same movement of unregulated activity inside a licensed Islamic perimeter. Single source with no summary text: verify the round's lead investor, the licence Fasset actually holds, and the markets it names, and say plainly what could not be confirmed.",
+      "conceptUris": []
+    },
+    {
+      "id": "pyongyang-revenue-that-never-touches-a-bank",
+      "label": "North Korea's ever-expanding sanctions evasion toolkit",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-pyongyang-revenue-that-never-touches-a-bank"
+      ],
+      "eventUri": null,
+      "summary": "Pyongyang now funds itself through IT-worker infiltration, crypto theft, shipping fraud and labour export — four techniques that share one property: none of them require a bank. Lead with the IT workers, because it is the one our reader may be personally exposed to — North Korean engineers hired remotely under stolen identities, drawing salaries from firms that believe they are paying a freelancer in Warsaw or Lahore. The mechanism to explain is why the sanctions architecture cannot see any of this: designations and secondary sanctions work by making correspondent banks refuse a transaction, so a revenue stream that arrives as a stablecoin transfer, a payroll deposit to a laundered identity, or a ship-to-ship transfer at anchor never touches the surface the enforcement operates on. Structural why, and the reason to run this the same day as the Iran designations: the most comprehensively sanctioned state on earth is the working demonstration of what a maximum-pressure campaign converges on after twenty years, which is not collapse but adaptation — and the adaptation is exportable. Who bears the cost: North Koreans, whose deprivation the toolkit does not relieve, and the overseas labourers whose wages are confiscated at source. Think-tank analysis, not original reporting — attribute the author's framing and cite the underlying UN panel and prosecution records for the specific techniques.",
+      "conceptUris": []
+    },
+    {
+      "id": "partner-not-employee-indonesia-gig-classification",
+      "label": "Can Indonesia protect gig workers while allowing innovation to thrive?",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-partner-not-employee-indonesia-gig-classification"
+      ],
+      "eventUri": null,
+      "summary": "Indonesia is deciding what a ride-hailing platform owes the millions of drivers it does not employ — and the framing on offer is that the protections should be built as a private safety net rather than a public one. Lead with the number of people involved: gig work is not a marginal labour category in Indonesia, it is one of the largest employers in the archipelago, and the drivers carry the capital cost (the motorcycle, the phone, the fuel) while the platform sets the price. The mechanism to explain is classification — a driver is a 'partner', not an employee, so the entire body of Indonesian labour law, from minimum wage to injury compensation, simply does not apply; every proposed protection is therefore an attempt to reattach one obligation at a time to a relationship deliberately structured to carry none. Then the honest tension: mandate too much and platforms cut driver numbers, mandate too little and the state has privatised its own social insurance to a company that can reprice it. Who holds power: two or three regional super-apps whose algorithms set earnings without appeal; who is affected: drivers, overwhelmingly young men in Jakarta, Surabaya and Medan. Structural why: Indonesia's answer will be copied across Southeast Asia and the Gulf, where the same platforms operate. No Indonesian outlet in today's feed — attribute this as Australian think-tank analysis and seek Indonesian union and ministry positions directly.",
+      "conceptUris": []
+    },
+    {
+      "id": "non-negative-screening-a-low-prevalence-population",
+      "label": "Centre Weighs Dope Tests For All Commercial Pilots After Air India Plane Row",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-non-negative-screening-a-low-prevalence-population"
+      ],
+      "eventUri": "eng-11951312",
+      "summary": "India is considering annual random drug testing for every commercial pilot after Air India's own voluntary programme returned two 'non-negative' results within days of testing 100% of its pilots. Lead with that word — non-negative, not positive — because it is the whole scientific story: a screening immunoassay is built to be sensitive rather than specific, so it flags a class of compounds and hands the sample to confirmatory mass spectrometry, and the gap between the two results is where a career sits for several days. The mechanism to teach is the arithmetic of screening a low-prevalence population: test enough pilots for a behaviour almost none of them exhibit and the false positives will outnumber the true ones unless the confirmatory step is fast, funded and appealable — which is the part a policy announcement never specifies. Who is affected: pilots, whose licences are suspended on a preliminary result, and passengers, whose actual risk is better predicted by fatigue and duty-hour rostering than by cannabis metabolites detectable for weeks after any impairment has passed. Who holds power: the DGCA, writing a rule for the whole industry from one airline's two results. Say clearly what has been decided versus what the minister is 'considering', and give the detection-window fact — it is the detail that reframes the policy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Directorate_General_of_Civil_Aviation_(India)",
+        "http://en.wikipedia.org/wiki/Ministry_of_Civil_Aviation_(India)",
+        "http://en.wikipedia.org/wiki/Aircraft_pilot",
+        "http://en.wikipedia.org/wiki/Air_India",
+        "http://en.wikipedia.org/wiki/Cannabis_(drug)",
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Air_Accidents_Investigation_Branch",
+        "http://en.wikipedia.org/wiki/Drug_test"
+      ]
+    },
+    {
+      "id": "debris-wake-a-signature-radar-cannot-see",
+      "label": "Dynamics of space debris induced, accelerated, nonlinear ion acoustic waves in presence of kinematic viscosity",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-debris-wake-a-signature-radar-cannot-see"
+      ],
+      "eventUri": null,
+      "summary": "A piece of orbital debris moving through the ionospheric plasma does not pass through it silently — it drives a nonlinear ion acoustic wave ahead of itself, and this paper models what that wake looks like once the plasma's viscosity is included. Lead with the practical consequence buried in the physics: a wake is a signature, and a signature is a way of detecting objects too small for radar to see. Explain the physics plainly for a technical but non-specialist reader — low Earth orbit is not empty but a thin ionised gas, sound in a plasma travels as a compression of ions held together by electrons, and a supersonic object therefore produces a shock structure much as an aircraft does in air; adding viscosity is what turns an idealised soliton into something that damps and spreads the way a real one must. Structural why: the debris population below 10cm is effectively invisible and is what actually ends satellites, so any detection modality that does not require bouncing radar off a bolt is worth attention — and space situational awareness is currently a capability held by a handful of states, which decides who gets to know where anything is. Be exact about status: this is analytical and numerical modelling, not an instrument or an observation, and the paper is an accepted early-access version. Open access — link it.",
+      "conceptUris": []
+    },
+    {
+      "id": "key-rotation-the-authority-that-says-same-owner",
+      "label": "Monad developers propose quantum-safe wallets as Bitcoin and Ethereum weigh upgrades",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-key-rotation-the-authority-that-says-same-owner"
+      ],
+      "eventUri": null,
+      "summary": "A proposal on an Ethereum-compatible chain would let a wallet replace its own keys — which solves lost keys and post-quantum migration with the same change, because both are the same problem: a key you can no longer safely use. Lead with why that is hard rather than obvious. A blockchain address is not an account, it is the hash of a public key, so the key is the identity; changing it means inventing an authority that can say 'this new key is the same owner', and every such authority is a thing that can be compromised or coerced. That is the trade the proposal is making, and it is the trade our reader should be handed. The quantum angle is concrete, not speculative in the usual sense: Shor's algorithm recovers a private key from an exposed public key, and a public key is exposed the moment an address spends — so the coins at risk first are the ones that have already moved, and the migration must happen while the chain still works, not after. Structural why: Bitcoin and Ethereum are weighing the same upgrade with far more value and far less governance flexibility, and a smaller chain shipping first is how the design space gets explored at someone else's risk. Note honestly that this is an early draft with no implementation spec — do not write it as a launch.",
+      "conceptUris": []
+    },
+    {
+      "id": "beijing-games-the-falls-are-the-measurement",
+      "label": "Faster, stronger, (occasionally) upright: See humanoid robots compete in Beijing games",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-beijing-games-the-falls-are-the-measurement"
+      ],
+      "eventUri": null,
+      "summary": "Humanoid robots broke sprint records at a five-day Beijing competition and also fell over, caught fire after crossing the finish line, and struggled with cable assembly and carrying plates. Lead with the failures, not the records, because the failure modes are the measurement: a machine that can outrun a human on a flat track and cannot stay upright afterwards has solved actuation and not balance recovery, and a machine that manages a sprint but not a cable harness has solved gross motion and not contact-rich manipulation — which is the part every warehouse and factory claim depends on. The mechanism to explain is why the hard problems are the unglamorous ones: locomotion is a controlled fall the machine repeats, and it is trainable in simulation; fine manipulation needs force feedback in the real world, where data cannot be generated at scale. Structural why for our reader: China is running this as a national capability showcase while the labour-substitution claims priced into humanoid-robot valuations sit almost entirely on the manipulation side that visibly did not work — and the sovereignty thread here is the same as chips, that the actuators, reducers and sensors have a short supply list. Note this is a wire report Dawn is carrying; be sceptical of the record claims and say who validated them.",
+      "conceptUris": []
+    },
+    {
+      "id": "polarisation-hyperspectral-what-a-camera-throws-away",
+      "label": "A high-resolution polarization-hyperspectral image sensor for complex intelligent sensing",
+      "firstSeen": "2026-08-25T08:13:37.099Z",
+      "lastCovered": "2026-08-25T08:13:37.099Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-polarisation-hyperspectral-what-a-camera-throws-away"
+      ],
+      "eventUri": null,
+      "summary": "A single image sensor that captures polarisation and full spectrum at high resolution — two properties conventional cameras throw away before the photons reach the pixel. Lead with what is being discarded today, because that reframes the whole field: an ordinary sensor records intensity through three broad colour filters, so it loses the wavelength detail that identifies a material and the polarisation that describes its surface geometry and stress. Recovering both at once, on one chip, is what previously took a filter wheel, a spectrometer and a rotating polariser on an optical bench. The mechanism to explain is the trade every such sensor makes: encoding more dimensions into a fixed pixel array costs spatial resolution, and the interesting claim in this paper is where that trade was moved to. Structural why for a technically literate reader: the applications are identification tasks, not photography — telling plastic from tissue, stressed metal from sound metal, a real face from a printed one, crop disease before it is visible — which is why this belongs in the same thread as the corner-detection-in-the-optics work we covered: sensing is being pushed upstream of computation. Say plainly that this is an accepted early-access paper, cite the resolution and spectral band numbers it reports, and do not translate a lab demonstration into a product.",
+      "conceptUris": []
+    },
+    {
       "id": "hormuz-single-vessel-transit-collapse",
       "label": "Strait of Hormuz ship traffic drops to single vessel",
       "firstSeen": "2026-08-25T04:12:37.398Z",
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hormuz-single-vessel-transit-collapse"
@@ -24,7 +259,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-venezuela-quake-toll-injured-to-dead-ratio"
@@ -40,7 +275,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-mecca-pact-automaticity-is-the-unknown"
@@ -56,7 +291,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-mail-ballot-order-partly-in-force"
@@ -72,7 +307,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-bahawalpur-custodial-death-fir-is-the-exception"
@@ -88,7 +323,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-china-standards-as-market-access"
@@ -104,7 +339,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-airport-bundles-cross-subsidy-sold-off"
@@ -120,7 +355,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-heat-mortality-enters-the-underwriting"
@@ -136,7 +371,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-rakbank-islamic-crypto-inside-the-perimeter"
@@ -152,7 +387,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-small-plant-intrusion-sanctions-as-signal"
@@ -168,7 +403,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-defence-tech-revolving-door-requirement-and-product"
@@ -184,7 +419,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hpv-self-sampling-attendance-is-the-barrier"
@@ -200,7 +435,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-argonaut-rps-lunar-night-and-isotope-sovereignty"
@@ -216,7 +451,7 @@
       "lastCovered": "2026-08-25T04:12:37.398Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-sev-courier-intergenerational-metabolic-risk"
@@ -232,7 +467,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-syria-sst-delisting-unlocks-arms-transfers"
@@ -257,7 +492,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-jonglei-ambush-patrol-route-is-the-mandate"
@@ -282,7 +517,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-rakhine-air-power-substitutes-for-lost-ground"
@@ -298,7 +533,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-adiala-medical-care-outside-the-appeal-record"
@@ -314,7 +549,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-bessent-revenue-wide-sanctions-bind-third-countries"
@@ -338,7 +573,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-ontario-grid-valve-subnational-retaliation"
@@ -362,7 +597,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-bonded-tanks-depth-without-ownership"
@@ -378,7 +613,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-section-117-seam-defence-money-off-the-ledger"
@@ -394,7 +629,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-solid-state-transformer-passive-becomes-switch"
@@ -410,7 +645,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-wildlife-listings-recommendation-not-darkweb"
@@ -426,7 +661,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-cape-town-warehouse-classification-moves-the-hub"
@@ -442,7 +677,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-monitors-acr-the-escape-hatch-closes"
@@ -458,7 +693,7 @@
       "lastCovered": "2026-08-24T22:11:20.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-eu-compliance-fixed-cost-is-the-barrier"
@@ -474,7 +709,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-h1b-six-figure-fee-rulemaking-not-legislation"
@@ -499,7 +734,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-pacific-boat-strike-interdiction-becomes-targeting"
@@ -524,7 +759,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-munir-tehran-mediation-runs-through-ghq"
@@ -549,7 +784,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-pishin-road-crew-softest-point-in-the-corridor"
@@ -565,7 +800,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-gaza-desalination-plant-water-not-infrastructure"
@@ -581,7 +816,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-yanbu-tanker-strike-war-risk-repricing"
@@ -606,7 +841,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-ai-server-smuggling-paperwork-is-the-control"
@@ -622,7 +857,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-saudi-giga-project-retrenchment-remittance-side"
@@ -638,7 +873,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-habeas-dockets-unindexed-is-functionally-secret"
@@ -654,7 +889,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-car-infotainment-botnet-ip-is-the-product"
@@ -670,7 +905,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-tesla-door-handle-recall-china-sets-the-floor"
@@ -695,7 +930,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-categories-as-compression-not-filing"
@@ -711,7 +946,7 @@
       "lastCovered": "2026-08-24T17:09:50.302Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-24-optical-corner-detection-compute-into-the-lens"
@@ -727,7 +962,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hassoun-incitement-conviction-precedent"
@@ -752,7 +987,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-rial-record-low-announcement-effect"
@@ -777,7 +1012,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kyiv-air-defence-pledge-versus-magazine-depth"
@@ -799,7 +1034,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-twin-dragons-cancelled-pacific-force-availability"
@@ -824,7 +1059,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-unity-state-submerged-wells-produced-water"
@@ -840,7 +1075,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-moodys-b3-upgrade-refinancing-not-earnings"
@@ -856,7 +1091,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hkd-stablecoin-bank-distribution-permissioned"
@@ -872,7 +1107,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kpmg-partner-cuts-audit-consulting-cross-subsidy"
@@ -897,7 +1132,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-xring-o3-design-sovereignty-not-fabrication"
@@ -922,7 +1157,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-uae-cyber-defence-import-substitution"
@@ -938,7 +1173,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-total-account-compromise-recovery-chain"
@@ -954,7 +1189,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-kok-river-transboundary-contamination-no-jurisdiction"
@@ -970,7 +1205,7 @@
       "lastCovered": "2026-08-24T12:11:45.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-qiantang-basin-forty-year-landscape-risk"
@@ -986,7 +1221,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-nvidia-vendor-financing-circularity"
@@ -1011,7 +1246,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-parandur-shelved-farmland-airport-veto"
@@ -1036,7 +1271,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-warsh-jackson-hole-dollar-rate-signal"
@@ -1052,7 +1287,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-khan-younis-nasser-delayed-death"
@@ -1068,7 +1303,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-under-16-ban-age-assurance-cost"
@@ -1093,7 +1328,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-seized-cargo-sold-butterfly-children"
@@ -1109,7 +1344,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-riyom-raids-rifles-as-resupply"
@@ -1125,7 +1360,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-term-finance-governance-bought-not-broken"
@@ -1141,7 +1376,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-armed-services-revolving-door-defense-startups"
@@ -1157,7 +1392,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-wifi-8-reliability-over-throughput"
@@ -1173,7 +1408,7 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-hexokinase-2-cortical-progenitor-metabolism"
@@ -1189,243 +1424,13 @@
       "lastCovered": "2026-08-24T08:09:06.857Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-24-bajaur-mohmand-rooftop-monsoon-storage"
       ],
       "eventUri": null,
       "summary": "Rooftop rainwater harvesting systems have been installed in Bajaur and Mohmand, two of the tribal districts merged into Khyber Pakhtunkhwa in 2018, starting with government buildings in Civil Colony Khar. Lead with the water arithmetic, not the ribbon-cutting: these districts get most of their annual rainfall in a few monsoon weeks and then run dry, and the constraint is not rainfall volume but storage — a roof of a few hundred square metres captures tens of thousands of litres from a single season that currently runs off into ephemeral streams and is gone. Who is affected: households, overwhelmingly the women and girls who carry water, in districts where the alternative is a deepening tube well in an aquifer that monsoon runoff no longer recharges because it never stops long enough to infiltrate. Who holds power: the additional deputy commissioner's office, which is where the merged districts' development budget is actually spent, and which is why the first installation is on an administrative building rather than a village. The structural why: this is adaptation at the cheapest possible unit cost — a tank, a gutter and a filter against a glacier-and-monsoon water system that is becoming less predictable each decade. Be honest about scale: this is a pilot on public buildings, and the piece should say what it would take to reach households. Single Pakistani source, which is the right regional outlet for the story.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-shutdown-threat-sanctions-reply",
-      "label": "Shares flat in Asia before Iran sanctions news, Nvidia results",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-hormuz-shutdown-threat-sanctions-reply"
-      ],
-      "eventUri": "eng-11947788",
-      "summary": "Consolidated entry: Washington is due to publish the detail of new Iran sanctions today, and Iran's Supreme National Security Council secretary Mohsen Rezaei answered in advance — if the economic war continues, 'not even one drop of oil' leaves the Strait of Hormuz or the Persian Gulf. Lead with the asymmetry the market is pricing: oil eased and Asian equities sat flat while the party threatening to close a strait carrying roughly a fifth of world seaborne crude was ignored. Who is affected: importers across Asia (Indonesia, India, China) who buy that barrel, not the US Treasury writing the sanction. The mechanism to explain is that a sanctions regime aimed at Iranian export revenue hands Iran a chokepoint threat as its only symmetric reply — the same escalation ladder that produced yesterday's Hormuz transit-charge bill in the Majlis. Follow-up to that story: the fee was the graduated move, this is the maximal one. Do not treat Rezaei's statement as policy — it is a threat by a named official, and should be attributed as such.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_States_sanctions_against_Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Persian_Gulf",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Supreme_National_Security_Council",
-        "http://en.wikipedia.org/wiki/Asia",
-        "http://en.wikipedia.org/wiki/Trade_war"
-      ]
-    },
-    {
-      "id": "shein-hong-kong-listing-everlane-security-review",
-      "label": "Shein's Purchase of Everlane Faces US National Security Review",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-shein-hong-kong-listing-everlane-security-review"
-      ],
-      "eventUri": "eng-11947644",
-      "summary": "Shein prices a Hong Kong listing of nearly 280 million shares at HK$47.60–49.50 to raise up to HK$13.86bn ($1.77bn) on 1 September — while its purchase of the US brand Everlane goes into a national security review in Washington. Lead with the pairing: the same company is being welcomed as capital in Hong Kong and screened as a security risk in the United States on the same day. Who holds power: CFIUS, which now treats a clothing retailer's US customer data and supply chain as a security object, and the Hong Kong exchange, which has become the listing venue of last resort for Chinese firms shut out of New York. The structural why: fast fashion's value is data and logistics, not garments, which is what makes an apparel deal reviewable at all. Note the cost side that neither the IPO nor the review addresses — the Xinjiang cotton and piece-rate labour questions that have followed Shein since 2021.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Initial_public_offering",
-        "http://en.wikipedia.org/wiki/Hong_Kong",
-        "http://en.wikipedia.org/wiki/Fast_fashion",
-        "http://en.wikipedia.org/wiki/Retail",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Valuation_(finance)"
-      ]
-    },
-    {
-      "id": "goyal-japan-delegation-semiconductor-inputs",
-      "label": "Piyush Goyal lands in Japan as India eyes ₹60,000 crore investment boost in 10 years",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-goyal-japan-delegation-semiconductor-inputs"
-      ],
-      "eventUri": "eng-11946664",
-      "summary": "India's commerce minister arrives in Tokyo with a nearly 200-member business delegation against Japan's standing target of ¥10 trillion (about ₹60,000 crore) of investment in India over a decade. Lead with the delegation size, not the ministerial handshake: 200 firms is an attempt to convert a state-to-state number into actual factories, and the ten-year target set last year has so far produced far less. The mechanism worth explaining is semiconductors — Japan holds the materials and equipment tier of the chip supply chain (photoresists, wafers, lithography components) that India's fabs cannot buy from anywhere else at scale, which is why Tokyo, Nagoya and Osaka are on the itinerary rather than only Tokyo. Who is affected: an Indian chip programme whose bottleneck is inputs and skilled process engineers, not capital.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Piyush_Goyal",
-        "http://en.wikipedia.org/wiki/Semiconductor",
-        "http://en.wikipedia.org/wiki/Startup_company",
-        "http://en.wikipedia.org/wiki/Osaka"
-      ]
-    },
-    {
-      "id": "razih-shelling-saada-border-strip",
-      "label": "Saudi Arabia strikes northern Yemen villages",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-razih-shelling-saada-border-strip"
-      ],
-      "eventUri": null,
-      "summary": "Saudi artillery shelled villages in the Razih district of Saada province in northern Yemen on Monday, per al-Masirah via Mehr. Continuation of injustice is the development: Saada has been under cross-border bombardment on and off for eleven years, and Razih sits on the border strip where the shelling never fully stopped even during the truce years. Who is affected: farming villages with no air defence and no evacuation route; who holds power: the Saudi-led coalition and the states that sell it the artillery. Write the sourcing honestly — the only account in today's feed is Iranian state media relaying a Houthi-aligned broadcaster, and casualty figures should be reported as claimed, not confirmed. That absence is itself the story's second layer: a Saudi bombardment of Yemeni villages draws no Western wire coverage at all.",
-      "conceptUris": []
-    },
-    {
-      "id": "mbda-ukraine-coproduction-veto-removed",
-      "label": "UK's Burnham to visit Ukraine with plan to support long-range missile production",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-mbda-ukraine-coproduction-veto-removed"
-      ],
-      "eventUri": "eng-11946214",
-      "summary": "Britain will allow the European manufacturer MBDA to support long-range missile production with Ukraine, announced as Burnham co-chairs the Coalition of the Willing in Kyiv alongside Zelenskiy. Lead with what changes: this moves Ukraine from a recipient of finished Western missiles to a co-producer, which removes the per-transfer political veto that has governed every deep-strike decision since 2022. Who holds power: MBDA's shareholder governments — the UK, France and Italy — who can now supply a production line instead of a stockpile, and who thereby also lose the ability to throttle usage case by case. The structural why for the reader: weapons transfers are reversible, industrial capacity is not, and a missile plant inside a war zone is also a target.",
-      "conceptUris": []
-    },
-    {
-      "id": "lutyens-upkeep-versus-school-audits",
-      "label": "After PM CARES Fund, CJP flags ₹92 crore upkeep bill for ministers' homes: 'Stop fixing lavish homes'",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-lutyens-upkeep-versus-school-audits"
-      ],
-      "eventUri": "eng-11940868",
-      "summary": "A ₹92 crore public bill for maintaining ministers' Lutyens' Delhi bungalows, set against a campaign demanding electricity, drinking water, toilets and mid-day meals in rural government schools. Lead with the two line items side by side — the point is not the scandal but the budget arithmetic: discretionary upkeep of official residences is a protected line, school basic-facilities spending is not. Who is affected: children in schools without functioning toilets or water; who holds power: the ministries that both set the school budget and occupy the bungalows. Keep the party framing thin — this originates in an opposition campaign ('School Thik Karo', launched 15 August, calling for social audits), and the durable fact for the reader is the audit demand, not the slogan.",
-      "conceptUris": []
-    },
-    {
-      "id": "karachi-hashish-route-crew-convicted",
-      "label": "Three get life imprisonment in Karachi for attempting to smuggle 1.3 tonnes of hashish to Somalia",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-karachi-hashish-route-crew-convicted"
-      ],
-      "eventUri": null,
-      "summary": "A special Control of Narcotic Substances court in Karachi sentenced Adnan, Hamal and Nadir to life for attempting to move over 1.3 tonnes of charas to Somalia by sea. Lead with the route, not the sentence: the Makran–Karachi coast to the Horn of Africa is the western leg of the Indian Ocean 'hashish highway', and 1.3 tonnes in a single dhow is wholesale volume, not courier volume. Who holds power: the CNS courts, which convict crew members while the financiers who own the cargo are never named in the judgment — that gap is the accountability story. Who is affected: Somalia and the Gulf coast markets at the receiving end, and Pakistani coastal fishing crews who take the carriage work because the catch no longer pays.",
-      "conceptUris": []
-    },
-    {
-      "id": "lahore-echallan-cnic-database-join",
-      "label": "Lahore traffic police going beyond the road for recovery of e-challan dues",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-lahore-echallan-cnic-database-join"
-      ],
-      "eventUri": null,
-      "summary": "Lahore's chief traffic officer has recommended linking recovery of unpaid digital traffic fines to core state services — CNIC issuance, passports, vehicle sale and purchase, and police verification. Lead with the mechanism, because it is the whole story: an unpaid ₨2,000 camera fine becomes a block on your identity card, and therefore on your bank account, SIM registration and travel. This is enforcement by database join, and it inverts the burden of proof — the citizen must clear a machine-issued ticket before the state will renew their existence on paper. Who is affected: Punjabi motorists with contested or misattributed e-challans and no accessible appeal path; who holds power: NADRA, which controls the CNIC, and a traffic authority proposing to borrow its leverage. Precedent matters — once identity records are a debt-collection instrument, the next department will ask for the same hook.",
-      "conceptUris": []
-    },
-    {
-      "id": "frontier-model-price-quality-decoupling",
-      "label": "Anthropic's best AI model struggles to attract users as cheaper tools thrive",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-frontier-model-price-quality-decoupling"
-      ],
-      "eventUri": null,
-      "summary": "The FT reports that Anthropic's most capable model is losing users to cheaper competitors — 304 points and 260 comments on Hacker News, which is the developer market registering the same thing. Lead with the economics, not the leaderboard: benchmark leadership and commercial adoption have decoupled, because for most production workloads a model at a fraction of the token price is already past the quality threshold the task needs. Who is affected: labs whose capital plans assume frontier capability commands a frontier price, and the compute buildouts financed on that assumption; who benefits: the open-weight and low-cost Chinese model providers absorbing the volume. The structural why for the reader is commoditisation timing — inference is becoming a utility faster than the training bill can be amortised. Continues last cycle's cheap-model piece from the buyer's side; write this one from the vendor's balance sheet.",
-      "conceptUris": []
-    },
-    {
-      "id": "clap-and-fling-wing-phase-control",
-      "label": "Synchronized actuation strategy and study of clap-and-fling phenomenon in hummingbird inspired robot",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-clap-and-fling-wing-phase-control"
-      ],
-      "eventUri": null,
-      "summary": "A flapping-wing micro-robot achieves the clap-and-fling effect — the extra lift insects and hummingbirds generate when the wings meet at the top of the stroke and peel apart — by synchronising two independently driven wings with a PID controller across duty cycles from 20 to 100 percent. Lead with why synchronisation is the hard part: the lift bonus only appears if both wings arrive within a few milliseconds of each other, so the engineering problem is phase control, not aerodynamics. Who cares: this is the class of aircraft that flies where rotors cannot — inside collapsed buildings, under canopy — and equally the class that makes a surveillance drone the size of a bird. Give the reader the number: duty cycle versus flapping frequency is the whole control surface here.",
-      "conceptUris": []
-    },
-    {
-      "id": "phaselis-lime-mortar-recycled-brick-binder",
-      "label": "Mechanical and microstructural properties of Phaselis Roman mortar based on hydraulic lime characterization with calcite and recycled brick",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-phaselis-lime-mortar-recycled-brick-binder"
-      ],
-      "eventUri": null,
-      "summary": "Researchers characterised the hydraulic lime mortar of Phaselis — the Roman harbour city on Turkey's Lycian coast — and reproduced it with calcite and crushed recycled brick, optimising the mix by Taguchi method. Lead with the durability gap: a binder mixed two thousand years ago is still standing in salt spray, while Portland cement structures on the same coast are scheduled for replacement within a century. The mechanism is the ceramic aggregate — fired clay brick reacts with lime to form calcium silicate hydrates, giving hydraulic set without the ~1,450°C kiln that makes cement responsible for roughly 8 percent of global CO2. Who is affected: conservators restoring Anatolian and Levantine heritage sites, who cannot legally use cement on them, and anyone looking for a low-carbon binder that uses demolition waste as an input rather than a disposal problem.",
-      "conceptUris": []
-    },
-    {
-      "id": "mumbai-food-inspections-discretion-not-capacity",
-      "label": "Why Tukaram Mundhe Has Become India's Most Talked-About Food Safety Officer",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-mumbai-food-inspections-discretion-not-capacity"
-      ],
-      "eventUri": "eng-11946796",
-      "summary": "Thousands of hygiene inspections across Mumbai, with permits suspended at Domino's, Pizza Hut and McDonald's outlets among others. Skip the personality profile the headline invites and write the enforcement gap: India's food safety law has existed since 2006, the standards have not changed, and the only variable is one officer choosing to inspect at volume — which means compliance in a city of 20 million rests on individual discretion rather than routine capacity. Who is affected: consumers with no way to verify a kitchen they cannot see; who holds power: FSSAI and the state food authority, whose inspector-to-outlet ratio is the number to lead with if the reporting supports it. The structural why: regulators that depend on a single motivated official regress the moment that official is transferred — which is what has happened to this officer repeatedly.",
-      "conceptUris": []
-    },
-    {
-      "id": "plesetsk-unnamed-payload-orbit-tells",
-      "label": "Russian Soyuz-2.1b rocket with spacecraft lifts off from Plesetsk spaceport",
-      "firstSeen": "2026-08-24T04:11:37.197Z",
-      "lastCovered": "2026-08-24T04:11:37.197Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-plesetsk-unnamed-payload-orbit-tells"
-      ],
-      "eventUri": null,
-      "summary": "Russia's Space Troops launched a Soyuz-2.1b from Plesetsk carrying a payload described only as 'in the Defence Ministry's interests'. Lead with what the absence of a name tells you: Plesetsk is the military cosmodrome, its high-inclination orbits suit reconnaissance and early-warning satellites, and unnamed payloads are catalogued as Kosmos numbers precisely so capability cannot be inferred. The mechanism worth teaching: orbital elements are public even when the payload is not — amateur trackers will have the inclination and period within days, and that is usually enough to classify the satellite. Who holds power: a space programme whose civil side has been shrinking for a decade while the military launch cadence holds steady — the split is the story. Sourced solely to the Russian defence ministry via TASS; attribute accordingly.",
       "conceptUris": []
     }
   ]
