@@ -10,14 +10,15 @@
     },
     "fomc-2026-09": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "f45969035dbb49c1",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move the cost of borrowing across the dollar economy and every asset priced against the dollar.",
-      "recent": "Minutes released in August showed many officials said rate hikes may be needed, and bond yields surged as traders shifted attention from CPI to the Fed's next tests. The dollar fell against the euro as markets trimmed rate hike bets, leaving this meeting to settle which of those two readings the committee endorses.",
+      "recentFingerprint": "df0ccb5cf5b3dddb",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and every asset priced against the dollar.",
+      "recent": "Minutes released on 19 August showed many officials said rate hikes may be needed, and bond yields surged. The dollar fell against the euro on 17 August as markets trimmed rate hike bets, and gold hit $4,392 an ounce. This meeting settles which of those two readings the committee acts on.",
       "citations": [
-        "2026-08-12-india-cpi-fed-split-imported-inflation",
-        "2026-08-12-gold-ten-week-high-cpi-household-savings"
+        "2026-08-24-warsh-jackson-hole-dollar-rate-signal",
+        "2026-08-12-gold-ten-week-high-cpi-household-savings",
+        "2026-08-12-india-cpi-fed-split-imported-inflation"
       ],
-      "generatedAt": "2026-08-23T04:42:29.521Z"
+      "generatedAt": "2026-08-25T04:49:18.887Z"
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
@@ -50,14 +51,11 @@
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "84d2e5bef61819d3",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions set the cost of borrowing across the dollar economy and reprice assets worldwide.",
-      "recent": "Minutes released this month showed many officials said rate hikes may be needed, and bond yields surged as traders turned from CPI to the Fed's next tests. The dollar fell against the euro as markets trimmed rate hike bets, while gold hit $4,392 an ounce. This meeting settles which of those two readings the committee acts on.",
-      "citations": [
-        "2026-08-12-gold-ten-week-high-cpi-household-savings",
-        "2026-08-12-india-cpi-fed-split-imported-inflation"
-      ],
-      "generatedAt": "2026-08-23T04:43:02.779Z"
+      "recentFingerprint": "962a523f1b477bdd",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and every asset priced against the dollar.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-25T04:49:28.187Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
@@ -92,43 +90,41 @@
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "84d2e5bef61819d3",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and every asset priced against the dollar.",
-      "recent": "Minutes released in August showed many officials said rate hikes may be needed, and bond yields surged as traders looked past CPI to the Fed's next tests. The dollar has fallen against the euro as markets trim rate hike bets. This decision settles which of those two readings the committee acts on.",
+      "recentFingerprint": "962a523f1b477bdd",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target range for overnight bank lending. Its decisions move borrowing costs across the dollar economy and reprice assets worldwide.",
+      "recent": "Minutes released in August showed many officials said rate hikes may be needed, and bond yields surged as traders turned from CPI to the Fed's next tests. The dollar fell against the euro as markets trimmed rate hike bets, while gold hit $4,392 an ounce and bitcoin gained 21% in a week on Warsh's tone.",
       "citations": [
-        "2026-08-12-india-cpi-fed-split-imported-inflation",
-        "2026-08-12-gold-ten-week-high-cpi-household-savings"
+        "2026-08-24-warsh-jackson-hole-dollar-rate-signal",
+        "2026-08-12-gold-ten-week-high-cpi-household-savings",
+        "2026-08-12-india-cpi-fed-split-imported-inflation"
       ],
-      "generatedAt": "2026-08-23T04:43:37.086Z"
+      "generatedAt": "2026-08-25T04:49:37.605Z"
     },
     "fred-us-gdp-2026-08-26": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "cb6a11cf35a1c319",
-      "standing": "The Bureau of Economic Analysis's quarterly estimate of US economic output, released in successive revisions as more source data arrives. It is the broadest single measure of American demand, and sets the frame for rate expectations and dollar pricing worldwide.",
-      "recent": "The release lands with the world's other large economies visibly slowing: China's retail sales rose just 0.6% in July, and Russia reported annualized GDP growth of 0.6% in the first half. The dollar has already fallen against the euro as markets trimmed rate hike bets, leaving this print to settle how much of the slowdown reaches US demand.",
+      "recentFingerprint": "42e75cba39d61fe6",
+      "standing": "The Bureau of Economic Analysis's quarterly estimate of US economic output, revised twice after its first release. It is the broadest single measure of American growth, and sets the frame for rate expectations and the dollar.",
+      "recent": "The release lands as the dollar falls against the euro and markets trim rate hike bets. It arrives alongside signs of weakness elsewhere: China's economy showed strain in July, with retail sales up just 0.6%, and Russia's ministry put annualized GDP gains at 0.6% for the first half.",
       "citations": [
         "2026-08-17-china-july-retail-flat-household-precaution-surplus-export"
       ],
-      "generatedAt": "2026-08-23T04:42:05.445Z"
+      "generatedAt": "2026-08-25T04:48:55.677Z"
     },
     "fred-us-pce-2026-08-26": {
       "standingFingerprint": "f7794ed88caf73b9",
-      "recentFingerprint": "3b7979789fe30a66",
-      "standing": "The Bureau of Economic Analysis's monthly report on personal consumption expenditures, covering household income, spending and the price index the Federal Reserve uses as its official inflation gauge.",
+      "recentFingerprint": "bd667a7f4ca087e6",
+      "standing": "The Bureau of Economic Analysis's monthly report on personal consumption expenditures, covering US household spending, income, and the price index the Federal Reserve uses as its official inflation gauge.",
       "recent": "",
       "citations": [],
-      "generatedAt": "2026-08-23T04:42:12.684Z"
+      "generatedAt": "2026-08-25T04:49:01.925Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "d70986c49f647ed5",
-      "standing": "The annual meeting of leaders from the world's twenty largest economies, rotating through a presidency that sets the agenda. It has no treaty power, but its communiqués steer coordination on trade, debt relief and financial regulation.",
-      "recent": "This summit falls under the US presidency, which sets what leaders take up. It follows a year in which the multilateral calendar carried its own weight: 196 countries convened in Ulaanbaatar on desertification and drought, and all 193 UN states met in Geneva on AI rules. Whether either reaches the leaders' table is what December settles.",
-      "citations": [
-        "2026-08-19-unccd-cop17-mongolia-desertification-finance-asymmetry",
-        "2026-08-13-ai-election-infrastructure-opaque-systems-audit"
-      ],
-      "generatedAt": "2026-08-23T04:43:46.088Z"
+      "recentFingerprint": "63e03db0c96e8c34",
+      "standing": "The annual meeting of heads of government of the G20, the group of major advanced and emerging economies. The host rotates with the presidency, and the leaders' joint statement sets the group's agenda on the world economy.",
+      "recent": "This is the leaders' meeting of the G20's US presidency, the point where a year of ministerial work either lands in a joint statement or does not. What it settles is how much of the group's economic agenda carries into the next presidency.",
+      "citations": [],
+      "generatedAt": "2026-08-25T04:49:55.935Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -158,8 +154,16 @@
         "2026-08-11-the-rate-set-last-year-decides-this-one"
       ],
       "generatedAt": "2026-08-23T04:44:13.630Z"
+    },
+    "fred-us-jobs-report-2026-09-04": {
+      "standingFingerprint": "76dd59465c94d59d",
+      "recentFingerprint": "c77caa4c676711f2",
+      "standing": "The Bureau of Labor Statistics' monthly employment report, released on the first Friday of most months. It sets the headline count of jobs added and the unemployment rate, and is the single biggest scheduled input to how the Federal Reserve reads the economy.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-08-25T04:49:10.033Z"
     }
   },
-  "generatedAt": "2026-08-24T04:39:57.060Z",
+  "generatedAt": "2026-08-25T04:49:56.016Z",
   "windowDays": 14
 }
