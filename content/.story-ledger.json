@@ -5,8 +5,8 @@
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-26T08:11:54.237Z",
-      "coverageCount": 14,
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 21,
       "category": "tech",
       "importance": 6,
       "arc": "ongoing",
@@ -24,10 +24,140 @@
         "2026-08-26-sea-surface-record-the-heat-sink-is-the-story",
         "2026-08-26-long-covid-biomarkers-the-sample-is-the-finding",
         "2026-08-26-ham-radio-the-licence-is-the-bottleneck",
-        "2026-08-26-okinawa-governor-the-permit-is-the-veto"
+        "2026-08-26-okinawa-governor-the-permit-is-the-veto",
+        "2026-08-26-pims-nursery-fire-the-inquiry-is-the-pattern",
+        "2026-08-26-afrin-the-shrine-is-gone-the-rite-is-not",
+        "2026-08-26-kassala-gold-the-official-rate-is-the-leak",
+        "2026-08-26-rakbank-bitcoin-the-fatwa-is-the-product",
+        "2026-08-26-granite-4-2-the-parameter-count-is-the-policy",
+        "2026-08-26-sovereign-cloud-the-lock-in-is-the-service-layer",
+        "2026-08-26-rano-diphtheria-the-count-is-the-first-failure"
       ],
       "eventUri": null,
       "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Pakistan_Institute_of_Medical_Sciences",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Air_conditioning",
+        "http://en.wikipedia.org/wiki/Hospital",
+        "http://en.wikipedia.org/wiki/Infant",
+        "http://en.wikipedia.org/wiki/Gynaecology"
+      ]
+    },
+    {
+      "id": "rasuwagadhi-a-flood-that-arrived-without-rain",
+      "label": "Nepal flash flood tears through valley leaving 400 tourists missing, including Americans",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-rasuwagadhi-a-flood-that-arrived-without-rain"
+      ],
+      "eventUri": "eng-11954591",
+      "summary": "An avalanche of ice and rock above the Bhotekoshi released a wall of water that swept the Rasuwagadhi valley on both sides of the Nepal-China border: at least eight to nine dead, 384 listed missing, 291 of them foreigners. Lead with the missing figure and with where they were — this is the corridor of the Rasuwagadhi crossing, the trade and trekking artery that replaced Tatopani after 2015, so the casualty list is tourists, porters, drivers and Chinese border staff at a checkpoint the reporting says was engulfed. The mechanism our reader needs is why Himalayan flash floods now arrive without rain: warming has left slopes held together by ice that is no longer permanent, so a rock-and-ice avalanche into a glacial lake or a steep valley produces a surge with no meteorological warning at all — the flood-forecasting systems on these rivers watch rainfall, and this was not rainfall. That is why the gauge-based alerts downstream in Bihar (Gandak high alert) fire after the water has already moved. Then the political layer: the disaster is jointly Chinese and Nepali, Xi ordered Gyirong county authorities to search, and the asymmetry of who can mount a rescue on which side of a shared valley is part of the story. Consolidate the SCMP Tibet-side reporting into this one piece — do not run two floods. Be exact about the toll's status: dead, missing and 'preliminary' are three different numbers and the tourism board's figure is preliminary. Say what is not known: whether a glacial lake outburst is confirmed or inferred.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nepal",
+        "http://en.wikipedia.org/wiki/Tibet",
+        "http://en.wikipedia.org/wiki/Flash_flood",
+        "http://en.wikipedia.org/wiki/Rasuwa_District",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Kathmandu",
+        "http://en.wikipedia.org/wiki/Bhotekoshi_River"
+      ]
+    },
+    {
+      "id": "order-of-liberty-a-medal-for-a-terms-of-service",
+      "label": "Zelenskyy Gives Musk State Honor as Ukraine Lobbies for Starlink",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-order-of-liberty-a-medal-for-a-terms-of-service"
+      ],
+      "eventUri": "rus-2115263",
+      "summary": "Ukraine has given Elon Musk the Order of Liberty, a state honour reserved for strategic partners, while it is lobbying him to permit Starlink to be used for drone strikes inside Russia. Lead with the sequence, because the sequence is the mechanism: a sovereign state is awarding a medal to a private individual in order to obtain a military capability it cannot compel, requisition or replace. That is what it looks like when a critical wartime network is owned rather than allied. The structural point to teach is the terms-of-service layer beneath modern war — Starlink's operator sets what the terminals may be used for, geographically and by mission type, and has previously declined strike-adjacent uses; there is no treaty, no basing agreement and no appeal, only a company policy that can change on a decision no parliament reviews. The transferable lesson for our reader is not about Ukraine: every state now buying satellite connectivity for its forces or its disaster response — in the Gulf, in Pakistan, across the Sahel — is buying a service whose wartime availability is a commercial discretion. Who holds power: one man; who is affected: a country whose front line depends on him. Report what Kyiv has actually asked for and what SpaceX has said, and be careful to separate the honour, which happened, from the strike permission, which as far as the reporting shows has not been granted.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Order_of_Liberty_(Ukraine)",
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Starlink",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine"
+      ]
+    },
+    {
+      "id": "ajk-autonomy-with-a-loyalty-oath",
+      "label": "Pakistan's Kashmir Crackdown",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-ajk-autonomy-with-a-loyalty-oath"
+      ],
+      "eventUri": null,
+      "summary": "An election widely called a sham in Pakistan-administered Kashmir has produced popular protest and a security crackdown in a territory that is nominally self-governing. Lead with the word 'nominally', because the constitutional arrangement is the mechanism and almost nobody explains it: Azad Jammu and Kashmir has its own assembly and prime minister, but candidates must sign an oath of allegiance to Kashmir's accession to Pakistan to stand at all, and a Kashmir Council seated in Islamabad holds decisive powers over the territory's finances and administration. Autonomy that comes with a loyalty filter on the ballot and a federal body above the assembly is a structure that produces exactly this outcome — a vote whose result is contested and a street that is policed rather than answered. Then the live grievance the crackdown sits on top of: the Awami Action Committee's movement over electricity tariffs, wheat subsidy and the elite's privileges has already forced concessions once, which is what makes an unconvincing election combustible rather than merely disappointing. Who is affected: residents of AJK, whose complaints are material and local; who holds power: Islamabad, and a local political class dependent on it. Structural why for our reader: Pakistan's case in international forums rests on Kashmiri self-determination, and how it governs the part it holds is the test of that case — which is precisely why this half of Kashmir is under-reported while the Indian-administered half is not. Single analysis-forward source and the feed carried no Pakistani outlet on this event: get Dawn or a local AJK report before publication, name the parties, the turnout figures and what the police have confirmed about arrests.",
+      "conceptUris": []
+    },
+    {
+      "id": "tokenized-deposits-sticky-money-is-the-product",
+      "label": "Dallas Fed warns tokenized deposits could strip $700 billion from U.S. banks' lending capacity",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-tokenized-deposits-sticky-money-is-the-product"
+      ],
+      "eventUri": null,
+      "summary": "A Dallas Fed paper puts a number on what programmable money does to banking: if tokenized deposits make depositors 10% more sensitive to interest rates, US banks lose roughly $700 billion of capacity to carry long-term interest-rate risk. Lead with the number and then with what it is a number about, because the mechanism is the whole story: a bank's economic function is maturity transformation — it funds thirty-year assets with deposits that are legally repayable today, and that only works because ordinary deposits are sticky, which is to say slow. Tokenized deposits and instant rails remove the friction that made them slow, so money chases yield automatically and the bank's cheapest, most stable funding becomes hot money. Less stable funding means less long-duration lending: fewer mortgages, less fixed-rate credit to firms. The evidence to lead the argument with is not a model but Brazil — the paper cites early Pix data showing faster automated payments already reducing credit intermediation, which makes this a natural experiment rather than a forecast, and Brazil is the right place to look because instant payments arrived there at scale first. Structural why for our reader: the same instant-rail transition is underway in India, Pakistan's Raast, and across the Gulf, in banking systems with thinner capital and more concentrated deposits, so the effect the Dallas Fed is modelling for the US is one others will meet with less cushion. Follow, do not repeat, our earlier bank-deposit piece: this one is about what the deposit funds, not who holds it. Attribute the estimate to the paper's authors and give their assumptions honestly — the $700bn figure is conditional on a sensitivity parameter, not a measurement. EDITORIAL NOTE FOR THE AUDIT: the feed supplied only five multi-source clusters this cycle, and none were economy — two were duplicate framings of the Nepal flood (consolidated into one selection), one was a consumer lunar-eclipse item from British Vogue and SFGate that we rejected as astrology-framed service copy with no news content, one the Islamabad hospital fire and one the Musk honour, both selected. The economy multi-source floor is therefore unmeetable this cycle: no economy multi-source story was rejected, none existed. We also skipped the multi-covered IMF/Hormuz warning (TASS) because the Hormuz arc already carries two selections and a managing-director's warning adds no mechanism to what we published yesterday.",
+      "conceptUris": []
+    },
+    {
+      "id": "no-combustion-was-never-no-carcinogen",
+      "label": "Early evidence of the carcinogenic effects of e-cigarette use",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-no-combustion-was-never-no-carcinogen"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Reviews Cancer paper assembles the early evidence that e-cigarettes are carcinogenic, against a population of roughly 40 million tobacco-using adolescents aged 13 to 15. Lead with the collapsed premise, because the premise is what built the industry: e-cigarettes were introduced as harm reduction for existing smokers, they largely failed at cessation, and the users they actually acquired were adolescents who had never smoked — so the risk-benefit calculation that justified permissive regulation was made about a population that is not the one vaping. The mechanism to teach for a technically literate reader is why 'no combustion' was never the same as 'no carcinogen': aerosolised propylene glycol and glycerol thermally degrade into carbonyls including formaldehyde and acrolein, the flavourings are food-safe by inhalation-untested standards, and metals leach from the coil — and the evidence now accumulating is DNA-adduct and epigenetic-marker work in users, which is what 'early evidence' means. Be exact about the epistemics, because the honest framing is the finding: tobacco carcinogenesis was established over decades of cohort follow-up, e-cigarettes have not existed long enough for that, so biomarker evidence is what exists and it indicates mechanism rather than incidence. Say that plainly instead of overclaiming a cancer rate. Structural why for our reader: regulation moved fastest in the countries with the best surveillance, and the marketing moved to the ones without — vaping uptake among adolescents in Indonesia, Egypt, Pakistan and the Gulf is rising into regulatory vacuums, so the population that will carry the outcome is not the one the evidence is being collected in. Cite the review and its underlying studies; name what remains unknown.",
+      "conceptUris": []
+    },
+    {
+      "id": "xtracycle-s-swoop-asm-e-bike-brings-an-automatic-transmissio",
+      "label": "Xtracycle's Swoop ASM e-bike brings an automatic transmission to cargo bikes",
+      "firstSeen": "2026-08-26T12:10:19.455Z",
+      "lastCovered": "2026-08-26T12:10:19.455Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-xtracycle-s-swoop-asm-e-bike-brings-an-automatic-transmissio"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] The Velotric Discover M e-bike we reviewed earlier this year had a feature I found somewhat annoying: It would sporadically block much of the display with an alert telling me I should be in a different gear. While the implementation bugged me, the concept made a certain degree of sense; most e-bikes",
       "conceptUris": []
     },
     {
@@ -37,7 +167,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-nvidia-banker-to-the-ai-boom-circular-financing"
@@ -62,7 +192,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-huawei-hp-wifi-patents-the-royalty-runs-the-other-way"
@@ -87,7 +217,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-gates-xi-ai-thresholds-a-private-channel"
@@ -112,7 +242,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-section-117-the-database-is-self-reported"
@@ -128,7 +258,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-in-kind-creation-the-key-becomes-a-share"
@@ -144,7 +274,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-charges-dropped-against-person-who-clapped-at-a-city-data-ce"
@@ -160,7 +290,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-58-arrested-in-international-cybercrime-crackdown"
@@ -176,7 +306,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-123-agreement-enrichment-is-the-clause"
@@ -198,7 +328,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-kuje-residence-as-the-ballot"
@@ -214,7 +344,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-giga-project-hiring-is-the-honest-indicator"
@@ -230,7 +360,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-door-handles-the-standard-is-written-in-beijing"
@@ -246,7 +376,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-yongsan-supply-has-to-come-from-somewhere"
@@ -262,7 +392,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-lossy-categories-compression-is-the-prediction"
@@ -278,7 +408,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-unified-memory-the-model-has-to-fit"
@@ -294,7 +424,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-can-bus-a-network-that-trusts-everything"
@@ -310,7 +440,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-25-uae-ai-defence-the-scarce-resource-is-analysts",
@@ -328,7 +458,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-sdf-dissolution-what-transfers-is-the-administration"
@@ -353,7 +483,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hormuz-corridor-a-lane-is-what-can-be-insured"
@@ -377,7 +507,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-essential-practice-the-judge-decides-what-is-religious"
@@ -402,7 +532,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-boat-strike-no-survivor-is-no-record"
@@ -418,7 +548,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-capulana-a-symbol-that-cannot-be-confiscated"
@@ -434,7 +564,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-defend-it-yourself-seizure-as-the-penalty"
@@ -450,7 +580,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-nucleation-the-equation-nobody-could-watch"
@@ -466,7 +596,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-unity-state-the-study-nobody-funded"
@@ -482,7 +612,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-voter-rolls-public-by-design-national-by-contract"
@@ -498,7 +628,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-ratcliffe-the-channel-that-obliges-nothing"
@@ -523,7 +653,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-warraq-occupancy-that-was-never-registered"
@@ -539,7 +669,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-dekara-the-upload-triggered-the-response"
@@ -555,7 +685,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hormuz-a-declaration-is-not-a-premium"
@@ -580,7 +710,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-dollar-for-dollar-symmetry-on-unequal-exposure"
@@ -596,7 +726,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-petroleum-levy-outside-the-divisible-pool"
@@ -612,7 +742,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-draco-demise-is-modelled-not-measured"
@@ -628,7 +758,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-decoy-camera-the-department-sets-the-value"
@@ -644,7 +774,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-patria-port-state-inspection-is-the-enforcement"
@@ -660,7 +790,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-madama-memorial-erasure-is-continuous-with-the-permit-regime"
@@ -685,7 +815,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-vnukovo-c17-a-transponder-track-and-a-vacuum"
@@ -710,7 +840,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-kocharyan-below-market-is-set-by-the-valuer"
@@ -735,7 +865,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-oil-inventory-absorbs-a-chokepoint-before-price-does"
@@ -751,7 +881,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-open-interest-collapse-a-squeeze-not-a-leveraged-rally"
@@ -767,7 +897,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-rcep-goods-integrated-capital-is-not"
@@ -783,7 +913,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-glyphosate-at-fifty-times-sterilising-the-ground-for-return"
@@ -799,7 +929,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-little-red-dots-density-is-what-decides-the-answer"
@@ -815,7 +945,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-checkpoint-era-the-win-outran-the-mechanism"
@@ -831,7 +961,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-norway-ddos-resilience-was-a-procurement-decision"
@@ -847,278 +977,13 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-good-enough-inference-cost-decides-the-market"
       ],
       "eventUri": null,
       "summary": "The frontier model is not winning the market — cheaper tools are, according to FT reporting that drew 786 points and 690 comments on Hacker News, a public-attention signal from exactly the developers who choose these tools. Lead with the economic shape rather than the company: capability at the frontier is expensive to serve and only intermittently necessary, so most real workloads route to whatever is good enough at a tenth the price, and the industry's entire capital-expenditure case assumes the opposite. The mechanism to teach is inference cost — training is a one-time write-off, serving is a per-token bill that scales with success, so a model that is 5% better and 10x dearer loses on almost every task that is not the hardest one. Structural why for our reader, who is technically literate and watching the buildout: this is the commoditisation argument arriving with evidence, and it prices the datacentre, energy and chip investments that several states, including in the Gulf, have made on the assumption that frontier capability is the scarce good. Who is affected: developers and firms outside the US, for whom the cheap tier is not a compromise but the only tier that clears a budget. Attribute to the FT's reporting and treat the Hacker News score as an attention measure, not a verification; give the actual usage and pricing figures the FT has rather than the narrative.",
-      "conceptUris": []
-    },
-    {
-      "id": "mecca-pact-automaticity-is-the-unknown",
-      "label": "The Mecca Pact: What Do We Actually Know?",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T17:11:18.559Z",
-      "coverageCount": 4,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-25-mecca-pact-automaticity-is-the-unknown",
-        "2026-08-25-qalandia-the-law-is-the-instrument",
-        "2026-08-25-antibody-catalogues-the-blot-is-the-only-evidence",
-        "2026-08-25-cte-the-brain-bank-is-not-the-population"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan, Saudi Arabia and Turkey have signed a joint defence agreement and almost nothing about its text is public. Write the absence as the story: lead with what is actually known — the signatories, the date, the venue — and then with the specific questions the agreement's secrecy leaves open, above all whether it contains a mutual-defence clause and whether Pakistan's nuclear deterrent is implicitly extended to Riyadh. The mechanism to teach is that a defence pact's value lies entirely in its automaticity: an alliance that obliges consultation is a communiqué, one that obliges response is a security guarantee, and only the text distinguishes them. Structural why for our reader: three of the largest Muslim-majority militaries aligning outside the US security architecture is the most consequential development in the ummah's strategic geography in years, and it is happening while Washington cancels exercises in Asia and fights Iran. Who is not consulted: the parliaments of all three states. Be rigorous about the difference between what has been confirmed, what officials have implied, and what analysts are inferring — the Diplomat's own framing is that the details are scarce, so do not fill the gap with speculation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/UNRWA",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Qalandia",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Jerusalem",
-        "http://en.wikipedia.org/wiki/East_Jerusalem",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Chronic_traumatic_encephalopathy",
-        "http://en.wikipedia.org/wiki/Brain"
-      ]
-    },
-    {
-      "id": "economic-outcast-sixty-entities-and-the-third-country-bind",
-      "label": "US announces plan for 'economic onslaught' on Iran",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-economic-outcast-sixty-entities-and-the-third-country-bind"
-      ],
-      "eventUri": "eng-11950582",
-      "summary": "This is the designation list, not the trailer: Treasury has named the campaign Operation Economic Outcast and will sanction more than 60 entities tied to Iran's nuclear and missile programmes. We already covered the announcement of intent — do not repeat it. Lead instead with what a designation does operationally: adding an entity to the SDN list does not seize anything, it makes every bank in the world that touches that entity a candidate for secondary sanctions, so the enforcement is performed by compliance officers in Shanghai, Dubai, Istanbul and Karachi rather than by anyone in Washington. That is why Dawn and NDTV are covering it as a story about their own countries' exposure — Pakistani and Indian intermediaries, not Iranian ones, are the parties who must now choose between Iranian business and dollar access. Who is affected: Iranians whose imported medicine and food clear through the same correspondent banks the designations frighten off. Carry the sentiment spread (0.29) explicitly — the US framing is 'onslaught', the South Asian framing is pressure on third countries. Say precisely how many entities and of what type, and note that the list itself had not been published at the time of the announcement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Economic_sanctions",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury"
-      ]
-    },
-    {
-      "id": "jantar-mantar-promise-with-no-enforcement-instrument",
-      "label": "CJP Announces Protest March In Delhi On September 5",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-jantar-mantar-promise-with-no-enforcement-instrument"
-      ],
-      "eventUri": "eng-11946794",
-      "summary": "An online outfit turned pressure group has called a march on Delhi for September 5, accusing the central government of breaking the commitments that ended the Jantar Mantar sit-in. Lead with what the group actually is — a movement that organised online, has no party structure, no seats and no leader in parliament, and yet extracted written commitments from the Centre once already. The mechanism to explain is the life cycle of a concession: a government ends a protest by promising, the promise has no enforcement instrument attached, and the only remedy available to the promisee is to reassemble the crowd. That is why the second march is the test of the first one's settlement, and why 'vishwasghat' — betrayal of trust — is the word being used rather than a policy demand. Who is affected: young unemployed Indians, the constituency the group claims and the one with least institutional access. Three Indian outlets carry it with a sentiment spread of 0.49, which is itself the story — one frames it as a peace march, another as a threatened stir. Report the disagreement rather than picking a side, and be exact about which commitments the group says were broken.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/First_information_report",
-        "http://en.wikipedia.org/wiki/India_Gate",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Government_of_India",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Delhi_Police",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_India",
-        "http://en.wikipedia.org/wiki/Suicide"
-      ]
-    },
-    {
-      "id": "icpc-cleared-by-the-office-it-investigates",
-      "label": "Fake Agency Scandal: ICPC clears Gbajabiamila, gives reasons",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-icpc-cleared-by-the-office-it-investigates"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's anti-corruption commission has cleared Femi Gbajabiamila, the President's chief of staff, of involvement in the appointment at the centre of the fake-agency scandal — in an investigation President Tinubu himself ordered. Lead with that loop, because it is the accountability mechanism failing in plain sight: the ICPC's chair is a presidential appointee, the terms of reference came from the presidency, and the subject is the presidency's most senior official. The mechanism to explain is what 'cleared' means procedurally — the commission says it found no evidence linking him to the appointment, which is a narrower finding than exoneration and leaves untouched the question of how a non-existent agency acquired an office, a head and a budget line. Give the reader the reasons the ICPC published and the specific question each one does not answer. Who is affected: Nigerians whose public money moved through an entity that had no legal existence; who holds power: the office being investigated by a body it staffs. Africa is under-covered in our recent cycles and this is a domestic accountability story reported by a Nigerian investigative outlet, not a foreign correspondent's summary. Attribute the ICPC's findings as its own claims, and say what the commission has not yet said.",
-      "conceptUris": []
-    },
-    {
-      "id": "barricade-charges-consent-on-paper-refusal-on-the-ground",
-      "label": "Indigenous leaders face criminal charges for setting up anti-mining barricades in the Philippines",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-barricade-charges-consent-on-paper-refusal-on-the-ground"
-      ],
-      "eventUri": null,
-      "summary": "Indigenous leaders in the Philippines are facing criminal charges for building barricades against a mining operation on their own ancestral land. Lead with the inversion: the people with the recognised claim to the land are the defendants, and the company operating on it is the complainant. The mechanism to explain is how that becomes legally possible — the Philippines requires free, prior and informed consent from Indigenous communities before mining, but consent is certified through a process the company funds and the state administers, so a community that says no on the ground can still be recorded as having said yes on paper; the barricade is what remains when the consent process has already been exhausted. Then explain the second mechanism, criminalisation as cost transfer: obstruction and coercion charges do not need to succeed to work, because defending them costs a subsistence farmer years and money they do not have. Who is affected: named community leaders — use their names and the community's name, since the whole technique depends on them being anonymous. Structural why for a global reader: the same legal shape recurs wherever transition-mineral demand meets Indigenous land, from Mindanao to the Andes to the Congo basin. Single specialist source — attribute the charges and the community's account, and state what the mining company has said.",
-      "conceptUris": []
-    },
-    {
-      "id": "ghaggar-phatak-twenty-years-of-temporary",
-      "label": "To be a Karachi Bugti who yearns for watan and dry wood",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-ghaggar-phatak-twenty-years-of-temporary"
-      ],
-      "eventUri": null,
-      "summary": "Twenty years after Nawab Akbar Bugti was killed by the Pakistani military, the villages that emptied then are still empty, and their people are living in stitched-together huts at Ghaggar Phatak on the edge of Karachi. Lead with the twenty years, because the passage of time is the finding: displacement that lasts two decades is not an aftermath, it is a settled arrangement nobody has to defend. The mechanism to explain is how temporary displacement becomes permanent — people who fled Dera Bugti hold no title to the land they left and no tenancy in the city they reached, so they are ineligible for compensation in one place and for services in the other, which is why the huts are made of canvas and the fuel is scavenged wood in a city with piped gas. Who is affected: a named community that our reader will otherwise only meet as a security-page abstraction; who holds power: the state whose operation emptied Dera Bugti and which has never counted these people as displaced. Structural why: Balochistan's insurgency is usually written from the corridor and the checkpoint — this is the same conflict written from the people it moved, which is the version almost nobody publishes. Follow our Pishin road-crew piece as the other end of the same conflict. Keep the reporting concrete and let the details Dawn gathered carry it; do not sentimentalise.",
-      "conceptUris": []
-    },
-    {
-      "id": "fasset-fee-margin-is-the-shariah-native-model",
-      "label": "Fasset raises $68 million in Series C funding to scale neobanking",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-fasset-fee-margin-is-the-shariah-native-model"
-      ],
-      "eventUri": null,
-      "summary": "A UAE-based Islamic neobank has raised $68 million to scale, and the interesting number is not the raise but the market it implies: Fasset's growth markets are Indonesia, Pakistan, Turkey and the Gulf diaspora — populations that are heavily banked-adjacent rather than banked, holding phones and remittance flows but not accounts. Lead with what a neobank actually is, because the word hides the mechanism: it has no branches and usually no banking licence of its own, riding a partner bank's licence and earning on interchange, FX spread and remittance margin rather than on lending. That matters doubly for an Islamic institution, where interest income is unavailable anyway — so the fee-and-spread model that makes neobanks fragile in the West is the model shariah compliance already requires, which is the structural reason Islamic fintech has clustered here. Who is affected: migrant workers paying 5-6% to send money home, the margin this business is built to undercut. Cross-reference the Rakbank Islamic crypto piece rather than repeating it — both are the same movement of unregulated activity inside a licensed Islamic perimeter. Single source with no summary text: verify the round's lead investor, the licence Fasset actually holds, and the markets it names, and say plainly what could not be confirmed.",
-      "conceptUris": []
-    },
-    {
-      "id": "pyongyang-revenue-that-never-touches-a-bank",
-      "label": "North Korea's ever-expanding sanctions evasion toolkit",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-pyongyang-revenue-that-never-touches-a-bank"
-      ],
-      "eventUri": null,
-      "summary": "Pyongyang now funds itself through IT-worker infiltration, crypto theft, shipping fraud and labour export — four techniques that share one property: none of them require a bank. Lead with the IT workers, because it is the one our reader may be personally exposed to — North Korean engineers hired remotely under stolen identities, drawing salaries from firms that believe they are paying a freelancer in Warsaw or Lahore. The mechanism to explain is why the sanctions architecture cannot see any of this: designations and secondary sanctions work by making correspondent banks refuse a transaction, so a revenue stream that arrives as a stablecoin transfer, a payroll deposit to a laundered identity, or a ship-to-ship transfer at anchor never touches the surface the enforcement operates on. Structural why, and the reason to run this the same day as the Iran designations: the most comprehensively sanctioned state on earth is the working demonstration of what a maximum-pressure campaign converges on after twenty years, which is not collapse but adaptation — and the adaptation is exportable. Who bears the cost: North Koreans, whose deprivation the toolkit does not relieve, and the overseas labourers whose wages are confiscated at source. Think-tank analysis, not original reporting — attribute the author's framing and cite the underlying UN panel and prosecution records for the specific techniques.",
-      "conceptUris": []
-    },
-    {
-      "id": "partner-not-employee-indonesia-gig-classification",
-      "label": "Can Indonesia protect gig workers while allowing innovation to thrive?",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-partner-not-employee-indonesia-gig-classification"
-      ],
-      "eventUri": null,
-      "summary": "Indonesia is deciding what a ride-hailing platform owes the millions of drivers it does not employ — and the framing on offer is that the protections should be built as a private safety net rather than a public one. Lead with the number of people involved: gig work is not a marginal labour category in Indonesia, it is one of the largest employers in the archipelago, and the drivers carry the capital cost (the motorcycle, the phone, the fuel) while the platform sets the price. The mechanism to explain is classification — a driver is a 'partner', not an employee, so the entire body of Indonesian labour law, from minimum wage to injury compensation, simply does not apply; every proposed protection is therefore an attempt to reattach one obligation at a time to a relationship deliberately structured to carry none. Then the honest tension: mandate too much and platforms cut driver numbers, mandate too little and the state has privatised its own social insurance to a company that can reprice it. Who holds power: two or three regional super-apps whose algorithms set earnings without appeal; who is affected: drivers, overwhelmingly young men in Jakarta, Surabaya and Medan. Structural why: Indonesia's answer will be copied across Southeast Asia and the Gulf, where the same platforms operate. No Indonesian outlet in today's feed — attribute this as Australian think-tank analysis and seek Indonesian union and ministry positions directly.",
-      "conceptUris": []
-    },
-    {
-      "id": "non-negative-screening-a-low-prevalence-population",
-      "label": "Centre Weighs Dope Tests For All Commercial Pilots After Air India Plane Row",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-non-negative-screening-a-low-prevalence-population"
-      ],
-      "eventUri": "eng-11951312",
-      "summary": "India is considering annual random drug testing for every commercial pilot after Air India's own voluntary programme returned two 'non-negative' results within days of testing 100% of its pilots. Lead with that word — non-negative, not positive — because it is the whole scientific story: a screening immunoassay is built to be sensitive rather than specific, so it flags a class of compounds and hands the sample to confirmatory mass spectrometry, and the gap between the two results is where a career sits for several days. The mechanism to teach is the arithmetic of screening a low-prevalence population: test enough pilots for a behaviour almost none of them exhibit and the false positives will outnumber the true ones unless the confirmatory step is fast, funded and appealable — which is the part a policy announcement never specifies. Who is affected: pilots, whose licences are suspended on a preliminary result, and passengers, whose actual risk is better predicted by fatigue and duty-hour rostering than by cannabis metabolites detectable for weeks after any impairment has passed. Who holds power: the DGCA, writing a rule for the whole industry from one airline's two results. Say clearly what has been decided versus what the minister is 'considering', and give the detection-window fact — it is the detail that reframes the policy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Directorate_General_of_Civil_Aviation_(India)",
-        "http://en.wikipedia.org/wiki/Ministry_of_Civil_Aviation_(India)",
-        "http://en.wikipedia.org/wiki/Aircraft_pilot",
-        "http://en.wikipedia.org/wiki/Air_India",
-        "http://en.wikipedia.org/wiki/Cannabis_(drug)",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Air_Accidents_Investigation_Branch",
-        "http://en.wikipedia.org/wiki/Drug_test"
-      ]
-    },
-    {
-      "id": "debris-wake-a-signature-radar-cannot-see",
-      "label": "Dynamics of space debris induced, accelerated, nonlinear ion acoustic waves in presence of kinematic viscosity",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-debris-wake-a-signature-radar-cannot-see"
-      ],
-      "eventUri": null,
-      "summary": "A piece of orbital debris moving through the ionospheric plasma does not pass through it silently — it drives a nonlinear ion acoustic wave ahead of itself, and this paper models what that wake looks like once the plasma's viscosity is included. Lead with the practical consequence buried in the physics: a wake is a signature, and a signature is a way of detecting objects too small for radar to see. Explain the physics plainly for a technical but non-specialist reader — low Earth orbit is not empty but a thin ionised gas, sound in a plasma travels as a compression of ions held together by electrons, and a supersonic object therefore produces a shock structure much as an aircraft does in air; adding viscosity is what turns an idealised soliton into something that damps and spreads the way a real one must. Structural why: the debris population below 10cm is effectively invisible and is what actually ends satellites, so any detection modality that does not require bouncing radar off a bolt is worth attention — and space situational awareness is currently a capability held by a handful of states, which decides who gets to know where anything is. Be exact about status: this is analytical and numerical modelling, not an instrument or an observation, and the paper is an accepted early-access version. Open access — link it.",
-      "conceptUris": []
-    },
-    {
-      "id": "key-rotation-the-authority-that-says-same-owner",
-      "label": "Monad developers propose quantum-safe wallets as Bitcoin and Ethereum weigh upgrades",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-key-rotation-the-authority-that-says-same-owner"
-      ],
-      "eventUri": null,
-      "summary": "A proposal on an Ethereum-compatible chain would let a wallet replace its own keys — which solves lost keys and post-quantum migration with the same change, because both are the same problem: a key you can no longer safely use. Lead with why that is hard rather than obvious. A blockchain address is not an account, it is the hash of a public key, so the key is the identity; changing it means inventing an authority that can say 'this new key is the same owner', and every such authority is a thing that can be compromised or coerced. That is the trade the proposal is making, and it is the trade our reader should be handed. The quantum angle is concrete, not speculative in the usual sense: Shor's algorithm recovers a private key from an exposed public key, and a public key is exposed the moment an address spends — so the coins at risk first are the ones that have already moved, and the migration must happen while the chain still works, not after. Structural why: Bitcoin and Ethereum are weighing the same upgrade with far more value and far less governance flexibility, and a smaller chain shipping first is how the design space gets explored at someone else's risk. Note honestly that this is an early draft with no implementation spec — do not write it as a launch.",
-      "conceptUris": []
-    },
-    {
-      "id": "beijing-games-the-falls-are-the-measurement",
-      "label": "Faster, stronger, (occasionally) upright: See humanoid robots compete in Beijing games",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-beijing-games-the-falls-are-the-measurement"
-      ],
-      "eventUri": null,
-      "summary": "Humanoid robots broke sprint records at a five-day Beijing competition and also fell over, caught fire after crossing the finish line, and struggled with cable assembly and carrying plates. Lead with the failures, not the records, because the failure modes are the measurement: a machine that can outrun a human on a flat track and cannot stay upright afterwards has solved actuation and not balance recovery, and a machine that manages a sprint but not a cable harness has solved gross motion and not contact-rich manipulation — which is the part every warehouse and factory claim depends on. The mechanism to explain is why the hard problems are the unglamorous ones: locomotion is a controlled fall the machine repeats, and it is trainable in simulation; fine manipulation needs force feedback in the real world, where data cannot be generated at scale. Structural why for our reader: China is running this as a national capability showcase while the labour-substitution claims priced into humanoid-robot valuations sit almost entirely on the manipulation side that visibly did not work — and the sovereignty thread here is the same as chips, that the actuators, reducers and sensors have a short supply list. Note this is a wire report Dawn is carrying; be sceptical of the record claims and say who validated them.",
-      "conceptUris": []
-    },
-    {
-      "id": "polarisation-hyperspectral-what-a-camera-throws-away",
-      "label": "A high-resolution polarization-hyperspectral image sensor for complex intelligent sensing",
-      "firstSeen": "2026-08-25T08:13:37.099Z",
-      "lastCovered": "2026-08-25T08:13:37.099Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-polarisation-hyperspectral-what-a-camera-throws-away"
-      ],
-      "eventUri": null,
-      "summary": "A single image sensor that captures polarisation and full spectrum at high resolution — two properties conventional cameras throw away before the photons reach the pixel. Lead with what is being discarded today, because that reframes the whole field: an ordinary sensor records intensity through three broad colour filters, so it loses the wavelength detail that identifies a material and the polarisation that describes its surface geometry and stress. Recovering both at once, on one chip, is what previously took a filter wheel, a spectrometer and a rotating polariser on an optical bench. The mechanism to explain is the trade every such sensor makes: encoding more dimensions into a fixed pixel array costs spatial resolution, and the interesting claim in this paper is where that trade was moved to. Structural why for a technically literate reader: the applications are identification tasks, not photography — telling plastic from tissue, stressed metal from sound metal, a real face from a printed one, crop disease before it is visible — which is why this belongs in the same thread as the corner-detection-in-the-optics work we covered: sensing is being pushed upstream of computation. Say plainly that this is an accepted early-access paper, cite the resolution and spectral band numbers it reports, and do not translate a lab demonstration into a product.",
       "conceptUris": []
     }
   ]
