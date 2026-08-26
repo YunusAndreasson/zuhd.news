@@ -1,36 +1,37 @@
 {
-  "date": "2026-08-25",
+  "date": "2026-08-26",
   "metrics": {
-    "articles": { "value": 66, "detail": "5 cycles, 5/5 completed, avg 13/cycle" },
-    "freshness": { "median": 0.2, "p90": 1.2, "max": 1.6, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 16, "science": 14, "tech": 14 },
+    "articles": { "value": 55, "detail": "5 cycles, avg 9/cycle (68 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 1.6, "max": 58, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 12, "science": 10, "tech": 12 },
     "multiSource": { "value": 9, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 19, "ME": 16, "EU": 14, "AS": 12, "AF": 5, "OC": 0 }
+      "breakdown": { "AM": 20, "ME": 11, "AS": 10, "EU": 7, "AF": 5, "OC": 2 }
     },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 6, "target": 20, "met": true },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Ars Technica", "pct": 7, "target": 20, "met": true },
     "uniqueSources": 43,
     "duplicates": 0,
-    "avgCycleDuration": 1514
+    "avgCycleDuration": 1335
   },
-  "experiment": "Skipped — the noNewExperimentsUntil gate (2026-08-26) is still in force today, and every goal metric is inside target regardless. No active experiments to evaluate. The gate lifts tomorrow; drop the field then, since today is the third consecutive clean day of 5/5 scheduled cycles (08-23, 08-24, 08-25) that the gate was waiting for.",
-  "weakestArea": "Regional spread. The formal target (≥4 regions) is met at 5, but Oceania went to zero today after 3 articles yesterday, and Africa held at 5 of 66 (7.6%) — the same thin share as yesterday's 4. Coverage is concentrated in AM/ME/EU (74% of regional tags), so the region count is passing on breadth that is one dropout away from 4.",
+  "experiment": "Skipped — every goal metric is inside target. The noNewExperimentsUntil gate reached its 2026-08-26 date and was dropped, not extended: 2026-08-23 through 2026-08-26 each ran 5/5 scheduled cycles with no OAuth failures, satisfying the three-clean-days condition the gate was written against. No active experiments were pending evaluation.",
+  "weakestArea": "Nothing is below target, so the weakest signal is the freshness tail rather than any goal: median is 0.1 days and p90 is 1.6, but one article in today's 11-article freshness sample carried a 58-day-old source — an evergreen feature slipping through a pipeline tuned for hard news. Second-order, throughput fell 68 → 55 day-over-day and the Americas took 36% of regional share (20/55), the most concentrated single region this week.",
   "watching": [
-    "Hormuz: closure, a 'clear' declaration, a collapse in traffic and an oil price that did not move — four articles today on the same chokepoint with contradictory signals worth reconciling.",
-    "US–Russia contacts: a spy chief in Moscow, a C-17 at Vnukovo with a transponder gap, and an asset-seizure threat all landed in the same day.",
-    "SDF dissolution into the Syrian army — a structural change in northeast Syria that will generate follow-on stories for weeks.",
-    "Venezuela quake toll passing 6,500 with an unusual injured-to-dead ratio; the death toll is still moving.",
-    "ICE seeking national voter data alongside a voter-rolls contract story — a US data-access thread developing across two cycles."
+    "Amhara–Tigray understandings in Ethiopia — first reported de-escalation between the two forces; the border question was explicitly postponed, so the agreement's durability is the story.",
+    "Rasuwagadhi flood on the Nepal–China border — at least 160 dead and hundreds missing, and the flood arrived without rain, pointing at an upstream glacial or impoundment failure.",
+    "Nvidia's $108bn revenue guidance and the circular-financing structure underneath it — the vendor-finances-its-own-customers pattern is the part with systemic risk.",
+    "Venezuelan Chavismo-loyal elements warning over the succession — 23 de Enero neighbourhood dynamics suggest parallel authority rather than a unified state response.",
+    "Continued GNSS disruption along Poland's Baltic coast — jamming has persisted long enough that the Polish institute now reports it as a standing condition, not an incident.",
+    "US measles — a Pennsylvania death and the 95% vaccination threshold reporting mark the first fatality-driven inflection in this outbreak cycle."
   ],
   "coverageGaps": [
-    "Oceania: zero articles today, down from 3 yesterday; no Pacific, Australian or New Zealand story cleared selection.",
-    "Africa: 5 of 66 articles, and three of them (Mozambique, Nigeria, sanctioned ship off West Africa) are conflict or crime framings — little economy or science from the continent.",
-    "Latin America outside Venezuela and the US boat strike is unrepresented despite AM's 19 tags, which are overwhelmingly US-datelined.",
-    "Science sourcing leans on a narrow set — Nature, Phys.org, Ars Technica and European Spaceflight carry most of the 14 science pieces; the rest are general outlets tagged science."
+    "Oceania at 2 articles is the thinnest region of the day and has been the structural floor all week; Pacific-island coverage in particular is absent.",
+    "Latin America appears almost entirely through Venezuela — no Brazil, Mexico, Andean or Southern Cone reporting today.",
+    "Central Asia is unrepresented despite an active feed of Caspian energy and Afghan border stories.",
+    "Several stories classed as science drew on generalist outlets (Yahoo, The Telegraph, Bloomberg) rather than specialist ones; Nature, Carbon Brief and Ars Technica carried the rest, so the specialist base is narrower than the science count suggests."
   ],
-  "context": "First fully clean tuning day since the 2026-08-19→08-22 OAuth outage: 5/5 cycles completed both today and yesterday, throughput back to 66/day, and duplicates at zero. Rolling windows that touch 08-19→08-22 (the weekly .quality-trend.json snapshot and RVS cluster medians) remain contaminated and should not be read as parameter signal until they roll past 08-22 later this week."
+  "context": "This is the first fully clean measurement window since the 2026-08-19 → 2026-08-22 OAuth outage that voided 16 consecutive cycles, and all four goals — freshness, diversity, multi-source, educational value — cleared on the first uncontaminated reading. History cautions against reaching for a lever here: the last two selector-floor experiments (2026-04-21, 2026-05-09) both found the feed's ~9 multi-source stories per cycle, not the prompt, to be the binding constraint, and any sourcing-cluster work should target upstream feed composition instead. The queued 2026-05-08-numerical-density experiment remains blocked on out-of-scope grounds — it edits scripts/write-prompt.md, which daily tuning may not touch."
 }

@@ -1,7 +1,5 @@
 {
   "version": 1,
-  "noNewExperimentsUntil": "2026-08-26",
-  "noNewExperimentsUntilReason": "Scheduled cycles failed on 'OAuth session expired and could not be refreshed' for 16 consecutive runs (2026-08-19 17:02 → 2026-08-22 17:02). 2026-08-20 published 0 articles, 2026-08-21 published 7. Every rolling window that touches 08-19→08-22 — daily metrics, the weekly .quality-trend.json snapshot, and RVS cluster medians — is contaminated by the outage, not by any parameter. Wait for 3 clean days of 5/5 scheduled cycles before introducing a new variable. Drop this field on 2026-08-26; do not auto-extend.",
   "activeExperiments": [],
   "activeExperiment": null,
   "history": [
