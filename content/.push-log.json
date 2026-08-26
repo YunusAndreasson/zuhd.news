@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-07-31T04:26:13.332Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-07-31-yen-won-joint-intervention-unconfirmed-dollar-pressure",
-        "title": "Yen Surges On Suspected Intervention",
-        "category": "economy",
-        "eventCoverage": 36,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-one-killed-at-least-7-feared-trapped-after-building-collapse",
-        "title": "Bhiwandi Building Collapse Kills One",
-        "category": "science",
-        "eventCoverage": 28,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-tesla-china-separation-spacex-merger-two-bloc-structuring",
-        "title": "Tesla Weighs China Split",
-        "category": "economy",
-        "eventCoverage": 26,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-board-of-peace-hamas-disarmament-no-verifier-named",
-        "title": "Gaza Deal Lacks Verifier",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-balochistan-coal-mine-blast-inspection-regime-methane",
-        "title": "Quetta Coal Mine Blast",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-nicaragua-denationalisation-statelessness-civil-death",
-        "title": "Nicaragua Strips Critics' Citizenship",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-australia-coal-exports-iccpr-committee-exported-carbon",
-        "title": "Australia Faces UN Complaint",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-rawalpindi-sanitation-workers-contract-regularisation",
-        "title": "Rawalpindi Workers Demand Pay",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-qualcomm-snapdragon-price-rise-ai-memory-shortage-handsets",
-        "title": "Qualcomm Raises Chip Prices",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-japan-earthquake-34-dead-code-exceptions-retrofit",
-        "title": "Japan Quake Toll Hits 34",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-linkedin-ai-slop-button-detection-pushed-to-users",
-        "title": "LinkedIn Adds AI Slop Button",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-analog-devices-breach-design-ip-supply-chain-disclosure",
-        "title": "Analog Devices Reports Breach",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-sindh-ntc-data-centre-jurisdiction-over-convenience",
-        "title": "Sindh Builds State Data Centre",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-31-one-killed-at-least-7-feared-trapped-after-building-collapse",
-      "title": "Bhiwandi Building Collapse Kills One",
-      "category": "science",
-      "body": "The building had been declared dangerous.",
-      "eventCoverage": 28,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Building collapse kills one, traps seven in Bhiwandi, India",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-07-31T08:20:27.191Z",
     "candidateCount": 12,
     "candidates": [
@@ -10586,5 +10472,42 @@
       "skipped": 0,
       "tokens": 9
     }
+  },
+  {
+    "timestamp": "2026-08-26T04:26:02.484Z",
+    "candidateCount": 4,
+    "candidates": [
+      {
+        "slug": "2026-08-26-123-agreement-enrichment-is-the-clause",
+        "title": "Saudi Deal Skips Enrichment Ban",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-kuje-residence-as-the-ballot",
+        "title": "Chairman Threatens Voters",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-door-handles-the-standard-is-written-in-beijing",
+        "title": "China's Flush Handles Trap Riders",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-can-bus-a-network-that-trusts-everything",
+        "title": "Car Networks Trust Everyone",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 4 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
