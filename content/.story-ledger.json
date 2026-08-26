@@ -5,8 +5,8 @@
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-26T04:11:59.778Z",
-      "coverageCount": 9,
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 14,
       "category": "tech",
       "importance": 6,
       "arc": "ongoing",
@@ -19,10 +19,154 @@
         "2026-08-26-township-custody-the-toxicology-is-not-the-question",
         "2026-08-26-kok-river-the-harm-crosses-the-border-the-remedy-does-not",
         "2026-08-26-portland-beach-the-mammal-is-the-measurement",
-        "2026-08-26-planform-decoys-the-sensor-is-the-audience"
+        "2026-08-26-planform-decoys-the-sensor-is-the-audience",
+        "2026-08-26-atiku-subsidy-pledge-the-pump-price-is-the-platform",
+        "2026-08-26-sea-surface-record-the-heat-sink-is-the-story",
+        "2026-08-26-long-covid-biomarkers-the-sample-is-the-finding",
+        "2026-08-26-ham-radio-the-licence-is-the-bottleneck",
+        "2026-08-26-okinawa-governor-the-permit-is-the-veto"
       ],
       "eventUri": null,
       "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
+      "conceptUris": []
+    },
+    {
+      "id": "nvidia-banker-to-the-ai-boom-circular-financing",
+      "label": "Nvidia has become a banker to the AI boom, putting it on dangerous ground",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-nvidia-banker-to-the-ai-boom-circular-financing"
+      ],
+      "eventUri": "eng-11951700",
+      "summary": "Ahead of Wednesday's Q2 report, the question is no longer demand but who is paying for it: Nvidia is increasingly financing the customers who buy its chips — supply commitments, equity stakes and prepayments to the same data-centre operators and labs booking its revenue. Lead with the circularity, not the earnings number: a supplier that funds its own demand converts customer failure into its own balance-sheet loss. The reader should come away understanding why 19% stock growth after three blockbuster years is the market pricing that risk, and who bears it if AI capex stalls.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Wall_Street",
+        "http://en.wikipedia.org/wiki/Nasdaq",
+        "http://en.wikipedia.org/wiki/Stock",
+        "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+        "http://en.wikipedia.org/wiki/OpenAI"
+      ]
+    },
+    {
+      "id": "huawei-hp-wifi-patents-the-royalty-runs-the-other-way",
+      "label": "China's Huawei, US PC maker HP sign multi-year Wi-Fi patent deal",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-huawei-hp-wifi-patents-the-royalty-runs-the-other-way"
+      ],
+      "eventUri": "eng-11954311",
+      "summary": "A US hardware giant is now paying a sanctioned Chinese firm for the right to ship Wi-Fi. The mechanism to explain is standard-essential patents: Huawei holds a large share of the Wi-Fi 6/7 patent pool, so export controls that cut it off from American chips do not touch the licensing royalties flowing the other way. Lead with the inversion — the company Washington tried to shut out of Western networks is collecting rent from every HP laptop with Wi-Fi 7 in it. Note who is affected: licensing revenue is Huawei's most sanction-proof income line.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Patent",
+        "http://en.wikipedia.org/wiki/Hewlett-Packard",
+        "http://en.wikipedia.org/wiki/Huawei",
+        "http://en.wikipedia.org/wiki/Wi-Fi",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Wi-Fi_6",
+        "http://en.wikipedia.org/wiki/Personal_computer",
+        "http://en.wikipedia.org/wiki/Computer"
+      ]
+    },
+    {
+      "id": "gates-xi-ai-thresholds-a-private-channel",
+      "label": "Bill Gates, alarmed by AI, has policy ideas he wants to discuss with China's Xi Jinping",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-gates-xi-ai-thresholds-a-private-channel"
+      ],
+      "eventUri": "eng-11954685",
+      "summary": "A private citizen with no office is seeking a meeting with Xi Jinping to propose global AI rules — and says the danger thresholds (bioterrorism capability, job displacement) have already been crossed. The story is the channel, not the alarm: with no US–China governmental track on AI, philanthropic back-channel diplomacy is what remains, and it obliges no one. Lead with Gates reversing his own position on AI and jobs. Consolidates the Reuters, Semafor and MIT Technology Review interviews of the same day.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Bill_Gates",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/President_of_the_People's_Republic_of_China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Philanthropy",
+        "http://en.wikipedia.org/wiki/Microsoft"
+      ]
+    },
+    {
+      "id": "section-117-the-database-is-self-reported",
+      "label": "Documents Reveal Trail of Unreported Millions From Israeli Military to U.S. Universities",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-section-117-the-database-is-self-reported"
+      ],
+      "eventUri": null,
+      "summary": "Documents show research money from Israel's Ministry of Defense and its arms manufacturers reaching US universities without appearing in the federal database that exists to track exactly this. The mechanism is the story: Section 117 disclosure is self-reported by the university, has no audit and no penalty, and routing a grant through a subsidiary or a foundation makes it vanish. Lead with the gap between what the database shows and what the documents show — and name the schools and the ministry. Same administration that used foreign-funding rules to pressure universities over Gaza protests is not enforcing them here.",
+      "conceptUris": []
+    },
+    {
+      "id": "in-kind-creation-the-key-becomes-a-share",
+      "label": "Wall Street is making it easier for bitcoin whales to ditch self-custody",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-26-in-kind-creation-the-key-becomes-a-share"
+      ],
+      "eventUri": "eng-11954530",
+      "summary": "BlackRock's in-kind creation for IBIT lets large holders swap coins for ETF shares without selling — so no taxable event, and no more private keys. Lead with the tax mechanism, because that is the lever: the state made self-custody the expensive option and a custodian the cheap one. The consequence for the reader is concentration — the asset built to remove intermediaries is being re-intermediated into a handful of qualified custodians, one of which is Coinbase. Ask what an exit that only works through Wall Street is worth.",
+      "conceptUris": []
+    },
+    {
+      "id": "charges-dropped-against-person-who-clapped-at-a-city-data-ce",
+      "label": "Charges Dropped Against Person Who Clapped at a City Data Center Meeting",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-charges-dropped-against-person-who-clapped-at-a-city-data-ce"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Lux Claridge was dragged from a city meeting about data centers and charged with interfering with the police after they clapped during a presentation.",
+      "conceptUris": []
+    },
+    {
+      "id": "58-arrested-in-international-cybercrime-crackdown",
+      "label": "58 arrested in international cybercrime crackdown",
+      "firstSeen": "2026-08-26T08:11:54.237Z",
+      "lastCovered": "2026-08-26T08:11:54.237Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-25-58-arrested-in-international-cybercrime-crackdown"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Interpol officials said it uncovered a crime-as-a-service network in Argentina run by 196 people that provided website domains and money laundering support to West African organized crime groups like Black Axe.",
       "conceptUris": []
     },
     {
@@ -32,7 +176,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-123-agreement-enrichment-is-the-clause"
@@ -54,7 +198,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-kuje-residence-as-the-ballot"
@@ -70,7 +214,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-giga-project-hiring-is-the-honest-indicator"
@@ -86,7 +230,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-door-handles-the-standard-is-written-in-beijing"
@@ -102,7 +246,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-yongsan-supply-has-to-come-from-somewhere"
@@ -118,7 +262,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-lossy-categories-compression-is-the-prediction"
@@ -134,7 +278,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-unified-memory-the-model-has-to-fit"
@@ -150,7 +294,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-can-bus-a-network-that-trusts-everything"
@@ -166,7 +310,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-08-25-uae-ai-defence-the-scarce-resource-is-analysts",
@@ -184,7 +328,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-sdf-dissolution-what-transfers-is-the-administration"
@@ -209,7 +353,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hormuz-corridor-a-lane-is-what-can-be-insured"
@@ -233,7 +377,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-essential-practice-the-judge-decides-what-is-religious"
@@ -258,7 +402,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-boat-strike-no-survivor-is-no-record"
@@ -274,7 +418,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-capulana-a-symbol-that-cannot-be-confiscated"
@@ -290,7 +434,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-defend-it-yourself-seizure-as-the-penalty"
@@ -306,7 +450,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-nucleation-the-equation-nobody-could-watch"
@@ -322,7 +466,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-unity-state-the-study-nobody-funded"
@@ -338,7 +482,7 @@
       "lastCovered": "2026-08-25T22:13:40.469Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-25-voter-rolls-public-by-design-national-by-contract"
@@ -354,7 +498,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-ratcliffe-the-channel-that-obliges-nothing"
@@ -379,7 +523,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-warraq-occupancy-that-was-never-registered"
@@ -395,7 +539,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-dekara-the-upload-triggered-the-response"
@@ -411,7 +555,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-hormuz-a-declaration-is-not-a-premium"
@@ -436,7 +580,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-dollar-for-dollar-symmetry-on-unequal-exposure"
@@ -452,7 +596,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-petroleum-levy-outside-the-divisible-pool"
@@ -468,7 +612,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-draco-demise-is-modelled-not-measured"
@@ -484,7 +628,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-25-decoy-camera-the-department-sets-the-value"
@@ -500,7 +644,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-patria-port-state-inspection-is-the-enforcement"
@@ -516,7 +660,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-madama-memorial-erasure-is-continuous-with-the-permit-regime"
@@ -541,7 +685,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-vnukovo-c17-a-transponder-track-and-a-vacuum"
@@ -566,7 +710,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-kocharyan-below-market-is-set-by-the-valuer"
@@ -591,7 +735,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-oil-inventory-absorbs-a-chokepoint-before-price-does"
@@ -607,7 +751,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-open-interest-collapse-a-squeeze-not-a-leveraged-rally"
@@ -623,7 +767,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-rcep-goods-integrated-capital-is-not"
@@ -639,7 +783,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-glyphosate-at-fifty-times-sterilising-the-ground-for-return"
@@ -655,7 +799,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-little-red-dots-density-is-what-decides-the-answer"
@@ -671,7 +815,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-checkpoint-era-the-win-outran-the-mechanism"
@@ -687,7 +831,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-norway-ddos-resilience-was-a-procurement-decision"
@@ -703,7 +847,7 @@
       "lastCovered": "2026-08-25T12:12:40.333Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-good-enough-inference-cost-decides-the-market"
@@ -719,7 +863,7 @@
       "lastCovered": "2026-08-25T17:11:18.559Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-08-25-mecca-pact-automaticity-is-the-unknown",
@@ -749,7 +893,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-economic-outcast-sixty-entities-and-the-third-country-bind"
@@ -774,7 +918,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-jantar-mantar-promise-with-no-enforcement-instrument"
@@ -799,7 +943,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-icpc-cleared-by-the-office-it-investigates"
@@ -815,7 +959,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-barricade-charges-consent-on-paper-refusal-on-the-ground"
@@ -831,7 +975,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-ghaggar-phatak-twenty-years-of-temporary"
@@ -847,7 +991,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-fasset-fee-margin-is-the-shariah-native-model"
@@ -863,7 +1007,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-pyongyang-revenue-that-never-touches-a-bank"
@@ -879,7 +1023,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-partner-not-employee-indonesia-gig-classification"
@@ -895,7 +1039,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-non-negative-screening-a-low-prevalence-population"
@@ -920,7 +1064,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-debris-wake-a-signature-radar-cannot-see"
@@ -936,7 +1080,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-key-rotation-the-authority-that-says-same-owner"
@@ -952,7 +1096,7 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-beijing-games-the-falls-are-the-measurement"
@@ -968,221 +1112,13 @@
       "lastCovered": "2026-08-25T08:13:37.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-25-polarisation-hyperspectral-what-a-camera-throws-away"
       ],
       "eventUri": null,
       "summary": "A single image sensor that captures polarisation and full spectrum at high resolution — two properties conventional cameras throw away before the photons reach the pixel. Lead with what is being discarded today, because that reframes the whole field: an ordinary sensor records intensity through three broad colour filters, so it loses the wavelength detail that identifies a material and the polarisation that describes its surface geometry and stress. Recovering both at once, on one chip, is what previously took a filter wheel, a spectrometer and a rotating polariser on an optical bench. The mechanism to explain is the trade every such sensor makes: encoding more dimensions into a fixed pixel array costs spatial resolution, and the interesting claim in this paper is where that trade was moved to. Structural why for a technically literate reader: the applications are identification tasks, not photography — telling plastic from tissue, stressed metal from sound metal, a real face from a printed one, crop disease before it is visible — which is why this belongs in the same thread as the corner-detection-in-the-optics work we covered: sensing is being pushed upstream of computation. Say plainly that this is an accepted early-access paper, cite the resolution and spectral band numbers it reports, and do not translate a lab demonstration into a product.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-single-vessel-transit-collapse",
-      "label": "Strait of Hormuz ship traffic drops to single vessel",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-hormuz-single-vessel-transit-collapse"
-      ],
-      "eventUri": null,
-      "summary": "One commodity vessel transited Hormuz on Monday — the lowest daily count since May 7 — and hours after Washington unveiled its 'economic D-Day' package another ship was struck in the strait. Lead with the number one: a waterway that normally carries about a fifth of seaborne oil has been emptied not by a blockade but by underwriters and shipowners deciding the transit is uninsurable, which is how a chokepoint closes without anyone announcing a closure. The mechanism to teach is that transit volume is the real sanctions scoreboard: war-risk premium, charterer refusal and AIS transponder blackouts do the work an actual mine barrage would, at no cost to Tehran. Who is affected first: Gulf and Asian importers and every economy downstream of that crude, not the US Treasury that set the pressure campaign in motion. Follow the earlier Bessent sanctions and rial pieces rather than repeating them — this is the physical consequence of both. Carry the Iranian source (Mehr, relaying Reuters shipping data) and the US one (The War Zone) side by side and flag which claims each stands behind; attribute the strike itself carefully, since neither the vessel's damage nor the attacker has been independently confirmed.",
-      "conceptUris": []
-    },
-    {
-      "id": "venezuela-quake-toll-injured-to-dead-ratio",
-      "label": "Venezuela earthquake death toll exceeds 6,500",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-venezuela-quake-toll-injured-to-dead-ratio"
-      ],
-      "eventUri": null,
-      "summary": "The death toll from Venezuela's earthquake has passed 6,500, with 226,696 people recorded as having received medical assistance — figures given by National Assembly Speaker Jorge Rodríguez on Telegram. Lead with the two numbers together: the ratio of injured to dead is what tells the reader whether hospitals are still functioning, and 226,696 treated against 6,509 killed describes a health system absorbing a mass-casualty event across weeks, not hours. The mechanism to explain is why the toll keeps climbing after the shaking stops — crush injuries, water and sanitation failure, and the slow work of clearing collapsed masonry, which is where the sanctioned-economy constraint on heavy equipment and imported medical supplies becomes lethal. Who is affected: Venezuelans, overwhelmingly poor and in unreinforced housing; who holds power: a government that is also the only source of the count. Attribute every figure to Rodríguez and to TASS's relay of it, and say plainly that no independent verification is available in this feed and that the death toll has been revised upward repeatedly. Latin America has been absent from our coverage — this is the region's story, not a footnote to US policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "mail-ballot-order-partly-in-force",
-      "label": "US Supreme Court hands a win to Trump over mail-in ballot restrictions",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-mail-ballot-order-partly-in-force"
-      ],
-      "eventUri": "eng-11944583",
-      "summary": "The Supreme Court lifted part of the block on Trump's executive order restricting mail-in ballots, months before midterms in which control of Congress is close — but a separate injunction still blocks a key part of the plan, so the order is only partly in force. Lead with that split, because the precise state of the law is what most coverage will blur. The mechanism to explain is who sets election rules: the Constitution assigns the time, place and manner of federal elections to the states and to Congress, so an executive order reaching into ballot procedure is a claim of presidential authority over an area the presidency has never held — and the Court's willingness to let it operate while litigation continues is itself the ruling that matters. Who is affected: voters who rely on mail ballots — disabled, elderly, rural and overseas — a group that does not map neatly onto either party but does map onto whoever finds it hardest to reach a polling place. Note this is a shadow-docket-style interim posture, not a merits judgment, and say what remains enjoined.",
-      "conceptUris": []
-    },
-    {
-      "id": "bahawalpur-custodial-death-fir-is-the-exception",
-      "label": "Two cops booked for 'torturing man to death' in Bahawalpur",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-bahawalpur-custodial-death-fir-is-the-exception"
-      ],
-      "eventUri": null,
-      "summary": "Kahror Pacca police registered a murder case against two of their own constables, Muhammad Khan and Aurangzeb, over a man tortured to death in custody; the complaint came from Pitras Masih, a municipal employee, whose name signals a Christian complainant pressing a case against police in southern Punjab. Lead with the names on both sides — the accused and the complainant — because custodial death reporting usually erases both. The mechanism to explain is why an FIR against constables is the exception rather than the rule: the same station that holds the body controls the initial evidence, the post-mortem and the first information report, so a case exists only when someone outside the police is willing to complain and survive doing so. Structural why: torture is not a lapse in Pakistani policing but its default investigative method for people without money or connections, and prosecutions almost never reach conviction — give the reader what happens next procedurally, and what usually happens instead. Name the dead man if Dawn does; count him as a person, not as a case number.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-standards-as-market-access",
-      "label": "Will China Rewrite the Rules of Global Supply Chains?",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-china-standards-as-market-access"
-      ],
-      "eventUri": null,
-      "summary": "Beijing is writing its own corporate due-diligence and supply-chain responsibility standards and exporting them to the countries its firms operate in. Lead with what a standard actually does: it decides which audits count, which certifiers are accredited, and therefore which suppliers can sell — so whoever writes the standard controls market access without a tariff or a treaty. The mechanism to teach is standard-setting as soft infrastructure, the same lever the EU pulls with its own compliance stack and that this week's Tesla door-handle recall showed China already pulling on product safety. Who is affected: manufacturers across Africa, South and Southeast Asia now facing two incompatible compliance regimes and the cost of satisfying both; who holds power: the ministries and industry bodies drafting text no exporter votes on. Structural why for a strategic reader — the contest over supply chains is being fought in rulebooks, not ports, and a country that adopts Chinese standards is harder to decouple than one that merely trades with China. Attribute the analysis to the Diplomat's author and be concrete about which Chinese standards exist today versus which are proposed.",
-      "conceptUris": []
-    },
-    {
-      "id": "airport-bundles-cross-subsidy-sold-off",
-      "label": "Centre plans to privatise 11 airports in five bundles",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-airport-bundles-cross-subsidy-sold-off"
-      ],
-      "eventUri": "eng-11948947",
-      "summary": "India will privatise 11 airports as five bundles, deliberately pairing a profitable airport with a loss-making one — Amritsar with Kangra-Gaggal, Varanasi and Gaya with smaller fields — so the bidder cross-subsidises the small airport from the large one's earnings. Lead with the bundling itself, because that is the whole design: the state is selling the obligation to serve unprofitable places along with the right to earn from profitable ones, which is how public-service loss is transferred to a private balance sheet without a subsidy line in the budget. The mechanism to explain is where airport money actually comes from — landing fees are the small part, and retail, parking, real estate and fuel throughput are the rest, so the winning bidder's return depends on passenger spending at Varanasi, not on flights to Kangra. Who is affected: passengers at the small airports, whose service level now depends on a concession contract's terms rather than a ministry's mandate, and airport workers moving to private employment. Structural why: bundling is a fiscal technique spreading across South Asian infrastructure — get the concession length and the tariff-setting rules into the piece, since those decide whether it works.",
-      "conceptUris": []
-    },
-    {
-      "id": "heat-mortality-enters-the-underwriting",
-      "label": "Europe's heatwaves threaten insurers' earnings, rating agency S&P says",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-heat-mortality-enters-the-underwriting"
-      ],
-      "eventUri": "eng-11951038",
-      "summary": "S&P says European heatwaves are now a threat to insurers' earnings through claims linked to heat-related deaths and illness, especially among older people — and that premiums will rise in response. Lead with the reframing that lands hardest: heat has crossed from a weather story into a life-and-health underwriting story, which means the financial system has begun pricing climate mortality directly rather than through flood and windstorm damage. The mechanism to explain is how an insurer responds to a repriced risk — it raises premiums, tightens terms, or withdraws from the segment, and all three transfer the cost to the people most exposed, who for heat are the old, the ill and those without cooling. Who holds power: three rating agencies whose assessments move capital before any regulator acts; who is affected: pensioners in southern Europe first, and then everyone in the risk pool. Structural why for a global reader — the same actuarial logic applied to the Gulf, South Asia and the Sahel, where wet-bulb exposure is far worse, would price insurance out of reach entirely, which is why climate adaptation is becoming a question of who can still buy cover. Attribute the earnings claim to S&P and give the report's own numbers.",
-      "conceptUris": []
-    },
-    {
-      "id": "rakbank-islamic-crypto-inside-the-perimeter",
-      "label": "Rakbank Islamic enables access to Bitcoin trading through its Islamic banking platform",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-rakbank-islamic-crypto-inside-the-perimeter"
-      ],
-      "eventUri": null,
-      "summary": "A licensed Islamic bank in the UAE is now offering Bitcoin trading inside its shariah-compliant platform — the first time most of its customers will be able to buy crypto without leaving the Islamic banking perimeter. Lead with the fiqh question the product implicitly answers, because that is what our reader will want and what business coverage omits: scholars have divided for a decade over whether Bitcoin is māl (property with recognised value) and whether its volatility constitutes gharar, and a bank launching the service means a shariah board has issued a ruling. Get that ruling and its reasoning, or say clearly that the bank has not published it. The mechanism to explain is what a bank actually adds: custody, KYC and a regulated counterparty, which converts a bearer asset into a claim on an institution — the same inversion as Hong Kong's bank-distributed stablecoin, so cross-reference rather than repeat. Structural why: Gulf regulators are absorbing crypto into the licensed banking system rather than banning or ignoring it, and Islamic finance is where the doctrinal argument for doing so has to be made. Single source; do not overstate retail availability or imply an endorsement the bank has not given.",
-      "conceptUris": []
-    },
-    {
-      "id": "small-plant-intrusion-sanctions-as-signal",
-      "label": "US sanctions Iranian cyber actors as UK discloses power plant attack",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-small-plant-intrusion-sanctions-as-signal"
-      ],
-      "eventUri": null,
-      "summary": "Washington sanctioned several Iranian nationals over attacks on critical infrastructure days after Britain disclosed an intrusion at a small power plant. Lead with the word 'small': the plants that get compromised are not the flagship stations with security operations centres but the minor generators and water utilities whose control systems are old, internet-exposed and maintained by two people. The mechanism to explain is why sanctioning named individuals is a weak instrument here — an OFAC designation freezes assets in a jurisdiction the target never enters and bars transactions they never make, so its real function is attribution and signalling, not denial of capability. Who is affected: the operators of thousands of unglamorous utilities across Europe and the Gulf that are inside the blast radius of a state-level conflict they have no part in; who holds power: the governments escalating that conflict while leaving the exposed infrastructure unfunded. Structural why: the Iran war has a cyber front where the targets are chosen for softness rather than value, and the response so far is a press release. Attribute the UK intrusion to the reporting rather than to a confirmed government finding, and be precise about what the sanctions allege versus what has been proven.",
-      "conceptUris": []
-    },
-    {
-      "id": "defence-tech-revolving-door-requirement-and-product",
-      "label": "Dozens of ex-lawmakers, staff landed at military firms since 2015",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-defence-tech-revolving-door-requirement-and-product"
-      ],
-      "eventUri": null,
-      "summary": "A Bulletin of the Atomic Scientists report names 31 former members of Congress and senior staff who left the armed services committees for the weapons industry since 2015 — and the new destination is Silicon Valley, not Boeing: Palantir hired two ex-HASC members, Anduril's chief strategy officer ran the Senate committee's Republican staff, and a former HASC staff director now sits on a naval commission while lobbying for a maker of the unmanned vessels it will recommend. Lead with that last case, because it is the whole mechanism in one person: the same individual advises on the requirement and sells the product. The structural why for a technically literate reader is that defence-tech startups cannot win through the Pentagon's multi-year acquisition process, so they buy the people who know how to route around it — which is why an autonomous-weapons firm is valued at $61 billion. Include the STOCK Act detail — seven armed services members in violation this year — as evidence of how weak the existing guardrail is. Ground every claim in the named report and public disclosures, and attribute Responsible Statecraft's framing as its own; the underlying facts are documented, the inference about causation is the outlet's.",
-      "conceptUris": []
-    },
-    {
-      "id": "hpv-self-sampling-attendance-is-the-barrier",
-      "label": "NHS England to offer women 'gamechanging' free home testing kits for cervical cancer",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-hpv-self-sampling-attendance-is-the-barrier"
-      ],
-      "eventUri": "eng-11950682",
-      "summary": "England will post free self-sampling HPV kits to women who have missed cervical screening — up to four million are not up to date, and only about two-thirds attend. Lead with the four million, because the number is the argument: the barrier to eliminating cervical cancer is not the test's accuracy but attendance, and a clinic appointment requiring time off, transport and a physical examination is a filter that removes exactly the women at highest risk. The mechanism to explain is what changed technically — screening now looks for high-risk HPV DNA rather than for abnormal cells under a microscope, and an HPV assay works on a self-collected vaginal swab, which cytology could not; the science is what makes the logistics possible, not the other way round. Who is affected: women who have been counted as non-compliant when they were in fact unreachable. Structural why for a global reader: cervical cancer kills overwhelmingly in low- and middle-income countries with no screening programme at all, and self-sampling is the one modality that does not require a clinician per patient — which is why the WHO elimination target depends on it far more outside Britain than inside. Keep the 2040 elimination target attributed to the NHS.",
-      "conceptUris": []
-    },
-    {
-      "id": "argonaut-rps-lunar-night-and-isotope-sovereignty",
-      "label": "ESA to Adapt Ariane 6 for Nuclear-Powered Argonaut Missions",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-argonaut-rps-lunar-night-and-isotope-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "ESA will modify Ariane 6 to launch Argonaut lunar landers carrying a Radioisotope Power System — not for the first mission, but for later ones. Lead with the physical reason: the lunar night lasts about fourteen Earth days, and no solar array or battery mass a lander can carry survives it, so anything meant to operate for years at the Moon needs heat and power from decay, not sunlight. The mechanism to explain is what 'adapting the rocket' actually means — launching a radioisotope source obliges the vehicle to be qualified against the case where it fails, so the changes are about containment and range safety rather than performance, and that is why the requirement lands on the launcher and not the payload. Structural why for our reader: Europe has depended on American plutonium-238 and has been developing americium-241 as its own supply precisely to avoid that dependency, so this is a sovereignty story wearing a spacecraft-engineering costume — the same logic as chip fabrication, applied to an isotope only a few states can make. Say clearly what is committed and what is planned; ESA has not flown this yet.",
-      "conceptUris": []
-    },
-    {
-      "id": "sev-courier-intergenerational-metabolic-risk",
-      "label": "Maternal obesity programs offspring metabolic dysfunction via small extracellular vesicle-mediated epigenetic remodeling",
-      "firstSeen": "2026-08-25T04:12:37.398Z",
-      "lastCovered": "2026-08-25T04:12:37.398Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-sev-courier-intergenerational-metabolic-risk"
-      ],
-      "eventUri": null,
-      "summary": "A Nature Communications paper reports a physical carrier for something long observed but unexplained: children of obese mothers inherit metabolic dysfunction, and the study identifies small extracellular vesicles as the vehicle that remodels the offspring's epigenome. Lead with the courier, not the correlation — the finding is a mechanism, and mechanisms are what turn an association into something that could be interrupted. Explain plainly what an sEV is: a membrane-wrapped parcel of regulatory RNA that one tissue releases and another absorbs, which is how a mother's metabolic state can write instructions into a fetus without changing a single gene sequence. Structural why for our reader: this is intergenerational risk with a biological address, and it matters most where obesity and diabetes are rising fastest — the Gulf, Egypt, Malaysia, Pakistan — which are also the places least likely to be represented in the trial data that follows. Be exact about the limits: this is mouse and cell work with human relevance argued, not demonstrated, and say so rather than letting the headline claim stand alone. Open access — link the paper so readers can check it.",
       "conceptUris": []
     }
   ]
