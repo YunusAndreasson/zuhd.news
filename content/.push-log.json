@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-08-01T04:26:23.811Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-08-01-venezuela-transition-talks-machado-excluded-pact-legitimacy",
-        "title": "Venezuela Talks Exclude Machado",
-        "category": "politics",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-delhi-cash-transfer-mla-letter-discretionary-gate",
-        "title": "Lawmaker Letter Gates Delhi Aid",
-        "category": "politics",
-        "eventCoverage": 62,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-ibara-prison-livestream-custodial-access-market",
-        "title": "Death Row Inmate Livestreams",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-lebanon-explosions-seismic-yield-casualty-record",
-        "title": "Lebanon Demolitions Shake Ceasefire",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-egypt-uhi-phase-one-contributory-devaluation-squeeze",
-        "title": "Egypt's Health Insurance Falters",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-delhi-smog-source-apportionment-stubble-attribution",
-        "title": "Traffic Rivals Stubble In Smog",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-effis-wildfire-chart-cumulative-baseline-misreading",
-        "title": "Europe Wildfire Claim Unravels",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-youtube-asmr-terminations-undefined-policy-channel-sanction",
-        "title": "YouTube Terminates ASMR Creators",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-01-venezuela-transition-talks-machado-excluded-pact-legitimacy",
-      "title": "Venezuela Talks Exclude Machado",
-      "category": "politics",
-      "body": "Figuera, not Machado, leads [Venezuela](country:VE)'s opposition",
-      "eventCoverage": 70,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US-backed Venezuela talks begin without opposition leader Machado",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-08-01T08:25:07.565Z",
     "candidateCount": 10,
     "candidates": [
@@ -10364,6 +10285,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "FDA approves pancreatic cancer pill, nearly doubles survival time",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-08-26T22:26:26.235Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-08-26-measles-threshold-ninety-five-percent-or-nothing",
+        "title": "Measles Kills Two In Pennsylvania",
+        "category": "science",
+        "eventCoverage": 149,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-rasuwagadhi-toll-the-count-follows-the-road",
+        "title": "Nepal Flood Toll Jumps",
+        "category": "politics",
+        "eventCoverage": 116,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-fano-tigray-the-border-question-is-postponed",
+        "title": "Fano Allies With Tigray",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-108-billion-guide-the-beat-does-not-settle-it",
+        "title": "Nvidia Beats, Guides Higher",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-ai-native-the-plan-they-did-not-run",
+        "title": "Meta Scraps AI Layoffs",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-25-visa-policy-the-judgement-leaves-in-a-suitcase",
+        "title": "Visa Fees Target AI Talent",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-heat-stress-days-the-threshold-is-a-body",
+        "title": "Climate Adds Heat Days For Kids",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-penguin-vaccination-the-colony-is-catchable",
+        "title": "Australia Vaccinates Wild Penguins",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-tao-reunion-the-capability-leaves-with-the-person",
+        "title": "NSA Recruits Former Hackers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-26-gdansk-gnss-the-jamming-became-the-weather",
+        "title": "Baltic GNSS Jamming Persists",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-26-rasuwagadhi-toll-the-count-follows-the-road",
+      "title": "Nepal Flood Toll Jumps",
+      "category": "politics",
+      "body": "Flood deaths jumped to at least",
+      "eventCoverage": 116,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nepal flood death toll rises to at least 160, hundreds missing",
     "response": {
       "pushed": 1,
       "skipped": 0,
