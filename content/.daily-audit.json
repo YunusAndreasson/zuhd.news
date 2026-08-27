@@ -1,37 +1,36 @@
 {
-  "date": "2026-08-26",
+  "date": "2026-08-27",
   "metrics": {
-    "articles": { "value": 55, "detail": "5 cycles, avg 9/cycle (68 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 1.6, "max": 58, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 12, "science": 10, "tech": 12 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
+    "articles": { "value": 61, "detail": "5 cycles, avg 12/cycle (55 yesterday)" },
+    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 15, "science": 10, "tech": 13 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 20, "ME": 11, "AS": 10, "EU": 7, "AF": 5, "OC": 2 }
+      "breakdown": { "AM": 17, "AS": 14, "ME": 13, "EU": 11, "AF": 6, "OC": 0 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 43,
-    "duplicates": 0,
-    "avgCycleDuration": 1335
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature / Dawn (tied, 5 each)", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 47,
+    "duplicates": 1,
+    "avgCycleDuration": 1403
   },
-  "experiment": "Skipped — every goal metric is inside target. The noNewExperimentsUntil gate reached its 2026-08-26 date and was dropped, not extended: 2026-08-23 through 2026-08-26 each ran 5/5 scheduled cycles with no OAuth failures, satisfying the three-clean-days condition the gate was written against. No active experiments were pending evaluation.",
-  "weakestArea": "Nothing is below target, so the weakest signal is the freshness tail rather than any goal: median is 0.1 days and p90 is 1.6, but one article in today's 11-article freshness sample carried a 58-day-old source — an evergreen feature slipping through a pipeline tuned for hard news. Second-order, throughput fell 68 → 55 day-over-day and the Americas took 36% of regional share (20/55), the most concentrated single region this week.",
+  "experiment": "Skipped — every goal metric is inside target with margin (freshness 0.2, multi-source 8, sci+tech 38%, top-source share 7%, 5 regions). No active experiment to evaluate; no pause gate in effect. The one real defect today is a same-URL duplicate, which lives in scripts/lib/dedup.js and is outside the tunable-parameter surface.",
+  "weakestArea": "Regions, at 5 against a target of 4, is the thinnest margin of any metric: Oceania fell to zero (2 yesterday) and Africa took 6 of 61 slots (10%) against 17 for the Americas. Nothing here breaches target, but the distribution is a Americas/Asia/Middle East triad with Africa and Oceania as remainders rather than as covered regions.",
   "watching": [
-    "Amhara–Tigray understandings in Ethiopia — first reported de-escalation between the two forces; the border question was explicitly postponed, so the agreement's durability is the story.",
-    "Rasuwagadhi flood on the Nepal–China border — at least 160 dead and hundreds missing, and the flood arrived without rain, pointing at an upstream glacial or impoundment failure.",
-    "Nvidia's $108bn revenue guidance and the circular-financing structure underneath it — the vendor-finances-its-own-customers pattern is the part with systemic risk.",
-    "Venezuelan Chavismo-loyal elements warning over the succession — 23 de Enero neighbourhood dynamics suggest parallel authority rather than a unified state response.",
-    "Continued GNSS disruption along Poland's Baltic coast — jamming has persisted long enough that the Polish institute now reports it as a standing condition, not an incident.",
-    "US measles — a Pennsylvania death and the 95% vaccination threshold reporting mark the first fatality-driven inflection in this outbreak cycle."
+    "Israel–Lebanon buffer zone: the three remaining Maronite villages inside the occupied strip, with the next round of talks carrying no set date.",
+    "Sudan's war spilling across the Chad border, alongside the paused Port Sudan detainee hunger strike.",
+    "Iran explicitly tying Hormuz transit to the Gaza track, with Pakistan simultaneously questioning the truce.",
+    "US trade and industrial escalation on two fronts: planned chip tariffs and a White House ban on foreign grid components.",
+    "Nepal's barrier lake, where a breach risk is already drawing an Indian aid airlift."
   ],
   "coverageGaps": [
-    "Oceania at 2 articles is the thinnest region of the day and has been the structural floor all week; Pacific-island coverage in particular is absent.",
-    "Latin America appears almost entirely through Venezuela — no Brazil, Mexico, Andean or Southern Cone reporting today.",
-    "Central Asia is unrepresented despite an active feed of Caspian energy and Afghan border stories.",
-    "Several stories classed as science drew on generalist outlets (Yahoo, The Telegraph, Bloomberg) rather than specialist ones; Nature, Carbon Brief and Ars Technica carried the rest, so the specialist base is narrower than the science count suggests."
+    "Oceania produced zero articles today after only 2 yesterday — the region is effectively unstaffed in the feed rather than under-selected.",
+    "Science sourcing concentrates on Nature (5 of 10 science pieces), so a single outlet's news day sets the category's agenda.",
+    "Latin America appears mainly through crime and oil framings (InSight Crime, Venezuela, drone defenses) with no economic or scientific coverage from the region.",
+    "Central Asia and the Caucasus are absent from a 61-article day."
   ],
-  "context": "This is the first fully clean measurement window since the 2026-08-19 → 2026-08-22 OAuth outage that voided 16 consecutive cycles, and all four goals — freshness, diversity, multi-source, educational value — cleared on the first uncontaminated reading. History cautions against reaching for a lever here: the last two selector-floor experiments (2026-04-21, 2026-05-09) both found the feed's ~9 multi-source stories per cycle, not the prompt, to be the binding constraint, and any sourcing-cluster work should target upstream feed composition instead. The queued 2026-05-08-numerical-density experiment remains blocked on out-of-scope grounds — it edits scripts/write-prompt.md, which daily tuning may not touch."
+  "context": "Two articles today — 'Israel Blocks Christian Villages' and 'Israel Isolates Christian Villages' — were written from the identical New Lines Magazine URL in the same cycle (both stamped 11:06:05Z), differing only in dateline city and framing. scripts/lib/dedup.js contains no URL matching of any kind (its layers are slug, eventUri, fuzzy slug, and recap title-overlap), so a single source URL entering the selection twice under different headlines is not caught at any stage. This is the same URL-layer gap noted previously and it is now producing visible near-duplicate pairs on the live site, not just theoretical risk. Freshness is computed from only 15 of 61 articles that carry a resolvable publication timestamp, so the 0.2-day median describes a quarter of the day's output. Cycle duration averaged 1403s across 5 completed cycles, with the writer (348s) now the slowest stage and the editor down at 102s."
 }
