@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-08-01T12:20:52.638Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-08-01-north-kordofan-offensive-rsf-logistics-corridor-detainee-records",
-        "title": "Army Severs RSF Supply Road",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-kinahan-emirates-residence-renewal-sanctions-screening-gap",
-        "title": "Dubai Renews Cartel Leader's Visa",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-sheikh-radwan-drone-strike-ceasefire-verification-count",
-        "title": "Drone Strike Kills Two",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-australia-export-emissions-human-rights-committee-communication",
-        "title": "UN Case Targets Coal Exports",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-saudi-deficit-narrows-price-windfall-volume-contraction",
-        "title": "Oil Prices Narrow Saudi Deficit",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-30-dea-assessment-boat-strikes-cocaine-supply-unmoved",
-        "title": "Boat Strikes Haven't Cut Cocaine",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-koc-printed-fills-embedded-sensors-reversible-conservation",
-        "title": "Printed Repairs Sense Decay",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-turbulent-plume-tracking-encounter-statistics-not-gradient",
-        "title": "Flies Track Smell Without Gradient",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-31-chrome-ai-assisted-bug-discovery-what-the-count-measures",
-        "title": "AI Finds More Chrome Bugs",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-waymo-depot-injunction-nuisance-law-municipal-leverage",
-        "title": "Judge Bars Waymo Night Charging",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-sample-return-biocontainment-planetary-protection-category-v",
-        "title": "No Lab Can Open Mars Rocks",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-doval-freedom-remarks-neet-leak-protest-securitisation",
-        "title": "Security Chief Warns Protesting Students",
-        "category": "politics",
-        "eventCoverage": 44,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-cpc-storage-fills-kazakh-export-route-single-point-failure",
-        "title": "Drone Strikes Squeeze Kazakh Oil",
-        "category": "economy",
-        "eventCoverage": 35,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-01-kinahan-emirates-residence-renewal-sanctions-screening-gap",
-      "title": "Dubai Renews Cartel Leader's Visa",
-      "category": "politics",
-      "body": "A $5 million fugitive just renewed his residence",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Dubai renews visa for cartel leader wanted with $5 million US bounty",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 15
-    }
-  },
-  {
     "timestamp": "2026-08-01T17:23:17.271Z",
     "candidateCount": 11,
     "candidates": [
@@ -10348,5 +10234,35 @@
       "skipped": 0,
       "tokens": 9
     }
+  },
+  {
+    "timestamp": "2026-08-27T08:25:23.608Z",
+    "candidateCount": 3,
+    "candidates": [
+      {
+        "slug": "2026-08-27-rangeland-returns-the-benefit-is-a-loss-avoided",
+        "title": "Rangeland Restoration Returns Sixfold",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-beaufort-gyre-the-storm-sets-the-timescale",
+        "title": "Storms Drive Arctic Freshwater",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-biochemometrics-the-regression-replaces-the-isolation",
+        "title": "Regression Finds Cancer Compound",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 3 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
