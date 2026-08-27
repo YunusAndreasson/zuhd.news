@@ -5,8 +5,8 @@
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-26T22:13:17.746Z",
-      "coverageCount": 30,
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 36,
       "category": "tech",
       "importance": 6,
       "arc": "ongoing",
@@ -40,7 +40,13 @@
         "2026-08-26-two-codes-the-language-is-the-containment",
         "2026-08-26-supremacy-clause-the-forum-is-the-immunity",
         "2026-08-26-23-de-enero-the-neighbourhood-is-the-state",
-        "2026-08-26-martian-heat-the-measurement-is-the-finding"
+        "2026-08-26-martian-heat-the-measurement-is-the-finding",
+        "2026-08-27-visa-pause-the-queue-is-the-instrument",
+        "2026-08-27-dead-end-talks-the-leak-is-the-move",
+        "2026-08-27-drone-ied-the-cost-asymmetry-is-the-weapon",
+        "2026-08-27-hayatabad-the-supplier-credit-is-the-pharmacy",
+        "2026-08-27-prabowo-cooperatives-the-throughput-is-the-limit",
+        "2026-08-27-fly-surveillance-the-sample-is-the-insect"
       ],
       "eventUri": null,
       "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
@@ -58,13 +64,119 @@
       ]
     },
     {
+      "id": "heat-stress-days-the-threshold-is-a-body",
+      "label": "Climate change exposes 580 million children to 20 extra 'heat-stress days' every year",
+      "firstSeen": "2026-08-26T22:13:17.746Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-08-26-heat-stress-days-the-threshold-is-a-body",
+        "2026-08-27-mango-kernel-manganese-the-grade-is-a-cost-threshold"
+      ],
+      "eventUri": null,
+      "summary": "More than 40 percent of the world's under-tens — 580 million children — now face at least 20 more heat-stress days a year than they would without warming. Lead with the unit, because the unit is what makes this different from another temperature record: a heat-stress day is defined against a physiological threshold, not an anomaly, so this is a count of days a child's body cannot shed heat rather than a count of degrees. The mechanism to teach is why children specifically — a higher surface-area-to-mass ratio, lower sweat capacity and no autonomy over when they go outside or whether the classroom has a fan, which is why the same wet-bulb reading is a different physiological event for a six-year-old and for the adult writing the policy. Then the attribution method, which our reader will want: these figures come from comparing the observed climate against modelled counterfactual worlds without human forcing, so say what the models are and what the uncertainty is. Who is affected and where: the burden is overwhelmingly in South Asia, the Sahel, the Gulf and Southeast Asia — the countries that did least to cause it and have the fewest air-conditioned schools; who holds power: the emitters, and the education ministries deciding whether the school day moves. Give the study, its authors, and the geographic breakdown rather than only the headline number.",
+      "conceptUris": []
+    },
+    {
+      "id": "warraq-the-deadline-was-set-by-the-residents",
+      "label": "Warraq residents demonstrate to protest 'state ignoring legitimate demands'",
+      "firstSeen": "2026-08-27T04:10:24.850Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-warraq-the-deadline-was-set-by-the-residents"
+      ],
+      "eventUri": null,
+      "summary": "Hundreds of Warraq Island residents marched on the deadline they themselves set after the development authority did not answer demands submitted a week earlier. The surprising detail is the deadline: in a country where street protest is effectively criminalised, residents facing removal from Nile island land gave the state a written ultimatum and then kept it. Lead with what is being taken — riverfront land inside Cairo, slated for development — and the mechanism by which displacement is made administrative rather than violent: a development authority, a compensation schedule, and a valuation the residents never agreed. Who holds power: the authority head who did not reply. Continues a pattern our readers should recognise from Egypt's other island and informal-settlement clearances.",
+      "conceptUris": []
+    },
+    {
+      "id": "bok-hike-the-chip-cycle-sets-the-rate",
+      "label": "BOK Delivers Back-to-Back Rate Hike to Curb Inflation Risks",
+      "firstSeen": "2026-08-27T04:10:24.850Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-bok-hike-the-chip-cycle-sets-the-rate"
+      ],
+      "eventUri": "eng-11954249",
+      "summary": "The Bank of Korea raised rates at a second consecutive meeting — an unusual posture in Asia right now — because a semiconductor boom is running the economy hot. Lead with the inversion: this is a central bank tightening into a technology cycle, not a commodity or wage cycle, which is what happens when one export sector is large enough to be the macroeconomy. The mechanism to teach is transmission: rate hikes cool household credit and construction, but they cannot cool AI-driven chip demand set by foreign capex, so the burden of restraint lands entirely on Korean mortgage holders and small firms while the boom sector is untouched. Structural why: every economy hoping to build an AI-hardware export base — Malaysia, the Gulf, India — is looking at the policy problem Korea now has. Give the rate level, the move in basis points, and the won's reaction.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Bank_of_Korea",
+        "http://en.wikipedia.org/wiki/Central_bank",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Basis_point",
+        "http://en.wikipedia.org/wiki/Monetary_policy",
+        "http://en.wikipedia.org/wiki/Seoul"
+      ]
+    },
+    {
+      "id": "post-infection-the-burden-lands-on-the-target",
+      "label": "What should happen after we detect a spyware infection on a device?",
+      "firstSeen": "2026-08-27T04:10:24.850Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-post-infection-the-burden-lands-on-the-target"
+      ],
+      "eventUri": null,
+      "summary": "Almost all commercial-spyware reporting ends at detection; SMEX asks what a journalist or activist in Beirut, Amman or Cairo is supposed to do the day after a forensic report confirms the infection. Lead with the gap, because it is the accountability failure: notification without remediation transfers the whole burden to the target, who must assume every contact, source and file is compromised with no legal remedy and often no one to report the vendor's client to. The mechanism to teach is the forensic chain — what a device scan can and cannot establish, why attribution to a government client is separable from attribution to a vendor, and why evidence preservation and device replacement conflict. Who holds power: the vendors and the state customers, neither of whom face a duty to notify. Reader-relevant: SMEX works across the Arab region, where the client states are.",
+      "conceptUris": []
+    },
+    {
+      "id": "language-barrier-the-defence-was-the-grammar",
+      "label": "AI Is Lowering the Barriers to China's Information Warfare Against Japan",
+      "firstSeen": "2026-08-27T04:10:24.850Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-language-barrier-the-defence-was-the-grammar"
+      ],
+      "eventUri": null,
+      "summary": "The constraint on influence operations against Japan was never intent, it was Japanese — fluent, idiomatic, register-correct text at volume. Lead with that, because generative models remove precisely and only that barrier, which is why the observable change is in output volume and linguistic quality rather than in narrative or target. The mechanism to teach is how detection works and why it degrades: attribution has leaned on translation artefacts, posting-time clustering and account-creation patterns, and the first of those three is now gone. Who is affected far beyond Japan — the same asymmetry applies wherever a language was its own defence, which includes Urdu, Bahasa, Farsi and Arabic. Ask for concrete evidence in the piece: named campaigns, platform takedown numbers, dates.",
+      "conceptUris": []
+    },
+    {
+      "id": "stop-hiding-hate-disclosure-is-not-removal",
+      "label": "Judge dismisses lawsuit by Elon Musk's X challenging New York hate speech law",
+      "firstSeen": "2026-08-27T04:10:24.850Z",
+      "lastCovered": "2026-08-27T04:10:24.850Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-stop-hiding-hate-disclosure-is-not-removal"
+      ],
+      "eventUri": "eng-11957269",
+      "summary": "Judge John Cronan rejected X's First Amendment challenge to New York's Stop Hiding Hate Act, which compels platforms to disclose how they handle hateful content. Lead with the precise legal distinction the ruling turns on and that most coverage will blur: the statute compels disclosure of moderation policy, not removal of speech, and the court treated mandated transparency about a business practice differently from mandated suppression. That distinction is the mechanism, and it is the one every subsequent platform-regulation fight in the US, the EU and India will be argued over. Who holds power: a platform that had won a similar challenge in California; who is affected: users in every jurisdiction, since disclosure regimes travel faster than removal regimes. Give the docket, the date, and what X said it will do next.",
+      "conceptUris": []
+    },
+    {
       "id": "fano-tigray-the-border-question-is-postponed",
       "label": "Once bitter enemies Amhara, Tigray reach understandings in fight against Ethiopian govt",
       "firstSeen": "2026-08-26T22:13:17.746Z",
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-fano-tigray-the-border-question-is-postponed"
@@ -80,7 +192,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-rasuwagadhi-toll-the-count-follows-the-road"
@@ -105,7 +217,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-108-billion-guide-the-beat-does-not-settle-it"
@@ -121,7 +233,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-ai-native-the-plan-they-did-not-run"
@@ -137,7 +249,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-25-visa-policy-the-judgement-leaves-in-a-suitcase"
@@ -153,7 +265,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-measles-threshold-ninety-five-percent-or-nothing"
@@ -172,29 +284,13 @@
       ]
     },
     {
-      "id": "heat-stress-days-the-threshold-is-a-body",
-      "label": "Climate change exposes 580 million children to 20 extra 'heat-stress days' every year",
-      "firstSeen": "2026-08-26T22:13:17.746Z",
-      "lastCovered": "2026-08-26T22:13:17.746Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-26-heat-stress-days-the-threshold-is-a-body"
-      ],
-      "eventUri": null,
-      "summary": "More than 40 percent of the world's under-tens — 580 million children — now face at least 20 more heat-stress days a year than they would without warming. Lead with the unit, because the unit is what makes this different from another temperature record: a heat-stress day is defined against a physiological threshold, not an anomaly, so this is a count of days a child's body cannot shed heat rather than a count of degrees. The mechanism to teach is why children specifically — a higher surface-area-to-mass ratio, lower sweat capacity and no autonomy over when they go outside or whether the classroom has a fan, which is why the same wet-bulb reading is a different physiological event for a six-year-old and for the adult writing the policy. Then the attribution method, which our reader will want: these figures come from comparing the observed climate against modelled counterfactual worlds without human forcing, so say what the models are and what the uncertainty is. Who is affected and where: the burden is overwhelmingly in South Asia, the Sahel, the Gulf and Southeast Asia — the countries that did least to cause it and have the fewest air-conditioned schools; who holds power: the emitters, and the education ministries deciding whether the school day moves. Give the study, its authors, and the geographic breakdown rather than only the headline number.",
-      "conceptUris": []
-    },
-    {
       "id": "penguin-vaccination-the-colony-is-catchable",
       "label": "Thousands of little penguins will be vaccinated against bird flu down under",
       "firstSeen": "2026-08-26T22:13:17.746Z",
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-penguin-vaccination-the-colony-is-catchable"
@@ -210,7 +306,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-tao-reunion-the-capability-leaves-with-the-person"
@@ -226,7 +322,7 @@
       "lastCovered": "2026-08-26T22:13:17.746Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-26-gdansk-gnss-the-jamming-became-the-weather"
@@ -242,7 +338,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-samkani-the-second-strike-hits-the-rescuers"
@@ -258,7 +354,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-unclaimed-assets-the-holder-profits-from-not-finding-you"
@@ -274,7 +370,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-markhor-permits-the-herd-becomes-an-asset"
@@ -290,7 +386,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-daraxonrasib-the-drug-builds-its-own-pocket"
@@ -315,7 +411,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-flock-logs-the-vendor-audits-the-vendor"
@@ -331,7 +427,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-qtrouter-the-remediation-reaches-into-your-device"
@@ -347,7 +443,7 @@
       "lastCovered": "2026-08-26T17:10:26.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-lowest-unit-charge-the-agency-redefined-the-class"
@@ -363,7 +459,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-rasuwagadhi-a-flood-that-arrived-without-rain"
@@ -388,7 +484,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-order-of-liberty-a-medal-for-a-terms-of-service"
@@ -413,7 +509,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-ajk-autonomy-with-a-loyalty-oath"
@@ -429,7 +525,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-tokenized-deposits-sticky-money-is-the-product"
@@ -445,7 +541,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-no-combustion-was-never-no-carcinogen"
@@ -461,7 +557,7 @@
       "lastCovered": "2026-08-26T12:10:19.455Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-26-xtracycle-s-swoop-asm-e-bike-brings-an-automatic-transmissio"
@@ -477,7 +573,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-nvidia-banker-to-the-ai-boom-circular-financing"
@@ -502,7 +598,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-huawei-hp-wifi-patents-the-royalty-runs-the-other-way"
@@ -527,7 +623,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-gates-xi-ai-thresholds-a-private-channel"
@@ -552,7 +648,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-section-117-the-database-is-self-reported"
@@ -568,7 +664,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-in-kind-creation-the-key-becomes-a-share"
@@ -584,7 +680,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-charges-dropped-against-person-who-clapped-at-a-city-data-ce"
@@ -600,7 +696,7 @@
       "lastCovered": "2026-08-26T08:11:54.237Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-25-58-arrested-in-international-cybercrime-crackdown"
@@ -616,7 +712,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-123-agreement-enrichment-is-the-clause"
@@ -638,7 +734,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-kuje-residence-as-the-ballot"
@@ -654,7 +750,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-giga-project-hiring-is-the-honest-indicator"
@@ -670,7 +766,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-door-handles-the-standard-is-written-in-beijing"
@@ -686,7 +782,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-yongsan-supply-has-to-come-from-somewhere"
@@ -702,7 +798,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-lossy-categories-compression-is-the-prediction"
@@ -718,7 +814,7 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-unified-memory-the-model-has-to-fit"
@@ -734,201 +830,13 @@
       "lastCovered": "2026-08-26T04:11:59.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-26-can-bus-a-network-that-trusts-everything"
       ],
       "eventUri": null,
       "summary": "Researchers have built an intrusion-detection system for the network inside a car that is trained across many vehicles without any of them sending their driving data anywhere. Lead with the flaw being defended, because it is genuinely startling and forty years old: the CAN bus that carries every message between a car's brakes, engine and steering has no authentication at all — any node that can put a frame on the wire is believed, by design, because when it was standardised in the 1980s nothing in a car was connected to the outside world. Everything since — infotainment, telematics, keyless entry, over-the-air updates — has bolted a radio onto a network that assumes every participant is trustworthy, which is why detection, rather than prevention, is where the research went. The second mechanism is federated learning and why it is the right tool here: a detector needs to learn what abnormal traffic looks like across many cars and many attacks, and the training data is a complete record of where a person drove and how, so the technique that trains a shared model on data that never leaves the vehicle is not a privacy nicety, it is the only version of this that a manufacturer could deploy without building a surveillance archive. Be precise about status: this is an early-access peer-reviewed paper evaluated on datasets, not a deployed system — say so, name the attack classes and the datasets, and do not report accuracy figures as road performance. Structural why for our reader: the same argument applies to every fleet being sold into Gulf, South Asian and African markets, where the vehicle is imported and the telemetry lands in another jurisdiction.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-ai-defence-the-scarce-resource-is-analysts",
-      "label": "The UAE is fighting AI hackers with AI of its own",
-      "firstSeen": "2026-08-25T12:12:40.333Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-25-uae-ai-defence-the-scarce-resource-is-analysts",
-        "2026-08-25-visa-status-the-founder-is-the-scarce-input",
-        "2026-08-25-crime-as-a-service-the-supply-chain-is-the-defence"
-      ],
-      "eventUri": null,
-      "summary": "Attacks on Emirati banks, aviation and energy systems have climbed since the war with Iran began, and the UAE's response is to build a domestic AI security industry rather than buy more foreign products. Lead with the asymmetry that makes AI attractive to both sides: an attacker using models to generate phishing, find bugs and adapt payloads gets cheap volume, and a defender using models to triage alerts gets relief from the one resource that cannot be bought at speed — analysts. That is the mechanism, and it is a labour story wearing a security costume: the Gulf cannot hire enough senior security engineers, so automation is not an efficiency choice but the only available scaling path. Structural why for our reader: this is the same sovereignty argument as chips, isotopes and standards, applied to defensive capability — a state that buys its security stack abroad has outsourced knowledge of its own network, which is intolerable to a country in an active conflict. Connect to our piece on the sanctioned Iranian cyber actors and the UK power-plant intrusion: the same conflict, the other end of the wire. Who is affected: ordinary customers of Emirati banks and the migrant workforce whose remittances move through them. Be sceptical where the reporting is — say what the 'homegrown industry' actually consists of today versus what is announced, and do not repeat vendor claims about AI defence as findings.",
-      "conceptUris": []
-    },
-    {
-      "id": "sdf-dissolution-what-transfers-is-the-administration",
-      "label": "Kurdish-led forces in Syria dissolve after merging with the army",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-sdf-dissolution-what-transfers-is-the-administration"
-      ],
-      "eventUri": "eng-11952434",
-      "summary": "The SDF — the force that held roughly a third of Syria and was the United States' partner against ISIS — has announced its own dissolution and folded into the national army under the March 10 agreement between Ahmed al-Sharaa and Mazloum Abdi. Lead with what is actually being surrendered, because that is the mechanism: not weapons but a parallel administration — the SDF ran its own conscription, courts, oil sales and prisons across the north-east, and merging into a state army means those functions transfer to Damascus or cease. The questions the announcement does not answer are the story: what happens to the roughly ten thousand ISIS detainees the SDF guards at al-Hol and Hasakah, whether Kurdish units retain unit integrity or are dispersed, and what political guarantees — language, local governance, resource share — were traded for the dissolution. Who holds power: a Damascus government consolidating territorial authority for the first time since 2012, and Ankara, whose objection to a YPG-dominated force on its border shaped every round of these talks. Who is affected: north-eastern Syrians, Kurdish and Arab, for whom the change of authority decides which law applies to them. Note the framing gap openly — TRT calls the YPG a terrorist organisation, Al Jazeera and The National do not; three sources at a 0.09 spread agree on the fact and diverge on the noun, so report the fact and attribute the labels. Structural why for our reader: this is the most significant consolidation of Syrian state authority since the fall of Assad, and it happened by agreement rather than by battle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Syrian_Democratic_Forces",
-        "http://en.wikipedia.org/wiki/Syria",
-        "http://en.wikipedia.org/wiki/Damascus",
-        "http://en.wikipedia.org/wiki/Mazloum_Abdi",
-        "http://en.wikipedia.org/wiki/Kurds",
-        "http://en.wikipedia.org/wiki/Islamic_State",
-        "http://en.wikipedia.org/wiki/Syrian_Army",
-        "http://en.wikipedia.org/wiki/Bashar_al-Assad"
-      ]
-    },
-    {
-      "id": "hormuz-corridor-a-lane-is-what-can-be-insured",
-      "label": "Iran, Oman agree on temporary maritime corridor in Hormuz",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-hormuz-corridor-a-lane-is-what-can-be-insured"
-      ],
-      "eventUri": "eng-11953119",
-      "summary": "Iran and Oman have declared a temporary joint maritime corridor through the Strait of Hormuz and a joint mine-clearing project, agreed during the Omani foreign minister's visit to Tehran. This is the piece that was missing from the Hormuz story we ran this morning: Trump declared the strait clear, and we said a declaration is not a premium — this is the party that actually laid the mines agreeing to a route, which is the first development that could move a war-risk rate. Lead with the word 'temporary' and with Oman, because both are the mechanism. A corridor is not a reopening: it is a narrow surveyed lane with declared entry points, which means transits become schedulable and therefore insurable, and it means Iran retains the ability to close what it has just opened. Oman is the instrument because it owns the southern shore of the strait, has kept relations with Tehran through every escalation, and is the only Gulf state both sides will accept as a guarantor — this is Omani mediation doing what no naval force could. Follow, do not repeat, our single-vessel-transit and oil-inventory pieces: the falsifiable test is the daily transit count and the war-risk premium, so give both if the reporting has them, and say plainly what has not been settled — who verifies the clearance, whether the US Navy is party to it, and what happens when 'temporary' expires. Who is affected first: Gulf and Asian importers, and the refined-product prices that reach households in Karachi, Cairo and Lagos. Four sources at a 0.53 spread — Mehr and TASS report an achievement, Bloomberg reports talks toward an interim reopening; carry that divergence rather than resolving it, and attribute the joint statement as a joint statement. Editorial note for the audit: economy fell below the two-multi-source floor this cycle because the only other multi-source economy clusters available were the Canada-tariff arc, which we published this morning as 'dollar for dollar', an opinion pair on the $40tn US debt, and a Yahoo/Simply Wall St stock screener — none clear the bar, so we took one strong multi-source pick rather than padding.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Abbas_Araghchi",
-        "http://en.wikipedia.org/wiki/Demining",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Navigation"
-      ]
-    },
-    {
-      "id": "essential-practice-the-judge-decides-what-is-religious",
-      "label": "Allahabad High Court Rejects Plea Seeking Hijab Exemption From School Uniform, UP Govt Welcomes the Verdict",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-essential-practice-the-judge-decides-what-is-religious"
-      ],
-      "eventUri": "eng-11951069",
-      "summary": "The Allahabad High Court has refused a schoolgirl's plea to wear a headscarf with her uniform, and the Uttar Pradesh government has welcomed the ruling. Lead with the legal test rather than the outcome, because the test is what our reader needs and almost no coverage explains: Indian courts decide these cases through the 'essential religious practice' doctrine, under which a judge — not a scholar, not the believer — determines whether a practice is essential to the religion, and only practices found essential attract constitutional protection. That is the mechanism, and it is why the same doctrine has been used both to protect and to strip observance. Then the second mechanism the school raised and the court accepted: that it is a private unaided institution, which shifts the question from state action to institutional autonomy and narrows the fundamental-rights claim before the religious question is even reached. Give the reader both, and say precisely what the court held versus what it declined to decide. Who is affected: the petitioner, and Muslim girls across UP for whom the practical choice is now the headscarf or the school. Who holds power: a bench applying a doctrine, and a state government that has made the ruling a political statement by welcoming it. Structural why: the Karnataka hijab cases left the Supreme Court split in 2022 and the question unresolved nationally, so every high court ruling since is filling a vacuum the apex court left. Single Indian source and the outlet's framing is not neutral — take the facts of the order and the parties' arguments, name the bench, and state whether an appeal has been indicated.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Hijab",
-        "http://en.wikipedia.org/wiki/Prayagraj",
-        "http://en.wikipedia.org/wiki/Allahabad_High_Court",
-        "http://en.wikipedia.org/wiki/Dress_code",
-        "http://en.wikipedia.org/wiki/Islam",
-        "http://en.wikipedia.org/wiki/School_uniform",
-        "http://en.wikipedia.org/wiki/Muslims",
-        "http://en.wikipedia.org/wiki/Judge"
-      ]
-    },
-    {
-      "id": "boat-strike-no-survivor-is-no-record",
-      "label": "U.S. kills two in extrajudicial boat strike; 47 killed in Haiti gang raid; Israel seizes Jerusalem UNRWA center",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-boat-strike-no-survivor-is-no-record"
-      ],
-      "eventUri": null,
-      "summary": "Take the boat strike as the story and leave the rest of Drop Site's daily digest aside — we already ran the Qalandiya UNRWA raid this afternoon and must not repeat it. Two people were killed by a US military strike on a vessel in international waters, with no charge, no interdiction and no court. Lead with the legal vacuum, because it is the mechanism: interdiction at sea is a law-enforcement act governed by boarding, arrest and prosecution, and a lethal strike substitutes a battlefield rule for a policing rule by asserting that a trafficking vessel is a military target — a claim that, once accepted, has no natural boundary in geography or category. Give the reader what is verifiable and what is not: the flag and identity of the vessel, whether the dead have been named, what evidence of cargo has been published, and under what claimed authority the strike was carried out. Then the accountability question that follows and does not get asked: who reviews it. Nobody survived to be charged, so there is no trial to produce a record, and the only account of what the boat carried is the account of the party that destroyed it. Who is affected: Caribbean and Latin American fishermen and small-boat crews, for whom the category 'suspected trafficker' is assigned from the air. Structural why for our reader, who has watched the same logic move from Waziristan to the Sahel to the sea: the drone-strike doctrine's defining feature is that the evidentiary standard is set by the striker, and this is that doctrine arriving in the Western hemisphere. Latin America and the Caribbean were absent from yesterday's region audit. Single investigative source in digest form — verify the incident against official statements and name what could not be confirmed.",
-      "conceptUris": []
-    },
-    {
-      "id": "capulana-a-symbol-that-cannot-be-confiscated",
-      "label": "Mozambique: Women, capulana dresses, and police violence stand out at Nampula protests",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-capulana-a-symbol-that-cannot-be-confiscated"
-      ],
-      "eventUri": null,
-      "summary": "Women in Nampula turned the capulana — the printed wrap cloth that is everyday dress across northern Mozambique — into the visible sign of a protest that the police met with force. Lead with the cloth, because the choice of it is the strategy: a protest symbol that is also ordinary clothing cannot be confiscated, banned or used as evidence of membership, which is precisely what makes it usable in a country where organising carries a cost. The mechanism to explain is the interaction between that tactic and the state's: policing a demonstration depends on distinguishing participants from bystanders, and a garment every woman already owns collapses the distinction, so the response escalates to dispersal of everyone present — which is how the violence in the reporting happened. Then the second layer, which our reader should carry: social media amplified this and the state's answer to amplification in Mozambique has been connectivity restriction and prosecution of posts, so the same platform that documents the police is also the register the police read. Who is affected: named women in Nampula, in a province that is Muslim-majority and sits beside the Cabo Delgado insurgency, whose grievances are routinely read through that conflict rather than on their own terms; who holds power: a governing party in office since independence. Africa drew 4 of 60 stories in yesterday's audit and Mozambique is an OIC member state — this is domestic African politics with African agency. Sourcing note for the audit: the feed carried no Mozambican outlet on this event, so it runs on a single international civic-media source; attribute participants' accounts as accounts, name the protest's actual demands, and state whether police or provincial authorities have responded.",
-      "conceptUris": []
-    },
-    {
-      "id": "defend-it-yourself-seizure-as-the-penalty",
-      "label": "Ukraine Situation Report: Russia To Seize Commercial Infrastructure Left Unprotected From Drones",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-defend-it-yourself-seizure-as-the-penalty"
-      ],
-      "eventUri": null,
-      "summary": "Russia says companies must buy their own air defences for critical facilities, and that firms which have not will have those facilities commandeered by the state. Lead with the ultimatum as an economic instrument rather than a military one, because that is what it is: a government has just converted air defence from a public good into a private compliance cost, with expropriation as the penalty for non-compliance. The mechanism to explain is why a state does this — air defence is finite and interceptors are expensive relative to the cheap drones they shoot down, so a country defending thousands of refineries, depots and substations against long-range strikes cannot cover them all and must ration; rationing by ability to pay, enforced by seizure, is the cheapest way to both allocate the shortage and acquire assets. Then the part our reader should carry: no private firm can buy a genuine air-defence system on an open market, so 'protect it yourself' in practice means passive measures — netting, dispersal, hardening, jammers — and the standard is set by the same authority that decides whether you met it, which makes the rule an expropriation mechanism with a discretionary trigger. Who is affected: Russian owners of refineries, grain terminals and power infrastructure, and the workers in them; who holds power: the ministry that defines 'unprotected'. Structural why: the drone era is quietly rewriting property law in the states it touches, and the same question — who pays to defend a private asset that is a national target — is now live in the Gulf, in Nigeria's oil delta and in Pakistan. Attribute the policy to Russian official statements as reported by TWZ; be precise about what has been decreed versus proposed.",
-      "conceptUris": []
-    },
-    {
-      "id": "nucleation-the-equation-nobody-could-watch",
-      "label": "3D atomic imaging reveals a new pathway to crystal formation",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-nucleation-the-equation-nobody-could-watch"
-      ],
-      "eventUri": null,
-      "summary": "Researchers imaging matter atom by atom in three dimensions have found crystals beginning to form by a route classical nucleation theory does not describe — a century-old framework that thousands of experiments have supported. Lead with what nucleation theory actually claims, because the reader needs the thing being overturned before the overturning: it says a phase change starts when random fluctuations happen to assemble a seed above a critical size, so there is an energy barrier, a waiting time, and a sharp distinction between 'not yet' and 'growing'. That single equation sets how we predict when water freezes, when a cloud makes rain, when a protein crystallises for structure determination, when an alloy hardens, and how long a drug stays amorphous instead of crystallising in the bottle. The mechanism to teach is why it took until now to test: the theory describes objects of a few dozen atoms forming in microseconds inside opaque bulk material, which no technique could watch directly, so the equation was validated by its consequences rather than by observation — and the new imaging looks at the thing itself. Be precise about status and scope: this is one system observed at atomic resolution, not a general replacement, and the correct claim is that an additional pathway exists, not that the classical one is wrong. Structural why for our reader: this is the recurring shape of experimental science — a theory survives a century because the observation that could contradict it was impossible, and the instrument, not the argument, is what eventually settles it. Cite the underlying paper rather than the press summary, and name the material and technique.",
-      "conceptUris": []
-    },
-    {
-      "id": "unity-state-the-study-nobody-funded",
-      "label": "Living on the Edge of South Sudan's Toxic Floodplains",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-unity-state-the-study-nobody-funded"
-      ],
-      "eventUri": null,
-      "summary": "Five years after the 2021 floods, 70% of South Sudan's Unity State is still underwater, and the water is sitting on top of dozens of submerged oil wells. Lead with the permanence, because that is what makes this a different story from a flood: floodwater that does not recede stops being a disaster and becomes a landscape, and the people the reporting finds are not displaced by an event, they are living inside one. The mechanism to explain is what an inundated oilfield does chemically — produced water from oil extraction is saline and carries heavy metals and hydrocarbons, and it is normally kept in lined pits precisely so it does not reach groundwater; flooding removes the containment and turns the whole field into a slow release into the marshes people drink from, fish in and water cattle in. Then the finding the reporting anchors on, and the one to lead the evidence with: what clinicians and maternity wards in Unity State are seeing, reported as their observations and not as an established causal chain — this is exactly the situation where an epidemiological study does not exist because nobody has funded one, and the honest framing is that the exposure is documented and the outcome is observed while the link is uninvestigated. Say that plainly rather than overclaiming; the absence of a study is itself the accountability finding. Who holds power: the operating consortium and a government whose national revenue is almost entirely this oil, which is why no ministry wants the study done; who is affected: named residents of Unity State. Africa drew 4 of 60 stories in yesterday's audit and climate-environment science was named as a gap — this is both. Single-source long-form reportage: attribute residents' and clinicians' accounts as accounts, and state what the oil operators and the government have said.",
-      "conceptUris": []
-    },
-    {
-      "id": "voter-rolls-public-by-design-national-by-contract",
-      "label": "ICE Wants the Country's Voter Data",
-      "firstSeen": "2026-08-25T22:13:40.469Z",
-      "lastCovered": "2026-08-25T22:13:40.469Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-25-voter-rolls-public-by-design-national-by-contract"
-      ],
-      "eventUri": null,
-      "summary": "ICE is seeking a federal contractor to collect and process voter registration and voting-history files from across the country, describing the purpose as finding fraud. Lead with the fact that none of this data is secret — voter rolls are public by design, because a democracy has to let anyone check who is registered — and that the story is therefore not about access but about assembly. The mechanism to explain is aggregation: fifty state files in fifty formats are a public record, and one normalised national database keyed to name, address, date of birth and voting history is a surveillance instrument, and the thing that converts one into the other is a contract, not a law. That is why the contractor is the story — the capability being purchased is entity resolution, matching those records against immigration and benefits databases to produce a list of people, and no statute authorising the matching had to be passed for the list to exist. Then the second-order effect, which is measurable and predictable: when registration data is understood to flow to immigration enforcement, naturalised citizens and mixed-status households stop registering, so the deterrent operates on lawful voters regardless of whether any fraud is found. Who holds power: the agency and its vendor; who is affected: naturalised Americans and their families, and by extension every voter in a shared household. Structural why for our reader outside the US: the pattern is the exportable part — national ID and electoral rolls in Pakistan, India, Kenya and the Gulf are being linked to enforcement systems by the same logic, that data already collected for one purpose is free to reuse. Original 404 Media reporting from procurement documents — quote the solicitation's own language, and give ICE's response.",
       "conceptUris": []
     }
   ]
