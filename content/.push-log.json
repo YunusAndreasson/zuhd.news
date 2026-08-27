@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-08-01T08:25:07.565Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-08-01-kyiv-ballistic-barrage-interceptor-depth-civilian-toll",
-        "title": "Kyiv Barrage Kills Nine",
-        "category": "politics",
-        "eventCoverage": 22,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-waziristan-cleric-killing-merged-districts-prosecution-gap",
-        "title": "Cleric Shot Dead in Waziristan",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-brazil-statelessness-determination-late-registration-ruling",
-        "title": "Brazil Recognizes Stateless Woman",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-polymarket-payout-concentration-onchain-forecasting-claim",
-        "title": "1% Took Most Winnings",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-mohmand-explosives-licence-suspension-dual-use-blanket-halt",
-        "title": "Mohmand Miners Protest Licence Ban",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-iran-waico-founding-charter-ai-standards-bloc-sanctions",
-        "title": "Iran Joins China's WAICO",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-coldcard-entropy-sweep-unverifiable-seeds-analytics-trail",
-        "title": "Cold Wallets Lose $70M",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-el-nino-forecast-superposition-harvest-windows-ipc-overlap",
-        "title": "El Niño Threatens Record Warmth",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-kerala-landslides-rainfall-intensity-ghats-zoning-rollback",
-        "title": "Landslides Kill Four in Kerala",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-01-norm-correction-null-pluralistic-ignorance-structural-constraint",
-        "title": "Fixing Beliefs Doesn't Spur Action",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-01-kyiv-ballistic-barrage-interceptor-depth-civilian-toll",
-      "title": "Kyiv Barrage Kills Nine",
-      "category": "politics",
-      "body": "Rescuers pulled 35 people from a burning",
-      "eventCoverage": 22,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Russia missile barrage kills nine in Kyiv, 35 rescued from rubble",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-08-01T12:20:52.638Z",
     "candidateCount": 13,
     "candidates": [
@@ -10378,6 +10285,64 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Nepal flood death toll rises to at least 160, hundreds missing",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-08-27T04:26:48.993Z",
+    "candidateCount": 5,
+    "candidates": [
+      {
+        "slug": "2026-08-27-warraq-the-deadline-was-set-by-the-residents",
+        "title": "Warraq Residents Set Deadline",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-post-infection-the-burden-lands-on-the-target",
+        "title": "Spyware Detection Leaves Victims Alone",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-language-barrier-the-defence-was-the-grammar",
+        "title": "AI Erodes Language Defense",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-stop-hiding-hate-disclosure-is-not-removal",
+        "title": "Judge Upholds X Disclosure Law",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-27-bok-hike-the-chip-cycle-sets-the-rate",
+        "title": "Bank of Korea Hikes Again",
+        "category": "economy",
+        "eventCoverage": 30,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-27-bok-hike-the-chip-cycle-sets-the-rate",
+      "title": "Bank of Korea Hikes Again",
+      "category": "economy",
+      "body": "The Bank of Korea hiked rates to",
+      "eventCoverage": 30,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Bank of Korea raises interest rates to 3.00% amid inflation risks",
     "response": {
       "pushed": 1,
       "skipped": 0,
