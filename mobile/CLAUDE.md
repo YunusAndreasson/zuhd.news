@@ -138,8 +138,9 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
 
 - **The graph and pipeline analysis stay visible.** The reading, chart,
   `standing` explanation, delta and current change make up the recurring
-  surface. Only a hand-written fallback definition sits behind the info control;
-  static copy does not earn a card.
+  surface. Hand-written fallback definitions are not rendered in the graph
+  decks; static copy does not earn a card. Related articles remain ranking
+  metadata and are not repeated below analysis that already names the news.
 - **`standing` is authoritative, so a fallback definition is usually omitted.** The two
   were written by different hands and were saying the same thing on *every*
   reading card — brent, us-10y and vix each carried two definitions of

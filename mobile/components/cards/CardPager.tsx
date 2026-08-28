@@ -254,9 +254,9 @@ export const CardPager = memo(function CardPager({
 
   const renderItem = useCallback(
     ({ item, index }: { item: SwipeCard; index: number }) => (
-      <CardView card={item} itemHeight={itemHeight} index={index} total={count} scrollY={scrollY} />
+      <CardView card={item} itemHeight={itemHeight} index={index} scrollY={scrollY} />
     ),
-    [count, itemHeight, scrollY],
+    [itemHeight, scrollY],
   );
 
   const keyExtractor = useCallback((item: SwipeCard) => item.id, []);

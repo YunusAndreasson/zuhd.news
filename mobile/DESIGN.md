@@ -163,10 +163,10 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   and 101 famine areas are one. Applied to the live payloads it cuts ~80
   candidate cards to ~25.
 - **Live analysis is the point**, owned by `CardFrame`. The recurring surface
-  shows the reading, graph, pipeline-written `standing` analysis, movement and
-  ties to today's stories. A hand-written `whatItIs` definition may live behind
-  the info control, but static copy neither satisfies the deck gate nor replaces
-  current analysis. Context is never composed in the renderer.
+  shows the reading, graph, pipeline-written `standing` analysis and movement.
+  It does not repeat related headlines already covered by that analysis, and
+  it has no static-definition info control. `whatItIs` may remain builder
+  fallback metadata, but it neither satisfies the deck gate nor renders there.
 - **`lead` says why the card is here at all.** A builder that gated a card on
   its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
   before the kicker. Without it a newly escalated hazard and the
@@ -186,7 +186,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   same-opening test cannot catch a same-meaning collision. The rule is
   structural now (`definitionUnlessStanding`): if the pipeline wrote a
   `standing`, the hand-written sentence is omitted. The pipeline text remains
-  visible beneath the graph; the info control is only for static fallback copy.
+  visible beneath the graph; static fallback copy is not card chrome.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
@@ -265,9 +265,8 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   headline is a gold/silver ratio, the graph is that ratio rather than two raw
   prices whose scale makes one invisible. Secondary figures may explain the
   components without replacing the promised visual.
-- **Deck scope is visible.** Card kickers pair with a quiet `current / total`
-  count (`3 / 15`) so a reader can decide whether to continue swiping. The tab
-  underline remains the continuous progress signal.
+- **Progress appears once.** The tab underline is the deck progress signal;
+  cards do not repeat it as `current / total` text.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber spans the
   chart, and on a card that is most of the screen — five page swipes in a row
   did nothing but drag a dot along a line. Charts on cards pass

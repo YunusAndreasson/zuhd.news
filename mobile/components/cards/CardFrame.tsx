@@ -9,19 +9,19 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
-import { useTheme } from '../../hooks/useTheme';
 import type { Card, CardDelta } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
-import { Icon, IconButton, Text } from '../primitives';
+import { Icon, Text } from '../primitives';
 
 /**
  * The card anatomy, as a component.
  *
  * Every data card is this shell with one block in the
  * middle. The order is not decoration — it is the reading order a person
- * actually uses: the number at arm's length, what changed, and which of
- * today's stories it touches. Live `standing` analysis is part of that daily
- * surface; only the static definition is tucked behind the info control.
+ * actually uses: the number at arm's length, its graph, the live `standing`
+ * analysis and what changed. The section rail already owns progress, and the
+ * analysis already carries the news context, so this shell does not repeat
+ * either as card furniture.
  */
 
 /** The reading is the largest thing on the screen and the only thing sized
@@ -93,8 +93,6 @@ interface CardFrameProps {
   itemHeight: number;
   /** This card's position in the column, for the arrival animation. */
   index: number;
-  /** Total pieces in this vertical deck, for the scope indicator. */
-  total: number;
   /** The column's scroll offset, shared with the UI thread. */
   scrollY: SharedValue<number>;
   /** The block that makes this card its kind — a chart, rows, figures. */
@@ -105,16 +103,11 @@ export const CardFrame = memo(function CardFrame({
   card,
   itemHeight,
   index,
-  total,
   scrollY,
   children,
 }: CardFrameProps) {
-  const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
-  const hasContext = Boolean(card.whatItIs);
-  const [contextOpen, setContextOpen] = useState(false);
-  const toggleContext = useCallback(() => setContextOpen((open) => !open), []);
 
   /**
    * The inner column only scrolls when it has to.
@@ -253,42 +246,14 @@ export const CardFrame = memo(function CardFrame({
               spent on the delta chip and on `colors.determination`. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            <View style={styles.deckMeta}>
-              <Text variant="labelXs" tone="secondary">
-                {card.lead ? (
-                  <Text variant="labelXs" tone="emphasis">
-                    {'current · '}
-                  </Text>
-                ) : null}
-                {card.kicker}
-              </Text>
-              <View style={styles.deckActions}>
-                {hasContext ? (
-                  <IconButton
-                    onPress={toggleContext}
-                    haptic="tick"
-                    accessibilityLabel={`${contextOpen ? 'Hide' : 'Show'} context for ${card.title}`}
-                    accessibilityState={{ expanded: contextOpen }}
-                    style={styles.infoButton}
-                  >
-                    <Icon
-                      name={contextOpen ? 'information-circle' : 'information-circle-outline'}
-                      size="md"
-                      tone={contextOpen ? 'emphasis' : 'secondary'}
-                    />
-                  </IconButton>
-                ) : null}
-                {total > 1 ? (
-                  <Text
-                    variant="labelXs"
-                    tone="secondary"
-                    accessibilityLabel={`${index + 1} of ${total}`}
-                  >
-                    {`${index + 1} / ${total}`}
-                  </Text>
-                ) : null}
-              </View>
-            </View>
+            <Text variant="labelXs" tone="secondary">
+              {card.lead ? (
+                <Text variant="labelXs" tone="emphasis">
+                  {'current · '}
+                </Text>
+              ) : null}
+              {card.kicker}
+            </Text>
 
             {/* The reading and its note read as one unit: a number and the
               thing it counts. Kept adjacent with no gap so they do not read
@@ -330,17 +295,6 @@ export const CardFrame = memo(function CardFrame({
             <Text variant="title" tone="default" style={styles.title}>
               {card.title}
             </Text>
-
-            {contextOpen ? (
-              <View style={styles.context}>
-                <View style={[styles.rule, { backgroundColor: colors.rule }]} />
-                {card.whatItIs ? (
-                  <Text variant="body" tone="accent">
-                    {card.whatItIs}
-                  </Text>
-                ) : null}
-              </View>
-            ) : null}
           </Animated.View>
 
           {children ? (
@@ -358,19 +312,6 @@ export const CardFrame = memo(function CardFrame({
               <Text variant="bodyEmphasis" style={styles.part}>
                 {card.changed}
               </Text>
-            ) : null}
-
-            {card.related && card.related.length > 0 ? (
-              <View style={styles.related}>
-                <Text variant="labelXs" tone="secondary">
-                  {`in ${card.related.length} of today's stories`}
-                </Text>
-                {card.related.map((r) => (
-                  <Text key={r.slug} variant="caption" tone="default" style={styles.relatedRow}>
-                    {r.title}
-                  </Text>
-                ))}
-              </View>
             ) : null}
 
             {card.sourceLabel ? (
@@ -399,9 +340,6 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.xxl + SPACING.md,
   },
   reading: { marginTop: SPACING.xxs },
-  deckMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  deckActions: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
-  infoButton: { padding: SPACING.xxs, margin: -SPACING.xxs },
   readingMeta: {
     marginTop: SPACING.xxs,
     flexDirection: 'row',
@@ -426,9 +364,5 @@ const styles = StyleSheet.create({
   title: { marginTop: SPACING.smPlus },
   part: { marginTop: SPACING.smPlus },
   block: { marginTop: SPACING.smPlus },
-  context: { marginTop: SPACING.md },
-  rule: { height: 1, marginBottom: SPACING.md },
-  related: { marginTop: SPACING.md, gap: SPACING.xxs },
-  relatedRow: { marginTop: SPACING.xxs },
   source: { marginTop: SPACING.md },
 });

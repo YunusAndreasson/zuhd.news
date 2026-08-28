@@ -275,10 +275,9 @@ function conceptMatchesTag(concept: string, tag: string): boolean {
 const MIN_TAG_LENGTH = 3;
 
 /**
- * Part five of the card: which of today's stories this reading actually
- * touches. Matching is deliberately conservative — a wrong tie is worse than
- * no tie, because the whole point of the line is that the app is one thing
- * rather than a dashboard bolted to a reader.
+ * Which of today's stories should affect this reading's rank. These ties are
+ * deliberately conservative and stay metadata: the live analysis already
+ * carries the news context, so the card does not print the headlines again.
  */
 export function relatedForTags(
   articles: Article[],

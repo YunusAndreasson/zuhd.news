@@ -115,13 +115,11 @@ export const CardView = memo(function CardView({
   card,
   itemHeight,
   index,
-  total,
   scrollY,
 }: {
   card: SwipeCard;
   itemHeight: number;
   index: number;
-  total: number;
   scrollY: SharedValue<number>;
 }) {
   const openLink = useOpenLink();
@@ -130,7 +128,7 @@ export const CardView = memo(function CardView({
   }, [card.link, openLink]);
 
   return (
-    <CardFrame card={card} itemHeight={itemHeight} index={index} total={total} scrollY={scrollY}>
+    <CardFrame card={card} itemHeight={itemHeight} index={index} scrollY={scrollY}>
       {renderBody(card, onPress)}
     </CardFrame>
   );

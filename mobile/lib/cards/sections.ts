@@ -7,8 +7,8 @@ import type { Card } from './types';
 type DataSection = Exclude<Section, 'news'>;
 
 /** A primary data card must fulfil both promises: a real history and analysis
- * from the live pipeline. Editorial `whatItIs` copy remains optional context
- * and deliberately cannot create a screen by itself. */
+ * from the live pipeline. Editorial `whatItIs` copy remains builder fallback
+ * metadata and deliberately cannot create a screen by itself. */
 function hasGraphAndAnalysis(card: Card): boolean {
   if (card.kind !== 'reading' && card.kind !== 'belief') return false;
   if (!card.why?.trim() || !card.series) return false;

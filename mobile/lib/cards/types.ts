@@ -9,15 +9,15 @@ import type { Direction, Valence } from '../valence';
  * becomes a row on a comparison card, or it is not in the app — which is why
  * fifteen currencies are one card and thirty exchanges are none.
  *
- * The shape below is that rule written as a type. The changing observation is
- * the daily surface; live analysis stays visible and static definitions are
- * disclosed on demand:
+ * The shape below is that rule written as a type. The changing observation and
+ * live analysis form the visible surface; static definitions remain builder
+ * fallback metadata:
  *
  *   reading    the number, at arm's length
- *   whatItIs   one sentence for someone who has never heard of it
+ *   whatItIs   optional builder fallback; not graph-deck chrome
  *   changed    the move, and the window it moved over
  *   why        why it reaches an ordinary life — the teaching part
- *   related    which of today's stories it touches
+ *   related    which stories should affect its rank
  *
  * `why` is not written here. It is `standing`, which the pipeline has been
  * writing for every indicator, chokepoint and calendar event since long before
@@ -93,13 +93,13 @@ interface CardBase {
   readingNote?: string;
   /** Part 1c, beside the note: which way it moved and what that means. */
   delta?: CardDelta;
-  /** Static definition, shown from the card's info control. */
+  /** Static definition retained as builder fallback metadata. */
   whatItIs?: string;
   /** What changed in the current data window. */
   changed?: string;
   /** Live pipeline analysis, shown on the recurring card surface. */
   why?: string;
-  /** Part 5. */
+  /** News ties used to rank the card; not repeated on its visible surface. */
   related?: RelatedArticleRef[];
   /** Attribution, rendered through `SourceCaption`. */
   sourceLabel?: string;
