@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-08-02T08:24:06.509Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-08-02-the-moon-as-occulter-why-totality-is-still-the-only-instrument",
-        "title": "Jet Chases Solar Eclipse",
-        "category": "science",
-        "eventCoverage": 261,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-addiction-as-attack-securitisation-and-the-treatment-gap",
-        "title": "Modi Launches Anti-Drug Drive",
-        "category": "politics",
-        "eventCoverage": 98,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-voluntary-scanning-exported-brussels-effect-without-the-safeguards",
-        "title": "EU Extends Chat Scanning",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-return-is-not-durable-the-transfer-of-a-funding-collapse",
-        "title": "Returns Recast As Solutions",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-franchise-not-takeover-what-a-criminal-brand-buys",
-        "title": "Tren De Aragua Franchises",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-tmt-la-palma-bid-the-price-of-a-mountain-without-objectors",
-        "title": "Spain Bids For Telescope",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-the-bend-in-the-curve-central-adiposity-and-a-mis-set-threshold",
-        "title": "Body Roundness Predicts Liver Risk",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-promote-and-regulate-a-conflict-written-into-the-statute",
-        "title": "Lebanon Pauses AI Ministry",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-memory-stores-boundaries-not-duration-and-who-is-judged-on-it",
-        "title": "Memory Skips Elapsed Time",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-functional-trait-mediated-limiting-similarity-shapes-weed-bi",
-        "title": "Crop Similarity Suppresses Weeds",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-02-addiction-as-attack-securitisation-and-the-treatment-gap",
-      "title": "Modi Launches Anti-Drug Drive",
-      "category": "politics",
-      "body": "More than 10 million youths joined the",
-      "eventCoverage": 98,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Modi launches nationwide anti-drug drive, more than 10 million youths join",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 15
-    }
-  },
-  {
     "timestamp": "2026-08-02T12:24:37.688Z",
     "candidateCount": 11,
     "candidates": [
@@ -10194,5 +10101,42 @@
       "skipped": 0,
       "tokens": 9
     }
+  },
+  {
+    "timestamp": "2026-08-28T04:23:31.461Z",
+    "candidateCount": 4,
+    "candidates": [
+      {
+        "slug": "2026-08-28-supply-chain-risk-the-listing-met-a-court",
+        "title": "Court Voids Anthropic Ban",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-five-point-three-the-war-arrives-as-a-yield",
+        "title": "Treasury Yields Hit 5.3%",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-the-coding-agent-the-skill-floor-collapsed",
+        "title": "AI Tool Aids Hackers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-a-few-pixels-detection-is-not-rescue",
+        "title": "Drone AI Spots Swimmers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 4 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
