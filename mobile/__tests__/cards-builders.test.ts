@@ -80,7 +80,14 @@ describe('buildInstrumentCards', () => {
     expect(allOf(columns)).toEqual([]);
     // Every key still present, so a section renders its empty state rather
     // than crashing on an undefined column.
-    expect(Object.keys(columns).sort()).toEqual(['next', 'now']);
+    expect(Object.keys(columns).sort()).toEqual([
+      'attention',
+      'calendar',
+      'currencies',
+      'markets',
+      'predictions',
+      'straits',
+    ]);
   });
 
   it('files each card in the column a reader would go looking for it in', () => {
@@ -98,21 +105,15 @@ describe('buildInstrumentCards', () => {
       chokepoints: [],
       articles: [],
     });
-    // Measured readings share `now`; the smart deck ranker, not this builder,
-    // decides which current fact the reader meets first.
-    expect(columns.now.map((c) => c.id)).toEqual([
-      'nisab',
-      'brent',
-      'metals',
+    expect(columns.markets.map((c) => c.id)).toEqual(['nisab', 'brent', 'metals', 'btc']);
+    expect(columns.currencies.map((c) => c.id)).toEqual([
       'currencies',
       'fx-rub-mover',
       'fx-jpy-mover',
-      'btc',
     ]);
-    // What is not yet a fact.
-    expect(columns.next.map((c) => c.id)).toEqual(['poly-x']);
-    expect(columns.now.map((c) => c.id)).not.toContain('poly-x');
-    expect(columns.next.map((c) => c.id)).not.toContain('nisab');
+    expect(columns.predictions.map((c) => c.id)).toEqual(['poly-x']);
+    expect(columns.markets.map((c) => c.id)).not.toContain('poly-x');
+    expect(columns.predictions.map((c) => c.id)).not.toContain('nisab');
   });
 
   it('separates present attention from forward-looking signals', () => {
@@ -134,13 +135,65 @@ describe('buildInstrumentCards', () => {
       chokepoints: [],
       articles: [],
     });
-    // Attention is observed behaviour today. VIX is a price on expected
-    // volatility over the coming month, so only the latter belongs in `next`.
-    expect(columns.next.map((c) => c.id)).toEqual(['vix']);
-    expect(columns.now.map((c) => c.id)).toEqual(['attention', 'us-10y']);
+    expect(columns.predictions).toEqual([]);
+    expect(columns.attention.map((c) => c.id)).toEqual(['attention']);
+    expect(columns.markets.map((c) => c.id)).toEqual(['us-10y', 'vix']);
     // The kicker carries the argument, so a reader meets it without reading
     // this file.
-    expect(find(columns.next, 'vix')?.kicker).toBe('what traders fear');
+    expect(find(columns.markets, 'vix')?.kicker).toBe('volatility');
+  });
+
+  it('keeps long comparison cards to one screen while preserving both ends', () => {
+    const fx = Array.from({ length: 10 }, (_, index) =>
+      indicator({
+        id: `fx-${index + 1}`,
+        label: `Currency ${index + 1}`,
+        source: 'oer',
+        values: [100, 101 + index],
+      }),
+    );
+    const wiki = Array.from({ length: 10 }, (_, index) =>
+      indicator({
+        id: `wiki-${index + 1}`,
+        label: `Subject ${index + 1} — Wikipedia views`,
+        source: 'wikipedia',
+        values: [100, 100, 100, 50 + index * 10],
+      }),
+    );
+    const columns = buildInstrumentCards({
+      trends: snapshot([...fx, ...wiki]),
+      chokepoints: [],
+      articles: [],
+    });
+
+    const currencies = find(columns.currencies, 'currencies');
+    expect(currencies?.reading).toBe('10 of 10');
+    expect(currencies?.kind === 'comparison' ? currencies.rows : []).toHaveLength(8);
+    expect(
+      currencies?.kind === 'comparison' ? currencies.rows.map((row) => row.label) : [],
+    ).toEqual([
+      'Currency 10',
+      'Currency 9',
+      'Currency 8',
+      'Currency 7',
+      'Currency 4',
+      'Currency 3',
+      'Currency 2',
+      'Currency 1',
+    ]);
+
+    const attention = find(columns.attention, 'attention');
+    expect(attention?.kind === 'comparison' ? attention.rows : []).toHaveLength(8);
+    expect(attention?.kind === 'comparison' ? attention.rows.map((row) => row.label) : []).toEqual([
+      'Subject 10',
+      'Subject 9',
+      'Subject 8',
+      'Subject 7',
+      'Subject 4',
+      'Subject 3',
+      'Subject 2',
+      'Subject 1',
+    ]);
   });
 
   it('marks a gated card and leaves a standing one unmarked', () => {
@@ -154,9 +207,9 @@ describe('buildInstrumentCards', () => {
     });
     // The strait is here because it went quiet this week; the nisab is here
     // every day. Until the mark existed both arrived in identical weight.
-    expect(find(columns.now, 'strait-kerch')?.lead).toBe(true);
-    expect(find(columns.now, 'nisab')?.lead).toBeUndefined();
-    expect(find(columns.now, 'metals')?.lead).toBeUndefined();
+    expect(find(columns.straits, 'strait-kerch')?.lead).toBe(true);
+    expect(find(columns.markets, 'nisab')?.lead).toBeUndefined();
+    expect(find(columns.markets, 'metals')?.lead).toBeUndefined();
   });
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
@@ -363,8 +416,8 @@ describe('buildInstrumentCards', () => {
     expect(belief?.delta?.valence).toBe('neutral');
     // What is left for the sentence is the range, which is the part that says
     // how settled the belief is.
-    expect(belief?.changed).toContain('As low as 26%');
-    expect(belief?.changed).toContain('as high as 86%');
+    expect(belief?.changed).toContain('Low 26% on Jul 17');
+    expect(belief?.changed).toContain('high 86% on Aug 9');
   });
 
   it('leaves nothing on screen in the colour of the label text beside it', () => {
@@ -490,9 +543,10 @@ describe('buildInstrumentCards', () => {
       ],
       articles: [],
     });
-    expect(columns.now.filter((c) => c.id.startsWith('strait-')).map((c) => c.id)).toEqual([
+    expect(columns.straits.map((c) => c.id)).toEqual([
       'strait-kerch',
       'strait-hormuz',
+      'strait-dover',
     ]);
     // The eleven-strait comparison table is gone. The globe on `news` draws
     // all eleven as tappable rings and `ChokepointSheet` says more about any
@@ -500,8 +554,10 @@ describe('buildInstrumentCards', () => {
     expect(find(cards, 'straits')).toBeUndefined();
   });
 
-  it('uses total traffic for a chokepoint headline because that is the series it graphs', () => {
+  it('uses the same seven-day total-traffic measure in a chokepoint headline and graph', () => {
     const hormuz = strait('hormuz', 'Strait of Hormuz', 5, 10, -0.5);
+    hormuz.series.periods = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    hormuz.series.total = [10, 10, 10, 10, 10, 10, 10, 3];
     hormuz.primaryField = 'n_tanker';
     hormuz.last7Avg.n_tanker = 2.4;
     hormuz.baseline90Avg.n_tanker = 4.3;
@@ -518,29 +574,27 @@ describe('buildInstrumentCards', () => {
     expect(card?.readingNote).toBe('ships a day');
     expect(card?.delta?.magnitude).toBe('50%');
     expect(card?.kind === 'reading' ? card.series?.values : []).toEqual([10, 5]);
+    expect(card?.kind === 'reading' ? card.series?.periods : []).toEqual(['7', '8']);
+    expect(card?.kind === 'reading' ? card.series?.label : '').toBe('seven-day average, all ships');
   });
 
-  it('ships no strait at all on a week when none of them went quiet', () => {
-    // Every one of these is inside its own normal — day-to-day variation in
-    // busy waterways, which is weather. Ranked without a gate one of them
-    // still wins and ships daily, which is how a card becomes furniture.
-    const cards = allOf(
-      buildInstrumentCards({
-        trends: snapshot([indicator({ id: 'brent' })]),
-        chokepoints: [
-          strait('dover', 'Dover Strait', 157, 162.2, -0.032),
-          strait('panama', 'Panama Canal', 26.7, 30.7, -0.13),
-          strait('suez', 'Suez Canal', 51, 50.5, 0.009),
-          // Busy, not quiet — and well past the threshold. The gate is
-          // one-sided on purpose: traffic rerouted *to* a strait is the same
-          // disruption seen from the other end, and the app names the squeeze
-          // rather than the detour.
-          strait('taiwan', 'Taiwan Strait', 90, 80.5, 0.118),
-        ],
-        articles: [],
-      }),
-    );
-    expect(cards.filter((c) => c.id.startsWith('strait-'))).toEqual([]);
+  it('keeps ordinary straits available without marking them current', () => {
+    const columns = buildInstrumentCards({
+      trends: snapshot([indicator({ id: 'brent' })]),
+      chokepoints: [
+        strait('dover', 'Dover Strait', 157, 162.2, -0.032),
+        strait('panama', 'Panama Canal', 26.7, 30.7, -0.13),
+        strait('suez', 'Suez Canal', 51, 50.5, 0.009),
+        // Busy, not quiet — and well past the threshold. The gate is
+        // one-sided on purpose: traffic rerouted *to* a strait is the same
+        // disruption seen from the other end, and the app names the squeeze
+        // rather than the detour.
+        strait('taiwan', 'Taiwan Strait', 90, 80.5, 0.118),
+      ],
+      articles: [],
+    });
+    expect(columns.straits).toHaveLength(4);
+    expect(columns.straits.every((card) => card.lead !== true)).toBe(true);
   });
 
   it('does not print the chokepoint blurb twice when standing repeats it', () => {
@@ -764,7 +818,11 @@ describe('buildConditionCards', () => {
     const gdacsAlerts = [alert('a', 'Green'), alert('b', 'Green'), alert('c', 'Orange')];
     const card = find(buildConditionCards({ ...emptyInputs, gdacsAlerts }), 'disasters');
     expect(card?.reading).toBe('3');
-    expect(card?.changed).toContain('1 of 3 is above Green');
+    expect(card?.title).toBe('GDACS disaster alerts');
+    expect(card?.changed).toBe('1 of 3 is above Green; 2 are Green.');
+    expect(card?.kind === 'condition' ? card.figures?.every((f) => f.note == null) : false).toBe(
+      true,
+    );
   });
 
   it('carries the body and the document, because the citation is the claim', () => {
@@ -987,7 +1045,7 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    const btc = columns.now[0];
+    const btc = columns.markets[0];
     expect(btc?.whatItIs).toBeUndefined();
     expect(btc?.why).toContain('sets the tone');
   });
@@ -998,8 +1056,8 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.now[0]?.whatItIs).toContain('no state issues');
-    expect(columns.now[0]?.why).toBeUndefined();
+    expect(columns.markets[0]?.whatItIs).toContain('no state issues');
+    expect(columns.markets[0]?.why).toBeUndefined();
   });
 
   it('gives every prediction swipe piece concise standalone context', () => {
@@ -1012,10 +1070,10 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.next).toHaveLength(3);
-    expect(columns.next[0]?.whatItIs).toContain('pays out if this happens');
-    expect(columns.next[1]?.whatItIs).toContain('what traders are willing to risk');
-    expect(columns.next[2]?.whatItIs).toContain('what traders are willing to risk');
+    expect(columns.predictions).toHaveLength(3);
+    expect(columns.predictions[0]?.whatItIs).toContain('pays out if this happens');
+    expect(columns.predictions[1]?.whatItIs).toContain('what traders are willing to risk');
+    expect(columns.predictions[2]?.whatItIs).toContain('what traders are willing to risk');
   });
 });
 
@@ -1034,6 +1092,6 @@ describe('belief titles', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.next[0]?.title).toBe('US invade Iran before 2027?');
+    expect(columns.predictions[0]?.title).toBe('US invade Iran before 2027?');
   });
 });

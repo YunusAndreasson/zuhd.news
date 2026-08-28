@@ -29,17 +29,10 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * fetched on every launch and, until now, one chart was drawn from the first
  * of them — in a sheet reached by tapping a word.
  *
- * Two columns, cut by time rather than asset class. `now` contains measured
- * facts: shipping, attention, prices, currencies and borrowing. `next`
- * contains signals about what may happen: prediction contracts, volatility
- * and the calendar. The distinction holds for every live payload without forcing a
- * humanitarian condition into a tab labelled "prices".
- *
- * It was five, split by asset class, and that split is what produced a
- * `markets` column holding food, energy, rates, shipping, Wikipedia pageviews
- * and a calendar beside three columns two cards deep. Asset class is how a
- * data provider files a series. It is not how anybody wakes up wondering
- * about one.
+ * Subject columns match the labels a reader sees: markets, currencies,
+ * straits, predictions, calendar and attention. The split follows what the
+ * card is about rather than whether its number describes the present or the
+ * future.
  *
  * What is *not* here is the point of the file. Thirty exchanges, the S&P, the
  * NASDAQ, TSMC, copper, TTF, retail gasoline and WTI all have live series and
@@ -469,7 +462,12 @@ function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | n
   if (scored.length === 0) return null;
 
   const weakened = scored.filter((s) => s.change.pct > 0);
-  const rows: CompareRow[] = scored.map(({ indicator, change }) => ({
+  // A swipe card must remain a single screen. Keep the full set for the
+  // headline, then show both ends of the distribution: the currencies under
+  // the most pressure and those gaining the most. Rendering all fifteen hid
+  // the final rows and the dated takeaway behind the action bar.
+  const visible = scored.length > 8 ? [...scored.slice(0, 4), ...scored.slice(-4)] : scored;
+  const rows: CompareRow[] = visible.map(({ indicator, change }) => ({
     // The pipeline's label already reads as a currency name; the unit carries
     // the pairing ("PKR / USD"), so the row does not repeat it.
     label: indicator.label,
@@ -534,7 +532,7 @@ function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | n
     // a weaker currency, and what that does to an import bill), so a fourth
     // part here would be a third explanation of the same thing.
     rows,
-    rowsLabel: 'the currency, against the dollar',
+    rowsLabel: scored.length > 8 ? 'month’s weakest and strongest' : 'against the dollar',
     related: relatedForTags(
       articles,
       scored.flatMap(({ indicator }) => indicator.topicTags ?? []),
@@ -705,56 +703,51 @@ function totalTrafficDelta(c: Chokepoint): number | null {
  * chart earns a full screen. */
 const TOTAL_TRAFFIC_DISRUPTED = 0.3;
 
+/** Smooth noisy daily ship counts into the same seven-day measure used by the
+ * headline and delta. Short fixture/partial series remain usable. */
+function trailingSevenDayAverage(values: number[]): number[] {
+  if (values.length < 7) return values;
+  const averaged: number[] = [];
+  for (let end = 6; end < values.length; end += 1) {
+    let total = 0;
+    for (let i = end - 6; i <= end; i += 1) total += values[i] ?? 0;
+    averaged.push(Math.round(total / 7));
+  }
+  return averaged;
+}
+
 /**
- * The one strait that has actually gone quiet — on the days one has.
- *
- * Ranked, not chosen: an editor picking the strait each morning would be
- * making a claim the data has already made. But ranking alone always returns
- * *something*, and for most of a year that something is a busy waterway three
- * per cent off its own average, which is weather. Shipped daily it was
- * furniture, and it was furniture twice over, because the globe on `news`
- * already draws all eleven as tappable rings and `ChokepointSheet` says more
- * about any of them than a card can.
- *
- * So the card is gated on a 30% fall in total traffic. The shared 10% threshold
- * remains right for the sheet's selected vessel subtype; applied to total
- * traffic it promoted ordinary 12–13% variation at Panama and Bab el-Mandeb
- * ahead of a halved Hormuz. Nothing clears the material total-traffic gate, no
- * card; one does, and it leads `now` carrying the `current` mark.
- *
- * The gate is one-sided for the reason the chip is: a strait above its own
- * normal is usually freight rerouted *to* it, which is the same disruption
- * seen from the other end, and the app names the squeeze rather than the
- * detour.
- *
- * A note on what this ranks by. Distance from a strait's own 90-day normal
- * lets a small waterway out-rank a consequential one — Kerch at 6 ships a day
- * can beat Hormuz, which carries a fifth of the world's oil. Ranking by
- * absolute shortfall instead is worse, not better: it surfaces Malacca three
- * per cent down (noise on a very large number) and drops Hormuz entirely, and
- * `Chokepoint` carries no share-of-trade field to weight by. The card says
- * exactly what it ranked on, and what it says is true. The published history
- * contains total ships only, so the gate, headline, delta and chart all use
- * total traffic. A vessel subtype may be the strait's domain-specific primary
- * field, but using it for the headline would graph a different quantity.
+ * One graph per strait. The section is a reference deck on ordinary days, so
+ * every strait with a usable total-traffic history remains available. A fall
+ * of at least 30% against its own 90-day normal earns `current`; smaller moves
+ * stay neutral reference rather than being promoted as news. Smart ranking
+ * later combines that mark with live-story relevance and unusual movement.
  */
-function straitMovedCards(chokepoints: Chokepoint[]): ReadingCard[] {
+function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
   const ranked = chokepoints
     .map((c) => ({ c, d: totalTrafficDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
-    .filter((x) => x.d <= -TOTAL_TRAFFIC_DISRUPTED)
+    .filter(
+      ({ c }) =>
+        typeof c.last7Avg.n_total === 'number' &&
+        Number.isFinite(c.last7Avg.n_total) &&
+        c.series.total.length >= 2 &&
+        c.series.total.length === c.series.periods.length,
+    )
     .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-  // Do not discard candidates before the deck ranker sees them. On the live
-  // payload a small strait can have the largest proportional fall while a
-  // globally consequential strait is tied to the lead story. Both clear the
-  // disruption gate; news relevance decides which one the reader meets first.
   return ranked.map(({ c, d }) => {
     const last7 = c.last7Avg.n_total;
     const base = c.baseline90Avg.n_total;
+    const traffic = trailingSevenDayAverage(c.series.total);
+    const periods = c.series.periods.slice(c.series.periods.length - traffic.length);
+    // The payload's published seven-day reading is authoritative. Using it at
+    // the endpoint also prevents a rounded headline and a decimal chart label
+    // from appearing to disagree.
+    if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = Math.round(last7);
     return {
       id: `strait-${c.id}`,
       kind: 'reading' as const,
-      lead: true,
+      lead: d <= -TOTAL_TRAFFIC_DISRUPTED,
       kicker: 'chokepoint',
       title: c.name,
       reading: last7 == null ? '—' : formatQuantity(last7),
@@ -765,9 +758,9 @@ function straitMovedCards(chokepoints: Chokepoint[]): ReadingCard[] {
         base != null ? `Its own 90-day normal is ${formatQuantity(base)} ships a day.` : undefined,
       why: straitWhy(c),
       series: {
-        values: c.series.total,
-        periods: c.series.periods,
-        label: 'all ships a day',
+        values: traffic,
+        periods,
+        label: 'seven-day average, all ships',
         unit: 'a day',
         highlight: 'last' as const,
       },
@@ -835,7 +828,7 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         // one that got there from 30 last week.
         changed:
           extremes && extremes.max - extremes.min >= 1
-            ? `As low as ${Math.round(extremes.min)}% (${extremes.minAt}) and as high as ${Math.round(extremes.max)}% (${extremes.maxAt}) inside the window held here.`
+            ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
             : undefined,
         why: indicator.standing,
         series: {
@@ -873,10 +866,8 @@ const stripWikiSuffix = (label: string) => label.replace(/\s*—\s*Wikipedia vie
  * Measured against each subject's own recent average, the same numbers say
  * something a reader cannot get anywhere else: where curiosity moved.
  *
- * It sits in `now`, not beside prediction contracts in `next`: pageviews are
- * observed behaviour. They say where attention went today, not where events
- * will go tomorrow. Treating curiosity as a forecast made the section label
- * promise more than the series measures.
+ * It sits in `attention`: pageviews are observed behaviour, not a market price
+ * or a prediction about what happens next.
  */
 function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | null {
   const wiki = snapshot.indicators.filter((i) => i.source === 'wikipedia');
@@ -904,7 +895,10 @@ function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | nu
   const mover = [...scored].sort((a, b) => Math.abs(b.ratio - 1) - Math.abs(a.ratio - 1))[0];
   if (!mover) return null;
 
-  const rows: CompareRow[] = scored.map(({ indicator, ratio }) => ({
+  // Show both ends of the distribution. Eight rows fit without turning the
+  // card into an inner scroll view that fights the deck.
+  const visible = scored.length > 8 ? [...scored.slice(0, 4), ...scored.slice(-4)] : scored;
+  const rows: CompareRow[] = visible.map(({ indicator, ratio }) => ({
     label: stripWikiSuffix(indicator.label),
     value: `${Math.round(ratio * 100)}%`,
     // Slate, every row, because the value printed *is* a move — per cent of a
@@ -923,25 +917,18 @@ function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | nu
     id: 'attention',
     kind: 'comparison',
     kicker: 'attention',
-    title: 'What the world looked up',
+    title: 'Wikipedia attention',
     reading: `${Math.round(mover.ratio * 100)}%`,
     readingNote: `of normal · ${stripWikiSuffix(mover.indicator.label)}`,
-    // Slate. Curiosity moving is not good news or bad news, and this is the
-    // card that shows what the third tone is for: the arrow says a subject was
-    // opened more than usual, and the colour declines to tell you whether that
-    // is a good thing — which is a claim the app can stand behind, unlike
-    // either sage or rose.
-    delta: deltaFrom(
-      { pct: (mover.ratio - 1) * 100, from: '', to: '', points: mover.indicator.values.length },
-      null,
-      { window: 'against its own normal' },
-    ),
+    // The reading already says "of normal". A second chip restating the same
+    // movement as "above normal" made readers reconcile 1772% with 1672%
+    // before they reached the actual comparison.
     whatItIs:
       'How many people opened each Wikipedia article today, set against that subject’s own recent average. It reads as where curiosity went, which is not where the news is.',
-    changed: `${stripWikiSuffix(mover.indicator.label)} was opened ${formatCount(mover.latest)} times a day against its usual ${formatCount(mover.baseline)}.`,
+    changed: `${stripWikiSuffix(mover.indicator.label)} drew ${formatCount(mover.latest)} daily views, versus a recent average of ${formatCount(mover.baseline)}.`,
     why: mover.indicator.standing,
     rows,
-    rowsLabel: 'against each subject’s own average',
+    rowsLabel: scored.length > 8 ? 'furthest above and below normal' : 'against recent normal',
     related: relatedForTags(articles, mover.indicator.topicTags),
     sourceLabel: mover.indicator.sourceLabel,
   };
@@ -998,7 +985,7 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
     kind: 'condition',
     visualStyle: 'timeline',
     kicker: 'ahead',
-    title: 'What is already scheduled',
+    title: 'Key economic dates',
     reading: String(shown.length),
     readingNote: 'decisions and releases coming',
     whatItIs:
@@ -1052,15 +1039,23 @@ export interface InstrumentCardInputs {
   now?: Date;
 }
 
-/** Instrument cards grouped by whether they measure now or signal next. */
+/** Instrument cards grouped by the concrete subject labels in the section rail. */
 export interface InstrumentColumns {
-  now: Card[];
-  next: Card[];
+  attention: Card[];
+  calendar: Card[];
+  markets: Card[];
+  currencies: Card[];
+  straits: Card[];
+  predictions: Card[];
 }
 
 const EMPTY_COLUMNS: InstrumentColumns = {
-  now: [],
-  next: [],
+  attention: [],
+  calendar: [],
+  markets: [],
+  currencies: [],
+  straits: [],
+  predictions: [],
 };
 
 /**
@@ -1068,14 +1063,6 @@ const EMPTY_COLUMNS: InstrumentColumns = {
  *
  * Order within a column is reading order, and each column opens with the card
  * that answers its own question most directly.
- *
- * `now` contains every measured reading. Smart ranking later decides its
- * order from freshness, current-news ties and unusual movement; this builder
- * does not discard a valid candidate just to impose an editorial first card.
- *
- * `next` opens with the contracts, which is also where the once-per-column
- * explainer lives (see `beliefCards`), then where curiosity went, then the
- * price of insuring against a fall, then what is already on the calendar.
  *
  * Every card returns null rather than a placeholder when its data is missing
  * or its gate does not clear, so a quiet day yields shorter columns and never
@@ -1091,9 +1078,9 @@ export function buildInstrumentCards({
   const keep = (cards: (Card | null)[]): Card[] => cards.filter((c): c is Card => c !== null);
 
   return {
-    now: keep([
-      ...straitMovedCards(chokepoints),
-      attentionCard(trends, articles),
+    attention: keep([attentionCard(trends, articles)]),
+
+    markets: keep([
       nisabCard(trends),
       staplesCard(trends, articles),
       indicatorCard(
@@ -1104,8 +1091,6 @@ export function buildInstrumentCards({
         'The benchmark price for a barrel of crude. Most of the world’s oil is sold at a premium or discount to it, so it is the number under every fuel price.',
       ),
       metalsPairCard(trends, articles),
-      currenciesCard(trends, articles),
-      ...fxMoverCards(trends, articles),
       // The ten-year survives the cut that took the S&P and the NASDAQ with
       // it, on the rule that killed them: it can be explained in one sentence
       // to someone who has never met it, and it says something about an
@@ -1116,6 +1101,13 @@ export function buildInstrumentCards({
         'us-10y',
         'money',
         'What the United States pays to borrow for ten years. Almost every other long-term rate on earth — mortgages, sovereign debt, project finance — is priced off it.',
+      ),
+      indicatorCard(
+        trends,
+        articles,
+        'vix',
+        'volatility',
+        'How much traders are paying to insure against a fall in US shares over the next month. It rises when people are frightened, which is why it is called the fear index.',
       ),
       indicatorCard(
         trends,
@@ -1136,22 +1128,12 @@ export function buildInstrumentCards({
       ),
     ]),
 
-    next: keep([
-      ...beliefCards(trends, articles),
-      // VIX files here rather than beside the ten-year, and the app's own
-      // reasoning put it here: the S&P and the NASDAQ were cut because an
-      // index level is not a fact about a life, and what saved VIX from the
-      // same cut was its *fear* reading. A number that says what traders are
-      // paying to insure against a fall next month is a price on a belief,
-      // measured the same way a contract is. The kicker says so.
-      indicatorCard(
-        trends,
-        articles,
-        'vix',
-        'what traders fear',
-        'How much traders are paying to insure against a fall in US shares over the next month. It rises when people are frightened, which is why it is called the fear index.',
-      ),
-      calendarCard(trends, now),
-    ]),
+    currencies: keep([currenciesCard(trends, articles), ...fxMoverCards(trends, articles)]),
+
+    straits: keep(straitCards(chokepoints)),
+
+    predictions: keep(beliefCards(trends, articles)),
+
+    calendar: keep([calendarCard(trends, now)]),
   };
 }

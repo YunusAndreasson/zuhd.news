@@ -252,15 +252,16 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the three sections (`news` · `now` · `next`); vertical
+  between the named sections (`news` · `markets` · `currencies` · `straits` ·
+  `predictions` · `calendar` · `humanitarian` · `attention`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
-- **The data sections are cut by time, not asset class.** `now` is measured
-  reality, including observed attention; `next` is belief, forward volatility
-  or a scheduled event. This
-  keeps conditions, prices and contracts under labels that remain true for
-  every live payload. Before adding a section, check that this distinction
-  cannot already hold it.
+- **The data sections say what they contain.** Commodities, rates, volatility
+  and crypto live in `markets`; FX in `currencies`; shipping histories in
+  `straits`; outcome contracts in `predictions`; near-term scheduled events in
+  `calendar`; newly published conditions and determinations in `humanitarian`;
+  observed pageviews in `attention`. Preserve full names and let the rail
+  scroll rather than making the reader decode abbreviations.
 - **A card's graph visualises its headline quantity.** If the payload has only
   total-traffic history, a chokepoint card cannot headline tankers; if the
   headline is a gold/silver ratio, the graph is that ratio rather than two raw

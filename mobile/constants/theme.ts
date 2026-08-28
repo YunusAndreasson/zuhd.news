@@ -442,7 +442,16 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'now', 'next'] as const;
+export const SECTIONS = [
+  'news',
+  'markets',
+  'currencies',
+  'straits',
+  'predictions',
+  'calendar',
+  'humanitarian',
+  'attention',
+] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */

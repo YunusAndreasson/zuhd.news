@@ -25,8 +25,8 @@ import type { Card, CardFigure, ConditionCard } from './types';
  * So each card is gated on *its own data being new*. Nothing here appears
  * because it is important; it appears because it changed. A fresh IPC
  * analysis, a newly published determination, a conflict window that has caught
- * up — each of those is an event and belongs among the other measurements in
- * `now`, not inside a market category it does not describe.
+ * up — each of those is an event and belongs in `humanitarian`, not inside a
+ * market category it does not describe.
  *
  * Event-dated cards carry `lead: true`, which makes `CardFrame` print
  * `current ·`. IPC does not publish a reliable release timestamp, only the
@@ -226,12 +226,6 @@ function conflictCard(conflict: ConflictSnapshot | null, now: Date): ConditionCa
 // Disaster alerts
 // ---------------------------------------------------------------------------
 
-const ALERT_GLOSS: Record<string, string> = {
-  Green: 'local response expected to be sufficient',
-  Orange: 'regional or national response likely needed',
-  Red: 'international assistance likely needed',
-};
-
 /**
  * What a global disaster monitor is currently tracking.
  *
@@ -267,7 +261,6 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
     .map((level) => ({
       label: level.toLowerCase(),
       value: formatCount(counts[level]),
-      note: ALERT_GLOSS[level],
       weight: counts[level],
     }));
 
@@ -277,16 +270,16 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
     visualStyle: 'distribution',
     lead: true,
     kicker: 'hazard',
-    title: 'What is being watched',
+    title: 'GDACS disaster alerts',
     reading: formatCount(total),
-    readingNote: 'active hazard alerts',
+    readingNote: 'active worldwide',
     whatItIs:
       'GDACS estimates the humanitarian impact of earthquakes, storms, floods, wildfires, droughts and eruptions.',
     changed:
       escalated === 0
-        ? `Every one of them is Green — modelled to need no help from outside the country it is in.`
-        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no help from outside the country they are in.`,
-    why: 'Alert levels reflect likely impact and response needs, using exposure as well as the event’s physical size.',
+        ? `All ${total} alerts are Green.`
+        : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green; ${total - escalated} ${total - escalated === 1 ? 'is' : 'are'} Green.`,
+    why: 'Green means local response capacity is expected to be sufficient. Orange signals a likely need for regional or national response; Red signals likely international assistance. Alert levels use exposure as well as the event’s physical size.',
     figures,
     sourceLabel: 'GDACS · European Commission JRC',
   };

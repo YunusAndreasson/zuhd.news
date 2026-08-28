@@ -75,11 +75,25 @@ const newsListRef = createRef<ArticleListRef>();
 /** Empty-state copy per instrument column. A column is empty when the
  *  snapshot did not carry its series, which is a quiet degrade, not an error. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  now: {
-    message: 'no readings yet',
-    hint: 'No current readings are available',
+  markets: { message: 'no market readings yet', hint: 'No market series are available' },
+  currencies: {
+    message: 'no currency readings yet',
+    hint: 'No exchange-rate series are available',
   },
-  next: { message: 'no signals yet', hint: 'No forecasts or scheduled events are available' },
+  straits: { message: 'no strait readings yet', hint: 'No shipping histories are available' },
+  predictions: {
+    message: 'no predictions yet',
+    hint: 'No prediction contracts are available',
+  },
+  calendar: {
+    message: 'nothing scheduled soon',
+    hint: 'No tracked event falls in the next 10 days',
+  },
+  humanitarian: {
+    message: 'no fresh humanitarian updates',
+    hint: 'This section shows newly published conditions and determinations',
+  },
+  attention: { message: 'no attention readings yet', hint: 'No pageview series are available' },
 };
 
 // Give the reader time to arrive at the caught-up boundary and read it before
@@ -319,14 +333,18 @@ export default function HomeScreen() {
     [ipc, conflictSnapshot, gdacsAlerts, determinations],
   );
 
-  // The horizontal axis is temporal rather than a provider taxonomy. `now`
-  // holds measurements — conditions, prices, currencies and rates — and
-  // `next` holds beliefs, attention, volatility and scheduled events. This
-  // keeps every card in a section whose label remains true for all payloads.
+  // The horizontal axis names subjects a reader can choose directly. The
+  // builder owns the instrument taxonomy; gated humanitarian cards have their
+  // own explicit destination before the shared smart ranking is applied.
   const sectionCards = useMemo<Record<string, SwipeCard[]>>(
     () => ({
-      now: prepareSwipeCards([...conditionCards, ...columns.now], river),
-      next: prepareSwipeCards(columns.next, river),
+      markets: prepareSwipeCards(columns.markets, river),
+      currencies: prepareSwipeCards(columns.currencies, river),
+      straits: prepareSwipeCards(columns.straits, river),
+      predictions: prepareSwipeCards(columns.predictions, river),
+      calendar: prepareSwipeCards(columns.calendar, river),
+      humanitarian: prepareSwipeCards(conditionCards, river),
+      attention: prepareSwipeCards(columns.attention, river),
     }),
     [columns, conditionCards, river],
   );
