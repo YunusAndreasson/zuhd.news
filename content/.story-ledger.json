@@ -5,8 +5,8 @@
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 74,
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 81,
       "category": "tech",
       "importance": 6,
       "arc": "ongoing",
@@ -84,7 +84,14 @@
         "2026-08-28-frontier-again-the-index-is-the-plumbing",
         "2026-08-28-the-independence-trade-the-speech-is-the-instrument",
         "2026-08-28-cash-rising-the-measure-is-what-left-the-banks",
-        "2026-08-28-the-simulator-the-collection-is-indiscriminate-by-construction"
+        "2026-08-28-the-simulator-the-collection-is-indiscriminate-by-construction",
+        "2026-08-28-hormuz-declared-open-the-premium-is-the-verdict",
+        "2026-08-28-the-tariff-and-the-pump-price-the-duty-is-absorbed",
+        "2026-08-28-the-inherited-office-legitimacy-is-the-only-asset",
+        "2026-08-28-the-application-count-the-exam-is-a-census-of-schooling",
+        "2026-08-28-uncontactable-the-camp-is-in-the-gorge",
+        "2026-08-28-two-arrests-a-thousand-victims-the-pipeline-is-the-delivery",
+        "2026-08-28-after-the-scan-the-diagnosis-is-the-whole-service"
       ],
       "eventUri": null,
       "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
@@ -102,13 +109,109 @@
       ]
     },
     {
+      "id": "gpu-collateral-the-asset-depreciates-faster-than-the-loan",
+      "label": "Bullish backs USD.AI with $100 million in financing to drive GPU-backed loans",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan"
+      ],
+      "eventUri": null,
+      "summary": "A crypto exchange is extending $100 million to a protocol that lends against GPUs and will list the resulting yield token, creating a secondary market in AI-hardware debt. Lead with what is being pledged, because that is the story: the collateral is depreciating silicon in someone else's data centre, and the lender is a stablecoin pool. The mechanism to teach is why AI compute ended up financed here at all — banks underwrite against assets with predictable residual value and repossessable location, and a rack of accelerators has neither: the resale price is set by the next chip generation, and seizing it means physically entering a facility that may be in another jurisdiction. So the borrowers who cannot clear a bank credit committee come to onchain credit, and the risk is priced by yield-seeking depositors rather than by anyone who has valued a GPU. Then the structural point for our reader: this is the same maturity-and-collateral mismatch that has broken every credit boom, wired into the buildout that everyone is calling infrastructure. Note the conflict openly — Bullish is CoinDesk's parent company, and CoinDesk says so. What to pin down: the loan-to-value ratios, who custodies the hardware, what happens on default, and whether sUSDai holders are senior or subordinate. Who is affected: retail depositors reaching for AI yield without seeing the collateral; who holds power: the exchange that is simultaneously lender, listing venue and publisher.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-right-of-way-eminent-domain-by-licence",
+      "label": "Govt withdraws controversial telecom bill, to bring new draft of proposed legislation",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-the-right-of-way-eminent-domain-by-licence"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's government has pulled a bill that would have given telecom licensees sweeping powers to install infrastructure on public and private land, promising a redraft. Lead with the power the bill actually contained, because withdrawal stories are only interesting if the reader learns what was nearly enacted: a right of way that lets a private licence-holder enter and build on land it does not own is a delegation of eminent domain to a company, and the questions that decides everything — who compensates, at what rate, and which forum hears an objection — are exactly the clauses that go missing in a fast-tracked amendment. The mechanism to teach is why states do this at all: fibre and tower rollout is bottlenecked not by capital but by thousands of individual landholder negotiations, so the cheapest way to hit a coverage target is to legislate the negotiation away. Then the procedural detail: the bill amends a 1996 act, it was moved and then withdrawn under objection, and a redraft means the same policy returns with better drafting rather than a changed principle — say what the minister committed to and what she did not. Who is affected: rural and peri-urban landholders with the least capacity to contest an entry, and also the millions on the wrong side of Pakistan's coverage gap who are the stated beneficiaries; who holds power: the National Assembly, the PTA, and the licensees who would have held the entry right. Report what specifically drove the withdrawal — which members objected and on what grounds.",
+      "conceptUris": []
+    },
+    {
+      "id": "economic-outcast-the-third-country-bank-decides",
+      "label": "\"Operation Economic Outcast\" amounts to state terrorism",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-economic-outcast-the-third-country-bank-decides"
+      ],
+      "eventUri": "eng-11961940",
+      "summary": "Iran's foreign ministry has urged other states not to implement a new US sanctions wave unveiled Monday under the name 'Operation Economic Outcast'. Lead with the programme, not the condemnation, because the name is the news and most readers have not seen it: an explicitly branded campaign aimed at severing a country's remaining commercial links, announced as an operation rather than as a designation list. The mechanism to teach is why the appeal is addressed to third countries at all — US sanctions bind US persons, and their global reach comes entirely from secondary sanctions and correspondent banking, so the decisive actors are not in Washington but in the compliance departments of Emirati, Turkish, Chinese and Indian banks deciding whether an Iranian counterparty is worth the risk. That is why Tehran lobbies capitals and why over-compliance does more damage than the listings themselves: banks exit an entire country rather than assess each transaction. Then the humanitarian question our readers will ask and the piece must answer with specifics rather than assertion: what the exemptions for food and medicine formally permit, and why they nonetheless fail at the payment rail. Who is affected: Iranians buying imported medicine, and the third-country traders who lose a market; who holds power: OFAC, and the correspondent banks that enforce it without being asked. Discipline this needs: Mehr is an Iranian state agency and 'state terrorism' is its characterisation, so attribute it to the ministry by name, and build the factual spine from the US Treasury announcement of the programme — what was designated, under which authority, on what date.",
+      "conceptUris": []
+    },
+    {
+      "id": "when-the-paper-cannot-decide-appearance-does",
+      "label": "How documents, race and perceived value shape who is labelled a foreigner in SA",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-when-the-paper-cannot-decide-appearance-does"
+      ],
+      "eventUri": null,
+      "summary": "Reported from Johannesburg after 30 June, the date around which xenophobic mobilisation organised itself, this traces who actually gets asked for papers in South Africa — and finds the answer is set by accent, complexion and perceived economic value rather than by nationality or documentation status. Lead with a specific encounter from the reporting, because the finding only lands as a scene. The mechanism to teach is how a documentary regime becomes a racial one in practice: the state's own systems produce long asylum backlogs, expired-but-valid permits and undocumented South African citizens in the same population, so no street-level check can distinguish a lawful migrant from an unlawful one — and once the paper cannot decide, the decider becomes appearance. That is why enforcement drives converge on darker-skinned, poorer, Zimbabwean- and Mozambican-read people while wealthier foreign nationals pass unchallenged, and it is the same substitution our readers see in every country that outsources immigration checks to hospitals, schools and landlords. Then the structural why: South Africa's xenophobic movements are organising around service delivery failures the state has not fixed, so the migrant is standing in for an absent government. Who is affected: migrants and misread citizens denied clinics, schooling and work; who holds power: Home Affairs, and the movements the political class has declined to confront. Ground reportage from a single outlet — quote the people interviewed directly, name what the reporter witnessed versus what was recounted, and give the documented figures on asylum backlogs and deportations rather than resting on testimony alone.",
+      "conceptUris": []
+    },
+    {
+      "id": "susceptibility-mapping-the-map-is-a-permit",
+      "label": "GIS-based multi-criteria landslide susceptibility assessment in the Northwestern Himalaya, Jammu and Kashmir, India",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-susceptibility-mapping-the-map-is-a-permit"
+      ],
+      "eventUri": null,
+      "summary": "A Scientific Reports paper maps landslide susceptibility across Jammu and Kashmir by combining lithology, slope, rainfall and land-cover layers into a single ranked surface. Lead with what such a map is for, because that is the part readers never see: it is the input to where a road is allowed to be cut, where a settlement is permitted to expand and where a pilgrimage route is routed — so the map is not a description of the mountain, it is a licensing instrument. The mechanism to teach is what multi-criteria weighting actually does and where it can mislead: the method assigns each factor an importance, usually from expert judgement, and validates against a historical landslide inventory — which means the output inherits both the analyst's weights and the inventory's blind spots, and in the Himalaya the inventory is systematically thin exactly where nobody was recording, which is the sparsely populated high ground now being opened by new roads. Then the timing, which makes this more than a methods paper: it lands the same week that Himalayan flood and landslide deaths are being counted across the range, and the constraint on acting is not knowledge but whether any authority is obliged to consult a susceptibility map before granting a permit. Who is affected: people living below cut slopes in one of the most militarised and most seismically active mountain regions on earth; who holds power: state disaster authorities and the road-building agencies. Give the authors, institutions, the factors and weights used, the validation statistics and the stated uncertainty, and do not convert a susceptibility ranking into a prediction of where a landslide will occur.",
+      "conceptUris": []
+    },
+    {
+      "id": "making-models-disagree-the-benchmark-stopped-measuring",
+      "label": "Making models disagree to learn how brains compute - Nature Reviews Neuroscience",
+      "firstSeen": "2026-08-28T12:10:19.798Z",
+      "lastCovered": "2026-08-28T12:10:19.798Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Reviews Neuroscience piece argues that neuroscience should stop asking which artificial network best predicts brain activity and start deliberately building experiments where competing models predict different outcomes. Lead with why the current approach is stuck, because it is a failure our technically literate readers will recognise immediately: benchmark leaderboards like Brain-Score rank models by how well they fit recorded neural responses, and many architecturally very different networks fit almost equally well — so the score cannot tell you which one is right about the brain, only that the test is too easy. The mechanism to teach is model identifiability, and it generalises far past neuroscience: when several distinct hypotheses explain the same data, more data of the same kind adds no information, and the only escape is to design the stimulus or condition on which the hypotheses are forced to disagree. That is the difference between predicting and explaining, and it is the same critique that applies to every AI evaluation our readers see quoted — a benchmark that all frontier models pass has stopped measuring anything. Then the payoff to make concrete: what a disagreement-maximising experiment looks like in practice, and what it would settle. Who is affected: a field, and by extension anyone reading claims that a neural network 'works like the brain'; who holds power: the benchmark maintainers whose leaderboard defines what counts as progress. This is a review, not a new result — say so, give the authors and their argument's limits, and resist letting it become an AI story about brains rather than a methods story about evidence.",
+      "conceptUris": []
+    },
+    {
       "id": "the-alliance-of-former-enemies-nobody-has-to-agree-afterwards",
       "label": "Once bitter enemies Amhara, Tigray reach understandings in fight against Ethiopian govt",
       "firstSeen": "2026-08-28T08:13:27.010Z",
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-alliance-of-former-enemies-nobody-has-to-agree-afterwards"
@@ -124,7 +227,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-no-additional-protocol-silence-is-the-approval"
@@ -140,7 +243,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-rs5-million-each-the-payment-arrives-before-the-cause"
@@ -156,7 +259,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-second-gradient-the-mountain-runs-out-of-oxygen"
@@ -172,7 +275,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-bunchy-top-the-constraint-was-distribution-not-knowledge"
@@ -188,7 +291,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it"
@@ -204,7 +307,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-08-27-hormuz-condition-the-strait-is-priced-in-gaza",
@@ -221,7 +324,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-supply-chain-risk-the-listing-met-a-court"
@@ -237,7 +340,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-five-point-three-the-war-arrives-as-a-yield"
@@ -253,7 +356,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-coding-agent-the-skill-floor-collapsed"
@@ -269,7 +372,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-a-few-pixels-detection-is-not-rescue"
@@ -285,7 +388,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-27-istihalah-the-ruling-needs-a-chemist",
@@ -312,7 +415,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-nine-cities-the-cheap-drone-empties-the-launcher"
@@ -336,7 +439,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-three-villages-the-permit-thins-the-population"
@@ -352,7 +455,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-petroleum-levy-the-tax-that-skips-the-provinces"
@@ -368,7 +471,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-bank-master-the-licence-was-the-rail"
@@ -384,7 +487,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-training-set-the-hash-check-was-not-run"
@@ -400,7 +503,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-drier-and-harder-the-curve-is-out-of-date"
@@ -416,7 +519,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-mladic-dies-the-conviction-outlived-the-man"
@@ -441,7 +544,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-three-hundred-nineteen-posts-the-aim-moved-with-the-war"
@@ -466,7 +569,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-a-listing-not-a-charge-the-bank-enforces-it"
@@ -482,7 +585,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-minus-three-point-eight-the-bystander-pays-first"
@@ -498,7 +601,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-eagle-s-revived-the-forum-not-the-fact"
@@ -514,7 +617,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-launcher-challenge-the-return-rule-is-what-changed"
@@ -530,7 +633,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-barrier-lake-the-dam-has-no-spillway"
@@ -555,7 +658,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-third-prime-minister-the-charge-is-non-disclosure"
@@ -580,7 +683,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-police-training-the-export-needs-no-licence"
@@ -596,7 +699,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-port-sudan-remand-the-appeal-is-a-hunger-strike"
@@ -612,7 +715,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-declined-donation-the-claim-belongs-to-pretoria"
@@ -628,7 +731,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-stunting-the-first-thousand-days-are-the-budget"
@@ -644,7 +747,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-mirae-korbit-the-exchange-moves-inside-the-bank"
@@ -660,7 +763,7 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-the-shelf-and-the-chip-one-owner-now"
@@ -676,93 +779,13 @@
       "lastCovered": "2026-08-27T12:10:12.471Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-electrons-in-reverse-tau-is-upstream"
       ],
       "eventUri": null,
       "summary": "A new study reported in Nature Reviews Neurology finds that tau protein drives mitochondrial reverse electron transport, offering a causal link between the tau tangles seen in Alzheimer's disease, progressive supranuclear palsy and frontotemporal dementia and the mitochondrial failure that accompanies them. Lead with the question the finding answers, because it is the oldest argument in dementia research: tau aggregation and energy failure have always been observed together, and nobody could say which caused which. The mechanism to teach, in plain terms: mitochondria normally push electrons one way down a chain to make energy, and under certain conditions electrons run backwards, generating a burst of reactive oxygen species that damages the cell — this work says tau is what pushes them backwards, which turns a correlation into a pathway with intervention points. Then the discipline the story requires: this is cell and model biology, the drugable step is not identified, and the field's history of tau and amyloid results that did not translate into a working drug is long and expensive — say so plainly. Who is affected: roughly 57 million people living with dementia, the great majority in low- and middle-income countries where diagnosis itself is scarce; who holds power: the funders who decide which mechanism gets a trial. Give the underlying Neuron paper, its authors and institutions, the models used, and what specifically has not been shown in human tissue.",
-      "conceptUris": []
-    },
-    {
-      "id": "rangeland-returns-the-benefit-is-a-loss-avoided",
-      "label": "COP17: Rangeland restoration offers investors up to six-fold returns - Experts",
-      "firstSeen": "2026-08-27T08:11:42.523Z",
-      "lastCovered": "2026-08-27T08:11:42.523Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-rangeland-returns-the-benefit-is-a-loss-avoided"
-      ],
-      "eventUri": null,
-      "summary": "A report presented at the UNCCD's COP17 in Ulaanbaatar puts the return on rangeland restoration at $4 to $6 for every dollar invested. Lead with the number and then immediately with the question it hides, because our reader will ask it: returns to whom, and paid by what? Restoration benefits are mostly avoided losses — forage that does not fail, soil that does not blow away, herds that do not have to be sold in a drought — which accrue to pastoralist households, not to an investor with a claim on a cash flow, and that gap between social return and bankable return is precisely why the money has not moved. The mechanism to teach is therefore the financing instrument, not the ecology: whether this is concessional finance, carbon credits over grazing land, or a sovereign-backed outcome payment determines who ends up holding title to the range. Who is affected: pastoralists from Mongolia to the Sahel to northern Nigeria, whose commons have historically been the thing enclosed whenever rangeland acquired a price; who holds power: UNCCD, GIZ and the development financiers convening the number. Structural why: drylands are roughly 40 percent of the earth's land and hold a disproportionate share of the world's Muslim pastoral populations, so a valuation methodology agreed in Ulaanbaatar becomes the basis on which their grazing land is bought. Give the report's authors, the assumptions behind $4-6, and what a Nigerian or Mongolian herder is actually being offered.",
-      "conceptUris": []
-    },
-    {
-      "id": "beaufort-gyre-the-storm-sets-the-timescale",
-      "label": "Storm-driven upwelling contributes to Beaufort Gyre intensification through rapid geostrophic adjustment and eddy-related freshwater redistribution",
-      "firstSeen": "2026-08-27T08:11:42.523Z",
-      "lastCovered": "2026-08-27T08:11:42.523Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-beaufort-gyre-the-storm-sets-the-timescale"
-      ],
-      "eventUri": null,
-      "summary": "A Nature Scientific Reports paper finds that individual storms over the Alaskan North Slope drive upwelling that intensifies the Beaufort Gyre, redistributing freshwater through eddies on timescales far shorter than the seasonal wind forcing the field has focused on. Lead with what the Beaufort Gyre is and why anyone should care, because most readers have never heard of it: it is a clockwise ocean circulation in the Arctic that has accumulated an enormous reservoir of fresh meltwater and river water, held in place by wind, and if that wind relaxes the reservoir drains into the North Atlantic. The mechanism to teach is stratification — fresh water is lighter than salt water, so a slug of it arriving at the North Atlantic sits on top and suppresses the sinking that drives the Atlantic overturning circulation, which is the single largest identified tipping element in the climate system. The finding's specific contribution is timescale: if storms rather than seasons set the gyre's state, then the release is governed by weather events that models resolve poorly, and the predictability is worse than assumed. Who is affected, and this is the part Arctic papers never say: an AMOC slowdown reorganises the monsoon and the Sahel rainbelt, so the population most exposed to a change in the Beaufort Sea lives in West Africa and South Asia. Give the study's method, its data, its stated uncertainty, and be careful not to overclaim — this is a mechanism paper, not a forecast.",
-      "conceptUris": []
-    },
-    {
-      "id": "biochemometrics-the-regression-replaces-the-isolation",
-      "label": "Metabolomic and biochemometric profiling of Tecoma stans with mechanistic insights of its in vitro cytotoxic activity",
-      "firstSeen": "2026-08-27T08:11:42.523Z",
-      "lastCovered": "2026-08-27T08:11:42.523Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-biochemometrics-the-regression-replaces-the-isolation"
-      ],
-      "eventUri": null,
-      "summary": "Researchers profiled the full metabolite content of Tecoma stans — an ornamental shrub planted along streets across the tropics — and used biochemometrics to identify which compounds are responsible for its cytotoxic activity in cell culture. Lead with the method rather than the plant, because the method is what has changed: traditional natural-product pharmacology isolated one compound at a time and tested it, a process that takes years and discards the possibility that the activity is combinatorial. Biochemometrics runs LC-MS profiling across many extract fractions and statistically correlates the metabolite pattern with the measured activity, so the question 'which molecule is doing this' is answered by regression rather than by chromatography — which is why a laboratory without a large isolation budget can now do this work. That is the structural point for our reader: this is a technique that shifts drug-discovery capability toward countries with the flora and a mass spectrometer, rather than only toward those with a pharmaceutical industry. Then the discipline the story requires: in vitro cytotoxicity against a cell line is not anticancer activity in a person, most such hits fail, and saying so is what separates this from the herbal-cure genre. Give the compounds identified, the cell lines used, the potency figures, the institution and country of the authors, and state plainly what has not been tested. Sourcing note for the audit: the feed carried no regional outlet on this paper.",
-      "conceptUris": []
-    },
-    {
-      "id": "sovereign-stack-the-dependency-is-upstream",
-      "label": "Why the global push to break free from Big Tech keeps falling short",
-      "firstSeen": "2026-08-27T08:11:42.523Z",
-      "lastCovered": "2026-08-27T08:11:42.523Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-sovereign-stack-the-dependency-is-upstream"
-      ],
-      "eventUri": null,
-      "summary": "Cecilia Rikap's account of why Europe, India, Brazil and China have each tried to break dependence on American cloud and AI providers, and why only one of them has got anywhere. Lead with the asymmetry between the four cases, because the comparison is the argument: the countries with the most aggressive regulation have moved least, and the country that moved most did it by building an alternative stack rather than by writing rules about the existing one. The mechanism to teach — and this is a genuine advance on the sovereign-cloud story we ran yesterday, which was about contractual lock-in at the service layer — is that dependence is constituted upstream of any of that, in research capture: the hyperscalers fund the labs, employ the authors, and own the compute that publishable work now requires, so a national champion built on their frameworks and their model weights inherits the dependency it was created to escape. Who holds power: three firms; who is affected: every state now announcing a sovereign AI programme, including the Gulf's, on the assumption that owning the datacentre is owning the capability. Structural why for our reader: the Muslim world is buying at exactly the layer this book argues is the least sovereign. Be clear that this is an excerpt from an argued book, name what evidence Rikap marshals for the strongest claims, and give the counter-case — India's and China's results are not the same and the piece should say why.",
-      "conceptUris": []
-    },
-    {
-      "id": "launch-liability-nobody-signed-the-failure-clause",
-      "label": "A stress test for Australia's space ties with India",
-      "firstSeen": "2026-08-27T08:11:42.523Z",
-      "lastCovered": "2026-08-27T08:11:42.523Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-launch-liability-nobody-signed-the-failure-clause"
-      ],
-      "eventUri": null,
-      "summary": "Australia and India have built fast-growing space cooperation — tracking stations, launch-range support, satellite services — without agreeing a shared protocol for what happens when a launch fails. Lead with the gap, because it is specific and unglamorous and entirely the point: two states have signed the parts of a space relationship that produce announcements and skipped the part that produces liability, so nobody has settled who investigates, who pays, and who gets the telemetry when debris lands on the wrong side of an ocean. The mechanism to teach is the law that already exists and why it is not enough: the 1972 Liability Convention makes the launching state absolutely liable for damage on the surface, but 'launching state' was written for a world where a government launched its own rocket, and a mission with Indian hardware, Australian ground support and a commercial operator has several candidates for the title and no agreed one. Structural why for our reader: this is the template problem for every new spacefaring partnership, and the ones being signed now are Gulf-Indian, Gulf-Korean and Indonesian — Australia and India are simply the pair far enough along to have exposed it. Who is affected: coastal and remote communities under a launch corridor, who are the party the convention was written to protect. Give the specific agreements in force, what they do and do not cover, and any incident that has already tested them.",
       "conceptUris": []
     }
   ]
