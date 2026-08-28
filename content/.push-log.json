@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-08-02T17:22:01.841Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-08-02-six-hundred-drones-when-mass-is-the-cheap-variable",
-        "title": "Deadly Strikes Hit Both Capitals",
-        "category": "politics",
-        "eventCoverage": 71,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-rally-against-militancy-as-the-target-swat-returns",
-        "title": "Bomber Strikes Swat Peace Rally",
-        "category": "politics",
-        "eventCoverage": 65,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-famine-you-cannot-declare-access-as-the-measurement-problem",
-        "title": "Darfur Faces Imminent Famine",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-fourth-term-and-no-successor-deferral-has-a-date",
-        "title": "Lula Nominated for Fourth Term",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-thirty-five-hulls-the-blockade-publishes-its-own-arithmetic",
-        "title": "US Blockade Redirects 35 Ships",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-shortage-or-a-price-the-pharmacy-counter-takes-the-devaluation",
-        "title": "Egypt Weighs Flexible Drug Pricing",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-the-instrument-that-depreciates-import-substitution-under-embargo",
-        "title": "Iran Claims Petrochemical Self-Sufficiency",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-share-you-cannot-touch-as-margin-rehypothecation-returns",
-        "title": "Exchanges Fuse Stocks and Crypto",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-what-a-soil-bacterium-does-at-room-temperature",
-        "title": "Nitrogen-Fixing Enzymes Vary in Efficiency",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-local-or-regional-a-split-that-decides-which-policy-can-work",
-        "title": "Satellites Map Tehran's Smog Sources",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-ten-claims-and-one-referee-who-checks-a-proof",
-        "title": "OpenAI Claims Math Breakthroughs",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-private-and-still-sorting-what-the-guarantee-does-not-cover",
-        "title": "Private Model Still Sorts Students",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-invisible-payments-what-disappears-with-the-on-ramp",
-        "title": "Crypto Firm Predicts Invisible Payments",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-02-a-rally-against-militancy-as-the-target-swat-returns",
-      "title": "Bomber Strikes Swat Peace Rally",
-      "category": "politics",
-      "body": "Fourteen died demanding peace, not fighting",
-      "eventCoverage": 65,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Suicide bomber kills 14 at anti-militant rally in Swat, Pakistan",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 15
-    }
-  },
-  {
     "timestamp": "2026-08-02T22:20:09.780Z",
     "candidateCount": 10,
     "candidates": [
@@ -10082,6 +9968,57 @@
         "slug": "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it",
         "title": "Cocomelon Studio Tries AI",
         "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 6 candidates below coverage threshold 1",
+    "sent": false
+  },
+  {
+    "timestamp": "2026-08-28T12:24:06.506Z",
+    "candidateCount": 6,
+    "candidates": [
+      {
+        "slug": "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan",
+        "title": "Bullish Backs GPU Debt",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-the-right-of-way-eminent-domain-by-licence",
+        "title": "Pakistan Pulls Telecom Bill",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-economic-outcast-the-third-country-bank-decides",
+        "title": "Iran Denounces US Sanctions",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-when-the-paper-cannot-decide-appearance-does",
+        "title": "Appearance Decides Who's Foreign",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-susceptibility-mapping-the-map-is-a-permit",
+        "title": "Scientists Map Kashmir Landslides",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring",
+        "title": "Neuroscience Needs Disagreement",
+        "category": "science",
         "eventCoverage": 0,
         "importance": 6
       }
