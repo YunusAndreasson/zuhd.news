@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "us-judge-repeats-block-on-trump-s-bid-to-limit-voting-by-mai",
+      "label": "US judge repeats block on Trump's bid to limit voting by mail",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-us-judge-repeats-block-on-trump-s-bid-to-limit-voting-by-mai"
+      ],
+      "eventUri": "eng-11960726",
+      "summary": "A federal judge blocked new USPS restrictions on mail-in ballots for the second time, and the administration appealed within hours. Who is affected: voters in states where mail ballots are the default, months before the November midterms that decide control of Congress. The mechanism to lead with is that the restriction was routed through the Postal Service rather than through election law — an agency with no electoral mandate setting the conditions under which ballots are delivered. That is the structural why: when the ballot is a parcel, whoever regulates parcels regulates the vote. Note the second blocking order and the same-day appeal as the tempo.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Postal_voting",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Postal_Service",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_federal_judge",
+        "http://en.wikipedia.org/wiki/Injunction"
+      ]
+    },
+    {
+      "id": "pezeshkian-to-meet-putin-on-september-1-russian-official",
+      "label": "Pezeshkian to meet Putin on September 1: Russian official",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-pezeshkian-to-meet-putin-on-september-1-russian-official"
+      ],
+      "eventUri": "rus-2116545",
+      "summary": "Putin and Pezeshkian will meet September 1 on the margins of the Shanghai Cooperation Organisation summit in Bishkek — days after the US Treasury cut Banque Misr's UAE branches out of the dollar system to 'asphyxiate' Iran's financial enablers. Who holds power: the SCO is the one large-economy forum where Iran sits as a full member and dollar clearing is not the entry ticket. Lead with the sequencing — sanction on Friday, summit on Tuesday — and the mechanism: the more third-country banks Washington severs, the more the SCO's non-dollar settlement talk moves from rhetoric to plumbing. Follows our coverage of the Banque Misr designation (28 Aug); do not re-report that story, use it as the clock. Note also that this puts Central Asia, absent from our last week of coverage, back on the map: Bishkek is the venue and Kyrgyzstan the host.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Shanghai_Cooperation_Organisation",
+        "http://en.wikipedia.org/wiki/Bishkek",
+        "http://en.wikipedia.org/wiki/Kyrgyzstan",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Summit_(meeting)",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Recep_Tayyip_Erdoğan"
+      ]
+    },
+    {
+      "id": "profound-consequences-indus-water-treaty-must-not-be-weaponi",
+      "label": "'Profound consequences': Indus Water Treaty must not be weaponised, FM Dar warns India",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-profound-consequences-indus-water-treaty-must-not-be-weaponi"
+      ],
+      "eventUri": "eng-11963082",
+      "summary": "Pakistan's deputy PM and foreign minister Ishaq Dar, speaking in Washington, warned that depriving Pakistan of water 'rightfully allocated to it' under the Indus Waters Treaty would carry 'profound consequences for regional peace and security'. Who is affected: the roughly 240 million people whose agriculture and drinking water depend on the western rivers the 1960 treaty assigns to Pakistan. The mechanism to explain is what 'abeyance' actually does — India has not torn the treaty up, it has suspended the data-sharing and arbitration machinery, which is how a treaty stops functioning without ever being broken. That is the structural why: the enforcement layer is the treaty. Lead with the fact that the warning was issued from Washington, not Delhi — Islamabad is appealing over India's head to the guarantor that never guaranteed anything.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-nashra-military-strikes-rsf-convoy-inside-chadian-terr",
+      "label": "Sudan Nashra: Military strikes RSF convoy inside Chadian territory, sparks regional concerns | Kauda fighting pushes Otoro groups to demand Hilu's removal from SPLM-N leadership | US proposes nationwide arms embargo on Sudan in Security Council",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-sudan-nashra-military-strikes-rsf-convoy-inside-chadian-terr"
+      ],
+      "eventUri": null,
+      "summary": "Sudan's army struck an RSF convoy inside Chadian territory — the war crossing a border for the first time in this form — while Washington moved in the Security Council to widen the 2005 Darfur arms embargo to all of Sudan and, explicitly, to drones. Who is affected: Chadian border communities and the eastern Chad camps holding Darfuri refugees, now inside a live strike zone. Who holds power: the SAF, the RSF's Gulf-routed supply chain, and the Council members who have kept the embargo confined to Darfur for twenty-one years. Lead with the geography — the convoy was hit in Chad, not Sudan — then the mechanism: a Darfur-only embargo made the border the supply line, so bombing the border is the predictable consequence of not closing it. The drone clause is the tell for who the draft is actually aimed at. Regional sourcing is Egyptian (Mada Masr); this continues the Sudan–Chad spillover arc our audit flagged as watching.",
+      "conceptUris": []
+    },
+    {
+      "id": "u-s-designates-palestinian-refugee-in-germany-as-terrorist",
+      "label": "U.S. Designates Palestinian Refugee in Germany as \"Terrorist\"",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-u-s-designates-palestinian-refugee-in-germany-as-terrorist"
+      ],
+      "eventUri": null,
+      "summary": "The US Treasury added a named Palestinian refugee living in Germany to its terrorist designation list. He learned of it from the list itself: 'I was frightened. The authorities did not contact me beforehand; they just put me on the list.' Who is affected: one named man, and every stateless person whose only address is an asylum file in a third country. The mechanism to lead with is what designation does in practice — no charge, no court, no notice, but banks must freeze and de-risk immediately, so the sanction executes itself through private compliance departments before any appeal exists. That is the structural why: the punishment is administered by institutions with no obligation to hear him. Name the man, name the Treasury office, and give the delisting process and its typical duration. No regional Palestinian outlet in tonight's feed carried this; Drop Site is the sole source and should be attributed as such.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-blacklisting-of-woke-anthropic-deemed-illegal-by-feder",
+      "label": "Trump blacklisting of \"woke\" Anthropic deemed illegal by federal judge",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-trump-blacklisting-of-woke-anthropic-deemed-illegal-by-feder"
+      ],
+      "eventUri": "eng-11954183",
+      "summary": "A federal judge vacated the administration's directives against Anthropic, ruling the government illegally retaliated by designating the firm a supply-chain risk to national security. Who is affected: any vendor whose federal market access depends on a designation no one has to justify. The mechanism to lead with is the instrument, not the politics — 'supply-chain risk' is a national-security label built for foreign hardware, and it carries no hearing, no evidence standard, and no appeal, which is exactly why it works as a punishment for speech. The court's finding is that the label was pretextual. Structural why: a designation designed to move faster than due process will be used wherever due process is inconvenient. Give the dollar scale of federal AI procurement and note what the vacatur restores and what it does not.",
+      "conceptUris": []
+    },
+    {
+      "id": "kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow",
+      "label": "Kalshi takes legal blow in court ruling confirming state powers over prediction markets",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "eventUri": "eng-11963234",
+      "summary": "The Ninth Circuit rejected Kalshi's argument that a CFTC licence pre-empts Nevada's gambling law, handing states authority over sports-event contracts — the second federal appellate ruling on the question, and it points the opposite way from the first. Who is affected: an industry that scaled nationally on the premise that one federal registration overrides fifty state gaming regulators. The mechanism to lead with is the legal fiction under audit — whether a bet on a game becomes a 'commodity derivative' because it clears through a designated contract market. Structural why: a circuit split is the machinery that manufactures a Supreme Court case, so the near-term story is not the loss but the split. Merge the AOL wire account (same event) for the ruling's operative language and note what remains permitted while appeals run.",
+      "conceptUris": []
+    },
+    {
+      "id": "zelensky-calls-for-ukraine-to-launch-1-000-drones-at-russia",
+      "label": "Zelensky calls for Ukraine to launch 1,000 drones at Russia daily",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-zelensky-calls-for-ukraine-to-launch-1-000-drones-at-russia"
+      ],
+      "eventUri": "eng-11961189",
+      "summary": "Zelensky set a target of 1,000 long-range drones launched at Russia per day, against a current average above 300 — a demand for roughly a threefold expansion of a single manufacturing line. Treat this as an industrial story, not a battlefield one: who is affected is Ukraine's component supply, since long-range airframes depend on imported engines, navigation modules and batteries, and 1,000 a day is a bill of materials before it is a strategy. The number to lead with is 300 to 1,000 and the arithmetic that follows — annual unit volume, and what that implies about who supplies the parts and what a strike on Russian refineries is meant to earn per drone spent. Structural why: attrition warfare is decided by the cheaper production curve, and both sides now know their own.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Yaroslavl",
+        "http://en.wikipedia.org/wiki/Missile"
+      ]
+    },
+    {
+      "id": "a-melting-glacier-in-nepal-was-a-time-bomb-there-are-more-to",
+      "label": "A Melting Glacier in Nepal Was a Time Bomb. There Are More to Come.",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-a-melting-glacier-in-nepal-was-a-time-bomb-there-are-more-to"
+      ],
+      "eventUri": "eng-11955612",
+      "summary": "A glacier hydrologist who works in Nepal explains that this week's catastrophic flood was a moraine-dammed lake failure — a hazard that is inventoried, mapped and forecastable, and there are hundreds more of them across the Himalaya. Who is affected: the valley populations living below lakes that did not exist a generation ago. The mechanism to lead with is the dam itself: retreating ice leaves meltwater impounded behind loose rubble, the rubble is not engineered, and the failure mode is sudden and total. Structural why: this is a hazard whose location is known in advance and whose warning is not funded — the science is ahead of the siren. Distinct from our 28 Aug tunnel-rescue piece; that was the search, this is why the water arrived. Give the count of high-risk lakes and what early warning actually costs per valley.",
+      "conceptUris": []
+    },
+    {
+      "id": "orbex-s-sutherland-spaceport-assets-sold-to-scottish-develop",
+      "label": "Orbex's Sutherland Spaceport Assets Sold to Scottish Development Agency",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-orbex-s-sutherland-spaceport-assets-sold-to-scottish-develop"
+      ],
+      "eventUri": null,
+      "summary": "Highlands and Islands Enterprise, a Scottish public agency, bought the assets of Sutherland Spaceport from Orbex's joint liquidators — the state buying back a launch site it had subsidised into existence. Who is affected: the north-coast communities told a spaceport was an industrial future, and the public purse that now owns the pad twice. The mechanism to lead with is the liquidation sequence: public grants build the site, the private operator fails, the administrator sells the assets, and the buyer is another public body at a distressed price. Structural why: 'private space' in small European economies is frequently a state programme with a founder attached, and insolvency is where that becomes visible on a balance sheet. Give the original public funding figure against the acquisition price, and say plainly whether anything will ever launch from Sutherland.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-ai-ghosts-contaminating-academic-publishing",
+      "label": "The AI 'Ghosts' Contaminating Academic Publishing",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-27-the-ai-ghosts-contaminating-academic-publishing"
+      ],
+      "eventUri": null,
+      "summary": "Papers are appearing in the literature under authors who do not exist — plausible, generic names like Elena Vasquez and Marcus Chen — and the record is being 'quietly haunted' because nothing in the publishing chain verifies that an author is a person. Who is affected: every researcher who cites, and every meta-analysis that pools. The mechanism to lead with is that identity was never checked; ORCID is voluntary, peer review examines the manuscript, not the byline, and indexing services ingest whatever the journal emits. Structural why: citation counts are the currency of academic hiring and funding, so a fabricated author is not a prank but an unpriced liability sitting inside the evidence base — and retraction cannot un-cite. Give the number of suspect papers identified and name the venues.",
+      "conceptUris": []
+    },
+    {
+      "id": "cities-terminate-flock-contracts-at-record-pace-in-august",
+      "label": "Cities terminate Flock contracts at record pace in August",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-cities-terminate-flock-contracts-at-record-pace-in-august"
+      ],
+      "eventUri": "eng-11954422",
+      "summary": "Data compiled by a Bay Area anti-surveillance group shows US localities are cancelling Flock Safety licence-plate-reader contracts at an accelerating rate — Lansing, Michigan to Pflugerville, Texas. Who holds power here is unusual: city councils, on renewal dates. The mechanism to lead with is the contract cycle itself — automated licence-plate readers were adopted by procurement, not by legislation, so they are removed by procurement too, and the renewal vote is the only place the public gets a say. Structural why: surveillance that arrives as a purchase order can be reversed by one, which makes the termination count a more honest measure of consent than any privacy policy. Lead with the August figure and the acceleration, name the towns, and give what each city was paying per camera per year.",
+      "conceptUris": []
+    },
+    {
+      "id": "u-s-sanctions-against-the-a-i-collective",
+      "label": "U.S. sanctions against the A/I Collective",
+      "firstSeen": "2026-08-28T22:09:34.243Z",
+      "lastCovered": "2026-08-28T22:09:34.243Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-u-s-sanctions-against-the-a-i-collective"
+      ],
+      "eventUri": null,
+      "summary": "Autistici/Inventati — a volunteer Italian collective that has run free email and hosting for activists since 2001 — says US sanctions have hit its infrastructure, and the notice is on its own front page. Who is affected: the users, largely European and largely non-commercial, whose mailboxes sit on servers a US listing can strand. The mechanism to lead with is the reach: a non-US, non-profit operator gets cut off not by a court but because its payment processors, registrars and upstream providers are all exposed to OFAC and will de-risk instantly rather than litigate. Structural why: sanctions compliance is enforced by intermediaries, so the internet's chokepoints are wherever a US-facing company sits in the chain — and for a collective with no lawyers, that is every link. Verify the designation against the Treasury list before publishing and attribute the collective's account as its own statement. Strong reader signal: 412 points on Hacker News.",
+      "conceptUris": []
+    },
+    {
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 86,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "ongoing",
       "articles": [
         "2026-08-25-battlefield-corpus-data-is-the-constraint",
@@ -120,7 +355,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-ten-months-the-instrument-changed-not-the-tempo"
@@ -136,7 +371,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant"
@@ -152,7 +387,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond"
@@ -177,7 +412,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-bidder-that-walked-knew-the-asset"
@@ -193,7 +428,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-tunnel-team-the-missing-are-underground"
@@ -218,7 +453,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter"
@@ -234,7 +469,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan"
@@ -250,7 +485,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-right-of-way-eminent-domain-by-licence"
@@ -266,7 +501,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-economic-outcast-the-third-country-bank-decides"
@@ -282,7 +517,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-when-the-paper-cannot-decide-appearance-does"
@@ -298,7 +533,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-susceptibility-mapping-the-map-is-a-permit"
@@ -314,7 +549,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring"
@@ -330,7 +565,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-alliance-of-former-enemies-nobody-has-to-agree-afterwards"
@@ -346,7 +581,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-no-additional-protocol-silence-is-the-approval"
@@ -362,7 +597,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-rs5-million-each-the-payment-arrives-before-the-cause"
@@ -378,7 +613,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-second-gradient-the-mountain-runs-out-of-oxygen"
@@ -394,7 +629,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-bunchy-top-the-constraint-was-distribution-not-knowledge"
@@ -410,7 +645,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it"
@@ -426,7 +661,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-08-27-hormuz-condition-the-strait-is-priced-in-gaza",
@@ -443,7 +678,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-supply-chain-risk-the-listing-met-a-court"
@@ -459,7 +694,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-five-point-three-the-war-arrives-as-a-yield"
@@ -475,7 +710,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-coding-agent-the-skill-floor-collapsed"
@@ -491,7 +726,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-a-few-pixels-detection-is-not-rescue"
@@ -507,7 +742,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-08-27-istihalah-the-ruling-needs-a-chemist",
@@ -534,7 +769,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-nine-cities-the-cheap-drone-empties-the-launcher"
@@ -558,7 +793,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-three-villages-the-permit-thins-the-population"
@@ -574,7 +809,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-petroleum-levy-the-tax-that-skips-the-provinces"
@@ -590,7 +825,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-bank-master-the-licence-was-the-rail"
@@ -606,7 +841,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-training-set-the-hash-check-was-not-run"
@@ -622,153 +857,13 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-drier-and-harder-the-curve-is-out-of-date"
       ],
       "eventUri": null,
       "summary": "University of Hawaiʻi at Mānoa researchers find that while the islands are getting drier overall, the short intense downpours that cause flash floods are getting stronger. Lead with that apparent contradiction, because resolving it is the whole lesson: total annual rainfall and rainfall intensity are different quantities that can move in opposite directions, and every water system in the world is designed against the first while every flood kills people through the second. The mechanism to teach is Clausius-Clapeyron — a warmer atmosphere holds roughly 7% more water vapour per degree, so when it does rain, it empties harder, while circulation changes can still cut the number of raining days. That is why drought and flash flood are not opposites but the same signature. Then the engineering consequence, which is the reason this matters far beyond Hawaiʻi: culverts, storm drains and dam spillways are sized from historical intensity-duration-frequency curves, so a shift in the tail means infrastructure that is correctly built to a standard that has quietly expired. Who is affected: island and mountainous catchments with short steep drainage and no time between the rain and the water — which describes Hawaiʻi, and equally describes Java, the Philippines, Karachi's nullahs, and the Himalayan valleys our recent flood coverage followed. Give the study, the journal, the record length, the magnitude of the trend and the stated uncertainty, and do not turn a regional statistical finding into a global claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "barrier-lake-the-dam-has-no-spillway",
-      "label": "Large lake forms near Nepal border, China warns of dam-break risk",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-27-barrier-lake-the-dam-has-no-spillway",
-        "2026-08-28-the-cop-with-no-market-the-land-has-nothing-to-sell"
-      ],
-      "eventUri": "deu-2167161",
-      "summary": "A landslide-dammed barrier lake has formed above the Rasuwagadhi valley and Chinese authorities put the breach risk inside 72 hours, while the confirmed toll from Wednesday's flood has risen to at least 353 dead with more than 1,300 missing. This is the third piece on this event and must be a forward-looking hazard story, not a third recount: the earlier ones explained why a Himalayan flood arrives without rain, and why the count follows the road. The mechanism to teach here is the barrier lake itself — a rock-and-debris avalanche blocks a steep valley, water ponds behind an unengineered dam of loose material with no spillway, and the failure mode is not seepage but headward erosion once it overtops, which is why these dams fail suddenly and completely rather than leaking. That is why China is running flood simulations rather than reinforcing it: the only available responses are evacuation and timing, and the people downstream are in Nepal while the lake is in Gyirong County. Who is affected: Rasuwa district communities already searching for the missing, and Bihar downstream where gauge-based alerts fire after the surge; who holds power: two states whose warning systems do not share a protocol across the border they share. Give the lake's measured size if reported, the authority issuing each figure, and be exact that dead, missing and preliminary are three different numbers. Sourcing note for the audit: this is one of only three multi-source clusters in today's feed — the other two were an iPhone price rumour and a Spanish museum burglary — so the politics and economy multi-source floors could not be met from this feed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Tibet",
-        "http://en.wikipedia.org/wiki/Flash_flood",
-        "http://en.wikipedia.org/wiki/Tourism",
-        "http://en.wikipedia.org/wiki/China_Central_Television",
-        "http://en.wikipedia.org/wiki/Himalayas",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "mladic-dies-the-conviction-outlived-the-man",
-      "label": "'Butcher of Srebrenica' dies",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-mladic-dies-the-conviction-outlived-the-man"
-      ],
-      "eventUri": "rus-2115955",
-      "summary": "Ratko Mladic has died at 84, serving a life sentence for the genocide at Srebrenica, where his forces separated and executed more than 8,000 Bosniak men and boys in July 1995. Lead with the fact that he died in custody having been convicted — because that outcome is rarer than the crime, and it took 16 years of him living freely in Serbia before arrest to get there. The mechanism to teach is what the ICTY actually established and how: Srebrenica is the only European atrocity since 1945 that a court has ruled genocide, and the ruling turned on the specific legal test of intent to destroy a group in part, proved through the logistics of the killing — the buses, the blindfolds, the mass graves later dug up and reburied to scatter the remains. That evidentiary standard is why the Bosnia judgment is cited in every case since, including the ICJ proceedings on Gaza our readers follow. Then the part the obituaries will skip: Srebrenica was a UN-declared safe area with Dutch peacekeepers present, so the failure was not only Serb command but an international protection regime that disarmed the victims and then withdrew. Who is affected: the Mothers of Srebrenica, many of whom are still burying identified remains three decades on, and Bosniaks living under a Republika Srpska leadership that still denies the genocide; who holds power: Belgrade, where his death is being marked by some as a hero's. Be exact about what he was convicted of, when, and the causes of the years of delay. Sources here span the Bosnian, Turkish, Pakistani and Israeli press — the divergence in how they describe the same man is itself reportable, but report it as divergence, not as balance.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ratko_Mladić",
-        "http://en.wikipedia.org/wiki/The_Hague",
-        "http://en.wikipedia.org/wiki/War_crime",
-        "http://en.wikipedia.org/wiki/Genocide",
-        "http://en.wikipedia.org/wiki/Serbia",
-        "http://en.wikipedia.org/wiki/Bosnia_and_Herzegovina",
-        "http://en.wikipedia.org/wiki/Srebrenica",
-        "http://en.wikipedia.org/wiki/Serbs"
-      ]
-    },
-    {
-      "id": "three-hundred-nineteen-posts-the-aim-moved-with-the-war",
-      "label": "Six months of the Iran War - as told through Trump's social media posts",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-three-hundred-nineteen-posts-the-aim-moved-with-the-war"
-      ],
-      "eventUri": "eng-11957725",
-      "summary": "Six months into the US-Israeli war on Iran, Trump has posted at least 319 times about it on Truth Social — roughly one every 14 hours. Do not write this as a social-media curiosity: the count is the evidence, and the story is what the sequence shows about how the war was decided and how its aims moved. Lead with the reframing visible in the posts themselves — a 'little excursion' that was to last days is now an unpopular stalemate at six months — and use the timeline to mark the concrete things that changed under it: the Strait of Hormuz closure, the strikes on refineries, the Gulf states' damage. The mechanism to teach is why this matters beyond one president's habits: war aims stated on a personal platform are not war aims authorised by a legislature, and the absence of any congressional authorisation for six months of hostilities is the accountability gap the post count makes legible. Who is affected: Iranians under the bombardment, Gulf populations living beside damaged refineries, and the South and Southeast Asian economies importing energy through a closed strait — a chain our earlier coverage of Bahrain's contraction and diesel prices already traced. Who holds power: the man writing the posts. Report the posts as documented artefacts with dates, credit Al Jazeera's tally and method, and be careful to distinguish what he claimed from what independently happened. Second source News18 covers the same six-month mark from Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Missile",
-        "http://en.wikipedia.org/wiki/Strait"
-      ]
-    },
-    {
-      "id": "a-listing-not-a-charge-the-bank-enforces-it",
-      "label": "U.S. sanctions UK's Palestine Action as \"terrorist group\"; ICE agent released from Texas jail; Russia threatens to strike UK military targets in Ukraine",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-a-listing-not-a-charge-the-bank-enforces-it"
-      ],
-      "eventUri": null,
-      "summary": "Write only the lead item: the United States has sanctioned Palestine Action, a British direct-action group, as a terrorist organisation. Lead with the jurisdictional oddity, because that is the precedent — this is one state applying its terrorism-designation machinery to a protest movement operating inside an ally's borders, already proscribed under that ally's own law, and the US designation adds something the UK ban does not: financial exclusion that travels globally through correspondent banking. The mechanism to teach is how a designation actually bites, and it is not arrests — it is that banks, payment processors and insurers everywhere de-risk anyone named or adjacent, so supporters, donors and lawyers lose accounts without any court finding against them, and there is no forum in which a British citizen can contest a US Treasury listing. That is the accountability gap: the sanction is an executive act with extraterritorial effect and effectively no appeal. Who is affected: people in Britain whose acts were property damage at arms factories, now placed in the same legal category as armed groups; who holds power: OFAC, and a UK government that proscribed first. Structural why for our reader: designation regimes built for al-Qaeda-era finance are now being turned on domestic Palestine solidarity, and the same instrument is available for use anywhere. Verify the designation against the Treasury press release and the actual listing, name the authority used, and say precisely what Palestine Action is accused of doing.",
-      "conceptUris": []
-    },
-    {
-      "id": "minus-three-point-eight-the-bystander-pays-first",
-      "label": "Bahrain GDP contracts 3.8% as Iran conflict dents oil sector",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-minus-three-point-eight-the-bystander-pays-first"
-      ],
-      "eventUri": null,
-      "summary": "Bahrain's economy shrank 3.8 percent as the Iran war hit its oil sector — the first hard national accounts number putting a figure on what six months of war has cost a Gulf state that is not a belligerent. Lead with that framing, because it is the reader's question: the war's price is usually reported as oil futures, and this is the same shock arriving as lost output in a specific small economy. The mechanism to teach is why Bahrain of all the Gulf states shows it first and worst: it has the smallest hydrocarbon base and the largest dependence on the shared Abu Sa'afa field and on refining throughput at Sitra, so a disruption to crude flows and to shipping through Hormuz shows up almost immediately in production volumes rather than being cushioned by a sovereign fund. Then the second-order effects to name: Bahrain runs the region's highest debt-to-GDP ratio and a fiscal breakeven oil price well above market, so a contraction of this size is also a debt-sustainability event, and the usual remedy is a GCC support package with conditions attached. Who is affected: Bahraini public-sector employment and subsidy budgets, and the South Asian workers whose remittances run through Manama; who holds power: the finance ministry, Saudi Arabia as the likely backstop, and the belligerents whose war set the terms. Give the quarter, the oil versus non-oil breakdown, the source of the figures, and how it compares with the other GCC states' latest prints.",
-      "conceptUris": []
-    },
-    {
-      "id": "eagle-s-revived-the-forum-not-the-fact",
-      "label": "Finland appeals court revives case against Eagle S Officers over cable breaks",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-eagle-s-revived-the-forum-not-the-fact"
-      ],
-      "eventUri": null,
-      "summary": "A Finnish appeals court has revived the criminal case against the officers of the tanker Eagle S over the Baltic cable breaks, sending it back to the Helsinki District Court — though the three men have already left Finland. Lead with that gap between the ruling and the defendants' absence, because it is the whole accountability problem in one line: the court has now said the case can be heard, and there is nobody in the country to hear it against. The mechanism to teach is jurisdiction at sea, which almost no coverage explains: cables in an exclusive economic zone are not in anyone's territory, so a state's power to prosecute damage to them rests on narrow treaty provisions and on whether the ship can be boarded or the crew detained — which is exactly why the district court dismissed on jurisdictional grounds the first time, and why a shadow-fleet vessel with an opaque flag and ownership is an effective instrument regardless of intent. Then the honest care the story needs: dragging an anchor across a cable can be sabotage or gross negligence, the distinction is what a trial would establish, and this ruling decides the forum, not the fact. Who is affected: every state whose electricity interconnectors, data cables and gas pipelines cross an EEZ, which includes the Gulf, the Red Sea and the Malacca approaches where the same vulnerability is far denser; who holds power: flag states that sell registration and ask nothing. Give the court, the date, the charges and the ships' flag and ownership chain.",
-      "conceptUris": []
-    },
-    {
-      "id": "launcher-challenge-the-return-rule-is-what-changed",
-      "label": "ESA Awards €544 Million in European Launcher Challenge Contracts",
-      "firstSeen": "2026-08-27T17:12:55.109Z",
-      "lastCovered": "2026-08-27T17:12:55.109Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-launcher-challenge-the-return-rule-is-what-changed"
-      ],
-      "eventUri": null,
-      "summary": "The European Space Agency has signed €543.6 million in contracts with three private launch companies — Isar Aerospace, Rocket Factory Augsburg and PLD Space — under its European Launcher Challenge, while a fourth, MaiaSpace, was left out with its award process only 'expected to resume'. Lead with what has structurally changed, because the money is small by launch standards and the change is not: ESA has historically procured launches from a single prime under geographic-return rules that allocated work by member-state contribution, and this awards fixed sums to competing startups against milestones instead. The mechanism to teach is why that matters — geographic return optimises for industrial distribution across members, not for cost per kilogram, which is the structural reason Ariane 6 arrived late and expensive against a reusable competitor, and a challenge-based award is an attempt to buy an outcome rather than to subsidise a supplier. Then the sceptical note: €544 million split three ways is roughly a tenth of what developing an orbital launcher has cost anyone, so this is seed capital and a signal, not a programme, and the omission of MaiaSpace should be reported as an unexplained fact rather than smoothed over. Who is affected: every state without sovereign launch access — which is most of them, including the Gulf and Southeast Asian programmes now buying rides; who holds power: ESA's procurement rules and the member states that wrote them. Give the split per company, the milestones, the timeline, and ESA's stated reason on MaiaSpace.",
       "conceptUris": []
     }
   ]
