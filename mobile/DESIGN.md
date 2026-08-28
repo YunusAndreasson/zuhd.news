@@ -252,16 +252,14 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the named sections (`news` · `markets` · `currencies` · `straits` ·
-  `predictions` · `calendar` · `humanitarian` · `attention`); vertical
+  between the three sections (`news` · `now` · `next`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
-- **The data sections say what they contain.** Commodities, rates, volatility
-  and crypto live in `markets`; FX in `currencies`; shipping histories in
-  `straits`; outcome contracts in `predictions`; near-term scheduled events in
-  `calendar`; newly published conditions and determinations in `humanitarian`;
-  observed pageviews in `attention`. Preserve full names and let the rail
-  scroll rather than making the reader decode abbreviations.
+- **The data sections are cut by meaning, not provider taxonomy.** `now` is
+  measured reality: conditions, shipping, attention, prices, currencies and
+  rates. `next` is belief, forward volatility or a scheduled event. Concrete
+  subject pools stay inside the builder, but never become one- or two-card
+  destinations in the rail.
 - **A card's graph visualises its headline quantity.** If the payload has only
   total-traffic history, a chokepoint card cannot headline tankers; if the
   headline is a gold/silver ratio, the graph is that ratio rather than two raw
@@ -275,16 +273,16 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   did nothing but drag a dot along a line. Charts on cards pass
   `scrubbable={false}`; scrubbing lives in sheets, where there is no pager to
   compete with. Any new gesture on a card owes the same check.
-- `SectionBar` follows the pager. Four labels fit (~330pt all-in against a
-  360pt phone) where six measured past 440 and forced a scroller the reader could
+- `SectionBar` follows the pager. Three labels fit with room to spare on a
+  360pt phone, where the eight subject tabs forced a scroller the reader could
   never see the end of; the scroller stays for large Dynamic Type and is inert
   below it. Abbreviating ("curr") was never the alternative. Driven by the
   settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
   drag fights the drag, while the indicator tracking the finger is the part
   that should feel live.
 - **The rail groups, because the sections are not peers.** A rule sits after
-  `news`: it is a river of forty articles and the other three are decks of four
-  to seven cards, and drawing all four at identical weight was a claim about
+  `news`: it is an article river and the other two are data-card decks, so
+  drawing all three at identical weight would make a false claim about
   symmetry the content does not keep. Full point, not `hairlineWidth` — a
   10pt vertical hairline disappears at some Android densities, and a group rule
   nobody can see does not group.

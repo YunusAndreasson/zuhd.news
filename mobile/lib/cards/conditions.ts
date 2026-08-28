@@ -25,8 +25,8 @@ import type { Card, CardFigure, ConditionCard } from './types';
  * So each card is gated on *its own data being new*. Nothing here appears
  * because it is important; it appears because it changed. A fresh IPC
  * analysis, a newly published determination, a conflict window that has caught
- * up — each of those is an event and belongs in `humanitarian`, not inside a
- * market category it does not describe.
+ * up — each of those is an event and leads the other measurements in `now`,
+ * rather than sitting in a sparse tab that is empty on ordinary days.
  *
  * Event-dated cards carry `lead: true`, which makes `CardFrame` print
  * `current ·`. IPC does not publish a reliable release timestamp, only the

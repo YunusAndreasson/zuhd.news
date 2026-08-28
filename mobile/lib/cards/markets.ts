@@ -29,10 +29,9 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * fetched on every launch and, until now, one chart was drawn from the first
  * of them — in a sheet reached by tapping a word.
  *
- * Subject columns match the labels a reader sees: markets, currencies,
- * straits, predictions, calendar and attention. The split follows what the
- * card is about rather than whether its number describes the present or the
- * future.
+ * Concrete subject pools keep the builder honest about what each payload is.
+ * They are not navigation tabs: `lib/cards/sections.ts` combines them into the
+ * broader `now` and `next` swipe decks after condition cards are available.
  *
  * What is *not* here is the point of the file. Thirty exchanges, the S&P, the
  * NASDAQ, TSMC, copper, TTF, retail gasoline and WTI all have live series and
@@ -1039,7 +1038,7 @@ export interface InstrumentCardInputs {
   now?: Date;
 }
 
-/** Instrument cards grouped by the concrete subject labels in the section rail. */
+/** Instrument cards grouped by concrete payload subject before deck assembly. */
 export interface InstrumentColumns {
   attention: Card[];
   calendar: Card[];

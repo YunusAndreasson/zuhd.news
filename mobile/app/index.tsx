@@ -57,7 +57,8 @@ import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildConditionCards } from '../lib/cards/conditions';
 import { buildInstrumentCards } from '../lib/cards/markets';
-import { prepareSwipeCards, type SwipeCard } from '../lib/cards/rank';
+import type { SwipeCard } from '../lib/cards/rank';
+import { buildSwipeSections } from '../lib/cards/sections';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
@@ -72,28 +73,14 @@ const NEWS = SECTIONS.indexOf('news');
 const cardPagerRefs = SECTIONS.map(() => createRef<CardPagerRef>());
 const newsListRef = createRef<ArticleListRef>();
 
-/** Empty-state copy per instrument column. A column is empty when the
- *  snapshot did not carry its series, which is a quiet degrade, not an error. */
+/** Empty-state copy per data section. A deck is empty when the available
+ *  snapshots did not produce a valid card, which is a quiet degrade. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  markets: { message: 'no market readings yet', hint: 'No market series are available' },
-  currencies: {
-    message: 'no currency readings yet',
-    hint: 'No exchange-rate series are available',
+  now: {
+    message: 'no readings yet',
+    hint: 'No current readings are available',
   },
-  straits: { message: 'no strait readings yet', hint: 'No shipping histories are available' },
-  predictions: {
-    message: 'no predictions yet',
-    hint: 'No prediction contracts are available',
-  },
-  calendar: {
-    message: 'nothing scheduled soon',
-    hint: 'No tracked event falls in the next 10 days',
-  },
-  humanitarian: {
-    message: 'no fresh humanitarian updates',
-    hint: 'This section shows newly published conditions and determinations',
-  },
-  attention: { message: 'no attention readings yet', hint: 'No pageview series are available' },
+  next: { message: 'no signals yet', hint: 'No forecasts or scheduled events are available' },
 };
 
 // Give the reader time to arrive at the caught-up boundary and read it before
@@ -311,9 +298,9 @@ export default function HomeScreen() {
   // guess it back from concept tags, which never name one.
   const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
 
-  // Both card columns are pure functions of payloads already in memory. The
-  // builders return a shorter column rather than a broken screen when a
-  // payload is missing, so neither of these needs a loading state.
+  // Concrete card pools are pure functions of payloads already in memory. The
+  // builder omits a card rather than rendering a broken one when its payload
+  // is missing, so deck assembly does not need a separate loading state.
   const columns = useMemo(
     () => buildInstrumentCards({ trends, chokepoints, articles: river }),
     [trends, chokepoints, river],
@@ -333,19 +320,12 @@ export default function HomeScreen() {
     [ipc, conflictSnapshot, gdacsAlerts, determinations],
   );
 
-  // The horizontal axis names subjects a reader can choose directly. The
-  // builder owns the instrument taxonomy; gated humanitarian cards have their
-  // own explicit destination before the shared smart ranking is applied.
+  // Keep the horizontal axis broad enough for every destination to be a real
+  // vertical deck. The builder retains concrete subject pools so each card's
+  // provenance stays explicit; this boundary turns those pools into the two
+  // questions the rail promises: what is measured now, and what points next.
   const sectionCards = useMemo<Record<string, SwipeCard[]>>(
-    () => ({
-      markets: prepareSwipeCards(columns.markets, river),
-      currencies: prepareSwipeCards(columns.currencies, river),
-      straits: prepareSwipeCards(columns.straits, river),
-      predictions: prepareSwipeCards(columns.predictions, river),
-      calendar: prepareSwipeCards(columns.calendar, river),
-      humanitarian: prepareSwipeCards(conditionCards, river),
-      attention: prepareSwipeCards(columns.attention, river),
-    }),
+    () => buildSwipeSections(columns, conditionCards, river),
     [columns, conditionCards, river],
   );
 

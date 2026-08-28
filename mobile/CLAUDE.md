@@ -58,23 +58,22 @@ a release build cannot name the offender if one survives.
 
 ## The two axes
 
-Horizontal swipe = section (`news` · `markets` · `currencies` · `straits` ·
-`predictions` · `calendar` · `humanitarian` · `attention`), vertical
+Horizontal swipe = section (`news` · `now` · `next`), vertical
 paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
 
-- **Section labels name their contents.** `markets` holds commodities, rates
-  volatility and crypto; `currencies` holds FX; `straits` holds shipping
-  histories; `predictions` holds outcome contracts; `calendar` holds near-term
-  scheduled events; `humanitarian` holds newly published conditions and
-  determinations; and `attention` holds observed pageviews. The rail scrolls
-  to preserve those full names instead of abbreviating them.
+- **The data axis is semantic, not a provider taxonomy.** `now` holds measured
+  facts: humanitarian conditions, shipping, attention, prices, currencies,
+  rates and crypto. `next` holds evidence about what may happen: prediction
+  contracts, forward volatility and scheduled events. The concrete subject
+  pools remain explicit in the builder, then combine at the swipe boundary so
+  missing payloads shorten a deck instead of creating an empty tab.
 - **A card ships because it changed.** Standing conditions (famine, conflict,
   hazards, genocide determinations) were a section until an audit killed it:
   median famine analysis seven months old, conflict window 145 days behind, one
   determination 2,902 days old. They now gate on their own data being new and
-  lead `humanitarian` on the day one is. IPC is the exception to the `current` mark: its
+  lead `now` on the day one is. IPC is the exception to the `current` mark: its
   payload supplies a covered period but no dependable publication timestamp.
   Apply the same test to anything new — the
   eleven-strait table and the release calendar both failed it later and are now
@@ -88,11 +87,11 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   prints `current ·` before the kicker — an ink step, never a colour, because the
   chromatic budget is spent on `CardDelta` and `colors.determination`.
 - **Straits are graphs, not a duplicate table.** `MiniGlobe` still locates all
-  eleven and opens their detailed sheets; the named `straits` deck gives each
-  usable total-traffic history its own swipe piece. A fall of at least 30%
-  earns `current`; otherwise it remains reference. Ranking uses current-news
-  relevance and unusual movement so a small percentage does not hide a major
-  live story.
+  eleven and opens their detailed sheets; the concrete `straits` pool gives
+  each usable total-traffic history its own swipe piece inside `now`. A fall of
+  at least 30% earns `current`; otherwise it remains reference. Ranking uses
+  current-news relevance and unusual movement so a small percentage does not
+  hide a major live story.
 - **Ranking must not reward surface area.** Current-news relevance is the
   strongest linked story, not the sum of every match: aggregate cards carry
   many more topic tags than a single reading. After ranking, no more than two

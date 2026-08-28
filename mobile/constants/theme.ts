@@ -414,7 +414,7 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
 /**
  * The horizontal axis.
  *
- * Four sections, cut by the question a reader arrives with rather than by
+ * Three sections, cut by the question a reader arrives with rather than by
  * what kind of instrument the answer happens to be. The stories first, then:
  * what is happening now and what is only a signal about what may happen next.
  * Subject navigation, entirely by swipe.
@@ -428,30 +428,21 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  *
  * Every section here holds readings that move daily — which is the test a news
  * app has to apply to itself. Conditions and market readings share `now`
- * because both are measurements of the present; contracts, attention,
- * volatility and calendars share `next` because each is evidence about what
- * people expect or what is scheduled, not a completed fact.
+ * because both are measurements of the present; observed attention does too.
+ * Contracts, forward volatility and calendars share `next` because each is
+ * evidence about what people expect or what is scheduled, not a completed fact.
  *
- * Four labels fit a phone at default type — roughly 216pt of small caps
+ * Three labels fit a phone at default type with room to spare
  * against a 360pt screen, where six measured past 440 and forced the rail to
  * scroll. `SectionBar` keeps its scroll view for large Dynamic Type and draws
- * a rule after `news`, which is a river where the other three are card decks.
+ * a rule after `news`, which is a river where the other two are card decks.
  * Swipe is still the navigation; the rail is where you are.
  *
  * The four categories used to live on this axis too. They are a vertical
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = [
-  'news',
-  'markets',
-  'currencies',
-  'straits',
-  'predictions',
-  'calendar',
-  'humanitarian',
-  'attention',
-] as const;
+export const SECTIONS = ['news', 'now', 'next'] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */
