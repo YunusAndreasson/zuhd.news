@@ -5,8 +5,8 @@
       "id": "battlefield-corpus-data-is-the-constraint",
       "label": "Ukraine to give Britain access to battlefield data to train AI",
       "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-28T12:10:19.798Z",
-      "coverageCount": 81,
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 86,
       "category": "tech",
       "importance": 6,
       "arc": "ongoing",
@@ -91,7 +91,12 @@
         "2026-08-28-the-application-count-the-exam-is-a-census-of-schooling",
         "2026-08-28-uncontactable-the-camp-is-in-the-gorge",
         "2026-08-28-two-arrests-a-thousand-victims-the-pipeline-is-the-delivery",
-        "2026-08-28-after-the-scan-the-diagnosis-is-the-whole-service"
+        "2026-08-28-after-the-scan-the-diagnosis-is-the-whole-service",
+        "2026-08-28-banque-misr-the-third-country-branch-is-the-target",
+        "2026-08-28-the-undisclosed-value-the-embassy-made-the-announcement",
+        "2026-08-28-officer-safety-the-phrase-is-the-authorisation",
+        "2026-08-28-the-print-server-the-forgotten-machine-has-the-privileges",
+        "2026-08-28-the-indicator-light-the-consent-is-one-led"
       ],
       "eventUri": null,
       "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
@@ -109,13 +114,127 @@
       ]
     },
     {
+      "id": "ten-months-the-instrument-changed-not-the-tempo",
+      "label": "Israel kills three in first airstrike on West Bank in 10 months",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-ten-months-the-instrument-changed-not-the-tempo"
+      ],
+      "eventUri": null,
+      "summary": "An Israeli airstrike killed three people in the occupied West Bank — the first air attack there in ten months. Lead with the three dead, named if the reporting allows, and with the ten-month gap, because the gap is what makes this news: the West Bank has been policed by raids, arrests and settler violence, not by aircraft, and the return of airpower is a change in the instrument rather than an increase in the tempo. The mechanism to teach is why that distinction matters legally and practically — an airstrike is an act of armed conflict applied to a territory the occupying power administers under occupation law, and each time the threshold is crossed without consequence it becomes the new baseline, which is the same normalisation our Gaza and Lebanon coverage has tracked. Then the context to carry: this lands with the Gaza truce already being contested and Israeli operations in southern Lebanon unresolved, so ask whether the strike is a one-off or the opening of a third file. Who is affected: residents of the district struck, and the 3 million Palestinians under an occupation that has just acquired a new weapon; who holds power: the Israeli military, and the states supplying the aircraft. Verify the location, the toll and the Israeli military's stated justification against a second report before publishing. Sourcing note for the audit: no Palestinian or other regional outlet in today's feed covered this strike.",
+      "conceptUris": []
+    },
+    {
+      "id": "no-oath-no-membership-the-seat-was-never-vacant",
+      "label": "'No oath, no membership': ECP withdraws notification for Senate by-poll on seat won by PTI's Murad Saeed",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Election Commission has withdrawn its own April notification for a Senate by-election, reversing its earlier finding that a seat won by PTI's Murad Saeed was vacant. Lead with the doctrine in the headline, because it is the whole case: 'no oath, no membership' means the commission had declared a seat empty on the basis of a disqualification affecting a man who, never having taken the oath, was never a member — so there was nothing to vacate and no by-poll to hold. The mechanism to teach is how a procedural formality becomes the decisive lever in a contested parliament: whether an elected person is a member turns on an administrative act, and the party controlling the timing of that act controls the arithmetic of the upper house. That is why oath-taking has become the recurring battleground in Pakistani politics rather than the elections themselves. Then the sequence the piece must set out plainly: what the ECP found in April, what changed, whether a court compelled the reversal, and what the seat's status is now. Who is affected: the Khyber Pakhtunkhwa electorate whose Senate representation has been in limbo since April, and a party governing a province while excluded from the centre; who holds power: the ECP, and the courts reviewing it.",
+      "conceptUris": []
+    },
+    {
+      "id": "fifty-three-billion-the-deal-was-priced-off-the-long-bond",
+      "label": "PayPal Shares Tank After Major Takeover Talks Collapse",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond"
+      ],
+      "eventUri": "eng-11956854",
+      "summary": "A group led by Advent International and Stripe has walked away from a reported $53 billion buyout of PayPal, and the stock fell about 15 percent. Lead with the size and the abandonment together: this would have been among the largest leveraged buyouts ever attempted, and it died at the financing stage in the same week thirty-year Treasury yields hit 5.3 percent — the story is the cost of money, not the company. The mechanism to teach is how an LBO is actually paid for: the buyer borrows against the target's own cash flows, so every rise in the long rate raises the debt service the deal must clear and shrinks the price the buyer can offer; a deal that pencilled at 4 percent does not exist at 5.3. That is the transmission from the bond market our readers followed this week into the ownership of the payment rails they use. Then the competitive angle worth naming: Stripe, a private competitor, was in the bidding group at all — say what that would have consolidated and what regulators would have asked. Who is affected: PayPal's 400-million-plus account holders, most of them outside the US, and the shareholders who priced in a bid; who holds power: the credit markets. Attribute the $53bn figure and the talks to Bloomberg's reporting, and note neither PayPal nor the bidders have confirmed it on the record.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/PayPal",
+        "http://en.wikipedia.org/wiki/Stripe,_Inc.",
+        "http://en.wikipedia.org/wiki/Bloomberg_L.P.",
+        "http://en.wikipedia.org/wiki/Advent_International",
+        "http://en.wikipedia.org/wiki/Fintech",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Bloomberg_News",
+        "http://en.wikipedia.org/wiki/Private_equity_firm"
+      ]
+    },
+    {
+      "id": "the-bidder-that-walked-knew-the-asset",
+      "label": "10 of 12 parties prequalified for Fesco privatisation, K-Electric withdraws",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-the-bidder-that-walked-knew-the-asset"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Privatisation Commission cleared 10 of 12 bidders for the Faisalabad electricity distributor, after K-Electric pulled its papers and the only Chinese bidder failed to show sufficient interest. Lead with the two withdrawals, not the ten approvals, because the buyers who walked are the information: K-Electric is the one company in the country that has actually run a privatised distribution utility, and its exit says what the asset is worth to someone who knows. The mechanism to teach is why a power distribution company is a hard thing to sell: the buyer inherits a fixed tariff set by a regulator, a collection rate it cannot control, line losses and theft it must eat, and a circular-debt chain in which the government owes the generators — so the revenue is capped by the state and the costs are not. That is the whole reason the IMF programme keeps demanding these sales and the sales keep struggling. Then the specifics: Fesco is the best-performing distributor in the fleet and therefore the easiest to sell, which means the harder ones behind it face worse terms. Who is affected: 8-plus million Faisalabad-region consumers whose tariff and reliability will be set by a private owner under regulatory ceilings; who holds power: NEPRA, the Privatisation Commission, and the Fund whose conditions set the timetable. Name the prequalified parties, the timeline to bid, and what happened at the previous attempts.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-tunnel-team-the-missing-are-underground",
+      "label": "India to send tunnel rescue team to flood-hit Nepal after reports of 100 trapped",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-the-tunnel-team-the-missing-are-underground"
+      ],
+      "eventUri": "eng-11960109",
+      "summary": "The Nepal-Tibet flash flood toll has passed 540 dead with 1,500 missing and 93,000 people affected, and India is flying in a tunnel rescue team after reports of about 100 people trapped underground. Lead with the tunnel, because it is the specific and least-reported part: the missing are not only in villages, they are inside hydropower and road tunnels cut into the gorge, and tunnel rescue is a different discipline from flood relief — it needs boring equipment, oxygen management and shoring, which is why the request went to Delhi rather than to the aid agencies already present. The mechanism to teach is what makes this valley lethal by construction: a glacier-fed catchment on a rising snowline, a cross-border river whose upstream monitoring sits in Tibet, and a decade of tunnel-and-dam construction that concentrated workers precisely in the narrowest, steepest section of the flood path. That is the development story and the disaster story arriving as one thing. Then the accountability question: what warning existed upstream, how long it took to cross the border, and who authorised worker accommodation inside the gorge. Who is affected: Nepali, Indian, Chinese and South African families now counting from three countries; who holds power: the hydropower developers, and the two states on either side of a river with no shared alert protocol. Update our earlier count and be explicit that the missing figure is not a death toll.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nepal",
+        "http://en.wikipedia.org/wiki/Search_and_rescue",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/Kathmandu",
+        "http://en.wikipedia.org/wiki/United_Kingdom"
+      ]
+    },
+    {
+      "id": "dual-band-four-element-mimo-antenna-array-for-5g-millimeter",
+      "label": "Dual-band four-element MIMO antenna array for 5G millimeter-wave communication",
+      "firstSeen": "2026-08-28T17:08:41.617Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] We're sharing this article early to provide faster access to peer-reviewed, accepted research. It is citable and carries a permanent DOI. This version is subject to further edits and will be replaced automatically by the final Version of Record. All legal disclaimers apply.\n\nThis paper presents a fo",
+      "conceptUris": []
+    },
+    {
       "id": "gpu-collateral-the-asset-depreciates-faster-than-the-loan",
       "label": "Bullish backs USD.AI with $100 million in financing to drive GPU-backed loans",
       "firstSeen": "2026-08-28T12:10:19.798Z",
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan"
@@ -131,7 +250,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-right-of-way-eminent-domain-by-licence"
@@ -147,7 +266,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-economic-outcast-the-third-country-bank-decides"
@@ -163,7 +282,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-when-the-paper-cannot-decide-appearance-does"
@@ -179,7 +298,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-susceptibility-mapping-the-map-is-a-permit"
@@ -195,7 +314,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring"
@@ -211,7 +330,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-alliance-of-former-enemies-nobody-has-to-agree-afterwards"
@@ -227,7 +346,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-no-additional-protocol-silence-is-the-approval"
@@ -243,7 +362,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-rs5-million-each-the-payment-arrives-before-the-cause"
@@ -259,7 +378,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-second-gradient-the-mountain-runs-out-of-oxygen"
@@ -275,7 +394,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-bunchy-top-the-constraint-was-distribution-not-knowledge"
@@ -291,7 +410,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it"
@@ -307,7 +426,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-27-hormuz-condition-the-strait-is-priced-in-gaza",
@@ -324,7 +443,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-supply-chain-risk-the-listing-met-a-court"
@@ -340,7 +459,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-five-point-three-the-war-arrives-as-a-yield"
@@ -356,7 +475,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-coding-agent-the-skill-floor-collapsed"
@@ -372,7 +491,7 @@
       "lastCovered": "2026-08-28T04:09:23.659Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-a-few-pixels-detection-is-not-rescue"
@@ -388,7 +507,7 @@
       "lastCovered": "2026-08-28T08:13:27.010Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-08-27-istihalah-the-ruling-needs-a-chemist",
@@ -415,7 +534,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-nine-cities-the-cheap-drone-empties-the-launcher"
@@ -439,7 +558,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-three-villages-the-permit-thins-the-population"
@@ -455,7 +574,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-petroleum-levy-the-tax-that-skips-the-provinces"
@@ -471,7 +590,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-bank-master-the-licence-was-the-rail"
@@ -487,7 +606,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-training-set-the-hash-check-was-not-run"
@@ -503,7 +622,7 @@
       "lastCovered": "2026-08-27T22:12:31.576Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-drier-and-harder-the-curve-is-out-of-date"
@@ -513,13 +632,39 @@
       "conceptUris": []
     },
     {
+      "id": "barrier-lake-the-dam-has-no-spillway",
+      "label": "Large lake forms near Nepal border, China warns of dam-break risk",
+      "firstSeen": "2026-08-27T12:10:12.471Z",
+      "lastCovered": "2026-08-28T17:08:41.617Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-08-27-barrier-lake-the-dam-has-no-spillway",
+        "2026-08-28-the-cop-with-no-market-the-land-has-nothing-to-sell"
+      ],
+      "eventUri": "deu-2167161",
+      "summary": "A landslide-dammed barrier lake has formed above the Rasuwagadhi valley and Chinese authorities put the breach risk inside 72 hours, while the confirmed toll from Wednesday's flood has risen to at least 353 dead with more than 1,300 missing. This is the third piece on this event and must be a forward-looking hazard story, not a third recount: the earlier ones explained why a Himalayan flood arrives without rain, and why the count follows the road. The mechanism to teach here is the barrier lake itself — a rock-and-debris avalanche blocks a steep valley, water ponds behind an unengineered dam of loose material with no spillway, and the failure mode is not seepage but headward erosion once it overtops, which is why these dams fail suddenly and completely rather than leaking. That is why China is running flood simulations rather than reinforcing it: the only available responses are evacuation and timing, and the people downstream are in Nepal while the lake is in Gyirong County. Who is affected: Rasuwa district communities already searching for the missing, and Bihar downstream where gauge-based alerts fire after the surge; who holds power: two states whose warning systems do not share a protocol across the border they share. Give the lake's measured size if reported, the authority issuing each figure, and be exact that dead, missing and preliminary are three different numbers. Sourcing note for the audit: this is one of only three multi-source clusters in today's feed — the other two were an iPhone price rumour and a Spanish museum burglary — so the politics and economy multi-source floors could not be met from this feed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nepal",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Tibet",
+        "http://en.wikipedia.org/wiki/Flash_flood",
+        "http://en.wikipedia.org/wiki/Tourism",
+        "http://en.wikipedia.org/wiki/China_Central_Television",
+        "http://en.wikipedia.org/wiki/Himalayas",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
       "id": "mladic-dies-the-conviction-outlived-the-man",
       "label": "'Butcher of Srebrenica' dies",
       "firstSeen": "2026-08-27T17:12:55.109Z",
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-mladic-dies-the-conviction-outlived-the-man"
@@ -544,7 +689,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-three-hundred-nineteen-posts-the-aim-moved-with-the-war"
@@ -569,7 +714,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-a-listing-not-a-charge-the-bank-enforces-it"
@@ -585,7 +730,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-minus-three-point-eight-the-bystander-pays-first"
@@ -601,7 +746,7 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-eagle-s-revived-the-forum-not-the-fact"
@@ -617,175 +762,13 @@
       "lastCovered": "2026-08-27T17:12:55.109Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-launcher-challenge-the-return-rule-is-what-changed"
       ],
       "eventUri": null,
       "summary": "The European Space Agency has signed €543.6 million in contracts with three private launch companies — Isar Aerospace, Rocket Factory Augsburg and PLD Space — under its European Launcher Challenge, while a fourth, MaiaSpace, was left out with its award process only 'expected to resume'. Lead with what has structurally changed, because the money is small by launch standards and the change is not: ESA has historically procured launches from a single prime under geographic-return rules that allocated work by member-state contribution, and this awards fixed sums to competing startups against milestones instead. The mechanism to teach is why that matters — geographic return optimises for industrial distribution across members, not for cost per kilogram, which is the structural reason Ariane 6 arrived late and expensive against a reusable competitor, and a challenge-based award is an attempt to buy an outcome rather than to subsidise a supplier. Then the sceptical note: €544 million split three ways is roughly a tenth of what developing an orbital launcher has cost anyone, so this is seed capital and a signal, not a programme, and the omission of MaiaSpace should be reported as an unexplained fact rather than smoothed over. Who is affected: every state without sovereign launch access — which is most of them, including the Gulf and Southeast Asian programmes now buying rides; who holds power: ESA's procurement rules and the member states that wrote them. Give the split per company, the milestones, the timeline, and ESA's stated reason on MaiaSpace.",
-      "conceptUris": []
-    },
-    {
-      "id": "barrier-lake-the-dam-has-no-spillway",
-      "label": "Large lake forms near Nepal border, China warns of dam-break risk",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-barrier-lake-the-dam-has-no-spillway"
-      ],
-      "eventUri": "deu-2167161",
-      "summary": "A landslide-dammed barrier lake has formed above the Rasuwagadhi valley and Chinese authorities put the breach risk inside 72 hours, while the confirmed toll from Wednesday's flood has risen to at least 353 dead with more than 1,300 missing. This is the third piece on this event and must be a forward-looking hazard story, not a third recount: the earlier ones explained why a Himalayan flood arrives without rain, and why the count follows the road. The mechanism to teach here is the barrier lake itself — a rock-and-debris avalanche blocks a steep valley, water ponds behind an unengineered dam of loose material with no spillway, and the failure mode is not seepage but headward erosion once it overtops, which is why these dams fail suddenly and completely rather than leaking. That is why China is running flood simulations rather than reinforcing it: the only available responses are evacuation and timing, and the people downstream are in Nepal while the lake is in Gyirong County. Who is affected: Rasuwa district communities already searching for the missing, and Bihar downstream where gauge-based alerts fire after the surge; who holds power: two states whose warning systems do not share a protocol across the border they share. Give the lake's measured size if reported, the authority issuing each figure, and be exact that dead, missing and preliminary are three different numbers. Sourcing note for the audit: this is one of only three multi-source clusters in today's feed — the other two were an iPhone price rumour and a Spanish museum burglary — so the politics and economy multi-source floors could not be met from this feed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Tibet",
-        "http://en.wikipedia.org/wiki/Flash_flood",
-        "http://en.wikipedia.org/wiki/Tourism",
-        "http://en.wikipedia.org/wiki/China_Central_Television",
-        "http://en.wikipedia.org/wiki/Himalayas",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "third-prime-minister-the-charge-is-non-disclosure",
-      "label": "Malaysia's former PM Ismail Sabri charged with concealing assets",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-third-prime-minister-the-charge-is-non-disclosure"
-      ],
-      "eventUri": "eng-11955052",
-      "summary": "Ismail Sabri Yaakob pleaded not guilty in the Kuala Lumpur Sessions Court to failing to declare tens of millions of dollars in assets — the third Malaysian ex-prime minister to face criminal charges after leaving office. Lead with the count of three, because the pattern is the story: in one generation Malaysia has prosecuted Najib Razak, Muhyiddin Yassin and now Ismail Sabri, which is either a judiciary that has become genuinely independent or a system in which each government prosecutes the last. The mechanism to teach is the specific offence — this is not a theft charge but a declaration charge under the anti-corruption statute, which reverses the usual evidentiary burden by making non-disclosure itself the crime, so the prosecution does not have to trace where the money came from. That is why asset-declaration law is the instrument that actually works against senior officials, and why so few Muslim-majority states have one with teeth. Who holds power: the MACC and a Sessions Court; who is affected: a Malaysian public that has watched 1MDB money leave and not come back. Structural why for our reader: Malaysia is the standing counter-example to the claim that Muslim-majority democracies cannot hold their own leaders to account — give the amount, the exact charges, the plea, the bail terms and the trial date, and note what Ismail Sabri's defence says. Sourcing note for the audit: Al Jazeera is the only outlet in today's feed on this Malaysian story; no Malaysian outlet appeared in the cluster.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ismail_Sabri_Yaakob",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/Malay_styles_and_titles",
-        "http://en.wikipedia.org/wiki/Malaysia",
-        "http://en.wikipedia.org/wiki/Malaysian_Anti-Corruption_Commission",
-        "http://en.wikipedia.org/wiki/Kuala_Lumpur",
-        "http://en.wikipedia.org/wiki/Sessions_Court",
-        "http://en.wikipedia.org/wiki/Member_of_parliament"
-      ]
-    },
-    {
-      "id": "police-training-the-export-needs-no-licence",
-      "label": "UK police trained officers in states flagged over human rights",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-police-training-the-export-needs-no-licence"
-      ],
-      "eventUri": null,
-      "summary": "Britain's College of Policing ran more than a dozen training courses for police forces from Saudi Arabia and Egypt — two states its own Foreign Office designates as human rights priority countries. Lead with that contradiction inside one government, because it is the accountability mechanism at issue: the department that publishes the concern and the body that delivers the training answer to the same ministers, and nothing requires them to speak to each other. The mechanism to teach is how security assistance escapes scrutiny — arms exports need a licence and appear in a public register, but police training is a service sold by an arm's-length professional body, so it needs no licence, generates no published assessment of who is trained or in what, and produces capability that cannot be recalled. Who is affected: the people those forces police — in Egypt, the detainees whose cases our readers follow; who holds power: a UK body that treats this as commercial income. Structural why for our reader: this is the same pattern as the spyware trade, one layer up — the transfer that matters is training, not equipment, and it is the least regulated of the three. Discipline the story requires: this is a single-source report from an outlet with a stated editorial position, so lead with the documents — say plainly whether the figures come from freedom-of-information disclosures, quote the College of Policing's response in full, and be careful to report what the courses covered rather than to assume it. Sourcing note for the audit: no Saudi or Egyptian outlet covered this in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "port-sudan-remand-the-appeal-is-a-hunger-strike",
-      "label": "Port Sudan prisoners suspend hunger strike until Sunday",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-port-sudan-remand-the-appeal-is-a-hunger-strike"
-      ],
-      "eventUri": null,
-      "summary": "Remand prisoners at Port Sudan Central Prison have paused an open-ended hunger strike until Sunday after judicial and prosecution officials met one of their demands on trial procedure. Lead with the word remand, because it is the whole grievance: these are people held before trial, not after conviction, and the strike is about the absence of a proceeding rather than the outcome of one. The mechanism to teach is what happens to criminal procedure in a country at war — the courts that would hear these cases are in a city that has become the seat of government by displacement, case files and judges did not all move with the capital, and detention that would be unlawful under any reading of Sudanese law becomes indefinite simply because no court is sitting. That is why a hunger strike is the only available appeal: the prisoners have no lawyer's motion to file. Who is affected: detainees in Red Sea state, whose numbers and charges are not public; who holds power: a prosecution service that answers to a wartime authority. Structural why for our reader: Sudan's war is reported as famine and displacement, and its detention system — RSF and army alike — is the part almost nobody documents. Attribute carefully to Radio Dabanga's sources, say how many prisoners, on what charges and for how long, and note that the suspension has a deadline, so the story has a next step on Sunday.",
-      "conceptUris": []
-    },
-    {
-      "id": "declined-donation-the-claim-belongs-to-pretoria",
-      "label": "Xenophobia: Ghana rejects MTN's donation for affected Ghanaians",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-declined-donation-the-claim-belongs-to-pretoria"
-      ],
-      "eventUri": "eng-11955743",
-      "summary": "Ghana has turned down GH¢20 million (about N2.4 billion) offered by MTN to help Ghanaians evacuated after xenophobic attacks in South Africa, saying it has already budgeted for the evacuation and reintegration itself. Lead with the refusal, because refusing corporate money is rare enough to be the news, and the reasoning is the mechanism: accepting a donation from a South African-headquartered telecom would convert a state's failure to protect foreign nationals into a private act of charity, and would give the donor standing in a matter between two governments. The structural point to teach is why MTN is the company offering — it earns a large share of its revenue in exactly the West African markets whose citizens are being attacked in its home market, so the payment is reputational insurance priced in a currency the company controls, and Accra declining it keeps the claim where it belongs, with Pretoria. Who is affected: Ghanaian and Nigerian nationals evacuated from South Africa, who now depend on their own governments' budget lines rather than on a corporate cheque; who holds power: the Ghanaian foreign ministry, and a telecom operator that is the largest single African commercial actor in this dispute. Structural why for our reader: this is the accountability question in miniature — whether harm gets remedied by the state that permitted it or absorbed by a company that profits on both sides of the border. Give the exact sums, the ministry's stated reason, MTN's response, and the number of citizens evacuated.",
-      "conceptUris": []
-    },
-    {
-      "id": "stunting-the-first-thousand-days-are-the-budget",
-      "label": "The Nutrition Test: What Khyber Pakhtunkhwa can teach Pakistan about fighting childhood malnutrition",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-stunting-the-first-thousand-days-are-the-budget"
-      ],
-      "eventUri": null,
-      "summary": "A child in Pakistan can eat every day and still be malnourished, and Khyber Pakhtunkhwa's programme is the country's most instructive attempt to do something about it. Lead with that distinction, because it is the one most readers get wrong: hunger and malnutrition are different failures, and stunting is caused as much by repeated infection, unsafe water and the mother's own nutrition as by the quantity of food on the plate. The mechanism to teach is why stunting is measured in economics rather than in medicine — growth faltering in the first thousand days is largely irreversible and shows up two decades later as lower schooling attainment and lower lifetime earnings, which is why nutrition spending is scored as capital investment and why the return estimates are among the highest in development economics. Then what KP actually did, in specifics: which cash transfers were made conditional on what, whether wheat and salt fortification was mandated or voluntary, and how delivery was routed through lady health workers rather than clinics. Who is affected: roughly four in ten Pakistani children under five; who holds power: provincial governments, since the eighteenth amendment devolved health, so there is no federal fix. Structural why for our reader: Pakistan has one of the world's heaviest stunting burdens and a devolved state, which makes provincial comparison the only real evidence available. Treat it as an argued analysis rather than a news report — name the author and their affiliation, and give the survey figures the claims rest on.",
-      "conceptUris": []
-    },
-    {
-      "id": "mirae-korbit-the-exchange-moves-inside-the-bank",
-      "label": "Mirae Asset founder unveils $109 billion vision for former Korbit exchange",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-mirae-korbit-the-exchange-moves-inside-the-bank"
-      ],
-      "eventUri": "eng-11958653",
-      "summary": "Mirae Asset's founder has set out a 150 trillion won ($109bn) plan built around the exchange it just acquired, in a country with 11.3 million verified crypto users and rules for stablecoins and crypto ETFs still being written. Lead with who is doing this, because that is what has changed: this is not a crypto firm scaling up, it is one of Korea's largest conventional asset managers — pensions, funds, insurance distribution — absorbing an exchange, which means custody of retail crypto moves inside the regulated financial system rather than beside it. The mechanism to teach is why that matters more than the headline number: an exchange inside a licensed asset manager can be examined, capitalised and resolved by the financial regulator, and it can also sell crypto exposure through the same branch network that sells pension products, which is how a speculative asset acquires the distribution of a savings product. Then the timing question a reader should ask: the rules are not finished, so a $109bn target announced before the stablecoin and ETF framework is set is partly a lobbying position. Who is affected: Korean retail savers, and every regulator drafting the same rules — the Gulf, Malaysia, Indonesia and Pakistan are all writing frameworks now; who holds power: the FSC. Give the acquisition terms, the timeline, and what is actually approved versus proposed. This follows our earlier piece on Korea's won stablecoin — write it as the institutional half of that story, not a repeat.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-shelf-and-the-chip-one-owner-now",
-      "label": "Nvidia agrees to acquire Hugging Face for $13B",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-the-shelf-and-the-chip-one-owner-now"
-      ],
-      "eventUri": null,
-      "summary": "Nvidia is buying Hugging Face, the repository through which most of the world's open model weights are published and downloaded, for a reported $13 billion. Lead with what Hugging Face actually is, because the reader needs it to see the stakes: it is not a lab or a product but the distribution layer — the place a researcher in Lahore, Cairo or Nairobi goes to get a model they could never train, and the closest thing open AI has to a commons. The mechanism to teach is vertical integration: the company that sells the compute now owns the catalogue of what runs on it, which gives it influence over which formats, kernels and quantisations are first-class, and a model ecosystem optimised for one vendor's hardware is a soft lock-in that no licence agreement has to state. Then the honest limits — the weights themselves stay openly licensed, mirrors exist, and the reporting is of an agreed or in-progress deal, so say exactly which and name the source. Who is affected: every institution outside the US and China whose entire AI capability rests on downloading someone else's weights, which includes the Gulf's sovereign programmes and every university lab in South Asia and Africa; who holds power: a single supplier that is now both the chip and the shelf. Structural why: this is the same argument as this morning's sovereign-stack piece, arriving as a transaction — dependence is constituted upstream, and the upstream just consolidated. Give the price, the structure, any regulatory review expected, and Hugging Face's stated commitments on open access.",
-      "conceptUris": []
-    },
-    {
-      "id": "electrons-in-reverse-tau-is-upstream",
-      "label": "Reverse electron transport connects tauopathy to mitochondrial dysfunction - Nature Reviews Neurology",
-      "firstSeen": "2026-08-27T12:10:12.471Z",
-      "lastCovered": "2026-08-27T12:10:12.471Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-electrons-in-reverse-tau-is-upstream"
-      ],
-      "eventUri": null,
-      "summary": "A new study reported in Nature Reviews Neurology finds that tau protein drives mitochondrial reverse electron transport, offering a causal link between the tau tangles seen in Alzheimer's disease, progressive supranuclear palsy and frontotemporal dementia and the mitochondrial failure that accompanies them. Lead with the question the finding answers, because it is the oldest argument in dementia research: tau aggregation and energy failure have always been observed together, and nobody could say which caused which. The mechanism to teach, in plain terms: mitochondria normally push electrons one way down a chain to make energy, and under certain conditions electrons run backwards, generating a burst of reactive oxygen species that damages the cell — this work says tau is what pushes them backwards, which turns a correlation into a pathway with intervention points. Then the discipline the story requires: this is cell and model biology, the drugable step is not identified, and the field's history of tau and amyloid results that did not translate into a working drug is long and expensive — say so plainly. Who is affected: roughly 57 million people living with dementia, the great majority in low- and middle-income countries where diagnosis itself is scarce; who holds power: the funders who decide which mechanism gets a trial. Give the underlying Neuron paper, its authors and institutions, the models used, and what specifically has not been shown in human tissue.",
       "conceptUris": []
     }
   ]
