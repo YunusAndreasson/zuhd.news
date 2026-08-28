@@ -1,36 +1,39 @@
 {
-  "date": "2026-08-27",
+  "date": "2026-08-28",
   "metrics": {
-    "articles": { "value": 61, "detail": "5 cycles, avg 12/cycle (55 yesterday)" },
-    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.6, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 15, "science": 10, "tech": 13 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
+    "articles": { "value": 63, "detail": "5 cycles, all completed; 63 yesterday" },
+    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 15, "science": 12, "tech": 13 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 17, "AS": 14, "ME": 13, "EU": 11, "AF": 6, "OC": 0 }
+      "breakdown": { "AM": 19, "ME": 14, "EU": 14, "AS": 8, "AF": 6, "OC": 2 }
     },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature / Dawn (tied, 5 each)", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 47,
-    "duplicates": 1,
-    "avgCycleDuration": 1403
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 46,
+    "duplicates": 0,
+    "avgCycleDuration": 1362
   },
-  "experiment": "Skipped — every goal metric is inside target with margin (freshness 0.2, multi-source 8, sci+tech 38%, top-source share 7%, 5 regions). No active experiment to evaluate; no pause gate in effect. The one real defect today is a same-URL duplicate, which lives in scripts/lib/dedup.js and is outside the tunable-parameter surface.",
-  "weakestArea": "Regions, at 5 against a target of 4, is the thinnest margin of any metric: Oceania fell to zero (2 yesterday) and Africa took 6 of 61 slots (10%) against 17 for the Americas. Nothing here breaches target, but the distribution is a Americas/Asia/Middle East triad with Africa and Oceania as remainders rather than as covered regions.",
+  "experiment": "Skipped — every goal metric clears target with margin (freshness 0.3, multi-source 10, sci+tech 40%, 6 regions, top-source share 14%), duplicates are back to zero, and all 5 cycles completed. No active experiment to evaluate and no pause gate in effect; introducing a variable into a clean day would only cost the next evaluation its baseline.",
+  "weakestArea": "Top-source share, at 14% against a 20% ceiling, is the thinnest margin of any goal metric — and it is concentrated rather than diffuse. All 9 Dawn articles are Pakistan stories, and Pakistan is most of what Asia produced today. Asia itself fell to 8 articles from 14 yesterday, so the region contracted onto a single outlet at the same time it shrank: Dawn's news day now effectively sets Asian coverage.",
   "watching": [
-    "Israel–Lebanon buffer zone: the three remaining Maronite villages inside the occupied strip, with the next round of talks carrying no set date.",
-    "Sudan's war spilling across the Chad border, alongside the paused Port Sudan detainee hunger strike.",
-    "Iran explicitly tying Hormuz transit to the Gaza track, with Pakistan simultaneously questioning the truce.",
-    "US trade and industrial escalation on two fronts: planned chip tariffs and a White House ban on foreign grid components.",
-    "Nepal's barrier lake, where a breach risk is already drawing an Indian aid airlift."
+    "Hormuz declared open while the risk premium stays priced in — the market verdict is diverging from the political announcement.",
+    "Indus Waters Treaty rhetoric escalating alongside Pakistan's internal security killings, with India–Pakistan water language hardening.",
+    "GPU-backed lending, where the collateral depreciates faster than the loan amortises — an AI-financing structure worth tracking as rates move.",
+    "Nepal's glacier and barrier-lake sequence continuing into a second week, now with a missing tunnel team and an uncontactable camp.",
+    "US courts repeatedly blocking executive action on mail voting, blacklisting, and state gaming powers — a consistent judicial check pattern this week.",
+    "Iran–Russia: Pezeshkian to meet Putin on September 1, against Iran's refusal to restore the Additional Protocol."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles today after only 2 yesterday — the region is effectively unstaffed in the feed rather than under-selected.",
-    "Science sourcing concentrates on Nature (5 of 10 science pieces), so a single outlet's news day sets the category's agenda.",
-    "Latin America appears mainly through crime and oil framings (InSight Crime, Venezuela, drone defenses) with no economic or scientific coverage from the region.",
-    "Central Asia and the Caucasus are absent from a 61-article day."
+    "Asia halved to 8 articles and 9 of them came through Dawn on Pakistan — India, Southeast Asia and Korea/Japan are thin behind a single-country, single-outlet feed.",
+    "Oceania recovered only to 2 articles, still functionally a remainder region rather than covered.",
+    "Africa held at 6 of 63 (10%), largely Nigeria and Egypt; the Sahel, Horn and Southern Africa outside Daily Maverick are unrepresented.",
+    "Latin America again enters mainly through crime and sanctions framings, with no science or domestic-economy coverage from the region.",
+    "Central Asia and the Caucasus are absent for a second consecutive day."
   ],
-  "context": "Two articles today — 'Israel Blocks Christian Villages' and 'Israel Isolates Christian Villages' — were written from the identical New Lines Magazine URL in the same cycle (both stamped 11:06:05Z), differing only in dateline city and framing. scripts/lib/dedup.js contains no URL matching of any kind (its layers are slug, eventUri, fuzzy slug, and recap title-overlap), so a single source URL entering the selection twice under different headlines is not caught at any stage. This is the same URL-layer gap noted previously and it is now producing visible near-duplicate pairs on the live site, not just theoretical risk. Freshness is computed from only 15 of 61 articles that carry a resolvable publication timestamp, so the 0.2-day median describes a quarter of the day's output. Cycle duration averaged 1403s across 5 completed cycles, with the writer (348s) now the slowest stage and the editor down at 102s."
+  "context": "The URL-layer dedup gap flagged in yesterday's audit produced zero duplicates today, so the defect is intermittent rather than resolved — scripts/lib/dedup.js still has no URL matching (layers are slug, eventUri, fuzzy slug, recap title-overlap) and the same near-duplicate pair can recur whenever one source URL enters a selection twice under different headlines. Freshness continues to be computed from only 16 of 63 articles carrying a resolvable publication timestamp, so the 0.3-day median describes about a quarter of output. Stage timings held: selector 244s, writer 345s (still the slowest), editor 105s, 1362s per cycle overall with no hard timeouts.",
+  "noExperimentReason": "healthy"
 }
