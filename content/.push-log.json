@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-08-02T22:20:09.780Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-08-02-a-resignation-that-is-a-procedure-and-the-mandate-it-carries",
-        "title": "Armenia Reappoints Pashinyan PM",
-        "category": "politics",
-        "eventCoverage": 173,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-corridor-two-coasts-can-agree-and-a-navy-they-cannot-bind",
-        "title": "Iran, Oman Near Hormuz Deal",
-        "category": "economy",
-        "eventCoverage": 46,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-the-treaty-that-worked-because-it-could-not-be-used",
-        "title": "India Suspends Indus Treaty",
-        "category": "politics",
-        "eventCoverage": 33,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-permit-is-an-act-sanctions-that-immigration-does-not-reach",
-        "title": "Kinahan Cartel Visa Renewed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-the-corridor-changes-hands-a-road-decides-what-reaches-obeid",
-        "title": "Army Retakes Kordofan Corridor",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-whose-money-a-fund-where-the-pensioner-has-no-exit",
-        "title": "Dlamini Suspended Over Lanseria",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-harm-in-people-who-are-not-sick-and-who-was-in-the-trial",
-        "title": "Endocrine Therapy Raises Liver Risk",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-writing-a-bit-without-a-current-where-the-leverage-is",
-        "title": "Light Pulses Could Write Memory",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-standard-its-own-authors-enforce-containment-off-world",
-        "title": "Scientists Propose Lunar Quarantine",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-02-a-dollar-that-is-not-one-dollar-fragmentation-as-a-business",
-        "title": "Dollar Tokens Are Fragmenting",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-02-the-treaty-that-worked-because-it-could-not-be-used",
-      "title": "India Suspends Indus Treaty",
-      "category": "politics",
-      "body": "India suspended a treaty with no exit",
-      "eventCoverage": 33,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India suspends Indus Waters Treaty, cutting off Pakistan's water supply",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 15
-    }
-  },
-  {
     "timestamp": "2026-08-03T04:21:48.497Z",
     "candidateCount": 13,
     "candidates": [
@@ -10026,5 +9933,70 @@
     "selected": null,
     "skipReason": "all 6 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-08-28T17:24:17.718Z",
+    "candidateCount": 6,
+    "candidates": [
+      {
+        "slug": "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond",
+        "title": "PayPal Takeover Talks Collapse",
+        "category": "economy",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-the-tunnel-team-the-missing-are-underground",
+        "title": "India Sends Tunnel Rescuers",
+        "category": "science",
+        "eventCoverage": 78,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-ten-months-the-instrument-changed-not-the-tempo",
+        "title": "Israeli Drone Strike Kills Three",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant",
+        "title": "ECP Reverses Senate Vacancy",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-the-bidder-that-walked-knew-the-asset",
+        "title": "K-Electric Exits Fesco Bid",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter",
+        "title": "Antenna Design Curbs 5G Interference",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-28-the-tunnel-team-the-missing-are-underground",
+      "title": "India Sends Tunnel Rescuers",
+      "category": "science",
+      "body": "About 100 people may be trapped",
+      "eventCoverage": 78,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "India sends tunnel rescue team as 100 trapped in Nepal floods",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
   }
 ]
