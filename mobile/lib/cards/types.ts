@@ -149,6 +149,8 @@ export interface BeliefCard extends CardBase {
  *  are hungry, how many events a monitor is tracking, what a body determined. */
 export interface ConditionCard extends CardBase {
   kind: 'condition';
+  /** How figures read visually: proportional state or dated sequence. */
+  visualStyle?: 'distribution' | 'timeline';
   figures?: CardFigure[];
   rows?: CompareRow[];
   rowsLabel?: string;
@@ -162,6 +164,8 @@ export interface CardFigure {
   label: string;
   value: string;
   note?: string;
+  /** Optional raw magnitude for proportional rendering; never display-formatted. */
+  weight?: number;
 }
 
 export type Card = ReadingCard | ComparisonCard | BeliefCard | ConditionCard;

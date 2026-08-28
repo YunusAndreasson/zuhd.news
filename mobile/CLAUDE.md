@@ -58,7 +58,7 @@ a release build cannot name the offender if one survives.
 
 ## The two axes
 
-Horizontal swipe = section (`news` · `commodities` · `money` · `outlook`), vertical
+Horizontal swipe = section (`news` · `prices` · `money` · `outlook`), vertical
 paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
@@ -68,11 +68,10 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   food, energy, rates, shipping, Wikipedia pageviews and a calendar — eight
   cards, three of them not markets by any reading — beside `crypto`, `metals`
   and `currencies` at two or three cards each, all three asking one question.
-  Now `commodities` is what things cost, `money` is what your money is worth
+  Now `prices` is what things cost, `money` is what your money is worth
   and what borrowing costs, `outlook` is what is not yet a fact. The first two
-  take the FT's and Reuters' own word for that ground rather than an invented
-  one — `prices`/`money` was the first pair and the two words read as the same
-  question. Four labels also *fit* (~330pt all-in against a 360pt phone, where
+  use the questions a reader brings rather than the data provider's filing
+  system. Four labels also *fit* (~330pt all-in against a 360pt phone, where
   six measured past 440 in type alone), so the whole axis is visible at once.
   - The two placements to know, because both look wrong until you know why:
     **VIX is in `outlook`**, since what saved it from the cut that took the S&P
@@ -83,7 +82,7 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   hazards, genocide determinations) were a section until an audit killed it:
   median famine analysis seven months old, conflict window 145 days behind, one
   determination 2,902 days old. They now gate on their own data being new and
-  lead `commodities` on the day one is. Apply the same test to anything new — the
+  lead `prices` on the day one is. Apply the same test to anything new — the
   eleven-strait table and the release calendar both failed it later and are now
   gone and gated respectively.
 - **A gated card says so, and `lead` is how.** A condition card and a disrupted
@@ -98,7 +97,7 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   paragraph, what is happening there now, the weather and the series — so a
   flat sorted table of the same eleven names was a worse copy of something the
   reader could already touch. Only `straitMovedCard` survives, gated on
-  `CHOKEPOINT_DISRUPTED` and leading `commodities` on the day it fires. Same rule
+  `CHOKEPOINT_DISRUPTED` and leading `prices` on the day it fires. Same rule
   for anything else the globe already carries.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;

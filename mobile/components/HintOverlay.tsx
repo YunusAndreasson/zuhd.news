@@ -16,7 +16,7 @@ import { Text } from './primitives';
 // One whispered line per undiscoverable interaction. No icon, no arrow, no
 // dome gold — a hint is chrome whispering, not the brand accent speaking.
 const HINT_COPY: Record<HintId, string> = {
-  swipe: 'swipe up for the next story',
+  swipe: 'swipe up for next · sideways for sections',
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
   globe: 'tap a country on the globe',

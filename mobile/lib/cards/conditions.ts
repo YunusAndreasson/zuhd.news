@@ -26,14 +26,14 @@ import type { Card, CardFigure, ConditionCard } from './types';
  * because it is important; it appears because it changed. A fresh IPC
  * analysis, a newly published determination, a conflict window that has caught
  * up — each of those is an event, and on the day it lands the card leads
- * `commodities`. On every other day the column is the instruments, which do move.
+ * `prices`. On every other day the column is the instruments, which do move.
  *
  * Every card here therefore carries `lead: true`, which is not a position but
  * a claim: `CardFrame` prints `today ·` before the kicker, and the reader can
  * tell a famine analysis published this quarter from the gold-to-silver ratio
  * without having to already know which of the two the app gates.
  *
- * `commodities` is where they land because there is no general column any more —
+ * `prices` is where they land because there is no general column any more —
  * the axis is cut by reader question now, and famine is food and a hazard is
  * what closes a harvest or a strait. A genocide determination strains that
  * seam and is the one to watch: if it starts reading wrong at the head of a
@@ -137,13 +137,14 @@ function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
   // the same fact twice on one screen. The rows are the tails *inside* it,
   // which is the part the reading cannot say.
   const figures: CardFigure[] = [
-    { label: 'phase 4 · emergency', value: formatCount(p4), note: 'of them' },
+    { label: 'phase 4 · emergency', value: formatCount(p4), note: 'of them', weight: p4 },
   ];
   if (p5 > 0) {
     figures.push({
       label: 'phase 5 · catastrophe',
       value: formatCount(p5),
       note: p5Countries.length === 1 ? `all in ${p5Countries[0]}` : 'of them',
+      weight: p5,
     });
   }
 
@@ -155,6 +156,7 @@ function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
   return {
     id: 'famine',
     kind: 'condition',
+    visualStyle: 'distribution',
     lead: true,
     kicker: 'hunger',
     title: 'Acute food insecurity',
@@ -202,6 +204,7 @@ function conflictCard(conflict: ConflictSnapshot | null, now: Date): ConditionCa
   return {
     id: 'conflict',
     kind: 'condition',
+    visualStyle: 'distribution',
     lead: true,
     kicker: 'conflict',
     title: 'One week of recorded violence',
@@ -270,11 +273,13 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
       label: level.toLowerCase(),
       value: formatCount(counts[level]),
       note: ALERT_GLOSS[level],
+      weight: counts[level],
     }));
 
   return {
     id: 'disasters',
     kind: 'condition',
+    visualStyle: 'distribution',
     lead: true,
     kicker: 'hazard',
     title: 'What is being watched',
@@ -319,6 +324,7 @@ function determinationCard(determinations: Determination[], now: Date): Conditio
   return {
     id: 'determinations',
     kind: 'condition',
+    visualStyle: 'timeline',
     lead: true,
     kicker: 'determination',
     title: sorted.length === 1 ? latest.name : 'Findings of genocide',
@@ -337,6 +343,7 @@ function determinationCard(determinations: Determination[], now: Date): Conditio
       label: d.name,
       value: formatIsoDate(d.date),
       note: d.document,
+      weight: Date.parse(d.date),
     })),
     link: latest.url,
     sourceLabel: latest.body,

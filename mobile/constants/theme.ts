@@ -431,7 +431,7 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * conflict, hazards, genocide determinations) was cut on exactly that test:
  * the median famine analysis was seven months old and one determination was
  * eight years old. Those cards survive, gated on their own data being new, and
- * lead `commodities` on the rare day one of them is (see `lib/cards/conditions.ts`).
+ * lead `prices` on the rare day one of them is (see `lib/cards/conditions.ts`).
  *
  * Four labels fit a phone at default type — roughly 216pt of small caps
  * against a 360pt screen, where six measured past 440 and forced the rail to
@@ -443,7 +443,7 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'commodities', 'money', 'outlook'] as const;
+export const SECTIONS = ['news', 'prices', 'money', 'outlook'] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */

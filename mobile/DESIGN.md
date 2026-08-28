@@ -187,9 +187,9 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   guard that was supposed to catch this missed all three by a word, because a
   same-opening test cannot catch a same-meaning collision. The rule is
   structural now (`definitionUnlessStanding`): if the pipeline wrote a
-  `standing`, the hand-written sentence does not render. Same rule, applied per
-  column, is why the prediction explainer appears on the first belief card
-  only — three cards deep it was the identical 200 characters three times.
+  `standing`, the hand-written sentence does not render. Prediction cards keep
+  the full primer on the first item and a short per-piece explanation after it:
+  the swipe boundary requires every screen to remain understandable alone.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
@@ -212,6 +212,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.
+- **The swipe boundary validates and ranks.** `prepareSwipeCards` is the only
+  path from builder output into `CardPager`: it requires a meaningful visual
+  and explanatory copy, attaches numeric ranking metadata, and sorts urgent
+  updates before ties to today's news, unusual movement against the series'
+  own history, and finally the builder's stable editorial order. Raw display
+  units are never compared. Refresh reordering anchors the visible card by id.
 - **Number grammar lives in `lib/cards/format.ts`, and using it is not
   optional.** Two rules there exist because getting them wrong produces a
   plausible, wrong sentence: a change is always measured over a window the card
@@ -245,7 +251,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the four sections (`news` · `commodities` · `money` · `outlook`); vertical
+  between the four sections (`news` · `prices` · `money` · `outlook`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
 - **The sections are cut by reader question, not by asset class.** It was six

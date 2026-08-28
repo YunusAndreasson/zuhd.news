@@ -1,4 +1,12 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { type NativeScrollEvent, type NativeSyntheticEvent, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -9,7 +17,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScrollState } from '../../hooks/useScrollState';
-import type { Card } from '../../lib/cards/types';
+import type { SwipeCard } from '../../lib/cards/rank';
 import { hapticTick } from '../../lib/haptics';
 import { EmptyState } from '../EmptyState';
 import { CardView } from './CardView';
@@ -33,7 +41,7 @@ export interface CardPagerRef {
 }
 
 interface CardPagerProps {
-  cards: Card[];
+  cards: SwipeCard[];
   viewportHeight: number;
   /** Index of this section in the horizontal pager — the slot it owns in
    *  `progressesSV`, which drives the rail's fill. */
@@ -56,7 +64,7 @@ export const CardPager = memo(function CardPager({
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
-  const listRef = useAnimatedRef<Animated.FlatList<Card>>();
+  const listRef = useAnimatedRef<Animated.FlatList<SwipeCard>>();
   const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
@@ -69,6 +77,23 @@ export const CardPager = memo(function CardPager({
   useImperativeHandle(ref, () => ({
     scrollToTop: () => listRef.current?.scrollToOffset({ offset: 0, animated: true }),
   }));
+
+  // A refresh can legitimately reorder the deck as a new event, a stronger
+  // news tie or an unusual move arrives. Keep the reader on the same card by
+  // stable id instead of silently replacing the page under them.
+  const previousIdsRef = useRef<string[]>([]);
+  useLayoutEffect(() => {
+    const nextIds = cards.map((card) => card.id);
+    const previousIds = previousIdsRef.current;
+    previousIdsRef.current = nextIds;
+    if (previousIds.length === 0 || nextIds.length === 0) return;
+    const previousId = previousIds[currentIndexRef.current];
+    if (!previousId) return;
+    const nextIndex = nextIds.indexOf(previousId);
+    if (nextIndex < 0 || nextIndex === currentIndexRef.current) return;
+    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
+    setCurrentIndex(nextIndex);
+  }, [cards, itemHeight, listRef, setCurrentIndex]);
 
   /**
    * Land on a page, always — but only once the list has actually stopped.
@@ -219,7 +244,7 @@ export const CardPager = memo(function CardPager({
   });
 
   const getItemLayout = useCallback(
-    (_: ArrayLike<Card> | null | undefined, index: number) => ({
+    (_: ArrayLike<SwipeCard> | null | undefined, index: number) => ({
       length: itemHeight,
       offset: itemHeight * index,
       index,
@@ -228,13 +253,13 @@ export const CardPager = memo(function CardPager({
   );
 
   const renderItem = useCallback(
-    ({ item, index }: { item: Card; index: number }) => (
+    ({ item, index }: { item: SwipeCard; index: number }) => (
       <CardView card={item} itemHeight={itemHeight} index={index} scrollY={scrollY} />
     ),
     [itemHeight, scrollY],
   );
 
-  const keyExtractor = useCallback((item: Card) => item.id, []);
+  const keyExtractor = useCallback((item: SwipeCard) => item.id, []);
 
   if (count === 0) {
     return (

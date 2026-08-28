@@ -80,7 +80,7 @@ describe('buildInstrumentCards', () => {
     expect(allOf(columns)).toEqual([]);
     // Every key still present, so a section renders its empty state rather
     // than crashing on an undefined column.
-    expect(Object.keys(columns).sort()).toEqual(['commodities', 'money', 'outlook']);
+    expect(Object.keys(columns).sort()).toEqual(['money', 'outlook', 'prices']);
   });
 
   it('files each card in the column a reader would go looking for it in', () => {
@@ -100,7 +100,7 @@ describe('buildInstrumentCards', () => {
     });
     // What things cost: the threshold first, then what is eaten and burned,
     // then the ratio that is a curiosity rather than a Tuesday reading.
-    expect(columns.commodities.map((c) => c.id)).toEqual(['nisab', 'brent', 'metals']);
+    expect(columns.prices.map((c) => c.id)).toEqual(['nisab', 'brent', 'metals']);
     // What money is worth: the table, then the currencies whose rows were the
     // news, then borrowing, then the two coins. All three currencies move 10%
     // on the fixture, so all three clear the mover threshold and the limit is
@@ -115,7 +115,7 @@ describe('buildInstrumentCards', () => {
     expect(columns.outlook.map((c) => c.id)).toEqual(['poly-x']);
     // A price is not an expectation and a coin is not a price. These three crossings
     // are the ones the old asset-class split got wrong in both directions.
-    expect(columns.commodities.map((c) => c.id)).not.toContain('btc');
+    expect(columns.prices.map((c) => c.id)).not.toContain('btc');
     expect(columns.money.map((c) => c.id)).not.toContain('brent');
     expect(columns.outlook.map((c) => c.id)).not.toContain('nisab');
   });
@@ -161,9 +161,9 @@ describe('buildInstrumentCards', () => {
     });
     // The strait is here because it went quiet this week; the nisab is here
     // every day. Until the mark existed both arrived in identical weight.
-    expect(find(columns.commodities, 'strait-kerch')?.lead).toBe(true);
-    expect(find(columns.commodities, 'nisab')?.lead).toBeUndefined();
-    expect(find(columns.commodities, 'metals')?.lead).toBeUndefined();
+    expect(find(columns.prices, 'strait-kerch')?.lead).toBe(true);
+    expect(find(columns.prices, 'nisab')?.lead).toBeUndefined();
+    expect(find(columns.prices, 'metals')?.lead).toBeUndefined();
   });
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
@@ -467,7 +467,7 @@ describe('buildInstrumentCards', () => {
     expect(moved?.changed).toContain('8.8');
     // It is on screen because it moved, and it says so.
     expect(moved?.lead).toBe(true);
-    // It leads `commodities` — freight that has stopped moving is a price story
+    // It leads `prices` — freight that has stopped moving is a price story
     // before it is anything else.
     const columns = buildInstrumentCards({
       trends: snapshot([indicator({ id: 'brent' })]),
@@ -478,7 +478,7 @@ describe('buildInstrumentCards', () => {
       ],
       articles: [],
     });
-    expect(columns.commodities[0]?.id).toBe('strait-kerch');
+    expect(columns.prices[0]?.id).toBe('strait-kerch');
     // The eleven-strait comparison table is gone. The globe on `news` draws
     // all eleven as tappable rings and `ChokepointSheet` says more about any
     // of them than a flat sorted list of the same names could.
@@ -966,7 +966,7 @@ describe('one definition per screen', () => {
     expect(columns.money[0]?.why).toBeUndefined();
   });
 
-  it('explains what a prediction contract is once per column, not once per card', () => {
+  it('gives every prediction swipe piece an explanation without repeating the long primer', () => {
     // Three cards deep, and the explainer is the same 200 characters on each —
     // a reader met it three times in under a minute while two of the three
     // cards had no `standing` and so nothing else to say.
@@ -981,8 +981,8 @@ describe('one definition per screen', () => {
     });
     expect(columns.outlook).toHaveLength(3);
     expect(columns.outlook[0]?.whatItIs).toContain('pays out if this happens');
-    expect(columns.outlook[1]?.whatItIs).toBeUndefined();
-    expect(columns.outlook[2]?.whatItIs).toBeUndefined();
+    expect(columns.outlook[1]?.whatItIs).toContain('not a forecast');
+    expect(columns.outlook[2]?.whatItIs).toContain('not a forecast');
   });
 });
 

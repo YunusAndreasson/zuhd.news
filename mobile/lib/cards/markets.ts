@@ -36,7 +36,7 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * of them — in a sheet reached by tapping a word.
  *
  * Three columns rather than one, and they are cut by the question the reader
- * arrived with: `commodities` (what things cost — the zakat threshold, the two
+ * arrived with: `prices` (what things cost — the zakat threshold, the two
  * grains, crude, the two metals), `money` (what your money is worth and what
  * borrowing costs — fifteen currencies, the ten-year, the two coins) and
  * `outlook` (what is not yet a fact — prediction contracts, where curiosity
@@ -736,7 +736,7 @@ function primaryDelta(c: Chokepoint): number | null {
  * sheet and the row tones read, deliberately, because a strait that is
  * disrupted on a card and quiet in the sheet that card opens is the exact bug
  * `lib/valence.ts` was written to end. Nothing clears it, no card; one does,
- * and it leads `commodities` carrying the `today` mark.
+ * and it leads `prices` carrying the `today` mark.
  *
  * The gate is one-sided for the reason the chip is: a strait above its own
  * normal is usually freight rerouted *to* it, which is the same disruption
@@ -852,24 +852,14 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         // the same way on the screen, and the app has no business tinting
         // either of them green.
         delta: deltaFrom(change, null, { unit: 'points' }),
-        // Once per column, not once per card.
-        //
-        // This paragraph is the same 200 characters on every prediction card,
-        // and the column is three cards deep — so a reader swiping through it
-        // met the identical explanation of what a prediction contract is three
-        // times in under a minute, while two of the three cards had no
-        // `standing` and therefore nothing else to say. That is the shape of
-        // filler: text that is correct, is not wrong anywhere, and stops being
-        // read after the first screen.
-        //
-        // It stays on the first card because a reader who lands here from the
-        // section rail does need it once. After that the kicker ("what traders
-        // think") and the note under the number ("priced today") carry it, and
-        // they carry it in four words instead of forty.
+        // The first card teaches the instrument fully; later cards keep a
+        // one-sentence version. Repeating the long paragraph becomes filler,
+        // but omitting an explanation would fail the swipe-piece contract: a
+        // reader may arrive at any card after a refresh reorders the deck.
         whatItIs:
           position === 0
             ? 'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.'
-            : undefined,
+            : 'A market price on whether this outcome happens, not a forecast or a measured fact.',
         // In points, never per cent: a contract going 26 → 86 moved 60 points,
         // and the chip says so. What is left for the sentence is the range,
         // which is the part that says how settled the belief is — a number
@@ -1043,6 +1033,7 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
   return {
     id: 'calendar',
     kind: 'condition',
+    visualStyle: 'timeline',
     kicker: 'ahead',
     title: 'What is already scheduled',
     reading: String(shown.length),
@@ -1055,6 +1046,7 @@ function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null
       label: formatEventDate(e.date),
       value: e.title,
       note: e.institution,
+      weight: Date.parse(e.date),
     })),
     sourceLabel: 'FRED · central-bank calendars',
   };
@@ -1099,13 +1091,13 @@ export interface InstrumentCardInputs {
 
 /** One column per section that holds instruments. Keys match `SECTIONS`. */
 export interface InstrumentColumns {
-  commodities: Card[];
+  prices: Card[];
   money: Card[];
   outlook: Card[];
 }
 
 const EMPTY_COLUMNS: InstrumentColumns = {
-  commodities: [],
+  prices: [],
   money: [],
   outlook: [],
 };
@@ -1116,7 +1108,7 @@ const EMPTY_COLUMNS: InstrumentColumns = {
  * Order within a column is reading order, and each column opens with the card
  * that answers its own question most directly.
  *
- * `commodities` opens with the nisab. It moves daily, it is the one price in the
+ * `prices` opens with the nisab. It moves daily, it is the one price in the
  * app that is also an obligation, and it is the card no other news app
  * carries; the documented eat-then-burn order runs beneath it. On a day when a
  * strait has actually gone quiet, that card takes the head instead — freight
@@ -1146,7 +1138,7 @@ export function buildInstrumentCards({
   const keep = (cards: (Card | null)[]): Card[] => cards.filter((c): c is Card => c !== null);
 
   return {
-    commodities: keep([
+    prices: keep([
       straitMovedCard(chokepoints),
       nisabCard(trends),
       staplesCard(trends, articles),

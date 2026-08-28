@@ -57,7 +57,7 @@ import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildConditionCards } from '../lib/cards/conditions';
 import { buildInstrumentCards } from '../lib/cards/markets';
-import type { Card } from '../lib/cards/types';
+import { prepareSwipeCards, type SwipeCard } from '../lib/cards/rank';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
@@ -75,7 +75,7 @@ const newsListRef = createRef<ArticleListRef>();
 /** Empty-state copy per instrument column. A column is empty when the
  *  snapshot did not carry its series, which is a quiet degrade, not an error. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  commodities: {
+  prices: {
     message: 'no prices yet',
     hint: 'Metals, grain and crude arrive with the next cycle',
   },
@@ -322,13 +322,17 @@ export default function HomeScreen() {
 
   // A standing condition that has just changed outranks the nisab and the oil
   // price, so it leads rather than trails. There is no general column since
-  // the axis was cut by reader question, and `commodities` is the closest honest
+  // the axis was cut by reader question, and `prices` is the closest honest
   // home: famine is food, a hazard is what closes a harvest or a strait. On
   // almost every day `conditionCards` is empty and this is exactly
-  // `columns.commodities`.
-  const sectionCards = useMemo<Record<string, Card[]>>(
-    () => ({ ...columns, commodities: [...conditionCards, ...columns.commodities] }),
-    [columns, conditionCards],
+  // `columns.prices`.
+  const sectionCards = useMemo<Record<string, SwipeCard[]>>(
+    () => ({
+      prices: prepareSwipeCards([...conditionCards, ...columns.prices], river),
+      money: prepareSwipeCards(columns.money, river),
+      outlook: prepareSwipeCards(columns.outlook, river),
+    }),
+    [columns, conditionCards, river],
   );
 
   // Active GDACS alerts whose primary or affected-country list includes the

@@ -3,7 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import type { Card, CardFigure } from '../../lib/cards/types';
+import type { SwipeCard } from '../../lib/cards/rank';
+import type { CardFigure } from '../../lib/cards/types';
 import { useOpenLink } from '../../lib/open-link';
 import { CompareBlock } from '../blocks/CompareBlock';
 import { TrendBlock } from '../blocks/TrendBlock';
@@ -35,8 +36,15 @@ import { CardFrame } from './CardFrame';
 /** Secondary figures — nisab's two metals, the phase bands, the calendar.
  *  A two-column list rather than a table: the label is the question and the
  *  value is the answer, and a rule between them would imply a total. */
-const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
+const Figures = memo(function Figures({
+  figures,
+  visualStyle = 'distribution',
+}: {
+  figures: CardFigure[];
+  visualStyle?: 'distribution' | 'timeline';
+}) {
   const { colors } = useTheme();
+  const maxWeight = Math.max(0, ...figures.map((figure) => figure.weight ?? 0));
   return (
     <View style={styles.figures}>
       {figures.map((f, i) => (
@@ -56,19 +64,47 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
             i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
           ]}
         >
-          <View style={styles.figureLabel}>
-            <Text variant="labelSm" tone="secondary">
-              {f.label}
-            </Text>
-            {f.note ? (
-              <Text variant="caption" tone="secondary">
-                {f.note}
+          {visualStyle === 'timeline' ? (
+            <View style={styles.timelineMark}>
+              {i > 0 ? (
+                <View style={[styles.timelineBefore, { backgroundColor: colors.rule }]} />
+              ) : null}
+              <View style={[styles.timelineDot, { backgroundColor: colors.textEmphasis }]} />
+              {i < figures.length - 1 ? (
+                <View style={[styles.timelineAfter, { backgroundColor: colors.rule }]} />
+              ) : null}
+            </View>
+          ) : null}
+          <View style={styles.figureContent}>
+            <View style={styles.figureMainRow}>
+              <View style={styles.figureLabel}>
+                <Text variant="labelSm" tone="secondary">
+                  {f.label}
+                </Text>
+                {f.note ? (
+                  <Text variant="caption" tone="secondary">
+                    {f.note}
+                  </Text>
+                ) : null}
+              </View>
+              <Text variant="bodyEmphasis" style={styles.figureValue}>
+                {f.value}
               </Text>
+            </View>
+            {visualStyle === 'distribution' && maxWeight > 0 && f.weight != null ? (
+              <View style={[styles.figureBarTrack, { backgroundColor: colors.rule }]}>
+                <View
+                  style={[
+                    styles.figureBarFill,
+                    {
+                      backgroundColor: colors.textEmphasis,
+                      width: `${Math.max(2, (f.weight / maxWeight) * 100)}%`,
+                    },
+                  ]}
+                />
+              </View>
             ) : null}
           </View>
-          <Text variant="bodyEmphasis" style={styles.figureValue}>
-            {f.value}
-          </Text>
         </View>
       ))}
     </View>
@@ -81,7 +117,7 @@ export const CardView = memo(function CardView({
   index,
   scrollY,
 }: {
-  card: Card;
+  card: SwipeCard;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
@@ -98,7 +134,7 @@ export const CardView = memo(function CardView({
   );
 });
 
-function renderBody(card: Card, onPress: () => void) {
+function renderBody(card: SwipeCard, onPress: () => void) {
   switch (card.kind) {
     case 'reading':
       return (
@@ -143,7 +179,7 @@ function renderBody(card: Card, onPress: () => void) {
     case 'condition':
       return (
         <>
-          {card.figures ? <Figures figures={card.figures} /> : null}
+          {card.figures ? <Figures figures={card.figures} visualStyle={card.visualStyle} /> : null}
           {card.rows ? (
             <CompareBlock rows={card.rows} label={card.rowsLabel} variant="article" />
           ) : null}
@@ -156,8 +192,7 @@ const styles = StyleSheet.create({
   figures: { marginBottom: SPACING.md },
   figureRow: {
     flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'space-between',
+    alignItems: 'stretch',
     gap: SPACING.md,
     // Tight rows. A figure list is two or three lines of data between the
     // card's opening and its chart, and every point of padding here comes
@@ -165,5 +200,37 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xs,
   },
   figureLabel: { flexShrink: 1 },
+  figureContent: { flex: 1 },
+  figureMainRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    gap: SPACING.md,
+  },
   figureValue: { flexShrink: 0, textAlign: 'right' },
+  figureBarTrack: {
+    height: StyleSheet.hairlineWidth,
+    marginTop: SPACING.xs,
+    overflow: 'hidden',
+  },
+  figureBarFill: { height: '100%' },
+  timelineMark: { width: SPACING.sm, alignItems: 'center' },
+  timelineDot: {
+    width: SPACING.xs,
+    height: SPACING.xs,
+    borderRadius: SPACING.xs,
+    marginTop: SPACING.xs,
+  },
+  timelineBefore: {
+    position: 'absolute',
+    top: 0,
+    width: StyleSheet.hairlineWidth,
+    height: SPACING.sm,
+  },
+  timelineAfter: {
+    position: 'absolute',
+    top: SPACING.sm,
+    bottom: -SPACING.sm,
+    width: StyleSheet.hairlineWidth,
+  },
 });
