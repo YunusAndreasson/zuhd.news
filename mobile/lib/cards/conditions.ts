@@ -25,20 +25,13 @@ import type { Card, CardFigure, ConditionCard } from './types';
  * So each card is gated on *its own data being new*. Nothing here appears
  * because it is important; it appears because it changed. A fresh IPC
  * analysis, a newly published determination, a conflict window that has caught
- * up — each of those is an event, and on the day it lands the card leads
- * `prices`. On every other day the column is the instruments, which do move.
+ * up — each of those is an event and belongs among the other measurements in
+ * `now`, not inside a market category it does not describe.
  *
- * Every card here therefore carries `lead: true`, which is not a position but
- * a claim: `CardFrame` prints `today ·` before the kicker, and the reader can
- * tell a famine analysis published this quarter from the gold-to-silver ratio
- * without having to already know which of the two the app gates.
- *
- * `prices` is where they land because there is no general column any more —
- * the axis is cut by reader question now, and famine is food and a hazard is
- * what closes a harvest or a strait. A genocide determination strains that
- * seam and is the one to watch: if it starts reading wrong at the head of a
- * column about what things cost, the answer is a gated column of its own, not
- * a looser gate here.
+ * Event-dated cards carry `lead: true`, which makes `CardFrame` print
+ * `current ·`. IPC does not publish a reliable release timestamp, only the
+ * period an analysis covers, so its card deliberately makes no freshness
+ * claim in the kicker.
  *
  * The thresholds below are per-source because the cadences are: a monthly
  * dataset that is three weeks old is current, and a determination that is
@@ -90,26 +83,27 @@ const PHASE_SCALE: { phase: number; name: string; gloss: string }[] = [
 ];
 
 /**
- * How many people are in acute food insecurity right now, and where.
+ * How many people are in Emergency or Catastrophe in the published areas.
  *
- * `p3plus` is the number that describes a crisis — phase 3 is the threshold at
- * which the classification calls for urgent action — and `p4`/`p5` are tails
- * *inside* it, never additions to it. Getting that wrong double-counts several
- * million people, which is why the shape is documented on the type.
+ * `/api/ipc.json` deliberately contains only areas whose overall
+ * classification is phase 4 or 5. Its `p3plus` field is therefore not a full
+ * phase-3 total for the named countries: phase-3 areas were removed upstream.
+ * The card must headline the phase-4 and phase-5 populations the payload can
+ * account for, rather than presenting a partial crisis total as complete.
  */
 function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
   if (!ipc || ipc.areas.length === 0) return null;
 
-  // Gate on the newest analysis in the file, not on when the file was built.
-  // The build runs five times a day; the analyses behind it run quarterly, and
-  // it is the analysis that has to be new for this to be news.
+  // Gate on the end of the newest covered period, not its beginning and not
+  // the time the JSON mirror was rebuilt. A quarterly analysis is still in
+  // force near the end of its period; measuring age from `from` made it expire
+  // precisely when it was most current.
   const newest = ipc.areas.reduce(
-    (min, a) => Math.min(min, daysSince(a.from, now)),
+    (min, a) => Math.min(min, daysSince(a.to, now)),
     Number.POSITIVE_INFINITY,
   );
   if (newest > FRESH_DAYS.famine) return null;
 
-  let p3plus = 0;
   let p4 = 0;
   let p5 = 0;
   // Keyed by ISO-2 rather than the record's ISO-3, because the shared
@@ -117,12 +111,12 @@ function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
   // thing it exists to do.
   const byCountry = new Map<string, number>();
   for (const area of ipc.areas) {
-    p3plus += area.pop.p3plus;
     p4 += area.pop.p4;
     p5 += area.pop.p5;
-    byCountry.set(area.iso2, (byCountry.get(area.iso2) ?? 0) + area.pop.p3plus);
+    byCountry.set(area.iso2, (byCountry.get(area.iso2) ?? 0) + area.pop.p4 + area.pop.p5);
   }
-  if (p3plus <= 0) return null;
+  const severe = p4 + p5;
+  if (severe <= 0) return null;
 
   const ranked = [...byCountry.entries()].sort((a, b) => b[1] - a[1]);
   const worst = ranked[0];
@@ -133,37 +127,38 @@ function famineCard(ipc: IpcSnapshot | null, now: Date): ConditionCard | null {
     ...new Set(ipc.areas.filter((a) => a.pop.p5 > 0).map((a) => displayNameFromCode(a.iso2))),
   ];
 
-  // The phase-3 total is the reading; repeating it as the first row would be
-  // the same fact twice on one screen. The rows are the tails *inside* it,
-  // which is the part the reading cannot say.
   const figures: CardFigure[] = [
-    { label: 'phase 4 · emergency', value: formatCount(p4), note: 'of them', weight: p4 },
+    { label: 'phase 4 · emergency', value: formatCount(p4), weight: p4 },
   ];
   if (p5 > 0) {
     figures.push({
       label: 'phase 5 · catastrophe',
       value: formatCount(p5),
-      note: p5Countries.length === 1 ? `all in ${p5Countries[0]}` : 'of them',
+      note: p5Countries.length === 1 ? `all in ${p5Countries[0]}` : undefined,
       weight: p5,
     });
   }
 
+  const latestEnd = ipc.areas
+    .map((area) => area.to)
+    .sort()
+    .at(-1);
+  const period = latestEnd ? ` Latest covered period ended ${formatIsoDate(latestEnd)}.` : '';
   const changed =
     worst && ranked.length > 1
-      ? `Across ${ipc.areas.length} analysed areas in ${ipc.countries.length} countries. ${displayNameFromCode(worst[0])} alone accounts for ${Math.round((worst[1] / p3plus) * 100)}% of them.`
-      : `Across ${ipc.areas.length} analysed areas.`;
+      ? `Across ${ipc.areas.length} areas classified Emergency or worse in ${ipc.countries.length} countries.${period} ${displayNameFromCode(worst[0])} accounts for ${Math.round((worst[1] / severe) * 100)}% of the people shown.`
+      : `Across ${ipc.areas.length} areas classified Emergency or worse.${period}`;
 
   return {
     id: 'famine',
     kind: 'condition',
     visualStyle: 'distribution',
-    lead: true,
-    kicker: 'hunger',
-    title: 'Acute food insecurity',
-    reading: formatCount(p3plus),
-    readingNote: 'people, phase 3 or worse',
+    kicker: 'latest analysis',
+    title: 'Emergency food insecurity',
+    reading: formatCount(severe),
+    readingNote: 'people in phase 4 or 5',
     whatItIs:
-      'The IPC classifies districts, not countries, on a five-step scale of how badly households are eating. Phase 3 is where the scale starts calling for urgent action.',
+      'The IPC classifies districts, not countries, on a five-step scale of how badly households are eating. This view includes only areas classified Emergency or Catastrophe.',
     changed,
     why: PHASE_SCALE.map((p) => `${p.phase} · ${p.name} — ${p.gloss}`).join('\n'),
     figures,
@@ -211,12 +206,12 @@ function conflictCard(conflict: ConflictSnapshot | null, now: Date): ConditionCa
     reading: formatCount(fatalities),
     readingNote: `people killed in ${conflict.events.length} events`,
     whatItIs:
-      'Every event here was reported by at least one source and coded by hand — the date, the place, the actors and the death toll checked one at a time.',
+      'This is not a live count. UCDP researchers code each event from published reports, including its date, location, actors and reported deaths.',
     // The lag sentence has to match the actual lag. This card only ships when
     // upstream has caught up, so "months old" — true when the window was 145
     // days behind — would now be a card contradicting its own date line.
-    changed: `${formatDateRange(conflict.windowStart, conflict.windowEnd)}, published ${Math.round(daysSince(conflict.windowEnd, now))} days after it closed. Nothing here is live: every event was coded by hand first.`,
-    why: 'Counting the dead is contested work. A number that arrives fast is usually a claim by one side; a number that arrives slowly has been checked against several. The lag is the method, not a fault in it.',
+    changed: `${formatDateRange(conflict.windowStart, conflict.windowEnd)}, published ${Math.round(daysSince(conflict.windowEnd, now))} days after it closed.`,
+    why: 'Fatality estimates can change as UCDP reviews additional reporting.',
     rows: ranked.map(([country, count]) => ({
       label: country,
       value: `${count} ${count === 1 ? 'event' : 'events'}`,
@@ -286,12 +281,12 @@ function disasterCard(alerts: GdacsAlert[], now: Date): ConditionCard | null {
     reading: formatCount(total),
     readingNote: 'active hazard alerts',
     whatItIs:
-      'GDACS models the likely humanitarian impact of an earthquake, storm, flood, wildfire, drought or eruption within hours of it happening, and grades the response it would take.',
+      'GDACS estimates the humanitarian impact of earthquakes, storms, floods, wildfires, droughts and eruptions.',
     changed:
       escalated === 0
         ? `Every one of them is Green — modelled to need no help from outside the country it is in.`
         : `${escalated} of ${total} ${escalated === 1 ? 'is' : 'are'} above Green. The other ${total - escalated} are modelled to need no help from outside the country they are in.`,
-    why: 'The grade is a forecast of consequence, not of size. A large earthquake under empty desert stays Green; a moderate one under a dense city does not. What is being predicted is how many people it reaches, which is the only thing a response can be planned against.',
+    why: 'Alert levels reflect likely impact and response needs, using exposure as well as the event’s physical size.',
     figures,
     sourceLabel: 'GDACS · European Commission JRC',
   };

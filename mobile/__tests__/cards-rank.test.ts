@@ -75,6 +75,29 @@ describe('prepareSwipeCards', () => {
     ).toEqual(['linked', 'mover']);
   });
 
+  it('uses the strongest news tie instead of rewarding broad cards for incidental matches', () => {
+    const focused = reading('focused', [100, 101], {
+      related: [{ slug: 'lead', title: 'Lead' }],
+    });
+    const broad = reading('broad', [100, 101], {
+      related: [
+        { slug: 'secondary-a', title: 'Secondary A' },
+        { slug: 'secondary-b', title: 'Secondary B' },
+        { slug: 'secondary-c', title: 'Secondary C' },
+      ],
+    });
+    const articles = [
+      article('lead', 100),
+      article('secondary-a', 40),
+      article('secondary-b', 40),
+      article('secondary-c', 40),
+    ];
+    expect(prepareSwipeCards([broad, focused], articles).map((card) => card.id)).toEqual([
+      'focused',
+      'broad',
+    ]);
+  });
+
   it('normalizes movement against each series own history', () => {
     const ordinary = reading('ordinary', [100, 110, 121, 133.1]);
     const unusual = reading('unusual', [100, 101, 102, 120]);
@@ -90,6 +113,21 @@ describe('prepareSwipeCards', () => {
     const b = reading('b', [100, 100]);
     expect(prepareSwipeCards([b, a], []).map((card) => card.id)).toEqual(['b', 'a']);
     expect(prepareSwipeCards([b, a], []).map((card) => card.id)).toEqual(['b', 'a']);
+  });
+
+  it('breaks a third consecutive subject without separating a useful pair', () => {
+    const cards = [
+      reading('currency-a', [100, 104], { kicker: 'currency' }),
+      reading('currency-b', [100, 103], { kicker: 'currency' }),
+      reading('currency-c', [100, 102], { kicker: 'currency' }),
+      reading('energy', [100, 101], { kicker: 'energy' }),
+    ];
+    expect(prepareSwipeCards(cards, []).map((card) => card.id)).toEqual([
+      'currency-a',
+      'currency-b',
+      'energy',
+      'currency-c',
+    ]);
   });
 
   it('maps dated condition figures to a timeline visualization', () => {

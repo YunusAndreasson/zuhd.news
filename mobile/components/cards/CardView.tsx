@@ -15,9 +15,9 @@ import { CardFrame } from './CardFrame';
  * One card, whichever kind it is.
  *
  * Every block renders at `variant="context"`, not `"article"`. A card owns a
- * whole screen and has to fit five parts on it; the article-sized chart (180pt
- * against 148) pushed the source caption and half of part four below the fold
- * on the very first card, and a card that scrolls is a card that did not fit.
+ * whole screen and keeps its daily reading compact; the article-sized chart
+ * (180pt against 148) pushed the source caption below the fold on the very
+ * first card, and a card that scrolls is a card that did not fit.
  *
  * `components/blocks/` deliberately has no dispatcher — a sheet knows which
  * block it wants and imports it. Cards are the opposite case: a builder emits
@@ -25,7 +25,7 @@ import { CardFrame } from './CardFrame';
  * that could know the kind. The switch belongs here rather than at every
  * consumer.
  *
- * The four kinds differ only in the block between part two and part three:
+ * The four kinds differ only in the visual block below the title and context:
  *
  *   reading      a series, plus optional secondary figures
  *   comparison   rows that only mean something against each other
@@ -115,11 +115,13 @@ export const CardView = memo(function CardView({
   card,
   itemHeight,
   index,
+  total,
   scrollY,
 }: {
   card: SwipeCard;
   itemHeight: number;
   index: number;
+  total: number;
   scrollY: SharedValue<number>;
 }) {
   const openLink = useOpenLink();
@@ -128,7 +130,7 @@ export const CardView = memo(function CardView({
   }, [card.link, openLink]);
 
   return (
-    <CardFrame card={card} itemHeight={itemHeight} index={index} scrollY={scrollY}>
+    <CardFrame card={card} itemHeight={itemHeight} index={index} total={total} scrollY={scrollY}>
       {renderBody(card, onPress)}
     </CardFrame>
   );

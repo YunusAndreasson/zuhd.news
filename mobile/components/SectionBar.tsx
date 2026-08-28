@@ -28,17 +28,18 @@ import { Icon, IconButton } from './primitives';
 // route uppercase glyphs through the small-caps font, which renders them
 // as full caps and breaks the editorial smallcaps voice.
 //
-// Four labels fit. "news prices money outlook" leaves enough room for the
-// type, gaps, group rule and menu reserve on a 360pt phone, so the row
+// Three labels fit. "news now next" leaves enough room for the type, gaps,
+// group rule and menu reserve on a 360pt phone, so the row
 // padding and the menu reserve are counted — against a 360–430pt phone, so the
 // whole axis is visible at once and the rail can finally do the one job a rail
 // has. It was six ("news markets crypto metals currencies predictions", past
 // 440pt of type alone), which forced a scroller and meant the reader could
 // never see where the axis ended.
 //
-// `prices` names the reader's question rather than the data provider's asset
-// class. Its contents answer what food, fuel and metals cost; `money` answers
-// what currencies and borrowing are worth.
+// `now` contains measured facts, from humanitarian conditions to prices and
+// rates. `next` contains expectations and scheduled events. The distinction
+// is legible without asking readers to know how a data provider classifies an
+// instrument.
 //
 // The scroller stays anyway, for large Dynamic Type: `MAX_FONT_SCALE.chrome`
 // still allows growth past the width, and the auto-scroll effect below is a
@@ -47,7 +48,7 @@ import { Icon, IconButton } from './primitives';
 // "curr".
 //
 // `news` is set off by a rule. It is a river of forty articles; the other
-// three are decks of four to seven cards, and presenting all four as
+// two are decks of full-screen cards, and presenting all three as
 // identical peers was a claim about symmetry the content does not keep.
 //
 // This does not make the rail the navigation. Swiping the page is; the rail is

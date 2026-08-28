@@ -416,7 +416,7 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  *
  * Four sections, cut by the question a reader arrives with rather than by
  * what kind of instrument the answer happens to be. The stories first, then:
- * what things cost, what your money is worth, and what is not yet a fact.
+ * what is happening now and what is only a signal about what may happen next.
  * Subject navigation, entirely by swipe.
  *
  * It was six, split by asset class, and the split was the problem. `markets`
@@ -427,11 +427,10 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * anybody wakes up wondering about one.
  *
  * Every section here holds readings that move daily — which is the test a news
- * app has to apply to itself. A section of standing conditions (famine,
- * conflict, hazards, genocide determinations) was cut on exactly that test:
- * the median famine analysis was seven months old and one determination was
- * eight years old. Those cards survive, gated on their own data being new, and
- * lead `prices` on the rare day one of them is (see `lib/cards/conditions.ts`).
+ * app has to apply to itself. Conditions and market readings share `now`
+ * because both are measurements of the present; contracts, attention,
+ * volatility and calendars share `next` because each is evidence about what
+ * people expect or what is scheduled, not a completed fact.
  *
  * Four labels fit a phone at default type — roughly 216pt of small caps
  * against a 360pt screen, where six measured past 440 and forced the rail to
@@ -443,7 +442,7 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'prices', 'money', 'outlook'] as const;
+export const SECTIONS = ['news', 'now', 'next'] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */

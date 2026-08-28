@@ -71,7 +71,7 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
         <Text variant="label">two briefings a day</Text>
         <Text variant="body" style={styles.body}>
           A morning and an evening briefing — the day’s stories, said once. Breaking news only when
-          it matters. Nothing else, ever.
+          it matters.
         </Text>
         <View style={styles.actions}>
           <Pressable

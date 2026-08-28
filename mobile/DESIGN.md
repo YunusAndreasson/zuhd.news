@@ -162,34 +162,32 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   app. That is why fifteen currencies are one card, thirty exchanges are none,
   and 101 famine areas are one. Applied to the live payloads it cuts ~80
   candidate cards to ~25.
-- **Five parts, in reading order**, owned by `CardFrame`: the reading (one
-  number at arm's length, with its unit and its **delta chip** on the line
-  below) · what it is (one sentence for someone who has never heard of it) ·
-  what changed (with the window named) · **why it reaches you** · the tie to
-  today's stories. Part four is the one that makes the section worth existing,
-  and it is **never composed in the app** — it is the pipeline's `standing`
-  paragraph, rendered verbatim. Every indicator, chokepoint and calendar event
-  carries one.
+- **Daily facts first; standing context on demand**, owned by `CardFrame`. The
+  recurring surface shows the reading, its unit and delta, what changed, the
+  graph or comparison, and ties to today's stories. The definition and
+  `standing` paragraph live behind the info control: useful on a first visit,
+  but not repeated every day. Context is never composed in the renderer.
 - **`lead` says why the card is here at all.** A builder that gated a card on
-  its own data being new sets `lead: true`, and `CardFrame` prints `today ·`
-  before the kicker. Without it a famine analysis published this quarter and
-  the gold-to-silver ratio arrive in identical weight, and the reader can only
-  tell them apart by already knowing which cards the app gates — which is
+  its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
+  before the kicker. Without it a newly escalated hazard and the
+  gold-to-silver ratio arrive in identical weight, and the reader can only
+  tell them apart by already knowing which cards are event-gated — which is
   knowing the implementation. It is an **ink step, never a colour**: the
   chromatic budget is spent on `CardDelta` and `colors.determination`, and a
-  third accent costs both of them their meaning. Every card in
-  `buildConditionCards` carries it, as does a strait that cleared
-  `CHOKEPOINT_DISRUPTED`.
-- **One definition per screen, and `standing` is the one.** Part two is written
+  third accent costs both of them their meaning. Event-dated cards in
+  `buildConditionCards` carry it, as does a strait whose total traffic fell at
+  least 30%; IPC does not, because its payload supplies a covered
+  period rather than a trustworthy publication timestamp.
+- **One definition per card, and `standing` is the one.** The fallback is written
   here and part four is written by the pipeline, and they were saying the same
   thing on *every* reading card — brent, us-10y and vix each carried two
   paragraphs of the same definition separated by a chart. The prefix-comparison
   guard that was supposed to catch this missed all three by a word, because a
   same-opening test cannot catch a same-meaning collision. The rule is
   structural now (`definitionUnlessStanding`): if the pipeline wrote a
-  `standing`, the hand-written sentence does not render. Prediction cards keep
-  the full primer on the first item and a short per-piece explanation after it:
-  the swipe boundary requires every screen to remain understandable alone.
+  `standing`, the hand-written sentence is omitted. Prediction cards keep a
+  concise per-piece explanation so every card remains understandable when its
+  info control is opened directly.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
@@ -207,7 +205,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   header of `lib/cards/conditions.ts`, and those cards are now gated on their
   own data being new. Apply the same test to anything added here.
 - **Builders are pure functions in `lib/cards/`**, not components —
-  `buildInstrumentCards` (one column per section), `buildConditionCards`. They
+  `buildInstrumentCards` (`now` and `next`), `buildConditionCards`. They
   return a shorter column
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
@@ -215,9 +213,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - **The swipe boundary validates and ranks.** `prepareSwipeCards` is the only
   path from builder output into `CardPager`: it requires a meaningful visual
   and explanatory copy, attaches numeric ranking metadata, and sorts urgent
-  updates before ties to today's news, unusual movement against the series'
-  own history, and finally the builder's stable editorial order. Raw display
-  units are never compared. Refresh reordering anchors the visible card by id.
+  updates before the strongest tie to today's news, unusual movement against
+  the series' own history, and finally the builder's stable editorial order.
+  Relevance uses the strongest linked story rather than summing matches, so a
+  broad aggregate cannot win merely by carrying more tags. A final two-card
+  run cap keeps one kicker from becoming a hidden lane. Raw display units are
+  never compared. Refresh reordering anchors the visible card by id.
 - **Number grammar lives in `lib/cards/format.ts`, and using it is not
   optional.** Two rules there exist because getting them wrong produces a
   plausible, wrong sentence: a change is always measured over a window the card
@@ -251,15 +252,23 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the four sections (`news` · `prices` · `money` · `outlook`); vertical
+  between the three sections (`news` · `now` · `next`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
-- **The sections are cut by reader question, not by asset class.** It was six
-  cut the second way, and that produced a `markets` column of eight cards —
-  food, energy, rates, shipping, Wikipedia pageviews, a calendar — beside three
-  columns two cards deep that were all facets of one question. Asset class is
-  how a data provider files a series; it is not how anybody wakes up wondering
-  about one. Before adding a section, check the question is not already asked.
+- **The data sections are cut by time, not asset class.** `now` is measured
+  reality, including observed attention; `next` is belief, forward volatility
+  or a scheduled event. This
+  keeps conditions, prices and contracts under labels that remain true for
+  every live payload. Before adding a section, check that this distinction
+  cannot already hold it.
+- **A card's graph visualises its headline quantity.** If the payload has only
+  total-traffic history, a chokepoint card cannot headline tankers; if the
+  headline is a gold/silver ratio, the graph is that ratio rather than two raw
+  prices whose scale makes one invisible. Secondary figures may explain the
+  components without replacing the promised visual.
+- **Deck scope is visible.** Card kickers pair with a quiet `current / total`
+  count (`3 / 15`) so a reader can decide whether to continue swiping. The tab
+  underline remains the continuous progress signal.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber spans the
   chart, and on a card that is most of the screen — five page swipes in a row
   did nothing but drag a dot along a line. Charts on cards pass

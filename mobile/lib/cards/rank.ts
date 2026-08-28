@@ -91,13 +91,20 @@ function normalizedMovement(visualization: CardVisualization): number {
 function newsRelevance(card: Card, articles: Article[]): number {
   if (!card.related || card.related.length === 0) return 0;
   const bySlug = new Map(articles.map((article, index) => [article.slug, { article, index }]));
-  return card.related.reduce((score, related) => {
+  const matches = card.related.flatMap((related) => {
     const match = bySlug.get(related.slug);
-    if (!match) return score;
+    if (!match) return [];
     // Coverage carries editorial weight; position rewards a tie to the top of
     // the already-ranked news river without allowing position to beat coverage.
-    return score + (match.article.eventCoverage ?? 0) * 100 + (articles.length - match.index);
-  }, 0);
+    return [(match.article.eventCoverage ?? 0) * 100 + (articles.length - match.index)];
+  });
+  if (matches.length === 0) return 0;
+  // Use the strongest live connection, not the sum. Aggregate cards carry far
+  // more topic tags than single readings, so summing let breadth masquerade as
+  // importance: three incidental country matches could bury the one card tied
+  // to the lead story. A tiny breadth tie-break rewards multiple real links
+  // without letting them overwhelm coverage or river position.
+  return Math.max(...matches) * 10 + Math.min(matches.length, 9);
 }
 
 function compareRanked(a: SwipeCard, b: SwipeCard): number {
@@ -112,12 +119,41 @@ function compareRanked(a: SwipeCard, b: SwipeCard): number {
   return a.id.localeCompare(b.id);
 }
 
+/** Keep a deck from turning into a hidden sub-tab. Two related pieces may
+ * belong together; a third consecutive kicker makes vertical swiping feel as
+ * though the reader entered a lane they did not choose. Promote the nearest
+ * different subject, then resume the ranked order. */
+function capConsecutiveKickers(ranked: SwipeCard[], max = 2): SwipeCard[] {
+  const pool = [...ranked];
+  const result: SwipeCard[] = [];
+  let kicker = '';
+  let run = 0;
+  while (pool.length > 0) {
+    let index = 0;
+    if (run >= max) {
+      const alternative = pool.findIndex((card) => card.kicker !== kicker);
+      if (alternative >= 0) index = alternative;
+    }
+    const card = pool.splice(index, 1)[0];
+    if (!card) break;
+    if (card.kicker === kicker) run += 1;
+    else {
+      kicker = card.kicker;
+      run = 1;
+    }
+    result.push(card);
+  }
+  return result;
+}
+
 /**
  * Turn editorial card drafts into the swipe deck the UI may render.
  *
  * A piece without both a meaningful visual and an explanation does not earn a
  * full screen. Sorting is lexicographic rather than a blended score so a large
  * market move can never bury a genuinely new event or a tie to today's lead.
+ * A final de-clump prevents three cards of one subject becoming an accidental
+ * lane while otherwise preserving the ranked order.
  */
 export function prepareSwipeCards(cards: Card[], articles: Article[]): SwipeCard[] {
   const prepared: SwipeCard[] = [];
@@ -137,5 +173,5 @@ export function prepareSwipeCards(cards: Card[], articles: Article[]): SwipeCard
       },
     });
   });
-  return prepared.sort(compareRanked);
+  return capConsecutiveKickers(prepared.sort(compareRanked));
 }

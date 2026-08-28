@@ -43,6 +43,8 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
   // iOS reads a hamburger as a Material idiom; `ellipsis` is the native
   // "menu/more" affordance. Android keeps the Ionicons hamburger.
   menu: 'ellipsis',
+  'information-circle': 'info.circle.fill',
+  'information-circle-outline': 'info.circle',
   pause: 'pause.fill',
   play: 'play.fill',
   search: 'magnifyingglass',

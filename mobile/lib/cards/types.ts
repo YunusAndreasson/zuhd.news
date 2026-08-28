@@ -9,8 +9,8 @@ import type { Direction, Valence } from '../valence';
  * becomes a row on a comparison card, or it is not in the app — which is why
  * fifteen currencies are one card and thirty exchanges are none.
  *
- * The shape below is that rule written as a type. Five named parts, in the
- * order a reader meets them:
+ * The shape below is that rule written as a type. The changing observation is
+ * the daily surface; definitions and standing context are disclosed on demand:
  *
  *   reading    the number, at arm's length
  *   whatItIs   one sentence for someone who has never heard of it
@@ -77,7 +77,7 @@ interface CardBase {
    * to arrive in identical typographic weight, so a disrupted Strait of Hormuz
    * and the gold-to-silver ratio read as the same kind of claim.
    *
-   * `CardFrame` renders it as an ink step on the kicker line — never a colour.
+   * `CardFrame` renders it as `current ·` on the kicker line — never a colour.
    * The app's chromatic budget is already spent, on `CardDelta` and on
    * `colors.determination`, and a third accent would cost both of them their
    * meaning.
@@ -92,11 +92,11 @@ interface CardBase {
   readingNote?: string;
   /** Part 1c, beside the note: which way it moved and what that means. */
   delta?: CardDelta;
-  /** Part 2. */
+  /** Static definition, shown from the card's info control. */
   whatItIs?: string;
-  /** Part 3. */
+  /** What changed in the current data window. */
   changed?: string;
-  /** Part 4 — `standing`, verbatim. */
+  /** Standing context, shown from the card's info control. */
   why?: string;
   /** Part 5. */
   related?: RelatedArticleRef[];

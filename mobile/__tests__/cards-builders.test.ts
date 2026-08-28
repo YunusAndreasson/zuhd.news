@@ -80,7 +80,7 @@ describe('buildInstrumentCards', () => {
     expect(allOf(columns)).toEqual([]);
     // Every key still present, so a section renders its empty state rather
     // than crashing on an undefined column.
-    expect(Object.keys(columns).sort()).toEqual(['money', 'outlook', 'prices']);
+    expect(Object.keys(columns).sort()).toEqual(['next', 'now']);
   });
 
   it('files each card in the column a reader would go looking for it in', () => {
@@ -98,29 +98,24 @@ describe('buildInstrumentCards', () => {
       chokepoints: [],
       articles: [],
     });
-    // What things cost: the threshold first, then what is eaten and burned,
-    // then the ratio that is a curiosity rather than a Tuesday reading.
-    expect(columns.prices.map((c) => c.id)).toEqual(['nisab', 'brent', 'metals']);
-    // What money is worth: the table, then the currencies whose rows were the
-    // news, then borrowing, then the two coins. All three currencies move 10%
-    // on the fixture, so all three clear the mover threshold and the limit is
-    // what picks two.
-    expect(columns.money.map((c) => c.id)).toEqual([
+    // Measured readings share `now`; the smart deck ranker, not this builder,
+    // decides which current fact the reader meets first.
+    expect(columns.now.map((c) => c.id)).toEqual([
+      'nisab',
+      'brent',
+      'metals',
       'currencies',
       'fx-rub-mover',
       'fx-jpy-mover',
       'btc',
     ]);
     // What is not yet a fact.
-    expect(columns.outlook.map((c) => c.id)).toEqual(['poly-x']);
-    // A price is not an expectation and a coin is not a price. These three crossings
-    // are the ones the old asset-class split got wrong in both directions.
-    expect(columns.prices.map((c) => c.id)).not.toContain('btc');
-    expect(columns.money.map((c) => c.id)).not.toContain('brent');
-    expect(columns.outlook.map((c) => c.id)).not.toContain('nisab');
+    expect(columns.next.map((c) => c.id)).toEqual(['poly-x']);
+    expect(columns.now.map((c) => c.id)).not.toContain('poly-x');
+    expect(columns.next.map((c) => c.id)).not.toContain('nisab');
   });
 
-  it('files the two implied numbers under outlook, not beside the measured ones', () => {
+  it('separates present attention from forward-looking signals', () => {
     const wiki = (id: string, values: number[]) =>
       indicator({
         id: `wiki-${id}`,
@@ -139,15 +134,13 @@ describe('buildInstrumentCards', () => {
       chokepoints: [],
       articles: [],
     });
-    // VIX is what traders are paying to insure against a fall and attention is
-    // what people looked up. Neither is a measurement of anything that
-    // happened, which is the whole line `outlook` is drawn along — and it is
-    // the line the app already used to cut the S&P and the NASDAQ.
-    expect(columns.outlook.map((c) => c.id)).toEqual(['attention', 'vix']);
-    expect(columns.money.map((c) => c.id)).toEqual(['us-10y']);
+    // Attention is observed behaviour today. VIX is a price on expected
+    // volatility over the coming month, so only the latter belongs in `next`.
+    expect(columns.next.map((c) => c.id)).toEqual(['vix']);
+    expect(columns.now.map((c) => c.id)).toEqual(['attention', 'us-10y']);
     // The kicker carries the argument, so a reader meets it without reading
     // this file.
-    expect(find(columns.outlook, 'vix')?.kicker).toBe('what traders fear');
+    expect(find(columns.next, 'vix')?.kicker).toBe('what traders fear');
   });
 
   it('marks a gated card and leaves a standing one unmarked', () => {
@@ -161,9 +154,9 @@ describe('buildInstrumentCards', () => {
     });
     // The strait is here because it went quiet this week; the nisab is here
     // every day. Until the mark existed both arrived in identical weight.
-    expect(find(columns.prices, 'strait-kerch')?.lead).toBe(true);
-    expect(find(columns.prices, 'nisab')?.lead).toBeUndefined();
-    expect(find(columns.prices, 'metals')?.lead).toBeUndefined();
+    expect(find(columns.now, 'strait-kerch')?.lead).toBe(true);
+    expect(find(columns.now, 'nisab')?.lead).toBeUndefined();
+    expect(find(columns.now, 'metals')?.lead).toBeUndefined();
   });
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
@@ -272,6 +265,24 @@ describe('buildInstrumentCards', () => {
     expect(card?.changed).toContain('more wealth is zakatable');
     expect(card?.why).toContain('85');
     expect(card?.why).toContain('595');
+  });
+
+  it('graphs the gold-to-silver ratio that the metals card headlines', () => {
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([
+          indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4000, 4500] }),
+          indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [50, 60] }),
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    const metals = find(cards, 'metals');
+    expect(metals?.kind).toBe('reading');
+    expect(metals?.kind === 'reading' ? metals.series?.values : []).toEqual([80, 75]);
+    expect(metals?.kind === 'reading' ? metals.series?.multi : undefined).toBeUndefined();
+    expect(metals?.kind === 'reading' ? metals.series?.label : '').toContain('ounces of silver');
   });
 
   it('reports a currency move as a relative percentage and a contract as points', () => {
@@ -438,7 +449,7 @@ describe('buildInstrumentCards', () => {
     expect(gbp?.tone).toBe('neutral');
   });
 
-  it('picks the strait that moved furthest from its own baseline, not the busiest', () => {
+  it('keeps every disrupted strait so deck ranking can use current-news relevance', () => {
     const cards = allOf(
       buildInstrumentCards({
         trends: snapshot([indicator({ id: 'brent' })]),
@@ -467,8 +478,9 @@ describe('buildInstrumentCards', () => {
     expect(moved?.changed).toContain('8.8');
     // It is on screen because it moved, and it says so.
     expect(moved?.lead).toBe(true);
-    // It leads `prices` — freight that has stopped moving is a price story
-    // before it is anything else.
+    // Both disrupted candidates survive; the later smart ranking stage can
+    // now prefer a strait tied to the lead story instead of being forced to
+    // accept the largest percentage move selected here.
     const columns = buildInstrumentCards({
       trends: snapshot([indicator({ id: 'brent' })]),
       chokepoints: [
@@ -478,11 +490,34 @@ describe('buildInstrumentCards', () => {
       ],
       articles: [],
     });
-    expect(columns.prices[0]?.id).toBe('strait-kerch');
+    expect(columns.now.filter((c) => c.id.startsWith('strait-')).map((c) => c.id)).toEqual([
+      'strait-kerch',
+      'strait-hormuz',
+    ]);
     // The eleven-strait comparison table is gone. The globe on `news` draws
     // all eleven as tappable rings and `ChokepointSheet` says more about any
     // of them than a flat sorted list of the same names could.
     expect(find(cards, 'straits')).toBeUndefined();
+  });
+
+  it('uses total traffic for a chokepoint headline because that is the series it graphs', () => {
+    const hormuz = strait('hormuz', 'Strait of Hormuz', 5, 10, -0.5);
+    hormuz.primaryField = 'n_tanker';
+    hormuz.last7Avg.n_tanker = 2.4;
+    hormuz.baseline90Avg.n_tanker = 4.3;
+    hormuz.delta7vs90.n_tanker = -0.431;
+    const cards = allOf(
+      buildInstrumentCards({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [hormuz],
+        articles: [],
+      }),
+    );
+    const card = find(cards, 'strait-hormuz');
+    expect(card?.reading).toBe('5');
+    expect(card?.readingNote).toBe('ships a day');
+    expect(card?.delta?.magnitude).toBe('50%');
+    expect(card?.kind === 'reading' ? card.series?.values : []).toEqual([10, 5]);
   });
 
   it('ships no strait at all on a week when none of them went quiet', () => {
@@ -494,6 +529,7 @@ describe('buildInstrumentCards', () => {
         trends: snapshot([indicator({ id: 'brent' })]),
         chokepoints: [
           strait('dover', 'Dover Strait', 157, 162.2, -0.032),
+          strait('panama', 'Panama Canal', 26.7, 30.7, -0.13),
           strait('suez', 'Suez Canal', 51, 50.5, 0.009),
           // Busy, not quiet — and well past the threshold. The gate is
           // one-sided on purpose: traffic rerouted *to* a strait is the same
@@ -574,7 +610,7 @@ describe('buildInstrumentCards', () => {
 // conditions
 // ---------------------------------------------------------------------------
 
-const ipcArea = (iso2: string, p3plus: number, p4 = 0, p5 = 0, ageDays = 30) => ({
+const ipcArea = (iso2: string, p3plus: number, p4 = p3plus, p5 = 0, ageDays = 30) => ({
   id: `${iso2}:area`,
   area: 'area',
   level1: '',
@@ -586,8 +622,8 @@ const ipcArea = (iso2: string, p3plus: number, p4 = 0, p5 = 0, ageDays = 30) => 
   lng: 0,
   vintage: 'Jun 2026',
   ageMonths: ageDays / 30,
-  from: daysAgo(ageDays),
-  to: daysAgo(0),
+  from: daysAgo(ageDays + 90),
+  to: daysAgo(ageDays),
   pop: { total: p3plus * 2, p3plus, p4, p5 },
 });
 
@@ -619,9 +655,10 @@ describe('buildConditionCards', () => {
     expect(buildConditionCards(emptyInputs)).toEqual([]);
   });
 
-  it('sums p3plus without double-counting the phase 4 and 5 tails inside it', () => {
-    // 4M at phase 4 and 134k at phase 5 are already part of the 10M figure.
-    // Adding them would invent four million hungry people.
+  it('headlines only the severe population represented by the filtered payload', () => {
+    // The published mobile payload contains only areas classified phase 4 or
+    // 5. Its p3plus field is therefore a partial country total and must not be
+    // presented as the full number of people in crisis across those countries.
     const cards = buildConditionCards({
       ...emptyInputs,
       ipc: ipcSnapshot([
@@ -630,11 +667,12 @@ describe('buildConditionCards', () => {
       ]),
     });
     const famine = find(cards, 'famine');
-    expect(famine?.reading).toBe('8,864,406');
-    // The phase-3 total is the reading, so the rows are only the tails inside
-    // it — printing it twice would be the same fact on the same screen.
+    expect(famine?.reading).toBe('3,659,987');
+    expect(famine?.readingNote).toBe('people in phase 4 or 5');
     const figures = famine?.kind === 'condition' ? famine.figures : [];
     expect(figures?.map((f) => f.value)).toEqual(['3,525,179', '134,808']);
+    expect(famine?.changed).toContain('areas classified Emergency or worse');
+    expect(famine?.changed).toContain('ended 23 July 2026');
   });
 
   it('names the country in the phase 5 line rather than printing a code', () => {
@@ -695,7 +733,7 @@ describe('buildConditionCards', () => {
     const card = find(buildConditionCards({ ...emptyInputs, conflict }), 'conflict');
     expect(card?.reading).toBe('919');
     expect(card?.changed).toContain('August 2026');
-    expect(card?.changed).toContain('Nothing here is live');
+    expect(card?.whatItIs).toContain('not a live count');
     // The lag is stated as a measured number, so it cannot contradict the
     // window it sits next to.
     expect(card?.changed).toContain('15 days after it closed');
@@ -776,10 +814,7 @@ describe('buildConditionCards', () => {
 // ---------------------------------------------------------------------------
 
 describe('buildConditionCards freshness gates', () => {
-  it('marks every card it does ship, because every one of them is gated', () => {
-    // The gate and the mark are the same claim. A card here is on screen
-    // because its data is new, and `lead` is how the reader is told that
-    // without having to already know which cards the app gates.
+  it('marks event-dated cards as current', () => {
     const cards = buildConditionCards({ ...emptyInputs, determinations: [determination(20)] });
     expect(cards).toHaveLength(1);
     expect(cards.every((c) => c.lead === true)).toBe(true);
@@ -826,21 +861,22 @@ describe('buildConditionCards freshness gates', () => {
     // The median analysed area was 7.3 months old when this gate was written.
     expect(
       find(
-        buildConditionCards({ ...emptyInputs, ipc: ipcSnapshot([ipcArea('SD', 10, 0, 0, 220)]) }),
+        buildConditionCards({ ...emptyInputs, ipc: ipcSnapshot([ipcArea('SD', 10, 10, 0, 220)]) }),
         'famine',
       ),
     ).toBeUndefined();
     expect(
       find(
-        buildConditionCards({ ...emptyInputs, ipc: ipcSnapshot([ipcArea('SD', 10, 0, 0, 30)]) }),
+        buildConditionCards({ ...emptyInputs, ipc: ipcSnapshot([ipcArea('SD', 10, 10, 0, 30)]) }),
         'famine',
       ),
     ).toBeDefined();
   });
 
-  it('gates on the newest analysis in the file, not on when the file was built', () => {
-    // One fresh national analysis among many stale ones is still news.
-    const mixed = ipcSnapshot([ipcArea('SD', 10, 0, 0, 220), ipcArea('SO', 5, 0, 0, 20)]);
+  it('gates on the newest covered period, not when the mirror was built', () => {
+    // One currently covered national analysis among stale ones is enough to
+    // make the aggregate useful, and the card states the period explicitly.
+    const mixed = ipcSnapshot([ipcArea('SD', 10, 10, 0, 220), ipcArea('SO', 5, 5, 0, 20)]);
     expect(find(buildConditionCards({ ...emptyInputs, ipc: mixed }), 'famine')).toBeDefined();
   });
 
@@ -951,7 +987,7 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    const btc = columns.money[0];
+    const btc = columns.now[0];
     expect(btc?.whatItIs).toBeUndefined();
     expect(btc?.why).toContain('sets the tone');
   });
@@ -962,14 +998,11 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.money[0]?.whatItIs).toContain('no state issues');
-    expect(columns.money[0]?.why).toBeUndefined();
+    expect(columns.now[0]?.whatItIs).toContain('no state issues');
+    expect(columns.now[0]?.why).toBeUndefined();
   });
 
-  it('gives every prediction swipe piece an explanation without repeating the long primer', () => {
-    // Three cards deep, and the explainer is the same 200 characters on each —
-    // a reader met it three times in under a minute while two of the three
-    // cards had no `standing` and so nothing else to say.
+  it('gives every prediction swipe piece concise standalone context', () => {
     const columns = buildInstrumentCards({
       trends: snapshot([
         indicator({ id: 'poly-a', label: 'A?', source: 'polymarket', unit: '%' }),
@@ -979,10 +1012,10 @@ describe('one definition per screen', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.outlook).toHaveLength(3);
-    expect(columns.outlook[0]?.whatItIs).toContain('pays out if this happens');
-    expect(columns.outlook[1]?.whatItIs).toContain('not a forecast');
-    expect(columns.outlook[2]?.whatItIs).toContain('not a forecast');
+    expect(columns.next).toHaveLength(3);
+    expect(columns.next[0]?.whatItIs).toContain('pays out if this happens');
+    expect(columns.next[1]?.whatItIs).toContain('what traders are willing to risk');
+    expect(columns.next[2]?.whatItIs).toContain('what traders are willing to risk');
   });
 });
 
@@ -1001,6 +1034,6 @@ describe('belief titles', () => {
       chokepoints: [],
       articles: [],
     });
-    expect(columns.outlook[0]?.title).toBe('US invade Iran before 2027?');
+    expect(columns.next[0]?.title).toBe('US invade Iran before 2027?');
   });
 });

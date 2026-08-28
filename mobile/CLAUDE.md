@@ -58,47 +58,57 @@ a release build cannot name the offender if one survives.
 
 ## The two axes
 
-Horizontal swipe = section (`news` · `prices` · `money` · `outlook`), vertical
+Horizontal swipe = section (`news` · `now` · `next`), vertical
 paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
 
-- **The axis is cut by reader question, not by asset class.** It was six
-  sections split the second way and the split is what broke it: `markets` held
-  food, energy, rates, shipping, Wikipedia pageviews and a calendar — eight
-  cards, three of them not markets by any reading — beside `crypto`, `metals`
-  and `currencies` at two or three cards each, all three asking one question.
-  Now `prices` is what things cost, `money` is what your money is worth
-  and what borrowing costs, `outlook` is what is not yet a fact. The first two
-  use the questions a reader brings rather than the data provider's filing
-  system. Four labels also *fit* (~330pt all-in against a 360pt phone, where
-  six measured past 440 in type alone), so the whole axis is visible at once.
-  - The two placements to know, because both look wrong until you know why:
-    **VIX is in `outlook`**, since what saved it from the cut that took the S&P
-    and the NASDAQ was its *fear* reading, and a price on what traders expect
-    is a contract by another name. **Crypto is in `money`**, which is what its
-    own first sentence says it is.
+- **The data axis is temporal, not an asset taxonomy.** `now` holds measured
+  facts: humanitarian conditions, shipping, prices, currencies, rates and
+  crypto and observed attention. `next` holds evidence about what may happen:
+  prediction contracts, volatility and scheduled events. This replaces the superficially
+  tidy `prices` / `money` / `outlook` split, which had nowhere truthful to put
+  a disaster or legal determination. Three short labels fit with room to
+  spare, so the whole axis is visible at once.
 - **A card ships because it changed.** Standing conditions (famine, conflict,
   hazards, genocide determinations) were a section until an audit killed it:
   median famine analysis seven months old, conflict window 145 days behind, one
   determination 2,902 days old. They now gate on their own data being new and
-  lead `prices` on the day one is. Apply the same test to anything new — the
+  lead `now` on the day one is. IPC is the exception to the `current` mark: its
+  payload supplies a covered period but no dependable publication timestamp.
+  Apply the same test to anything new — the
   eleven-strait table and the release calendar both failed it later and are now
   gone and gated respectively.
-- **A gated card says so, and `lead` is how.** A condition card and a disrupted
-  strait are on screen because their data moved this morning; the nisab and the
+- **A current card says so, and `lead` is how.** An event-dated condition card
+  or a disrupted strait is on screen because its source cleared a freshness
+  gate; the nisab and the
   gold-to-silver ratio are standing reference that happens to have moved a
   little. They arrived in identical typographic weight, so the distinction was
   one only a reader who already knew the gating could make. `CardFrame` now
-  prints `today ·` before the kicker — an ink step, never a colour, because the
+  prints `current ·` before the kicker — an ink step, never a colour, because the
   chromatic budget is spent on `CardDelta` and `colors.determination`.
 - **The straits are the globe's, not a column's.** `MiniGlobe` draws all eleven
   as tappable rings and `ChokepointSheet` carries the blurb, the standing
   paragraph, what is happening there now, the weather and the series — so a
   flat sorted table of the same eleven names was a worse copy of something the
-  reader could already touch. Only `straitMovedCard` survives, gated on
-  `CHOKEPOINT_DISRUPTED` and leading `prices` on the day it fires. Same rule
-  for anything else the globe already carries.
+  reader could already touch. `straitMovedCards` retains only straits gated by
+  a 30% total-traffic gate; the deck ranker then uses current-news relevance to
+  order them instead of letting a small strait's percentage move hide a major
+  live story. Same rule for anything else the globe already carries.
+- **Ranking must not reward surface area.** Current-news relevance is the
+  strongest linked story, not the sum of every match: aggregate cards carry
+  many more topic tags than a single reading. After ranking, no more than two
+  consecutive cards may share a kicker, so currencies or chokepoints never
+  turn into a hidden sub-tab inside the vertical deck.
+- **The graph must be the headline's history.** Chokepoint cards use total
+  traffic throughout because that is the only historical series published,
+  with a 30% materiality gate rather than the subtype sheet's 10% threshold;
+  the gold/silver card graphs its ratio rather than flattening silver beneath
+  gold on a shared dollar scale. A subtype or component may remain a secondary
+  figure, but it cannot be the reading above a chart of something else.
+- **Long decks state their scope.** The kicker line carries a quiet `3 / 15`
+  position. The section underline still shows continuous progress; the count
+  answers the different question of how much is left.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;
   sheets do not.
@@ -139,20 +149,19 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   is not about what is on screen. Sharing a card needs a per-card URL and only
   the indicator-backed ones have one (`/e/{id}`).
 
-- **Card content is not written in the app.** Part four of every card — why the
-  number reaches an ordinary life — is the pipeline's `standing` paragraph,
-  rendered verbatim. 48 of the 50 indicators, all 11 chokepoints and all 12
-  calendar events carry one, and nothing rendered any of them before this.
-- **`standing` is authoritative, so part two usually does not render.** The two
+- **Daily facts stay visible; standing context is disclosed.** The reading,
+  chart or comparison, delta and current change make up the recurring surface.
+  Definitions and the pipeline's `standing` paragraph sit behind the card's
+  info control so a daily reader does not meet the same prose every morning.
+- **`standing` is authoritative, so a fallback definition is usually omitted.** The two
   were written by different hands and were saying the same thing on *every*
   reading card — brent, us-10y and vix each carried two definitions of
   themselves separated by a chart. The 25-character prefix guard that was meant
   to catch this missed all three by a word: a same-opening test cannot catch a
   same-meaning collision. `definitionUnlessStanding` is structural instead — if
-  the pipeline wrote one, the app does not add a second. Same rule per column
-  is why the "what a prediction contract is" explainer appears on the first
-  belief card only; three cards deep it was the identical 200 characters three
-  times over.
+  the pipeline wrote one, the app does not add a second. Prediction-contract
+  context stays concise on every belief card because a reordered deck may open
+  on any one of them.
 - **Quote the thing the reader owns, or the sign fights the colour.** The FX
   table printed the *rate* — rupees per dollar — where up means your money buys
   less, so it showed "+5.6%" in rose beside "−0.8%" in sage. No caption fixes

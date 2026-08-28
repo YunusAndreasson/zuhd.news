@@ -12,19 +12,18 @@ import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { Card, CardDelta } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
-import { Icon, Text } from '../primitives';
+import { Icon, IconButton, Text } from '../primitives';
 
 /**
- * The five-part anatomy, as a component.
+ * The card anatomy, as a component.
  *
  * Every card in `markets` and `conditions` is this shell with one block in the
  * middle. The order is not decoration — it is the reading order a person
- * actually uses: the number at arm's length, then what it is, then what it
- * did, then why it reaches them, then which of today's stories it touches.
+ * actually uses: the number at arm's length, what changed, and which of
+ * today's stories it touches. Definitions and standing context are available
+ * from the info control instead of taking up the daily reading surface.
  *
- * Part four is the one that justifies the section existing. Without it a card
- * is a tile on a dashboard; with it the reader learns something they can
- * repeat. It is written by the pipeline (`standing`), never composed here.
+ * Context is written by the pipeline (`standing`), never composed here.
  */
 
 /** The reading is the largest thing on the screen and the only thing sized
@@ -96,6 +95,8 @@ interface CardFrameProps {
   itemHeight: number;
   /** This card's position in the column, for the arrival animation. */
   index: number;
+  /** Total pieces in this vertical deck, for the scope indicator. */
+  total: number;
   /** The column's scroll offset, shared with the UI thread. */
   scrollY: SharedValue<number>;
   /** The block that makes this card its kind — a chart, rows, figures. */
@@ -106,12 +107,16 @@ export const CardFrame = memo(function CardFrame({
   card,
   itemHeight,
   index,
+  total,
   scrollY,
   children,
 }: CardFrameProps) {
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
+  const hasContext = Boolean(card.whatItIs || card.why);
+  const [contextOpen, setContextOpen] = useState(false);
+  const toggleContext = useCallback(() => setContextOpen((open) => !open), []);
 
   /**
    * The inner column only scrolls when it has to.
@@ -239,7 +244,7 @@ export const CardFrame = memo(function CardFrame({
           <Animated.View style={arrival}>
             {/* The kicker line, and on a gated card the one word that says
               why this screen exists. A condition card and a disrupted strait
-              are on screen because their data changed this morning; the
+              are on screen because their data cleared a currentness gate; the
               nisab and the gold-to-silver ratio are standing reference that
               happens to have moved a little. Until this mark they arrived in
               identical weight, so the distinction was one the reader could
@@ -250,14 +255,42 @@ export const CardFrame = memo(function CardFrame({
               spent on the delta chip and on `colors.determination`. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            <Text variant="labelXs" tone="secondary">
-              {card.lead ? (
-                <Text variant="labelXs" tone="emphasis">
-                  {'today · '}
-                </Text>
-              ) : null}
-              {card.kicker}
-            </Text>
+            <View style={styles.deckMeta}>
+              <Text variant="labelXs" tone="secondary">
+                {card.lead ? (
+                  <Text variant="labelXs" tone="emphasis">
+                    {'current · '}
+                  </Text>
+                ) : null}
+                {card.kicker}
+              </Text>
+              <View style={styles.deckActions}>
+                {hasContext ? (
+                  <IconButton
+                    onPress={toggleContext}
+                    haptic="tick"
+                    accessibilityLabel={`${contextOpen ? 'Hide' : 'Show'} context for ${card.title}`}
+                    accessibilityState={{ expanded: contextOpen }}
+                    style={styles.infoButton}
+                  >
+                    <Icon
+                      name={contextOpen ? 'information-circle' : 'information-circle-outline'}
+                      size="md"
+                      tone={contextOpen ? 'emphasis' : 'secondary'}
+                    />
+                  </IconButton>
+                ) : null}
+                {total > 1 ? (
+                  <Text
+                    variant="labelXs"
+                    tone="secondary"
+                    accessibilityLabel={`${index + 1} of ${total}`}
+                  >
+                    {`${index + 1} / ${total}`}
+                  </Text>
+                ) : null}
+              </View>
+            </View>
 
             {/* The reading and its note read as one unit: a number and the
               thing it counts. Kept adjacent with no gap so they do not read
@@ -300,10 +333,20 @@ export const CardFrame = memo(function CardFrame({
               {card.title}
             </Text>
 
-            {card.whatItIs ? (
-              <Text variant="body" tone="accent" style={styles.part}>
-                {card.whatItIs}
-              </Text>
+            {contextOpen ? (
+              <View style={styles.context}>
+                <View style={[styles.rule, { backgroundColor: colors.rule }]} />
+                {card.whatItIs ? (
+                  <Text variant="body" tone="accent">
+                    {card.whatItIs}
+                  </Text>
+                ) : null}
+                {card.why ? (
+                  <Text variant="body" style={card.whatItIs ? styles.contextWhy : undefined}>
+                    {card.why}
+                  </Text>
+                ) : null}
+              </View>
             ) : null}
           </Animated.View>
 
@@ -316,17 +359,6 @@ export const CardFrame = memo(function CardFrame({
               <Text variant="bodyEmphasis" style={styles.part}>
                 {card.changed}
               </Text>
-            ) : null}
-
-            {/* Part four. Set apart by a rule rather than a heading — it is a
-              different kind of sentence from everything above it (standing
-              knowledge, not today's reading) and the reader should feel the
-              gear change without being told about it. */}
-            {card.why ? (
-              <View style={styles.why}>
-                <View style={[styles.rule, { backgroundColor: colors.rule }]} />
-                <Text variant="body">{card.why}</Text>
-              </View>
             ) : null}
 
             {card.related && card.related.length > 0 ? (
@@ -368,6 +400,9 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.xxl + SPACING.md,
   },
   reading: { marginTop: SPACING.xxs },
+  deckMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  deckActions: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
+  infoButton: { padding: SPACING.xxs, margin: -SPACING.xxs },
   readingMeta: {
     marginTop: SPACING.xxs,
     flexDirection: 'row',
@@ -392,7 +427,8 @@ const styles = StyleSheet.create({
   title: { marginTop: SPACING.smPlus },
   part: { marginTop: SPACING.smPlus },
   block: { marginTop: SPACING.smPlus },
-  why: { marginTop: SPACING.md },
+  context: { marginTop: SPACING.md },
+  contextWhy: { marginTop: SPACING.smPlus },
   rule: { height: 1, marginBottom: SPACING.md },
   related: { marginTop: SPACING.md, gap: SPACING.xxs },
   relatedRow: { marginTop: SPACING.xxs },

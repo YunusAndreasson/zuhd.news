@@ -75,12 +75,11 @@ const newsListRef = createRef<ArticleListRef>();
 /** Empty-state copy per instrument column. A column is empty when the
  *  snapshot did not carry its series, which is a quiet degrade, not an error. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  prices: {
-    message: 'no prices yet',
-    hint: 'Metals, grain and crude arrive with the next cycle',
+  now: {
+    message: 'no readings yet',
+    hint: 'No current readings are available',
   },
-  money: { message: 'no rates yet', hint: 'Exchange rates and yields arrive with the next cycle' },
-  outlook: { message: 'nothing priced yet', hint: 'Contracts are listed when they open' },
+  next: { message: 'no signals yet', hint: 'No forecasts or scheduled events are available' },
 };
 
 // Give the reader time to arrive at the caught-up boundary and read it before
@@ -320,17 +319,14 @@ export default function HomeScreen() {
     [ipc, conflictSnapshot, gdacsAlerts, determinations],
   );
 
-  // A standing condition that has just changed outranks the nisab and the oil
-  // price, so it leads rather than trails. There is no general column since
-  // the axis was cut by reader question, and `prices` is the closest honest
-  // home: famine is food, a hazard is what closes a harvest or a strait. On
-  // almost every day `conditionCards` is empty and this is exactly
-  // `columns.prices`.
+  // The horizontal axis is temporal rather than a provider taxonomy. `now`
+  // holds measurements — conditions, prices, currencies and rates — and
+  // `next` holds beliefs, attention, volatility and scheduled events. This
+  // keeps every card in a section whose label remains true for all payloads.
   const sectionCards = useMemo<Record<string, SwipeCard[]>>(
     () => ({
-      prices: prepareSwipeCards([...conditionCards, ...columns.prices], river),
-      money: prepareSwipeCards(columns.money, river),
-      outlook: prepareSwipeCards(columns.outlook, river),
+      now: prepareSwipeCards([...conditionCards, ...columns.now], river),
+      next: prepareSwipeCards(columns.next, river),
     }),
     [columns, conditionCards, river],
   );
