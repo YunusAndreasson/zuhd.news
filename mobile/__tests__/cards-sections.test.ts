@@ -1,55 +1,80 @@
 import type { InstrumentColumns } from '../lib/cards/markets';
 import { buildSwipeSections } from '../lib/cards/sections';
-import type { ReadingCard } from '../lib/cards/types';
+import type { Card, ReadingCard } from '../lib/cards/types';
 
-function card(id: string): ReadingCard {
+function graph(id: string, why = `${id} live analysis`): ReadingCard {
   return {
     id,
     kind: 'reading',
     kicker: id,
     title: id,
     reading: '1',
-    whatItIs: `${id} explained`,
+    why,
     series: { values: [1, 2], periods: ['a', 'b'], label: id },
   };
 }
 
+function columns(overrides: Partial<InstrumentColumns> = {}): InstrumentColumns {
+  return {
+    markets: [],
+    currencies: [],
+    straits: [],
+    predictions: [],
+    calendar: [],
+    attention: [],
+    ...overrides,
+  };
+}
+
 describe('buildSwipeSections', () => {
-  it('turns narrow subject pools into two complete decks without losing a card', () => {
-    const columns: InstrumentColumns = {
-      markets: [card('brent'), card('vix')],
-      currencies: [card('currencies')],
-      straits: [card('strait-hormuz')],
-      predictions: [card('prediction')],
-      calendar: [card('calendar')],
-      attention: [card('attention')],
-    };
-
-    const sections = buildSwipeSections(columns, [card('disasters')], []);
-
-    expect(Object.keys(sections).sort()).toEqual(['next', 'now']);
-    expect(sections.now.map((item) => item.id).sort()).toEqual(
-      ['attention', 'brent', 'currencies', 'disasters', 'strait-hormuz'].sort(),
+  it('keeps three specific graph desks and routes each payload family truthfully', () => {
+    const sections = buildSwipeSections(
+      columns({
+        markets: [graph('brent'), graph('vix')],
+        currencies: [graph('rand')],
+        straits: [graph('strait-hormuz')],
+        predictions: [graph('prediction')],
+      }),
+      [],
     );
-    expect(sections.next.map((item) => item.id).sort()).toEqual(
-      ['calendar', 'prediction', 'vix'].sort(),
-    );
-    expect([...sections.now, ...sections.next]).toHaveLength(8);
+
+    expect(Object.keys(sections).sort()).toEqual(['markets', 'outlook', 'shipping']);
+    expect(sections.markets.map((item) => item.id).sort()).toEqual(['brent', 'rand', 'vix']);
+    expect(sections.shipping.map((item) => item.id)).toEqual(['strait-hormuz']);
+    expect(sections.outlook.map((item) => item.id)).toEqual(['prediction']);
+    expect(
+      Object.values(sections)
+        .flat()
+        .every((item) => item.visualization.kind === 'trend'),
+    ).toBe(true);
   });
 
-  it('keeps a missing payload family inside its deck instead of exposing an empty tab', () => {
-    const columns: InstrumentColumns = {
-      markets: [card('brent')],
-      currencies: [],
-      straits: [],
-      predictions: [card('prediction')],
-      calendar: [],
-      attention: [],
+  it('rejects static copy, non-graphs and malformed histories from every deck', () => {
+    const staticGraph = graph('static', '');
+    staticGraph.whatItIs = 'Hard-coded definition';
+    const malformed = graph('malformed');
+    malformed.series = { values: [1], periods: ['a'], label: 'bad' };
+    const comparison: Card = {
+      id: 'wikipedia',
+      kind: 'comparison',
+      kicker: 'attention',
+      title: 'Wikipedia attention',
+      reading: '1',
+      why: 'Pipeline prose cannot turn rows into a time series.',
+      rows: [{ label: 'one', value: '1' }],
     };
 
-    const sections = buildSwipeSections(columns, [], []);
+    const sections = buildSwipeSections(
+      columns({
+        markets: [graph('brent'), staticGraph, malformed],
+        attention: [comparison],
+        calendar: [graph('calendar')],
+      }),
+      [],
+    );
 
-    expect(sections.now.map((item) => item.id)).toEqual(['brent']);
-    expect(sections.next.map((item) => item.id)).toEqual(['prediction']);
+    expect(sections.markets.map((item) => item.id)).toEqual(['brent']);
+    expect(sections.shipping).toEqual([]);
+    expect(sections.outlook).toEqual([]);
   });
 });

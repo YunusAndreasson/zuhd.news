@@ -44,10 +44,8 @@ import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
-import { useDeterminations } from '../hooks/useDeterminations';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
-import { useIpc } from '../hooks/useIpc';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -55,7 +53,6 @@ import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
-import { buildConditionCards } from '../lib/cards/conditions';
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildSwipeSections } from '../lib/cards/sections';
@@ -76,11 +73,18 @@ const newsListRef = createRef<ArticleListRef>();
 /** Empty-state copy per data section. A deck is empty when the available
  *  snapshots did not produce a valid card, which is a quiet degrade. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  now: {
-    message: 'no readings yet',
-    hint: 'No current readings are available',
+  markets: {
+    message: 'no market graphs yet',
+    hint: 'No market series with a current explanation are available',
   },
-  next: { message: 'no signals yet', hint: 'No forecasts or scheduled events are available' },
+  shipping: {
+    message: 'no shipping graphs yet',
+    hint: 'No chokepoint series with a current explanation are available',
+  },
+  outlook: {
+    message: 'no outlook graphs yet',
+    hint: 'No probability series with a current explanation are available',
+  },
 };
 
 // Give the reader time to arrive at the caught-up boundary and read it before
@@ -135,10 +139,8 @@ export default function HomeScreen() {
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
-  const { events: conflictEvents, snapshot: conflictSnapshot } = useConflictEvents();
+  const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
-  const { snapshot: ipc } = useIpc();
-  const { determinations } = useDeterminations();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
@@ -305,28 +307,12 @@ export default function HomeScreen() {
     () => buildInstrumentCards({ trends, chokepoints, articles: river }),
     [trends, chokepoints, river],
   );
-  // Standing conditions are events, not furniture: each is gated on its own
-  // data being new, so this is empty on almost every day and leads the column
-  // on the day a determination is published or a fresh famine analysis lands.
-  // See the header of `lib/cards/conditions.ts` for the audit that settled it.
-  const conditionCards = useMemo(
-    () =>
-      buildConditionCards({
-        ipc,
-        conflict: conflictSnapshot,
-        gdacsAlerts,
-        determinations,
-      }),
-    [ipc, conflictSnapshot, gdacsAlerts, determinations],
-  );
-
-  // Keep the horizontal axis broad enough for every destination to be a real
-  // vertical deck. The builder retains concrete subject pools so each card's
-  // provenance stays explicit; this boundary turns those pools into the two
-  // questions the rail promises: what is measured now, and what points next.
+  // Only real time series with live pipeline analysis cross this boundary.
+  // Subject-specific tabs make the rail predictable; static reference pools
+  // remain available to sheets and builders without becoming primary pages.
   const sectionCards = useMemo<Record<string, SwipeCard[]>>(
-    () => buildSwipeSections(columns, conditionCards, river),
-    [columns, conditionCards, river],
+    () => buildSwipeSections(columns, river),
+    [columns, river],
   );
 
   // Active GDACS alerts whose primary or affected-country list includes the

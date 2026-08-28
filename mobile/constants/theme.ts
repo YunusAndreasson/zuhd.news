@@ -414,35 +414,21 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
 /**
  * The horizontal axis.
  *
- * Three sections, cut by the question a reader arrives with rather than by
- * what kind of instrument the answer happens to be. The stories first, then:
- * what is happening now and what is only a signal about what may happen next.
- * Subject navigation, entirely by swipe.
+ * Four sections: the story river followed by three focused graph desks.
+ * The data destinations are deliberately specific: market prices,
+ * chokepoint traffic and probability outlooks. Each contains only a real time
+ * series with current pipeline analysis; static reference material does not
+ * earn a primary tab.
  *
- * It was six, split by asset class, and the split was the problem. `markets`
- * held food, energy, rates, shipping, Wikipedia curiosity and a calendar —
- * eight cards and three of them not markets by any reading — while `crypto`,
- * `metals` and `currencies` held two or three each and were all facets of one
- * question. Asset class is how a data provider files a series; it is not how
- * anybody wakes up wondering about one.
- *
- * Every section here holds readings that move daily — which is the test a news
- * app has to apply to itself. Conditions and market readings share `now`
- * because both are measurements of the present; observed attention does too.
- * Contracts, forward volatility and calendars share `next` because each is
- * evidence about what people expect or what is scheduled, not a completed fact.
- *
- * Three labels fit a phone at default type with room to spare
- * against a 360pt screen, where six measured past 440 and forced the rail to
- * scroll. `SectionBar` keeps its scroll view for large Dynamic Type and draws
- * a rule after `news`, which is a river where the other two are card decks.
+ * `SectionBar` keeps its scroll view for large Dynamic Type and draws a rule
+ * after `news`, which is a river where the other three are card decks.
  * Swipe is still the navigation; the rail is where you are.
  *
  * The four categories used to live on this axis too. They are a vertical
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'now', 'next'] as const;
+export const SECTIONS = ['news', 'markets', 'shipping', 'outlook'] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */

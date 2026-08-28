@@ -316,8 +316,9 @@ describe('buildInstrumentCards', () => {
     expect(card?.readingNote).toBe('set by silver');
     expect(card?.changed).toContain('fell');
     expect(card?.changed).toContain('more wealth is zakatable');
-    expect(card?.why).toContain('85');
-    expect(card?.why).toContain('595');
+    expect(card?.whatItIs).toContain('85');
+    expect(card?.whatItIs).toContain('595');
+    expect(card?.why).toBeUndefined();
   });
 
   it('graphs the gold-to-silver ratio that the metals card headlines', () => {

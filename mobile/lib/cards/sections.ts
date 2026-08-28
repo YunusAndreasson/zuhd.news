@@ -6,42 +6,38 @@ import type { Card } from './types';
 
 type DataSection = Exclude<Section, 'news'>;
 
-/** VIX measures the price of expected volatility over the coming month. Its
- * provider files it as a market series, but the reader-facing deck is about
- * what the reading means, so it belongs with beliefs and scheduled events. */
-const isForwardMarket = (card: Card) => card.id === 'vix';
+/** A primary data card must fulfil both promises: a real history and analysis
+ * from the live pipeline. Editorial `whatItIs` copy remains optional context
+ * and deliberately cannot create a screen by itself. */
+function hasGraphAndAnalysis(card: Card): boolean {
+  if (card.kind !== 'reading' && card.kind !== 'belief') return false;
+  if (!card.why?.trim() || !card.series) return false;
+
+  const periods = card.series.periods.length;
+  const validLine = (values: number[]) =>
+    values.length === periods && values.filter(Number.isFinite).length >= 2;
+
+  if (!validLine(card.series.values)) return false;
+  return card.series.multi?.every((line) => validLine(line.values)) ?? true;
+}
 
 /**
- * Consolidate the concrete card pools into substantial swipe decks.
+ * Turn concrete payload pools into the three graph desks promised by the rail.
  *
- * Keeping a tab for every payload family produced one- and two-card columns,
- * a rail wider than the phone, and seven destinations that changed length
- * dramatically with ordinary missing data. `now` and `next` remain truthful
- * when a pool is absent, while giving the vertical gesture enough material to
- * feel like the news river instead of a detail screen.
+ * Attention tables, calendars, humanitarian snapshots and currency comparison
+ * tables do not enter these decks. Missing payloads simply shorten the
+ * relevant deck rather than weakening the rule.
  */
 export function buildSwipeSections(
   columns: InstrumentColumns,
-  conditions: Card[],
   articles: Article[],
 ): Record<DataSection, SwipeCard[]> {
-  const currentMarkets = columns.markets.filter((card) => !isForwardMarket(card));
-  const forwardMarkets = columns.markets.filter(isForwardMarket);
-
   return {
-    now: prepareSwipeCards(
-      [
-        ...conditions,
-        ...columns.straits,
-        ...columns.attention,
-        ...currentMarkets,
-        ...columns.currencies,
-      ],
+    markets: prepareSwipeCards(
+      [...columns.markets, ...columns.currencies].filter(hasGraphAndAnalysis),
       articles,
     ),
-    next: prepareSwipeCards(
-      [...columns.predictions, ...forwardMarkets, ...columns.calendar],
-      articles,
-    ),
+    shipping: prepareSwipeCards(columns.straits.filter(hasGraphAndAnalysis), articles),
+    outlook: prepareSwipeCards(columns.predictions.filter(hasGraphAndAnalysis), articles),
   };
 }

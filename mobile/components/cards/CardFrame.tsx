@@ -17,13 +17,11 @@ import { Icon, IconButton, Text } from '../primitives';
 /**
  * The card anatomy, as a component.
  *
- * Every card in `markets` and `conditions` is this shell with one block in the
+ * Every data card is this shell with one block in the
  * middle. The order is not decoration — it is the reading order a person
  * actually uses: the number at arm's length, what changed, and which of
- * today's stories it touches. Definitions and standing context are available
- * from the info control instead of taking up the daily reading surface.
- *
- * Context is written by the pipeline (`standing`), never composed here.
+ * today's stories it touches. Live `standing` analysis is part of that daily
+ * surface; only the static definition is tucked behind the info control.
  */
 
 /** The reading is the largest thing on the screen and the only thing sized
@@ -114,7 +112,7 @@ export const CardFrame = memo(function CardFrame({
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
-  const hasContext = Boolean(card.whatItIs || card.why);
+  const hasContext = Boolean(card.whatItIs);
   const [contextOpen, setContextOpen] = useState(false);
   const toggleContext = useCallback(() => setContextOpen((open) => !open), []);
 
@@ -341,11 +339,6 @@ export const CardFrame = memo(function CardFrame({
                     {card.whatItIs}
                   </Text>
                 ) : null}
-                {card.why ? (
-                  <Text variant="body" style={card.whatItIs ? styles.contextWhy : undefined}>
-                    {card.why}
-                  </Text>
-                ) : null}
               </View>
             ) : null}
           </Animated.View>
@@ -355,6 +348,12 @@ export const CardFrame = memo(function CardFrame({
           ) : null}
 
           <Animated.View style={arrival}>
+            {card.why ? (
+              <Text variant="body" style={styles.part}>
+                {card.why}
+              </Text>
+            ) : null}
+
             {card.changed ? (
               <Text variant="bodyEmphasis" style={styles.part}>
                 {card.changed}
@@ -428,7 +427,6 @@ const styles = StyleSheet.create({
   part: { marginTop: SPACING.smPlus },
   block: { marginTop: SPACING.smPlus },
   context: { marginTop: SPACING.md },
-  contextWhy: { marginTop: SPACING.smPlus },
   rule: { height: 1, marginBottom: SPACING.md },
   related: { marginTop: SPACING.md, gap: SPACING.xxs },
   relatedRow: { marginTop: SPACING.xxs },

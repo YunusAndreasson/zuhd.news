@@ -10,7 +10,8 @@ import type { Direction, Valence } from '../valence';
  * fifteen currencies are one card and thirty exchanges are none.
  *
  * The shape below is that rule written as a type. The changing observation is
- * the daily surface; definitions and standing context are disclosed on demand:
+ * the daily surface; live analysis stays visible and static definitions are
+ * disclosed on demand:
  *
  *   reading    the number, at arm's length
  *   whatItIs   one sentence for someone who has never heard of it
@@ -96,7 +97,7 @@ interface CardBase {
   whatItIs?: string;
   /** What changed in the current data window. */
   changed?: string;
-  /** Standing context, shown from the card's info control. */
+  /** Live pipeline analysis, shown on the recurring card surface. */
   why?: string;
   /** Part 5. */
   related?: RelatedArticleRef[];

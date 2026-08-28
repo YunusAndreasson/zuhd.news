@@ -30,8 +30,8 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * of them — in a sheet reached by tapping a word.
  *
  * Concrete subject pools keep the builder honest about what each payload is.
- * They are not navigation tabs: `lib/cards/sections.ts` combines them into the
- * broader `now` and `next` swipe decks after condition cards are available.
+ * `lib/cards/sections.ts` admits only graph-backed pieces with live analysis
+ * into the reader-facing markets, shipping and outlook desks.
  *
  * What is *not* here is the point of the file. Thirty exchanges, the S&P, the
  * NASDAQ, TSMC, copper, TTF, retail gasoline and WTI all have live series and
@@ -330,10 +330,8 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
     reading: `$${formatCount(n.threshold)}`,
     readingNote: `set by ${n.binding}`,
     delta,
-    whatItIs:
-      'The wealth a person must hold for a lunar year before zakat falls due. It is defined by weight of metal, not by currency, so it moves with the metal price.',
+    whatItIs: `The wealth a person must hold for a lunar year before zakat falls due. It is defined by weight of metal, not by currency, so it moves with the metal price. This calculation uses the lower of 85 grams of gold and 595 grams of silver; ${n.binding === 'silver' ? 'silver' : 'gold'} sets today’s threshold.`,
     changed,
-    why: `This card uses the lower of 85 grams of gold and 595 grams of silver. ${n.binding === 'silver' ? 'Silver' : 'Gold'} sets today’s threshold.`,
     figures: [
       {
         label: 'gold · 85 g',

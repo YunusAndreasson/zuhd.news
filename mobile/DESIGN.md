@@ -162,11 +162,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   app. That is why fifteen currencies are one card, thirty exchanges are none,
   and 101 famine areas are one. Applied to the live payloads it cuts ~80
   candidate cards to ~25.
-- **Daily facts first; standing context on demand**, owned by `CardFrame`. The
-  recurring surface shows the reading, its unit and delta, what changed, the
-  graph or comparison, and ties to today's stories. The definition and
-  `standing` paragraph live behind the info control: useful on a first visit,
-  but not repeated every day. Context is never composed in the renderer.
+- **Live analysis is the point**, owned by `CardFrame`. The recurring surface
+  shows the reading, graph, pipeline-written `standing` analysis, movement and
+  ties to today's stories. A hand-written `whatItIs` definition may live behind
+  the info control, but static copy neither satisfies the deck gate nor replaces
+  current analysis. Context is never composed in the renderer.
 - **`lead` says why the card is here at all.** A builder that gated a card on
   its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
   before the kicker. Without it a newly escalated hazard and the
@@ -178,16 +178,15 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   `buildConditionCards` carry it, as does a strait whose total traffic fell at
   least 30%; IPC does not, because its payload supplies a covered
   period rather than a trustworthy publication timestamp.
-- **One definition per card, and `standing` is the one.** The fallback is written
-  here and part four is written by the pipeline, and they were saying the same
+- **Pipeline analysis replaces a duplicate definition.** The fallback is written
+  here and `standing` is written by the pipeline, and they were saying the same
   thing on *every* reading card — brent, us-10y and vix each carried two
   paragraphs of the same definition separated by a chart. The prefix-comparison
   guard that was supposed to catch this missed all three by a word, because a
   same-opening test cannot catch a same-meaning collision. The rule is
   structural now (`definitionUnlessStanding`): if the pipeline wrote a
-  `standing`, the hand-written sentence is omitted. Prediction cards keep a
-  concise per-piece explanation so every card remains understandable when its
-  info control is opened directly.
+  `standing`, the hand-written sentence is omitted. The pipeline text remains
+  visible beneath the graph; the info control is only for static fallback copy.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
@@ -205,12 +204,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   header of `lib/cards/conditions.ts`, and those cards are now gated on their
   own data being new. Apply the same test to anything added here.
 - **Builders are pure functions in `lib/cards/`**, not components —
-  `buildInstrumentCards` (`now` and `next`), `buildConditionCards`. They
+  `buildInstrumentCards` (markets, shipping and outlook), `buildConditionCards`. They
   return a shorter column
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.
-- **The swipe boundary validates and ranks.** `prepareSwipeCards` is the only
+- **The swipe boundary validates and ranks.** `buildSwipeSections` first
+  requires a valid time series and pipeline analysis; `prepareSwipeCards` is the only
   path from builder output into `CardPager`: it requires a meaningful visual
   and explanatory copy, attaches numeric ranking metadata, and sorts urgent
   updates before the strongest tie to today's news, unusual movement against
@@ -252,14 +252,14 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the three sections (`news` · `now` · `next`); vertical
+  between four sections (`news` · `markets` · `shipping` · `outlook`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
-- **The data sections are cut by meaning, not provider taxonomy.** `now` is
-  measured reality: conditions, shipping, attention, prices, currencies and
-  rates. `next` is belief, forward volatility or a scheduled event. Concrete
-  subject pools stay inside the builder, but never become one- or two-card
-  destinations in the rail.
+- **The data sections are focused graph desks.** `markets` is prices, rates,
+  currencies and crypto; `shipping` is chokepoint traffic; `outlook` is
+  probability markets. A real time series plus live pipeline explanation is
+  the admission rule. Static reference, Wikipedia attention, calendars and
+  snapshot-only conditions stay out of the primary rail.
 - **A card's graph visualises its headline quantity.** If the payload has only
   total-traffic history, a chokepoint card cannot headline tankers; if the
   headline is a gold/silver ratio, the graph is that ratio rather than two raw
@@ -273,16 +273,15 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   did nothing but drag a dot along a line. Charts on cards pass
   `scrubbable={false}`; scrubbing lives in sheets, where there is no pager to
   compete with. Any new gesture on a card owes the same check.
-- `SectionBar` follows the pager. Three labels fit with room to spare on a
-  360pt phone, where the eight subject tabs forced a scroller the reader could
-  never see the end of; the scroller stays for large Dynamic Type and is inert
-  below it. Abbreviating ("curr") was never the alternative. Driven by the
+- `SectionBar` follows the pager. Four specific labels may scroll on a narrow
+  phone or at large Dynamic Type; abbreviating ("curr") is not the alternative.
+  Driven by the
   settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
   drag fights the drag, while the indicator tracking the finger is the part
   that should feel live.
 - **The rail groups, because the sections are not peers.** A rule sits after
-  `news`: it is an article river and the other two are data-card decks, so
-  drawing all three at identical weight would make a false claim about
+  `news`: it is an article river and the other three are data-card decks, so
+  drawing all four at identical weight would make a false claim about
   symmetry the content does not keep. Full point, not `hairlineWidth` — a
   10pt vertical hairline disappears at some Android densities, and a group rule
   nobody can see does not group.

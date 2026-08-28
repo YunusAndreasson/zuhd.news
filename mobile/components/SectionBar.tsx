@@ -28,17 +28,12 @@ import { Icon, IconButton } from './primitives';
 // route uppercase glyphs through the small-caps font, which renders them
 // as full caps and breaks the editorial smallcaps voice.
 //
-// Three labels fit. "news now next" leaves enough room for the type, gaps,
-// group rule and menu reserve on a 360pt phone, so the entire horizontal axis
-// stays visible. The scroller remains for large Dynamic Type.
-//
-// `now` contains measured facts, from humanitarian conditions and shipping to
-// prices, currencies, rates and observed attention. `next` contains beliefs,
-// forward volatility and scheduled events. Both are substantial swipe decks;
-// neither exposes the one-card payload buckets used to build it.
+// Four plain-language labels name the available desks. The rail may scroll on
+// a narrow phone or at large Dynamic Type; no label is abbreviated to conceal
+// that there are distinct markets, shipping and outlook destinations.
 //
 // `news` is set off by a rule. It is a river of forty articles; the other
-// two are decks of full-screen cards, and the rule preserves that change of
+// three are decks of full-screen cards, and the rule preserves that change of
 // reading mode.
 //
 // This does not make the rail the navigation. Swiping the page is; the rail is

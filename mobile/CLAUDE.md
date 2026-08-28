@@ -58,26 +58,16 @@ a release build cannot name the offender if one survives.
 
 ## The two axes
 
-Horizontal swipe = section (`news` · `now` · `next`), vertical
+Horizontal swipe = section (`news` · `markets` · `shipping` · `outlook`), vertical
 paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
 
-- **The data axis is semantic, not a provider taxonomy.** `now` holds measured
-  facts: humanitarian conditions, shipping, attention, prices, currencies,
-  rates and crypto. `next` holds evidence about what may happen: prediction
-  contracts, forward volatility and scheduled events. The concrete subject
-  pools remain explicit in the builder, then combine at the swipe boundary so
-  missing payloads shorten a deck instead of creating an empty tab.
-- **A card ships because it changed.** Standing conditions (famine, conflict,
-  hazards, genocide determinations) were a section until an audit killed it:
-  median famine analysis seven months old, conflict window 145 days behind, one
-  determination 2,902 days old. They now gate on their own data being new and
-  lead `now` on the day one is. IPC is the exception to the `current` mark: its
-  payload supplies a covered period but no dependable publication timestamp.
-  Apply the same test to anything new — the
-  eleven-strait table and the release calendar both failed it later and are now
-  gone and gated respectively.
+- **The data axis is specific and graph-only.** `markets` holds prices, rates,
+  currencies and crypto; `shipping` holds chokepoint traffic; `outlook` holds
+  prediction-market probabilities. Every admitted card needs a usable time
+  series and live pipeline analysis (`why`). Wikipedia attention, calendars,
+  static comparisons and humanitarian snapshots do not enter these decks.
 - **A current card says so, and `lead` is how.** An event-dated condition card
   or a disrupted strait is on screen because its source cleared a freshness
   gate; the nisab and the
@@ -88,7 +78,7 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   chromatic budget is spent on `CardDelta` and `colors.determination`.
 - **Straits are graphs, not a duplicate table.** `MiniGlobe` still locates all
   eleven and opens their detailed sheets; the concrete `straits` pool gives
-  each usable total-traffic history its own swipe piece inside `now`. A fall of
+  each usable total-traffic history its own swipe piece inside `shipping`. A fall of
   at least 30% earns `current`; otherwise it remains reference. Ranking uses
   current-news relevance and unusual movement so a small percentage does not
   hide a major live story.
@@ -146,10 +136,10 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   is not about what is on screen. Sharing a card needs a per-card URL and only
   the indicator-backed ones have one (`/e/{id}`).
 
-- **Daily facts stay visible; standing context is disclosed.** The reading,
-  chart or comparison, delta and current change make up the recurring surface.
-  Definitions and the pipeline's `standing` paragraph sit behind the card's
-  info control so a daily reader does not meet the same prose every morning.
+- **The graph and pipeline analysis stay visible.** The reading, chart,
+  `standing` explanation, delta and current change make up the recurring
+  surface. Only a hand-written fallback definition sits behind the info control;
+  static copy does not earn a card.
 - **`standing` is authoritative, so a fallback definition is usually omitted.** The two
   were written by different hands and were saying the same thing on *every*
   reading card — brent, us-10y and vix each carried two definitions of
