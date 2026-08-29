@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "bucha-warehouse-strike-secondary-detonations-toll",
+      "label": "Russian attack on warehouse near Ukraine's Kyiv kills at least 27",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-bucha-warehouse-strike-secondary-detonations-toll"
+      ],
+      "eventUri": "eng-11964001",
+      "summary": "A Russian drone hit a warehouse in Bucha, in Kyiv's western suburbs, that appears to have been storing 'explosive objects'; the secondary detonations, not the drone, did most of the killing and damaged at least 50 residential buildings. Lead with that mechanism — the munitions were the multiplier, which is why a single drone produced a mass-casualty event and why Ukrainian authorities have opened a negligence probe into whoever authorised the storage. Handle the toll carefully: sources in this cluster range from 27 to 37 dead, so give the range and its provenance rather than one number. Who is affected: residents of an ordinary suburb, killed by ordnance stored beside their homes; who holds power: the Russian force that struck and the Ukrainian officials who sited the depot. Structural why — as both armies disperse stockpiles into civilian buildings to survive long-range strikes, the front line becomes an inventory problem and the warehouse becomes the target. Multi-source: Guardian (GB), India Today (IN), Al Jazeera (QA), TRT World (TR), Kyiv Independent.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Bucha,_Kyiv_Oblast",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/Kyiv_Oblast",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+      ]
+    },
+    {
+      "id": "rostov-drone-saturation-falling-debris-casualties",
+      "label": "Massive Ukrainian drone attack targets Russia's Rostov region",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-rostov-drone-saturation-falling-debris-casualties"
+      ],
+      "eventUri": "rus-2116687",
+      "summary": "Seven injured, apartment buildings damaged by falling debris and a forest fire started across three Rostov districts — the numbers are small, and that is the point. This is what Zelensky's stated target of 1,000 long-range drones a day (we covered the 300-to-1,000 arithmetic on 28 Aug) actually looks like at the receiving end: an air-defence engagement whose debris does the damage to the people below, in a Russian region that is now a nightly free-fire zone. Lead with the debris, not the drones — in a saturation campaign, interception is not protection, it is relocation of the impact. Who is affected: Rostov residents evacuated to temporary shelters, counted here because our coverage weighs every civilian equally; who holds power: the Ukrainian strike planners choosing volume over precision, and the Russian governors who release the casualty figures. Sourcing note for the writer: TRT (TR) and TASS (RU) are the only sources, TASS is Russian state media and the governor is the sole authority for the injury count — attribute both, and do not report the tolls as independently confirmed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Rostov_Oblast",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Rostov-on-Don",
+        "http://en.wikipedia.org/wiki/Aksaysky_District",
+        "http://en.wikipedia.org/wiki/Proletarsky_District,_Rostov_Oblast",
+        "http://en.wikipedia.org/wiki/Bagayevsky_District",
+        "http://en.wikipedia.org/wiki/Armed_Forces_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Governor"
+      ]
+    },
+    {
+      "id": "haiti-internal-displacement-armed-civilian-brigades",
+      "label": "Haiti's security crisis forces displacement and relocation",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-haiti-internal-displacement-armed-civilian-brigades"
+      ],
+      "eventUri": null,
+      "summary": "Haitians are being displaced inside their own capital by gangs, while the counter-force is an improvised mix of armed civilian groups, police and the army — three actors with no common command and no accountability to the displaced. Lead with the displacement figure and where those people went, because internal displacement in a country with no functioning asylum route abroad means the same families move repeatedly within the same city. The mechanism to teach: when a state cannot monopolise force, the vacuum is filled by self-defence brigades whose legitimacy is local and whose conduct is unpoliced — which is how a security response becomes a second source of harm. Who is affected: named displaced residents where the reporting names them; who holds power: the gangs, the brigades, and the international mission whose mandate has repeatedly been renewed without changing the map. Fills the Latin America and Caribbean gap our audit has flagged, and does it through the displaced rather than through the crime-and-sanctions framing the region usually enters our feed under.",
+      "conceptUris": []
+    },
+    {
+      "id": "kp-child-protection-act-haripur-conviction-gap",
+      "label": "CM Afridi vows tougher child protection laws in KP after 5-year-old girl's rape, murder",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-kp-child-protection-act-haripur-conviction-gap"
+      ],
+      "eventUri": null,
+      "summary": "A five-year-old girl was raped and murdered in Haripur, and Khyber Pakhtunkhwa's chief minister responded by promising 'exemplary punishment' and a stiffened Child Protection and Welfare Act renamed after her. Lead with the pattern the promise belongs to: Pakistan has renamed and stiffened child-protection law after named victims before — Zainab in 2018 gave her name to an alert system — and the recurring constraint has never been the sentence available but conviction rates, medico-legal capacity and the months it takes to get a forensic result. That is the mechanism to explain: a harsher statute changes what a court may impose, not whether a case survives investigation. Who is affected: the child and her family, named as the reporting names them, and the families of the cases that do not reach a courtroom; who holds power: the KP provincial government now legislating in the same week it is fighting over its own boundaries. Handle the crime with restraint — no forensic detail, no reconstruction. Regional sourcing is Dawn (PK), the right voice for this file.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-foreign-trade-third-blockade-admission",
+      "label": "Iran's leaders acknowledge economic toll of war, pledge diplomacy, defence",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-iran-foreign-trade-third-blockade-admission"
+      ],
+      "eventUri": "eng-11963960",
+      "summary": "Pezeshkian says Iran's foreign trade has shrunk by more than a third under US sanctions and a naval blockade — the first time Tehran's own leadership has put a number on six months of war. Lead with the one-third, because an admission is a data point: a government that has spent six months insisting the economy is resilient does not concede a third of its trade unless the figure is already visible in the bazaar. The mechanism to teach is the difference between sanctions and blockade — sanctions deter counterparties and can be routed around through third-country banks (which is why Washington cut Banque Misr's UAE branches out of dollar clearing on 28 Aug); a naval blockade removes the cargo itself, and no financial workaround moves a barrel. Who is affected: Iranian households absorbing the inflation the president is describing; who holds power: the US Treasury and Fifth Fleet on one side, and a cabinet pledging 'diplomacy and defence' from a weaker position than it will admit. Regional sourcing is Al Jazeera (QA); Mehr News (IR) carries the cabinet's parallel statements in this feed if a state-side voice is wanted, attributed as such.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Economic_sanctions",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+        "http://en.wikipedia.org/wiki/United_States_sanctions_against_Iran",
+        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "hormuz-6000-stranded-seafarers-imo",
+      "label": "Strait of Hormuz traffic remains below normal as US sanctions pressure Iran",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-hormuz-6000-stranded-seafarers-imo"
+      ],
+      "eventUri": "fra-1337746",
+      "summary": "The IMO says at least 6,000 seafarers are stranded aboard hundreds of ships inside the Persian Gulf, six months into the war, and 19 have died. Lead with the crews, not the barrels — every previous Hormuz story, ours included, has priced the strait in freight rates and risk premia, and this is the first that counts the people locked inside it. The mechanism to teach: a seafarer cannot leave a vessel that cannot transit, because crew changes require a port call and shore leave requires a visa the flag state cannot grant in a war zone, so the crew is contractually and physically captive while their contracts expire around them. Most of those crews are Filipino, Indian, Bangladeshi and Pakistani — the labour force of global shipping is overwhelmingly from Asia and the Muslim world, so the human cost of this blockade is being paid by countries that are not party to it. Who holds power: the flag states, the shipowners who keep the vessels at anchor rather than write off the cargo, the IRGC setting transit terms, and the IMO, which can report the number but cannot move a ship. Continues the Hormuz arc from the crew's side. Sourcing note: Fox News is the only outlet carrying this in the feed and the substance is IMO figures — attribute the numbers to the IMO directly, not to the outlet, and do not carry the wrapper's framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-china-upstream-capital-after-majors-exit",
+      "label": "Nigeria seeks investment in oil and gas sector at China energy exhibition",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-nigeria-china-upstream-capital-after-majors-exit"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria is sending a delegation to the China Dongying International Petroleum Exhibition to court Chinese capital for its upstream — a trade fair, which is exactly why it matters. Lead with the venue: Abuja is pitching at an equipment expo in Shandong rather than to the Western majors, because Shell, ExxonMobil and Eni have spent the last five years selling their onshore Niger Delta assets and leaving. The mechanism to teach is what replaces a departing major — Chinese service companies and state-linked lenders finance on different terms, typically shorter tenors secured against production rather than equity stakes, which moves the risk of a low-price year onto the Nigerian side of the contract. Who is affected: Niger Delta communities inheriting whichever operator buys the wells, and the federal budget that runs on the receipts; who holds power: NNPC, the divesting majors, and the Chinese lenders who set the terms. Structural why — the energy transition is not ending African oil production, it is changing who owns it, and the buyers ask fewer questions about the last operator's spills. Regional sourcing is Premium Times (NG).",
+      "conceptUris": []
+    },
+    {
+      "id": "p2y12-trial-female-subgroup-87-patients",
+      "label": "Dual antithrombotic therapy using potent antiplatelet inhibitors in atrial fibrillation and acute coronary syndrome: a randomized controlled trial",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-p2y12-trial-female-subgroup-87-patients"
+      ],
+      "eventUri": null,
+      "summary": "A randomised trial of potent P2Y12 inhibitors (prasugrel or ticagrelor) in patients who have both atrial fibrillation and an acute coronary syndrome found a nominally significant sex interaction: among the 87 women treated, no reduction in ischaemic complications appeared at all. Lead with that 87, because it is the whole lesson — the female subgroup is too small to conclude anything, and it is too small precisely because cardiology trials have under-enrolled women for decades, so the honest finding is a hole in the evidence rather than a result. The mechanism to teach our readers is what a 'predefined exploratory subgroup analysis' is licensed to claim: it generates a hypothesis and cannot test one, and the difference is why plausible subgroup signals so often evaporate. Who is affected: patients on triple therapy, who are being balanced between a stroke risk and a bleeding risk with less evidence than the guideline implies if they are women. Give the total enrolment, the primary endpoint, and what a properly powered female cohort would require. Keep it precise and refuse the 'drug does not work in women' headline the finding does not support.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-radiopharmaceutical-isotope-cold-chain",
+      "label": "Health minister seeks increased investment in radiopharmaceutical cancer therapy",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-nigeria-radiopharmaceutical-isotope-cold-chain"
+      ],
+      "eventUri": "eng-11960495",
+      "summary": "Nigeria's minister of state for health is calling for investment in radiopharmaceutical therapy — cancer treatment that delivers a radioactive isotope to a molecular target — in a country that has spent years with a single-digit number of working radiotherapy machines for 220 million people. Lead with the supply chain, because it is the reason this is hard and the reason it is interesting: the isotopes decay in hours to days, so they cannot be stockpiled or shipped slowly, which means a radiopharmaceutical programme is really a demand for a domestic reactor or cyclotron, a customs lane that clears in hours, and a cold chain that does not fail — infrastructure, not a drug order. Who is affected: Nigerian cancer patients who currently fly to India, Egypt or Turkey if they can afford to and go untreated if they cannot; who holds power: the health ministry, the IAEA programmes that fund such units, and the isotope producers, a handful of ageing reactors worldwide whose outages have halted diagnostics globally before. Structural why: precision oncology is arriving in the Global South as a logistics problem, and logistics is what health systems there are least funded to build. Regional sourcing is Premium Times (NG).",
+      "conceptUris": []
+    },
+    {
+      "id": "captured-interstellar-objects-solar-system",
+      "label": "Thousands of Interstellar Objects May Be Lurking in Our Solar System",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-captured-interstellar-objects-solar-system"
+      ],
+      "eventUri": null,
+      "summary": "A new study argues the Sun has passed close enough to other stars, often enough, to have gravitationally captured thousands of small interstellar objects that are still orbiting here — meaning material from other planetary systems may already be inside our own, waiting to be identified rather than chased. Lead with the inversion: 'Oumuamua and Borisov were treated as once-in-a-generation visitors we could only watch leave, and this work says the rarity was in our ability to notice, not in the objects. The mechanism to teach is capture itself — a body arrives on a hyperbolic path and only stays if a third mass, usually Jupiter, takes enough energy out of it during the encounter, which is why captured objects should cluster in specific orbital families that a survey can be pointed at. Explain what would confirm it: an object with an orbit consistent with capture and a composition that does not match anything formed around this Sun. Structural why for the reader: the Vera Rubin Observatory's decade-long survey is what turns this from arithmetic into a search, and a captured interstellar rock in a reachable orbit is the only sample of another star system anyone could realistically retrieve. Mark clearly what is modelled and what is observed — this is a probability estimate, not a detection.",
+      "conceptUris": []
+    },
+    {
+      "id": "open-eyelid-dataset-medical-ai-bias",
+      "label": "A multi-category eye image dataset for AI-based segmentation and analysis of eyelid disorders",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-open-eyelid-dataset-medical-ai-bias"
+      ],
+      "eventUri": null,
+      "summary": "A published, openly citable dataset of annotated eye images for training AI to segment and measure abnormal eyelid position — ptosis, retraction, malposition — conditions currently assessed by a clinician holding a ruler to a patient's face. Lead with what a public dataset actually is in machine learning: the model is downstream of the data, so whoever publishes the training set decides what the model can see, and an open dataset is the only kind that lets an outside researcher check a diagnostic tool for the population it fails on. The mechanism worth teaching is dataset bias in medical imaging — an eyelid model trained on one population's eye morphology will systematically misread another's, and eyelid geometry varies by ancestry more than almost any other facial measurement, which is exactly why the demographic composition of this dataset is the first thing to report. Who is affected: patients in health systems with no oculoplastic specialist, where a phone camera and a model is the realistic screening path; who holds power: the journals and labs deciding whether these sets are open or proprietary — the commercial alternative is a licensed model no one may audit. Report the dataset's size, categories and stated demographics, and say plainly if the paper does not give them.",
+      "conceptUris": []
+    },
+    {
+      "id": "computer-science-theory-machines-complexity",
+      "label": "Does Computer Science Need Computers?",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-computer-science-theory-machines-complexity"
+      ],
+      "eventUri": null,
+      "summary": "Theoretical computer science does not need a computer to exist — its central results are theorems about what any machine could do — and yet many of its deepest questions would never have been asked if machines had not been built. Lead with that dependency running the wrong way: Turing settled what is computable in 1936, before a general-purpose computer existed, but complexity theory, cryptography and the P versus NP question came from people watching real programs run slowly. The mechanism to teach is the distinction between computability and complexity — whether a problem can be solved at all versus whether it can be solved before the sun burns out — because that boundary, not hardware, is what actually secures every encrypted message our readers send. Why it matters now: the field's most-funded frontier, machine learning, is empirical to a degree that embarrasses its own theory, so a discipline built on proof is being led by results nobody can yet explain — the same tension, inverted. Keep it concrete: name the specific questions machines provoked, and give the reader one clean statement of what a proof buys that a benchmark cannot.",
+      "conceptUris": []
+    },
+    {
+      "id": "keyboard-driven-guis-accessibility-automation",
+      "label": "GUIs should be fully keyboard-driven",
+      "firstSeen": "2026-08-29T12:09:46.201Z",
+      "lastCovered": "2026-08-29T12:09:46.201Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-28-keyboard-driven-guis-accessibility-automation"
+      ],
+      "eventUri": null,
+      "summary": "The argument, at 855 points and 425 comments: every function in a graphical interface should be reachable from the keyboard, and the fact that most are not is a design regression, not a design choice. Lead with the accessibility consequence rather than the power-user one, because it is the stronger claim and the one the thread underweights — a control reachable only by clicking a specific pixel is unreachable to a screen reader, to a switch device, and to anyone who cannot use a mouse, so keyboard completeness is the same requirement as accessibility wearing a different name. The mechanism to teach: keyboard reachability is what makes an interface scriptable and testable too — if every action has a name a key can invoke, the application can be automated and audited from outside; if actions exist only as coordinates, it cannot. Structural why: interfaces are increasingly built from component libraries that ship mouse behaviour by default and keyboard behaviour as an optional extra, so the regression is inherited rather than decided, one npm install at a time. Treat the post as the argument and test its specific claims against how the named applications actually behave.",
+      "conceptUris": []
+    },
+    {
       "id": "niamey-airport-base-attack-niger-junta",
       "label": "Gunfire and explosions heard near military base in Niger's capital",
       "firstSeen": "2026-08-29T08:10:42.931Z",
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-niamey-airport-base-attack-niger-junta"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-lebanon-christian-villages-israeli-occupation-border-zone"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nepal-hydropower-sites-934-trapped-missing-workers"
@@ -65,7 +300,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-khyber-pakhtunkhwa-new-provinces-ndm-resistance"
@@ -81,7 +316,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-china-flight-test-base-expansion-new-hangars"
@@ -97,7 +332,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-delhi-cng-price-hike-lng-hormuz-passthrough"
@@ -122,7 +357,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-halal-certification-pharmaceutical-supply-chain-gap"
@@ -138,7 +373,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pentagon-736000-facilities-maintenance-backlog"
@@ -154,7 +389,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-dormant-bitcoin-wallets-rekeying-quantum-exposure"
@@ -170,7 +405,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-it-works-better-in-the-app-web-degradation"
@@ -186,7 +421,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-china-us-ai-convergence-not-competing-visions"
@@ -202,7 +437,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pacibekitug-il6-inflammation-heart-outcomes"
@@ -218,7 +453,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-daylighting-buried-urban-streams-flood-capacity"
@@ -234,7 +469,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-irgc-hormuz-closed-without-coordination"
@@ -250,7 +485,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-27-bahrain-gdp-contracts-iran-conflict-oil"
@@ -266,7 +501,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-uzbekistan-presidential-administration-law-immunity"
@@ -282,7 +517,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mladic-death-srebrenica-glorification-denial"
@@ -298,7 +533,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nepal-floods-thousands-missing-foreign-nationals"
@@ -314,7 +549,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-27-rural-preemption-data-centers-local-control"
@@ -330,7 +565,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
@@ -355,7 +590,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mumbai-milk-price-rs-100-producers-association"
@@ -379,7 +614,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-27-esa-launcher-challenge-544-million-contracts"
@@ -395,7 +630,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-mongolia-cop17-desertification-land-degradation"
@@ -411,7 +646,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-cognyte-cell-site-simulators-us-police-contracts"
@@ -427,7 +662,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-papercut-print-server-flaw-active-exploitation"
@@ -443,7 +678,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-xrp-ledger-post-quantum-migration-validators"
@@ -459,7 +694,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-us-judge-repeats-block-on-trump-s-bid-to-limit-voting-by-mai"
@@ -484,7 +719,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-pezeshkian-to-meet-putin-on-september-1-russian-official"
@@ -509,7 +744,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-profound-consequences-indus-water-treaty-must-not-be-weaponi"
@@ -525,7 +760,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-sudan-nashra-military-strikes-rsf-convoy-inside-chadian-terr"
@@ -541,7 +776,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-u-s-designates-palestinian-refugee-in-germany-as-terrorist"
@@ -557,7 +792,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-trump-blacklisting-of-woke-anthropic-deemed-illegal-by-feder"
@@ -573,7 +808,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
@@ -589,7 +824,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-zelensky-calls-for-ukraine-to-launch-1-000-drones-at-russia"
@@ -614,7 +849,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-a-melting-glacier-in-nepal-was-a-time-bomb-there-are-more-to"
@@ -630,7 +865,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-orbex-s-sutherland-spaceport-assets-sold-to-scottish-develop"
@@ -646,7 +881,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-27-the-ai-ghosts-contaminating-academic-publishing"
@@ -662,7 +897,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-cities-terminate-flock-contracts-at-record-pace-in-august"
@@ -678,7 +913,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-28-u-s-sanctions-against-the-a-i-collective"
@@ -694,7 +929,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 86,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-08-25-battlefield-corpus-data-is-the-constraint",
@@ -806,7 +1041,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-ten-months-the-instrument-changed-not-the-tempo"
@@ -822,7 +1057,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant"
@@ -838,7 +1073,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond"
@@ -863,7 +1098,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-bidder-that-walked-knew-the-asset"
@@ -879,7 +1114,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-tunnel-team-the-missing-are-underground"
@@ -904,7 +1139,7 @@
       "lastCovered": "2026-08-28T17:08:41.617Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter"
@@ -920,7 +1155,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan"
@@ -936,7 +1171,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-the-right-of-way-eminent-domain-by-licence"
@@ -952,7 +1187,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-economic-outcast-the-third-country-bank-decides"
@@ -968,7 +1203,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-when-the-paper-cannot-decide-appearance-does"
@@ -984,7 +1219,7 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-susceptibility-mapping-the-map-is-a-permit"
@@ -1000,109 +1235,13 @@
       "lastCovered": "2026-08-28T12:10:19.798Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring"
       ],
       "eventUri": null,
       "summary": "A Nature Reviews Neuroscience piece argues that neuroscience should stop asking which artificial network best predicts brain activity and start deliberately building experiments where competing models predict different outcomes. Lead with why the current approach is stuck, because it is a failure our technically literate readers will recognise immediately: benchmark leaderboards like Brain-Score rank models by how well they fit recorded neural responses, and many architecturally very different networks fit almost equally well — so the score cannot tell you which one is right about the brain, only that the test is too easy. The mechanism to teach is model identifiability, and it generalises far past neuroscience: when several distinct hypotheses explain the same data, more data of the same kind adds no information, and the only escape is to design the stimulus or condition on which the hypotheses are forced to disagree. That is the difference between predicting and explaining, and it is the same critique that applies to every AI evaluation our readers see quoted — a benchmark that all frontier models pass has stopped measuring anything. Then the payoff to make concrete: what a disagreement-maximising experiment looks like in practice, and what it would settle. Who is affected: a field, and by extension anyone reading claims that a neural network 'works like the brain'; who holds power: the benchmark maintainers whose leaderboard defines what counts as progress. This is a review, not a new result — say so, give the authors and their argument's limits, and resist letting it become an AI story about brains rather than a methods story about evidence.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-alliance-of-former-enemies-nobody-has-to-agree-afterwards",
-      "label": "Once bitter enemies Amhara, Tigray reach understandings in fight against Ethiopian govt",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-the-alliance-of-former-enemies-nobody-has-to-agree-afterwards"
-      ],
-      "eventUri": null,
-      "summary": "Fano, the Amhara insurgency fighting Abiy Ahmed, has joined an eight-group anti-government alliance that includes Tigrayan forces — the same people its fighters were killing four years ago. Lead with that reversal by name, because it is the news and it is genuinely surprising: Amhara and Tigray were the two poles of the 2020-22 war, Amhara militias fought alongside the federal army against Tigray, and the territorial dispute over Western Tigray that drove much of the killing is unresolved. The mechanism to teach is what makes an alliance of former enemies possible without reconciliation: none of these groups can take Addis Ababa alone, the federal army cannot fight simultaneously in Amhara, Tigray, Oromia and along the Eritrean frontier, and an alliance that only has to stretch the army does not need to agree on anything afterwards — which is also why it is unstable. Then the regional stakes our readers should see: Ethiopia is the second most populous country in Africa, it anchors the Horn's security order, and a broadening insurgency there sits directly on the Sudan war, the Red Sea corridor and Eritrea's ambitions. Who is affected: civilians in Amhara and Tigray, where two consecutive wars have already destroyed the harvest and the health system; who holds power: Abiy Ahmed's government, and Asmara. Attribute the announcement to Zemene Kassie's interview with Le Temps as Mada Masr reports it, name the eight groups if the reporting supports it, and be clear this is an announced understanding, not a signed command structure.",
-      "conceptUris": []
-    },
-    {
-      "id": "no-additional-protocol-silence-is-the-approval",
-      "label": "Did Trump put a poison pill in his own Saudi nuclear deal?",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-no-additional-protocol-silence-is-the-approval"
-      ],
-      "eventUri": null,
-      "summary": "The US-Saudi civil nuclear agreement has been formally submitted to Congress for its 90-day review, while the president continues to insist Riyadh normalise with Israel before it can take effect. Lead with the contradiction our readers will see first and that four congressional Democrats have already put on the record: the United States went to war to stop Iran enriching uranium and is now negotiating terms that do not permanently bar Saudi Arabia from doing the same. The mechanism to teach is what a 123 Agreement is and what this one omits — the 2009 UAE deal is the 'gold standard' precisely because Abu Dhabi accepted the IAEA Additional Protocol and renounced enrichment and reprocessing outright; this agreement carries neither, relying instead on a bilateral safeguards arrangement and a 'black box' sealing of enrichment technology, and Trump's verbal assurance that 'there would be no enrichment' binds nothing. Then the procedural detail that decides the outcome: the agreement takes effect unless Congress passes a joint resolution rejecting it, so opponents need a veto-proof majority they do not have — silence is approval. Who is affected: the region living under a possible enrichment cascade, and Iranians told that enrichment justified a war; who holds power: Congress by inaction, and an Israeli veto exercised through a normalisation clause inserted after Israeli objections. Discipline this story needs: Responsible Statecraft is an advocacy outlet, so build only on the checkable record — the submission to Congress, the text and omissions of the 123 Agreement, the UAE precedent, the named officials' quoted statements — and attribute every characterisation. Sourcing note for the audit: no Saudi or Gulf outlet appeared in today's feed on this agreement.",
-      "conceptUris": []
-    },
-    {
-      "id": "rs5-million-each-the-payment-arrives-before-the-cause",
-      "label": "Govt announces Rs5m compensation for families affected by Pims fire",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-rs5-million-each-the-payment-arrives-before-the-cause"
-      ],
-      "eventUri": null,
-      "summary": "Two days after a fire in the neonatal unit at Pakistan Institute of Medical Sciences killed 14 infants, the government has announced Rs5 million for each affected family. Lead with the money and the timing together, because the sequence is the accountability question: a compensation figure arrived within 48 hours, and no cause, no named responsible official and no charge has arrived at all. The mechanism to teach is what a discretionary ex gratia payment actually does — it is not a legal finding of liability, it requires no admission, it extinguishes political pressure faster than any inquiry can report, and because it comes from the public purse the institution that failed pays nothing. That is why the number is announced first and the inquiry second, and it is a pattern our readers will recognise from every industrial fire and building collapse in the region. Then the specifics the story must pin down: what the fire was attributed to, whether the air-conditioning and electrical maintenance failures reported at the time are inside the inquiry's terms of reference, who sits on the inquiry and when it reports, and whether criminal negligence proceedings have been opened. Who is affected: 14 families, and every parent using a public tertiary hospital in Islamabad; who holds power: the health ministry and the hospital administration, both of whom answer to the government writing the cheque. This is a continuation of Wednesday's story — carry the death toll and the earlier reporting forward, and quote the minister's own words on what the inquiry will cover.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-second-gradient-the-mountain-runs-out-of-oxygen",
-      "label": "Low oxygen could limit insects' uphill escape from climate warming",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-the-second-gradient-the-mountain-runs-out-of-oxygen"
-      ],
-      "eventUri": null,
-      "summary": "A review in Functional Ecology argues that reduced oxygen and air pressure at altitude may cap how far insects can climb to escape a warming climate. Lead with the trap this describes, because the standard climate story assumes the escape route exists: species move uphill as the isotherms move uphill, and this says the mountain has a second gradient the animal cannot survive. The mechanism to teach is insect respiration, which is genuinely different from ours — insects do not pump oxygen in blood, they let it diffuse through tracheal tubes, and diffusion rate depends on the partial pressure of oxygen, which falls with altitude independently of the temperature. So an insect tracking a tolerable temperature upslope walks into a region where it can no longer supply its own flight muscles, and flight is the most oxygen-expensive activity in the animal kingdom. Then the consequence that makes this more than an entomology finding: the services at risk are pollination and decomposition in exactly the montane agricultural systems that feed the most people per hectare of arable land — the Ethiopian highlands, the terraces of Java and Luzon, the Himalayan and Andean valleys, and the Yemeni and Moroccan uplands. Who is affected: smallholders in tropical mountain agriculture, who have the least capacity to substitute managed pollination; who holds power: nobody, which is the point — this is a physical ceiling, not a policy failure. Give the journal, the authors, what is review versus new measurement, and be careful to report this as a proposed constraint with stated uncertainty rather than an established extinction forecast.",
-      "conceptUris": []
-    },
-    {
-      "id": "bunchy-top-the-constraint-was-distribution-not-knowledge",
-      "label": "Science training helps Tanzanian banana farmers curb virus",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-bunchy-top-the-constraint-was-distribution-not-knowledge"
-      ],
-      "eventUri": null,
-      "summary": "Tanzanian researchers tackling banana bunchy top virus trained journalists rather than only farmers, and used the press as the delivery mechanism for the control protocol. Lead with that inversion, because it is the interesting choice: the science here was already settled, and the binding constraint was not knowledge but distribution. The mechanism to teach is what makes this virus different from a fungal blight — bunchy top is spread by aphids and, decisively, by infected planting material, it is incurable once a mat is infected, and the only control is destroying the whole stool and sourcing clean suckers. That is a counterintuitive instruction for a farmer to accept, because it means uprooting plants that still look productive, so compliance depends entirely on whether the farmer trusts the source of the advice — which is why a trained local radio and newspaper corps outperforms an extension service with one officer per thousand households. Then the stakes: banana is a staple, not a cash crop, across the Great Lakes region, and bunchy top has moved through Central Africa steadily enough that Tanzania's Kagera and Kigoma belt is the frontier. Who is affected: smallholders for whom the mat in the yard is both the meal and the savings account; who holds power: national research institutes and the seed-system regulators who decide whether clean planting material is actually available to buy. Name the institutions, the districts, what the training covered, and be honest about what has been measured versus what is hoped for — this is SciDev.Net supported content, so say who funded it.",
-      "conceptUris": []
-    },
-    {
-      "id": "human-in-the-loop-the-audience-cannot-evaluate-it",
-      "label": "Cocomelon's Studio Tells Its Artists to Start Experimenting With AI",
-      "firstSeen": "2026-08-28T08:13:27.010Z",
-      "lastCovered": "2026-08-28T08:13:27.010Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it"
-      ],
-      "eventUri": null,
-      "summary": "Moonbug Entertainment — the studio behind Cocomelon and Blippi, among the most-watched children's content on earth — has told its artists to begin experimenting with AI, promising a 'human in the loop'. Lead with the audience, because that is what makes this different from any other studio adopting AI: the viewers are preverbal children, several hours a day, and they cannot evaluate what they are watching. The mechanism to teach is why this content is unusually easy to automate and unusually consequential to automate — Cocomelon's form is already algorithmically optimised, built from a fixed cast, repetitive nursery-rhyme structure and retention-tested edits, which is precisely the shape generative models reproduce well; so the marginal cost of an episode collapses toward zero while the feedback loop that selects for whatever holds a toddler's attention gets faster. 'Human in the loop' is the phrase to interrogate rather than repeat: ask what the human approves, at what rate, and whether one reviewer signing off a day's output is meaningfully in any loop. Then the accountability gap: children's broadcast content is regulated for advertising and safety in most jurisdictions and this is distributed on platforms where almost none of that applies, so the only quality gate is the recommendation algorithm. Who is affected: the animators and voice artists whose work is the training data for their own replacement, and the children; who holds power: Moonbug, and the platforms that pay per view regardless of how the frames were made. Credit 404 Media's reporting, quote the internal instruction as they have it, and carry Moonbug's statement in full.",
       "conceptUris": []
     }
   ]
