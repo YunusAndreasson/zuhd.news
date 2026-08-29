@@ -999,8 +999,141 @@
         "2026-08-23-canada-matches-us-tariffs-supply-chain-compounding"
       ],
       "generatedAt": "2026-08-29T04:38:42.860Z"
+    },
+    "fed-funds": {
+      "standingFingerprint": "53768a4939bd4aae",
+      "recentFingerprint": "ec2feecbfb9aa814",
+      "standing": "The interest rate the US Federal Reserve targets for overnight lending between banks. It is the base price of dollar credit, and mortgages, corporate borrowing and the value of the dollar itself are priced off it.",
+      "recent": "The target has fallen from 5.5% in Aug 2024 to 3.75%, where it has sat since Dec 2025. The direction is now in question: Fed minutes released 19 August showed many officials said rate hikes may be needed, and markets trimmed rate hike bets as the dollar fell against the euro. Attention has shifted to Warsh's Jackson Hole speech.",
+      "citations": [
+        "2026-08-28-the-independence-trade-the-speech-is-the-instrument",
+        "2026-08-24-warsh-jackson-hole-dollar-rate-signal"
+      ],
+      "generatedAt": "2026-08-29T20:22:53.698Z"
+    },
+    "ecb-rate": {
+      "standingFingerprint": "8d9f6ca30be13744",
+      "recentFingerprint": "25ff3fd028a84e7e",
+      "standing": "The rate the European Central Bank pays banks on money parked with it overnight, and the floor under borrowing costs across the euro area. It sets what savers earn, what mortgages cost and how the euro trades against other currencies.",
+      "recent": "The rate has been cut by roughly 40% over the series, down from 3.75% in Aug 2024 to a low of 2% in Jun 2025 and 2.25% now — the ECB easing while others tighten. The Bank of Korea hiked to 3.00% in August, and Fed minutes showed many officials said rate hikes may be needed.",
+      "citations": [
+        "2026-08-27-bok-hike-the-chip-cycle-sets-the-rate"
+      ],
+      "generatedAt": "2026-08-29T20:23:02.573Z"
+    },
+    "us-unemployment": {
+      "standingFingerprint": "bb4ac62568de004e",
+      "recentFingerprint": "ac45d324793c729c",
+      "standing": "The share of the American labour force that is looking for work and cannot find it, published monthly by the Bureau of Labor Statistics. It is the number the Federal Reserve weighs against inflation when it sets interest rates.",
+      "recent": "The rate stands at 4.1%, down from the 4.5% peak in November 2025 and back near the 4% low of January 2025.",
+      "citations": [],
+      "generatedAt": "2026-08-29T20:23:09.685Z"
+    },
+    "poly-will-jd-vance-win-the-2028-us-presidential-elect": {
+      "standingFingerprint": "d7c845dc5db14e27",
+      "recentFingerprint": "518db879f991dda4",
+      "standing": "A Polymarket contract on whether JD Vance wins the 2028 US presidential election, priced as the cost of a bet paying out if he does. It tracks how traders read the Republican succession, and it moves years before a single vote is cast.",
+      "recent": "The contract drifted up from 20% on Jul 30 to 25% on Aug 29, its highest in the window. Nothing in the month's news bears on Vance himself; the prediction-market stories were about the venues rather than the race, with the Ninth Circuit ruling on Aug 28 that sports-event contracts are not swaps and a White House aide fined for betting on speeches he read early.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow",
+        "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
+      ],
+      "generatedAt": "2026-08-29T20:23:19.587Z"
+    },
+    "poly-will-marco-rubio-win-the-2028-republican-preside": {
+      "standingFingerprint": "de09ac79884fb642",
+      "recentFingerprint": "18392f16d8232615",
+      "standing": "A Polymarket contract on whether Marco Rubio becomes the Republican nominee for president in 2028. The price is what traders will pay for that outcome, so it tracks how a crowded, unsettled primary field is being bet on years before a vote.",
+      "recent": "The contract has drifted down from 28% on 31 July to 17% on 28 August, with nothing in the news around it about Rubio. What moved was the venue: the Ninth Circuit ruled on 28 August that a CFTC licence does not pre-empt Nevada gambling law, and Connecticut sued Kalshi the day before.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-08-29T20:23:28.823Z"
+    },
+    "poly-us-announces-end-of-iranian-blockade-by-septembe": {
+      "standingFingerprint": "2dfd8e8ce8b0ee67",
+      "recentFingerprint": "fae700e144ae9add",
+      "standing": "A Polymarket contract on whether Washington lifts its naval blockade of Iran by a set date. It prices how traders read the pressure campaign — the odds fall when sanctions widen and rise when the strait and its shipping start moving again.",
+      "recent": "Odds halved from 24% on Aug 27 to 10% as Washington widened rather than eased the campaign: Treasury cut six Banque Misr branches out of dollar clearing on 28 Aug under \"Operation Economic Outcast,\" and Pezeshkian conceded foreign trade has shrunk by more than a third. The IRGC meanwhile claimed a veto over Hormuz transits.",
+      "citations": [
+        "2026-08-28-economic-outcast-the-third-country-bank-decides",
+        "2026-08-28-banque-misr-the-third-country-branch-is-the-target",
+        "2026-08-29-iran-foreign-trade-third-blockade-admission",
+        "2026-08-29-irgc-hormuz-closed-without-coordination"
+      ],
+      "generatedAt": "2026-08-29T20:23:38.343Z"
+    },
+    "poly-bab-el-mandeb-strait-effectively-closed-by-septe": {
+      "standingFingerprint": "99095b455bc56018",
+      "recentFingerprint": "1ba4aff5928abb50",
+      "standing": "A Polymarket contract on whether the Bab el-Mandeb strait — the Red Sea gateway carrying traffic between the Suez Canal and the Indian Ocean — will be closed to shipping by a set date. Traders price the risk that war shuts one of the world's busiest sea lanes.",
+      "recent": "The contract has fallen from 22% on Jul 30 to 5%, its lowest of the window, as traders unwound the closure bet through August. Nothing in the month's news explains the drift beyond the absence of a closure event itself.",
+      "citations": [],
+      "generatedAt": "2026-08-29T20:23:46.670Z"
+    },
+    "poly-will-douard-philippe-win-the-2027-french-preside": {
+      "standingFingerprint": "e79e02c5a71dfb20",
+      "recentFingerprint": "a3540f535f0499a7",
+      "standing": "A Polymarket contract on whether Édouard Philippe, the former French prime minister and mayor of Le Havre, wins the presidency in 2027. The price is what traders will pay for that outcome, and it moves as the field of candidates and their standing shifts.",
+      "recent": "The contract has barely moved over the month, holding near 26% since its Jul 30 high and touching 25 on Aug 24. Nothing in the period bears on the French race; the prediction-market news instead concerned the venues themselves, with the Ninth Circuit ruling on Aug 28 that sports-event contracts are not \"swaps\" and that Nevada's gambling law is not pre-empted by a CFTC licence.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-08-29T20:23:56.081Z"
+    },
+    "poly-will-alexandria-ocasio-cortez-win-the-2028-democ": {
+      "standingFingerprint": "de763aabfe78b548",
+      "recentFingerprint": "4d2da35f9d161240",
+      "standing": "A Polymarket contract on whether Alexandria Ocasio-Cortez becomes the Democratic presidential nominee in 2028. The price is what traders will pay for that outcome, and it moves as the plausible field narrows or widens.",
+      "recent": "The contract has risen over the past month, from 13% on Jul 30 to a high of 23% on Aug 24, and has eased to 19% since. Nothing in the past month's news explains the shift.",
+      "citations": [],
+      "generatedAt": "2026-08-29T20:24:09.151Z"
+    },
+    "wiki-nigeria": {
+      "standingFingerprint": "3243519da4795433",
+      "recentFingerprint": "79f1bd6ea93e19ba",
+      "standing": "Africa's most populous country and its largest oil producer, a federation of some 200 million people whose government runs on crude receipts. What happens to its currency, its fuel price and its security spills into West Africa's trade and labour markets.",
+      "recent": "Readership held near its 30-day high through the Osun election results and Atiku Abubakar's pledge to restore the petrol subsidy if elected in 2027, which the APC called desperation. It has since eased to 5,689 as attention moved to Tinubu's suspension of three permanent secretaries and Abuja's pitch for Chinese upstream capital after the majors' exit.",
+      "citations": [
+        "2026-08-26-atiku-subsidy-pledge-the-pump-price-is-the-platform",
+        "2026-08-29-nigeria-china-upstream-capital-after-majors-exit"
+      ],
+      "generatedAt": "2026-08-29T20:24:19.133Z"
+    },
+    "wiki-volodymyr-zelenskyy": {
+      "standingFingerprint": "597ab2364f791c07",
+      "recentFingerprint": "ea745c3f940a0c69",
+      "standing": "The Wikipedia biography of Ukraine's president, and one of the site's most-read wartime pages. Its daily readership rises and falls with the war and with the politics around him, so the curve is a rough gauge of how closely the world is watching Kyiv.",
+      "recent": "The 19 August peak came as anti-corruption officers searched Zelenskyy's own office, part of a fraud investigation reported at $3.4 million that also saw another top ally fired. Readership then eased through a week of Russian missile strikes on Kyiv and an allied air-defence meeting where he sought more Patriot interceptors.",
+      "citations": [
+        "2026-08-19-nabu-searches-presidential-office-institutional-insulation-test",
+        "2026-08-24-kyiv-air-defence-pledge-versus-magazine-depth",
+        "2026-08-23-wartime-vote-a-roll-you-cannot-assemble"
+      ],
+      "generatedAt": "2026-08-29T20:24:29.282Z"
+    },
+    "stocks:MCO": {
+      "standingFingerprint": "0b69caaff94f98d9",
+      "recentFingerprint": "5730d7ced04934b8",
+      "standing": "The New York-listed parent of Moody's Ratings and Moody's Analytics. It sells credit ratings on sovereign and corporate debt, plus the risk data and models built around them, so its revenue rises and falls with how much new debt the world issues.",
+      "recent": "The one story in view has Moody's improving its assessment of Nigeria, where foreign reserves hit a 20-year high on Friday and austerity was credited for it. That does not explain the stock, which rose about 7% over three weeks to $515 on 28 August from a $473.10 low on 6 August.",
+      "citations": [
+        "2026-08-29-moodys-nigeria-outlook-external-buffers-austerity-scored"
+      ],
+      "generatedAt": "2026-08-29T22:29:08.560Z"
+    },
+    "stocks:AAPL": {
+      "standingFingerprint": "3d69f3e19e890e0d",
+      "recentFingerprint": "a132daa9c63b04ad",
+      "standing": "Shares in the world's largest consumer electronics maker, whose revenue still rests mainly on the iPhone and the services sold around it. Its supply chain and its exposure to China, Europe and app-store regulation make it a proxy for all three.",
+      "recent": "The stock fell from its late-July high to 302.3 on Aug 12 and has recovered only part of that. Apple confirmed a September 9 event for the iPhone 18 Pro and Pro Max, and said in Brussels it will remove several App Store fees from October under the EU's DMA — a direct cut to services revenue.",
+      "citations": [
+        "2026-08-18-apple-eu-fee-removal-jurisdictional-partition-dma",
+        "2026-08-29-zero-inventory-labour-flexibility-apple-china-lock-in"
+      ],
+      "generatedAt": "2026-08-29T22:29:17.621Z"
     }
   },
-  "generatedAt": "2026-08-29T04:43:32.434Z",
+  "generatedAt": "2026-08-29T22:29:17.622Z",
   "windowDays": 14
 }
