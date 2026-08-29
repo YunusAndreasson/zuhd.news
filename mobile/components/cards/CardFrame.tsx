@@ -16,7 +16,7 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
-import type { CardDelta, GraphCard } from '../../lib/cards/types';
+import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { Icon, Text } from '../primitives';
 
@@ -100,7 +100,7 @@ const CardReading = memo(function CardReading({
   card,
   afterTitle = false,
 }: {
-  card: GraphCard;
+  card: DeckCard;
   afterTitle?: boolean;
 }) {
   const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
@@ -139,7 +139,7 @@ const CardTitle = memo(function CardTitle({
   card,
   afterMetric = false,
 }: {
-  card: GraphCard;
+  card: DeckCard;
   afterMetric?: boolean;
 }) {
   return (
@@ -156,7 +156,7 @@ const CardTitle = memo(function CardTitle({
 });
 
 interface CardFrameProps {
-  card: GraphCard;
+  card: DeckCard;
   /** Full page height. The card owns the whole screen, like an article does. */
   itemHeight: number;
   /** This card's position in the column, for the arrival animation. */
@@ -356,10 +356,11 @@ export const CardFrame = memo(function CardFrame({
               </Text>
             ) : null}
 
-            {/* Measurements answer first; a belief asks first. A bare “62%”
-                is not a useful fact until the reader knows which outcome it
-                prices, while “$89 a barrel” is already self-describing. */}
-            {card.kind === 'belief' ? (
+            {/* Measurements answer first; a belief and a date ask first. A bare
+                “62%” is not a useful fact until the reader knows which outcome
+                it prices, and “in 3 weeks” is not one until they know what
+                lands — while “$89 a barrel” is already self-describing. */}
+            {card.kind === 'belief' || card.kind === 'scheduled' ? (
               <>
                 <CardTitle card={card} />
                 <CardReading card={card} afterTitle />

@@ -51,6 +51,14 @@ const GENERIC_CAPITALS = new Set([
   'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
   'Half', 'Nearly', 'Almost', 'About', 'Roughly', 'Every', 'All', 'Any',
   'What', 'Which', 'Who', 'How', 'Where', 'Why',
+  // The structural words of country and institution names. None of them is the
+  // identifying part of anything: "United States", "United Kingdom", "United
+  // Arab Emirates", "European Union", "Islamic Republic" and "South Africa" all
+  // carry their claim in the *other* token. Leaving them in meant a bundle that
+  // spelled the country `US` rejected a sentence for writing "United States" —
+  // which is the same country, written out.
+  'United', 'States', 'Kingdom', 'Republic', 'Emirates', 'Union', 'Federal',
+  'North', 'South', 'East', 'West', 'Central', 'New', 'Great', 'Saint',
 ])
 
 /** Normalise a bundle to one lowercased haystack. Objects are stringified
@@ -162,6 +170,24 @@ export function validateProperNouns(text, bundle) {
     // three-letter abbreviation. What survives this filter is `Aban Tether`.
     const tokens = run.split(/\s+/).filter((t) => !GENERIC_CAPITALS.has(t))
     if (tokens.length < 2) continue
+
+    /**
+     * **Any token, not every token** — the quantifier was the bug.
+     *
+     * What this guards against is an *invented* actor: a person, company or
+     * place the desk never mentioned. A run that shares a token with the input
+     * is not an invention, it is an elaboration of something the input already
+     * established. Requiring every token instead deleted good paragraphs for
+     * being *more* specific than their source. Measured on one production run:
+     * the corpus wrote "Warsh", the sentence wrote "Kevin Warsh", and both FOMC
+     * meetings lost their entire explanation over the first name — the two most
+     * important events on the calendar, silently blank.
+     *
+     * `Aban Tether`, the case this check exists for, is still caught: neither
+     * token appears anywhere in the bundle.
+     */
+    let grounded = false
+    let firstMissing = null
     for (const token of tokens) {
       if (/^[A-Z]{2,5}$/.test(token)) continue
       // Strip a possessive so `Iran’s` is satisfied by `Iran`, and a hyphenated
@@ -173,11 +199,44 @@ export function validateProperNouns(text, bundle) {
         .replace(/-.*$/, '')
         .toLowerCase()
       if (bare.length < 3) continue
-      if (blob.includes(bare)) continue
-      return `name "${token}" not in input`
+      if (blob.includes(bare) || demonymOf(bare, blob)) {
+        grounded = true
+        break
+      }
+      if (!firstMissing) firstMissing = token
     }
+    if (!grounded && firstMissing) return `name "${firstMissing}" not in input`
   }
   return null
+}
+
+/**
+ * Is this token an adjectival form of a place the bundle does name?
+ *
+ * `Chinese` from `China`, `African` from `South Africa`, `Israeli` from
+ * `Israel`. A demonym is the country as an adjective — the same claim in a
+ * different part of speech — and rejecting one is rejecting a sentence for its
+ * grammar. Two exchange cards and a chokepoint lost their explanations to
+ * exactly this in a single run.
+ *
+ * Two conditions, and both are needed. The token has to *look* adjectival, and
+ * its stem has to be in the bundle. A prefix test alone had to be five
+ * characters to avoid matching noise, and five characters misses `China` by
+ * one letter — `chine` is not in `china` — which is the single most common
+ * demonym in this corpus. A suffix test alone would accept `Aban` for ending
+ * in `-an`. Together they are narrow: `Chinese` is adjectival *and* `chin` is
+ * in the bundle, while `Aban` is adjectival and `aban` is nowhere.
+ *
+ * A suffix list rather than a country table because the country table is the
+ * thing that is always missing the next entry; these six suffixes cover the
+ * English forms, and an irregular one (`Dutch`, `Danish`) simply falls through
+ * to the ordinary token check rather than breaking anything.
+ */
+const DEMONYM_SUFFIX = /(?:ese|ish|ian|an|i|ic)$/
+const DEMONYM_STEM = 4
+function demonymOf(bare, blob) {
+  if (bare.length <= DEMONYM_STEM || !DEMONYM_SUFFIX.test(bare)) return false
+  return blob.includes(bare.slice(0, DEMONYM_STEM))
 }
 
 /**

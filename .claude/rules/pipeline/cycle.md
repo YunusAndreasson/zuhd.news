@@ -285,6 +285,38 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   a list no card shows. Three routes, one writer, and nothing duplicated between
   them.
 
+## The grounding validator's quantifier was the bug
+
+- **It required *every* token of a name to be in the bundle, and that deletes
+  good prose for being more specific than its source.** What the check exists
+  for is an *invented* actor — a person, company or place the desk never
+  mentioned. A run that shares a token with the input is not an invention, it
+  is an elaboration. Measured on one production run: the corpus wrote `Warsh`,
+  the sentence wrote *"Kevin Warsh's Jackson Hole debut"*, and **both FOMC
+  meetings lost their entire explanation over a first name** — the two most
+  important events on the calendar, silently blank. `g20-2026-miami` went the
+  same way on "United States" where the bundle said `US`. It is **any token**
+  now; `Aban Tether`, the case it exists for, is still caught because neither
+  token appears anywhere.
+- **A demonym is the place as an adjective, not a second place.** `mkt:hkex`
+  and `mkt:sse` died on "Chinese" against a bundle saying China, `mkt:jse` on
+  "African" against South Africa — three exchange cards in one run, rejected
+  for their grammar. Two conditions, because either alone is wrong: a prefix
+  test has to be five characters to avoid noise and five misses `China` by one
+  letter, while a suffix test alone accepts `Aban` for ending in `-an`.
+  Together they are narrow.
+- **The structural words of country names are generic.** `United`, `States`,
+  `Kingdom`, `Republic`, `Emirates`, `Union`, and the compass words. None is
+  the identifying part of anything — the claim in "United States", "United Arab
+  Emirates" and "South Africa" lives in the other token.
+- **This is the third recalibration and each one was measured, not argued.**
+  `scripts/lib/grounding.test.js` now pins every sentence a production run threw
+  away, quoted from the cycle log that dropped it, alongside two inventions that
+  must keep failing. The record this file already kept — *"a validator that
+  discards good output at 17% and catches nothing is not protecting a reader; it
+  is deleting the feature"* — was right, and the fix it described was
+  incomplete rather than wrong.
+
 ## Tunable parameters and experiments
 
 One variable, one experiment, minimum three days, ≤20% of a parameter's range.

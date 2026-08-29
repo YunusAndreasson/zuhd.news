@@ -1,5 +1,5 @@
 import type { Article } from '@shared/types';
-import type { CardSeries, GraphCard } from './types';
+import type { CardSeries, DeckCard } from './types';
 
 /** Ranking remains numeric and unformatted so unlike display units are never compared. */
 interface CardRanking {
@@ -9,9 +9,9 @@ interface CardRanking {
   editorialOrder: number;
 }
 
-export type SwipeCard = GraphCard;
+export type SwipeCard = DeckCard;
 
-type RankedCard = { card: GraphCard; ranking: CardRanking };
+type RankedCard = { card: DeckCard; ranking: CardRanking };
 
 function normalizedSeriesMovement(series: CardSeries): number {
   const candidates = series.multi?.map((s) => s.values) ?? [series.values];
@@ -40,7 +40,7 @@ function normalizedSeriesMovement(series: CardSeries): number {
   return strongest;
 }
 
-function newsRelevance(card: GraphCard, articles: Article[]): number {
+function newsRelevance(card: DeckCard, articles: Article[]): number {
   if (!card.related || card.related.length === 0) return 0;
   const bySlug = new Map(articles.map((article, index) => [article.slug, { article, index }]));
   const matches = card.related.flatMap((related) => {
@@ -108,7 +108,7 @@ function capConsecutiveKickers(ranked: RankedCard[], max = 2): RankedCard[] {
  * A final de-clump prevents three cards of one subject becoming an accidental
  * lane while otherwise preserving the ranked order.
  */
-export function prepareSwipeCards(cards: GraphCard[], articles: Article[]): SwipeCard[] {
+export function prepareSwipeCards(cards: DeckCard[], articles: Article[]): SwipeCard[] {
   const prepared: RankedCard[] = [];
   cards.forEach((card, editorialOrder) => {
     if (!card.why?.trim() && !card.changed?.trim()) return;
@@ -117,7 +117,11 @@ export function prepareSwipeCards(cards: GraphCard[], articles: Article[]): Swip
       ranking: {
         urgent: card.lead ? 1 : 0,
         newsRelevance: newsRelevance(card, articles),
-        normalizedMovement: normalizedSeriesMovement(card.series),
+        // A scheduled date has no line to measure. It ranks on urgency —
+        // which for an event is imminence, set by the builder — and on the
+        // stories tied to it, which is the right pair of questions to ask of a
+        // thing that has not happened yet.
+        normalizedMovement: card.kind === 'scheduled' ? 0 : normalizedSeriesMovement(card.series),
         editorialOrder,
       },
     });

@@ -3,6 +3,7 @@ import type {
   Chokepoint,
   Indicator,
   IndicatorAnalysis,
+  TrendEvent,
   TrendsSnapshot,
 } from '@shared/types';
 import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
@@ -20,7 +21,7 @@ import {
   windowChange,
   windowPointChange,
 } from './format';
-import type { BeliefCard, Card, CardDelta, ReadingCard } from './types';
+import type { BeliefCard, Card, CardDelta, ReadingCard, ScheduledCard } from './types';
 
 /**
  * The instrument columns, no network call the app was not already making.
@@ -468,9 +469,31 @@ function currencyMove(ratePct: number): number {
  */
 const FX_MOVER_THRESHOLD = 2.5;
 
-/** Two, not five. The column is meant to be swiped through in a minute, and
- *  the third-largest move of the month is a row, not a screen. */
-const FX_MOVER_LIMIT = 2;
+/**
+ * The euro, the yen and the yuan — the currencies a reader is most likely to
+ * hold, price against, or be paid in, and the ones this basket's other twelve
+ * are usually quoted beside.
+ *
+ * They exist as a separate slot because a single threshold across a basket
+ * holding both the Lebanese pound and the euro is not one rule, it is a rule
+ * for volatile currencies that silently excludes stable ones. Measured over
+ * twelve consecutive snapshots the euro never once reached the deck — and
+ * lowering the bar to 1.2% did not change that, because the two slots were
+ * always taken by something larger. The euro was not failing a threshold; it
+ * was structurally unreachable, which no threshold could fix.
+ */
+const FX_MAJORS = ['fx-eur', 'fx-jpy', 'fx-cny'];
+
+/**
+ * What a major has to do to take the second slot.
+ *
+ * Lower than `FX_MOVER_THRESHOLD` because the two slots answer different
+ * questions — "what moved most anywhere" and "what did the euro and yen do" —
+ * and 1% in a month is a real move in a currency that mostly does not make
+ * them. Measured across twelve snapshots: a major card on nine of twelve days,
+ * which is a slot that earns itself rather than one that fills.
+ */
+const FX_MAJOR_THRESHOLD = 1.0;
 
 /**
  * The currencies that actually moved, one screen each.
@@ -478,29 +501,53 @@ const FX_MOVER_LIMIT = 2;
  * A rate on its own still compares to nothing. That does not hold for a
  * *move*: a currency 5% weaker against the dollar
  * in a month has repriced every import its country buys, and that is a fact
- * about a life rather than a number on a table. The two strongest moves get
- * the treatment the news gets —
- * their own chart, their own paragraph from the desk, their own tie to today's
- * stories.
+ * about a life rather than a number on a table.
+ *
+ * Two slots, and they are two different questions rather than first and second
+ * place. The first is the largest move anywhere in the basket. The second is
+ * the largest move among the majors, which is the only way the euro or the yen
+ * ever reaches a screen: ranked purely by size they sit behind the Egyptian
+ * pound and the ruble every single day, and measured over twelve snapshots the
+ * euro appeared **zero** times — at a 2.5% bar, and still zero at 1.2%.
+ *
+ * Rejected on the evidence: ranking by *unusual* movement instead of size.
+ * Three forms were measured against these snapshots and each promoted noise
+ * over consequence. A z-score against daily volatility hands every day to the
+ * lira, whose crawling peg has tiny daily noise and a steady monthly slide —
+ * it scores trendiness, not surprise. Detrending and acceleration both surface
+ * sub-1% wobbles, and on the two days the ruble ran to +8.2% — the largest FX
+ * story in the set, with a fuel-crisis narrative attached — both displaced it
+ * with the rand at −0.8%. Consequence scales with the size of the move, which
+ * is what this deck is for.
  */
 function fxMoverCards(
   snapshot: TrendsSnapshot,
   analysis: AnalysisById,
   articles: Article[],
 ): ReadingCard[] {
-  return snapshot.indicators
+  const rows = snapshot.indicators
     .filter((i) => i.source === 'oer')
     .map((indicator) => {
       const change = windowChange(indicator, indicator.values.length - 1);
       const value = latestOf(indicator);
       if (!change || value == null) return null;
-      if (Math.abs(change.pct) < FX_MOVER_THRESHOLD) return null;
       return { indicator, change, value };
     })
     .filter((x): x is NonNullable<typeof x> => x !== null)
-    .sort((a, b) => Math.abs(b.change.pct) - Math.abs(a.change.pct))
-    .slice(0, FX_MOVER_LIMIT)
-    .map(({ indicator, change, value }, rank) => {
+    .sort((a, b) => Math.abs(b.change.pct) - Math.abs(a.change.pct));
+
+  const mover = rows.find((r) => Math.abs(r.change.pct) >= FX_MOVER_THRESHOLD);
+  const major = rows.find(
+    (r) =>
+      FX_MAJORS.includes(r.indicator.id) &&
+      r.indicator.id !== mover?.indicator.id &&
+      Math.abs(r.change.pct) >= FX_MAJOR_THRESHOLD,
+  );
+
+  return [mover, major]
+    .filter((x): x is NonNullable<typeof x> => x !== undefined)
+    .map(({ indicator, change, value }) => {
+      const isMajor = indicator.id !== mover?.indicator.id;
       // The unit arrives as a data column — "ZAR / USD" — and the card reads
       // it aloud: how many of these one dollar buys.
       const code = indicator.unit?.split(' / ')[0] ?? '';
@@ -526,10 +573,13 @@ function fxMoverCards(
           'favorable',
           { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
         ),
-        // Ranked, not chosen — and the sentence says which rank, because "the
-        // biggest move of the month" and "the second-biggest" are different
-        // claims and only one of them is true of this card.
-        changed: `${rank === 0 ? 'Largest' : 'Second-largest'} monthly ${weakened ? 'fall' : 'rise'} in this 15-currency set, measured to ${change.to}.`,
+        // The sentence says which slot this is, because "the largest move in the
+        // basket" and "the largest move among the majors" are different claims
+        // and a card that makes the wrong one is telling the reader something
+        // untrue about a number they can check.
+        changed: isMajor
+          ? `Largest monthly ${weakened ? 'fall' : 'rise'} among the euro, yen and yuan, measured to ${change.to}.`
+          : `Largest monthly ${weakened ? 'fall' : 'rise'} in this 15-currency set, measured to ${change.to}.`,
         why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
@@ -612,13 +662,58 @@ function trailingSevenDayAverage(values: number[]): number[] {
 }
 
 /**
+ * The prediction market about this strait, if the desk is carrying one.
+ *
+ * Two decks were holding half a story each. `shipping` charts what traffic
+ * through Bab el-Mandeb has actually done; `outlook` prices whether it is
+ * effectively closed by December. Those are the measurement and the forecast of
+ * one subject, and a reader who saw either alone had no way to know the other
+ * existed — the app does not cross-reference its own columns.
+ *
+ * Matched on the strait's name appearing in the question, which is
+ * deterministic and needs no model: Polymarket titles name their subject
+ * plainly ("Bab el-Mandeb Strait effectively closed by...?"). The strait's `id`
+ * is the fallback because it is the hyphenated form of that same name. A miss
+ * costs the figure, never the card.
+ *
+ * These questions only reach the payload at all since the Polymarket filter was
+ * fixed — the keyword allow-list it replaced was dropping every strait market
+ * for not having "hormuz" among its words.
+ */
+function straitOdds(
+  snapshot: TrendsSnapshot,
+  c: Chokepoint,
+): { label: string; value: string } | undefined {
+  const norm = (x: string) =>
+    x
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  const name = norm(c.name)
+    .replace(/\b(strait|canal|of|the)\b/g, '')
+    .trim();
+  const idWords = norm(c.id.replace(/-/g, ' '));
+  if (name.length < 4 && idWords.length < 4) return undefined;
+
+  for (const ind of snapshot.indicators) {
+    if (ind.source !== 'polymarket') continue;
+    const hay = norm(ind.label ?? '');
+    if (!hay.includes(name) && !hay.includes(idWords)) continue;
+    const pct = latestOf(ind);
+    if (pct == null) continue;
+    return { label: ind.label ?? 'priced', value: `${Math.round(pct)}%` };
+  }
+  return undefined;
+}
+
+/**
  * One graph per strait. The section is a reference deck on ordinary days, so
  * every strait with a usable total-traffic history remains available. A fall
  * of at least 30% against its own 90-day normal earns `current`; smaller moves
  * stay neutral reference rather than being promoted as news. Smart ranking
  * later combines that mark with live-story relevance and unusual movement.
  */
-function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
+function straitCards(chokepoints: Chokepoint[], snapshot: TrendsSnapshot): ReadingCard[] {
   const ranked = chokepoints
     .map((c) => ({ c, d: totalTrafficDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
@@ -640,6 +735,7 @@ function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
     // quantities. Preserve its precision: rounding only the chart made a
     // headline of 0.1 ships a day terminate at 0 on the graph.
     if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
+    const odds = straitOdds(snapshot, c);
     return {
       id: `strait-${c.id}`,
       kind: 'reading' as const,
@@ -651,6 +747,10 @@ function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
       changed:
         base != null ? `Its own 90-day normal is ${formatQuantity(base)} ships a day.` : undefined,
       why: straitWhy(c),
+      // The forecast beside the measurement. A figure rather than a second
+      // chart: the card's subject is the traffic and its history, and the odds
+      // are one number that says what the market thinks happens next.
+      figures: odds ? [{ label: odds.label, value: odds.value }] : undefined,
       series: {
         values: traffic,
         periods,
@@ -659,7 +759,7 @@ function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
         highlight: 'last' as const,
       },
       related: c.relatedArticles,
-      sourceLabel: 'IMF PortWatch',
+      sourceLabel: odds ? 'IMF PortWatch · Polymarket' : 'IMF PortWatch',
     };
   });
 }
@@ -791,6 +891,81 @@ function beliefCards(
 
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Scheduled events
+// ---------------------------------------------------------------------------
+
+/** How far ahead the deck looks. Past this, "in 71 days" is a diary entry
+ *  rather than a thing to know today, and the calendar would crowd out the
+ *  live markets it sits beside. */
+const EVENT_HORIZON_DAYS = 45;
+
+/** How many make the deck. There are fifteen or so in the payload at any time
+ *  and `outlook` is a column a reader swipes in a minute; the nearest few are
+ *  the ones with anything at stake. */
+const EVENT_LIMIT = 4;
+
+/** Inside this, the date is the news. Matches `lead` elsewhere: the card is on
+ *  screen because it is imminent, not because its subject is important. */
+const EVENT_IMMINENT_DAYS = 3;
+
+function daysUntil(iso: string, now: Date): number | null {
+  const then = Date.parse(`${iso}T00:00:00Z`);
+  if (!Number.isFinite(then)) return null;
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return Math.round((then - today) / 86_400_000);
+}
+
+/** The distance, in the words a reader would use. This is the card's reading —
+ *  the changing quantity on a piece that has no series. */
+function countdown(days: number): string {
+  if (days <= 0) return 'today';
+  if (days === 1) return 'tomorrow';
+  if (days < 14) return `in ${days} days`;
+  if (days < 60) return `in ${Math.round(days / 7)} weeks`;
+  return `in ${Math.round(days / 30)} months`;
+}
+
+/**
+ * The dates the outlook column was missing.
+ *
+ * `trends.events` — central-bank decisions, OPEC+, major releases, elections —
+ * has carried `standing` and `recent` from the events dispatch since that stage
+ * existed, and the website's money rail has rendered them all along. The app
+ * showed none of them, because the deck gate asks every card for a graph and a
+ * scheduled date has no history. It has a distance instead, and that is the
+ * reading here.
+ *
+ * A prediction market prices what happens; a calendar says when it is decided.
+ * Putting them in one column is the point.
+ */
+function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
+  return (snapshot.events ?? [])
+    .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
+    .filter((x): x is { ev: TrendEvent; days: number } => x.days !== null && x.days >= 0)
+    .filter(({ days }) => days <= EVENT_HORIZON_DAYS)
+    .sort((a, b) => a.days - b.days)
+    .slice(0, EVENT_LIMIT)
+    .map(({ ev, days }) => ({
+      id: `event-${ev.id}`,
+      kind: 'scheduled' as const,
+      date: ev.date,
+      lead: days <= EVENT_IMMINENT_DAYS,
+      kicker: ev.institution,
+      title: ev.title,
+      reading: countdown(days),
+      readingNote: new Date(`${ev.date}T00:00:00Z`).toLocaleDateString(undefined, {
+        day: 'numeric',
+        month: 'long',
+        timeZone: 'UTC',
+      }),
+      // Same rule as every other card: the day's account of what is at stake,
+      // and the standing description of the institution where there is none.
+      why: ev.recent?.trim() || ev.standing?.trim() || undefined,
+      related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
+    }));
+}
+
 export interface InstrumentCardInputs {
   trends: TrendsSnapshot | null;
   chokepoints: Chokepoint[];
@@ -800,6 +975,8 @@ export interface InstrumentCardInputs {
   analysis: AnalysisById;
   /** Today's feed, for the tie-to-the-news line. */
   articles: Article[];
+  /** Injectable so the countdown on a scheduled card is testable. */
+  now?: Date;
 }
 
 /** Instrument cards grouped by concrete payload subject before deck assembly. */
@@ -807,9 +984,12 @@ export interface InstrumentColumns {
   markets: Card[];
   straits: Card[];
   predictions: Card[];
+  /** Dated events, merged into `outlook` beside the prediction markets. */
+  scheduled: Card[];
 }
 
 const EMPTY_COLUMNS: InstrumentColumns = {
+  scheduled: [],
   markets: [],
   straits: [],
   predictions: [],
@@ -830,6 +1010,7 @@ export function buildInstrumentCards({
   chokepoints,
   analysis,
   articles,
+  now = new Date(),
 }: InstrumentCardInputs): InstrumentColumns {
   if (!trends) return EMPTY_COLUMNS;
   const keep = (cards: (Card | null)[]): Card[] => cards.filter((c): c is Card => c !== null);
@@ -854,8 +1035,10 @@ export function buildInstrumentCards({
       ...fxMoverCards(trends, analysis, articles),
     ]),
 
-    straits: keep(straitCards(chokepoints)),
+    straits: keep(straitCards(chokepoints, trends)),
 
     predictions: keep(beliefCards(trends, analysis, articles)),
+
+    scheduled: keep(eventCards(trends, articles, now)),
   };
 }

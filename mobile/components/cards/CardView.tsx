@@ -153,6 +153,13 @@ function renderBody(card: SwipeCard, onPress: () => void) {
       // The market page is the only way to check the claim, and a belief
       // card that cannot be checked is just a number with a mood.
       return <CardTrend series={card.series} onPress={card.link ? onPress : undefined} />;
+
+    // A date has no middle block. The countdown is the reading and the desk's
+    // account of what is at stake is the analysis, so a chart's worth of empty
+    // space between them would be a gap the card is not filling — the frame
+    // closes up instead.
+    case 'scheduled':
+      return null;
   }
 }
 

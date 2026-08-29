@@ -26,7 +26,7 @@ import type { Direction, Valence } from '../valence';
  * over the desk.
  */
 
-type CardKind = 'reading' | 'belief';
+type CardKind = 'reading' | 'belief' | 'scheduled';
 
 /**
  * The move, at a glance — and the one place the app spends colour on a number.
@@ -142,7 +142,32 @@ export interface CardFigure {
   weight?: number;
 }
 
-export type Card = ReadingCard | BeliefCard;
+/**
+ * A date the world is waiting on — an FOMC decision, an OPEC+ meeting, a
+ * national election.
+ *
+ * The third kind, and the only one with no series, which is why it needed to
+ * be a kind rather than a `ReadingCard` with the chart left off. The desk has
+ * written `standing` and `recent` for these since the events dispatch existed
+ * and the rail on the website has shown them all along; the app had no way to
+ * carry one, because the deck gate asks for a graph and a scheduled date does
+ * not have a history — it has a distance.
+ *
+ * `outlook` is where they belong: a prediction market prices what happens, and
+ * a calendar says when it gets decided. Those are two halves of the same
+ * question and they were in different buildings.
+ */
+export interface ScheduledCard extends CardBase {
+  kind: 'scheduled';
+  /** ISO date it lands on. The reading is how far away that is. */
+  date: string;
+}
 
-/** The primary swipe decks only admit cards with a real time series. */
+export type Card = ReadingCard | BeliefCard | ScheduledCard;
+
+/** A card with a real time series. */
 export type GraphCard = (ReadingCard & { series: CardSeries }) | BeliefCard;
+
+/** What a swipe deck may render: a graph, or a date with the desk's account of
+ *  what it will settle. Nothing without one of those two. */
+export type DeckCard = GraphCard | ScheduledCard;

@@ -19,6 +19,7 @@ function columns(overrides: Partial<InstrumentColumns> = {}): InstrumentColumns 
     markets: [],
     straits: [],
     predictions: [],
+    scheduled: [],
     ...overrides,
   };
 }

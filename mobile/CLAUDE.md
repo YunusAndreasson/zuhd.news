@@ -63,11 +63,28 @@ paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
 
-- **The data axis is specific and graph-only.** `markets` holds prices, rates,
-  currencies and crypto; `shipping` holds chokepoint traffic; `outlook` holds
-  prediction-market probabilities. Every admitted card needs a usable time
-  series and live pipeline analysis (`why`). Wikipedia attention, calendars,
-  static comparisons and humanitarian snapshots do not enter these decks.
+- **The data axis is specific, and the graph rule has exactly one exemption.**
+  `markets` holds prices, rates, currencies and crypto; `shipping` holds
+  chokepoint traffic; `outlook` holds prediction-market probabilities **and the
+  dated events that settle them**. Every admitted card needs live pipeline
+  analysis (`why`) — that part has no exemption — and a usable time series
+  unless it is a `ScheduledCard`, which has no history because it has not
+  happened. What it has instead is a distance, and that is its reading.
+  Wikipedia attention, static comparisons and humanitarian snapshots still do
+  not enter these decks.
+- **A prediction market prices what happens; a calendar says when it is
+  decided.** Those were in different buildings — `trends.events` has carried
+  `standing` and `recent` since the events dispatch existed, the website's money
+  rail has rendered them all along, and the app could not show one because the
+  gate asked for a graph. `eventCards` looks 45 days ahead and keeps the nearest
+  four; past that, "in 71 days" is a diary entry and the calendar would crowd
+  out the live markets beside it.
+- **The two shipping decks were holding half a story each.** `shipping` charts
+  what traffic through Bab el-Mandeb has done; `outlook` prices whether it is
+  closed by December. A strait card carries the market's odds as a figure now,
+  matched on the strait's name appearing in the question — deterministic, no
+  model, and a miss costs the figure rather than the card. Those questions only
+  reach the payload at all since the Polymarket filter was fixed.
 - **A current card says so, and `lead` is how.** A disrupted strait is on
   screen because its source cleared a freshness
   gate; the nisab and the
@@ -82,6 +99,23 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   at least 30% earns `current`; otherwise it remains reference. Ranking uses
   current-news relevance and unusual movement so a small percentage does not
   hide a major live story.
+- **A single FX threshold across this basket is not one rule.** It holds both
+  the Lebanese pound and the euro, so a bar calibrated for volatile currencies
+  silently excludes stable ones: measured over twelve consecutive snapshots the
+  euro reached the deck **zero** times, and dropping the bar from 2.5% to 1.2%
+  did not change that, because the two slots were always already taken by
+  something larger. The euro was not failing a threshold, it was structurally
+  unreachable. So the second slot is a different question — the largest move
+  among the majors (`fx-eur`, `fx-jpy`, `fx-cny`) at a 1% bar — rather than
+  second place. A major card on nine of twelve days.
+  - **Ranking by *unusual* movement was tried and rejected on the evidence.**
+    Three forms, measured against those snapshots, each promoted noise over
+    consequence. A z-score against daily volatility hands every single day to
+    the lira, whose crawling peg has tiny daily noise and a steady monthly
+    slide — it scores trendiness, not surprise. Detrending and acceleration
+    both surface sub-1% wobbles, and on the two days the ruble ran to +8.2%,
+    with a fuel-crisis story attached, both displaced it with the rand at
+    −0.8%. Consequence scales with the size of the move.
 - **Ranking must not reward surface area.** Current-news relevance is the
   strongest linked story, not the sum of every match: aggregate cards carry
   many more topic tags than a single reading. After ranking, no more than two

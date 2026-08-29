@@ -71,7 +71,7 @@ describe('buildInstrumentCards', () => {
     expect(allOf(columns)).toEqual([]);
     // Every key still present, so a section renders its empty state rather
     // than crashing on an undefined column.
-    expect(Object.keys(columns).sort()).toEqual(['markets', 'predictions', 'straits']);
+    expect(Object.keys(columns).sort()).toEqual(['markets', 'predictions', 'scheduled', 'straits']);
   });
 
   it('files each card in the column a reader would go looking for it in', () => {
@@ -369,6 +369,52 @@ describe('buildInstrumentCards', () => {
     expect(belief?.changed).toContain('high 86% on Aug 9');
   });
 
+  it('keeps a slot for the majors, so the euro can reach a screen at all', () => {
+    // Measured over twelve consecutive live snapshots the euro never once made
+    // the deck: ranked by size it sits behind the pound and the ruble every
+    // day, and dropping the bar to 1.2% did not change that because the two
+    // slots were already taken. It was structurally unreachable.
+    const fx = (id: string, from: number, to: number) =>
+      indicator({
+        id,
+        label: id,
+        unit: `${id.slice(3).toUpperCase()} / USD`,
+        source: 'oer',
+        values: [from, to],
+        periods: ['Jul 11', 'Aug 9'],
+      });
+
+    const cards = allOf(
+      build({
+        trends: snapshot([
+          fx('fx-egp', 48.0, 50.0), // +4.2% — the basket's largest
+          fx('fx-brl', 5.0, 5.16), // +3.2% — second largest, and not a major
+          fx('fx-eur', 0.92, 0.9086), // -1.2% — small, but a real month for the euro
+        ]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+
+    // The largest move anywhere, and the largest among the majors. Not first
+    // and second place — the brazilian real outranks the euro on size and
+    // still does not take the second slot, because that slot is a different
+    // question.
+    expect(cards.map((c) => c.id)).toEqual(['fx-egp-mover', 'fx-eur-mover']);
+    expect(find(cards, 'fx-egp-mover')?.changed).toContain('in this 15-currency set');
+    expect(find(cards, 'fx-eur-mover')?.changed).toContain('among the euro, yen and yuan');
+
+    // A major that did not move is not a slot that fills anyway.
+    const quiet = allOf(
+      build({
+        trends: snapshot([fx('fx-egp', 48.0, 50.0), fx('fx-eur', 0.92, 0.9187)]),
+        chokepoints: [],
+        articles: [],
+      }),
+    );
+    expect(quiet.map((c) => c.id)).toEqual(['fx-egp-mover']);
+  });
+
   it('leaves nothing on screen in the colour of the label text beside it', () => {
     // The goal, as an invariant rather than as a screenshot: every move the
     // app shows is in the colour channel, and the ones it will not editorialise
@@ -537,6 +583,69 @@ describe('buildInstrumentCards', () => {
     expect(card?.why).toBe('Traffic has fallen to zero.');
   });
 
+  it('puts the market\u2019s odds on the strait it is about', () => {
+    // Two decks were holding half a story: `shipping` charts what traffic has
+    // done, `outlook` prices whether the strait is closed by December. Nothing
+    // told a reader of either that the other existed.
+    const cards = allOf(
+      build({
+        trends: snapshot([
+          indicator({
+            id: 'poly-bab',
+            label: 'Bab el-Mandeb Strait effectively closed by Dec 31?',
+            source: 'polymarket',
+            unit: '%',
+            values: [12, 18],
+          }),
+        ]),
+        chokepoints: [
+          {
+            id: 'bab-el-mandeb',
+            name: 'Bab el-Mandeb',
+            blurb: 'The Red Sea gate.',
+            recent: 'Transits stayed low through August.',
+            lat: 0,
+            lng: 0,
+            topicTags: [],
+            primaryField: 'n_total',
+            last7Avg: { n_total: 20 },
+            baseline90Avg: { n_total: 30 },
+            delta7vs90: { n_total: -0.33 },
+            series: { periods: ['a', 'b'], total: [30, 20] },
+            asOf: '2026-08-29',
+          },
+          // A strait with no market keeps the card it always had.
+          {
+            id: 'dover',
+            name: 'Strait of Dover',
+            blurb: 'The Channel narrows.',
+            recent: 'Traffic held steady.',
+            lat: 0,
+            lng: 0,
+            topicTags: [],
+            primaryField: 'n_total',
+            last7Avg: { n_total: 40 },
+            baseline90Avg: { n_total: 41 },
+            delta7vs90: { n_total: -0.02 },
+            series: { periods: ['a', 'b'], total: [41, 40] },
+            asOf: '2026-08-29',
+          },
+        ],
+        articles: [],
+      }),
+    );
+
+    const bab = find(cards, 'strait-bab-el-mandeb');
+    expect(bab?.kind === 'reading' ? bab.figures : undefined).toEqual([
+      { label: 'Bab el-Mandeb Strait effectively closed by Dec 31?', value: '18%' },
+    ]);
+    expect(bab?.sourceLabel).toBe('IMF PortWatch \u00b7 Polymarket');
+
+    const dover = find(cards, 'strait-dover');
+    expect(dover?.kind === 'reading' ? dover.figures : undefined).toBeUndefined();
+    expect(dover?.sourceLabel).toBe('IMF PortWatch');
+  });
+
   it('falls back to the blurb when a strait has no analysis, so it still reaches the deck', () => {
     // Suez, on a live dispatch: `recent` came back empty and `standing` is the
     // catalog blurb, because the narration stage always prefers the
@@ -569,6 +678,105 @@ describe('buildInstrumentCards', () => {
       }),
     );
     expect(find(cards, 'strait-suez')?.why).toBe(blurb);
+  });
+});
+
+describe('scheduled events', () => {
+  const NOW = new Date('2026-08-29T12:00:00Z');
+  const events = (...evs: object[]) =>
+    snapshot([indicator({ id: 'brent' })], { events: evs } as never);
+
+  it('carries the dates the outlook column had no way to show', () => {
+    // These have had `standing` and `recent` since the events dispatch existed
+    // and the website's rail has rendered them all along. The app showed none,
+    // because the deck gate asks every card for a graph and a scheduled date
+    // has no history — it has a distance.
+    const columns = build({
+      trends: events(
+        {
+          id: 'fomc-2026-09',
+          title: 'Fed decision',
+          institution: 'Federal Reserve',
+          kind: 'central-bank',
+          date: '2026-09-16',
+          standing: 'The committee that sets the US policy rate.',
+          recent: 'The meeting follows Warsh\u2019s Jackson Hole debut.',
+        },
+        {
+          id: 'opec-2026-08',
+          title: 'OPEC+ meeting',
+          institution: 'OPEC+',
+          kind: 'opec',
+          date: '2026-08-31',
+          standing: 'The producers who set the supply quota.',
+        },
+      ),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+
+    const sections = buildSwipeSections(columns, []);
+    const ids = sections.outlook.map((c) => c.id);
+    expect(ids).toContain('event-fomc-2026-09');
+    expect(ids).toContain('event-opec-2026-08');
+
+    const fomc = find(columns.scheduled, 'event-fomc-2026-09');
+    // The distance is the reading, and the date is the note under it.
+    expect(fomc?.reading).toBe('in 3 weeks');
+    // The device decides the order, as everywhere else in the app that prints a
+    // date, so assert the parts rather than one locale's arrangement of them.
+    expect(fomc?.readingNote).toContain('September');
+    expect(fomc?.readingNote).toContain('16');
+    expect(fomc?.kicker).toBe('Federal Reserve');
+    // Same rule as every other card: the day's account first.
+    expect(fomc?.why).toContain('Jackson Hole');
+    // Two days out is the news, and the card says so.
+    expect(find(columns.scheduled, 'event-opec-2026-08')?.lead).toBe(true);
+    expect(fomc?.lead).toBe(false);
+    // No graph, and no pretence of one.
+    expect(fomc?.kind === 'scheduled' ? 'scheduled' : 'other').toBe('scheduled');
+  });
+
+  it('does not admit a date the desk has written nothing about', () => {
+    const columns = build({
+      trends: events({
+        id: 'bare-2026-09',
+        title: 'Something happens',
+        institution: 'Nobody',
+        kind: 'summit-election',
+        date: '2026-09-02',
+      }),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    // Built, then refused at the gate — `why` is still mandatory. What the
+    // scheduled kind relaxes is the graph, not the analysis.
+    expect(columns.scheduled.map((c) => c.id)).toEqual(['event-bare-2026-09']);
+    expect(buildSwipeSections(columns, []).outlook.map((c) => c.id)).toEqual([]);
+  });
+
+  it('looks ahead a season, not a year, and keeps the nearest few', () => {
+    const far = Array.from({ length: 8 }, (_, i) => ({
+      id: `ev-${i}`,
+      title: `Event ${i}`,
+      institution: 'Desk',
+      kind: 'econ-release' as const,
+      // 2, 4, 6 ... 16 days out, then one past the horizon.
+      date: i < 7 ? `2026-09-${String(2 + i * 2).padStart(2, '0')}` : '2026-12-01',
+      standing: `What event ${i} settles.`,
+    }));
+    const columns = build({
+      trends: events(...far),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    expect(columns.scheduled).toHaveLength(4);
+    expect(columns.scheduled.map((c) => c.id)).toEqual(
+      ['ev-0', 'ev-1', 'ev-2', 'ev-3'].map((x) => `event-${x}`),
+    );
   });
 });
 
