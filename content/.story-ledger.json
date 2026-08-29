@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "gaza-ceasefire-violations-hospital-compound-strike",
+      "label": "Israel continues to kill Palestinians in Gaza",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-gaza-ceasefire-violations-hospital-compound-strike"
+      ],
+      "eventUri": "eng-11963167",
+      "summary": "Three Palestinians killed and seven wounded across Gaza on Saturday, inside a ceasefire that has held on paper since 10 October. Lead with the arithmetic of a ceasefire that kills: the agreement has not stopped the strikes, it has only changed what they are called, and a death under a ceasefire is counted in a different column than a death under a war. The mechanism to teach is the 'violation' as an administrative category — there is no arbiter with the power to suspend the agreement, so each strike is logged and the agreement continues, which makes the ceasefire a framework for managed killing rather than an end to it. Name the specific incidents this cluster carries: a drone strike in Gaza City (Middle East Eye), and the Israeli army's own statement that it struck a Hamas commander inside a hospital compound (Le Monde) — a hospital strike justified by the presence of a combatant is the precise legal claim to state and attribute, not to narrate. Who is affected: the named dead where the reporting names them, and patients in the compound; who holds power: the Israeli military that decides what counts as a target and the mediators who log violations without consequence. Sentiment divergence across the cluster is 0.35 — the French, Turkish and MEE framings differ sharply, so attribute each claim to its source.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Hamas",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/West_Bank"
+      ]
+    },
+    {
+      "id": "visa-revocation-speech-sanction-student-ruling",
+      "label": "US judge rules against Trump's effort to deport pro-Palestinian students",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-visa-revocation-speech-sanction-student-ruling"
+      ],
+      "eventUri": "eng-11963796",
+      "summary": "District Judge Noel Wise ruled in California that the administration violated international students' constitutional rights by seeking to deport them for criticising Israel's war on Gaza. Lead with the constitutional finding, because it is the precedent: the First Amendment protects the non-citizen too, which is exactly the proposition the deportation campaign was built to test. The mechanism to teach our readers is visa revocation as a speech sanction — a student visa is discretionary, so the government's theory was that it could withdraw a privilege for speech it could not otherwise punish, and the ruling closes that route. Who is affected: international students whose ability to remain in the country was made contingent on silence about a genocide, and by extension every campus that told them to stay quiet; who holds power: the judiciary, which this week has repeatedly blocked executive action, and the State Department that issues and pulls the visas. Continues the US-courts-as-check pattern our audit has been watching. Give the ruling's scope precisely — what it enjoins, whom it covers, and whether it is appealable — and do not overstate a district ruling as settled law. Regional voice: Al-Ahram (EG) carries it alongside Al Jazeera (QA).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Deportation",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Freedom_of_speech",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Travel_visa",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/San_Jose,_California"
+      ]
+    },
+    {
+      "id": "leipzig-drone-attribution-national-sanctions-route",
+      "label": "Germany's Merz plans to blame Russia for drone incident in Leipzig",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-leipzig-drone-attribution-national-sanctions-route"
+      ],
+      "eventUri": "rus-2116882",
+      "summary": "Berlin is preparing to attribute an attempted drone attack on Leipzig airport to Russia and answer it with national sanctions, per Politico's sources. Lead with attribution as a political act, not a forensic one: a drone leaves little evidence a government can show, so the decision to name a state is a choice about what to do next, and the sanctions package is the reason the attribution is being made now. The mechanism worth teaching is that Germany would be sanctioning unilaterally rather than through the EU — a national list is faster and needs no unanimity, which is precisely the workaround for the Belgian- and Hungarian-shaped holes in EU Russia policy. Handle the sourcing with care: this is Politico reporting on unnamed sources about an intention, so it is a plan, not an act. The cluster's sentiment divergence is 0.41 and it spans UA, US, TR, RU and AZ outlets — APA (AZ) frames it as pre-election positioning to damage Merz's competitors and TASS carries the Russian denial, so give the counter-framings and attribute them rather than adopting the Ukrainian outlet's lead. Who is affected: German air traffic and the sanctions-exposed firms; who holds power: the chancellery, which controls both the accusation and the response.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Leipzig",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Berlin",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Politico",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Moscow"
+      ]
+    },
+    {
+      "id": "mv-lutuf-turkish-somali-pact-lethal-operation",
+      "label": "Turkish, Somali forces free pirate-seized vessel in Somalia",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-mv-lutuf-turkish-somali-pact-lethal-operation"
+      ],
+      "eventUri": "eng-11965015",
+      "summary": "A ten-day joint Turkish-Somali operation retook the hijacked MV LUTUF, killing 14 alleged pirates and destroying four boats. Lead with the ten days and the fourteen dead, because both numbers say what this was: not a rescue that happened, but a sustained lethal operation conducted by a foreign navy inside another state's waters under a bilateral agreement. The mechanism to teach is Turkey's Somalia arrangement — Ankara trains the Somali army, operates a base in Mogadishu and signed a 2024 maritime defence pact that lets it patrol Somali waters; this is the first large kinetic dividend of that pact, and it is why the flag doing the shooting off Puntland is Turkish rather than European or American. Who is affected: the crew of the LUTUF, who should be named and counted, and the Somali coastal communities from which alleged pirates are drawn and to which no court is attached — 'killed in the operation' means no trial and no evidentiary record, and that is the accountability gap to state plainly. Who holds power: the Turkish navy, the Somali federal government, and Puntland's separate administration. Regional voice: Al-Ahram (EG). Note the return of piracy itself: it tracks the collapse of coastal livelihoods, so treat the resurgence as an economic signal, not a criminal anomaly.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Somalia",
+        "http://en.wikipedia.org/wiki/Piracy",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Puntland",
+        "http://en.wikipedia.org/wiki/Piracy_off_the_coast_of_Somalia",
+        "http://en.wikipedia.org/wiki/Cargo_ship",
+        "http://en.wikipedia.org/wiki/Mogadishu",
+        "http://en.wikipedia.org/wiki/Turkish_Naval_Forces"
+      ]
+    },
+    {
+      "id": "niamey-mutiny-africa-corps-regime-protection-claim",
+      "label": "Niger's military thanks Russia's Africa Corps for assistance in suppressing mutiny",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-niamey-mutiny-africa-corps-regime-protection-claim"
+      ],
+      "eventUri": null,
+      "summary": "Russia's ambassador to Niger says the junta's chief of general staff, ground forces chief and the commander of Air Base 101 visited the Africa Corps base to thank it for helping suppress a mutiny — which retroactively names the overnight gunfire at Niamey airport we covered this morning as an internal military revolt, not a jihadist attack. Lead with that reclassification and its provenance in the same breath: the only account of what happened at the airport now comes from the Russian embassy, via Russian state media, and there is no independent confirmation that a mutiny occurred or that Russian forces intervened. The mechanism to teach is what the Africa Corps contract actually buys — Niger expelled French and US forces on the argument that foreign troops had failed to stop the insurgency, and the successor force's first demonstrated use is regime protection against the junta's own soldiers, which is a different product from counter-insurgency and creates a different dependency. Who is affected: Nigerien soldiers on both sides of a mutiny with no public casualty count; who holds power: the CNSP, and now Moscow, whose troops are the thing standing between it and its own army. Sourcing note for the writer: TASS is the sole source and the claim serves Russian interests — attribute every element to Ambassador Voropayev by name, mark the mutiny framing as an unconfirmed Russian account, and say explicitly that Niamey has not confirmed it. Fills the Sahel gap; no regional West African outlet in this feed carried it, which is itself worth a line.",
+      "conceptUris": []
+    },
+    {
+      "id": "venezuela-pdvsa-majority-control-concession-precedent",
+      "label": "'A New Form of U.S. Colonialism': Venezuelans Bristle at U.S. Oil Takeover",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-venezuela-pdvsa-majority-control-concession-precedent"
+      ],
+      "eventUri": "eng-11959938",
+      "summary": "Trump announced on Friday that the United States will take majority control of Venezuela's oil, eight months after US forces seized Nicolás Maduro. Lead with the ownership word, because it is the whole story and it is not a metaphor: this is not sanctions relief, a service contract or a production-sharing agreement — it is a foreign state asserting a controlling stake in another country's principal national asset, and the last time that arrangement had a name in Latin America the name was concession. The mechanism to explain for our readers is how a takeover is actually executed: PDVSA's value sits in reserves it cannot lift without capital, in refineries abroad, and in a debt stack owed to Chinese and Russian creditors, so 'majority control' means control of the cash flow and the seniority order — whoever holds it decides which creditor is paid and which Venezuelan budget line is not. Who bears the cost: Venezuelans, for whom oil receipts are the state's revenue and who were not consulted, and who — as the reporting shows — read this as the price of the January operation; who holds power: Washington, the US majors who will operate the fields, and the creditors whose claims are about to be re-ranked. Structural why: resource nationalisation ran one direction across the Global South for seventy years, and this is the first clean reversal — the precedent matters far beyond Caracas. Fills the Latin America gap our audit has flagged repeatedly, and does it on the region's own economy rather than through a crime-and-sanctions frame.",
+      "conceptUris": []
+    },
+    {
+      "id": "moodys-nigeria-outlook-external-buffers-austerity-scored",
+      "label": "Moody's upgrades Nigeria's outlook to \"positive\" on stronger external buffers",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-moodys-nigeria-outlook-external-buffers-austerity-scored"
+      ],
+      "eventUri": "eng-11964129",
+      "summary": "Moody's moved Nigeria's outlook to positive, crediting stronger external buffers and macroeconomic stability. Lead with what an outlook actually is and is not: it is a statement about the probability of a future rating change, it moves Nigeria's borrowing cost before any rating moves, and it is an assessment of the government's capacity to repay foreign creditors — not of whether Nigerians can afford food. That gap is the story. The mechanism to teach: 'external buffers' means reserves and the current account, which improved because the naira float and fuel-subsidy removal compressed imports and household consumption — so the buffer was built out of the same austerity that produced the cost-of-living crisis, and the rating agency is scoring the cost as a success. Give both numbers side by side: the reserve position Moody's is rewarding and the inflation rate Nigerians are paying. Who benefits: the federal government, whose next eurobond prices tighter, and the bondholders already holding the paper; who bears the cost: Nigerian households. Follow-up context: this sits directly against Abuja's hunt for Chinese upstream capital at the Dongying expo, which we covered this morning — a country courting new lenders and being re-scored by the old ones in the same week. Regional voice throughout: Premium Times (NG).",
+      "conceptUris": []
+    },
+    {
+      "id": "warsh-imported-inflation-dollar-transmission-emerging-debt",
+      "label": "Warsh, After Talking Tough on Inflation, Faces a 'No-Win Situation' on Rates",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-warsh-imported-inflation-dollar-transmission-emerging-debt"
+      ],
+      "eventUri": "spa-4319514",
+      "summary": "Kevin Warsh, in his first Jackson Hole as Fed chair, must decide whether to raise rates if inflation does not ease — knowing a hike puts him against the president who appointed him. Lead with the trap rather than the personality: the inflation he is being asked to fight is substantially imported, driven by the war-era energy prices that have run through Hormuz and into every fuel bill we have tracked this month, and a policy rate does nothing to a supply shock except break demand somewhere else. The mechanism our readers should carry away is the transmission abroad — a US rate rise strengthens the dollar, and dollar strength raises the local-currency cost of every dollar-denominated debt payment in Pakistan, Nigeria, Egypt and Kenya, which is why the most consequential audience for a Fed decision does not vote in the United States. Who holds power: a Fed chair whose independence is being tested in public, and a president who has made the test explicit; who bears the cost: emerging-market borrowers and, at home, the households the rate is aimed at. Be precise about what has actually happened — this is a decision not yet taken, so give the inflation print, the market-implied path, and the date of the next meeting rather than a forecast.",
+      "conceptUris": []
+    },
+    {
+      "id": "rf-ablation-impedance-return-path-dose-bias",
+      "label": "Analysis of sex and BMI influence on power delivery in high-power RF ablation for atrial fibrillation using virtual patient simulations",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-rf-ablation-impedance-return-path-dose-bias"
+      ],
+      "eventUri": null,
+      "summary": "Radiofrequency ablation burns a scar into heart tissue to stop atrial fibrillation, and this simulation study finds that how much of the delivered power actually reaches the target depends on the patient's sex and body mass — because the current returns through the torso, and the torso is not the same in every patient. Lead with the physics, which is the surprise: the catheter setting is chosen as though the body were a constant, and it is not, so the same 'high power, short duration' protocol deposits a different dose in different people. The mechanism to teach is the return path — RF ablation completes a circuit through the chest to a dispersive electrode on the skin, so tissue thickness and composition between the two set the impedance, and impedance sets the delivered energy. That means undertreatment (arrhythmia returns) and overtreatment (perforation, oesophageal injury) are not random outcomes but predictable ones. Who is affected: AF patients — a very large and ageing group — treated on protocols validated in cohorts that under-enrolled women, which is the same evidence gap our 29 August P2Y12 piece found from the trial side; here it appears from the engineering side, which is why the two are worth reading together. Be exact about what this is: a virtual-patient simulation, not a clinical trial — it predicts a dosing bias, it does not measure patient outcomes, and the honest conclusion is a call to stratify settings and to test them.",
+      "conceptUris": []
+    },
+    {
+      "id": "lualaba-cobalt-tailings-unpriced-liability",
+      "label": "The devastating impact of copper and cobalt mining pollution in Lualaba, DRC",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-lualaba-cobalt-tailings-unpriced-liability"
+      ],
+      "eventUri": null,
+      "summary": "Reporting from Lualaba province on what copper and cobalt extraction has done to the water, soil and bodies around the mines — in the province that supplies the metals the energy transition is built on. Lead with the local measurement, not the global slogan: give the specific contamination reported — tailings in the rivers people drink from, acid drainage, dust loading, and whatever health findings the reporting carries — because 'DRC, a solution country' is a claim made in Brussels and Beijing about a place where the cost is a named river. The mechanism to teach is where a cobalt atom's environmental cost is actually paid: the metal is priced at the London Metal Exchange with no line for hydrometallurgical waste, so the pollution is not a market failure at the edge of the system, it is the system's method of being cheap — and every electric vehicle sold as clean carries an unpriced liability held in Lualaba. Who is affected: farmers and households downstream of the concentrators, and artisanal miners with no protective equipment; who holds power: the Chinese and Swiss operators holding the concessions, the Congolese state that grants them, and the battery and carmakers at the end of the chain who audit for child labour but not for effluent. Structural why: the energy transition is not carbon-neutral in the Global South, it is carbon-displaced, and this is where it lands. Fills the Africa gap and the Global South science gap our audit flags. Keep it evidence-led — report what has been measured and by whom, and say plainly where numbers are absent.",
+      "conceptUris": []
+    },
+    {
+      "id": "grid-forming-inverters-synthetic-frequency-islanded-grids",
+      "label": "Intelligent Type-3 ANFIS-based adaptive secondary control for parallel grid-forming inverters in islanded smart microgrids",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-grid-forming-inverters-synthetic-frequency-islanded-grids"
+      ],
+      "eventUri": null,
+      "summary": "A neuro-fuzzy controller that keeps parallel grid-forming inverters in step on a microgrid that has been cut off from the national grid — and holds voltage and frequency without a central dispatcher. Lead with what a grid-forming inverter is, because most readers have never needed to know and are about to: a conventional grid gets its 50 hertz from the physical inertia of spinning turbines, solar and battery inverters have no inertia at all, so the frequency has to be manufactured in software, and when several inverters do it in parallel they must agree or they fight each other and the island collapses. The mechanism to teach is the secondary layer — primary droop control shares load but lets frequency sag, and the secondary controller pulls it back; making that layer adaptive is what lets it survive loads and faults the designer never modelled. Why our readers should care structurally: this is the control problem underneath every islanded grid in the Global South — a Pakistani industrial estate riding out the RLNG loadshedding we covered today, a Nigerian campus minigrid, a village system in Sindh or northern Kenya — and it is the difference between a solar installation that is a backup and one that is a grid. Be honest about maturity: this is simulation-and-testbed work in an early-access paper, not a deployment, and neuro-fuzzy controllers have a long history of excellent simulation results and hard field commissioning. Say what was tested and on what.",
+      "conceptUris": []
+    },
+    {
+      "id": "zero-inventory-labour-flexibility-apple-china-lock-in",
+      "label": "Tim Cook's Dark Legacy in China",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-zero-inventory-labour-flexibility-apple-china-lock-in"
+      ],
+      "eventUri": null,
+      "summary": "Apple's manufacturing system — the one Tim Cook built and is now handing on — is the most-copied operations model in technology, and the argument here is that its efficiency was purchased with Chinese labour conditions Apple audited but did not change. Lead with the mechanism, because our readers build things: Cook's innovation was not a factory, it was the elimination of inventory — components arrive as they are consumed, so demand surges are absorbed by the workforce rather than by warehouses, which is precisely why the model requires dormitories, mandatory overtime and a labour pool that can be doubled in weeks. Zero inventory on Apple's balance sheet is stored as flexibility in someone's working hours. The second structural point: two decades of that investment made Chinese contract manufacturing capable enough that Apple can no longer leave, which is why the decoupling everyone in Washington discusses keeps slipping — the dependency Cook created is now a geopolitical fact, not a procurement choice. Who is affected: the assembly workforce, whose conditions should be reported with specifics and dates rather than as a general indictment; who holds power: Apple, its contract manufacturers, and the local governments that recruit for them. Handle this as analysis, not a news event — test the specific claims against the documented record (the audit reports, the strike and suicide clusters, the wage data) and drop anything the piece asserts without sourcing.",
+      "conceptUris": []
+    },
+    {
+      "id": "self-custody-divisibility-retail-crypto-survey",
+      "label": "Ditching 'digital gold': BPI study suggests everyday Americans prefer control and micro-investing",
+      "firstSeen": "2026-08-29T22:11:47.488Z",
+      "lastCovered": "2026-08-29T22:11:47.488Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-29-self-custody-divisibility-retail-crypto-survey"
+      ],
+      "eventUri": null,
+      "summary": "A decade of marketing bitcoin as 'digital gold' has been aimed at the wrong appetite: surveyed retail holders respond to self-custody and to buying in very small amounts, and they trust an adviser or a bitcoin-owning relative over any influencer. Lead with the trust finding, because it inverts the industry's whole distribution strategy — the celebrity endorsement is the least effective channel in a market that was built almost entirely on celebrity endorsement. The mechanism to teach our readers is what 'control' means technically and why the preference is rational: holding your own keys removes the counterparty that failed in every major loss event of the last cycle, and it does so at the cost of an irreversible mistake with no recourse, which is a genuinely different risk profile rather than a better one. The micro-investing half matters more than it looks — divisibility to eight decimal places is bitcoin's actual retail advantage over gold, and it is the property least advertised. Discipline required: this is a survey commissioned by the Bitcoin Policy Institute, an advocacy body, so give the sample size, the method, the field dates and the sponsor in the first breath, and treat the findings as what people said, not what they do. Our reader will discount an interested survey — say who paid for it and let them.",
+      "conceptUris": []
+    },
+    {
       "id": "flamingo-missile-plant-strikes-production-capacity",
       "label": "Flamingo manufacturing units in Kyiv and Mykolaiv turned to ashes - Terror in Britain and the US: Russia's stern warning",
       "firstSeen": "2026-08-29T17:09:55.069Z",
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-flamingo-missile-plant-strikes-production-capacity"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-sajjan-kumar-condolence-visits-1984-conviction"
@@ -58,7 +302,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-osun-ikire-killings-inquest-police-command-gap"
@@ -74,7 +318,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-bangladesh-j10ce-purchase-combat-record-sale"
@@ -90,7 +334,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-hdfc-ceo-declines-third-term-rbi-succession"
@@ -115,7 +359,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-openai-cursor-model-access-revoked-spacex"
@@ -140,7 +384,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pakistan-rlng-cargo-delay-night-loadshedding"
@@ -156,7 +400,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-brazil-bank-master-supervisory-failure"
@@ -172,7 +416,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mrna-poly-a-tail-length-body-plan-gastruloids"
@@ -188,7 +432,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-eagle-migration-gps-flyway-mapping"
@@ -204,7 +448,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-ice-boston-dynamics-quadruped-procurement"
@@ -220,7 +464,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-swift-network-effect-blockchain-settlement"
@@ -236,7 +480,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-29-agentic-commerce-authorisation-identity-gap"
@@ -252,7 +496,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-bucha-warehouse-strike-secondary-detonations-toll"
@@ -277,7 +521,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-rostov-drone-saturation-falling-debris-casualties"
@@ -302,7 +546,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-haiti-internal-displacement-armed-civilian-brigades"
@@ -318,7 +562,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-kp-child-protection-act-haripur-conviction-gap"
@@ -334,7 +578,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-iran-foreign-trade-third-blockade-admission"
@@ -359,7 +603,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-hormuz-6000-stranded-seafarers-imo"
@@ -375,7 +619,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nigeria-china-upstream-capital-after-majors-exit"
@@ -391,7 +635,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-p2y12-trial-female-subgroup-87-patients"
@@ -407,7 +651,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nigeria-radiopharmaceutical-isotope-cold-chain"
@@ -423,7 +667,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-captured-interstellar-objects-solar-system"
@@ -439,7 +683,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-open-eyelid-dataset-medical-ai-bias"
@@ -455,7 +699,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-computer-science-theory-machines-complexity"
@@ -471,7 +715,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-keyboard-driven-guis-accessibility-automation"
@@ -487,7 +731,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-niamey-airport-base-attack-niger-junta"
@@ -512,7 +756,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-lebanon-christian-villages-israeli-occupation-border-zone"
@@ -528,7 +772,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nepal-hydropower-sites-934-trapped-missing-workers"
@@ -544,7 +788,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-khyber-pakhtunkhwa-new-provinces-ndm-resistance"
@@ -560,7 +804,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-china-flight-test-base-expansion-new-hangars"
@@ -576,7 +820,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-delhi-cng-price-hike-lng-hormuz-passthrough"
@@ -601,7 +845,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-halal-certification-pharmaceutical-supply-chain-gap"
@@ -617,7 +861,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pentagon-736000-facilities-maintenance-backlog"
@@ -633,7 +877,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-dormant-bitcoin-wallets-rekeying-quantum-exposure"
@@ -649,7 +893,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-it-works-better-in-the-app-web-degradation"
@@ -665,7 +909,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-china-us-ai-convergence-not-competing-visions"
@@ -681,7 +925,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pacibekitug-il6-inflammation-heart-outcomes"
@@ -697,7 +941,7 @@
       "lastCovered": "2026-08-29T08:10:42.931Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-daylighting-buried-urban-streams-flood-capacity"
@@ -713,7 +957,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-irgc-hormuz-closed-without-coordination"
@@ -729,7 +973,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-bahrain-gdp-contracts-iran-conflict-oil"
@@ -745,7 +989,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-uzbekistan-presidential-administration-law-immunity"
@@ -761,7 +1005,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mladic-death-srebrenica-glorification-denial"
@@ -777,7 +1021,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nepal-floods-thousands-missing-foreign-nationals"
@@ -793,7 +1037,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-rural-preemption-data-centers-local-control"
@@ -809,7 +1053,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
@@ -834,7 +1078,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mumbai-milk-price-rs-100-producers-association"
@@ -858,7 +1102,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-esa-launcher-challenge-544-million-contracts"
@@ -874,7 +1118,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-mongolia-cop17-desertification-land-degradation"
@@ -890,7 +1134,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-cognyte-cell-site-simulators-us-police-contracts"
@@ -906,7 +1150,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-papercut-print-server-flaw-active-exploitation"
@@ -922,7 +1166,7 @@
       "lastCovered": "2026-08-29T04:12:35.991Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-xrp-ledger-post-quantum-migration-validators"
@@ -938,7 +1182,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-us-judge-repeats-block-on-trump-s-bid-to-limit-voting-by-mai"
@@ -963,7 +1207,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-pezeshkian-to-meet-putin-on-september-1-russian-official"
@@ -988,7 +1232,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-profound-consequences-indus-water-treaty-must-not-be-weaponi"
@@ -1004,7 +1248,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-sudan-nashra-military-strikes-rsf-convoy-inside-chadian-terr"
@@ -1020,7 +1264,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-u-s-designates-palestinian-refugee-in-germany-as-terrorist"
@@ -1036,7 +1280,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-trump-blacklisting-of-woke-anthropic-deemed-illegal-by-feder"
@@ -1052,7 +1296,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
@@ -1068,7 +1312,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-zelensky-calls-for-ukraine-to-launch-1-000-drones-at-russia"
@@ -1093,7 +1337,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-a-melting-glacier-in-nepal-was-a-time-bomb-there-are-more-to"
@@ -1109,7 +1353,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-orbex-s-sutherland-spaceport-assets-sold-to-scottish-develop"
@@ -1125,7 +1369,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-27-the-ai-ghosts-contaminating-academic-publishing"
@@ -1141,7 +1385,7 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-cities-terminate-flock-contracts-at-record-pace-in-august"
@@ -1157,239 +1401,13 @@
       "lastCovered": "2026-08-28T22:09:34.243Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-u-s-sanctions-against-the-a-i-collective"
       ],
       "eventUri": null,
       "summary": "Autistici/Inventati — a volunteer Italian collective that has run free email and hosting for activists since 2001 — says US sanctions have hit its infrastructure, and the notice is on its own front page. Who is affected: the users, largely European and largely non-commercial, whose mailboxes sit on servers a US listing can strand. The mechanism to lead with is the reach: a non-US, non-profit operator gets cut off not by a court but because its payment processors, registrars and upstream providers are all exposed to OFAC and will de-risk instantly rather than litigate. Structural why: sanctions compliance is enforced by intermediaries, so the internet's chokepoints are wherever a US-facing company sits in the chain — and for a collective with no lawyers, that is every link. Verify the designation against the Treasury list before publishing and attribute the collective's account as its own statement. Strong reader signal: 412 points on Hacker News.",
-      "conceptUris": []
-    },
-    {
-      "id": "battlefield-corpus-data-is-the-constraint",
-      "label": "Ukraine to give Britain access to battlefield data to train AI",
-      "firstSeen": "2026-08-25T17:11:18.559Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 86,
-      "category": "tech",
-      "importance": 1,
-      "arc": "ongoing",
-      "articles": [
-        "2026-08-25-battlefield-corpus-data-is-the-constraint",
-        "2026-08-25-bankchain-the-deposit-is-what-is-being-defended",
-        "2026-08-25-ocean-heat-the-buffer-is-what-is-filling",
-        "2026-08-25-synthetic-think-tank-the-index-is-the-audience",
-        "2026-08-26-gaza-kites-the-category-is-the-target",
-        "2026-08-26-township-custody-the-toxicology-is-not-the-question",
-        "2026-08-26-kok-river-the-harm-crosses-the-border-the-remedy-does-not",
-        "2026-08-26-portland-beach-the-mammal-is-the-measurement",
-        "2026-08-26-planform-decoys-the-sensor-is-the-audience",
-        "2026-08-26-atiku-subsidy-pledge-the-pump-price-is-the-platform",
-        "2026-08-26-sea-surface-record-the-heat-sink-is-the-story",
-        "2026-08-26-long-covid-biomarkers-the-sample-is-the-finding",
-        "2026-08-26-ham-radio-the-licence-is-the-bottleneck",
-        "2026-08-26-okinawa-governor-the-permit-is-the-veto",
-        "2026-08-26-pims-nursery-fire-the-inquiry-is-the-pattern",
-        "2026-08-26-afrin-the-shrine-is-gone-the-rite-is-not",
-        "2026-08-26-kassala-gold-the-official-rate-is-the-leak",
-        "2026-08-26-rakbank-bitcoin-the-fatwa-is-the-product",
-        "2026-08-26-granite-4-2-the-parameter-count-is-the-policy",
-        "2026-08-26-sovereign-cloud-the-lock-in-is-the-service-layer",
-        "2026-08-26-rano-diphtheria-the-count-is-the-first-failure",
-        "2026-08-26-meta-settlement-the-product-change-is-the-penalty",
-        "2026-08-26-dual-use-the-spare-part-is-the-siege",
-        "2026-08-26-j-10c-the-airframe-is-the-smallest-part",
-        "2026-08-26-won-stablecoin-the-rail-is-the-sovereignty",
-        "2026-08-26-airport-malaria-the-travel-question-is-the-failure",
-        "2026-08-26-two-codes-the-language-is-the-containment",
-        "2026-08-26-supremacy-clause-the-forum-is-the-immunity",
-        "2026-08-26-23-de-enero-the-neighbourhood-is-the-state",
-        "2026-08-26-martian-heat-the-measurement-is-the-finding",
-        "2026-08-27-visa-pause-the-queue-is-the-instrument",
-        "2026-08-27-dead-end-talks-the-leak-is-the-move",
-        "2026-08-27-drone-ied-the-cost-asymmetry-is-the-weapon",
-        "2026-08-27-hayatabad-the-supplier-credit-is-the-pharmacy",
-        "2026-08-27-prabowo-cooperatives-the-throughput-is-the-limit",
-        "2026-08-27-fly-surveillance-the-sample-is-the-insect",
-        "2026-08-27-nepal-relief-the-tonnage-is-the-message",
-        "2026-08-27-risks-the-euphemism-is-the-agenda",
-        "2026-08-27-munir-tehran-the-denial-is-about-the-label",
-        "2026-08-27-patria-the-hull-is-what-is-sanctioned",
-        "2026-08-27-r90-000-the-fine-is-a-tenth-of-the-donation",
-        "2026-08-27-thirty-percent-by-2027-the-target-is-the-admission",
-        "2026-08-27-singapore-taiwan-the-volume-is-not-the-commitment",
-        "2026-08-27-quantum-fix-the-signature-is-the-block-space",
-        "2026-08-27-the-buffer-zone-the-order-is-the-law",
-        "2026-08-27-ninth-year-the-status-is-the-obstacle",
-        "2026-08-27-ads-in-the-answer-india-is-the-test-market",
-        "2026-08-27-data-centre-land-the-input-is-not-labour",
-        "2026-08-27-twelve-hundred-since-the-truce-the-word-is-doing-the-work",
-        "2026-08-27-the-convoy-crossed-the-border-so-does-the-embargo",
-        "2026-08-27-the-principal-and-the-profit-immunity-is-the-line",
-        "2026-08-27-unowned-packages-the-docs-page-is-the-instruction",
-        "2026-08-27-the-flash-tier-cheap-and-open-is-the-diffusion-layer",
-        "2026-08-27-horizontal-transfer-the-haustorium-is-the-conduit",
-        "2026-08-27-patriot-shortfall-the-magazine-is-the-alliance",
-        "2026-08-27-nkandla-recovery-the-enabler-is-the-defendant",
-        "2026-08-27-orinoco-stake-the-contract-is-the-settlement",
-        "2026-08-27-chip-tariff-the-die-is-taxed-the-device-is-not",
-        "2026-08-27-grid-parts-the-maintenance-channel-is-the-switch",
-        "2026-08-27-biological-age-the-marker-is-not-the-outcome",
-        "2026-08-28-third-killing-the-status-is-the-vulnerability",
-        "2026-08-28-the-1971-tribunal-the-forum-is-the-punishment",
-        "2026-08-28-early-voting-the-ballot-is-the-annexation",
-        "2026-08-28-the-label-the-word-closes-the-exit",
-        "2026-08-28-two-hundred-thousand-for-a-markhor-the-quota-is-the-income",
-        "2026-08-28-the-exit-option-mobility-is-the-enforcement",
-        "2026-08-28-cross-biobank-the-reference-population-is-the-limit",
-        "2026-08-28-the-plume-the-glacier-is-the-pump",
-        "2026-08-28-authors-who-do-not-exist-the-citation-is-the-damage",
-        "2026-08-28-in-the-bazaar-the-target-is-the-commerce",
-        "2026-08-28-frontier-again-the-index-is-the-plumbing",
-        "2026-08-28-the-independence-trade-the-speech-is-the-instrument",
-        "2026-08-28-cash-rising-the-measure-is-what-left-the-banks",
-        "2026-08-28-the-simulator-the-collection-is-indiscriminate-by-construction",
-        "2026-08-28-hormuz-declared-open-the-premium-is-the-verdict",
-        "2026-08-28-the-tariff-and-the-pump-price-the-duty-is-absorbed",
-        "2026-08-28-the-inherited-office-legitimacy-is-the-only-asset",
-        "2026-08-28-the-application-count-the-exam-is-a-census-of-schooling",
-        "2026-08-28-uncontactable-the-camp-is-in-the-gorge",
-        "2026-08-28-two-arrests-a-thousand-victims-the-pipeline-is-the-delivery",
-        "2026-08-28-after-the-scan-the-diagnosis-is-the-whole-service",
-        "2026-08-28-banque-misr-the-third-country-branch-is-the-target",
-        "2026-08-28-the-undisclosed-value-the-embassy-made-the-announcement",
-        "2026-08-28-officer-safety-the-phrase-is-the-authorisation",
-        "2026-08-28-the-print-server-the-forgotten-machine-has-the-privileges",
-        "2026-08-28-the-indicator-light-the-consent-is-one-led"
-      ],
-      "eventUri": null,
-      "summary": "Ukraine is giving British companies and researchers access to the battlefield data it has collected during the war with Russia, to train and test AI systems. Lead with what the asset actually is: years of drone video, electronic-warfare logs and strike outcomes from the first war fought at scale with cheap autonomy — a corpus no laboratory can synthesise and no other country possesses, and now a tradeable national resource. The mechanism to teach is why data, not algorithms, is the binding constraint in military AI: target recognition models fail on the distribution shift between clean training footage and a jammed, smoke-obscured, camouflaged real battlefield, so the value is entirely in real capture under real countermeasures — which is why access to Ukraine's archive is a strategic transfer, not a research courtesy. Then the questions the announcement does not answer and the piece should pose: what the UK gives in return, whether the footage is scrubbed of identifiable casualties, and who owns the models trained on it. Structural why for our reader: a country with no capital and no defence industry left is monetising the one thing its war produced in surplus, and every state now buying drones — in the Gulf, in Pakistan, in Nigeria — is buying systems whose judgement will have been formed on Ukrainian ground. Attribute the terms to The Record's reporting and be clear about what has been signed versus announced.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Pakistan_Institute_of_Medical_Sciences",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Air_conditioning",
-        "http://en.wikipedia.org/wiki/Hospital",
-        "http://en.wikipedia.org/wiki/Infant",
-        "http://en.wikipedia.org/wiki/Gynaecology",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/Instagram"
-      ]
-    },
-    {
-      "id": "ten-months-the-instrument-changed-not-the-tempo",
-      "label": "Israel kills three in first airstrike on West Bank in 10 months",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-ten-months-the-instrument-changed-not-the-tempo"
-      ],
-      "eventUri": null,
-      "summary": "An Israeli airstrike killed three people in the occupied West Bank — the first air attack there in ten months. Lead with the three dead, named if the reporting allows, and with the ten-month gap, because the gap is what makes this news: the West Bank has been policed by raids, arrests and settler violence, not by aircraft, and the return of airpower is a change in the instrument rather than an increase in the tempo. The mechanism to teach is why that distinction matters legally and practically — an airstrike is an act of armed conflict applied to a territory the occupying power administers under occupation law, and each time the threshold is crossed without consequence it becomes the new baseline, which is the same normalisation our Gaza and Lebanon coverage has tracked. Then the context to carry: this lands with the Gaza truce already being contested and Israeli operations in southern Lebanon unresolved, so ask whether the strike is a one-off or the opening of a third file. Who is affected: residents of the district struck, and the 3 million Palestinians under an occupation that has just acquired a new weapon; who holds power: the Israeli military, and the states supplying the aircraft. Verify the location, the toll and the Israeli military's stated justification against a second report before publishing. Sourcing note for the audit: no Palestinian or other regional outlet in today's feed covered this strike.",
-      "conceptUris": []
-    },
-    {
-      "id": "no-oath-no-membership-the-seat-was-never-vacant",
-      "label": "'No oath, no membership': ECP withdraws notification for Senate by-poll on seat won by PTI's Murad Saeed",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's Election Commission has withdrawn its own April notification for a Senate by-election, reversing its earlier finding that a seat won by PTI's Murad Saeed was vacant. Lead with the doctrine in the headline, because it is the whole case: 'no oath, no membership' means the commission had declared a seat empty on the basis of a disqualification affecting a man who, never having taken the oath, was never a member — so there was nothing to vacate and no by-poll to hold. The mechanism to teach is how a procedural formality becomes the decisive lever in a contested parliament: whether an elected person is a member turns on an administrative act, and the party controlling the timing of that act controls the arithmetic of the upper house. That is why oath-taking has become the recurring battleground in Pakistani politics rather than the elections themselves. Then the sequence the piece must set out plainly: what the ECP found in April, what changed, whether a court compelled the reversal, and what the seat's status is now. Who is affected: the Khyber Pakhtunkhwa electorate whose Senate representation has been in limbo since April, and a party governing a province while excluded from the centre; who holds power: the ECP, and the courts reviewing it.",
-      "conceptUris": []
-    },
-    {
-      "id": "fifty-three-billion-the-deal-was-priced-off-the-long-bond",
-      "label": "PayPal Shares Tank After Major Takeover Talks Collapse",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond"
-      ],
-      "eventUri": "eng-11956854",
-      "summary": "A group led by Advent International and Stripe has walked away from a reported $53 billion buyout of PayPal, and the stock fell about 15 percent. Lead with the size and the abandonment together: this would have been among the largest leveraged buyouts ever attempted, and it died at the financing stage in the same week thirty-year Treasury yields hit 5.3 percent — the story is the cost of money, not the company. The mechanism to teach is how an LBO is actually paid for: the buyer borrows against the target's own cash flows, so every rise in the long rate raises the debt service the deal must clear and shrinks the price the buyer can offer; a deal that pencilled at 4 percent does not exist at 5.3. That is the transmission from the bond market our readers followed this week into the ownership of the payment rails they use. Then the competitive angle worth naming: Stripe, a private competitor, was in the bidding group at all — say what that would have consolidated and what regulators would have asked. Who is affected: PayPal's 400-million-plus account holders, most of them outside the US, and the shareholders who priced in a bid; who holds power: the credit markets. Attribute the $53bn figure and the talks to Bloomberg's reporting, and note neither PayPal nor the bidders have confirmed it on the record.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/PayPal",
-        "http://en.wikipedia.org/wiki/Stripe,_Inc.",
-        "http://en.wikipedia.org/wiki/Bloomberg_L.P.",
-        "http://en.wikipedia.org/wiki/Advent_International",
-        "http://en.wikipedia.org/wiki/Fintech",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Bloomberg_News",
-        "http://en.wikipedia.org/wiki/Private_equity_firm"
-      ]
-    },
-    {
-      "id": "the-bidder-that-walked-knew-the-asset",
-      "label": "10 of 12 parties prequalified for Fesco privatisation, K-Electric withdraws",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-the-bidder-that-walked-knew-the-asset"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's Privatisation Commission cleared 10 of 12 bidders for the Faisalabad electricity distributor, after K-Electric pulled its papers and the only Chinese bidder failed to show sufficient interest. Lead with the two withdrawals, not the ten approvals, because the buyers who walked are the information: K-Electric is the one company in the country that has actually run a privatised distribution utility, and its exit says what the asset is worth to someone who knows. The mechanism to teach is why a power distribution company is a hard thing to sell: the buyer inherits a fixed tariff set by a regulator, a collection rate it cannot control, line losses and theft it must eat, and a circular-debt chain in which the government owes the generators — so the revenue is capped by the state and the costs are not. That is the whole reason the IMF programme keeps demanding these sales and the sales keep struggling. Then the specifics: Fesco is the best-performing distributor in the fleet and therefore the easiest to sell, which means the harder ones behind it face worse terms. Who is affected: 8-plus million Faisalabad-region consumers whose tariff and reliability will be set by a private owner under regulatory ceilings; who holds power: NEPRA, the Privatisation Commission, and the Fund whose conditions set the timetable. Name the prequalified parties, the timeline to bid, and what happened at the previous attempts.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-tunnel-team-the-missing-are-underground",
-      "label": "India to send tunnel rescue team to flood-hit Nepal after reports of 100 trapped",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-the-tunnel-team-the-missing-are-underground"
-      ],
-      "eventUri": "eng-11960109",
-      "summary": "The Nepal-Tibet flash flood toll has passed 540 dead with 1,500 missing and 93,000 people affected, and India is flying in a tunnel rescue team after reports of about 100 people trapped underground. Lead with the tunnel, because it is the specific and least-reported part: the missing are not only in villages, they are inside hydropower and road tunnels cut into the gorge, and tunnel rescue is a different discipline from flood relief — it needs boring equipment, oxygen management and shoring, which is why the request went to Delhi rather than to the aid agencies already present. The mechanism to teach is what makes this valley lethal by construction: a glacier-fed catchment on a rising snowline, a cross-border river whose upstream monitoring sits in Tibet, and a decade of tunnel-and-dam construction that concentrated workers precisely in the narrowest, steepest section of the flood path. That is the development story and the disaster story arriving as one thing. Then the accountability question: what warning existed upstream, how long it took to cross the border, and who authorised worker accommodation inside the gorge. Who is affected: Nepali, Indian, Chinese and South African families now counting from three countries; who holds power: the hydropower developers, and the two states on either side of a river with no shared alert protocol. Update our earlier count and be explicit that the missing figure is not a death toll.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/Search_and_rescue",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/Kathmandu",
-        "http://en.wikipedia.org/wiki/United_Kingdom"
-      ]
-    },
-    {
-      "id": "dual-band-four-element-mimo-antenna-array-for-5g-millimeter",
-      "label": "Dual-band four-element MIMO antenna array for 5G millimeter-wave communication",
-      "firstSeen": "2026-08-28T17:08:41.617Z",
-      "lastCovered": "2026-08-28T17:08:41.617Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for science floor] We're sharing this article early to provide faster access to peer-reviewed, accepted research. It is citable and carries a permanent DOI. This version is subject to further edits and will be replaced automatically by the final Version of Record. All legal disclaimers apply.\n\nThis paper presents a fo",
       "conceptUris": []
     }
   ]
