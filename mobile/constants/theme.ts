@@ -124,14 +124,6 @@ export const DARK_COLORS = {
   toneFavorableText: '#82a98a',
   toneUnfavorableText: '#a98080',
   toneNeutralText: '#8298a9',
-  // The app's second chromatic break, and the only one besides `dome`.
-  //
-  // It exists for exactly one thing: a card reporting that a named body has
-  // published a named document finding genocide. Nothing else may use it —
-  // not severity, not a red alert level, not a falling number. The rule that
-  // makes a single accent work is that the accent means one thing, and the
-  // moment this red is spent on a market move it stops meaning this.
-  determination: '#f5372b',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -178,10 +170,6 @@ export const LIGHT_COLORS = {
   toneFavorableText: '#3f6b48',
   toneUnfavorableText: '#884d51',
   toneNeutralText: '#475f70',
-  // See DARK_COLORS.determination. Deepened on cream for the same reason
-  // `dome` is: the dark-mode red sits near 3:1 against #f5f2ed and fails AA
-  // as body text. #c62518 clears 5:1 while staying the same hue.
-  determination: '#c62518',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
@@ -414,36 +402,21 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
 /**
  * The horizontal axis.
  *
- * Four sections, cut by the question a reader arrives with rather than by
- * what kind of instrument the answer happens to be. The stories first, then:
- * what things cost, what your money is worth, and what is not yet a fact.
- * Subject navigation, entirely by swipe.
+ * Four sections: the story river followed by three focused graph desks.
+ * The data destinations are deliberately specific: market prices,
+ * chokepoint traffic and probability outlooks. Each contains only a real time
+ * series with current pipeline analysis; static reference material does not
+ * earn a primary tab.
  *
- * It was six, split by asset class, and the split was the problem. `markets`
- * held food, energy, rates, shipping, Wikipedia curiosity and a calendar —
- * eight cards and three of them not markets by any reading — while `crypto`,
- * `metals` and `currencies` held two or three each and were all facets of one
- * question. Asset class is how a data provider files a series; it is not how
- * anybody wakes up wondering about one.
- *
- * Every section here holds readings that move daily — which is the test a news
- * app has to apply to itself. A section of standing conditions (famine,
- * conflict, hazards, genocide determinations) was cut on exactly that test:
- * the median famine analysis was seven months old and one determination was
- * eight years old. Those cards survive, gated on their own data being new, and
- * lead `commodities` on the rare day one of them is (see `lib/cards/conditions.ts`).
- *
- * Four labels fit a phone at default type — roughly 216pt of small caps
- * against a 360pt screen, where six measured past 440 and forced the rail to
- * scroll. `SectionBar` keeps its scroll view for large Dynamic Type and draws
- * a rule after `news`, which is a river where the other three are card decks.
+ * `SectionBar` keeps its scroll view for large Dynamic Type and draws a rule
+ * after `news`, which is a river where the other three are card decks.
  * Swipe is still the navigation; the rail is where you are.
  *
  * The four categories used to live on this axis too. They are a vertical
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'commodities', 'money', 'outlook'] as const;
+export const SECTIONS = ['news', 'markets', 'shipping', 'outlook'] as const;
 export type Section = (typeof SECTIONS)[number];
 
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */
@@ -742,9 +715,6 @@ export type TextTone =
   | 'favorable'
   | 'unfavorable'
   | 'neutral'
-  /** Reserved for a genocide determination and nothing else — see the
-   *  `determination` entry in the palettes. */
-  | 'determination'
   /** Text sitting on an inverted (colors.text-filled) surface — resolves to
    *  `colors.bg`. Used by high-visibility chrome like the onboarding hint
    *  pill; still monochrome, so "color carries meaning" holds. */
@@ -768,8 +738,6 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
       return colors.toneUnfavorableText;
     case 'neutral':
       return colors.toneNeutralText;
-    case 'determination':
-      return colors.determination;
     case 'inverse':
       return colors.bg;
   }

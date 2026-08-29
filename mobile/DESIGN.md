@@ -73,18 +73,10 @@ dome gold, `ChokepointSheet` calling a strait disrupted at 15% where the card
 said 10%. They read `lib/valence.ts` now. Adding a fourth answer is the
 regression; extending the table there is the change.
 
-A corollary: **quote the quantity whose sign matches its meaning.** A comparison
-row's `value` carries the sign and its `tone` carries the meaning, so the two
-must agree — the FX table quoting rates (up = your money buys less) put a plus
-sign in rose, and the fix was to report the currency's move rather than caption
-the inversion. This is also the one case where a builder passes `riseMeans` as
-a literal instead of calling `riseMeansFor`: the table has inverted the quoted
-quantity, so it inverts the meaning with it.
-
-A count is not a move. Condition-card rows (IPC phase tallies, conflict events
-by country, hazard levels) carry no `tone`, because nothing about them points
-up or down — the direction channel has nothing to say and spending colour there
-would make it mean two things.
+A corollary: **quote the quantity whose sign matches its meaning.** FX mover
+cards report the currency's own move rather than the published local-currency-
+per-dollar rate, so the arrow and consequence colour cannot contradict one
+another.
 
 **Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
 
@@ -158,60 +150,71 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 - **The rule that decides what exists.** A card earns a screen if a reader who
   gives it four seconds can tell someone else something true they did not know.
-  Everything that fails becomes a row on a comparison card, or it is not in the
-  app. That is why fifteen currencies are one card, thirty exchanges are none,
-  and 101 famine areas are one. Applied to the live payloads it cuts ~80
-  candidate cards to ~25.
-- **Five parts, in reading order**, owned by `CardFrame`: the reading (one
-  number at arm's length, with its unit and its **delta chip** on the line
-  below) · what it is (one sentence for someone who has never heard of it) ·
-  what changed (with the window named) · **why it reaches you** · the tie to
-  today's stories. Part four is the one that makes the section worth existing,
-  and it is **never composed in the app** — it is the pipeline's `standing`
-  paragraph, rendered verbatim. Every indicator, chokepoint and calendar event
-  carries one.
+  Everything that fails is not in the primary deck. Applied to the live
+  payloads it cuts dozens of candidate readings to a focused graph set.
+- **Live analysis is the point**, owned by `CardFrame`. The recurring surface
+  shows the reading, graph, the desk's pipeline-written analysis and movement.
+  That analysis is the day's account of *why this moved* where the desk wrote
+  one, and the standing definition only where it did not — a chart that just
+  fell raises the first question, not the second. One paragraph, never both.
+  The surface does not repeat related headlines already covered by that
+  analysis, and it has no static-definition info control. Static copy does not
+  satisfy the deck gate or travel in the card model.
+- **The hierarchy follows the kind of claim.** A measured quantity leads with
+  its reading, unit and movement before naming the series; a belief states its
+  question before showing the probability, because a percentage without an
+  outcome has no meaning. The reading remains the largest type on both. Live
+  analysis is primary body copy; the range, baseline or second-window sentence
+  is supporting caption copy beneath it. Source attribution is the quietest
+  tier. Long titles scale but never truncate, and a card that still outgrows
+  the screen scrolls.
+- **Proximity carries the grouping.** Reading, unit and delta are one tight
+  group. The chart begins after an item gap; the explanatory group begins
+  after a larger group gap, with supporting movement copy kept close to the
+  analysis it qualifies. Do not add dividers or headings merely to restate
+  those groups.
+- **Colour is semantic, not sectional.** Sage, rose and slate belong to the
+  movement chip and retain their consequence meanings; belief moves are
+  neutral. Reading, title, analysis, chart structure and `current` stay in the
+  monochrome ink hierarchy. Do not tint sections or spend dome gold as card
+  decoration.
 - **`lead` says why the card is here at all.** A builder that gated a card on
-  its own data being new sets `lead: true`, and `CardFrame` prints `today ·`
-  before the kicker. Without it a famine analysis published this quarter and
-  the gold-to-silver ratio arrive in identical weight, and the reader can only
-  tell them apart by already knowing which cards the app gates — which is
+  its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
+  before the kicker. Without it a newly escalated hazard and the
+  gold-to-silver ratio arrive in identical weight, and the reader can only
+  tell them apart by already knowing which cards are event-gated — which is
   knowing the implementation. It is an **ink step, never a colour**: the
-  chromatic budget is spent on `CardDelta` and `colors.determination`, and a
-  third accent costs both of them their meaning. Every card in
-  `buildConditionCards` carries it, as does a strait that cleared
-  `CHOKEPOINT_DISRUPTED`.
-- **One definition per screen, and `standing` is the one.** Part two is written
-  here and part four is written by the pipeline, and they were saying the same
-  thing on *every* reading card — brent, us-10y and vix each carried two
-  paragraphs of the same definition separated by a chart. The prefix-comparison
-  guard that was supposed to catch this missed all three by a word, because a
-  same-opening test cannot catch a same-meaning collision. The rule is
-  structural now (`definitionUnlessStanding`): if the pipeline wrote a
-  `standing`, the hand-written sentence does not render. Same rule, applied per
-  column, is why the prediction explainer appears on the first belief card
-  only — three cards deep it was the identical 200 characters three times.
+  chromatic budget is spent on `CardDelta`. A strait whose total traffic fell
+  at least 30% carries it.
+- **Pipeline analysis replaces duplicate definitions.** The pipeline text
+  remains visible beneath the graph; static fallback copy is not part of the
+  card model.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
   against, the range a belief has travelled, the second window on a monthly
   series. A percentage that appears in both is the same fact twice.
-- **Four kinds, one dispatcher.** `Reading · Comparison · Belief · Condition`,
-  switched in `CardView`. This is the deliberate exception to the "no
-  data-driven dispatcher" rule below: a builder emits a union and `CardPager`
-  renders whatever comes out, so unlike a sheet there is no call site that
-  could know the kind.
+- **Two graph-card kinds.** Builders describe graph-backed `Reading` and
+  `Belief` cards. `CardView` is typed to that boundary so unreachable table or
+  condition rendering branches cannot return unnoticed.
 - **A card ships because it changed, not because it matters.** This is a news
   app: a screen earns its place by having something new on it this morning.
-  The audit that settled it — median famine analysis seven months old, conflict
-  window 145 days behind, one genocide determination 2,902 days old — is in the
-  header of `lib/cards/conditions.ts`, and those cards are now gated on their
-  own data being new. Apply the same test to anything added here.
+  Apply the same test to anything added here.
 - **Builders are pure functions in `lib/cards/`**, not components —
-  `buildInstrumentCards` (one column per section), `buildConditionCards`. They
-  return a shorter column
+  `buildInstrumentCards` covers markets, shipping and outlook. It returns a shorter column
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.
+- **The swipe boundary validates and ranks.** `buildSwipeSections` first
+  requires a valid time series and pipeline analysis; `prepareSwipeCards` is the only
+  path from builder output into `CardPager`: it requires explanatory copy,
+  computes ranking metadata internally, and sorts urgent
+  updates before the strongest tie to today's news, unusual movement against
+  the series' own history, and finally the builder's stable editorial order.
+  Relevance uses the strongest linked story rather than summing matches, so a
+  broad aggregate cannot win merely by carrying more tags. A final two-card
+  run cap keeps one kicker from becoming a hidden lane. Raw display units are
+  never compared. Refresh reordering anchors the visible card by id.
 - **Number grammar lives in `lib/cards/format.ts`, and using it is not
   optional.** Two rules there exist because getting them wrong produces a
   plausible, wrong sentence: a change is always measured over a window the card
@@ -219,10 +222,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   because a "daily" series holds observations, not days), and anything already
   in percent moves in **points** (`windowPointChange`) — a contract going 26 →
   86 moved 60 points, and "+231%" is arithmetic pretending to be journalism.
-- Cards reuse `TrendBlock` and `CompareBlock` at `variant="article"`. A
-  comparison row's `weight` is the magnitude and its `value` string carries the
-  sign; `tone` is only for a direction that means something to the person
-  holding it (a currency weakening), never for "number went down".
+- Graph cards reuse `TrendBlock` at `variant="context"`. Dormant comparison
+  builders still use `weight` as the raw magnitude and keep the sign in their
+  display-formatted `value`; `tone` is only for a direction that means
+  something to the person holding it (a currency weakening), never for
+  "number went down".
 
 ### Blocks (`components/blocks/`)
 - Three data-display components, used directly by the sheets that need them:
@@ -245,30 +249,35 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between the four sections (`news` · `commodities` · `money` · `outlook`); vertical
+  between four sections (`news` · `markets` · `shipping` · `outlook`); vertical
   paging moves between full-screen items inside one. Nothing should require the
   reader to aim at a small target.
-- **The sections are cut by reader question, not by asset class.** It was six
-  cut the second way, and that produced a `markets` column of eight cards —
-  food, energy, rates, shipping, Wikipedia pageviews, a calendar — beside three
-  columns two cards deep that were all facets of one question. Asset class is
-  how a data provider files a series; it is not how anybody wakes up wondering
-  about one. Before adding a section, check the question is not already asked.
+- **The data sections are focused graph desks.** `markets` is prices, rates,
+  currencies and crypto; `shipping` is chokepoint traffic; `outlook` is
+  probability markets. A real time series plus live pipeline explanation is
+  the admission rule. Static reference, Wikipedia attention, calendars and
+  snapshot-only conditions stay out of the primary rail.
+- **A card's graph visualises its headline quantity.** If the payload has only
+  total-traffic history, a chokepoint card cannot headline tankers; if the
+  headline is a gold/silver ratio, the graph is that ratio rather than two raw
+  prices whose scale makes one invisible. Secondary figures may explain the
+  components without replacing the promised visual.
+- **Progress appears once.** The tab underline is the deck progress signal;
+  cards do not repeat it as `current / total` text.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber spans the
   chart, and on a card that is most of the screen — five page swipes in a row
   did nothing but drag a dot along a line. Charts on cards pass
   `scrubbable={false}`; scrubbing lives in sheets, where there is no pager to
   compete with. Any new gesture on a card owes the same check.
-- `SectionBar` follows the pager. Four labels fit (~330pt all-in against a
-  360pt phone) where six measured past 440 and forced a scroller the reader could
-  never see the end of; the scroller stays for large Dynamic Type and is inert
-  below it. Abbreviating ("curr") was never the alternative. Driven by the
+- `SectionBar` follows the pager. Four specific labels may scroll on a narrow
+  phone or at large Dynamic Type; abbreviating ("curr") is not the alternative.
+  Driven by the
   settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
   drag fights the drag, while the indicator tracking the finger is the part
   that should feel live.
 - **The rail groups, because the sections are not peers.** A rule sits after
-  `news`: it is a river of forty articles and the other three are decks of four
-  to seven cards, and drawing all four at identical weight was a claim about
+  `news`: it is an article river and the other three are data-card decks, so
+  drawing all four at identical weight would make a false claim about
   symmetry the content does not keep. Full point, not `hairlineWidth` — a
   10pt vertical hairline disappears at some Android densities, and a group rule
   nobody can see does not group.
@@ -281,6 +290,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   silently disabled the whole mechanism), and `CardPager` corrects any resting
   offset the handoff leaves behind. The cost is one extra swipe to leave a tall
   card; the alternative was losing the source caption off the bottom.
+  When an inner card actually consumes a gesture, `CardPager` pins the parent
+  to its current page before Android can apply the gesture's leftover momentum;
+  the next swipe from the inner scroll's end may page normally. This prevents
+  one gesture both scrolling the card and skipping it, or parking the deck
+  between two cards.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use

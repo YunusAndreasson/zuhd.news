@@ -40,14 +40,13 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
+import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
-import { useDeterminations } from '../hooks/useDeterminations';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
-import { useIpc } from '../hooks/useIpc';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -55,9 +54,9 @@ import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
-import { buildConditionCards } from '../lib/cards/conditions';
 import { buildInstrumentCards } from '../lib/cards/markets';
-import type { Card } from '../lib/cards/types';
+import type { SwipeCard } from '../lib/cards/rank';
+import { buildSwipeSections } from '../lib/cards/sections';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
@@ -72,15 +71,21 @@ const NEWS = SECTIONS.indexOf('news');
 const cardPagerRefs = SECTIONS.map(() => createRef<CardPagerRef>());
 const newsListRef = createRef<ArticleListRef>();
 
-/** Empty-state copy per instrument column. A column is empty when the
- *  snapshot did not carry its series, which is a quiet degrade, not an error. */
+/** Empty-state copy per data section. A deck is empty when the available
+ *  snapshots did not produce a valid card, which is a quiet degrade. */
 const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  commodities: {
-    message: 'no prices yet',
-    hint: 'Metals, grain and crude arrive with the next cycle',
+  markets: {
+    message: 'no market graphs yet',
+    hint: 'No market series with a current explanation are available',
   },
-  money: { message: 'no rates yet', hint: 'Exchange rates and yields arrive with the next cycle' },
-  outlook: { message: 'nothing priced yet', hint: 'Contracts are listed when they open' },
+  shipping: {
+    message: 'no shipping graphs yet',
+    hint: 'No chokepoint series with a current explanation are available',
+  },
+  outlook: {
+    message: 'no outlook graphs yet',
+    hint: 'No probability series with a current explanation are available',
+  },
 };
 
 // Give the reader time to arrive at the caught-up boundary and read it before
@@ -135,10 +140,9 @@ export default function HomeScreen() {
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
-  const { events: conflictEvents, snapshot: conflictSnapshot } = useConflictEvents();
+  const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
-  const { snapshot: ipc } = useIpc();
-  const { determinations } = useDeterminations();
+  const { byId: analysis } = useAnalysis();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
@@ -298,37 +302,19 @@ export default function HomeScreen() {
   // guess it back from concept tags, which never name one.
   const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
 
-  // Both card columns are pure functions of payloads already in memory. The
-  // builders return a shorter column rather than a broken screen when a
-  // payload is missing, so neither of these needs a loading state.
+  // Concrete card pools are pure functions of payloads already in memory. The
+  // builder omits a card rather than rendering a broken one when its payload
+  // is missing, so deck assembly does not need a separate loading state.
   const columns = useMemo(
-    () => buildInstrumentCards({ trends, chokepoints, articles: river }),
-    [trends, chokepoints, river],
+    () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
+    [trends, chokepoints, analysis, river],
   );
-  // Standing conditions are events, not furniture: each is gated on its own
-  // data being new, so this is empty on almost every day and leads the column
-  // on the day a determination is published or a fresh famine analysis lands.
-  // See the header of `lib/cards/conditions.ts` for the audit that settled it.
-  const conditionCards = useMemo(
-    () =>
-      buildConditionCards({
-        ipc,
-        conflict: conflictSnapshot,
-        gdacsAlerts,
-        determinations,
-      }),
-    [ipc, conflictSnapshot, gdacsAlerts, determinations],
-  );
-
-  // A standing condition that has just changed outranks the nisab and the oil
-  // price, so it leads rather than trails. There is no general column since
-  // the axis was cut by reader question, and `commodities` is the closest honest
-  // home: famine is food, a hazard is what closes a harvest or a strait. On
-  // almost every day `conditionCards` is empty and this is exactly
-  // `columns.commodities`.
-  const sectionCards = useMemo<Record<string, Card[]>>(
-    () => ({ ...columns, commodities: [...conditionCards, ...columns.commodities] }),
-    [columns, conditionCards],
+  // Only real time series with live pipeline analysis cross this boundary.
+  // Subject-specific tabs make the rail predictable; dormant non-graph card
+  // families are not built at all.
+  const sectionCards = useMemo<Record<string, SwipeCard[]>>(
+    () => buildSwipeSections(columns, river),
+    [columns, river],
   );
 
   // Active GDACS alerts whose primary or affected-country list includes the
@@ -560,6 +546,57 @@ export default function HomeScreen() {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
 
+  // Keep closed sheet shells outside unrelated HomeScreen updates. These
+  // callbacks used to be recreated inline, which invalidated every memoized
+  // sheet and made all nine native modal wrappers reconcile together.
+  const handleMenuDismiss = useCallback(() => setMenuOpen(false), []);
+  const handleCountryDismiss = useCallback(() => setCountrySheet(null), []);
+  const handleDisasterDismiss = useCallback(() => setActiveAlert(null), []);
+  const handleConflictDismiss = useCallback(() => setActiveConflict(null), []);
+  const handleChooserDismiss = useCallback(() => setChooserCandidates([]), []);
+  const handleChokepointDismiss = useCallback(() => setActiveChokepoint(null), []);
+  const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
+  const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
+  const handleSourcesDismiss = useCallback(() => {
+    setSheetSources([]);
+    setSheetDivergence(null);
+  }, []);
+  const handleDisasterCountryPress = useCallback(
+    (countryName: string) => {
+      disasterSheetRef.current?.dismiss();
+      openCountry(countryName);
+    },
+    [openCountry],
+  );
+  const handleConflictCountryPress = useCallback(
+    (countryName: string) => {
+      conflictSheetRef.current?.dismiss();
+      openCountry(countryName);
+    },
+    [openCountry],
+  );
+  const handleChooserSelect = useCallback(
+    (candidate: TapResult) => {
+      disambiguationSheetRef.current?.dismiss();
+      handleCountryPress(candidate);
+    },
+    [handleCountryPress],
+  );
+  const handleChokepointArticlePress = useCallback(
+    (slug: string, category: Category) => {
+      chokepointSheetRef.current?.dismiss();
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+  const handleEntityArticlePress = useCallback(
+    (slug: string, category: Category) => {
+      entitySheetRef.current?.dismiss();
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+
   const handleEndReached = useCallback(() => {
     toastRef.current?.show('Back to top', () => newsListRef.current?.scrollToTop());
   }, []);
@@ -739,7 +776,7 @@ export default function HomeScreen() {
       <MenuSheet
         sheetRef={menuSheetRef}
         bottomInset={insets.bottom}
-        onDismiss={() => setMenuOpen(false)}
+        onDismiss={handleMenuDismiss}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
@@ -751,7 +788,7 @@ export default function HomeScreen() {
         activeAlerts={countryAlerts}
         onAlertPress={handleCountryAlertPress}
         bottomInset={insets.bottom}
-        onDismiss={() => setCountrySheet(null)}
+        onDismiss={handleCountryDismiss}
       />
 
       <DisasterSheet
@@ -759,26 +796,16 @@ export default function HomeScreen() {
         alert={activeAlert}
         details={gdacsDetails}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveAlert(null)}
-        onCountryPress={(countryName) => {
-          // Hop from disaster → country: dismiss this sheet, then present
-          // the country sheet. CountryAlerts memo will re-fire and the strip
-          // in the country sheet will surface the disaster (and any others
-          // affecting the same country).
-          disasterSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
+        onDismiss={handleDisasterDismiss}
+        onCountryPress={handleDisasterCountryPress}
       />
 
       <ConflictSheet
         sheetRef={conflictSheetRef}
         event={activeConflict}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveConflict(null)}
-        onCountryPress={(countryName) => {
-          conflictSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
+        onDismiss={handleConflictDismiss}
+        onCountryPress={handleConflictCountryPress}
       />
 
       <DisambiguationSheet
@@ -788,15 +815,8 @@ export default function HomeScreen() {
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         bottomInset={insets.bottom}
-        onDismiss={() => setChooserCandidates([])}
-        onSelect={(candidate) => {
-          // Dismiss the chooser first so its dismiss animation overlaps
-          // the target sheet's enter animation; the candidate carries no
-          // `candidates` field, so handleCountryPress takes the normal
-          // single-hit branches.
-          disambiguationSheetRef.current?.dismiss();
-          handleCountryPress(candidate);
-        }}
+        onDismiss={handleChooserDismiss}
+        onSelect={handleChooserSelect}
       />
 
       <ChokepointSheet
@@ -804,11 +824,8 @@ export default function HomeScreen() {
         chokepoint={activeChokepoint}
         articles={river}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveChokepoint(null)}
-        onArticlePress={(slug, category) => {
-          chokepointSheetRef.current?.dismiss();
-          handleSelectArticle(slug, category);
-        }}
+        onDismiss={handleChokepointDismiss}
+        onArticlePress={handleChokepointArticlePress}
       />
 
       <EntitySheet
@@ -817,11 +834,8 @@ export default function HomeScreen() {
         indicator={activeIndicator}
         articles={river}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveEntity(null)}
-        onArticlePress={(slug, category) => {
-          entitySheetRef.current?.dismiss();
-          handleSelectArticle(slug, category);
-        }}
+        onDismiss={handleEntityDismiss}
+        onArticlePress={handleEntityArticlePress}
       />
 
       <SourcesSheet
@@ -829,16 +843,13 @@ export default function HomeScreen() {
         sources={sheetSources}
         divergence={sheetDivergence}
         bottomInset={insets.bottom}
-        onDismiss={() => {
-          setSheetSources([]);
-          setSheetDivergence(null);
-        }}
+        onDismiss={handleSourcesDismiss}
       />
 
       <NotificationPrimerSheet
         sheetRef={primerSheetRef}
         bottomInset={insets.bottom}
-        onDismiss={() => setPrimerOpen(false)}
+        onDismiss={handlePrimerDismiss}
         onToast={handleMenuToast}
       />
     </View>

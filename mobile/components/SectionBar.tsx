@@ -28,27 +28,13 @@ import { Icon, IconButton } from './primitives';
 // route uppercase glyphs through the small-caps font, which renders them
 // as full caps and breaks the editorial smallcaps voice.
 //
-// Four labels fit. "news commodities money outlook" measures roughly 196pt of
-// type at this size, and lands near 330pt once the gaps, the rule, the row
-// padding and the menu reserve are counted — against a 360–430pt phone, so the
-// whole axis is visible at once and the rail can finally do the one job a rail
-// has. It was six ("news markets crypto metals currencies predictions", past
-// 440pt of type alone), which forced a scroller and meant the reader could
-// never see where the axis ended.
-//
-// `commodities` is the long one and it is deliberate: it is what the FT and
-// Reuters both call that column, so it costs a reader nothing to decode, and
-// unlike `prices` it cannot be confused with `money` at a glance.
-//
-// The scroller stays anyway, for large Dynamic Type: `MAX_FONT_SCALE.chrome`
-// still allows growth past the width, and the auto-scroll effect below is a
-// no-op while the content fits. Abbreviating was never the alternative — the
-// labels are the sections' names and a reader should not have to decode
-// "curr".
+// Four plain-language labels name the available desks. The rail may scroll on
+// a narrow phone or at large Dynamic Type; no label is abbreviated to conceal
+// that there are distinct markets, shipping and outlook destinations.
 //
 // `news` is set off by a rule. It is a river of forty articles; the other
-// three are decks of four to seven cards, and presenting all four as
-// identical peers was a claim about symmetry the content does not keep.
+// three are decks of full-screen cards, and the rule preserves that change of
+// reading mode.
 //
 // This does not make the rail the navigation. Swiping the page is; the rail is
 // where you are, and it happens to accept a tap.

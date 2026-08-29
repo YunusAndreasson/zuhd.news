@@ -864,7 +864,30 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   echo "Event dispatch — $((SECONDS - T38B))s" | tee -a "$LOG_FILE"
   commit_only "Event dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.events-dispatch.json
 else
-  echo "--- Stage 3.8: Indicator dispatch (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
+  # Not the full pass — only instruments that have never been narrated. Daily is
+  # the right cadence for rewriting an explanation, but appearing is a different
+  # event: Polymarket questions rotate every cycle and the `wiki-*` set is
+  # re-picked from our own concepts, so a new instrument could sit on the site
+  # for up to 24 hours with no prose. On the web that is a card missing a
+  # paragraph; in the app it is no card at all, because the graph decks admit
+  # only instruments that have an explanation — which is why the outlook column
+  # was one or two cards deep.
+  #
+  # `--new-only` skips anything already cached even when its fingerprints have
+  # moved, so this cannot do 04:00's job early, and it does not prune. Steady
+  # state is zero calls and the run exits in seconds; the timeout is sized for
+  # the handful of items a rotation actually produces, not for a cold pass.
+  #
+  # This commits but does not deploy — Stage 4's rebuild is 04:00-only, so the
+  # prose ships on the *next* cycle's Stage 3b build. That is ~4 hours rather
+  # than the up-to-24 it replaces, and buying the difference would mean a build
+  # and a deploy on every cycle for a paragraph.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.8: Indicator dispatch (new instruments only) ---" | tee -a "$LOG_FILE"
+  T38=$SECONDS
+  timeout 420 node scripts/narrate-indicators.js --new-only 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: indicator dispatch (new-only) failed" | tee -a "$LOG_FILE"
+  echo "Dispatch (new-only) — $((SECONDS - T38))s" | tee -a "$LOG_FILE"
+  commit_only "Indicator dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.indicator-dispatch.json
 fi
 
 # Stage 3.9: Cloudflare analytics fetch (04:00 UTC only — low-frequency, fail-soft)

@@ -15,7 +15,7 @@ import { getPreferences } from './storage';
 export type HintId = 'swipe' | 'sources' | 'bookmark' | 'globe';
 /** `expired` = shown in MAX_HINT_SHOWS sessions without being acted on — the
  *  reader has voted; silence over nagging. */
-export type HintStatus = 'pending' | 'done' | 'dismissed' | 'expired';
+type HintStatus = 'pending' | 'done' | 'dismissed' | 'expired';
 /** `legacy` = the pre-onboarding build already fired the once-ever OS dialog.
  *  `never` = OS reports denied with canAskAgain=false — a primer whose Enable
  *  button can't produce the OS dialog would be a lie. */

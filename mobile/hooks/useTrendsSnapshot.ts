@@ -4,6 +4,8 @@ import { API_BASE } from '../constants/theme';
 import { isTrendsSnapshot } from '../lib/validate';
 import { useFetchJson } from './useFetchJson';
 
+const EMPTY_INDICATORS: Indicator[] = [];
+
 /** Fetches `/api/trends.json`. Cache-first so EntitySheet has an indicator
  *  catalog ready on launch; refreshes silently on resume. Returns a map
  *  keyed by indicator id for O(1) EntitySheet lookups. Graceful degrade:
@@ -21,7 +23,7 @@ export function useTrendsSnapshot(): {
   const { data, ready } = useFetchJson(`${API_BASE}/api/trends.json`, isTrendsSnapshot, {
     refreshOnResume: true,
   });
-  const indicators = data?.indicators ?? [];
+  const indicators = data?.indicators ?? EMPTY_INDICATORS;
 
   const byId = useMemo(() => {
     const m = new Map<string, Indicator>();

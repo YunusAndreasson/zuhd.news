@@ -58,48 +58,41 @@ a release build cannot name the offender if one survives.
 
 ## The two axes
 
-Horizontal swipe = section (`news` · `commodities` · `money` · `outlook`), vertical
+Horizontal swipe = section (`news` · `markets` · `shipping` · `outlook`), vertical
 paging = item inside one. Every column but `news` is a `CardPager` over a
 `Card[]`; `news` is `ArticleList` over the ordered river and owns the only
 globe. `SectionBar` follows the pager and draws a rule after `news`.
 
-- **The axis is cut by reader question, not by asset class.** It was six
-  sections split the second way and the split is what broke it: `markets` held
-  food, energy, rates, shipping, Wikipedia pageviews and a calendar — eight
-  cards, three of them not markets by any reading — beside `crypto`, `metals`
-  and `currencies` at two or three cards each, all three asking one question.
-  Now `commodities` is what things cost, `money` is what your money is worth
-  and what borrowing costs, `outlook` is what is not yet a fact. The first two
-  take the FT's and Reuters' own word for that ground rather than an invented
-  one — `prices`/`money` was the first pair and the two words read as the same
-  question. Four labels also *fit* (~330pt all-in against a 360pt phone, where
-  six measured past 440 in type alone), so the whole axis is visible at once.
-  - The two placements to know, because both look wrong until you know why:
-    **VIX is in `outlook`**, since what saved it from the cut that took the S&P
-    and the NASDAQ was its *fear* reading, and a price on what traders expect
-    is a contract by another name. **Crypto is in `money`**, which is what its
-    own first sentence says it is.
-- **A card ships because it changed.** Standing conditions (famine, conflict,
-  hazards, genocide determinations) were a section until an audit killed it:
-  median famine analysis seven months old, conflict window 145 days behind, one
-  determination 2,902 days old. They now gate on their own data being new and
-  lead `commodities` on the day one is. Apply the same test to anything new — the
-  eleven-strait table and the release calendar both failed it later and are now
-  gone and gated respectively.
-- **A gated card says so, and `lead` is how.** A condition card and a disrupted
-  strait are on screen because their data moved this morning; the nisab and the
+- **The data axis is specific and graph-only.** `markets` holds prices, rates,
+  currencies and crypto; `shipping` holds chokepoint traffic; `outlook` holds
+  prediction-market probabilities. Every admitted card needs a usable time
+  series and live pipeline analysis (`why`). Wikipedia attention, calendars,
+  static comparisons and humanitarian snapshots do not enter these decks.
+- **A current card says so, and `lead` is how.** A disrupted strait is on
+  screen because its source cleared a freshness
+  gate; the nisab and the
   gold-to-silver ratio are standing reference that happens to have moved a
   little. They arrived in identical typographic weight, so the distinction was
   one only a reader who already knew the gating could make. `CardFrame` now
-  prints `today ·` before the kicker — an ink step, never a colour, because the
-  chromatic budget is spent on `CardDelta` and `colors.determination`.
-- **The straits are the globe's, not a column's.** `MiniGlobe` draws all eleven
-  as tappable rings and `ChokepointSheet` carries the blurb, the standing
-  paragraph, what is happening there now, the weather and the series — so a
-  flat sorted table of the same eleven names was a worse copy of something the
-  reader could already touch. Only `straitMovedCard` survives, gated on
-  `CHOKEPOINT_DISRUPTED` and leading `commodities` on the day it fires. Same rule
-  for anything else the globe already carries.
+  prints `current ·` before the kicker — an ink step, never a colour, because the
+  chromatic budget is spent on `CardDelta`.
+- **Straits are graphs, not a duplicate table.** `MiniGlobe` still locates all
+  eleven and opens their detailed sheets; the concrete `straits` pool gives
+  each usable total-traffic history its own swipe piece inside `shipping`. A fall of
+  at least 30% earns `current`; otherwise it remains reference. Ranking uses
+  current-news relevance and unusual movement so a small percentage does not
+  hide a major live story.
+- **Ranking must not reward surface area.** Current-news relevance is the
+  strongest linked story, not the sum of every match: aggregate cards carry
+  many more topic tags than a single reading. After ranking, no more than two
+  consecutive cards may share a kicker, so currencies or chokepoints never
+  turn into a hidden sub-tab inside the vertical deck.
+- **The graph must be the headline's history.** Chokepoint cards use total
+  traffic throughout because that is the only historical series published,
+  with a 30% materiality gate rather than the subtype sheet's 10% threshold;
+  the gold/silver card graphs its ratio rather than flattening silver beneath
+  gold on a shared dollar scale. A subtype or component may remain a secondary
+  figure, but it cannot be the reading above a chart of something else.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;
   sheets do not.
@@ -133,6 +126,15 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   third makes it impossible, and removing the second to avoid the first trades
   a visible layout glitch for silent data loss — which is the worse bug,
   because nobody reports it.
+- **`recent` reaches the app through `/api/analysis.json`, and that is a
+  second endpoint on purpose.** `build.js` withholds it from `api/trends.json`
+  because that payload is also what the website's instrument rail downloads on
+  every homepage visit, and no rail row prints a paragraph. The web gets it
+  per-instrument from `/api/entity/{id}.json` on the press that opens a card;
+  the app has no such page and no such press — it builds a whole column up
+  front — so it needs every paragraph before it renders anything. 17.2KB, prose
+  only: carrying the citations measured 34.7KB and no card shows them, so they
+  stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **The bottom bar is not global.** `zoom` drives the globe, which lives on
   `news` alone, and `share` shares `activeArticleRef` — so on a card column one
   pill did nothing and the other sent a link to an unrelated article. Both are
@@ -140,25 +142,33 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   is not about what is on screen. Sharing a card needs a per-card URL and only
   the indicator-backed ones have one (`/e/{id}`).
 
-- **Card content is not written in the app.** Part four of every card — why the
-  number reaches an ordinary life — is the pipeline's `standing` paragraph,
-  rendered verbatim. 48 of the 50 indicators, all 11 chokepoints and all 12
-  calendar events carry one, and nothing rendered any of them before this.
-- **`standing` is authoritative, so part two usually does not render.** The two
-  were written by different hands and were saying the same thing on *every*
-  reading card — brent, us-10y and vix each carried two definitions of
-  themselves separated by a chart. The 25-character prefix guard that was meant
-  to catch this missed all three by a word: a same-opening test cannot catch a
-  same-meaning collision. `definitionUnlessStanding` is structural instead — if
-  the pipeline wrote one, the app does not add a second. Same rule per column
-  is why the "what a prediction contract is" explainer appears on the first
-  belief card only; three cards deep it was the identical 200 characters three
-  times over.
-- **Quote the thing the reader owns, or the sign fights the colour.** The FX
-  table printed the *rate* — rupees per dollar — where up means your money buys
-  less, so it showed "+5.6%" in rose beside "−0.8%" in sage. No caption fixes
-  that; a reader does not re-derive the denominator, they read the sign. Rows
-  and the mover chips report the currency's own move now (`currencyMove`, the
+- **The graph and pipeline analysis stay visible.** The reading, chart, the
+  desk's analysis, delta and current change make up the recurring surface.
+  Hand-written fallback definitions are not rendered in the graph decks; static
+  copy does not earn a card. Related articles remain ranking metadata and are
+  not repeated below analysis that already names the news.
+- **The card answers the question the chart raises, which is *why did this
+  move*.** The desk writes two paragraphs per instrument and they are not
+  interchangeable: `standing` says what the thing is, written once and
+  timeless; `recent` says what has happened to it and why, rewritten daily at
+  04:00 UTC against the fortnight's coverage and grounded in it. Every card
+  led with the definition until 2026-08-29 — a true sentence answering a
+  question nobody asks while looking at a line that just fell 15%. `whyFor`
+  (`lib/cards/markets.ts`) picks `recent` and falls back to `standing`; a
+  strait falls back once more, to its catalog blurb. **Only one of them is on
+  screen** — two paragraphs plus the supporting sentence overflows the page on
+  most phones, and the page-overflow guards are the app's most expensive
+  scar tissue. The definition stays a press away, on `/e/{id}`.
+- **The fallback is load-bearing, because `hasGraphAndAnalysis` gates deck
+  membership on `why`.** A card with no prose is built and then silently
+  dropped, which is how the nisab card — the one this column is documented as
+  opening with — was absent from it for as long as it had no `why` at all, and
+  how the Suez strait vanished on a day its `recent` came back empty. A new
+  card without a prose source is a card nobody will ever see and no error will
+  ever mention.
+- **Quote the thing the reader owns, or the sign fights the colour.** FX rates
+  are published as local currency per dollar, where up means your money buys
+  less. Mover chips report the currency's own move (`currencyMove`, the
   exact reciprocal — a rate up 5.6% is a currency down 5.3%, not 5.6%), which
   also retired the three lines of part two that existed only to explain the
   inversion.
@@ -183,9 +193,9 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
     grey in its own sheet. Nothing in any of those files mentioned the others.
     A fifth answer is the regression; a row in `RISE_MEANS` is the change.
   - **Pass a literal `riseMeans` only when the card has inverted the quantity.**
-    The FX table and the mover cards quote `currencyMove`, the reciprocal of
-    the published rate, so they invert the meaning with it. Everywhere else,
-    call the table — that is what stops a card and its sheet drifting.
+    FX mover cards quote `currencyMove`, the reciprocal of the published rate,
+    so they invert the meaning with it. Everywhere else, call the table — that
+    is what stops a card and its sheet drifting.
 - **The builders are pure and tested** (`lib/cards/`). Card arithmetic is
   pinned in `__tests__/cards-*.test.ts`, not eyeballed in a simulator, because
   the failure mode is a plausible wrong number rather than a crash. Two of them
@@ -197,15 +207,6 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
 - **A thread kicker needs `threadArticleCount > 1`.** Every article carries
   `threadArc` and `threadDay`; 38 of 40 carry them with a count of one, where
   "developing, day 13" is a claim the data does not support.
-- **`useDeterminations` is the one network-only hook.** A genocide
-  determination is a citation, and rendering one from disk asserts a finding on
-  a launch where nothing confirmed it. `NEVER_PERSIST` keeps it off disk and
-  there is no bundled fallback — no network, no card. This is the arrangement
-  `41732ffc`'s revert note asked for.
-- **`colors.determination` is for that card and nothing else.** A second
-  chromatic accent only works while it means one thing; spend it on a falling
-  market and it stops meaning this.
-
 ## Primitives live at
 
 `mobile/components/primitives/` — `Text`, `Stack`, `Box`, `Screen`, `Pressable`, `IconButton`, `Icon`. Import from `./primitives`.

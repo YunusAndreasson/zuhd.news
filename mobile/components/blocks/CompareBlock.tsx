@@ -2,7 +2,7 @@ import type { CompareRow } from '@shared/types';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { useReducedMotion } from 'react-native-reanimated';
-import { BLACK, RADIUS, SPACING } from '../../constants/theme';
+import { BLACK, OPACITY, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { staggerFadeIn } from '../../lib/stagger';
@@ -37,6 +37,7 @@ export const CompareBlock = memo(function CompareBlock({
   const { colors, font } = useTheme();
   const rowPaddingV = variant === 'context' ? SPACING.xs : SPACING.sm;
   const reduceMotion = useReducedMotion();
+  const maxWeight = Math.max(0, ...rows.map((row) => Math.abs(row.weight ?? 0)));
 
   // Derive a single legend from the first row that carries labeled segments.
   // All rows in a segmented compare share the same segment categories (e.g.
@@ -133,6 +134,19 @@ export const CompareBlock = memo(function CompareBlock({
               },
             ]}
           >
+            {maxWeight > 0 && row.weight != null ? (
+              <View style={[styles.barTrack, { backgroundColor: colors.rule }]}>
+                <View
+                  style={[
+                    styles.barFill,
+                    {
+                      backgroundColor: pill.bg,
+                      width: `${Math.max(2, (Math.abs(row.weight) / maxWeight) * 100)}%`,
+                    },
+                  ]}
+                />
+              </View>
+            ) : null}
             <Text variant="body" numberOfLines={1} style={styles.label}>
               {flag ? `${flag}  ` : ''}
               {row.label}
@@ -155,11 +169,21 @@ export const CompareBlock = memo(function CompareBlock({
 
 const styles = StyleSheet.create({
   row: {
+    position: 'relative',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: SPACING.sm,
   },
+  barTrack: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: StyleSheet.hairlineWidth,
+    opacity: OPACITY.soft,
+  },
+  barFill: { height: '100%' },
   label: {
     flex: 1,
   },

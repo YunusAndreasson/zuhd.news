@@ -30,7 +30,7 @@ const SOURCES_MIN_SNAPS = 1;
 const BOOKMARK_MIN_SNAPS = 2;
 const GLOBE_MIN_SNAPS = 3;
 
-export interface HintContext {
+interface HintContext {
   screenReader: boolean;
 }
 

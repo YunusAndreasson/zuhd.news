@@ -11,7 +11,7 @@ export interface SeverityInput {
  *  foreground rose hue: a Red GDACS alert or a fatal conflict. Lower tiers stay
  *  monochrome — DESIGN.md §Sentiment makes severity single-tier so the warm hue
  *  carries one critical signal rather than a competing 3-step ladder. */
-export function isUrgentSeverity({ alertLevel, fatalities }: SeverityInput): boolean {
+function isUrgentSeverity({ alertLevel, fatalities }: SeverityInput): boolean {
   return alertLevel === 'Red' || (fatalities !== undefined && fatalities > 0);
 }
 

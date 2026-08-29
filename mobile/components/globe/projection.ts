@@ -15,7 +15,6 @@ export const NORTH_POLE: [number, number] = [0, 90];
 export const SOUTH_POLE: [number, number] = [0, -90];
 export const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
 export const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
-export const HALF_PI = Math.PI / 2;
 
 /** Exponential decay λ for story-pin opacity — Math.LN2 / 18h = 18-hour half-life. */
 export const DECAY_LAMBDA = Math.LN2 / 18;

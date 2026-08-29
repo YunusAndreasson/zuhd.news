@@ -570,11 +570,48 @@ export interface Indicator {
    * snapshot written before the narration stage existed has none at all.
    */
   standing?: string;
-  /** Why it matters right now, tied to recent coverage. Written for events
-   *  today; reserved here so an indicator can carry one without a type change. */
+  /**
+   * Why it moved, tied to recent coverage.
+   *
+   * Deliberately **not** on `/api/trends.json` — that payload is what the
+   * homepage's instrument rail downloads, and no rail row shows a paragraph.
+   * Read it from `/api/entity/{id}.json` (the web, on the press that opens a
+   * card) or `/api/analysis.json` (the app, which builds a whole column at
+   * once). The field stays declared here because both of those resolve into
+   * this shape, and because a consumer that joins one on should not need a
+   * type change to do it.
+   */
   recent?: string;
   /** The articles `recent` was built from, most relevant first. */
   relatedArticles?: RelatedArticleRef[];
+}
+
+/**
+ * One instrument's movement analysis, from `/api/analysis.json`.
+ *
+ * Written daily by `scripts/narrate-indicators.js` (Stage 3.8, 04:00 UTC) and
+ * emitted by `scripts/build.js` for the bare-namespace ids only: a chokepoint's
+ * and an exchange's `recent` already ride their own list payloads, and a second
+ * copy is a second thing to drift.
+ *
+ * The prose alone. The stories it was built from are on `/api/entity/{id}.json`,
+ * which is where the surfaces that print them already look; carrying them here
+ * would more than double a payload fetched on every app launch for a list no
+ * card shows.
+ */
+export interface IndicatorAnalysis {
+  /** Never empty — the build omits an item rather than shipping a blank, so a
+   *  consumer's fallback to `standing` fires on absence. */
+  recent: string;
+}
+
+/** `/api/analysis.json` — keyed by indicator id. */
+export interface AnalysisSnapshot {
+  /** When the narration stage last ran, not when the site was built. */
+  generatedAt: string;
+  /** The coverage window `recent` was written against, in days. */
+  windowDays: number | null;
+  items: Record<string, IndicatorAnalysis>;
 }
 
 /** One scheduled statistical release, from FRED's calendar. */

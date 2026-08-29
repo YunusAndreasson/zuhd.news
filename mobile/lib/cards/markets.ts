@@ -1,18 +1,11 @@
 import type {
   Article,
   Chokepoint,
-  CompareRow,
   Indicator,
-  TrendEvent,
+  IndicatorAnalysis,
   TrendsSnapshot,
 } from '@shared/types';
-import {
-  CHOKEPOINT_DISRUPTED,
-  chokepointValence,
-  type RiseMeans,
-  riseMeansFor,
-  valenceOfChange,
-} from '../valence';
+import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
 import {
   deltaFrom,
   formatCount,
@@ -27,7 +20,7 @@ import {
   windowChange,
   windowPointChange,
 } from './format';
-import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './types';
+import type { BeliefCard, Card, CardDelta, ReadingCard } from './types';
 
 /**
  * The instrument columns, no network call the app was not already making.
@@ -35,24 +28,15 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * fetched on every launch and, until now, one chart was drawn from the first
  * of them — in a sheet reached by tapping a word.
  *
- * Three columns rather than one, and they are cut by the question the reader
- * arrived with: `commodities` (what things cost — the zakat threshold, the two
- * grains, crude, the two metals), `money` (what your money is worth and what
- * borrowing costs — fifteen currencies, the ten-year, the two coins) and
- * `outlook` (what is not yet a fact — prediction contracts, where curiosity
- * went, the price of insuring against a fall, what is already scheduled).
- *
- * It was five, split by asset class, and that split is what produced a
- * `markets` column holding food, energy, rates, shipping, Wikipedia pageviews
- * and a calendar beside three columns two cards deep. Asset class is how a
- * data provider files a series. It is not how anybody wakes up wondering
- * about one.
+ * Concrete subject pools keep the builder honest about what each payload is.
+ * `lib/cards/sections.ts` admits only graph-backed pieces with live analysis
+ * into the reader-facing markets, shipping and outlook desks.
  *
  * What is *not* here is the point of the file. Thirty exchanges, the S&P, the
  * NASDAQ, TSMC, copper, TTF, retail gasoline and WTI all have live series and
  * none of them get a screen: an index level is not a fact about a life, and a
- * second crude benchmark teaches nothing the first did not. Fifteen currencies
- * are one card, because a rate on its own compares to nothing.
+ * second crude benchmark teaches nothing the first did not. Currency readings
+ * appear only when their own move clears the materiality threshold.
  */
 
 /** How many observations back a daily series looks when reporting "what
@@ -63,6 +47,33 @@ const DAILY_WINDOW = 30;
 /** A monthly series steps a month at a time; twelve steps is a year. */
 const MONTH = 1;
 const YEAR = 12;
+
+/** The day's movement analysis, keyed by indicator id. `/api/analysis.json`. */
+export type AnalysisById = ReadonlyMap<string, IndicatorAnalysis>;
+
+/**
+ * What goes under the chart.
+ *
+ * The desk writes two paragraphs for every instrument and they answer
+ * different questions. `standing` says what the thing is — timeless, written
+ * once, and the only thing these cards used to carry. `recent` says what has
+ * happened to it and why, rewritten each day against the fortnight's coverage.
+ * A reader looking at a chart that just moved asked the second question, so
+ * that is what a card leads with.
+ *
+ * The definition is the fallback, not the alternative: four of ninety-odd
+ * instruments carry no `recent` on any given day, and a build older than
+ * `/api/analysis.json` carries none at all. Both cases land back on exactly
+ * the card this app shipped before. Neither string is composed here — the app
+ * does not editorialise over the desk.
+ */
+function whyFor(
+  analysis: AnalysisById,
+  id: string,
+  indicator: Pick<Indicator, 'standing'>,
+): string | undefined {
+  return analysis.get(id)?.recent?.trim() || indicator.standing?.trim() || undefined;
+}
 
 const byId = (snapshot: TrendsSnapshot, id: string): Indicator | undefined =>
   snapshot.indicators.find((i) => i.id === id);
@@ -148,7 +159,11 @@ function describeYearChange(indicator: Indicator): string | undefined {
  * the two grains that feed most of the world have gone opposite ways. Neither
  * price alone says that.
  */
-function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard | null {
+function staplesCard(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard | null {
   const wheat = byId(snapshot, 'wheat');
   const rice = byId(snapshot, 'rice');
   if (!wheat || !rice) return null;
@@ -197,10 +212,8 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
     reading: `${ratio.toFixed(1)}×`,
     readingNote: 'rice against wheat',
     delta,
-    whatItIs:
-      'The two grains most of the world eats, at the world price an importing government pays — not the price in a shop.',
     changed,
-    why: wheat.standing,
+    why: whyFor(analysis, wheat.id, wheat),
     figures: [
       { label: 'wheat', value: `$${formatReading(wheatNow)}` },
       { label: 'rice', value: `$${formatReading(riceNow)}` },
@@ -224,44 +237,15 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
 // A single indicator, as a reading
 // ---------------------------------------------------------------------------
 
-/**
- * Part two, but only when part four is not already doing its job.
- *
- * Part two and part four are written by different hands — this file and the
- * pipeline — and they were not "sometimes" colliding. They were colliding on
- * every reading card in the app:
- *
- *   brent    "The benchmark price for a barrel of crude…"
- *            "The price of a barrel of North Sea crude, and the benchmark…"
- *   us-10y   "What the United States pays to borrow for ten years…"
- *            "The yield on ten-year US government debt, the price at which
- *             Washington borrows for a decade…"
- *   vix      "…It rises when people are frightened, which is why it is called
- *             the fear index."
- *            "…It rises when investors pay up for protection, which is why it
- *             is read as a gauge of fear in US equities."
- *
- * The guard this replaces compared the first twenty-five characters, and all
- * three of those slipped past it by a word. The lesson is that a same-opening
- * test cannot catch a same-*meaning* collision, and no string heuristic
- * reliably will — so the rule is now structural rather than clever:
- * **`standing` is authoritative**, exactly as the header of `types.ts` already
- * said it was, and the sentence written here is the fallback for the two
- * indicators in fifty that have no `standing`. One definition per screen.
- */
-function definitionUnlessStanding(
-  whatItIs: string,
-  standing: string | undefined,
-): string | undefined {
-  return standing?.trim() ? undefined : whatItIs;
-}
-
+/** A live indicator with its pipeline analysis. Hand-written copy stays out of
+ * the graph-card path: the section gate requires a `why`, and `whyFor` will
+ * only ever hand it something the desk wrote. */
 function indicatorCard(
   snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
   articles: Article[],
   id: string,
   kicker: string,
-  whatItIs: string,
 ): ReadingCard | null {
   const indicator = byId(snapshot, id);
   if (!indicator) return null;
@@ -281,11 +265,10 @@ function indicatorCard(
     reading,
     readingNote: note,
     delta: monthly ? monthlyDelta(indicator, riseMeans) : dailyDelta(indicator, riseMeans),
-    whatItIs: definitionUnlessStanding(whatItIs, indicator.standing),
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
-    why: indicator.standing,
+    why: whyFor(analysis, indicator.id, indicator),
     series: {
       values: indicator.values,
       periods: indicator.periods,
@@ -311,7 +294,7 @@ function indicatorCard(
  * so on its face rather than presenting the result as arithmetic without a
  * madhhab. That is the same commitment the prayer curves make to Umm al-Qura.
  */
-function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
+function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCard | null {
   const gold = byId(snapshot, 'paxg');
   const silver = byId(snapshot, 'xag');
   if (!gold || !silver) return null;
@@ -345,10 +328,12 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
     reading: `$${formatCount(n.threshold)}`,
     readingNote: `set by ${n.binding}`,
     delta,
-    whatItIs:
-      'The wealth a person must hold for a lunar year before zakat falls due. It is defined by weight of metal, not by currency, so it moves with the metal price.',
     changed,
-    why: `Two weights are reported: 85 grams of gold and 595 grams of silver. The majority position takes the lower of the two, so that more wealth is caught rather than less — which is why the cheaper metal sets the threshold, and today that is ${n.binding}. One stated method, not the only one.`,
+    // The binding metal's, because that is the line this card draws and the
+    // number it prints. Until this card carried any analysis at all it was
+    // built and then silently dropped by `hasGraphAndAnalysis`, which is how
+    // the card this column is documented as opening with never opened it.
+    why: whyFor(analysis, bindingIndicator.id, bindingIndicator),
     figures: [
       {
         label: 'gold · 85 g',
@@ -390,7 +375,11 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
  * (This comment used to say "the next card", which had the order backwards
  * even before the columns were re-cut.)
  */
-function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard | null {
+function metalsPairCard(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard | null {
   const gold = byId(snapshot, 'paxg');
   const silver = byId(snapshot, 'xag');
   if (!gold || !silver) return null;
@@ -427,136 +416,25 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
     reading: `${Math.round(ratio)}:1`,
     readingNote: 'ounces of silver to one of gold',
     delta,
-    whatItIs:
-      'The two metals wealth has been measured in for as long as it has been measured. The ratio between them is the oldest price still quoted.',
     changed:
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
-    why: gold.standing,
+    why: whyFor(analysis, gold.id, gold),
     figures: [
       { label: 'gold', value: `$${formatReading(goldNow)}` },
       { label: 'silver', value: `$${formatReading(silverNow)}` },
     ],
     series: {
-      values: gold.values,
+      values: ratioSeries,
       periods: gold.periods,
-      label: axisCaption(gold.unit, 'dollars an ounce'),
-      unit: gold.unit,
-      multi: [
-        { values: gold.values, label: 'gold', highlight: 'last' },
-        { values: silver.values, label: 'silver', highlight: 'last' },
-      ],
+      label: 'ounces of silver to one of gold',
+      highlight: 'last',
     },
     related: relatedForTags(articles, [...(gold.topicTags ?? []), ...(silver.topicTags ?? [])]),
     sourceLabel: gold.sourceLabel,
   };
 }
-
-// ---------------------------------------------------------------------------
-// Fifteen currencies
-// ---------------------------------------------------------------------------
-
-/**
- * A single exchange rate compares to nothing — 276 rupees to the dollar is a
- * number, not news. Fifteen of them side by side is a reading of where
- * pressure is: today only three of the fifteen lost ground, which is the
- * opposite of what a reader who follows the ruble or the lira would guess.
- */
-function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | null {
-  const fx = snapshot.indicators.filter((i) => i.source === 'oer');
-  if (fx.length < 3) return null;
-
-  const scored = fx
-    .map((indicator) => {
-      const change = windowChange(indicator, indicator.values.length - 1);
-      return change ? { indicator, change } : null;
-    })
-    .filter(
-      (x): x is { indicator: Indicator; change: NonNullable<ReturnType<typeof windowChange>> } =>
-        x !== null,
-    )
-    .sort((a, b) => b.change.pct - a.change.pct);
-  if (scored.length === 0) return null;
-
-  const weakened = scored.filter((s) => s.change.pct > 0);
-  const rows: CompareRow[] = scored.map(({ indicator, change }) => ({
-    // The pipeline's label already reads as a currency name; the unit carries
-    // the pairing ("PKR / USD"), so the row does not repeat it.
-    label: indicator.label,
-    value: formatSignedPct(currencyMove(change.pct)),
-    // A rate rising means more local currency per dollar — the currency
-    // weakened. The sign in the value is the direction; the tone says what
-    // that direction means for someone holding it.
-    //
-    // Below the noise floor the row goes slate rather than sage or rose.
-    // Fifteen rows are the one place in the app where the same thing is
-    // measured the same way over the same window, so "did this move" is
-    // answerable here in a way it is not for a chip on a single reading — and
-    // a pound that moved a tenth of a per cent in a month painted the same
-    // rose as a ruble that moved five and a half. That is the colour telling
-    // the reader something untrue. Slate says it moved and it does not matter,
-    // which is both true and a pill, so the table still scans as fifteen
-    // measured currencies rather than nine findings and six gaps.
-    //
-    // The tone reads the quantity the row prints — the currency, not the rate
-    // — so sign and colour say the same thing: a minus is rose, a plus is
-    // sage. That is the point of quoting the currency rather than its rate,
-    // and it is why this passes a literal instead of `riseMeansFor`, which
-    // answers for the published series and would therefore be inverted here.
-    tone:
-      Math.abs(change.pct) < FX_NOISE_FLOOR
-        ? 'neutral'
-        : valenceOfChange(currencyMove(change.pct), 'favorable'),
-    weight: Math.abs(change.pct),
-    cc: indicator.countryTags?.[0],
-  }));
-
-  const window = scored[0]?.change;
-  const first = scored[0];
-
-  return {
-    id: 'currencies',
-    kind: 'comparison',
-    kicker: 'currency',
-    title: 'Against the dollar',
-    reading: `${weakened.length} of ${scored.length}`,
-    readingNote: 'weakened this month',
-    // One sentence, and it is the one a reader cannot work out from the table.
-    // The sentence that used to open this ("How much more, or less, of each
-    // currency one US dollar bought over the last month") said what the title
-    // and the column header already say twice over, and it cost three lines of
-    // a card that has fifteen rows to fit. What survives is the part that is
-    // genuinely counter-intuitive: the number going *up* is the bad direction.
-    // One sentence, and it is the consequence rather than the definition. The
-    // three lines this used to open with explained the denominator, which the
-    // table no longer inverts and the reader therefore no longer needs.
-    whatItIs:
-      'What a month did to each currency against the dollar. A currency that lost ground pays more for imports, fuel and dollar debt at home.',
-    changed:
-      window && first
-        ? `Measured since ${window.from}. ${first.indicator.label} moved furthest, ${formatSignedPct(currencyMove(first.change.pct))}.`
-        : undefined,
-    // No `why`. It used to borrow the standing paragraph of whichever
-    // currency had moved most, which put "The Russian ruble's exchange rate
-    // against the dollar…" underneath a card about all fifteen — and that
-    // paragraph now has a card of its own directly below this one. Part two
-    // already carries the mechanism this card is teaching (a rising number is
-    // a weaker currency, and what that does to an import bill), so a fourth
-    // part here would be a third explanation of the same thing.
-    rows,
-    rowsLabel: 'the currency, against the dollar',
-    related: relatedForTags(
-      articles,
-      scored.flatMap(({ indicator }) => indicator.topicTags ?? []),
-    ),
-    sourceLabel: first?.indicator.sourceLabel,
-  };
-}
-
-/** A month's move smaller than this is the rate ticking, not the currency
- *  moving, and a row that carries it in colour is overstating what happened. */
-const FX_NOISE_FLOOR = 0.5;
 
 /**
  * The currency's move, from the rate's.
@@ -597,20 +475,19 @@ const FX_MOVER_LIMIT = 2;
 /**
  * The currencies that actually moved, one screen each.
  *
- * The rule this file opens with — "a rate on its own compares to nothing" — is
- * why fifteen currencies are one comparison card, and it still holds for a
- * rate. It does not hold for a *move*: a currency 5% weaker against the dollar
+ * A rate on its own still compares to nothing. That does not hold for a
+ * *move*: a currency 5% weaker against the dollar
  * in a month has repriced every import its country buys, and that is a fact
- * about a life rather than a number on a table. So the table stays, and the
- * two currencies whose rows are the news get the treatment the news gets —
- * their own chart, their own standing paragraph, their own tie to today's
+ * about a life rather than a number on a table. The two strongest moves get
+ * the treatment the news gets —
+ * their own chart, their own paragraph from the desk, their own tie to today's
  * stories.
- *
- * It is also what makes the column swipeable. `currencies` was a single card:
- * the vertical axis, which the whole app teaches you to use, dead-ended on the
- * first screen.
  */
-function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard[] {
+function fxMoverCards(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard[] {
   return snapshot.indicators
     .filter((i) => i.source === 'oer')
     .map((indicator) => {
@@ -649,15 +526,11 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
           'favorable',
           { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
         ),
-        whatItIs: definitionUnlessStanding(
-          `How many ${indicator.label.toLowerCase()} one US dollar buys. A rising number means it weakened, so imports, fuel and dollar debt all cost more at home.`,
-          indicator.standing,
-        ),
         // Ranked, not chosen — and the sentence says which rank, because "the
         // biggest move of the month" and "the second-biggest" are different
         // claims and only one of them is true of this card.
-        changed: `${weakened ? 'Weakened' : 'Strengthened'} ${rank === 0 ? 'further than any other currency the app follows' : 'more than all but one of the currencies the app follows'}, over the month to ${change.to}.`,
-        why: indicator.standing,
+        changed: `${rank === 0 ? 'Largest' : 'Second-largest'} monthly ${weakened ? 'fall' : 'rise'} in this 15-currency set, measured to ${change.to}.`,
+        why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
           periods: indicator.periods,
@@ -675,25 +548,24 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
 // Straits
 // ---------------------------------------------------------------------------
 
-const VESSEL_LABEL: Record<string, string> = {
-  n_total: 'ships',
-  n_tanker: 'tankers',
-  n_container: 'container ships',
-  n_dry_bulk: 'dry-bulk carriers',
-  n_cargo: 'cargo ships',
-  n_general_cargo: 'general-cargo ships',
-  n_roro: 'ro-ro ships',
-};
-
-/** `blurb` and `standing` are written by different stages and, for several of
- *  the eleven, land on the same sentence. Part two of the card already carries
- *  the blurb, so part four must not repeat it — a card that says the same thing
- *  twice reads as filler and foundation.md forbids it outright. */
+/**
+ * The same rule the indicator cards use, down one more rung.
+ *
+ * A strait's `standing` is *always* its catalog blurb — `narrate-indicators.js`
+ * prefers the hand-written sentence and discards the model's — so the two
+ * fields the other cards choose between are one field here, and the choice is
+ * really between the day's analysis and the catalog.
+ *
+ * The blurb is the last rung rather than no rung. It reads as a duplicate of
+ * part two, which it was when part two carried it; part two is the 90-day
+ * normal now and the blurb appears nowhere else on a card. Without it a strait
+ * whose `recent` came back empty — Suez, on the current dispatch — is built,
+ * dropped by `hasGraphAndAnalysis`, and silently absent from the deck.
+ */
 function straitWhy(c: Chokepoint): string | undefined {
   const standing = c.standing?.trim();
   const blurb = c.blurb?.trim();
-  const fresh = standing && standing !== blurb ? standing : undefined;
-  return [fresh, c.recent?.trim()].filter(Boolean).join('\n\n') || undefined;
+  return c.recent?.trim() || (standing !== blurb ? standing : undefined) || blurb || undefined;
 }
 
 /** A strait this far from its own 90-day normal is disrupted rather than
@@ -716,93 +588,80 @@ function straitDelta(d: number): CardDelta | undefined {
   };
 }
 
-function primaryDelta(c: Chokepoint): number | null {
-  const d = c.delta7vs90[c.primaryField];
+function totalTrafficDelta(c: Chokepoint): number | null {
+  const d = c.delta7vs90.n_total;
   return typeof d === 'number' && Number.isFinite(d) ? d : null;
 }
 
+/** Total traffic is noisier than a strait's selected vessel subtype. A 10–15%
+ * weekly deviation is ordinary in the live payload; 30% is where an all-ships
+ * chart earns a full screen. */
+const TOTAL_TRAFFIC_DISRUPTED = 0.3;
+
+/** Smooth noisy daily ship counts into the same seven-day measure used by the
+ * headline and delta. Short fixture/partial series remain usable. */
+function trailingSevenDayAverage(values: number[]): number[] {
+  if (values.length < 7) return values;
+  const averaged: number[] = [];
+  for (let end = 6; end < values.length; end += 1) {
+    let total = 0;
+    for (let i = end - 6; i <= end; i += 1) total += values[i] ?? 0;
+    averaged.push(Math.round(total / 7));
+  }
+  return averaged;
+}
+
 /**
- * The one strait that has actually gone quiet — on the days one has.
- *
- * Ranked, not chosen: an editor picking the strait each morning would be
- * making a claim the data has already made. But ranking alone always returns
- * *something*, and for most of a year that something is a busy waterway three
- * per cent off its own average, which is weather. Shipped daily it was
- * furniture, and it was furniture twice over, because the globe on `news`
- * already draws all eleven as tappable rings and `ChokepointSheet` says more
- * about any of them than a card can.
- *
- * So the card is gated on `CHOKEPOINT_DISRUPTED` — the same threshold the
- * sheet and the row tones read, deliberately, because a strait that is
- * disrupted on a card and quiet in the sheet that card opens is the exact bug
- * `lib/valence.ts` was written to end. Nothing clears it, no card; one does,
- * and it leads `commodities` carrying the `today` mark.
- *
- * The gate is one-sided for the reason the chip is: a strait above its own
- * normal is usually freight rerouted *to* it, which is the same disruption
- * seen from the other end, and the app names the squeeze rather than the
- * detour.
- *
- * A note on what this ranks by. Distance from a strait's own 90-day normal
- * lets a small waterway out-rank a consequential one — Kerch at 6 ships a day
- * can beat Hormuz, which carries a fifth of the world's oil. Ranking by
- * absolute shortfall instead is worse, not better: it surfaces Malacca three
- * per cent down (noise on a very large number) and drops Hormuz entirely, and
- * `Chokepoint` carries no share-of-trade field to weight by. The card says
- * exactly what it ranked on, and what it says is true.
+ * One graph per strait. The section is a reference deck on ordinary days, so
+ * every strait with a usable total-traffic history remains available. A fall
+ * of at least 30% against its own 90-day normal earns `current`; smaller moves
+ * stay neutral reference rather than being promoted as news. Smart ranking
+ * later combines that mark with live-story relevance and unusual movement.
  */
-function straitMovedCard(chokepoints: Chokepoint[]): ReadingCard | null {
+function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
   const ranked = chokepoints
-    .map((c) => ({ c, d: primaryDelta(c) }))
+    .map((c) => ({ c, d: totalTrafficDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
-    .filter((x) => x.d <= -CHOKEPOINT_DISRUPTED)
+    .filter(
+      ({ c }) =>
+        typeof c.last7Avg.n_total === 'number' &&
+        Number.isFinite(c.last7Avg.n_total) &&
+        c.series.total.length >= 2 &&
+        c.series.total.length === c.series.periods.length,
+    )
     .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-  const top = ranked[0];
-  if (!top) return null;
-
-  const { c, d } = top;
-  const last7 = c.last7Avg[c.primaryField];
-  const base = c.baseline90Avg[c.primaryField];
-  const vessels = VESSEL_LABEL[c.primaryField] ?? 'ships';
-  // A strait running below its own normal is freight not moving — a blockade,
-  // a war-risk premium, a closed canal — and that reaches an ordinary life as
-  // the price of everything that had to sail. Above normal is traffic
-  // rerouted *to* here, which is the same disruption seen from the other end,
-  // so only the quiet side is coloured: the app names the squeeze, not the
-  // detour.
-
-  return {
-    id: `strait-${c.id}`,
-    kind: 'reading',
-    // Gated on its own data, so it says so: this card is here because the
-    // strait went quiet this week, not because straits matter in general.
-    lead: true,
-    kicker: 'chokepoint',
-    title: c.name,
-    reading: last7 == null ? '—' : formatQuantity(last7),
-    readingNote: `${vessels} a day`,
-    // Built by hand rather than through `deltaFrom`, because this one is not
-    // symmetric and `riseMeans` can only describe a symmetric pair. Quiet is
-    // coloured; busy is not. A strait above its own normal is usually traffic
-    // that was rerouted *to* here, which is the same disruption seen from the
-    // other end, and the app names the squeeze rather than the detour.
-    delta: straitDelta(d),
-    whatItIs: c.blurb,
-    changed:
-      base != null
-        ? `Its own 90-day normal is ${formatQuantity(base)} a day. This is the furthest any of the eleven straits has moved from its baseline.`
-        : undefined,
-    why: straitWhy(c),
-    series: {
-      values: c.series.total,
-      periods: c.series.periods,
-      label: 'all ships a day',
-      unit: 'a day',
-      highlight: 'last',
-    },
-    related: c.relatedArticles,
-    sourceLabel: 'IMF PortWatch',
-  };
+  return ranked.map(({ c, d }) => {
+    const last7 = c.last7Avg.n_total;
+    const base = c.baseline90Avg.n_total;
+    const traffic = trailingSevenDayAverage(c.series.total);
+    const periods = c.series.periods.slice(c.series.periods.length - traffic.length);
+    // The payload's published seven-day reading is authoritative. Using it at
+    // the endpoint prevents the headline and graph from reporting different
+    // quantities. Preserve its precision: rounding only the chart made a
+    // headline of 0.1 ships a day terminate at 0 on the graph.
+    if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
+    return {
+      id: `strait-${c.id}`,
+      kind: 'reading' as const,
+      lead: d <= -TOTAL_TRAFFIC_DISRUPTED,
+      title: c.name,
+      reading: last7 == null ? '—' : formatQuantity(last7),
+      readingNote: 'ships a day',
+      delta: straitDelta(d),
+      changed:
+        base != null ? `Its own 90-day normal is ${formatQuantity(base)} ships a day.` : undefined,
+      why: straitWhy(c),
+      series: {
+        values: traffic,
+        periods,
+        label: 'seven-day average, all ships',
+        unit: 'a day',
+        highlight: 'last' as const,
+      },
+      related: c.relatedArticles,
+      sourceLabel: 'IMF PortWatch',
+    };
+  });
 }
 
 /*
@@ -828,10 +687,63 @@ function straitMovedCard(chokepoints: Chokepoint[]): ReadingCard | null {
  * people are willing to stake, which is a different and more honest thing —
  * and it is only worth a screen because the card can say that out loud.
  */
-function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
+const SLUG_CAPITALIZATION: Record<string, string> = {
+  fed: 'Fed',
+  us: 'US',
+  brazilian: 'Brazilian',
+  russian: 'Russian',
+  january: 'January',
+  february: 'February',
+  march: 'March',
+  april: 'April',
+  may: 'May',
+  june: 'June',
+  july: 'July',
+  august: 'August',
+  september: 'September',
+  october: 'October',
+  november: 'November',
+  december: 'December',
+};
+
+/** The compact pipeline label may end in a literal ellipsis. Its stable
+ * market slug still carries the omitted words, so restore them rather than
+ * presenting an incomplete question as deliberate UI truncation. */
+function completeBeliefTitle(indicator: Indicator): string {
+  const head = indicator.label.replace(/…\??$/, '').trim();
+  if (head === indicator.label || !indicator.seriesId) return indicator.label;
+
+  const slugWords = indicator.seriesId.split('-').filter(Boolean);
+  if (/^\d{2,}$/.test(slugWords.at(-1) ?? '')) slugWords.pop();
+  const headWords = head
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .split(/\s+/);
+
+  for (let length = Math.min(6, headWords.length); length >= 2; length -= 1) {
+    const tail = headWords.slice(-length);
+    const start = slugWords.findIndex((_, index) =>
+      tail.every((word, offset) => slugWords[index + offset] === word),
+    );
+    if (start < 0) continue;
+    const rest = slugWords.slice(start + length);
+    if (rest.length === 0) break;
+    const suffix = rest.map((word) => SLUG_CAPITALIZATION[word] ?? word).join(' ');
+    return `${head} ${suffix}?`;
+  }
+
+  return indicator.label;
+}
+
+function beliefCards(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): BeliefCard[] {
   return snapshot.indicators
     .filter((i) => i.source === 'polymarket')
-    .map((indicator, position) => {
+    .map((indicator) => {
       const value = latestOf(indicator);
       if (value == null) return null;
       const extremes = seriesExtremes(indicator);
@@ -844,32 +756,13 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         // stripped the trailing "?" for tidiness, which turned the one mark
         // that tells a reader this is an open outcome rather than a
         // measurement into nothing.
-        title: indicator.label,
+        title: completeBeliefTitle(indicator),
         reading: `${Math.round(value)}%`,
-        readingNote: 'priced today',
         // No valence, and this is the clearest case for the rule: a contract
         // on a ceasefire holding and a contract on a candidate winning move
         // the same way on the screen, and the app has no business tinting
         // either of them green.
         delta: deltaFrom(change, null, { unit: 'points' }),
-        // Once per column, not once per card.
-        //
-        // This paragraph is the same 200 characters on every prediction card,
-        // and the column is three cards deep — so a reader swiping through it
-        // met the identical explanation of what a prediction contract is three
-        // times in under a minute, while two of the three cards had no
-        // `standing` and therefore nothing else to say. That is the shape of
-        // filler: text that is correct, is not wrong anywhere, and stops being
-        // read after the first screen.
-        //
-        // It stays on the first card because a reader who lands here from the
-        // section rail does need it once. After that the kicker ("what traders
-        // think") and the note under the number ("priced today") carry it, and
-        // they carry it in four words instead of forty.
-        whatItIs:
-          position === 0
-            ? 'The price of a contract that pays out if this happens — what people will stake on the outcome, not anyone’s forecast. It moves faster than any poll.'
-            : undefined,
         // In points, never per cent: a contract going 26 → 86 moved 60 points,
         // and the chip says so. What is left for the sentence is the range,
         // which is the part that says how settled the belief is — a number
@@ -877,9 +770,9 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         // one that got there from 30 last week.
         changed:
           extremes && extremes.max - extremes.min >= 1
-            ? `As low as ${Math.round(extremes.min)}% (${extremes.minAt}) and as high as ${Math.round(extremes.max)}% (${extremes.maxAt}) inside the window held here.`
+            ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
             : undefined,
-        why: indicator.standing,
+        why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
           periods: indicator.periods,
@@ -887,9 +780,6 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
           unit: '%',
           highlight: 'last',
         },
-        range: extremes
-          ? { min: extremes.min, max: extremes.max, minAt: extremes.minAt, maxAt: extremes.maxAt }
-          : undefined,
         related: relatedForTags(articles, indicator.topicTags),
         sourceLabel: indicator.sourceLabel,
         link: indicator.marketUrl,
@@ -900,214 +790,29 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
 }
 
 // ---------------------------------------------------------------------------
-// Attention
-// ---------------------------------------------------------------------------
-
-/** Wikipedia's own label carries the source in it. The card already says
- *  where the numbers come from. */
-const stripWikiSuffix = (label: string) => label.replace(/\s*—\s*Wikipedia views$/, '');
-
-/**
- * What the world was actually looking up.
- *
- * Raw pageviews are a population ranking — the United States article is read
- * more than the Strait of Hormuz article every single day, and always will be.
- * Measured against each subject's own recent average, the same numbers say
- * something a reader cannot get anywhere else: where curiosity moved.
- *
- * It sits in `outlook` beside the prediction contracts rather than in `news`,
- * and that placement is the argument. Both are prices on what people believe —
- * one paid in dollars, one in attention — and neither is a measurement of what
- * is happening. Today the strait is closed and its article is being read at
- * seven-tenths of its own normal rate, which is the entire point of the card.
- *
- * This comment made that argument for a while before the axis caught up with
- * it: the contracts became their own section and attention stayed behind in
- * `markets`, filed with crude and the ten-year, which are measurements.
- */
-function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | null {
-  const wiki = snapshot.indicators.filter((i) => i.source === 'wikipedia');
-  if (wiki.length < 3) return null;
-
-  const scored = wiki
-    .map((indicator) => {
-      const values = indicator.values;
-      if (values.length < 4) return null;
-      const latest = values[values.length - 1];
-      const history = values.slice(0, -1);
-      const baseline = history.reduce((sum, v) => sum + v, 0) / history.length;
-      if (latest == null || !Number.isFinite(latest) || !(baseline > 0)) return null;
-      return { indicator, latest, baseline, ratio: latest / baseline };
-    })
-    .filter(
-      (x): x is { indicator: Indicator; latest: number; baseline: number; ratio: number } =>
-        x !== null,
-    )
-    .sort((a, b) => b.ratio - a.ratio);
-  if (scored.length < 3) return null;
-
-  // Furthest from its own normal, in either direction. A collapse in interest
-  // is as much a fact as a spike, and often the more surprising one.
-  const mover = [...scored].sort((a, b) => Math.abs(b.ratio - 1) - Math.abs(a.ratio - 1))[0];
-  if (!mover) return null;
-
-  const rows: CompareRow[] = scored.map(({ indicator, ratio }) => ({
-    label: stripWikiSuffix(indicator.label),
-    value: `${Math.round(ratio * 100)}%`,
-    // Slate, every row, because the value printed *is* a move — per cent of a
-    // subject's own normal — and the app has nothing to say about which way is
-    // the good way. Untinted, these were the one comparison table in the app
-    // whose rows were grey pills next to a table whose rows were coloured, and
-    // the difference read as a missing signal rather than a withheld one.
-    tone: 'neutral' as const,
-    // Distance from normal, not the rate itself — otherwise the bars would
-    // rank by how popular a subject is, which is the thing being corrected for.
-    weight: Math.abs(ratio - 1),
-    cc: indicator.countryTags?.[0],
-  }));
-
-  return {
-    id: 'attention',
-    kind: 'comparison',
-    kicker: 'attention',
-    title: 'What the world looked up',
-    reading: `${Math.round(mover.ratio * 100)}%`,
-    readingNote: `of normal · ${stripWikiSuffix(mover.indicator.label)}`,
-    // Slate. Curiosity moving is not good news or bad news, and this is the
-    // card that shows what the third tone is for: the arrow says a subject was
-    // opened more than usual, and the colour declines to tell you whether that
-    // is a good thing — which is a claim the app can stand behind, unlike
-    // either sage or rose.
-    delta: deltaFrom(
-      { pct: (mover.ratio - 1) * 100, from: '', to: '', points: mover.indicator.values.length },
-      null,
-      { window: 'against its own normal' },
-    ),
-    whatItIs:
-      'How many people opened each Wikipedia article today, set against that subject’s own recent average. It reads as where curiosity went, which is not where the news is.',
-    changed: `${stripWikiSuffix(mover.indicator.label)} was opened ${formatCount(mover.latest)} times a day against its usual ${formatCount(mover.baseline)}. Everything else is listed against its own normal too, so a small subject can out-move a large one.`,
-    why: mover.indicator.standing,
-    rows,
-    rowsLabel: 'against each subject’s own average',
-    related: relatedForTags(articles, mover.indicator.topicTags),
-    sourceLabel: mover.indicator.sourceLabel,
-  };
-}
-
-// ---------------------------------------------------------------------------
-// What is scheduled
-// ---------------------------------------------------------------------------
-
-/** How many of the calendar's entries reach the card. Four fits a screen and
- *  covers the near horizon; the rest are a list nobody reads standing up. */
-const CALENDAR_LIMIT = 4;
-
-/**
- * How close the next entry has to be before the calendar is worth a screen.
- *
- * The calendar is the one payload in the app that cannot go stale and cannot
- * be news either: every entry is correct for months and none of them changes.
- * Ungated it is the same four lines every morning — and the live file makes
- * that concrete, with a 34-day gap between the 5 November Bank of England
- * decision and the 9 December FOMC. That is the exact failure the freshness
- * gates in `lib/cards/conditions.ts` exist to prevent, arrived at from the
- * other direction: not data too old to be news, but data too far ahead to be.
- *
- * Ten days is about the distance at which a rate decision starts being priced
- * and written about rather than merely diarised.
- */
-const CALENDAR_HORIZON_DAYS = 10;
-
-/** The only card in the app about the future rather than the present. Most
- *  economic news is scheduled weeks ahead, which is itself the lesson: the
- *  surprise is never the date, only the number. */
-function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null {
-  const events = snapshot.events;
-  if (!events || events.length === 0) return null;
-  const today = now.toISOString().slice(0, 10);
-  const horizon = new Date(now.getTime() + CALENDAR_HORIZON_DAYS * 86_400_000)
-    .toISOString()
-    .slice(0, 10);
-  const upcoming: TrendEvent[] = events
-    .filter((e) => e.date >= today)
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(0, CALENDAR_LIMIT);
-  const next = upcoming[0];
-  // Nothing inside the horizon means nothing to say this morning. The old
-  // fallback here — show the first four entries whatever their dates — is
-  // what made this furniture: on a day with no upcoming events it printed
-  // *past* ones rather than admitting the column was shorter.
-  if (!next || next.date > horizon) return null;
-  const shown = upcoming;
-
-  return {
-    id: 'calendar',
-    kind: 'condition',
-    kicker: 'ahead',
-    title: 'What is already scheduled',
-    reading: String(shown.length),
-    readingNote: 'decisions and releases coming',
-    whatItIs:
-      'Central-bank decisions and statistical releases are published on a calendar set months in advance. The date is never the surprise; only the number is.',
-    changed: undefined,
-    why: next.standing,
-    figures: shown.map((e) => ({
-      label: formatEventDate(e.date),
-      value: e.title,
-      note: e.institution,
-    })),
-    sourceLabel: 'FRED · central-bank calendars',
-  };
-}
-
-const MONTH_NAMES = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
-
-/** "12 Aug" from "2026-08-12", without constructing a Date — the string is
- *  already the calendar day the institution published, and parsing it into a
- *  Date drags the device's timezone into a date that has none. */
-function formatEventDate(iso: string): string {
-  const [, month, day] = iso.split('-');
-  const monthIndex = Number(month) - 1;
-  const name = MONTH_NAMES[monthIndex];
-  if (!name || !day) return iso;
-  return `${Number(day)} ${name}`;
-}
-
-// ---------------------------------------------------------------------------
 
 export interface InstrumentCardInputs {
   trends: TrendsSnapshot | null;
   chokepoints: Chokepoint[];
+  /** The day's movement analysis, from `/api/analysis.json`. Empty is a
+   *  supported state, not a loading one: every card falls back to its standing
+   *  definition, which is the whole surface these cards had before. */
+  analysis: AnalysisById;
   /** Today's feed, for the tie-to-the-news line. */
   articles: Article[];
-  /** Injected so the calendar card is testable without freezing the clock. */
-  now?: Date;
 }
 
-/** One column per section that holds instruments. Keys match `SECTIONS`. */
+/** Instrument cards grouped by concrete payload subject before deck assembly. */
 export interface InstrumentColumns {
-  commodities: Card[];
-  money: Card[];
-  outlook: Card[];
+  markets: Card[];
+  straits: Card[];
+  predictions: Card[];
 }
 
 const EMPTY_COLUMNS: InstrumentColumns = {
-  commodities: [],
-  money: [],
-  outlook: [],
+  markets: [],
+  straits: [],
+  predictions: [],
 };
 
 /**
@@ -1116,22 +821,6 @@ const EMPTY_COLUMNS: InstrumentColumns = {
  * Order within a column is reading order, and each column opens with the card
  * that answers its own question most directly.
  *
- * `commodities` opens with the nisab. It moves daily, it is the one price in the
- * app that is also an obligation, and it is the card no other news app
- * carries; the documented eat-then-burn order runs beneath it. On a day when a
- * strait has actually gone quiet, that card takes the head instead — freight
- * that has stopped moving is a price story before it is anything else, and it
- * arrives carrying the `today` mark.
- *
- * `money` opens with fifteen currencies, because "did mine move" is the
- * question, and the rows that were news follow it. The ten-year and the two
- * coins are the same question asked about borrowing and about money no state
- * issues.
- *
- * `outlook` opens with the contracts, which is also where the once-per-column
- * explainer lives (see `beliefCards`), then where curiosity went, then the
- * price of insuring against a fall, then what is already on the calendar.
- *
  * Every card returns null rather than a placeholder when its data is missing
  * or its gate does not clear, so a quiet day yields shorter columns and never
  * a broken screen.
@@ -1139,77 +828,34 @@ const EMPTY_COLUMNS: InstrumentColumns = {
 export function buildInstrumentCards({
   trends,
   chokepoints,
+  analysis,
   articles,
-  now = new Date(),
 }: InstrumentCardInputs): InstrumentColumns {
   if (!trends) return EMPTY_COLUMNS;
   const keep = (cards: (Card | null)[]): Card[] => cards.filter((c): c is Card => c !== null);
 
   return {
-    commodities: keep([
-      straitMovedCard(chokepoints),
-      nisabCard(trends),
-      staplesCard(trends, articles),
-      indicatorCard(
-        trends,
-        articles,
-        'brent',
-        'energy',
-        'The benchmark price for a barrel of crude. Most of the world’s oil is sold at a premium or discount to it, so it is the number under every fuel price.',
-      ),
-      metalsPairCard(trends, articles),
-    ]),
-
-    money: keep([
-      currenciesCard(trends, articles),
-      ...fxMoverCards(trends, articles),
+    markets: keep([
+      nisabCard(trends, analysis),
+      staplesCard(trends, analysis, articles),
+      indicatorCard(trends, analysis, articles, 'brent', 'energy'),
+      metalsPairCard(trends, analysis, articles),
       // The ten-year survives the cut that took the S&P and the NASDAQ with
       // it, on the rule that killed them: it can be explained in one sentence
       // to someone who has never met it, and it says something about an
       // ordinary life. An index *level* cannot do either.
-      indicatorCard(
-        trends,
-        articles,
-        'us-10y',
-        'money',
-        'What the United States pays to borrow for ten years. Almost every other long-term rate on earth — mortgages, sovereign debt, project finance — is priced off it.',
-      ),
-      indicatorCard(
-        trends,
-        articles,
-        'btc',
-        'crypto',
-        'Money that no state issues and no bank clears. That is the argument for it and the argument against it, in the same sentence.',
-        // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
-        // news for whoever holds it and nothing at all to everyone else, and
-        // an app that tints it sage has taken a position on whether you should.
-      ),
-      indicatorCard(
-        trends,
-        articles,
-        'eth',
-        'crypto',
-        'The network most of the rest of crypto runs on. Tokens, exchanges and contracts settle there, so its price tracks the sector’s activity, not just its own.',
-      ),
+      indicatorCard(trends, analysis, articles, 'us-10y', 'money'),
+      indicatorCard(trends, analysis, articles, 'vix', 'volatility'),
+      // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
+      // news for whoever holds it and nothing at all to everyone else, and
+      // an app that tints it sage has taken a position on whether you should.
+      indicatorCard(trends, analysis, articles, 'btc', 'crypto'),
+      indicatorCard(trends, analysis, articles, 'eth', 'crypto'),
+      ...fxMoverCards(trends, analysis, articles),
     ]),
 
-    outlook: keep([
-      ...beliefCards(trends, articles),
-      attentionCard(trends, articles),
-      // VIX files here rather than beside the ten-year, and the app's own
-      // reasoning put it here: the S&P and the NASDAQ were cut because an
-      // index level is not a fact about a life, and what saved VIX from the
-      // same cut was its *fear* reading. A number that says what traders are
-      // paying to insure against a fall next month is a price on a belief,
-      // measured the same way a contract is. The kicker says so.
-      indicatorCard(
-        trends,
-        articles,
-        'vix',
-        'what traders fear',
-        'How much traders are paying to insure against a fall in US shares over the next month. It rises when people are frightened, which is why it is called the fear index.',
-      ),
-      calendarCard(trends, now),
-    ]),
+    straits: keep(straitCards(chokepoints)),
+
+    predictions: keep(beliefCards(trends, analysis, articles)),
   };
 }

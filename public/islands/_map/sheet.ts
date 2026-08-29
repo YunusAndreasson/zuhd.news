@@ -528,7 +528,12 @@ export function createSheet(): Sheet {
       }
 
       if (pin) {
-        if (cp.blurb) nodes.push(el('p', 'map-sheet-lead', cp.blurb))
+        // The blurb *is* this card's `standing` — `narrate-indicators.js` seeds
+        // it as one and never regenerates it — so it takes the class the
+        // stylesheet reserves for a definition. It sat at lead weight, which
+        // is the size that file reserves for a claim about the world, while the
+        // claim about the world sat on the payload unrendered.
+        if (cp.blurb) nodes.push(el('p', 'map-sheet-standing', cp.blurb))
 
         // 86 days of daily transits, with the baseline drawn across them. The
         // sheet could already state the delta; the line is what shows whether
@@ -572,6 +577,11 @@ export function createSheet(): Sheet {
               .join(' · '),
           ),
         )
+        // Why the traffic moved. It has ridden `/api/chokepoints.json` since the
+        // dispatch stage existed and nothing here read it, so this card drew 86
+        // days of transits and never said a word about what happened in them.
+        // No fetch, unlike `showIndicator`: this one already has it.
+        if (cp.recent) nodes.push(el('p', 'map-sheet-lead', cp.recent))
         nodes.push(...relatedList(cp.relatedArticles ?? [], 'Related coverage'))
       }
       render(nodes, pin, docked)
@@ -605,7 +615,9 @@ export function createSheet(): Sheet {
       )
 
       if (pin) {
-        if (ex.blurb) nodes.push(el('p', 'map-sheet-lead', ex.blurb))
+        // A definition, at the definition's weight — same reasoning as the
+        // chokepoint card above, and the same `catalogBlurb` seeding behind it.
+        if (ex.blurb) nodes.push(el('p', 'map-sheet-standing', ex.blurb))
 
         // A quarter of closes, with a rule where the drawn window started — the
         // same job the 90-day baseline does on a chokepoint. A day's move says
@@ -655,6 +667,9 @@ export function createSheet(): Sheet {
               .join(' · '),
           ),
         )
+        // The domestic event behind the move, carried on `/api/markets.json`
+        // and, until now, read by nothing.
+        if (ex.recent) nodes.push(el('p', 'map-sheet-lead', ex.recent))
         nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
       }
       render(nodes, pin, docked)

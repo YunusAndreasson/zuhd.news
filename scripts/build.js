@@ -886,14 +886,16 @@ if (Object.keys(contextIndex).length > 0) {
  *
  * `standing` is joined onto the three list payloads below because it is a row's
  * tooltip and has to be there before anything is pressed. `recent` and
- * `citations` are deliberately *not* — they are only wanted when a card opens,
- * and they ride `/api/entity/{id}.json`, which is already fetched at that
- * moment.
+ * `citations` are deliberately *not* joined onto `trends.json` — on the web they
+ * are only wanted when a card opens, and they ride `/api/entity/{id}.json`,
+ * which is already fetched at that moment. The app has no `/e/{id}` and needs
+ * them for a whole column of cards at once, so they reach it through
+ * `api/analysis.json` instead: a second endpoint rather than 17KB added to the
+ * payload the homepage's instrument rail downloads on every visit.
  */
 const dispatchSrc = join(ROOT, 'content', '.indicator-dispatch.json')
-const dispatch = existsSync(dispatchSrc)
-  ? JSON.parse(readFileSync(dispatchSrc, 'utf8')).items || {}
-  : {}
+const dispatchFile = existsSync(dispatchSrc) ? JSON.parse(readFileSync(dispatchSrc, 'utf8')) : {}
+const dispatch = dispatchFile.items || {}
 if (Object.keys(dispatch).length) {
   console.log(`  Loaded: indicator dispatch (${Object.keys(dispatch).length} items)`)
 }
@@ -1201,6 +1203,59 @@ if (trendsSrc && existsSync(trendsSrc)) {
   )
 } else {
   console.log('  Skipped: api/trends.json (no snapshot in content/trends/)')
+}
+
+/**
+ * The movement analysis, for a reader who cannot open a card to get it.
+ *
+ * `recent` is the dispatch's account of what has happened to an instrument and
+ * why — the answer to the question a chart that just moved actually raises. On
+ * the web it arrives per-instrument, on the press that opens a card, from
+ * `/api/entity/{id}.json`. The app has no such page and no such press: its
+ * graph decks build a whole column up front and gate deck membership on having
+ * an explanation, so it needs every instrument's paragraph before it renders
+ * anything.
+ *
+ * A second endpoint rather than a wider `trends.json`, because that payload is
+ * also what the homepage's instrument rail downloads, and 17KB of prose no rail
+ * row displays is a real cost paid by every visit for one consumer's benefit.
+ *
+ * `cp:` and `mkt:` items are not here: their `recent` already rides
+ * `api/chokepoints.json` and `api/markets.json`, and a second copy is a second
+ * thing to drift. Which of the bare ids a consumer wants is the consumer's
+ * judgement — this payload does not make it.
+ *
+ * An empty `recent` is omitted rather than shipped blank, so a consumer's
+ * fallback to `standing` fires on absence and never on an empty string.
+ *
+ * The prose and nothing else. Adding `citations` measured 34.7KB against 17.2KB
+ * without them — half the file, for 50 items x 4 resolved rows that no card
+ * renders: the app's `related` is ranking metadata it derives locally, and it
+ * is deliberately not printed under an analysis that already names the stories.
+ * Doubling a payload for a list no reader sees is the cost this endpoint exists
+ * to avoid paying on `trends.json`. They remain on `/api/entity/{id}.json`, and
+ * on the chokepoint and exchange payloads, for the surfaces that do show them.
+ */
+{
+  const items = {}
+  for (const [id, d] of Object.entries(dispatch)) {
+    if (id.includes(':')) continue
+    const recent = d?.recent?.trim()
+    if (!recent) continue
+    items[id] = { recent }
+  }
+  writeFileSync(
+    join(DIST_DIR, 'api', 'analysis.json'),
+    JSON.stringify({
+      generatedAt: dispatchFile.generatedAt ?? generated,
+      windowDays: dispatchFile.windowDays ?? null,
+      items,
+    }),
+  )
+  console.log(
+    `  Built: api/analysis.json (${Object.keys(items).length} explained, ` +
+      `${dispatchFile.generatedAt ?? 'undated'})`,
+  )
 }
 
 // Legacy flat endpoint (backwards compatible)

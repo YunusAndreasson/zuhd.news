@@ -1,4 +1,12 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { type NativeScrollEvent, type NativeSyntheticEvent, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -9,8 +17,9 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScrollState } from '../../hooks/useScrollState';
-import type { Card } from '../../lib/cards/types';
+import type { SwipeCard } from '../../lib/cards/rank';
 import { hapticTick } from '../../lib/haptics';
+import { markHintDone } from '../../lib/onboarding-store';
 import { EmptyState } from '../EmptyState';
 import { CardView } from './CardView';
 
@@ -33,7 +42,7 @@ export interface CardPagerRef {
 }
 
 interface CardPagerProps {
-  cards: Card[];
+  cards: SwipeCard[];
   viewportHeight: number;
   /** Index of this section in the horizontal pager — the slot it owns in
    *  `progressesSV`, which drives the rail's fill. */
@@ -56,12 +65,14 @@ export const CardPager = memo(function CardPager({
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
-  const listRef = useAnimatedRef<Animated.FlatList<Card>>();
+  const listRef = useAnimatedRef<Animated.FlatList<SwipeCard>>();
   const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
   const count = cards.length;
+  const innerConsumedRef = useRef<{ index: number; at: number } | null>(null);
+  const innerConsumedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
@@ -69,6 +80,23 @@ export const CardPager = memo(function CardPager({
   useImperativeHandle(ref, () => ({
     scrollToTop: () => listRef.current?.scrollToOffset({ offset: 0, animated: true }),
   }));
+
+  // A refresh can legitimately reorder the deck as a new event, a stronger
+  // news tie or an unusual move arrives. Keep the reader on the same card by
+  // stable id instead of silently replacing the page under them.
+  const previousIdsRef = useRef<string[]>([]);
+  useLayoutEffect(() => {
+    const nextIds = cards.map((card) => card.id);
+    const previousIds = previousIdsRef.current;
+    previousIdsRef.current = nextIds;
+    if (previousIds.length === 0 || nextIds.length === 0) return;
+    const previousId = previousIds[currentIndexRef.current];
+    if (!previousId) return;
+    const nextIndex = nextIds.indexOf(previousId);
+    if (nextIndex < 0 || nextIndex === currentIndexRef.current) return;
+    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
+    setCurrentIndex(nextIndex);
+  }, [cards, itemHeight, listRef, setCurrentIndex]);
 
   /**
    * Land on a page, always — but only once the list has actually stopped.
@@ -94,16 +122,43 @@ export const CardPager = memo(function CardPager({
 
   const settleToPage = useCallback(
     (y: number) => {
-      const idx = Math.max(0, Math.min(Math.round(y / itemHeight), count - 1));
+      const current = currentIndexRef.current;
+      const consumed = innerConsumedRef.current;
+      const currentPageY = current * itemHeight;
+      const inheritedInnerGesture = consumed?.index === current && Date.now() - consumed.at < 1000;
+      // Android can hand the unused tail of an inner ScrollView gesture to
+      // this FlatList. If the child actually moved, that gesture belongs to
+      // the card: return the parent to its existing page. Keep the mark while
+      // that correction settles because native paging momentum can emit
+      // another end event after the first correction was armed.
+      const correctingInnerGesture = inheritedInnerGesture && Math.abs(y - currentPageY) > 1;
+      const idx = correctingInnerGesture
+        ? current
+        : Math.max(0, Math.min(Math.round(y / itemHeight), count - 1));
+      if (inheritedInnerGesture && !correctingInnerGesture) {
+        innerConsumedRef.current = null;
+        if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
+        innerConsumedTimer.current = null;
+      } else if (!inheritedInnerGesture) {
+        innerConsumedRef.current = null;
+      }
       const target = idx * itemHeight;
       // A point of slack: a list resting exactly on a page reports a
       // sub-pixel offset often enough that correcting it would fight the
       // reader's own scroll on every single swipe.
       if (Math.abs(y - target) > 1) {
-        listRef.current?.scrollToOffset({ offset: target, animated: true });
+        // A nested-scroll handoff can still have native momentum behind it.
+        // Animating against that momentum lets the two motions fight and can
+        // leave the list between pages; an immediate pin cancels the inherited
+        // tail. Ordinary page correction remains animated.
+        listRef.current?.scrollToOffset({ offset: target, animated: !correctingInnerGesture });
       }
       if (idx === currentIndexRef.current) return;
       hapticTick();
+      // The reader has performed the lesson on a data deck. The onboarding
+      // store historically counted article snaps only, so the swipe hint
+      // returned over Markets/Shipping/Outlook after a successful page turn.
+      markHintDone('swipe');
       setCurrentIndex(idx);
     },
     [count, itemHeight, listRef, setCurrentIndex],
@@ -176,7 +231,26 @@ export const CardPager = memo(function CardPager({
     }, 140);
   }, [clearSettle, settleToPage, scrollY]);
 
-  useEffect(() => clearSettle, [clearSettle]);
+  useEffect(
+    () => () => {
+      clearSettle();
+      if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
+    },
+    [clearSettle],
+  );
+
+  const handleInnerScrollConsumed = useCallback((index: number) => {
+    if (index !== currentIndexRef.current) return;
+    innerConsumedRef.current = { index, at: Date.now() };
+    if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
+    // If the child consumed the gesture without handing anything to the
+    // parent, no parent settle event will clear the mark. Expire it so a later
+    // swipe from the child's edge can page normally.
+    innerConsumedTimer.current = setTimeout(() => {
+      innerConsumedRef.current = null;
+      innerConsumedTimer.current = null;
+    }, 700);
+  }, []);
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -219,7 +293,7 @@ export const CardPager = memo(function CardPager({
   });
 
   const getItemLayout = useCallback(
-    (_: ArrayLike<Card> | null | undefined, index: number) => ({
+    (_: ArrayLike<SwipeCard> | null | undefined, index: number) => ({
       length: itemHeight,
       offset: itemHeight * index,
       index,
@@ -228,13 +302,19 @@ export const CardPager = memo(function CardPager({
   );
 
   const renderItem = useCallback(
-    ({ item, index }: { item: Card; index: number }) => (
-      <CardView card={item} itemHeight={itemHeight} index={index} scrollY={scrollY} />
+    ({ item, index }: { item: SwipeCard; index: number }) => (
+      <CardView
+        card={item}
+        itemHeight={itemHeight}
+        index={index}
+        scrollY={scrollY}
+        onInnerScrollConsumed={handleInnerScrollConsumed}
+      />
     ),
-    [itemHeight, scrollY],
+    [handleInnerScrollConsumed, itemHeight, scrollY],
   );
 
-  const keyExtractor = useCallback((item: Card) => item.id, []);
+  const keyExtractor = useCallback((item: SwipeCard) => item.id, []);
 
   if (count === 0) {
     return (

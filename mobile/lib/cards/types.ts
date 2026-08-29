@@ -1,30 +1,32 @@
-import type { CompareRow, RelatedArticleRef, TrendHighlight, TrendSeries } from '@shared/types';
+import type { RelatedArticleRef, TrendHighlight, TrendSeries } from '@shared/types';
 import type { Direction, Valence } from '../valence';
 
 /**
  * The card model.
  *
  * A card earns a screen if a reader who gives it four seconds can tell someone
- * else something true they did not know. Everything that fails that test
- * becomes a row on a comparison card, or it is not in the app — which is why
- * fifteen currencies are one card and thirty exchanges are none.
+ * else something true they did not know. Everything that fails that test is
+ * not in the app.
  *
- * The shape below is that rule written as a type. Five named parts, in the
- * order a reader meets them:
+ * The shape below is that rule written as a type. The changing observation and
+ * live analysis form the visible surface:
  *
  *   reading    the number, at arm's length
- *   whatItIs   one sentence for someone who has never heard of it
  *   changed    the move, and the window it moved over
  *   why        why it reaches an ordinary life — the teaching part
- *   related    which of today's stories it touches
+ *   related    which stories should affect its rank
  *
- * `why` is not written here. It is `standing`, which the pipeline has been
- * writing for every indicator, chokepoint and calendar event since long before
- * anything rendered it. A card builder's job is to find the right one, not to
- * compose a new one — the app does not editorialise over the desk.
+ * `why` is not written here. The desk writes two paragraphs for every
+ * instrument and they answer different questions: `standing`, what the thing
+ * is, written once and timeless; and `recent`, what has happened to it and
+ * why, rewritten each day against the fortnight's coverage. A reader looking
+ * at a chart that just moved asked the second, so `why` is `recent` where
+ * there is one and `standing` where there is not. A card builder's job is to
+ * find the right one, not to compose a new one — the app does not editorialise
+ * over the desk.
  */
 
-export type CardKind = 'reading' | 'comparison' | 'belief' | 'condition';
+type CardKind = 'reading' | 'belief';
 
 /**
  * The move, at a glance — and the one place the app spends colour on a number.
@@ -71,20 +73,17 @@ interface CardBase {
    * important — and the reader is told so.
    *
    * Set only by a builder that gated the card on its own freshness: a strait
-   * that has actually gone quiet, a famine analysis published this quarter, a
-   * determination handed down this season. Everything else on a column is
-   * standing reference that happens to have moved a little, and the two used
+   * that has actually gone quiet. Everything else on a column is standing
+   * reference that happens to have moved a little, and the two used
    * to arrive in identical typographic weight, so a disrupted Strait of Hormuz
    * and the gold-to-silver ratio read as the same kind of claim.
    *
-   * `CardFrame` renders it as an ink step on the kicker line — never a colour.
-   * The app's chromatic budget is already spent, on `CardDelta` and on
-   * `colors.determination`, and a third accent would cost both of them their
-   * meaning.
+   * `CardFrame` renders it as `current ·` on the kicker line — never a colour.
+   * The app's chromatic budget is already spent on `CardDelta`.
    */
   lead?: boolean;
-  /** Small-caps kicker above the title: "commodity", "currency", "famine". */
-  kicker: string;
+  /** Small-caps subject above the title. Omit when the section already says it. */
+  kicker?: string;
   title: string;
   /** Part 1. Pre-formatted, because only the builder knows the unit grammar. */
   reading: string;
@@ -92,13 +91,13 @@ interface CardBase {
   readingNote?: string;
   /** Part 1c, beside the note: which way it moved and what that means. */
   delta?: CardDelta;
-  /** Part 2. */
-  whatItIs?: string;
-  /** Part 3. */
+  /** What changed in the current data window. */
   changed?: string;
-  /** Part 4 — `standing`, verbatim. */
+  /** Live pipeline analysis, shown on the recurring card surface: the day's
+   *  account of why this moved, or the standing definition where the desk
+   *  wrote no account today. `lib/cards/markets.ts`'s `whyFor` picks. */
   why?: string;
-  /** Part 5. */
+  /** News ties used to rank the card; not repeated on its visible surface. */
   related?: RelatedArticleRef[];
   /** Attribution, rendered through `SourceCaption`. */
   sourceLabel?: string;
@@ -128,40 +127,22 @@ export interface ReadingCard extends CardBase {
   figures?: CardFigure[];
 }
 
-/** Many rows that only mean something against each other. Fifteen currencies
- *  are not fifteen facts; the fact is that twelve of them gained. */
-export interface ComparisonCard extends CardBase {
-  kind: 'comparison';
-  rows: CompareRow[];
-  rowsLabel?: string;
-}
-
 /** A price on an outcome. Distinct from a reading because the number is a
  *  belief rather than a measurement, and the card has to say so. */
 export interface BeliefCard extends CardBase {
   kind: 'belief';
   series: CardSeries;
-  /** The range the belief has travelled inside the window we hold. */
-  range?: { min: number; max: number; minAt: string; maxAt: string };
-}
-
-/** A standing state of the world rather than a moving number: how many people
- *  are hungry, how many events a monitor is tracking, what a body determined. */
-export interface ConditionCard extends CardBase {
-  kind: 'condition';
-  figures?: CardFigure[];
-  rows?: CompareRow[];
-  rowsLabel?: string;
-  /** The single chromatic break in the app, and the only card allowed it. */
-  emphasis?: 'determination';
-  /** Named body + document, for a card whose whole claim is the citation. */
-  attribution?: { body: string; document: string; date: string };
 }
 
 export interface CardFigure {
   label: string;
   value: string;
   note?: string;
+  /** Optional raw magnitude for proportional rendering; never display-formatted. */
+  weight?: number;
 }
 
-export type Card = ReadingCard | ComparisonCard | BeliefCard | ConditionCard;
+export type Card = ReadingCard | BeliefCard;
+
+/** The primary swipe decks only admit cards with a real time series. */
+export type GraphCard = (ReadingCard & { series: CardSeries }) | BeliefCard;

@@ -2,6 +2,7 @@ import type { BlockTone } from '@shared/types';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import {
+  cancelAnimation,
   type SharedValue,
   useReducedMotion,
   useSharedValue,
@@ -103,8 +104,13 @@ export function useChartDrawProgress(duration: number = ANIMATION.slow): SharedV
   const reduceMotion = useReducedMotion();
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      cancelAnimation(progress);
+      progress.value = 1;
+      return;
+    }
     progress.value = withTiming(1, { duration, easing: EASING.out });
+    return () => cancelAnimation(progress);
   }, [reduceMotion, progress, duration]);
   return progress;
 }
