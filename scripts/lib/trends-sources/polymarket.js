@@ -1,12 +1,32 @@
 // Polymarket (Gamma API) fetcher.
 // Docs: https://docs.polymarket.com/developers/gamma-markets-api/overview
-// No auth, no cost. We fetch the top markets by 24h volume, then a price
-// history for each. A category filter trims US sports / crypto odds markets.
+// No auth, no cost. We fetch the top *events* by 24h volume, drop the ones
+// whose tags say they are sport or a price ladder, then pull a price history
+// for each surviving market.
+//
+// It read `/markets` until 2026-08-29, and filtered on `m.category` against an
+// eight-entry allow-list. **That field is `undefined` on every row the endpoint
+// returns** — probed live: 60 markets, 0 with a category — so the allow-list had
+// never matched anything and the entire filter was the keyword regex below,
+// applied to a pool that is roughly four-fifths football, baseball and esports.
+// Measured: 60 fetched, 3 distinct events kept, which is why the app's outlook
+// column was two cards deep.
+//
+// `/events` is the same data one level up and it carries the taxonomy
+// `category` was supposed to be — `sports`, `esports`, `games`, `politics`,
+// `geopolitics`, `economic-policy` — with the markets nested inside, their
+// `clobTokenIds` intact. So the filter became a short list of tags we drop
+// rather than a long list of words we hope to see, and the event-level dedupe
+// below stopped being an inference. Same probe after: 60 events, 18 kept,
+// including the Strait of Hormuz and Bab el-Mandeb markets — questions about
+// the exact waterways the shipping column already charts, which the keyword
+// list had been dropping because "hormuz" was not one of its words.
 //
 // This fetcher returns dynamic IndicatorDef-compatible objects (one per top
 // market) so the orchestrator can treat them the same as static FRED/OER
 // indicators.
 
+import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
 
 const GAMMA_BASE = 'https://gamma-api.polymarket.com'
@@ -24,9 +44,32 @@ const MIN_HISTORY_POINTS = 5
 const DECIDED_BAND = 3   // percentage points
 const DECIDED_TAIL_FRACTION = 1 / 3
 
-// Categories we keep — prioritize ummah-relevant geopolitics/economics.
-// Polymarket's category taxonomy is fuzzy; we also inspect the market title.
-const KEEP_CATEGORIES = new Set(['geopolitics', 'politics', 'world', 'middle-east', 'economy', 'business', 'war', 'elections'])
+/**
+ * The tags that disqualify an event, each for its own reason. Editorial, and
+ * kept short on purpose — this is a drop list, so anything not named here is
+ * admitted, and the cost of a missing entry is one odd card rather than a
+ * whole subject going dark. That asymmetry is the entire argument for
+ * inverting the old allow-list.
+ *
+ *   sports/esports/games  — four-fifths of the volume-ranked pool, and none of
+ *                           it is news. This is the one doing the real work.
+ *   pop-culture           — the "how many times will X tweet" ladders.
+ *   hit-price/multi-strikes — a price-target ladder on bitcoin, ether or WTI.
+ *                           We publish those three as actual price series; a
+ *                           market on where one lands by Friday is a worse
+ *                           reading of a thing we already chart properly.
+ */
+const DROP_TAGS = new Set([
+  'sports',
+  'esports',
+  'games',
+  'pop-culture',
+  'hit-price',
+  'multi-strikes',
+])
+
+/** A second net under the tags, for a market whose event was tagged loosely.
+ *  Kept from the pre-`/events` filter, where it was the only thing working. */
 const DROP_TITLE_RE = /\b(nfl|nba|mlb|nhl|ncaa|super bowl|world cup|uefa|oscars|grammy|emmy|dogecoin|shiba|pepe|bitcoin price|ethereum price|eth price)\b/i
 
 function formatPeriod(tsSeconds) {
@@ -39,12 +82,20 @@ function ymd(d) {
   return d.toISOString().slice(0, 10)
 }
 
+/**
+ * Top events by 24h volume, tag-filtered, flattened back to markets.
+ *
+ * Gamma sorts on `order=volume24hr` (camelCase). The public docs spell it
+ * `volume_24hr` and that form returns essentially-random results — confirmed
+ * against the live API 2026-04. We over-fetch to leave headroom after the tag
+ * and decided pruning below.
+ *
+ * Each market is handed back with its parent event stitched into `events[0]`,
+ * because that is where the rest of this file already looks for the event slug
+ * it dedupes and builds the card URL from. Nothing downstream had to change.
+ */
 async function fetchTopMarkets(limit) {
-  // Gamma's /markets sorts by `order=volume24hr` (camelCase). The public docs
-  // spell it `volume_24hr` but that form returns essentially-random results
-  // — confirmed against the live API 2026-04. The camelCase spelling is what
-  // works. We over-fetch to leave headroom after category + decided pruning.
-  const url = new URL(`${GAMMA_BASE}/markets`)
+  const url = new URL(`${GAMMA_BASE}/events`)
   url.searchParams.set('order', 'volume24hr')
   url.searchParams.set('ascending', 'false')
   url.searchParams.set('limit', String(limit * 3))
@@ -57,7 +108,59 @@ async function fetchTopMarkets(limit) {
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
-  return Array.isArray(data) ? data : (data.data || data.markets || [])
+  const events = Array.isArray(data) ? data : data.data || data.events || []
+
+  let droppedByTag = 0
+  let droppedAllDecided = 0
+  const markets = []
+  for (const ev of events) {
+    const tags = (ev.tags || []).map((t) => String(t.slug || t.label || '').toLowerCase())
+    if (tags.some((t) => DROP_TAGS.has(t))) {
+      droppedByTag++
+      continue
+    }
+
+    /**
+     * One market per event, chosen here rather than after the history calls.
+     *
+     * An event is a question and its markets are that question's outcomes —
+     * "Presidential Election Winner 2028" carries several hundred of them, one
+     * per candidate. Flattening them all produced 627 markets from 12 events,
+     * and the `slice(TOP_N)` below then cut *inside* the first two events, so
+     * widening the filter made the output smaller rather than larger. The
+     * dedupe further down already wanted exactly one per event; doing it here
+     * means it costs no price-history calls instead of one per outcome.
+     *
+     * Highest 24h volume that is not already decided. `lastTradePrice` comes
+     * free on this payload, so skipping a 2% long-shot to reach the outcome
+     * people are actually trading costs nothing — and picking purely by volume
+     * would hand a 500-candidate election its noisiest row.
+     */
+    const live = (ev.markets || [])
+      .filter((m) => {
+        const ltp = Number(m.lastTradePrice)
+        return !Number.isFinite(ltp) || (ltp > 0.03 && ltp < 0.97)
+      })
+      .sort((a, b) => (Number(b.volume24hr) || 0) - (Number(a.volume24hr) || 0))
+    if (!live.length) {
+      droppedAllDecided++
+      continue
+    }
+    markets.push({
+      ...live[0],
+      // The event's own dates where the market omits them. An event that has
+      // ended is the expiry case the `endDate` filter downstream exists for,
+      // and a nested market does not always carry one.
+      endDate: live[0].endDate || ev.endDate,
+      events: [{ slug: ev.slug, title: ev.title }],
+      _eventTags: ev.tags || [],
+    })
+  }
+  console.log(
+    `  · polymarket: ${events.length} events — ${droppedByTag} dropped by tag, ` +
+      `${droppedAllDecided} with every outcome decided, ${markets.length} questions kept`,
+  )
+  return markets
 }
 
 async function fetchPriceHistory(clobTokenId) {
@@ -171,6 +274,49 @@ function fallbackLabels(titles) {
  * the same table the map draws its countries from, so a code that survives this
  * is a code something on the page can key on.
  */
+/**
+ * ISO-2 codes from an event's own tag slugs.
+ *
+ * Gamma tags an event with its subjects — `iran`, `france`, `brazil`,
+ * `united-states` sit alongside `politics` and `oil` — so the countries a
+ * question is about are in the payload before any model sees it. 23 of the 34
+ * slugs observed on a live pull resolve straight off `CC_TO_TOPOJSON_NAME`, and
+ * every non-country slug resolves to nothing, which is the failure mode we
+ * want: an unresolvable tag matches no country rather than inventing one.
+ *
+ * This exists because the model call it backstops is slow and was being killed
+ * on its timeout every run, taking every question's country tags with it. Tags
+ * cannot see that a Fed market is about the US — its slugs are `fomc`,
+ * `fed-rates`, `jerome-powell` — so the two are unioned rather than swapped:
+ * this is the floor that survives a timeout, not a replacement.
+ */
+const TAG_SLUG_TO_CC = (() => {
+  const slug = (x) => x.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const m = new Map()
+  for (const [cc, name] of Object.entries(CC_TO_TOPOJSON_NAME)) m.set(slug(name), cc)
+  // Genuine divergences between Polymarket's slug and Natural Earth's name
+  // only — no identity entries, for the reason the trends payload's own
+  // country-tag record gives: an alias that restates the name is dead weight
+  // that reads as coverage.
+  m.set('united-states', 'US')
+  m.set('usa', 'US')
+  m.set('uk', 'GB')
+  m.set('britain', 'GB')
+  m.set('uae', 'AE')
+  m.set('south-korea', 'KR')
+  m.set('north-korea', 'KP')
+  return m
+})()
+
+function countriesFromEventTags(tags) {
+  const out = []
+  for (const raw of tags || []) {
+    const cc = TAG_SLUG_TO_CC.get(String(raw.slug || raw.label || '').toLowerCase())
+    if (cc && !out.includes(cc)) out.push(cc)
+  }
+  return out
+}
+
 function validCodes(list) {
   if (!Array.isArray(list)) return []
   const out = []
@@ -182,10 +328,50 @@ function validCodes(list) {
   return out
 }
 
+/** How many titles one Haiku call is asked for. Measured: a chunk of 4 lands in
+ *  25-35s, the whole 10-title batch took 98s — the call scales worse than
+ *  linearly in batch size, and the trends stage has 120s for six sources. */
+const HAIKU_CHUNK = 4
+
+/** How many of those run at once. Three chunks in flight covers a full deck in
+ *  roughly one chunk's wall-clock; more would put four `claude` processes on a
+ *  box that is also running the rest of the cycle. */
+const HAIKU_CONCURRENCY = 3
+
+/**
+ * Shorten and country-tag every title, in parallel chunks.
+ *
+ * One call for the whole batch was right when the deck was three questions.
+ * Widening the tag filter took it to ten and the single call went from
+ * comfortably inside its timeout to 98s — over the budget of the entire stage,
+ * and killed at 40s every run, which silently cost every question its country
+ * tags. Chunking trades one long call for three short concurrent ones and puts
+ * the wall-clock back where it was.
+ *
+ * A chunk that fails degrades on its own: `shortenBatchViaHaiku` already falls
+ * back to the regex form for the titles it was given, so one bad chunk costs
+ * four labels rather than the deck's.
+ */
 async function shortenTitlesViaHaiku(titles) {
+  if (titles.length <= HAIKU_CHUNK) return shortenBatchViaHaiku(titles)
+  const chunks = []
+  for (let i = 0; i < titles.length; i += HAIKU_CHUNK) chunks.push({ at: i, titles: titles.slice(i, i + HAIKU_CHUNK) })
+  // `runWithConcurrency` resolves to nothing — it is a rate limiter, not a
+  // `map` — so each chunk writes into its own slot. Order is the contract
+  // here: the caller zips the result against `deduped` by index.
+  const out = new Array(chunks.length)
+  await runWithConcurrency(chunks, HAIKU_CONCURRENCY, async (chunk) => {
+    out[chunk.at / HAIKU_CHUNK] = await shortenBatchViaHaiku(chunk.titles)
+  })
+  return out.flat()
+}
+
+async function shortenBatchViaHaiku(titles) {
   if (titles.length === 0) return []
-  const { spawnSync } = await import('node:child_process')
+  const { execFile } = await import('node:child_process')
+  const { promisify } = await import('node:util')
   const { randomUUID } = await import('node:crypto')
+  const run = promisify(execFile)
 
   const items = titles.map((t, i) => `${i + 1}. ${t}`).join('\n')
   const prompt = `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
@@ -220,22 +406,37 @@ No commentary, no markdown fences.`
   const env = { ...process.env }
   delete env.CLAUDECODE
   const tmpId = randomUUID().slice(0, 8)
-  const res = spawnSync('claude', [
-    '--model', 'claude-haiku-4-5-20251001',
-    '--no-session-persistence',
-    '--max-turns', '1',
-    '--output-format', 'json',
-    '-p', prompt,
-    // 40s, not 20s: a 6-7 title batch routinely overran 20s and got SIGTERM-
-    // killed (exit 143), forcing the regex fallback every cycle even though the
-    // Haiku output we'd already paid for was nearly ready. Trends stage budget
-    // is 120s, so 40s is comfortably within headroom.
-  ], { encoding: 'utf-8', timeout: 40_000, maxBuffer: 256 * 1024, env })
-
-  if (res.status !== 0) {
-    console.error(`  ✗ polymarket-haiku ${tmpId}: exit ${res.status} — falling back to regex`)
+  /**
+   * `execFile`, not `spawnSync`.
+   *
+   * This was `spawnSync` inside a `runWithConcurrency(_, 3, …)`, which is three
+   * chunks of nothing: `spawnSync` blocks the event loop until the child exits,
+   * so the "concurrent" chunks ran strictly one after another and chunking made
+   * the stage *slower* than the single call it replaced. Measured before: two
+   * chunks, 80.6s, one of them SIGTERM-killed. The limiter can only limit work
+   * that yields.
+   */
+  let res
+  try {
+    res = await run('claude', [
+      '--model', 'claude-haiku-4-5-20251001',
+      '--no-session-persistence',
+      '--max-turns', '1',
+      '--output-format', 'json',
+      '-p', prompt,
+    // 60s against a measured 25-35s for a chunk of this size. It was 40s for a
+    // whole batch, which held while the batch was 3 titles and stopped holding
+    // the moment the tag filter widened the deck: measured at 10 titles the one
+    // call took **98s**, SIGTERM at 40s every run, so every question lost its
+    // country tags to the regex fallback. Chunking is what fixed it — see
+    // `shortenTitlesViaHaiku` — and this ceiling now covers one chunk with
+    // room, inside a 120s stage that has five other sources to fetch.
+    ], { encoding: 'utf-8', timeout: Number(process.env.PM_HAIKU_TIMEOUT_MS) || 60_000, maxBuffer: 256 * 1024, env })
+  } catch (err) {
+    console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.code ?? err.message} — falling back to regex`)
     return fallbackLabels(titles)
   }
+
   try {
     // Claude envelope: outer JSON wrapping result text
     const envelope = JSON.parse(res.stdout)
@@ -331,17 +532,16 @@ export async function fetchPolymarketTop() {
       const end = Date.parse(m.endDate ?? m.endDateIso ?? '')
       return !Number.isFinite(end) || end >= Date.now()
     })
-    .filter((m) => {
-      const cat = (m.category || m.groupItemCategory || '').toLowerCase()
-      const title = m.question || m.title || ''
-      if (DROP_TITLE_RE.test(title)) return false
-      // Accept if category matches OR title contains ummah-relevant keywords.
-      if (cat && KEEP_CATEGORIES.has(cat)) return true
-      return /\b(iran|gaza|israel|lebanon|hezbollah|ukraine|russia|putin|trump|election|ceasefire|nuclear|fed|rate cut|opec|yemen|houthi|saudi|pakistan|bangladesh|egypt|sudan|hamas)\b/i.test(title)
-    })
+    // The subject filter is the event tags, applied in `fetchTopMarkets`. What
+    // is left here is the second net: a market whose event was tagged loosely.
+    // The keyword allow-list this replaced is gone rather than kept as a
+    // fallback — it was dropping the Strait of Hormuz for not being on it, and
+    // a list that silently decides what the app may cover is worse than no
+    // list once something better exists.
+    .filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
     .slice(0, TOP_N)
 
-  console.log(`  · polymarket: ${markets.length} fetched, ${filtered.length} kept after filter`)
+  console.log(`  · polymarket: ${markets.length} considered, ${filtered.length} kept after filter`)
 
   const results = []
   for (const m of filtered) {
@@ -394,6 +594,10 @@ export async function fetchPolymarketTop() {
       // 24h movement in percentage points, straight from the list response
       // (zero extra calls) — lets consumers rank "biggest movers".
       change24h: Number.isFinite(Number(m.oneDayPriceChange)) ? Math.round(Number(m.oneDayPriceChange) * 100) : null,
+      // The countries the source itself says this question is about. Set here
+      // rather than after the model call, so a killed call costs a long header
+      // and never a country tag.
+      countryTags: countriesFromEventTags(m._eventTags),
       // Internal — used for event-level dedupe below, not persisted.
       _eventSlug: eventSlug,
       _volume24hr: Number(m.volume24hr) || 0,
@@ -452,15 +656,23 @@ export async function fetchPolymarketTop() {
           deduped[i].label = shortenTitleRegex(deduped[i].rawTitle)
         }
       }
-      deduped[i].countryTags = enriched[i].countryTags
-      if (enriched[i].countryTags.length) tagged++
+      // Union, not replacement. The tags are the floor and the model is the
+      // bonus: tag slugs cannot tell that a market on the FOMC is about the US,
+      // and the model cannot be relied on to answer inside its timeout.
+      deduped[i].countryTags = [
+        ...new Set([...(deduped[i].countryTags || []), ...enriched[i].countryTags]),
+      ]
+      if (deduped[i].countryTags.length) tagged++
     }
     console.log(`  · polymarket: ${tagged}/${deduped.length} questions tagged with a country`)
     if (rejected > 0) {
       console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
     }
   }
-  for (const r of deduped) delete r.rawTitle
+  for (const r of deduped) {
+    delete r.rawTitle
+    delete r._eventTags
+  }
 
   return deduped
 }

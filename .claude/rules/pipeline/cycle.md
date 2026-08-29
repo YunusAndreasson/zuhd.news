@@ -53,6 +53,51 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   **kept**: an open-ended market is a real thing, and dropping one for a missing
   field would be reading absence as expiry.
 
+## Polymarket's filter was one dead field and one word list
+
+- **`m.category` is `undefined` on every row `/markets` returns**, and had been
+  for as long as anyone measured. `KEEP_CATEGORIES` — eight categories, written
+  to prioritise ummah-relevant geopolitics — therefore matched nothing, ever, and
+  the entire subject filter was the keyword regex beside it, applied to a pool
+  that volume-ranks roughly four-fifths football, baseball and esports. Probed
+  live 2026-08-29: 60 markets fetched, **3 distinct events kept**. That was the
+  whole reason the app's outlook column was two cards deep, and nothing in the
+  logs said so — a filter that silently keeps three things looks exactly like a
+  day with three things worth keeping.
+- **`/events` is the same data one level up and carries the taxonomy `category`
+  was supposed to be**: `sports`, `esports`, `games`, `politics`, `geopolitics`,
+  `economic-policy`, with the markets nested inside and their `clobTokenIds`
+  intact. So the filter inverted — a short list of tags we drop, rather than a
+  long list of words we hope to see. Same probe after: 60 events, 18 kept. The
+  keyword list was dropping *Strait of Hormuz traffic returns to normal* and
+  *Bab el-Mandeb Strait effectively closed*, questions about the exact waterways
+  the shipping column charts, because "hormuz" was not one of its words.
+- **A drop list is the right shape here and an allow list was not.** Missing an
+  entry costs one odd card; missing a word cost a whole subject, silently. The
+  list stays short and each entry carries its reason, per "editorial lists are
+  editorial".
+- **One market per event, chosen before the history calls.** An event is a
+  question and its markets are the outcomes — "Presidential Election Winner
+  2028" carries several hundred. Flattening them all gave 627 markets from 12
+  events and the `slice(TOP_N)` then cut *inside* the first two, so the widened
+  filter produced **fewer** cards than the broken one. Picked on volume among
+  outcomes that are not already decided, which `lastTradePrice` answers for free.
+- **The enrichment call was the next thing to break, and `runWithConcurrency`
+  could not save it.** One Haiku call shortens titles and returns the countries
+  each question is about. At three questions it fit inside 40s; at ten it
+  measured **98s** and was SIGTERM-killed every run, so every question silently
+  lost its country tags. Chunking it made things *worse* until the real bug
+  showed: it was `spawnSync`, which blocks the event loop, so three "concurrent"
+  chunks ran strictly one after another. **A concurrency limiter can only limit
+  work that yields** — it is `execFile` now.
+- **The countries come from the source's own tags, and the model is the bonus.**
+  Gamma tags an event `iran`, `france`, `brazil`, `united-states`; 23 of 34
+  observed slugs resolve straight off `CC_TO_TOPOJSON_NAME` and every
+  non-country slug resolves to nothing, which is the failure mode we want. Tags
+  cannot see that an FOMC market is about the US, so the two are unioned rather
+  than swapped. The point is that a killed call now costs a long header instead
+  of a data field. Measured after: 7 questions, **7 of 7 country-tagged**, ~45s.
+
 ## The trends payload's country tags
 
 - **Only the currency basket knew what country it was about, and that was 15 of
