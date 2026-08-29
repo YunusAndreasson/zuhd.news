@@ -308,8 +308,8 @@ export default function HomeScreen() {
     [trends, chokepoints, river],
   );
   // Only real time series with live pipeline analysis cross this boundary.
-  // Subject-specific tabs make the rail predictable; static reference pools
-  // remain available to sheets and builders without becoming primary pages.
+  // Subject-specific tabs make the rail predictable; dormant non-graph card
+  // families are not built at all.
   const sectionCards = useMemo<Record<string, SwipeCard[]>>(
     () => buildSwipeSections(columns, river),
     [columns, river],

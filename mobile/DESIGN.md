@@ -73,18 +73,10 @@ dome gold, `ChokepointSheet` calling a strait disrupted at 15% where the card
 said 10%. They read `lib/valence.ts` now. Adding a fourth answer is the
 regression; extending the table there is the change.
 
-A corollary: **quote the quantity whose sign matches its meaning.** A comparison
-row's `value` carries the sign and its `tone` carries the meaning, so the two
-must agree — the FX table quoting rates (up = your money buys less) put a plus
-sign in rose, and the fix was to report the currency's move rather than caption
-the inversion. This is also the one case where a builder passes `riseMeans` as
-a literal instead of calling `riseMeansFor`: the table has inverted the quoted
-quantity, so it inverts the meaning with it.
-
-A count is not a move. Condition-card rows (IPC phase tallies, conflict events
-by country, hazard levels) carry no `tone`, because nothing about them points
-up or down — the direction channel has nothing to say and spending colour there
-would make it mean two things.
+A corollary: **quote the quantity whose sign matches its meaning.** FX mover
+cards report the currency's own move rather than the published local-currency-
+per-dollar rate, so the arrow and consequence colour cannot contradict one
+another.
 
 **Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
 
@@ -158,16 +150,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 - **The rule that decides what exists.** A card earns a screen if a reader who
   gives it four seconds can tell someone else something true they did not know.
-  Everything that fails becomes a row on a comparison card, or it is not in the
-  app. That is why fifteen currencies are one card, thirty exchanges are none,
-  and 101 famine areas are one. Applied to the live payloads it cuts ~80
-  candidate cards to ~25.
+  Everything that fails is not in the primary deck. Applied to the live
+  payloads it cuts dozens of candidate readings to a focused graph set.
 - **Live analysis is the point**, owned by `CardFrame`. The recurring surface
   shows the reading, graph, pipeline-written `standing` analysis and movement.
   It does not repeat related headlines already covered by that analysis, and
-  it has no static-definition info control. Graph builders do not carry
-  `whatItIs`; dormant comparison/condition builders may retain it for a future
-  surface, but it neither satisfies the deck gate nor renders there.
+  it has no static-definition info control. Static copy does not satisfy the
+  deck gate or travel in the card model.
 - **The hierarchy follows the kind of claim.** A measured quantity leads with
   its reading, unit and movement before naming the series; a belief states its
   question before showing the probability, because a percentage without an
@@ -192,39 +181,24 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   gold-to-silver ratio arrive in identical weight, and the reader can only
   tell them apart by already knowing which cards are event-gated — which is
   knowing the implementation. It is an **ink step, never a colour**: the
-  chromatic budget is spent on `CardDelta` and `colors.determination`, and a
-  third accent costs both of them their meaning. Event-dated cards in
-  `buildConditionCards` carry it, as does a strait whose total traffic fell at
-  least 30%; IPC does not, because its payload supplies a covered
-  period rather than a trustworthy publication timestamp.
-- **Pipeline analysis replaces a duplicate definition.** The fallback is written
-  here and `standing` is written by the pipeline, and they were saying the same
-  thing on *every* reading card — brent, us-10y and vix each carried two
-  paragraphs of the same definition separated by a chart. The prefix-comparison
-  guard that was supposed to catch this missed all three by a word, because a
-  same-opening test cannot catch a same-meaning collision. The rule is
-  structural now (`definitionUnlessStanding`): if the pipeline wrote a
-  `standing`, the hand-written sentence is omitted. The pipeline text remains
-  visible beneath the graph; static fallback copy is not card chrome.
+  chromatic budget is spent on `CardDelta`. A strait whose total traffic fell
+  at least 30% carries it.
+- **Pipeline analysis replaces duplicate definitions.** The pipeline text
+  remains visible beneath the graph; static fallback copy is not part of the
+  card model.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
   three is whatever the chip cannot show — the baseline a strait is measured
   against, the range a belief has travelled, the second window on a monthly
   series. A percentage that appears in both is the same fact twice.
-- **Four builder kinds, two graph-deck kinds.** Builders may describe
-  `Reading · Comparison · Belief · Condition`, but `buildSwipeSections` admits
-  only graph-backed `Reading` and `Belief` cards. `CardView` is deliberately
-  typed to that narrower boundary so dormant table and condition payloads
-  cannot grow unreachable rendering branches.
+- **Two graph-card kinds.** Builders describe graph-backed `Reading` and
+  `Belief` cards. `CardView` is typed to that boundary so unreachable table or
+  condition rendering branches cannot return unnoticed.
 - **A card ships because it changed, not because it matters.** This is a news
   app: a screen earns its place by having something new on it this morning.
-  The audit that settled it — median famine analysis seven months old, conflict
-  window 145 days behind, one genocide determination 2,902 days old — is in the
-  header of `lib/cards/conditions.ts`, and those cards are now gated on their
-  own data being new. Apply the same test to anything added here.
+  Apply the same test to anything added here.
 - **Builders are pure functions in `lib/cards/`**, not components —
-  `buildInstrumentCards` (markets, shipping and outlook), `buildConditionCards`. They
-  return a shorter column
+  `buildInstrumentCards` covers markets, shipping and outlook. It returns a shorter column
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.

@@ -17,11 +17,8 @@ function graph(id: string, why = `${id} live analysis`): ReadingCard {
 function columns(overrides: Partial<InstrumentColumns> = {}): InstrumentColumns {
   return {
     markets: [],
-    currencies: [],
     straits: [],
     predictions: [],
-    calendar: [],
-    attention: [],
     ...overrides,
   };
 }
@@ -30,8 +27,7 @@ describe('buildSwipeSections', () => {
   it('keeps three specific graph desks and routes each payload family truthfully', () => {
     const sections = buildSwipeSections(
       columns({
-        markets: [graph('brent'), graph('vix')],
-        currencies: [graph('rand')],
+        markets: [graph('brent'), graph('vix'), graph('rand')],
         straits: [graph('strait-hormuz')],
         predictions: [graph('prediction')],
       }),
@@ -50,25 +46,21 @@ describe('buildSwipeSections', () => {
   });
 
   it('rejects static copy, non-graphs and malformed histories from every deck', () => {
-    const staticGraph = graph('static', '');
-    staticGraph.whatItIs = 'Hard-coded definition';
+    const noAnalysis = graph('no-analysis', '');
     const malformed = graph('malformed');
     malformed.series = { values: [1], periods: ['a'], label: 'bad' };
-    const comparison: Card = {
-      id: 'wikipedia',
-      kind: 'comparison',
-      kicker: 'attention',
-      title: 'Wikipedia attention',
+    const noSeries: Card = {
+      id: 'no-series',
+      kind: 'reading',
+      kicker: 'market',
+      title: 'No history',
       reading: '1',
-      why: 'Pipeline prose cannot turn rows into a time series.',
-      rows: [{ label: 'one', value: '1' }],
+      why: 'Pipeline prose cannot turn a reading into a time series.',
     };
 
     const sections = buildSwipeSections(
       columns({
-        markets: [graph('brent'), staticGraph, malformed],
-        attention: [comparison],
-        calendar: [graph('calendar')],
+        markets: [graph('brent'), noAnalysis, malformed, noSeries],
       }),
       [],
     );

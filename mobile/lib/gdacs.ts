@@ -14,9 +14,7 @@
 import type { GdacsAlert } from '@shared/types';
 import { ageDaysFromIso } from './time';
 
-export type { SeverityHero } from '@shared/gdacs';
 export {
-  detailKey,
   displaySourceName,
   EVENT_TYPE_EYEBROW,
   parseSeverityHero,

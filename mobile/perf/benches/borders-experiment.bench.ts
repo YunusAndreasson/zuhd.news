@@ -31,8 +31,11 @@ const topo = countriesTopo as unknown as TopoWithObjects;
 const pre = presimplify(topo);
 const s50 = simplify(pre, 0.5) as unknown as TopoWithObjects;
 const s15 = simplify(pre, 0.15) as unknown as TopoWithObjects;
-const bordersSimp = mesh(s50, s50.objects.countries!, (a, b) => a !== b);
-const bordersMed = mesh(s15, s15.objects.countries!, (a, b) => a !== b);
+const countries50 = s50.objects.countries;
+const countries15 = s15.objects.countries;
+if (!countries50 || !countries15) throw new Error('missing simplified countries topology');
+const bordersSimp = mesh(s50, countries50, (a, b) => a !== b);
+const bordersMed = mesh(s15, countries15, (a, b) => a !== b);
 
 function mkPg() {
   const proj = geoOrthographic().scale(150).translate([150, 150]);

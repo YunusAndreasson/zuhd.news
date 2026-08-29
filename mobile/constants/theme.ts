@@ -124,14 +124,6 @@ export const DARK_COLORS = {
   toneFavorableText: '#82a98a',
   toneUnfavorableText: '#a98080',
   toneNeutralText: '#8298a9',
-  // The app's second chromatic break, and the only one besides `dome`.
-  //
-  // It exists for exactly one thing: a card reporting that a named body has
-  // published a named document finding genocide. Nothing else may use it —
-  // not severity, not a red alert level, not a falling number. The rule that
-  // makes a single accent work is that the accent means one thing, and the
-  // moment this red is spent on a market move it stops meaning this.
-  determination: '#f5372b',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -178,10 +170,6 @@ export const LIGHT_COLORS = {
   toneFavorableText: '#3f6b48',
   toneUnfavorableText: '#884d51',
   toneNeutralText: '#475f70',
-  // See DARK_COLORS.determination. Deepened on cream for the same reason
-  // `dome` is: the dark-mode red sits near 3:1 against #f5f2ed and fails AA
-  // as body text. #c62518 clears 5:1 while staying the same hue.
-  determination: '#c62518',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
@@ -727,9 +715,6 @@ export type TextTone =
   | 'favorable'
   | 'unfavorable'
   | 'neutral'
-  /** Reserved for a genocide determination and nothing else — see the
-   *  `determination` entry in the palettes. */
-  | 'determination'
   /** Text sitting on an inverted (colors.text-filled) surface — resolves to
    *  `colors.bg`. Used by high-visibility chrome like the onboarding hint
    *  pill; still monochrome, so "color carries meaning" holds. */
@@ -753,8 +738,6 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
       return colors.toneUnfavorableText;
     case 'neutral':
       return colors.toneNeutralText;
-    case 'determination':
-      return colors.determination;
     case 'inverse':
       return colors.bg;
   }

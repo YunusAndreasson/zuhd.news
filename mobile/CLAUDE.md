@@ -138,20 +138,12 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   surface. Hand-written fallback definitions are not rendered in the graph
   decks; static copy does not earn a card. Related articles remain ranking
   metadata and are not repeated below analysis that already names the news.
-- **`standing` is authoritative, so a fallback definition is usually omitted.** The two
-  were written by different hands and were saying the same thing on *every*
-  reading card — brent, us-10y and vix each carried two definitions of
-  themselves separated by a chart. The 25-character prefix guard that was meant
-  to catch this missed all three by a word: a same-opening test cannot catch a
-  same-meaning collision. `definitionUnlessStanding` is structural instead — if
-  the pipeline wrote one, the app does not add a second. Prediction-contract
-  context stays concise on every belief card because a reordered deck may open
-  on any one of them.
-- **Quote the thing the reader owns, or the sign fights the colour.** The FX
-  table printed the *rate* — rupees per dollar — where up means your money buys
-  less, so it showed "+5.6%" in rose beside "−0.8%" in sage. No caption fixes
-  that; a reader does not re-derive the denominator, they read the sign. Rows
-  and the mover chips report the currency's own move now (`currencyMove`, the
+- **`standing` is authoritative.** Static fallback definitions are not part of
+  the graph-card model, so a reading cannot carry two definitions separated by
+  its chart.
+- **Quote the thing the reader owns, or the sign fights the colour.** FX rates
+  are published as local currency per dollar, where up means your money buys
+  less. Mover chips report the currency's own move (`currencyMove`, the
   exact reciprocal — a rate up 5.6% is a currency down 5.3%, not 5.6%), which
   also retired the three lines of part two that existed only to explain the
   inversion.
@@ -176,9 +168,9 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
     grey in its own sheet. Nothing in any of those files mentioned the others.
     A fifth answer is the regression; a row in `RISE_MEANS` is the change.
   - **Pass a literal `riseMeans` only when the card has inverted the quantity.**
-    The FX table and the mover cards quote `currencyMove`, the reciprocal of
-    the published rate, so they invert the meaning with it. Everywhere else,
-    call the table — that is what stops a card and its sheet drifting.
+    FX mover cards quote `currencyMove`, the reciprocal of the published rate,
+    so they invert the meaning with it. Everywhere else, call the table — that
+    is what stops a card and its sheet drifting.
 - **The builders are pure and tested** (`lib/cards/`). Card arithmetic is
   pinned in `__tests__/cards-*.test.ts`, not eyeballed in a simulator, because
   the failure mode is a plausible wrong number rather than a crash. Two of them
@@ -190,15 +182,6 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
 - **A thread kicker needs `threadArticleCount > 1`.** Every article carries
   `threadArc` and `threadDay`; 38 of 40 carry them with a count of one, where
   "developing, day 13" is a claim the data does not support.
-- **`useDeterminations` is the one network-only hook.** A genocide
-  determination is a citation, and rendering one from disk asserts a finding on
-  a launch where nothing confirmed it. `NEVER_PERSIST` keeps it off disk and
-  there is no bundled fallback — no network, no card. This is the arrangement
-  `41732ffc`'s revert note asked for.
-- **`colors.determination` is for that card and nothing else.** A second
-  chromatic accent only works while it means one thing; spend it on a falling
-  market and it stops meaning this.
-
 ## Primitives live at
 
 `mobile/components/primitives/` — `Text`, `Stack`, `Box`, `Screen`, `Pressable`, `IconButton`, `Icon`. Import from `./primitives`.

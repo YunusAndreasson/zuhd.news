@@ -40,14 +40,14 @@ const READING_SCALE = 1.55;
 
 /** The column's own vertical padding — `paddingTop` plus `paddingBottom` from
  *  `styles.column`. It sits on the ScrollView's content container, outside the
- *  view whose height `onContentLayout` measures, so any comparison between
+ *  view whose height `onContentLayout` measures, so comparing
  *  that height and the page has to add it back. Kept beside the style it
  *  mirrors; the two must move together. */
 const COLUMN_PAD_V = SPACING.md + (SPACING.xxl + SPACING.md);
 
 /** A reading that has grown past ~11 characters ("10,086,781") no longer fits
  *  the phone at full scale, and shrinking the type is better than truncating a
- *  number — a famine figure missing its last digit is a different figure. */
+ *  number. */
 const LONG_READING = 9;
 const LONG_READING_SCALE = 1.25;
 

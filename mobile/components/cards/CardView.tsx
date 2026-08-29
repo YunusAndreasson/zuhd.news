@@ -41,14 +41,9 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
       {figures.map((f, i) => (
         <View
           // Index-keyed, and the label is carried along only so the key stays
-          // readable in a React trace. Keying on the label alone was wrong the
-          // moment two figures could share one: the calendar prints a date per
-          // row and a central bank can publish twice in a day — today's file
-          // has US GDP and US PCE both on 26 Aug, which React reported as
-          // "Encountered two children with the same key, `26 Aug`" and which
-          // lets it drop or duplicate a row. A figure list is positional,
-          // rebuilt whole by a pure builder and never reordered, so the index
-          // is the honest identity here.
+          // readable in a React trace. A figure list is positional, rebuilt
+          // whole by a pure builder and never reordered, so the index is the
+          // honest identity here even when two labels match.
           key={`${i}-${f.label}`}
           style={[
             styles.figureRow,

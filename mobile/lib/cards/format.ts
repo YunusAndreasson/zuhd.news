@@ -115,15 +115,6 @@ export function formatReading(value: number, unit?: string): string {
   return Math.round(value).toLocaleString('en-US');
 }
 
-/** `formatReading` with the unit attached, hugging single-character and `%`
- *  units and spacing the rest — "4.69%", "$/bbl 88.90" reads wrong, so units
- *  that lead with a currency mark are placed by the caller. */
-export function formatReadingWithUnit(value: number, unit?: string): string {
-  const s = formatReading(value, unit);
-  if (!unit) return s;
-  return unit.length === 1 || unit === '%' ? `${s}${unit}` : `${s} ${unit}`;
-}
-
 /** A signed percentage, one decimal, with a true minus sign rather than a
  *  hyphen — the column is typographic, not code. */
 export function formatSignedPct(pct: number): string {
@@ -236,8 +227,8 @@ export interface Nisab {
 /** The two classical weights. Stated here, once, because the card states them
  *  to the reader — the app takes a position rather than implying there is only
  *  one, the same way the prayer lines name Umm al-Qura. */
-export const NISAB_GOLD_GRAMS = 85;
-export const NISAB_SILVER_GRAMS = 595;
+const NISAB_GOLD_GRAMS = 85;
+const NISAB_SILVER_GRAMS = 595;
 
 /**
  * Zakat becomes due on wealth held above the nisab for a lunar year. Two

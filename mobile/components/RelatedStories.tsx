@@ -15,7 +15,7 @@ export const MAX_RELATED = 3;
  *  the politics fallback — prefer articles that carry their real `category`
  *  (HomeScreen's news river attaches it). The tap handler re-resolves the
  *  true category from the feed either way; this only feeds the row label. */
-export function resolveCategory(article: Article): Category {
+function resolveCategory(article: Article): Category {
   return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';
 }
 

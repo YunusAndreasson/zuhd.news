@@ -23,19 +23,15 @@ function hasGraphAndAnalysis(card: Card): card is GraphCard {
 /**
  * Turn concrete payload pools into the three graph desks promised by the rail.
  *
- * Attention tables, calendars, humanitarian snapshots and currency comparison
- * tables do not enter these decks. Missing payloads simply shorten the
- * relevant deck rather than weakening the rule.
+ * Missing payloads simply shorten the relevant deck rather than weakening the
+ * rule.
  */
 export function buildSwipeSections(
   columns: InstrumentColumns,
   articles: Article[],
 ): Record<DataSection, SwipeCard[]> {
   return {
-    markets: prepareSwipeCards(
-      [...columns.markets, ...columns.currencies].filter(hasGraphAndAnalysis),
-      articles,
-    ),
+    markets: prepareSwipeCards(columns.markets.filter(hasGraphAndAnalysis), articles),
     shipping: prepareSwipeCards(columns.straits.filter(hasGraphAndAnalysis), articles),
     outlook: prepareSwipeCards(columns.predictions.filter(hasGraphAndAnalysis), articles),
   };

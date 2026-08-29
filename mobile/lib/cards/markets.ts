@@ -1,12 +1,5 @@
-import type {
-  Article,
-  Chokepoint,
-  CompareRow,
-  Indicator,
-  TrendEvent,
-  TrendsSnapshot,
-} from '@shared/types';
-import { chokepointValence, type RiseMeans, riseMeansFor, valenceOfChange } from '../valence';
+import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
+import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
 import {
   deltaFrom,
   formatCount,
@@ -21,7 +14,7 @@ import {
   windowChange,
   windowPointChange,
 } from './format';
-import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './types';
+import type { BeliefCard, Card, CardDelta, ReadingCard } from './types';
 
 /**
  * The instrument columns, no network call the app was not already making.
@@ -36,8 +29,8 @@ import type { BeliefCard, Card, CardDelta, ConditionCard, ReadingCard } from './
  * What is *not* here is the point of the file. Thirty exchanges, the S&P, the
  * NASDAQ, TSMC, copper, TTF, retail gasoline and WTI all have live series and
  * none of them get a screen: an index level is not a fact about a life, and a
- * second crude benchmark teaches nothing the first did not. Fifteen currencies
- * are one card, because a rate on its own compares to nothing.
+ * second crude benchmark teaches nothing the first did not. Currency readings
+ * appear only when their own move clears the materiality threshold.
  */
 
 /** How many observations back a daily series looks when reporting "what
@@ -395,116 +388,6 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
   };
 }
 
-// ---------------------------------------------------------------------------
-// Fifteen currencies
-// ---------------------------------------------------------------------------
-
-/**
- * A single exchange rate compares to nothing — 276 rupees to the dollar is a
- * number, not news. Fifteen of them side by side is a reading of where
- * pressure is: today only three of the fifteen lost ground, which is the
- * opposite of what a reader who follows the ruble or the lira would guess.
- */
-function currenciesCard(snapshot: TrendsSnapshot, articles: Article[]): Card | null {
-  const fx = snapshot.indicators.filter((i) => i.source === 'oer');
-  if (fx.length < 3) return null;
-
-  const scored = fx
-    .map((indicator) => {
-      const change = windowChange(indicator, indicator.values.length - 1);
-      return change ? { indicator, change } : null;
-    })
-    .filter(
-      (x): x is { indicator: Indicator; change: NonNullable<ReturnType<typeof windowChange>> } =>
-        x !== null,
-    )
-    .sort((a, b) => b.change.pct - a.change.pct);
-  if (scored.length === 0) return null;
-
-  const weakened = scored.filter((s) => s.change.pct > 0);
-  // A swipe card must remain a single screen. Keep the full set for the
-  // headline, then show both ends of the distribution: the currencies under
-  // the most pressure and those gaining the most. Rendering all fifteen hid
-  // the final rows and the dated takeaway behind the action bar.
-  const visible = scored.length > 8 ? [...scored.slice(0, 4), ...scored.slice(-4)] : scored;
-  const rows: CompareRow[] = visible.map(({ indicator, change }) => ({
-    // The pipeline's label already reads as a currency name; the unit carries
-    // the pairing ("PKR / USD"), so the row does not repeat it.
-    label: indicator.label,
-    value: formatSignedPct(currencyMove(change.pct)),
-    // A rate rising means more local currency per dollar — the currency
-    // weakened. The sign in the value is the direction; the tone says what
-    // that direction means for someone holding it.
-    //
-    // Below the noise floor the row goes slate rather than sage or rose.
-    // Fifteen rows are the one place in the app where the same thing is
-    // measured the same way over the same window, so "did this move" is
-    // answerable here in a way it is not for a chip on a single reading — and
-    // a pound that moved a tenth of a per cent in a month painted the same
-    // rose as a ruble that moved five and a half. That is the colour telling
-    // the reader something untrue. Slate says it moved and it does not matter,
-    // which is both true and a pill, so the table still scans as fifteen
-    // measured currencies rather than nine findings and six gaps.
-    //
-    // The tone reads the quantity the row prints — the currency, not the rate
-    // — so sign and colour say the same thing: a minus is rose, a plus is
-    // sage. That is the point of quoting the currency rather than its rate,
-    // and it is why this passes a literal instead of `riseMeansFor`, which
-    // answers for the published series and would therefore be inverted here.
-    tone:
-      Math.abs(change.pct) < FX_NOISE_FLOOR
-        ? 'neutral'
-        : valenceOfChange(currencyMove(change.pct), 'favorable'),
-    weight: Math.abs(change.pct),
-    cc: indicator.countryTags?.[0],
-  }));
-
-  const window = scored[0]?.change;
-  const first = scored[0];
-
-  return {
-    id: 'currencies',
-    kind: 'comparison',
-    kicker: 'currency',
-    title: 'Against the dollar',
-    reading: `${weakened.length} of ${scored.length}`,
-    readingNote: 'weakened this month',
-    // One sentence, and it is the one a reader cannot work out from the table.
-    // The sentence that used to open this ("How much more, or less, of each
-    // currency one US dollar bought over the last month") said what the title
-    // and the column header already say twice over, and it cost three lines of
-    // a card that has fifteen rows to fit. What survives is the part that is
-    // genuinely counter-intuitive: the number going *up* is the bad direction.
-    // One sentence, and it is the consequence rather than the definition. The
-    // three lines this used to open with explained the denominator, which the
-    // table no longer inverts and the reader therefore no longer needs.
-    whatItIs:
-      'What a month did to each currency against the dollar. A currency that lost ground pays more for imports, fuel and dollar debt at home.',
-    changed:
-      window && first
-        ? `Measured since ${window.from}. ${first.indicator.label} moved furthest, ${formatSignedPct(currencyMove(first.change.pct))}.`
-        : undefined,
-    // No `why`. It used to borrow the standing paragraph of whichever
-    // currency had moved most, which put "The Russian ruble's exchange rate
-    // against the dollar…" underneath a card about all fifteen — and that
-    // paragraph now has a card of its own directly below this one. Part two
-    // already carries the mechanism this card is teaching (a rising number is
-    // a weaker currency, and what that does to an import bill), so a fourth
-    // part here would be a third explanation of the same thing.
-    rows,
-    rowsLabel: scored.length > 8 ? 'month’s weakest and strongest' : 'against the dollar',
-    related: relatedForTags(
-      articles,
-      scored.flatMap(({ indicator }) => indicator.topicTags ?? []),
-    ),
-    sourceLabel: first?.indicator.sourceLabel,
-  };
-}
-
-/** A month's move smaller than this is the rate ticking, not the currency
- *  moving, and a row that carries it in colour is overstating what happened. */
-const FX_NOISE_FLOOR = 0.5;
-
 /**
  * The currency's move, from the rate's.
  *
@@ -544,18 +427,13 @@ const FX_MOVER_LIMIT = 2;
 /**
  * The currencies that actually moved, one screen each.
  *
- * The rule this file opens with — "a rate on its own compares to nothing" — is
- * why fifteen currencies are one comparison card, and it still holds for a
- * rate. It does not hold for a *move*: a currency 5% weaker against the dollar
+ * A rate on its own still compares to nothing. That does not hold for a
+ * *move*: a currency 5% weaker against the dollar
  * in a month has repriced every import its country buys, and that is a fact
- * about a life rather than a number on a table. So the table stays, and the
- * two currencies whose rows are the news get the treatment the news gets —
+ * about a life rather than a number on a table. The two strongest moves get
+ * the treatment the news gets —
  * their own chart, their own standing paragraph, their own tie to today's
  * stories.
- *
- * It is also what makes the column swipeable. `currencies` was a single card:
- * the vertical axis, which the whole app teaches you to use, dead-ended on the
- * first screen.
  */
 function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard[] {
   return snapshot.indicators
@@ -847,209 +725,23 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
 }
 
 // ---------------------------------------------------------------------------
-// Attention
-// ---------------------------------------------------------------------------
-
-/** Wikipedia's own label carries the source in it. The card already says
- *  where the numbers come from. */
-const stripWikiSuffix = (label: string) => label.replace(/\s*—\s*Wikipedia views$/, '');
-
-/**
- * What the world was actually looking up.
- *
- * Raw pageviews are a population ranking — the United States article is read
- * more than the Strait of Hormuz article every single day, and always will be.
- * Measured against each subject's own recent average, the same numbers say
- * something a reader cannot get anywhere else: where curiosity moved.
- *
- * It sits in `attention`: pageviews are observed behaviour, not a market price
- * or a prediction about what happens next.
- */
-function attentionCard(snapshot: TrendsSnapshot, articles: Article[]): Card | null {
-  const wiki = snapshot.indicators.filter((i) => i.source === 'wikipedia');
-  if (wiki.length < 3) return null;
-
-  const scored = wiki
-    .map((indicator) => {
-      const values = indicator.values;
-      if (values.length < 4) return null;
-      const latest = values[values.length - 1];
-      const history = values.slice(0, -1);
-      const baseline = history.reduce((sum, v) => sum + v, 0) / history.length;
-      if (latest == null || !Number.isFinite(latest) || !(baseline > 0)) return null;
-      return { indicator, latest, baseline, ratio: latest / baseline };
-    })
-    .filter(
-      (x): x is { indicator: Indicator; latest: number; baseline: number; ratio: number } =>
-        x !== null,
-    )
-    .sort((a, b) => b.ratio - a.ratio);
-  if (scored.length < 3) return null;
-
-  // Furthest from its own normal, in either direction. A collapse in interest
-  // is as much a fact as a spike, and often the more surprising one.
-  const mover = [...scored].sort((a, b) => Math.abs(b.ratio - 1) - Math.abs(a.ratio - 1))[0];
-  if (!mover) return null;
-
-  // Show both ends of the distribution. Eight rows fit without turning the
-  // card into an inner scroll view that fights the deck.
-  const visible = scored.length > 8 ? [...scored.slice(0, 4), ...scored.slice(-4)] : scored;
-  const rows: CompareRow[] = visible.map(({ indicator, ratio }) => ({
-    label: stripWikiSuffix(indicator.label),
-    value: `${Math.round(ratio * 100)}%`,
-    // Slate, every row, because the value printed *is* a move — per cent of a
-    // subject's own normal — and the app has nothing to say about which way is
-    // the good way. Untinted, these were the one comparison table in the app
-    // whose rows were grey pills next to a table whose rows were coloured, and
-    // the difference read as a missing signal rather than a withheld one.
-    tone: 'neutral' as const,
-    // Distance from normal, not the rate itself — otherwise the bars would
-    // rank by how popular a subject is, which is the thing being corrected for.
-    weight: Math.abs(ratio - 1),
-    cc: indicator.countryTags?.[0],
-  }));
-
-  return {
-    id: 'attention',
-    kind: 'comparison',
-    kicker: 'attention',
-    title: 'Wikipedia attention',
-    reading: `${Math.round(mover.ratio * 100)}%`,
-    readingNote: `of normal · ${stripWikiSuffix(mover.indicator.label)}`,
-    // The reading already says "of normal". A second chip restating the same
-    // movement as "above normal" made readers reconcile 1772% with 1672%
-    // before they reached the actual comparison.
-    whatItIs:
-      'How many people opened each Wikipedia article today, set against that subject’s own recent average. It reads as where curiosity went, which is not where the news is.',
-    changed: `${stripWikiSuffix(mover.indicator.label)} drew ${formatCount(mover.latest)} daily views, versus a recent average of ${formatCount(mover.baseline)}.`,
-    why: mover.indicator.standing,
-    rows,
-    rowsLabel: scored.length > 8 ? 'furthest above and below normal' : 'against recent normal',
-    related: relatedForTags(articles, mover.indicator.topicTags),
-    sourceLabel: mover.indicator.sourceLabel,
-  };
-}
-
-// ---------------------------------------------------------------------------
-// What is scheduled
-// ---------------------------------------------------------------------------
-
-/** How many of the calendar's entries reach the card. Four fits a screen and
- *  covers the near horizon; the rest are a list nobody reads standing up. */
-const CALENDAR_LIMIT = 4;
-
-/**
- * How close the next entry has to be before the calendar is worth a screen.
- *
- * The calendar is the one payload in the app that cannot go stale and cannot
- * be news either: every entry is correct for months and none of them changes.
- * Ungated it is the same four lines every morning — and the live file makes
- * that concrete, with a 34-day gap between the 5 November Bank of England
- * decision and the 9 December FOMC. That is the exact failure the freshness
- * gates in `lib/cards/conditions.ts` exist to prevent, arrived at from the
- * other direction: not data too old to be news, but data too far ahead to be.
- *
- * Ten days is about the distance at which a rate decision starts being priced
- * and written about rather than merely diarised.
- */
-const CALENDAR_HORIZON_DAYS = 10;
-
-/** The only card in the app about the future rather than the present. Most
- *  economic news is scheduled weeks ahead, which is itself the lesson: the
- *  surprise is never the date, only the number. */
-function calendarCard(snapshot: TrendsSnapshot, now: Date): ConditionCard | null {
-  const events = snapshot.events;
-  if (!events || events.length === 0) return null;
-  const today = now.toISOString().slice(0, 10);
-  const horizon = new Date(now.getTime() + CALENDAR_HORIZON_DAYS * 86_400_000)
-    .toISOString()
-    .slice(0, 10);
-  const upcoming: TrendEvent[] = events
-    .filter((e) => e.date >= today)
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(0, CALENDAR_LIMIT);
-  const next = upcoming[0];
-  // Nothing inside the horizon means nothing to say this morning. The old
-  // fallback here — show the first four entries whatever their dates — is
-  // what made this furniture: on a day with no upcoming events it printed
-  // *past* ones rather than admitting the column was shorter.
-  if (!next || next.date > horizon) return null;
-  const shown = upcoming;
-
-  return {
-    id: 'calendar',
-    kind: 'condition',
-    visualStyle: 'timeline',
-    kicker: 'ahead',
-    title: 'Key economic dates',
-    reading: String(shown.length),
-    readingNote: 'decisions and releases coming',
-    whatItIs:
-      'Central-bank decisions and statistical releases are published on a calendar set months in advance. The date is never the surprise; only the number is.',
-    changed: undefined,
-    why: next.standing,
-    figures: shown.map((e) => ({
-      label: formatEventDate(e.date),
-      value: e.title,
-      note: e.institution,
-      weight: Date.parse(e.date),
-    })),
-    sourceLabel: 'FRED · central-bank calendars',
-  };
-}
-
-const MONTH_NAMES = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
-
-/** "12 Aug" from "2026-08-12", without constructing a Date — the string is
- *  already the calendar day the institution published, and parsing it into a
- *  Date drags the device's timezone into a date that has none. */
-function formatEventDate(iso: string): string {
-  const [, month, day] = iso.split('-');
-  const monthIndex = Number(month) - 1;
-  const name = MONTH_NAMES[monthIndex];
-  if (!name || !day) return iso;
-  return `${Number(day)} ${name}`;
-}
-
-// ---------------------------------------------------------------------------
 
 export interface InstrumentCardInputs {
   trends: TrendsSnapshot | null;
   chokepoints: Chokepoint[];
   /** Today's feed, for the tie-to-the-news line. */
   articles: Article[];
-  /** Injected so the calendar card is testable without freezing the clock. */
-  now?: Date;
 }
 
 /** Instrument cards grouped by concrete payload subject before deck assembly. */
 export interface InstrumentColumns {
-  attention: Card[];
-  calendar: Card[];
   markets: Card[];
-  currencies: Card[];
   straits: Card[];
   predictions: Card[];
 }
 
 const EMPTY_COLUMNS: InstrumentColumns = {
-  attention: [],
-  calendar: [],
   markets: [],
-  currencies: [],
   straits: [],
   predictions: [],
 };
@@ -1068,14 +760,11 @@ export function buildInstrumentCards({
   trends,
   chokepoints,
   articles,
-  now = new Date(),
 }: InstrumentCardInputs): InstrumentColumns {
   if (!trends) return EMPTY_COLUMNS;
   const keep = (cards: (Card | null)[]): Card[] => cards.filter((c): c is Card => c !== null);
 
   return {
-    attention: keep([attentionCard(trends, articles)]),
-
     markets: keep([
       nisabCard(trends),
       staplesCard(trends, articles),
@@ -1092,14 +781,11 @@ export function buildInstrumentCards({
       // an app that tints it sage has taken a position on whether you should.
       indicatorCard(trends, articles, 'btc', 'crypto'),
       indicatorCard(trends, articles, 'eth', 'crypto'),
+      ...fxMoverCards(trends, articles),
     ]),
-
-    currencies: keep([currenciesCard(trends, articles), ...fxMoverCards(trends, articles)]),
 
     straits: keep(straitCards(chokepoints)),
 
     predictions: keep(beliefCards(trends, articles)),
-
-    calendar: keep([calendarCard(trends, now)]),
   };
 }
