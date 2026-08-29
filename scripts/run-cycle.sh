@@ -400,10 +400,18 @@ $BODY_LENGTHS
 
   # Stage 3.4: Live trends digest — feeds the edu-context stage. Fail-soft:
   # missing keys / missing sources just shrink the offered indicator list.
+  #
+  # 180s, not 120s. Measured on this box: the stage ran 45-88s while Polymarket
+  # kept 3 questions, and fixing its filter took that to 7 — seven price
+  # histories instead of three, and seven titles to shorten instead of three,
+  # measured at ~50s for the source against ~40s before. Peak would have landed
+  # near 98s against a 120s ceiling, and unlike the advisory stages this one is
+  # not fail-soft in the way that matters: exceeding the timeout kills the fetch
+  # and the cycle publishes with no trends snapshot at all.
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.4: Trends fetch ---" | tee -a "$LOG_FILE"
   T34=$SECONDS
-  timeout 120 node scripts/fetch-trends.js >> "$LOG_FILE" 2>&1
+  timeout 180 node scripts/fetch-trends.js >> "$LOG_FILE" 2>&1
   TRENDS_EXIT=$?
   echo "Trends exit: $TRENDS_EXIT — $((SECONDS - T34))s" | tee -a "$LOG_FILE"
 
