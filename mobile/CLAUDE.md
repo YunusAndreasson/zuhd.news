@@ -68,14 +68,14 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   prediction-market probabilities. Every admitted card needs a usable time
   series and live pipeline analysis (`why`). Wikipedia attention, calendars,
   static comparisons and humanitarian snapshots do not enter these decks.
-- **A current card says so, and `lead` is how.** An event-dated condition card
-  or a disrupted strait is on screen because its source cleared a freshness
+- **A current card says so, and `lead` is how.** A disrupted strait is on
+  screen because its source cleared a freshness
   gate; the nisab and the
   gold-to-silver ratio are standing reference that happens to have moved a
   little. They arrived in identical typographic weight, so the distinction was
   one only a reader who already knew the gating could make. `CardFrame` now
   prints `current ·` before the kicker — an ink step, never a colour, because the
-  chromatic budget is spent on `CardDelta` and `colors.determination`.
+  chromatic budget is spent on `CardDelta`.
 - **Straits are graphs, not a duplicate table.** `MiniGlobe` still locates all
   eleven and opens their detailed sheets; the concrete `straits` pool gives
   each usable total-traffic history its own swipe piece inside `shipping`. A fall of
@@ -93,9 +93,6 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   the gold/silver card graphs its ratio rather than flattening silver beneath
   gold on a shared dollar scale. A subtype or component may remain a secondary
   figure, but it cannot be the reading above a chart of something else.
-- **Long decks state their scope.** The kicker line carries a quiet `3 / 15`
-  position. The section underline still shows continuous progress; the count
-  answers the different question of how much is left.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;
   sheets do not.

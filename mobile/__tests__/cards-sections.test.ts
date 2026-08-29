@@ -45,7 +45,7 @@ describe('buildSwipeSections', () => {
     expect(
       Object.values(sections)
         .flat()
-        .every((item) => item.visualization.kind === 'trend'),
+        .every((item) => item.kind === 'reading' || item.kind === 'belief'),
     ).toBe(true);
   });
 

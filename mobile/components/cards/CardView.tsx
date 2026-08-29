@@ -4,9 +4,8 @@ import type { SharedValue } from 'react-native-reanimated';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { SwipeCard } from '../../lib/cards/rank';
-import type { CardFigure } from '../../lib/cards/types';
+import type { CardFigure, CardSeries } from '../../lib/cards/types';
 import { useOpenLink } from '../../lib/open-link';
-import { CompareBlock } from '../blocks/CompareBlock';
 import { TrendBlock } from '../blocks/TrendBlock';
 import { Text } from '../primitives';
 import { CardFrame } from './CardFrame';
@@ -25,24 +24,16 @@ import { CardFrame } from './CardFrame';
  * that could know the kind. The switch belongs here rather than at every
  * consumer.
  *
- * The four kinds differ only in the visual block below the title and context:
+ * The two graph-deck kinds differ only in the visual block below the title and context:
  *
  *   reading      a series, plus optional secondary figures
- *   comparison   rows that only mean something against each other
  *   belief       a series, framed as a price on an outcome rather than a fact
- *   condition    figures or rows describing a standing state
  */
 
-/** Secondary figures — nisab's two metals, the phase bands, the calendar.
+/** Secondary figures — nisab's two metals and similar paired readings.
  *  A two-column list rather than a table: the label is the question and the
  *  value is the answer, and a rule between them would imply a total. */
-const Figures = memo(function Figures({
-  figures,
-  visualStyle = 'distribution',
-}: {
-  figures: CardFigure[];
-  visualStyle?: 'distribution' | 'timeline';
-}) {
+const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
   const { colors } = useTheme();
   const maxWeight = Math.max(0, ...figures.map((figure) => figure.weight ?? 0));
   return (
@@ -64,25 +55,14 @@ const Figures = memo(function Figures({
             i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
           ]}
         >
-          {visualStyle === 'timeline' ? (
-            <View style={styles.timelineMark}>
-              {i > 0 ? (
-                <View style={[styles.timelineBefore, { backgroundColor: colors.rule }]} />
-              ) : null}
-              <View style={[styles.timelineDot, { backgroundColor: colors.textEmphasis }]} />
-              {i < figures.length - 1 ? (
-                <View style={[styles.timelineAfter, { backgroundColor: colors.rule }]} />
-              ) : null}
-            </View>
-          ) : null}
           <View style={styles.figureContent}>
             <View style={styles.figureMainRow}>
               <View style={styles.figureLabel}>
-                <Text variant="labelSm" tone="secondary">
+                <Text variant="caption" tone="secondary">
                   {f.label}
                 </Text>
                 {f.note ? (
-                  <Text variant="caption" tone="secondary">
+                  <Text variant="labelXs" tone="secondary">
                     {f.note}
                   </Text>
                 ) : null}
@@ -91,7 +71,7 @@ const Figures = memo(function Figures({
                 {f.value}
               </Text>
             </View>
-            {visualStyle === 'distribution' && maxWeight > 0 && f.weight != null ? (
+            {maxWeight > 0 && f.weight != null ? (
               <View style={[styles.figureBarTrack, { backgroundColor: colors.rule }]}>
                 <View
                   style={[
@@ -116,11 +96,13 @@ export const CardView = memo(function CardView({
   itemHeight,
   index,
   scrollY,
+  onInnerScrollConsumed,
 }: {
   card: SwipeCard;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
+  onInnerScrollConsumed?: (index: number) => void;
 }) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
@@ -128,9 +110,37 @@ export const CardView = memo(function CardView({
   }, [card.link, openLink]);
 
   return (
-    <CardFrame card={card} itemHeight={itemHeight} index={index} scrollY={scrollY}>
+    <CardFrame
+      card={card}
+      itemHeight={itemHeight}
+      index={index}
+      scrollY={scrollY}
+      onInnerScrollConsumed={onInnerScrollConsumed}
+    >
       {renderBody(card, onPress)}
     </CardFrame>
+  );
+});
+
+const CardTrend = memo(function CardTrend({
+  series,
+  onPress,
+}: {
+  series: CardSeries;
+  onPress?: () => void;
+}) {
+  return (
+    <TrendBlock
+      values={series.multi ? undefined : series.values}
+      series={series.multi}
+      periods={series.periods}
+      label={series.label}
+      unit={series.unit}
+      highlight={series.highlight}
+      variant="context"
+      scrubbable={false}
+      onPress={onPress}
+    />
   );
 });
 
@@ -140,51 +150,14 @@ function renderBody(card: SwipeCard, onPress: () => void) {
       return (
         <>
           {card.figures ? <Figures figures={card.figures} /> : null}
-          {card.series ? (
-            <TrendBlock
-              values={card.series.multi ? undefined : card.series.values}
-              series={card.series.multi}
-              periods={card.series.periods}
-              label={card.series.label}
-              unit={card.series.unit}
-              highlight={card.series.highlight}
-              variant="context"
-              scrubbable={false}
-            />
-          ) : null}
+          <CardTrend series={card.series} />
         </>
       );
 
     case 'belief':
-      return (
-        <TrendBlock
-          values={card.series.values}
-          periods={card.series.periods}
-          label={card.series.label}
-          unit={card.series.unit}
-          highlight={card.series.highlight}
-          variant="context"
-          // A card sits in a horizontal pager and the app is navigated by
-          // swiping. A chart-width scrubber eats that swipe.
-          scrubbable={false}
-          // The market page is the only way to check the claim, and a belief
-          // card that cannot be checked is just a number with a mood.
-          onPress={card.link ? onPress : undefined}
-        />
-      );
-
-    case 'comparison':
-      return <CompareBlock rows={card.rows} label={card.rowsLabel} variant="context" />;
-
-    case 'condition':
-      return (
-        <>
-          {card.figures ? <Figures figures={card.figures} visualStyle={card.visualStyle} /> : null}
-          {card.rows ? (
-            <CompareBlock rows={card.rows} label={card.rowsLabel} variant="article" />
-          ) : null}
-        </>
-      );
+      // The market page is the only way to check the claim, and a belief
+      // card that cannot be checked is just a number with a mood.
+      return <CardTrend series={card.series} onPress={card.link ? onPress : undefined} />;
   }
 }
 
@@ -199,7 +172,7 @@ const styles = StyleSheet.create({
     // straight off the bottom of part four.
     paddingVertical: SPACING.xs,
   },
-  figureLabel: { flexShrink: 1 },
+  figureLabel: { flexShrink: 1, gap: SPACING.xxs },
   figureContent: { flex: 1 },
   figureMainRow: {
     flexDirection: 'row',
@@ -214,23 +187,4 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   figureBarFill: { height: '100%' },
-  timelineMark: { width: SPACING.sm, alignItems: 'center' },
-  timelineDot: {
-    width: SPACING.xs,
-    height: SPACING.xs,
-    borderRadius: SPACING.xs,
-    marginTop: SPACING.xs,
-  },
-  timelineBefore: {
-    position: 'absolute',
-    top: 0,
-    width: StyleSheet.hairlineWidth,
-    height: SPACING.sm,
-  },
-  timelineAfter: {
-    position: 'absolute',
-    top: SPACING.sm,
-    bottom: -SPACING.sm,
-    width: StyleSheet.hairlineWidth,
-  },
 });

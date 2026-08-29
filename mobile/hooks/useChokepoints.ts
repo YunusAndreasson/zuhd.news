@@ -3,6 +3,8 @@ import { API_BASE } from '../constants/theme';
 import { isChokepointSnapshot } from '../lib/validate';
 import { useFetchJson } from './useFetchJson';
 
+const EMPTY_CHOKEPOINTS: Chokepoint[] = [];
+
 /** Fetches the ambient chokepoint snapshot. Cache-first so the layer is warm
  *  on relaunch; refreshes silently on app resume. Graceful degrade: any
  *  failure (network, malformed payload, missing endpoint) leaves the returned
@@ -11,5 +13,5 @@ export function useChokepoints(): { chokepoints: Chokepoint[]; ready: boolean } 
   const { data, ready } = useFetchJson(`${API_BASE}/api/chokepoints.json`, isChokepointSnapshot, {
     refreshOnResume: true,
   });
-  return { chokepoints: data?.chokepoints ?? [], ready };
+  return { chokepoints: data?.chokepoints ?? EMPTY_CHOKEPOINTS, ready };
 }

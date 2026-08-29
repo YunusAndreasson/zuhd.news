@@ -165,8 +165,27 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - **Live analysis is the point**, owned by `CardFrame`. The recurring surface
   shows the reading, graph, pipeline-written `standing` analysis and movement.
   It does not repeat related headlines already covered by that analysis, and
-  it has no static-definition info control. `whatItIs` may remain builder
-  fallback metadata, but it neither satisfies the deck gate nor renders there.
+  it has no static-definition info control. Graph builders do not carry
+  `whatItIs`; dormant comparison/condition builders may retain it for a future
+  surface, but it neither satisfies the deck gate nor renders there.
+- **The hierarchy follows the kind of claim.** A measured quantity leads with
+  its reading, unit and movement before naming the series; a belief states its
+  question before showing the probability, because a percentage without an
+  outcome has no meaning. The reading remains the largest type on both. Live
+  analysis is primary body copy; the range, baseline or second-window sentence
+  is supporting caption copy beneath it. Source attribution is the quietest
+  tier. Long titles scale but never truncate, and a card that still outgrows
+  the screen scrolls.
+- **Proximity carries the grouping.** Reading, unit and delta are one tight
+  group. The chart begins after an item gap; the explanatory group begins
+  after a larger group gap, with supporting movement copy kept close to the
+  analysis it qualifies. Do not add dividers or headings merely to restate
+  those groups.
+- **Colour is semantic, not sectional.** Sage, rose and slate belong to the
+  movement chip and retain their consequence meanings; belief moves are
+  neutral. Reading, title, analysis, chart structure and `current` stay in the
+  monochrome ink hierarchy. Do not tint sections or spend dome gold as card
+  decoration.
 - **`lead` says why the card is here at all.** A builder that gated a card on
   its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
   before the kicker. Without it a newly escalated hazard and the
@@ -192,11 +211,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   three is whatever the chip cannot show — the baseline a strait is measured
   against, the range a belief has travelled, the second window on a monthly
   series. A percentage that appears in both is the same fact twice.
-- **Four kinds, one dispatcher.** `Reading · Comparison · Belief · Condition`,
-  switched in `CardView`. This is the deliberate exception to the "no
-  data-driven dispatcher" rule below: a builder emits a union and `CardPager`
-  renders whatever comes out, so unlike a sheet there is no call site that
-  could know the kind.
+- **Four builder kinds, two graph-deck kinds.** Builders may describe
+  `Reading · Comparison · Belief · Condition`, but `buildSwipeSections` admits
+  only graph-backed `Reading` and `Belief` cards. `CardView` is deliberately
+  typed to that narrower boundary so dormant table and condition payloads
+  cannot grow unreachable rendering branches.
 - **A card ships because it changed, not because it matters.** This is a news
   app: a screen earns its place by having something new on it this morning.
   The audit that settled it — median famine analysis seven months old, conflict
@@ -211,8 +230,8 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   the arithmetic is pinned by tests rather than by looking at a simulator.
 - **The swipe boundary validates and ranks.** `buildSwipeSections` first
   requires a valid time series and pipeline analysis; `prepareSwipeCards` is the only
-  path from builder output into `CardPager`: it requires a meaningful visual
-  and explanatory copy, attaches numeric ranking metadata, and sorts urgent
+  path from builder output into `CardPager`: it requires explanatory copy,
+  computes ranking metadata internally, and sorts urgent
   updates before the strongest tie to today's news, unusual movement against
   the series' own history, and finally the builder's stable editorial order.
   Relevance uses the strongest linked story rather than summing matches, so a
@@ -226,10 +245,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   because a "daily" series holds observations, not days), and anything already
   in percent moves in **points** (`windowPointChange`) — a contract going 26 →
   86 moved 60 points, and "+231%" is arithmetic pretending to be journalism.
-- Cards reuse `TrendBlock` and `CompareBlock` at `variant="article"`. A
-  comparison row's `weight` is the magnitude and its `value` string carries the
-  sign; `tone` is only for a direction that means something to the person
-  holding it (a currency weakening), never for "number went down".
+- Graph cards reuse `TrendBlock` at `variant="context"`. Dormant comparison
+  builders still use `weight` as the raw magnitude and keep the sign in their
+  display-formatted `value`; `tone` is only for a direction that means
+  something to the person holding it (a currency weakening), never for
+  "number went down".
 
 ### Blocks (`components/blocks/`)
 - Three data-display components, used directly by the sheets that need them:
@@ -293,6 +313,11 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   silently disabled the whole mechanism), and `CardPager` corrects any resting
   offset the handoff leaves behind. The cost is one extra swipe to leave a tall
   card; the alternative was losing the source caption off the bottom.
+  When an inner card actually consumes a gesture, `CardPager` pins the parent
+  to its current page before Android can apply the gesture's leftover momentum;
+  the next swipe from the inner scroll's end may page normally. This prevents
+  one gesture both scrolling the card and skipping it, or parking the deck
+  between two cards.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use

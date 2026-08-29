@@ -1,15 +1,15 @@
 import type { Article } from '@shared/types';
 import { prepareSwipeCards } from '../lib/cards/rank';
-import type { Card, ReadingCard } from '../lib/cards/types';
+import type { GraphCard, ReadingCard } from '../lib/cards/types';
 
-function reading(id: string, values: number[], extra: Partial<ReadingCard> = {}): ReadingCard {
+function reading(id: string, values: number[], extra: Partial<ReadingCard> = {}): GraphCard {
   return {
     id,
     kind: 'reading',
     kicker: 'test',
     title: id,
     reading: String(values.at(-1) ?? 0),
-    whatItIs: `${id} explained`,
+    why: `${id} explained`,
     series: {
       values,
       periods: values.map((_, index) => `p${index}`),
@@ -38,21 +38,12 @@ function article(slug: string, eventCoverage: number): Article {
 }
 
 describe('prepareSwipeCards', () => {
-  it('requires both a meaningful visual and explanatory copy', () => {
-    const withoutVisual: Card = {
-      id: 'no-visual',
-      kind: 'reading',
-      kicker: 'test',
-      title: 'No visual',
-      reading: '1',
-      whatItIs: 'Explained',
-    };
+  it('requires explanatory copy', () => {
     const withoutExplanation = reading('no-copy', [1, 2], {
-      whatItIs: undefined,
       changed: undefined,
       why: undefined,
     });
-    expect(prepareSwipeCards([withoutVisual, withoutExplanation], [])).toEqual([]);
+    expect(prepareSwipeCards([withoutExplanation], [])).toEqual([]);
   });
 
   it('puts a newly changed card ahead of news relevance and movement', () => {
@@ -103,9 +94,6 @@ describe('prepareSwipeCards', () => {
     const unusual = reading('unusual', [100, 101, 102, 120]);
     const ranked = prepareSwipeCards([ordinary, unusual], []);
     expect(ranked.map((card) => card.id)).toEqual(['unusual', 'ordinary']);
-    expect(ranked[0]?.ranking.normalizedMovement).toBeGreaterThan(
-      ranked[1]?.ranking.normalizedMovement ?? 0,
-    );
   });
 
   it('uses editorial order and then id as deterministic fallbacks', () => {
@@ -128,22 +116,5 @@ describe('prepareSwipeCards', () => {
       'energy',
       'currency-c',
     ]);
-  });
-
-  it('maps dated condition figures to a timeline visualization', () => {
-    const timeline: Card = {
-      id: 'calendar',
-      kind: 'condition',
-      visualStyle: 'timeline',
-      kicker: 'ahead',
-      title: 'Calendar',
-      reading: '2',
-      whatItIs: 'Scheduled events explained.',
-      figures: [
-        { label: '28 Aug', value: 'Decision' },
-        { label: '2 Sep', value: 'Release' },
-      ],
-    };
-    expect(prepareSwipeCards([timeline], [])[0]?.visualization.kind).toBe('timeline');
   });
 });

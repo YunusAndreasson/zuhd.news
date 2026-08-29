@@ -316,8 +316,6 @@ describe('buildInstrumentCards', () => {
     expect(card?.readingNote).toBe('set by silver');
     expect(card?.changed).toContain('fell');
     expect(card?.changed).toContain('more wealth is zakatable');
-    expect(card?.whatItIs).toContain('85');
-    expect(card?.whatItIs).toContain('595');
     expect(card?.why).toBeUndefined();
   });
 
@@ -518,6 +516,7 @@ describe('buildInstrumentCards', () => {
     const moved = find(cards, 'strait-kerch');
     expect(moved).toBeDefined();
     expect(moved?.reading).toBe('0.9');
+    expect(moved?.kind === 'reading' ? moved.series?.values.at(-1) : undefined).toBe(0.9);
     // The distance from its own normal is the chip; the baseline it is
     // measured against stays in the sentence, because a percentage with
     // nothing to divide by is not a fact.
@@ -625,7 +624,6 @@ describe('buildInstrumentCards', () => {
       }),
     );
     const card = find(cards, 'strait-kerch');
-    expect(card?.whatItIs).toBe(blurb);
     expect(card?.why).toBe('Traffic has fallen to zero.');
   });
 
@@ -1024,22 +1022,14 @@ describe('buildConditionCards freshness gates', () => {
   });
 });
 
-describe('one definition per screen', () => {
-  it('drops the hand-written part two whenever the pipeline has written a part four', () => {
-    // The guard this replaced compared the first twenty-five characters, and
-    // brent, us-10y and vix all slipped past it by a word — so every reading
-    // card in the app was carrying two definitions of the same thing,
-    // separated by a chart. The rule is structural now: `standing` is
-    // authoritative, exactly as `types.ts` always said it was.
+describe('graph-card context', () => {
+  it('carries live analysis without a redundant static definition', () => {
     const columns = buildInstrumentCards({
       trends: snapshot([
         indicator({
           id: 'btc',
           label: 'Bitcoin',
           unit: '$',
-          // Says nothing the local sentence says, and is still the one that
-          // survives — because deciding that by string comparison is what
-          // failed.
           standing: 'Its price sets the tone for the rest of the digital-asset market.',
         }),
       ]),
@@ -1051,17 +1041,17 @@ describe('one definition per screen', () => {
     expect(btc?.why).toContain('sets the tone');
   });
 
-  it('falls back to the hand-written sentence for an indicator with no standing', () => {
+  it('does not substitute static copy when live analysis is absent', () => {
     const columns = buildInstrumentCards({
       trends: snapshot([indicator({ id: 'btc', label: 'Bitcoin', unit: '$' })]),
       chokepoints: [],
       articles: [],
     });
-    expect(columns.markets[0]?.whatItIs).toContain('no state issues');
+    expect(columns.markets[0]?.whatItIs).toBeUndefined();
     expect(columns.markets[0]?.why).toBeUndefined();
   });
 
-  it('gives every prediction swipe piece concise standalone context', () => {
+  it('does not carry unused static definitions on prediction cards', () => {
     const columns = buildInstrumentCards({
       trends: snapshot([
         indicator({ id: 'poly-a', label: 'A?', source: 'polymarket', unit: '%' }),
@@ -1072,9 +1062,7 @@ describe('one definition per screen', () => {
       articles: [],
     });
     expect(columns.predictions).toHaveLength(3);
-    expect(columns.predictions[0]?.whatItIs).toContain('pays out if this happens');
-    expect(columns.predictions[1]?.whatItIs).toContain('what traders are willing to risk');
-    expect(columns.predictions[2]?.whatItIs).toContain('what traders are willing to risk');
+    expect(columns.predictions.every((card) => card.whatItIs === undefined)).toBe(true);
   });
 });
 
@@ -1094,5 +1082,35 @@ describe('belief titles', () => {
       articles: [],
     });
     expect(columns.predictions[0]?.title).toBe('US invade Iran before 2027?');
+  });
+
+  it('restores words omitted by a compact pipeline label', () => {
+    const columns = buildInstrumentCards({
+      trends: snapshot([
+        indicator({
+          id: 'poly-fed',
+          label: 'Will there be no change in Fed interest rates…',
+          seriesId:
+            'will-there-be-no-change-in-fed-interest-rates-after-the-september-2026-meeting-615',
+          source: 'polymarket',
+          unit: '%',
+        }),
+        indicator({
+          id: 'poly-lula',
+          label: 'Will Luiz Inácio Lula da Silva win the 2026…',
+          seriesId: 'will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election',
+          source: 'polymarket',
+          unit: '%',
+        }),
+      ]),
+      chokepoints: [],
+      articles: [],
+    });
+    expect(columns.predictions[0]?.title).toBe(
+      'Will there be no change in Fed interest rates after the September 2026 meeting?',
+    );
+    expect(columns.predictions[1]?.title).toBe(
+      'Will Luiz Inácio Lula da Silva win the 2026 Brazilian presidential election?',
+    );
   });
 });

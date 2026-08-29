@@ -32,7 +32,10 @@ import {
   useChartDrawProgress,
 } from './shared';
 
-const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
+// Trend blocks live in article/card columns, both of which use
+// `articlePadding`. Matching that layout here avoids mounting the Skia chart
+// at one width and rebuilding every path after the first onLayout callback.
+const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.articlePadding * 2;
 
 type Pt = { x: number; y: number };
 
@@ -105,6 +108,7 @@ interface ChartProps {
   colors: ReturnType<typeof useTheme>['colors'];
   annotations?: TrendAnnotation[];
   scale: 'linear' | 'log';
+  showDataDots: boolean;
 }
 
 // Memoized: an active scrub gesture re-renders the parent TrendBlock on every
@@ -123,6 +127,7 @@ const Chart = memo(function Chart({
   colors,
   annotations,
   scale,
+  showDataDots,
 }: ChartProps) {
   const { seriesPaths, bandPath, points, minY, maxY } = useMemo(() => {
     const flat: number[] = [];
@@ -264,9 +269,17 @@ const Chart = memo(function Chart({
         opacity={crosshairOpacity}
         strokeWidth={StyleSheet.hairlineWidth}
       />
-      {points.map((p, i) => (
-        <Circle key={`tick-${i}`} cx={p.x} cy={p.y} r={DATA_DOT_R} color={colors.textEmphasis} />
-      ))}
+      {showDataDots
+        ? points.map((p, i) => (
+            <Circle
+              key={`tick-${i}`}
+              cx={p.x}
+              cy={p.y}
+              r={DATA_DOT_R}
+              color={colors.textEmphasis}
+            />
+          ))
+        : null}
       {annotations?.map((a, i) => {
         const pt = points[a.atIndex];
         if (!pt) return null;
@@ -568,6 +581,11 @@ export const TrendBlock = memo(function TrendBlock({
                 colors={colors}
                 annotations={annotations}
                 scale={scale}
+                // Point markers communicate the scrub stops in interactive
+                // charts. Card previews do not scrub, so mounting dozens of
+                // Skia circles there adds cost and visual noise without
+                // exposing any interaction or information the line lacks.
+                showDataDots={scrubbable}
               />
               {annotations?.map((a, i) => {
                 const pt = points[a.atIndex];

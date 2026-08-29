@@ -4,7 +4,12 @@ import { scaleLinear } from 'd3-scale';
 import { curveMonotoneX, line as d3Line } from 'd3-shape';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
+import {
+  cancelAnimation,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../primitives';
@@ -150,8 +155,13 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      cancelAnimation(progress);
+      progress.value = 1;
+      return;
+    }
     progress.value = withTiming(1, { duration: ANIMATION.long, easing: EASING.out });
+    return () => cancelAnimation(progress);
   }, [reduceMotion, progress]);
 
   const lineColor = accent ?? colors.textEmphasis;

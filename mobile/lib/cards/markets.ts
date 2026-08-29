@@ -182,8 +182,6 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
     reading: `${ratio.toFixed(1)}×`,
     readingNote: 'rice against wheat',
     delta,
-    whatItIs:
-      'The two grains most of the world eats, at the world price an importing government pays — not the price in a shop.',
     changed,
     why: wheat.standing,
     figures: [
@@ -209,44 +207,13 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
 // A single indicator, as a reading
 // ---------------------------------------------------------------------------
 
-/**
- * Part two, but only when part four is not already doing its job.
- *
- * Part two and part four are written by different hands — this file and the
- * pipeline — and they were not "sometimes" colliding. They were colliding on
- * every reading card in the app:
- *
- *   brent    "The benchmark price for a barrel of crude…"
- *            "The price of a barrel of North Sea crude, and the benchmark…"
- *   us-10y   "What the United States pays to borrow for ten years…"
- *            "The yield on ten-year US government debt, the price at which
- *             Washington borrows for a decade…"
- *   vix      "…It rises when people are frightened, which is why it is called
- *             the fear index."
- *            "…It rises when investors pay up for protection, which is why it
- *             is read as a gauge of fear in US equities."
- *
- * The guard this replaces compared the first twenty-five characters, and all
- * three of those slipped past it by a word. The lesson is that a same-opening
- * test cannot catch a same-*meaning* collision, and no string heuristic
- * reliably will — so the rule is now structural rather than clever:
- * **`standing` is authoritative**, exactly as the header of `types.ts` already
- * said it was, and the sentence written here is the fallback for the two
- * indicators in fifty that have no `standing`. One definition per screen.
- */
-function definitionUnlessStanding(
-  whatItIs: string,
-  standing: string | undefined,
-): string | undefined {
-  return standing?.trim() ? undefined : whatItIs;
-}
-
+/** A live indicator with its pipeline analysis. Static definitions stay out
+ * of the graph-card path: the section gate requires `standing` (`why`). */
 function indicatorCard(
   snapshot: TrendsSnapshot,
   articles: Article[],
   id: string,
   kicker: string,
-  whatItIs: string,
 ): ReadingCard | null {
   const indicator = byId(snapshot, id);
   if (!indicator) return null;
@@ -266,7 +233,6 @@ function indicatorCard(
     reading,
     readingNote: note,
     delta: monthly ? monthlyDelta(indicator, riseMeans) : dailyDelta(indicator, riseMeans),
-    whatItIs: definitionUnlessStanding(whatItIs, indicator.standing),
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
@@ -330,7 +296,6 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
     reading: `$${formatCount(n.threshold)}`,
     readingNote: `set by ${n.binding}`,
     delta,
-    whatItIs: `The wealth a person must hold for a lunar year before zakat falls due. It is defined by weight of metal, not by currency, so it moves with the metal price. This calculation uses the lower of 85 grams of gold and 595 grams of silver; ${n.binding === 'silver' ? 'silver' : 'gold'} sets today’s threshold.`,
     changed,
     figures: [
       {
@@ -410,8 +375,6 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
     reading: `${Math.round(ratio)}:1`,
     readingNote: 'ounces of silver to one of gold',
     delta,
-    whatItIs:
-      'The two metals wealth has been measured in for as long as it has been measured. The ratio between them is the oldest price still quoted.',
     changed:
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
@@ -633,10 +596,6 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
           'favorable',
           { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
         ),
-        whatItIs: definitionUnlessStanding(
-          `How many ${indicator.label.toLowerCase()} one US dollar buys. A rising number means it weakened, so imports, fuel and dollar debt all cost more at home.`,
-          indicator.standing,
-        ),
         // Ranked, not chosen — and the sentence says which rank, because "the
         // biggest move of the month" and "the second-biggest" are different
         // claims and only one of them is true of this card.
@@ -738,19 +697,18 @@ function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
     const traffic = trailingSevenDayAverage(c.series.total);
     const periods = c.series.periods.slice(c.series.periods.length - traffic.length);
     // The payload's published seven-day reading is authoritative. Using it at
-    // the endpoint also prevents a rounded headline and a decimal chart label
-    // from appearing to disagree.
-    if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = Math.round(last7);
+    // the endpoint prevents the headline and graph from reporting different
+    // quantities. Preserve its precision: rounding only the chart made a
+    // headline of 0.1 ships a day terminate at 0 on the graph.
+    if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
     return {
       id: `strait-${c.id}`,
       kind: 'reading' as const,
       lead: d <= -TOTAL_TRAFFIC_DISRUPTED,
-      kicker: 'chokepoint',
       title: c.name,
       reading: last7 == null ? '—' : formatQuantity(last7),
       readingNote: 'ships a day',
       delta: straitDelta(d),
-      whatItIs: c.blurb,
       changed:
         base != null ? `Its own 90-day normal is ${formatQuantity(base)} ships a day.` : undefined,
       why: straitWhy(c),
@@ -790,10 +748,59 @@ function straitCards(chokepoints: Chokepoint[]): ReadingCard[] {
  * people are willing to stake, which is a different and more honest thing —
  * and it is only worth a screen because the card can say that out loud.
  */
+const SLUG_CAPITALIZATION: Record<string, string> = {
+  fed: 'Fed',
+  us: 'US',
+  brazilian: 'Brazilian',
+  russian: 'Russian',
+  january: 'January',
+  february: 'February',
+  march: 'March',
+  april: 'April',
+  may: 'May',
+  june: 'June',
+  july: 'July',
+  august: 'August',
+  september: 'September',
+  october: 'October',
+  november: 'November',
+  december: 'December',
+};
+
+/** The compact pipeline label may end in a literal ellipsis. Its stable
+ * market slug still carries the omitted words, so restore them rather than
+ * presenting an incomplete question as deliberate UI truncation. */
+function completeBeliefTitle(indicator: Indicator): string {
+  const head = indicator.label.replace(/…\??$/, '').trim();
+  if (head === indicator.label || !indicator.seriesId) return indicator.label;
+
+  const slugWords = indicator.seriesId.split('-').filter(Boolean);
+  if (/^\d{2,}$/.test(slugWords.at(-1) ?? '')) slugWords.pop();
+  const headWords = head
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .split(/\s+/);
+
+  for (let length = Math.min(6, headWords.length); length >= 2; length -= 1) {
+    const tail = headWords.slice(-length);
+    const start = slugWords.findIndex((_, index) =>
+      tail.every((word, offset) => slugWords[index + offset] === word),
+    );
+    if (start < 0) continue;
+    const rest = slugWords.slice(start + length);
+    if (rest.length === 0) break;
+    const suffix = rest.map((word) => SLUG_CAPITALIZATION[word] ?? word).join(' ');
+    return `${head} ${suffix}?`;
+  }
+
+  return indicator.label;
+}
+
 function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
   return snapshot.indicators
     .filter((i) => i.source === 'polymarket')
-    .map((indicator, position) => {
+    .map((indicator) => {
       const value = latestOf(indicator);
       if (value == null) return null;
       const extremes = seriesExtremes(indicator);
@@ -806,18 +813,13 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
         // stripped the trailing "?" for tidiness, which turned the one mark
         // that tells a reader this is an open outcome rather than a
         // measurement into nothing.
-        title: indicator.label,
+        title: completeBeliefTitle(indicator),
         reading: `${Math.round(value)}%`,
-        readingNote: 'priced today',
         // No valence, and this is the clearest case for the rule: a contract
         // on a ceasefire holding and a contract on a candidate winning move
         // the same way on the screen, and the app has no business tinting
         // either of them green.
         delta: deltaFrom(change, null, { unit: 'points' }),
-        whatItIs:
-          position === 0
-            ? 'A contract that pays out if this happens. Its price reflects what traders are willing to risk on the outcome.'
-            : 'A contract price for this outcome, based on what traders are willing to risk.',
         // In points, never per cent: a contract going 26 → 86 moved 60 points,
         // and the chip says so. What is left for the sentence is the range,
         // which is the part that says how settled the belief is — a number
@@ -835,9 +837,6 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
           unit: '%',
           highlight: 'last',
         },
-        range: extremes
-          ? { min: extremes.min, max: extremes.max, minAt: extremes.minAt, maxAt: extremes.maxAt }
-          : undefined,
         related: relatedForTags(articles, indicator.topicTags),
         sourceLabel: indicator.sourceLabel,
         link: indicator.marketUrl,
@@ -1080,49 +1079,19 @@ export function buildInstrumentCards({
     markets: keep([
       nisabCard(trends),
       staplesCard(trends, articles),
-      indicatorCard(
-        trends,
-        articles,
-        'brent',
-        'energy',
-        'The benchmark price for a barrel of crude. Most of the world’s oil is sold at a premium or discount to it, so it is the number under every fuel price.',
-      ),
+      indicatorCard(trends, articles, 'brent', 'energy'),
       metalsPairCard(trends, articles),
       // The ten-year survives the cut that took the S&P and the NASDAQ with
       // it, on the rule that killed them: it can be explained in one sentence
       // to someone who has never met it, and it says something about an
       // ordinary life. An index *level* cannot do either.
-      indicatorCard(
-        trends,
-        articles,
-        'us-10y',
-        'money',
-        'What the United States pays to borrow for ten years. Almost every other long-term rate on earth — mortgages, sovereign debt, project finance — is priced off it.',
-      ),
-      indicatorCard(
-        trends,
-        articles,
-        'vix',
-        'volatility',
-        'How much traders are paying to insure against a fall in US shares over the next month. It rises when people are frightened, which is why it is called the fear index.',
-      ),
-      indicatorCard(
-        trends,
-        articles,
-        'btc',
-        'crypto',
-        'Money that no state issues and no bank clears. That is the argument for it and the argument against it, in the same sentence.',
-        // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
-        // news for whoever holds it and nothing at all to everyone else, and
-        // an app that tints it sage has taken a position on whether you should.
-      ),
-      indicatorCard(
-        trends,
-        articles,
-        'eth',
-        'crypto',
-        'The network most of the rest of crypto runs on. Tokens, exchanges and contracts settle there, so its price tracks the sector’s activity, not just its own.',
-      ),
+      indicatorCard(trends, articles, 'us-10y', 'money'),
+      indicatorCard(trends, articles, 'vix', 'volatility'),
+      // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
+      // news for whoever holds it and nothing at all to everyone else, and
+      // an app that tints it sage has taken a position on whether you should.
+      indicatorCard(trends, articles, 'btc', 'crypto'),
+      indicatorCard(trends, articles, 'eth', 'crypto'),
     ]),
 
     currencies: keep([currenciesCard(trends, articles), ...fxMoverCards(trends, articles)]),

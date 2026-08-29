@@ -1,5 +1,12 @@
-import { memo, type ReactNode, useCallback, useState } from 'react';
-import { type LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
+import { memo, type ReactNode, useCallback, useRef, useState } from 'react';
+import {
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -8,20 +15,20 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
-import type { Card, CardDelta } from '../../lib/cards/types';
+import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
+import type { CardDelta, GraphCard } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { Icon, Text } from '../primitives';
 
 /**
  * The card anatomy, as a component.
  *
- * Every data card is this shell with one block in the
- * middle. The order is not decoration — it is the reading order a person
- * actually uses: the number at arm's length, its graph, the live `standing`
- * analysis and what changed. The section rail already owns progress, and the
- * analysis already carries the news context, so this shell does not repeat
- * either as card furniture.
+ * Every data card is this shell with one block in the middle. The order is not
+ * decoration: measurements lead with their value, beliefs lead with the
+ * question that gives their percentage meaning, and both continue through the
+ * graph, live `standing` analysis and supporting movement context. The section
+ * rail already owns progress, and the analysis already carries the news
+ * context, so this shell does not repeat either as card furniture.
  */
 
 /** The reading is the largest thing on the screen and the only thing sized
@@ -65,11 +72,10 @@ const DeltaChip = memo(function DeltaChip({ delta }: { delta: CardDelta }) {
           <Icon name={delta.direction === 'up' ? 'caret-up' : 'caret-down'} size="sm" tone={tone} />
         </View>
       ) : null}
-      {/* `tabularEmphasis` rather than the `labelSm` the rest of this row uses.
-          Semibold and tabular is what makes the move readable *as a number*
-          inside a run of small-caps grey label text — set in the same variant
-          as its neighbours it disappeared into them, which defeated the point
-          of moving it out of the sentence. */}
+      {/* Semibold tabular type makes the move readable *as a number* inside a
+          mixed metadata row. Set like the regular unit or small-caps window,
+          it disappears into them and defeats the point of taking the move out
+          of a sentence. */}
       <Text
         variant="tabularEmphasis"
         tone={tone}
@@ -87,14 +93,79 @@ const DeltaChip = memo(function DeltaChip({ delta }: { delta: CardDelta }) {
   );
 });
 
+/** The focal number, its unit and its movement are one answer. Keeping this
+ * group independent from the title lets a measurement lead with the answer
+ * while a belief first states the question that gives its percentage meaning. */
+const CardReading = memo(function CardReading({
+  card,
+  afterTitle = false,
+}: {
+  card: GraphCard;
+  afterTitle?: boolean;
+}) {
+  const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
+
+  return (
+    <View>
+      <Text
+        variant="display"
+        tone="emphasis"
+        scale={readingScale}
+        style={[styles.reading, afterTitle && styles.readingAfterTitle]}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+      >
+        {card.reading}
+      </Text>
+      {card.readingNote || card.delta ? (
+        <View style={styles.readingMeta}>
+          {card.readingNote ? (
+            <Text variant="caption" tone="secondary" numberOfLines={1}>
+              {card.readingNote}
+            </Text>
+          ) : null}
+          {card.readingNote && card.delta ? (
+            <Text variant="caption" tone="secondary">
+              ·
+            </Text>
+          ) : null}
+          {card.delta ? <DeltaChip delta={card.delta} /> : null}
+        </View>
+      ) : null}
+    </View>
+  );
+});
+
+const CardTitle = memo(function CardTitle({
+  card,
+  afterMetric = false,
+}: {
+  card: GraphCard;
+  afterMetric?: boolean;
+}) {
+  return (
+    <Text
+      variant="title"
+      tone="default"
+      scale={titleFontScale(card.title.length)}
+      style={afterMetric ? styles.titleAfterMetric : styles.titleBeforeMetric}
+      accessibilityRole="header"
+    >
+      {card.title}
+    </Text>
+  );
+});
+
 interface CardFrameProps {
-  card: Card;
+  card: GraphCard;
   /** Full page height. The card owns the whole screen, like an article does. */
   itemHeight: number;
   /** This card's position in the column, for the arrival animation. */
   index: number;
   /** The column's scroll offset, shared with the UI thread. */
   scrollY: SharedValue<number>;
+  /** Reports that this card consumed part of a vertical gesture before the
+   * parent pager saw its remainder. */
+  onInnerScrollConsumed?: (index: number) => void;
   /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
 }
@@ -104,10 +175,10 @@ export const CardFrame = memo(function CardFrame({
   itemHeight,
   index,
   scrollY,
+  onInnerScrollConsumed,
   children,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
-  const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
 
   /**
    * The inner column only scrolls when it has to.
@@ -124,6 +195,9 @@ export const CardFrame = memo(function CardFrame({
    * the pager, which is the behaviour the rest of the app has.
    */
   const [scrollable, setScrollable] = useState(false);
+  const innerStartY = useRef(0);
+  const innerConsumed = useRef(false);
+  const innerDragging = useRef(false);
   const onContentLayout = useCallback(
     (e: LayoutChangeEvent) => {
       // `COLUMN_PAD_V` is added because the padding is *not* inside the
@@ -146,6 +220,27 @@ export const CardFrame = memo(function CardFrame({
       setScrollable((was) => (was === needed ? was : needed));
     },
     [itemHeight],
+  );
+  const onInnerBeginDrag = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    innerDragging.current = true;
+    innerStartY.current = e.nativeEvent.contentOffset.y;
+    innerConsumed.current = false;
+  }, []);
+  const onInnerEndDrag = useCallback(() => {
+    innerDragging.current = false;
+  }, []);
+  const onInnerScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (
+        !innerDragging.current ||
+        innerConsumed.current ||
+        Math.abs(e.nativeEvent.contentOffset.y - innerStartY.current) <= 1
+      )
+        return;
+      innerConsumed.current = true;
+      onInnerScrollConsumed?.(index);
+    },
+    [index, onInnerScrollConsumed],
   );
 
   const pageStart = index * itemHeight;
@@ -199,6 +294,10 @@ export const CardFrame = memo(function CardFrame({
         contentContainerStyle={styles.column}
         showsVerticalScrollIndicator={false}
         scrollEnabled={scrollable}
+        onScrollBeginDrag={onInnerBeginDrag}
+        onScrollEndDrag={onInnerEndDrag}
+        onScroll={onInnerScroll}
+        scrollEventThrottle={16}
         // `nestedScrollEnabled`, and the comment that used to sit here argued
         // the opposite. It was right about the failure it feared and wrong
         // about the cost of avoiding it.
@@ -234,8 +333,8 @@ export const CardFrame = memo(function CardFrame({
         <View onLayout={onContentLayout}>
           <Animated.View style={arrival}>
             {/* The kicker line, and on a gated card the one word that says
-              why this screen exists. A condition card and a disrupted strait
-              are on screen because their data cleared a currentness gate; the
+              why this screen exists. A disrupted strait is on screen because
+              its data cleared a currentness gate; the
               nisab and the gold-to-silver ratio are standing reference that
               happens to have moved a little. Until this mark they arrived in
               identical weight, so the distinction was one the reader could
@@ -243,73 +342,49 @@ export const CardFrame = memo(function CardFrame({
 
               An ink step, not a colour and not opacity — DESIGN.md is
               explicit that quiet is ink, and the chromatic budget is already
-              spent on the delta chip and on `colors.determination`. Nested
+              spent on the delta chip. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            <Text variant="labelXs" tone="secondary">
-              {card.lead ? (
-                <Text variant="labelXs" tone="emphasis">
-                  {'current · '}
-                </Text>
-              ) : null}
-              {card.kicker}
-            </Text>
-
-            {/* The reading and its note read as one unit: a number and the
-              thing it counts. Kept adjacent with no gap so they do not read
-              as two facts. */}
-            <Text
-              variant="display"
-              tone={
-                card.kind === 'condition' && card.emphasis === 'determination'
-                  ? 'determination'
-                  : 'emphasis'
-              }
-              scale={readingScale}
-              style={styles.reading}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-              accessibilityRole="header"
-            >
-              {card.reading}
-            </Text>
-            {/* The unit and the move on one line. They belong to the number
-              directly above them rather than to each other, and giving each
-              its own row spent two lines of a screen that has five parts to
-              fit — the divider is enough to keep them apart. */}
-            {card.readingNote || card.delta ? (
-              <View style={styles.readingMeta}>
-                {card.readingNote ? (
-                  <Text variant="labelSm" tone="secondary" numberOfLines={1}>
-                    {card.readingNote}
+            {card.lead || card.kicker ? (
+              <Text variant="labelXs" tone="secondary">
+                {card.lead ? (
+                  <Text variant="labelXs" tone="emphasis">
+                    {card.kicker ? 'current · ' : 'current'}
                   </Text>
                 ) : null}
-                {card.readingNote && card.delta ? (
-                  <Text variant="labelSm" tone="secondary">
-                    ·
-                  </Text>
-                ) : null}
-                {card.delta ? <DeltaChip delta={card.delta} /> : null}
-              </View>
+                {card.kicker}
+              </Text>
             ) : null}
 
-            <Text variant="title" tone="default" style={styles.title}>
-              {card.title}
-            </Text>
+            {/* Measurements answer first; a belief asks first. A bare “62%”
+                is not a useful fact until the reader knows which outcome it
+                prices, while “$89 a barrel” is already self-describing. */}
+            {card.kind === 'belief' ? (
+              <>
+                <CardTitle card={card} />
+                <CardReading card={card} afterTitle />
+              </>
+            ) : (
+              <>
+                <CardReading card={card} />
+                <CardTitle card={card} afterMetric />
+              </>
+            )}
           </Animated.View>
 
           {children ? (
             <Animated.View style={[styles.block, arrival]}>{children}</Animated.View>
           ) : null}
 
-          <Animated.View style={arrival}>
-            {card.why ? (
-              <Text variant="body" style={styles.part}>
-                {card.why}
-              </Text>
-            ) : null}
+          <Animated.View style={[styles.analysis, arrival]}>
+            {card.why ? <Text variant="body">{card.why}</Text> : null}
 
             {card.changed ? (
-              <Text variant="bodyEmphasis" style={styles.part}>
+              <Text
+                variant="caption"
+                tone="secondary"
+                style={card.why ? styles.supporting : undefined}
+              >
                 {card.changed}
               </Text>
             ) : null}
@@ -340,6 +415,7 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.xxl + SPACING.md,
   },
   reading: { marginTop: SPACING.xxs },
+  readingAfterTitle: { marginTop: SPACING.md },
   readingMeta: {
     marginTop: SPACING.xxs,
     flexDirection: 'row',
@@ -361,8 +437,10 @@ const styles = StyleSheet.create({
   // The window is the least important half of the chip and the first thing
   // that may be dropped when the row wraps at large Dynamic Type.
   deltaWindow: { flexShrink: 1 },
-  title: { marginTop: SPACING.smPlus },
-  part: { marginTop: SPACING.smPlus },
-  block: { marginTop: SPACING.smPlus },
+  titleAfterMetric: { marginTop: SPACING.smPlus },
+  titleBeforeMetric: { marginTop: SPACING.sm },
+  block: { marginTop: SPACING.md },
+  analysis: { marginTop: SPACING.lg },
+  supporting: { marginTop: SPACING.sm },
   source: { marginTop: SPACING.md },
 });

@@ -2,14 +2,13 @@ import type { Article } from '@shared/types';
 import type { Section } from '../../constants/theme';
 import type { InstrumentColumns } from './markets';
 import { prepareSwipeCards, type SwipeCard } from './rank';
-import type { Card } from './types';
+import type { Card, GraphCard } from './types';
 
 type DataSection = Exclude<Section, 'news'>;
 
 /** A primary data card must fulfil both promises: a real history and analysis
- * from the live pipeline. Editorial `whatItIs` copy remains builder fallback
- * metadata and deliberately cannot create a screen by itself. */
-function hasGraphAndAnalysis(card: Card): boolean {
+ * from the live pipeline. Static definition copy cannot create a screen. */
+function hasGraphAndAnalysis(card: Card): card is GraphCard {
   if (card.kind !== 'reading' && card.kind !== 'belief') return false;
   if (!card.why?.trim() || !card.series) return false;
 

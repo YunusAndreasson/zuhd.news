@@ -544,6 +544,57 @@ export default function HomeScreen() {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
 
+  // Keep closed sheet shells outside unrelated HomeScreen updates. These
+  // callbacks used to be recreated inline, which invalidated every memoized
+  // sheet and made all nine native modal wrappers reconcile together.
+  const handleMenuDismiss = useCallback(() => setMenuOpen(false), []);
+  const handleCountryDismiss = useCallback(() => setCountrySheet(null), []);
+  const handleDisasterDismiss = useCallback(() => setActiveAlert(null), []);
+  const handleConflictDismiss = useCallback(() => setActiveConflict(null), []);
+  const handleChooserDismiss = useCallback(() => setChooserCandidates([]), []);
+  const handleChokepointDismiss = useCallback(() => setActiveChokepoint(null), []);
+  const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
+  const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
+  const handleSourcesDismiss = useCallback(() => {
+    setSheetSources([]);
+    setSheetDivergence(null);
+  }, []);
+  const handleDisasterCountryPress = useCallback(
+    (countryName: string) => {
+      disasterSheetRef.current?.dismiss();
+      openCountry(countryName);
+    },
+    [openCountry],
+  );
+  const handleConflictCountryPress = useCallback(
+    (countryName: string) => {
+      conflictSheetRef.current?.dismiss();
+      openCountry(countryName);
+    },
+    [openCountry],
+  );
+  const handleChooserSelect = useCallback(
+    (candidate: TapResult) => {
+      disambiguationSheetRef.current?.dismiss();
+      handleCountryPress(candidate);
+    },
+    [handleCountryPress],
+  );
+  const handleChokepointArticlePress = useCallback(
+    (slug: string, category: Category) => {
+      chokepointSheetRef.current?.dismiss();
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+  const handleEntityArticlePress = useCallback(
+    (slug: string, category: Category) => {
+      entitySheetRef.current?.dismiss();
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+
   const handleEndReached = useCallback(() => {
     toastRef.current?.show('Back to top', () => newsListRef.current?.scrollToTop());
   }, []);
@@ -723,7 +774,7 @@ export default function HomeScreen() {
       <MenuSheet
         sheetRef={menuSheetRef}
         bottomInset={insets.bottom}
-        onDismiss={() => setMenuOpen(false)}
+        onDismiss={handleMenuDismiss}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
@@ -735,7 +786,7 @@ export default function HomeScreen() {
         activeAlerts={countryAlerts}
         onAlertPress={handleCountryAlertPress}
         bottomInset={insets.bottom}
-        onDismiss={() => setCountrySheet(null)}
+        onDismiss={handleCountryDismiss}
       />
 
       <DisasterSheet
@@ -743,26 +794,16 @@ export default function HomeScreen() {
         alert={activeAlert}
         details={gdacsDetails}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveAlert(null)}
-        onCountryPress={(countryName) => {
-          // Hop from disaster → country: dismiss this sheet, then present
-          // the country sheet. CountryAlerts memo will re-fire and the strip
-          // in the country sheet will surface the disaster (and any others
-          // affecting the same country).
-          disasterSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
+        onDismiss={handleDisasterDismiss}
+        onCountryPress={handleDisasterCountryPress}
       />
 
       <ConflictSheet
         sheetRef={conflictSheetRef}
         event={activeConflict}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveConflict(null)}
-        onCountryPress={(countryName) => {
-          conflictSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
+        onDismiss={handleConflictDismiss}
+        onCountryPress={handleConflictCountryPress}
       />
 
       <DisambiguationSheet
@@ -772,15 +813,8 @@ export default function HomeScreen() {
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         bottomInset={insets.bottom}
-        onDismiss={() => setChooserCandidates([])}
-        onSelect={(candidate) => {
-          // Dismiss the chooser first so its dismiss animation overlaps
-          // the target sheet's enter animation; the candidate carries no
-          // `candidates` field, so handleCountryPress takes the normal
-          // single-hit branches.
-          disambiguationSheetRef.current?.dismiss();
-          handleCountryPress(candidate);
-        }}
+        onDismiss={handleChooserDismiss}
+        onSelect={handleChooserSelect}
       />
 
       <ChokepointSheet
@@ -788,11 +822,8 @@ export default function HomeScreen() {
         chokepoint={activeChokepoint}
         articles={river}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveChokepoint(null)}
-        onArticlePress={(slug, category) => {
-          chokepointSheetRef.current?.dismiss();
-          handleSelectArticle(slug, category);
-        }}
+        onDismiss={handleChokepointDismiss}
+        onArticlePress={handleChokepointArticlePress}
       />
 
       <EntitySheet
@@ -801,11 +832,8 @@ export default function HomeScreen() {
         indicator={activeIndicator}
         articles={river}
         bottomInset={insets.bottom}
-        onDismiss={() => setActiveEntity(null)}
-        onArticlePress={(slug, category) => {
-          entitySheetRef.current?.dismiss();
-          handleSelectArticle(slug, category);
-        }}
+        onDismiss={handleEntityDismiss}
+        onArticlePress={handleEntityArticlePress}
       />
 
       <SourcesSheet
@@ -813,16 +841,13 @@ export default function HomeScreen() {
         sources={sheetSources}
         divergence={sheetDivergence}
         bottomInset={insets.bottom}
-        onDismiss={() => {
-          setSheetSources([]);
-          setSheetDivergence(null);
-        }}
+        onDismiss={handleSourcesDismiss}
       />
 
       <NotificationPrimerSheet
         sheetRef={primerSheetRef}
         bottomInset={insets.bottom}
-        onDismiss={() => setPrimerOpen(false)}
+        onDismiss={handlePrimerDismiss}
         onToast={handleMenuToast}
       />
     </View>

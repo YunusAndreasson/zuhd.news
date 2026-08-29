@@ -84,8 +84,8 @@ interface CardBase {
    * meaning.
    */
   lead?: boolean;
-  /** Small-caps kicker above the title: "commodity", "currency", "famine". */
-  kicker: string;
+  /** Small-caps subject above the title. Omit when the section already says it. */
+  kicker?: string;
   title: string;
   /** Part 1. Pre-formatted, because only the builder knows the unit grammar. */
   reading: string;
@@ -142,8 +142,6 @@ export interface ComparisonCard extends CardBase {
 export interface BeliefCard extends CardBase {
   kind: 'belief';
   series: CardSeries;
-  /** The range the belief has travelled inside the window we hold. */
-  range?: { min: number; max: number; minAt: string; maxAt: string };
 }
 
 /** A standing state of the world rather than a moving number: how many people
@@ -170,3 +168,6 @@ export interface CardFigure {
 }
 
 export type Card = ReadingCard | ComparisonCard | BeliefCard | ConditionCard;
+
+/** The primary swipe decks only admit cards with a real time series. */
+export type GraphCard = (ReadingCard & { series: CardSeries }) | BeliefCard;
