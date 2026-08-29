@@ -1,39 +1,37 @@
 {
-  "date": "2026-08-28",
+  "date": "2026-08-29",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 cycles, all completed; 63 yesterday" },
-    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 15, "science": 12, "tech": 13 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
+    "articles": { "value": 55, "detail": "5 cycles completed, avg 11/cycle (67 yesterday)" },
+    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 15, "tech": 11, "science": 9 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 19, "ME": 14, "EU": 14, "AS": 8, "AF": 6, "OC": 2 }
+      "breakdown": { "EU": 16, "ME": 11, "AS": 10, "AM": 10, "AF": 8, "OC": 0 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1362
+    "avgCycleDuration": 1305
   },
-  "experiment": "Skipped — every goal metric clears target with margin (freshness 0.3, multi-source 10, sci+tech 40%, 6 regions, top-source share 14%), duplicates are back to zero, and all 5 cycles completed. No active experiment to evaluate and no pause gate in effect; introducing a variable into a clean day would only cost the next evaluation its baseline.",
-  "weakestArea": "Top-source share, at 14% against a 20% ceiling, is the thinnest margin of any goal metric — and it is concentrated rather than diffuse. All 9 Dawn articles are Pakistan stories, and Pakistan is most of what Asia produced today. Asia itself fell to 8 articles from 14 yesterday, so the region contracted onto a single outlet at the same time it shrank: Dawn's news day now effectively sets Asian coverage.",
+  "experiment": "Skipped — all six goal metrics are within target, no experiment is active, and no pause gate is set. The experiments file carries no noNewExperimentsUntil field; the slot is free but there is no metric worth spending it on.",
+  "weakestArea": "Regional breadth is the softest number: five regions against a target of four, but Oceania fell to zero from three yesterday and the Americas' ten are carried almost entirely by US federal and crypto stories plus three Latin America pieces (Brazil's Banco Master, Venezuelan oil, InSight Crime). Science is also the thinnest category at 9 (down from 13), pulling the sci-tech ratio from 42% to 36% — still comfortably above the 25% floor, so this is drift to watch rather than a breach.",
   "watching": [
-    "Hormuz declared open while the risk premium stays priced in — the market verdict is diverging from the political announcement.",
-    "Indus Waters Treaty rhetoric escalating alongside Pakistan's internal security killings, with India–Pakistan water language hardening.",
-    "GPU-backed lending, where the collateral depreciates faster than the loan amortises — an AI-financing structure worth tracking as rates move.",
-    "Nepal's glacier and barrier-lake sequence continuing into a second week, now with a missing tunnel team and an uncontactable camp.",
-    "US courts repeatedly blocking executive action on mail voting, blacklisting, and state gaming powers — a consistent judicial check pattern this week.",
-    "Iran–Russia: Pezeshkian to meet Putin on September 1, against Iran's refusal to restore the Additional Protocol."
+    "Nepal floods produced two same-day articles from different angles (thousands missing; dam workers trapped) — distinct URLs so the duplicate check passes, but the story is at risk of a third recap next cycle.",
+    "Hormuz is running as a two-track story — an IRGC closure claim and 6,000 sailors stranded — and any escalation will pull economy and politics coverage simultaneously.",
+    "Sahel security is compounding: Niamey base under fire, a Russian rescue claim in Niger, and Turkey's Somali rescue operation all landed today.",
+    "US seizure of Venezuelan oil sits alongside Nigeria courting Chinese oil capital — two halves of a wider crude-realignment story that has not yet been covered as one.",
+    "Warsh and the Fed rate trap is building; the indicator rail already carries the rate series, so a policy move would need coordinated article and indicator coverage."
   ],
   "coverageGaps": [
-    "Asia halved to 8 articles and 9 of them came through Dawn on Pakistan — India, Southeast Asia and Korea/Japan are thin behind a single-country, single-outlet feed.",
-    "Oceania recovered only to 2 articles, still functionally a remainder region rather than covered.",
-    "Africa held at 6 of 63 (10%), largely Nigeria and Egypt; the Sahel, Horn and Southern Africa outside Daily Maverick are unrepresented.",
-    "Latin America again enters mainly through crime and sanctions framings, with no science or domestic-economy coverage from the region.",
-    "Central Asia and the Caucasus are absent for a second consecutive day."
+    "Oceania is absent entirely today, and its yesterday total was only three — it is the one region that regularly falls to zero.",
+    "Central Asia has no coverage despite active energy and migration stories in the region.",
+    "Tech skews crypto-heavy: dormant Bitcoin wallets, a Bitcoin retail pitch, Ripple's quantum deadline and agent payments are four of eleven tech slots, with CoinDesk the joint top source at five articles.",
+    "Latin America outside Brazil and Venezuela is unrepresented — no Mexico, Colombia, Argentina or Andean coverage.",
+    "Science leans clinical and biomedical (four of nine); no physics, climate-systems or computing-science coverage beyond the solar alien-rocks piece."
   ],
-  "context": "The URL-layer dedup gap flagged in yesterday's audit produced zero duplicates today, so the defect is intermittent rather than resolved — scripts/lib/dedup.js still has no URL matching (layers are slug, eventUri, fuzzy slug, recap title-overlap) and the same near-duplicate pair can recur whenever one source URL enters a selection twice under different headlines. Freshness continues to be computed from only 16 of 63 articles carrying a resolvable publication timestamp, so the 0.3-day median describes about a quarter of output. Stage timings held: selector 244s, writer 345s (still the slowest), editor 105s, 1362s per cycle overall with no hard timeouts.",
-  "noExperimentReason": "healthy"
+  "context": "Output fell from 67 to 55 articles across the same five completed cycles, driven by lower per-cycle yield rather than any cycle failure; cycle duration averaged 1305s with the writer (371s) now the slowest stage and the editor at 91s. Yesterday's two same-URL duplicates cleared to zero today. The last experiment closed in May and the tunable-parameter levers on the sourcing side are largely tapped — the 2026-05-09 evaluation established that the feed's multi-source supply, not selector floors, sets the ceiling — so the useful next lever would target upstream feed composition or regional source lists rather than another floor adjustment."
 }
