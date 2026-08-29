@@ -21,7 +21,7 @@ import {
   windowChange,
   windowPointChange,
 } from './format';
-import type { BeliefCard, Card, CardDelta, ReadingCard, ScheduledCard } from './types';
+import type { BeliefCard, Card, CardDelta, CardSeries, ReadingCard, ScheduledCard } from './types';
 
 /**
  * The instrument columns, no network call the app was not already making.
@@ -939,6 +939,35 @@ function countdown(days: number): string {
  * A prediction market prices what happens; a calendar says when it is decided.
  * Putting them in one column is the point.
  */
+/**
+ * The series a scheduled event is about, by the institution that sets it.
+ *
+ * Keyed on `institution` rather than the event id because the id carries the
+ * meeting date and there are three FOMC meetings in the window; the institution
+ * is the stable half. Only the three with a current, honest series are here —
+ * see `ScheduledCard.series` for why the Bank of England and the Bank of Japan
+ * are deliberately absent rather than filled with the nearest proxy.
+ */
+const EVENT_SERIES: Record<string, string> = {
+  'Federal Reserve': 'fed-funds',
+  'European Central Bank': 'ecb-rate',
+  'Bureau of Labor Statistics': 'us-unemployment',
+};
+
+function eventSeries(snapshot: TrendsSnapshot, institution: string): CardSeries | undefined {
+  const id = EVENT_SERIES[institution];
+  if (!id) return undefined;
+  const ind = byId(snapshot, id);
+  if (!ind || ind.values.filter(Number.isFinite).length < 2) return undefined;
+  return {
+    values: ind.values,
+    periods: ind.periods,
+    label: axisCaption(ind.unit, ind.label),
+    unit: ind.unit,
+    highlight: ind.defaultHighlight ?? 'last',
+  };
+}
+
 function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
   return (snapshot.events ?? [])
     .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
@@ -962,6 +991,7 @@ function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): S
       // Same rule as every other card: the day's account of what is at stake,
       // and the standing description of the institution where there is none.
       why: ev.recent?.trim() || ev.standing?.trim() || undefined,
+      series: eventSeries(snapshot, ev.institution),
       related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
     }));
 }

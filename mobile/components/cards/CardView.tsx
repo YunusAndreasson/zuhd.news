@@ -154,12 +154,13 @@ function renderBody(card: SwipeCard, onPress: () => void) {
       // card that cannot be checked is just a number with a mood.
       return <CardTrend series={card.series} onPress={card.link ? onPress : undefined} />;
 
-    // A date has no middle block. The countdown is the reading and the desk's
-    // account of what is at stake is the analysis, so a chart's worth of empty
-    // space between them would be a gap the card is not filling — the frame
-    // closes up instead.
+    // The history of the thing being decided, where the desk publishes one —
+    // two years of the Fed target range under "FOMC decides in 18 days". Where
+    // it does not, the frame closes up rather than leaving a chart's worth of
+    // empty space: a countdown and the account of what is at stake are a whole
+    // card on their own.
     case 'scheduled':
-      return null;
+      return card.series ? <CardTrend series={card.series} /> : null;
   }
 }
 

@@ -738,6 +738,59 @@ describe('scheduled events', () => {
     expect(fomc?.kind === 'scheduled' ? 'scheduled' : 'other').toBe('scheduled');
   });
 
+  it('graphs the rate the meeting decides, where there is an honest series', () => {
+    // A countdown says when; the staircase says from where. 90 days of a policy
+    // rate is a flat line — measured on the live series, literally zero changes
+    // — so these come in on a two-year window, sampled end-of-period.
+    const trends = snapshot(
+      [
+        indicator({
+          id: 'fed-funds',
+          label: 'Fed target rate',
+          unit: '%',
+          cadence: 'monthly',
+          values: [5.5, 5.5, 5.0, 4.5, 4.0, 3.75],
+          periods: ['Sep 2024', 'Dec 2024', 'Mar 2025', 'Jul 2025', 'Feb 2026', 'Aug 2026'],
+        }),
+      ],
+      {
+        events: [
+          {
+            id: 'fomc-2026-09',
+            title: 'Fed decision',
+            institution: 'Federal Reserve',
+            kind: 'central-bank',
+            date: '2026-09-16',
+            standing: 'The committee that sets the US policy rate.',
+          },
+          {
+            id: 'boe-2026-09',
+            title: 'Bank of England rate decision',
+            institution: 'Bank of England',
+            kind: 'central-bank',
+            date: '2026-09-17',
+            standing: 'The committee that sets Bank Rate.',
+          },
+        ],
+      } as never,
+    );
+
+    const columns = build({ trends, chokepoints: [], articles: [], now: NOW });
+    const fomc = find(columns.scheduled, 'event-fomc-2026-09');
+    expect(fomc?.kind === 'scheduled' ? fomc.series?.values : undefined).toEqual([
+      5.5, 5.5, 5.0, 4.5, 4.0, 3.75,
+    ]);
+
+    // The Bank of England has no current published rate on FRED and the nearest
+    // substitute is SONIA, an overnight market rate that is not Bank Rate.
+    // Drawing that under this headline would be the graph disagreeing with the
+    // title, so the card keeps its countdown and nothing else.
+    const boe = find(columns.scheduled, 'event-boe-2026-09');
+    expect(boe?.kind === 'scheduled' ? boe.series : undefined).toBeUndefined();
+    // Still a full card — the gate asks for analysis, never for a graph.
+    expect(buildSwipeSections(columns, []).outlook.map((c) => c.id)).toContain('event-boe-2026-09');
+  });
+
   it('does not admit a date the desk has written nothing about', () => {
     const columns = build({
       trends: events({

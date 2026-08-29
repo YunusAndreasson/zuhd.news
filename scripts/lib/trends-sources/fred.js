@@ -36,7 +36,7 @@ function formatPeriod(dateStr, cadence) {
 /**
  * Fetch observations for one FRED series.
  *
- * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly' }} indicator
+ * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string }} indicator
  * @param {string} apiKey
  * @returns {Promise<{ values: number[], periods: string[], asOf: string } | null>}
  */
@@ -56,6 +56,26 @@ export async function fetchFredSeries(indicator, apiKey) {
   url.searchParams.set('observation_start', ymd(start))
   url.searchParams.set('observation_end', ymd(end))
   url.searchParams.set('sort_order', 'asc')
+
+  /**
+   * Downsample at the source, for a series whose shape is a staircase.
+   *
+   * A policy rate is a step function: `DFEDTARU` over two years is 731 daily
+   * observations carrying **six** distinct values. Shipping all of them costs
+   * ~13KB per series in `trends.json` — a payload the homepage downloads on
+   * every visit — for a picture that is identical at 25 points. FRED does the
+   * aggregation itself, so `frequency: 'm'` with end-of-period sampling gives
+   * 25 observations with all six changes intact. Measured: 731 → 25, same
+   * range, same step count.
+   *
+   * End of period, never average: the rate on the last day of the month is a
+   * rate that was actually set, and averaging a step function invents levels
+   * the committee never voted for.
+   */
+  if (indicator.frequency) {
+    url.searchParams.set('frequency', indicator.frequency)
+    url.searchParams.set('aggregation_method', indicator.aggregation ?? 'eop')
+  }
 
   try {
     const res = await fetch(url, {

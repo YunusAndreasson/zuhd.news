@@ -161,6 +161,23 @@ export interface ScheduledCard extends CardBase {
   kind: 'scheduled';
   /** ISO date it lands on. The reading is how far away that is. */
   date: string;
+  /**
+   * The history of the thing being decided, where one exists.
+   *
+   * A countdown says *when*; the staircase says *from where*. An FOMC card
+   * drawing two years of the Fed target range is the same rule every other card
+   * follows — the graph is the headline's history — because the headline is
+   * "the Fed decides in 18 days" and what they have decided is the picture.
+   *
+   * Optional because it is honestly optional: of the fifteen events in the
+   * payload, the Fed, the ECB and the US jobs report have a current published
+   * series and the rest do not. A G20 summit has no series by nature; the Bank
+   * of England's rate died on FRED in 2017 and the nearest substitute is SONIA,
+   * an overnight *market* rate that is not Bank Rate. Drawing it under "Bank of
+   * England rate decision" would be the graph disagreeing with the headline,
+   * which is the one thing a card here may not do. Those keep the countdown.
+   */
+  series?: CardSeries;
 }
 
 export type Card = ReadingCard | BeliefCard | ScheduledCard;

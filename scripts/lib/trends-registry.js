@@ -78,6 +78,12 @@ export const SOURCES = {
  *        undeclared here until 2026-08-01, so the two chokepoint entries that
  *        set it did not match their own type.
  *  @property {'daily'|'monthly'}    cadence
+ *  @property {'d'|'w'|'m'|'q'|'a'} [frequency] FRED only: ask the API to
+ *    aggregate a higher-frequency series down to this. For a step function like
+ *    a policy rate, 731 daily points carry six distinct values — see the
+ *    downsample note in `trends-sources/fred.js`.
+ *  @property {'eop'|'avg'|'sum'} [aggregation] FRED only, default `eop`. Never
+ *    average a step function: it invents levels nobody set.
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
  *  @property {string[]} [countryTags] ISO-2 codes matched against article.location/sources.
  *  @property {'last'|'first'|'max'|'min'} [defaultHighlight]
@@ -146,6 +152,59 @@ export const INDICATORS = [
     topicTags: ['rice', 'food', 'food security', 'asia food', 'monsoon', 'harvest'],
     defaultHighlight: 'last',
     sourceLabel: 'FRED · IMF',
+  },
+
+  // ── Policy rates, for the calendar cards that graph them ───────────────────
+  //
+  // These exist so a rate-decision card can draw the history of the thing being
+  // decided. A countdown alone says when; the staircase says from where.
+  //
+  // `cadence: 'monthly'` for a daily series is deliberate on both counts: it
+  // buys the 24-month window (90 days of a policy rate is a flat line — measured,
+  // literally zero changes), and it makes the app describe a move as
+  // month-on-month, which is the only honest window for a number that changes
+  // at meetings. `frequency: 'm'` then samples it end-of-period so the payload
+  // carries 25 points rather than 731.
+  //
+  // Not on the map's instrument rail: that reads explicit catalog lists
+  // (`MONEY`, `WORLD`), so a registry row does not appear there until it is
+  // named. These are for the app's outlook column.
+  {
+    id: 'fed-funds',
+    label: 'Fed target rate',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'DFEDTARU',
+    cadence: 'monthly',
+    frequency: 'm',
+    topicTags: ['fomc', 'federal reserve', 'fed', 'interest rate', 'interest rates', 'rate cut', 'rate hike', 'powell'],
+    countryTags: ['US'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · Board of Governors',
+  },
+  {
+    id: 'ecb-rate',
+    label: 'ECB deposit rate',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'ECBDFR',
+    cadence: 'monthly',
+    frequency: 'm',
+    topicTags: ['ecb', 'european central bank', 'euro', 'eurozone', 'interest rate', 'interest rates', 'lagarde'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · ECB',
+  },
+  {
+    id: 'us-unemployment',
+    label: 'US unemployment',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'UNRATE',
+    cadence: 'monthly',
+    topicTags: ['jobs report', 'unemployment', 'payrolls', 'labor market', 'nonfarm', 'bls'],
+    countryTags: ['US'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · BLS',
   },
 
   // ── Tier 1: ummah currency basket (OER) ────────────────────────────────────
