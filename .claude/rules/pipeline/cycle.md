@@ -227,6 +227,18 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   ships; only the claim about last week is dropped. Partial output beats none,
   and the alternative is an item that silently loses all its prose over one
   unverifiable name.
+- **`recent` reaches three surfaces by three routes, and the split is a payload
+  decision rather than an editorial one.** The chokepoint and exchange payloads
+  carry it inline — those are 41 items and a few KB. The 55 bare indicators do
+  not, because `api/trends.json` is what the homepage's instrument rail
+  downloads on every visit and no rail row prints a paragraph; on the web it
+  arrives per-instrument from `/api/entity/{id}.json`, on the press that opens
+  a card. The app has neither that page nor that press: its graph decks build a
+  whole column up front and drop any card with no prose, so it needs every
+  paragraph before it renders anything. Hence `api/analysis.json` (2026-08-29),
+  17.2KB, prose only — carrying `citations` measured 34.7KB, half the file for
+  a list no card shows. Three routes, one writer, and nothing duplicated between
+  them.
 
 ## Tunable parameters and experiments
 

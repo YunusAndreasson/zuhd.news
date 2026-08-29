@@ -126,6 +126,15 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   third makes it impossible, and removing the second to avoid the first trades
   a visible layout glitch for silent data loss — which is the worse bug,
   because nobody reports it.
+- **`recent` reaches the app through `/api/analysis.json`, and that is a
+  second endpoint on purpose.** `build.js` withholds it from `api/trends.json`
+  because that payload is also what the website's instrument rail downloads on
+  every homepage visit, and no rail row prints a paragraph. The web gets it
+  per-instrument from `/api/entity/{id}.json` on the press that opens a card;
+  the app has no such page and no such press — it builds a whole column up
+  front — so it needs every paragraph before it renders anything. 17.2KB, prose
+  only: carrying the citations measured 34.7KB and no card shows them, so they
+  stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **The bottom bar is not global.** `zoom` drives the globe, which lives on
   `news` alone, and `share` shares `activeArticleRef` — so on a card column one
   pill did nothing and the other sent a link to an unrelated article. Both are
@@ -133,14 +142,30 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   is not about what is on screen. Sharing a card needs a per-card URL and only
   the indicator-backed ones have one (`/e/{id}`).
 
-- **The graph and pipeline analysis stay visible.** The reading, chart,
-  `standing` explanation, delta and current change make up the recurring
-  surface. Hand-written fallback definitions are not rendered in the graph
-  decks; static copy does not earn a card. Related articles remain ranking
-  metadata and are not repeated below analysis that already names the news.
-- **`standing` is authoritative.** Static fallback definitions are not part of
-  the graph-card model, so a reading cannot carry two definitions separated by
-  its chart.
+- **The graph and pipeline analysis stay visible.** The reading, chart, the
+  desk's analysis, delta and current change make up the recurring surface.
+  Hand-written fallback definitions are not rendered in the graph decks; static
+  copy does not earn a card. Related articles remain ranking metadata and are
+  not repeated below analysis that already names the news.
+- **The card answers the question the chart raises, which is *why did this
+  move*.** The desk writes two paragraphs per instrument and they are not
+  interchangeable: `standing` says what the thing is, written once and
+  timeless; `recent` says what has happened to it and why, rewritten daily at
+  04:00 UTC against the fortnight's coverage and grounded in it. Every card
+  led with the definition until 2026-08-29 — a true sentence answering a
+  question nobody asks while looking at a line that just fell 15%. `whyFor`
+  (`lib/cards/markets.ts`) picks `recent` and falls back to `standing`; a
+  strait falls back once more, to its catalog blurb. **Only one of them is on
+  screen** — two paragraphs plus the supporting sentence overflows the page on
+  most phones, and the page-overflow guards are the app's most expensive
+  scar tissue. The definition stays a press away, on `/e/{id}`.
+- **The fallback is load-bearing, because `hasGraphAndAnalysis` gates deck
+  membership on `why`.** A card with no prose is built and then silently
+  dropped, which is how the nisab card — the one this column is documented as
+  opening with — was absent from it for as long as it had no `why` at all, and
+  how the Suez strait vanished on a day its `recent` came back empty. A new
+  card without a prose source is a card nobody will ever see and no error will
+  ever mention.
 - **Quote the thing the reader owns, or the sign fights the colour.** FX rates
   are published as local currency per dollar, where up means your money buys
   less. Mover chips report the currency's own move (`currencyMove`, the

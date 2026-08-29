@@ -153,10 +153,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   Everything that fails is not in the primary deck. Applied to the live
   payloads it cuts dozens of candidate readings to a focused graph set.
 - **Live analysis is the point**, owned by `CardFrame`. The recurring surface
-  shows the reading, graph, pipeline-written `standing` analysis and movement.
-  It does not repeat related headlines already covered by that analysis, and
-  it has no static-definition info control. Static copy does not satisfy the
-  deck gate or travel in the card model.
+  shows the reading, graph, the desk's pipeline-written analysis and movement.
+  That analysis is the day's account of *why this moved* where the desk wrote
+  one, and the standing definition only where it did not — a chart that just
+  fell raises the first question, not the second. One paragraph, never both.
+  The surface does not repeat related headlines already covered by that
+  analysis, and it has no static-definition info control. Static copy does not
+  satisfy the deck gate or travel in the card model.
 - **The hierarchy follows the kind of claim.** A measured quantity leads with
   its reading, unit and movement before naming the series; a belief states its
   question before showing the probability, because a percentage without an

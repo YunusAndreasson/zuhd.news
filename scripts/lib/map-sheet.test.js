@@ -318,6 +318,50 @@ test('a pinned chokepoint draws its traffic against the published baseline', asy
   }
 })
 
+test('a pinned card says why it moved, and sets the definition below it', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+
+    // Both payloads have carried `recent` since the dispatch stage existed and
+    // neither card read it, so a reader saw 86 days of transits and a sentence
+    // defining the strait — never a word about what happened in them.
+    sheet.showChokepoint({ ...CHOKEPOINT, recent: 'Transits fell after the tanker strike.' }, true)
+    assert.match(sheet.element.textContent, /Transits fell after the tanker strike/)
+    // The claim about the world takes lead weight; the definition steps down to
+    // the rung `.map-sheet-standing` exists for. Rendering a definition at lead
+    // size is what put the two on the card as equals.
+    assert.match(
+      sheet.element.querySelector('.map-sheet-lead').textContent,
+      /Transits fell/,
+      'the analysis leads',
+    )
+    assert.match(
+      sheet.element.querySelector('.map-sheet-standing').textContent,
+      /fifth of the world/,
+      'the definition is the quiet rung',
+    )
+
+    sheet.showMarket({ ...EXCHANGE, recent: 'The index rose on Aramco’s results.' }, true)
+    assert.match(sheet.element.querySelector('.map-sheet-lead').textContent, /Aramco/)
+    assert.match(
+      sheet.element.querySelector('.map-sheet-standing').textContent,
+      /largest exchange by market value/,
+    )
+
+    // No analysis is a supported state, not a blank paragraph: the card is the
+    // one it has always been.
+    sheet.showChokepoint(CHOKEPOINT, true)
+    assert.equal(sheet.element.querySelector('.map-sheet-lead'), null)
+    assert.match(sheet.element.textContent, /fifth of the world/)
+
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
 test('a chokepoint peek is the number, not the chart', async () => {
   const env = setupDom()
   try {

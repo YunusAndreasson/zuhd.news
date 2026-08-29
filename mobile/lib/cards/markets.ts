@@ -1,4 +1,10 @@
-import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
+import type {
+  Article,
+  Chokepoint,
+  Indicator,
+  IndicatorAnalysis,
+  TrendsSnapshot,
+} from '@shared/types';
 import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
 import {
   deltaFrom,
@@ -41,6 +47,33 @@ const DAILY_WINDOW = 30;
 /** A monthly series steps a month at a time; twelve steps is a year. */
 const MONTH = 1;
 const YEAR = 12;
+
+/** The day's movement analysis, keyed by indicator id. `/api/analysis.json`. */
+export type AnalysisById = ReadonlyMap<string, IndicatorAnalysis>;
+
+/**
+ * What goes under the chart.
+ *
+ * The desk writes two paragraphs for every instrument and they answer
+ * different questions. `standing` says what the thing is — timeless, written
+ * once, and the only thing these cards used to carry. `recent` says what has
+ * happened to it and why, rewritten each day against the fortnight's coverage.
+ * A reader looking at a chart that just moved asked the second question, so
+ * that is what a card leads with.
+ *
+ * The definition is the fallback, not the alternative: four of ninety-odd
+ * instruments carry no `recent` on any given day, and a build older than
+ * `/api/analysis.json` carries none at all. Both cases land back on exactly
+ * the card this app shipped before. Neither string is composed here — the app
+ * does not editorialise over the desk.
+ */
+function whyFor(
+  analysis: AnalysisById,
+  id: string,
+  indicator: Pick<Indicator, 'standing'>,
+): string | undefined {
+  return analysis.get(id)?.recent?.trim() || indicator.standing?.trim() || undefined;
+}
 
 const byId = (snapshot: TrendsSnapshot, id: string): Indicator | undefined =>
   snapshot.indicators.find((i) => i.id === id);
@@ -126,7 +159,11 @@ function describeYearChange(indicator: Indicator): string | undefined {
  * the two grains that feed most of the world have gone opposite ways. Neither
  * price alone says that.
  */
-function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard | null {
+function staplesCard(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard | null {
   const wheat = byId(snapshot, 'wheat');
   const rice = byId(snapshot, 'rice');
   if (!wheat || !rice) return null;
@@ -176,7 +213,7 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
     readingNote: 'rice against wheat',
     delta,
     changed,
-    why: wheat.standing,
+    why: whyFor(analysis, wheat.id, wheat),
     figures: [
       { label: 'wheat', value: `$${formatReading(wheatNow)}` },
       { label: 'rice', value: `$${formatReading(riceNow)}` },
@@ -200,10 +237,12 @@ function staplesCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard
 // A single indicator, as a reading
 // ---------------------------------------------------------------------------
 
-/** A live indicator with its pipeline analysis. Static definitions stay out
- * of the graph-card path: the section gate requires `standing` (`why`). */
+/** A live indicator with its pipeline analysis. Hand-written copy stays out of
+ * the graph-card path: the section gate requires a `why`, and `whyFor` will
+ * only ever hand it something the desk wrote. */
 function indicatorCard(
   snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
   articles: Article[],
   id: string,
   kicker: string,
@@ -229,7 +268,7 @@ function indicatorCard(
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
-    why: indicator.standing,
+    why: whyFor(analysis, indicator.id, indicator),
     series: {
       values: indicator.values,
       periods: indicator.periods,
@@ -255,7 +294,7 @@ function indicatorCard(
  * so on its face rather than presenting the result as arithmetic without a
  * madhhab. That is the same commitment the prayer curves make to Umm al-Qura.
  */
-function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
+function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCard | null {
   const gold = byId(snapshot, 'paxg');
   const silver = byId(snapshot, 'xag');
   if (!gold || !silver) return null;
@@ -290,6 +329,11 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
     readingNote: `set by ${n.binding}`,
     delta,
     changed,
+    // The binding metal's, because that is the line this card draws and the
+    // number it prints. Until this card carried any analysis at all it was
+    // built and then silently dropped by `hasGraphAndAnalysis`, which is how
+    // the card this column is documented as opening with never opened it.
+    why: whyFor(analysis, bindingIndicator.id, bindingIndicator),
     figures: [
       {
         label: 'gold · 85 g',
@@ -331,7 +375,11 @@ function nisabCard(snapshot: TrendsSnapshot): ReadingCard | null {
  * (This comment used to say "the next card", which had the order backwards
  * even before the columns were re-cut.)
  */
-function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard | null {
+function metalsPairCard(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard | null {
   const gold = byId(snapshot, 'paxg');
   const silver = byId(snapshot, 'xag');
   if (!gold || !silver) return null;
@@ -372,7 +420,7 @@ function metalsPairCard(snapshot: TrendsSnapshot, articles: Article[]): ReadingC
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
-    why: gold.standing,
+    why: whyFor(analysis, gold.id, gold),
     figures: [
       { label: 'gold', value: `$${formatReading(goldNow)}` },
       { label: 'silver', value: `$${formatReading(silverNow)}` },
@@ -432,10 +480,14 @@ const FX_MOVER_LIMIT = 2;
  * in a month has repriced every import its country buys, and that is a fact
  * about a life rather than a number on a table. The two strongest moves get
  * the treatment the news gets —
- * their own chart, their own standing paragraph, their own tie to today's
+ * their own chart, their own paragraph from the desk, their own tie to today's
  * stories.
  */
-function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCard[] {
+function fxMoverCards(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): ReadingCard[] {
   return snapshot.indicators
     .filter((i) => i.source === 'oer')
     .map((indicator) => {
@@ -478,7 +530,7 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
         // biggest move of the month" and "the second-biggest" are different
         // claims and only one of them is true of this card.
         changed: `${rank === 0 ? 'Largest' : 'Second-largest'} monthly ${weakened ? 'fall' : 'rise'} in this 15-currency set, measured to ${change.to}.`,
-        why: indicator.standing,
+        why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
           periods: indicator.periods,
@@ -496,15 +548,24 @@ function fxMoverCards(snapshot: TrendsSnapshot, articles: Article[]): ReadingCar
 // Straits
 // ---------------------------------------------------------------------------
 
-/** `blurb` and `standing` are written by different stages and, for several of
- *  the eleven, land on the same sentence. Part two of the card already carries
- *  the blurb, so part four must not repeat it — a card that says the same thing
- *  twice reads as filler and foundation.md forbids it outright. */
+/**
+ * The same rule the indicator cards use, down one more rung.
+ *
+ * A strait's `standing` is *always* its catalog blurb — `narrate-indicators.js`
+ * prefers the hand-written sentence and discards the model's — so the two
+ * fields the other cards choose between are one field here, and the choice is
+ * really between the day's analysis and the catalog.
+ *
+ * The blurb is the last rung rather than no rung. It reads as a duplicate of
+ * part two, which it was when part two carried it; part two is the 90-day
+ * normal now and the blurb appears nowhere else on a card. Without it a strait
+ * whose `recent` came back empty — Suez, on the current dispatch — is built,
+ * dropped by `hasGraphAndAnalysis`, and silently absent from the deck.
+ */
 function straitWhy(c: Chokepoint): string | undefined {
   const standing = c.standing?.trim();
   const blurb = c.blurb?.trim();
-  const fresh = standing && standing !== blurb ? standing : undefined;
-  return [fresh, c.recent?.trim()].filter(Boolean).join('\n\n') || undefined;
+  return c.recent?.trim() || (standing !== blurb ? standing : undefined) || blurb || undefined;
 }
 
 /** A strait this far from its own 90-day normal is disrupted rather than
@@ -675,7 +736,11 @@ function completeBeliefTitle(indicator: Indicator): string {
   return indicator.label;
 }
 
-function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[] {
+function beliefCards(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+): BeliefCard[] {
   return snapshot.indicators
     .filter((i) => i.source === 'polymarket')
     .map((indicator) => {
@@ -707,7 +772,7 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
           extremes && extremes.max - extremes.min >= 1
             ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
             : undefined,
-        why: indicator.standing,
+        why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
           periods: indicator.periods,
@@ -729,6 +794,10 @@ function beliefCards(snapshot: TrendsSnapshot, articles: Article[]): BeliefCard[
 export interface InstrumentCardInputs {
   trends: TrendsSnapshot | null;
   chokepoints: Chokepoint[];
+  /** The day's movement analysis, from `/api/analysis.json`. Empty is a
+   *  supported state, not a loading one: every card falls back to its standing
+   *  definition, which is the whole surface these cards had before. */
+  analysis: AnalysisById;
   /** Today's feed, for the tie-to-the-news line. */
   articles: Article[];
 }
@@ -759,6 +828,7 @@ const EMPTY_COLUMNS: InstrumentColumns = {
 export function buildInstrumentCards({
   trends,
   chokepoints,
+  analysis,
   articles,
 }: InstrumentCardInputs): InstrumentColumns {
   if (!trends) return EMPTY_COLUMNS;
@@ -766,26 +836,26 @@ export function buildInstrumentCards({
 
   return {
     markets: keep([
-      nisabCard(trends),
-      staplesCard(trends, articles),
-      indicatorCard(trends, articles, 'brent', 'energy'),
-      metalsPairCard(trends, articles),
+      nisabCard(trends, analysis),
+      staplesCard(trends, analysis, articles),
+      indicatorCard(trends, analysis, articles, 'brent', 'energy'),
+      metalsPairCard(trends, analysis, articles),
       // The ten-year survives the cut that took the S&P and the NASDAQ with
       // it, on the rule that killed them: it can be explained in one sentence
       // to someone who has never met it, and it says something about an
       // ordinary life. An index *level* cannot do either.
-      indicatorCard(trends, articles, 'us-10y', 'money'),
-      indicatorCard(trends, articles, 'vix', 'volatility'),
+      indicatorCard(trends, analysis, articles, 'us-10y', 'money'),
+      indicatorCard(trends, analysis, articles, 'vix', 'volatility'),
       // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
       // news for whoever holds it and nothing at all to everyone else, and
       // an app that tints it sage has taken a position on whether you should.
-      indicatorCard(trends, articles, 'btc', 'crypto'),
-      indicatorCard(trends, articles, 'eth', 'crypto'),
-      ...fxMoverCards(trends, articles),
+      indicatorCard(trends, analysis, articles, 'btc', 'crypto'),
+      indicatorCard(trends, analysis, articles, 'eth', 'crypto'),
+      ...fxMoverCards(trends, analysis, articles),
     ]),
 
     straits: keep(straitCards(chokepoints)),
 
-    predictions: keep(beliefCards(trends, articles)),
+    predictions: keep(beliefCards(trends, analysis, articles)),
   };
 }

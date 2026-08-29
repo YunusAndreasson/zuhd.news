@@ -121,7 +121,14 @@ export interface MapExchange {
   /** Date of the most recent close, `YYYY-MM-DD`. */
   asOf: string
   sourceLabel: string
+  /** The catalog's hand-written sentence, which `narrate-indicators.js` also
+   *  seeds as this exchange's `standing` and never regenerates — so the two
+   *  are the same string and the card carries only this one. */
   blurb: string
+  /** Why the index moved, tied to recent coverage. Joined on by `build.js`
+   *  from the indicator dispatch; absent on an exchange the 04:00 stage has
+   *  not reached, and on any build older than that stage. */
+  recent?: string
   /** Set when the figure came from the fetcher's last-good cache. */
   stale?: boolean
   relatedArticles?: Array<{

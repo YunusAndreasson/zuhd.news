@@ -16,10 +16,14 @@ import type { Direction, Valence } from '../valence';
  *   why        why it reaches an ordinary life — the teaching part
  *   related    which stories should affect its rank
  *
- * `why` is not written here. It is `standing`, which the pipeline has been
- * writing for every indicator and chokepoint since long before
- * anything rendered it. A card builder's job is to find the right one, not to
- * compose a new one — the app does not editorialise over the desk.
+ * `why` is not written here. The desk writes two paragraphs for every
+ * instrument and they answer different questions: `standing`, what the thing
+ * is, written once and timeless; and `recent`, what has happened to it and
+ * why, rewritten each day against the fortnight's coverage. A reader looking
+ * at a chart that just moved asked the second, so `why` is `recent` where
+ * there is one and `standing` where there is not. A card builder's job is to
+ * find the right one, not to compose a new one — the app does not editorialise
+ * over the desk.
  */
 
 type CardKind = 'reading' | 'belief';
@@ -89,7 +93,9 @@ interface CardBase {
   delta?: CardDelta;
   /** What changed in the current data window. */
   changed?: string;
-  /** Live pipeline analysis, shown on the recurring card surface. */
+  /** Live pipeline analysis, shown on the recurring card surface: the day's
+   *  account of why this moved, or the standing definition where the desk
+   *  wrote no account today. `lib/cards/markets.ts`'s `whyFor` picks. */
   why?: string;
   /** News ties used to rank the card; not repeated on its visible surface. */
   related?: RelatedArticleRef[];

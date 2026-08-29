@@ -39,6 +39,7 @@
 // Flags:
 //   --dry-run                    build bundles, print sizes, call nothing
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
+//   --new-only                   only instruments with no cache entry at all
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
@@ -76,6 +77,23 @@ const FORCE = process.env.NARRATE_INDICATORS_FORCE === '1'
 const MAX_ITEMS = Number(process.env.NARRATE_INDICATORS_MAX) || Infinity
 const DRY_RUN = hasFlag('dry-run')
 const ONLY = argAt('only')
+/**
+ * Only instruments this file has never seen — the non-04:00 pass.
+ *
+ * The full run is daily and that is the right cadence for *rewriting* an
+ * explanation. Appearing is a different event: Polymarket questions rotate on
+ * every cycle and the `wiki-*` set is re-picked from our own concepts, so a new
+ * instrument can be on the site for up to 24 hours before it has any prose. On
+ * the web that is a card missing a paragraph; in the app it is no card at all,
+ * because the graph decks gate deck membership on having an explanation. The
+ * outlook column was 1-2 cards deep for this reason alone.
+ *
+ * Not `FORCE`'s opposite and not a cheaper full run: an item already in the
+ * cache is skipped here even when its fingerprints have moved, so this can
+ * never do the daily pass's job early. Steady state is zero calls, which is why
+ * it is safe on a cycle that publishes four more times a day.
+ */
+const NEW_ONLY = hasFlag('new-only')
 
 if (!existsSync(PROMPT_PATH)) {
   console.error('Missing narrate-indicators-prompt.md.')
@@ -235,9 +253,12 @@ for (const ex of exchanges) {
 
 const selected = items
   .filter((it) => (ONLY ? it.key === ONLY : true))
+  .filter((it) => (NEW_ONLY ? !cache.items[it.key] : true))
   .slice(0, Number.isFinite(MAX_ITEMS) ? MAX_ITEMS : items.length)
 
-console.log(`Items: ${items.length} total, ${selected.length} selected`)
+console.log(
+  `Items: ${items.length} total, ${selected.length} selected${NEW_ONLY ? ' (new only)' : ''}`,
+)
 
 // ── Bundles ───────────────────────────────────────────────────────────────
 
@@ -499,7 +520,14 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
 // Prune ids that have left every source payload. Polymarket questions close and
 // Wikipedia series are re-picked from our own concepts every cycle, so without
 // this the file grows a tail of instruments the site no longer shows.
-{
+//
+// The daily pass only. `items` is assembled from three payloads that each
+// degrade to `[]` when their file is unreadable, so a prune is only as safe as
+// the weakest source that ran — and a `--new-only` pass, which happens four
+// more times a day, has nothing to gain from bookkeeping the 04:00 run does
+// anyway. Deleting eleven chokepoint entries because one file was mid-write is
+// not a trade worth making four extra times for a tidier cache.
+if (!NEW_ONLY) {
   const live = new Set(items.map((i) => i.key))
   let dropped = 0
   for (const k of Object.keys(cache.items)) {

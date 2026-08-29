@@ -1,6 +1,24 @@
 import type { Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
-import { buildInstrumentCards, type InstrumentColumns } from '../lib/cards/markets';
+import {
+  type AnalysisById,
+  buildInstrumentCards,
+  type InstrumentCardInputs,
+  type InstrumentColumns,
+} from '../lib/cards/markets';
+import { buildSwipeSections } from '../lib/cards/sections';
 import type { Card } from '../lib/cards/types';
+
+/** `analysis` defaults to empty, which is the state a build older than
+ *  `/api/analysis.json` produces and the one most of these assertions want:
+ *  every card falls back to its standing definition. Tests about the day's
+ *  movement analysis pass their own map. */
+const build = (
+  input: Omit<InstrumentCardInputs, 'analysis'> & { analysis?: AnalysisById },
+): InstrumentColumns => buildInstrumentCards({ analysis: new Map(), ...input });
+
+/** One instrument's `recent`, in the shape `/api/analysis.json` delivers. */
+const analysisOf = (entries: Record<string, string>): AnalysisById =>
+  new Map(Object.entries(entries).map(([id, recent]) => [id, { recent }]));
 
 const find = (cards: Card[], id: string) => cards.find((c) => c.id === id);
 
@@ -49,7 +67,7 @@ function strait(id: string, name: string, last7: number, base: number, delta: nu
 
 describe('buildInstrumentCards', () => {
   it('returns empty columns rather than an empty shell when the snapshot is missing', () => {
-    const columns = buildInstrumentCards({ trends: null, chokepoints: [], articles: [] });
+    const columns = build({ trends: null, chokepoints: [], articles: [] });
     expect(allOf(columns)).toEqual([]);
     // Every key still present, so a section renders its empty state rather
     // than crashing on an undefined column.
@@ -57,7 +75,7 @@ describe('buildInstrumentCards', () => {
   });
 
   it('files each card in the column a reader would go looking for it in', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl' }),
         indicator({ id: 'btc', label: 'Bitcoin', unit: '$' }),
@@ -85,7 +103,7 @@ describe('buildInstrumentCards', () => {
   });
 
   it('separates measured markets from forward-looking signals', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({ id: 'vix', label: 'VIX', unit: 'index' }),
         indicator({ id: 'us-10y', label: 'US 10y Treasury', unit: '%' }),
@@ -101,7 +119,7 @@ describe('buildInstrumentCards', () => {
   });
 
   it('marks a gated card and leaves a standing one unmarked', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
         indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 52.56] }),
@@ -118,7 +136,7 @@ describe('buildInstrumentCards', () => {
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl' })]),
         chokepoints: [],
         articles: [],
@@ -133,7 +151,7 @@ describe('buildInstrumentCards', () => {
 
   it('puts the currency mark in front of the number and the denominator in English', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([
           indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl', values: [80, 88.9] }),
         ]),
@@ -146,16 +164,21 @@ describe('buildInstrumentCards', () => {
     expect(brent?.readingNote).toBe('a barrel');
   });
 
-  it('renders `standing` verbatim as the why — the app does not rewrite the desk', () => {
+  it('renders the desk\u2019s prose verbatim — the app does not rewrite it', () => {
     const standing = 'It moves on supply, and fuel, freight and fertiliser move after it.';
-    const cards = allOf(
-      buildInstrumentCards({
-        trends: snapshot([indicator({ id: 'brent', label: 'Brent crude', standing })]),
-        chokepoints: [],
-        articles: [],
-      }),
+    const recent = 'Brent fell 15.6% in a week as OPEC+ unwound its cuts.';
+    const trends = snapshot([indicator({ id: 'brent', label: 'Brent crude', standing })]);
+    expect(find(allOf(build({ trends, chokepoints: [], articles: [] })), 'brent')?.why).toBe(
+      standing,
     );
-    expect(find(cards, 'brent')?.why).toBe(standing);
+    expect(
+      find(
+        allOf(
+          build({ trends, chokepoints: [], articles: [], analysis: analysisOf({ brent: recent }) }),
+        ),
+        'brent',
+      )?.why,
+    ).toBe(recent);
   });
 
   it('draws wheat and rice as two lines on one axis, and only when they align', () => {
@@ -176,7 +199,7 @@ describe('buildInstrumentCards', () => {
       periods: ['Aug 2024', 'May 2026', 'Jun 2026'],
     });
     const paired = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([wheat, rice]),
         chokepoints: [],
         articles: [],
@@ -190,7 +213,7 @@ describe('buildInstrumentCards', () => {
 
     // Misaligned periods would put two different time axes on one chart.
     const misaligned = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([
           wheat,
           { ...rice, values: [396, 400], periods: ['May 2026', 'Jun 2026'] },
@@ -204,7 +227,7 @@ describe('buildInstrumentCards', () => {
 
   it('names the binding metal and says which way the threshold moved', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([
           indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
           // Silver down, so the threshold falls and MORE wealth is zakatable —
@@ -220,12 +243,51 @@ describe('buildInstrumentCards', () => {
     expect(card?.readingNote).toBe('set by silver');
     expect(card?.changed).toContain('fell');
     expect(card?.changed).toContain('more wealth is zakatable');
-    expect(card?.why).toBeUndefined();
+  });
+
+  it('gives the nisab card the binding metal\u2019s analysis, so it reaches a deck at all', () => {
+    const trends = snapshot([
+      indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
+      indicator({
+        id: 'xag',
+        label: 'Silver',
+        unit: '$/oz',
+        values: [57.8, 52.56],
+        standing: 'The cheaper of the two metals that can set the threshold.',
+      }),
+    ]);
+    // Silver binds, and silver is what the card charts \u2014 so silver is what it
+    // explains. Gold's paragraph would describe a line this card does not draw.
+    const card = find(
+      allOf(
+        build({
+          trends,
+          chokepoints: [],
+          articles: [],
+          analysis: analysisOf({
+            paxg: 'Gold rose on central-bank buying.',
+            xag: 'Silver fell as industrial demand cooled.',
+          }),
+        }),
+      ),
+      'nisab',
+    );
+    expect(card?.why).toBe('Silver fell as industrial demand cooled.');
+
+    // With no analysis at all it falls back to the same metal's definition,
+    // which is still enough to clear the deck gate.
+    const bare = build({ trends, chokepoints: [], articles: [] });
+    expect(find(allOf(bare), 'nisab')?.why).toBe(
+      'The cheaper of the two metals that can set the threshold.',
+    );
+    // The gate is the point: carrying no `why` at all, this card was built and
+    // then dropped here, so the column documented as opening with it never did.
+    expect(buildSwipeSections(bare, []).markets.map((c) => c.id)).toContain('nisab');
   });
 
   it('graphs the gold-to-silver ratio that the metals card headlines', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([
           indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4000, 4500] }),
           indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [50, 60] }),
@@ -243,7 +305,7 @@ describe('buildInstrumentCards', () => {
 
   it('reports a currency move as a relative percentage and a contract as points', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([
           indicator({
             id: 'fx-rub',
@@ -314,7 +376,7 @@ describe('buildInstrumentCards', () => {
     // and everything else — crypto, both ratios, nisab, every prediction, a
     // strait at its normal — sat in near-white,
     // so the reader's first question was whether a chip was coloured at all.
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl' }),
         indicator({ id: 'btc', label: 'Bitcoin', unit: '$' }),
@@ -351,7 +413,7 @@ describe('buildInstrumentCards', () => {
 
   it('keeps every disrupted strait so deck ranking can use current-news relevance', () => {
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([indicator({ id: 'brent' })]),
         chokepoints: [
           strait('dover', 'Dover Strait', 157, 162.2, -0.032),
@@ -382,7 +444,7 @@ describe('buildInstrumentCards', () => {
     // Both disrupted candidates survive; the later smart ranking stage can
     // now prefer a strait tied to the lead story instead of being forced to
     // accept the largest percentage move selected here.
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([indicator({ id: 'brent' })]),
       chokepoints: [
         strait('dover', 'Dover Strait', 157, 162.2, -0.032),
@@ -411,7 +473,7 @@ describe('buildInstrumentCards', () => {
     hormuz.baseline90Avg.n_tanker = 4.3;
     hormuz.delta7vs90.n_tanker = -0.431;
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([indicator({ id: 'brent' })]),
         chokepoints: [hormuz],
         articles: [],
@@ -427,7 +489,7 @@ describe('buildInstrumentCards', () => {
   });
 
   it('keeps ordinary straits available without marking them current', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([indicator({ id: 'brent' })]),
       chokepoints: [
         strait('dover', 'Dover Strait', 157, 162.2, -0.032),
@@ -448,7 +510,7 @@ describe('buildInstrumentCards', () => {
   it('does not print the chokepoint blurb twice when standing repeats it', () => {
     const blurb = 'Between Crimea and Russia — the only access to the Sea of Azov.';
     const cards = allOf(
-      buildInstrumentCards({
+      build({
         trends: snapshot([indicator({ id: 'brent' })]),
         chokepoints: [
           {
@@ -474,39 +536,106 @@ describe('buildInstrumentCards', () => {
     const card = find(cards, 'strait-kerch');
     expect(card?.why).toBe('Traffic has fallen to zero.');
   });
+
+  it('falls back to the blurb when a strait has no analysis, so it still reaches the deck', () => {
+    // Suez, on a live dispatch: `recent` came back empty and `standing` is the
+    // catalog blurb, because the narration stage always prefers the
+    // hand-written sentence. With nothing under the chart the card is built and
+    // then silently dropped by the deck gate \u2014 and the blurb, which appears
+    // nowhere else on a card, is real text a reader has not seen.
+    const blurb = 'The 120-mile canal carrying about 12% of world trade.';
+    const cards = allOf(
+      build({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [
+          {
+            id: 'suez',
+            name: 'Suez Canal',
+            blurb,
+            standing: blurb,
+            recent: '',
+            lat: 0,
+            lng: 0,
+            topicTags: [],
+            primaryField: 'n_total',
+            last7Avg: { n_total: 30 },
+            baseline90Avg: { n_total: 32 },
+            delta7vs90: { n_total: -0.06 },
+            series: { periods: ['a', 'b'], total: [32, 30] },
+            asOf: '2026-08-02',
+          },
+        ],
+        articles: [],
+      }),
+    );
+    expect(find(cards, 'strait-suez')?.why).toBe(blurb);
+  });
 });
 
 describe('graph-card context', () => {
-  it('carries live pipeline analysis', () => {
-    const columns = buildInstrumentCards({
+  const btcTrends = (standing?: string) =>
+    snapshot([indicator({ id: 'btc', label: 'Bitcoin', unit: '$', standing })]);
+
+  it("leads with the day's movement analysis, not the definition", () => {
+    const columns = build({
+      trends: btcTrends('Its price sets the tone for the rest of the digital-asset market.'),
+      chokepoints: [],
+      articles: [],
+      analysis: analysisOf({ btc: 'The rise to $78,420 tracked the SEC\u2019s crypto rulebook.' }),
+    });
+    // The reader is looking at a chart that just moved. The definition is a
+    // true sentence answering a question nobody asked at that moment.
+    expect(columns.markets[0]?.why).toContain('crypto rulebook');
+    expect(columns.markets[0]?.why).not.toContain('sets the tone');
+  });
+
+  it('falls back to the definition when the desk wrote no analysis today', () => {
+    const columns = build({
+      trends: btcTrends('Its price sets the tone for the rest of the digital-asset market.'),
+      chokepoints: [],
+      articles: [],
+    });
+    expect(columns.markets[0]?.why).toContain('sets the tone');
+  });
+
+  it('treats a blank analysis as absent rather than as a value', () => {
+    const columns = build({
+      trends: btcTrends('Its price sets the tone for the rest of the digital-asset market.'),
+      chokepoints: [],
+      articles: [],
+      analysis: analysisOf({ btc: '   ' }),
+    });
+    expect(columns.markets[0]?.why).toContain('sets the tone');
+  });
+
+  it('leaves analysis absent when the pipeline provided neither', () => {
+    const columns = build({ trends: btcTrends(), chokepoints: [], articles: [] });
+    expect(columns.markets[0]?.why).toBeUndefined();
+  });
+
+  it('explains a prediction market, which only ever had a definition before', () => {
+    const columns = build({
       trends: snapshot([
         indicator({
-          id: 'btc',
-          label: 'Bitcoin',
-          unit: '$',
-          standing: 'Its price sets the tone for the rest of the digital-asset market.',
+          id: 'poly-iran',
+          label: 'US invade Iran before 2027?',
+          source: 'polymarket',
+          unit: '%',
+          values: [16, 17],
+          standing: 'A market on whether US forces enter Iran.',
         }),
       ]),
       chokepoints: [],
       articles: [],
+      analysis: analysisOf({ 'poly-iran': 'The price rose after the carrier group moved.' }),
     });
-    const btc = columns.markets[0];
-    expect(btc?.why).toContain('sets the tone');
-  });
-
-  it('leaves analysis absent when the pipeline did not provide it', () => {
-    const columns = buildInstrumentCards({
-      trends: snapshot([indicator({ id: 'btc', label: 'Bitcoin', unit: '$' })]),
-      chokepoints: [],
-      articles: [],
-    });
-    expect(columns.markets[0]?.why).toBeUndefined();
+    expect(columns.predictions[0]?.why).toBe('The price rose after the carrier group moved.');
   });
 });
 
 describe('belief titles', () => {
   it('keeps the question mark — it is what says this is an outcome, not a reading', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({
           id: 'poly-iran',
@@ -523,7 +652,7 @@ describe('belief titles', () => {
   });
 
   it('restores words omitted by a compact pipeline label', () => {
-    const columns = buildInstrumentCards({
+    const columns = build({
       trends: snapshot([
         indicator({
           id: 'poly-fed',

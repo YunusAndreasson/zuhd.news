@@ -40,6 +40,7 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
+import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -141,6 +142,7 @@ export default function HomeScreen() {
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
+  const { byId: analysis } = useAnalysis();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
@@ -304,8 +306,8 @@ export default function HomeScreen() {
   // builder omits a card rather than rendering a broken one when its payload
   // is missing, so deck assembly does not need a separate loading state.
   const columns = useMemo(
-    () => buildInstrumentCards({ trends, chokepoints, articles: river }),
-    [trends, chokepoints, river],
+    () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
+    [trends, chokepoints, analysis, river],
   );
   // Only real time series with live pipeline analysis cross this boundary.
   // Subject-specific tabs make the rail predictable; dormant non-graph card

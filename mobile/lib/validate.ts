@@ -1,4 +1,5 @@
 import type {
+  AnalysisSnapshot,
   Article,
   Category,
   Chokepoint,
@@ -111,6 +112,18 @@ export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
   typeof v.generated === 'string' &&
   Array.isArray(v.chokepoints) &&
   v.chokepoints.every(isChokepoint);
+
+/** `/api/analysis.json` — the day's movement analysis, keyed by indicator id.
+ *  An entry with a blank `recent` is rejected rather than kept: the whole
+ *  point of the field is that a card falls back to its definition on absence,
+ *  and an empty string is absence wearing a value's clothes. */
+export const isAnalysisSnapshot = (v: unknown): v is AnalysisSnapshot =>
+  isObject(v) &&
+  typeof v.generatedAt === 'string' &&
+  isObject(v.items) &&
+  Object.values(v.items).every(
+    (e) => isObject(e) && typeof e.recent === 'string' && e.recent.trim().length > 0,
+  );
 
 const GDACS_EVENT_TYPES: ReadonlySet<string> = new Set(['EQ', 'TC', 'FL', 'VO', 'DR', 'WF']);
 const GDACS_ALERT_LEVELS: ReadonlySet<string> = new Set(['Green', 'Orange', 'Red']);
