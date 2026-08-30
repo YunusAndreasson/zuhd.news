@@ -83,7 +83,9 @@ const SOURCES = [
   { name: 'Rest of World', url: 'https://restofworld.org/feed/latest/',        format: 'rss2', defaultCategory: 'tech' },
   { name: 'The Diplomat', url: 'https://thediplomat.com/feed/',                format: 'rss2' },
   { name: 'Lowy Interpreter', url: 'https://www.lowyinstitute.org/the-interpreter/rss.xml', format: 'rss2' },
-  { name: 'Dialogue Earth', url: 'https://thethirdpole.net/feed/',             format: 'rss2', defaultCategory: 'science' },
+  // thethirdpole.net 403s since the Dialogue Earth rebrand — it had failed every
+  // cycle in the log window (41/41) with the whole science feed silently lost.
+  { name: 'Dialogue Earth', url: 'https://dialogue.earth/en/feed/',            format: 'rss2', defaultCategory: 'science' },
   { name: 'Global Voices', url: 'https://globalvoices.org/feed/',              format: 'rss2' },
 ]
 

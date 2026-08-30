@@ -56,7 +56,8 @@ const charLengths = articles.map(a => a.body.length)
 // basis for trend continuity); 440 is the hard ceiling (actionable). Raised from
 // 350/400 and the 40-55 word window below raised to 48-60 when the body grew a
 // fourth block (why it matters) — see write-prompt.md/check-prompt.md.
-const visibleLen = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').length
+const visibleText = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+const visibleLen = s => visibleText(s).length
 const visibleLengths = articles.map(a => visibleLen(a.body))
 const wordCounts = articles.map(a => a.body.split(/\s+/).filter(Boolean).length)
 
@@ -123,9 +124,15 @@ const hedgeArticles = articles.filter(a => HEDGE_PATTERNS.some(p => p.test(a.bod
 // ── Metric 7: acronym violations ───────────────────────────
 // Strict: only the prompt whitelist + AI (universally understood) pass.
 const WHITELIST = new Set(['US', 'UK', 'EU', 'UN', 'WHO', 'NATO', 'ISIS', 'IDF', 'IMF', 'ICC', 'ICJ', 'AI'])
+// Measured on the *visible* prose, not the source. Country markup is written
+// `[Iran](country:IR)`, so scanning the raw body counted every link target as an
+// unexpanded acronym: the top five violators were CN, PK, RU, IN, IR — ISO codes
+// no reader ever sees — and 1,186 such links across the August corpus were
+// inflating a metric the tuning stage reads as a writing fault. `visibleText` is
+// the same `$1` substitution `visibleLen` already measures length with.
 const acronymTally = new Map()
 for (const a of articles) {
-  const tokens = [...a.body.matchAll(/\b[A-Z]{2,5}\b/g)].map(m => m[0])
+  const tokens = [...visibleText(a.body).matchAll(/\b[A-Z]{2,5}\b/g)].map(m => m[0])
   for (const t of tokens) if (!WHITELIST.has(t)) acronymTally.set(t, (acronymTally.get(t) || 0) + 1)
 }
 const acronymViolations = [...acronymTally.values()].reduce((a, b) => a + b, 0)

@@ -23,7 +23,46 @@ export const NICHE_SOURCES = new Set([
   'Lowy Interpreter', 'Dialogue Earth', 'Global Voices', 'Hacker News',
 ])
 
-/** Load slug+title+date for articles published within `cutoffMs` (default 48h). */
+/**
+ * Canonical form of a source URL, for identity comparison only.
+ *
+ * The slug, title and eventUri layers all compare *descriptions* of a story, so
+ * two desks writing the same wire copy under different headlines slipped every
+ * one of them: same URL, different slug, different title, no eventUri, both
+ * published. The daily audit logged two such pairs on 2026-08-28 and its
+ * duplicate check passed them because it compares slugs.
+ *
+ * Normalisation is deliberately shallow — host and path only. Query strings are
+ * dropped because the observed collisions differed only in tracking parameters,
+ * and a publisher that encodes the article id in the query (some wires do) still
+ * matches on path, which is the conservative direction: this layer should miss a
+ * duplicate rather than suppress a distinct story.
+ */
+export function normalizeUrl(raw) {
+  if (!raw || typeof raw !== 'string') return ''
+  try {
+    const u = new URL(raw.trim())
+    const host = u.hostname.toLowerCase().replace(/^www\./, '')
+    const path = u.pathname.replace(/\/+$/, '').toLowerCase()
+    // A URL with no article path identifies a *site*, not a story, and must
+    // never key this layer: two unrelated pieces were both filed against
+    // `bankingnews.gr/index.php`, and treating that as identity would have
+    // suppressed the second one. Found by running this layer over the live
+    // corpus before shipping it.
+    if (!path || GENERIC_PATHS.has(path)) return ''
+    return `${host}${path}`
+  } catch {
+    return ''
+  }
+}
+
+// Paths that name a section or a front page rather than an article.
+const GENERIC_PATHS = new Set([
+  '/index.php', '/index.html', '/index.htm', '/index',
+  '/news', '/en', '/home', '/feed', '/rss', '/articles',
+])
+
+/** Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h). */
 export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
   const cutoff = Date.now() - cutoffMs
   try {
@@ -35,7 +74,10 @@ export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
           const { meta } = parseFrontmatter(content)
           const date = meta.date ? new Date(meta.date).getTime() : 0
           if (date < cutoff) return null
-          return { slug: f.replace('.md', ''), title: meta.title || '', date }
+          const urls = (Array.isArray(meta.sources) ? meta.sources : [])
+            .map(s => normalizeUrl(s?.url))
+            .filter(Boolean)
+          return { slug: f.replace('.md', ''), title: meta.title || '', date, urls }
         } catch { return null }
       })
       .filter(Boolean)
@@ -149,19 +191,31 @@ function isNicheOnly(story) {
  * Check whether a story would be removed by deterministic dedup.
  * Returns { deduped: false } or { deduped: true, reason, match }.
  *
- * Reasons: 'exact', 'eventUri', 'fuzzy', 'recap'.
+ * Reasons: 'exact', 'url', 'eventUri', 'fuzzy', 'recap'.
  * 'recap' fires only for niche-only stories and uses title-word overlap
  * against recent article titles + ledger labels (catches reframed
  * headlines that slug-fuzzy misses).
  */
 export function wouldDedup(story, ctx) {
-  const { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets } = ctx
+  const { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls } = ctx
   const slug = story.suggestedSlug
   // Layer 1: exact slug match
   if (existsSync(join(ARTICLES_DIR, `${slug}.md`))) {
     return { deduped: true, reason: 'exact', match: slug }
   }
-  // Layer 2: eventUri match — same event covered by a recent article
+  // Layer 2: same source URL — the strongest signal there is, and the one the
+  // other layers cannot see. Two desks rewriting the same wire piece produce
+  // different slugs and different titles off an identical link.
+  if (recentUrls?.size) {
+    const candidateUrls = [story.link, ...(story.sources || []).map(s => s?.url)]
+      .map(normalizeUrl)
+      .filter(Boolean)
+    for (const u of candidateUrls) {
+      const match = recentUrls.get(u)
+      if (match) return { deduped: true, reason: 'url', match }
+    }
+  }
+  // Layer 3: eventUri match — same event covered by a recent article
   if (story.eventUri && ledgerEventUris.has(story.eventUri)) {
     const existing = ledgerEventUris.get(story.eventUri)
     const hasRecent = existing.some(a => recentSlugs.some(r => r === a || r.endsWith(a)))
@@ -169,11 +223,11 @@ export function wouldDedup(story, ctx) {
       return { deduped: true, reason: 'eventUri', match: existing[existing.length - 1] }
     }
   }
-  // Layer 3: fuzzy slug match
+  // Layer 4: fuzzy slug match
   const slugMatch = fuzzyMatch(slug, recentWordSets)
   if (slugMatch) return { deduped: true, reason: 'fuzzy', match: slugMatch }
 
-  // Layer 4: recap (niche-only stories only) — title-word overlap against
+  // Layer 5: recap (niche-only stories only) — title-word overlap against
   // article titles and ledger labels in the lookback window.
   if (isNicheOnly(story) && story.title) {
     const titleMatch = recapMatch(story.title, recentTitleSets || [])
@@ -200,5 +254,12 @@ export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
   const recapArticles = loadRecentArticles(Math.max(cutoffMs, RECAP_LOOKBACK_MS))
   const recentTitleSets = buildTitleSets(recapArticles)
   const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS)))
-  return { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets }
+  // URL → slug over the recap window, not the 48h one. A same-URL republish is
+  // the same failure a recap is, so it gets the same lookback; the tighter
+  // window is only right for slug-fuzzy, where a rewrite happens within a cycle.
+  const recentUrls = new Map()
+  for (const a of recapArticles) {
+    for (const u of a.urls || []) if (!recentUrls.has(u)) recentUrls.set(u, a.slug)
+  }
+  return { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls }
 }

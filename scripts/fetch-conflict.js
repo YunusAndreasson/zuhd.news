@@ -9,7 +9,7 @@
 // Shape:  { generated, windowStart, windowEnd, events: ConflictEvent[] }
 //
 // UCDP candidate data refreshes monthly — we cap upstream churn with a
-// 6h mtime cache to avoid re-downloading the multi-MB CSV every cycle
+// 6h cache (keyed on the snapshot's own `generated` stamp, not file mtime)
 // (5×/day = wasteful for monthly-cadence data). The cycle still runs
 // every iteration; the cache short-circuits when the snapshot is fresh.
 //
@@ -19,9 +19,9 @@
 //
 // Usage: node scripts/fetch-conflict.js
 //        WINDOW_DAYS=3 node scripts/fetch-conflict.js
-//        FORCE=1 node scripts/fetch-conflict.js  (bypass mtime cache)
+//        FORCE=1 node scripts/fetch-conflict.js  (bypass the freshness cache)
 
-import { writeFileSync, statSync, existsSync } from 'node:fs'
+import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
 
@@ -30,7 +30,11 @@ const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 // UCDP candidate release version — bump monthly when UCDP publishes the next
 // candidate (26.0.1 … 26.0.5 monthly, 26.01.26.03 quarterly). One constant
 // drives both the JSON API path and the legacy CSV fallback URL.
-const UCDP_VERSION = '26.0.3'
+// Was pinned at 26.0.3 until 2026-08-30, four releases behind, which is the
+// only reason the globe's conflict layer was showing a 25-31 March window in
+// late August. The bump is not optional maintenance: this constant IS the
+// dataset's recency, and nothing failed while it rotted — see DATASET_STALE_DAYS.
+const UCDP_VERSION = '26.0.7'
 const UCDP_API_URL = `https://ucdpapi.pcr.uu.se/api/gedevents/${UCDP_VERSION}`
 const UCDP_URL = `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${UCDP_VERSION.replace(/\./g, '_')}.csv`
 // The JSON API (a few hundred KB paginated vs the ~50 MB CSV) requires a free
@@ -52,12 +56,21 @@ const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '7', 10) || 
 const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const FETCH_TIMEOUT_MS = 60_000
 
+// Freshness comes from the `generated` stamp INSIDE the snapshot, never the
+// file mtime. `run-cycle.sh` runs `git pull --rebase --autostash` three times a
+// cycle, and autostash rewrites every modified file — which refreshed this
+// file's mtime on every run and made the 6h window permanently unexpired. The
+// snapshot silently froze: last real fetch 2026-08-23, still being served a
+// week later. coverage-map.js already carries this warning ("git ops change
+// mtime, breaking the window"); this fetcher was the one place that missed it.
 function cacheFresh() {
   if (process.env.FORCE) return false
   if (!existsSync(OUTPUT_PATH)) return false
   try {
-    const ageMs = Date.now() - statSync(OUTPUT_PATH).mtimeMs
-    return ageMs < CACHE_MAX_AGE_MS
+    const prior = JSON.parse(readFileSync(OUTPUT_PATH, 'utf8'))
+    const generatedMs = Date.parse(prior?.generated)
+    if (!Number.isFinite(generatedMs)) return false
+    return Date.now() - generatedMs < CACHE_MAX_AGE_MS
   } catch {
     return false
   }
@@ -160,6 +173,22 @@ const { kept, windowStart, windowEnd } = filterRecentWindow(events, WINDOW_DAYS)
 console.log(
   `Kept ${kept.length} events in window ${windowStart} → ${windowEnd} (last ${WINDOW_DAYS}d of dataset)`,
 )
+
+// UCDP candidate trails real-time by 1-3 months by design, so a window a few
+// weeks back is normal and must not warn. Past this, the pin is stale rather
+// than the dataset lagging — which is exactly how a 25-31 March window went
+// unnoticed into late August: the line above printed it every time, correctly,
+// and read as normal. Bump UCDP_VERSION when this fires.
+const DATASET_STALE_DAYS = 120
+const windowEndMs = Date.parse(windowEnd)
+if (Number.isFinite(windowEndMs)) {
+  const lagDays = Math.floor((Date.now() - windowEndMs) / 86400000)
+  if (lagDays > DATASET_STALE_DAYS) {
+    console.error(
+      `  ⚠ UCDP v${UCDP_VERSION} is ${lagDays}d behind (window ends ${windowEnd}) — a newer candidate release is probably out; bump UCDP_VERSION`,
+    )
+  }
+}
 
 const snapshot = {
   generated: new Date().toISOString(),

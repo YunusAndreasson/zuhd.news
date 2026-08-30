@@ -7,6 +7,7 @@
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
 import {
+  normalizeUrl,
   titleWords,
   buildTitleSets,
   recapMatch,
@@ -133,4 +134,62 @@ test('slug-fuzzy thresholds are unchanged (no regression)', () => {
     fuzzyMatch('2026-04-19-bellingcat-tapentadol-india-west-africa-opioid-pipeline', sets),
     '2026-04-17-india-tapentadol-west-africa-opioid-pipeline'
   )
+})
+
+// --- URL layer, added 2026-08-30 -------------------------------------------
+// The slug, title and eventUri layers all compare *descriptions* of a story, so
+// the same wire piece written up twice under different headlines slipped all of
+// them. Running this layer over the live 14-day corpus found 28 such pairs
+// already published — e.g. one Rest of World piece filed as both
+// "china-robotics-component-ban-substitution-assumption" and
+// "us-china-robotics-parts-ban-actuator-lead-times-startup-cost".
+test('same source URL is caught even when slug and title share nothing', () => {
+  const ctx = {
+    recentSlugs: [],
+    ledgerEventUris: new Map(),
+    recentWordSets: [],
+    recentTitleSets: [],
+    ledgerLabelSets: [],
+    recentUrls: new Map([
+      ['restofworld.org/2026/china-robot-ban-silicon-valley', '2026-08-17-china-robotics-component-ban-substitution-assumption'],
+    ]),
+  }
+  const dupe = {
+    suggestedSlug: '2099-01-01-fixture-robotics-parts-ban-actuator-lead-times',
+    title: 'Actuator lead times reprice startup hardware',
+    sources: [{ name: 'Rest of World', url: 'https://restofworld.org/2026/china-robot-ban-silicon-valley/' }],
+  }
+  const r = wouldDedup(dupe, ctx)
+  assert.equal(r.deduped, true)
+  assert.equal(r.reason, 'url')
+
+  const distinct = { ...dupe, sources: [{ name: 'Rest of World', url: 'https://restofworld.org/2026/some-other-piece' }] }
+  assert.equal(wouldDedup(distinct, ctx).deduped, false)
+})
+
+test('a bare index path identifies a site, not a story, and never keys the layer', () => {
+  // Two unrelated articles were both filed against bankingnews.gr/index.php.
+  // Keying on it would have suppressed the second.
+  assert.equal(normalizeUrl('https://bankingnews.gr/index.php'), '')
+  assert.equal(normalizeUrl('https://example.com'), '')
+  assert.equal(normalizeUrl('https://example.com/news'), '')
+  const ctx = {
+    recentSlugs: [], ledgerEventUris: new Map(), recentWordSets: [],
+    recentTitleSets: [], ledgerLabelSets: [],
+    recentUrls: new Map([['bankingnews.gr/index.php', '2026-08-19-iran-europe-basing-targets-host-state-exposure']]),
+  }
+  const other = {
+    suggestedSlug: '2099-01-01-fixture-flamingo-plant-strikes-production',
+    title: 'Flamingo plant strikes cut production',
+    sources: [{ name: 'BankingNews', url: 'https://bankingnews.gr/index.php' }],
+  }
+  assert.equal(wouldDedup(other, ctx).deduped, false)
+})
+
+test('normalizeUrl compares identity, not decoration', () => {
+  const canonical = 'rte.ie/news/world/2026/0830/1589694-iceland-eu'
+  assert.equal(normalizeUrl('https://www.rte.ie/news/world/2026/0830/1589694-iceland-eu/'), canonical)
+  assert.equal(normalizeUrl('http://rte.ie/news/world/2026/0830/1589694-iceland-eu?utm_source=x#top'), canonical)
+  assert.equal(normalizeUrl('not a url'), '')
+  assert.equal(normalizeUrl(null), '')
 })

@@ -203,6 +203,7 @@ async function apiPost(endpoint, params, tag = 'other') {
 // ── Shared article query defaults ────────────────────────────────────
 // Look back 1 day for articles — catches late-indexed content from previous cycle windows
 const YESTERDAY = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+const TODAY = new Date().toISOString().slice(0, 10)
 const ARTICLE_DEFAULTS = {
   resultType: 'articles',
   articlesCount: 100,
@@ -296,7 +297,16 @@ async function fetchEvents() {
     lang: 'eng',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
-    dateStart: new Date().toISOString().slice(0, 10),
+    // Window, not an open-ended floor. `dateStart` alone means "dated today OR
+    // LATER", so the size sort filled up with *scheduled* events — product
+    // launches, withdrawal deadlines, elections weeks out (measured 2026-08-30:
+    // 50/50 events dated today→Oct 26, none in the past). Those clusters have no
+    // `infoArticle`, so they arrive sourceless and merge-feeds.js drops them:
+    // 31-42 of every 72 stories, worst at 04:00 when "today" is 4 hours old and
+    // nothing yet clears minArticlesInEvent. The lookback catches events that
+    // broke overnight; dateEnd keeps the calendar out. Same call, same 5 tokens.
+    dateStart: YESTERDAY,
+    dateEnd: TODAY,
     minArticlesInEvent: 10,
     // Return-info flags change payload only, never token cost (ER cost model
     // is per call/page). infoArticle = the medoid article the event title/summary

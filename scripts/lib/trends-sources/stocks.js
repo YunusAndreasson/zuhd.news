@@ -64,6 +64,18 @@ function readCachedSeries(key) {
  */
 const cacheKey = (symbol, range) => (range === DEFAULT_RANGE ? symbol : `${symbol}@${range}`)
 
+/**
+ * A too-short-series failure that still carries the live quote from the same
+ * response. `currencyReported` and `timezone` are what let the caller confirm
+ * the quote is the instrument it asked for before overlaying the price.
+ *
+ * @typedef {Error & { quote?: {
+ *   marketPrice: number,
+ *   currencyReported: string,
+ *   timezone: string,
+ * } }} ShortSeriesError
+ */
+
 async function fetchFromHost(host, symbol, range) {
   const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`
   const res = await fetch(url, {
@@ -77,7 +89,22 @@ async function fetchFromHost(host, symbol, range) {
   const timestamps = Array.isArray(result.timestamp) ? result.timestamp : []
   const closes = result.indicators?.quote?.[0]?.close ?? []
   if (timestamps.length < 5 || closes.length < 5) {
-    throw new Error(`only ${timestamps.length}/${closes.length} points`)
+    // Too short to chart, but the response still carries a live quote — and for
+    // four indices (TASI, DFMGI, SET, PSEI) Yahoo stopped serving history on
+    // 2026-08-26 while continuing to serve today's level. Discarding the whole
+    // response meant the cached fallback supplied a *price* days old alongside
+    // its stale sparkline. Carry the quote on the error so the caller can keep
+    // the level fresh; currency and zone ride along so it can verify the quote
+    // describes the same instrument before trusting it.
+    const err = /** @type {ShortSeriesError} */ (new Error(`only ${timestamps.length}/${closes.length} points`))
+    if (typeof result.meta?.regularMarketPrice === 'number') {
+      err.quote = {
+        marketPrice: result.meta.regularMarketPrice,
+        currencyReported: result.meta?.currency ?? '',
+        timezone: result.meta?.exchangeTimezoneName ?? '',
+      }
+    }
+    throw err
   }
   // Drop any null closes (Yahoo returns nulls for market-closed days that
   // slipped into the interval). Keep aligned index on timestamps.
@@ -139,6 +166,7 @@ async function fetchFromHost(host, symbol, range) {
 export async function fetchYahooStock(symbol, opts = {}) {
   const range = opts.range || DEFAULT_RANGE
   const key = cacheKey(symbol, range)
+  /** @type {ShortSeriesError | null} */
   let lastErr = null
   for (const host of YAHOO_HOSTS) {
     try {
@@ -151,6 +179,20 @@ export async function fetchYahooStock(symbol, opts = {}) {
   }
   const cached = readCachedSeries(key)
   if (cached) {
+    // Overlay a live quote onto the stale series when the failure still handed
+    // us one — but only when it describes the same instrument. Yahoo answers an
+    // unknown symbol with a DIFFERENT one rather than a 404 (see the header of
+    // market-metadata.js), so an unchecked overlay is how a plausible number
+    // from the wrong exchange gets printed. Currency and zone must both match
+    // what the cached series recorded.
+    const q = lastErr?.quote
+    const sameInstrument = q
+      && q.currencyReported === cached.currencyReported
+      && q.timezone === cached.timezone
+    if (sameInstrument) {
+      console.error(`  ⚠ yahoo:${symbol}: ${lastErr?.message} — cached series from ${cached.asOf}, live price kept`)
+      return { ...cached, marketPrice: q.marketPrice }
+    }
     console.error(`  ⚠ yahoo:${symbol}: ${lastErr?.message} — serving cached series from ${cached.asOf}`)
     return cached
   }
