@@ -48,21 +48,32 @@ export function toneLabel(sentiment: number | null | undefined): string | null {
 /**
  * Divergence is only worth a sentence when it is unusual, so this returns null
  * for most stories rather than printing a number on every one — a note that
- * appears every time is a tic, not information.
+ * appears every time is a tic, not information. The app said this first:
+ * "a line that appears on every article stops being read".
+ *
+ * Silent below two sources, because divergence *between outlets* is not a
+ * quantity one outlet can have, and a plural sentence about a single source is
+ * simply wrong. The app had this guard and the first web version did not.
  *
  * Thresholds are the corpus's own quartiles, measured over the 1,332 articles
  * carrying the field (2026-08-30): min 0, p25 0.14, median 0.24, p75 0.35,
  * p90 0.49, max 1.08. So `notable` is the top quartile and `sharp` the top
- * decile — both are claims about this story against our own record, which is
- * the only baseline we have. Re-measure before moving them.
+ * decile. The app previously fired at 0.2 and 0.35 — but 0.2 sits *below* the
+ * median, so the note appeared on more than half of all articles, which is the
+ * exact failure its own docstring warned about. Raising it is what makes the
+ * app's stated intent true. Re-measure before moving these.
  */
 export const DIVERGENCE_NOTABLE = 0.35;
 export const DIVERGENCE_SHARP = 0.49;
 
-export function divergenceNote(divergence: number | null | undefined): string | null {
+export function divergenceNote(
+  divergence: number | null | undefined,
+  sourceCount: number,
+): string | null {
   if (divergence == null || Number.isNaN(divergence)) return null;
-  if (divergence >= DIVERGENCE_SHARP) return 'these outlets frame this story very differently';
-  if (divergence >= DIVERGENCE_NOTABLE) return 'these outlets frame this story differently';
+  if (sourceCount < 2) return null;
+  if (divergence >= DIVERGENCE_SHARP) return 'These outlets told this story very differently.';
+  if (divergence >= DIVERGENCE_NOTABLE) return 'These outlets told this story differently.';
   return null;
 }
 

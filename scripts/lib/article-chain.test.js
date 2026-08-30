@@ -204,11 +204,19 @@ test('only a framing that stands out is labelled', () => {
 })
 
 test('coverage is rounded and divergence only speaks when unusual', () => {
-  const loud = renderIsnad([withAngle('A', 'x')], '', FRAMING, { eventCoverage: 91, sentimentDivergence: 0.6 })
+  const two = [withAngle('A', 'x'), withAngle('B', 'y')]
+  const loud = renderIsnad(two, '', FRAMING, { eventCoverage: 91, sentimentDivergence: 0.6 })
   assert.ok(loud.includes('drawn from 90+ reports worldwide'), 'exact counts imply false precision')
   assert.ok(loud.includes('very differently'))
-  const quiet = renderIsnad([withAngle('A', 'x')], '', FRAMING, { eventCoverage: 4, sentimentDivergence: 0.2 })
+  const quiet = renderIsnad(two, '', FRAMING, { eventCoverage: 4, sentimentDivergence: 0.2 })
   assert.ok(!quiet.includes('framing-note'), 'an ordinary story says nothing about divergence or coverage')
+})
+
+test('one source cannot diverge from itself', () => {
+  // Divergence *between outlets* is not a quantity one outlet can have, and the
+  // sentence is plural. The app guarded this; the first web version did not.
+  const solo = renderIsnad([withAngle('A', 'x')], '', FRAMING, { sentimentDivergence: 0.9 })
+  assert.ok(!solo.includes('differently'), 'a single-source article makes no claim about outlets disagreeing')
 })
 
 test('angles are escaped, not injected', () => {

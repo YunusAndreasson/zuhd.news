@@ -271,7 +271,7 @@ const renderFraming = (sources, framing, meta) => {
   // distinctive; a disclosure over a list of bare names opens onto nothing.
   if (!rows.some(r => r.includes('<dd>'))) return ''
 
-  const notes = [coverageNote(meta?.eventCoverage), divergenceNote(meta?.sentimentDivergence)]
+  const notes = [coverageNote(meta?.eventCoverage), divergenceNote(meta?.sentimentDivergence, sources.length)]
     .filter(Boolean)
     .map(n => escHtml(n))
   const caption = notes.length ? `<p class="framing-note">${notes.join(' · ')}</p>` : ''

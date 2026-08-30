@@ -385,14 +385,12 @@ export const LAYOUT = {
 
 /** Editorial thresholds — not layout, but shared across components */
 export const EDITORIAL = {
-  /** Sentiment score above this is "favorable" */
-  sentimentPositive: 0.2,
-  /** Sentiment score below negative of this is "unfavorable" */
-  sentimentNegative: -0.2,
-  /** Source divergence threshold for "differently" note */
-  divergenceModerate: 0.2,
-  /** Source divergence threshold for "very differently" note */
-  divergenceHigh: 0.35,
+  // Sentiment and source-divergence thresholds moved to
+  // `@shared/source-framing` on 2026-08-30, when the web article page began
+  // rendering the same framing data. Keeping a second copy here is how one
+  // outlet ends up described two ways on two surfaces — and the copies had
+  // already parted: these fired the divergence note at 0.2, below the corpus
+  // median, while the page used the measured top quartile.
   /** Average words per minute for read-time estimates */
   readingWpm: 238,
 } as const;

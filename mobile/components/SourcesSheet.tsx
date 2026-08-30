@@ -1,8 +1,9 @@
+import { divergenceNote } from '@shared/source-framing';
 import type { ArticleSource } from '@shared/types';
 import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { EDITORIAL, SPACING } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
@@ -28,17 +29,15 @@ interface SourcesSheetProps extends BaseSheetProps {
  *
  * Silent below the moderate threshold. A small spread between two outlets is
  * noise, and a line that appears on every article stops being read.
+ *
+ * The thresholds and the wording moved to `@shared/source-framing` on
+ * 2026-08-30, when the article page began showing the same note: two surfaces
+ * describing one story two different ways is worse than either wording. The
+ * old local values fired at 0.2, which is *below* the corpus median of 0.24 —
+ * so the note appeared on more than half of all articles, the exact failure the
+ * paragraph above warns about. The shared thresholds are the measured top
+ * quartile and top decile, which is what makes this docstring true.
  */
-function divergenceNote(divergence: number | null | undefined, count: number): string | null {
-  if (divergence == null || count < 2) return null;
-  if (divergence >= EDITORIAL.divergenceHigh) {
-    return 'These outlets told this story very differently.';
-  }
-  if (divergence >= EDITORIAL.divergenceModerate) {
-    return 'These outlets told this story differently.';
-  }
-  return null;
-}
 
 /** Dedicated sheet for the article's sources. Opens from the tappable source
  *  indicator in the article dateline. A single source auto-expands so the
