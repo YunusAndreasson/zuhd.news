@@ -336,7 +336,32 @@ const HAIKU_CHUNK = 4
 /** How many of those run at once. Three chunks in flight covers a full deck in
  *  roughly one chunk's wall-clock; more would put four `claude` processes on a
  *  box that is also running the rest of the cycle. */
-const HAIKU_CONCURRENCY = 3
+const HAIKU_CONCURRENCY = 4
+
+// One chunk's ceiling. Measured, and it has been wrong twice: 40s held while a
+// batch was 3 titles and died the moment the tag filter widened the deck; 60s
+// held after chunking and then began SIGTERMing on 38% of cycles (Aug 22-30),
+// costing every question its country tags to the regex fallback each time.
+//
+// Measured again 2026-08-30 with the ceiling lifted so nothing was killed:
+// chunks of 4 titles took 22s, 33s and 33s, total 34.2s, 10/10 tagged. So the
+// typical run is nowhere near 60s and the failures are a latency *tail*, not
+// the norm — which is why raising the ceiling costs nothing on a normal cycle
+// and only buys back the tail.
+//
+// 100s is sized against the stage, not picked round. `runWithConcurrency` runs
+// HAIKU_CONCURRENCY chunks at a time, so wall time is (waves x ceiling), and
+// the concurrency above is 4 so that an observed deck (10-14 questions, i.e.
+// 3-4 chunks of HAIKU_CHUNK) is a SINGLE wave. Worst case is then one ceiling,
+// not two: ~40s for the other five sources + 100s here = 140s inside the
+// `timeout 180` that run-cycle.sh gives the stage. Two waves at this ceiling
+// would exceed that budget, which is the thing to re-check if HAIKU_CHUNK,
+// HAIKU_CONCURRENCY or the deck size moves.
+//
+// Overrun is not a publish risk: TRENDS_EXIT is logged and never acted on, so
+// a blown stage costs that cycle's trends data and nothing else.
+// Override with PM_HAIKU_TIMEOUT_MS.
+const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 
 /**
  * Shorten and country-tag every title, in parallel chunks.
@@ -368,6 +393,11 @@ async function shortenTitlesViaHaiku(titles) {
 
 async function shortenBatchViaHaiku(titles) {
   if (titles.length === 0) return []
+  // Timed, because this ceiling has now been wrong twice — 40s when the deck
+  // widened, then 60s once chunking landed — and both times the evidence was a
+  // silent regex fallback rather than a number anyone could read. "Timeouts are
+  // measured, not guessed" needs the measurement to be in the log.
+  const chunkStarted = Date.now()
   const { execFile } = await import('node:child_process')
   const { promisify } = await import('node:util')
   const { randomUUID } = await import('node:crypto')
@@ -431,11 +461,15 @@ No commentary, no markdown fences.`
     // country tags to the regex fallback. Chunking is what fixed it — see
     // `shortenTitlesViaHaiku` — and this ceiling now covers one chunk with
     // room, inside a 120s stage that has five other sources to fetch.
-    ], { encoding: 'utf-8', timeout: Number(process.env.PM_HAIKU_TIMEOUT_MS) || 60_000, maxBuffer: 256 * 1024, env })
+    ], { encoding: 'utf-8', timeout: HAIKU_TIMEOUT_MS, maxBuffer: 256 * 1024, env })
   } catch (err) {
-    console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.code ?? err.message} — falling back to regex`)
+    console.error(
+      `  ✗ polymarket-haiku ${tmpId}: ${err.code ?? err.message} after ${Math.round((Date.now() - chunkStarted) / 1000)}s ` +
+      `(ceiling ${Math.round(HAIKU_TIMEOUT_MS / 1000)}s, ${titles.length} titles) — falling back to regex`,
+    )
     return fallbackLabels(titles)
   }
+  console.error(`  · polymarket-haiku ${tmpId}: ${titles.length} titles in ${Math.round((Date.now() - chunkStarted) / 1000)}s`)
 
   try {
     // Claude envelope: outer JSON wrapping result text
