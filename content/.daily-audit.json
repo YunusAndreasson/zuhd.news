@@ -1,37 +1,37 @@
 {
-  "date": "2026-08-29",
+  "date": "2026-08-30",
   "metrics": {
-    "articles": { "value": 55, "detail": "5 cycles completed, avg 11/cycle (67 yesterday)" },
-    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 15, "tech": 11, "science": 9 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 53, "detail": "5 cycles completed, avg 8/cycle (55 yesterday)" },
+    "freshness": { "median": 0, "p90": 1.3, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 12, "tech": 12, "science": 9 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 16, "ME": 11, "AS": 10, "AM": 10, "AF": 8, "OC": 0 }
+      "breakdown": { "ME": 16, "AM": 14, "EU": 12, "AS": 5, "AF": 5, "OC": 0 }
     },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 49,
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 17, "target": 20, "met": true },
+    "uniqueSources": 38,
     "duplicates": 0,
-    "avgCycleDuration": 1305
+    "avgCycleDuration": 1204
   },
-  "experiment": "Skipped — all six goal metrics are within target, no experiment is active, and no pause gate is set. The experiments file carries no noNewExperimentsUntil field; the slot is free but there is no metric worth spending it on.",
-  "weakestArea": "Regional breadth is the softest number: five regions against a target of four, but Oceania fell to zero from three yesterday and the Americas' ten are carried almost entirely by US federal and crypto stories plus three Latin America pieces (Brazil's Banco Master, Venezuelan oil, InSight Crime). Science is also the thinnest category at 9 (down from 13), pulling the sci-tech ratio from 42% to 36% — still comfortably above the 25% floor, so this is drift to watch rather than a breach.",
+  "experiment": "Skipped — all six goal metrics are within target, no experiment is active, and no pause gate is set. The two drifts worth acting on (Nature-padded tech, zero multi-source economy) are classification and selection-quality problems that no tunable parameter addresses.",
+  "weakestArea": "Category composition is the softest area even though every headline number passes. Four of eight tech articles inspected are single-source Nature lab papers datelined London — crystal vibration damping, a zinc-dendrite hydrogel, a storage cell, off-centre shell optics — which are science filed as tech to clear the tech floor of 3 per cycle. Strip them and real technology coverage is thin (404 Media, two Ars Technica, one CoinDesk). Nature at nine articles is the top source at 17%, the highest concentration in weeks and the closest approach to the 20% ceiling, and it is reaching that share by supplying both categories at once. Separately, every multi-source article today sits in politics; the economy sample carried none, against a selector floor of two per cycle.",
   "watching": [
-    "Nepal floods produced two same-day articles from different angles (thousands missing; dam workers trapped) — distinct URLs so the duplicate check passes, but the story is at risk of a third recap next cycle.",
-    "Hormuz is running as a two-track story — an IRGC closure claim and 6,000 sailors stranded — and any escalation will pull economy and politics coverage simultaneously.",
-    "Sahel security is compounding: Niamey base under fire, a Russian rescue claim in Niger, and Turkey's Somali rescue operation all landed today.",
-    "US seizure of Venezuelan oil sits alongside Nigeria courting Chinese oil capital — two halves of a wider crude-realignment story that has not yet been covered as one.",
-    "Warsh and the Fed rate trap is building; the indicator rail already carries the rate series, so a policy move would need coordinated article and indicator coverage."
+    "The US-Iran confrontation went kinetic — strikes on Iranian rocket launchers at Larak Island, 7,250 rescued from rubble in Isfahan, and Iran setting terms for Hormuz — and it is now pulling politics and economy coverage simultaneously.",
+    "Hormuz has moved from a closure threat to a pricing story: Iran's terms, Shanghai crude gaining autonomy, and Georgia's refinery dropping Russian oil are three faces of the same crude realignment.",
+    "Pakistan security is compounding across three separate datelines today — an IED in Duki, six arrests over the Khuzdar murder, and faceless trials drafted in Punjab — all from Dawn, which is the second-largest source at seven.",
+    "Sahel and Russian-presence stories continue to accumulate: the Niger junta's account of calling in Russia follows yesterday's Niamey base attack and Russian rescue claim.",
+    "Uranium and energy sourcing is quietly becoming a beat — India securing Uzbek uranium, Nigeria weighing petrol import rules, Pakistan's stalled EV target — without being covered as a connected supply-realignment story."
   ],
   "coverageGaps": [
-    "Oceania is absent entirely today, and its yesterday total was only three — it is the one region that regularly falls to zero.",
-    "Central Asia has no coverage despite active energy and migration stories in the region.",
-    "Tech skews crypto-heavy: dormant Bitcoin wallets, a Bitcoin retail pitch, Ripple's quantum deadline and agent payments are four of eleven tech slots, with CoinDesk the joint top source at five articles.",
-    "Latin America outside Brazil and Venezuela is unrepresented — no Mexico, Colombia, Argentina or Andean coverage.",
-    "Science leans clinical and biomedical (four of nine); no physics, climate-systems or computing-science coverage beyond the solar alien-rocks piece."
+    "Oceania is again absent from the region breakdown; the Palau summit story is the only Pacific dateline and it did not register as OC.",
+    "Asia fell to five articles from ten yesterday, and Africa to five from eight — both halved on a day when the Middle East took sixteen.",
+    "Tech has no coverage of platforms, regulation, chips or AI policy; the non-Nature slots are a Steam leak, a Google Maps naming dispute, Meta data-centre robots and a payments-recall piece.",
+    "Economy published no multi-source article today despite a selector floor of two per cycle — twelve economy stories, all single-source.",
+    "Latin America is represented only by Maduro's US detention; no Mexico, Colombia, Argentina or Andean coverage for a second consecutive day."
   ],
-  "context": "Output fell from 67 to 55 articles across the same five completed cycles, driven by lower per-cycle yield rather than any cycle failure; cycle duration averaged 1305s with the writer (371s) now the slowest stage and the editor at 91s. Yesterday's two same-URL duplicates cleared to zero today. The last experiment closed in May and the tunable-parameter levers on the sourcing side are largely tapped — the 2026-05-09 evaluation established that the feed's multi-source supply, not selector floors, sets the ceiling — so the useful next lever would target upstream feed composition or regional source lists rather than another floor adjustment."
+  "context": "Output held roughly flat at 53 articles from 55 across five completed cycles, and cycle duration improved to 1204s from 1305s with the writer at 320s and the editor at 88s. Freshness is at its floor — a median lag of zero — and duplicates stayed at zero for a second day. Unique sources fell from 49 to 38, which is the mechanism behind Nature's rise to 17% share rather than any change in Nature's own volume. No experiment has run since May; the sourcing levers in the tunable set are tapped, per the 2026-05-09 evaluation that established the feed's multi-source supply as the binding ceiling, and today's two real problems — category misfiling and single-source economy — live in the selector prompt and the category taxonomy, both outside the daily-tuning parameter surface. Surfacing them here rather than spending the experiment slot on a lever that cannot reach them."
 }
