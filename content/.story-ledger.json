@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "kyrenia-ferry-capsize-embargo-lifeline-route",
+      "label": "Ferry With 260 Passengers Aboard Capsizes Off Northern Cyprus",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-kyrenia-ferry-capsize-embargo-lifeline-route"
+      ],
+      "eventUri": "rus-2117175",
+      "summary": "A ferry carrying about 260 passengers and crew capsized shortly after leaving Kyrenia for Taşucu in southern Turkey. Lead with the count aboard and the count accounted for — and hold it symmetrically as the numbers firm up, because early disaster reporting is where casualty figures get fixed wrongly and never corrected. The mechanism to explain is why this route carries the risk it does: northern Cyprus is an unrecognised territory under an international trade and transport embargo, so its sea link to Turkey is not one option among several but the lifeline, and its vessels are certified and inspected inside a regulatory system no external authority audits. Who is affected: the passengers, and the coastal communities that depend on the crossing; who holds power: the KKTC transport ministry — minister Erhan Arıklı is the source of the passenger count — and Ankara, which underwrites the territory. Multi-source across US, QA, IN and TR with divergence 0.45; TRT (TR) is the regional voice and Al Jazeera (QA) the second. Attribute figures to the outlet carrying them and say plainly what is still unknown.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyrenia",
+        "http://en.wikipedia.org/wiki/Northern_Cyprus",
+        "http://en.wikipedia.org/wiki/Ferry",
+        "http://en.wikipedia.org/wiki/Port",
+        "http://tr.wikipedia.org/wiki/KKTC_Bayındırlık_ve_Ulaştırma_Bakanlığı",
+        "http://en.wikipedia.org/wiki/Cyprus",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Mersin"
+      ]
+    },
+    {
+      "id": "black-sea-turkish-ships-neutral-shipping-summons",
+      "label": "Turkiye summons Ukraine ambassador over Black Sea attacks",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-black-sea-turkish-ships-neutral-shipping-summons"
+      ],
+      "eventUri": "eng-11964756",
+      "summary": "Ankara summoned Ukraine's ambassador after two strikes on Turkish-operated ships in the Black Sea — the first time in this war that Turkey has formally protested to Kyiv rather than to Moscow. Lead with that reversal, because it is the story: Turkey has spent four years positioning as the one NATO state both belligerents can still talk to, and its commercial fleet is the price of that position. The mechanism to teach is neutral shipping in a contested sea — Turkish operators kept sailing routes both navies now treat as targets, and a hull flagged neutral confers no protection once tankers and ports on both coasts are being struck by drone. Who bears the cost: Turkish crews and operators, and the grain and fuel flows that transit the straits; who holds power: Ankara, which controls Montreux passage and can price its displeasure, and both belligerents escalating at sea because the land line has not moved. Sources span UA, RU and QA at divergence 0.17 — RT frames it as a rift in Kyiv's support, the Kyiv Independent as an Anadolu report; attribute rather than adopt either. Al Jazeera (QA) carries it regionally; the original Turkish reporting is Anadolu.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Black_Sea",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Ankara",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Turkey)",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Port",
+        "http://en.wikipedia.org/wiki/Tuapse"
+      ]
+    },
+    {
+      "id": "india-central-asia-corridor-uzbekistan-transit-access",
+      "label": "PM Modi conferred Uzbekistan's highest state honour 'Oliy Darajali Dustlik' in Tashkent",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-india-central-asia-corridor-uzbekistan-transit-access"
+      ],
+      "eventUri": "eng-11964062",
+      "summary": "Do not write the medal. Write what a two-nation Central Asia tour — Uzbekistan then Kyrgyzstan — is for, and lead with the geography problem it exists to solve: India has no land route to Central Asia, because Pakistan sits between them, so every Indian trade corridor to Tashkent runs through Iranian ports, and the Iran war has put Chabahar and the North-South corridor under exactly the pressure our Hormuz coverage has been tracking. The mechanism to teach is the connectivity arithmetic — a strategic partnership without a corridor is a communiqué, and India is competing for influence in a region where China holds the rail and Russia holds the security guarantees. Who holds power: Mirziyoyev, who is selling access to gas, uranium and transit; Delhi, which is buying position; and Beijing and Moscow, who are the reason the price is what it is. Fills the Central Asia gap the daily audit flagged as unrepresented. Sourcing note for the audit: all three sources are Indian outlets at divergence 0.67 (India.com at 0.72 sentiment reads as promotional) — no Central Asian or other regional outlet covered this in the feed, so treat the Indian framing as one party's account and keep the Uzbek side reported, not assumed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Uzbekistan",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Tashkent",
+        "http://en.wikipedia.org/wiki/Shavkat_Mirziyoyev",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Central_Asia",
+        "http://en.wikipedia.org/wiki/President_of_Uzbekistan",
+        "http://en.wikipedia.org/wiki/State_visit"
+      ]
+    },
+    {
+      "id": "iran-war-red-crescent-rubble-rescues-civilian-count",
+      "label": "More than 7,250 pulled alive from rubble during Iran war",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-iran-war-red-crescent-rubble-rescues-civilian-count"
+      ],
+      "eventUri": null,
+      "summary": "Iranian Red Crescent chief Pirhossein Kolivand says rescuers pulled more than 7,250 people alive from rubble during the war. Lead with the survivors, because the number nobody publishes is the one that says how much of the war landed on buildings with people inside them — 7,250 live extractions is a measure of urban bombardment, and it is the first systematic civilian accounting either side has offered. The mechanism to teach is what the figure implies about the strikes: live rescue from rubble at that scale means collapsed residential structures, not military sites, and the ratio of extracted-alive to bodies recovered is the closest thing to a casualty audit available while the war's tolls remain contested. Who is affected: Iranian civilians in Isfahan, Tehran and the other struck cities; who holds power: the states that chose the target sets, and the Iranian government that controls the count. Sourcing discipline is the whole job here: this is an Iranian state outlet reporting an Iranian official at a commemorative event, so attribute every figure to Kolivand by name, give the venue, say the numbers are unverified by any independent body, and do not launder a claim into a fact. Dignity requires the count be reported; ḥaqq requires it be attributed. Report the missing counterpart figures where they exist.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-dialogue-sequencing-legitimacy-un-envoy",
+      "label": "Sudan anti-war forces warn UN envoy: Burhan's dialogue could entrench division and legitimise ruling authorities",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-sudan-dialogue-sequencing-legitimacy-un-envoy"
+      ],
+      "eventUri": null,
+      "summary": "Sudan's Declaration of Principles forces told UN envoy Pekka Haavisto on Saturday that any political process not beginning with an end to the fighting will entrench the country's division and hand legitimacy to the men prosecuting the war. Lead with the objection itself, because it is a precise structural claim and not a complaint: a national dialogue convened by one belligerent — Sovereignty Council chair Abdelfattah El Burhan — makes participation into recognition, so civilians are asked to certify the authority of the party still bombing them. The mechanism to teach is sequencing, the question every mediated war turns on: ceasefire-then-talks treats the killing as the thing to stop, talks-then-ceasefire treats it as leverage to be spent, and whoever controls the order controls the outcome. Consolidates the day's Sudanese political reporting — Abdelwahid El Nur's SLM-AW has separately rejected the same dialogue while welcoming the international Quad initiative, so give the armed-movement and civilian refusals as one convergent picture rather than two items. Who is affected: Sudanese civilians and the displaced, absent from every table; who holds power: Burhan, the RSF, the Quad states, and Haavisto, whose mandate carries no enforcement. Continues our Sudan file — Radio Dabanga (SD) is the regional voice.",
+      "conceptUris": []
+    },
+    {
+      "id": "shanghai-crude-benchmark-pricing-autonomy-yuan-settlement",
+      "label": "Pricing autonomy under global shocks: a parsimonious and empirically validated SVAR-transformer framework for Shanghai crude oil futures market maturity",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-shanghai-crude-benchmark-pricing-autonomy-yuan-settlement"
+      ],
+      "eventUri": null,
+      "summary": "A peer-reviewed test of whether Shanghai's crude oil futures contract sets its own price or merely echoes Brent and WTI — and the answer, measured through global shocks, is the whole question of whether the dollar's grip on oil pricing is loosening. Lead with what 'pricing autonomy' means operationally: a benchmark is mature when a shock moves it first and the others follow, and immature when it imports its price with a lag. The mechanism to teach is why anyone built the contract — it is yuan-denominated and physically settled in Chinese ports, so a mature Shanghai benchmark would let Asian buyers, including sanctioned and semi-sanctioned sellers, clear crude outside dollar clearing entirely. That is the payoff for our readers and it connects directly to our Hormuz coverage: a chokepoint priced in Shanghai is a different political object than one priced in London. Be exact about method and limits — an SVAR identifies shocks structurally, the transformer layer is a forecasting add-on, and the finding is about statistical price leadership over a sample period, not a declaration that the petro-yuan has arrived. Sourcing note for the audit: the feed supplied six multi-source clusters this cycle and not one was an economy story, so all three economy picks are single-source by necessity, not preference.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-petrol-import-licences-fx-refining-discretion",
+      "label": "CPPE urges NMDPRA to tie petrol imports to verified supply gaps",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-nigeria-petrol-import-licences-fx-refining-discretion"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria's Centre for the Promotion of Private Enterprise wants the midstream regulator to issue petrol import licences only against documented evidence of an actual supply shortfall. Lead with the ask, because it is unusually specific and it names the discretion: today the NMDPRA can approve an import cargo without publishing what gap it fills, and that unpublished judgement is worth a great deal of money to whoever receives it. The mechanism to teach is the fuel-import triangle — every approved cargo consumes scarce foreign exchange, competes with domestic refining that Nigeria spent two decades failing to build, and is settled in dollars the naira must find, so an import licence is simultaneously an energy decision, an FX decision and an industrial-policy decision taken by one agency with no disclosure requirement. Who benefits: importers and the traders who finance them; who bears the cost: Nigerians through the exchange rate, which is the same channel our Moody's piece described as the source of the 'external buffers' the agency rewarded yesterday — the buffer and the import bill are the same account. Regional voice throughout: Premium Times (NG). Be precise that this is a lobby group's recommendation, not a rule change, and say what the regulator has and has not said.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-aviation-regulator-capacity-growth-safety-margin",
+      "label": "India's aviation boom faces turbulence amid safety concerns",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-india-aviation-regulator-capacity-growth-safety-margin"
+      ],
+      "eventUri": null,
+      "summary": "A year after Modi held up aviation as the emblem of a rising India, successive crises at Air India and IndiGo — the two carriers that between them are the Indian market — have exposed the regulator behind them. Lead with the growth-versus-oversight gap in numbers: fleet and route expansion rates against the DGCA's inspector headcount and the interval between audits, because that ratio is the actual finding and it is checkable. The mechanism to teach is how safety regulation fails in a boom without anyone deciding to let it: certification, maintenance approval and crew-duty enforcement all scale with people, and a regulator funded on a pre-boom establishment simply issues approvals faster instead of issuing fewer, so the margin erodes silently until an incident makes it visible. Who is affected: passengers on the world's fastest-growing large aviation market and the crews flying the rosters; who holds power: the DGCA, the civil aviation ministry that sets its budget, and the two carriers whose expansion is national policy. Written from Dawn (PK) — a neighbour's view of an Indian regulatory story is a useful corrective to the promotional domestic framing, and worth naming as such. Keep it to documented incidents and regulatory findings; avoid speculation about causes still under investigation.",
+      "conceptUris": []
+    },
+    {
+      "id": "roman-telescope-wide-field-dark-energy-microlensing",
+      "label": "NASA's Roman telescope set to launch on cosmic mapping mission",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-roman-telescope-wide-field-dark-energy-microlensing"
+      ],
+      "eventUri": null,
+      "summary": "NASA launches the Nancy Grace Roman Space Telescope today on a multi-year survey of the sky. Lead with the one number that explains the whole mission: Roman's field of view is roughly a hundred times Hubble's at the same resolution, so it images in a single exposure what Hubble needed a hundred to cover — this is not a sharper telescope, it is a wider one, and that distinction is the entire scientific design. The mechanism to teach is what width buys: dark energy is measured statistically, by tracing how the expansion rate changed across billions of galaxies, and you cannot do statistics on a keyhole. The second instrument is microlensing — watching a foreground star briefly magnify a background one to find planets too far out and too cold for the transit method that found nearly all the others, which means Roman surveys the part of the exoplanet population we have systematically missed. Be exact: give the launch vehicle and site, the survey duration, the L2 orbit, and the fact that first science data are years away. Fills the physics and space gap the audit flagged after a biomedical-heavy science run.",
+      "conceptUris": []
+    },
+    {
+      "id": "turbulence-particle-tracking-sparse-reconstruction",
+      "label": "Maximum likelihood reconstruction of particle trajectories in turbulent flows via sparse optimization",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-turbulence-particle-tracking-sparse-reconstruction"
+      ],
+      "eventUri": null,
+      "summary": "A method paper on the hardest measurement problem in fluid dynamics: following individual particles through a turbulent flow when the cameras see a dense, overlapping blur. Lead with why turbulence resists measurement at all — it is the canonical unsolved problem of classical physics, and the reason is that the interesting behaviour lives in the paths individual fluid parcels take, which is exactly what an image of a crowded flow destroys. The mechanism to teach is the reconstruction itself, and it is intuitive: rather than detect particles and then link them, the method asks which set of trajectories would have been most likely to produce the images actually recorded, and sparse optimisation supplies the constraint that keeps that question from having infinitely many answers. Why our readers should care structurally: Lagrangian particle tracking is the measurement layer under mixing, combustion, pollutant dispersion, sediment transport and cloud microphysics — every model in those fields is calibrated against data this technique produces, so a gain in tracking density raises the ceiling on all of them. Be honest about status: this is a validated algorithm in an early-access paper, tested on synthetic and experimental data, not a new result about turbulence itself.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-data-centre-robots-lights-out-maintenance-labour",
+      "label": "Inside Meta's push to put robots to work in data centers",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-meta-data-centre-robots-lights-out-maintenance-labour"
+      ],
+      "eventUri": null,
+      "summary": "Previously unreported: Meta is testing robots that plug in cables, reset servers and perform other physical maintenance inside its data centres, according to current and former workers. Lead with the specific tasks, because they are the tell — cable insertion and hands-on server reset are the residual manual work that kept a data centre a workplace, and automating them is what a company does when it intends to run a facility with almost nobody in it. The mechanism to teach is the constraint being removed: hyperscale buildout is limited not only by power and land but by technicians willing to work night shifts in a loud cold hall, and the sites go where the cheap power is, which is rarely where the technicians are. Consequence for our readers: this closes the loop on the data-centre economics we reported from India — the facility already delivered few jobs for the land and power it consumed, and robotic maintenance removes most of the ones that remained, so the employment argument used to secure public concessions gets weaker precisely as the concessions get larger. Who holds power: Meta and the robotics suppliers; who bears the cost: data-centre technicians, and the communities told the facility would employ them. Be careful with sourcing — this is worker testimony about ongoing internal projects, so give what is deployed versus piloted, and note Meta's response or its absence.",
+      "conceptUris": []
+    },
+    {
+      "id": "zaporizhzhia-off-site-power-decay-heat-diesel-margin",
+      "label": "Ukrainian nuclear power plant without external power for over a week",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-zaporizhzhia-off-site-power-decay-heat-diesel-margin"
+      ],
+      "eventUri": "rus-2116751",
+      "summary": "Zaporizhzhia — Europe's largest nuclear plant, Russian-occupied since 2022 — has run on emergency diesel generators for more than a week with no off-site power, the IAEA warns. Lead with the duration and what it is measured against: the generators are designed for a station blackout lasting hours to days, and this is the longest such period of the war. The mechanism to teach is the one thing a shut-down reactor still needs, and it is the counterintuitive part most readers get wrong — a reactor that is off is not safe, it is merely quiet; decay heat continues for years and must be pumped away continuously, and the pumps need electricity. So the plant's safety currently depends on diesel deliveries across a front line and on generators running far beyond their design duty cycle, which is a fuel-logistics problem wearing a nuclear-safety mask. Who is affected: everyone downwind, which is not a national category; who holds power: the occupying force controlling the site, the Ukrainian grid operator whose lines keep being cut, and the IAEA, which can observe and warn but not compel. Give the reactor states, the generator count and fuel reserve, and the number of off-site lines lost. Single-source but Al Jazeera (QA) reporting an IAEA statement — anchor every claim to the agency's own wording.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Zaporizhia_Nuclear_Power_Plant",
+        "http://en.wikipedia.org/wiki/Power_engineering",
+        "http://en.wikipedia.org/wiki/Electric_generator",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+      ]
+    },
+    {
+      "id": "zinc-battery-hydrogel-electrolyte-dendrite-grid-storage",
+      "label": "Hydrogel electrolytes as dynamic ion-regulation platforms for safe and sustainable metal batteries",
+      "firstSeen": "2026-08-30T12:06:02.060Z",
+      "lastCovered": "2026-08-30T12:06:02.060Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-zinc-battery-hydrogel-electrolyte-dendrite-grid-storage"
+      ],
+      "eventUri": null,
+      "summary": "Zinc batteries fail because zinc does not plate flat — it grows dendrites, needles of metal that reach across the cell and short it — and this work uses a hydrogel electrolyte to steer the ions so the metal deposits evenly instead. Lead with the dendrite, because it is a picture and it is the entire obstacle. The mechanism to teach is ion regulation: the polymer network holds water and restricts how zinc ions move to the electrode, so the deposition is governed by the gel rather than by whichever spot on the surface happens to have the strongest field — the failure mode is starved rather than repaired. Why this matters structurally to our readers, and it is the reason to run a battery-chemistry paper as news: zinc is abundant, cheap and safe, its electrolytes are water-based so the cells do not burn, and it needs no cobalt — which is the same supply chain whose cost we reported from Lualaba. A workable zinc cell is the grid-storage chemistry for countries that cannot import lithium packs, and it is stationary storage, not vehicles, that decides whether solar becomes a grid. Be sober about maturity: an early-access materials paper reporting cycle life in a coin cell is a long way from a deployable pack — give cycles, current density and capacity retention, and say what was not tested.",
+      "conceptUris": []
+    },
+    {
       "id": "iceland-referendum-eu-accession-fisheries-sovereignty",
       "label": "Iceland votes on resuming EU membership talks",
       "firstSeen": "2026-08-30T08:09:33.512Z",
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-iceland-referendum-eu-accession-fisheries-sovereignty"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-punjab-faceless-terrorism-trials-anonymous-prosecutors"
@@ -49,7 +293,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-airstrike-jenin-ten-month-gap"
@@ -65,7 +309,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pacific-islands-forum-palau-walkout-consensus"
@@ -81,7 +325,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-hormuz-permission-regime-iran-reopening-terms"
@@ -97,7 +341,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-korea-lee-finance-defence-reshuffle-technocratic-continuity"
@@ -119,7 +363,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-qassim-date-export-merchant-networks-saudi-concentration"
@@ -135,7 +379,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-statins-dementia-risk-early-initiation-vascular"
@@ -151,7 +395,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-traditional-remedies-health-access-study"
@@ -167,7 +411,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-algal-bacterial-biofilm-carbon-loop-efficiency-model"
@@ -183,7 +427,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-phononic-crystal-acoustic-black-hole-vibration-bandgap"
@@ -199,7 +443,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-russia-kyiv-strike-frequency-air-defence-attrition"
@@ -215,7 +459,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-usaf-hh60w-continuity-government-evacuation-capacity"
@@ -231,7 +475,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-27-sudan-drone-war-cross-border-strike-arms-embargo"
@@ -247,7 +491,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-ethiopia-fano-tplf-alliance-federal-system-red-sea"
@@ -263,7 +507,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-24-saudi-giga-project-hiring-slowdown-migrant-remittances"
@@ -279,7 +523,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pakistan-ev-target-charging-gap-refinery-import-bill"
@@ -295,7 +539,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-wet-bulb-heat-stress-days-children-attribution"
@@ -311,7 +555,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-diamond-rain-ice-giants-carbon-crystallisation-heat"
@@ -327,7 +571,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-27-india-data-centre-land-concessions-displacement"
@@ -343,7 +587,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-26-baltic-gnss-jamming-noise-floor-attribution-icao"
@@ -359,7 +603,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-six-suspects-held-in-khuzdar-murder-case"
@@ -375,7 +619,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-29-a-solana-based-1-1-million-crypto-card-hack-crashed-a-neoban"
@@ -391,7 +635,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-28-behind-the-blog-the-complete-idiot-s-guide-to-flamin-hot-slo"
@@ -407,7 +651,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-gaza-ceasefire-violations-hospital-compound-strike"
@@ -432,7 +676,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-visa-revocation-speech-sanction-student-ruling"
@@ -457,7 +701,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-leipzig-drone-attribution-national-sanctions-route"
@@ -482,7 +726,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mv-lutuf-turkish-somali-pact-lethal-operation"
@@ -507,7 +751,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-niamey-mutiny-africa-corps-regime-protection-claim"
@@ -523,7 +767,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-venezuela-pdvsa-majority-control-concession-precedent"
@@ -539,7 +783,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-moodys-nigeria-outlook-external-buffers-austerity-scored"
@@ -555,7 +799,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-warsh-imported-inflation-dollar-transmission-emerging-debt"
@@ -571,7 +815,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-rf-ablation-impedance-return-path-dose-bias"
@@ -587,7 +831,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-lualaba-cobalt-tailings-unpriced-liability"
@@ -603,7 +847,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-grid-forming-inverters-synthetic-frequency-islanded-grids"
@@ -619,7 +863,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-zero-inventory-labour-flexibility-apple-china-lock-in"
@@ -635,7 +879,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-29-self-custody-divisibility-retail-crypto-survey"
@@ -651,7 +895,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-flamingo-missile-plant-strikes-production-capacity"
@@ -676,7 +920,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-sajjan-kumar-condolence-visits-1984-conviction"
@@ -701,7 +945,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-osun-ikire-killings-inquest-police-command-gap"
@@ -717,7 +961,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-bangladesh-j10ce-purchase-combat-record-sale"
@@ -733,7 +977,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-hdfc-ceo-declines-third-term-rbi-succession"
@@ -758,7 +1002,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-openai-cursor-model-access-revoked-spacex"
@@ -783,7 +1027,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-pakistan-rlng-cargo-delay-night-loadshedding"
@@ -799,7 +1043,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-brazil-bank-master-supervisory-failure"
@@ -815,7 +1059,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mrna-poly-a-tail-length-body-plan-gastruloids"
@@ -831,7 +1075,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-eagle-migration-gps-flyway-mapping"
@@ -847,7 +1091,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-ice-boston-dynamics-quadruped-procurement"
@@ -863,7 +1107,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-swift-network-effect-blockchain-settlement"
@@ -879,7 +1123,7 @@
       "lastCovered": "2026-08-29T17:09:55.069Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-agentic-commerce-authorisation-identity-gap"
@@ -895,7 +1139,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-bucha-warehouse-strike-secondary-detonations-toll"
@@ -920,7 +1164,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-rostov-drone-saturation-falling-debris-casualties"
@@ -945,7 +1189,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-haiti-internal-displacement-armed-civilian-brigades"
@@ -961,7 +1205,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-kp-child-protection-act-haripur-conviction-gap"
@@ -977,7 +1221,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-iran-foreign-trade-third-blockade-admission"
@@ -1002,7 +1246,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-hormuz-6000-stranded-seafarers-imo"
@@ -1018,7 +1262,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nigeria-china-upstream-capital-after-majors-exit"
@@ -1034,7 +1278,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-p2y12-trial-female-subgroup-87-patients"
@@ -1050,7 +1294,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-nigeria-radiopharmaceutical-isotope-cold-chain"
@@ -1066,7 +1310,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-captured-interstellar-objects-solar-system"
@@ -1082,7 +1326,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-open-eyelid-dataset-medical-ai-bias"
@@ -1098,7 +1342,7 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-computer-science-theory-machines-complexity"
@@ -1114,239 +1358,13 @@
       "lastCovered": "2026-08-29T12:09:46.201Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-28-keyboard-driven-guis-accessibility-automation"
       ],
       "eventUri": null,
       "summary": "The argument, at 855 points and 425 comments: every function in a graphical interface should be reachable from the keyboard, and the fact that most are not is a design regression, not a design choice. Lead with the accessibility consequence rather than the power-user one, because it is the stronger claim and the one the thread underweights — a control reachable only by clicking a specific pixel is unreachable to a screen reader, to a switch device, and to anyone who cannot use a mouse, so keyboard completeness is the same requirement as accessibility wearing a different name. The mechanism to teach: keyboard reachability is what makes an interface scriptable and testable too — if every action has a name a key can invoke, the application can be automated and audited from outside; if actions exist only as coordinates, it cannot. Structural why: interfaces are increasingly built from component libraries that ship mouse behaviour by default and keyboard behaviour as an optional extra, so the regression is inherited rather than decided, one npm install at a time. Treat the post as the argument and test its specific claims against how the named applications actually behave.",
-      "conceptUris": []
-    },
-    {
-      "id": "niamey-airport-base-attack-niger-junta",
-      "label": "Gunfire and explosions heard near military base in Niger's capital",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-niamey-airport-base-attack-niger-junta"
-      ],
-      "eventUri": "eng-11963827",
-      "summary": "Overnight gunfire and explosions around the military base at Niamey's international airport and, per Al Arabiya, the presidency perimeter — the third attack on that same airport base this year. Lead with the geography: the fighting is at the airport, which is the junta's only reliable exit and its only reliable resupply route, so whoever holds it holds the regime's connection to the outside world. The mechanism to teach is what the post-coup security architecture actually delivered — Niger expelled French and then US forces on the argument that foreign bases had not stopped the jihadist advance, and the insurgency has since moved from the Tillabéri countryside to the capital's perimeter. Who is affected: Niamey residents; who holds power: the CNSP junta and whichever armed group can reach the airport. Report the sounds and the official account as claims — say plainly what is confirmed and what is not, and do not call it a coup attempt unless a source does. Fills the Sahel gap our audit has flagged for days. Multi-source (FR, QA, AE) with Al Jazeera and Al Arabiya carrying the regional voice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Niger",
-        "http://en.wikipedia.org/wiki/Niamey",
-        "http://en.wikipedia.org/wiki/Military_dictatorship",
-        "http://en.wikipedia.org/wiki/Sahel",
-        "http://en.wikipedia.org/wiki/Jihadism",
-        "http://en.wikipedia.org/wiki/Military_base",
-        "http://en.wikipedia.org/wiki/Coup_d'état",
-        "http://en.wikipedia.org/wiki/West_Africa"
-      ]
-    },
-    {
-      "id": "lebanon-christian-villages-israeli-occupation-border-zone",
-      "label": "Inside Lebanon's Christian Villages Under Israeli Occupation",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-lebanon-christian-villages-israeli-occupation-border-zone"
-      ],
-      "eventUri": null,
-      "summary": "Ground reporting from three Christian villages still standing inside Lebanon's Israeli-occupied border zone, ahead of the next round of Israel–Lebanon talks. Lead with what occupation looks like at household scale — who may enter, who may farm, who may bury their dead — because the negotiating file treats these villages as line-drawing and the residents experience them as a siege. The mechanism to explain: a 'buffer zone' held past the ceasefire converts a temporary military line into an administered territory, and each round of talks that does not restore access ratifies it; this continues the buffer-zone arc we covered on 27 Aug ('the order is the law'). The detail worth leading with is that the villages are Christian — the occupation is not sorting by sect, which cuts against the framing that this is a Hezbollah-only file. Who is affected: the remaining residents, named where the reporting names them; who holds power: the Israeli military, the Lebanese state that cannot reach them, and the mediators setting the talks' agenda. Sourcing note for the audit: no Lebanese or other regional outlet in this feed carried a ground report from the occupied zone — New Lines is the sole source and should be attributed as such.",
-      "conceptUris": []
-    },
-    {
-      "id": "nepal-hydropower-sites-934-trapped-missing-workers",
-      "label": "Over 900 people trapped or missing across 11 hydropower sites after Nepal floods",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-nepal-hydropower-sites-934-trapped-missing-workers"
-      ],
-      "eventUri": "eng-11961008",
-      "summary": "The missing in Nepal are concentrated at construction sites: 934 people trapped or unaccounted for across eleven hydropower projects, including 576 reported missing at Upper Trishuli 1 alone, of whom only 350 had been rescued by Saturday morning, plus 93 uncontacted at Rasuwagadi. Lead with that arithmetic, because it changes the story from a natural disaster to an industrial one — the dead and missing are overwhelmingly dam labour, much of it migrant. The mechanism to teach: run-of-river hydropower is sited in exactly the steep valleys that glacial-lake outburst floods scour, so the country's entire electricity build-out is stacked along its most dangerous drainage, with worker camps at the valley floor. Who is affected: the workers and their families; who holds power: the project developers, their Chinese and Indian contractors, and the Nepali regulator that approved the siting. Advances the Nepal glacier arc we have run since 27 Aug — do not re-report the flood itself or the foreign-national search; this is the labour and infrastructure layer beneath both.",
-      "conceptUris": []
-    },
-    {
-      "id": "khyber-pakhtunkhwa-new-provinces-ndm-resistance",
-      "label": "National Democratic Movement vows to resist move to create new provinces",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-khyber-pakhtunkhwa-new-provinces-ndm-resistance"
-      ],
-      "eventUri": null,
-      "summary": "Mohsin Dawar's NDM has rejected proposals to carve new provinces out of Khyber Pakhtunkhwa, calling it an attempt to divide the province rather than to devolve it. Lead with the constitutional mechanism, because it is the whole fight: creating a province in Pakistan requires a two-thirds vote in the National Assembly and Senate plus the outgoing province's own assembly — so the proposal is really a bid to redraw who counts as a majority where, and the Pashtun belt is the territory being redrawn. Who is affected: the districts that would be split, several of them the same tribal districts merged into KP in 2018 and still waiting on the resources that merger promised; who holds power: the federal government and the establishment that has treated administrative redesign as a security instrument since the FATA merger. Context to carry: this lands in the same week as the DI Khan and Lakki Marwat attacks on police, so the province is being redrawn while it is being fought over. Regional sourcing is Dawn (PK).",
-      "conceptUris": []
-    },
-    {
-      "id": "china-flight-test-base-expansion-new-hangars",
-      "label": "Massive Expansion At China's 'Area 51'",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-china-flight-test-base-expansion-new-hangars"
-      ],
-      "eventUri": null,
-      "summary": "Satellite imagery shows China's remote flight-test base — its Groom Lake analogue at Malan/Lop Nur — expanding sharply, with new hangars whose dimensions imply a specific class of aircraft is expected. Lead with the hangars, not the acreage: in OSINT terms a hangar is a measurement, because span and door height bound the wingspan of whatever will park inside, which is how analysts infer a programme years before it flies. The mechanism worth teaching our readers is the method itself — commercial imagery has made secret basing legible to anyone who can measure a shadow, which is why test sites are now a public intelligence source rather than a classified one. Who holds power: the PLA Air Force and the analysts reading its construction schedule. Keep the inference honest — say what the imagery shows, and mark what is deduction rather than fact. Single-source OSINT from a specialist outlet; attribute the measurements and the conclusions to TWZ's analysis.",
-      "conceptUris": []
-    },
-    {
-      "id": "delhi-cng-price-hike-lng-hormuz-passthrough",
-      "label": "Delhi CNG price hiked by ₹3.89 per kg as global LNG prices surge amid West Asia crisis",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-delhi-cng-price-hike-lng-hormuz-passthrough"
-      ],
-      "eventUri": "eng-11963119",
-      "summary": "Indraprastha Gas raised Delhi CNG to ₹86.98 per kg from ₹83.09 — a 4.7% jump in one step — and named the cause: LNG prices surging after the escalation in West Asia. Lead with the transmission chain, because it is the clearest example this cycle of a war reaching a household budget: the Strait the IRGC says is now closed without Iranian coordination sets the spot LNG price, spot LNG sets the city-gas input cost, and the city-gas distributor passes it to the meter within days. Who is affected: Delhi–NCR's auto-rickshaw and taxi drivers, for whom CNG is the single largest operating cost and fares are regulated — so the increase lands on the driver's margin, not the passenger's fare. Who holds power: IGL, which sets the retail price without a tariff hearing, and the government whose domestic gas allocation determines how much of the pool must be bought at spot. Note the BJP spokesperson's claim that prices will fall once the US–Iran situation normalises — that is a forecast, not a policy, and worth marking as such. Continues the Hormuz risk-premium arc from the demand side. Multi-source (three Indian outlets).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Compressed_natural_gas",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Liquefied_natural_gas",
-        "http://en.wikipedia.org/wiki/National_Capital_Region_(India)",
-        "http://en.wikipedia.org/wiki/Indraprastha_Gas",
-        "http://en.wikipedia.org/wiki/Western_Asia",
-        "http://en.wikipedia.org/wiki/Noida"
-      ]
-    },
-    {
-      "id": "halal-certification-pharmaceutical-supply-chain-gap",
-      "label": "Fast medicine, slow guidance: How the halal framework is catching up",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-halal-certification-pharmaceutical-supply-chain-gap"
-      ],
-      "eventUri": null,
-      "summary": "Pharmaceutical science is producing therapies faster than halal certification bodies can rule on them, and the gap is now commercial: manufacturers must decide on excipients, gelatin capsules, porcine-derived enzymes and cell-line origins years before any fatwa exists. Lead with the asymmetry — a drug is designed on a five-year timeline and a ruling arrives after launch, so by the time guidance exists the supply chain is already fixed. The mechanism to explain for our reader: halal certification is not one authority but a patchwork of national bodies (Malaysia's JAKIM, Indonesia's BPJPH, Gulf regulators) whose rulings can differ on the same molecule, which turns a religious question into a market-access question — and the doctrine of ḍarūrah, permitting the otherwise-forbidden where life is at stake, is what most patients are actually relying on in the meantime. Who is affected: roughly two billion Muslim patients and the manufacturers deciding whether that market is worth reformulating for. Who holds power: certifiers and pharmaceutical procurement offices, not clinicians. Regional sourcing is Salaam Gateway (AE), the right voice for this file.",
-      "conceptUris": []
-    },
-    {
-      "id": "pentagon-736000-facilities-maintenance-backlog",
-      "label": "Deep Dive: The Pentagon's Costly, Neglected Real Estate Portfolio",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-pentagon-736000-facilities-maintenance-backlog"
-      ],
-      "eventUri": null,
-      "summary": "The Pentagon manages more than 736,000 facilities worldwide and has let much of that portfolio decay — barracks, depots and utilities carrying a deferred-maintenance backlog that grows every year the budget buys new platforms instead. Lead with the number of buildings, because most readers picture the US military as ships and aircraft and it is also the largest landlord on earth. The mechanism to teach: sustainment funding is the softest line in a defence budget — it can be deferred without cancelling anything visible, so it is deferred first and compounds, and Congress has repeatedly blocked base-closure rounds that would shrink the portfolio because each facility is somebody's district. Structural why: a force that cannot maintain what it owns is buying readiness on credit, and the interest is paid by the enlisted families living in the housing. Who is affected: service members in substandard quarters, and the taxpayers funding both the backlog and the new procurement. Give the maintenance backlog figure and the last year a closure round was authorised.",
-      "conceptUris": []
-    },
-    {
-      "id": "dormant-bitcoin-wallets-rekeying-quantum-exposure",
-      "label": "Why Bitcoin wallets untouched for more than 10 years are moving millions worth of BTC",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-dormant-bitcoin-wallets-rekeying-quantum-exposure"
-      ],
-      "eventUri": "eng-11963889",
-      "summary": "Six wallets dormant since 2011–2015 moved roughly $40 million in BTC, and five sent to addresses with no known exchange link — only one, 40 BTC, went to a custodian (Boerse Stuttgart Digital). Lead with that split, because it is the finding: coins moving to exchanges means selling, coins moving to fresh addresses means re-keying, and this was mostly re-keying. The mechanism to teach is why an old key is a liability — early wallets often expose the public key on-chain, which is precisely the exposure a cryptographically relevant quantum computer would harvest, so 'harvest now, decrypt later' makes decade-old dormant coins the most exposed assets on the chain. That connects directly to our 29 Aug piece on the XRP Ledger's post-quantum migration: same deadline, but Bitcoin has no coordinating body, so migration happens one holder at a time and is visible only as unexplained movement. Who is affected: holders who cannot migrate because the key is lost. Be disciplined about attribution — nobody knows who moved these coins, so report the on-chain facts and label every motive as inference.",
-      "conceptUris": []
-    },
-    {
-      "id": "it-works-better-in-the-app-web-degradation",
-      "label": "\"It works better in the app\"",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-it-works-better-in-the-app-web-degradation"
-      ],
-      "eventUri": null,
-      "summary": "The argument, at 650 points and 443 comments on Hacker News: sites that insist their app works better have usually made the website worse on purpose. Lead with the inversion — the app is not more capable, the web version is deliberately degraded, because the browser is the one surface where the user still controls the software. The mechanism to teach is what the app actually buys the vendor: persistent identifiers that survive cache clearing, push notifications as a re-engagement channel, no ad blocking, no reader mode, and telemetry the browser sandbox forbids — none of which is a feature for the reader. Who is affected most is our own audience's wider world: in Pakistan, Nigeria, Indonesia and Egypt, where storage is scarce and data is metered, a forced 80MB install is a real cost, and the mobile web is the whole internet for a large share of users. Structural why: the open web is losing not to better technology but to a business model that needs an install. Strong reader signal — treat the blog post as the argument and verify the specific app-versus-web claims before repeating them.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-us-ai-convergence-not-competing-visions",
-      "label": "I went to China to see a different AI future. It looked familiar",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-china-us-ai-convergence-not-competing-visions"
-      ],
-      "eventUri": null,
-      "summary": "Reported from China: the AI race that is sold as a contest between two civilisational models turns out to be two countries building the same thing — the same recommendation engines, the same delivery-driver dispatch, the same surveillance stack, the same capex arms race in data centres. Lead with the convergence, because it contradicts the premise of nearly every AI policy debate our readers encounter, in Washington and in the Gulf: if the outputs are converging, then 'whose values are embedded in the model' is a weaker lever than who owns the compute and who is dispatched by it. The mechanism to explain is why convergence happens — the same transformer architecture, the same benchmark targets and the same advertising and logistics business models produce the same system regardless of political ideology. Who is affected: the countries buying rather than building, including most of the Muslim world, which is being asked to choose a side in a race whose two ends look alike. Rest of World reports from the Global South's vantage; keep the piece reported, not comparative-essay.",
-      "conceptUris": []
-    },
-    {
-      "id": "pacibekitug-il6-inflammation-heart-outcomes",
-      "label": "A Novartis drug cut inflammation. Can it improve heart outcomes?",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-pacibekitug-il6-inflammation-heart-outcomes"
-      ],
-      "eventUri": null,
-      "summary": "Novartis's newly acquired IL-6 inhibitor pacibekitug lowered inflammatory markers in a midstage trial — and the honest question, which STAT asks, is whether that will translate into fewer heart attacks. Lead with the gap between a biomarker and an outcome, because it is the central discipline of clinical evidence and the reason drugs that look excellent in phase 2 fail in phase 3: hs-CRP falling is a measurement, not a life saved, and cardiology has a long record of surrogates that moved while mortality did not. The mechanism worth teaching is the inflammatory hypothesis of atherosclerosis itself — that heart disease is partly an immune disease, validated by CANTOS in 2017 but never commercially delivered because the drug that proved it raised fatal infections. Who is affected: patients whose cholesterol is already controlled and whose risk is not; who holds power: Novartis, which bought the asset rather than discovered it, and the regulator that will decide whether a marker is enough. Give the trial size, the marker change, and what the outcomes trial would have to show.",
-      "conceptUris": []
-    },
-    {
-      "id": "daylighting-buried-urban-streams-flood-capacity",
-      "label": "Many cities buried urban streams. Here's how to bring them back",
-      "firstSeen": "2026-08-29T08:10:42.931Z",
-      "lastCovered": "2026-08-29T08:10:42.931Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-daylighting-buried-urban-streams-flood-capacity"
-      ],
-      "eventUri": null,
-      "summary": "Cities spent a century burying their streams in culverts to make room for streets, and the pipes are now both aging and undersized for the rainfall they receive — so researchers argue the buried water is not the problem but the unused capacity. Lead with the physical fact that a culvert has a fixed diameter and a storm does not: once inflow exceeds the pipe, the water returns to the old channel regardless of what was built on it, which is why flood maps and buried-stream maps overlap so precisely. The mechanism to teach is daylighting — reopening a stream restores floodplain storage and slows the peak, replacing a capital-intensive drainage upgrade with the channel that was already there. Who is affected: the neighbourhoods built over the old courses, which are consistently the poorest in the city because that land was cheapest; who holds power: municipal engineers choosing between a bigger pipe and a reopened creek. Structural why: this is the rare climate adaptation that is cheaper than the alternative, which makes the obstacle political rather than technical — and directly relevant to Karachi, Jakarta, Cairo and Lagos, where the same culverts fail every monsoon.",
       "conceptUris": []
     }
   ]
