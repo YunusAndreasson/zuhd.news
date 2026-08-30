@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "kyiv-depot-secondary-detonation-civilian-toll",
+      "label": "Death toll from Russian strike on Ukrainian arms depot rises to 38",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-kyiv-depot-secondary-detonation-civilian-toll"
+      ],
+      "eventUri": "eng-11964001",
+      "summary": "A drone strike on a weapons depot on Kyiv's outskirts killed 38 and forced nearly 400 evacuations — but the deaths came from the depot's own stored shells and mines cooking off next to housing, not from the drone. Lead with that mechanism: co-locating munitions storage beside a residential district converted a single drone into a secondary-detonation disaster. Set it against the week's wider tempo — nearly 2,000 drones fired at Ukraine in seven days per the Kyiv Independent — to show Russia is drawing attacks out rather than massing them. Name the civilian toll first; the depot is context, not the subject.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/Kiev"
+      ]
+    },
+    {
+      "id": "larak-island-strike-hormuz-mining-preemption",
+      "label": "US strikes Iran for first time in a month",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-larak-island-strike-hormuz-mining-preemption"
+      ],
+      "eventUri": "eng-11966795",
+      "summary": "US forces hit two IRGC launchers on Larak Island — the first known American strike on Iran since late July — on the stated justification that the launchers were being prepared to fire sea mines into the Strait of Hormuz. The mechanism to lead with: this is pre-emption against a mining capability, not retaliation for an attack, and it re-opens the shooting phase of the Hormuz story we covered as a permission-and-reopening regime. Larak sits inside the strait's approach, so any mining there closes the channel Iran itself depends on. Follow-up context: tie back to the reopening terms and what a renewed closure risk does to the transit insurance and tanker traffic already priced for calm. Note for the editor: the feed carried no Iranian or Gulf regional outlet on this event — coverage is BBC, NDTV, Yahoo, RT and SCMP only — so attribute the launcher claim explicitly to the unnamed US official rather than stating it as fact.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Larak_Island",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Naval_mine",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Rocket"
+      ]
+    },
+    {
+      "id": "fcc-licence-threat-named-anchor-press-coercion",
+      "label": "Trump threatens NBC journalist with 'rebuke or punishment' from FCC",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-fcc-licence-threat-named-anchor-press-coercion"
+      ],
+      "eventUri": "eng-11966356",
+      "summary": "Trump publicly urged the FCC to investigate news outlets' polling and to punish Meet the Press moderator Kristen Welker by name. The story is the instrument, not the insult: the FCC licenses broadcast stations, so a president directing it at a named anchor converts an editorial dispute into a licensing threat against her employer. Explain what the FCC can and cannot actually do to a network versus its affiliate stations — that gap is where the coercion lives, because the threat works even when the authority does not exist. Note the sentiment split across the cluster (Bloomberg reads it as an attack, Al Jazeera and SCMP more neutrally) as evidence of how normalised this has become.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Federal_Communications_Commission",
+        "http://en.wikipedia.org/wiki/Kristen_Welker",
+        "http://en.wikipedia.org/wiki/NBC",
+        "http://en.wikipedia.org/wiki/Meet_the_Press",
+        "http://en.wikipedia.org/wiki/Truth_Social",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Journalist"
+      ]
+    },
+    {
+      "id": "ssa-operation-mayibuye-secrecy-oversight-capture",
+      "label": "'Superspy' Thulani Dlomo enabled information peddlers to weaponise SSA's secrecy against the agency",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-ssa-operation-mayibuye-secrecy-oversight-capture"
+      ],
+      "eventUri": null,
+      "summary": "Operation Mayibuye ran inside South Africa's State Security Agency as a multimillion-rand covert programme that neutralised political opposition to Jacob Zuma and moved untraceable cash into ANC factional fights. The structural point for the reader: the abuse was possible because intelligence secrecy laws block the agency's own oversight — the same classification that protects sources also protects the people looting the budget, so 'information peddlers' could sell fabrications the agency was legally unable to rebut. Lead with the inversion: secrecy designed to defend the state was turned against it. Anchor to the Zondo Commission record and to what has and has not been prosecuted.",
+      "conceptUris": []
+    },
+    {
+      "id": "haiti-displacement-armed-civilian-groups-equilibrium",
+      "label": "Haiti's security crisis forces displacement and relocation",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-haiti-displacement-armed-civilian-groups-equilibrium"
+      ],
+      "eventUri": null,
+      "summary": "Gang control in Haiti is now producing sustained internal displacement, and the counterweight is not a functioning state but a patchwork of armed civilian groups operating alongside police and the armed forces. The mechanism to explain: when a state outsources territorial control to self-defence militias, displacement stops being an emergency and becomes the equilibrium — people move to whichever block someone else is holding. Give the displaced numbers and where they are going. This is the only Caribbean or Latin American story in the cycle and the region has been absent from our coverage outside Brazil and Venezuela; treat the residents as the subject, not the gangs.",
+      "conceptUris": []
+    },
+    {
+      "id": "uzbekistan-uranium-india-supply-outside-moscow",
+      "label": "India, Uzbekistan target long-term uranium pact",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-uzbekistan-uranium-india-supply-outside-moscow"
+      ],
+      "eventUri": "eng-11966401",
+      "summary": "Modi and Mirziyoyev upgraded ties to a comprehensive strategic partnership in Tashkent, set a $5bn annual trade target and moved close to a long-term uranium supply agreement. The mechanism: India is a non-NPT nuclear state buying fuel through bilateral carve-outs, and Uzbekistan — one of the world's top uranium producers — is diversifying away from Russian and Chinese offtake. Lead with the fuel, not the summit. Explain what a long-term supply contract does for a reactor fleet that has historically been throttled by fuel scarcity, and what it means that Central Asian uranium is now being contracted outside Moscow's orbit. The Lowy piece adds the third corner: Australia's own uranium relationship with India and who gets to write the rules of this order. Note for the editor: the feed carried no Uzbek or Central Asian outlet on this event — sourcing is Indian and Australian only.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Uzbekistan",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Tashkent",
+        "http://en.wikipedia.org/wiki/Shavkat_Mirziyoyev",
+        "http://en.wikipedia.org/wiki/President_of_Uzbekistan",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/State_visit"
+      ]
+    },
+    {
+      "id": "kulevi-refinery-kazakh-libyan-crude-reroute",
+      "label": "Georgia's Kulevi oil refinery stops processing Russian oil",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-kulevi-refinery-kazakh-libyan-crude-reroute"
+      ],
+      "eventUri": "eng-11962673",
+      "summary": "The Kulevi refinery in western Georgia has stopped running Russian crude entirely and switched to Kazakh and Libyan barrels — reported by Georgian outlet bm.ge and carried by Russia's own state wire, which is the tell. The mechanism: sanctions rarely stop oil, they re-route it, and each re-route costs freight and quality margin. Explain why a Black Sea refinery swapping to Kazakh CPC and Libyan light grades changes its economics, and what it says that a government widely read as Moscow-friendly is letting its refiner walk. This is the practical texture of the crude realignment we have been tracking through Venezuelan and Nigerian barrels. Attribute carefully — TASS is the only carrier in the feed and the original claim is bm.ge's.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-fertility-only-daughters-dependency-ratio",
+      "label": "China's fertility crisis is evidence of its modernization success",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-china-fertility-only-daughters-dependency-ratio"
+      ],
+      "eventUri": null,
+      "summary": "China's collapsing birth rate is the direct product of the one-child generation's own success: only daughters were raised for education, independence and earnings, and those exact qualities now price them out of the marriage-and-motherhood path the state wants them back on. Lead with the inversion — the demographic emergency is the policy working, one generation late. The economic stake for the reader is the dependency ratio: a shrinking cohort of high-earning, highly-educated women is expected to fund a retirement bulge while being pressured to exit the labour market to have children. Those two demands are arithmetically incompatible, and that is the story. Keep the women as subjects with their own reasoning, not as a fertility statistic.",
+      "conceptUris": []
+    },
+    {
+      "id": "rusfertide-hepcidin-mimetic-polycythemia-phlebotomy",
+      "label": "FDA approves Protagonist and Takeda's drug for rare blood cancer",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-rusfertide-hepcidin-mimetic-polycythemia-phlebotomy"
+      ],
+      "eventUri": "eng-11966689",
+      "summary": "The FDA approved rusfertide for polycythemia vera, a slow-growing cancer that makes the body overproduce red blood cells. The mechanism is the interesting part and should lead: rusfertide is a hepcidin mimetic — it imitates the hormone that gates iron absorption, starving the marrow of the iron it needs to overbuild red cells, rather than killing cells the way cytotoxic therapy does. Standard care has been repeated therapeutic phlebotomy, literally bleeding patients on a schedule; explain what replacing that with a drug means for how often someone has to be in a clinic. Name both parties and the split — Protagonist developed it, Takeda sells it — since the pricing decision sits with the marketer.",
+      "conceptUris": []
+    },
+    {
+      "id": "cut-to-fuse-skeletal-editing-late-stage-synthesis",
+      "label": "'Cut-to-fuse' strategy: A new route for molecular skeletal editing",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-cut-to-fuse-skeletal-editing-late-stage-synthesis"
+      ],
+      "eventUri": null,
+      "summary": "Skeletal editing lets chemists cut and refuse the carbon backbone of a molecule instead of resynthesising it from precursors. Lead with the economics of the change, not the chemistry alone: a drug candidate that fails on one ring position currently means starting the synthesis over, often twenty-plus steps back, and cut-to-fuse turns that into a late-stage edit. Explain what 'skeletal' means concretely — altering the frame itself rather than the decorations hung on it — because that distinction is what makes this different from ordinary functional-group chemistry. Give the reader the constraint too: which frameworks the method works on and which it does not. Non-clinical chemistry is thin in our recent science coverage.",
+      "conceptUris": []
+    },
+    {
+      "id": "steam-teraleak-depot-architecture-preservation",
+      "label": "A 12TB Steam \"teraleak\" spills more than a decade of lost PC gaming history",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-steam-teraleak-depot-architecture-preservation"
+      ],
+      "eventUri": "eng-11966285",
+      "summary": "More than 12TB of Steam material covering essentially every title on the platform from 2003 onward was dumped this weekend — unreleased builds, removed versions, and depot contents Valve never intended to serve again. Lead with the structural point, not the nostalgia: Steam's depot system keeps old build artefacts addressable long after they are delisted, so 'removed from the store' never meant deleted, and a single API scrape reconstructs two decades of software that legally still belongs to its publishers. This is the preservation argument and the security argument colliding — the same architecture that makes the leak possible is the only thing that kept those builds from vanishing. Note where the material is circulating and what Valve has said, if anything.",
+      "conceptUris": []
+    },
+    {
+      "id": "pvt-bipv-year-long-4e-waste-heat-payback",
+      "label": "Year-round experimental 4E assessment of an integrated PV/T-BIPV system in an nZEB-oriented test building",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-pvt-bipv-year-long-4e-waste-heat-payback"
+      ],
+      "eventUri": null,
+      "summary": "A full twelve-month instrumented run of a combined photovoltaic-thermal and building-integrated PV system on a near-zero-energy test building, assessed on all four E's — energy, exergy, economic, environmental. The value is that it is a year of real measurement rather than a simulation: seasonal numbers include the winter months where these systems usually underperform their models. Lead with the mechanism that makes PV/T different from ordinary panels — the same collector harvests electricity and captures the waste heat that would otherwise cut cell efficiency, so cooling the panel is itself a second energy product. Give the payback figure and the exergy efficiency, and be honest about the gap between the two: 4E studies routinely show a system that is energetically attractive and economically marginal.",
+      "conceptUris": []
+    },
+    {
+      "id": "settlement-speed-recall-window-stablecoin-rails",
+      "label": "Moving money got faster, stopping cross-border theft only got harder",
+      "firstSeen": "2026-08-30T22:05:04.926Z",
+      "lastCovered": "2026-08-30T22:05:04.926Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-30-settlement-speed-recall-window-stablecoin-rails"
+      ],
+      "eventUri": null,
+      "summary": "Write this as a mechanism piece, not a history: every acceleration in settlement rails shortens the window in which a fraudulent transfer can be recalled, and stablecoins and tokenised securities — projected as multitrillion-dollar markets by 2030 — push that window toward zero. Lead with the tradeoff in one line: reversibility and speed are the same dial, and every generation of payment technology has turned it the same direction. Hawala is the useful comparison for our reader precisely because it inverts the modern assumption — it settled on trust and reputation across a broker network with no message travelling with the money, which made it fast and made recovery a social process rather than a legal one. SWIFT added the message and the audit trail; instant on-chain settlement removes the pause SWIFT's correspondents provided. Say plainly who bears the loss when there is no recall window: the sender.",
+      "conceptUris": []
+    },
+    {
       "id": "maduro-us-custody-extraterritorial-capture-precedent",
       "label": "Captured Venezuelan president Maduro shares first photos while in US custody",
       "firstSeen": "2026-08-30T17:06:55.450Z",
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-maduro-us-custody-extraterritorial-capture-precedent"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-niger-junta-russia-request-regime-survival-contract"
@@ -58,7 +302,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-rss-bhagwat-diaspora-platform-hindutva-flag-row"
@@ -83,7 +327,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-duki-ied-brothers-killed-balochistan-road-conflict"
@@ -99,7 +343,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-plateau-pastor-killed-jos-bokkos-ransom-economy"
@@ -115,7 +359,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-eu-gas-storage-lng-spot-competition-winter"
@@ -139,7 +383,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-bitcoin-basis-trade-market-makers-cme-open-interest"
@@ -155,7 +399,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-angola-lobito-corridor-transit-rent-mineral-exports"
@@ -171,7 +415,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-gut-repair-two-modes-infection-diet-stem-cells"
@@ -187,7 +431,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-plasmonic-asymmetry-quantum-dot-nanoshell-coupling"
@@ -203,7 +447,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-google-maps-lake-america-toponym-platform-sovereignty"
@@ -219,7 +463,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-debian-generative-ai-resolution-provenance-licensing"
@@ -235,7 +479,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-30-spinel-ferrite-graphene-supercapacitor-energy-density"
@@ -251,7 +495,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-kyrenia-ferry-capsize-embargo-lifeline-route"
@@ -276,7 +520,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-black-sea-turkish-ships-neutral-shipping-summons"
@@ -301,7 +545,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-india-central-asia-corridor-uzbekistan-transit-access"
@@ -326,7 +570,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-iran-war-red-crescent-rubble-rescues-civilian-count"
@@ -342,7 +586,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-sudan-dialogue-sequencing-legitimacy-un-envoy"
@@ -358,7 +602,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-shanghai-crude-benchmark-pricing-autonomy-yuan-settlement"
@@ -374,7 +618,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-nigeria-petrol-import-licences-fx-refining-discretion"
@@ -390,7 +634,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-india-aviation-regulator-capacity-growth-safety-margin"
@@ -406,7 +650,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-roman-telescope-wide-field-dark-energy-microlensing"
@@ -422,7 +666,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-turbulence-particle-tracking-sparse-reconstruction"
@@ -438,7 +682,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-meta-data-centre-robots-lights-out-maintenance-labour"
@@ -454,7 +698,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-zaporizhzhia-off-site-power-decay-heat-diesel-margin"
@@ -479,7 +723,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-zinc-battery-hydrogel-electrolyte-dendrite-grid-storage"
@@ -495,7 +739,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-iceland-referendum-eu-accession-fisheries-sovereignty"
@@ -520,7 +764,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-punjab-faceless-terrorism-trials-anonymous-prosecutors"
@@ -536,7 +780,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-airstrike-jenin-ten-month-gap"
@@ -552,7 +796,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pacific-islands-forum-palau-walkout-consensus"
@@ -568,7 +812,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-hormuz-permission-regime-iran-reopening-terms"
@@ -584,7 +828,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-korea-lee-finance-defence-reshuffle-technocratic-continuity"
@@ -606,7 +850,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-qassim-date-export-merchant-networks-saudi-concentration"
@@ -622,7 +866,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-statins-dementia-risk-early-initiation-vascular"
@@ -638,7 +882,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-traditional-remedies-health-access-study"
@@ -654,7 +898,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-algal-bacterial-biofilm-carbon-loop-efficiency-model"
@@ -670,7 +914,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-phononic-crystal-acoustic-black-hole-vibration-bandgap"
@@ -686,7 +930,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-russia-kyiv-strike-frequency-air-defence-attrition"
@@ -702,7 +946,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-usaf-hh60w-continuity-government-evacuation-capacity"
@@ -718,7 +962,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-sudan-drone-war-cross-border-strike-arms-embargo"
@@ -734,7 +978,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-ethiopia-fano-tplf-alliance-federal-system-red-sea"
@@ -750,7 +994,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-24-saudi-giga-project-hiring-slowdown-migrant-remittances"
@@ -766,7 +1010,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pakistan-ev-target-charging-gap-refinery-import-bill"
@@ -782,7 +1026,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-wet-bulb-heat-stress-days-children-attribution"
@@ -798,7 +1042,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-diamond-rain-ice-giants-carbon-crystallisation-heat"
@@ -814,7 +1058,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-27-india-data-centre-land-concessions-displacement"
@@ -830,7 +1074,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-26-baltic-gnss-jamming-noise-floor-attribution-icao"
@@ -846,7 +1090,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-six-suspects-held-in-khuzdar-murder-case"
@@ -862,7 +1106,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-29-a-solana-based-1-1-million-crypto-card-hack-crashed-a-neoban"
@@ -878,7 +1122,7 @@
       "lastCovered": "2026-08-30T04:13:05.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-28-behind-the-blog-the-complete-idiot-s-guide-to-flamin-hot-slo"
@@ -894,7 +1138,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-gaza-ceasefire-violations-hospital-compound-strike"
@@ -919,7 +1163,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-visa-revocation-speech-sanction-student-ruling"
@@ -944,7 +1188,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-leipzig-drone-attribution-national-sanctions-route"
@@ -969,7 +1213,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-mv-lutuf-turkish-somali-pact-lethal-operation"
@@ -994,7 +1238,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-niamey-mutiny-africa-corps-regime-protection-claim"
@@ -1010,7 +1254,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-venezuela-pdvsa-majority-control-concession-precedent"
@@ -1026,7 +1270,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-moodys-nigeria-outlook-external-buffers-austerity-scored"
@@ -1042,7 +1286,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-warsh-imported-inflation-dollar-transmission-emerging-debt"
@@ -1058,7 +1302,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-rf-ablation-impedance-return-path-dose-bias"
@@ -1074,7 +1318,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-lualaba-cobalt-tailings-unpriced-liability"
@@ -1090,7 +1334,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-grid-forming-inverters-synthetic-frequency-islanded-grids"
@@ -1106,7 +1350,7 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-zero-inventory-labour-flexibility-apple-china-lock-in"
@@ -1122,257 +1366,13 @@
       "lastCovered": "2026-08-29T22:11:47.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-29-self-custody-divisibility-retail-crypto-survey"
       ],
       "eventUri": null,
       "summary": "A decade of marketing bitcoin as 'digital gold' has been aimed at the wrong appetite: surveyed retail holders respond to self-custody and to buying in very small amounts, and they trust an adviser or a bitcoin-owning relative over any influencer. Lead with the trust finding, because it inverts the industry's whole distribution strategy — the celebrity endorsement is the least effective channel in a market that was built almost entirely on celebrity endorsement. The mechanism to teach our readers is what 'control' means technically and why the preference is rational: holding your own keys removes the counterparty that failed in every major loss event of the last cycle, and it does so at the cost of an irreversible mistake with no recourse, which is a genuinely different risk profile rather than a better one. The micro-investing half matters more than it looks — divisibility to eight decimal places is bitcoin's actual retail advantage over gold, and it is the property least advertised. Discipline required: this is a survey commissioned by the Bitcoin Policy Institute, an advocacy body, so give the sample size, the method, the field dates and the sponsor in the first breath, and treat the findings as what people said, not what they do. Our reader will discount an interested survey — say who paid for it and let them.",
-      "conceptUris": []
-    },
-    {
-      "id": "flamingo-missile-plant-strikes-production-capacity",
-      "label": "Flamingo manufacturing units in Kyiv and Mykolaiv turned to ashes - Terror in Britain and the US: Russia's stern warning",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-flamingo-missile-plant-strikes-production-capacity"
-      ],
-      "eventUri": "fra-1338546",
-      "summary": "Russia's defence ministry claims its 29 August barrage destroyed the production lines for Ukraine's Flamingo long-range cruise missile at Kyiv and Mykolaiv — the weapon Kyiv had built its deep-strike doctrine around. The mechanism to lead with: this is a strike aimed at manufacturing capacity, not front-line units, which is why a single night's barrage matters more than its casualty count. Handle the claim carefully — it is a Russian MoD assertion, sourced here through TASS and QNA, with no independent battle-damage confirmation in the cluster (sentiment divergence 0.71 across the sources reflects exactly that split). Give the claim, its provenance, and the verifiable part: 14 air-raid alerts over Kyiv in one day totalling more than 13 hours. Distinct from the Bucha warehouse strike covered this morning (eng-11964001) — different event, different mechanism.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kiev",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Explosive"
-      ]
-    },
-    {
-      "id": "sajjan-kumar-condolence-visits-1984-conviction",
-      "label": "Video | 3 Delhi BJP MPs Visit Sajjan Kumar's House. Then Party Chief's Big Action",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-sajjan-kumar-condolence-visits-1984-conviction"
-      ],
-      "eventUri": "eng-11964156",
-      "summary": "Three BJP MPs paid condolences at the home of Sajjan Kumar — convicted for his role in the 1984 anti-Sikh pogrom in which thousands were killed — and were reprimanded by the party's Delhi chief; days earlier a Congress leader was criticised by his own colleagues for praising him. Who is affected: Sikh families who waited 34 years for a conviction. The structural point is that mourning a mass-killing convict is now a cross-party reflex in Delhi, and the parties are policing it only after the fact. Lead with the symmetry — both the BJP and Congress produced the same gesture within a week, which says the conviction never settled the politics. A precise sourcing note for the writer: the two sources diverge in tone (sentimentDivergence 0.3), so attribute the reprimand to the party statement rather than narrating it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Sajjan_Kumar",
-        "http://en.wikipedia.org/wiki/Riot",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Nitin_Nabin",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/Ramvir_Singh_Bidhuri"
-      ]
-    },
-    {
-      "id": "osun-ikire-killings-inquest-police-command-gap",
-      "label": "Adeleke orders probe into Osun killings, seeks inquiry into police role",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-osun-ikire-killings-inquest-police-command-gap"
-      ],
-      "eventUri": "eng-11964778",
-      "summary": "Osun's governor has ordered a coroner's inquest and a panel of inquiry into post-election killings at Ikire — and, unusually, has asked the inquiry to examine the conduct of the police themselves. Who holds power: a state governor with no command authority over Nigeria's federal police force, which is exactly the accountability gap to lead with. A state can convene an inquest but cannot discipline the officers it investigates; that structural split is why Nigerian election-violence inquiries so rarely produce charges. Who is affected: residents of Ikire, where thugs reportedly tried to seize the motor garage after Adeleke's re-election.",
-      "conceptUris": []
-    },
-    {
-      "id": "bangladesh-j10ce-purchase-combat-record-sale",
-      "label": "Bangladesh confirms deal to buy Chinese J-10 fighter jets: report",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-bangladesh-j10ce-purchase-combat-record-sale"
-      ],
-      "eventUri": null,
-      "summary": "Dhaka has confirmed it is buying China's J-10CE, and the stated reason is the aircraft's reported performance against French Rafales during the May Pakistan-India clashes. Lead with that causal chain: a brief South Asian air war became a live product demonstration, and Chinese export sales are now being made on combat data rather than brochures. Who holds power: Beijing, which gains a third South Asian customer and a reference case Western manufacturers cannot match without a war of their own. The structural why — Bangladesh is choosing a supplier whose spares and munitions chain will bind it for decades, at the moment India's neighbourhood is realigning.",
-      "conceptUris": []
-    },
-    {
-      "id": "hdfc-ceo-declines-third-term-rbi-succession",
-      "label": "HDFC Bank CEO Jagdishan to Step Down in October in Surprise Move",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-hdfc-ceo-declines-third-term-rbi-succession"
-      ],
-      "eventUri": "eng-11964586",
-      "summary": "The chief executive of India's largest private-sector lender declined a third term despite the board's persuasion, disclosed via an exchange filing, while governance concerns still surround the bank. Lead with the refusal itself — a CEO walking away from an offered term at a systemically important bank is a signal the market reads differently from a dismissal. Who is affected: depositors and shareholders of a bank large enough that the Reserve Bank of India must approve its succession. The mechanism worth explaining to readers: RBI reappointment approval is the quiet lever that shapes Indian bank leadership, and a declined third term is one of the few moments it becomes visible.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/HDFC_Bank",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Private_sector",
-        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Chief_financial_officer",
-        "http://en.wikipedia.org/wiki/Finance"
-      ]
-    },
-    {
-      "id": "openai-cursor-model-access-revoked-spacex",
-      "label": "The SpaceX-Cursor acquisition just cost developers access to OpenAI's models",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-openai-cursor-model-access-revoked-spacex"
-      ],
-      "eventUri": "eng-11963791",
-      "summary": "OpenAI is terminating Cursor's model access — including future models such as Astra — on the stated grounds that it does not trust an Elon Musk-owned company to honour its terms of service, weeks after SpaceX acquired the coding startup. Lead with the mechanism, not the feud: model access is a supplier relationship that can be revoked for the identity of an acquirer, so every developer building on a third-party frontier model now carries ownership-change risk they cannot price. Who is affected: Cursor's paying developers, who lose capability through a decision neither they nor their vendor controls. The structural why — vertical concentration means a single API terms decision does what antitrust remedies normally take years to do.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/SpaceX",
-        "http://en.wikipedia.org/wiki/Elon_Musk",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Terms_of_service",
-        "http://en.wikipedia.org/wiki/Sam_Altman",
-        "http://en.wikipedia.org/wiki/Twitter",
-        "http://en.wikipedia.org/wiki/Nonprofit_organization"
-      ]
-    },
-    {
-      "id": "pakistan-rlng-cargo-delay-night-loadshedding",
-      "label": "Govt apologises for 'temporary' night-time loadshedding due to unavailability of RLNG",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-pakistan-rlng-cargo-delay-night-loadshedding"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's government apologised for night-time blackouts and named the cause precisely: delayed regasified LNG cargoes. That admission is the story — it converts an abstract shipping disruption into hours without power in Pakistani homes, and it is the domestic end of the Hormuz traffic story this site has been tracking. Lead with the chain: a cargo that did not arrive on schedule becomes a load-management order becomes a dark house. Who bears the cost: households and small businesses on the grid, not the importers holding the contracts. Follow-up context: Hormuz throughput has stayed below normal under US sanctions pressure on Iran, and Pakistan's power mix leaves no domestic substitute for the missing gas on short notice.",
-      "conceptUris": []
-    },
-    {
-      "id": "brazil-bank-master-supervisory-failure",
-      "label": "A Timeline of Brazil's Bank Master Scandal",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-brazil-bank-master-supervisory-failure"
-      ],
-      "eventUri": null,
-      "summary": "InSight Crime reconstructs how Bank Master became Brazil's largest banking fraud case, step by step. The value for the reader is the supervisory mechanism, not the chronology: lead with the specific point at which the central bank could have intervened and did not, and what the bank was doing — deposit growth funded by guaranteed instruments — that made the failure invisible until it was systemic. Who is affected: depositors and the deposit-guarantee fund that absorbs the loss. This is the only Latin American story in today's feed, and the first from the region this week that is not a crime-or-sanctions framing imported from Washington.",
-      "conceptUris": []
-    },
-    {
-      "id": "mrna-poly-a-tail-length-body-plan-gastruloids",
-      "label": "Regulation of mRNA poly(A) tail length governs mammalian body plan formation in gastruloids",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-mrna-poly-a-tail-length-body-plan-gastruloids"
-      ],
-      "eventUri": null,
-      "summary": "In gastruloids — stem-cell models that self-organise into an early mammalian body axis — the length of the poly(A) tail on messenger RNA turns out to govern how the body plan forms. Lead with the surprise: this is regulation downstream of transcription, meaning the same genes transcribed the same way produce a different body axis depending on how long their mRNA tails are. Explain the mechanism plainly — tail length sets how long a transcript survives and how readily it is translated, so it acts as a timer, and embryonic patterning is a problem of timing. Open access, so readers can follow the paper. Why it matters beyond the lab: developmental-timing control is the layer synthetic-embryo and regenerative work has least understood.",
-      "conceptUris": []
-    },
-    {
-      "id": "eagle-migration-gps-flyway-mapping",
-      "label": "A never-before-seen picture of eagle migrations",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-eagle-migration-gps-flyway-mapping"
-      ],
-      "eventUri": null,
-      "summary": "For 127 years, bird migration was inferred from rings recovered by chance — you learned where a bird started and where it was recaptured, and nothing in between. Solar-powered GPS tags have replaced that inference with continuous tracks, and researchers have now mapped eagle flyways as exact routes rather than statistical ranges. Lead with the epistemic shift: this is a case of a whole field moving from sampling to census because the instrument got small enough. The consequence to name — flyways drawn precisely can be protected precisely, and conversely, wind-farm and powerline siting decisions can no longer plead ignorance of where the birds actually fly.",
-      "conceptUris": []
-    },
-    {
-      "id": "ice-boston-dynamics-quadruped-procurement",
-      "label": "ICE Plans to Spend Millions on Boston Dynamics Dog Robots",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-ice-boston-dynamics-quadruped-procurement"
-      ],
-      "eventUri": null,
-      "summary": "404 Media obtained procurement documents showing US Immigration and Customs Enforcement plans to spend millions on Boston Dynamics quadruped robots, justified as improving 'officer safety'. Lead with the justification, because it is the whole mechanism: officer-safety framing is the standard route by which military-derived hardware enters civilian immigration enforcement without a separate authorisation debate. Who is affected: people in immigration raids, who acquire a new category of surveillance device with no established rules on what it records or retains. Boston Dynamics' own published usage policy bars weaponisation but says little about surveillance — that gap is the accountability story.",
-      "conceptUris": []
-    },
-    {
-      "id": "swift-network-effect-blockchain-settlement",
-      "label": "Why Swift's massive network effect could save it from a crypto takeover",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-swift-network-effect-blockchain-settlement"
-      ],
-      "eventUri": null,
-      "summary": "Swift carries roughly $1.5 quadrillion in annual messaging traffic and is not a settlement system at all — it moves instructions, and that distinction is why blockchain rails have not displaced it. Lead with the mechanism our readers will immediately grasp: Swift's moat is the addressing directory of 11,000-plus institutions, not the technology, and a bank pair that settles directly still needs to agree on identity and compliance data. The consequence that matters to this audience: Swift's chokepoint role is precisely what makes it a sanctions instrument, so any erosion of its network effect is also an erosion of the West's most-used financial coercion tool — which is why the countries most invested in alternatives are the ones under sanctions.",
-      "conceptUris": []
-    },
-    {
-      "id": "agentic-commerce-authorisation-identity-gap",
-      "label": "How AI agents could spark the biggest currency boom in history",
-      "firstSeen": "2026-08-29T17:09:55.069Z",
-      "lastCovered": "2026-08-29T17:09:55.069Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-agentic-commerce-authorisation-identity-gap"
-      ],
-      "eventUri": null,
-      "summary": "Agentic commerce projections put $1.5 trillion in machine-initiated transactions by 2030, with estimates of 50-100 billion autonomous agents transacting. Treat the projections sceptically and attribute them — they come from Animoca's Yat Siu, an interested party — and lead instead with the unsolved engineering problem underneath: an autonomous agent needs an identity, a spending authorisation, and a revocation path, and none of the three exist as standards today. Who bears the risk: the account holder, because current payment rails have no concept of an authorisation that a machine, rather than a person, exercised. The structural why for a technically literate reader — this is an authorisation problem masquerading as a currency story.",
       "conceptUris": []
     }
   ]
