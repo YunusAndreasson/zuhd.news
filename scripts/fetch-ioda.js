@@ -34,8 +34,15 @@
 // baseline: IODA's API answers for windows, not history, and having our own
 // per-cycle series is what would let someone eventually calibrate a threshold
 // against events whose cause is known. Cost is two requests and ~20 KB a cycle.
+//
+// That series is now actually kept, in `content/.ioda-history.json`. Until
+// 2026-08-30 it was not: this script wrote one snapshot and overwrote it five
+// times a day, and the file reached a commit five times in five weeks, so the
+// readings in between were gone. The argument for running the fetch was sound
+// and the thing it was running *for* was being discarded — which is a quieter
+// failure than a layer drawing the wrong thing, and lasted longer.
 
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -144,6 +151,50 @@ writeFileSync(
     countries,
   }),
 )
+
+/**
+ * The baseline this fetch exists for.
+ *
+ * The header above argues the layer should wait, and says the value of running
+ * the fetch meanwhile is "having our own per-cycle series ... to calibrate a
+ * threshold against events whose cause is known". That series was not being
+ * kept: `.ioda.json` is one snapshot, overwritten five times a day, and it has
+ * reached a commit five times since 25 July — so every reading between those
+ * commits was discarded. The one stated justification for the two requests a
+ * cycle was not being realised.
+ *
+ * Compact by design: iso2 → [ratio, eventCount], which is what a threshold
+ * would be calibrated on. The per-day rates stay in the snapshot; keeping them
+ * per cycle for 90 days would be a megabyte to store two numbers nobody has
+ * asked a question of yet.
+ *
+ * Rotation is on each record's OWN timestamp, never file mtime. The archive in
+ * `fetch-news-api.js` prunes on mtime and `git pull --rebase --autostash`
+ * rewrites files, which is exactly how `fetch-conflict.js` froze for a week.
+ */
+const HISTORY_PATH = join(ROOT, 'content', '.ioda-history.json')
+const HISTORY_DAYS = 90
+try {
+  const prior = existsSync(HISTORY_PATH)
+    ? JSON.parse(readFileSync(HISTORY_PATH, 'utf-8'))
+    : { records: [] }
+  const records = Array.isArray(prior.records) ? prior.records : []
+  const now = new Date().toISOString()
+  records.push({
+    t: now,
+    c: Object.fromEntries(countries.map((c) => [c.iso2, [c.ratio, c.eventCount]])),
+  })
+  const cutoff = Date.now() - HISTORY_DAYS * 86400000
+  const kept = records.filter((r) => {
+    const ts = Date.parse(r?.t)
+    return Number.isFinite(ts) && ts >= cutoff
+  })
+  writeFileSync(HISTORY_PATH, JSON.stringify({ historyDays: HISTORY_DAYS, records: kept }))
+  console.log(`  ✓ baseline: ${kept.length} readings held over ${HISTORY_DAYS}d`)
+} catch (err) {
+  // Best-effort, like the snapshot: a history write must never fail the stage.
+  console.error(`  ioda history write failed: ${err.message}`)
+}
 
 const novel = countries.filter((c) => c.ratio === null).length
 console.log(
