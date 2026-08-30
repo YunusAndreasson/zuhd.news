@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-08-04T12:25:32.390Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-08-04-sevastopol-russian-soldier-shoots-and-kills-several-people",
-        "title": "Soldier Kills Four in Crimea",
-        "category": "politics",
-        "eventCoverage": 142,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-turkish-cargo-ship-hit-in-suspected-ukrainian-attack-near-ru",
-        "title": "Drones Hit Turkish Cargo Ship",
-        "category": "economy",
-        "eventCoverage": 104,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-lebanon-and-israel-hold-new-round-of-direct-talks-in-rome",
-        "title": "Lebanon, Israel Meet in Rome",
-        "category": "politics",
-        "eventCoverage": 99,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-us-has-used-virtually-all-of-its-long-range-precision-missil",
-        "title": "US Nearly Empties Missile Stockpile",
-        "category": "politics",
-        "eventCoverage": 40,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-bp-profit-doubles-to-5-7bn-as-war-between-us-and-iran-drives",
-        "title": "Oil Majors Reap War Windfall",
-        "category": "economy",
-        "eventCoverage": 34,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-bending-spoons-to-buy-airtable-for-1-28b",
-        "title": "Bending Spoons Buys Airtable",
-        "category": "tech",
-        "eventCoverage": 32,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-girl-allegedly-raped-inside-police-station-in-sheikhupura-en",
-        "title": "Rape Alleged Inside Police Station",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-unsupervised-dietary-behavioral-profiling-identifies-pfas-pe",
-        "title": "Packaging, Not Diet, Drives PFAS",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-04-digi-yatra-aadhaar-driving-licence-for-contactless-airport-e",
-        "title": "Digi Yatra Adds Driving Licence",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-04-us-has-used-virtually-all-of-its-long-range-precision-missil",
-      "title": "US Nearly Empties Missile Stockpile",
-      "category": "politics",
-      "body": "The Army has nearly exhausted its precision",
-      "eventCoverage": 40,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US used nearly all long-range precision missiles in Iran war, sources say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 14
-    }
-  },
-  {
     "timestamp": "2026-08-04T17:23:46.653Z",
     "candidateCount": 13,
     "candidates": [
@@ -10012,5 +9926,28 @@
       "skipped": 0,
       "tokens": 9
     }
+  },
+  {
+    "timestamp": "2026-08-30T04:20:37.929Z",
+    "candidateCount": 2,
+    "candidates": [
+      {
+        "slug": "2026-08-30-pakistan-ev-target-charging-gap-refinery-import-bill",
+        "title": "Pakistan EV Target Stalls",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-30-six-suspects-held-in-khuzdar-murder-case",
+        "title": "Six Arrested Over Khuzdar Murder",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 2 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
