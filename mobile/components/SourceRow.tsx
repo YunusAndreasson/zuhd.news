@@ -1,7 +1,7 @@
+import { TONE_LABELS, toneOf } from '@shared/source-framing';
 import type { ArticleSource } from '@shared/types';
 import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
-import { type FramingTone, TONE_LABELS, toneOf } from '@shared/source-framing';
 import { SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
 import { useOpenLink } from '../lib/open-link';
@@ -13,8 +13,6 @@ import { SheetLink } from './SheetContent';
 // a second copy here is how the app and the page would come to describe one
 // outlet two different ways. The labels are unchanged: "leans" sidesteps the
 // "favorable to whom?" ambiguity and signals this is framing, not a verdict.
-type Tone = FramingTone | null;
-const computeTone = toneOf;
 
 const TONE_TEXT: Record<string, TextTone> = {
   favorable: 'favorable',
@@ -33,7 +31,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   const info = SOURCES[source.name];
   const cc = source.country?.toUpperCase();
   const flag = cc ? ccToFlag(cc) : null;
-  const tone = computeTone(source.sentiment);
+  const tone = toneOf(source.sentiment);
   const toneWord = tone ? TONE_LABELS[tone] : 'unknown';
   const toneTextTone: TextTone = tone ? (TONE_TEXT[tone] ?? 'secondary') : 'secondary';
   const openLink = useOpenLink();

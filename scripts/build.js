@@ -689,7 +689,20 @@ for (const [id, brief] of Object.entries(contextBriefs)) {
   })
   eduCount++
 }
-if (eduCount > 0) console.log(`  Edu context: ${eduCount} articles with educational briefs`)
+// Reports what was INDEXED, not what shipped — the two were the same number
+// until the api/context gate below, and reading "3193 articles with educational
+// briefs" every cycle is how a feature frozen since June went unnoticed into
+// late August. The newest brief's own date is the part worth seeing; the count
+// that reaches a reader is the "Built: api/context/" line.
+if (eduCount > 0) {
+  const newest = Object.keys(contextBriefs).filter(k => /^\d{4}-\d{2}-\d{2}-/.test(k)).sort().pop()
+  const stamp = newest ? newest.slice(0, 10) : 'unknown'
+  const staleDays = Math.floor((Date.now() - Date.parse(stamp)) / 86400000)
+  console.log(
+    `  Edu context: ${eduCount} briefs indexed, newest ${stamp}` +
+    (Number.isFinite(staleDays) && staleDays > 30 ? ` — ${staleDays}d stale, generation stopped` : ''),
+  )
+}
 
 // Only process articles from the last 14 days — older ones don't appear in any output
 // (homepage window is 24h + MIN_PER_CATEGORY backfill, heatmap is 72h, feed is 30 recent)
@@ -860,10 +873,33 @@ const apiArticles = Object.values(apiCategories).flat().sort((a, b) => b.addedAt
 mkdirSync(join(DIST_DIR, 'api', 'articles'), { recursive: true })
 mkdirSync(join(DIST_DIR, 'api', 'context'), { recursive: true })
 
-// Write each context brief as a separate JSON file for mobile consumption
+/**
+ * Context briefs, published only where they are reachable.
+ *
+ * This wrote all 3,193 briefs on every deploy — 16 MB of JSON — and on
+ * 2026-08-30 **none of them was reachable by anything**. Stage 3.5 was dropped
+ * 2026-06-19, so the newest brief is dated 14 June while the article pages this
+ * build emits are a 14-day window: zero overlap. Nothing fetches the endpoint
+ * either — no `api/context` reference exists in `mobile/`, `public/` or
+ * `functions/` — and `threadContext` never reaches the published API, so the
+ * other route out of this file is dead too.
+ *
+ * The guard is "publish what a reader can reach", not an off switch, so this
+ * lights up again on its own if brief generation is revived — which is the only
+ * form of cleanup that does not have to be undone to restore the feature.
+ * `content/.context-briefs.json` is kept: 3,119 briefs are real work, they are
+ * already in git history, and deleting the file would reclaim nothing while
+ * discarding the input a revived stage would build on.
+ */
+// The 14-day window this build actually emits pages for.
+const builtArticleSlugs = new Set(articles.map(a => a.slug))
 const contextIndex = {}
 for (const [id, brief] of Object.entries(contextBriefs)) {
   if (!brief?.timeline) continue
+  // Article-keyed briefs ride their article page; thread-keyed ones (7 of the
+  // 3,193) have no page of their own and are kept unconditionally.
+  const articleKeyed = /^\d{4}-\d{2}-\d{2}-/.test(id)
+  if (articleKeyed && !builtArticleSlugs.has(id)) continue
   const payload = {
     id,
     type: brief.type || 'thread',
