@@ -1136,6 +1136,71 @@ body.article-page-body::before {
   text-decoration-color: currentColor;
 }
 
+/* What each outlet brought that the others did not.
+
+   The pipeline has written a per-source `angle` and `sentiment` for months and
+   this page showed neither; the app has shown the angle since it shipped. It
+   sits under the isnad because it is the same claim carried one level further —
+   the chain names who transmitted, this says what each of them made of it.
+
+   Closed by default, and a `<details>` rather than an island: it is static, it
+   is below the prose, and `island-loader.js` is for things that need behaviour.
+   `renderFraming` draws nothing at all when no source carried an angle, so the
+   marker never promises an expansion that opens onto an empty box.
+
+   Ink only — no rule, no surface, no box. The quiet steps are `--text-dim`,
+   which is the AA floor and set exactly there, never opacity: a composited
+   label passes `colour-system.test.js` while failing a reader. */
+.article-framing {
+  margin-top: var(--space-sm);
+  font-size: var(--size-xs);
+  line-height: 1.4;
+}
+
+.article-framing > summary {
+  color: var(--text-dim);
+  cursor: pointer;
+  /* The marker is the affordance; a underline as well would read as a link to
+     somewhere else, which is what the isnad's underlines already mean. */
+  list-style-position: outside;
+}
+
+.article-framing > summary:hover,
+.article-framing > summary:focus-visible {
+  color: var(--text);
+}
+
+.framing-note {
+  margin: 0.6rem 0 0;
+  color: var(--text-dim);
+}
+
+.framing-list {
+  margin: 0.6rem 0 0;
+}
+
+/* The outlet, then what it did. `dt` carries the name so the pair is a real
+   definition list: the term is the transmitter, the definition is its framing. */
+.framing-list dt {
+  color: var(--text-secondary);
+  margin-top: 0.6rem;
+}
+
+.framing-list dt:first-child {
+  margin-top: 0;
+}
+
+.framing-list dd {
+  margin: 0.15rem 0 0;
+  color: var(--text-secondary);
+}
+
+/* A reading of framing, not a score — so it is a label beside the name rather
+   than a number the reader is invited to rank outlets by. */
+.framing-tone {
+  color: var(--text-dim);
+}
+
 .article-pagination {
   display: grid;
   grid-template-columns: 1fr 1fr;

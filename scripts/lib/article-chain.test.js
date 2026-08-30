@@ -8,6 +8,7 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { loadShared } from '../build/shared-ts.js'
 import {
   parseCorrections,
   renderCorrections,
@@ -157,4 +158,67 @@ test('the corrections block is dated, labelled, and escaped', () => {
   // block, which would put a "Correction" heading on a story that has never
   // been corrected.
   assert.equal(renderCorrections([]), '')
+})
+
+
+// --- the framing block -----------------------------------------------------
+//
+// The pipeline wrote a per-source `angle` and `sentiment` for months while the
+// article page showed a comma-separated list of names. These pin the three
+// rules that make the block worth having rather than noise.
+
+// The REAL shared module, not a stub of it. A hand-written copy here would
+// assert against thresholds that could drift from the ones the page and the app
+// actually use — which is the whole reason the module exists.
+const FRAMING = await loadShared('source-framing.ts')
+
+const withAngle = (name, angle, sentiment = 0) => ({ name, country: 'GB', url: `https://example.com/${name}`, angle, sentiment })
+
+test('the isnad stays last — about.md says every article ends with its chain', () => {
+  const html = renderIsnad([withAngle('The Guardian', 'foregrounds the setback')], '', FRAMING, {})
+  assert.ok(html.includes('article-framing'), 'framing should render')
+  assert.ok(
+    html.indexOf('article-framing') < html.indexOf('article-sources-flat'),
+    'the source chain must be the last thing on the page',
+  )
+})
+
+test('nothing is drawn when no source carried an angle', () => {
+  // Half the corpus predates angle extraction. A disclosure over a list of bare
+  // names promises an expansion that opens onto nothing — the mistake
+  // SourceRow.tsx had to unlearn.
+  const html = renderIsnad([src('Reuters', 'GB'), src('AP', 'US')], '', FRAMING, {})
+  assert.ok(!html.includes('article-framing'))
+  assert.ok(html.includes('article-sources-flat'), 'the chain itself still renders')
+})
+
+test('only a framing that stands out is labelled', () => {
+  // 64.3% of source sentiments are neutral; labelling all of them buries the
+  // third that means something.
+  const html = renderIsnad(
+    [withAngle('Neutral Desk', 'reports the vote count', 0.05), withAngle('Critical Desk', 'questions the mandate', -0.6)],
+    '', FRAMING, {},
+  )
+  assert.ok(!html.includes('>neutral<'), 'a neutral outlet carries no tone label')
+  assert.ok(html.includes('leans critical'), 'a critical outlet does')
+})
+
+test('coverage is rounded and divergence only speaks when unusual', () => {
+  const loud = renderIsnad([withAngle('A', 'x')], '', FRAMING, { eventCoverage: 91, sentimentDivergence: 0.6 })
+  assert.ok(loud.includes('drawn from 90+ reports worldwide'), 'exact counts imply false precision')
+  assert.ok(loud.includes('very differently'))
+  const quiet = renderIsnad([withAngle('A', 'x')], '', FRAMING, { eventCoverage: 4, sentimentDivergence: 0.2 })
+  assert.ok(!quiet.includes('framing-note'), 'an ordinary story says nothing about divergence or coverage')
+})
+
+test('angles are escaped, not injected', () => {
+  const html = renderIsnad([withAngle('Outlet', '<script>alert(1)</script>')], '', FRAMING, {})
+  assert.ok(!html.includes('<script>'))
+  assert.ok(html.includes('&lt;script&gt;'))
+})
+
+test('no framing module means the page renders exactly as before', () => {
+  const before = renderIsnad([withAngle('Outlet', 'an angle')], '')
+  assert.ok(before.includes('article-sources-flat'))
+  assert.ok(!before.includes('article-framing'))
 })

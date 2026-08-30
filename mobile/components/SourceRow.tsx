@@ -1,28 +1,20 @@
 import type { ArticleSource } from '@shared/types';
 import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
-import { EDITORIAL, SPACING, type TextTone } from '../constants/theme';
+import { type FramingTone, TONE_LABELS, toneOf } from '@shared/source-framing';
+import { SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
 import { useOpenLink } from '../lib/open-link';
 import { Box, Icon, Pressable, Text } from './primitives';
 import { SheetLink } from './SheetContent';
 
-type Tone = 'favorable' | 'unfavorable' | 'neutral' | null;
-
-function computeTone(sentiment: number | null | undefined): Tone {
-  if (sentiment == null) return null;
-  if (sentiment > EDITORIAL.sentimentPositive) return 'favorable';
-  if (sentiment < EDITORIAL.sentimentNegative) return 'unfavorable';
-  return 'neutral';
-}
-
-// Directional labels. "Leans" sidesteps the "favorable to whom?" ambiguity
-// and signals this is about framing, not a verdict.
-const TONE_LABELS: Record<string, string> = {
-  favorable: 'leans favorable',
-  unfavorable: 'leans critical',
-  neutral: 'neutral',
-};
+// Thresholds and wording now live in `@shared/source-framing`, because the
+// article page renders the same angles and the same tones since 2026-08-30 and
+// a second copy here is how the app and the page would come to describe one
+// outlet two different ways. The labels are unchanged: "leans" sidesteps the
+// "favorable to whom?" ambiguity and signals this is framing, not a verdict.
+type Tone = FramingTone | null;
+const computeTone = toneOf;
 
 const TONE_TEXT: Record<string, TextTone> = {
   favorable: 'favorable',

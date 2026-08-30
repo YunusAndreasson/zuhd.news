@@ -130,7 +130,7 @@ const buildArticle = (filename) => {
   const sources = Array.isArray(meta.sources) ? meta.sources : []
 
   const corrections = parseCorrections(meta)
-  const sourcemark = renderCorrections(corrections) + renderIsnad(sources, body)
+  const sourcemark = renderCorrections(corrections) + renderIsnad(sources, body, FRAMING, meta)
 
   // `concepts` stays in the parsed article so API consumers (feed.json,
   // mobile) keep getting the list, but we no longer append a concept-chip
@@ -420,6 +420,13 @@ if (existsSync(audioSrc)) {
 // `_share.ts` renders on top of it cannot become two different shares of the
 // same story.
 const SHARE = await loadShared('share.ts')
+
+// Sentiment thresholds and the words for them, shared with the app so a source
+// described as "leans critical" in one place is not "neutral" in the other.
+// Passed into `renderIsnad` rather than imported by it: `loadShared` is async
+// and `article-chain.js` is not, and a second copy of the numbers is the drift
+// the shared-modules table exists to prevent.
+const FRAMING = await loadShared('source-framing.ts')
 
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 

@@ -174,7 +174,7 @@ const isStateOutlet = (name) => STATE_OUTLETS.has(String(name || '').trim().toLo
  *    stable sort is load-bearing for that: ties keep the pipeline's own order
  *    rather than being shuffled by the sort's implementation.
  */
-export const renderIsnad = (sources, body) => {
+export const renderIsnad = (sources, body, framing = null, meta = null) => {
   if (!Array.isArray(sources) || !sources.length) return ''
 
   // Where the story is, as the article itself declares it — the same
@@ -210,5 +210,76 @@ export const renderIsnad = (sources, body) => {
     .filter(Boolean)
 
   if (!links.length) return ''
-  return `<p class="article-sources-flat">Sources: ${links.join(', ')}</p>`
+  const chain = `<p class="article-sources-flat">Sources: ${links.join(', ')}</p>`
+  // Framing goes ABOVE the chain, for the same reason corrections do: `about.md`
+  // says "Every article **ends** with its chain of sources", and that ordering
+  // is the sentence, not a layout preference. Reading the framing block as part
+  // of the chain and letting it sit last would be reinterpreting a published
+  // claim to suit a new feature.
+  return renderFraming(sources, framing, meta) + chain
+}
+
+/**
+ * What each outlet brought that the others did not.
+ *
+ * The pipeline has written a per-source `angle` and `sentiment` for months and
+ * the article page showed neither — the app did (`SourceRow.tsx`). Measured on
+ * the live feed the day this shipped, 25 of 46 articles carried at least one
+ * angle and 28 carried source sentiment, so this is more than half the feed's
+ * most distinctive material, and it is the material the isnad is *about*: a
+ * chain of transmission is a claim about who said what, not just who ran it.
+ *
+ * Three rules it keeps, all learned elsewhere in the repo:
+ *
+ *  - **It draws nothing when there is nothing behind it.** `SourceRow.tsx` had
+ *    to learn this the hard way: its chevron promised an expansion two thirds of
+ *    rows could not deliver. Half the corpus predates angle extraction, so a
+ *    disclosure on every article would mostly open onto an empty box.
+ *  - **`<details>` and no island.** This is static, below the prose, and read
+ *    once — `island-loader.js` exists for things that need behaviour, and a
+ *    disclosure that the platform already implements is not one of them.
+ *  - **The words come from `shared/source-framing.ts`**, passed in rather than
+ *    imported, because `loadShared` is async and this is not. A second copy of
+ *    "leans favorable" and a second sentiment threshold is exactly the drift
+ *    the shared-modules table in CLAUDE.md catalogues.
+ */
+const renderFraming = (sources, framing, meta) => {
+  if (!framing) return ''
+  const { toneOf, toneLabel, divergenceNote, coverageNote } = framing
+
+  const rows = sources
+    .filter(s => s?.name && (s.angle || typeof s.sentiment === 'number'))
+    .map(s => {
+      // Only a framing that *stands out* is labelled. Measured over the last
+      // 2,000 articles, 64.3% of source sentiments fall inside the neutral band
+      // (8.1% favorable, 27.6% critical), so printing "neutral" on two rows in
+      // three would bury the third row that means something. The app labels
+      // every row because an expandable list has the space; the page does not,
+      // and both still read their thresholds from the same shared module.
+      const tone = toneOf(s.sentiment) === 'neutral' ? null : toneLabel(s.sentiment)
+      const name = escHtml(s.name)
+      // The tone is a reading of one outlet's framing, not a score, so it sits
+      // beside the name as a label rather than as a number the reader is
+      // invited to compare.
+      const head = `<dt>${name}${tone ? ` <span class="framing-tone">${escHtml(tone)}</span>` : ''}</dt>`
+      // A source with a tone but no angle still gets its term — that it read as
+      // critical is itself the finding — but no empty definition beneath it.
+      return s.angle ? `${head}<dd>${escHtml(s.angle)}</dd>` : head
+    })
+
+  // Nothing is drawn unless at least one outlet actually said something
+  // distinctive; a disclosure over a list of bare names opens onto nothing.
+  if (!rows.some(r => r.includes('<dd>'))) return ''
+
+  const notes = [coverageNote(meta?.eventCoverage), divergenceNote(meta?.sentimentDivergence)]
+    .filter(Boolean)
+    .map(n => escHtml(n))
+  const caption = notes.length ? `<p class="framing-note">${notes.join(' · ')}</p>` : ''
+
+  return (
+    `<details class="article-framing">` +
+    `<summary>How each outlet framed it</summary>` +
+    `${caption}<dl class="framing-list">${rows.join('')}</dl>` +
+    `</details>`
+  )
 }
