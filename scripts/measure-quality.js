@@ -160,8 +160,16 @@ for (const a of articles) catCounts[a.category] = (catCounts[a.category] || 0) +
 const pct = (n, d) => +((d ? n / d : 0) * 100).toFixed(1)
 const avg = arr => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0
 
+// Bump when a metric changes DEFINITION, so a step in an append-only series is
+// legible as a redefinition rather than read as a quality win. Schema 2
+// (2026-08-30): acronymViolations moved from the raw body to the visible prose,
+// which drops it ~365 → ~92 by excluding `[Iran](country:IR)` link targets.
+// Snapshots without `schema` are schema 1 and are not comparable on that metric.
+const SCHEMA = 2
+
 const snapshot = {
   week: new Date().toISOString().slice(0, 10),
+  schema: SCHEMA,
   windowDays: WINDOW_DAYS,
   articleCount: articles.length,
   metrics: {

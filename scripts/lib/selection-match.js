@@ -40,8 +40,20 @@ const RARE_SHARE = 0.15
 const MIN_RATIO = 0.4
 // At least this many rare words must be shared.
 const MIN_RARE = 2
-// The winner must beat the runner-up by this factor, or it is too ambiguous to use.
+// The winner must beat the best RIVAL by this factor, or it is too ambiguous.
 const MARGIN = 1.5
+// Two candidates matching this much of the same rare vocabulary are the same
+// event carried twice, not two stories competing for one selection.
+const SAME_EVENT_OVERLAP = 0.6
+
+/** Are these two candidates the same event, rather than rivals? */
+function sameEvent(a, b) {
+  const as = new Set(a.rare)
+  const bs = new Set(b.rare)
+  if (as.size === 0 || bs.size === 0) return false
+  const shared = [...as].filter(w => bs.has(w)).length
+  return shared / Math.min(as.size, bs.size) >= SAME_EVENT_OVERLAP
+}
 
 function fingerprint(title) {
   return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 50)
@@ -104,24 +116,28 @@ export function createMatcher(allStories) {
     const entryWords = new Set(words([entry.title, entry.suggestedSlug?.replace(/-/g, ' ')].filter(Boolean).join(' ')))
     if (entryWords.size < 3) return null
 
-    let best = null
-    let runnerUp = 0
+    const candidates = []
     for (const s of allStories) {
       if (claimed.has(s)) continue
       const shared = [...storyWords.get(s)].filter(w => entryWords.has(w))
       const rare = shared.filter(w => (docFreq.get(w) || 0) <= rareMax)
       const ratio = shared.length / entryWords.size
       if (rare.length < MIN_RARE || ratio < MIN_RATIO) continue
-      const score = rare.length + ratio
-      if (!best || score > best.score) {
-        runnerUp = best ? best.score : 0
-        best = { story: s, score, ratio, rare }
-      } else if (score > runnerUp) {
-        runnerUp = score
-      }
+      candidates.push({ story: s, score: rare.length + ratio, ratio, rare })
     }
-    if (!best) return null
-    if (best.score < runnerUp * MARGIN) {
+    if (candidates.length === 0) return null
+    candidates.sort((a, b) => b.score - a.score)
+    const best = candidates[0]
+
+    // The margin is about a *rival* story, not a second copy of the winner.
+    // `allStories` is multiSourceStories concatenated with nicheStories, where
+    // the same event routinely appears twice — that is what the dedup layers
+    // exist for. Measuring the runner-up blindly meant the commonest case, an
+    // event the feed carried twice, scored a near-tie against itself and the
+    // correct match was thrown away as ambiguous. So the runner-up is the best
+    // candidate that is a materially *different* story.
+    const rival = candidates.slice(1).find(c => !sameEvent(c, best))
+    if (rival && best.score < rival.score * MARGIN) {
       return { story: null, layer: 'keyword', rejected: 'ambiguous', candidate: best.story }
     }
     claimed.add(best.story)

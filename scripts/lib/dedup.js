@@ -32,11 +32,18 @@ export const NICHE_SOURCES = new Set([
  * published. The daily audit logged two such pairs on 2026-08-28 and its
  * duplicate check passed them because it compares slugs.
  *
- * Normalisation is deliberately shallow — host and path only. Query strings are
- * dropped because the observed collisions differed only in tracking parameters,
- * and a publisher that encodes the article id in the query (some wires do) still
- * matches on path, which is the conservative direction: this layer should miss a
- * duplicate rather than suppress a distinct story.
+ * The query string is KEPT, minus a tracking denylist. Dropping it wholesale
+ * looks conservative and is the opposite: for any publisher that puts the
+ * article id in the query, every article collapses to one key and distinct
+ * stories start suppressing each other. Measured on the live corpus, path-only
+ * matching produced 19 false-positive pairs — every Hacker News item shares
+ * `news.ycombinator.com/item`, and 5 of the 6 HN-sourced articles would have
+ * been dropped as duplicates of one another. Same for `bernama.com/en/news.php?id=`,
+ * Haaretz's `?liveBlogItemId=`, and KBS's `?Seq_Code=`.
+ *
+ * Losing identity from a comparison key does not make the key miss; it makes
+ * unlike things compare equal. Remaining params are sorted so ordering is not
+ * mistaken for difference.
  */
 export function normalizeUrl(raw) {
   if (!raw || typeof raw !== 'string') return ''
@@ -44,13 +51,19 @@ export function normalizeUrl(raw) {
     const u = new URL(raw.trim())
     const host = u.hostname.toLowerCase().replace(/^www\./, '')
     const path = u.pathname.replace(/\/+$/, '').toLowerCase()
-    // A URL with no article path identifies a *site*, not a story, and must
-    // never key this layer: two unrelated pieces were both filed against
-    // `bankingnews.gr/index.php`, and treating that as identity would have
-    // suppressed the second one. Found by running this layer over the live
-    // corpus before shipping it.
-    if (!path || GENERIC_PATHS.has(path)) return ''
-    return `${host}${path}`
+    for (const k of [...u.searchParams.keys()]) {
+      if (TRACKING_PARAMS.has(k.toLowerCase()) || k.toLowerCase().startsWith('utm_')) {
+        u.searchParams.delete(k)
+      }
+    }
+    u.searchParams.sort()
+    const query = u.searchParams.toString()
+    // A URL with no article path AND no identifying query names a *site*, not a
+    // story, and must never key this layer: two unrelated pieces were both filed
+    // against `bankingnews.gr/index.php`. Found by running this layer over the
+    // live corpus before shipping it.
+    if ((!path || GENERIC_PATHS.has(path)) && !query) return ''
+    return query ? `${host}${path}?${query}` : `${host}${path}`
   } catch {
     return ''
   }
@@ -60,6 +73,14 @@ export function normalizeUrl(raw) {
 const GENERIC_PATHS = new Set([
   '/index.php', '/index.html', '/index.htm', '/index',
   '/news', '/en', '/home', '/feed', '/rss', '/articles',
+])
+
+// Campaign/referrer noise only. Anything not listed here is treated as
+// potentially identifying — the safe default, per the note above.
+const TRACKING_PARAMS = new Set([
+  'fbclid', 'gclid', 'msclkid', 'dclid', 'igshid', 'mc_cid', 'mc_eid',
+  'ref', 'referrer', 'source', 'src', 'cmpid', 'ncid', 'sh', 'at_medium',
+  'at_campaign', 'smid', 'partner', '__twitter_impression', 'guccounter',
 ])
 
 /** Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h). */

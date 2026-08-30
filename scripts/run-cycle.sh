@@ -237,6 +237,14 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 # Stage 1.3: Enrich selection with full article bodies from /tmp/zuhd-feed.json
 # (selector reads slim feed without bodies to save tokens; bodies restored here for the writer)
 node scripts/enrich-selection.js 2>&1 | tee -a "$LOG_FILE"
+# Recount: enrich drops entries it could not match to source text, so without
+# this the drops are charged to dedup and reported as "already published".
+SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+if [ "$SELECTION_COUNT" -eq 0 ]; then
+  echo "No selection entry could be matched to source text — skipping writer and editor" | tee -a "$LOG_FILE"
+  exit 0
+fi
+FUNNEL_SELECTED=$SELECTION_COUNT
 
 # Stage 1.5: Remove already-published stories from selection (deterministic, no LLM)
 # Runs BEFORE ledger update so only genuinely new stories enter the ledger

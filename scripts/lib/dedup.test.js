@@ -193,3 +193,30 @@ test('normalizeUrl compares identity, not decoration', () => {
   assert.equal(normalizeUrl('not a url'), '')
   assert.equal(normalizeUrl(null), '')
 })
+
+// Path-only matching looked conservative and was the reverse: dropping the query
+// makes unlike things compare equal. Measured over the 8,894-article corpus it
+// produced 19 false-positive pairs — every Hacker News item keys to
+// `news.ycombinator.com/item`, so 5 of the 6 HN-sourced articles would each have
+// been suppressed as a duplicate of the previous one.
+test('a publisher that puts the article id in the query keeps its identity', () => {
+  const distinct = [
+    ['https://news.ycombinator.com/item?id=41234567', 'https://news.ycombinator.com/item?id=99999999'],
+    ['https://www.bernama.com/en/news.php?id=2345', 'https://www.bernama.com/en/news.php?id=9876'],
+    ['https://www.haaretz.com/x/ty-article-live/?liveBlogItemId=1', 'https://www.haaretz.com/x/ty-article-live/?liveBlogItemId=2'],
+    ['https://world.kbs.co.kr/service/news_view.htm?Seq_Code=1', 'https://world.kbs.co.kr/service/news_view.htm?Seq_Code=2'],
+  ]
+  for (const [a, b] of distinct) {
+    assert.notEqual(normalizeUrl(a), normalizeUrl(b), `${a} must not key the same as ${b}`)
+    assert.ok(normalizeUrl(a), 'an id-in-query URL must still produce a key')
+  }
+})
+
+test('tracking noise and param order are not identity', () => {
+  assert.equal(
+    normalizeUrl('https://restofworld.org/2026/x/?utm_source=rss&utm_medium=feed'),
+    normalizeUrl('https://restofworld.org/2026/x'),
+  )
+  assert.equal(normalizeUrl('https://ex.com/a?b=2&a=1'), normalizeUrl('https://ex.com/a?a=1&b=2'))
+  assert.equal(normalizeUrl('https://ex.com/a?fbclid=zz'), normalizeUrl('https://ex.com/a'))
+})

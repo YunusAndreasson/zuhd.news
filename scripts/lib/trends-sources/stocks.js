@@ -190,8 +190,27 @@ export async function fetchYahooStock(symbol, opts = {}) {
       && q.currencyReported === cached.currencyReported
       && q.timezone === cached.timezone
     if (sameInstrument) {
-      console.error(`  ⚠ yahoo:${symbol}: ${lastErr?.message} — cached series from ${cached.asOf}, live price kept`)
-      return { ...cached, marketPrice: q.marketPrice }
+      // The live close is APPENDED to the series, not just set on `marketPrice`.
+      // Nothing reads `marketPrice` — `fetch-markets.js` and `extract-entities.js`
+      // both take `values[values.length - 1]` — so setting it alone left the most
+      // prominent number on the card days out of date while claiming a fix.
+      // `changePct` then reads from the last real close to today, which is the
+      // move the data actually supports, on a card the UI already marks "cached".
+      const today = new Date().toISOString().slice(0, 10)
+      const live = Number(q.marketPrice.toFixed(2))
+      const appended = cached.asOf !== today
+      console.error(
+        `  ⚠ yahoo:${symbol}: ${lastErr?.message} — cached series from ${cached.asOf}` +
+        (appended ? `, live close ${live} appended for ${today}` : ', live close already current'),
+      )
+      if (!appended) return { ...cached, marketPrice: q.marketPrice }
+      return {
+        ...cached,
+        values: [...(cached.values || []), live],
+        periods: [...(cached.periods || []), formatPeriod(Date.now())],
+        asOf: today,
+        marketPrice: q.marketPrice,
+      }
     }
     console.error(`  ⚠ yahoo:${symbol}: ${lastErr?.message} — serving cached series from ${cached.asOf}`)
     return cached

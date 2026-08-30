@@ -49,7 +49,10 @@ if (existsSync(SLIM)) {
 }
 
 if (total > 0) {
-  console.log(`Pre-filtered: removed ${total} stories (exact: ${counts.exact}, eventUri: ${counts.eventUri}, fuzzy: ${counts.fuzzy}, recap: ${counts.recap})`)
+  // Rendered from the tally itself, so a new reason can never be filtered but
+  // left out of the breakdown — which is how `url` would have gone unreported.
+  const breakdown = Object.entries(counts).filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${v}`).join(', ')
+  console.log(`Pre-filtered: removed ${total} stories (${breakdown})`)
 } else {
   console.log('Pre-filter: all feed stories are new')
 }

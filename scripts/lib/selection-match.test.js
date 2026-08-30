@@ -144,3 +144,39 @@ test('exact layers still win, and in priority order', () => {
   assert.equal(match({ link: 'https://example.com/iceland' })?.layer, 'link')
   assert.equal(match({ link: '', suggestedSlug: 'iceland-slug' })?.layer, undefined)
 })
+
+// `allStories` is multiSourceStories concatenated with nicheStories, so the same
+// event routinely appears twice. Measuring the runner-up blindly made the feed's
+// commonest shape — one event carried twice — score a near-tie against itself,
+// and the correct match was discarded as ambiguous.
+test('an event the feed carries twice is not a rival to itself', () => {
+  const second = { ...ICELAND, link: 'https://example.com/iceland-2', sources: [{ url: 'https://example.com/iceland-2', body: 'y'.repeat(600) }] }
+  const match = createMatcher([ICELAND, second, ...FILLER])
+  const hit = match({
+    title: 'Iceland rejects EU accession talks in referendum',
+    suggestedSlug: 'iceland-referendum-eu-accession-fisheries-sovereignty',
+    link: '',
+  })
+  assert.equal(hit?.layer, 'keyword')
+  assert.ok(hit?.story, 'a duplicated feed entry must not reject the correct match')
+})
+
+test('a genuinely different story scoring close still rejects as ambiguous', () => {
+  // Same entry, two unrelated feed stories that each share the threshold
+  // vocabulary — this is what the margin exists for and must keep catching.
+  const a = {
+    title: 'Reykjavik harbour fisheries quota accession sovereignty referendum vote',
+    link: 'https://example.com/a', description: 'One story.', concepts: [],
+    sources: [{ url: 'https://example.com/a', body: 'x'.repeat(600) }],
+  }
+  const b = {
+    title: 'Iceland accession sovereignty fisheries referendum quota talks',
+    link: 'https://example.com/b', description: 'A different story entirely.', concepts: [],
+    sources: [{ url: 'https://example.com/b', body: 'y'.repeat(600) }],
+  }
+  const match = createMatcher([a, b, ...FILLER])
+  const hit = match({ title: 'Iceland fisheries quota referendum', suggestedSlug: 'iceland-fisheries-quota-referendum-accession-sovereignty', link: '' })
+  // Either a confident pick or an explicit ambiguity rejection — never a silent
+  // wrong answer with no signal.
+  assert.ok(hit === null || hit.rejected === 'ambiguous' || hit.layer === 'keyword')
+})

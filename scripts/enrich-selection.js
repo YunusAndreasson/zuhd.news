@@ -39,7 +39,20 @@ for (const entry of selection) {
   }
 }
 
-writeFileSync('/tmp/zuhd-selection.json', JSON.stringify(selection, null, 2))
+// Unmatched entries are DROPPED, not passed through sourceless. The header's
+// claim that "a miss is honest — the writer skips the slot" was not enforced
+// anywhere: run-cycle.sh hands this file straight to the writer, write-prompt.md
+// has no rule for an empty `sources`, and validate-articles.js only checks that
+// the *output* carries a sources block — an invented one passes. On 2026-08-30
+// the writer did skip them and said so, but that was its judgement, not a
+// guarantee, and the tightened matcher deliberately produces more misses.
+const enrichedSelection = selection.filter(e => Array.isArray(e.sources) && e.sources.length > 0)
+const dropped = selection.length - enrichedSelection.length
+
+writeFileSync('/tmp/zuhd-selection.json', JSON.stringify(enrichedSelection, null, 2))
 const layerSummary = Object.entries(matchLayers).filter(([, v]) => v > 0).map(([k, v]) => `${k}:${v}`).join(' ')
 console.log(`Enriched ${enriched}/${selection.length} stories [${layerSummary}]` +
   (missing ? ` (${missing} not found: ${missingEntries.join(', ')})` : ''))
+if (dropped > 0) {
+  console.log(`Dropped ${dropped} sourceless entr${dropped === 1 ? 'y' : 'ies'} — the writer is never handed a story with no source text`)
+}
