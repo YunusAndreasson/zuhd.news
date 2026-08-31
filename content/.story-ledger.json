@@ -2,13 +2,275 @@
   "version": 1,
   "stories": [
     {
+      "id": "kharg-ai-video-synthetic-threat-oil-terminal",
+      "label": "Trump shares AI-generated video depicting Iranian island 'being blown to smithereens'",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-kharg-ai-video-synthetic-threat-oil-terminal"
+      ],
+      "eventUri": "eng-11967231",
+      "summary": "The US president posted a synthetic video of Kharg Island's destruction — not Larak, which was actually struck, but Kharg, the terminal that handles the overwhelming majority of Iran's crude exports. The mechanism to lead with is the target substitution: a fabricated image of an oil terminal being destroyed functions as a threat against Iran's export revenue, and it moves markets and insurance rates without a single munition. Distinguish clearly for the reader what was struck (Larak, Iranian military personnel killed) from what was depicted (Kharg, imagined). Follows this cycle's Larak coverage; carry the Hormuz pricing thread forward.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Kharg_Island",
+        "http://en.wikipedia.org/wiki/Larak_Island",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Jordan",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Petroleum"
+      ]
+    },
+    {
+      "id": "haldwani-purification-fir-caste-speech-inversion",
+      "label": "FIR against Rahul Gandhi for calling Haldwani 'purification' ritual 'untouchability'",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-haldwani-purification-fir-caste-speech-inversion"
+      ],
+      "eventUri": "eng-11966209",
+      "summary": "Uttarakhand police opened a criminal case against the leader of the opposition for naming a 'purification ritual' at a public ground as untouchability — a practice India's constitution abolished in Article 17. Who is affected: Dalit residents of Haldwani, whose presence at the site prompted the ritual. Who holds power: a state police force registering an FIR over the description of caste practice rather than the practice itself. The structural point is the inversion — the act of naming discrimination becomes the offence. Three Indian outlets carry it with sharply divergent framing; report the ritual and the FIR as facts and let the inversion land on its own.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Haldwani",
+        "http://en.wikipedia.org/wiki/First_information_report",
+        "http://en.wikipedia.org/wiki/Rahul_Gandhi",
+        "http://en.wikipedia.org/wiki/Indian_National_Congress",
+        "http://en.wikipedia.org/wiki/Mallikarjun_Kharge",
+        "http://en.wikipedia.org/wiki/Uttarakhand",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/Scheduled_Castes_and_Scheduled_Tribes"
+      ]
+    },
+    {
+      "id": "unification-church-han-hak-ja-bribery-access",
+      "label": "(3rd LD) Unification Church leader sentenced to 2-yr prison term in bribery case",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-unification-church-han-hak-ja-bribery-access"
+      ],
+      "eventUri": "eng-11967014",
+      "summary": "A Seoul court sentenced Han Hak-ja, leader of the Unification Church, to two years for bribing the wife of ousted president Yoon Suk Yeol — the transfers included two Chanel bags and a diamond necklace alongside political funding offences. Lead with the smallness of the objects against the size of the access purchased: a religious movement buying a channel into the presidential residence. The accountability angle is that the court reached the church rather than only the politician, and it lands while Yoon's own removal is still being litigated. Note what the sentence does and does not settle about the first lady's own liability.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Unification_Church",
+        "http://en.wikipedia.org/wiki/Seoul",
+        "http://en.wikipedia.org/wiki/Han_Chinese",
+        "http://en.wikipedia.org/wiki/Bribery",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Central_District_(Kermanshah_County)",
+        "http://en.wikipedia.org/wiki/Yoon_Suk_Yeol",
+        "http://en.wikipedia.org/wiki/First_Lady_of_the_United_States"
+      ]
+    },
+    {
+      "id": "kazakhstan-vice-presidency-managed-succession",
+      "label": "Kazakhstan's president appoints top adviser as vice president",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-kazakhstan-vice-presidency-managed-succession"
+      ],
+      "eventUri": "rus-2117421",
+      "summary": "Tokayev filled the vice presidency — an office that did not exist until the new constitution took effect — with Erlan Karin, previously state counsellor and first deputy head of the presidential administration. The mechanism worth explaining: a constitutional amendment created a succession slot, and the first occupant is the president's own long-serving ideologist, not an elected figure. For a reader watching Central Asia, this is how managed succession is engineered in advance of a transition rather than during one — the same problem Nazarbayev's exit posed, addressed structurally this time. Note that the feed carried no Kazakh outlet on this.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kazakhstan",
+        "http://en.wikipedia.org/wiki/Kassym-Jomart_Tokayev",
+        "http://en.wikipedia.org/wiki/Erlan_Karin",
+        "http://en.wikipedia.org/wiki/Prime_minister",
+        "http://en.wikipedia.org/wiki/President_(government_title)",
+        "http://en.wikipedia.org/wiki/Vice_president",
+        "http://en.wikipedia.org/wiki/Head_of_state",
+        "http://en.wikipedia.org/wiki/President_of_Kazakhstan"
+      ]
+    },
+    {
+      "id": "egypt-libya-military-unification-sequencing",
+      "label": "Egypt pushes for a settlement in Libya",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-egypt-libya-military-unification-sequencing"
+      ],
+      "eventUri": "eng-11966279",
+      "summary": "Cairo is trying to bridge Libya's eastern and western governments and, more consequentially, to unify the two rival military institutions. Who holds power: Egypt, which borders Libya and has backed the eastern LNA, now positioning itself as the broker rather than a party. The mechanism readers should grasp is sequencing — military unification before or after a political settlement is the question every previous Libya process has failed on, and it is the same sequencing problem the UN envoy faces in Sudan. Written from Cairo, which is the perspective the story is usually told without.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Libya",
+        "http://en.wikipedia.org/wiki/Tripoli,_Libya",
+        "http://en.wikipedia.org/wiki/United_Nations_Support_Mission_in_Libya",
+        "http://en.wikipedia.org/wiki/Government_of_National_Unity_(Libya)",
+        "http://en.wikipedia.org/wiki/Libyan_National_Army",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Executive_(government)",
+        "http://en.wikipedia.org/wiki/House_of_Representatives_(Libya)"
+      ]
+    },
+    {
+      "id": "india-ist-legal-metrology-settlement-grid",
+      "label": "From Bombay Time To IST: How India Finally Agreed On One Clock",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-india-ist-legal-metrology-settlement-grid"
+      ],
+      "eventUri": "eng-11965799",
+      "summary": "India notified the Legal Metrology (Indian Standard Time) Rules, 2026, making IST the single legally binding reference for banks, exchanges, telecom operators and the power grid. This is infrastructure law, not a curiosity: trade settlement, grid synchronisation and telecom billing all depend on an agreed timestamp, and until now India's legal position on which clock governs was ambiguous. Lead with what breaks when two systems disagree by milliseconds. The Bombay Time history is the hook, not the story — the story is that a billion-person economy just made time a regulated quantity.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Telecommunications",
+        "http://en.wikipedia.org/wiki/Bank",
+        "http://en.wikipedia.org/wiki/Metrology",
+        "http://en.wikipedia.org/wiki/Time_signature",
+        "http://en.wikipedia.org/wiki/Synchronization",
+        "http://en.wikipedia.org/wiki/Internet",
+        "http://en.wikipedia.org/wiki/Airport"
+      ]
+    },
+    {
+      "id": "pakistan-budget-nutrient-substitution-hidden-hunger",
+      "label": "How Pakistan's budget is making nutritious food unaffordable",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-pakistan-budget-nutrient-substitution-hidden-hunger"
+      ],
+      "eventUri": null,
+      "summary": "Dawn traces the transmission from fiscal policy to the plate: when purchasing power falls, households do not eat less — they eat worse, cutting protein and micronutrient-dense food first while keeping calories up on cheap staples. Who is affected: Pakistani households already at the margin. The mechanism to lead with is that a calorie-adequate diet can still be a nutritionally failing one, which is why headline food-security numbers miss this entirely. Connects to the Punjab clinic-sealing story from the previous cycle — both are the health cost of a squeezed budget arriving through different doors.",
+      "conceptUris": []
+    },
+    {
+      "id": "nepal-bangladesh-power-india-transit-veto",
+      "label": "Bangladesh wants Nepal's power, but India holds the key",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-nepal-bangladesh-power-india-transit-veto"
+      ],
+      "eventUri": null,
+      "summary": "Bangladesh wants to buy Nepali hydropower and Nepal wants to sell it, but the electricity must cross Indian transmission lines — and three governments have been stalled over a mere 20 MW, a rounding error on any national grid. Lead with that number against the size of the stalemate. The structural point is transit power: whoever owns the wires between two countries holds a veto over their trade, and South Asia's renewable build-out depends on interconnection India controls. Who bears the cost: Bangladeshi consumers buying more expensive thermal power instead.",
+      "conceptUris": []
+    },
+    {
+      "id": "nepal-floods-five-thousand-dead-catchment",
+      "label": "Death toll from deadly Nepal floods rises to over 5,000",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-nepal-floods-five-thousand-dead-catchment"
+      ],
+      "eventUri": null,
+      "summary": "Nepal's Home Ministry now puts the flood death toll above 5,000 — by a wide margin the largest loss of life in this cycle's feed, and it is carried by almost no one. Lead with the count and with the fact of the silence around it. The mechanism: Himalayan catchments concentrate monsoon runoff into narrow valleys where the settlement is, so a rainfall anomaly becomes a mass-casualty event within hours rather than days. Attribute the figure precisely to the Home Ministry and flag that tolls at this stage are still rising and provisional.",
+      "conceptUris": []
+    },
+    {
+      "id": "trace-lithium-dementia-dose-gap-evidence",
+      "label": "Should we all be taking low doses of lithium to prevent Alzheimer's?",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-trace-lithium-dementia-dose-gap-evidence"
+      ],
+      "eventUri": "eng-11967622",
+      "summary": "The question is whether trace lithium — the kind already present in some groundwater at doses far below psychiatric prescribing — is protective against dementia. Lead with the dose gap, which is the whole story: the psychiatric dose and the hypothesised protective dose differ by orders of magnitude, and evidence at the low end is largely epidemiological, not trial-based. The reader should leave knowing exactly what is established and what is not, and why 'it is in the water already' is an argument about correlation. Do not let the 1880s Texas well anecdote lead; it is the least reliable thing in the piece.",
+      "conceptUris": []
+    },
+    {
+      "id": "omarchy-root-escalation-default-trust",
+      "label": "Omarchy: Any User Process Can Escalate to Root",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-omarchy-root-escalation-default-trust"
+      ],
+      "eventUri": null,
+      "summary": "A widely promoted Linux desktop distribution shipped a configuration in which any unprivileged user process can obtain root. Lead with the mechanism — how the credential is reachable — not with the vendor's name, because the general lesson is the one that transfers: opinionated 'batteries-included' distributions inherit the security posture of whoever assembled the defaults, and users who chose it for convenience have no way to audit that. 488 points and 473 comments on Hacker News is the signal that practitioners recognise it as a class of failure, not a one-off.",
+      "conceptUris": []
+    },
+    {
+      "id": "zcash-shielded-proof-latency-privacy-default",
+      "label": "Zcash private transactions could go from three-second waits to under 200 milliseconds",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-zcash-shielded-proof-latency-privacy-default"
+      ],
+      "eventUri": "eng-11967365",
+      "summary": "New cryptography tooling cuts the wallet-side cost of building a shielded Zcash transaction from about three seconds to under 200 milliseconds — and requires no network upgrade, which is the detail to lead with. The structural point: privacy on a blockchain has always been priced in latency and compute, and that price is what pushed users onto transparent addresses. A 15x reduction changes the default. Frame the 50,000-transactions-per-second target as the stated ambition it is, not as an achieved figure.",
+      "conceptUris": []
+    },
+    {
+      "id": "ferroelectric-computing-no-single-parameter",
+      "label": "Toward next-generation computing through ferroelectricity",
+      "firstSeen": "2026-08-31T08:06:42.713Z",
+      "lastCovered": "2026-08-31T08:06:42.713Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-31-ferroelectric-computing-no-single-parameter"
+      ],
+      "eventUri": null,
+      "summary": "A review of what actually gates ferroelectric computing — the candidate successor to charge-based memory and logic — and the answer is that no single material parameter decides it. Remanent polarisation, Curie temperature, coercive field, switching speed and endurance trade against each other, so the choice is application-specific rather than a race one material wins. Lead with that: readers are used to semiconductor stories with a winner, and this is a story about why there isn't one. Keep it concrete about what ferroelectric memory would buy — non-volatility without the write-energy penalty.",
+      "conceptUris": []
+    },
+    {
       "id": "jordan-airspace-intercepts-host-nation-risk",
       "label": "Jordan Intercepts Eight Missiles In Airspace",
       "firstSeen": "2026-08-31T04:05:29.709Z",
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-jordan-airspace-intercepts-host-nation-risk"
@@ -33,7 +295,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-banque-misr-designation-overcompliance-sanctions"
@@ -58,7 +320,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-trnc-ferry-inquiry-regulator-conflict"
@@ -83,7 +345,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-sco-bishkek-sidelines-hedging-sanctions"
@@ -108,7 +370,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-mecca-pact-first-committee-istanbul"
@@ -133,7 +395,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-belgorod-civilian-toll-symmetric-count"
@@ -157,7 +419,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-punjab-quackery-raids-care-supply-gap"
@@ -173,7 +435,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-yen-160-intervention-rate-gap-energy"
@@ -196,7 +458,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-g20-china-surplus-coalition-tariffs"
@@ -218,7 +480,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-shr-a1811-her2-low-adc-phase-2"
@@ -234,7 +496,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-ska-archives-local-sky-knowledge"
@@ -250,7 +512,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-kernel-org-ai-crawlers-commons-cost"
@@ -266,7 +528,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-ai-likeness-licensing-consent-duration-china"
@@ -282,7 +544,7 @@
       "lastCovered": "2026-08-31T04:05:29.709Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-31-gabor-hologram-label-free-imaging-access"
@@ -298,7 +560,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-kyiv-depot-secondary-detonation-civilian-toll"
@@ -323,7 +585,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-larak-island-strike-hormuz-mining-preemption"
@@ -348,7 +610,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-fcc-licence-threat-named-anchor-press-coercion"
@@ -373,7 +635,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-ssa-operation-mayibuye-secrecy-oversight-capture"
@@ -389,7 +651,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-haiti-displacement-armed-civilian-groups-equilibrium"
@@ -405,7 +667,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-uzbekistan-uranium-india-supply-outside-moscow"
@@ -430,7 +692,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-kulevi-refinery-kazakh-libyan-crude-reroute"
@@ -446,7 +708,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-china-fertility-only-daughters-dependency-ratio"
@@ -462,7 +724,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-rusfertide-hepcidin-mimetic-polycythemia-phlebotomy"
@@ -478,7 +740,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-cut-to-fuse-skeletal-editing-late-stage-synthesis"
@@ -494,7 +756,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-steam-teraleak-depot-architecture-preservation"
@@ -510,7 +772,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pvt-bipv-year-long-4e-waste-heat-payback"
@@ -526,7 +788,7 @@
       "lastCovered": "2026-08-30T22:05:04.926Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-30-settlement-speed-recall-window-stablecoin-rails"
@@ -542,7 +804,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-maduro-us-custody-extraterritorial-capture-precedent"
@@ -567,7 +829,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-niger-junta-russia-request-regime-survival-contract"
@@ -592,7 +854,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-rss-bhagwat-diaspora-platform-hindutva-flag-row"
@@ -617,7 +879,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-duki-ied-brothers-killed-balochistan-road-conflict"
@@ -633,7 +895,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-plateau-pastor-killed-jos-bokkos-ransom-economy"
@@ -649,7 +911,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-eu-gas-storage-lng-spot-competition-winter"
@@ -673,7 +935,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-bitcoin-basis-trade-market-makers-cme-open-interest"
@@ -689,7 +951,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-angola-lobito-corridor-transit-rent-mineral-exports"
@@ -705,7 +967,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-gut-repair-two-modes-infection-diet-stem-cells"
@@ -721,7 +983,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-plasmonic-asymmetry-quantum-dot-nanoshell-coupling"
@@ -737,7 +999,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-google-maps-lake-america-toponym-platform-sovereignty"
@@ -753,7 +1015,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-debian-generative-ai-resolution-provenance-licensing"
@@ -769,7 +1031,7 @@
       "lastCovered": "2026-08-30T17:06:55.450Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-30-spinel-ferrite-graphene-supercapacitor-energy-density"
@@ -785,7 +1047,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-kyrenia-ferry-capsize-embargo-lifeline-route"
@@ -810,7 +1072,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-black-sea-turkish-ships-neutral-shipping-summons"
@@ -835,7 +1097,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-india-central-asia-corridor-uzbekistan-transit-access"
@@ -860,7 +1122,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-iran-war-red-crescent-rubble-rescues-civilian-count"
@@ -876,7 +1138,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-sudan-dialogue-sequencing-legitimacy-un-envoy"
@@ -892,7 +1154,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-shanghai-crude-benchmark-pricing-autonomy-yuan-settlement"
@@ -908,7 +1170,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-nigeria-petrol-import-licences-fx-refining-discretion"
@@ -924,7 +1186,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-india-aviation-regulator-capacity-growth-safety-margin"
@@ -940,7 +1202,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-roman-telescope-wide-field-dark-energy-microlensing"
@@ -956,7 +1218,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-turbulence-particle-tracking-sparse-reconstruction"
@@ -972,7 +1234,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-meta-data-centre-robots-lights-out-maintenance-labour"
@@ -988,7 +1250,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-zaporizhzhia-off-site-power-decay-heat-diesel-margin"
@@ -1013,7 +1275,7 @@
       "lastCovered": "2026-08-30T12:06:02.060Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-zinc-battery-hydrogel-electrolyte-dendrite-grid-storage"
@@ -1029,7 +1291,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-iceland-referendum-eu-accession-fisheries-sovereignty"
@@ -1054,7 +1316,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-punjab-faceless-terrorism-trials-anonymous-prosecutors"
@@ -1070,7 +1332,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-airstrike-jenin-ten-month-gap"
@@ -1086,7 +1348,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-pacific-islands-forum-palau-walkout-consensus"
@@ -1102,7 +1364,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-hormuz-permission-regime-iran-reopening-terms"
@@ -1118,7 +1380,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-korea-lee-finance-defence-reshuffle-technocratic-continuity"
@@ -1140,7 +1402,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-qassim-date-export-merchant-networks-saudi-concentration"
@@ -1156,7 +1418,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-statins-dementia-risk-early-initiation-vascular"
@@ -1172,7 +1434,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-west-bank-traditional-remedies-health-access-study"
@@ -1188,7 +1450,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-algal-bacterial-biofilm-carbon-loop-efficiency-model"
@@ -1204,7 +1466,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-phononic-crystal-acoustic-black-hole-vibration-bandgap"
@@ -1220,7 +1482,7 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-russia-kyiv-strike-frequency-air-defence-attrition"
@@ -1236,189 +1498,13 @@
       "lastCovered": "2026-08-30T08:09:33.512Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-usaf-hh60w-continuity-government-evacuation-capacity"
       ],
       "eventUri": null,
       "summary": "The US Air Force is standing up a unit of HH-60W Jolly Green II combat-rescue helicopters in Washington for continuity-of-government evacuation. Lead with the repurposing: an airframe designed to pull downed pilots out of contested airspace is being assigned to move officials out of the capital. The mechanism worth explaining is what continuity-of-government planning actually assumes — that decapitation is survivable only if the transport exists before the warning does — and the open question the reporting raises is capacity, since a rescue helicopter carries very few people and CoG lists are long. Read alongside Russian officials' nuclear rhetoric this week: hardware commitments are a better indicator of institutional threat assessment than statements are.",
-      "conceptUris": []
-    },
-    {
-      "id": "sudan-drone-war-cross-border-strike-arms-embargo",
-      "label": "Sudan Nashra: Military strikes RSF convoy inside Chadian territory, sparks regional concerns | Kauda fighting pushes Otoro groups to demand Hilu’s removal from SPLM-N leadership | US proposes nationwide arms embargo on Sudan in Security Council",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-sudan-drone-war-cross-border-strike-arms-embargo"
-      ],
-      "eventUri": null,
-      "summary": "Sudan's drone war crossed two international borders in a week: on 20 August Sudanese military drones struck a convoy of hundreds of RSF vehicles inside Chad's Ennedi region, and a second drone entered Blue Nile State from Ethiopian territory. Lead with the single number that reframes the whole war — Massad Boulos told the Security Council that drones account for nearly 80 percent of casualties in Sudan this year. That is the mechanism to teach: a war fought by drone is a war fought by supply chain, which is why Washington's proposal to extend the 2005 Darfur arms embargo nationwide explicitly names drones and related technology, and why the convoy that was struck had been assembled over weeks in southeastern Libya and routed through Chad into North Darfur via Wadi Howar. Who is affected: Chadian territory and the civilians on both sides of a border that is now a logistics corridor; Nuba Mountains communities where SPLM-N fighting with the Otoro has returned to Kauda. Who holds power: the Sudanese military, the RSF and Hemedti, and the P5 — Russia and China both pushed back on expanding the embargo and can veto it, so the proposal is unlikely to move. Be precise about attribution: Khartoum's UN ambassador Al-Harith Idriss rejected the embargo as equating state institutions with a rebel militia; the Sudanese military has not commented on the Chad strike. Sudan has been absent from our coverage — this is the file, and Mada Masr (EG) is the right regional voice for it.",
-      "conceptUris": []
-    },
-    {
-      "id": "ethiopia-fano-tplf-alliance-federal-system-red-sea",
-      "label": "Once bitter enemies Amhara, Tigray reach understandings in fight against Ethiopian govt",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-26-ethiopia-fano-tplf-alliance-federal-system-red-sea"
-      ],
-      "eventUri": null,
-      "summary": "Fano leader Zemene Kassie says the Amhara insurgency has joined an eight-group anti-government alliance that includes the TPLF — the force the Fano fought in the 2020-2022 war that killed hundreds of thousands. Lead with that reversal, because in Ethiopia an alliance between Amhara and Tigrayan armed movements is not a coalition, it is the collapse of the axis Abiy Ahmed's government has governed along. The mechanism to teach: the fight is over the multinational federal system and the constitutional right to self-determination, which is what makes otherwise irreconcilable ethnic movements commensurable — they want the same structural thing from different starting positions. The regional stake is the reason this matters beyond Addis: Ethiopia is a party to the war in Sudan and has stated its intent to secure Red Sea access by diplomacy or force, and an AU diplomat tells Mada Masr the Sudan-Ethiopia-Eritrea borders now form one interconnected security system rather than three national ones. Who is affected: Tigrayan civilians under what the regional government calls an escalating economic and security blockade since the 1 August clashes, with air strikes and shelling on civilian areas and a drone strike on a residential area of Mekelle on 20 August confirmed to Mada Masr by residents. Attribute the Tigray government's 'another catastrophic war' warning and Abiy's counter-charge separately — both are parties, neither is a referee. Fills the Africa gap on the region's own politics.",
-      "conceptUris": []
-    },
-    {
-      "id": "saudi-giga-project-hiring-slowdown-migrant-remittances",
-      "label": "Saudi construction hiring slows sharply as giga-project ambitions are scaled back",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-24-saudi-giga-project-hiring-slowdown-migrant-remittances"
-      ],
-      "eventUri": null,
-      "summary": "Saudi construction hiring is slowing sharply as the Vision 2030 giga-projects are scaled back — and hiring is the honest indicator, because a kingdom can restage a groundbreaking but it cannot fake a payroll. Lead with the labour number rather than the project announcements: NEOM, Qiddiya and the rest were financed on an oil price that the war and the PIF's funding costs have since re-rated, and the first line item to move when a megaproject is quietly deferred is the recruitment pipeline. The mechanism our readers should carry away is who holds the risk in that adjustment: the Saudi construction workforce is overwhelmingly migrant labour from Pakistan, Bangladesh, India, Nepal and the Philippines, recruited on fixed-term contracts, often against debt taken on at home to pay recruitment fees — so a hiring slowdown in Riyadh is a remittance shock in Punjab and Sylhet, and it lands on households that never had a claim on the project's upside. Give the remittance dependency in numbers where the reporting allows. Who holds power: the PIF and the ministries that set the project timetable, and the recruitment agencies at the other end of the chain. Structural why: this is what a Gulf diversification programme looks like when it meets a real budget constraint, and the adjustment is being made in labour rather than in ambition. Writer note: the feed carries only the headline — fetch the Salaam Gateway piece for the hiring data, its source and the period, and be explicit about which projects have actually been deferred versus rumoured.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-ev-target-charging-gap-refinery-import-bill",
-      "label": "EV shift lags amid infrastructure gaps",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-30-pakistan-ev-target-charging-gap-refinery-import-bill"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan is considering a $6 billion refinery upgrade to cut its fuel import bill, while the prime minister's target of 30 percent electric vehicles stalls and oil marketing companies keep opening outlets without chargers. Lead with the two numbers side by side, because they are the same decision made twice in opposite directions: $6 billion committed to processing imported crude more efficiently, against an electrification target with no charging network behind it. The mechanism to teach is the infrastructure sequencing problem — an EV target is a grid-and-charger programme wearing a vehicle policy's clothes, and Pakistan is adding fuel retail capacity because that is what the existing balance sheets can finance, which locks in the import bill the refinery upgrade is meant to reduce. The petrol demand detail matters: consumption stays robust on the two-wheeler boom, and two-wheelers are the segment that would electrify most cheaply and fastest, so the gap between the target and the outlets is where the policy is actually being decided. Follow-up context: this is the same import-dependence that produced the RLNG cargo delay and night loadshedding we covered on 29 August — the fuel bill and the power cuts are one story about a country buying its energy in dollars it does not have. Who bears the cost: households paying for imported fuel through the exchange rate; who holds power: the OMCs, the refiners seeking the upgrade incentives, and the ministry setting the EV target it is not funding.",
-      "conceptUris": []
-    },
-    {
-      "id": "wet-bulb-heat-stress-days-children-attribution",
-      "label": "Climate change exposes 580 million children to 20 extra ‘heat-stress days’ every year",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-26-wet-bulb-heat-stress-days-children-attribution"
-      ],
-      "eventUri": null,
-      "summary": "A new attribution study in Science Advances finds that more than 40 percent of the world's children under 10 — around 580 million — already face at least 20 additional heat-stress days a year because of human-caused warming, more than any other age group. Lead with the age finding, because it is the counterintuitive part: heat mortality is usually reported as an elderly risk, and this measures exposure rather than death, which is why the youngest come out worst. The mechanism to teach is wet-bulb globe temperature and why humidity is the variable that matters: the body cools by evaporating sweat, and above roughly 28C wet-bulb the evaporation stops working, so a humid 33C is more dangerous than a dry 40C — and 'heat-stress days' here means days above that threshold. Explain the attribution method plainly, since it is what makes the number a claim rather than an observation: the authors simulate the present-day climate at 1.3C of warming, simulate a counterfactual pre-industrial climate, and take the difference. Where the burden falls is the justice argument and it is geographic: south Asia, southeast Asia and west Africa record the greatest childhood exposure, driven by young and growing populations — regions, as the lead author tells Carbon Brief, whose children have contributed least to historical emissions. Fills the climate-systems gap our audit flagged, and does it on the Global South's own exposure rather than through a European heatwave.",
-      "conceptUris": []
-    },
-    {
-      "id": "diamond-rain-ice-giants-carbon-crystallisation-heat",
-      "label": "Scientists melted a diamond and cracked a secret of ice giants",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-30-diamond-rain-ice-giants-carbon-crystallisation-heat"
-      ],
-      "eventUri": null,
-      "summary": "Researchers melted a diamond in the laboratory and, for the first time, reproduced the process believed to make it rain diamonds inside Neptune and Uranus. Lead with the experiment rather than the planet, because the achievement is the conditions: reaching the pressures and temperatures of an ice-giant interior long enough to observe what carbon does there, when the interiors themselves are unreachable and the inference had stood for decades on models alone. The mechanism to teach is why anyone expected diamond rain at all — the ice giants' mantles are hydrocarbon-rich, and at sufficient pressure the hydrogen is stripped away and the carbon crystallises, so the diamonds form and sink, releasing gravitational heat as they fall. That last part is the payoff for our readers: it is a candidate answer to why Neptune radiates more heat than it receives from the Sun, which is one of the outstanding anomalies of the outer solar system. Be exact about what was measured versus what remains inferred — this is an experiment mimicking a process, not a measurement of Neptune — and give the pressure and temperature reached, the technique, and where the work was published. Fills the physics gap our audit flagged, with the added interest that ice giants are the most common planet size found around other stars and the least represented in our own.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-data-centre-land-concessions-displacement",
-      "label": "India’s data center boom is leaving the people it displaces with nothing",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-27-india-data-centre-land-concessions-displacement"
-      ],
-      "eventUri": null,
-      "summary": "India's AI data-centre buildout is securing cheap land and tax breaks from willing state governments, and the communities moved off that land are getting nothing in return. Lead with the asymmetry of the deal, because it is legible and specific: a state offers land at concessional rates plus power and tax concessions to attract a hyperscaler, and the consideration flowing back is a capital-expenditure figure and a job count that a data centre — one of the least labour-intensive industrial facilities ever built — cannot deliver. That is the mechanism our technical readers will recognise immediately: a 100MW facility is a few hundred permanent staff, so 'investment' and 'employment' are not the same argument, and the land was valued as farmland while being converted to the substrate of a trillion-dollar industry. The second cost to name is physical: data centres consume water and firm power in a grid that still load-sheds, so the displaced also compete with the facility for both. Anchor it in the reporting's own frame — Osama Manzar's Digital Empowerment Foundation has spent since 2002 taking Indians online, from 1.2 percent to over 70 percent connectivity, and now watches the infrastructure of that connectivity displace the same rural poor it was meant to serve. Who holds power: the state governments granting the concessions and the AI companies receiving them. Complements our Lualaba coverage — the same pattern of an unpriced local cost underwriting a global technology, this time in land rather than tailings.",
-      "conceptUris": []
-    },
-    {
-      "id": "baltic-gnss-jamming-noise-floor-attribution-icao",
-      "label": "Polish Institute Reports Continued GNSS Disruption Along Country’s North Coast",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-26-baltic-gnss-jamming-noise-floor-attribution-icao"
-      ],
-      "eventUri": null,
-      "summary": "Poland's National Institute of Telecommunications recorded significant interference across all GNSS frequency bands on 63 percent of days during the first 19 days of August at its Gdańsk monitoring station — after 70 percent of days in May and June, with only 10 percent and 13 percent of those months completely clean. Lead with the persistence, not the incident: this is not jamming as an event but as a standing condition of the Baltic coast, measured and published month after month. The mechanism to teach is why satellite navigation is so cheap to deny — GNSS signals arrive from 20,000km at a power below the receiver's thermal noise floor, so a modest local transmitter overwhelms them, and the attacker needs no access to the satellite or the receiver. What it actually breaks is the useful part for our readers: the institute names smartphones, shared city bikes and scooters, municipal fleet systems and commercial and recreational drones — plus the aviation and maritime uses that make the Baltic a live safety problem. On attribution be careful and exact: the institute says the interference is deliberate and associated with electronic warfare but does not name a source in this analysis; Poland's Civil Aviation Authority submitted evidence to ICAO in July 2025 pointing to Russian territory, and the ICAO Council's call for it to stop has not been heeded. Connects to the Leipzig drone-attribution story we ran on 29 August — the same question of how a state proves a hostile act it cannot photograph, answered here with a year of published measurements instead.",
-      "conceptUris": []
-    },
-    {
-      "id": "six-suspects-held-in-khuzdar-murder-case",
-      "label": "Six suspects held in Khuzdar murder case",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-30-six-suspects-held-in-khuzdar-murder-case"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for politics floor] QUETTA: Police have arrested six suspects and recovered a large quantity of illegal arms and ammunition, drugs and two vehicles during raids in different areas of Anjira in Khuzdar district in connection with the murder of Asma Jattak's father.\n\nAccording to police officials, the raids were conducte",
-      "conceptUris": []
-    },
-    {
-      "id": "a-solana-based-1-1-million-crypto-card-hack-crashed-a-neoban",
-      "label": "A Solana-based $1.1 million crypto card hack crashed a neobank's token 49%",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-29-a-solana-based-1-1-million-crypto-card-hack-crashed-a-neoban"
-      ],
-      "eventUri": "eng-11963464",
-      "summary": "[Auto-backfill for economy floor] Avici confirmed the breach was limited to card-funding contracts, not self-custodial wallets, and has pledged full refunds for all affected balances.\n\nA vulnerability in an outdated Rain card contract drained roughly $1.1 million across several Solana-based programs, including $500,800 from 1,685 Av",
-      "conceptUris": []
-    },
-    {
-      "id": "behind-the-blog-the-complete-idiot-s-guide-to-flamin-hot-slo",
-      "label": "Behind the Blog: The Complete Idiot's Guide to Flamin' Hot Slop",
-      "firstSeen": "2026-08-30T04:13:05.057Z",
-      "lastCovered": "2026-08-30T04:13:05.057Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-28-behind-the-blog-the-complete-idiot-s-guide-to-flamin-hot-slo"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] This week, we discuss cool old books, new toys for ICE, and a boardwalk slop invasion.",
       "conceptUris": []
     }
   ]
