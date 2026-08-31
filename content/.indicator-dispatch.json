@@ -1312,8 +1312,100 @@
         "2026-08-30-google-maps-lake-america-toponym-platform-sovereignty"
       ],
       "generatedAt": "2026-08-31T17:23:22.850Z"
+    },
+    "poly-will-marco-rubio-win-the-2028-us-presidential-el": {
+      "standingFingerprint": "eea4245c17d384f8",
+      "recentFingerprint": "fc81cfcadfa73f0d",
+      "standing": "A Polymarket contract on whether Marco Rubio wins the 2028 US presidential election. The price is what traders will pay for that outcome, so it tracks how a candidate's standing is being bet on rather than polled.",
+      "recent": "Nothing in the window bears on Rubio himself; the contract drifted from 13% on Aug 1 to 10% on Aug 31. The month's prediction-market news was regulatory and about the venues, not the candidates: the Ninth Circuit ruled Kalshi's sports bets aren't \"swaps,\" and South Korea joined more than 30 jurisdictions restricting Polymarket access.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-08-31T22:21:07.686Z"
+    },
+    "poly-will-marine-le-pen-win-the-2027-french-president": {
+      "standingFingerprint": "1285456635110383",
+      "recentFingerprint": "f251cf5686195571",
+      "standing": "A Polymarket contract on whether Marine Le Pen becomes president of France at the 2027 election. The price is what traders will pay for that outcome, and it moves on court rulings, party manoeuvring and polling rather than on any campaign schedule.",
+      "recent": "The series drifted from 30% on Aug 1 to a high of 34% on Aug 28, and the input carries nothing that explains the move.",
+      "citations": [],
+      "generatedAt": "2026-08-31T22:21:14.846Z"
+    },
+    "poly-will-flvio-bolsonaro-finish-in-second-place-in-t": {
+      "standingFingerprint": "f84260c7c68d56e0",
+      "recentFingerprint": "27ff6c23c3c7ccd2",
+      "standing": "A Polymarket contract on whether Flávio Bolsonaro places second in Brazil's presidential election, paying out on the runner-up spot rather than the win. It prices how traders rate his hold on the right-wing vote against rivals for the same bloc.",
+      "recent": "The contract sat between 78% on Aug 1 and 88% on Aug 6, and has held near 86% since, a range too narrow to read as a reaction to anything specific. Nothing in the window bears on the race itself; the Polymarket news was about the venue, not the candidates — South Korea joined more than 30 jurisdictions restricting access to the platform.",
+      "citations": [],
+      "generatedAt": "2026-08-31T22:21:23.611Z"
+    },
+    "poly-will-jd-vance-win-the-2028-republican-presidenti": {
+      "standingFingerprint": "76c355f5c0a9137e",
+      "recentFingerprint": "a3c93de85cfcfe10",
+      "standing": "A Polymarket contract on whether J.D. Vance becomes the Republican presidential nominee in 2028. The price is what traders will pay for that outcome, and it moves as the party's internal contest and the field around him change.",
+      "recent": "The month's coverage was about the venues rather than the candidate: a White House teleprompter operator paid a fine to settle an insider-trading case over bets on the president's speeches, the Ninth Circuit ruled that sports bets are not \"swaps\" and confirmed state powers over Kalshi, and Connecticut filed its own suit. Nothing in the window explains the move in this contract itself.",
+      "citations": [
+        "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-08-31T22:21:32.615Z"
+    },
+    "poly-will-gavin-newsom-win-the-2028-democratic-presid": {
+      "standingFingerprint": "f1ac150811bcc6ac",
+      "recentFingerprint": "6e0add42d96b251c",
+      "standing": "A prediction market on who wins the Democratic presidential nomination in 2028. The price is what traders will pay for a contract that pays out if Newsom is the nominee, so it moves with each new entrant, endorsement or stumble in the field.",
+      "recent": "The contract drifted from 19% on Aug 1 to 15%, with the low of 14% on Aug 25, and the input does not name an event in the nomination race behind the slide. The month's news about Polymarket concerned the venue rather than the field: 152 wallets showing a 97.2% win rate, and South Korea joining more than 30 jurisdictions restricting access.",
+      "citations": [
+        "2026-08-22-polymarket-orcas-secrecy-priced-in-public"
+      ],
+      "generatedAt": "2026-08-31T22:21:41.586Z"
+    },
+    "poly-fed-rate-hike-in-2026": {
+      "standingFingerprint": "0523c3f9ae572494",
+      "recentFingerprint": "51c98cb662a72135",
+      "standing": "A Polymarket contract on whether the Federal Reserve raises interest rates during 2026. The price is what traders will pay for a yes, so it moves with anything that changes the central bank's willingness to tighten — inflation data, official speeches, political pressure on the Fed.",
+      "recent": "The jump followed the release of Fed minutes on 19 August showing many officials said rate hikes may be needed, and the odds held their climb through Kevin Warsh's Jackson Hole speech, which bitcoin and gold were already pricing. From a low of 46 on 16 August, the contract reached 72 on 31 August.",
+      "citations": [
+        "2026-08-28-the-independence-trade-the-speech-is-the-instrument"
+      ],
+      "generatedAt": "2026-08-31T22:21:50.072Z"
+    },
+    "wiki-syria": {
+      "standingFingerprint": "980047d460c62dfd",
+      "recentFingerprint": "ec86425e17aaac01",
+      "standing": "Wikipedia's Syria article, and the number of people who open it each day. Attention to a country page moves with the events inside it, so the curve is a rough record of when the wider world turned to look.",
+      "recent": "The 11 August peak sits at the head of a month in which Israel struck an Idlib airbase eight times in hours, Syria opened an Assad-era undeclared nuclear site to the IAEA, and a court sentenced Wassim al-Assad to death — all on 18 August. Washington then removed Syria from the terrorism list on 24 August, and the Kurdish-led SDF dissolved into the army.",
+      "citations": [
+        "2026-08-18-eight-strikes-hit-airbase-in-syria-s-idlib",
+        "2026-08-18-syria-grants-iaea-access-to-assad-era-undeclared-nuclear-sit",
+        "2026-08-24-syria-sst-delisting-unlocks-arms-transfers",
+        "2026-08-25-sdf-dissolution-what-transfers-is-the-administration",
+        "2026-08-18-wassim-assad-captagon-enforcement-network-asset-confiscation"
+      ],
+      "generatedAt": "2026-08-31T22:21:59.878Z"
+    },
+    "stocks:AMZN": {
+      "standingFingerprint": "42b9c9f3c01ef387",
+      "recentFingerprint": "353627a187f15ede",
+      "standing": "The world's largest online marketplace and the biggest cloud computing provider, a company that is at once retailer, logistics network, advertising platform and landlord to much of the internet. Its shares are a proxy for consumer spending and cloud demand alike.",
+      "recent": "The FTC and a group of states sued Amazon over a hidden surcharge inside its ad auction, alleging advertisers were overcharged $20 billion on prices they could not verify — the company runs the marketplace, the auction and the largest competing store on its own shelf. Shares are down from their Aug 3 peak of $284.",
+      "citations": [
+        "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price"
+      ],
+      "generatedAt": "2026-08-31T22:22:08.362Z"
+    },
+    "stocks:XOM": {
+      "standingFingerprint": "4870755cd820ae92",
+      "recentFingerprint": "506b1940570ba381",
+      "standing": "Shares in ExxonMobil, the largest US oil major, listed in New York. Its price tracks crude and refining margins, and it is the stock most often used as a proxy for how investors read the oil business as a whole.",
+      "recent": "Exxon is re-entering Venezuela after 19 years, a return to reserves it left in 2007, announced from Houston. The move lands as Nigeria pitches oilfields to Chinese capital at a Shandong trade fair after majors exited, marking how quickly the map of Western upstream access is being redrawn.",
+      "citations": [
+        "2026-08-31-exxon-venezuela-licence-as-instrument",
+        "2026-08-29-nigeria-china-upstream-capital-after-majors-exit"
+      ],
+      "generatedAt": "2026-08-31T22:22:17.055Z"
     }
   },
-  "generatedAt": "2026-08-31T17:23:22.850Z",
+  "generatedAt": "2026-08-31T22:22:17.056Z",
   "windowDays": 14
 }
