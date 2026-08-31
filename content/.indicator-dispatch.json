@@ -1205,8 +1205,93 @@
       "recent": "The series more than doubled off its $29.81 low on Aug 6 to a $69.42 peak on Aug 28, and no supply, policy or demand event in the input explains the move.",
       "citations": [],
       "generatedAt": "2026-08-31T08:22:20.199Z"
+    },
+    "poly-will-augusto-cury-win-the-2026-brazilian-preside": {
+      "standingFingerprint": "8eebaf762420ab1a",
+      "recentFingerprint": "5b815eae2ac7f13c",
+      "standing": "A Polymarket contract paying out if this candidate wins Brazil's 2026 election. The price is what traders will pay for that outcome, so it reads as a percentage — a crowd's money, not a poll or a forecast.",
+      "recent": "The contract traded at 1% on Aug 27 and 4% on Aug 31, a move within the noise of a market priced in single digits. Nothing in the window accounts for it.",
+      "citations": [],
+      "generatedAt": "2026-08-31T12:27:16.578Z"
+    },
+    "poly-will-gavin-newsom-win-the-2028-us-presidential-e": {
+      "standingFingerprint": "177ceda37b1b1872",
+      "recentFingerprint": "d38179d13c8e6908",
+      "standing": "A Polymarket contract on whether Gavin Newsom becomes US president in 2028, priced in cents on the dollar. It is what traders will pay for that outcome, not a poll, and it moves with the field of candidates as much as with any one of them.",
+      "recent": "The contract drifted from 12 on Aug 2 to 8 by Aug 18 and has stayed there, with no single event in view to explain the slide. The month's news around prediction markets was regulatory and legal rather than electoral: the Ninth Circuit ruled that Kalshi's sports bets aren't \"swaps,\" and South Korea joined more than 30 jurisdictions restricting Polymarket access.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-08-31T12:27:25.883Z"
+    },
+    "poly-will-david-lisnard-win-the-2027-french-president": {
+      "standingFingerprint": "d28693de536fa127",
+      "recentFingerprint": "168c9308c3a286d5",
+      "standing": "A Polymarket contract on whether David Lisnard becomes France's next president, priced as a percentage. It is what traders will pay for that outcome, not a forecast, and it moves when the field of candidates shifts.",
+      "recent": "Nothing in the window bears on the French race itself. The contract sat between 2% on Aug 1 and 4% on Aug 18, ending at 3% — a range narrow enough that the moves are thin trading rather than news.",
+      "citations": [],
+      "generatedAt": "2026-08-31T12:27:33.906Z"
+    },
+    "wiki-petroleum": {
+      "standingFingerprint": "e0dbcb219c92215f",
+      "recentFingerprint": "959deb041c3da857",
+      "standing": "The refined and unrefined liquid fuel that runs most of the world's transport, and the feedstock behind plastics, fertiliser and asphalt. Its price sets the cost of moving goods, and states that sit on large reserves hold leverage far beyond their size.",
+      "recent": "Readership tracked a month of contested barrels. The 13 August peak came as Washington pressed for a stake in Venezuelan oil, a negotiation that ended on 29 August when 65 billion barrels changed hands and PDVSA passed to majority US control. Brent then rose 3% to $90.97 on Iran strikes.",
+      "citations": [
+        "2026-08-29-venezuela-pdvsa-majority-control-concession-precedent",
+        "2026-08-27-orinoco-stake-the-contract-is-the-settlement",
+        "2026-08-31-brent-91-war-premium-probability-pricing"
+      ],
+      "generatedAt": "2026-08-31T12:27:43.378Z"
+    },
+    "stocks:RDDT": {
+      "standingFingerprint": "315fb6f440a9d904",
+      "recentFingerprint": "050e5bf72cec73ea",
+      "standing": "Shares in the company behind Reddit, the discussion forum where users post and vote on links in topic-based communities. Its revenue comes from advertising against that user-written conversation, and from licensing the archive to companies training language models.",
+      "recent": "The stock has fallen from its high on Aug 14 to $153, down about a seventh over the series and closer to the Jul 31 low of $140.7 than the peak. The input does not explain the decline.",
+      "citations": [],
+      "generatedAt": "2026-08-31T12:27:51.099Z"
+    },
+    "stocks:RBLX": {
+      "standingFingerprint": "e6094c6c699b8cd6",
+      "recentFingerprint": "f14c48082e768995",
+      "standing": "The New York-listed shares of the company behind Roblox, an online platform where users build and play each other's games. Its business rests on young players spending on virtual currency, which ties the stock to child-safety rules and app-store terms.",
+      "recent": "The stock fell over the three-week window, from a high of $50.13 on Jul 29 to a low of $35.54 on Aug 12, and stood at $38.53 on Aug 28. The series itself carries no cause.",
+      "citations": [],
+      "generatedAt": "2026-08-31T12:27:58.850Z"
+    },
+    "stocks:SES": {
+      "standingFingerprint": "478ba377724e9ae4",
+      "recentFingerprint": "40b4d7749ed55a3e",
+      "standing": "A Luxembourg-based satellite operator that leases capacity in geostationary and medium-Earth orbit to broadcasters, governments and telecoms carriers. Its share price tracks demand for space-based connectivity and the contracts governments award for it.",
+      "recent": "SES awarded OHB nearly €1 billion to build the medium-Earth-orbit platforms for IRIS², the EU's €15.6 billion secure communications constellation — the first major industrial order the programme has placed, worth about 6% of the total budget. The order came on 31 August, after the series had already drifted back from its 13 August high of $0.61.",
+      "citations": [
+        "2026-08-31-iris2-meo-order-buying-orbital-sovereignty"
+      ],
+      "generatedAt": "2026-08-31T12:28:07.449Z"
+    },
+    "stocks:OHB.DE": {
+      "standingFingerprint": "9d21dec1df446139",
+      "recentFingerprint": "2c8a294f3b6886b1",
+      "standing": "A German space and technology company that builds satellites, launch systems and reconnaissance hardware for European institutional customers, so its order book tracks the continent's decisions about its own space capacity rather than commercial demand.",
+      "recent": "SES placed an order worth nearly €1 billion with OHB for IRIS2 satellites, announced from Betzdorf. The shares had already fallen through the period, from 265.5 on Aug 17 to a low of 190.2 on Aug 27, and stand at 211.",
+      "citations": [
+        "2026-08-31-iris2-meo-order-buying-orbital-sovereignty"
+      ],
+      "generatedAt": "2026-08-31T12:28:16.039Z"
+    },
+    "stocks:META": {
+      "standingFingerprint": "addc4d7ff1acf5fe",
+      "recentFingerprint": "480df28de17c79f2",
+      "standing": "The parent company of Facebook, Instagram and WhatsApp, and one of the largest advertising businesses in the world. Its share price tracks how much investors think attention can be sold for, and lately how much it can spend building AI.",
+      "recent": "Meta settled claims over social media harms to children for $17.1bn on 26 August, roughly 1% of its stock value, with product changes forming much of the penalty. The same week it abandoned a plan to cut some teams by 60% in an \"AI native\" restructuring, and Zuckerberg paid a $250 million package to recruit researcher Matt Deitke to its Superintelligence Lab.",
+      "citations": [
+        "2026-08-26-meta-settlement-the-product-change-is-the-penalty",
+        "2026-08-26-ai-native-the-plan-they-did-not-run"
+      ],
+      "generatedAt": "2026-08-31T12:28:25.647Z"
     }
   },
-  "generatedAt": "2026-08-31T08:22:20.199Z",
+  "generatedAt": "2026-08-31T12:28:25.647Z",
   "windowDays": 14
 }
