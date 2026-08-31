@@ -1,37 +1,37 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "metrics": {
-    "articles": { "value": 53, "detail": "5 cycles completed, avg 8/cycle (55 yesterday)" },
-    "freshness": { "median": 0, "p90": 1.3, "max": 1.6, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 12, "tech": 12, "science": 9 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles completed, avg 10/cycle (54 yesterday)" },
+    "freshness": { "median": 0.3, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 17, "tech": 14, "science": 10 },
+    "multiSource": { "value": 19, "target": 4, "met": true },
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 16, "AM": 14, "EU": 12, "AS": 5, "AF": 5, "OC": 0 }
+      "breakdown": { "AM": 18, "AS": 14, "ME": 14, "EU": 11, "AF": 5, "OC": 0 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 17, "target": 20, "met": true },
-    "uniqueSources": 38,
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "RT", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 56,
     "duplicates": 0,
-    "avgCycleDuration": 1204
+    "avgCycleDuration": 1237
   },
-  "experiment": "Skipped — all six goal metrics are within target, no experiment is active, and no pause gate is set. The two drifts worth acting on (Nature-padded tech, zero multi-source economy) are classification and selection-quality problems that no tunable parameter addresses.",
-  "weakestArea": "Category composition is the softest area even though every headline number passes. Four of eight tech articles inspected are single-source Nature lab papers datelined London — crystal vibration damping, a zinc-dendrite hydrogel, a storage cell, off-centre shell optics — which are science filed as tech to clear the tech floor of 3 per cycle. Strip them and real technology coverage is thin (404 Media, two Ars Technica, one CoinDesk). Nature at nine articles is the top source at 17%, the highest concentration in weeks and the closest approach to the 20% ceiling, and it is reaching that share by supplying both categories at once. Separately, every multi-source article today sits in politics; the economy sample carried none, against a selector floor of two per cycle.",
+  "experiment": "Skipped — every goal metric clears its target with margin, no experiment is active, and no pause gate is set. Yesterday's two flagged drifts both corrected on their own: economy multi-source went 0 to 7, and source concentration fell from Nature at 17% to RT at 8%.",
+  "weakestArea": "Region balance is the softest area even though the count of five clears the target of four. Oceania is empty for a third consecutive day — the SKA archives piece is datelined Carnarvon, Western Australia, and still did not register as OC — and Africa held at five for a second day while the Americas took eighteen. The classification side of yesterday's tech complaint has improved but not cleared: of eleven tech articles inspected, the ferroelectric-computing and Gabor-hologram pieces are physics-lab results filed as tech, down from four of eight yesterday. Both remaining problems sit outside the tunable parameter surface — the region tagger and the category taxonomy, not a fetch cap or a selector floor.",
   "watching": [
-    "The US-Iran confrontation went kinetic — strikes on Iranian rocket launchers at Larak Island, 7,250 rescued from rubble in Isfahan, and Iran setting terms for Hormuz — and it is now pulling politics and economy coverage simultaneously.",
-    "Hormuz has moved from a closure threat to a pricing story: Iran's terms, Shanghai crude gaining autonomy, and Georgia's refinery dropping Russian oil are three faces of the same crude realignment.",
-    "Pakistan security is compounding across three separate datelines today — an IED in Duki, six arrests over the Khuzdar murder, and faceless trials drafted in Punjab — all from Dawn, which is the second-largest source at seven.",
-    "Sahel and Russian-presence stories continue to accumulate: the Niger junta's account of calling in Russia follows yesterday's Niamey base attack and Russian rescue claim.",
-    "Uranium and energy sourcing is quietly becoming a beat — India securing Uzbek uranium, Nigeria weighing petrol import rules, Pakistan's stalled EV target — without being covered as a connected supply-realignment story."
+    "The Iran confrontation has moved from strikes to contested evidence: the US mine-threat claim at Larak is unverified, and a synthetic AI video of a Kharg Island terminal drew four sources — the story is now partly about what can be believed.",
+    "Brent at 91 with an explicit war premium, the yen at 160, and a trans-Arctic corridor pitched as a chokepoint hedge are three economy stories priced off the same Hormuz risk.",
+    "Syria's SDF dissolving into the national army and Egypt-Libya military unification are both consolidation stories running in the same week, with no coverage yet of what either does to Kurdish or Haftar-aligned holdouts.",
+    "Crypto enforcement is thickening as a tech beat — Hyperliquid DPRK flows, Zcash shielded-proof latency, tokenised collateral at ICE — without being covered as one regulatory arc.",
+    "India is publishing across all four categories on a single day (GDP deflator, Uzbek-adjacent crude, legal metrology, Maharashtra rolls, Haldwani caste speech); worth checking next cycle that this is depth and not a feed-supply artefact."
   ],
   "coverageGaps": [
-    "Oceania is again absent from the region breakdown; the Palau summit story is the only Pacific dateline and it did not register as OC.",
-    "Asia fell to five articles from ten yesterday, and Africa to five from eight — both halved on a day when the Middle East took sixteen.",
-    "Tech has no coverage of platforms, regulation, chips or AI policy; the non-Nature slots are a Steam leak, a Google Maps naming dispute, Meta data-centre robots and a payments-recall piece.",
-    "Economy published no multi-source article today despite a selector floor of two per cycle — twelve economy stories, all single-source.",
-    "Latin America is represented only by Maduro's US detention; no Mexico, Colombia, Argentina or Andean coverage for a second consecutive day."
+    "Oceania registered zero again despite an Australian dateline, which points at the region tagger rather than at selection.",
+    "Africa stayed at five articles for a second day — Nigeria three of the five, with no Sahel, Horn or southern-Africa dateline beyond Johannesburg.",
+    "Latin America is covered only through US instruments: Maduro's Brooklyn detention and Exxon's Venezuela licence, both datelined in the United States.",
+    "Tech carries no chips, no semiconductor supply and no AI-infrastructure coverage; the closest is a Brussels DSA designation and an agent-sandbox escape.",
+    "Science published nine of ten articles single-source; the only multi-source science story is the Grand Canyon flood, which is a disaster story rather than a research one."
   ],
-  "context": "Output held roughly flat at 53 articles from 55 across five completed cycles, and cycle duration improved to 1204s from 1305s with the writer at 320s and the editor at 88s. Freshness is at its floor — a median lag of zero — and duplicates stayed at zero for a second day. Unique sources fell from 49 to 38, which is the mechanism behind Nature's rise to 17% share rather than any change in Nature's own volume. No experiment has run since May; the sourcing levers in the tunable set are tapped, per the 2026-05-09 evaluation that established the feed's multi-source supply as the binding ceiling, and today's two real problems — category misfiling and single-source economy — live in the selector prompt and the category taxonomy, both outside the daily-tuning parameter surface. Surfacing them here rather than spending the experiment slot on a lever that cannot reach them."
+  "context": "Output rose to 62 articles from 54 across five completed cycles, the highest in the recent window, with cycle duration at 1237s (selector 252s, writer 292s, editor 122s). Unique sources recovered sharply from 38 to 56, which is what dissolved yesterday's Nature concentration — no single outlet exceeds five articles. Freshness is measured on only eight dated articles today, so the 0.3 median is a thin sample even though it is well inside target. Duplicates held at zero for a third day. No experiment has run since May; today's remaining issues are a region-tagging miss and a category-taxonomy blur, neither of which any parameter in the tunable set can reach, so the experiment slot is deliberately left unspent."
 }
