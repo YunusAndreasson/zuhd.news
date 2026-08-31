@@ -78,6 +78,16 @@
   Access-Control-Allow-Origin: *
   Content-Type: application/json; charset=utf-8
 
+# The endpoint the app actually reads on every cold launch, and the only
+# article feed that had no rule at all — it fell through to the Pages asset
+# default and was the one feed with no `stale-if-error`, so a failed build hurt
+# the app more than the website it was a fallback for. Same policy as
+# `/api/feed.json`, which is what the app falls back to.
+/api/feed-lite.json
+  Cache-Control: public, s-maxage=300, max-age=0, stale-while-revalidate=3600, stale-if-error=86400
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json; charset=utf-8
+
 /audio/*
   Cache-Control: public, max-age=86400
   Access-Control-Allow-Origin: *
@@ -90,6 +100,10 @@
 # views while still picking up the next cycle.
 /api/articles.json
   Cache-Control: public, s-maxage=300, max-age=0, stale-while-revalidate=3600, stale-if-error=86400
+  Access-Control-Allow-Origin: *
+
+/api/analysis.json
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
   Access-Control-Allow-Origin: *
 
 /api/map.json

@@ -1,6 +1,7 @@
 import type { Category } from '@shared/types';
 import { useCallback, useRef, useSyncExternalStore } from 'react';
 import Animated from 'react-native-reanimated';
+import { articleTime } from '../lib/article-utils';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
 import { staggerEnter } from '../lib/stagger';
@@ -37,7 +38,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
             <ArticleRow
               slug={b.article.slug}
               title={b.article.title}
-              addedAt={b.article.addedAt}
+              time={articleTime(b.article)}
               category={b.category}
               location={b.article.location}
               onPress={onSelectArticle}

@@ -7,12 +7,18 @@ import {
   type RiverArticle,
 } from '../lib/news-order';
 
+// `date` tracks `addedAt` unless a test overrides it. Ordering reads
+// `articleTime` (event time), so a fixture that varied only `addedAt` would
+// leave every article tied and quietly hand the whole ranking to the slug
+// fallback — which is how "breaks a coverage tie on recency" would keep passing
+// while testing nothing.
 function makeArticle(overrides: Partial<RiverArticle> = {}): RiverArticle {
+  const addedAt = overrides.addedAt ?? 1_000;
   return {
     slug: 'test',
     title: 'Test',
-    date: '2026-08-22',
-    addedAt: 1_000,
+    date: new Date(addedAt).toISOString(),
+    addedAt,
     source: null,
     sourceUrl: null,
     sources: [],
@@ -55,9 +61,31 @@ describe('compareNewsworthiness', () => {
   });
 
   it('breaks a coverage tie on recency', () => {
-    const newer = makeArticle({ slug: 'newer', eventCoverage: 50, addedAt: 2_000 });
-    const older = makeArticle({ slug: 'older', eventCoverage: 50, addedAt: 1_000 });
+    // Slugs run *against* recency on purpose: if the tiebreak ever collapsed,
+    // this would fall through to the slug fallback and pass for the wrong
+    // reason, which is exactly what happened when ordering moved off `addedAt`.
+    const newer = makeArticle({ slug: 'zzz-newer', eventCoverage: 50, addedAt: 2_000 });
+    const older = makeArticle({ slug: 'aaa-older', eventCoverage: 50, addedAt: 1_000 });
     expect(compareNewsworthiness(newer, older)).toBeLessThan(0);
+  });
+
+  it('reads event time, not the mtime the build stamps on a whole cycle', () => {
+    // Production ships one `addedAt` per editorial cycle, so a feed's recency
+    // ordering lives or dies on `eventAt`.
+    const cycle = 5_000;
+    const happenedFirst = makeArticle({
+      slug: 'aaa',
+      eventCoverage: 50,
+      addedAt: cycle,
+      eventAt: 1_000,
+    });
+    const happenedLater = makeArticle({
+      slug: 'zzz',
+      eventCoverage: 50,
+      addedAt: cycle,
+      eventAt: 4_000,
+    });
+    expect(compareNewsworthiness(happenedLater, happenedFirst)).toBeLessThan(0);
   });
 
   it('is total — identical rank falls back to slug so the order never reshuffles', () => {

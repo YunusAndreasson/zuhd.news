@@ -8,7 +8,9 @@ import { Box, Pressable, Text } from './primitives';
 interface ArticleRowProps {
   slug: string;
   title: string;
-  addedAt: number;
+  /** When the story happened — `articleTime(article)`, never `addedAt`, which
+   *  is one value per editorial cycle. */
+  time: number;
   category: Category;
   location: string | null;
   onPress: (slug: string, category: Category) => void;
@@ -19,7 +21,7 @@ interface ArticleRowProps {
 export const ArticleRow = memo(function ArticleRow({
   slug,
   title,
-  addedAt,
+  time,
   category,
   location,
   onPress,
@@ -49,7 +51,7 @@ export const ArticleRow = memo(function ArticleRow({
           {title}
         </Text>
         <Text variant="labelXs" style={{ marginTop: SPACING.xs }}>
-          {category} · {formatTimeAgo(addedAt)}
+          {category} · {formatTimeAgo(time)}
           {location ? ` · ${displayLocation(location)}` : ''}
         </Text>
       </Box>

@@ -52,7 +52,7 @@ import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
-import { formatExactTime } from '../lib/article-utils';
+import { articleTime, formatExactTime, formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
@@ -255,7 +255,7 @@ export default function HomeScreen() {
 
   const handleTimeAgoPress = useCallback((article: Article) => {
     hapticTick();
-    toastRef.current?.show(formatExactTime(article.addedAt), undefined, 'top');
+    toastRef.current?.show(formatExactTime(articleTime(article)), undefined, 'top');
   }, []);
 
   const handleBottomShare = useCallback(() => {
@@ -440,6 +440,11 @@ export default function HomeScreen() {
   groupedRef.current = grouped;
   const lastSeenAtRef = useRef(lastSeenAt);
   lastSeenAtRef.current = lastSeenAt;
+  // The feed's own build stamp. `useArticles` has always returned it and only
+  // the heatmap cache key ever read it, so the app knew exactly how fresh it
+  // was and never said. A reader who pulls to refresh is asking that question.
+  const generatedRef = useRef(generated);
+  generatedRef.current = generated;
   const currentSectionRef = useRef(currentSection);
   currentSectionRef.current = currentSection;
 
@@ -615,7 +620,14 @@ export default function HomeScreen() {
         // Scroll to top so new/breaking articles are visible
         newsListRef.current?.scrollToTop();
       } else {
-        toastRef.current?.show('Already up to date', undefined, 'top');
+        const built = generatedRef.current ? Date.parse(generatedRef.current) : Number.NaN;
+        toastRef.current?.show(
+          Number.isFinite(built)
+            ? `Already up to date · ${formatTimeAgo(built)}`
+            : 'Already up to date',
+          undefined,
+          'top',
+        );
       }
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');

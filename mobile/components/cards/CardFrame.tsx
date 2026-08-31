@@ -1,12 +1,5 @@
-import { memo, type ReactNode, useCallback, useRef, useState } from 'react';
-import {
-  type LayoutChangeEvent,
-  type NativeScrollEvent,
-  type NativeSyntheticEvent,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { memo, type ReactNode, useCallback, useState } from 'react';
+import { type LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -16,6 +9,7 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
+import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { Icon, Text } from '../primitives';
@@ -195,9 +189,6 @@ export const CardFrame = memo(function CardFrame({
    * the pager, which is the behaviour the rest of the app has.
    */
   const [scrollable, setScrollable] = useState(false);
-  const innerStartY = useRef(0);
-  const innerConsumed = useRef(false);
-  const innerDragging = useRef(false);
   const onContentLayout = useCallback(
     (e: LayoutChangeEvent) => {
       // `COLUMN_PAD_V` is added because the padding is *not* inside the
@@ -221,26 +212,11 @@ export const CardFrame = memo(function CardFrame({
     },
     [itemHeight],
   );
-  const onInnerBeginDrag = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    innerDragging.current = true;
-    innerStartY.current = e.nativeEvent.contentOffset.y;
-    innerConsumed.current = false;
-  }, []);
-  const onInnerEndDrag = useCallback(() => {
-    innerDragging.current = false;
-  }, []);
-  const onInnerScroll = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      if (
-        !innerDragging.current ||
-        innerConsumed.current ||
-        Math.abs(e.nativeEvent.contentOffset.y - innerStartY.current) <= 1
-      )
-        return;
-      innerConsumed.current = true;
-      onInnerScrollConsumed?.(index);
-    },
-    [index, onInnerScrollConsumed],
+  // Reporting the consumed gesture upward is `useInnerScrollReporter`, shared
+  // with `ArticlePage` — the other page in this app that can outgrow its pager.
+  const { onScrollBeginDrag, onScrollEndDrag, onScroll } = useInnerScrollReporter(
+    index,
+    onInnerScrollConsumed,
   );
 
   const pageStart = index * itemHeight;
@@ -294,9 +270,9 @@ export const CardFrame = memo(function CardFrame({
         contentContainerStyle={styles.column}
         showsVerticalScrollIndicator={false}
         scrollEnabled={scrollable}
-        onScrollBeginDrag={onInnerBeginDrag}
-        onScrollEndDrag={onInnerEndDrag}
-        onScroll={onInnerScroll}
+        onScrollBeginDrag={onScrollBeginDrag}
+        onScrollEndDrag={onScrollEndDrag}
+        onScroll={onScroll}
         scrollEventThrottle={16}
         // `nestedScrollEnabled`, and the comment that used to sit here argued
         // the opposite. It was right about the failure it feared and wrong

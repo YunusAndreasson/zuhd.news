@@ -1,5 +1,6 @@
 import type { Article, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
+import { articleTime } from './article-utils';
 
 /**
  * The order of the news river.
@@ -37,7 +38,7 @@ export const MAX_SAME_CATEGORY_RUN = 2;
 export function compareNewsworthiness(a: RiverArticle, b: RiverArticle): number {
   const coverage = (b.eventCoverage ?? 0) - (a.eventCoverage ?? 0);
   if (coverage !== 0) return coverage;
-  const recency = b.addedAt - a.addedAt;
+  const recency = articleTime(b) - articleTime(a);
   if (recency !== 0) return recency;
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
 }

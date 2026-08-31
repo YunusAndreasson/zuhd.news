@@ -20,8 +20,9 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
+import { useInnerScrollReporter } from '../hooks/useInnerScrollReporter';
 import { useTheme } from '../hooks/useTheme';
-import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
+import { articleTime, computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { RiverArticle } from '../lib/news-order';
@@ -59,6 +60,9 @@ interface ArticlePageProps {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
+  /** Reported when this page's own scroll ate part of a swipe, so the pager
+   *  can tell an inherited gesture tail from a real page turn. */
+  onInnerScrollConsumed?: (index: number) => void;
   tick?: number;
 }
 
@@ -117,10 +121,11 @@ export const ArticlePage = memo(function ArticlePage({
   globeRef,
   globeYOffset,
   onCountryPress,
+  onInnerScrollConsumed,
   tick: _tick,
 }: ArticlePageProps) {
   const { colors, font, typography } = useTheme();
-  const timeAgo = formatTimeAgo(article.addedAt);
+  const timeAgo = formatTimeAgo(articleTime(article));
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
 
@@ -325,6 +330,13 @@ export const ArticlePage = memo(function ArticlePage({
   const availableHeight = itemHeight - CONTENT_PADDING_TOP - SPACING.xxl;
   const overflows = contentHeight > 0 && availableHeight > 0 && contentHeight > availableHeight;
 
+  // Once the column scrolls, the pager above can no longer tell the tail of
+  // that scroll from a swipe meant for it — so say so. Without this the list
+  // takes the leftover as a partial page turn and parks between two articles,
+  // both of them faded by `fadeStyle`, with no gesture that recovers. The card
+  // deck fixed exactly this; the reader never got the same fix until now.
+  const innerScroll = useInnerScrollReporter(index, onInnerScrollConsumed);
+
   const content = (
     <Animated.View style={fadeStyle} pointerEvents="box-none" onLayout={onContentLayout}>
       {showEarlierDivider && (
@@ -418,6 +430,10 @@ export const ArticlePage = memo(function ArticlePage({
           contentContainerStyle={styles.contentLayout}
           showsVerticalScrollIndicator={false}
           nestedScrollEnabled
+          onScrollBeginDrag={innerScroll.onScrollBeginDrag}
+          onScrollEndDrag={innerScroll.onScrollEndDrag}
+          onScroll={innerScroll.onScroll}
+          scrollEventThrottle={16}
         >
           {content}
         </ScrollView>

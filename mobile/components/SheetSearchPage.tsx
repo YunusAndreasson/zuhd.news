@@ -5,6 +5,7 @@ import { AccessibilityInfo, Pressable, StyleSheet, type TextInput, View } from '
 import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { articleTime } from '../lib/article-utils';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { Icon, Text } from './primitives';
@@ -84,7 +85,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
       <ArticleRow
         slug={item.slug}
         title={item.title}
-        addedAt={item.addedAt}
+        time={articleTime(item)}
         category={item.category}
         location={item.location}
         onPress={onSelectArticle}

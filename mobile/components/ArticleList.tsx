@@ -11,14 +11,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  type NativeScrollEvent,
-  type NativeSyntheticEvent,
-  RefreshControl,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -26,9 +19,11 @@ import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
+  useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
+import { usePagerSettle } from '../hooks/usePagerSettle';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { hapticNotification, hapticTick } from '../lib/haptics';
@@ -246,31 +241,14 @@ export const ArticleList = memo(function ArticleList({
     },
   }));
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      'worklet';
-      scrollY.value = event.contentOffset.y;
-      const total = Math.max((articleCount - 1) * itemHeight, 1);
-      const progress = Math.max(0, Math.min(event.contentOffset.y / total, 1));
-      progressesSV.modify((arr) => {
-        'worklet';
-        arr[sectionIndex] = progress;
-        return arr;
-      });
-
-      // Detect overscroll past the last article
-      const maxScroll = (articleCount - 1) * itemHeight;
-      if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
-        overscrollFired.value = true;
-        // Haptic + toast + bounce-back debounce reset, as one task.
-        scheduleOnRN(fireOverscroll);
-      }
-    },
-  });
-
   // Find the boundary between new and previously seen articles
   const earlierIndex = useMemo(() => {
     if (lastSeenAt <= 0) return -1;
+    // `addedAt`, deliberately — the one place in the app that still wants it.
+    // `lastSeenAt` is a wall clock (`Date.now()` when the reader last looked),
+    // so the question here is "did this arrive in the feed before then", which
+    // is what mtime answers. `articleTime` answers how old the *news* is, and
+    // would mark a three-day-old story published this morning as already seen.
     const idx = sortedArticles.findIndex((a) => a.addedAt <= lastSeenAt);
     return idx > 0 ? idx : -1;
   }, [sortedArticles, lastSeenAt]);
@@ -291,13 +269,75 @@ export const ArticleList = memo(function ArticleList({
     [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex],
   );
 
-  const handleMomentumEnd = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const idx = Math.round(e.nativeEvent.contentOffset.y / itemHeight);
-      if (idx !== currentIndexRef.current) handleSnap(idx);
+  /**
+   * Land on an article, always — including when the gesture was never this
+   * list's own.
+   *
+   * An article that outgrows the page becomes a `ScrollView` (see
+   * `ArticlePage`), and the tail of a scroll it did not need arrives here with
+   * no touch-down and no fling, so `pagingEnabled` never snaps it. Shared with
+   * `CardPager`, which has carried this correction since the card decks
+   * shipped; the reader is where the bug was actually reported.
+   */
+  const {
+    handleBeginDrag,
+    handleEndDrag,
+    handleMomentumBegin,
+    handleMomentumEnd,
+    armSettleFromScroll,
+    handleInnerScrollConsumed,
+  } = usePagerSettle({
+    listRef,
+    scrollY,
+    itemHeight,
+    count: articleCount,
+    currentIndexRef,
+    onSettled: handleSnap,
+  });
+
+  /** Throttle clock for the settle-arm hop below. Shared rather than a ref
+   *  because only the UI thread reads or writes it. */
+  const lastArmAt = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      'worklet';
+      scrollY.value = event.contentOffset.y;
+      const total = Math.max((articleCount - 1) * itemHeight, 1);
+      const progress = Math.max(0, Math.min(event.contentOffset.y / total, 1));
+      progressesSV.modify((arr) => {
+        'worklet';
+        arr[sectionIndex] = progress;
+        return arr;
+      });
+
+      // Detect overscroll past the last article
+      const maxScroll = (articleCount - 1) * itemHeight;
+      if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
+        overscrollFired.value = true;
+        // Haptic + toast + bounce-back debounce reset, as one task.
+        scheduleOnRN(fireOverscroll);
+      }
+
+      // Arm the settle from the scroll itself, not only from a drag ending.
+      //
+      // `onScrollEndDrag` cannot fire for the one arrival that needs
+      // correcting most: an article taller than the page hands its leftover
+      // overscroll to this list, so the list moves having never been touched.
+      // No drag end, no momentum end, nothing to snap — and it parks between
+      // two articles, one faded out and the next at half opacity, with no
+      // gesture that recovers. Only when off-page, and at most ten times a
+      // second: a hop per frame would put 60 JS tasks a second behind every
+      // scroll.
+      const off = event.contentOffset.y % itemHeight;
+      const offPage = Math.min(off, itemHeight - off) > 1;
+      const now = Date.now();
+      if (offPage && now - lastArmAt.value > 100) {
+        lastArmAt.value = now;
+        scheduleOnRN(armSettleFromScroll);
+      }
     },
-    [itemHeight, handleSnap],
-  );
+  });
 
   const getItemLayout = useCallback(
     (_: ArrayLike<RiverArticle> | null | undefined, index: number) => ({
@@ -324,6 +364,7 @@ export const ArticleList = memo(function ArticleList({
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        onInnerScrollConsumed={handleInnerScrollConsumed}
         tick={tick}
       />
     ),
@@ -337,6 +378,7 @@ export const ArticleList = memo(function ArticleList({
       onEntityPress,
       resolvableEntityIds,
       earlierIndex,
+      handleInnerScrollConsumed,
       tick,
     ],
   );
@@ -405,6 +447,9 @@ export const ArticleList = memo(function ArticleList({
         pagingEnabled
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
+        onScrollBeginDrag={handleBeginDrag}
+        onScrollEndDrag={handleEndDrag}
+        onMomentumScrollBegin={handleMomentumBegin}
         onMomentumScrollEnd={handleMomentumEnd}
         scrollEventThrottle={16}
         initialNumToRender={2}

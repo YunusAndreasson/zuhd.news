@@ -1,13 +1,5 @@
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from 'react';
-import { type NativeScrollEvent, type NativeSyntheticEvent, StyleSheet, View } from 'react-native';
+import { memo, useCallback, useImperativeHandle, useLayoutEffect, useMemo, useRef } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
   useAnimatedRef,
@@ -16,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
+import { usePagerSettle } from '../../hooks/usePagerSettle';
 import { useScrollState } from '../../hooks/useScrollState';
 import type { SwipeCard } from '../../lib/cards/rank';
 import { hapticTick } from '../../lib/haptics';
@@ -71,8 +64,6 @@ export const CardPager = memo(function CardPager({
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
   const count = cards.length;
-  const innerConsumedRef = useRef<{ index: number; at: number } | null>(null);
-  const innerConsumedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
@@ -99,158 +90,36 @@ export const CardPager = memo(function CardPager({
   }, [cards, itemHeight, listRef, setCurrentIndex]);
 
   /**
-   * Land on a page, always — but only once the list has actually stopped.
-   *
-   * `pagingEnabled` snaps a gesture the list itself received. It does not snap
-   * one that arrives some other way: a card taller than the screen scrolls its
-   * own last inch first, and what is left of that swipe reaches the list with
-   * no touch-down and no fling, so the list moves part of a page and stops
-   * there. Both cards then sit at partial opacity — `CardFrame`'s arrival
-   * animation is driven off this offset — and the reader is looking at two
-   * half-visible screens with nothing to tell them which swipe gets out of it.
-   *
-   * The correction must not run at the *end of the drag*, which is the obvious
-   * place to put it and is wrong. A flick lifts the finger early and lets
-   * momentum carry the page: the drag ends 40% of the way across, and a
-   * correction there rounds that to zero and drags the reader back to the page
-   * they just left, cancelling a fling that was about to land correctly. So a
-   * drag end only *arms* the check, momentum starting disarms it, and momentum
-   * ending runs it immediately. What is left for the timer is exactly the case
-   * it is for: a scroll that stopped dead somewhere between two pages.
+   * The whole settle machinery — timers, drag/momentum ownership, the mark an
+   * inner scroll leaves behind — lives in `usePagerSettle`, shared with the
+   * article river, which had this same bug for as long as this deck had the
+   * fix. `onSettled` fires only when the page actually changes.
    */
-  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const settleToPage = useCallback(
-    (y: number) => {
-      const current = currentIndexRef.current;
-      const consumed = innerConsumedRef.current;
-      const currentPageY = current * itemHeight;
-      const inheritedInnerGesture = consumed?.index === current && Date.now() - consumed.at < 1000;
-      // Android can hand the unused tail of an inner ScrollView gesture to
-      // this FlatList. If the child actually moved, that gesture belongs to
-      // the card: return the parent to its existing page. Keep the mark while
-      // that correction settles because native paging momentum can emit
-      // another end event after the first correction was armed.
-      const correctingInnerGesture = inheritedInnerGesture && Math.abs(y - currentPageY) > 1;
-      const idx = correctingInnerGesture
-        ? current
-        : Math.max(0, Math.min(Math.round(y / itemHeight), count - 1));
-      if (inheritedInnerGesture && !correctingInnerGesture) {
-        innerConsumedRef.current = null;
-        if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
-        innerConsumedTimer.current = null;
-      } else if (!inheritedInnerGesture) {
-        innerConsumedRef.current = null;
-      }
-      const target = idx * itemHeight;
-      // A point of slack: a list resting exactly on a page reports a
-      // sub-pixel offset often enough that correcting it would fight the
-      // reader's own scroll on every single swipe.
-      if (Math.abs(y - target) > 1) {
-        // A nested-scroll handoff can still have native momentum behind it.
-        // Animating against that momentum lets the two motions fight and can
-        // leave the list between pages; an immediate pin cancels the inherited
-        // tail. Ordinary page correction remains animated.
-        listRef.current?.scrollToOffset({ offset: target, animated: !correctingInnerGesture });
-      }
-      if (idx === currentIndexRef.current) return;
-      hapticTick();
-      // The reader has performed the lesson on a data deck. The onboarding
-      // store historically counted article snaps only, so the swipe hint
-      // returned over Markets/Shipping/Outlook after a successful page turn.
-      markHintDone('swipe');
-      setCurrentIndex(idx);
-    },
-    [count, itemHeight, listRef, setCurrentIndex],
-  );
-
-  const clearSettle = useCallback(() => {
-    if (settleTimer.current) {
-      clearTimeout(settleTimer.current);
-      settleTimer.current = null;
-    }
-  }, []);
-
-  /** Whether a gesture the list itself received currently owns it. The
-   *  scroll-armed settle below must never fire under the reader's finger, and
-   *  must never cut a fling short — both would yank the page out from under a
-   *  deliberate movement. Refs, not state: nothing here renders. */
-  const draggingRef = useRef(false);
-  const momentumRef = useRef(false);
-
-  const handleBeginDrag = useCallback(() => {
-    draggingRef.current = true;
-    clearSettle();
-  }, [clearSettle]);
-
-  const handleEndDrag = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const y = e.nativeEvent.contentOffset.y;
-      draggingRef.current = false;
-      clearSettle();
-      // Long enough that a fling has begun and disarmed this, short enough
-      // that a dead stop does not read as the app having frozen.
-      settleTimer.current = setTimeout(() => settleToPage(y), 120);
-    },
-    [clearSettle, settleToPage],
-  );
-
-  const handleMomentumBegin = useCallback(() => {
-    momentumRef.current = true;
-    clearSettle();
-  }, [clearSettle]);
-
-  const handleMomentumEnd = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      momentumRef.current = false;
-      clearSettle();
-      settleToPage(e.nativeEvent.contentOffset.y);
-    },
-    [clearSettle, settleToPage],
-  );
-
-  /**
-   * The correction for a scroll that no gesture on this list produced.
-   *
-   * Called from the scroll worklet (throttled there), and it declines whenever
-   * a drag or a fling owns the list — those already end in `handleEndDrag` or
-   * `handleMomentumEnd`, which are better informed than a timer. What is left
-   * is the case neither of those can see: an inner card scroll reaching its
-   * end and handing the remainder of the swipe up to this list, which then
-   * stops between two pages having never been dragged.
-   *
-   * The offset is read at fire time rather than captured when armed, because
-   * the list has usually kept moving in the intervening frames.
-   */
-  const armSettleFromScroll = useCallback(() => {
-    if (draggingRef.current || momentumRef.current) return;
-    clearSettle();
-    settleTimer.current = setTimeout(() => {
-      if (draggingRef.current || momentumRef.current) return;
-      settleToPage(scrollY.value);
-    }, 140);
-  }, [clearSettle, settleToPage, scrollY]);
-
-  useEffect(
-    () => () => {
-      clearSettle();
-      if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
-    },
-    [clearSettle],
-  );
-
-  const handleInnerScrollConsumed = useCallback((index: number) => {
-    if (index !== currentIndexRef.current) return;
-    innerConsumedRef.current = { index, at: Date.now() };
-    if (innerConsumedTimer.current) clearTimeout(innerConsumedTimer.current);
-    // If the child consumed the gesture without handing anything to the
-    // parent, no parent settle event will clear the mark. Expire it so a later
-    // swipe from the child's edge can page normally.
-    innerConsumedTimer.current = setTimeout(() => {
-      innerConsumedRef.current = null;
-      innerConsumedTimer.current = null;
-    }, 700);
-  }, []);
+  const {
+    handleBeginDrag,
+    handleEndDrag,
+    handleMomentumBegin,
+    handleMomentumEnd,
+    armSettleFromScroll,
+    handleInnerScrollConsumed,
+  } = usePagerSettle({
+    listRef,
+    scrollY,
+    itemHeight,
+    count,
+    currentIndexRef,
+    onSettled: useCallback(
+      (index: number) => {
+        hapticTick();
+        // The reader has performed the lesson on a data deck. The onboarding
+        // store historically counted article snaps only, so the swipe hint
+        // returned over Markets/Shipping/Outlook after a successful page turn.
+        markHintDone('swipe');
+        setCurrentIndex(index);
+      },
+      [setCurrentIndex],
+    ),
+  });
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */

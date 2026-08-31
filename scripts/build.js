@@ -259,6 +259,24 @@ const entityStripHtml = (entities, indicatorMap) => {
   return `<div class="article-entities-block" data-island-auto="entity-strip"><aside class="article-entities" aria-label="Related entities"><span class="label article-entities-label">Follows</span>${rendered.join('')}</aside></div>`
 }
 
+// When the story happened.
+//
+// `addedAt` is the markdown file's mtime — when zuhd published — which drifts
+// from when the thing actually happened and resets whenever a file is
+// rewritten. The editor stage rewrites, and the pipeline writes a whole cycle
+// in one burst, so mtime collapses to *one value per cycle*: a 49-article feed
+// carried 12 distinct `addedAt` values, twelve stories all reading "now", and
+// the freshest-looking item on the page was 38 hours old.
+//
+// This was already the read for the heatmap's decay curve and the map's
+// timeline scrubber, which have always meant "when it happened". It is now the
+// read for the feed order and for every relative timestamp too — the frontmatter
+// date, falling back to mtime only if it is unparseable.
+const eventTime = (a) => {
+  const parsed = a.meta.date ? Date.parse(a.meta.date) : NaN
+  return Number.isFinite(parsed) ? parsed : Math.round(a.addedAt)
+}
+
 // Relative time-ago label — mirror of mobile/lib/article-utils.formatTimeAgo.
 // Kicker shows this instead of a fixed date so the article header reads
 // the same as mobile ("3h ago") rather than an abstract calendar date.
@@ -279,7 +297,7 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
-  const timeAgo = formatTimeAgo(addedAt)
+  const timeAgo = formatTimeAgo(eventTime(article))
   const prevLink = prev
     ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev"><span class="article-pagination-label">Previous</span><span class="article-pagination-title">${escHtml(prev.title)}</span></a>`
     : '<span class="article-pagination-prev"></span>'
@@ -721,8 +739,13 @@ const articles = readdirSync(CONTENT_DIR)
   })
 console.log(`  Built: ${articles.length} articles (last ${BUILD_WINDOW_DAYS}d window)`)
 
-// Sort once, compute cutoff once — shared by homepage and API
-const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
+// Sort once, compute cutoff once — shared by homepage and API.
+// By event time, not mtime: mtime is one value per cycle, so sorting on it put
+// a whole cycle in arbitrary order and floated a 38-hour-old story above a
+// one-hour-old one. The *window* below stays on `addedAt` — which articles are
+// in the feed is a question about zuhd's publishing cadence, while what order
+// they read in is a question about the news.
+const sorted = articles.sort((a, b) => eventTime(b) - eventTime(a))
 const cutoff = Date.now() - WINDOW_MS
 
 // Generate audio briefing player HTML
@@ -798,6 +821,13 @@ const apiCategories = Object.fromEntries(
         title: meta.title || 'Untitled',
         date: meta.date,
         addedAt,
+        // When the story happened, as a number the client does not have to
+        // parse. `addedAt` stays exactly as published — it is a contract field
+        // and something may still be reading it — but it answers "when did the
+        // build run", which collapses to one value per cycle and cannot say
+        // how old a story is. Additive, so an older client ignores it and a
+        // newer one prefers it. See `eventTime` above for what mtime costs.
+        eventAt: eventTime({ meta, addedAt }),
         // Added here rather than in one endpoint, so `feed.json` and
         // `feed-lite.json` cannot disagree about whether a story was corrected.
         // Spread-conditional: the field is absent on the ~100% of articles that
@@ -1393,15 +1423,8 @@ writeFileSync(join(DIST_DIR, 'api', 'sv', 'feed.json'), JSON.stringify({
 }))
 console.log(`  Built: api/sv/feed.json (${svArticles.length} articles, sv, 48h)`)
 
-// Event time for geo layers. `addedAt` is the markdown file's mtime — when
-// zuhd published — which drifts from when the thing actually happened and
-// resets whenever a file is rewritten. Both the heatmap's decay curve and the
-// map's timeline scrubber mean "when it happened", so they read the
-// frontmatter date and fall back to mtime only if it's unparseable.
-const eventTime = (a) => {
-  const parsed = a.meta.date ? Date.parse(a.meta.date) : NaN
-  return Number.isFinite(parsed) ? parsed : Math.round(a.addedAt)
-}
+// (eventTime hoisted above formatTimeAgo — every surface that says how old a
+// story is now reads it, not just the geo layers.)
 
 // Heatmap endpoint — 72h of geo-located article points for globe time-decay rendering
 const HEATMAP_WINDOW_MS = 72 * 60 * 60 * 1000

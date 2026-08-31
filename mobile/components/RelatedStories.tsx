@@ -3,6 +3,7 @@ import type { ComponentProps } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { CATEGORIES, SPACING } from '../constants/theme';
+import { articleTime } from '../lib/article-utils';
 import { ArticleRow } from './ArticleRow';
 import { Text } from './primitives';
 
@@ -41,7 +42,7 @@ export function RelatedStories({ articles, onArticlePress, entering }: RelatedSt
           key={a.slug}
           slug={a.slug}
           title={a.title}
-          addedAt={a.addedAt}
+          time={articleTime(a)}
           category={a.category ?? resolveCategory(a)}
           location={a.location}
           onPress={onArticlePress}

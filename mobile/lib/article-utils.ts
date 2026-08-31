@@ -3,7 +3,26 @@
  * No React Native or native module dependencies — safe to test in jsdom.
  */
 
+import type { Article } from '@shared/types';
 import { DAY_MS } from './time';
+
+/**
+ * When the story happened — the only time this app should ever show a reader.
+ *
+ * `addedAt` is the build's mtime. The pipeline writes a whole editorial cycle
+ * in one burst and the editor stage rewrites files, so mtime collapses to one
+ * value per cycle: a live 49-article feed carried 12 distinct `addedAt` values,
+ * twelve stories all reading "now", and the freshest-looking item on the page
+ * was 38 hours old. It also flattened the recency tiebreak in `orderNewsRiver`
+ * to a no-op within a cycle.
+ *
+ * `eventAt` is the build's answer, added 2026-08-31. The `date` fallback is
+ * what makes this correct against payloads built before it — the field was
+ * always in the feed, just never read — and `addedAt` remains the last resort
+ * for a story whose date will not parse.
+ */
+export const articleTime = (a: Pick<Article, 'eventAt' | 'date' | 'addedAt'>): number =>
+  a.eventAt ?? (Date.parse(a.date) || a.addedAt);
 
 export function formatTimeAgo(addedAt: number): string {
   const diffMs = Date.now() - addedAt;
