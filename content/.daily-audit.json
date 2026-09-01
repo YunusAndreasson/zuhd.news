@@ -1,37 +1,37 @@
 {
-  "date": "2026-08-31",
+  "date": "2026-09-01",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles completed, avg 10/cycle (54 yesterday)" },
-    "freshness": { "median": 0.3, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 17, "tech": 14, "science": 10 },
-    "multiSource": { "value": 19, "target": 4, "met": true },
+    "articles": { "value": 64, "detail": "5 cycles completed, avg 10/cycle (62 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.5, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 16, "tech": 14, "science": 11 },
+    "multiSource": { "value": 14, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 18, "AS": 14, "ME": 14, "EU": 11, "AF": 5, "OC": 0 }
+      "breakdown": { "AM": 21, "ME": 16, "AS": 12, "EU": 8, "AF": 6, "OC": 1 }
     },
     "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "RT", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 56,
+    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 58,
     "duplicates": 0,
-    "avgCycleDuration": 1237
+    "avgCycleDuration": 1330
   },
-  "experiment": "Skipped — every goal metric clears its target with margin, no experiment is active, and no pause gate is set. Yesterday's two flagged drifts both corrected on their own: economy multi-source went 0 to 7, and source concentration fell from Nature at 17% to RT at 8%.",
-  "weakestArea": "Region balance is the softest area even though the count of five clears the target of four. Oceania is empty for a third consecutive day — the SKA archives piece is datelined Carnarvon, Western Australia, and still did not register as OC — and Africa held at five for a second day while the Americas took eighteen. The classification side of yesterday's tech complaint has improved but not cleared: of eleven tech articles inspected, the ferroelectric-computing and Gabor-hologram pieces are physics-lab results filed as tech, down from four of eight yesterday. Both remaining problems sit outside the tunable parameter surface — the region tagger and the category taxonomy, not a fetch cap or a selector floor.",
+  "experiment": "Skipped — all four goal areas clear their targets, no experiment is active, and no pause gate is set. Yesterday's two flagged problems both moved on their own: Oceania returned to the map (a Sydney housing story tagged OC after three empty days), and Africa rose from five to six with a wider dateline spread.",
+  "weakestArea": "Oceania at one article is furthest from a healthy share, and Africa at six of sixty-four (9%) is the next thinnest. Both clear the four-region target on count, so neither trips a goal — the shortfall is depth, not breadth. Africa did diversify: Johannesburg, Kampala, Abuja, Bunia, Khartoum, Benghazi and Cairo replace yesterday's Nigeria-heavy three. The remaining lever for either region sits upstream in feed supply and region tagging, not in any tunable fetch cap or selector floor.",
   "watching": [
-    "The Iran confrontation has moved from strikes to contested evidence: the US mine-threat claim at Larak is unverified, and a synthetic AI video of a Kharg Island terminal drew four sources — the story is now partly about what can be believed.",
-    "Brent at 91 with an explicit war premium, the yen at 160, and a trans-Arctic corridor pitched as a chokepoint hedge are three economy stories priced off the same Hormuz risk.",
-    "Syria's SDF dissolving into the national army and Egypt-Libya military unification are both consolidation stories running in the same week, with no coverage yet of what either does to Kurdish or Haftar-aligned holdouts.",
-    "Crypto enforcement is thickening as a tech beat — Hyperliquid DPRK flows, Zcash shielded-proof latency, tokenised collateral at ICE — without being covered as one regulatory arc.",
-    "India is publishing across all four categories on a single day (GDP deflator, Uzbek-adjacent crude, legal metrology, Maharashtra rolls, Haldwani caste speech); worth checking next cycle that this is depth and not a feed-supply artefact."
+    "Iran escalation has hardened from contested evidence into stated intent — Tehran's crushing-revenge vow now sits alongside Gulf solar-import collapse and a Hormuz-geography economy piece, three stories priced off one risk.",
+    "Two flood-governance stories ran in parallel — Pakistan's warning gap at Buner and a Lhasa data blackout — with the Himalaya toll passing 1,000; the throughline is measurement suppression, not weather.",
+    "AI-surveillance countermeasures are becoming a distinct beat: adversarial shirts in Berlin, face-recognition fines in Tbilisi, a South African crawler gap, and an agent breach at Hugging Face.",
+    "Crypto and market plumbing keep converging on traditional finance — bank stablecoin venture, LSE tokenised stocks, Strategy's preferred stock below par — without being covered as one arc.",
+    "Venezuela surfaced twice from Washington datelines (Pentagon oil stake) while Ecuador and São Paulo carried the only Latin American bylines; worth checking whether the region is being covered or only acted upon."
   ],
   "coverageGaps": [
-    "Oceania registered zero again despite an Australian dateline, which points at the region tagger rather than at selection.",
-    "Africa stayed at five articles for a second day — Nigeria three of the five, with no Sahel, Horn or southern-Africa dateline beyond Johannesburg.",
-    "Latin America is covered only through US instruments: Maduro's Brooklyn detention and Exxon's Venezuela licence, both datelined in the United States.",
-    "Tech carries no chips, no semiconductor supply and no AI-infrastructure coverage; the closest is a Brussels DSA designation and an agent-sandbox escape.",
-    "Science published nine of ten articles single-source; the only multi-source science story is the Grand Canyon flood, which is a disaster story rather than a research one."
+    "Oceania recorded a single article; the Pacific Islands leverage story datelined Koror did not register as OC, so the tagger is still under-counting the region.",
+    "Latin America appears only through Quito and São Paulo, with the Venezuela story reported from Washington — no Mexico, Argentina or Andean coverage.",
+    "Central Asia is present only as summit geography (two Bishkek datelines from the Shanghai bloc meeting) with no domestic story from any of the five republics.",
+    "Semiconductor supply is covered as one deal (Nvidia–MediaTek) with no fabrication, export-control or materials angle behind it.",
+    "Science ran no multi-source story again; the eleven pieces are single-outlet research and outbreak reports, which caps the sourcing cluster regardless of selector behaviour."
   ],
-  "context": "Output rose to 62 articles from 54 across five completed cycles, the highest in the recent window, with cycle duration at 1237s (selector 252s, writer 292s, editor 122s). Unique sources recovered sharply from 38 to 56, which is what dissolved yesterday's Nature concentration — no single outlet exceeds five articles. Freshness is measured on only eight dated articles today, so the 0.3 median is a thin sample even though it is well inside target. Duplicates held at zero for a third day. No experiment has run since May; today's remaining issues are a region-tagging miss and a category-taxonomy blur, neither of which any parameter in the tunable set can reach, so the experiment slot is deliberately left unspent."
+  "context": "Output rose to 64 from 62 across five completed cycles, the best in the recent window, at 1330s per cycle (selector 258s, writer 360s, editor 126s). Freshness improved sharply — median 0.1 and max 0.9 — but is computed on 18 dated articles of 64, so it is a partial sample even at that margin. Unique sources held at 58 with Dawn the largest at seven, so concentration is not a concern. Duplicates stayed at zero for a fourth day. No experiment has run since May; the standing reason remains that the residual problems — region tagging and category taxonomy — lie outside the tunable parameter surface, so the slot is left unspent rather than filled with a change that could not reach them."
 }
