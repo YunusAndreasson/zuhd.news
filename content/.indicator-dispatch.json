@@ -1263,8 +1263,93 @@
         "2026-08-29-irgc-hormuz-closed-without-coordination"
       ],
       "generatedAt": "2026-09-01T08:23:57.311Z"
+    },
+    "poly-will-no-fed-rate-cuts-happen-in-2026": {
+      "standingFingerprint": "21d70cc65e97e6ea",
+      "recentFingerprint": "71687aea4a0cca2d",
+      "standing": "A Polymarket contract on whether the US Federal Reserve holds its policy rate flat through the whole of 2026. Traders buy and sell the outcome, so the price is what people will pay for a no-cut year — and it moves as the case for easing strengthens or fades.",
+      "recent": "Fed minutes released on 19 August showed many officials said rate hikes may be needed, leaving no room for cuts, and the price has sat near the top of its range since. It touched 89 on 2 August and its low of 85 on 9 August. Warsh's Jackson Hole speech was the month's other Fed event.",
+      "citations": [
+        "2026-08-28-the-independence-trade-the-speech-is-the-instrument"
+      ],
+      "generatedAt": "2026-09-01T12:24:36.229Z"
+    },
+    "poly-nato-x-russia-military-clash-by-october-31-2026": {
+      "standingFingerprint": "82df9dddce22d0fa",
+      "recentFingerprint": "ebf33a0abdfd0b9e",
+      "standing": "A Polymarket contract on whether NATO and Russian forces come to blows within a set window. It prices how close traders think the war in Ukraine is to spilling across an alliance border — the line between a regional war and an Article 5 one.",
+      "recent": "The odds fell after the peak on Aug 27, the day Kremlin sources declared the peace talks dead and four EU states reopened the debate on Russia's frozen billions. Since then the escalation has stayed inside Ukraine and Russia — the depot blast near Kyiv, the Belgorod strike, Zaporizhzhia on diesel — and at Bishkek Modi pressed Putin for dialogue over battlefield solutions.",
+      "citations": [
+        "2026-08-27-dead-end-talks-the-leak-is-the-move",
+        "2026-09-01-sco-bishkek-declaration-consensus-omissions",
+        "2026-08-30-kyiv-depot-secondary-detonation-civilian-toll",
+        "2026-08-31-belgorod-civilian-toll-symmetric-count",
+        "2026-08-30-zaporizhzhia-off-site-power-decay-heat-diesel-margin"
+      ],
+      "generatedAt": "2026-09-01T12:24:46.868Z"
+    },
+    "poly-will-crude-oil-reach-a-new-all-time-high-by-dece": {
+      "standingFingerprint": "faae162f3099d10b",
+      "recentFingerprint": "c84b73ce220a7f85",
+      "standing": "A prediction market on whether crude oil sets a new record price within a set window. The price is what traders pay for that outcome, so it moves with anything that threatens supply, and it is one of the fastest reads on how seriously the market takes a shock.",
+      "recent": "The contract drifted down from 14% on Aug 2 to 12%, with a low of 10% on Aug 9, and the input carries no oil supply event to explain it. What moved around Polymarket instead was scrutiny of prediction markets themselves: South Korea joined more than 30 jurisdictions restricting access.",
+      "citations": [],
+      "generatedAt": "2026-09-01T12:24:55.440Z"
+    },
+    "stocks:RDDT": {
+      "standingFingerprint": "315fb6f440a9d904",
+      "recentFingerprint": "f76da0d1a2240af1",
+      "standing": "Shares in the company behind Reddit, the link-and-comment forum network whose thousands of user-run communities make it one of the largest discussion platforms on the open web and a major supplier of training text and search results.",
+      "recent": "Reddit crossed 45 million average monthly EU users and was designated a Very Large Online Platform under the Digital Services Act, alongside ChatGPT and Roblox. Designation obliges systemic-risk assessment, independent audit, an ad repository and researcher data access, with fines up to 6% of global turnover. The stock is down from 178.1 on Aug 14 to 147.8.",
+      "citations": [
+        "2026-08-31-chatgpt-vlop-dsa-assistant-as-platform",
+        "2026-09-01-dsa-designation-user-threshold-chatgpt-roblox"
+      ],
+      "generatedAt": "2026-09-01T12:25:04.466Z"
+    },
+    "stocks:RBLX": {
+      "standingFingerprint": "e6094c6c699b8cd6",
+      "recentFingerprint": "be838e9d4528f16a",
+      "standing": "Shares in the company behind Roblox, an online platform where users build and play games made by other users, with an audience skewed heavily toward children and teenagers. Its exposure runs through advertising, in-game spending and child-safety regulation.",
+      "recent": "The stock rose to $41.29 on Aug 31 as the European Commission designated Roblox, alongside ChatGPT and Reddit, a Very Large Online Platform under the Digital Services Act after it crossed 45 million average monthly EU users. Designation brings systemic-risk assessment, independent audit and researcher data access, with fines up to 6% of global turnover.",
+      "citations": [
+        "2026-09-01-dsa-designation-user-threshold-chatgpt-roblox",
+        "2026-08-31-chatgpt-vlop-dsa-assistant-as-platform"
+      ],
+      "generatedAt": "2026-09-01T12:25:13.300Z"
+    },
+    "stocks:HMC": {
+      "standingFingerprint": "db3dc8765789da7f",
+      "recentFingerprint": "1af839f80f042809",
+      "standing": "Shares in Japan's second-largest carmaker, listed in New York as an American depositary receipt. Honda sells more engines than any other company on earth — motorcycles, cars and generators — so the stock tracks demand across both rich and emerging markets.",
+      "recent": "Honda's two-wheeler sales in India reached 579,000 units in August, up 8%. On 31 August the company signed a deal with Nissan to shorten vehicle software development cycles, a tie-up between two of Japan's largest carmakers. The shares have climbed from a low of $29.60 on Aug 3.",
+      "citations": [
+        "2026-09-01-india-august-vehicle-sales-wholesale-versus-demand"
+      ],
+      "generatedAt": "2026-09-01T12:25:21.982Z"
+    },
+    "stocks:MARUTI.BO": {
+      "standingFingerprint": "ade2e10566686a73",
+      "recentFingerprint": "aa3b379a238b05be",
+      "standing": "India's largest carmaker by volume, majority-owned by Japan's Suzuki, and the maker of most of the small hatchbacks on Indian roads. Its share price is the closest thing the market has to a read on middle-class consumer demand.",
+      "recent": "The stock has drifted down through the month to its lowest level in the series, despite August sales data pointing the other way: Honda's two-wheeler arm HMSI sold 579,000 units, up 8 per cent. The gap is between wholesale dispatches and retail demand, which the August figures do not settle.",
+      "citations": [
+        "2026-09-01-india-august-vehicle-sales-wholesale-versus-demand"
+      ],
+      "generatedAt": "2026-09-01T12:25:30.448Z"
+    },
+    "stocks:AAPL": {
+      "standingFingerprint": "3d69f3e19e890e0d",
+      "recentFingerprint": "09185d78520f3f3c",
+      "standing": "Shares in the world's largest consumer-electronics maker, whose revenue still turns mostly on the iPhone and whose supply chain reaches through Chinese assembly plants. Its size makes it a heavy weight in every major US index.",
+      "recent": "Apple confirmed a September 9 event for the iPhone 18 Pro and Pro Max, with an Ultra expected at $2,500, and announced M6 and M5 Ultra chips on August 25. Enterprise AI buyers running models locally have emptied Mac Mini and Mac Studio inventory, demand Apple did not forecast. OpenAI on Monday denied stealing Apple trade secrets.",
+      "citations": [
+        "2026-09-01-unified-memory-local-inference-demand-shock",
+        "2026-09-01-trade-secret-doctrine-ai-engineer-mobility"
+      ],
+      "generatedAt": "2026-09-01T12:25:39.956Z"
     }
   },
-  "generatedAt": "2026-09-01T08:23:57.311Z",
+  "generatedAt": "2026-09-01T12:25:39.956Z",
   "windowDays": 14
 }
