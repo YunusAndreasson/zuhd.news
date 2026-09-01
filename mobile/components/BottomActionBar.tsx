@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { briefingActionLabel } from '../lib/audio-duration';
 import { Pressable, Text } from './primitives';
 
 // Compact pills — small visible footprint so the globe has more room.
@@ -10,6 +11,8 @@ const PILL_HIT_SLOP = 16;
 interface BottomActionBarProps {
   bottomInset: number;
   zoomLabel: string;
+  briefingDuration?: number;
+  briefingResumable: boolean;
   onBriefingPress: () => void;
   onZoomPress: () => void;
   onSharePress: () => void;
@@ -69,21 +72,27 @@ function ActionPill({
 export function BottomActionBar({
   bottomInset,
   zoomLabel,
+  briefingDuration,
+  briefingResumable,
   onBriefingPress,
   onZoomPress,
   onSharePress,
   articleActions,
 }: BottomActionBarProps) {
+  const briefingLabel = briefingActionLabel(briefingResumable, briefingDuration);
+
   return (
     <View
       style={[styles.bottomBar, { paddingBottom: Math.max(bottomInset, SPACING.sm) }]}
       pointerEvents="box-none"
     >
       <ActionPill
-        label="listen"
+        label={briefingLabel}
         onPress={onBriefingPress}
-        accessibilityLabel="Daily briefing"
-        accessibilityHint="Plays today's audio briefing"
+        accessibilityLabel={briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}
+        accessibilityHint={
+          briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+        }
       />
 
       <View style={styles.bottomSpacer} />

@@ -17,3 +17,16 @@ export function resolveAudioDuration(
   }
   return 0;
 }
+
+/** Compact, human-scale duration for the briefing entry affordance. */
+export function formatAudioDurationMinutes(duration: number | undefined): string | null {
+  if (typeof duration !== 'number' || !Number.isFinite(duration) || duration <= 0) return null;
+  const minutes = Math.max(1, Math.round(duration / 60));
+  return `${minutes} min`;
+}
+
+export function briefingActionLabel(resumable: boolean, duration: number | undefined): string {
+  const action = resumable ? 'resume' : 'listen';
+  const durationLabel = formatAudioDurationMinutes(duration);
+  return durationLabel ? `${action} · ${durationLabel}` : action;
+}

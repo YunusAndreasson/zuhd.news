@@ -19,8 +19,7 @@ import PagerView, {
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import { BottomActionBar } from '../components/BottomActionBar';
-import { BriefingBar } from '../components/BriefingBar';
+import { BriefingChrome, type BriefingChromeRef } from '../components/BriefingChrome';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
@@ -42,7 +41,6 @@ import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
-import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
@@ -145,7 +143,8 @@ export default function HomeScreen() {
   const { byId: analysis } = useAnalysis();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
-  const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
+  const briefingChromeRef = useRef<BriefingChromeRef>(null);
+  const [briefingVisible, setBriefingVisible] = useState(false);
 
   // Active article tracking (for bottom action bar). Kept in a ref — the
   // selected article only feeds callbacks (share, context), never JSX, so
@@ -234,16 +233,18 @@ export default function HomeScreen() {
   }, []);
 
   const handleBriefingPress = useCallback(() => {
-    if (!briefingPlayer.available) {
-      // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or
-      // the pipeline has been broken longer). Don't attempt playback —
-      // the URL would 404 and the give-up timer would stall the UI.
-      hapticTick();
-      toastRef.current?.show('No briefing available', undefined, 'top');
-      return;
-    }
-    briefingPlayer.toggle();
-  }, [briefingPlayer.available, briefingPlayer.toggle]);
+    briefingChromeRef.current?.toggle();
+  }, []);
+  const handleBriefingUnavailable = useCallback(() => {
+    // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or the
+    // pipeline has been broken longer). Don't attempt a guaranteed 404.
+    hapticTick();
+    toastRef.current?.show('No briefing available', undefined, 'top');
+  }, []);
+  const handleBriefingPlaybackError = useCallback(() => {
+    hapticTick();
+    toastRef.current?.show('Couldn’t play briefing — tap to retry', handleBriefingPress, 'top');
+  }, [handleBriefingPress]);
 
   const handleSourcesPress = useCallback((article: Article) => {
     hapticImpact();
@@ -502,7 +503,6 @@ export default function HomeScreen() {
   );
 
   // --- Onboarding: hint pills + notification primer ---
-  const briefingVisible = briefingPlayer.playing || briefingPlayer.elapsed > 0;
   const sheetOpen =
     menuOpen ||
     primerOpen ||
@@ -654,7 +654,7 @@ export default function HomeScreen() {
     return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 
-  usePendingNotification(loading, grouped, handleSelectArticle, briefingPlayer.toggle);
+  usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
 
   // The splash normally covers this whole state. But `_layout.tsx` force-hides
   // it after SPLASH_FALLBACK_MS (8s) while the feed keeps retrying for up to
@@ -761,29 +761,19 @@ export default function HomeScreen() {
 
       <HintOverlay hint={activeHint} onDismiss={dismissActiveHint} bottomInset={insets.bottom} />
 
-      {!briefingVisible && (
-        <BottomActionBar
-          bottomInset={insets.bottom}
-          zoomLabel={currentZoom.label}
-          onBriefingPress={handleBriefingPress}
-          onZoomPress={handleZoomToggle}
-          articleActions={currentSection === NEWS}
-          onSharePress={handleBottomShare}
-        />
-      )}
-
-      {/* Briefing player — shown while playing or paused mid-listen */}
-      {briefingVisible && (
-        <BriefingBar
-          playing={briefingPlayer.playing}
-          elapsed={briefingPlayer.elapsed}
-          duration={briefingPlayer.duration}
-          date={briefingPlayer.date}
-          onToggle={briefingPlayer.toggle}
-          onSeek={briefingPlayer.seek}
-          onClose={briefingPlayer.close}
-        />
-      )}
+      <BriefingChrome
+        ref={briefingChromeRef}
+        date={briefing?.date}
+        duration={briefing?.duration}
+        bottomInset={insets.bottom}
+        zoomLabel={currentZoom.label}
+        articleActions={currentSection === NEWS}
+        onZoomPress={handleZoomToggle}
+        onSharePress={handleBottomShare}
+        onUnavailable={handleBriefingUnavailable}
+        onPlaybackError={handleBriefingPlaybackError}
+        onVisibilityChange={setBriefingVisible}
+      />
 
       <MenuSheet
         sheetRef={menuSheetRef}

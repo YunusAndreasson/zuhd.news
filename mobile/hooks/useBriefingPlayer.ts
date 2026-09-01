@@ -9,7 +9,7 @@ import {
   useAudioPlayer,
   useAudioPlayerStatus,
 } from 'expo-audio';
-import { deleteItemAsync, getItemAsync } from 'expo-secure-store';
+import { getItemAsync } from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
@@ -59,10 +59,13 @@ function resolveBriefingSource(url: string): Promise<string> {
 }
 
 interface BriefingPlayer {
-  playing: boolean;
+  state: 'idle' | 'preparing' | 'playing' | 'paused';
   elapsed: number;
   duration: number;
   date: string;
+  resumable: boolean;
+  /** Monotonic signal: increments once for each terminal playback failure. */
+  failureCount: number;
   /** False when the feed didn't surface a briefing date — typically because
    *  the latest mp3 has aged out of the 7-day server retention window or
    *  generation has been broken longer than that. Consumers should toast
@@ -70,7 +73,7 @@ interface BriefingPlayer {
   available: boolean;
   toggle: () => void;
   seek: (seconds: number) => void;
-  close: () => void;
+  dismiss: () => void;
 }
 
 // Resolve true once AVPlayer has a real duration, or false at the deadline.
@@ -112,15 +115,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   });
   const status = useAudioPlayerStatus(managedPlayer);
   const [playing, setPlaying] = useState(false);
+  const [preparing, setPreparing] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [resumable, setResumable] = useState(false);
+  const [hasPlayer, setHasPlayer] = useState(false);
+  const [failureCount, setFailureCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
   const lockScreenActivationPending = useRef(false);
   const lockScreenActivationToken = useRef(0);
-  // Suppress listener-driven setPlaying briefly after user taps toggle
-  const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
   // Single timer reused by the status-driven start. Holds the give-up
   // deadline for a play() that hasn't taken yet — when status reports
@@ -131,14 +136,52 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   // flips to true (covers cold AVPlayer that silently no-ops the first call
   // while it's still buffering).
   const wantsToPlayRef = useRef(false);
+  // User intent is tracked independently from native status. Native playback
+  // updates lag taps, so deriving the next action from player.playing makes a
+  // rapid even-numbered tap burst collapse into the wrong final state.
+  const playingIntentRef = useRef(false);
+  // Invalidates async toggle continuations. Audio-session setup and persisted
+  // position reads may finish after a later tap or dismissal; only the newest
+  // intent is allowed to publish state or call play().
+  const toggleTokenRef = useRef(0);
   const sourcePreparingRef = useRef(false);
   const sourceLoadToken = useRef(0);
   const closedRef = useRef(false);
-  // One-shot guard consumed by the next toggle(): suppresses position restore
-  // after the user dismisses the player with X. Synchronous so it beats the
-  // async POSITION_KEY write that close() fires off.
-  const skipRestoreRef = useRef(false);
-  const devMockActive = useRef(false);
+
+  // Surface persisted progress before playback begins so the idle affordance
+  // can say RESUME after a relaunch. Playback restoration remains lazy.
+  useEffect(() => {
+    let cancelled = false;
+    if (!effectiveDate) {
+      setResumable(false);
+      return;
+    }
+    Promise.all([Storage.getItem(POSITION_KEY), Storage.getItem(DATE_KEY)])
+      .then(async ([storedPos, storedDate]) => {
+        if (cancelled) return;
+        let savedPos = storedPos;
+        let savedDateStr = storedDate;
+        if (savedPos === null && savedDateStr === null) {
+          [savedPos, savedDateStr] = await Promise.all([
+            getItemAsync(POSITION_KEY),
+            getItemAsync(DATE_KEY),
+          ]);
+          await Promise.all([
+            savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
+            savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
+          ]);
+        }
+        if (cancelled) return;
+        const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
+        setResumable(savedDateStr === effectiveDate && Number.isFinite(pos) && pos > 0);
+      })
+      .catch(() => {
+        if (!cancelled) setResumable(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [effectiveDate]);
 
   // On app resume, save the last-known position and re-sync UI to the
   // player's actual state. We don't pre-emptively tear down stale players —
@@ -162,6 +205,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
             Storage.setItem(POSITION_KEY, String(Math.floor(pos))),
             Storage.setItem(DATE_KEY, savedDate.current),
           ]);
+          setResumable(true);
         }
       } catch {}
 
@@ -196,6 +240,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       giveUpTimer.current = null;
     }
     wantsToPlayRef.current = false;
+    playingIntentRef.current = false;
+    toggleTokenRef.current += 1;
     sourcePreparingRef.current = false;
     if (playerRef.current) {
       try {
@@ -205,12 +251,20 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       } catch {}
     }
     playerRef.current = null;
+    setHasPlayer(false);
     sourceLoadToken.current += 1;
     lockScreenActivationToken.current += 1;
     lockScreenActivationPending.current = false;
     lockScreenActive.current = false;
     lockScreenDurationKnown.current = false;
   }, []);
+
+  const failPlayback = useCallback(() => {
+    teardownPlayer();
+    setPreparing(false);
+    setPlaying(false);
+    setFailureCount((count) => count + 1);
+  }, [teardownPlayer]);
 
   // A feed refresh can rotate to a new briefing while yesterday's player is
   // still paused in memory. Never label and resume that old source as today's:
@@ -221,7 +275,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     teardownPlayer();
     savedDate.current = null;
     setPlaying(false);
+    setPreparing(false);
     setElapsed(0);
+    setResumable(false);
   }, [effectiveDate, teardownPlayer]);
 
   const savePosition = useCallback(() => {
@@ -240,7 +296,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => {
       savePosition();
       teardownPlayer();
-      setIsAudioActiveAsync(false);
+      void setIsAudioActiveAsync(false).catch(() => {});
     };
   }, []);
 
@@ -317,10 +373,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       if (!wantsToPlayRef.current) return;
       // Player never started — assume native resources are dead. Teardown
       // so the next toggle creates a fresh player.
-      teardownPlayer();
-      setPlaying(false);
+      failPlayback();
     }, PLAY_GIVE_UP_MS);
-  }, [teardownPlayer]);
+  }, [failPlayback]);
 
   // Expo owns the playback-status subscription. Keep only the app-specific
   // policy here: recovery, lock-screen metadata, cold-load retry, and UI state.
@@ -359,27 +414,35 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
     if (wantsToPlayRef.current && status.playing) {
       wantsToPlayRef.current = false;
+      setPreparing(false);
+      setPlaying(true);
       if (giveUpTimer.current) {
         clearTimeout(giveUpTimer.current);
         giveUpTimer.current = null;
       }
     }
 
-    const sinceToggle = Date.now() - userToggleAt.current;
-    // While a requested source is downloading/loading, keep the optimistic
-    // playing state so the control remains a meaningful cancel/pause action.
-    if ((!wantsToPlayRef.current && sinceToggle >= 500) || status.didJustFinish)
+    if (!wantsToPlayRef.current && !sourcePreparingRef.current) {
+      playingIntentRef.current = status.playing;
       setPlaying(status.playing);
-    if (status.currentTime > 0) setElapsed(Math.floor(status.currentTime));
+    }
+    if (status.currentTime >= 0) {
+      setElapsed(Math.floor(status.currentTime));
+      if (status.currentTime > 0) setResumable(true);
+    }
 
     if (status.didJustFinish) {
       wantsToPlayRef.current = false;
+      playingIntentRef.current = false;
       if (giveUpTimer.current) {
         clearTimeout(giveUpTimer.current);
         giveUpTimer.current = null;
       }
+      setPreparing(false);
       setPlaying(false);
       setElapsed(0);
+      setResumable(false);
+      setHasPlayer(false);
       void Storage.setItem(POSITION_KEY, '0');
       player.seekTo(0).catch(() => {});
       try {
@@ -394,53 +457,60 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
   const toggle = useCallback(async () => {
     hapticImpact();
-    userToggleAt.current = Date.now();
     closedRef.current = false;
+    const toggleToken = ++toggleTokenRef.current;
+    const nextPlaying = !playingIntentRef.current;
+    playingIntentRef.current = nextPlaying;
 
     // No briefing available — refuse to attempt playback rather than fall
     // through to a 404. Consumers should also gate on `available` to show
     // a toast; this is the defensive layer.
-    if (!effectiveDate && !playerRef.current && !devMockActive.current) {
+    if (!effectiveDate && !playerRef.current) {
+      playingIntentRef.current = false;
       return;
     }
 
+    if (nextPlaying) setPreparing(true);
+
     try {
-      // Dev mock — no native player, just toggle UI state
-      if (__DEV__ && !playerRef.current && devMockActive.current) {
-        devMockActive.current = false;
+      // Pause/cancel is synchronous. It must not wait behind audio-session
+      // setup from a prior play tap, otherwise a quick second tap cannot undo
+      // the first one.
+      if (!nextPlaying) {
+        if (giveUpTimer.current) {
+          clearTimeout(giveUpTimer.current);
+          giveUpTimer.current = null;
+        }
+        wantsToPlayRef.current = false;
+        if (playerRef.current) {
+          if (!playerRef.current.isLoaded) {
+            teardownPlayer();
+          } else {
+            savePosition();
+            playerRef.current.pause();
+          }
+        }
+        setPreparing(false);
         setPlaying(false);
-        setElapsed(0);
         return;
       }
 
-      // Resume/pause existing player
+      // Resume existing player. Re-check intent after the async audio-session
+      // hop so a newer pause tap wins.
       if (playerRef.current) {
-        // The first tap is still caching the source. Treat the visible pause
-        // action as cancellation; teardown invalidates the pending load so a
-        // later tap can start cleanly.
-        if (wantsToPlayRef.current && !playerRef.current.isLoaded) {
-          teardownPlayer();
-          setPlaying(false);
+        const player = playerRef.current;
+        wantsToPlayRef.current = true;
+        try {
+          await setIsAudioActiveAsync(true);
+        } catch {}
+        if (
+          toggleToken !== toggleTokenRef.current ||
+          !playingIntentRef.current ||
+          playerRef.current !== player
+        )
           return;
-        }
-        if (playerRef.current.playing) {
-          if (giveUpTimer.current) {
-            clearTimeout(giveUpTimer.current);
-            giveUpTimer.current = null;
-          }
-          wantsToPlayRef.current = false;
-          savePosition();
-          playerRef.current.pause();
-          setPlaying(false);
-        } else {
-          try {
-            await setIsAudioActiveAsync(true);
-          } catch {}
-          wantsToPlayRef.current = true;
-          playerRef.current.play();
-          setPlaying(true);
-          armGiveUp();
-        }
+        player.play();
+        armGiveUp();
         return;
       }
 
@@ -453,69 +523,69 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         });
         await setIsAudioActiveAsync(true);
       } catch {} // May fail in Expo Go
+      if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
 
       const player = managedPlayer;
       savedDate.current = effectiveDate;
       playerRef.current = player;
+      setHasPlayer(true);
       const loadToken = ++sourceLoadToken.current;
       wantsToPlayRef.current = true;
       sourcePreparingRef.current = true;
-      setPlaying(true);
 
       const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
       const playbackSource = await resolveBriefingSource(remoteUrl);
       if (
+        toggleToken !== toggleTokenRef.current ||
         loadToken !== sourceLoadToken.current ||
         closedRef.current ||
         playerRef.current !== player ||
-        !wantsToPlayRef.current
+        !wantsToPlayRef.current ||
+        !playingIntentRef.current
       )
         return;
       try {
         player.replace(playbackSource);
       } catch {
-        sourcePreparingRef.current = false;
-        wantsToPlayRef.current = false;
-        playerRef.current = null;
-        if (__DEV__) {
-          devMockActive.current = true;
-          setPlaying(true);
-          setElapsed(272);
-        } else {
-          setPlaying(false);
-        }
+        failPlayback();
         return;
       }
 
-      // Restore position if same date — unless the user just closed with X,
-      // in which case the one-shot guard forces a fresh 0:00 start.
-      if (skipRestoreRef.current) {
-        skipRestoreRef.current = false;
-      } else {
-        try {
-          let [savedPos, savedDateStr] = await Promise.all([
-            Storage.getItem(POSITION_KEY),
-            Storage.getItem(DATE_KEY),
+      // Restore persisted progress only after the source exists; opening the
+      // app remains free of audio I/O.
+      try {
+        let [savedPos, savedDateStr] = await Promise.all([
+          Storage.getItem(POSITION_KEY),
+          Storage.getItem(DATE_KEY),
+        ]);
+        if (savedPos === null && savedDateStr === null) {
+          [savedPos, savedDateStr] = await Promise.all([
+            getItemAsync(POSITION_KEY),
+            getItemAsync(DATE_KEY),
           ]);
-          if (savedPos === null && savedDateStr === null) {
-            [savedPos, savedDateStr] = await Promise.all([
-              getItemAsync(POSITION_KEY),
-              getItemAsync(DATE_KEY),
-            ]);
-            await Promise.all([
-              savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
-              savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
-            ]);
+          await Promise.all([
+            savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
+            savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
+          ]);
+        }
+        if (savedDateStr === effectiveDate && savedPos) {
+          const pos = Number.parseInt(savedPos, 10);
+          if (pos > 0) {
+            player.seekTo(pos).catch(() => {});
+            setElapsed(pos);
+            setResumable(true);
           }
-          if (savedDateStr === effectiveDate && savedPos) {
-            const pos = parseInt(savedPos, 10);
-            if (pos > 0) {
-              player.seekTo(pos).catch(() => {});
-              setElapsed(pos);
-            }
-          }
-        } catch {}
-      }
+        }
+      } catch {}
+
+      if (
+        toggleToken !== toggleTokenRef.current ||
+        loadToken !== sourceLoadToken.current ||
+        closedRef.current ||
+        playerRef.current !== player ||
+        !playingIntentRef.current
+      )
+        return;
 
       // Kick off playback immediately so the first tap is responsive. play()
       // safely no-ops if AVPlayer is still buffering — the cold-start retry
@@ -544,9 +614,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       await activateLockScreen(player, !loadedWithDuration);
     } catch {
       // Clean up partially-created player on failure
-      teardownPlayer();
+      failPlayback();
     }
-  }, [effectiveDate, managedPlayer, savePosition, activateLockScreen, armGiveUp, teardownPlayer]);
+  }, [
+    effectiveDate,
+    managedPlayer,
+    savePosition,
+    activateLockScreen,
+    armGiveUp,
+    failPlayback,
+    teardownPlayer,
+  ]);
 
   // Pure data operation: clamp, seek, publish. No haptic — the scrub ratchet
   // belongs to the gesture that drives it, not to the audio timeline. This
@@ -561,49 +639,55 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     setElapsed(Math.floor(clamped));
   }, []);
 
-  const close = useCallback(() => {
+  const dismiss = useCallback(() => {
     closedRef.current = true;
-    // Consumed by the next toggle() to skip position restore synchronously.
-    // We can't rely on the async storage writes below landing before
-    // the user taps LISTEN again — this ref closes the race.
-    skipRestoreRef.current = true;
-    // Close = stop & forget. Clear both persisted keys so even after the
-    // in-memory guard resets, a cold start won't resurrect an old position.
-    void Promise.all([
-      Storage.removeItem(POSITION_KEY),
-      Storage.removeItem(DATE_KEY),
-      // Clear legacy copies too so a rollback cannot resurrect the position.
-      deleteItemAsync(POSITION_KEY).catch(() => {}),
-      deleteItemAsync(DATE_KEY).catch(() => {}),
-    ]);
-    if (playerRef.current) {
-      try {
-        playerRef.current.pause();
-      } catch {}
+    playingIntentRef.current = false;
+    toggleTokenRef.current += 1;
+    if (giveUpTimer.current) {
+      clearTimeout(giveUpTimer.current);
+      giveUpTimer.current = null;
     }
-    teardownPlayer();
+    wantsToPlayRef.current = false;
+    sourcePreparingRef.current = false;
+    if (playerRef.current) {
+      if (playerRef.current.isLoaded) {
+        savePosition();
+        try {
+          playerRef.current.pause();
+        } catch {}
+      } else {
+        teardownPlayer();
+      }
+    }
+    setPreparing(false);
     setPlaying(false);
-    setElapsed(0);
+    if (elapsed > 0) setResumable(true);
     hapticImpact();
-  }, [teardownPlayer]);
+  }, [elapsed, savePosition, teardownPlayer]);
 
   // Native duration is authoritative once loaded. Feed duration keeps the
   // in-app timeline visible during startup instead of coupling it to AVPlayer's
-  // metadata timing; the mock remains development-only and last-resort.
-  const effectiveDuration = resolveAudioDuration(
-    status.duration,
-    feedDuration,
-    __DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0,
-  );
+  // metadata timing.
+  const effectiveDuration = resolveAudioDuration(status.duration, feedDuration);
+
+  const state: BriefingPlayer['state'] = preparing
+    ? 'preparing'
+    : playing
+      ? 'playing'
+      : hasPlayer || elapsed > 0 || resumable
+        ? 'paused'
+        : 'idle';
 
   return {
-    playing,
+    state,
     elapsed,
     duration: effectiveDuration,
     date: effectiveDate,
+    resumable,
+    failureCount,
     available,
     toggle,
     seek,
-    close,
+    dismiss,
   };
 }
