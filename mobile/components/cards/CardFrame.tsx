@@ -11,6 +11,7 @@ import Animated, {
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
+import { observationLabel } from '../../lib/data-freshness';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { Icon, Text } from '../primitives';
 
@@ -173,6 +174,7 @@ export const CardFrame = memo(function CardFrame({
   children,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
+  const observed = observationLabel(card.asOf);
 
   /**
    * The inner column only scrolls when it has to.
@@ -321,14 +323,16 @@ export const CardFrame = memo(function CardFrame({
               spent on the delta chip. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            {card.lead || card.kicker ? (
+            {card.lead || card.kicker || observed ? (
               <Text variant="labelXs" tone="secondary">
                 {card.lead ? (
                   <Text variant="labelXs" tone="emphasis">
-                    {card.kicker ? 'current · ' : 'current'}
+                    {card.kicker || observed ? 'current · ' : 'current'}
                   </Text>
                 ) : null}
                 {card.kicker}
+                {card.kicker && observed ? ' · ' : null}
+                {observed}
               </Text>
             ) : null}
 

@@ -82,6 +82,10 @@ interface CardBase {
    * The app's chromatic budget is already spent on `CardDelta`.
    */
   lead?: boolean;
+  /** Observation date for the number on screen. This is deliberately not the
+   * payload fetch time: a file rebuilt today can still contain older source
+   * data. `CardFrame` prints it on the kicker line. */
+  asOf?: string;
   /** Small-caps subject above the title. Omit when the section already says it. */
   kicker?: string;
   title: string;

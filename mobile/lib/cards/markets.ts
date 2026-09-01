@@ -6,6 +6,7 @@ import type {
   TrendEvent,
   TrendsSnapshot,
 } from '@shared/types';
+import { indicatorObservation, isCurrentObservation, oldestObservation } from '../data-freshness';
 import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
 import {
   deltaFrom,
@@ -209,6 +210,10 @@ function staplesCard(
     id: 'staples',
     kind: 'reading',
     kicker: 'staples',
+    asOf: oldestObservation(
+      indicatorObservation(wheat, snapshot.asOf),
+      indicatorObservation(rice, snapshot.asOf),
+    ),
     title: 'Wheat and rice',
     reading: `${ratio.toFixed(1)}×`,
     readingNote: 'rice against wheat',
@@ -262,6 +267,7 @@ function indicatorCard(
     id,
     kind: 'reading',
     kicker,
+    asOf: indicatorObservation(indicator, snapshot.asOf),
     title: indicator.label,
     reading,
     readingNote: note,
@@ -325,7 +331,11 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     id: 'nisab',
     kind: 'reading',
     kicker: 'zakat',
-    title: 'Nisab today',
+    asOf: oldestObservation(
+      indicatorObservation(gold, snapshot.asOf),
+      indicatorObservation(silver, snapshot.asOf),
+    ),
+    title: 'Nisab threshold',
     reading: `$${formatCount(n.threshold)}`,
     readingNote: `set by ${n.binding}`,
     delta,
@@ -409,6 +419,10 @@ function metalsPairCard(
     id: 'metals',
     kind: 'reading',
     kicker: 'metal',
+    asOf: oldestObservation(
+      indicatorObservation(gold, snapshot.asOf),
+      indicatorObservation(silver, snapshot.asOf),
+    ),
     title: 'Gold against silver',
     // The ratio, not either price — both prices are figures below, and the
     // relationship is the thing neither of them says alone. It is also the
@@ -556,6 +570,7 @@ function fxMoverCards(
         id: `${indicator.id}-mover`,
         kind: 'reading' as const,
         kicker: 'currency',
+        asOf: indicatorObservation(indicator, snapshot.asOf),
         title: indicator.label,
         reading: formatReading(value),
         readingNote: code ? `${code} to the dollar` : 'to the dollar',
@@ -713,7 +728,11 @@ function straitOdds(
  * stay neutral reference rather than being promoted as news. Smart ranking
  * later combines that mark with live-story relevance and unusual movement.
  */
-function straitCards(chokepoints: Chokepoint[], snapshot: TrendsSnapshot): ReadingCard[] {
+function straitCards(
+  chokepoints: Chokepoint[],
+  snapshot: TrendsSnapshot,
+  now: Date,
+): ReadingCard[] {
   const ranked = chokepoints
     .map((c) => ({ c, d: totalTrafficDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
@@ -739,7 +758,10 @@ function straitCards(chokepoints: Chokepoint[], snapshot: TrendsSnapshot): Readi
     return {
       id: `strait-${c.id}`,
       kind: 'reading' as const,
-      lead: d <= -TOTAL_TRAFFIC_DISRUPTED,
+      // A large fall in an old observation remains important reference, but
+      // it is not a current development. The date still appears on every card.
+      lead: d <= -TOTAL_TRAFFIC_DISRUPTED && isCurrentObservation(c.asOf, now),
+      asOf: c.asOf,
       title: c.name,
       reading: last7 == null ? '—' : formatQuantity(last7),
       readingNote: 'ships a day',
@@ -852,6 +874,7 @@ function beliefCards(
         id: indicator.id,
         kind: 'belief',
         kicker: 'what traders think',
+        asOf: indicatorObservation(indicator, snapshot.asOf),
         // The label arrives as a question and stays one. An earlier version
         // stripped the trailing "?" for tidiness, which turned the one mark
         // that tells a reader this is an open outcome rather than a
@@ -1065,7 +1088,7 @@ export function buildInstrumentCards({
       ...fxMoverCards(trends, analysis, articles),
     ]),
 
-    straits: keep(straitCards(chokepoints, trends)),
+    straits: keep(straitCards(chokepoints, trends, now)),
 
     predictions: keep(beliefCards(trends, analysis, articles)),
 

@@ -113,6 +113,9 @@
     "transform": {
       "\\.[jt]sx?$": "babel-jest"
     },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(d3-[^/]+|internmap)/)"
+    ],
     "moduleNameMapper": {
       "^@shared/(.*)$": "<rootDir>/../shared/$1",
       "^@babel/runtime/(.*)$": "<rootDir>/node_modules/@babel/runtime/$1"

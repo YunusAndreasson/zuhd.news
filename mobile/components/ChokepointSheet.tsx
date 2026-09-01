@@ -5,6 +5,7 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
 import { chokepointValence, type Valence } from '../lib/valence';
 import { CompareBlock } from './blocks/CompareBlock';
@@ -196,7 +197,11 @@ export const ChokepointSheet = memo(function ChokepointSheet({
             )}
 
             <Animated.View entering={enter()} style={styles.section}>
-              <SourceCaption label="IMF PortWatch" />
+              <SourceCaption
+                label={['IMF PortWatch', observationLabel(chokepoint.asOf)]
+                  .filter(Boolean)
+                  .join(' · ')}
+              />
             </Animated.View>
           </>
         )}

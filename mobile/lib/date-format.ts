@@ -7,14 +7,16 @@
 // ("2026"). Day-of-month uses the unpadded number ("MAR 15", not "MAR 05").
 //
 // Use `formatTickLabel(date, ticks)` whenever you draw a time-axis label.
-// The output is already uppercase — pass it straight to a labelXs Text.
+// Formatting is UTC because chart periods are date-only observations, not
+// local appointments. The output is already uppercase — pass it straight to
+// a labelXs Text.
 
-import { timeFormat } from 'd3-time-format';
+import { utcFormat } from 'd3-time-format';
 import { DAY_MS } from './time';
 
-const fmtYear = timeFormat('%Y');
-const fmtMonthYear = timeFormat("%b '%y");
-const fmtMonthDay = timeFormat('%b %-d');
+const fmtYear = utcFormat('%Y');
+const fmtMonthYear = utcFormat("%b '%y");
+const fmtMonthDay = utcFormat('%b %-d');
 
 /**
  * Pick a compact, human-scannable label for a tick date based on the span
