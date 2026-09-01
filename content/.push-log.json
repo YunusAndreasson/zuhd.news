@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-08-06T12:17:01.640Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-08-06-north-korea-wonsan-launch-us-south-korea-drills",
-        "title": "North Korea Resumes Missile Test",
-        "category": "politics",
-        "eventCoverage": 191,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-ukraine-says-two-russian-oil-refineries-hit-as-moscow-target",
-        "title": "Ukraine Hits Russian Refineries",
-        "category": "economy",
-        "eventCoverage": 106,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-man-charged-with-murder-of-scottish-woman-in-athens-remanded",
-        "title": "Suspect Held In Athens Murder",
-        "category": "politics",
-        "eventCoverage": 41,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-malaysia-rohingya-repatriation-non-refoulement",
-        "title": "Malaysia Plans Rohingya Return",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-india-comprehensive-national-power-gdp-gap-2047",
-        "title": "India's Power Gap With China",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-russia-far-east-eastern-economic-forum-80bn-pivot",
-        "title": "Russia's $80bn Far East Pivot",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-cyclospora-outbreak-6000-cases-irrigation-water",
-        "title": "Cyclospora Outbreak Tops 6,000",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-cnes-full-flow-staged-combustion-2028-hot-fire",
-        "title": "CNES Targets 2028 Rocket Test",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-bluetooth-mesh-india-shutdown-github-geoblock",
-        "title": "India Geoblocks Bitchat Code",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-ai-moderation-slop-asymmetry-volunteer-moderators",
-        "title": "AI Moderation Fails Communities",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-xq-58-valkyrie-crash-dugway-attritable-autonomy",
-        "title": "Valkyrie Drone Crashes In Utah",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-06-ukraine-says-two-russian-oil-refineries-hit-as-moscow-target",
-      "title": "Ukraine Hits Russian Refineries",
-      "category": "economy",
-      "body": "Ukraine said it hit two Russian refineries",
-      "eventCoverage": 106,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Ukraine drones strike two Russian oil refineries overnight",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 13
-    }
-  },
-  {
     "timestamp": "2026-08-06T17:17:28.549Z",
     "candidateCount": 13,
     "candidates": [
@@ -9965,6 +9865,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "FTC sues Amazon, alleges it overcharged advertisers $20 billion",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-09-01T04:25:18.169Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-01-g20-siluanov-return-coalition-cohesion",
+        "title": "Siluanov Returns To G20",
+        "category": "politics",
+        "eventCoverage": 249,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-schengen-renewal-ratchet-italy-spain",
+        "title": "Schengen Suspension Renewed Again",
+        "category": "politics",
+        "eventCoverage": 202,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-australia-housing-supply-shock-rate-constraint",
+        "title": "Housing Slump Meets Rate Wall",
+        "category": "economy",
+        "eventCoverage": 111,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-nvidia-mediatek-convertible-ecosystem-option",
+        "title": "Nvidia Buys Into MediaTek",
+        "category": "tech",
+        "eventCoverage": 93,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-mosque-attack-livestream-murder-charge",
+        "title": "Murder Charge For Livestreaming",
+        "category": "politics",
+        "eventCoverage": 74,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-asia-pmi-ai-capex-concentration",
+        "title": "AI Boom Splits Asia PMI",
+        "category": "economy",
+        "eventCoverage": 69,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-kaushambi-firecracker-blast-siting-threshold",
+        "title": "Firecracker Blast Kills Eleven",
+        "category": "politics",
+        "eventCoverage": 59,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-tibet-nepal-basin-information-asymmetry",
+        "title": "Flood Data Blacked Out",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-venezuela-reserves-private-vehicle-structure",
+        "title": "Pentagon Takes Venezuela Oil Stake",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-cmip7-scenarios-who-chooses-the-futures",
+        "title": "CMIP7 Narrows Climate Futures",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-sleep-regularity-optimal-transport-metric",
+        "title": "Sleep Regularity Tracks Cognition",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-manifest-v2-removal-api-as-market-power",
+        "title": "Chrome Delists Ad Blockers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-01-kaushambi-firecracker-blast-siting-threshold",
+      "title": "Firecracker Blast Kills Eleven",
+      "category": "politics",
+      "body": "Eight of the dead were children.",
+      "eventCoverage": 59,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Firecracker factory blast kills 11 in India's Kaushambi district, 8 children dead",
     "response": {
       "pushed": 1,
       "skipped": 0,
