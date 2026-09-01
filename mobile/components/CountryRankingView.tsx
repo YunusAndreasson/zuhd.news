@@ -6,7 +6,7 @@ import {
   type RankingEntry,
 } from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-import { type FlatList, InteractionManager, Text as RNText, StyleSheet, View } from 'react-native';
+import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
 import { FLAG, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { useOpenLink } from '../lib/open-link';
@@ -40,10 +40,10 @@ export const CountryRankingView = memo(function CountryRankingView({
     // Let the sheet transition finish, then position once. Four overlapping
     // animated retries kept retargeting the same list for nearly a second and
     // made an otherwise-ready ranking sheet look unsettled.
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = setImmediate(() => {
       listRef.current?.scrollToOffset({ offset, animated: false });
     });
-    return () => task.cancel();
+    return () => clearImmediate(task);
   }, [currentIndex]);
 
   const renderItem = useCallback(

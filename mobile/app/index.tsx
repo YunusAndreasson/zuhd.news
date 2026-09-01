@@ -438,8 +438,6 @@ export default function HomeScreen() {
   // Refs for values used inside stable callbacks — avoids breaking downstream memos
   const groupedRef = useRef(grouped);
   groupedRef.current = grouped;
-  const lastSeenAtRef = useRef(lastSeenAt);
-  lastSeenAtRef.current = lastSeenAt;
   // The feed's own build stamp. `useArticles` has always returned it and only
   // the heatmap cache key ever read it, so the app knew exactly how fresh it
   // was and never said. A reader who pulls to refresh is asking that question.
@@ -519,7 +517,10 @@ export default function HomeScreen() {
   sheetOpenRef.current = sheetOpen;
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
-    suppressed: sheetOpen || briefingVisible,
+    // Every lesson targets the story reader. Keeping an armed article hint
+    // over markets/shipping/outlook mislabels those instrument cards as
+    // “stories” and can point at interactions they do not support.
+    suppressed: currentSection !== NEWS || sheetOpen || briefingVisible,
   });
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
@@ -609,14 +610,14 @@ export default function HomeScreen() {
   const handleRefresh = useCallback(async () => {
     hapticImpact();
     try {
-      const n = await refresh();
-      if (n > 0) {
-        const allArticles = Object.values(groupedRef.current).flat();
-        const words = allArticles
-          .filter((a) => a.addedAt > lastSeenAtRef.current)
-          .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
+      const addedArticles = await refresh();
+      if (addedArticles.length > 0) {
+        const words = addedArticles.reduce(
+          (sum, article) => sum + article.sentences.join(' ').split(/\s+/).length,
+          0,
+        );
         const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
-        toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
+        toastRef.current?.show(`${addedArticles.length} new · ~${mins} min read`, undefined, 'top');
         // Scroll to top so new/breaking articles are visible
         newsListRef.current?.scrollToTop();
       } else {
@@ -641,18 +642,15 @@ export default function HomeScreen() {
   // launches. The 8s fallback in _layout.tsx covers any stall.
   // ...but the heatmap only gets a grace period, not a veto. Trading a brief
   // globe pop-in for up to 7s of extra splash is the wrong deal, especially on
-  // a first launch. hideAsync() rejects if the splash is already gone (the
-  // _layout fallback may have fired), so both paths swallow that.
+  // a first launch. `hide()` is idempotent if the _layout fallback already
+  // dismissed the splash.
   useEffect(() => {
     if (loading) return;
     if (heatmapReady) {
-      SplashScreen.hideAsync().catch(() => {});
+      SplashScreen.hide();
       return;
     }
-    const timer = setTimeout(
-      () => SplashScreen.hideAsync().catch(() => {}),
-      HEATMAP_SPLASH_GRACE_MS,
-    );
+    const timer = setTimeout(() => SplashScreen.hide(), HEATMAP_SPLASH_GRACE_MS);
     return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 

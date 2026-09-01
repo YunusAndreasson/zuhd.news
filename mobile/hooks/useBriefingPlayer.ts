@@ -191,6 +191,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     lockScreenDurationKnown.current = false;
   }, []);
 
+  // A feed refresh can rotate to a new briefing while yesterday's player is
+  // still paused in memory. Never label and resume that old source as today's:
+  // discard it, reset the visible position, and let the next tap load the new
+  // date through the normal first-play path.
+  useEffect(() => {
+    if (!playerRef.current || !savedDate.current || savedDate.current === effectiveDate) return;
+    teardownPlayer();
+    savedDate.current = null;
+    setPlaying(false);
+    setElapsed(0);
+  }, [effectiveDate, teardownPlayer]);
+
   const savePosition = useCallback(() => {
     if (!playerRef.current || !savedDate.current) return;
     try {

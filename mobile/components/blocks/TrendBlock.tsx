@@ -4,7 +4,7 @@ import { extent } from 'd3-array';
 import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
 import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import {
   GestureDetector,
   type PanGestureConfig,
@@ -31,11 +31,6 @@ import {
   formatBlockNumber,
   useChartDrawProgress,
 } from './shared';
-
-// Trend blocks live in article/card columns, both of which use
-// `articlePadding`. Matching that layout here avoids mounting the Skia chart
-// at one width and rebuilding every path after the first onLayout callback.
-const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.articlePadding * 2;
 
 type Pt = { x: number; y: number };
 
@@ -384,7 +379,10 @@ export const TrendBlock = memo(function TrendBlock({
 
   const progress = useChartDrawProgress();
 
-  const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
+  const { width: windowWidth } = useWindowDimensions();
+  // Match the article column on the first paint; onLayout supplies the exact
+  // measured width after layout settles.
+  const [width, setWidth] = useState(() => windowWidth - SPACING.articlePadding * 2);
 
   // Compute primary-series points for hit testing (scrub).
   const points: Pt[] = useMemo(() => {

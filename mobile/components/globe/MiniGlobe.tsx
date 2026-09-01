@@ -330,12 +330,12 @@ const ANCHOR_LABEL_OPACITY_LIGHT = 0.75;
  *  collision packing still works before fonts resolve. */
 function measureLines(
   lines: string[],
-  font: { getTextWidth: (s: string) => number } | null,
+  font: { measureText: (s: string) => { width: number } } | null,
   fallbackChar: number,
 ): number {
   let w = 0;
   for (const line of lines) {
-    const lw = font ? font.getTextWidth(line) : line.length * fallbackChar;
+    const lw = font ? font.measureText(line).width : line.length * fallbackChar;
     if (lw > w) w = lw;
   }
   return w;
@@ -1070,6 +1070,9 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
   const hotspots = useMemo((): Hotspot[] => {
+    // `_tick` is an explicit clock invalidation signal: recency below is
+    // derived from Date.now(), which React cannot infer as a dependency.
+    void _tick;
     // Fallback to article-based clustering when heatmap data unavailable
     const now = Date.now();
     if (!heatmapPoints || heatmapPoints.length === 0) {
@@ -1152,7 +1155,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         countryName: country?.properties?.name ?? null,
       };
     });
-  }, [heatmapPoints, articles, articleGeo]);
+  }, [heatmapPoints, articles, articleGeo, _tick]);
 
   // Flat coord array for UI thread interpolation
   const coordsSV = useSharedValue<(number | null)[]>([]);
@@ -1249,6 +1252,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   // and pass through directly. Render order is Green → Orange → Red so
   // consequential markers always paint over ambient ones.
   const enrichedGdacs = useMemo(() => {
+    // Recompute age-derived opacity after an app-resume clock tick even when
+    // the alert array itself is referentially unchanged.
+    void _tick;
     const alerts = gdacsAlerts ?? [];
     const GREEN_CAP = 100;
     const TYPES: GdacsAlert['eventtype'][] = ['EQ', 'TC', 'FL', 'VO', 'DR', 'WF'];
@@ -1287,7 +1293,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       coords: [a.lng, a.lat] as [number, number],
       recencyAlpha: Math.max(0.5, 1 - alertAgeDays(a) / 14),
     }));
-  }, [gdacsAlerts]);
+  }, [gdacsAlerts, _tick]);
   const gdacsAlertsRef = useRef(enrichedGdacs);
   gdacsAlertsRef.current = enrichedGdacs;
   // Conflict events — pre-shape into the same coords/recency pair the GDACS
@@ -2003,10 +2009,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         // before fonts finish loading. Country label is multi-line (1–2
         // rows): use the widest row.
         const cWidth = measureLines(countryLabel.lines, cfont, 6);
-        const dWidth = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
+        const dWidth = lfont ? lfont.measureText(dotLabel.text).width : dotLabel.text.length * 7;
         const sWidth = dotLabel.sub
           ? sfont
-            ? sfont.getTextWidth(dotLabel.sub)
+            ? sfont.measureText(dotLabel.sub).width
             : dotLabel.sub.length * 5
           : 0;
         // Country label AABB — centered on x, first baseline at y, each
@@ -2074,10 +2080,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
         if (dotLabel) {
-          const dw = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
+          const dw = lfont ? lfont.measureText(dotLabel.text).width : dotLabel.text.length * 7;
           const sw = dotLabel.sub
             ? sfont
-              ? sfont.getTextWidth(dotLabel.sub)
+              ? sfont.measureText(dotLabel.sub).width
               : dotLabel.sub.length * 5
             : 0;
           occupied.push({
@@ -2115,7 +2121,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         const wkept: GlobeState['waterLabels'] = [];
         for (const w of waterLabels) {
-          const tw = wfont ? wfont.getTextWidth(w.name) : w.name.length * 5;
+          const tw = wfont ? wfont.measureText(w.name).width : w.name.length * 5;
           // River labels render 7px above their coord (see render side),
           // everything else at its coord.
           const yc = w.kind === 'river' ? w.y - 7 : w.y;
@@ -3030,11 +3036,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       {state.chokepoints.map((c) => {
         const glyphOpacity = 0.35 + 0.45 * c.intensity;
         const glyphColor = c.disrupted ? colors.accent : colors.rule;
-        // Label centering uses getTextWidth when the font has loaded;
+        // Label centering uses measureText when the font has loaded;
         // before that we fall back to a char-count approximation so the
         // first frame doesn't misplace the text.
         const labelTx = waterFont
-          ? c.x - waterFont.getTextWidth(c.label) / 2
+          ? c.x - waterFont.measureText(c.label).width / 2
           : c.x - c.label.length * 2.5;
         const labelTy = c.y + 20;
         return (
@@ -3314,7 +3320,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           labels off the densest overlaps. */}
       {waterFont &&
         state.waterLabels.map((w, i) => {
-          const tx = w.x - waterFont.getTextWidth(w.name) / 2;
+          const tx = w.x - waterFont.measureText(w.name).width / 2;
           // River labels land directly on the river line — nudge them up
           // by ~7px (one x-height) so the label sits just above the line
           // rather than bisecting it. Lakes and seas stay at their centroid.
@@ -3360,7 +3366,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               {n.lines.map((line, i) => (
                 <SkiaText
                   key={`${n.name}-${i}`}
-                  x={n.x - neighborFont.getTextWidth(line) / 2}
+                  x={n.x - neighborFont.measureText(line).width / 2}
                   y={firstY + i * NEIGHBOR_LINE_HEIGHT}
                   text={line}
                   font={neighborFont}
@@ -3390,7 +3396,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         (() => {
           const cl = state.countryLabel;
           return cl.lines.map((line, i) => {
-            const tx = cl.x - countryFont.getTextWidth(line) / 2;
+            const tx = cl.x - countryFont.measureText(line).width / 2;
             const ty = cl.y + i * LABEL_LINE_HEIGHT;
             return (
               <HaloLabel

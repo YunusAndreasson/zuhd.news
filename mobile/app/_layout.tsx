@@ -64,7 +64,7 @@ export default function RootLayout() {
     // Fallback: force-hide the splash if fonts/feed stall so the user sees
     // something rather than a frozen launch screen. Cleared on unmount.
     const splashFallback = setTimeout(() => {
-      SplashScreen.hideAsync().catch(() => {});
+      SplashScreen.hide();
     }, SPLASH_FALLBACK_MS);
 
     // Notification permission is no longer requested here. The onboarding

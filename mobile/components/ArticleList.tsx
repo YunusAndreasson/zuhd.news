@@ -201,6 +201,25 @@ export const ArticleList = memo(function ArticleList({
     setLocalRefreshing(false);
   }, [onRefresh]);
 
+  // Keep the native refresh control referentially stable while the reader
+  // pages through stories. Recreating this element on every `currentIndex`
+  // update makes Android rebuild the ScrollView/VirtualizedList subtree even
+  // though pull-to-refresh has not changed; the list can only pull past its
+  // leading edge at index zero, so no index-dependent `enabled` prop is
+  // necessary.
+  const refreshControl = useMemo(
+    () => (
+      <RefreshControl
+        refreshing={localRefreshing}
+        onRefresh={handleRefresh}
+        tintColor={colors.textSecondary}
+        progressBackgroundColor={colors.bg}
+        colors={[colors.textSecondary]}
+      />
+    ),
+    [localRefreshing, handleRefresh, colors.textSecondary, colors.bg],
+  );
+
   // Report current article to parent (initial + on snap/sort change)
   useEffect(() => {
     const article = sortedArticles[currentIndex];
@@ -453,19 +472,13 @@ export const ArticleList = memo(function ArticleList({
         onMomentumScrollEnd={handleMomentumEnd}
         scrollEventThrottle={16}
         initialNumToRender={2}
-        maxToRenderPerBatch={2}
+        // The next story is already in the initial/window buffer. Warm later
+        // pages one at a time so Android does not mount two prose-heavy cells
+        // in the same commit immediately after the reader's first swipe.
+        maxToRenderPerBatch={1}
         windowSize={3}
         ListFooterComponent={safeAreaFooter}
-        refreshControl={
-          <RefreshControl
-            refreshing={localRefreshing}
-            onRefresh={currentIndex === 0 ? handleRefresh : undefined}
-            enabled={currentIndex === 0}
-            tintColor={colors.textSecondary}
-            progressBackgroundColor={colors.bg}
-            colors={[colors.textSecondary]}
-          />
-        }
+        refreshControl={refreshControl}
       />
     </View>
   );
