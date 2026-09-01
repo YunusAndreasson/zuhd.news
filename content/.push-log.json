@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-08-07T04:19:31.981Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-08-07-najran-houthi-strike-migrant-casualties-escalation",
-        "title": "Strike Wounds Najran",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-neet-leak-nta-paper-setters-insider-threat",
-        "title": "Experts Leaked Medical Exam",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-eln-bombing-colombia-transition-leverage",
-        "title": "Bomb Hits Colombia Handover",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-kp-assembly-anti-militancy-policy-civilian-oversight",
-        "title": "Assembly Demands Militancy Plan",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-upi-mdr-merchant-fee-public-payments-rail",
-        "title": "India Enables Payment Fees",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-prasa-security-contracts-papadopulo-investigation",
-        "title": "Ex-Chief Exposes Prasa Probe",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-chitral-glof-healthcare-access-collapse",
-        "title": "Floods Cripple Chitral Healthcare",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-typhoon-dolphin-okinawa-evacuation-warning-thresholds",
-        "title": "Typhoon Dolphin Nears Okinawa",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-06-taiwan-two-speed-ai-economy-fab-concentration",
-        "title": "Taiwan's Boom Masks Pain",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 9 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-07T08:22:50.169Z",
     "candidateCount": 12,
     "candidates": [
@@ -9986,6 +9914,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "OpenAI denies stealing Apple trade secrets in lawsuit",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-09-01T17:22:00.368Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-01-gaza-casualty-count-versus-capture-announcement",
+        "title": "Gaza Strikes Kill Four",
+        "category": "politics",
+        "eventCoverage": 317,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-drc-ebola-case-fatality-as-logistics-failure",
+        "title": "Congo Ebola Deaths Near 3,000",
+        "category": "science",
+        "eventCoverage": 159,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-cdl-school-closures-regulation-by-accreditation",
+        "title": "US Shuts Trucking Schools",
+        "category": "economy",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-cairo-xi-visit-leverage-from-weakness",
+        "title": "Egypt Seeks China Leverage",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-punjab-under-16-ban-age-verification-cost",
+        "title": "Punjab Seeks Under-16 Ban",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-villavicencio-intellectual-authorship-prosecution",
+        "title": "Ecuador Tries Assassination Masterminds",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-gulf-solar-imports-freight-corridor-dependency",
+        "title": "Gulf Solar Imports Plunge",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-bank-consortium-stablecoin-narrow-bank-float",
+        "title": "Banks Form Stablecoin Venture",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-orion-ablator-trajectory-fix-not-hardware",
+        "title": "Orion Heat Shield Redeemed",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-orbital-anomaly-detection-dual-use-by-construction",
+        "title": "AI Flags Satellite Anomalies",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-georgia-face-recognition-vendor-holds-the-gallery",
+        "title": "Face Recognition Fines Georgians",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-01-adversarial-patch-shirt-decision-boundary",
+        "title": "Shirt Defeats AI Cameras",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-01-drc-ebola-case-fatality-as-logistics-failure",
+      "title": "Congo Ebola Deaths Near 3,000",
+      "category": "science",
+      "body": "Ebola has infected over 6,000 people in",
+      "eventCoverage": 159,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Congo Ebola outbreak kills nearly 3,000, officials say",
     "response": {
       "pushed": 1,
       "skipped": 0,
