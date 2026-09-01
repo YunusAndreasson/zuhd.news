@@ -15,11 +15,16 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { resolveAudioDuration } from '../lib/audio-duration';
+import { resolveDownloadedAudioSource } from '../lib/audio-source';
 import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
+// The CDN currently answers byte-range requests with the complete MP3, which
+// lets AVPlayer play while duration remains unknown. Give a local cache write
+// a short head start; fall back to streaming on a genuinely slow connection.
+const SOURCE_DOWNLOAD_WAIT_MS = 8_000;
 // Hard cap on how long we'll wait for an AVPlayer to report `isLoaded: true`
 // after a play() request before giving up and tearing it down. Replaces the
 // older 100ms x 15 polling loop and the 300ms verify-after-resume timer
@@ -44,6 +49,15 @@ async function getArtworkUrl(): Promise<string | undefined> {
   return cachedArtworkUrl;
 }
 
+function resolveBriefingSource(url: string): Promise<string> {
+  try {
+    const asset = Asset.fromURI(url);
+    return resolveDownloadedAudioSource(url, asset.downloadAsync(), SOURCE_DOWNLOAD_WAIT_MS);
+  } catch {
+    return Promise.resolve(url);
+  }
+}
+
 interface BriefingPlayer {
   playing: boolean;
   elapsed: number;
@@ -60,8 +74,8 @@ interface BriefingPlayer {
 }
 
 // Resolve true once AVPlayer has a real duration, or false at the deadline.
-// A timeout must never activate Now Playing: its first synchronous metadata
-// write would carry duration=0, which iOS can pin for the card's lifetime.
+// The caller uses the result to prefer a complete timeline without allowing a
+// slow/indefinite native duration read to remove lock-screen controls entirely.
 function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<boolean> {
   if (player.isLoaded && player.duration > 0) return Promise.resolve(true);
   return new Promise<boolean>((resolve) => {
@@ -117,6 +131,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   // flips to true (covers cold AVPlayer that silently no-ops the first call
   // while it's still buffering).
   const wantsToPlayRef = useRef(false);
+  const sourcePreparingRef = useRef(false);
+  const sourceLoadToken = useRef(0);
   const closedRef = useRef(false);
   // One-shot guard consumed by the next toggle(): suppresses position restore
   // after the user dismisses the player with X. Synchronous so it beats the
@@ -159,16 +175,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => sub.remove();
   }, []);
 
-  // Audio is fetched when the reader presses listen — never before.
+  // Audio is fetched when the reader presses listen — never before. Once
+  // requested, cache the MP3 before playback when the connection can do so
+  // promptly. A local file gives AVPlayer deterministic duration metadata for
+  // elapsed time and progress in iOS Now Playing.
   //
-  // This used to `preload(url, { preferredForwardBufferDuration: 30 })` on
-  // every launch that had a briefing. A briefing mp3 is ~3 MB at 64 kbps, so
-  // a 30-second buffer is ~234 KB — against ~15 KB for the entire day's news.
-  // That put ~94% of a typical launch's data into audio the reader had not
-  // asked for, on a plan they may be paying for by the megabyte, to save a
-  // second of buffering for the minority who tap listen. `toggle()` already
-  // installs the source via `player.replace(...)`, so removing this costs
-  // listeners a brief spin-up and costs everyone else nothing at all.
+  // This used to preload on every launch that had a briefing. Today's 12:25
+  // briefing is 5.68 MB at 64 kbps, against ~15 KB for the day's news, so that
+  // made audio the overwhelming majority of launch traffic even for readers
+  // who never pressed LISTEN. Caching the same file only after the tap adds no
+  // bytes to a complete listen, gives AVPlayer a dependable local timeline,
+  // and preserves the lazy-data promise for everyone else.
   //
   // Keep it that way: "audio downloads only when you press listen" is a claim
   // the privacy page now makes in those words.
@@ -179,6 +196,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       giveUpTimer.current = null;
     }
     wantsToPlayRef.current = false;
+    sourcePreparingRef.current = false;
     if (playerRef.current) {
       try {
         playerRef.current.clearLockScreenControls();
@@ -187,6 +205,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       } catch {}
     }
     playerRef.current = null;
+    sourceLoadToken.current += 1;
     lockScreenActivationToken.current += 1;
     lockScreenActivationPending.current = false;
     lockScreenActive.current = false;
@@ -225,50 +244,53 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     };
   }, []);
 
-  // First-time activation of the lock-screen card. Duration is a hard gate:
-  // artwork and remote commands work without it, but iOS then omits elapsed
-  // time and the progress scrubber and may not repair them on a metadata edit.
-  const activateLockScreen = useCallback(async (player: AudioPlayer) => {
-    if (
-      lockScreenActive.current ||
-      lockScreenActivationPending.current ||
-      !Number.isFinite(player.duration) ||
-      player.duration <= 0
-    )
-      return;
-
-    const activationToken = ++lockScreenActivationToken.current;
-    lockScreenActivationPending.current = true;
-    try {
-      const artworkUrl = await getArtworkUrl();
+  // First-time activation of the lock-screen card. Prefer duration as a hard
+  // gate: artwork and remote commands work without it, but iOS then omits the
+  // timeline and may not repair it on a metadata edit. A bounded compatibility
+  // fallback below still preserves controls if native metadata never resolves.
+  const activateLockScreen = useCallback(
+    async (player: AudioPlayer, allowUnknownDuration = false) => {
+      const hasDuration = Number.isFinite(player.duration) && player.duration > 0;
       if (
-        activationToken !== lockScreenActivationToken.current ||
-        closedRef.current ||
-        playerRef.current !== player ||
-        !Number.isFinite(player.duration) ||
-        player.duration <= 0
+        lockScreenActive.current ||
+        lockScreenActivationPending.current ||
+        (!allowUnknownDuration && !hasDuration)
       )
         return;
-      player.setActiveForLockScreen(
-        true,
-        {
-          title: 'Daily Briefing',
-          artist: 'zuhd.news',
-          albumTitle: savedDate.current ?? undefined,
-          ...(artworkUrl ? { artworkUrl } : {}),
-        },
-        { showSeekForward: true, showSeekBackward: true },
-      );
-      lockScreenActive.current = true;
-      lockScreenDurationKnown.current = true;
-    } catch {
-      lockScreenDurationKnown.current = false;
-    } finally {
-      if (activationToken === lockScreenActivationToken.current) {
-        lockScreenActivationPending.current = false;
+
+      const activationToken = ++lockScreenActivationToken.current;
+      lockScreenActivationPending.current = true;
+      try {
+        const artworkUrl = await getArtworkUrl();
+        if (
+          activationToken !== lockScreenActivationToken.current ||
+          closedRef.current ||
+          playerRef.current !== player ||
+          (!allowUnknownDuration && (!Number.isFinite(player.duration) || player.duration <= 0))
+        )
+          return;
+        player.setActiveForLockScreen(
+          true,
+          {
+            title: 'Daily Briefing',
+            artist: 'zuhd.news',
+            albumTitle: savedDate.current ?? undefined,
+            ...(artworkUrl ? { artworkUrl } : {}),
+          },
+          { showSeekForward: true, showSeekBackward: true },
+        );
+        lockScreenActive.current = true;
+        lockScreenDurationKnown.current = Number.isFinite(player.duration) && player.duration > 0;
+      } catch {
+        lockScreenDurationKnown.current = false;
+      } finally {
+        if (activationToken === lockScreenActivationToken.current) {
+          lockScreenActivationPending.current = false;
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   // Refresh the metadata on an already-active lock-screen card — used once
   // duration is known so the scrubber populates, and again if the system's
@@ -311,13 +333,26 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
     if (!lockScreenDurationKnown.current && status.duration > 0) {
       if (lockScreenActive.current) {
-        lockScreenDurationKnown.current = true;
-        void refreshLockScreenMetadata(player);
+        // The card was created by the timeout fallback. Recreate it now that
+        // AVPlayer has a duration; a metadata-only update does not reliably
+        // make iOS add a timeline to an already-zero-length Now Playing card.
+        try {
+          player.clearLockScreenControls();
+        } catch {}
+        lockScreenActivationToken.current += 1;
+        lockScreenActivationPending.current = false;
+        lockScreenActive.current = false;
+        void activateLockScreen(player);
       } else {
         void activateLockScreen(player);
       }
     }
-    if (wantsToPlayRef.current && status.isLoaded && !status.playing) {
+    if (
+      wantsToPlayRef.current &&
+      !sourcePreparingRef.current &&
+      status.isLoaded &&
+      !status.playing
+    ) {
       try {
         player.play();
       } catch {}
@@ -331,7 +366,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
 
     const sinceToggle = Date.now() - userToggleAt.current;
-    if (sinceToggle >= 500 || status.didJustFinish) setPlaying(status.playing);
+    // While a requested source is downloading/loading, keep the optimistic
+    // playing state so the control remains a meaningful cancel/pause action.
+    if ((!wantsToPlayRef.current && sinceToggle >= 500) || status.didJustFinish)
+      setPlaying(status.playing);
     if (status.currentTime > 0) setElapsed(Math.floor(status.currentTime));
 
     if (status.didJustFinish) {
@@ -377,6 +415,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       // Resume/pause existing player
       if (playerRef.current) {
+        // The first tap is still caching the source. Treat the visible pause
+        // action as cancellation; teardown invalidates the pending load so a
+        // later tap can start cleanly.
+        if (wantsToPlayRef.current && !playerRef.current.isLoaded) {
+          teardownPlayer();
+          setPlaying(false);
+          return;
+        }
         if (playerRef.current.playing) {
           if (giveUpTimer.current) {
             clearTimeout(giveUpTimer.current);
@@ -411,14 +457,32 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       const player = managedPlayer;
       savedDate.current = effectiveDate;
       playerRef.current = player;
+      const loadToken = ++sourceLoadToken.current;
+      wantsToPlayRef.current = true;
+      sourcePreparingRef.current = true;
+      setPlaying(true);
+
+      const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
+      const playbackSource = await resolveBriefingSource(remoteUrl);
+      if (
+        loadToken !== sourceLoadToken.current ||
+        closedRef.current ||
+        playerRef.current !== player ||
+        !wantsToPlayRef.current
+      )
+        return;
       try {
-        player.replace(`${API_BASE}/audio/briefing-${effectiveDate}.mp3`);
+        player.replace(playbackSource);
       } catch {
+        sourcePreparingRef.current = false;
+        wantsToPlayRef.current = false;
         playerRef.current = null;
         if (__DEV__) {
           devMockActive.current = true;
           setPlaying(true);
           setElapsed(272);
+        } else {
+          setPlaying(false);
         }
         return;
       }
@@ -456,9 +520,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Kick off playback immediately so the first tap is responsive. play()
       // safely no-ops if AVPlayer is still buffering — the cold-start retry
       // in the status listener re-issues it once isLoaded flips true.
-      wantsToPlayRef.current = true;
+      sourcePreparingRef.current = false;
       player.play();
-      setPlaying(true);
       armGiveUp();
 
       // Defer lock-screen activation until AVPlayer reports a real duration.
@@ -468,17 +531,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // updateLockScreenMetadata calls don't reliably reset it. play() above
       // is safe to call before activation: AudioPlayer.play() only writes
       // NowPlayingInfo when already active, so no duration=0 leaks through.
-      // The five-second deadline only stops this call from waiting. It does
-      // not publish a zero-length card: the status effect activates later.
+      // Prefer a complete card, but never trade all lock-screen controls for
+      // a duration AVPlayer may not discover promptly on this MP3 response.
       const loadedWithDuration = await waitForLoaded(player, 5000);
 
       // Bail if the user closed the player or swapped dates during the wait.
       if (closedRef.current || playerRef.current !== player) return;
 
-      // A timeout leaves playback running but withholds the broken zero-length
-      // Now Playing card. The status effect above activates it as soon as
-      // AVPlayer publishes a real duration.
-      if (loadedWithDuration) await activateLockScreen(player);
+      // The timeout fallback restores artwork/play/pause/skip immediately.
+      // If native duration arrives later, the status effect recreates the card
+      // so iOS receives duration on its first metadata write.
+      await activateLockScreen(player, !loadedWithDuration);
     } catch {
       // Clean up partially-created player on failure
       teardownPlayer();
