@@ -1,6 +1,7 @@
 import {
   isChokepointSnapshot,
   isConflictSnapshot,
+  isFeedResponse,
   isHeatmapResponse,
   isTrendsSnapshot,
 } from '../lib/validate';
@@ -17,6 +18,19 @@ const indicator = {
 };
 
 describe('live panel data contracts', () => {
+  it('accepts a finite briefing duration and rejects unusable timeline metadata', () => {
+    const feed = {
+      generated: '2026-09-01T08:21:00Z',
+      categories: {},
+      briefing: { date: '2026-09-01', available: true, duration: 745 },
+    };
+    expect(isFeedResponse(feed)).toBe(true);
+    expect(isFeedResponse({ ...feed, briefing: { ...feed.briefing, duration: 0 } })).toBe(false);
+    expect(isFeedResponse({ ...feed, briefing: { ...feed.briefing, duration: Number.NaN } })).toBe(
+      false,
+    );
+  });
+
   it('validates indicator observation dates and scheduled-event fields', () => {
     const valid = {
       fetchedAt: '2026-09-01T08:16:00Z',

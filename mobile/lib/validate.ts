@@ -48,6 +48,12 @@ const isArticle = (v: unknown): v is Article => {
   );
 };
 
+const isBriefing = (v: unknown): boolean =>
+  isObject(v) &&
+  isIsoDate(v.date) &&
+  typeof v.available === 'boolean' &&
+  (v.duration === undefined || (isFiniteNumber(v.duration) && v.duration > 0));
+
 export const isFeedResponse = (v: unknown): v is FeedResponse => {
   if (!isObject(v) || !isIsoDate(v.generated)) return false;
   if (!isObject(v.categories)) return false;
@@ -55,7 +61,7 @@ export const isFeedResponse = (v: unknown): v is FeedResponse => {
     if (!isCategory(k)) return false;
     if (!Array.isArray(arr) || !arr.every(isArticle)) return false;
   }
-  if (v.briefing !== null && !isObject(v.briefing)) return false;
+  if (v.briefing !== null && !isBriefing(v.briefing)) return false;
   return true;
 };
 

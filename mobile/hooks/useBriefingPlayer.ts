@@ -14,6 +14,7 @@ import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
+import { resolveAudioDuration } from '../lib/audio-duration';
 import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
@@ -58,28 +59,25 @@ interface BriefingPlayer {
   close: () => void;
 }
 
-// Resolve once AVPlayer's currentItem has loaded enough metadata to know its
-// duration, or after `timeoutMs` regardless. Lock-screen activation must wait
-// for this — `setActiveForLockScreen` writes the first MPNowPlayingInfo entry
-// synchronously, and if `player.duration` is still 0 at that moment iOS pins
-// the empty-scrubber state for the lifetime of the card. Subsequent
-// `updateLockScreenMetadata` calls do not reliably reset it.
-function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<void> {
-  if (player.isLoaded && player.duration > 0) return Promise.resolve();
-  return new Promise<void>((resolve) => {
+// Resolve true once AVPlayer has a real duration, or false at the deadline.
+// A timeout must never activate Now Playing: its first synchronous metadata
+// write would carry duration=0, which iOS can pin for the card's lifetime.
+function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<boolean> {
+  if (player.isLoaded && player.duration > 0) return Promise.resolve(true);
+  return new Promise<boolean>((resolve) => {
     let done = false;
-    const finish = () => {
+    const finish = (loadedWithDuration: boolean) => {
       if (done) return;
       done = true;
       clearTimeout(timer);
       try {
         sub.remove();
       } catch {}
-      resolve();
+      resolve(loadedWithDuration);
     };
-    const timer = setTimeout(finish, timeoutMs);
+    const timer = setTimeout(() => finish(false), timeoutMs);
     const sub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
-      if (status.isLoaded && status.duration > 0) finish();
+      if (status.isLoaded && status.duration > 0) finish(true);
     });
   });
 }
@@ -105,6 +103,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
+  const lockScreenActivationPending = useRef(false);
+  const lockScreenActivationToken = useRef(0);
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
@@ -187,6 +187,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       } catch {}
     }
     playerRef.current = null;
+    lockScreenActivationToken.current += 1;
+    lockScreenActivationPending.current = false;
     lockScreenActive.current = false;
     lockScreenDurationKnown.current = false;
   }, []);
@@ -223,12 +225,30 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     };
   }, []);
 
-  // First-time activation of the lock-screen card. iOS won't have a duration
-  // yet, so the scrubber will be empty — refreshLockScreenMetadata picks
-  // that up later via the cheaper updateLockScreenMetadata path.
+  // First-time activation of the lock-screen card. Duration is a hard gate:
+  // artwork and remote commands work without it, but iOS then omits elapsed
+  // time and the progress scrubber and may not repair them on a metadata edit.
   const activateLockScreen = useCallback(async (player: AudioPlayer) => {
+    if (
+      lockScreenActive.current ||
+      lockScreenActivationPending.current ||
+      !Number.isFinite(player.duration) ||
+      player.duration <= 0
+    )
+      return;
+
+    const activationToken = ++lockScreenActivationToken.current;
+    lockScreenActivationPending.current = true;
     try {
       const artworkUrl = await getArtworkUrl();
+      if (
+        activationToken !== lockScreenActivationToken.current ||
+        closedRef.current ||
+        playerRef.current !== player ||
+        !Number.isFinite(player.duration) ||
+        player.duration <= 0
+      )
+        return;
       player.setActiveForLockScreen(
         true,
         {
@@ -240,7 +260,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         { showSeekForward: true, showSeekBackward: true },
       );
       lockScreenActive.current = true;
-    } catch {}
+      lockScreenDurationKnown.current = true;
+    } catch {
+      lockScreenDurationKnown.current = false;
+    } finally {
+      if (activationToken === lockScreenActivationToken.current) {
+        lockScreenActivationPending.current = false;
+      }
+    }
   }, []);
 
   // Refresh the metadata on an already-active lock-screen card — used once
@@ -283,8 +310,12 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       void refreshLockScreenMetadata(player);
     }
     if (!lockScreenDurationKnown.current && status.duration > 0) {
-      lockScreenDurationKnown.current = true;
-      void refreshLockScreenMetadata(player);
+      if (lockScreenActive.current) {
+        lockScreenDurationKnown.current = true;
+        void refreshLockScreenMetadata(player);
+      } else {
+        void activateLockScreen(player);
+      }
     }
     if (wantsToPlayRef.current && status.isLoaded && !status.playing) {
       try {
@@ -316,10 +347,12 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       try {
         player.clearLockScreenControls();
       } catch {}
+      lockScreenActivationToken.current += 1;
+      lockScreenActivationPending.current = false;
       lockScreenActive.current = false;
       lockScreenDurationKnown.current = false;
     }
-  }, [managedPlayer, refreshLockScreenMetadata, status]);
+  }, [activateLockScreen, managedPlayer, refreshLockScreenMetadata, status]);
 
   const toggle = useCallback(async () => {
     hapticImpact();
@@ -435,15 +468,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // updateLockScreenMetadata calls don't reliably reset it. play() above
       // is safe to call before activation: AudioPlayer.play() only writes
       // NowPlayingInfo when already active, so no duration=0 leaks through.
-      // 5s timeout falls back to activating with whatever duration AVPlayer
-      // has on a slow network, rather than withholding controls indefinitely.
-      await waitForLoaded(player, 5000);
+      // The five-second deadline only stops this call from waiting. It does
+      // not publish a zero-length card: the status effect activates later.
+      const loadedWithDuration = await waitForLoaded(player, 5000);
 
       // Bail if the user closed the player or swapped dates during the wait.
       if (closedRef.current || playerRef.current !== player) return;
 
-      activateLockScreen(player);
-      lockScreenDurationKnown.current = player.duration > 0;
+      // A timeout leaves playback running but withholds the broken zero-length
+      // Now Playing card. The status effect above activates it as soon as
+      // AVPlayer publishes a real duration.
+      if (loadedWithDuration) await activateLockScreen(player);
     } catch {
       // Clean up partially-created player on failure
       teardownPlayer();
@@ -489,9 +524,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     hapticImpact();
   }, [teardownPlayer]);
 
-  // In dev without a native player, provide a mock duration so the bar renders properly
-  const effectiveDuration =
-    feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
+  // Native duration is authoritative once loaded. Feed duration keeps the
+  // in-app timeline visible during startup instead of coupling it to AVPlayer's
+  // metadata timing; the mock remains development-only and last-resort.
+  const effectiveDuration = resolveAudioDuration(
+    status.duration,
+    feedDuration,
+    __DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0,
+  );
 
   return {
     playing,

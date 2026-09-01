@@ -90,7 +90,7 @@ export const BriefingBar = memo(function BriefingBar({
     [barWidthSV],
   );
 
-  const progress = duration > 0 ? elapsed / duration : 0;
+  const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
   const reduceMotion = useReducedMotion();
   useEffect(() => {
