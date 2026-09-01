@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "gaza-casualty-count-versus-capture-announcement",
+      "label": "Israeli attacks on Gaza kill at least four, including children",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-gaza-casualty-count-versus-capture-announcement"
+      ],
+      "eventUri": "eng-11971047",
+      "summary": "Four Palestinians including children were killed in Israeli strikes on Gaza on the same day Netanyahu announced the capture of the head of Hamas's internal security apparatus. Lead with the dead and name them as far as the reporting allows — the arrest announcement is the claim, the killings are the fact, and the two are being reported as one story only because one side supplied the press release. Who is affected: the families in Gaza City; who holds power: the Israeli government, which times and publicises the operations, and the Shin Bet, whose 'daring operation' is unverifiable by any independent party. The mechanism to explain is how a named capture crowds out an unnamed casualty count in wire coverage — the same event produced a sentiment divergence of 0.84, the highest in today's feed, with Middle East Eye leading on the Netanyahu statement at +0.44 and Al Jazeera on the dead at -0.40. Report both as separate facts and give the strike locations. Do not use the live-blog framing; write the day's toll. SELECTION NOTE: the multi-source floors could not be met this cycle — the feed supplied only four multi-source clusters in total, of which two were the same Times Square stabbing and one was the MapQuest/Lake Ontario naming row. This is the only multi-source story in the feed with genuine consequence, and there was no multi-source economy candidate at all.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Hamas",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Terrorism"
+      ]
+    },
+    {
+      "id": "cairo-xi-visit-leverage-from-weakness",
+      "label": "As streets close to welcome Xi, Egypt seeks space for strategic aims during China visit",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-cairo-xi-visit-leverage-from-weakness"
+      ],
+      "eventUri": null,
+      "summary": "Xi Jinping is in Cairo for the first time in a decade, and Mada Masr's three former officials describe an Egyptian government trying to convert the visit into leverage it does not otherwise have. Lead with what Egypt is actually short of — dollars, gas import cover and a Suez transit revenue stream degraded by the shipping disruption — because that shortage is what sets the terms: a state negotiating from a balance-of-payments position takes infrastructure and currency-swap offers on the lender's schedule, not its own. Who is affected: Egyptians carrying the debt service and the import bill; who holds power: Beijing, which can offer what the IMF conditions and the Gulf deposits do not, and Cairo, whose only real asset in the room is geography. The mechanism to explain is the difference between a strategic partnership document and a financeable project list — the reader should be shown which category each announced item falls into. Attribute the officials' assessments to Mada Masr as anonymous sourcing and distinguish them from the announced agenda. Egypt is an OIC state and Mada Masr is the regional source and the originating reporter; this is Cairo's own press describing its own government's calculation, not a Beijing-visit readout.",
+      "conceptUris": []
+    },
+    {
+      "id": "punjab-under-16-ban-age-verification-cost",
+      "label": "Punjab Assembly passes resolution seeking ban on social media for under-16s",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-punjab-under-16-ban-age-verification-cost"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's largest province has passed a resolution calling for a legal ban on social media accounts for under-16s, moved by the Child Protection Bureau chairperson in July. Lead with what a resolution is and is not: a provincial assembly resolution has no force, and the gap between it and an enforceable statute is exactly the age-verification problem — a platform cannot exclude under-16s without collecting proof of age from everyone, which converts a child-safety measure into a national identity requirement. Who is affected: Punjab's roughly 130 million residents, whose access to platforms would be conditioned on identity documents many do not hold, and the children the resolution names; who holds power: the Punjab Assembly, which can only ask, and the federal government and PTA, which alone can legislate and block. The mechanism to explain is verification architecture — self-declaration, document upload, or third-party estimation — and what each costs in privacy, because Australia's law and the California age-verification fight we covered are running the same experiment with different answers. Give the resolution's text and its legal status precisely, and be clear that no ban currently exists. Pakistan is an OIC state and Dawn is the regional source.",
+      "conceptUris": []
+    },
+    {
+      "id": "villavicencio-intellectual-authorship-prosecution",
+      "label": "The InSight Take: Who Killed Fernando Villavicencio? Ecuador's Reckoning.",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-villavicencio-intellectual-authorship-prosecution"
+      ],
+      "eventUri": null,
+      "summary": "Three years after presidential candidate Fernando Villavicencio was shot dead in Quito, Ecuador is prosecuting seven alleged masterminds — the first time the case has reached past the gunmen. Lead with that distinction, because it is the whole test: convicting triggermen is a police result, convicting the people who ordered a political assassination is a statement about whether the state can reach its own criminal-political class. Who is affected: Ecuadorean voters, for whom the assassination decided an election, and the journalists and candidates who have adjusted their own behaviour since; who holds power: the prosecutors, several of whose predecessors on this case have been killed or forced out, and the imprisoned gang leadership that runs operations from inside the prison system. The mechanism to explain is why intellectual-authorship cases fail — the evidentiary chain runs through intermediaries who are themselves killed, so the prosecution depends on cooperating witnesses in a system that cannot protect them. Name the seven as far as the reporting supports, give the charges, and treat every allegation as untried. SELECTION NOTE: our own audit flagged that Latin America has been covered only through US instruments (Maduro's detention, Exxon's Venezuela licence); this is the region's own institutions as the subject.",
+      "conceptUris": []
+    },
+    {
+      "id": "gulf-solar-imports-freight-corridor-dependency",
+      "label": "Gulf solar imports plunge up to 90% as Iran war disrupts supply chains",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-gulf-solar-imports-freight-corridor-dependency"
+      ],
+      "eventUri": null,
+      "summary": "Gulf solar-panel imports have fallen by as much as 90% because the war has broken the shipping route the modules arrive on. Lead with the inversion, because it is the surprising part: the Gulf's energy transition is import-dependent in exactly the way its oil economy is not, so a conflict that raises the price of the hydrocarbons these states sell simultaneously halts the equipment they need to stop selling them. Who is affected: the utility-scale programmes in Saudi Arabia and the UAE with contracted commissioning dates and penalty clauses, and the domestic power demand those projects were built to absorb instead of burning crude; who holds power: the Chinese manufacturers who supply substantially all of the modules, the shippers and war-risk underwriters who decide whether a hull enters the Gulf, and the sovereign programmes that must now choose between delay and paying an air-freight or transhipment premium. The mechanism to explain is single-corridor dependency in a commodity that is cheap per watt but bulky per container — solar is the most freight-exposed generation technology there is, which is why a 90% import fall does not show up as a price move but as a schedule. Give the import figures, the period, and the affected projects. SOURCING NOTE: the affected states are OIC members and Salaam Gateway (AE) is the regional source; the feed carried no second outlet on these figures, so attribute the numbers to Salaam Gateway and its cited trade data explicitly. This advances the Hormuz economic arc from consumer prices to capital goods — do not re-report Brent, the GCC recovery split, or the trans-Arctic corridor.",
+      "conceptUris": []
+    },
+    {
+      "id": "cdl-school-closures-regulation-by-accreditation",
+      "label": "110 commercial trucking schools ordered to close over English-language rules",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-cdl-school-closures-regulation-by-accreditation"
+      ],
+      "eventUri": "eng-11968217",
+      "summary": "The US Transportation Department has ordered 110 commercial driver's licence schools shut immediately on the ground that their graduates could not demonstrate English proficiency. Lead with the instrument, not the immigration argument: a language-proficiency standard applied at the training provider rather than the driver converts a per-person test into a mass licence revocation, and closing a school terminates the enrolment of every student in it, including those who would pass. Who is affected: the thousands of enrolled students — overwhelmingly immigrants — whose tuition and pathway to a licensed trade ends without an individual finding against them, and the freight market that has been short of drivers for a decade; who holds power: the Secretary of Transportation, who can decertify a training provider administratively, and the state licensing agencies that must decide what happens to already-issued licences. The mechanism to explain is regulation-by-accreditation — when the state licenses the licensor, it can achieve at one remove what it could not do directly to individuals, with no hearing for the people affected. Give the number of students enrolled, the legal authority cited, and the appeal route if any. Be exact about what the department has actually found versus alleged, and note that a fraud claim and a proficiency claim are different accusations.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sean_Duffy",
+        "http://en.wikipedia.org/wiki/English_language",
+        "http://en.wikipedia.org/wiki/Truck_driver",
+        "http://en.wikipedia.org/wiki/Commercial_driver's_license",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_Transportation",
+        "http://en.wikipedia.org/wiki/Fraud",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "bank-consortium-stablecoin-narrow-bank-float",
+      "label": "Citi, Goldman, other global banks and asset managers team up on stablecoin venture",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-bank-consortium-stablecoin-narrow-bank-float"
+      ],
+      "eventUri": "eng-11972148",
+      "summary": "Twenty-one financial institutions — Bank of America, Citi, Goldman Sachs, UBS among them — are forming a single company to issue a stablecoin compliant with the US GENIUS Act and the EU's MiCA. Lead with the consortium structure, because that is the news: incumbents that compete on everything else are pooling issuance, which means none of them believes a bank-branded stablecoin wins alone and all of them believe the settlement layer is worth owning collectively. Who is affected: correspondent banks and payment intermediaries in the corridors this is aimed at, whose fee income is the target, and depositors in emerging-market banking systems where a dollar token issued by a Citi-Goldman vehicle competes directly with the local currency; who holds power: the consortium, which sets redemption terms and reserve composition, and the US and EU regulators whose two statutes define what may be called a stablecoin at all. The mechanism to explain is that a stablecoin is a narrow bank — fully reserved, no maturity transformation, no lending — so the interesting question is who earns the reserve float and whether the GENIUS Act lets them pay any of it to holders. Give the full institution list, the launch timing, and the jurisdiction of issuance. This advances the tokenisation arc from the LSE and ICE stories; that was tokenised assets, this is the money leg — do not re-report either.",
+      "conceptUris": []
+    },
+    {
+      "id": "drc-ebola-case-fatality-as-logistics-failure",
+      "label": "Ebola deaths approach 3,000 -- RT Africa",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-drc-ebola-case-fatality-as-logistics-failure"
+      ],
+      "eventUri": "eng-11968323",
+      "summary": "More than 6,000 people have been infected with Ebola in the Democratic Republic of the Congo since this outbreak began and nearly half of confirmed patients have died, with spread across six provinces including Ituri. Lead with the case fatality ratio, because it is the diagnostic number: a licensed vaccine and a monoclonal treatment both exist, and roughly 50% mortality means they are not reaching patients — this is a logistics failure expressed as a death rate, not a virology result. Who is affected: six provinces of eastern DR Congo where the health system is already contending with armed conflict, and the health workers who are historically over-represented in Ebola deaths; who holds power: the Congolese health ministry, the WHO, and the Gavi/UNICEF supply chain that governs whether ring vaccination reaches a contact within the window in which it works. The mechanism to explain is ring vaccination and why it fails — it requires contact tracing to name people within days, which requires roads, trust and security, so an outbreak crossing six provinces has already outrun the only tool that stops it. Give the case and death counts, the provinces, the date the outbreak was declared, and the vaccine deployment figures. SOURCING NOTE: RT is the only outlet in the feed carrying this and the DR Congo is not an OIC state, so no regional carry-through applies; attribute the counts to the WHO and Congolese ministry figures RT cites, not to RT. Africa has registered five articles a day for two consecutive days in our own audit with no Central African dateline — this is the largest ongoing death toll anywhere in the feed and it was near-invisible in it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Ebola",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/Ituri_Province",
+        "http://en.wikipedia.org/wiki/Vaccine",
+        "http://en.wikipedia.org/wiki/Western_African_Ebola_virus_epidemic",
+        "http://en.wikipedia.org/wiki/World_Health_Organization",
+        "http://en.wikipedia.org/wiki/Epidemic"
+      ]
+    },
+    {
+      "id": "orion-ablator-trajectory-fix-not-hardware",
+      "label": "It turns out that Orion's much-maligned heat shield performed really well",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-orion-ablator-trajectory-fix-not-hardware"
+      ],
+      "eventUri": "eng-11966792",
+      "summary": "The Orion heat shield that shed material unexpectedly on Artemis I — and became the programme's most-criticised component — came through Artemis II reentry with a crew aboard performing as designed. Lead with the fix rather than the vindication: NASA did not rebuild the shield, it changed the reentry trajectory, which is an admission that the failure was in how the ablator was flown rather than how it was made. Who is affected: the four crew who rode it, and the Artemis III timeline that was hostage to this single component; who holds power: NASA's engineering directorate, which chose a procedural fix over a hardware requalification, and the inspector general and advisory panel that argued the risk was not retired. The mechanism to explain is ablation itself — Avcoat chars and sheds by design, and the Artemis I anomaly was gas trapped by a slower, skip-entry heating profile permitting cracks to lift material; a modified profile changes the heating rate, not the material. Give the measured post-flight condition against the Artemis I baseline, and be exact about what has been inspected so far versus what awaits full analysis. This is the counterweight to our Mars-rotorcraft piece: the same agency, one capability confirmed and another quietly unfunded.",
+      "conceptUris": []
+    },
+    {
+      "id": "orbital-anomaly-detection-dual-use-by-construction",
+      "label": "AI tool detects unusual satellite behavior to improve space safety",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-orbital-anomaly-detection-dual-use-by-construction"
+      ],
+      "eventUri": null,
+      "summary": "A model published in Expert Systems flags anomalous satellite behaviour from tracking data to reduce collision risk in orbit. Lead with what 'anomalous' has to mean here, because that is where the story sits: the same detector that spots a failing reaction wheel spots a satellite manoeuvring toward another one, so an operational safety tool is also a rendezvous-detection tool, and nothing in the method distinguishes the two. Who is affected: every operator in low Earth orbit now sharing shells with tens of thousands of objects, and the smaller states and universities whose satellites have no propulsion and cannot dodge; who holds power: the handful of entities with the tracking catalogues these models train on — US Space Command, commercial trackers, and increasingly the megaconstellation operators, who hold better data on their own shells than any regulator does. The mechanism to explain is that space situational awareness is an inference problem, not a measurement one: positions are fitted from sparse observations, uncertainty ellipsoids are large, and a collision warning is a probability, which is why most alerts are ignored. Give the model's inputs, its false-positive behaviour, and what data it was validated on. Advances our orbital-sovereignty thread from procurement to the traffic layer.",
+      "conceptUris": []
+    },
+    {
+      "id": "georgia-face-recognition-vendor-holds-the-gallery",
+      "label": "Seen and silenced: How Russian surveillance software suppresses Georgian civilians rights",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-georgia-face-recognition-vendor-holds-the-gallery"
+      ],
+      "eventUri": null,
+      "summary": "Georgia has built a nationwide face-recognition enforcement system over two years using software procured from a Moscow-based company with reported FSB ties, and it is being used to identify and fine demonstrators after the fact. Lead with retroactive enforcement as the mechanism, because that is what is new: the system does not stop a protest, it makes attending one billable weeks later, which removes the confrontation a police cordon requires and replaces it with a letter. Who is affected: Georgian demonstrators receiving fines for presence rather than conduct, and everyone who now assumes the camera identified them whether or not it did — the deterrent works on the belief, not the accuracy; who holds power: the Georgian interior ministry, the vendor, and by extension a Russian state that gains a live picture of who protests in Tbilisi. The mechanism our reader wants is procurement as the real story: face recognition is a commodity, and the sovereignty question is who holds the gallery, the logs and the update channel — a vendor that can push a model update can read the matches. Name the company, the contract value and the fine totals as the reporting supports, and distinguish documented ties from alleged ones. Global Voices is doing original documentation here on a system almost nobody outside Georgia is reporting.",
+      "conceptUris": []
+    },
+    {
+      "id": "adversarial-patch-shirt-decision-boundary",
+      "label": "This 'Digital Camouflage' Shirt Confuses AI-Powered Surveillance Cameras",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-adversarial-patch-shirt-decision-boundary"
+      ],
+      "eventUri": null,
+      "summary": "Simon Weckert's printed shirt defeats AI surveillance cameras in a live demonstration a 404 Media reporter watched. Lead with why it works, because the reason is the point and it generalises: an object detector is a decision boundary in a very high-dimensional space, and a printed adversarial patch is simply a point chosen to sit on the wrong side of it — the garment does not hide a person, it produces a confident wrong answer. Who is affected: people under camera systems that were sold as reliable and are being used as evidence; who holds power: the vendors, who publish accuracy figures measured on benign inputs and are not required to publish adversarial ones, and the agencies that procure on those figures. The mechanism to explain is transferability and its limits — a patch tuned against one model often fools others, which is what makes this more than a stunt, but detectors are retrained and physical patches degrade with angle, distance and light, so this is an arms race with a short half-life on each move. Be exact about what was demonstrated, against which system, and under what conditions; resist both the 'surveillance defeated' and the 'gimmick' framing. Pairs with today's Georgian face-recognition piece: the same technology from the position of the person in front of the lens.",
+      "conceptUris": []
+    },
+    {
+      "id": "records-fee-as-exemption-data-centre-arrest",
+      "label": "Oklahoma Tells City It Can't Charge $17,125.44 for a Records Request Related to Data Center Arrest",
+      "firstSeen": "2026-09-01T17:08:30.425Z",
+      "lastCovered": "2026-09-01T17:08:30.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-01-records-fee-as-exemption-data-centre-arrest"
+      ],
+      "eventUri": null,
+      "summary": "An Oklahoma city quoted a farmer $17,125.44 for the bodycam footage and records of his own arrest at a council meeting about a data centre, and the state attorney general's office has told it that it cannot. Lead with the invoice as the mechanism: open-records law almost never lets a government refuse outright, but it lets one price, and a four-figure or five-figure estimate is a denial that never has to be appealed because almost nobody pays it. Who is affected: residents contesting data-centre siting — the land, water and power fights now running in dozens of rural US counties — for whom the record of their own removal from a public meeting is the evidence; who holds power: the city, which sets the fee schedule and estimates the hours, and a state oversight office that only acts when someone escalates. The mechanism to explain is cost-as-exemption, and it is a systemic pattern rather than one town's overreach — the fee is computed from staff review time, so the more video a body-camera programme generates the more expensive its own transparency becomes. Give the exact quoted figure, what was requested, the state's finding, and what the city must now do. 404 Media is the sole reporter here and this is the transparency layer of the data-centre buildout our reader is watching from the energy side.",
+      "conceptUris": []
+    },
+    {
       "id": "sco-bishkek-declaration-consensus-omissions",
       "label": "Putin to meet Xi and Modi -- RT World News",
       "firstSeen": "2026-09-01T12:07:01.898Z",
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-sco-bishkek-declaration-consensus-omissions"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-dsa-designation-user-threshold-chatgpt-roblox"
@@ -58,7 +293,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-makkah-defence-pact-secretariat-institution-threshold"
@@ -74,7 +309,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-sudan-dialogue-sequencing-ceasefire-first"
@@ -90,7 +325,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-naptip-trafficking-through-registered-charities"
@@ -106,7 +341,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-india-august-vehicle-sales-wholesale-versus-demand"
@@ -131,7 +366,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-boj-independence-external-pressure-yen"
@@ -147,7 +382,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-perpetual-preferred-par-defence-bitcoin-treasury"
@@ -163,7 +398,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-india-reverse-brain-drain-institutional-depth"
@@ -179,7 +414,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-mars-rotorcraft-substituting-for-landers"
@@ -195,7 +430,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-ai-safety-evaluation-language-coverage-gap"
@@ -211,7 +446,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-unified-memory-local-inference-demand-shock"
@@ -227,7 +462,7 @@
       "lastCovered": "2026-09-01T12:07:01.898Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-01-trade-secret-doctrine-ai-engineer-mobility"
@@ -252,7 +487,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-army-secretary-resignation-civilian-control-two-wars"
@@ -277,7 +512,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-cyrenaica-power-to-water-allocation-failure"
@@ -293,7 +528,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-buner-cloudburst-forecast-authority-lead-time"
@@ -309,7 +544,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-micronesian-forum-pooled-hedging-small-state-leverage"
@@ -325,7 +560,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-shein-hong-kong-listing-venue-of-last-resort"
@@ -349,7 +584,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-lse-payward-tokenised-equity-fungibility-threshold"
@@ -365,7 +600,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-skarzysko-drone-plant-fire-component-chokepoint"
@@ -388,7 +623,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-gcc-hormuz-geography-divides-recovery"
@@ -404,7 +639,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-coral-trafficking-provenance-dye-marking"
@@ -427,7 +662,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-pakistan-stunting-enteric-dysfunction-absorption-gap"
@@ -443,7 +678,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-zircon-teardown-export-control-component-leak"
@@ -459,7 +694,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-atm-jackpotting-internal-bus-trust-model"
@@ -475,7 +710,7 @@
       "lastCovered": "2026-09-01T08:06:37.666Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-01-uae-space-capability-hedge-substitutable-segments"
@@ -491,7 +726,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-31-mathematics-ai-proof-verification-boundary",
@@ -508,7 +743,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-g20-siluanov-return-coalition-cohesion"
@@ -533,7 +768,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-schengen-renewal-ratchet-italy-spain"
@@ -558,7 +793,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-kaushambi-firecracker-blast-siting-threshold"
@@ -583,7 +818,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-mosque-attack-livestream-murder-charge"
@@ -608,7 +843,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-tibet-nepal-basin-information-asymmetry"
@@ -624,7 +859,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-australia-housing-supply-shock-rate-constraint"
@@ -649,7 +884,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-venezuela-reserves-private-vehicle-structure"
@@ -665,7 +900,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-asia-pmi-ai-capex-concentration"
@@ -690,7 +925,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-cmip7-scenarios-who-chooses-the-futures"
@@ -706,7 +941,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-sleep-regularity-optimal-transport-metric"
@@ -722,7 +957,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-manifest-v2-removal-api-as-market-power"
@@ -738,7 +973,7 @@
       "lastCovered": "2026-09-01T04:07:57.205Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-01-nvidia-mediatek-convertible-ecosystem-option"
@@ -763,7 +998,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-modi-putin-bilateral-crude-leverage-unused"
@@ -788,7 +1023,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-larak-scatterable-mine-claim-unverified-justification"
@@ -804,7 +1039,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-islamic-state-buried-reserves-outside-the-financial-system"
@@ -820,7 +1055,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-exxon-venezuela-licence-as-instrument"
@@ -845,7 +1080,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price"
@@ -870,7 +1105,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-south-africa-fuel-formula-war-premium-pass-through"
@@ -895,7 +1130,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-droplet-microdischarge-corrosion-coating-inversion"
@@ -911,7 +1146,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-percolation-universality-proof-critical-threshold"
@@ -927,7 +1162,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-30-europe-drought-desertification-soil-threshold"
@@ -943,7 +1178,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-agent-sandbox-escape-model-registry-supply-chain"
@@ -959,7 +1194,7 @@
       "lastCovered": "2026-08-31T22:07:32.884Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-31-hyperliquid-dprk-flows-visible-and-unstoppable"
@@ -975,7 +1210,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-maduro-brooklyn-detention-extraterritorial-indictment"
@@ -999,7 +1234,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-syria-sdf-integration-war-that-did-not-happen"
@@ -1015,7 +1250,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-paracels-antelope-reef-construction-facts-on-the-water"
@@ -1031,7 +1266,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-sweden-naval-group-frigates-european-yard-capacity"
@@ -1055,7 +1290,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-indonesia-captive-coal-nickel-accounting-boundary"
@@ -1071,7 +1306,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-niger-delta-bank-financing-divestment-liability"
@@ -1087,7 +1322,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-ice-tzero-tokenised-collateral-clearing-house-risk"
@@ -1103,7 +1338,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-el-nino-amplitude-coral-record-thousand-years"
@@ -1119,7 +1354,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-grand-canyon-flash-flood-slot-hydrology-warning-lead-time"
@@ -1142,7 +1377,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-streaming-boxes-residential-proxy-networks-reputation-inversion"
@@ -1158,7 +1393,7 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-31-osint-attribution-nigeria-fraud-no-remedy"
@@ -1174,275 +1409,13 @@
       "lastCovered": "2026-08-31T17:07:16.481Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-30-california-age-verification-foss-licence-exemption"
       ],
       "eventUri": null,
       "summary": "California's legislature voted unanimously to exempt software distributed under the GPL, MIT, BSD and Apache licences from its age-verification mandate. Lead with the drafting choice, because it is the precedent: the law now identifies a class of software by its copyright licence rather than by who ships it, which is the first time a US state has used licence terms as a regulatory category. Who is affected: distribution maintainers and anyone shipping an OS image who would otherwise have had to build identity checks into a package manager; who holds power: a legislature that discovered its own bill would have made Debian illegal to distribute. The mechanism to explain is why age-verification statutes keep catching general-purpose computing — they regulate 'operating systems' and 'app stores' as products with an owner, and free software has neither. Note what the exemption does not cover, and that the drafting fix does nothing for maintainers outside California. Story reached the top of Hacker News (772 points), a direct signal from our reader's own feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "rasuwa-evacuee-bus-crash-warning-without-capacity",
-      "label": "32 injured as bus carrying Nepal flood evacuees from Rasuwa crashes in Danda",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-rasuwa-evacuee-bus-crash-warning-without-capacity"
-      ],
-      "eventUri": "eng-11965668",
-      "summary": "Nepal warned of fresh flooding on the Bhotekoshi and pushed alerts to phones — and then a bus carrying evacuees out of Rasuwa crashed in Dhading, injuring 32. Lead with that sequence: the evacuation itself became the second casualty event. Who is affected: people already displaced once by a flood whose toll we reported above 5,000. Who holds power: the Home Ministry running warning-and-move on single-lane mountain roads that landslides have already degraded. The structural why is that early warning without safe evacuation capacity converts a hazard warning into a transport risk, and Himalayan districts have the least road redundancy exactly where the catchments concentrate runoff. Follow-on to the 5,000-dead toll covered this morning; the new fact is the crash and the renewed rise in water levels, not the flood. Note the three sources describe the same day with markedly different emphasis (divergence 0.38).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Tibet",
-        "http://en.wikipedia.org/wiki/Kathmandu",
-        "http://en.wikipedia.org/wiki/Dhading_District",
-        "http://en.wikipedia.org/wiki/District",
-        "http://en.wikipedia.org/wiki/Landslide"
-      ]
-    },
-    {
-      "id": "uae-drone-intercept-gulf-littoral-risk-transfer",
-      "label": "UAE Intercepts Iranian Drone Over Its Territorial Waters",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-uae-drone-intercept-gulf-littoral-risk-transfer"
-      ],
-      "eventUri": "eng-11967556",
-      "summary": "The UAE air force shot down an Iranian drone over its own territorial waters on Monday, one day after the US struck Larak Island and Iran said it retaliated. Lead with the geography: this is the second Arab state in two days — after Jordan's eight intercepts — to fire on ordnance crossing territory it never volunteered. Who is affected: Gulf states that host US forces and are now absorbing the retaliation aimed at them; who holds power: Washington, which bases there, and Tehran, which now treats the whole littoral as a corridor. The mechanism to explain is host-nation risk transfer, and its second-order cost — shipping and aviation insurance across a strait that is also the UAE's own export route. Advances the Jordan-intercept story; do not merge them, name each state's own account. SOURCING: NewsMax is the only outlet in the feed and no Gulf regional outlet (The National, Khaleej Times) carried it at fetch time — attribute the interception strictly to the UAE Defence Ministry statement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Jordan",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
-        "http://en.wikipedia.org/wiki/Missile",
-        "http://en.wikipedia.org/wiki/Territorial_waters"
-      ]
-    },
-    {
-      "id": "palestine-action-sdgt-material-support-reach",
-      "label": "Trump designates protesters terrorists. How far will it go?",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-palestine-action-sdgt-material-support-reach"
-      ],
-      "eventUri": null,
-      "summary": "The US placed Palestine Action — a UK protest group whose members are charged mainly with vandalising weapons-manufacturer property — on the Specially Designated Global Terrorist list, alongside two other European entities. Lead with what the designation unlocks, not the label: asset freezes, a ban on transactions, and criminal exposure for any US person providing vaguely defined 'material support' or 'services'. Who is affected: American citizens, nonprofits and students who speak in the group's defence; who holds power: Treasury, which decides the list, with no adversarial process. The structural why is that SDGT is a post-9/11 instrument built for armed networks and is now reaching a protest movement — and the Supreme Court has already held that helping a designated group resolve grievances peacefully counts as support. Anchor to the record: the UK proscription, the hundreds arrested there for holding placards, and the Prairieland material-support prosecutions. SOURCING: this is an advocacy outlet, but the designation and NSPM-7 are public documents — write only from what is on the record and attribute the outlet's characterisations to it.",
-      "conceptUris": []
-    },
-    {
-      "id": "sowore-trial-suspension-process-as-punishment",
-      "label": "SSS justifies move to suspend Sowore's cyberstalking trial",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-sowore-trial-suspension-process-as-punishment"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's State Security Service is asking a court to suspend its own cyberstalking prosecution of activist and former presidential candidate Omoyele Sowore, and its counsel told Premium Times the request rests on international conventions Nigeria has signed. Lead with the inversion: the agency that brought the charge now wants the trial paused, which leaves the defendant carrying the charge without the hearing that would end it. Who is affected: a journalist-activist held in indefinite legal limbo; who holds power: a security service prosecuting speech under a cybercrime statute written for fraud. The structural why is that suspension without dismissal is itself the punishment — the process, not the verdict, is the instrument. Ask what conventions are actually cited and whether they support the claim; report the SSS reasoning in its own words and let a lawyer's rebuttal stand beside it.",
-      "conceptUris": []
-    },
-    {
-      "id": "maharashtra-sir-uncollected-forms-burden-inversion",
-      "label": "Maharashtra SIR draft electoral roll out: How to check your name on voter list",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-maharashtra-sir-uncollected-forms-burden-inversion"
-      ],
-      "eventUri": "eng-11967448",
-      "summary": "Maharashtra's draft roll under the Special Intensive Revision is out, and roughly 2.07 crore — about 20.7 million — enumeration forms were recorded as uncollected. Lead with that number, not with how to check your name; this is not a service piece and must not be written as one. Who is affected: voters in India's second-most-populous state who must now prove their own entry rather than be presumed on it; who holds power: the Election Commission, which set the revision's terms and the objection window. The structural why is burden inversion — a revision shifts the default from enrolled to excluded, and the cost of the shift falls hardest on migrants, tenants and people without stable addresses, who are least able to file within the window. Give the objection deadline and the appeal route precisely, and set the figure against Maharashtra's total electorate so the reader can size it. Reference the Bihar SIR only for what it established procedurally.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Electoral_roll",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/Electoral_district",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Maharashtra"
-      ]
-    },
-    {
-      "id": "india-q1-gdp-deflator-headline-versus-household",
-      "label": "'India Bloomed, Doomsayers Doomed': PM Modi Calls 7.8% GDP Growth A 'Herculean Feat'",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-india-q1-gdp-deflator-headline-versus-household"
-      ],
-      "eventUri": "eng-11968043",
-      "summary": "India's economy grew 7.8% in April-June FY27, above the RBI's own 7% estimate, and the government has made the number a political argument. Lead with the gap between the print and the household — the same week Indian equities fell on crude, and the same country whose neighbours are being squeezed by the identical oil bill. Who holds power: the statistics ministry whose deflator choice is doing part of the work, and a government using the figure against 'doomsayers'. The mechanism to explain for a serious reader is that headline real GDP at a low deflator can outrun nominal demand — so ask what the nominal growth, the private-consumption share and the investment line say, and report those beside the headline. The three sources in this cluster diverge sharply in sentiment (0.92, the widest in the feed): one leads with Modi's attack on critics, two with the beat against the RBI forecast. Report the data first and the politics as a separate fact.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gross_domestic_product",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Economy_of_India",
-        "http://en.wikipedia.org/wiki/Economic_growth",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India"
-      ]
-    },
-    {
-      "id": "trans-arctic-corridor-chokepoint-hedge-insurance",
-      "label": "Trans-Arctic Transport Corridor to bolster Russia's national security",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-trans-arctic-corridor-chokepoint-hedge-insurance"
-      ],
-      "eventUri": "eng-11965904",
-      "summary": "Moscow is framing its Trans-Arctic Transport Corridor as a national-security asset in the same week Lavrov called NATO's Arctic activity a threat — and the same week Brent went to $91 because the Strait of Hormuz is under fire. That coincidence is the story: as the world's two narrowest maritime chokepoints price in war risk, the Northern Sea Route stops being a climate curiosity and becomes a hedged alternative that one state controls end to end. Who is affected: shippers and the Asian buyers Russia wants on the route; who holds power: Russia, which owns the icebreaker fleet and the escort permits, and China, which is financing interest in it. Explain the mechanism plainly — a corridor is only an alternative if someone will insure it, and Arctic hull, ice-pilot and liability cover is the binding constraint, not the ice. SOURCING DISCIPLINE: two of the three sources are Russian state outlets and the third is Ukrainian; attribute Patrushev's and Lavrov's claims to them by name, do not report the corridor's capacity as established, and note the cluster's 0.52 sentiment divergence rather than splitting the difference.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Arctic",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon",
-        "http://en.wikipedia.org/wiki/Minister_of_Foreign_Affairs_(Russia)"
-      ]
-    },
-    {
-      "id": "brent-91-war-premium-probability-pricing",
-      "label": "Oil rises over 3% as US and Iran resume military attacks",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-brent-91-war-premium-probability-pricing"
-      ],
-      "eventUri": "eng-11963949",
-      "summary": "Brent rose $2.87 to $90.97 by 1120 GMT after the US struck Larak Island and Tehran said it retaliated, in the sixth month of the conflict. Lead with the number and with what it buys nobody: a 3% move is a war premium, not a supply loss — no barrel has actually stopped moving through Hormuz. Who bears the cost: importing economies with no hedge, which in this feed alone means India's equity market falling the same session, Japan defending the yen at 160 against a dollar-denominated energy bill, and Pakistani households already substituting nutrients out of the food basket. The structural why is that crude prices the probability of closure, so each strike is repriced whether or not it interrupts a cargo — and the countries with the least fiscal room pay for the probability. Give the WTI figure alongside Brent. SOURCING NOTE: this is Reuters copy carried by Aol; no OPEC-member or Gulf regional outlet covered the move in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "feynman-path-integral-measured-not-inferred",
-      "label": "Physicists finally put Feynman's path integral to the test",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-feynman-path-integral-measured-not-inferred"
-      ],
-      "eventUri": null,
-      "summary": "Researchers in China have directly tested in the laboratory the path-integral formulation Richard Feynman introduced as a thought experiment almost eighty years ago — the idea that a quantum particle's behaviour is the sum over every route it could take. Lead with what 'directly tested' means and does not mean: the formulation has been overwhelmingly confirmed by its predictions for decades, so the news is that the summation itself was measured rather than inferred from an outcome. Who is affected: nobody's daily life, and say so — the value is epistemic. Explain the mechanism concretely: how do you make individual paths addressable, and what did the experiment vary? The structural why is that a calculational device becoming an observable is how physics converts formalism into ontology, and this is also a marker of where fundamental quantum optics is now being done. Report the apparatus and the number of paths; be precise about the claim the authors make versus the headline.",
-      "conceptUris": []
-    },
-    {
-      "id": "sarcopenia-aml-ct-reuse-frailty-judgement",
-      "label": "Association of sarcopenia with treatment tolerance in older adults with acute myeloid leukemia using artificial intelligence computed tomography-segmentation and a geriatric assessment",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-sarcopenia-aml-ct-reuse-frailty-judgement"
-      ],
-      "eventUri": null,
-      "summary": "Seventy-eight adults with acute myeloid leukaemia, median age 73, had their muscle mass measured by AI segmentation of CT scans they had already been given — and the result is a signal about who tolerates treatment. Lead with the reuse, which is the transferable idea: the scan already exists for staging, so body composition is free information that oncologists currently throw away. Who is affected: older patients whose fitness for intensive chemotherapy is today judged largely by a clinician's impression and chronological age. The structural why is that 'too frail for treatment' is one of the most consequential and least standardised judgements in oncology, and sarcopenia is a measurable proxy that does not need a new machine or a new visit. Report the cohort size and the effect honestly — 78 patients at one accrual is hypothesis-generating, not practice-changing — and state what regimens they received.",
-      "conceptUris": []
-    },
-    {
-      "id": "chatgpt-vlop-dsa-assistant-as-platform",
-      "label": "EU adds ChatGPT to list of platforms facing tougher digital scrutiny",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-chatgpt-vlop-dsa-assistant-as-platform"
-      ],
-      "eventUri": "deu-2168693",
-      "summary": "Brussels designated ChatGPT, Reddit and Roblox as Very Large Online Platforms under the Digital Services Act, which is the first time a general-purpose AI assistant has been regulated as a platform rather than as a model. Lead with that reclassification, not with the company names. Who is affected: every EU user of a chatbot, who now acquires rights — risk assessments, researcher data access, an appealable content decision — that model-level rules never gave them; who holds power: the Commission, which sets the 45-million-user threshold and can fine 6% of global turnover. The mechanism to explain is why the distinction bites: the AI Act governs how a model is built, the DSA governs what a service does to the people using it, and a conversational interface that recommends and retrieves is doing platform work. Say plainly what obligations attach and by when, and note that Reddit and Roblox landing in the same tranche shows the threshold is about reach, not about technology.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Reddit",
-        "http://en.wikipedia.org/wiki/Roblox",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Brussels",
-        "http://en.wikipedia.org/wiki/Search_engine_(computing)",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Democratic_Socialists_of_America"
-      ]
-    },
-    {
-      "id": "meta-influencer-lobby-teen-rules-arbitrage",
-      "label": "Meta accepts U.S. safety rules while pitching softer tools abroad",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-meta-influencer-lobby-teen-rules-arbitrage"
-      ],
-      "eventUri": null,
-      "summary": "Meta is complying with teen-safety rules where they are enforced and, where governments are still deciding, running influencer campaigns arguing that parental controls are the better answer than an under-16 ban. Lead with the asymmetry — the same company, the same product, two different arguments chosen by jurisdiction. Who is affected: teenagers in countries whose regulators are outgunned; who holds power: a platform that can rent local credibility from creators its own algorithm made. The mechanism to explain is regulatory arbitrage in its softest form: not evasion of law but the shaping of law before it exists, by paying the people a legislature reads. The structural why is that safety features are cheap to build once and are then withheld as a bargaining position, so the floor a country gets depends on how hard it is expected to push. Name the markets and the campaign specifics; set this beside the EU designating ChatGPT a VLOP the same day — enforcement capacity, not intention, is what separates the two outcomes.",
-      "conceptUris": []
-    },
-    {
-      "id": "iris2-meo-order-buying-orbital-sovereignty",
-      "label": "SES Awards OHB €1 billion for IRIS2 MEO Satellites",
-      "firstSeen": "2026-08-31T12:07:10.119Z",
-      "lastCovered": "2026-08-31T12:07:10.119Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-31-iris2-meo-order-buying-orbital-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "SES has given OHB almost €1 billion to build the medium-Earth-orbit platforms for IRIS², the EU's €15.6 billion secure communications constellation — the first major industrial order the programme has placed. Lead with the ratio: one contract is 6% of a constellation budget that has to buy sovereignty from scratch. Who is affected: European governments and militaries currently dependent on a commercial constellation whose owner decides case by case what it may be used for — a dependency this same feed illustrates today in the reporting that Starlink service for Ukrainian strike operations turns on White House consent. Who holds power: the Commission, which is funding it, and the incumbent operators taking the work. The mechanism to explain is the MEO choice — fewer satellites, higher latency than LEO, far better than GEO, and a very different cost and coverage curve. Be concrete about the schedule and about how far behind it already is; a first industrial order in 2026 for a constellation promised this decade is the news.",
       "conceptUris": []
     }
   ]
