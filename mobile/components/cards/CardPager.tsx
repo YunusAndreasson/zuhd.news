@@ -89,6 +89,18 @@ export const CardPager = memo(function CardPager({
     setCurrentIndex(nextIndex);
   }, [cards, itemHeight, listRef, setCurrentIndex]);
 
+  const handleSnap = useCallback(
+    (index: number) => {
+      hapticTick();
+      // The reader has performed the lesson on a data deck. The onboarding
+      // store historically counted article snaps only, so the swipe hint
+      // returned over Markets/Shipping/Outlook after a successful page turn.
+      markHintDone('swipe');
+      setCurrentIndex(index);
+    },
+    [setCurrentIndex],
+  );
+
   /**
    * The whole settle machinery — timers, drag/momentum ownership, the mark an
    * inner scroll leaves behind — lives in `usePagerSettle`, shared with the
@@ -108,18 +120,20 @@ export const CardPager = memo(function CardPager({
     itemHeight,
     count,
     currentIndexRef,
-    onSettled: useCallback(
-      (index: number) => {
-        hapticTick();
-        // The reader has performed the lesson on a data deck. The onboarding
-        // store historically counted article snaps only, so the swipe hint
-        // returned over Markets/Shipping/Outlook after a successful page turn.
-        markHintDone('swipe');
-        setCurrentIndex(index);
-      },
-      [setCurrentIndex],
-    ),
+    onSettled: handleSnap,
   });
+
+  const handleInnerEdgePage = useCallback(
+    (index: number, direction: -1 | 1) => {
+      if (currentIndexRef.current !== index) return;
+      const target = Math.max(0, Math.min(index + direction, count - 1));
+      if (target === index) return;
+      currentIndexRef.current = target;
+      listRef.current?.scrollToOffset({ offset: target * itemHeight, animated: true });
+      handleSnap(target);
+    },
+    [count, handleSnap, itemHeight, listRef],
+  );
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -178,9 +192,10 @@ export const CardPager = memo(function CardPager({
         index={index}
         scrollY={scrollY}
         onInnerScrollConsumed={handleInnerScrollConsumed}
+        onInnerEdgePage={handleInnerEdgePage}
       />
     ),
-    [handleInnerScrollConsumed, itemHeight, scrollY],
+    [handleInnerEdgePage, handleInnerScrollConsumed, itemHeight, scrollY],
   );
 
   const keyExtractor = useCallback((item: SwipeCard) => item.id, []);

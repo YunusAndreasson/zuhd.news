@@ -289,6 +289,24 @@ export const ArticleList = memo(function ArticleList({
   );
 
   /**
+   * iOS does not hand an outward gesture from a nested vertical ScrollView to
+   * this vertical FlatList. Move the page explicitly when an overflowing
+   * article reports that the swipe began at its real edge. The index guard
+   * makes this idempotent if native paging happened to win the same race.
+   */
+  const handleInnerEdgePage = useCallback(
+    (index: number, direction: -1 | 1) => {
+      if (currentIndexRef.current !== index) return;
+      const target = Math.max(0, Math.min(index + direction, articleCount - 1));
+      if (target === index) return;
+      currentIndexRef.current = target;
+      listRef.current?.scrollToOffset({ offset: target * itemHeight, animated: true });
+      handleSnap(target);
+    },
+    [articleCount, handleSnap, itemHeight, listRef],
+  );
+
+  /**
    * Land on an article, always — including when the gesture was never this
    * list's own.
    *
@@ -384,6 +402,7 @@ export const ArticleList = memo(function ArticleList({
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
         onInnerScrollConsumed={handleInnerScrollConsumed}
+        onInnerEdgePage={handleInnerEdgePage}
         tick={tick}
       />
     ),
@@ -398,6 +417,7 @@ export const ArticleList = memo(function ArticleList({
       resolvableEntityIds,
       earlierIndex,
       handleInnerScrollConsumed,
+      handleInnerEdgePage,
       tick,
     ],
   );

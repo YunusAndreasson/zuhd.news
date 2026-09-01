@@ -8,11 +8,13 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
+import { IS_IOS } from '../../constants/platform';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { observationLabel } from '../../lib/data-freshness';
 import { SourceCaption } from '../blocks/SourceCaption';
+import { InnerEdgeGesture } from '../InnerEdgeGesture';
 import { Icon, Text } from '../primitives';
 
 /**
@@ -161,6 +163,7 @@ interface CardFrameProps {
   /** Reports that this card consumed part of a vertical gesture before the
    * parent pager saw its remainder. */
   onInnerScrollConsumed?: (index: number) => void;
+  onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
   /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
 }
@@ -171,6 +174,7 @@ export const CardFrame = memo(function CardFrame({
   index,
   scrollY,
   onInnerScrollConsumed,
+  onInnerEdgePage,
   children,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
@@ -216,9 +220,11 @@ export const CardFrame = memo(function CardFrame({
   );
   // Reporting the consumed gesture upward is `useInnerScrollReporter`, shared
   // with `ArticlePage` — the other page in this app that can outgrow its pager.
-  const { onScrollBeginDrag, onScrollEndDrag, onScroll } = useInnerScrollReporter(
+  const innerScroll = useInnerScrollReporter(
     index,
     onInnerScrollConsumed,
+    onInnerEdgePage,
+    scrollable,
   );
 
   const pageStart = index * itemHeight;
@@ -267,50 +273,53 @@ export const CardFrame = memo(function CardFrame({
           clipping part four, which is the part worth reading. At default type
           nothing scrolls. `nestedScrollEnabled` hands the gesture back to the
           vertical pager at the ends. */}
-      <ScrollView
-        style={styles.fill}
-        contentContainerStyle={styles.column}
-        showsVerticalScrollIndicator={false}
-        scrollEnabled={scrollable}
-        onScrollBeginDrag={onScrollBeginDrag}
-        onScrollEndDrag={onScrollEndDrag}
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-        // `nestedScrollEnabled`, and the comment that used to sit here argued
-        // the opposite. It was right about the failure it feared and wrong
-        // about the cost of avoiding it.
-        //
-        // The fear: handing the leftover of a swipe to the pager is how this
-        // column once parked itself between two pages — the parent moves
-        // without ever having been dragged, so `pagingEnabled`, which only
-        // snaps a gesture the list received itself, has nothing to snap.
-        //
-        // The cost, measured on a device rather than reasoned about: Android
-        // defaults nested scrolling to *off*, so the parent list intercepted
-        // every vertical drag and this ScrollView never received one at all.
-        // `scrollEnabled` was moot. A card taller than the page did not scroll
-        // — it silently truncated, clipped by `styles.page`. Four cards did it
-        // at default type (the Kerch strait, the fifteen-currency table, the
-        // nisab, wheat-and-rice), and each lost its source caption, so a card
-        // citing IMF PortWatch never said so. Truncating the attribution is
-        // worse than any gesture awkwardness.
-        //
-        // What makes it safe is `CardPager`'s `settleToPage`, which was built
-        // for exactly this arrival: a drag end arms the check, momentum
-        // starting disarms it, momentum ending runs it, and a timer catches a
-        // scroll that stopped dead between two pages. That is the guard
-        // `mobile/CLAUDE.md` calls the one that "makes it impossible" — it
-        // exists, and this is the case it exists for.
-        //
-        // The remaining cost is one extra swipe to leave a card that scrolls:
-        // the first reaches the end of the table, the second pages. That is
-        // what every list-inside-a-pager does, and it is legible in a way that
-        // a sentence cut off mid-word is not.
-        nestedScrollEnabled
-      >
-        <View onLayout={onContentLayout}>
-          <Animated.View style={arrival}>
-            {/* The kicker line, and on a gated card the one word that says
+      <InnerEdgeGesture enabled={IS_IOS} gesture={innerScroll.edgeGesture}>
+        <ScrollView
+          style={styles.fill}
+          contentContainerStyle={styles.column}
+          showsVerticalScrollIndicator={false}
+          scrollEnabled={scrollable}
+          onLayout={innerScroll.onLayout}
+          onContentSizeChange={innerScroll.onContentSizeChange}
+          onScrollBeginDrag={innerScroll.onScrollBeginDrag}
+          onScrollEndDrag={innerScroll.onScrollEndDrag}
+          onScroll={innerScroll.onScroll}
+          scrollEventThrottle={16}
+          // `nestedScrollEnabled`, and the comment that used to sit here argued
+          // the opposite. It was right about the failure it feared and wrong
+          // about the cost of avoiding it.
+          //
+          // The fear: handing the leftover of a swipe to the pager is how this
+          // column once parked itself between two pages — the parent moves
+          // without ever having been dragged, so `pagingEnabled`, which only
+          // snaps a gesture the list received itself, has nothing to snap.
+          //
+          // The cost, measured on a device rather than reasoned about: Android
+          // defaults nested scrolling to *off*, so the parent list intercepted
+          // every vertical drag and this ScrollView never received one at all.
+          // `scrollEnabled` was moot. A card taller than the page did not scroll
+          // — it silently truncated, clipped by `styles.page`. Four cards did it
+          // at default type (the Kerch strait, the fifteen-currency table, the
+          // nisab, wheat-and-rice), and each lost its source caption, so a card
+          // citing IMF PortWatch never said so. Truncating the attribution is
+          // worse than any gesture awkwardness.
+          //
+          // What makes it safe is `CardPager`'s `settleToPage`, which was built
+          // for exactly this arrival: a drag end arms the check, momentum
+          // starting disarms it, momentum ending runs it, and a timer catches a
+          // scroll that stopped dead between two pages. That is the guard
+          // `mobile/CLAUDE.md` calls the one that "makes it impossible" — it
+          // exists, and this is the case it exists for.
+          //
+          // The remaining cost is one extra swipe to leave a card that scrolls:
+          // the first reaches the end of the table, the second pages. That is
+          // what every list-inside-a-pager does, and it is legible in a way that
+          // a sentence cut off mid-word is not.
+          nestedScrollEnabled
+        >
+          <View onLayout={onContentLayout}>
+            <Animated.View style={arrival}>
+              {/* The kicker line, and on a gated card the one word that says
               why this screen exists. A disrupted strait is on screen because
               its data cleared a currentness gate; the
               nisab and the gold-to-silver ratio are standing reference that
@@ -323,61 +332,62 @@ export const CardFrame = memo(function CardFrame({
               spent on the delta chip. Nested
               rather than a flex row so the two halves share a baseline and a
               screen reader gets one phrase. */}
-            {card.lead || card.kicker || observed ? (
-              <Text variant="labelXs" tone="secondary">
-                {card.lead ? (
-                  <Text variant="labelXs" tone="emphasis">
-                    {card.kicker || observed ? 'current · ' : 'current'}
-                  </Text>
-                ) : null}
-                {card.kicker}
-                {card.kicker && observed ? ' · ' : null}
-                {observed}
-              </Text>
-            ) : null}
+              {card.lead || card.kicker || observed ? (
+                <Text variant="labelXs" tone="secondary">
+                  {card.lead ? (
+                    <Text variant="labelXs" tone="emphasis">
+                      {card.kicker || observed ? 'current · ' : 'current'}
+                    </Text>
+                  ) : null}
+                  {card.kicker}
+                  {card.kicker && observed ? ' · ' : null}
+                  {observed}
+                </Text>
+              ) : null}
 
-            {/* Measurements answer first; a belief and a date ask first. A bare
+              {/* Measurements answer first; a belief and a date ask first. A bare
                 “62%” is not a useful fact until the reader knows which outcome
                 it prices, and “in 3 weeks” is not one until they know what
                 lands — while “$89 a barrel” is already self-describing. */}
-            {card.kind === 'belief' || card.kind === 'scheduled' ? (
-              <>
-                <CardTitle card={card} />
-                <CardReading card={card} afterTitle />
-              </>
-            ) : (
-              <>
-                <CardReading card={card} />
-                <CardTitle card={card} afterMetric />
-              </>
-            )}
-          </Animated.View>
+              {card.kind === 'belief' || card.kind === 'scheduled' ? (
+                <>
+                  <CardTitle card={card} />
+                  <CardReading card={card} afterTitle />
+                </>
+              ) : (
+                <>
+                  <CardReading card={card} />
+                  <CardTitle card={card} afterMetric />
+                </>
+              )}
+            </Animated.View>
 
-          {children ? (
-            <Animated.View style={[styles.block, arrival]}>{children}</Animated.View>
-          ) : null}
-
-          <Animated.View style={[styles.analysis, arrival]}>
-            {card.why ? <Text variant="body">{card.why}</Text> : null}
-
-            {card.changed ? (
-              <Text
-                variant="caption"
-                tone="secondary"
-                style={card.why ? styles.supporting : undefined}
-              >
-                {card.changed}
-              </Text>
+            {children ? (
+              <Animated.View style={[styles.block, arrival]}>{children}</Animated.View>
             ) : null}
 
-            {card.sourceLabel ? (
-              <View style={styles.source}>
-                <SourceCaption label={card.sourceLabel} />
-              </View>
-            ) : null}
-          </Animated.View>
-        </View>
-      </ScrollView>
+            <Animated.View style={[styles.analysis, arrival]}>
+              {card.why ? <Text variant="body">{card.why}</Text> : null}
+
+              {card.changed ? (
+                <Text
+                  variant="caption"
+                  tone="secondary"
+                  style={card.why ? styles.supporting : undefined}
+                >
+                  {card.changed}
+                </Text>
+              ) : null}
+
+              {card.sourceLabel ? (
+                <View style={styles.source}>
+                  <SourceCaption label={card.sourceLabel} />
+                </View>
+              ) : null}
+            </Animated.View>
+          </View>
+        </ScrollView>
+      </InnerEdgeGesture>
     </View>
   );
 });

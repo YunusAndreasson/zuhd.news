@@ -5,6 +5,7 @@ import { Platform, type TextStyle } from 'react-native';
  *  differences grep-able in one spot. */
 
 export const IS_ANDROID = Platform.OS === 'android';
+export const IS_IOS = Platform.OS === 'ios';
 
 /** Android adds extra vertical padding around text; disabling it matches the
  *  baseline metrics iOS already uses, so typography stays consistent across

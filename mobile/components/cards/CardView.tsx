@@ -92,12 +92,14 @@ export const CardView = memo(function CardView({
   index,
   scrollY,
   onInnerScrollConsumed,
+  onInnerEdgePage,
 }: {
   card: SwipeCard;
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
   onInnerScrollConsumed?: (index: number) => void;
+  onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
 }) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
@@ -111,6 +113,7 @@ export const CardView = memo(function CardView({
       index={index}
       scrollY={scrollY}
       onInnerScrollConsumed={onInnerScrollConsumed}
+      onInnerEdgePage={onInnerEdgePage}
     >
       {renderBody(card, onPress)}
     </CardFrame>
