@@ -6,7 +6,6 @@ import {
   usePanGesture,
   useSimultaneousGestures,
 } from 'react-native-gesture-handler';
-import { IS_IOS } from '../constants/platform';
 import { type InnerEdgePageDirection, resolveInnerEdgePageGesture } from '../lib/inner-scroll-edge';
 import { readableScrollOffset } from '../lib/scroll-consumption';
 
@@ -33,6 +32,7 @@ export function useInnerScrollReporter(
   onInnerScrollConsumed: ((index: number) => void) | undefined,
   onInnerEdgePage?: (index: number, direction: Exclude<InnerEdgePageDirection, 0>) => void,
   edgePagingEnabled = true,
+  onReadingScrollStart?: () => void,
 ) {
   const startY = useRef(0);
   const offsetY = useRef(0);
@@ -69,18 +69,22 @@ export function useInnerScrollReporter(
     [updateBounds],
   );
 
-  const onScrollBeginDrag = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-    dragging.current = true;
-    startY.current = readableScrollOffset(
-      contentOffset.y,
-      contentSize.height,
-      layoutMeasurement.height,
-    );
-    offsetY.current = startY.current;
-    maxOffsetY.current = Math.max(0, contentSize.height - layoutMeasurement.height);
-    consumed.current = false;
-  }, []);
+  const onScrollBeginDrag = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+      dragging.current = true;
+      startY.current = readableScrollOffset(
+        contentOffset.y,
+        contentSize.height,
+        layoutMeasurement.height,
+      );
+      offsetY.current = startY.current;
+      maxOffsetY.current = Math.max(0, contentSize.height - layoutMeasurement.height);
+      consumed.current = false;
+      onReadingScrollStart?.();
+    },
+    [onReadingScrollStart],
+  );
 
   const onScrollEndDrag = useCallback(() => {
     dragging.current = false;
@@ -106,11 +110,11 @@ export function useInnerScrollReporter(
 
   const edgePanConfig = useMemo<PanGestureConfig>(
     () => ({
-      enabled: IS_IOS && edgePagingEnabled && !!onInnerEdgePage,
+      enabled: edgePagingEnabled && !!onInnerEdgePage,
       runOnJS: true,
       // This recognizer observes the swipe; the native ScrollView still owns
       // the actual content movement. Without these, activating the pan can
-      // cancel the very scroll it is meant to accompany on iOS.
+      // cancel the very scroll it is meant to accompany.
       cancelsTouchesInView: false,
       cancelsJSResponder: false,
       activeOffsetY: [-8, 8],
@@ -133,7 +137,7 @@ export function useInnerScrollReporter(
     [edgePagingEnabled, index, onInnerEdgePage],
   );
   const nativeGesture = useNativeGesture({
-    enabled: IS_IOS && edgePagingEnabled && !!onInnerEdgePage,
+    enabled: edgePagingEnabled && !!onInnerEdgePage,
   });
   const edgePan = usePanGesture(edgePanConfig);
   const edgeGesture = useSimultaneousGestures(nativeGesture, edgePan);

@@ -117,19 +117,27 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
   // every snap so the pill lands after the reader settles, never mid-rhythm;
   // suppression flips `armId` to null and the cleanup cancels the timer.
   const snapCount = state.snapCount;
+  // Dismissing (or beginning to scroll beneath) one lesson must not let the
+  // next lesson replace it two seconds later on the same page. A real page
+  // turn increments snapCount and naturally re-enables the teaching cadence.
+  const [pausedAtSnapCount, setPausedAtSnapCount] = useState<number | null>(null);
+  const hintsPaused = pausedAtSnapCount === snapCount;
   // biome-ignore lint/correctness/useExhaustiveDependencies: `snapCount` is the intentional dwell-restart signal — each snap re-arms the countdown
   useEffect(() => {
-    if (!armId) return;
+    if (!armId || hintsPaused) return;
     const timer = setTimeout(() => {
       recordHintShown(armId);
       setActiveHint(armId);
     }, DWELL_MS[armId]);
     return () => clearTimeout(timer);
-  }, [armId, snapCount]);
+  }, [armId, hintsPaused, snapCount]);
 
   const activeHintRef = useRef(activeHint);
   activeHintRef.current = activeHint;
+  const snapCountRef = useRef(snapCount);
+  snapCountRef.current = snapCount;
   const dismissActiveHint = useCallback(() => {
+    setPausedAtSnapCount(snapCountRef.current);
     const id = activeHintRef.current;
     if (!id) return;
     dismissHint(id);

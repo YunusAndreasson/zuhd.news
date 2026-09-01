@@ -71,6 +71,8 @@ interface ArticleListProps {
    *  do nothing. */
   resolvableEntityIds?: ReadonlySet<string>;
   onArticleChange?: (article: RiverArticle) => void;
+  /** Clears transient teaching UI as soon as the reader starts moving content. */
+  onReadingScrollStart?: () => void;
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
@@ -93,6 +95,7 @@ export const ArticleList = memo(function ArticleList({
   onEntityPress,
   resolvableEntityIds,
   onArticleChange,
+  onReadingScrollStart,
   onRefresh,
   onEndReached,
   onCaughtUp,
@@ -332,6 +335,11 @@ export const ArticleList = memo(function ArticleList({
     onSettled: handleSnap,
   });
 
+  const handlePagerBeginDrag = useCallback(() => {
+    onReadingScrollStart?.();
+    handleBeginDrag();
+  }, [handleBeginDrag, onReadingScrollStart]);
+
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
   const lastArmAt = useSharedValue(0);
@@ -403,6 +411,8 @@ export const ArticleList = memo(function ArticleList({
         onCountryPress={onCountryPress}
         onInnerScrollConsumed={handleInnerScrollConsumed}
         onInnerEdgePage={handleInnerEdgePage}
+        onReadingScrollStart={onReadingScrollStart}
+        hasNext={index < articleCount - 1}
         tick={tick}
       />
     ),
@@ -418,6 +428,8 @@ export const ArticleList = memo(function ArticleList({
       earlierIndex,
       handleInnerScrollConsumed,
       handleInnerEdgePage,
+      onReadingScrollStart,
+      articleCount,
       tick,
     ],
   );
@@ -486,7 +498,7 @@ export const ArticleList = memo(function ArticleList({
         pagingEnabled
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
-        onScrollBeginDrag={handleBeginDrag}
+        onScrollBeginDrag={handlePagerBeginDrag}
         onScrollEndDrag={handleEndDrag}
         onMomentumScrollBegin={handleMomentumBegin}
         onMomentumScrollEnd={handleMomentumEnd}

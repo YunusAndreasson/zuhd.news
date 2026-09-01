@@ -19,7 +19,6 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { IS_IOS } from '../constants/platform';
 import { SPACING } from '../constants/theme';
 import { useInnerScrollReporter } from '../hooks/useInnerScrollReporter';
 import { useTheme } from '../hooks/useTheme';
@@ -30,6 +29,7 @@ import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { InnerEdgeGesture } from './InnerEdgeGesture';
+import { OverflowEndCue } from './OverflowEndCue';
 import { Text } from './primitives';
 
 // Title's distance from the container top. Smaller than the prior 32px gap
@@ -65,10 +65,11 @@ interface ArticlePageProps {
   /** Reported when this page's own scroll ate part of a swipe, so the pager
    *  can tell an inherited gesture tail from a real page turn. */
   onInnerScrollConsumed?: (index: number) => void;
-  /** iOS keeps same-axis nested scroll gestures inside the child even at its
-   *  edge. This explicit request lets the parent page without a precision
-   *  swipe outside the prose. */
+  /** Nested same-axis scrolling can keep an edge swipe inside the child.
+   *  This explicit request makes the next independent swipe page reliably. */
   onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
+  onReadingScrollStart?: () => void;
+  hasNext?: boolean;
   tick?: number;
 }
 
@@ -129,6 +130,8 @@ export const ArticlePage = memo(function ArticlePage({
   onCountryPress,
   onInnerScrollConsumed,
   onInnerEdgePage,
+  onReadingScrollStart,
+  hasNext = false,
   tick: _tick,
 }: ArticlePageProps) {
   const { colors, font, typography } = useTheme();
@@ -347,6 +350,7 @@ export const ArticlePage = memo(function ArticlePage({
     onInnerScrollConsumed,
     onInnerEdgePage,
     overflows,
+    onReadingScrollStart,
   );
 
   const content = (
@@ -434,14 +438,14 @@ export const ArticlePage = memo(function ArticlePage({
           That costs the tap-through in the gutters for those readers — at
           that text size the column fills the screen anyway — and the story
           stops being cut off, which is the trade worth making. `nestedScroll`
-          lets Android hand the gesture back to the pager at the ends; the
-          explicit edge gesture does the same job on iOS. */}
+          permits native handoff where available; the simultaneous edge
+          gesture makes the boundary deterministic on both platforms. */}
       {overflows ? (
-        <InnerEdgeGesture enabled={IS_IOS} gesture={innerScroll.edgeGesture}>
+        <InnerEdgeGesture enabled={overflows} gesture={innerScroll.edgeGesture}>
           <ScrollView
             style={styles.scrollFill}
             contentContainerStyle={styles.contentLayout}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator
             nestedScrollEnabled
             onLayout={innerScroll.onLayout}
             onContentSizeChange={innerScroll.onContentSizeChange}
@@ -451,6 +455,7 @@ export const ArticlePage = memo(function ArticlePage({
             scrollEventThrottle={16}
           >
             {content}
+            {hasNext ? <OverflowEndCue /> : null}
           </ScrollView>
         </InnerEdgeGesture>
       ) : (

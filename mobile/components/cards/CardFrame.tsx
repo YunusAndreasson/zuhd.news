@@ -8,13 +8,13 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { IS_IOS } from '../../constants/platform';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { observationLabel } from '../../lib/data-freshness';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { InnerEdgeGesture } from '../InnerEdgeGesture';
+import { OverflowEndCue } from '../OverflowEndCue';
 import { Icon, Text } from '../primitives';
 
 /**
@@ -164,6 +164,8 @@ interface CardFrameProps {
    * parent pager saw its remainder. */
   onInnerScrollConsumed?: (index: number) => void;
   onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
+  onReadingScrollStart?: () => void;
+  hasNext?: boolean;
   /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
 }
@@ -175,6 +177,8 @@ export const CardFrame = memo(function CardFrame({
   scrollY,
   onInnerScrollConsumed,
   onInnerEdgePage,
+  onReadingScrollStart,
+  hasNext = false,
   children,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
@@ -225,6 +229,7 @@ export const CardFrame = memo(function CardFrame({
     onInnerScrollConsumed,
     onInnerEdgePage,
     scrollable,
+    onReadingScrollStart,
   );
 
   const pageStart = index * itemHeight;
@@ -273,11 +278,11 @@ export const CardFrame = memo(function CardFrame({
           clipping part four, which is the part worth reading. At default type
           nothing scrolls. `nestedScrollEnabled` hands the gesture back to the
           vertical pager at the ends. */}
-      <InnerEdgeGesture enabled={IS_IOS} gesture={innerScroll.edgeGesture}>
+      <InnerEdgeGesture enabled={scrollable} gesture={innerScroll.edgeGesture}>
         <ScrollView
           style={styles.fill}
           contentContainerStyle={styles.column}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={scrollable}
           scrollEnabled={scrollable}
           onLayout={innerScroll.onLayout}
           onContentSizeChange={innerScroll.onContentSizeChange}
@@ -386,6 +391,7 @@ export const CardFrame = memo(function CardFrame({
               ) : null}
             </Animated.View>
           </View>
+          {scrollable && hasNext ? <OverflowEndCue /> : null}
         </ScrollView>
       </InnerEdgeGesture>
     </View>

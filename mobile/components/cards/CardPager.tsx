@@ -45,6 +45,8 @@ interface CardPagerProps {
    *  pipeline has not written yet. */
   emptyMessage: string;
   emptyHint?: string;
+  /** Clears transient teaching UI as soon as the reader starts moving content. */
+  onReadingScrollStart?: () => void;
   ref?: React.Ref<CardPagerRef>;
 }
 
@@ -55,6 +57,7 @@ export const CardPager = memo(function CardPager({
   progressesSV,
   emptyMessage,
   emptyHint,
+  onReadingScrollStart,
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
@@ -122,6 +125,11 @@ export const CardPager = memo(function CardPager({
     currentIndexRef,
     onSettled: handleSnap,
   });
+
+  const handlePagerBeginDrag = useCallback(() => {
+    onReadingScrollStart?.();
+    handleBeginDrag();
+  }, [handleBeginDrag, onReadingScrollStart]);
 
   const handleInnerEdgePage = useCallback(
     (index: number, direction: -1 | 1) => {
@@ -193,9 +201,18 @@ export const CardPager = memo(function CardPager({
         scrollY={scrollY}
         onInnerScrollConsumed={handleInnerScrollConsumed}
         onInnerEdgePage={handleInnerEdgePage}
+        onReadingScrollStart={onReadingScrollStart}
+        hasNext={index < count - 1}
       />
     ),
-    [handleInnerEdgePage, handleInnerScrollConsumed, itemHeight, scrollY],
+    [
+      count,
+      handleInnerEdgePage,
+      handleInnerScrollConsumed,
+      itemHeight,
+      onReadingScrollStart,
+      scrollY,
+    ],
   );
 
   const keyExtractor = useCallback((item: SwipeCard) => item.id, []);
@@ -219,7 +236,7 @@ export const CardPager = memo(function CardPager({
       pagingEnabled
       showsVerticalScrollIndicator={false}
       onScroll={scrollHandler}
-      onScrollBeginDrag={handleBeginDrag}
+      onScrollBeginDrag={handlePagerBeginDrag}
       onMomentumScrollBegin={handleMomentumBegin}
       onMomentumScrollEnd={handleMomentumEnd}
       onScrollEndDrag={handleEndDrag}

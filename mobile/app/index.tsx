@@ -727,6 +727,7 @@ export default function HomeScreen() {
               resolvableEntityIds={resolvableEntityIds}
               onCountryPress={handleCountryPress}
               onArticleChange={handleArticleChange}
+              onReadingScrollStart={dismissActiveHint}
               progressesSV={sectionProgresses}
               zoomClipOverride={currentZoom.clip}
               tick={tick}
@@ -748,6 +749,7 @@ export default function HomeScreen() {
                   progressesSV={sectionProgresses}
                   emptyMessage={copy?.message ?? 'nothing here yet'}
                   emptyHint={copy?.hint}
+                  onReadingScrollStart={dismissActiveHint}
                 />
               )}
             </View>
