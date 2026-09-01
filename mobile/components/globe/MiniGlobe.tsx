@@ -2182,8 +2182,42 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call.
   // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
+  // A projection can itself exceed that budget on low-end devices, so also
+  // keep only one scroll-driven projection in flight. While it runs, the
+  // reaction continues tracking scrollY; clearing the busy flag retriggers
+  // the reaction and publishes the newest position instead of replaying every
+  // obsolete intermediate frame.
   const lastTimeRef = useSharedValue(0);
   const hasFired = useSharedValue(false);
+  const reprojectBusy = useSharedValue(false);
+  const runScrollReproject = useCallback(
+    (
+      geoLng: number,
+      geoLat: number,
+      settledIndex: number,
+      loIndex: number,
+      hiIndex: number,
+      frac: number,
+      overrideActiveVal: number,
+      overrideAngleVal: number,
+    ) => {
+      try {
+        callReproject(
+          geoLng,
+          geoLat,
+          settledIndex,
+          loIndex,
+          hiIndex,
+          frac,
+          overrideActiveVal,
+          overrideAngleVal,
+        );
+      } finally {
+        reprojectBusy.value = false;
+      }
+    },
+    [callReproject, reprojectBusy],
+  );
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
   // tick still fires every 32ms while withTiming animations ease, but if the
   // resulting (lng, lat, frac, oA, oG) round to the same values as last
@@ -2204,12 +2238,20 @@ export const MiniGlobe = memo(function MiniGlobe({
       oA: overrideActive.value,
       oG: overrideAngle.value,
       len: coordsSV.value.length,
+      busy: reprojectBusy.value,
     }),
-    ({ sy, oA, oG, len }) => {
+    ({ sy, oA, oG, len, busy }, previous) => {
       if (len === 0) return;
 
+      // Do not update the last-published inputs while busy: once the current
+      // projection finishes, those values are what let the reaction detect
+      // and publish the latest position. This is latest-only backpressure,
+      // not a frame drop that can strand the globe between articles.
+      if (busy) return;
+
       const now = performance.now();
-      if (hasFired.value && now - lastTimeRef.value < 32) return;
+      const justReleased = previous?.busy === true;
+      if (!justReleased && hasFired.value && now - lastTimeRef.value < 32) return;
       hasFired.value = true;
       lastTimeRef.value = now;
 
@@ -2311,7 +2353,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       lastReactOG.value = oG;
       lastReactSettled.value = settled;
 
-      scheduleOnRN(callReproject, lng, lat, settled, lo, hi, frac, oA, oG);
+      reprojectBusy.value = true;
+      scheduleOnRN(runScrollReproject, lng, lat, settled, lo, hi, frac, oA, oG);
     },
   );
 

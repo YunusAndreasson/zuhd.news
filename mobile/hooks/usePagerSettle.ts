@@ -113,6 +113,10 @@ export function usePagerSettle({
         });
       }
       if (decision.index === currentIndexRef.current) return;
+      // Publish synchronously before the caller's state update. A second
+      // queued settle must observe this decision immediately rather than
+      // dispatching the same page change again against a stale render ref.
+      currentIndexRef.current = decision.index;
       onSettled(decision.index);
     },
     [clearMarkTimer, count, currentIndexRef, itemHeight, listRef, onSettled],
@@ -124,13 +128,18 @@ export function usePagerSettle({
   }, [clearSettle]);
 
   const handleEndDrag = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const y = e.nativeEvent.contentOffset.y;
+    (_e: NativeSyntheticEvent<NativeScrollEvent>) => {
       draggingRef.current = false;
       clearSettle();
-      settleTimer.current = setTimeout(() => settleToPage(y), AFTER_DRAG_MS);
+      settleTimer.current = setTimeout(() => {
+        if (draggingRef.current || momentumRef.current) return;
+        // The list may keep moving after onScrollEndDrag even without a
+        // momentum-begin event. Read the live offset when the correction
+        // actually runs so congestion cannot snap from a stale coordinate.
+        settleToPage(scrollY.value);
+      }, AFTER_DRAG_MS);
     },
-    [clearSettle, settleToPage],
+    [clearSettle, scrollY, settleToPage],
   );
 
   const handleMomentumBegin = useCallback(() => {

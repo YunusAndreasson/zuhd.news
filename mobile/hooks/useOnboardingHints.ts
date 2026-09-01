@@ -6,6 +6,7 @@ import {
   getSnapshot,
   type HintId,
   MAX_HINT_SHOWS,
+  ONBOARDING_SNAP_CAP,
   type OnboardingState,
   recordHintShown,
   subscribe,
@@ -28,7 +29,7 @@ const DWELL_MS: Record<HintId, number> = {
 // ever arms.
 const SOURCES_MIN_SNAPS = 1;
 const BOOKMARK_MIN_SNAPS = 2;
-const GLOBE_MIN_SNAPS = 3;
+const GLOBE_MIN_SNAPS = ONBOARDING_SNAP_CAP;
 
 interface HintContext {
   screenReader: boolean;
