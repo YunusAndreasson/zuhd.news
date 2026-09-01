@@ -1348,8 +1348,60 @@
         "2026-09-01-trade-secret-doctrine-ai-engineer-mobility"
       ],
       "generatedAt": "2026-09-01T12:25:39.956Z"
+    },
+    "stocks:CSCO": {
+      "standingFingerprint": "ee59554869774ca4",
+      "recentFingerprint": "4ac77405c48efafd",
+      "standing": "The shares of the largest maker of the routers and switches that carry internet traffic, sold mostly to companies, carriers and governments. Its results are read as a gauge of how much the world is spending on network hardware.",
+      "recent": "Cisco shares fell through late August, from $123.90 on Aug 12 to $109.60 on Aug 20, and have stayed near that floor. Hackers turned Cisco routers into attack launchpads, a compromise of the company's core product line reported from San Jose.",
+      "citations": [
+        "2026-09-01-fire-ant-router-foothold-trust-layer"
+      ],
+      "generatedAt": "2026-09-01T22:26:27.481Z"
+    },
+    "stocks:GOOGL": {
+      "standingFingerprint": "d0f483971e1b5c52",
+      "recentFingerprint": "36317b370e9214ce",
+      "standing": "The share price of Alphabet, the holding company behind Google Search, YouTube, Android, Google Cloud and the Gemini AI models. Most of its revenue is advertising, so it tracks the health of the ad market and of search itself.",
+      "recent": "The stock has drifted down about a tenth over the past month, from its high in early August to its low on 1 September. Nothing in the record explains the fall: the month's Google news ran to product and jurisdiction stories — the Maps split showing one lake under two names by country, an office opened in Pakistan, and Google's identification of the Popanet proxy network running through 2 million devices.",
+      "citations": [
+        "2026-08-30-google-maps-lake-america-toponym-platform-sovereignty",
+        "2026-08-31-streaming-boxes-residential-proxy-networks-reputation-inversion",
+        "2026-08-19-google-pakistan-office-platform-localisation-jurisdiction"
+      ],
+      "generatedAt": "2026-09-01T22:26:36.858Z"
+    },
+    "stocks:META": {
+      "standingFingerprint": "addc4d7ff1acf5fe",
+      "recentFingerprint": "e1fad03d748bb2a3",
+      "standing": "Meta Platforms runs Facebook, Instagram and WhatsApp, and sells the advertising attached to them. Its share price is a bet on attention: how many hours people give those apps, and what regulators will let the company do with them.",
+      "recent": "Fifty-two US state attorneys general settled with Meta for $17.1bn over social media harms to children — roughly 1% of the company's stock value — and the product changes bought by that settlement will ship globally, not just in the settling jurisdictions. Meta has since pitched softer teen rules where enforcement is weaker.",
+      "citations": [
+        "2026-08-26-meta-settlement-the-product-change-is-the-penalty",
+        "2026-09-01-meta-settlement-global-defaults-no-standing",
+        "2026-08-31-meta-influencer-lobby-teen-rules-arbitrage"
+      ],
+      "generatedAt": "2026-09-01T22:26:46.260Z"
+    },
+    "stocks:6503.T": {
+      "standingFingerprint": "5a5f7dbd0b9b8bcf",
+      "recentFingerprint": "ecc3183f56675978",
+      "standing": "One of Japan's largest industrial conglomerates, listed in Tokyo, making factory automation systems, power semiconductors, elevators and building equipment. Its order book is a read on global manufacturing investment.",
+      "recent": "The shares have drifted lower through the three-week window, slipping from a high of 6,153 on Aug 14 to 5,521 on Sep 1, the low of the period. Nothing in the available material accounts for the decline.",
+      "citations": [],
+      "generatedAt": "2026-09-01T22:26:55.273Z"
+    },
+    "stocks:ESLT": {
+      "standingFingerprint": "fe2666a600b7cc32",
+      "recentFingerprint": "f8faf79dbd5bc507",
+      "standing": "An Israeli defence contractor listed in Tel Aviv and New York, making drones, artillery systems and munitions. Its share price is one of the clearest market reads on how much of the world is buying Israeli-made weapons.",
+      "recent": "Shares fell across the period from a 5 August high of 864.30 to 700.50 on 31 August, the low of the window. Uganda's army, armed by Israel and bound for Gaza as a stabilisation force, is among the recent customers for Israeli equipment; the input does not otherwise explain the decline.",
+      "citations": [
+        "2026-09-01-uganda-israel-drone-program-stabilization-force"
+      ],
+      "generatedAt": "2026-09-01T22:27:03.649Z"
     }
   },
-  "generatedAt": "2026-09-01T17:22:54.713Z",
+  "generatedAt": "2026-09-01T22:27:03.650Z",
   "windowDays": 14
 }
