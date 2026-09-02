@@ -1,37 +1,37 @@
 {
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "metrics": {
-    "articles": { "value": 64, "detail": "5 cycles completed, avg 10/cycle (62 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.5, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 16, "tech": 14, "science": 11 },
-    "multiSource": { "value": 14, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles completed, avg 10/cycle (64 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 24, "economy": 15, "tech": 13, "science": 10 },
+    "multiSource": { "value": 15, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 7,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 21, "ME": 16, "AS": 12, "EU": 8, "AF": 6, "OC": 1 }
+      "breakdown": { "ME": 16, "AM": 14, "EU": 11, "AS": 10, "AF": 8, "OC": 2, "GL": 1 }
     },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 58,
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "TASS", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1330
+    "avgCycleDuration": 1401
   },
-  "experiment": "Skipped — all four goal areas clear their targets, no experiment is active, and no pause gate is set. Yesterday's two flagged problems both moved on their own: Oceania returned to the map (a Sydney housing story tagged OC after three empty days), and Africa rose from five to six with a wider dateline spread.",
-  "weakestArea": "Oceania at one article is furthest from a healthy share, and Africa at six of sixty-four (9%) is the next thinnest. Both clear the four-region target on count, so neither trips a goal — the shortfall is depth, not breadth. Africa did diversify: Johannesburg, Kampala, Abuja, Bunia, Khartoum, Benghazi and Cairo replace yesterday's Nigeria-heavy three. The remaining lever for either region sits upstream in feed supply and region tagging, not in any tunable fetch cap or selector floor.",
+  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and no pause gate is set. The two standing weaknesses (region tagging and single-source science) sit outside the tunable parameter surface, so the slot is left unspent rather than filled with a change that could not reach them.",
+  "weakestArea": "Source concentration is the metric that moved worst: unique sources fell from 59 to 44 while output held near flat, so the average outlet carried 1.4 articles against 1.1 yesterday. No single outlet breaches the 20% cap — TASS and Bloomberg tie at six each, about 10% — so the goal is met and this is drift, not a breach. Science remains the structurally thinnest area at ten articles, all single-source, which caps the sourcing cluster regardless of selector behaviour.",
   "watching": [
-    "Iran escalation has hardened from contested evidence into stated intent — Tehran's crushing-revenge vow now sits alongside Gulf solar-import collapse and a Hormuz-geography economy piece, three stories priced off one risk.",
-    "Two flood-governance stories ran in parallel — Pakistan's warning gap at Buner and a Lhasa data blackout — with the Himalaya toll passing 1,000; the throughline is measurement suppression, not weather.",
-    "AI-surveillance countermeasures are becoming a distinct beat: adversarial shirts in Berlin, face-recognition fines in Tbilisi, a South African crawler gap, and an agent breach at Hugging Face.",
-    "Crypto and market plumbing keep converging on traditional finance — bank stablecoin venture, LSE tokenised stocks, Strategy's preferred stock below par — without being covered as one arc.",
-    "Venezuela surfaced twice from Washington datelines (Pentagon oil stake) while Ecuador and São Paulo carried the only Latin American bylines; worth checking whether the region is being covered or only acted upon."
+    "The Iran war moved from threat to exchange: strikes resumed, Hormuz closed, a claimed hit on a Jordanian base, and a wedding struck at Sirik — the escalation now has a host-nation retaliation surface, not just a bilateral one.",
+    "Nuclear bargaining is running on three tracks at once — a Saudi enrichment deal disclosed in Washington, a Rosatom SMR draft for Iran signed mid-war, and the IAEA confirming Deir ez-Zor nineteen years late.",
+    "Four Vladivostok datelines carried Russian eastward-pivot stories — Arctic shipping, VTB's QR rails into Southeast Asia, industrial sensor fusion, the Iran reactor draft — which is one forum being read as four separate arcs.",
+    "AI liability is being drawn deliberately downstream of the model: the UK cyber bill spares vendors, Google keeps its ad exchange without divestiture, and a Texas surveillance audit was written by the tool it audits.",
+    "Uber appears twice on the same day from opposite ends — 3,300 head-office jobs cut in San Francisco, and an unwound exit from Nigeria and Uganda that left contractors with no wind-down."
   ],
   "coverageGaps": [
-    "Oceania recorded a single article; the Pacific Islands leverage story datelined Koror did not register as OC, so the tagger is still under-counting the region.",
-    "Latin America appears only through Quito and São Paulo, with the Venezuela story reported from Washington — no Mexico, Argentina or Andean coverage.",
-    "Central Asia is present only as summit geography (two Bishkek datelines from the Shanghai bloc meeting) with no domestic story from any of the five republics.",
-    "Semiconductor supply is covered as one deal (Nvidia–MediaTek) with no fabrication, export-control or materials angle behind it.",
-    "Science ran no multi-source story again; the eleven pieces are single-outlet research and outbreak reports, which caps the sourcing cluster regardless of selector behaviour."
+    "Latin America is absent except as an object of US action — the boat strikes and the Falklands review are both datelined Washington and London, with no bylines from the region itself.",
+    "Oceania recorded two articles, both Australian and both incidental (Bunbury dolphins, a Singapore-datelined carrier story); the Pacific Islands are again unrepresented.",
+    "Science ran ten articles and no multi-source story for a second consecutive day; the sourcing cluster cannot improve while a sixth of output is structurally single-outlet.",
+    "The metrics file lists Yahoo! Finance and Hindustan Times among science sources, which indicates the science tag is being applied to general-desk copy rather than specialist reporting.",
+    "Two datelines are not cities — \"Amery Ice Shelf\" and \"Tekapo\" — which breaks the mobile app's exact-match dateline strip that expects a city name."
   ],
-  "context": "Output rose to 64 from 62 across five completed cycles, the best in the recent window, at 1330s per cycle (selector 258s, writer 360s, editor 126s). Freshness improved sharply — median 0.1 and max 0.9 — but is computed on 18 dated articles of 64, so it is a partial sample even at that margin. Unique sources held at 58 with Dawn the largest at seven, so concentration is not a concern. Duplicates stayed at zero for a fourth day. No experiment has run since May; the standing reason remains that the residual problems — region tagging and category taxonomy — lie outside the tunable parameter surface, so the slot is left unspent rather than filled with a change that could not reach them."
+  "context": "Output was 62 across five completed cycles at 1401s each (selector 337s, writer 222s, editor 106s), the slowest average this week though still well inside every stage timeout. Freshness is excellent — median 0.1, max 0.5 — but is computed on only 11 dated articles of 62, so it is a thin sample. Duplicates held at zero for a fifth day. Politics rose to 24 of 62 (39%) on the strength of the Iran escalation, pushing science and tech both down a point without threatening the 25% floor. No experiment has run since May; the reason is unchanged."
 }
