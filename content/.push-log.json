@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-08-08T08:20:14.551Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-08-08-india-secondary-sanctions-strategic-autonomy",
-        "title": "Congress Questions India's Independence",
-        "category": "economy",
-        "eventCoverage": 108,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-param-pragya-india-sovereign-ai-compute",
-        "title": "India Unveils AI Supercomputer",
-        "category": "tech",
-        "eventCoverage": 57,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-yemen-saudi-strike-escalation-doctrine",
-        "title": "Yemen Claims Saudi Strike",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-sindh-spsc-exam-pass-rate-legitimacy",
-        "title": "Sindh Exam Sparks Protests",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-nilin-ramallah-checkpoint-movement-control",
-        "title": "Israel Adds West Bank Checkpoint",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-07-us-1-2bn-payment-halt-offshore-wind",
-        "title": "US Pays To Halt Wind",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-gulf-nuclear-dispersion-transboundary-dose",
-        "title": "Study Maps Gulf Nuclear Risk",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-btcpay-lightning-node-drain-hot-custody",
-        "title": "Bitcoin Exploit Drains Lightning Nodes",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-08-iris2-implementation-sovereign-constellation-cost",
-        "title": "Europe's IRIS2 Cost Rises",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-08-param-pragya-india-sovereign-ai-compute",
-      "title": "India Unveils AI Supercomputer",
-      "category": "tech",
-      "body": "Modi inaugurated [India](country:IN)'s Param Pragya AI",
-      "eventCoverage": 57,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India unveils sovereign AI supercomputer at IIT Delhi, Modi says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 13
-    }
-  },
-  {
     "timestamp": "2026-08-08T12:20:39.886Z",
     "candidateCount": 12,
     "candidates": [
@@ -10049,6 +9963,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "EU shuts Russian consulate in Bonn after Leipzig drone attack",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-09-02T17:24:15.294Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-02-moscow-intel-channel-deniable-by-design",
+        "title": "Rubio Downplays Moscow Trip",
+        "category": "politics",
+        "eventCoverage": 219,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-uber-cuts-the-layer-that-was-on-payroll",
+        "title": "Uber Cuts 3,300 Jobs",
+        "category": "economy",
+        "eventCoverage": 175,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-cairo-security-framework-guarantee-without-force",
+        "title": "Xi Pitches Security Without Bases",
+        "category": "politics",
+        "eventCoverage": 135,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-armenia-two-customs-unions-one-tariff-schedule",
+        "title": "Putin Warns Armenia On EU",
+        "category": "politics",
+        "eventCoverage": 119,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-senegal-short-end-prices-the-writedown-first",
+        "title": "Senegal Bonds Sell Off",
+        "category": "economy",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-carrier-escort-borrowed-from-the-other-ocean",
+        "title": "Navy Splits Carrier Escorts",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-west-bank-american-dead-statute-unused-since-1976",
+        "title": "Settlers Beat NBC Crew",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-flock-search-report-written-by-the-tool-it-audits",
+        "title": "AI Wrote Abortion Search Report",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-adx-liability-without-divestiture",
+        "title": "Google Keeps Its Ad Exchange",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-vantacore-ransom-note-without-a-ransom",
+        "title": "New Hackers Hit Russian Firms",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-genome-duplication-the-spare-copy-does-the-experimenting",
+        "title": "Snail's Genome Doubled Itself",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-02-bunbury-dolphins-sublethal-harm-lawfully-permitted",
+        "title": "Feeding Tourism Threatens Dolphins",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-02-uber-cuts-the-layer-that-was-on-payroll",
+      "title": "Uber Cuts 3,300 Jobs",
+      "category": "economy",
+      "body": "Uber is cutting 3,300 corporate jobs, about 10% of",
+      "eventCoverage": 175,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Uber cuts 3,300 corporate jobs, about 10% of staff",
     "response": {
       "pushed": 1,
       "skipped": 0,
