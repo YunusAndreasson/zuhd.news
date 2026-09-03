@@ -9,15 +9,20 @@ import { Text } from './primitives';
  *
  * It lives in the scroll content, after the final line, rather than floating
  * over prose. The reader only sees it after reaching the real bottom, where
- * it explains what the next independent upward swipe will do.
+ * it explains where the next page gesture begins. The prose itself remains a
+ * native, bidirectional scroller even at its edges.
  */
 export const OverflowEndCue = memo(function OverflowEndCue() {
   const { colors } = useTheme();
   return (
-    <View style={styles.container} accessible accessibilityLabel="End of text. Swipe up for next.">
+    <View
+      style={styles.container}
+      accessible
+      accessibilityLabel="End of text. Swipe above the text for next."
+    >
       <View style={[styles.rule, { backgroundColor: colors.rule }]} />
       <Text variant="labelXs" tone="secondary">
-        swipe up for next
+        swipe above for next
       </Text>
       <View style={[styles.rule, { backgroundColor: colors.rule }]} />
     </View>

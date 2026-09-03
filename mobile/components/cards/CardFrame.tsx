@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from 'react';
+import { memo, type ReactNode, useEffect, useRef } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -13,7 +13,6 @@ import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { observationLabel } from '../../lib/data-freshness';
 import { SourceCaption } from '../blocks/SourceCaption';
-import { InnerEdgeGesture } from '../InnerEdgeGesture';
 import { OverflowEndCue } from '../OverflowEndCue';
 import { Icon, Text } from '../primitives';
 
@@ -156,9 +155,10 @@ interface CardFrameProps {
   /** Reports that this card consumed part of a vertical gesture before the
    * parent pager saw its remainder. */
   onInnerScrollConsumed?: (index: number) => void;
-  onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
   onReadingScrollStart?: () => void;
   hasNext?: boolean;
+  /** Changes when the active section label is pressed. */
+  resetScrollKey?: number;
   /** The block that makes this card its kind — a chart, rows, figures. It
    *  stays outside the prose scroll region so vertical swipes here page. */
   children?: ReactNode;
@@ -170,9 +170,9 @@ export const CardFrame = memo(function CardFrame({
   index,
   scrollY,
   onInnerScrollConsumed,
-  onInnerEdgePage,
   onReadingScrollStart,
   hasNext = false,
+  resetScrollKey = 0,
   children,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
@@ -181,12 +181,15 @@ export const CardFrame = memo(function CardFrame({
   // Only the explanatory prose can become an inner scroll region. The metric,
   // title and chart remain direct children of the pager, which gives every
   // touch one vertical owner from touch-down through release.
-  const innerScroll = useInnerScrollReporter(
-    index,
-    onInnerScrollConsumed,
-    onInnerEdgePage,
-    onReadingScrollStart,
-  );
+  const innerScroll = useInnerScrollReporter(index, onInnerScrollConsumed, onReadingScrollStart);
+  const textScrollRef = useRef<ScrollView>(null);
+  const previousResetScrollKey = useRef(resetScrollKey);
+
+  useEffect(() => {
+    if (previousResetScrollKey.current === resetScrollKey) return;
+    previousResetScrollKey.current = resetScrollKey;
+    textScrollRef.current?.scrollTo({ y: 0, animated: false });
+  }, [resetScrollKey]);
 
   const pageStart = index * itemHeight;
   const offset = useDerivedValue(() => {
@@ -281,42 +284,41 @@ export const CardFrame = memo(function CardFrame({
         ) : null}
 
         <View style={styles.analysisViewport} testID="card-text-region">
-          <InnerEdgeGesture enabled={innerScroll.scrollable} gesture={innerScroll.edgeGesture}>
-            <ScrollView
-              style={styles.fill}
-              pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
-              showsVerticalScrollIndicator={innerScroll.scrollable}
-              scrollEnabled={innerScroll.scrollable}
-              nestedScrollEnabled
-              onLayout={innerScroll.onLayout}
-              onContentSizeChange={innerScroll.onContentSizeChange}
-              onScrollBeginDrag={innerScroll.onScrollBeginDrag}
-              onScrollEndDrag={innerScroll.onScrollEndDrag}
-              onScroll={innerScroll.onScroll}
-              scrollEventThrottle={16}
-            >
-              <Animated.View style={arrival}>
-                {card.why ? <Text variant="body">{card.why}</Text> : null}
+          <ScrollView
+            ref={textScrollRef}
+            style={styles.fill}
+            pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
+            showsVerticalScrollIndicator={innerScroll.scrollable}
+            scrollEnabled={innerScroll.scrollable}
+            nestedScrollEnabled
+            onLayout={innerScroll.onLayout}
+            onContentSizeChange={innerScroll.onContentSizeChange}
+            onScrollBeginDrag={innerScroll.onScrollBeginDrag}
+            onScrollEndDrag={innerScroll.onScrollEndDrag}
+            onScroll={innerScroll.onScroll}
+            scrollEventThrottle={16}
+          >
+            <Animated.View style={arrival}>
+              {card.why ? <Text variant="body">{card.why}</Text> : null}
 
-                {card.changed ? (
-                  <Text
-                    variant="caption"
-                    tone="secondary"
-                    style={card.why ? styles.supporting : undefined}
-                  >
-                    {card.changed}
-                  </Text>
-                ) : null}
+              {card.changed ? (
+                <Text
+                  variant="caption"
+                  tone="secondary"
+                  style={card.why ? styles.supporting : undefined}
+                >
+                  {card.changed}
+                </Text>
+              ) : null}
 
-                {card.sourceLabel ? (
-                  <View style={styles.source}>
-                    <SourceCaption label={card.sourceLabel} />
-                  </View>
-                ) : null}
-              </Animated.View>
-              {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
-            </ScrollView>
-          </InnerEdgeGesture>
+              {card.sourceLabel ? (
+                <View style={styles.source}>
+                  <SourceCaption label={card.sourceLabel} />
+                </View>
+              ) : null}
+            </Animated.View>
+            {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
+          </ScrollView>
         </View>
       </View>
     </View>

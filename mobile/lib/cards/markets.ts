@@ -186,17 +186,17 @@ function staplesCard(
       ? `Since ${wheatSpan.from}, wheat ${formatSignedPct(wheatSpan.pct)} and rice ${formatSignedPct(riceSpan.pct)}.`
       : describeYearChange(wheat);
 
-  // The reading is the ratio, not either price. Both prices are already on the
-  // card as figures, and foundation.md is explicit that information appears
-  // exactly once — repeating the wheat price at display size would be the
-  // same fact twice. The ratio is also the more repeatable one: "rice costs
-  // twice what wheat does" is a sentence a reader can carry out of the app.
+  // The reading is the ratio, not either price. The two lines and their legend
+  // already identify the components, while the movement sentence gives their
+  // individual direction. Separate price rows repeated that same comparison
+  // and crowded the analysis off the page. The ratio is the carryable fact:
+  // "rice costs twice what wheat does."
   const ratio = riceNow / wheatNow;
 
   // The chip measures the ratio, because the ratio is the reading. It carries
   // no valence: the gap between two grains narrowing is not good or bad for
-  // anyone, and the two prices that *do* reach a shopping bill are in the
-  // figures and the sentence.
+  // anyone, while the sentence retains the two directions that do reach a
+  // shopping bill.
   const ratioSeries = wheat.values.map((w, i) => {
     const r = rice.values[i];
     return typeof r === 'number' && typeof w === 'number' && w !== 0 ? r / w : Number.NaN;
@@ -220,10 +220,6 @@ function staplesCard(
     delta,
     changed,
     why: whyFor(analysis, wheat.id, wheat),
-    figures: [
-      { label: 'wheat', value: `$${formatReading(wheatNow)}` },
-      { label: 'rice', value: `$${formatReading(riceNow)}` },
-    ],
     series: {
       values: wheat.values,
       periods: wheat.periods,
@@ -424,10 +420,10 @@ function metalsPairCard(
       indicatorObservation(silver, snapshot.asOf),
     ),
     title: 'Gold against silver',
-    // The ratio, not either price — both prices are figures below, and the
-    // relationship is the thing neither of them says alone. It is also the
-    // oldest price in finance still quoted: how many ounces of silver buy one
-    // of gold.
+    // The ratio, not either price. The relationship is the thing neither raw
+    // quote says alone, and removing those duplicate rows gives the day's
+    // explanation enough room. It is also the oldest price in finance still
+    // quoted: how many ounces of silver buy one of gold.
     reading: `${Math.round(ratio)}:1`,
     readingNote: 'ounces of silver to one of gold',
     delta,
@@ -436,10 +432,6 @@ function metalsPairCard(
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
     why: whyFor(analysis, gold.id, gold),
-    figures: [
-      { label: 'gold', value: `$${formatReading(goldNow)}` },
-      { label: 'silver', value: `$${formatReading(silverNow)}` },
-    ],
     series: {
       values: ratioSeries,
       periods: gold.periods,

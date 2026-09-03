@@ -186,6 +186,7 @@ export const ArticleList = memo(function ArticleList({
     resetOverscroll();
   }, [resetOverscroll]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
+  const [resetScrollKey, setResetScrollKey] = useState(0);
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
@@ -228,19 +229,6 @@ export const ArticleList = memo(function ArticleList({
     const article = sortedArticles[currentIndex];
     if (article) onArticleChange?.(article);
   }, [currentIndex, sortedArticles, onArticleChange]);
-
-  useImperativeHandle(ref, () => ({
-    scrollToTop: () => {
-      overscrollFired.set(false);
-      listRef.current?.scrollToOffset({ offset: 0, animated: true });
-    },
-    scrollToSlug: (slug: string) => {
-      const idx = sortedArticles.findIndex((a) => a.slug === slug);
-      if (idx >= 0) {
-        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
-      }
-    },
-  }));
 
   // Find the boundary between new and previously seen articles
   const earlierIndex = useMemo(() => {
@@ -287,8 +275,8 @@ export const ArticleList = memo(function ArticleList({
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-    handleInnerEdgePage,
     getItemLayout,
+    resetToTop,
   } = useVerticalPager({
     listRef,
     scrollY,
@@ -302,6 +290,20 @@ export const ArticleList = memo(function ArticleList({
     onItemsReordered: setCurrentIndex,
     preserveAtTop: false,
   });
+
+  useImperativeHandle(ref, () => ({
+    scrollToTop: () => {
+      overscrollFired.set(false);
+      resetToTop();
+      setResetScrollKey((key) => key + 1);
+    },
+    scrollToSlug: (slug: string) => {
+      const idx = sortedArticles.findIndex((a) => a.slug === slug);
+      if (idx >= 0) {
+        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
+      }
+    },
+  }));
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -364,9 +366,9 @@ export const ArticleList = memo(function ArticleList({
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
         onInnerScrollConsumed={handleInnerScrollConsumed}
-        onInnerEdgePage={handleInnerEdgePage}
         onReadingScrollStart={onReadingScrollStart}
         hasNext={index < articleCount - 1}
+        resetScrollKey={resetScrollKey}
         tick={tick}
       />
     ),
@@ -381,10 +383,10 @@ export const ArticleList = memo(function ArticleList({
       resolvableEntityIds,
       earlierIndex,
       handleInnerScrollConsumed,
-      handleInnerEdgePage,
       onReadingScrollStart,
       articleCount,
       tick,
+      resetScrollKey,
     ],
   );
 

@@ -1,12 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
-import {
-  type PanGestureConfig,
-  useNativeGesture,
-  usePanGesture,
-  useSimultaneousGestures,
-} from 'react-native-gesture-handler';
-import { type InnerEdgePageDirection, resolveInnerEdgePageGesture } from '../lib/inner-scroll-edge';
 import { readableScrollOffset } from '../lib/scroll-consumption';
 
 /**
@@ -30,16 +23,11 @@ import { readableScrollOffset } from '../lib/scroll-consumption';
 export function useInnerScrollReporter(
   index: number,
   onInnerScrollConsumed: ((index: number) => void) | undefined,
-  onInnerEdgePage?: (index: number, direction: Exclude<InnerEdgePageDirection, 0>) => void,
   onReadingScrollStart?: () => void,
 ) {
   const startY = useRef(0);
   const offsetY = useRef(0);
   const maxOffsetY = useRef(0);
-  const gestureStartY = useRef(0);
-  const gestureMaxOffsetY = useRef(0);
-  const gestureTranslationY = useRef(0);
-  const gestureVelocityY = useRef(0);
   const contentHeight = useRef(0);
   const viewportHeight = useRef(0);
   const consumed = useRef(false);
@@ -112,61 +100,12 @@ export function useInnerScrollReporter(
     [index, onInnerScrollConsumed],
   );
 
-  const edgePanConfig = useMemo<PanGestureConfig>(
-    () => ({
-      enabled: scrollable && !!onInnerEdgePage,
-      runOnJS: true,
-      // This recognizer observes the swipe; the native ScrollView still owns
-      // the actual content movement. Without these, activating the pan can
-      // cancel the very scroll it is meant to accompany.
-      cancelsTouchesInView: false,
-      cancelsJSResponder: false,
-      activeOffsetY: [-8, 8],
-      failOffsetX: [-16, 16],
-      onBegin: () => {
-        gestureStartY.current = offsetY.current;
-        gestureMaxOffsetY.current = maxOffsetY.current;
-        gestureTranslationY.current = 0;
-        gestureVelocityY.current = 0;
-      },
-      // A native ScrollView is allowed to interrupt this observer. RNGH 3's
-      // onDeactivate only covers a Pan that reached ACTIVE, while onFinalize
-      // also covers the cancellation/failure path. That path matters here:
-      // the child can hand a partial tail to the parent at the same moment the
-      // Native gesture cancels this observer. Dropping the final event leaves
-      // the pager between pages. The edge + distance/velocity checks below
-      // remain the authority, so a cancelled tap or sideways drag is inert.
-      // RNGH 3 types finalization with base Pan data, so retain the last full
-      // update rather than relying on platform-specific end-event fields.
-      onUpdate: ({ translationY, velocityY }) => {
-        gestureTranslationY.current = translationY;
-        gestureVelocityY.current = velocityY;
-      },
-      onFinalize: () => {
-        const direction = resolveInnerEdgePageGesture({
-          startOffset: gestureStartY.current,
-          maxOffset: gestureMaxOffsetY.current,
-          translationY: gestureTranslationY.current,
-          velocityY: gestureVelocityY.current,
-        });
-        if (direction !== 0) onInnerEdgePage?.(index, direction);
-      },
-    }),
-    [index, onInnerEdgePage, scrollable],
-  );
-  const nativeGesture = useNativeGesture({
-    enabled: scrollable && !!onInnerEdgePage,
-  });
-  const edgePan = usePanGesture(edgePanConfig);
-  const edgeGesture = useSimultaneousGestures(nativeGesture, edgePan);
-
   return {
     onScrollBeginDrag,
     onScrollEndDrag,
     onScroll,
     onLayout,
     onContentSizeChange,
-    edgeGesture,
     scrollable,
   };
 }

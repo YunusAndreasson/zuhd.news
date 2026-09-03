@@ -227,6 +227,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   display-formatted `value`; `tone` is only for a direction that means
   something to the person holding it (a currency weakening), never for
   "number went down".
+- **A comparison gets one visible expression per fact.** When the headline is
+  a ratio and the graph already names both series, do not add raw-value figure
+  rows for those same series. The ratio, legend, graph and one movement
+  sentence are the compact card; detailed quotes belong in a sheet. Figures
+  remain valid where they introduce different information, such as the two
+  metal weights that define the nisab threshold.
 
 ### Blocks (`components/blocks/`)
 - Three data-display components, used directly by the sheets that need them:
@@ -275,6 +281,10 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
   drag fights the drag, while the indicator tracking the finger is the part
   that should feel live.
+- **Pressing the active section label is a hard return to top.** It cancels
+  pending pager settlement, clears nested-scroll ownership, resets the outer
+  page and resets any mounted prose scroller. It must work even when the first
+  card/article is already selected but its text is scrolled.
 - **The rail groups, because the sections are not peers.** A rule sits after
   `news`: it is an article river and the other three are data-card decks, so
   drawing all four at identical weight would make a false claim about
@@ -287,11 +297,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   the outer pager immediately. This keeps each touch under one owner from
   touch-down through release and lets readers page without throwing the swipe.
   The inner region arms itself from its measured content and viewport heights,
-  with one point of rounding tolerance. At its edge, paging requires a fresh
-  swipe: a gesture must never both scroll text and move the page, and no
-  programmatic page correction may run while the finger is still down. This
-  preserves large Dynamic Type content and source captions without the
-  mid-swipe freezes caused by competing scroll animations.
+  with one point of rounding tolerance. A touch that begins in prose remains a
+  native text scroll even at either edge; to page, begin the next swipe on the
+  title, metric, chart, globe or surrounding page. No second edge recognizer
+  may sit over the prose scroller, and no programmatic page correction may run
+  while the finger is still down. This preserves bidirectional text scrolling,
+  large Dynamic Type content and source captions without the mid-swipe freezes
+  caused by competing scroll owners.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use

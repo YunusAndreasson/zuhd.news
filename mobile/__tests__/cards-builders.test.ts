@@ -235,6 +235,7 @@ describe('buildInstrumentCards', () => {
     const staples = find(paired, 'staples');
     expect(staples?.kind).toBe('reading');
     expect(staples?.kind === 'reading' ? staples.series?.multi?.length : 0).toBe(2);
+    expect(staples?.kind === 'reading' ? staples.figures : undefined).toBeUndefined();
     expect(staples?.changed).toContain('wheat +14%');
     expect(staples?.changed).toContain('rice −29%');
 
@@ -327,6 +328,7 @@ describe('buildInstrumentCards', () => {
     expect(metals?.kind).toBe('reading');
     expect(metals?.kind === 'reading' ? metals.series?.values : []).toEqual([80, 75]);
     expect(metals?.kind === 'reading' ? metals.series?.multi : undefined).toBeUndefined();
+    expect(metals?.kind === 'reading' ? metals.figures : undefined).toBeUndefined();
     expect(metals?.kind === 'reading' ? metals.series?.label : '').toContain('ounces of silver');
   });
 

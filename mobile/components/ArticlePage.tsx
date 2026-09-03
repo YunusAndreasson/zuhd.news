@@ -1,7 +1,7 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Entity } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   type AccessibilityActionEvent,
   type GestureResponderEvent,
@@ -27,7 +27,6 @@ import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
-import { InnerEdgeGesture } from './InnerEdgeGesture';
 import { OverflowEndCue } from './OverflowEndCue';
 import { Text } from './primitives';
 
@@ -64,11 +63,10 @@ interface ArticlePageProps {
   /** Reported when this page's own scroll ate part of a swipe, so the pager
    *  can tell an inherited gesture tail from a real page turn. */
   onInnerScrollConsumed?: (index: number) => void;
-  /** Nested same-axis scrolling can keep an edge swipe inside the child.
-   *  This explicit request makes the next independent swipe page reliably. */
-  onInnerEdgePage?: (index: number, direction: -1 | 1) => void;
   onReadingScrollStart?: () => void;
   hasNext?: boolean;
+  /** Changes when the active section label is pressed. */
+  resetScrollKey?: number;
   tick?: number;
 }
 
@@ -128,9 +126,9 @@ export const ArticlePage = memo(function ArticlePage({
   globeYOffset,
   onCountryPress,
   onInnerScrollConsumed,
-  onInnerEdgePage,
   onReadingScrollStart,
   hasNext = false,
+  resetScrollKey = 0,
   tick: _tick,
 }: ArticlePageProps) {
   const { colors, font, typography } = useTheme();
@@ -323,12 +321,15 @@ export const ArticlePage = memo(function ArticlePage({
   // region stay outside this scroll view, so a swipe that begins there belongs
   // directly to the article pager. This avoids making the whole screen choose
   // between two same-axis scroll owners.
-  const innerScroll = useInnerScrollReporter(
-    index,
-    onInnerScrollConsumed,
-    onInnerEdgePage,
-    onReadingScrollStart,
-  );
+  const innerScroll = useInnerScrollReporter(index, onInnerScrollConsumed, onReadingScrollStart);
+  const textScrollRef = useRef<ScrollView>(null);
+  const previousResetScrollKey = useRef(resetScrollKey);
+
+  useEffect(() => {
+    if (previousResetScrollKey.current === resetScrollKey) return;
+    previousResetScrollKey.current = resetScrollKey;
+    textScrollRef.current?.scrollTo({ y: 0, animated: false });
+  }, [resetScrollKey]);
 
   const pressableProps = {
     onPress: bodyTapEnabled ? handleSourcesPress : undefined,
@@ -400,24 +401,23 @@ export const ArticlePage = memo(function ArticlePage({
         </Pressable>
 
         <View style={styles.textViewport} testID="article-text-region">
-          <InnerEdgeGesture enabled={innerScroll.scrollable} gesture={innerScroll.edgeGesture}>
-            <ScrollView
-              style={styles.scrollFill}
-              pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
-              showsVerticalScrollIndicator={innerScroll.scrollable}
-              scrollEnabled={innerScroll.scrollable}
-              nestedScrollEnabled
-              onLayout={innerScroll.onLayout}
-              onContentSizeChange={innerScroll.onContentSizeChange}
-              onScrollBeginDrag={innerScroll.onScrollBeginDrag}
-              onScrollEndDrag={innerScroll.onScrollEndDrag}
-              onScroll={innerScroll.onScroll}
-              scrollEventThrottle={16}
-            >
-              <Pressable {...pressableProps}>{body}</Pressable>
-              {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
-            </ScrollView>
-          </InnerEdgeGesture>
+          <ScrollView
+            ref={textScrollRef}
+            style={styles.scrollFill}
+            pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
+            showsVerticalScrollIndicator={innerScroll.scrollable}
+            scrollEnabled={innerScroll.scrollable}
+            nestedScrollEnabled
+            onLayout={innerScroll.onLayout}
+            onContentSizeChange={innerScroll.onContentSizeChange}
+            onScrollBeginDrag={innerScroll.onScrollBeginDrag}
+            onScrollEndDrag={innerScroll.onScrollEndDrag}
+            onScroll={innerScroll.onScroll}
+            scrollEventThrottle={16}
+          >
+            <Pressable {...pressableProps}>{body}</Pressable>
+            {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
+          </ScrollView>
         </View>
       </Animated.View>
     </View>

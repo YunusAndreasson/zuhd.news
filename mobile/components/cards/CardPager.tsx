@@ -1,4 +1,4 @@
-import { memo, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
+import { memo, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -69,13 +69,10 @@ export const CardPager = memo(function CardPager({
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
   const count = cards.length;
+  const [resetScrollKey, setResetScrollKey] = useState(0);
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
-
-  useImperativeHandle(ref, () => ({
-    scrollToTop: () => listRef.current?.scrollToOffset({ offset: 0, animated: true }),
-  }));
 
   const handleSnap = useCallback(
     (index: number) => {
@@ -102,8 +99,8 @@ export const CardPager = memo(function CardPager({
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-    handleInnerEdgePage,
     getItemLayout,
+    resetToTop,
   } = useVerticalPager({
     listRef,
     scrollY,
@@ -116,6 +113,13 @@ export const CardPager = memo(function CardPager({
     getItemKey: cardKey,
     onItemsReordered: setCurrentIndex,
   });
+
+  useImperativeHandle(ref, () => ({
+    scrollToTop: () => {
+      resetToTop();
+      setResetScrollKey((key) => key + 1);
+    },
+  }));
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -165,19 +169,12 @@ export const CardPager = memo(function CardPager({
         index={index}
         scrollY={scrollY}
         onInnerScrollConsumed={handleInnerScrollConsumed}
-        onInnerEdgePage={handleInnerEdgePage}
         onReadingScrollStart={onReadingScrollStart}
         hasNext={index < count - 1}
+        resetScrollKey={resetScrollKey}
       />
     ),
-    [
-      count,
-      handleInnerEdgePage,
-      handleInnerScrollConsumed,
-      itemHeight,
-      onReadingScrollStart,
-      scrollY,
-    ],
+    [count, handleInnerScrollConsumed, itemHeight, onReadingScrollStart, scrollY, resetScrollKey],
   );
 
   if (count === 0) {

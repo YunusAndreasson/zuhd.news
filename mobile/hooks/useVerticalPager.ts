@@ -177,27 +177,6 @@ export function useVerticalPager<T>({
     handleBeginDrag();
   }, [handleBeginDrag, onReadingScrollStart]);
 
-  /**
-   * Make the inner-scroll edge decision authoritative. This request can race
-   * native momentum handed to the list, so animating it would let two motions
-   * compete and park between pages.
-   */
-  const handleInnerEdgePage = useCallback(
-    (index: number, direction: -1 | 1) => {
-      const target = Math.max(0, Math.min(index + direction, count - 1));
-      if (target === index) return;
-      // Native offset can lead React state during a burst. The callback is
-      // current while either adjacent page is physically visible.
-      const visibleIndex = Math.max(0, Math.min(Math.round(scrollY.value / itemHeight), count - 1));
-      if (currentIndexRef.current !== index && visibleIndex !== index && visibleIndex !== target)
-        return;
-      currentIndexRef.current = target;
-      listRef.current?.scrollToOffset({ offset: target * itemHeight, animated: false });
-      onSettled(target);
-    },
-    [count, currentIndexRef, itemHeight, listRef, onSettled, scrollY],
-  );
-
   const getItemLayout = useCallback(
     (_: ArrayLike<T> | null | undefined, index: number) => ({
       length: itemHeight,
@@ -273,6 +252,21 @@ export function useVerticalPager<T>({
     [clearMarkTimer, currentIndexRef],
   );
 
+  /** Reset navigation state as one operation when the active section tab is
+   * pressed. A plain animated scroll can race a pending settle timer or stale
+   * inner-consumption mark and be pulled back to the page it just left. */
+  const resetToTop = useCallback(() => {
+    clearSettle();
+    clearMarkTimer();
+    innerConsumedRef.current = null;
+    draggingRef.current = false;
+    momentumRef.current = false;
+    currentIndexRef.current = 0;
+    scrollY.value = 0;
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    onItemsReordered(0);
+  }, [clearMarkTimer, clearSettle, currentIndexRef, listRef, onItemsReordered, scrollY]);
+
   useEffect(
     () => () => {
       clearSettle();
@@ -288,7 +282,7 @@ export function useVerticalPager<T>({
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-    handleInnerEdgePage,
     getItemLayout,
+    resetToTop,
   };
 }
