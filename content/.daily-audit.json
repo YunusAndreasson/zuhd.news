@@ -1,37 +1,37 @@
 {
-  "date": "2026-09-02",
+  "date": "2026-09-03",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles completed, avg 10/cycle (64 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 15, "tech": 13, "science": 10 },
-    "multiSource": { "value": 15, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, 4 completed at snapshot, avg 8/cycle (62 yesterday)" },
+    "freshness": { "median": 0.3, "p90": 0.6, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 15, "tech": 14, "science": 11 },
+    "multiSource": { "value": 17, "target": 4, "met": true },
     "regions": {
       "count": 7,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 16, "AM": 14, "EU": 11, "AS": 10, "AF": 8, "OC": 2, "GL": 1 }
+      "breakdown": { "AM": 21, "ME": 12, "AS": 11, "EU": 10, "AF": 6, "GL": 1, "OC": 1 }
     },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "TASS", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 62,
     "duplicates": 0,
-    "avgCycleDuration": 1401
+    "avgCycleDuration": 1443
   },
-  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and no pause gate is set. The two standing weaknesses (region tagging and single-source science) sit outside the tunable parameter surface, so the slot is left unspent rather than filled with a change that could not reach them.",
-  "weakestArea": "Source concentration is the metric that moved worst: unique sources fell from 59 to 44 while output held near flat, so the average outlet carried 1.4 articles against 1.1 yesterday. No single outlet breaches the 20% cap — TASS and Bloomberg tie at six each, about 10% — so the goal is met and this is drift, not a breach. Science remains the structurally thinnest area at ten articles, all single-source, which caps the sourcing cluster regardless of selector behaviour.",
+  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and no pause gate is set. The one persistent weakness, single-source science and tech, was shown by the 2026-05-09 floor experiment to be capped by feed supply rather than by any selector parameter, so spending the slot on the tunable surface would not reach it.",
+  "weakestArea": "Multi-source depth remains concentrated in politics and economy: of the 47 articles committed so far today, politics ran 6 of 16 multi-source and economy 5 of 12, while science managed 1 of 9 and tech 1 of 10. That is a real improvement on yesterday, when science had none, but a fifth of daily output still rests on a single outlet each. Regional balance also skewed: the Americas took 21 of 62 (34%) against 14 yesterday, and Oceania fell to a single article.",
   "watching": [
-    "The Iran war moved from threat to exchange: strikes resumed, Hormuz closed, a claimed hit on a Jordanian base, and a wedding struck at Sirik — the escalation now has a host-nation retaliation surface, not just a bilateral one.",
-    "Nuclear bargaining is running on three tracks at once — a Saudi enrichment deal disclosed in Washington, a Rosatom SMR draft for Iran signed mid-war, and the IAEA confirming Deir ez-Zor nineteen years late.",
-    "Four Vladivostok datelines carried Russian eastward-pivot stories — Arctic shipping, VTB's QR rails into Southeast Asia, industrial sensor fusion, the Iran reactor draft — which is one forum being read as four separate arcs.",
-    "AI liability is being drawn deliberately downstream of the model: the UK cyber bill spares vendors, Google keeps its ad exchange without divestiture, and a Texas surveillance audit was written by the tool it audits.",
-    "Uber appears twice on the same day from opposite ends — 3,300 head-office jobs cut in San Francisco, and an unwound exit from Nigeria and Uganda that left contractors with no wind-down."
+    "The Iran war has crossed into economic warfare: Hormuz strikes resumed, a rename was floated from Washington, tanker-for-tanker policy was adopted, and the oil shock is now cited against a Fed cut — four datelines describing one transmission chain.",
+    "Russia is being sourced into Iran's missile programme at the same time as US labs are reported arming Israel quietly, which puts both patrons on the record within a single day.",
+    "Sudan produced three separate arcs — the African Union backing rejected, an airstrike on a UN convoy, and a Dilling dateline — while Radio Dabanga carried two of them alone.",
+    "AI industry consolidation and fragility landed together: Nvidia buying Hugging Face, simultaneous outages across the major providers, Google shipping a cyber model, and ASEAN writing rules around all of it.",
+    "Nepal appears twice from opposite ends of the same flood — a warning system that failed and a corridor now shut — which is a follow-through worth keeping paired."
   ],
   "coverageGaps": [
-    "Latin America is absent except as an object of US action — the boat strikes and the Falklands review are both datelined Washington and London, with no bylines from the region itself.",
-    "Oceania recorded two articles, both Australian and both incidental (Bunbury dolphins, a Singapore-datelined carrier story); the Pacific Islands are again unrepresented.",
-    "Science ran ten articles and no multi-source story for a second consecutive day; the sourcing cluster cannot improve while a sixth of output is structurally single-outlet.",
-    "The metrics file lists Yahoo! Finance and Hindustan Times among science sources, which indicates the science tag is being applied to general-desk copy rather than specialist reporting.",
-    "Two datelines are not cities — \"Amery Ice Shelf\" and \"Tekapo\" — which breaks the mobile app's exact-match dateline strip that expects a city name."
+    "Oceania recorded one article (Brisbane) and the Pacific Islands are again unrepresented, a third consecutive day at or below two.",
+    "Science ran nine articles with one multi-source story; the sourcing cluster cannot lift while the category is structurally single-outlet.",
+    "The metrics file again lists general-desk outlets — Mirror, Albanian Daily News, The National — among science sources, which suggests the science tag is being applied to non-specialist copy.",
+    "Latin America improved on yesterday with Caracas and Trujillo datelines, but Bolivia and Venezuela still arrive mainly through US-facing framings.",
+    "Central Asia surfaced only through Kazakhstan charging a scholar; no economic or energy coverage from the region despite the oil story running all day."
   ],
-  "context": "Output was 62 across five completed cycles at 1401s each (selector 337s, writer 222s, editor 106s), the slowest average this week though still well inside every stage timeout. Freshness is excellent — median 0.1, max 0.5 — but is computed on only 11 dated articles of 62, so it is a thin sample. Duplicates held at zero for a fifth day. Politics rose to 24 of 62 (39%) on the strength of the Iran escalation, pushing science and tech both down a point without threatening the 25% floor. No experiment has run since May; the reason is unchanged."
+  "context": "Output held at 62 for a second day across five cycles averaging 1443s (selector 283s, writer 275s, editor 112s) — the slowest daily average this week, though every stage sat far inside its timeout and the fifth cycle was still publishing when metrics were taken. Unique sources recovered sharply from 44 to 62, so concentration reversed yesterday's drift and no outlet exceeds 10%. Freshness stayed strong at a 0.3 median but is computed on 16 dated articles of 62, a thin sample. Duplicates held at zero for a sixth day. All datelines today are cities, so yesterday's non-city dateline problem did not recur. No experiment has run since May, and the reason is unchanged."
 }
