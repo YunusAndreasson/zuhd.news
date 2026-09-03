@@ -119,7 +119,7 @@ export function useInnerScrollReporter(
       // cancel the very scroll it is meant to accompany.
       cancelsTouchesInView: false,
       cancelsJSResponder: false,
-      activeOffsetY: [-8, 8],
+      activeOffsetY: [-5, 5],
       failOffsetX: [-16, 16],
       onBegin: () => {
         gestureStartY.current = offsetY.current;

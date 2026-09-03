@@ -23,6 +23,39 @@ describe('resolveInnerEdgePageGesture', () => {
     ).toBe(1);
   });
 
+  it('accepts a light short swipe without requiring a throw', () => {
+    expect(
+      resolveInnerEdgePageGesture({
+        startOffset: 300,
+        maxOffset: 300,
+        translationY: -22,
+        velocityY: -200,
+      }),
+    ).toBe(1);
+  });
+
+  it('accepts a lighter flick when native ownership truncates travel', () => {
+    expect(
+      resolveInnerEdgePageGesture({
+        startOffset: 300,
+        maxOffset: 300,
+        translationY: -8,
+        velocityY: -500,
+      }),
+    ).toBe(1);
+  });
+
+  it('pages forward when fitting content is already at both edges', () => {
+    expect(
+      resolveInnerEdgePageGesture({
+        startOffset: 0,
+        maxOffset: 0,
+        translationY: -22,
+        velocityY: -200,
+      }),
+    ).toBe(1);
+  });
+
   it('stops after revealing prose when the swipe began away from the edge', () => {
     expect(
       resolveInnerEdgePageGesture({

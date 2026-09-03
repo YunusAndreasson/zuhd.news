@@ -24,12 +24,19 @@ export function resolveInnerEdgePageGesture({
   velocityY,
 }: InnerEdgePageGesture): InnerEdgePageDirection {
   const edgeSlop = 2;
-  const distance = 36;
-  const velocity = 650;
+  // The observer can be finalized as soon as the native inner ScrollView takes
+  // ownership, so requiring a long travel here effectively required a throw
+  // on iOS. Keep enough intent to reject touch wobble, but let a light swipe
+  // leave an overflow edge.
+  const distance = 20;
+  const velocity = 450;
   const upward = translationY <= -distance || velocityY <= -velocity;
   const downward = translationY >= distance || velocityY >= velocity;
 
-  if (maxOffset > edgeSlop && startOffset >= maxOffset - edgeSlop && upward) return 1;
+  // A page whose content fits has a zero scroll range, which means it is at
+  // both edges. Its nested ScrollView can still retain the touch sequence and
+  // starve the parent pager, so let swipe direction choose the adjacent page.
+  if (startOffset >= Math.max(0, maxOffset - edgeSlop) && upward) return 1;
   if (startOffset <= edgeSlop && downward) return -1;
   return 0;
 }

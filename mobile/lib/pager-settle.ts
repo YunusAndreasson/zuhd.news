@@ -46,6 +46,14 @@ export interface SettleDecision {
   clearMarkTimer: boolean;
 }
 
+interface DragPageInput {
+  /** Offset at finger-up, before native snapping can pull it back. */
+  y: number;
+  itemHeight: number;
+  count: number;
+  currentIndex: number;
+}
+
 /** How long an inner page's consumed gesture stays attributable to it. */
 export const INHERITED_GESTURE_MS = 1000;
 
@@ -53,6 +61,20 @@ export const INHERITED_GESTURE_MS = 1000;
  *  offset often enough that correcting it would fight the reader's own scroll
  *  on every single swipe. */
 const SLACK = 1;
+
+/** Commit a deliberate drag well before the native pager's roughly halfway
+ *  threshold. This keeps short, controlled swipes useful without letting a
+ *  small touch wobble turn the page. */
+export const DRAG_PAGE_FRACTION = 0.18;
+
+export function resolveDragPage({ y, itemHeight, count, currentIndex }: DragPageInput): number {
+  if (itemHeight <= 0 || count <= 0) return 0;
+  const delta = y - currentIndex * itemHeight;
+  const threshold = itemHeight * DRAG_PAGE_FRACTION;
+  if (delta >= threshold) return Math.min(currentIndex + 1, count - 1);
+  if (delta <= -threshold) return Math.max(currentIndex - 1, 0);
+  return currentIndex;
+}
 
 export function resolveSettle({
   y,
