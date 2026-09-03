@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-08-10T22:23:33.854Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-08-10-the-ocean-record-is-the-slow-variable-moving",
-        "title": "Ocean Sets Heat Record",
-        "category": "science",
-        "eventCoverage": 445,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-memory-is-why-the-phone-costs-more",
-        "title": "Memory Drives Up iPhone Cost",
-        "category": "economy",
-        "eventCoverage": 346,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-splitting-a-shot-that-is-not-manufactured",
-        "title": "Trump Orders Fewer Vaccines",
-        "category": "science",
-        "eventCoverage": 202,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-visa-revocation-a-decision-with-no-hearing",
-        "title": "US Visa Revocations Hit Record",
-        "category": "politics",
-        "eventCoverage": 111,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-pkk-disarmament-law-what-the-statute-does-not-say",
-        "title": "Turkey Passes Kurdish Disarmament Law",
-        "category": "politics",
-        "eventCoverage": 110,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-nvidia-arranges-the-debt-that-buys-its-chips",
-        "title": "Nvidia Arranges Chip Financing",
-        "category": "economy",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-mecca-pact-the-guarantee-nobody-will-write-down",
-        "title": "Egypt Eyes Mecca Defence Pact",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-warraq-a-service-demand-answered-by-security",
-        "title": "Security Ends Warraq Sit-In",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-niger-delta-who-writes-the-cause-code",
-        "title": "Niger Delta Records Ten Spills",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-the-fault-that-makes-its-own-hydrogen",
-        "title": "Fault Zones Make Hydrogen",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-the-guard-robot-that-had-to-call-a-human",
-        "title": "Security Robots Lose Contracts",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-the-plant-next-to-the-datacentre",
-        "title": "Amazon Funds Texas Gas Plant",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-10-a-purchase-that-lived-on-someone-elses-server",
-        "title": "Switch Buyers Lose Aliens Game",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-10-nvidia-arranges-the-debt-that-buys-its-chips",
-      "title": "Nvidia Arranges Chip Financing",
-      "category": "economy",
-      "body": "$500 billion will flow through six",
-      "eventCoverage": 78,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Nvidia arranges $500 billion in financing for AI chip buyers",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 12
-    }
-  },
-  {
     "timestamp": "2026-08-11T04:25:02.062Z",
     "candidateCount": 12,
     "candidates": [
@@ -10056,6 +9942,64 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russia closes 3 German Goethe-Institut cultural centres amid rising tensions",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-09-03T22:28:30.734Z",
+    "candidateCount": 5,
+    "candidates": [
+      {
+        "slug": "2026-09-03-four-competitors-one-substrate",
+        "title": "AI Giants Suffer Simultaneous Outages",
+        "category": "tech",
+        "eventCoverage": 153,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-03-a-war-by-any-other-name-starts-a-clock",
+        "title": "Vance Won't Call It War",
+        "category": "politics",
+        "eventCoverage": 130,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-03-the-franchise-does-not-need-its-founder",
+        "title": "Extortion Boss Arrested in Bolivia",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-03-what-an-installed-base-is-worth-to-its-new-owner",
+        "title": "Tottenham Slashes VMware Costs",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-03-approval-and-access-are-two-different-events",
+        "title": "FDA Approves Alexander Disease Drug",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-03-a-war-by-any-other-name-starts-a-clock",
+      "title": "Vance Won't Call It War",
+      "category": "politics",
+      "body": "Seven months in, no war has been",
+      "eventCoverage": 130,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Vance declines to call Iran conflict a war after 7 months",
     "response": {
       "pushed": 1,
       "skipped": 0,
