@@ -1,10 +1,4 @@
-import {
-  DRAG_PAGE_FRACTION,
-  INHERITED_GESTURE_MS,
-  resolveDragPage,
-  resolveSettle,
-  type SettleInput,
-} from '../lib/pager-settle';
+import { INHERITED_GESTURE_MS, resolveSettle, type SettleInput } from '../lib/pager-settle';
 
 const H = 800;
 const NOW = 1_000_000;
@@ -73,28 +67,6 @@ describe('resolveSettle — a gesture the list itself received', () => {
     const d = settle({ y: 0, currentIndex: 1, innerConsumed: { index: 0, at: NOW } });
     expect(d.clearMark).toBe(true);
     expect(d.clearMarkTimer).toBe(false);
-  });
-});
-
-describe('resolveDragPage — intent captured at finger-up', () => {
-  it('commits a short controlled swipe before the native halfway threshold', () => {
-    expect(
-      resolveDragPage({
-        y: H * DRAG_PAGE_FRACTION,
-        itemHeight: H,
-        count: 5,
-        currentIndex: 0,
-      }),
-    ).toBe(1);
-  });
-
-  it('ignores touch wobble below the deliberate-drag threshold', () => {
-    expect(resolveDragPage({ y: H * 0.1, itemHeight: H, count: 5, currentIndex: 0 })).toBe(0);
-  });
-
-  it('commits backward and clamps both ends to one page per drag', () => {
-    expect(resolveDragPage({ y: H * 1.7, itemHeight: H, count: 5, currentIndex: 2 })).toBe(1);
-    expect(resolveDragPage({ y: H * 4.8, itemHeight: H, count: 5, currentIndex: 4 })).toBe(4);
   });
 });
 

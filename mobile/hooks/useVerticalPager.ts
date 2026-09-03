@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
-import { type InnerConsumedMark, resolveDragPage, resolveSettle } from '../lib/pager-settle';
+import { type InnerConsumedMark, resolveSettle } from '../lib/pager-settle';
 
 /**
  * Land a vertically-paged list on a page, always — even when the gesture that
@@ -205,30 +205,9 @@ export function useVerticalPager<T>({
   );
 
   const handleEndDrag = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    (_e: NativeSyntheticEvent<NativeScrollEvent>) => {
       draggingRef.current = false;
       clearSettle();
-
-      // Read intent at finger-up, before native snapping can pull a controlled
-      // short drag back to its origin. Fast flicks still follow the native
-      // momentum path; this only supplies the lower-distance commit that the
-      // platform pager does not expose as a prop.
-      const requestedIndex = resolveDragPage({
-        y: e.nativeEvent.contentOffset.y,
-        itemHeight,
-        count,
-        currentIndex: currentIndexRef.current,
-      });
-      if (requestedIndex !== currentIndexRef.current) {
-        currentIndexRef.current = requestedIndex;
-        listRef.current?.scrollToOffset({
-          offset: requestedIndex * itemHeight,
-          animated: true,
-        });
-        onSettled(requestedIndex);
-        return;
-      }
-
       settleTimer.current = setTimeout(() => {
         if (draggingRef.current || momentumRef.current) return;
         // The list may keep moving after onScrollEndDrag even without a
@@ -237,7 +216,7 @@ export function useVerticalPager<T>({
         settleToPage(scrollY.value);
       }, AFTER_DRAG_MS);
     },
-    [clearSettle, count, currentIndexRef, itemHeight, listRef, onSettled, scrollY, settleToPage],
+    [clearSettle, scrollY, settleToPage],
   );
 
   const handleMomentumBegin = useCallback(() => {
