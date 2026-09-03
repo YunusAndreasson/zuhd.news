@@ -281,20 +281,17 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   symmetry the content does not keep. Full point, not `hairlineWidth` — a
   10pt vertical hairline disappears at some Android densities, and a group rule
   nobody can see does not group.
-- **A card that overflows scrolls; it must never truncate.** The five parts are
-  prose, so at large Dynamic Type — and at default type for four cards today —
-  a card outgrows its page. `CardFrame` arms an inner `ScrollView` when that
-  happens, and getting the measurement right means adding `COLUMN_PAD_V` back:
-  the column's padding lives on the `contentContainerStyle`, outside the view
-  being measured. `nestedScrollEnabled` is on (Android defaults it off, which
-  silently disabled the whole mechanism), and `CardPager` corrects any resting
-  offset the handoff leaves behind. The cost is one extra swipe to leave a tall
-  card; the alternative was losing the source caption off the bottom.
-  When an inner card actually consumes a gesture, `CardPager` pins the parent
-  to its current page before Android can apply the gesture's leftover momentum;
-  the next swipe from the inner scroll's end may page normally. This prevents
-  one gesture both scrolling the card and skipping it, or parking the deck
-  between two cards.
+- **Overflow scrolls; it must never truncate. Gesture ownership is spatial.**
+  Only the prose/analysis region owns an inner vertical `ScrollView`; a swipe
+  beginning on the title, metric, chart, globe, or surrounding page belongs to
+  the outer pager immediately. This keeps each touch under one owner from
+  touch-down through release and lets readers page without throwing the swipe.
+  The inner region arms itself from its measured content and viewport heights,
+  with one point of rounding tolerance. At its edge, paging requires a fresh
+  swipe: a gesture must never both scroll text and move the page, and no
+  programmatic page correction may run while the finger is still down. This
+  preserves large Dynamic Type content and source captions without the
+  mid-swipe freezes caused by competing scroll animations.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use

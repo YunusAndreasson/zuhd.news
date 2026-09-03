@@ -1,11 +1,10 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Entity } from '@shared/types';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   type AccessibilityActionEvent,
   type GestureResponderEvent,
-  type LayoutChangeEvent,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -320,100 +319,26 @@ export const ArticlePage = memo(function ArticlePage({
     [article, onBookmarkPress],
   );
 
-  // Overflow rescue for large text. The reader is a fixed-height page with
-  // `overflow: 'hidden'`, and the only thing keeping an article inside it is
-  // that the pipeline caps articles at ~450 characters — `computeFontScale`
-  // therefore returns 1 for everything in the current feed and does no work.
-  // Stack the app's own `fontSize: 'large'` preference (1.15) on top of iOS/
-  // Android accessibility scaling (`MAX_FONT_SCALE.body`, 1.5) and the column
-  // outgrows the viewport, silently truncating the end of the story with no
-  // way to reach it — a WCAG 1.4.4 content loss.
-  //
-  // Measured rather than predicted: `contentHeight` is the real laid-out
-  // height of the article column, so this engages precisely when text is
-  // about to be lost and is inert otherwise. At default type nothing changes
-  // — same view tree, same tap-through to the globe underneath.
-  const [contentHeight, setContentHeight] = useState(0);
-  const onContentLayout = useCallback((e: LayoutChangeEvent) => {
-    setContentHeight(e.nativeEvent.layout.height);
-  }, []);
-  const availableHeight = itemHeight - CONTENT_PADDING_TOP - SPACING.xxl;
-  const overflows = contentHeight > 0 && availableHeight > 0 && contentHeight > availableHeight;
-
-  // Once the column scrolls, the pager above can no longer tell the tail of
-  // that scroll from a swipe meant for it — so say so. Without this the list
-  // takes the leftover as a partial page turn and parks between two articles,
-  // both of them faded by `fadeStyle`, with no gesture that recovers. The card
-  // deck fixed exactly this; the reader never got the same fix until now.
+  // Only prose may own a nested vertical gesture. The title and the globe/map
+  // region stay outside this scroll view, so a swipe that begins there belongs
+  // directly to the article pager. This avoids making the whole screen choose
+  // between two same-axis scroll owners.
   const innerScroll = useInnerScrollReporter(
     index,
     onInnerScrollConsumed,
     onInnerEdgePage,
-    overflows,
     onReadingScrollStart,
   );
 
-  const content = (
-    <Animated.View style={fadeStyle} pointerEvents="box-none" onLayout={onContentLayout}>
-      {showEarlierDivider && (
-        <View
-          style={styles.earlierBoundary}
-          accessible
-          accessibilityLabel="Caught up. Everything from here you have already seen."
-        >
-          <View style={styles.earlierDivider}>
-            <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
-            <Text variant="labelSm" tone="secondary">
-              {'caught up'}
-            </Text>
-            <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
-          </View>
-          {/* The boundary used to be a rule and a two-word label you swiped
-              straight past, while a toast said the same two words a beat
-              earlier — the same fact in two places, which foundation.md
-              forbids. The toast is gone; this line is what's left, and it
-              says the thing the rule only implied. An app that refuses to be
-              an infinite feed should be willing to tell the reader they can
-              stop. */}
-          {/* "from here", not "below": the divider is drawn at the top of the
-              first already-seen article, so the page it sits on is itself one
-              of them. */}
-          <Text variant="caption" style={styles.earlierNote}>
-            Everything from here you've already seen.
-          </Text>
-        </View>
-      )}
-      <Pressable
-        onPress={bodyTapEnabled ? handleSourcesPress : undefined}
-        onLongPress={bookmarkEnabled ? handleLongPress : undefined}
-        delayLongPress={400}
-        accessibilityRole={isInteractive ? 'button' : undefined}
-        accessibilityHint={accessibilityHint}
-        accessibilityActions={accessibilityActions}
-        onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
-      >
-        {/* The category used to be the tab you were standing on. The column
-            is mixed now — ordered by how many newsrooms covered the event, not
-            by desk — so the story has to name its own. A `labelXs` kicker,
-            not a control: nothing here is tappable, and foundation.md's rule
-            that information appears exactly once is why it is the only place
-            the category is stated. */}
-        <Text variant="labelXs" tone="secondary" style={styles.kicker}>
-          {kicker}
-        </Text>
-        <Text
-          variant="display"
-          tone="emphasis"
-          scale={readerScale}
-          numberOfLines={3}
-          style={styles.title}
-        >
-          {article.title}
-        </Text>
-        {body}
-      </Pressable>
-    </Animated.View>
-  );
+  const pressableProps = {
+    onPress: bodyTapEnabled ? handleSourcesPress : undefined,
+    onLongPress: bookmarkEnabled ? handleLongPress : undefined,
+    delayLongPress: 400,
+    accessibilityRole: isInteractive ? ('button' as const) : undefined,
+    accessibilityHint,
+    accessibilityActions,
+    onAccessibilityAction: bookmarkEnabled ? handleAccessibilityAction : undefined,
+  };
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
@@ -424,45 +349,77 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      {/* Layout container — owns the column padding only, never a touch
-          target. `pointerEvents="box-none"` so taps that miss the inner
-          Pressable's text bounds (paddingTop, paddingBottom, side gutters,
-          the empty space below short articles, the caught-up divider)
-          fall straight through to GlobeTapZone underneath. The previous
-          structure put the Pressable on the outside, which made the whole
-          padded region open the sources sheet — including the strip above
-          the title (felt like the globe but wasn't) and the empty space
-          below the last sentence on short articles.
-
-          When the column outgrows the page it becomes a ScrollView instead.
-          That costs the tap-through in the gutters for those readers — at
-          that text size the column fills the screen anyway — and the story
-          stops being cut off, which is the trade worth making. `nestedScroll`
-          permits native handoff where available; the simultaneous edge
-          gesture makes the boundary deterministic on both platforms. */}
-      {overflows ? (
-        <InnerEdgeGesture enabled={overflows} gesture={innerScroll.edgeGesture}>
-          <ScrollView
-            style={styles.scrollFill}
-            contentContainerStyle={styles.contentLayout}
-            showsVerticalScrollIndicator
-            nestedScrollEnabled
-            onLayout={innerScroll.onLayout}
-            onContentSizeChange={innerScroll.onContentSizeChange}
-            onScrollBeginDrag={innerScroll.onScrollBeginDrag}
-            onScrollEndDrag={innerScroll.onScrollEndDrag}
-            onScroll={innerScroll.onScroll}
-            scrollEventThrottle={16}
+      <Animated.View style={[styles.contentLayout, fadeStyle]} pointerEvents="box-none">
+        {showEarlierDivider && (
+          <View
+            style={styles.earlierBoundary}
+            accessible
+            accessibilityLabel="Caught up. Everything from here you have already seen."
           >
-            {content}
-            {hasNext ? <OverflowEndCue /> : null}
-          </ScrollView>
-        </InnerEdgeGesture>
-      ) : (
-        <View style={styles.contentLayout} pointerEvents="box-none">
-          {content}
+            <View style={styles.earlierDivider}>
+              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
+              <Text variant="labelSm" tone="secondary">
+                {'caught up'}
+              </Text>
+              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
+            </View>
+            {/* The boundary used to be a rule and a two-word label you swiped
+              straight past, while a toast said the same two words a beat
+              earlier — the same fact in two places, which foundation.md
+              forbids. The toast is gone; this line is what's left, and it
+              says the thing the rule only implied. An app that refuses to be
+              an infinite feed should be willing to tell the reader they can
+              stop. */}
+            {/* "from here", not "below": the divider is drawn at the top of the
+              first already-seen article, so the page it sits on is itself one
+              of them. */}
+            <Text variant="caption" style={styles.earlierNote}>
+              Everything from here you've already seen.
+            </Text>
+          </View>
+        )}
+        <Pressable {...pressableProps} testID="article-page-header">
+          {/* The category used to be the tab you were standing on. The column
+            is mixed now — ordered by how many newsrooms covered the event, not
+            by desk — so the story has to name its own. A `labelXs` kicker,
+            not a control: nothing here is tappable, and foundation.md's rule
+            that information appears exactly once is why it is the only place
+            the category is stated. */}
+          <Text variant="labelXs" tone="secondary" style={styles.kicker}>
+            {kicker}
+          </Text>
+          <Text
+            variant="display"
+            tone="emphasis"
+            scale={readerScale}
+            numberOfLines={3}
+            style={styles.title}
+          >
+            {article.title}
+          </Text>
+        </Pressable>
+
+        <View style={styles.textViewport} testID="article-text-region">
+          <InnerEdgeGesture enabled={innerScroll.scrollable} gesture={innerScroll.edgeGesture}>
+            <ScrollView
+              style={styles.scrollFill}
+              pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
+              showsVerticalScrollIndicator={innerScroll.scrollable}
+              scrollEnabled={innerScroll.scrollable}
+              nestedScrollEnabled
+              onLayout={innerScroll.onLayout}
+              onContentSizeChange={innerScroll.onContentSizeChange}
+              onScrollBeginDrag={innerScroll.onScrollBeginDrag}
+              onScrollEndDrag={innerScroll.onScrollEndDrag}
+              onScroll={innerScroll.onScroll}
+              scrollEventThrottle={16}
+            >
+              <Pressable {...pressableProps}>{body}</Pressable>
+              {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
+            </ScrollView>
+          </InnerEdgeGesture>
         </View>
-      )}
+      </Animated.View>
     </View>
   );
 });
@@ -471,12 +428,13 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
   },
-  // Only used in the overflow branch — bounds the ScrollView to the page so
-  // it scrolls rather than growing and breaking the pager's uniform itemHeight.
+  // Bounds the prose ScrollView to its region so it scrolls rather than
+  // growing and breaking the pager's uniform itemHeight.
   scrollFill: {
     flex: 1,
   },
   contentLayout: {
+    flex: 1,
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: CONTENT_PADDING_TOP,
     // Clear the BottomActionBar across all platforms. The bar's top edge
@@ -486,6 +444,10 @@ const styles = StyleSheet.create({
     // ≥16px of breathing room everywhere and ~26px on devices with a home
     // indicator — enough to feel deliberate, not enough to waste viewport.
     paddingBottom: SPACING.xxl,
+  },
+  textViewport: {
+    flex: 1,
+    minHeight: 0,
   },
   // The "caught up" divider is the only place the app surfaces its
   // anti-doomscroll philosophy in pixels — the moment a reader hits the

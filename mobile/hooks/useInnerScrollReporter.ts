@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import {
   type PanGestureConfig,
@@ -31,7 +31,6 @@ export function useInnerScrollReporter(
   index: number,
   onInnerScrollConsumed: ((index: number) => void) | undefined,
   onInnerEdgePage?: (index: number, direction: Exclude<InnerEdgePageDirection, 0>) => void,
-  edgePagingEnabled = true,
   onReadingScrollStart?: () => void,
 ) {
   const startY = useRef(0);
@@ -45,9 +44,12 @@ export function useInnerScrollReporter(
   const viewportHeight = useRef(0);
   const consumed = useRef(false);
   const dragging = useRef(false);
+  const [scrollable, setScrollable] = useState(false);
 
   const updateBounds = useCallback(() => {
     maxOffsetY.current = Math.max(0, contentHeight.current - viewportHeight.current);
+    const nextScrollable = maxOffsetY.current > 1;
+    setScrollable((current) => (current === nextScrollable ? current : nextScrollable));
     offsetY.current = readableScrollOffset(
       offsetY.current,
       contentHeight.current,
@@ -112,7 +114,7 @@ export function useInnerScrollReporter(
 
   const edgePanConfig = useMemo<PanGestureConfig>(
     () => ({
-      enabled: edgePagingEnabled && !!onInnerEdgePage,
+      enabled: scrollable && !!onInnerEdgePage,
       runOnJS: true,
       // This recognizer observes the swipe; the native ScrollView still owns
       // the actual content movement. Without these, activating the pan can
@@ -150,10 +152,10 @@ export function useInnerScrollReporter(
         if (direction !== 0) onInnerEdgePage?.(index, direction);
       },
     }),
-    [edgePagingEnabled, index, onInnerEdgePage],
+    [index, onInnerEdgePage, scrollable],
   );
   const nativeGesture = useNativeGesture({
-    enabled: edgePagingEnabled && !!onInnerEdgePage,
+    enabled: scrollable && !!onInnerEdgePage,
   });
   const edgePan = usePanGesture(edgePanConfig);
   const edgeGesture = useSimultaneousGestures(nativeGesture, edgePan);
@@ -165,5 +167,6 @@ export function useInnerScrollReporter(
     onLayout,
     onContentSizeChange,
     edgeGesture,
+    scrollable,
   };
 }
