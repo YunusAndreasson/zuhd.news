@@ -4,11 +4,14 @@ import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useGdacsDetail } from '../hooks/useGdacsDetail';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { relativeTime } from '../lib/date-format';
-import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
+import {
+  displaySourceName,
+  EVENT_TYPE_EYEBROW,
+  gdacsDetailFor,
+  parseSeverityHero,
+} from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
 import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
@@ -78,7 +81,6 @@ export const DisasterSheet = memo(function DisasterSheet({
   onCountryPress,
 }: DisasterSheetProps) {
   const { colors } = useTheme();
-  const snapProps = useSheetSnaps(false);
   const openLink = useOpenLink();
   const handleReportPress = useCallback(() => {
     if (alert?.reportUrl) openLink(alert.reportUrl);
@@ -87,7 +89,7 @@ export const DisasterSheet = memo(function DisasterSheet({
   // server-side (stage 3.4c of run-cycle) and shipped with the alert list,
   // so this is a synchronous map lookup and the population row renders the
   // moment the sheet opens.
-  const detail = useGdacsDetail(alert, details);
+  const detail = gdacsDetailFor(alert, details);
   const populationCount =
     detail?.criticalPopulation && detail.criticalPopulation > 0
       ? detail.criticalPopulation
@@ -128,12 +130,7 @@ export const DisasterSheet = memo(function DisasterSheet({
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      onDismiss={onDismiss}
-      handleTitle={alert?.name ?? ''}
-    >
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={alert?.name ?? ''}>
       <SheetScrollView bottomInset={bottomInset}>
         {alert && (
           <>

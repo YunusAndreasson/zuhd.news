@@ -1,0 +1,194 @@
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.2
+            fromY: 0.952
+            toX: 0.78
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.78
+            fromY: 0.952
+            toX: 0.28
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.28
+            fromY: 0.952
+            toX: 0.7
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.952
+            toX: 0.22
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.22
+            fromY: 0.952
+            toX: 0.82
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.82
+            fromY: 0.952
+            toX: 0.36
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.36
+            fromY: 0.952
+            toX: 0.74
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+        - tool: gesture-swipe
+          args:
+            fromX: 0.74
+            fromY: 0.952
+            toX: 0.26
+            toY: 0.952
+            durationMs: 75
+            settle: true
+          delayMs: 20
+  - tap:
+      on: { text: "Pause briefing" }
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.4
+            fromY: 0.952
+            toX: 0.84
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.84
+            fromY: 0.952
+            toX: 0.24
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.24
+            fromY: 0.952
+            toX: 0.66
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.66
+            fromY: 0.952
+            toX: 0.3
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.3
+            fromY: 0.952
+            toX: 0.76
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.76
+            fromY: 0.952
+            toX: 0.18
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.18
+            fromY: 0.952
+            toX: 0.72
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+        - tool: gesture-swipe
+          args:
+            fromX: 0.72
+            fromY: 0.952
+            toX: 0.4
+            toY: 0.952
+            durationMs: 70
+            settle: true
+          delayMs: 15
+  - tap:
+      on: { text: "Play briefing" }
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.4
+            fromY: 0.952
+            toX: 0.8
+            toY: 0.952
+            durationMs: 60
+            settle: true
+          delayMs: 10
+        - tool: gesture-swipe
+          args:
+            fromX: 0.8
+            fromY: 0.952
+            toX: 0.24
+            toY: 0.952
+            durationMs: 60
+            settle: true
+          delayMs: 10
+        - tool: gesture-swipe
+          args:
+            fromX: 0.24
+            fromY: 0.952
+            toX: 0.7
+            toY: 0.952
+            durationMs: 60
+            settle: true
+          delayMs: 5
+        - tool: gesture-tap
+          args:
+            x: 0.89
+            y: 0.929
+          delayMs: 5
+  - assert:
+      visible: { text: "Daily briefing" }
+executionPrerequisite: The Zuhd News Android app is open on the News screen with
+  the briefing player visible and playing.

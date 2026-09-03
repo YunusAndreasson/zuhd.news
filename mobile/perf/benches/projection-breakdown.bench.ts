@@ -6,7 +6,7 @@
 
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
 import {
-  bordersMesh,
+  bordersMeshMedium,
   countries,
   countryCentroidPoints,
   iceSheets,
@@ -72,7 +72,7 @@ export const d = bench({
   warmup: WARM,
   setup: mkCtx,
   run: ({ pg }) => {
-    pg(bordersMesh as never);
+    pg(bordersMeshMedium as never);
   },
 });
 

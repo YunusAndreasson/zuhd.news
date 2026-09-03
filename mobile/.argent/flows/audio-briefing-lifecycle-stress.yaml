@@ -1,0 +1,62 @@
+steps:
+  - echo: "Cycle 1: immediate start and close"
+  - tap:
+      on: { text: "Daily briefing" }
+  - tap:
+      on: { text: "Close briefing player" }
+  - assert:
+      visible: { text: "Daily briefing" }
+
+  - echo: "Cycle 2: restart, pause, play, close"
+  - tap:
+      on: { text: "Daily briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Close briefing player" }
+  - assert:
+      visible: { text: "Daily briefing" }
+
+  - echo: "Cycle 3: two pause/play bursts, then close"
+  - tap:
+      on: { text: "Daily briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Close briefing player" }
+  - assert:
+      visible: { text: "Daily briefing" }
+
+  - echo: "Cycle 4: dense pause/play burst, then close"
+  - tap:
+      on: { text: "Daily briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Pause briefing" }
+  - tap:
+      on: { text: "Play briefing" }
+  - tap:
+      on: { text: "Close briefing player" }
+  - assert:
+      visible: { text: "Daily briefing" }
+executionPrerequisite: The Zuhd News Android app is open on the News screen with
+  the Daily briefing button visible and no briefing player open.

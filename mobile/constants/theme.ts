@@ -372,7 +372,7 @@ export const FLAG = {
 export const LAYOUT = {
   progressBarHeight: 2,
   /** Ceiling for a sheet, as a fraction of window height. Every sheet is
-   *  content-sized now (see `useSheetSnaps`), so this is the only thing
+   *  content-sized through `SheetLayout`, so this is the only thing
    *  bounding a long one — it is the height the old fixed `'85%'` snap used
    *  to give search, saved and the country rankings, and short pages never
    *  reach it because they hug their content. `SheetLayout` applies it. */

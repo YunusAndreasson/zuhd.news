@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { type InnerConsumedMark, resolveSettle } from '../lib/pager-settle';
@@ -7,7 +7,7 @@ import { type InnerConsumedMark, resolveSettle } from '../lib/pager-settle';
  * Land a vertically-paged list on a page, always — even when the gesture that
  * moved it was never the list's own.
  *
- * `pagingEnabled` snaps what the list received. A page taller than the screen
+ * Native list snapping handles what the list received. A page taller than the screen
  * scrolls its own last inch first and hands the remainder up, so the list moves
  * with no touch-down and no fling and stops between two pages, both of them
  * half-faded, with no gesture that recovers. This is the correction for that,
@@ -37,7 +37,7 @@ interface Scrollable {
   scrollToOffset: (params: { offset: number; animated?: boolean }) => void;
 }
 
-interface PagerSettleOptions {
+interface VerticalPagerOptions<T> {
   listRef: { current: Scrollable | null };
   scrollY: SharedValue<number>;
   itemHeight: number;
@@ -48,6 +48,14 @@ interface PagerSettleOptions {
   /** Called only when the settle actually changes page — haptics, hint state
    *  and any per-surface bookkeeping belong to the caller, not to this. */
   onSettled: (index: number) => void;
+  /** Clears transient teaching UI as soon as the reader starts paging. */
+  onReadingScrollStart?: () => void;
+  items: readonly T[];
+  getItemKey: (item: T) => string;
+  /** Reconcile state without firing user-driven snap effects such as haptics. */
+  onItemsReordered: (index: number) => void;
+  /** News intentionally exposes newly prepended content while the reader is at the top. */
+  preserveAtTop?: boolean;
 }
 
 /** Long enough that a fling has begun and disarmed this, short enough that a
@@ -61,14 +69,30 @@ const AFTER_SCROLL_MS = 140;
  *  child's edge can page normally. */
 const MARK_EXPIRY_MS = 700;
 
-export function usePagerSettle({
+/** Native paging policy shared by every vertical full-screen list. */
+export const VERTICAL_PAGER_PROPS = {
+  snapToAlignment: 'start',
+  decelerationRate: 'fast',
+  disableIntervalMomentum: true,
+  showsVerticalScrollIndicator: false,
+  scrollEventThrottle: 16,
+  initialNumToRender: 2,
+  windowSize: 3,
+} as const;
+
+export function useVerticalPager<T>({
   listRef,
   scrollY,
   itemHeight,
   count,
   currentIndexRef,
   onSettled,
-}: PagerSettleOptions) {
+  onReadingScrollStart,
+  items,
+  getItemKey,
+  onItemsReordered,
+  preserveAtTop = true,
+}: VerticalPagerOptions<T>) {
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const innerConsumedRef = useRef<InnerConsumedMark | null>(null);
   const innerConsumedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -79,6 +103,24 @@ export function usePagerSettle({
    *  deliberate movement. Refs, not state: nothing here renders. */
   const draggingRef = useRef(false);
   const momentumRef = useRef(false);
+  const previousItemKeysRef = useRef<string[]>([]);
+
+  // Data refreshes can reorder a deck. Keep the same stable item under the
+  // reader unless that surface deliberately exposes new content at page zero.
+  useLayoutEffect(() => {
+    const nextKeys = items.map(getItemKey);
+    const previousKeys = previousItemKeysRef.current;
+    previousItemKeysRef.current = nextKeys;
+    if (previousKeys.length === 0 || nextKeys.length === 0) return;
+    const index = currentIndexRef.current;
+    if (!preserveAtTop && index === 0) return;
+    const previousKey = previousKeys[index];
+    if (!previousKey) return;
+    const nextIndex = nextKeys.indexOf(previousKey);
+    if (nextIndex < 0 || nextIndex === index) return;
+    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
+    onItemsReordered(nextIndex);
+  }, [currentIndexRef, getItemKey, itemHeight, items, listRef, onItemsReordered, preserveAtTop]);
 
   const clearSettle = useCallback(() => {
     if (settleTimer.current) {
@@ -126,6 +168,41 @@ export function usePagerSettle({
     draggingRef.current = true;
     clearSettle();
   }, [clearSettle]);
+
+  const handlePagerBeginDrag = useCallback(() => {
+    onReadingScrollStart?.();
+    handleBeginDrag();
+  }, [handleBeginDrag, onReadingScrollStart]);
+
+  /**
+   * Make the inner-scroll edge decision authoritative. This request can race
+   * native momentum handed to the list, so animating it would let two motions
+   * compete and park between pages.
+   */
+  const handleInnerEdgePage = useCallback(
+    (index: number, direction: -1 | 1) => {
+      const target = Math.max(0, Math.min(index + direction, count - 1));
+      if (target === index) return;
+      // Native offset can lead React state during a burst. The callback is
+      // current while either adjacent page is physically visible.
+      const visibleIndex = Math.max(0, Math.min(Math.round(scrollY.value / itemHeight), count - 1));
+      if (currentIndexRef.current !== index && visibleIndex !== index && visibleIndex !== target)
+        return;
+      currentIndexRef.current = target;
+      listRef.current?.scrollToOffset({ offset: target * itemHeight, animated: false });
+      onSettled(target);
+    },
+    [count, currentIndexRef, itemHeight, listRef, onSettled, scrollY],
+  );
+
+  const getItemLayout = useCallback(
+    (_: ArrayLike<T> | null | undefined, index: number) => ({
+      length: itemHeight,
+      offset: itemHeight * index,
+      index,
+    }),
+    [itemHeight],
+  );
 
   const handleEndDrag = useCallback(
     (_e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -202,11 +279,13 @@ export function usePagerSettle({
   );
 
   return {
-    handleBeginDrag,
+    handlePagerBeginDrag,
     handleEndDrag,
     handleMomentumBegin,
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
+    handleInnerEdgePage,
+    getItemLayout,
   };
 }

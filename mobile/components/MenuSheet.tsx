@@ -25,7 +25,6 @@ import {
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
 import {
   formatBytes,
@@ -195,8 +194,6 @@ const SETTINGS: readonly SettingEntry[] = [
 type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
-
-const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
 
 function NavRow({
   label,
@@ -524,9 +521,6 @@ export const MenuSheet = memo(function MenuSheet({
       .then(setCanRate)
       .catch(() => {});
   }, []);
-  const isTall = nav.current !== null && TALL_PAGES.has(nav.current);
-  const snapProps = useSheetSnaps(isTall);
-
   const Handle = useCallback(
     () => (
       <SheetHandle title={nav.current ?? undefined} onBack={nav.depth > 0 ? navPop : undefined} />
@@ -554,7 +548,6 @@ export const MenuSheet = memo(function MenuSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...snapProps}
       handleComponent={Handle}
       onDismiss={handleDismiss}
       onChange={handleSheetChange}

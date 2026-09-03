@@ -15,7 +15,7 @@ import { readableScrollOffset } from '../lib/scroll-consumption';
  * A page taller than the screen scrolls its own text first and hands what is
  * left of the gesture upward. The parent list receives that remainder with no
  * touch-down and no fling, so it cannot tell an inherited tail from a real page
- * turn — and `usePagerSettle` needs to, or it turns a page the reader was only
+ * turn — and `useVerticalPager` needs to, or it turns a page the reader was only
  * trying to read to the bottom of.
  *
  * "Consumed" is deliberately readable movement, not intent: a drag that never
@@ -39,6 +39,8 @@ export function useInnerScrollReporter(
   const maxOffsetY = useRef(0);
   const gestureStartY = useRef(0);
   const gestureMaxOffsetY = useRef(0);
+  const gestureTranslationY = useRef(0);
+  const gestureVelocityY = useRef(0);
   const contentHeight = useRef(0);
   const viewportHeight = useRef(0);
   const consumed = useRef(false);
@@ -122,14 +124,28 @@ export function useInnerScrollReporter(
       onBegin: () => {
         gestureStartY.current = offsetY.current;
         gestureMaxOffsetY.current = maxOffsetY.current;
+        gestureTranslationY.current = 0;
+        gestureVelocityY.current = 0;
       },
-      onDeactivate: ({ canceled, translationY, velocityY }) => {
-        if (canceled) return;
+      // A native ScrollView is allowed to interrupt this observer. RNGH 3's
+      // onDeactivate only covers a Pan that reached ACTIVE, while onFinalize
+      // also covers the cancellation/failure path. That path matters here:
+      // the child can hand a partial tail to the parent at the same moment the
+      // Native gesture cancels this observer. Dropping the final event leaves
+      // the pager between pages. The edge + distance/velocity checks below
+      // remain the authority, so a cancelled tap or sideways drag is inert.
+      // RNGH 3 types finalization with base Pan data, so retain the last full
+      // update rather than relying on platform-specific end-event fields.
+      onUpdate: ({ translationY, velocityY }) => {
+        gestureTranslationY.current = translationY;
+        gestureVelocityY.current = velocityY;
+      },
+      onFinalize: () => {
         const direction = resolveInnerEdgePageGesture({
           startOffset: gestureStartY.current,
           maxOffset: gestureMaxOffsetY.current,
-          translationY,
-          velocityY,
+          translationY: gestureTranslationY.current,
+          velocityY: gestureVelocityY.current,
         });
         if (direction !== 0) onInnerEdgePage?.(index, direction);
       },

@@ -1,4 +1,4 @@
-import { memo, useCallback, useImperativeHandle, useLayoutEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -8,13 +8,15 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
-import { usePagerSettle } from '../../hooks/usePagerSettle';
 import { useScrollState } from '../../hooks/useScrollState';
+import { useVerticalPager, VERTICAL_PAGER_PROPS } from '../../hooks/useVerticalPager';
 import type { SwipeCard } from '../../lib/cards/rank';
 import { hapticTick } from '../../lib/haptics';
 import { markHintDone } from '../../lib/onboarding-store';
 import { EmptyState } from '../EmptyState';
 import { CardView } from './CardView';
+
+const cardKey = (card: SwipeCard) => card.id;
 
 /**
  * A column of full-screen cards, paged vertically.
@@ -75,23 +77,6 @@ export const CardPager = memo(function CardPager({
     scrollToTop: () => listRef.current?.scrollToOffset({ offset: 0, animated: true }),
   }));
 
-  // A refresh can legitimately reorder the deck as a new event, a stronger
-  // news tie or an unusual move arrives. Keep the reader on the same card by
-  // stable id instead of silently replacing the page under them.
-  const previousIdsRef = useRef<string[]>([]);
-  useLayoutEffect(() => {
-    const nextIds = cards.map((card) => card.id);
-    const previousIds = previousIdsRef.current;
-    previousIdsRef.current = nextIds;
-    if (previousIds.length === 0 || nextIds.length === 0) return;
-    const previousId = previousIds[currentIndexRef.current];
-    if (!previousId) return;
-    const nextIndex = nextIds.indexOf(previousId);
-    if (nextIndex < 0 || nextIndex === currentIndexRef.current) return;
-    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
-    setCurrentIndex(nextIndex);
-  }, [cards, itemHeight, listRef, setCurrentIndex]);
-
   const handleSnap = useCallback(
     (index: number) => {
       hapticTick();
@@ -106,42 +91,31 @@ export const CardPager = memo(function CardPager({
 
   /**
    * The whole settle machinery — timers, drag/momentum ownership, the mark an
-   * inner scroll leaves behind — lives in `usePagerSettle`, shared with the
+   * inner scroll leaves behind — lives in `useVerticalPager`, shared with the
    * article river, which had this same bug for as long as this deck had the
    * fix. `onSettled` fires only when the page actually changes.
    */
   const {
-    handleBeginDrag,
+    handlePagerBeginDrag,
     handleEndDrag,
     handleMomentumBegin,
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-  } = usePagerSettle({
+    handleInnerEdgePage,
+    getItemLayout,
+  } = useVerticalPager({
     listRef,
     scrollY,
     itemHeight,
     count,
     currentIndexRef,
     onSettled: handleSnap,
+    onReadingScrollStart,
+    items: cards,
+    getItemKey: cardKey,
+    onItemsReordered: setCurrentIndex,
   });
-
-  const handlePagerBeginDrag = useCallback(() => {
-    onReadingScrollStart?.();
-    handleBeginDrag();
-  }, [handleBeginDrag, onReadingScrollStart]);
-
-  const handleInnerEdgePage = useCallback(
-    (index: number, direction: -1 | 1) => {
-      if (currentIndexRef.current !== index) return;
-      const target = Math.max(0, Math.min(index + direction, count - 1));
-      if (target === index) return;
-      currentIndexRef.current = target;
-      listRef.current?.scrollToOffset({ offset: target * itemHeight, animated: true });
-      handleSnap(target);
-    },
-    [count, handleSnap, itemHeight, listRef],
-  );
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -183,15 +157,6 @@ export const CardPager = memo(function CardPager({
     },
   });
 
-  const getItemLayout = useCallback(
-    (_: ArrayLike<SwipeCard> | null | undefined, index: number) => ({
-      length: itemHeight,
-      offset: itemHeight * index,
-      index,
-    }),
-    [itemHeight],
-  );
-
   const renderItem = useCallback(
     ({ item, index }: { item: SwipeCard; index: number }) => (
       <CardView
@@ -215,8 +180,6 @@ export const CardPager = memo(function CardPager({
     ],
   );
 
-  const keyExtractor = useCallback((item: SwipeCard) => item.id, []);
-
   if (count === 0) {
     return (
       <View style={{ height: viewportHeight }}>
@@ -231,19 +194,16 @@ export const CardPager = memo(function CardPager({
       style={styles.list}
       data={cards}
       renderItem={renderItem}
-      keyExtractor={keyExtractor}
+      keyExtractor={cardKey}
       getItemLayout={getItemLayout}
-      pagingEnabled
-      showsVerticalScrollIndicator={false}
+      snapToInterval={itemHeight}
+      {...VERTICAL_PAGER_PROPS}
       onScroll={scrollHandler}
       onScrollBeginDrag={handlePagerBeginDrag}
       onMomentumScrollBegin={handleMomentumBegin}
       onMomentumScrollEnd={handleMomentumEnd}
       onScrollEndDrag={handleEndDrag}
-      scrollEventThrottle={16}
-      initialNumToRender={2}
       maxToRenderPerBatch={2}
-      windowSize={3}
       ListFooterComponent={safeAreaFooter}
     />
   );

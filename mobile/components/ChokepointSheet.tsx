@@ -3,7 +3,6 @@ import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
@@ -72,8 +71,6 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   onArticlePress,
 }: ChokepointSheetProps) {
   const { colors, font } = useTheme();
-  const snapProps = useSheetSnaps(false);
-
   const related = useMemo(
     () => (chokepoint ? findRelatedArticles(chokepoint, articles) : []),
     [chokepoint, articles],
@@ -112,12 +109,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   const { text: deltaText, tone: deltaTone } = formatDelta(delta);
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      onDismiss={onDismiss}
-      handleTitle={chokepoint?.name}
-    >
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={chokepoint?.name}>
       <SheetScrollView bottomInset={bottomInset}>
         {chokepoint && (
           <>

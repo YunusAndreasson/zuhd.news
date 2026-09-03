@@ -296,7 +296,7 @@ export const CardFrame = memo(function CardFrame({
           //
           // The fear: handing the leftover of a swipe to the pager is how this
           // column once parked itself between two pages — the parent moves
-          // without ever having been dragged, so `pagingEnabled`, which only
+          // without ever having been dragged, so native snapping, which only
           // snaps a gesture the list received itself, has nothing to snap.
           //
           // The cost, measured on a device rather than reasoned about: Android

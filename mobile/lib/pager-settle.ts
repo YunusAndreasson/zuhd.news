@@ -1,7 +1,7 @@
 /**
  * Where a paging list belongs once it has stopped moving.
  *
- * `pagingEnabled` snaps a gesture the list itself received. It does not snap
+ * Native list snapping handles a gesture the list itself received. It does not snap
  * one that arrives some other way: a page taller than the screen scrolls its
  * own last inch first, and what is left of that swipe reaches the list with no
  * touch-down and no fling, so the list moves part of a page and stops there.

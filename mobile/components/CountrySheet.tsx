@@ -7,7 +7,6 @@ import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import { FLAG, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
@@ -226,7 +225,6 @@ export const CountrySheet = memo(function CountrySheet({
   const { resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
@@ -339,7 +337,6 @@ export const CountrySheet = memo(function CountrySheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...snapProps}
       handleComponent={CountryHandle}
       onDismiss={handleDismiss}
       onChange={handleSheetChange}
