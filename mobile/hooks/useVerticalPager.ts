@@ -72,7 +72,10 @@ const MARK_EXPIRY_MS = 700;
 /** Native paging policy shared by every vertical full-screen list. */
 export const VERTICAL_PAGER_PROPS = {
   snapToAlignment: 'start',
-  decelerationRate: 'fast',
+  // Keep the platform in charge of settling, but preserve more of a light
+  // flick's velocity. `disableIntervalMomentum` below still caps each gesture
+  // to one page, so this lowers effort without creating multi-page throws.
+  decelerationRate: 'normal',
   disableIntervalMomentum: true,
   showsVerticalScrollIndicator: false,
   scrollEventThrottle: 16,
