@@ -1,5 +1,14 @@
 import type { TrendAnnotation, TrendBand, TrendHighlight, TrendSeries } from '@shared/types';
-import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/react-native-skia';
+import {
+  Canvas,
+  Circle,
+  DashPathEffect,
+  Line,
+  Path,
+  Skia,
+  type SkPath,
+  vec,
+} from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
 import { scaleLinear, scaleLog } from 'd3-scale';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -81,9 +90,18 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
   }
 }
 
+/** A level the series is measured against — a strait's 90-day normal —
+ *  drawn as a dashed hairline with its label at the left end. It joins the
+ *  y-extent, so the line is always on the canvas. */
+export interface TrendReference {
+  value: number;
+  label: string;
+}
+
 interface ChartProps {
   series: TrendSeries[];
   band?: TrendBand;
+  reference?: TrendReference;
   width: number;
   height: number;
   defaultHighlightIdx: number;
@@ -104,6 +122,7 @@ interface ChartProps {
 const Chart = memo(function Chart({
   series,
   band,
+  reference,
   width,
   height,
   defaultHighlightIdx,
@@ -115,12 +134,13 @@ const Chart = memo(function Chart({
   showDataDots,
   xPositions,
 }: ChartProps) {
-  const { seriesPaths, bandPath, points, minY, maxY } = useMemo(() => {
+  const { seriesPaths, bandPath, points, minY, maxY, referenceY } = useMemo(() => {
     const flat: number[] = [];
     for (const s of series) flat.push(...s.values);
     if (band) {
       flat.push(...band.low, ...band.high);
     }
+    if (reference) flat.push(reference.value);
     const [eMin, eMax] = extent(flat) as [number, number];
     const safeMin = eMin ?? 0;
     const safeMax = eMax ?? 1;
@@ -169,8 +189,9 @@ const Chart = memo(function Chart({
       points,
       minY: yScale(safeMin),
       maxY: yScale(safeMax),
+      referenceY: reference ? yScale(reference.value) : null,
     };
-  }, [series, band, height, scale, colors, xPositions]);
+  }, [series, band, reference, height, scale, colors, xPositions]);
 
   const chartRightX = width - CHART_RIGHT_PAD;
 
@@ -225,6 +246,17 @@ const Chart = memo(function Chart({
         opacity={0.35}
         strokeWidth={StyleSheet.hairlineWidth}
       />
+      {referenceY != null ? (
+        <Line
+          p1={vec(CHART_LEFT_PAD, referenceY)}
+          p2={vec(chartRightX, referenceY)}
+          color={colors.textSecondary}
+          opacity={0.6}
+          strokeWidth={StyleSheet.hairlineWidth}
+        >
+          <DashPathEffect intervals={[3, 3]} />
+        </Line>
+      ) : null}
       {seriesPaths.map((sp, i) => (
         <Path
           key={`series-${i}`}
@@ -293,6 +325,7 @@ interface TrendBlockProps {
   annotations?: TrendAnnotation[];
   scale?: 'linear' | 'log';
   band?: TrendBand;
+  reference?: TrendReference;
   variant?: BlockVariant;
   onPress?: () => void;
   sourceLabel?: string;
@@ -319,6 +352,7 @@ export const TrendBlock = memo(function TrendBlock({
   annotations,
   scale = 'linear',
   band,
+  reference,
   variant = 'article',
   onPress,
   sourceLabel,
@@ -353,8 +387,9 @@ export const TrendBlock = memo(function TrendBlock({
     const flat: number[] = [];
     for (const s of normalizedSeries) flat.push(...s.values);
     if (band) flat.push(...band.low, ...band.high);
+    if (reference) flat.push(reference.value);
     return extent(flat) as [number, number];
-  }, [normalizedSeries, band]);
+  }, [normalizedSeries, band, reference]);
   const min = flatExtent[0] ?? 0;
   const max = flatExtent[1] ?? 0;
 
@@ -377,9 +412,10 @@ export const TrendBlock = memo(function TrendBlock({
     [periods, normalizedSeries, band, width],
   );
 
-  // Compute primary-series points for hit testing (scrub).
-  const points: Pt[] = useMemo(() => {
-    if (width <= 0 || primaryValues.length === 0) return [];
+  // Compute primary-series points for hit testing (scrub), and where the
+  // reference line lands on the same scale, for its label.
+  const { points, referenceY } = useMemo<{ points: Pt[]; referenceY: number | null }>(() => {
+    if (width <= 0 || primaryValues.length === 0) return { points: [], referenceY: null };
     const innerTop = CHART_TOP_PAD;
     const innerBottom = height - CHART_BOTTOM_PAD;
     const yDomain: [number, number] =
@@ -390,11 +426,14 @@ export const TrendBlock = memo(function TrendBlock({
       scale === 'log' && yDomain[0] > 0
         ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
         : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
-    return primaryValues.map((v, i) => ({
-      x: xLayout.positions[i] ?? CHART_LEFT_PAD,
-      y: yScale(v),
-    }));
-  }, [primaryValues, xLayout.positions, width, height, scale, min, max]);
+    return {
+      points: primaryValues.map((v, i) => ({
+        x: xLayout.positions[i] ?? CHART_LEFT_PAD,
+        y: yScale(v),
+      })),
+      referenceY: reference ? yScale(reference.value) : null,
+    };
+  }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference]);
 
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
@@ -503,9 +542,12 @@ export const TrendBlock = memo(function TrendBlock({
 
   const highlightValue = primaryValues[defaultHighlightIdx];
   const highlightPeriod = periods?.[defaultHighlightIdx];
+  const referenceText = reference
+    ? `${reference.label} ${formatBlockNumber(reference.value, unit)}`
+    : null;
   const a11yLabel =
     highlightValue !== undefined
-      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}`
+      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}${referenceText ? `, ${referenceText}` : ''}`
       : label;
 
   if (normalizedSeries.length === 0) return null;
@@ -549,6 +591,7 @@ export const TrendBlock = memo(function TrendBlock({
               <Chart
                 series={normalizedSeries}
                 band={band}
+                reference={reference}
                 width={width}
                 height={height}
                 defaultHighlightIdx={defaultHighlightIdx}
@@ -631,6 +674,29 @@ export const TrendBlock = memo(function TrendBlock({
                   {formatBlockNumber(min, unit)}
                 </Text>
               </View>
+              {/* On the line, at its left end, rather than in the right gutter:
+                  a disrupted strait's normal sits near the top of its own
+                  range, exactly where the max label already is, and a label
+                  that hides when it matters is not a label. Clamped so a
+                  reference at the very top still prints. */}
+              {reference && referenceY != null ? (
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.referenceLabelWrap,
+                    { top: Math.max(0, referenceY - LABEL_ROW_HEIGHT) },
+                  ]}
+                >
+                  <Text
+                    variant="labelXs"
+                    tone="secondary"
+                    numberOfLines={1}
+                    style={styles.referenceLabelText}
+                  >
+                    {`${reference.label} ${formatBlockNumber(reference.value)}`}
+                  </Text>
+                </View>
+              ) : null}
             </>
           ) : null}
         </View>
@@ -731,6 +797,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  referenceLabelWrap: {
+    position: 'absolute',
+    left: CHART_LEFT_PAD,
+    height: LABEL_ROW_HEIGHT,
+    justifyContent: 'center',
+  },
+  referenceLabelText: {
+    lineHeight: LABEL_ROW_HEIGHT,
   },
   annotationLabelText: {
     textAlign: 'center',

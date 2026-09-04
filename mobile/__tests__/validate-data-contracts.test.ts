@@ -56,6 +56,17 @@ describe('live panel data contracts', () => {
         indicators: [{ ...indicator, values: [80], periods: ['Aug 24', 'Aug 25'] }],
       }),
     ).toBe(false);
+    // Polymarket's day change is a number, absent, or — for a market with no
+    // day-old price — null. Reading null as malformed dropped every market.
+    expect(isTrendsSnapshot({ ...valid, indicators: [{ ...indicator, change24h: -10 }] })).toBe(
+      true,
+    );
+    expect(isTrendsSnapshot({ ...valid, indicators: [{ ...indicator, change24h: null }] })).toBe(
+      true,
+    );
+    expect(isTrendsSnapshot({ ...valid, indicators: [{ ...indicator, change24h: 'x' }] })).toBe(
+      false,
+    );
   });
 
   it('rejects a shipping chart whose dates and measurements do not align', () => {

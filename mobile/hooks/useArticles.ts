@@ -9,6 +9,7 @@ import { fetchJson } from '../lib/fetchJson';
 import { flushOnboarding } from '../lib/onboarding-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isMetaResponse } from '../lib/validate';
+import { invalidateApiJson } from './useApiJson';
 import { useAppResume } from './useAppResume';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -158,7 +159,14 @@ export function useArticles(): ArticlesState {
       refreshingRef.current = true;
       try {
         const changed = await hasNewContent();
-        if (changed === 'changed') await refetchAndDiff();
+        if (changed === 'changed') {
+          // The one probe answers for every snapshot: the card payloads are
+          // build outputs too, and this is the only thing that refetches
+          // them on a foreground return. Not awaited — the feed diff should
+          // not wait on 150KB of card data.
+          void invalidateApiJson(queryClient);
+          await refetchAndDiff();
+        }
       } catch {
         // silent — existing content is fine
       } finally {
@@ -182,11 +190,12 @@ export function useArticles(): ArticlesState {
       const changed = await hasNewContent();
       if (changed === 'unknown') throw new Error('Could not verify feed freshness');
       if (changed === 'unchanged') return [];
+      void invalidateApiJson(queryClient);
       return await refetchAndDiff();
     } finally {
       refreshingRef.current = false;
     }
-  }, []); // refetchAndDiff/hasNewContent are stable useEffectEvent refs
+  }, [queryClient]); // refetchAndDiff/hasNewContent are stable useEffectEvent refs
 
   const retry = useCallback(async () => {
     await query.refetch();

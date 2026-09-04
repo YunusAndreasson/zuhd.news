@@ -66,6 +66,8 @@
     // ── npm scripts and the dashboard.
     "scripts/watch.js",
     "scripts/test-voice.js",
+    // ── Operator tools run by hand (see mobile/MARKET-SIGNALS.md).
+    "scripts/replay-market-signals.js",
     "scripts/dashboard/server.js",
 
     // ── The autoresearch session driver, run by the /autoresearch skill.

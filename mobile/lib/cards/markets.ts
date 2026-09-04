@@ -8,10 +8,12 @@ import type {
 } from '@shared/types';
 import { indicatorObservation, isCurrentObservation, oldestObservation } from '../data-freshness';
 import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
+import { vesselClass } from '../vessel-classes';
 import {
   deltaFrom,
   formatCount,
   formatMagnitudePct,
+  formatMagnitudePoints,
   formatQuantity,
   formatReading,
   formatSignedPct,
@@ -22,7 +24,15 @@ import {
   windowChange,
   windowPointChange,
 } from './format';
-import type { BeliefCard, Card, CardDelta, CardSeries, ReadingCard, ScheduledCard } from './types';
+import type {
+  BeliefCard,
+  Card,
+  CardDelta,
+  CardFigure,
+  CardSeries,
+  ReadingCard,
+  ScheduledCard,
+} from './types';
 
 /**
  * The instrument columns, no network call the app was not already making.
@@ -341,16 +351,21 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     // built and then silently dropped by `hasGraphAndAnalysis`, which is how
     // the card this column is documented as opening with never opened it.
     why: whyFor(analysis, bindingIndicator.id, bindingIndicator),
+    // `weight` draws the bar under each row, and the bar is the point: the
+    // two thresholds differ by an order of magnitude, and "set by silver"
+    // is a claim a reader can now see rather than take on trust.
     figures: [
       {
         label: 'gold · 85 g',
         value: `$${formatCount(n.gold)}`,
         note: `at $${formatReading(goldPrice)}/oz`,
+        weight: n.gold,
       },
       {
         label: 'silver · 595 g',
         value: `$${formatCount(n.silver)}`,
         note: `at $${formatReading(silverPrice)}/oz`,
+        weight: n.silver,
       },
     ],
     series: {
@@ -613,9 +628,10 @@ function fxMoverCards(
  * fields the other cards choose between are one field here, and the choice is
  * really between the day's analysis and the catalog.
  *
- * The blurb is the last rung rather than no rung. It reads as a duplicate of
- * part two, which it was when part two carried it; part two is the 90-day
- * normal now and the blurb appears nowhere else on a card. Without it a strait
+ * The blurb is the last rung rather than no rung. It read as a duplicate of
+ * part two when part two carried it; part two is gone — the 90-day normal is
+ * a reference line on the chart now — and the blurb appears nowhere else on a
+ * card. Without it a strait
  * whose `recent` came back empty — Suez, on the current dispatch — is built,
  * dropped by `hasGraphAndAnalysis`, and silently absent from the deck.
  */
@@ -654,6 +670,44 @@ function totalTrafficDelta(c: Chokepoint): number | null {
  * weekly deviation is ordinary in the live payload; 30% is where an all-ships
  * chart earns a full screen. */
 const TOTAL_TRAFFIC_DISRUPTED = 0.3;
+
+/**
+ * How old a strait's observation may be and still be called current.
+ *
+ * IMF PortWatch publishes about five days behind the site build — every
+ * strait's `asOf` sits that far behind `generated`, on every cycle — so the
+ * three-day rule the price cards use can never be met here, and it never was:
+ * a Strait of Hormuz at 57% below its normal rendered as plain reference. Ten
+ * days is the lag plus a weekend; a stalled fetch still ages out of it.
+ */
+const CHOKEPOINT_CURRENT_DAYS = 10;
+
+/**
+ * The vessel class this strait is watched for, beside the all-ships reading.
+ *
+ * The chart is total traffic, because that is the only history PortWatch
+ * publishes; but the story of Hormuz is tankers and the story of Bab el-Mandeb
+ * is container ships, and the pipeline has been shipping that class's own
+ * seven-day average and distance from normal all along — read only by the
+ * globe sheet. One row, and only where the class is not the total itself:
+ * "all ships" under a reading of all ships is the same fact twice.
+ */
+function straitClassFigure(c: Chokepoint): CardFigure | undefined {
+  const field = c.primaryField;
+  if (field === 'n_total') return undefined;
+  const cls = vesselClass(field);
+  const v = c.last7Avg[field];
+  const d = c.delta7vs90[field];
+  if (!cls || v == null || d == null || !Number.isFinite(v) || !Number.isFinite(d)) {
+    return undefined;
+  }
+  const signed = formatSignedPct(d * 100);
+  return {
+    label: cls.plural,
+    value: `${formatQuantity(v)} a day`,
+    note: signed === 'unchanged' ? 'at its normal' : `${signed} vs its normal`,
+  };
+}
 
 /** Smooth noisy daily ship counts into the same seven-day measure used by the
  * headline and delta. Short fixture/partial series remain usable. */
@@ -747,30 +801,38 @@ function straitCards(
     // headline of 0.1 ships a day terminate at 0 on the graph.
     if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
     const odds = straitOdds(snapshot, c);
+    // The class row first, then the forecast beside the measurement. The odds
+    // are a figure rather than a second chart: the card's subject is the
+    // traffic and its history, and the odds are one number that says what the
+    // market thinks happens next.
+    const figures: CardFigure[] = [];
+    const cls = straitClassFigure(c);
+    if (cls) figures.push(cls);
+    if (odds) figures.push({ label: odds.label, value: odds.value });
     return {
       id: `strait-${c.id}`,
       kind: 'reading' as const,
       // A large fall in an old observation remains important reference, but
       // it is not a current development. The date still appears on every card.
-      lead: d <= -TOTAL_TRAFFIC_DISRUPTED && isCurrentObservation(c.asOf, now),
+      lead:
+        d <= -TOTAL_TRAFFIC_DISRUPTED && isCurrentObservation(c.asOf, now, CHOKEPOINT_CURRENT_DAYS),
       asOf: c.asOf,
       title: c.name,
       reading: last7 == null ? '—' : formatQuantity(last7),
       readingNote: 'ships a day',
       delta: straitDelta(d),
-      changed:
-        base != null ? `Its own 90-day normal is ${formatQuantity(base)} ships a day.` : undefined,
       why: straitWhy(c),
-      // The forecast beside the measurement. A figure rather than a second
-      // chart: the card's subject is the traffic and its history, and the odds
-      // are one number that says what the market thinks happens next.
-      figures: odds ? [{ label: odds.label, value: odds.value }] : undefined,
+      figures: figures.length > 0 ? figures : undefined,
       series: {
         values: traffic,
         periods,
         label: 'seven-day average, all ships',
         unit: 'a day',
         highlight: 'last' as const,
+        // The normal the chip measures against, on the chart it is measured
+        // on. This was a sentence — "Its own 90-day normal is N ships a day"
+        // — which put the one number the line needed a screen-line below it.
+        reference: base != null ? { value: base, label: 'normal' } : undefined,
       },
       related: c.relatedArticles,
       sourceLabel: odds ? 'IMF PortWatch · Polymarket' : 'IMF PortWatch',
@@ -850,6 +912,15 @@ function completeBeliefTitle(indicator: Indicator): string {
   return indicator.label;
 }
 
+/**
+ * A contract that moved this far in a day is on screen because of today, not
+ * because of its subject — the same claim `lead` makes for a strait that went
+ * quiet. `change24h` is Polymarket's own figure, in points, and it was shipped
+ * on every market and read by nothing: the day a Fed contract fell ten points
+ * on a jobs report, its chip said one point, on the month.
+ */
+const BELIEF_SHARP_MOVE_POINTS = 10;
+
 function beliefCards(
   snapshot: TrendsSnapshot,
   analysis: AnalysisById,
@@ -862,10 +933,28 @@ function beliefCards(
       if (value == null) return null;
       const extremes = seriesExtremes(indicator);
       const change = windowPointChange(indicator, indicator.values.length - 1);
+      const day =
+        typeof indicator.change24h === 'number' && Number.isFinite(indicator.change24h)
+          ? indicator.change24h
+          : null;
+      const sharp = day !== null && Math.abs(day) >= BELIEF_SHARP_MOVE_POINTS;
+      // The chip keeps the month — how settled the belief is — and the day's
+      // move goes in the sentence, so a card marked current says why on its
+      // face. Two windows in one chip would leave the caret pointing at
+      // neither.
+      const dayMove =
+        sharp && day !== null
+          ? `${day < 0 ? 'Down' : 'Up'} ${formatMagnitudePoints(day) ?? ''} in a day.`
+          : undefined;
+      const range =
+        extremes && extremes.max - extremes.min >= 1
+          ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
+          : undefined;
       const card: BeliefCard = {
         id: indicator.id,
         kind: 'belief',
         kicker: 'what traders think',
+        lead: sharp,
         asOf: indicatorObservation(indicator, snapshot.asOf),
         // The label arrives as a question and stays one. An earlier version
         // stripped the trailing "?" for tidiness, which turned the one mark
@@ -883,10 +972,7 @@ function beliefCards(
         // which is the part that says how settled the belief is — a number
         // sitting at 88 having never been below 80 is a different fact from
         // one that got there from 30 last week.
-        changed:
-          extremes && extremes.max - extremes.min >= 1
-            ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
-            : undefined,
+        changed: [dayMove, range].filter(Boolean).join(' ') || undefined,
         why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
@@ -955,25 +1041,37 @@ function countdown(days: number): string {
  * Putting them in one column is the point.
  */
 /**
- * The series a scheduled event is about, by the institution that sets it.
+ * The series a scheduled event is about.
  *
- * Keyed on `institution` rather than the event id because the id carries the
- * meeting date and there are three FOMC meetings in the window; the institution
- * is the stable half. Only the three with a current, honest series are here —
- * see `ScheduledCard.series` for why the Bank of England and the Bank of Japan
- * are deliberately absent rather than filled with the nearest proxy.
+ * A central bank is matched on the institution, because the id carries the
+ * meeting date and there are three FOMC meetings in the window. A FRED-derived
+ * release is matched on its id, because the institution does not identify it:
+ * the BLS publishes the jobs report, the CPI and the PPI, and keying on the
+ * institution drew the unemployment staircase under all three. Only series
+ * that are honestly the event's own are here — see `ScheduledCard.series` for
+ * why the Bank of England and the Bank of Japan are deliberately absent rather
+ * than filled with the nearest proxy.
  */
-const EVENT_SERIES: Record<string, string> = {
-  'Federal Reserve': 'fed-funds',
-  'European Central Bank': 'ecb-rate',
-  'Bureau of Labor Statistics': 'us-unemployment',
-};
+interface EventSeriesRule {
+  match: (ev: TrendEvent) => boolean;
+  id: string;
+}
 
-function eventSeries(snapshot: TrendsSnapshot, institution: string): CardSeries | undefined {
-  const id = EVENT_SERIES[institution];
-  if (!id) return undefined;
-  const ind = byId(snapshot, id);
-  if (!ind || ind.values.filter(Number.isFinite).length < 2) return undefined;
+const EVENT_SERIES: readonly EventSeriesRule[] = [
+  { match: (ev) => ev.institution === 'Federal Reserve', id: 'fed-funds' },
+  { match: (ev) => ev.institution === 'European Central Bank', id: 'ecb-rate' },
+  { match: (ev) => ev.id.startsWith('fred-us-jobs-report'), id: 'us-unemployment' },
+  // Inert until the pipeline publishes a `us-cpi` series; the PPI has none.
+  { match: (ev) => ev.id.startsWith('fred-us-cpi'), id: 'us-cpi' },
+];
+
+function eventIndicator(snapshot: TrendsSnapshot, ev: TrendEvent): Indicator | undefined {
+  const id = EVENT_SERIES.find((rule) => rule.match(ev))?.id;
+  const ind = id ? byId(snapshot, id) : undefined;
+  return ind && ind.values.filter(Number.isFinite).length >= 2 ? ind : undefined;
+}
+
+function seriesOf(ind: Indicator): CardSeries {
   return {
     values: ind.values,
     periods: ind.periods,
@@ -983,32 +1081,88 @@ function eventSeries(snapshot: TrendsSnapshot, institution: string): CardSeries 
   };
 }
 
+/**
+ * Where the staircase ends, in words the chart's gutter cannot fit.
+ *
+ * A countdown says when; the series says from where; this says where it is
+ * now and how long it has been there, which is the question a reader has on
+ * an FOMC card before the meeting. Formatted values are compared rather than
+ * raw ones so a 4.499 beside a 4.50 is not announced as a step. "Up from" and
+ * "down from", never "raised" or "cut": the same sentence has to be true of
+ * the unemployment rate, which nobody decides.
+ */
+function describeLevel(ind: Pick<Indicator, 'values' | 'periods' | 'unit'>): string | undefined {
+  const { values, periods, unit } = ind;
+  const n = values.length;
+  const last = values[n - 1];
+  const prev = values[n - 2];
+  if (last === undefined || prev === undefined) return undefined;
+  const fmt = (v: number) => money(v, unit).reading;
+  const now = fmt(last);
+  if (fmt(prev) !== now) {
+    return `Now ${now}, ${last > prev ? 'up' : 'down'} from ${fmt(prev)} in ${periods[n - 2]}.`;
+  }
+  let i = n - 2;
+  while (i > 0) {
+    const earlier = values[i - 1];
+    if (earlier === undefined || fmt(earlier) !== now) break;
+    i -= 1;
+  }
+  return `Now ${now}, unchanged since ${periods[i]}.`;
+}
+
+/**
+ * Which events get the slots.
+ *
+ * The desk's account of what is at stake outranks a nearer date it wrote
+ * nothing about. Under a pure date sort the September FOMC — a paragraph, four
+ * tied stories and a live rate series — was cut for a PPI print carrying only
+ * its standing line. Imminent stays in the first tier for the reason `lead`
+ * gives: inside three days the date is the news, written about or not. A bare
+ * event ranks last, so it no longer takes a slot it is then refused at the
+ * gate in `sections.ts`.
+ */
+function eventTier(ev: TrendEvent, days: number): number {
+  if (ev.recent?.trim() || days <= EVENT_IMMINENT_DAYS) return 0;
+  return ev.standing?.trim() ? 1 : 2;
+}
+
 function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
-  return (snapshot.events ?? [])
-    .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
-    .filter((x): x is { ev: TrendEvent; days: number } => x.days !== null && x.days >= 0)
-    .filter(({ days }) => days <= EVENT_HORIZON_DAYS)
-    .sort((a, b) => a.days - b.days)
-    .slice(0, EVENT_LIMIT)
-    .map(({ ev, days }) => ({
-      id: `event-${ev.id}`,
-      kind: 'scheduled' as const,
-      date: ev.date,
-      lead: days <= EVENT_IMMINENT_DAYS,
-      kicker: ev.institution,
-      title: ev.title,
-      reading: countdown(days),
-      readingNote: new Date(`${ev.date}T00:00:00Z`).toLocaleDateString(undefined, {
-        day: 'numeric',
-        month: 'long',
-        timeZone: 'UTC',
-      }),
-      // Same rule as every other card: the day's account of what is at stake,
-      // and the standing description of the institution where there is none.
-      why: ev.recent?.trim() || ev.standing?.trim() || undefined,
-      series: eventSeries(snapshot, ev.institution),
-      related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
-    }));
+  return (
+    (snapshot.events ?? [])
+      .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
+      .filter((x): x is { ev: TrendEvent; days: number } => x.days !== null && x.days >= 0)
+      .filter(({ days }) => days <= EVENT_HORIZON_DAYS)
+      .sort((a, b) => eventTier(a.ev, a.days) - eventTier(b.ev, b.days) || a.days - b.days)
+      .slice(0, EVENT_LIMIT)
+      // Chosen by tier, read by date: the editorial order the ranker breaks
+      // ties on is nearest first.
+      .sort((a, b) => a.days - b.days)
+      .map(({ ev, days }) => {
+        const ind = eventIndicator(snapshot, ev);
+        return {
+          id: `event-${ev.id}`,
+          kind: 'scheduled' as const,
+          date: ev.date,
+          lead: days <= EVENT_IMMINENT_DAYS,
+          kicker: ev.institution,
+          title: ev.title,
+          reading: countdown(days),
+          readingNote: new Date(`${ev.date}T00:00:00Z`).toLocaleDateString(undefined, {
+            day: 'numeric',
+            month: 'long',
+            timeZone: 'UTC',
+          }),
+          // Same rule as every other card: the day's account of what is at
+          // stake, and the standing description of the institution where there
+          // is none.
+          why: ev.recent?.trim() || ev.standing?.trim() || undefined,
+          changed: ind ? describeLevel(ind) : undefined,
+          series: ind ? seriesOf(ind) : undefined,
+          related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
+        };
+      })
+  );
 }
 
 export interface InstrumentCardInputs {

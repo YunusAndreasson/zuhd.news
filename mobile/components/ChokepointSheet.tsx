@@ -1,4 +1,4 @@
-import type { Article, Category, Chokepoint, CompareRow, VesselField } from '@shared/types';
+import type { Article, Category, Chokepoint, CompareRow } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -7,6 +7,7 @@ import { useTheme } from '../hooks/useTheme';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
 import { chokepointValence, type Valence } from '../lib/valence';
+import { VESSEL_CLASSES, vesselClass } from '../lib/vessel-classes';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
@@ -20,15 +21,6 @@ interface ChokepointSheetProps extends BaseSheetProps {
   articles: Article[];
   onArticlePress?: (slug: string, category: Category) => void;
 }
-
-const VESSEL_LABELS: { field: VesselField; label: string }[] = [
-  { field: 'n_tanker', label: 'Tanker' },
-  { field: 'n_container', label: 'Container' },
-  { field: 'n_dry_bulk', label: 'Dry bulk' },
-  { field: 'n_cargo', label: 'Cargo' },
-  { field: 'n_general_cargo', label: 'General cargo' },
-  { field: 'n_roro', label: 'Ro-Ro' },
-];
 
 function formatCount(n: number): string {
   return n < 10 ? n.toFixed(1) : Math.round(n).toString();
@@ -78,7 +70,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
 
   const vesselRows = useMemo<CompareRow[]>(() => {
     if (!chokepoint) return [];
-    return VESSEL_LABELS.flatMap((v) => {
+    return VESSEL_CLASSES.flatMap((v) => {
       const current = chokepoint.last7Avg[v.field];
       const baseline = chokepoint.baseline90Avg[v.field];
       if (current == null || baseline == null) return [];
@@ -98,8 +90,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   const enter = makeStaggerEnter();
 
   const primary = chokepoint?.primaryField;
-  const primaryLabel =
-    (primary && VESSEL_LABELS.find((v) => v.field === primary)?.label.toLowerCase()) || 'transits';
+  const primaryLabel = (primary && vesselClass(primary)?.label.toLowerCase()) || 'transits';
   const current = (primary && chokepoint?.last7Avg[primary]) ?? 0;
   const delta = (primary && chokepoint?.delta7vs90[primary]) ?? 0;
   // The headline delta reads in the same channel as the rows below it and as
@@ -163,6 +154,22 @@ export const ChokepointSheet = memo(function ChokepointSheet({
               </Text>
             </Animated.View>
 
+            {/* What is happening there now, from the desk. The card that
+                opens this sheet has printed it all along; the sheet showed
+                only the blurb, so tapping the globe gave a reader strictly
+                less than the deck did. `standing` is not rendered: on every
+                strait it is the blurb again. */}
+            {chokepoint.recent?.trim() ? (
+              <Animated.View entering={enter()} style={styles.recent}>
+                <Text variant="labelXs" tone="secondary">
+                  {observationLabel(chokepoint.asOf)}
+                </Text>
+                <Text selectable variant="body" style={styles.recentBody}>
+                  {chokepoint.recent}
+                </Text>
+              </Animated.View>
+            ) : null}
+
             <Animated.View entering={enter()} style={styles.section}>
               <TrendBlock
                 values={chokepoint.series.total}
@@ -170,6 +177,11 @@ export const ChokepointSheet = memo(function ChokepointSheet({
                 label="Total transits, last 90 days"
                 unit="ships/day"
                 highlight="last"
+                reference={
+                  chokepoint.baseline90Avg.n_total != null
+                    ? { value: chokepoint.baseline90Avg.n_total, label: 'normal' }
+                    : undefined
+                }
                 variant="context"
               />
             </Animated.View>
@@ -205,6 +217,12 @@ export const ChokepointSheet = memo(function ChokepointSheet({
 const styles = StyleSheet.create({
   blurb: {
     marginTop: SPACING.md,
+  },
+  recent: {
+    marginTop: SPACING.md,
+  },
+  recentBody: {
+    marginTop: SPACING.xxs,
   },
   section: {
     marginTop: SPACING.lg,

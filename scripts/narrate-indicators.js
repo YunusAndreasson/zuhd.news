@@ -85,12 +85,20 @@ const ONLY = argAt('only')
  * Only instruments this file has never seen — the non-04:00 pass.
  *
  * The full run is daily and that is the right cadence for *rewriting* an
- * explanation. Appearing is a different event: Polymarket questions rotate on
- * every cycle and the `wiki-*` set is re-picked from our own concepts, so a new
- * instrument can be on the site for up to 24 hours before it has any prose. On
- * the web that is a card missing a paragraph; in the app it is no card at all,
- * because the graph decks gate deck membership on having an explanation. The
- * outlook column was 1-2 cards deep for this reason alone.
+ * explanation. Appearing is a different event: a Polymarket question can enter
+ * the deck on any cycle (selection is sticky since 2026-09-04, but a market
+ * still expires, decides, or is displaced) and the `wiki-*` set is re-picked
+ * from our own concepts, so a new instrument can be on the site for up to 24
+ * hours before it has any prose. On the web that is a card missing a
+ * paragraph; in the app it is no card at all, because the graph decks gate
+ * deck membership on having an explanation. The outlook column was 1-2 cards
+ * deep for this reason alone.
+ *
+ * "Never seen" includes "seen, but with no `standing`": an entry with an empty
+ * definition is one the app drops exactly as it drops a missing one, so it is
+ * retried here rather than left for 04:00. (The writer below already refuses
+ * to cache an empty standing, so this is a guard against older entries and a
+ * partial write, not the common path.)
  *
  * Not `FORCE`'s opposite and not a cheaper full run: an item already in the
  * cache is skipped here even when its fingerprints have moved, so this can
@@ -257,7 +265,7 @@ for (const ex of exchanges) {
 
 const selected = items
   .filter((it) => (ONLY ? it.key === ONLY : true))
-  .filter((it) => (NEW_ONLY ? !cache.items[it.key] : true))
+  .filter((it) => (NEW_ONLY ? !cache.items[it.key]?.standing : true))
   .slice(0, Number.isFinite(MAX_ITEMS) ? MAX_ITEMS : items.length)
 
 console.log(

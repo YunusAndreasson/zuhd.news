@@ -25,6 +25,16 @@
 // This fetcher returns dynamic IndicatorDef-compatible objects (one per top
 // market) so the orchestrator can treat them the same as static FRED/OER
 // indicators.
+//
+// Selection is sticky (2026-09-04). It re-rolled the whole deck by 24h volume
+// on every cycle, five times a day, while the desk narrates at 04:00 and
+// `--new-only` in between: cycle N's newcomers were narrated after cycle N's
+// build and gone by cycle N+1's. Measured on the live payload: 12 of 76
+// `analysis.json` paragraphs keyed to markets no longer shipped, the Strait of
+// Hormuz market narrated but absent — so the app's strait-odds join matched
+// nothing — and a market that entered with no `standing` dropped by the app.
+// `orderCandidates` keeps yesterday's markets while they remain eligible and
+// fills vacancies by volume; see it for the tiers and the cap.
 
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
@@ -34,6 +44,69 @@ const CLOB_BASE = 'https://clob.polymarket.com'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 const TOP_N = 20
+
+/**
+ * How many of the `TOP_N` slots incumbents may hold. Below `TOP_N`, so a
+ * full deck of still-eligible markets can never freeze out a newcomer: the
+ * lowest-volume incumbents beyond the cap are ranked last and fall to the
+ * cut. The live deck runs 15/20 after the decided/expiry filters, so this
+ * rarely bites; it is the guarantee, not the common path.
+ */
+const INCUMBENT_CAP = TOP_N - 3
+
+/**
+ * Subjects the shipping and outlook columns join on. `straitOdds` in the app
+ * matches a strait's name inside the question and prints the market's odds
+ * on the strait's card, and the writer's indicator attach reads the same
+ * rows — so a market about a waterway or the oil price is worth a slot ahead
+ * of a plain-volume newcomer. Never ahead of an incumbent: pinning is for
+ * getting in, not for staying. Waterway and oil terms only; a `fed` term
+ * would put every Fed variant ahead of every other newcomer.
+ */
+export const PIN_TITLE_RE =
+  /\b(strait|hormuz|bab el-mandeb|suez|panama canal|opec|brent|crude oil)\b/i
+
+/**
+ * Order the eligible markets for the `TOP_N` cut. Pure, so it has a test.
+ *
+ * Three tiers — incumbents still present and still eligible, then pinned
+ * subjects, then the rest — each by 24h volume, ties in input order. Incumbents
+ * beyond `incumbentCap` drop to the very end. The caller slices to `TOP_N`, so
+ * a demoted incumbent still fills a slot nothing newer wanted.
+ *
+ * Zero extra API calls: incumbency is decided from the previous snapshot the
+ * orchestrator already has and the top-60 response this cycle already made.
+ * An incumbent that has fallen out of the top 60 is simply gone — the log line
+ * in `fetchPolymarketTop` says how many, which is the number to watch.
+ *
+ * @param {Array<{ slug?: string, question?: string, title?: string, volume24hr?: unknown }>} candidates
+ * @param {Set<string>} incumbentSlugs
+ * @param {RegExp} [pinRe]
+ * @param {number} [incumbentCap]
+ */
+export function orderCandidates(
+  candidates,
+  incumbentSlugs,
+  pinRe = PIN_TITLE_RE,
+  incumbentCap = INCUMBENT_CAP,
+) {
+  const tier = (m) =>
+    incumbentSlugs.has(m.slug) ? 0 : pinRe.test(m.question || m.title || '') ? 1 : 2
+  const ranked = candidates
+    .map((m, i) => ({ m, t: tier(m), v: Number(m.volume24hr) || 0, i }))
+    .sort((a, b) => a.t - b.t || b.v - a.v || a.i - b.i)
+  const head = []
+  const overflow = []
+  let kept = 0
+  for (const x of ranked) {
+    if (x.t === 0 && kept >= incumbentCap) overflow.push(x)
+    else {
+      if (x.t === 0) kept++
+      head.push(x)
+    }
+  }
+  return [...head, ...overflow].map((x) => x.m)
+}
 
 // Minimum daily points to chart usefully — a 2-point line is just a slope.
 const MIN_HISTORY_POINTS = 5
@@ -533,7 +606,14 @@ function parseOutcomeTokens(market) {
  *   outcomeLabel: string,
  * }> | null>}
  */
-export async function fetchPolymarketTop() {
+/**
+ * @param {{ incumbents?: Array<{ seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
+ *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
+ *        the market slug, which is how a row is recognised in this cycle's
+ *        response; `label` and `countryTags` are reused so an incumbent never
+ *        pays the Haiku call twice.
+ */
+export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   let markets
   try {
     markets = await fetchTopMarkets(TOP_N)
@@ -542,7 +622,12 @@ export async function fetchPolymarketTop() {
     return null
   }
 
-  const filtered = markets
+  const incumbentBySlug = new Map(
+    incumbents.filter((i) => typeof i?.seriesId === 'string' && i.seriesId).map((i) => [i.seriesId, i]),
+  )
+  const incumbentSlugs = new Set(incumbentBySlug.keys())
+
+  const eligible = markets
     .filter((m) => m.active && !m.closed)
     /**
      * **`active` and `closed` do not track expiry, and the API says so.**
@@ -573,9 +658,26 @@ export async function fetchPolymarketTop() {
     // a list that silently decides what the app may cover is worse than no
     // list once something better exists.
     .filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
-    .slice(0, TOP_N)
 
-  console.log(`  · polymarket: ${markets.length} considered, ${filtered.length} kept after filter`)
+  // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
+  const filtered = orderCandidates(eligible, incumbentSlugs).slice(0, TOP_N)
+
+  {
+    const isIncumbent = (m) => incumbentSlugs.has(m.slug)
+    const keptIncumbents = filtered.filter(isIncumbent).length
+    const pinned = filtered.filter(
+      (m) => !isIncumbent(m) && PIN_TITLE_RE.test(m.question || m.title || ''),
+    ).length
+    const fetched = new Set(markets.map((m) => m.slug))
+    const goneAbsent = [...incumbentSlugs].filter((s) => !fetched.has(s)).length
+    const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
+    console.log(
+      `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${filtered.length} kept — ` +
+        `${keptIncumbents}/${incumbentSlugs.size} incumbents kept, ${pinned} pinned, ` +
+        `${filtered.length - keptIncumbents - pinned} new; ` +
+        `${goneAbsent} incumbent(s) gone from the top ${TOP_N * 3}, ${goneFiltered} filtered out`,
+    )
+  }
 
   const results = []
   for (const m of filtered) {
@@ -635,6 +737,9 @@ export async function fetchPolymarketTop() {
       // Internal — used for event-level dedupe below, not persisted.
       _eventSlug: eventSlug,
       _volume24hr: Number(m.volume24hr) || 0,
+      // Internal — the previous snapshot's row for this market, so its label
+      // and country tags can be reused below instead of re-bought from Haiku.
+      _incumbent: incumbentBySlug.get(m.slug) ?? null,
     })
   }
 
@@ -673,32 +778,47 @@ export async function fetchPolymarketTop() {
   // already fits — skipping those left the shortest, most quotable markets as
   // the only untagged ones. It is the same single call and the same batch size
   // order of magnitude, so the token cost is unchanged in kind.
-  if (deduped.length > 0) {
-    const enriched = await shortenTitlesViaHaiku(deduped.map((r) => r.rawTitle))
+  // **Only newcomers go to the model.** The call has no cache, so before
+  // selection was sticky every row paid for it on every cycle — ~4 chunks of
+  // 22-33s each. An incumbent keeps the label and country tags it was given
+  // when it entered; a steady cycle now runs zero chunks.
+  const held = deduped.filter((r) => r._incumbent)
+  const fresh = deduped.filter((r) => !r._incumbent)
+  for (const r of held) {
+    if (typeof r._incumbent.label === 'string' && r._incumbent.label) r.label = r._incumbent.label
+    r.countryTags = [
+      ...new Set([...(r.countryTags || []), ...(r._incumbent.countryTags || [])]),
+    ]
+  }
+  if (held.length > 0) {
+    console.log(`  · polymarket: ${held.length} label(s) reused from the previous snapshot`)
+  }
+  if (fresh.length > 0) {
+    const enriched = await shortenTitlesViaHaiku(fresh.map((r) => r.rawTitle))
     let tagged = 0
     let rejected = 0
-    for (let i = 0; i < deduped.length; i++) {
+    for (let i = 0; i < fresh.length; i++) {
       // A title already inside the header budget keeps its own words: the model
       // is here for the countries, and re-writing a label that did not need it
       // is a change nobody asked for and nobody can review.
-      if (deduped[i].rawTitle.length > 42) {
+      if (fresh[i].rawTitle.length > 42) {
         const proposed = enriched[i].label
-        if (isUsableShortTitle(deduped[i].rawTitle, proposed)) {
-          deduped[i].label = proposed
+        if (isUsableShortTitle(fresh[i].rawTitle, proposed)) {
+          fresh[i].label = proposed
         } else {
           rejected++
-          deduped[i].label = shortenTitleRegex(deduped[i].rawTitle)
+          fresh[i].label = shortenTitleRegex(fresh[i].rawTitle)
         }
       }
       // Union, not replacement. The tags are the floor and the model is the
       // bonus: tag slugs cannot tell that a market on the FOMC is about the US,
       // and the model cannot be relied on to answer inside its timeout.
-      deduped[i].countryTags = [
-        ...new Set([...(deduped[i].countryTags || []), ...enriched[i].countryTags]),
+      fresh[i].countryTags = [
+        ...new Set([...(fresh[i].countryTags || []), ...enriched[i].countryTags]),
       ]
-      if (deduped[i].countryTags.length) tagged++
+      if (fresh[i].countryTags.length) tagged++
     }
-    console.log(`  · polymarket: ${tagged}/${deduped.length} questions tagged with a country`)
+    console.log(`  · polymarket: ${tagged}/${fresh.length} new questions tagged with a country`)
     if (rejected > 0) {
       console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
     }
@@ -706,6 +826,7 @@ export async function fetchPolymarketTop() {
   for (const r of deduped) {
     delete r.rawTitle
     delete r._eventTags
+    delete r._incumbent
   }
 
   return deduped

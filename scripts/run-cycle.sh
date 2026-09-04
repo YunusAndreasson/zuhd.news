@@ -886,9 +886,10 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
 else
   # Not the full pass — only instruments that have never been narrated. Daily is
   # the right cadence for rewriting an explanation, but appearing is a different
-  # event: Polymarket questions rotate every cycle and the `wiki-*` set is
-  # re-picked from our own concepts, so a new instrument could sit on the site
-  # for up to 24 hours with no prose. On the web that is a card missing a
+  # event: a Polymarket question can enter the deck on any cycle (selection is
+  # sticky, but a market still expires, decides or is displaced) and the
+  # `wiki-*` set is re-picked from our own concepts, so a new instrument could
+  # sit on the site for up to 24 hours with no prose. On the web that is a card missing a
   # paragraph; in the app it is no card at all, because the graph decks admit
   # only instruments that have an explanation — which is why the outlook column
   # was one or two cards deep.

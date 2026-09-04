@@ -98,6 +98,59 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   than swapped. The point is that a killed call now costs a long header instead
   of a data field. Measured after: 7 questions, **7 of 7 country-tagged**, ~45s.
 
+## Polymarket's selection is sticky
+
+- **The deck re-rolled by 24h volume on every cycle, and the desk narrates
+  once a day.** Cycle N's newcomers were narrated after cycle N's build
+  (`--new-only`) and displaced by cycle N+1's roll, so the paragraph shipped
+  for a market the payload no longer carried. Measured on the live payload
+  2026-09-04: **12 of 76 `analysis.json` items keyed to markets not in
+  `trends.json`** — 4KB the app downloaded on every launch and attached to
+  nothing; the *Strait of Hormuz traffic returns to normal* market narrated
+  but absent, so the app's strait-odds join (`straitOdds`) matched none of the
+  eleven straits; and a market that entered with no `standing` dropped by the
+  app's deck gate until the next 04:00. Nothing in the logs said any of it.
+- **Incumbents keep their slot while they stay eligible.** `fetch-trends.js`
+  reads the previous snapshot and hands each dynamic source its own rows;
+  `orderCandidates` in the Polymarket fetcher ranks incumbents first, then
+  `PIN_TITLE_RE` subjects (waterways and oil — what the shipping column joins
+  on), then the rest, each tier by volume, and the existing expiry, decided
+  and drop filters run unchanged before it. **Zero extra API calls**: the
+  previous snapshot is on disk and the top-60 response is the one the cycle
+  already makes. `INCUMBENT_CAP` (`TOP_N − 3`) keeps a full deck from freezing
+  out a newcomer. An incumbent that leaves the top 60 is gone, and the fetch
+  log's `incumbents gone` count is the number to watch.
+- **Only newcomers pay for Haiku.** The title-shortening call had no cache and
+  ran on every row every cycle; an incumbent now reuses the label and country
+  tags it was given on entry, so a steady cycle runs zero chunks. The cost is
+  that a regex-fallback label from a cycle whose call was killed persists
+  until the market re-enters.
+- **`build.js` drops `analysis.json` items whose id is not in the snapshot**,
+  and logs the count. That number is the health metric for all of the above:
+  12 on the day this was written, and it should sit near zero.
+
+## PortWatch's `date` became a string, and the per-indicator fetcher went dark
+
+- **Eight `portwatch-*` registry rows produced nothing from 2026-04-28 to
+  2026-09-04.** The ArcGIS service re-published `date` as
+  `esriFieldTypeDateOnly` — `"2026-08-30"` where there had been epoch ms — and
+  `fetchPortWatchChokepoint` compared it against a number: `NaN >= n` is false
+  for every row, every row was filtered, and the empty branch returned `null`
+  **without logging**. Every other failure in that function logged; this one
+  looked like a quiet day. The batched snapshot fetcher that feeds
+  `api/chokepoints.json` survived only by accident: it filters on the server,
+  and its own numeric sort — also `NaN` — was handed rows the server had
+  already put in date order.
+- **What it cost:** the writer's indicator attach had no Hormuz tanker figure
+  for 130 days; eight `/e/portwatch-*` pages and eight `analysis.json`
+  paragraphs did not exist; `entity-registry.js` was rewritten (2026-08-08)
+  to explain an absence whose cause was this.
+- **The rule:** an empty result after a non-empty response is a schema change
+  until proven otherwise, and the branch that handles it must print what it
+  saw — the fix's log line prints the feature count and the first `date`
+  attribute, which is the line that would have caught this in April.
+  `parseArcgisDate` reads either serialisation and both fetchers go through it.
+
 ## The trends payload's country tags
 
 - **Only the currency basket knew what country it was about, and that was 15 of

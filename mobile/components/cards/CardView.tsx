@@ -145,6 +145,7 @@ const CardTrend = memo(function CardTrend({
       label={series.label}
       unit={series.unit}
       highlight={series.highlight}
+      reference={series.reference}
       variant="context"
       scrubbable={false}
       onPress={onPress}

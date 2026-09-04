@@ -138,8 +138,10 @@ describe('buildInstrumentCards', () => {
   });
 
   it('names every observation and does not call an old disruption current', () => {
+    // PortWatch publishes about five days in arrears, so the strait window is
+    // ten days rather than three; twenty is old by either rule.
     const oldKerch = strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902);
-    oldKerch.asOf = '2026-08-23';
+    oldKerch.asOf = '2026-08-12';
     const trends = snapshot([
       indicator({
         id: 'brent',
@@ -156,9 +158,24 @@ describe('buildInstrumentCards', () => {
     });
     expect(find(columns.markets, 'brent')?.asOf).toBe('2026-08-25');
     expect(find(columns.straits, 'strait-kerch')).toMatchObject({
-      asOf: '2026-08-23',
+      asOf: '2026-08-12',
       lead: false,
     });
+  });
+
+  it('calls a strait current on the lag its source actually publishes at', () => {
+    // Every chokepoint's `asOf` sits ~5 days behind the build, on every cycle.
+    // Under the three-day rule the prices use, `current ·` could never appear
+    // on a shipping card — a Hormuz 57% below its normal rendered as reference.
+    const lagged = strait('hormuz', 'Strait of Hormuz', 4.3, 10, -0.57);
+    lagged.asOf = '2026-08-24';
+    const columns = build({
+      trends: snapshot([indicator({ id: 'brent' })]),
+      chokepoints: [lagged],
+      articles: [],
+      now: new Date('2026-09-01T12:00:00Z'),
+    });
+    expect(find(columns.straits, 'strait-hormuz')?.lead).toBe(true);
   });
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
@@ -271,6 +288,11 @@ describe('buildInstrumentCards', () => {
     expect(card?.readingNote).toBe('set by silver');
     expect(card?.changed).toContain('fell');
     expect(card?.changed).toContain('more wealth is zakatable');
+    // The bar under each row is the point: the two thresholds differ by an
+    // order of magnitude, and "set by silver" becomes something to see.
+    const weights = card?.kind === 'reading' ? card.figures?.map((f) => f.weight) : undefined;
+    expect(weights?.[0]).toBeCloseTo(11_895, -1);
+    expect(weights?.[1]).toBeCloseTo(1_005, -1);
   });
 
   it('gives the nisab card the binding metal\u2019s analysis, so it reaches a deck at all', () => {
@@ -504,8 +526,9 @@ describe('buildInstrumentCards', () => {
     expect(moved?.reading).toBe('0.9');
     expect(moved?.kind === 'reading' ? moved.series?.values.at(-1) : undefined).toBe(0.9);
     // The distance from its own normal is the chip; the baseline it is
-    // measured against stays in the sentence, because a percentage with
-    // nothing to divide by is not a fact.
+    // measured against is a line on the chart, because a percentage with
+    // nothing to divide by is not a fact and the place to show what it is
+    // divided by is beside the line.
     expect(moved?.delta).toMatchObject({
       direction: 'down',
       magnitude: '90%',
@@ -514,7 +537,11 @@ describe('buildInstrumentCards', () => {
       // everything that had to sail.
       valence: 'unfavorable',
     });
-    expect(moved?.changed).toContain('8.8');
+    expect(moved?.kind === 'reading' ? moved.series?.reference : undefined).toEqual({
+      value: 8.8,
+      label: 'normal',
+    });
+    expect(moved?.changed).toBeUndefined();
     // It is on screen because it moved, and it says so.
     expect(moved?.lead).toBe(true);
     // Both disrupted candidates survive; the later smart ranking stage can
@@ -563,6 +590,23 @@ describe('buildInstrumentCards', () => {
     expect(card?.kind === 'reading' ? card.series?.values : []).toEqual([10, 5]);
     expect(card?.kind === 'reading' ? card.series?.periods : []).toEqual(['7', '8']);
     expect(card?.kind === 'reading' ? card.series?.label : '').toBe('seven-day average, all ships');
+    // The class the strait is watched for, beside the all-ships reading. The
+    // pipeline shipped this figure all along; only the globe sheet read it.
+    expect(card?.kind === 'reading' ? card.figures : undefined).toEqual([
+      { label: 'tankers', value: '2.4 a day', note: '\u221243% vs its normal' },
+    ]);
+  });
+
+  it('prints no class row where the class is the total itself', () => {
+    const cards = allOf(
+      build({
+        trends: snapshot([indicator({ id: 'brent' })]),
+        chokepoints: [strait('dover', 'Dover Strait', 157, 162.2, -0.032)],
+        articles: [],
+      }),
+    );
+    const card = find(cards, 'strait-dover');
+    expect(card?.kind === 'reading' ? card.figures : undefined).toBeUndefined();
   });
 
   it('keeps ordinary straits available without marking them current', () => {
@@ -638,10 +682,10 @@ describe('buildInstrumentCards', () => {
             lat: 0,
             lng: 0,
             topicTags: [],
-            primaryField: 'n_total',
-            last7Avg: { n_total: 20 },
-            baseline90Avg: { n_total: 30 },
-            delta7vs90: { n_total: -0.33 },
+            primaryField: 'n_container',
+            last7Avg: { n_total: 20, n_container: 6.2 },
+            baseline90Avg: { n_total: 30, n_container: 11 },
+            delta7vs90: { n_total: -0.33, n_container: -0.436 },
             series: { periods: ['a', 'b'], total: [30, 20] },
             asOf: '2026-08-29',
           },
@@ -667,7 +711,9 @@ describe('buildInstrumentCards', () => {
     );
 
     const bab = find(cards, 'strait-bab-el-mandeb');
+    // The measurement's own class first, the forecast second.
     expect(bab?.kind === 'reading' ? bab.figures : undefined).toEqual([
+      { label: 'container ships', value: '6.2 a day', note: '\u221244% vs its normal' },
       { label: 'Bab el-Mandeb Strait effectively closed by Dec 31?', value: '18%' },
     ]);
     expect(bab?.sourceLabel).toBe('IMF PortWatch \u00b7 Polymarket');
@@ -811,6 +857,9 @@ describe('scheduled events', () => {
     expect(fomc?.kind === 'scheduled' ? fomc.series?.values : undefined).toEqual([
       5.5, 5.5, 5.0, 4.5, 4.0, 3.75,
     ]);
+    // Where the staircase ends, in words: the gutter prints the range, not
+    // the level, and the level is the question on a rate-decision card.
+    expect(fomc?.changed).toBe('Now 3.75%, down from 4.00% in Feb 2026.');
 
     // The Bank of England has no current published rate on FRED and the nearest
     // substitute is SONIA, an overnight market rate that is not Bank Rate.
@@ -818,6 +867,7 @@ describe('scheduled events', () => {
     // title, so the card keeps its countdown and nothing else.
     const boe = find(columns.scheduled, 'event-boe-2026-09');
     expect(boe?.kind === 'scheduled' ? boe.series : undefined).toBeUndefined();
+    expect(boe?.changed).toBeUndefined();
     // Still a full card — the gate asks for analysis, never for a graph.
     expect(buildSwipeSections(columns, []).outlook.map((c) => c.id)).toContain('event-boe-2026-09');
   });
@@ -862,6 +912,122 @@ describe('scheduled events', () => {
       ['ev-0', 'ev-1', 'ev-2', 'ev-3'].map((x) => `event-${x}`),
     );
   });
+
+  it('says how long a rate has sat where it is', () => {
+    const trends = snapshot(
+      [
+        indicator({
+          id: 'ecb-rate',
+          label: 'ECB deposit rate',
+          unit: '%',
+          cadence: 'monthly',
+          values: [2.0, 2.0, 2.0],
+          periods: ['Jun 2026', 'Jul 2026', 'Aug 2026'],
+        }),
+      ],
+      {
+        events: [
+          {
+            id: 'ecb-2026-09',
+            title: 'ECB decision',
+            institution: 'European Central Bank',
+            kind: 'central-bank',
+            date: '2026-09-10',
+            standing: 'The council that sets the euro area\u2019s policy rate.',
+          },
+        ],
+      } as never,
+    );
+    const columns = build({ trends, chokepoints: [], articles: [], now: NOW });
+    expect(find(columns.scheduled, 'event-ecb-2026-09')?.changed).toBe(
+      'Now 2.00%, unchanged since Jun 2026.',
+    );
+  });
+
+  it('keeps the meeting the desk wrote about over a nearer release it did not', () => {
+    // Under a pure date sort the FOMC — a paragraph, tied stories, a live
+    // series — was cut for a PPI print carrying only its standing line.
+    const ev = (id: string, date: string, over: object = {}) => ({
+      id,
+      title: id,
+      institution: 'Desk',
+      kind: 'econ-release' as const,
+      date,
+      standing: `What ${id} settles.`,
+      ...over,
+    });
+    const columns = build({
+      trends: events(
+        ev('fred-us-jobs-report-2026-08-29', '2026-08-29'),
+        ev('ecb-2026-09', '2026-09-04', { recent: 'The council meets after a summer of cuts.' }),
+        ev('fred-us-ppi-2026-09-04', '2026-09-04'),
+        ev('fred-us-cpi-2026-09-05', '2026-09-05', { recent: 'Rents are still the number.' }),
+        ev('boe-2026-09', '2026-09-06'),
+        ev('boj-2026-09', '2026-09-07'),
+        ev('fomc-2026-09', '2026-09-10', { recent: 'Warsh chairs his first meeting.' }),
+      ),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    // Today's release is the news whether or not the desk wrote it up; the
+    // three the desk wrote about fill the rest; the PPI and the two silent
+    // banks wait. Read in date order.
+    expect(columns.scheduled.map((c) => c.id)).toEqual([
+      'event-fred-us-jobs-report-2026-08-29',
+      'event-ecb-2026-09',
+      'event-fred-us-cpi-2026-09-05',
+      'event-fomc-2026-09',
+    ]);
+  });
+
+  it('attaches the unemployment series to the jobs report and not to CPI or PPI', () => {
+    // The BLS publishes all three, so keying on the institution drew the
+    // unemployment staircase under every one of them.
+    const bls = (id: string, date: string) => ({
+      id,
+      title: id,
+      institution: 'Bureau of Labor Statistics',
+      kind: 'econ-release' as const,
+      date,
+      standing: `What ${id} settles.`,
+    });
+    const series = (id: string) =>
+      indicator({
+        id,
+        unit: '%',
+        cadence: 'monthly',
+        values: [4.1, 4.2, 4.3],
+        periods: ['Jun 2026', 'Jul 2026', 'Aug 2026'],
+      });
+    const evs = [
+      bls('fred-us-jobs-report-2026-09-04', '2026-09-04'),
+      bls('fred-us-cpi-2026-09-11', '2026-09-11'),
+      bls('fred-us-ppi-2026-09-10', '2026-09-10'),
+    ];
+    const withUnemployment = build({
+      trends: snapshot([series('us-unemployment')], { events: evs } as never),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    const has = (columns: InstrumentColumns, id: string) => {
+      const card = find(columns.scheduled, id);
+      return card?.kind === 'scheduled' ? card.series !== undefined : null;
+    };
+    expect(has(withUnemployment, 'event-fred-us-jobs-report-2026-09-04')).toBe(true);
+    expect(has(withUnemployment, 'event-fred-us-cpi-2026-09-11')).toBe(false);
+    expect(has(withUnemployment, 'event-fred-us-ppi-2026-09-10')).toBe(false);
+    // The CPI card gains its own series the day the pipeline publishes one.
+    const withCpi = build({
+      trends: snapshot([series('us-unemployment'), series('us-cpi')], { events: evs } as never),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    expect(has(withCpi, 'event-fred-us-cpi-2026-09-11')).toBe(true);
+    expect(has(withCpi, 'event-fred-us-ppi-2026-09-10')).toBe(false);
+  });
 });
 
 describe('graph-card context', () => {
@@ -903,6 +1069,37 @@ describe('graph-card context', () => {
   it('leaves analysis absent when the pipeline provided neither', () => {
     const columns = build({ trends: btcTrends(), chokepoints: [], articles: [] });
     expect(columns.markets[0]?.why).toBeUndefined();
+  });
+
+  it('marks a contract current when it moved ten points in a day, and says so', () => {
+    const contract = (change24h: number | null | undefined) =>
+      indicator({
+        id: 'poly-fed-sept',
+        label: 'No change in Fed rates after September meeting?',
+        source: 'polymarket',
+        unit: '%',
+        values: [50, 52, 49],
+        periods: ['Aug 5', 'Aug 20', 'Sep 4'],
+        change24h,
+      });
+    const card = (change24h: number | null | undefined) =>
+      find(
+        build({ trends: snapshot([contract(change24h)]), chokepoints: [], articles: [] })
+          .predictions,
+        'poly-fed-sept',
+      );
+    // The chip keeps the month; the day's move is the sentence, so a card
+    // marked current says why on its face.
+    expect(card(-10)).toMatchObject({ lead: true });
+    expect(card(-10)?.changed).toBe(
+      'Down 10 points in a day. Low 49% on Sep 4; high 52% on Aug 20.',
+    );
+    expect(card(-10)?.delta).toMatchObject({ direction: 'down', magnitude: '1 point' });
+    expect(card(4)).toMatchObject({ lead: false });
+    expect(card(4)?.changed).toBe('Low 49% on Sep 4; high 52% on Aug 20.');
+    // Polymarket publishes null for a market with no day-old price.
+    expect(card(null)).toMatchObject({ lead: false });
+    expect(card(undefined)).toMatchObject({ lead: false });
   });
 
   it('explains a prediction market, which only ever had a definition before', () => {

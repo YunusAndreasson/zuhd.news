@@ -16,13 +16,21 @@ export function isIsoDate(value: unknown): value is string {
  * `current` is a claim about the observation, not the file download. Three
  * calendar days covers weekends and publication timezone edges without
  * presenting last week's measurement as today's development.
+ *
+ * `maxAgeDays` is the source's publication lag, not a taste. The default fits
+ * a price fetched the day it was quoted; a source that publishes a week in
+ * arrears passes its own window, or nothing it says can ever be current.
  */
-export function isCurrentObservation(asOf: string | undefined, now: Date = new Date()): boolean {
+export function isCurrentObservation(
+  asOf: string | undefined,
+  now: Date = new Date(),
+  maxAgeDays = 3,
+): boolean {
   if (!asOf || !isIsoDate(asOf)) return false;
   const observed = Date.parse(asOf);
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
   const age = (today - observed) / DAY_MS;
-  return age >= -1 && age <= 3;
+  return age >= -1 && age <= maxAgeDays;
 }
 
 /** Oldest input wins for a derived reading: it is only as current as its

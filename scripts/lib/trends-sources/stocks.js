@@ -23,6 +23,36 @@ const CACHE_PATH = new URL('../../../content/.stocks-cache.json', import.meta.ur
 const CACHE_MAX_AGE_MS = 7 * 86400_000
 const DEFAULT_RANGE = '1mo'
 
+/** An exchange whose last completed close is older than this is published as
+ *  `stale`, whichever path produced it. */
+export const STALE_AFTER_DAYS = 7
+
+/**
+ * The date of the last *completed* close, never of the last timestamp.
+ *
+ * When an exchange's feed stops, Yahoo keeps returning the whole requested
+ * axis with `close: null` after the stop. The null bars are dropped below, but
+ * `asOf` used to be read from the final timestamp — so TASI, SET and PSEi
+ * published an `asOf` of today over a series that ended in mid-July, and the
+ * web rail toned a seven-week-old close as yesterday's. The last completed
+ * session is the honest date; a series whose only bar is today's in-session
+ * one falls back to that bar's date.
+ *
+ * @param {string[]} dates exchange-local 'YYYY-MM-DD', aligned with `completed`
+ * @param {boolean[]} completed
+ * @returns {string}
+ */
+export function seriesAsOf(dates, completed) {
+  const i = completed.lastIndexOf(true)
+  return i >= 0 ? dates[i] : (dates.at(-1) ?? '')
+}
+
+/** @param {string} asOf @param {number} [now] */
+export function isStaleAsOf(asOf, now = Date.now()) {
+  const t = Date.parse(`${asOf}T00:00:00Z`)
+  return !Number.isFinite(t) || now - t > STALE_AFTER_DAYS * 86400_000
+}
+
 function formatPeriod(ms) {
   const d = new Date(ms)
   const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
@@ -126,7 +156,7 @@ async function fetchFromHost(host, symbol, range) {
     completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && Date.now() > sessionEnd * 1000 + 15 * 60000))
   }
   if (values.length < 5) throw new Error('fewer than 5 usable closes')
-  const asOf = new Date(timestamps[timestamps.length - 1] * 1000).toISOString().slice(0, 10)
+  const asOf = seriesAsOf(dates, completed)
   return {
     values,
     periods,
@@ -217,11 +247,13 @@ export async function fetchYahooStock(symbol, opts = {}) {
         (appended ? `, live close ${live} appended for ${today}` : ', live close already current'),
       )
       if (!appended) return { ...cached, marketPrice: q.marketPrice }
+      // `asOf` stays the cached series' own — the appended bar is a live,
+      // uncompleted quote, and the date of the last real close is the claim
+      // the rest of the pipeline reads.
       return {
         ...cached,
         values: [...(cached.values || []), live],
         periods: [...(cached.periods || []), formatPeriod(Date.now())],
-        asOf: today,
         dates: [...(cached.dates || []), today],
         completed: [...(cached.completed || []), false],
         marketPrice: q.marketPrice,
