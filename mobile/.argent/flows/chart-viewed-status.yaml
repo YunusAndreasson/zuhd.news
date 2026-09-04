@@ -1,0 +1,17 @@
+executionPrerequisite: Android app open with all current Markets chart versions
+  viewed on this device. News, Markets, Shipping and Outlook tabs visible.
+steps:
+  - tap: { text: shipping }
+  - wait: 1500
+  - tap: { text: markets }
+  - await: { visible: { text: 'You’re caught up' } }
+  - assert: { visible: { text: 'Previously viewed below · swipe up' } }
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.65
+      toX: 0.5
+      toY: 0.25
+      durationMs: 250
+  - await: { visible: { text: 'Previously viewed' } }
+  - await: { idle: true }

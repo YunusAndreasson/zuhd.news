@@ -381,7 +381,7 @@ export const ArticlePage = memo(function ArticlePage({
         )}
         <Pressable {...pressableProps} testID="article-page-header">
           {/* The category used to be the tab you were standing on. The column
-            is mixed now — ordered by how many newsrooms covered the event, not
+            is mixed now — ordered by story time, not
             by desk — so the story has to name its own. A `labelXs` kicker,
             not a control: nothing here is tappable, and foundation.md's rule
             that information appears exactly once is why it is the only place

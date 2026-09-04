@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import type { CardStatus } from '../../lib/card-history';
 import type { SwipeCard } from '../../lib/cards/rank';
 import type { CardFigure, CardSeries } from '../../lib/cards/types';
 import { useOpenLink } from '../../lib/open-link';
@@ -95,6 +96,7 @@ export const CardView = memo(function CardView({
   onReadingScrollStart,
   hasNext,
   resetScrollKey,
+  status,
 }: {
   card: SwipeCard;
   itemHeight: number;
@@ -104,6 +106,7 @@ export const CardView = memo(function CardView({
   onReadingScrollStart?: () => void;
   hasNext?: boolean;
   resetScrollKey?: number;
+  status?: CardStatus;
 }) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
@@ -120,6 +123,7 @@ export const CardView = memo(function CardView({
       onReadingScrollStart={onReadingScrollStart}
       hasNext={hasNext}
       resetScrollKey={resetScrollKey}
+      status={status}
     >
       {renderBody(card, onPress)}
     </CardFrame>

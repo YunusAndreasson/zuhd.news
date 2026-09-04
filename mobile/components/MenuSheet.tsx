@@ -83,7 +83,7 @@ const INFO_PAGES = {
         // legal inventory; the same six as separate statements read as an
         // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Bookmarks. Where the "caught up" line falls. Your place in a briefing. How many articles you have read. Your display settings. A cached copy of the latest articles, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
+        body: 'Bookmarks. Where the "caught up" line falls. Which chart updates you have viewed. Your place in a briefing. How many articles you have read. Your display settings. A cached copy of the latest articles, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it

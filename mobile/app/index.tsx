@@ -45,6 +45,7 @@ import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -141,6 +142,7 @@ export default function HomeScreen() {
   const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
+  const marketSignals = useMarketSignals();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
@@ -292,10 +294,8 @@ export default function HomeScreen() {
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
 
-  // The news column: every article, ordered by how many newsrooms covered the
-  // event rather than by which lane it arrived in. See `lib/news-order.ts` —
-  // the four categories became a kicker on the card when the horizontal axis
-  // was needed for sections.
+  // The news column: every article, newest story first across all categories.
+  // `lib/news-order.ts` uses the same timestamp as the visible dateline.
   //
   // Memoized because downstream memos key on it (ChokepointSheet's
   // findRelatedArticles, the card builders' tie-to-the-news), and because
@@ -313,10 +313,10 @@ export default function HomeScreen() {
   // Only real time series with live pipeline analysis cross this boundary.
   // Subject-specific tabs make the rail predictable; dormant non-graph card
   // families are not built at all.
-  const sectionCards = useMemo<Record<string, SwipeCard[]>>(
-    () => buildSwipeSections(columns, river),
-    [columns, river],
-  );
+  const sectionCards = useMemo<Record<string, SwipeCard[]>>(() => {
+    const sections = buildSwipeSections(columns, river);
+    return { ...sections, markets: [...marketSignals, ...sections.markets] };
+  }, [columns, river, marketSignals]);
 
   // Active GDACS alerts whose primary or affected-country list includes the
   // currently open country. Phase 1 matches by full country name (GDACS uses
@@ -744,6 +744,9 @@ export default function HomeScreen() {
                 <CardPager
                   ref={cardPagerRefs[index]}
                   cards={sectionCards[section] ?? []}
+                  active={currentSection === index}
+                  visible={!sheetOpen && !briefingVisible}
+                  section={section}
                   viewportHeight={pagerHeight}
                   sectionIndex={index}
                   progressesSV={sectionProgresses}

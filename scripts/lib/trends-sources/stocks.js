@@ -110,17 +110,28 @@ async function fetchFromHost(host, symbol, range) {
   // slipped into the interval). Keep aligned index on timestamps.
   const values = []
   const periods = []
+  const dates = []
+  const completed = []
+  const zone = result.meta?.exchangeTimezoneName || 'UTC'
+  const localDate = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms))
+  const today = localDate(Date.now())
+  const sessionEnd = result.meta?.currentTradingPeriod?.regular?.end
   for (let i = 0; i < timestamps.length; i++) {
     const c = closes[i]
     if (typeof c !== 'number' || !Number.isFinite(c)) continue
     values.push(Number(c.toFixed(2)))
     periods.push(formatPeriod(timestamps[i] * 1000))
+    const date = localDate(timestamps[i] * 1000)
+    dates.push(date)
+    completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && Date.now() > sessionEnd * 1000 + 15 * 60000))
   }
   if (values.length < 5) throw new Error('fewer than 5 usable closes')
   const asOf = new Date(timestamps[timestamps.length - 1] * 1000).toISOString().slice(0, 10)
   return {
     values,
     periods,
+    dates,
+    completed,
     asOf,
     name: result.meta?.longName || result.meta?.shortName || symbol,
     currency: result.meta?.currency || 'USD',
@@ -153,6 +164,8 @@ async function fetchFromHost(host, symbol, range) {
  * @returns {Promise<{
  *   values: number[],
  *   periods: string[],
+ *   dates: string[],
+ *   completed: boolean[],
  *   asOf: string,
  *   name: string,
  *   currency: string,
@@ -209,6 +222,8 @@ export async function fetchYahooStock(symbol, opts = {}) {
         values: [...(cached.values || []), live],
         periods: [...(cached.periods || []), formatPeriod(Date.now())],
         asOf: today,
+        dates: [...(cached.dates || []), today],
+        completed: [...(cached.completed || []), false],
         marketPrice: q.marketPrice,
       }
     }

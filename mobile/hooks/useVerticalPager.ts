@@ -72,10 +72,9 @@ const MARK_EXPIRY_MS = 700;
 /** Native paging policy shared by every vertical full-screen list. */
 export const VERTICAL_PAGER_PROPS = {
   snapToAlignment: 'start',
-  // Keep the platform in charge of settling, but preserve more of a light
-  // flick's velocity. `disableIntervalMomentum` below still caps each gesture
-  // to one page, so this lowers effort without creating multi-page throws.
-  decelerationRate: 'normal',
+  // Native interval snapping uses fast deceleration: normal adds a long
+  // settling tail, especially on iOS. Prose keeps its own normal momentum.
+  decelerationRate: 'fast',
   disableIntervalMomentum: true,
   showsVerticalScrollIndicator: false,
   scrollEventThrottle: 16,
@@ -168,9 +167,13 @@ export function useVerticalPager<T>({
   );
 
   const handleBeginDrag = useCallback(() => {
+    // A fresh touch on the page is not the tail of the preceding text scroll.
+    // Retaining that mark makes a quick chart/title swipe snap back for 700ms.
+    innerConsumedRef.current = null;
+    clearMarkTimer();
     draggingRef.current = true;
     clearSettle();
-  }, [clearSettle]);
+  }, [clearMarkTimer, clearSettle]);
 
   const handlePagerBeginDrag = useCallback(() => {
     onReadingScrollStart?.();

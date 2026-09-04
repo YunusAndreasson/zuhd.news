@@ -128,13 +128,7 @@ export const ArticleList = memo(function ArticleList({
     [bgAlpha],
   );
   const { width: screenWidth } = useWindowDimensions();
-  // Already ordered by `orderNewsRiver` before it got here — by how many
-  // newsrooms covered the event, then by recency, then de-clumped so the top
-  // of the column is not one category's wall. This component used to do its
-  // own chronological sort with a breaking-story float inside each time
-  // bucket; that logic moved into the ordering function, where it is a pure
-  // function with tests rather than a memo that had to be invalidated by a
-  // clock tick.
+  // Already ordered newest-first by `orderNewsRiver`, across all categories.
   const sortedArticles = articles;
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;

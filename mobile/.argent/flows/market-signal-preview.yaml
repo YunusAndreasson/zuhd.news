@@ -1,0 +1,17 @@
+steps:
+  - tap:
+      text: markets
+  - await: { visible: { text: 'Updated since you last viewed' } }
+  - wait: 1500
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.46
+      toX: 0.5
+      toY: 0.17
+      durationMs: 250
+    delayMs: 1500
+  - await: { visible: { text: 'You’re caught up' } }
+executionPrerequisite: Android app on News with a valid updated NASDAQ-100
+  market-signal preview injected into its query cache; existing Markets cards
+  already viewed.

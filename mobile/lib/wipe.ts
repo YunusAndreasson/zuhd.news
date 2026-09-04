@@ -1,5 +1,6 @@
 import Storage from 'expo-sqlite/kv-store';
 import { clearBookmarks } from './bookmark-store';
+import { clearCardHistory } from './card-history';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { resetOnboarding } from './onboarding-store';
@@ -35,6 +36,7 @@ export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
   clearBookmarks();
+  clearCardHistory();
   resetOnboarding();
   resetReviewState();
   resetDataUsage();

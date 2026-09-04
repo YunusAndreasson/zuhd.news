@@ -10,8 +10,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
+import type { CardStatus } from '../../lib/card-history';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
 import { observationLabel } from '../../lib/data-freshness';
+import { useOpenLink } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { OverflowEndCue } from '../OverflowEndCue';
 import { Icon, Text } from '../primitives';
@@ -145,6 +147,7 @@ const CardTitle = memo(function CardTitle({
 });
 
 interface CardFrameProps {
+  status?: CardStatus;
   card: DeckCard;
   /** Full page height. The card owns the whole screen, like an article does. */
   itemHeight: number;
@@ -174,9 +177,11 @@ export const CardFrame = memo(function CardFrame({
   hasNext = false,
   resetScrollKey = 0,
   children,
+  status,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
   const observed = observationLabel(card.asOf);
+  const openLink = useOpenLink();
 
   // Only the explanatory prose can become an inner scroll region. The metric,
   // title and chart remain direct children of the pager, which gives every
@@ -260,6 +265,16 @@ export const CardFrame = memo(function CardFrame({
             </Text>
           ) : null}
 
+          {status ? (
+            <Text variant="labelXs" tone={status === 'updated' ? 'emphasis' : 'secondary'}>
+              {status === 'updated'
+                ? 'Updated since you last viewed'
+                : status === 'viewed'
+                  ? 'Previously viewed'
+                  : 'New to you'}
+            </Text>
+          ) : null}
+
           {/* Measurements answer first; a belief and a date ask first. A bare
                 “62%” is not a useful fact until the reader knows which outcome
                 it prices, and “in 3 weeks” is not one until they know what
@@ -316,6 +331,18 @@ export const CardFrame = memo(function CardFrame({
                   <SourceCaption label={card.sourceLabel} />
                 </View>
               ) : null}
+              {card.sources?.map((source) => (
+                <Text
+                  key={source.url}
+                  variant="caption"
+                  tone="secondary"
+                  accessibilityRole="link"
+                  onPress={() => openLink(source.url)}
+                  style={styles.supporting}
+                >
+                  Source · {source.label}
+                </Text>
+              ))}
             </Animated.View>
             {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
           </ScrollView>

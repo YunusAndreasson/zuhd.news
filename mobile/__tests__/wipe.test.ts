@@ -72,6 +72,7 @@ jest.mock('expo-store-review', () => ({
 
 import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
+import { getCardHistory, markCardViewed } from '../lib/card-history';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
 import { queryClient } from '../lib/query-client';
 import { eraseLocalData } from '../lib/wipe';
@@ -102,6 +103,13 @@ describe('eraseLocalData', () => {
     // Something of each kind: a bookmark, the persisted keys, a cached feed
     // file, a live query, and a non-zero data meter.
     toggleBookmark(article('a'), 'politics' as Category);
+    markCardViewed('outlook', {
+      id: 'event',
+      kind: 'scheduled',
+      date: '2026-09-04',
+      title: 'Event',
+      reading: 'Today',
+    });
     mockKv.set('zuhd_last_seen', '123');
     mockKv.set('zuhd_briefing_pos', '42');
     mockKv.set('zuhd_briefing_date', '2026-07-25');
@@ -118,6 +126,8 @@ describe('eraseLocalData', () => {
     await eraseLocalData();
 
     expect(getBookmarks()).toEqual([]);
+    expect(getCardHistory()).toEqual({});
+    expect(JSON.parse(mockKv.get('zuhd_card_history_v1') ?? 'null')).toEqual({});
     expect(getDataUsage()).toBe(0);
     expect(queryClient.getQueryData(['feed'])).toBeUndefined();
     expect(mockFiles.has('/cache/zuhd-feed.json')).toBe(false);

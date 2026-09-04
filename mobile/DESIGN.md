@@ -6,6 +6,15 @@ See root `foundation.md` for the philosophy. This document is the operational re
 
 ## Voice
 
+Chart decks group unseen updates before a quiet “You’re caught up” page, with
+previously viewed cards below. “New to you”, “Updated since you last viewed” and
+“Previously viewed” sit near the observation date, quiet except for stronger
+ink on an update. Status never borrows the favorable/unfavorable delta colors. A visit
+freezes content and ordering; regroup on section entry or foreground return.
+Only a foreground, visible, settled card viewed for 800 ms is acknowledged.
+Content signatures ignore observation timestamps and editorial promotion;
+history stays on-device and is included in the privacy erase action.
+
 One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop and the `BriefingBar`'s iOS-only frosted glass (see §Native chrome carve-outs), no decorative icons. Restraint is the brand.
 
 ## Tokens — `constants/theme.ts`
@@ -304,14 +313,21 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   while the finger is still down. This preserves bidirectional text scrolling,
   large Dynamic Type content and source captions without the mid-swipe freezes
   caused by competing scroll owners.
+- **Page settling uses native fast deceleration** with `snapToInterval` and
+  `disableIntervalMomentum`; prose retains normal native scrolling. A new
+  outer-page drag clears the previous text-consumption marker immediately,
+  so reading text never imposes a cooldown on the next chart/title swipe.
+  Inherited text-scroll tails still retain their page correction.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use
   the shared interpolation rather than a mount animation: with three pages held
   in a list, a mount animation plays two screens away and is over unseen.
   Gated on `useReducedMotion()`, like the reader's.
-- The four categories are a vertical ordering inside `news`, not lanes — see
-  `lib/news-order.ts`. The globe lives on `news` only: it is the backdrop to
+- All four categories share one strictly newest-first column inside `news` —
+  see `lib/news-order.ts`. Order uses the story timestamp shown in the dateline;
+  coverage and category mixing must never move older news above newer news.
+  The globe lives on `news` only: it is the backdrop to
   the stories it locates, and there is nothing on a wheat price for it to
   point at.
 - For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.
