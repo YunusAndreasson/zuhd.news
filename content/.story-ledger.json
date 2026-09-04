@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "ukraine-russia-drone-exchange-sochi-oil-depot",
+      "label": "What is Ukraine's SBU security agency?",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-ukraine-russia-drone-exchange-sochi-oil-depot"
+      ],
+      "eventUri": "eng-11981980",
+      "summary": "Do not write the explainer — write the overnight exchange it sits inside. Russian drones wounded five in central Kyiv while Ukrainian strikes set an oil depot ablaze near Sochi, more than 1,000km from the front. Lead with the Sochi depot: the war's targeting logic has settled on each side's energy infrastructure, which is why the Iran oil shock and this war now push the same barrel price. Name the SBU as the agency running the deep-strike programme, and note that civilians in Kyiv are counted while Russian casualties at the depot are not.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Security_Service_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine"
+      ]
+    },
+    {
+      "id": "eu-five-states-third-country-deportation-deals",
+      "label": "Five European nations seek deals to send migrants out of the EU",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-eu-five-states-third-country-deportation-deals"
+      ],
+      "eventUri": "eng-11980934",
+      "summary": "Denmark, Germany, Austria, the Netherlands and Greece met in Copenhagen to sign deals this year deporting people without legal residency to third countries that are not their own. Lead with the mechanism, not the meeting: this is externalisation — paying a non-EU state to accept people the EU will not, which severs deportation from nationality and puts the destination outside the reach of European courts. Denmark expects to send the first people within the year. Most of those affected come from Muslim-majority countries of origin, and none of the receiving states has been named publicly.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Denmark",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Greece",
+        "http://en.wikipedia.org/wiki/Copenhagen",
+        "http://en.wikipedia.org/wiki/Human_migration",
+        "http://en.wikipedia.org/wiki/Austria",
+        "http://en.wikipedia.org/wiki/Netherlands",
+        "http://en.wikipedia.org/wiki/Germany"
+      ]
+    },
+    {
+      "id": "vietnam-eleven-death-sentences-drug-trafficking",
+      "label": "Vietnam Sentences 11 to Death in Country's Largest Ever Drug Trafficking Case",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-vietnam-eleven-death-sentences-drug-trafficking"
+      ],
+      "eventUri": null,
+      "summary": "Eleven people sentenced to death in a single case that began in March 2023 when four flight attendants were caught with narcotics in toothpaste tubes on a Paris–Ho Chi Minh City flight. Lead with the number of death sentences, not the toothpaste: eleven executions ordered at once is the largest capital outcome in Vietnamese drug enforcement, and the couriers at the bottom of the chain carry the sentence while the network that recruited them does not. The structural point is that Vietnam retains capital punishment for narcotics offences at a time when its regional neighbours are narrowing the scope, and executions there are carried out without public notice.",
+      "conceptUris": []
+    },
+    {
+      "id": "penguin-india-sonia-gandhi-memoir-publisher-censorship",
+      "label": "Penguin India's About-Face on Sonia Gandhi's Memoir Fits a Pattern",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-penguin-india-sonia-gandhi-memoir-publisher-censorship"
+      ],
+      "eventUri": null,
+      "summary": "Penguin India withdrew from publishing Sonia Gandhi's memoir, and the withdrawal is the third act in a documented sequence — Wendy Doniger's 'The Hindus' pulped in 2014, Joe Sacco's 'The Once and Future Riot' dropped this year. Lead with the pattern, not the memoir: the mechanism is that India's criminal defamation and hurt-sentiment statutes make the publisher, not the state, the point of failure, so censorship arrives as a commercial risk assessment and never as a ban anyone can appeal. For readers, the consequence is that the books absent from Indian shelves record the Gujarat riots and the history of Hindu nationalism.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-diesel-record-price-iran-war-freight-costs",
+      "label": "National diesel price reaches an all-time high",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-us-diesel-record-price-iran-war-freight-costs"
+      ],
+      "eventUri": "eng-11981066",
+      "summary": "US diesel hit a record $5.85 a gallon in the sixth month of the Iran war. Lead with the number and then with why diesel and not petrol: diesel moves freight, farm machinery and delivery, so it enters the price of everything rather than only the cost of driving, and it is the fuel most exposed to the loss of Gulf refined-product exports. This is the fourth link in a chain the site has already traced — Hormuz strikes, tanker-for-tanker policy, the oil shock cited against a Fed cut — and it is where the war reaches households that have no view of it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Gallon",
+        "http://en.wikipedia.org/wiki/Truck"
+      ]
+    },
+    {
+      "id": "fao-food-price-index-four-year-high-cereals-sugar",
+      "label": "Conflicts and extreme weather pushing global food prices higher, warns UN",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-fao-food-price-index-four-year-high-cereals-sugar"
+      ],
+      "eventUri": "eng-11981177",
+      "summary": "The FAO Food Price Index rose for a third straight month to 133.3 points in August, a four-year high, with cereals and sugar leading and Black Sea supply and El Nino named as causes. Lead with the third consecutive rise rather than the level: a sustained climb is what turns into hunger, and the index is a wholesale measure that reaches import-dependent countries months before it reaches European shelves. Name who bears it — net cereal importers across the Sahel, Egypt, Bangladesh and Yemen buy at this index in dollars while their currencies are weaker than at the last peak.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Food_and_Agriculture_Organization",
+        "http://en.wikipedia.org/wiki/Sugar",
+        "http://en.wikipedia.org/wiki/Cereal",
+        "http://en.wikipedia.org/wiki/Black_Sea",
+        "http://en.wikipedia.org/wiki/El_Niño",
+        "http://en.wikipedia.org/wiki/Maize"
+      ]
+    },
+    {
+      "id": "iea-nigeria-energy-investment-association-oil",
+      "label": "IEA says Nigeria's energy investment could double in five years",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-iea-nigeria-energy-investment-association-oil"
+      ],
+      "eventUri": "eng-11981869",
+      "summary": "IEA executive director Fatih Birol says Nigerian energy investment could double within five years under a new association arrangement with the agency. Lead with what association actually buys: Africa's largest oil producer has until now been a subject of IEA demand forecasts rather than a participant in setting them, and association is a seat in the room where consuming-country policy is written. The sceptical detail to keep is that 'could double' is a projection from the agency courting the member, not a commitment from anyone with capital, and Nigeria's last investment surge did not survive its refining bottleneck.",
+      "conceptUris": []
+    },
+    {
+      "id": "pig-kidney-271-days-xenotransplant-dialysis-bridge",
+      "label": "Pig kidney works for a record 271 days inside the body of surviving American",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-pig-kidney-271-days-xenotransplant-dialysis-bridge"
+      ],
+      "eventUri": "spa-4328669",
+      "summary": "A gene-edited pig kidney kept a 66-year-old with end-stage renal disease off dialysis for 271 days until a human donor organ became available, published in The Lancet. Lead with the reframing, not the record: the organ was never meant to be permanent, so xenotransplantation here works as a bridge — the same role dialysis plays, but portable and without a machine. That matters most where dialysis capacity, not donor supply, is the binding constraint, which is nearly everywhere outside high-income countries. Note the cost and lifelong immunosuppression before anyone calls this a solution to the transplant waiting list.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Xenotransplantation",
+        "http://en.wikipedia.org/wiki/Kidney_transplantation",
+        "http://en.wikipedia.org/wiki/Dialysis",
+        "http://en.wikipedia.org/wiki/Domestic_pig",
+        "http://en.wikipedia.org/wiki/The_Lancet",
+        "http://en.wikipedia.org/wiki/Organ_transplantation"
+      ]
+    },
+    {
+      "id": "nepra-battery-storage-mandate-pakistan-solar-auction",
+      "label": "Nepra allows govt to mandate Battery Energy Storage Systems for wind, solar IPPs in upcoming power auction",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-nepra-battery-storage-mandate-pakistan-solar-auction"
+      ],
+      "eventUri": "eng-11982498",
+      "summary": "Pakistan's regulator will let the government require battery storage as a condition of bidding in an 800MW wind and solar auction. Lead with what the mandate admits: the grid cannot absorb more midday solar without storage, so Pakistan is pricing the duck curve into the auction instead of paying for it later in curtailment and forced shutdowns of thermal plants. The structural point is that this shifts the cost of grid stability from the state utility onto the independent producer, which will raise the winning tariff — and whether that trade is worth it is the question the auction will answer in public.",
+      "conceptUris": []
+    },
+    {
+      "id": "europe-heat-drought-crop-yields-climate-attribution",
+      "label": "How this summer's heat and drought impacted crops in Europe - in six charts",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-europe-heat-drought-crop-yields-climate-attribution"
+      ],
+      "eventUri": null,
+      "summary": "European farmers are counting the yield losses from a summer of extreme heat, drought and wildfire, with the analysis attributing the conditions to climate change rather than weather variance. Lead with the specific crop and the specific percentage, not the season: attribution only carries weight when it lands on a measurable harvest. Pair this with the FAO index story — Europe is a cereal exporter, so a European yield shortfall is transmitted outward through the same wholesale prices that import-dependent countries pay, which is how a drought in France reaches a bakery in Cairo.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-cybercab-nhtsa-probe-self-certification",
+      "label": "Tesla Cybercabs face safety probe as regulators query driverless taxi",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-tesla-cybercab-nhtsa-probe-self-certification"
+      ],
+      "eventUri": "fra-1340247",
+      "summary": "NHTSA is investigating whether 1,000 Tesla Cybercabs were properly certified; the shares fell more than 6%. Lead with the mechanism the probe exposes: US vehicle safety rests on self-certification, meaning Tesla attested that a vehicle with no steering wheel or pedals met standards written for vehicles that have them, and the regulator is only now examining the technical data behind that claim. The accountability gap is structural — a thousand vehicles were built and put into service before anyone outside the company checked the paperwork, and the same rule governs every competitor.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Self-driving_car",
+        "http://en.wikipedia.org/wiki/Austin,_Texas",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Taxicab",
+        "http://en.wikipedia.org/wiki/Waymo"
+      ]
+    },
+    {
+      "id": "us-uk-scam-compound-memorandum-trafficking",
+      "label": "US, Britain to coordinate on scam center takedowns",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-us-uk-scam-compound-memorandum-trafficking"
+      ],
+      "eventUri": null,
+      "summary": "The US Justice Department and the UK's National Crime Agency and Crown Prosecution Service signed a memorandum to coordinate cases against Southeast Asian scam compounds. Lead with who is inside those compounds: the operations run on trafficked workers, largely from South and Southeast Asia and increasingly from Africa, held under debt bondage and beaten for missing quotas. The mechanism the memorandum targets is jurisdictional — the victims are in Britain, the servers are elsewhere, the compounds sit in Myanmar and Cambodia border zones outside any effective state, and a memorandum is not extradition. Say plainly what it does and does not reach.",
+      "conceptUris": []
+    },
+    {
+      "id": "x-twitter-trademark-abandonment-ruling",
+      "label": "Musk wins court order to block use of \"Twitter,\" but not \"tweet\" and bird logo",
+      "firstSeen": "2026-09-04T17:12:35.995Z",
+      "lastCovered": "2026-09-04T17:12:35.995Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-x-twitter-trademark-abandonment-ruling"
+      ],
+      "eventUri": null,
+      "summary": "Chief Judge Colm Connolly blocked Operation Bluebird from launching an app called Twitter, but declined to extend the order to 'tweet' or the bird logo. Lead with the split, because it is the whole legal question: X abandoned the name in public and in branding, and abandonment is the one doctrine that can strip a trademark from a company that stopped using it. The court found X likely retained rights in the name but not in the marks it more thoroughly discarded. The consequence for readers is precedent — a rebrand is a legal act, and this ruling sets how much of the old identity a company keeps after walking away from it.",
+      "conceptUris": []
+    },
+    {
       "id": "81-dead-yemen-clashes-houthis-red-sea-strait",
       "label": "81 dead in Yemen clashes as Houthis push towards key strait: sources",
       "firstSeen": "2026-09-04T12:08:05.448Z",
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait"
@@ -24,7 +277,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-03-unicef-20-million-children-online-sexual-abuse"
@@ -49,7 +302,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-mount-sinai-monastery-landownership-egypt-greece"
@@ -65,7 +318,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-03-thousand-martyrs-cup-palestine-football-returns"
@@ -81,7 +334,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-meloni-longest-serving-italian-government-record"
@@ -106,7 +359,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-indonesia-russia-138-oil-gas-exploration-blocks"
@@ -131,7 +384,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-india-gdp-growth-deflator-jobs-investment-gap"
@@ -147,7 +400,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-dutch-central-bank-gold-repatriation-custody-risk"
@@ -163,7 +416,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-chatgpt-6-astra-agent-containment-release"
@@ -188,7 +441,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-china-ai-tokens-loyalty-rewards-inference-commodity"
@@ -204,7 +457,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-03-dot-name-tld-termination-domain-identity-lease"
@@ -220,7 +473,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-03-el-nino-record-pacific-warming-wmo-forecast"
@@ -245,7 +498,7 @@
       "lastCovered": "2026-09-04T12:08:05.448Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-04-orange-hydrogen-western-australia-iron-rock-carbon"
@@ -261,7 +514,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-nepal-two-pulled-alive-from-tunnel-nine-days-after-floods"
@@ -286,7 +539,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-reuters-analysis-confirms-us-directly-hit-wedding-in-iran"
@@ -302,7 +555,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-south-korea-pushes-back-on-reports-it-is-readying-hormuz-dep"
@@ -318,7 +571,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-03-ice-agent-charged-with-lying-under-oath-about-minnesota-shoo"
@@ -343,7 +596,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-argentina-s-milei-revives-bitter-falklands-dispute-with-uk"
@@ -368,7 +621,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-tata-chemicals-vows-to-resolve-outstanding-issues-after-keny"
@@ -393,7 +646,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-has-trump-finally-found-a-foreign-trade-deal-he-can-get-behi"
@@ -409,7 +662,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-russia-sends-94-of-oil-exports-to-friendly-countries"
@@ -425,7 +678,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-02-muse-spark-1-3"
@@ -441,7 +694,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-03-thailand-s-semiconductor-plan-has-a-washington-problem"
@@ -457,7 +710,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-nhrc-warns-public-over-hacked-official-x-account"
@@ -473,7 +726,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-04-biomechanical-optimization-of-the-ossicular-chain-prostheses"
@@ -489,7 +742,7 @@
       "lastCovered": "2026-09-04T08:09:03.907Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-02-hyimpulse-extends-series-a-funding-round-by-50-million"
@@ -505,7 +758,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 8,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-09-03-the-convenor-is-also-a-combatant",
@@ -539,7 +792,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-twenty-six-days-is-not-a-shipwreck"
@@ -564,7 +817,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-a-quota-is-an-administrative-document"
@@ -589,7 +842,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-the-only-room-where-fourteen-states-are-one"
@@ -613,7 +866,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-deploying-first-turns-approval-into-removal"
@@ -638,7 +891,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-the-argument-was-made-in-kyiv"
@@ -654,7 +907,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-a-list-that-cannot-be-unbuilt"
@@ -670,7 +923,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-changing-focus-without-moving-anything"
@@ -686,7 +939,7 @@
       "lastCovered": "2026-09-04T04:09:38.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-the-one-process-that-gets-cheaper-in-orbit"
@@ -702,7 +955,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-03-jakarta-ratification-is-the-step-that-counts",
@@ -729,7 +982,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-a-war-by-any-other-name-starts-a-clock"
@@ -754,7 +1007,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-the-franchise-does-not-need-its-founder"
@@ -770,7 +1023,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-03-cutting-headcount-does-not-shorten-a-development-cycle",
@@ -796,7 +1049,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-four-competitors-one-substrate"
@@ -821,7 +1074,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-what-an-installed-base-is-worth-to-its-new-owner"
@@ -837,7 +1090,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-duration-not-extent-is-the-number-that-compounds"
@@ -853,7 +1106,7 @@
       "lastCovered": "2026-09-03T22:13:33.496Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-03-approval-and-access-are-two-different-events"
@@ -869,7 +1122,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-03-refoulement-the-agency-that-declined-to-sign-off",
@@ -886,7 +1139,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-hormuz-a-campaign-that-now-has-a-2027-end-date"
@@ -911,7 +1164,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-caracas-who-has-standing-to-sell-a-barrel"
@@ -936,7 +1189,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-niamey-four-jets-and-a-second-patron"
@@ -952,7 +1205,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-nonexpressive-the-doctrine-that-makes-a-boycott-conduct"
@@ -968,7 +1221,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-term-premium-a-war-priced-into-a-mortgage"
@@ -993,7 +1246,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-the-neutral-hub-was-a-line-item-on-a-chip-balance-sheet"
@@ -1018,7 +1271,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-distribution-the-users-were-never-in-new-york"
@@ -1034,7 +1287,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-flock-the-expansion-happened-in-a-training-webinar"
@@ -1050,7 +1303,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-sealed-an-order-a-breach-cannot-be-appealed-against"
@@ -1066,7 +1319,7 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-the-ads-pipeline-reviewed-for-payment-not-for-meaning"
@@ -1091,152 +1344,13 @@
       "lastCovered": "2026-09-03T17:08:24.177Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-03-andoya-the-launch-date-arrived-as-a-shipping-hazard"
       ],
       "eventUri": null,
       "summary": "Maritime safety notices from the Norwegian Coastal Administration — not a company press release — reveal that Isar Aerospace's second Spectrum launch window opens 4 September, running daily 16:00–21:35 UTC through 10 September. Lead with how the news surfaced: launch schedules are legally disclosed as hazard areas to shipping long before any firm announces them, so a mariner's warning is a more reliable calendar than a launch provider's. The substance is Europe's first serious attempt at sovereign small-launch capability after the debut flight failed; the second flight is where a launch company either becomes a business or becomes a case study. State plainly what the first flight did and did not achieve.",
-      "conceptUris": []
-    },
-    {
-      "id": "goethe-institut-retaliation-on-a-ladder-with-defined-rungs",
-      "label": "Russia to close Goethe-Institut centres as Germany tensions escalate",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-goethe-institut-retaliation-on-a-ladder-with-defined-rungs"
-      ],
-      "eventUri": "eng-11977110",
-      "summary": "Moscow will shut Germany's Goethe-Institut centres after Berlin blamed Russia for the Leipzig/Halle drone incident and closed a Russian cultural centre and the Bonn consulate. Lead with the escalation currency, not the buildings: when sabotage is deliberately kept below every legal threshold — no casualties, no claim, no Article 5 — the retaliation has to be found somewhere it can be executed cleanly, and cultural institutes, consulates and language teachers are the only assets each side can seize without firing. Who is affected: the German and Russian nationals who staffed and studied at these centres, and the last low-level channel between two societies; who holds power: Lavrov's ministry, which announced it, and a German government that opened the exchange. The structural why to teach: diplomatic tit-for-tat is a ladder with defined rungs — cultural bodies, then consulates, then embassies, then nothing — and each rung spent removes an off-ramp. Follows directly from our German-substations piece: this is the attributable answer to an unattributable act. Multi-source across QA, US and IN outlets; note the sentiment split — Al Jazeera reports it flatly, NewsMax and News18 both read it far more negatively.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Berlin",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Goethe-Institut",
-        "http://en.wikipedia.org/wiki/Saint_Petersburg",
-        "http://en.wikipedia.org/wiki/Yekaterinburg"
-      ]
-    },
-    {
-      "id": "yerevan-the-garrison-and-the-concession-are-negotiable",
-      "label": "EU or Eurasia: Why Putin sparred with Armenia's PM",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-yerevan-the-garrison-and-the-concession-are-negotiable"
-      ],
-      "eventUri": "eng-11975402",
-      "summary": "Pashinyan says Armenia does not consider Russia's 102nd military base vital and would not oppose its withdrawal, and favours transferring Russia's railway concession rights to a third country. Lead with the base and the railway, not the summit spat: this is the moment a client state says out loud that the garrison and the infrastructure concession — the two physical instruments through which Moscow has held Yerevan since 1991 — are negotiable. Who is affected: Armenians whose only rail link to the outside runs on a Russian concession, and a landlocked state that has to choose a patron while its borders with Turkey and Azerbaijan remain closed; who holds power: Putin, who can make the exit costly, and a prime minister betting that Russia's post-2020 failure to protect Armenia has already voided the guarantee. The structural why to teach: an alliance is only as real as the assets one side physically controls, and Russia's leverage in the South Caucasus is a base lease and a railway operating agreement — both terminable documents, not permanent facts. This advances the Armenia arc our customs-union piece opened, but the subject is different: that was tariff schedules, this is the security and infrastructure anchor. Multi-source, TRT World (TR) and Al Jazeera (QA) — both regional voices, no Russian outlet in the cluster, so state what each side has actually said on the record.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Armenia",
-        "http://en.wikipedia.org/wiki/Nikol_Pashinyan",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Yerevan",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Armenia",
-        "http://en.wikipedia.org/wiki/Bishkek"
-      ]
-    },
-    {
-      "id": "katiba-raid-a-name-taken-and-a-name-left-behind",
-      "label": "Israeli military abducts Gaza City Interior Ministry official in raid",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-katiba-raid-a-name-taken-and-a-name-left-behind"
-      ],
-      "eventUri": null,
-      "summary": "An Israeli special forces unit raided the Katiba area west of Gaza City, seized internal security officer Muain al-Arabid, killed his wife and injured several of his children. Lead with the family, because they are the record: the operation's stated object was one man, and the confirmed dead is a woman who was not its object — which is what a targeted raid means in practice inside a besieged city. Who is affected: al-Arabid's surviving children, and the Gaza City residents for whom the ceasefire declared on 10 October has meant raids rather than an end to them; who holds power: the Israeli military, which conducts ground incursions the ceasefire text was supposed to have stopped, and the guarantors who declared it and have not enforced it. The structural why to teach: an abduction is legally distinct from a killing — a detainee enters a system with no published charge, no location and no counsel, and 'abducted' rather than 'arrested' is the precise word when no judicial process attaches. Continues our ceasefire-that-did-not-stop-the-killing piece from this morning with a named incident. Mada Masr (EG) is the regional outlet here and the sole source; attribute the account to the Palestinian Interior Ministry statement it is reporting, name what is confirmed versus claimed, and seek the Israeli military's response.",
-      "conceptUris": []
-    },
-    {
-      "id": "ammonia-the-war-reaches-the-field-a-season-late",
-      "label": "Agriculture relies on fossil fuels. It's costing us.",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-ammonia-the-war-reaches-the-field-a-season-late"
-      ],
-      "eventUri": "eng-11973346",
-      "summary": "Fertilizer prices are climbing because the Iran conflict has moved natural gas, and nitrogen fertilizer is made from gas — the Haber-Bosch process turns methane into ammonia, so a barrel of oil and a bag of urea are priced by the same war. Lead with the chemistry, because it is the mechanism the reader cannot get from a markets story: roughly half the nitrogen in the world's food supply comes out of a gas feedstock, which means an energy shock reaches the dinner table with a one-season lag and no substitute available inside that lag. Who is affected: smallholders in South Asia and sub-Saharan Africa who buy fertilizer in cash at the start of a planting season and cannot hedge, and who will plant less rather than pay more — the harvest shortfall is being decided now; who holds power: the ammonia producers with cheap long-term gas contracts, and the governments running fertilizer subsidy schemes that absorb the shock for some farmers and not others. The structural why to teach: this is the food-price transmission channel, distinct from our oil-shock rates piece (policy rate) and our fuel-bill piece (consumer energy) — same shock, third pathway, longest lag. Give the actual price series and the ammonia-to-gas ratio. Note for the audit: the feed carried no multi-source economy stories at all this cycle — all four multi-source clusters were politics — so both economy multi-source picks are unavailable rather than rejected.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-delhi-buying-the-factory-not-the-weapon",
-      "label": "India, Belgium Sign Defense Pact to Boost Joint Arms Production",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-new-delhi-buying-the-factory-not-the-weapon"
-      ],
-      "eventUri": "eng-11968416",
-      "summary": "India and Belgium signed agreements on joint weapons production, opening Indian manufacturing to European defence firms as New Delhi pushes domestic production. Lead with what India is buying that is not a weapon: the pact is about production rights, not deliveries, and a country that has spent seventy years as the world's largest arms importer is now trading market access for the one thing it could never purchase — the industrial capacity to build the things itself. Who is affected: Russian exporters, whose share of the Indian market is the space these deals occupy, and Indian firms that get technology transfer on terms a sale would never include; who holds power: New Delhi, which controls access to the second-largest defence market outside the US and China, and European primes whose home orderbooks are full but whose plant capacity is not. The structural why to teach: our munitions-bottleneck piece showed that magazine depth is an industrial variable — this is the other side of the same fact, a buyer concluding that if the queue is the constraint, the only durable purchase is a factory. Read it alongside the same week's Modi–Iran meeting under US secondary-sanctions threats: India is buying optionality from every bloc at once. Single-source Bloomberg with 142 outlets on the event cluster; give the specific agreements, the named firms and what technology actually transfers, rather than the summit language.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Belgium",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Bart_De_Wever",
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Belgium",
-        "http://en.wikipedia.org/wiki/Minister_of_Defence_(India)",
-        "http://en.wikipedia.org/wiki/Theo_Francken"
-      ]
-    },
-    {
-      "id": "fmf-a-weapons-export-line-that-ends-in-a-university-lab",
-      "label": "US universities get millions to do military research for Israel",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-fmf-a-weapons-export-line-that-ends-in-a-university-lab"
-      ],
-      "eventUri": null,
-      "summary": "Over a thousand pages of records from 13 universities document at least 70 research projects — drone swarms, AI video captioning for target identification, brain-computer interfaces for 'high throughput' visual recognition, terror-network mapping — conducted at 30 US institutions for the Israeli Ministry of Defense since 2009. Lead with the funding mechanism, because it is the finding no one has reported: these are not grants but Direct Commercial Contracts, procured as 'defense articles and services' under the Arms Export Control Act and paid for with US Foreign Military Financing — the same pipeline that buys F-35s, routed into a university lab. Who is affected: the people on whom the resulting capabilities are used, and the graduate students who worked on projects whose published papers list civilian applications the internal IMoD proposals do not; who holds power: the ministry's US procurement mission spending roughly $3.3bn a year, and Congress, which requires notification only above $100m — so the entire programme sits below the reporting threshold by construction. Two mechanisms to teach: the Fundamental Research Exclusion, which exempts sponsored defence research from export controls if results are 'published broadly', and the documented gap between proposal and paper — the Yarin/Zussman buried-explosives proposal versus its published 'mining' framing. Sourcing discipline matters here: Responsible Statecraft is advocacy-adjacent, so anchor exclusively on the primary record it publishes — the FOIA'd contracts, named professors, contract values — note the corroborating Drop Site News and The Nation reporting it cites, carry the State Department's referral and the IMoD's declined comment, and seek response from the named researchers.",
-      "conceptUris": []
-    },
-    {
-      "id": "annotation-selling-the-judgment-you-used-to-rent",
-      "label": "I refused to train the AI that could replace me",
-      "firstSeen": "2026-09-03T12:08:38.130Z",
-      "lastCovered": "2026-09-03T12:08:38.130Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-annotation-selling-the-judgment-you-used-to-rent"
-      ],
-      "eventUri": null,
-      "summary": "AI companies are paying doctors, lawyers, engineers and translators — highly credentialled professionals, largely outside the West — to encode the judgment they spent a decade acquiring into systems that may later do their work. Lead with the transaction, not the anxiety: this is a one-time sale of an asset that was previously rentable indefinitely, and the price is set by a buyer who knows what the asset is worth and a seller who mostly does not. Who is affected: the expert annotators in India, Kenya, the Philippines, Latin America and Eastern Europe now doing the highest-skill tier of data work, at rates that look excellent locally and trivial against the model's valuation; who holds power: the labs and the annotation vendors between them, who structure the contracts, own the output in perpetuity, and never disclose which model a given batch trained. The structural why to teach: this is the professional-class version of what happened to the earlier annotation workforce, and the distinguishing feature is that tacit expertise — the judgment that cannot be written into a textbook — is exactly what the labs cannot scrape and must therefore buy. That makes refusal an actual lever, briefly. Rest of World's ground reporting is the value here: keep the named workers, their rates and their reasoning, and resist turning it into an AI-replaces-jobs forecast — the story is a labour market with an information asymmetry, not a prediction.",
       "conceptUris": []
     }
   ]
