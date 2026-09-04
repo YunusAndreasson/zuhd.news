@@ -199,6 +199,17 @@ describe('actions', () => {
     expect(state.hints.swipe.status).toBe('done');
   });
 
+  it('caps reading depth once every contextual hint is eligible', () => {
+    const s = loadStore();
+    const listener = jest.fn();
+    s.subscribe(listener);
+
+    for (let i = 0; i < s.ONBOARDING_SNAP_CAP + 5; i++) s.recordArticleSnap();
+
+    expect(s.getSnapshot().snapCount).toBe(s.ONBOARDING_SNAP_CAP);
+    expect(listener).toHaveBeenCalledTimes(s.ONBOARDING_SNAP_CAP);
+  });
+
   it('performing the taught action retires the hint across sessions', () => {
     let s = loadStore();
     s.markHintDone('sources');

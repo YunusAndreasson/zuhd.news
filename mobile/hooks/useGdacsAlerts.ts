@@ -1,8 +1,7 @@
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { useMemo } from 'react';
-import { API_BASE } from '../constants/theme';
 import { isGdacsSnapshot } from '../lib/validate';
-import { useFetchJson } from './useFetchJson';
+import { useApiJson } from './useApiJson';
 
 const EMPTY_ALERTS: GdacsAlert[] = [];
 const EMPTY_DETAILS: Record<string, GdacsDetail> = {};
@@ -16,17 +15,13 @@ const EMPTY_DETAILS: Record<string, GdacsDetail> = {};
 export function useGdacsAlerts(): {
   alerts: GdacsAlert[];
   details: Record<string, GdacsDetail>;
-  ready: boolean;
 } {
-  const { data, ready } = useFetchJson(`${API_BASE}/api/gdacs.json`, isGdacsSnapshot, {
-    refreshOnResume: true,
-  });
+  const data = useApiJson('/api/gdacs.json', isGdacsSnapshot);
   return useMemo(
     () => ({
       alerts: data?.alerts ?? EMPTY_ALERTS,
       details: data?.details ?? EMPTY_DETAILS,
-      ready,
     }),
-    [data, ready],
+    [data],
   );
 }

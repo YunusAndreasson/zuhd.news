@@ -1,8 +1,7 @@
 import type { IndicatorAnalysis } from '@shared/types';
 import { useMemo } from 'react';
-import { API_BASE } from '../constants/theme';
 import { isAnalysisSnapshot } from '../lib/validate';
-import { useFetchJson } from './useFetchJson';
+import { useApiJson } from './useApiJson';
 
 const EMPTY: ReadonlyMap<string, IndicatorAnalysis> = new Map();
 
@@ -21,16 +20,13 @@ const EMPTY: ReadonlyMap<string, IndicatorAnalysis> = new Map();
  */
 export function useAnalysis(): {
   byId: ReadonlyMap<string, IndicatorAnalysis>;
-  ready: boolean;
 } {
-  const { data, ready } = useFetchJson(`${API_BASE}/api/analysis.json`, isAnalysisSnapshot, {
-    refreshOnResume: true,
-  });
+  const data = useApiJson('/api/analysis.json', isAnalysisSnapshot);
 
   const byId = useMemo(() => {
     if (!data) return EMPTY;
     return new Map(Object.entries(data.items));
   }, [data]);
 
-  return { byId, ready };
+  return { byId };
 }

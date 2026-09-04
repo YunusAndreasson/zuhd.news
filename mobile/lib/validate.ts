@@ -20,6 +20,7 @@ import type {
 } from '@shared/types';
 import type { Preferences } from '../constants/theme';
 import type { Bookmark } from './bookmark-store';
+import { isIsoDate } from './data-freshness';
 
 const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -39,34 +40,46 @@ const isArticle = (v: unknown): v is Article => {
   return (
     typeof v.slug === 'string' &&
     typeof v.title === 'string' &&
-    typeof v.date === 'string' &&
-    typeof v.addedAt === 'number' &&
+    isIsoDate(v.date) &&
+    isFiniteNumber(v.addedAt) &&
     Array.isArray(v.sources) &&
     isStringArray(v.concepts) &&
     isStringArray(v.sentences)
   );
 };
 
+const isBriefing = (v: unknown): boolean =>
+  isObject(v) &&
+  isIsoDate(v.date) &&
+  typeof v.available === 'boolean' &&
+  (v.duration === undefined || (isFiniteNumber(v.duration) && v.duration > 0));
+
 export const isFeedResponse = (v: unknown): v is FeedResponse => {
-  if (!isObject(v) || typeof v.generated !== 'string') return false;
+  if (!isObject(v) || !isIsoDate(v.generated)) return false;
   if (!isObject(v.categories)) return false;
   for (const [k, arr] of Object.entries(v.categories)) {
     if (!isCategory(k)) return false;
     if (!Array.isArray(arr) || !arr.every(isArticle)) return false;
   }
-  if (v.briefing !== null && !isObject(v.briefing)) return false;
+  if (v.briefing !== null && !isBriefing(v.briefing)) return false;
   return true;
 };
 
 export const isMetaResponse = (v: unknown): v is MetaResponse =>
-  isObject(v) && typeof v.generated === 'string';
+  isObject(v) && isIsoDate(v.generated);
 
 const isHeatmapPoint = (v: unknown): v is HeatmapPoint =>
   isObject(v) &&
-  typeof v.lat === 'number' &&
-  typeof v.lng === 'number' &&
-  typeof v.c === 'number' &&
-  typeof v.t === 'number' &&
+  isFiniteNumber(v.lat) &&
+  v.lat >= -90 &&
+  v.lat <= 90 &&
+  isFiniteNumber(v.lng) &&
+  v.lng >= -180 &&
+  v.lng <= 180 &&
+  isFiniteNumber(v.c) &&
+  v.c >= 0 &&
+  isFiniteNumber(v.t) &&
+  v.t >= 0 &&
   typeof v.l === 'string';
 
 export interface HeatmapResponse {
@@ -76,7 +89,7 @@ export interface HeatmapResponse {
 
 export const isHeatmapResponse = (v: unknown): v is HeatmapResponse =>
   isObject(v) &&
-  typeof v.generated === 'string' &&
+  isIsoDate(v.generated) &&
   Array.isArray(v.points) &&
   v.points.every(isHeatmapPoint);
 
@@ -85,7 +98,7 @@ const isCounts = (v: unknown): v is ChokepointCounts =>
 
 const isChokepointWeather = (v: unknown): boolean => {
   if (!isObject(v)) return false;
-  if (typeof v.asOf !== 'string') return false;
+  if (!isIsoDate(v.asOf)) return false;
   if (!isFiniteNumber(v.maxWave24hM)) return false;
   if (v.alert !== null && v.alert !== 'rough' && v.alert !== 'very_rough') return false;
   return true;
@@ -96,20 +109,22 @@ const isChokepoint = (v: unknown): v is Chokepoint => {
   if (typeof v.id !== 'string' || v.id.length === 0) return false;
   if (typeof v.name !== 'string' || v.name.length === 0) return false;
   if (typeof v.blurb !== 'string') return false;
-  if (typeof v.lat !== 'number' || typeof v.lng !== 'number') return false;
+  if (!isFiniteNumber(v.lat) || v.lat < -90 || v.lat > 90) return false;
+  if (!isFiniteNumber(v.lng) || v.lng < -180 || v.lng > 180) return false;
   if (!isStringArray(v.topicTags)) return false;
   if (typeof v.primaryField !== 'string') return false;
   if (!isCounts(v.last7Avg) || !isCounts(v.baseline90Avg) || !isCounts(v.delta7vs90)) return false;
   if (!isObject(v.series)) return false;
   if (!isStringArray(v.series.periods) || !isNumberArray(v.series.total)) return false;
-  if (typeof v.asOf !== 'string') return false;
+  if (v.series.periods.length !== v.series.total.length || v.series.total.length < 2) return false;
+  if (!isIsoDate(v.asOf)) return false;
   if (v.weather !== undefined && !isChokepointWeather(v.weather)) return false;
   return true;
 };
 
 export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
   isObject(v) &&
-  typeof v.generated === 'string' &&
+  isIsoDate(v.generated) &&
   Array.isArray(v.chokepoints) &&
   v.chokepoints.every(isChokepoint);
 
@@ -119,7 +134,9 @@ export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
  *  and an empty string is absence wearing a value's clothes. */
 export const isAnalysisSnapshot = (v: unknown): v is AnalysisSnapshot =>
   isObject(v) &&
-  typeof v.generatedAt === 'string' &&
+  isIsoDate(v.generatedAt) &&
+  (v.windowDays === null ||
+    (isFiniteNumber(v.windowDays) && Number.isInteger(v.windowDays) && v.windowDays >= 0)) &&
   isObject(v.items) &&
   Object.values(v.items).every(
     (e) => isObject(e) && typeof e.recent === 'string' && e.recent.trim().length > 0,
@@ -137,8 +154,8 @@ const isGdacsAlert = (v: unknown): v is GdacsAlert => {
   if (typeof v.country !== 'string' || typeof v.iso3 !== 'string') return false;
   if (!isStringArray(v.affectedCountries)) return false;
   if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
-  if (typeof v.fromDate !== 'string' || typeof v.modifiedDate !== 'string') return false;
-  if (v.toDate !== null && typeof v.toDate !== 'string') return false;
+  if (!isIsoDate(v.fromDate) || !isIsoDate(v.modifiedDate)) return false;
+  if (v.toDate !== null && !isIsoDate(v.toDate)) return false;
   if (typeof v.severityText !== 'string') return false;
   if (v.severityValue !== null && !isFiniteNumber(v.severityValue)) return false;
   if (typeof v.severityUnit !== 'string') return false;
@@ -159,7 +176,7 @@ const isGdacsDetail = (v: unknown): v is GdacsDetail => {
 
 export const isGdacsSnapshot = (v: unknown): v is GdacsSnapshot => {
   if (!isObject(v)) return false;
-  if (typeof v.generated !== 'string') return false;
+  if (!isIsoDate(v.generated)) return false;
   if (!Array.isArray(v.alerts) || !v.alerts.every(isGdacsAlert)) return false;
   if (!isObject(v.details)) return false;
   for (const detail of Object.values(v.details)) {
@@ -194,13 +211,13 @@ const isOptionalNonNegInt = (v: unknown): boolean =>
 const isConflictReportedSource = (v: unknown): boolean =>
   isObject(v) &&
   typeof v.outlet === 'string' &&
-  typeof v.date === 'string' &&
+  isIsoDate(v.date) &&
   typeof v.headline === 'string';
 
 const isConflictEvent = (v: unknown): v is ConflictEvent => {
   if (!isObject(v)) return false;
   if (typeof v.id !== 'string' || v.id.length === 0) return false;
-  if (typeof v.eventDate !== 'string' || v.eventDate.length === 0) return false;
+  if (!isIsoDate(v.eventDate)) return false;
   if (typeof v.family !== 'string' || !CONFLICT_FAMILIES.has(v.family as ConflictEventFamily)) {
     return false;
   }
@@ -224,7 +241,7 @@ const isConflictEvent = (v: unknown): v is ConflictEvent => {
   if (!isOptionalNonNegInt(v.deathsCivilians)) return false;
   if (!isOptionalNonNegInt(v.deathsUnknown)) return false;
   if (!isOptionalNonNegInt(v.numSources)) return false;
-  if (!isOptionalString(v.dateEnd)) return false;
+  if (v.dateEnd !== undefined && !isIsoDate(v.dateEnd)) return false;
   if (typeof v.notes !== 'string') return false;
   if (typeof v.source !== 'string') return false;
   if (!isOptionalString(v.sourceUrl)) return false;
@@ -236,10 +253,15 @@ const isConflictEvent = (v: unknown): v is ConflictEvent => {
 
 export const isConflictSnapshot = (v: unknown): v is ConflictSnapshot => {
   if (!isObject(v)) return false;
-  if (typeof v.generated !== 'string') return false;
-  if (typeof v.windowStart !== 'string') return false;
-  if (typeof v.windowEnd !== 'string') return false;
+  if (!isIsoDate(v.generated)) return false;
+  if (!isIsoDate(v.windowStart) || !isIsoDate(v.windowEnd)) return false;
+  if (Date.parse(v.windowStart) > Date.parse(v.windowEnd)) return false;
   if (!Array.isArray(v.events) || !v.events.every(isConflictEvent)) return false;
+  const windowStart = v.windowStart;
+  const windowEnd = v.windowEnd;
+  if (v.events.some((event) => event.eventDate < windowStart || event.eventDate > windowEnd)) {
+    return false;
+  }
   return true;
 };
 
@@ -253,15 +275,39 @@ const isIndicator = (v: unknown): v is Indicator => {
   if (!isStringArray(v.periods)) return false;
   if (v.values.length !== v.periods.length) return false;
   if (v.values.length < 2) return false;
+  if (v.asOf !== undefined && !isIsoDate(v.asOf)) return false;
+  if (v.cadence !== undefined && v.cadence !== 'daily' && v.cadence !== 'monthly') return false;
   return true;
 };
 
-export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot =>
+const isTrendRelease = (v: unknown): boolean =>
+  isObject(v) && isIsoDate(v.date) && typeof v.release === 'string' && v.release.length > 0;
+
+const isTrendEvent = (v: unknown): boolean =>
   isObject(v) &&
-  typeof v.fetchedAt === 'string' &&
-  typeof v.asOf === 'string' &&
-  Array.isArray(v.indicators) &&
-  v.indicators.every(isIndicator);
+  typeof v.id === 'string' &&
+  v.id.length > 0 &&
+  typeof v.title === 'string' &&
+  v.title.length > 0 &&
+  typeof v.institution === 'string' &&
+  v.institution.length > 0 &&
+  (v.kind === 'central-bank' ||
+    v.kind === 'opec' ||
+    v.kind === 'econ-release' ||
+    v.kind === 'summit-election') &&
+  isIsoDate(v.date);
+
+export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot => {
+  if (!isObject(v) || !isIsoDate(v.fetchedAt) || !isIsoDate(v.asOf)) return false;
+  if (!Array.isArray(v.indicators) || !v.indicators.every(isIndicator)) return false;
+  if (v.releaseCalendar !== undefined) {
+    if (!Array.isArray(v.releaseCalendar) || !v.releaseCalendar.every(isTrendRelease)) return false;
+  }
+  if (v.events !== undefined) {
+    if (!Array.isArray(v.events) || !v.events.every(isTrendEvent)) return false;
+  }
+  return true;
+};
 
 export const isPreferences = (v: unknown): v is Preferences => {
   if (!isObject(v)) return false;

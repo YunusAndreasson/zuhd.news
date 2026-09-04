@@ -3,7 +3,7 @@ import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { curveMonotoneX, line as d3Line } from 'd3-shape';
 import { memo, useEffect, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import {
   cancelAnimation,
   useReducedMotion,
@@ -13,13 +13,6 @@ import {
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../primitives';
-
-// Seed width with a Dimensions estimate so the first paint already has a
-// usable trajectory instead of a frame of empty layout while we wait for
-// onLayout. The estimate matches the carousel's page width (sheet content
-// area = window − 2× sheet padding); the real measured width replaces it
-// on the next render. Mirrors the pattern in TrendBlock.
-const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
 // d3 line generator is stateless once configured — build it once at module
 // scope so we don't re-allocate per useMemo run (twice today: once for the
@@ -151,7 +144,10 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 }: TrajectoryChartProps) {
   const { colors, font } = useTheme();
   const reduceMotion = useReducedMotion();
-  const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
+  const { width: windowWidth } = useWindowDimensions();
+  // Start with the current reactive window width; onLayout replaces this
+  // estimate with the exact content width after the first layout pass.
+  const [width, setWidth] = useState(() => windowWidth - SPACING.screenPadding * 2);
 
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {

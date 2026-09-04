@@ -86,7 +86,7 @@ for (const m of MARKET_TRACKED) {
     sessionStart: m.sessionStart,
     sessionEnd: m.sessionEnd,
     days: m.days,
-    series: { periods: data.periods, values },
+    series: { periods: data.periods, values, dates: data.dates, completed: data.completed },
     asOf: data.asOf,
     sourceLabel: `Yahoo Finance · ${data.exchange || m.indexName}`,
     blurb: m.blurb,

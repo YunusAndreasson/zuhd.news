@@ -4,7 +4,6 @@ import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
 import { displayCountryName } from '../lib/place-names';
@@ -304,8 +303,6 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   onDismiss,
   onSelect,
 }: DisambiguationSheetProps) {
-  const snapProps = useSheetSnaps(false);
-
   const rows = useMemo<DisplayRow[]>(() => {
     const cpById = new Map(chokepoints.map((c) => [c.id, c]));
     const alertById = new Map(alerts.map((a) => [a.eventid, a]));
@@ -326,12 +323,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   );
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      onDismiss={onDismiss}
-      handleTitle="multiple items here"
-    >
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="multiple items here">
       <SheetScrollView bottomInset={bottomInset}>
         {rows.map((row, i) => (
           <CandidateRow key={row.key} row={row} index={i} onPress={handleSelect} />

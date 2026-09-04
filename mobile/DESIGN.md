@@ -6,6 +6,15 @@ See root `foundation.md` for the philosophy. This document is the operational re
 
 ## Voice
 
+Chart decks group unseen updates before a quiet “You’re caught up” page, with
+previously viewed cards below. “New to you”, “Updated since you last viewed” and
+“Previously viewed” sit near the observation date, quiet except for stronger
+ink on an update. Status never borrows the favorable/unfavorable delta colors. A visit
+freezes content and ordering; regroup on section entry or foreground return.
+Only a foreground, visible, settled card viewed for 800 ms is acknowledged.
+Content signatures ignore observation timestamps and editorial promotion;
+history stays on-device and is included in the privacy erase action.
+
 One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop and the `BriefingBar`'s iOS-only frosted glass (see §Native chrome carve-outs), no decorative icons. Restraint is the brand.
 
 ## Tokens — `constants/theme.ts`
@@ -138,7 +147,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   - **The content-sized ceiling moved into `SheetLayout`.** gorhom's `maxDynamicContentSize` prop is gone, but the cap it provided is not optional: `fitToContents` measures the RN content's *natural* height, so a long page grew past the window and pushed its own handle, title and back chevron off the top of the screen — About and privacy rendered as prose running under the status bar with no way back. `SheetLayout` applies `LAYOUT.sheetMaxFraction` itself, and only in content-sized mode; a fixed-snap sheet is already handed a bounded column and capping it would leave dead space inside an 85% sheet.
   - **There is no backdrop opacity to set** — `OPACITY.backdrop` is gone with it — and no `BottomSheetModalProvider` in `app/_layout.tsx`, because a platform sheet presents itself rather than rendering into a JS portal.
 - Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through. Note the scroll views are plain React Native ones under the new library: a native sheet coordinates scrolling itself, so none of gorhom's gesture-arbitration wrappers are needed.
-- **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** gorhom used to supply it from inside its scrollable HOC; the re-exported RN `ScrollView`/`FlatList` do not, so a list with no flex measures to its own content height, overflows the sheet and stops scrolling at the fold. A fixed-snap sheet (`useSheetSnaps(true)`) gives its content a bounded column, so `flex: 1` is right — that's what `SheetSearchPage`'s list and `CountrySheet`'s `rankingWrap` use. A content-sized sheet gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
+- **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** The re-exported RN `ScrollView`/`FlatList` do not receive it from a wrapper. A sheet with explicit `snapPoints` gives its content a bounded column, so `flex: 1` is right — that's what `SheetSearchPage`'s list and `CountrySheet`'s `rankingWrap` use. A content-sized sheet gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
 - Prose sheet pages (About, privacy, contact) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy. External links go through `SheetLink` (`SheetContent.tsx`), which owns the underline + `bodyEmphasis` treatment so a link on About and a link on privacy cannot drift apart.
 - Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage`, `ChokepointSheet` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
 - Nav rows and info rows in `MenuSheet` are the same control (padding, chevron, pushes a page) and share `label`. Don't size the secondary group down — the divider carries the hierarchy, and shrinking it drops the tap target under 44pt.
@@ -227,6 +236,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   display-formatted `value`; `tone` is only for a direction that means
   something to the person holding it (a currency weakening), never for
   "number went down".
+- **A comparison gets one visible expression per fact.** When the headline is
+  a ratio and the graph already names both series, do not add raw-value figure
+  rows for those same series. The ratio, legend, graph and one movement
+  sentence are the compact card; detailed quotes belong in a sheet. Figures
+  remain valid where they introduce different information, such as the two
+  metal weights that define the nisab threshold.
 
 ### Blocks (`components/blocks/`)
 - Three data-display components, used directly by the sheets that need them:
@@ -275,34 +290,44 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
   drag fights the drag, while the indicator tracking the finger is the part
   that should feel live.
+- **Pressing the active section label is a hard return to top.** It cancels
+  pending pager settlement, clears nested-scroll ownership, resets the outer
+  page and resets any mounted prose scroller. It must work even when the first
+  card/article is already selected but its text is scrolled.
 - **The rail groups, because the sections are not peers.** A rule sits after
   `news`: it is an article river and the other three are data-card decks, so
   drawing all four at identical weight would make a false claim about
   symmetry the content does not keep. Full point, not `hairlineWidth` — a
   10pt vertical hairline disappears at some Android densities, and a group rule
   nobody can see does not group.
-- **A card that overflows scrolls; it must never truncate.** The five parts are
-  prose, so at large Dynamic Type — and at default type for four cards today —
-  a card outgrows its page. `CardFrame` arms an inner `ScrollView` when that
-  happens, and getting the measurement right means adding `COLUMN_PAD_V` back:
-  the column's padding lives on the `contentContainerStyle`, outside the view
-  being measured. `nestedScrollEnabled` is on (Android defaults it off, which
-  silently disabled the whole mechanism), and `CardPager` corrects any resting
-  offset the handoff leaves behind. The cost is one extra swipe to leave a tall
-  card; the alternative was losing the source caption off the bottom.
-  When an inner card actually consumes a gesture, `CardPager` pins the parent
-  to its current page before Android can apply the gesture's leftover momentum;
-  the next swipe from the inner scroll's end may page normally. This prevents
-  one gesture both scrolling the card and skipping it, or parking the deck
-  between two cards.
+- **Overflow scrolls; it must never truncate. Gesture ownership is spatial.**
+  Only the prose/analysis region owns an inner vertical `ScrollView`; a swipe
+  beginning on the title, metric, chart, globe, or surrounding page belongs to
+  the outer pager immediately. This keeps each touch under one owner from
+  touch-down through release and lets readers page without throwing the swipe.
+  The inner region arms itself from its measured content and viewport heights,
+  with one point of rounding tolerance. A touch that begins in prose remains a
+  native text scroll even at either edge; to page, begin the next swipe on the
+  title, metric, chart, globe or surrounding page. No second edge recognizer
+  may sit over the prose scroller, and no programmatic page correction may run
+  while the finger is still down. This preserves bidirectional text scrolling,
+  large Dynamic Type content and source captions without the mid-swipe freezes
+  caused by competing scroll owners.
+- **Page settling uses native fast deceleration** with `snapToInterval` and
+  `disableIntervalMomentum`; prose retains normal native scrolling. A new
+  outer-page drag clears the previous text-consumption marker immediately,
+  so reading text never imposes a cooldown on the next chart/title swipe.
+  Inherited text-scroll tails still retain their page correction.
 - **A card arrives; it does not appear.** `CardFrame` runs the same
   scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
   outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use
   the shared interpolation rather than a mount animation: with three pages held
   in a list, a mount animation plays two screens away and is over unseen.
   Gated on `useReducedMotion()`, like the reader's.
-- The four categories are a vertical ordering inside `news`, not lanes — see
-  `lib/news-order.ts`. The globe lives on `news` only: it is the backdrop to
+- All four categories share one strictly newest-first column inside `news` —
+  see `lib/news-order.ts`. Order uses the story timestamp shown in the dateline;
+  coverage and category mixing must never move older news above newer news.
+  The globe lives on `news` only: it is the backdrop to
   the stories it locates, and there is nothing on a wheat price for it to
   point at.
 - For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.

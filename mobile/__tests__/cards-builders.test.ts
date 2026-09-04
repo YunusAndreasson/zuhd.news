@@ -119,19 +119,46 @@ describe('buildInstrumentCards', () => {
   });
 
   it('marks a gated card and leaves a standing one unmarked', () => {
+    const kerch = strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902);
+    kerch.asOf = '2026-08-29';
     const columns = build({
       trends: snapshot([
         indicator({ id: 'paxg', label: 'Gold', unit: '$/oz', values: [4110, 4352.19] }),
         indicator({ id: 'xag', label: 'Silver', unit: '$/oz', values: [57.8, 52.56] }),
       ]),
-      chokepoints: [strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902)],
+      chokepoints: [kerch],
       articles: [],
+      now: new Date('2026-09-01T12:00:00Z'),
     });
     // The strait is here because it went quiet this week; the nisab is here
     // every day. Until the mark existed both arrived in identical weight.
     expect(find(columns.straits, 'strait-kerch')?.lead).toBe(true);
     expect(find(columns.markets, 'nisab')?.lead).toBeUndefined();
     expect(find(columns.markets, 'metals')?.lead).toBeUndefined();
+  });
+
+  it('names every observation and does not call an old disruption current', () => {
+    const oldKerch = strait('kerch', 'Kerch Strait', 0.9, 8.8, -0.902);
+    oldKerch.asOf = '2026-08-23';
+    const trends = snapshot([
+      indicator({
+        id: 'brent',
+        label: 'Brent crude',
+        unit: '$/bbl',
+        asOf: '2026-08-25',
+      }),
+    ]);
+    const columns = build({
+      trends,
+      chokepoints: [oldKerch],
+      articles: [],
+      now: new Date('2026-09-01T12:00:00Z'),
+    });
+    expect(find(columns.markets, 'brent')?.asOf).toBe('2026-08-25');
+    expect(find(columns.straits, 'strait-kerch')).toMatchObject({
+      asOf: '2026-08-23',
+      lead: false,
+    });
   });
 
   it('drops a card whose data is absent instead of rendering a placeholder', () => {
@@ -208,6 +235,7 @@ describe('buildInstrumentCards', () => {
     const staples = find(paired, 'staples');
     expect(staples?.kind).toBe('reading');
     expect(staples?.kind === 'reading' ? staples.series?.multi?.length : 0).toBe(2);
+    expect(staples?.kind === 'reading' ? staples.figures : undefined).toBeUndefined();
     expect(staples?.changed).toContain('wheat +14%');
     expect(staples?.changed).toContain('rice −29%');
 
@@ -300,6 +328,7 @@ describe('buildInstrumentCards', () => {
     expect(metals?.kind).toBe('reading');
     expect(metals?.kind === 'reading' ? metals.series?.values : []).toEqual([80, 75]);
     expect(metals?.kind === 'reading' ? metals.series?.multi : undefined).toBeUndefined();
+    expect(metals?.kind === 'reading' ? metals.figures : undefined).toBeUndefined();
     expect(metals?.kind === 'reading' ? metals.series?.label : '').toContain('ounces of silver');
   });
 
@@ -467,6 +496,7 @@ describe('buildInstrumentCards', () => {
           strait('hormuz', 'Strait of Hormuz', 1, 3.9, -0.741),
         ],
         articles: [],
+        now: new Date('2026-08-04T12:00:00Z'),
       }),
     );
     const moved = find(cards, 'strait-kerch');
@@ -498,6 +528,7 @@ describe('buildInstrumentCards', () => {
         strait('hormuz', 'Strait of Hormuz', 1, 3.9, -0.741),
       ],
       articles: [],
+      now: new Date('2026-08-04T12:00:00Z'),
     });
     expect(columns.straits.map((c) => c.id)).toEqual([
       'strait-kerch',

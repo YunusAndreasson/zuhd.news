@@ -16,7 +16,9 @@ const path = require('path');
 const projectRoot = __dirname;
 const localShared = path.join(projectRoot, 'shared');
 const repoShared = path.resolve(projectRoot, '..', 'shared');
-const sharedRoot = fs.existsSync(localShared) ? localShared : repoShared;
+// Metro hashes watched real paths, not newly created files reached through
+// the local shared/ symlink. EAS has a real directory and resolves unchanged.
+const sharedRoot = fs.realpathSync(fs.existsSync(localShared) ? localShared : repoShared);
 
 if (process.env.EAS_BUILD) {
   console.log('[metro.config] projectRoot=', projectRoot);

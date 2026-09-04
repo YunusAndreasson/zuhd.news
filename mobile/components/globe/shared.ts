@@ -26,11 +26,6 @@ export const countries = feature(
   countriesObj,
 ) as unknown as GeoJSON.FeatureCollection;
 
-// Internal borders only (shared edges between countries, no coastlines — land
-// already shows those). Single MultiLineString = much faster to project than
-// 180 separate country polygons.
-export const bordersMesh = mesh(countriesData, countriesObj, (a, b) => a !== b);
-
 // Permanent land-based ice sheets — Antarctica (~98% ice year-round) and
 // Greenland (~80%). Rendered as a white fill over the land silhouette so
 // the globe reads climatologically correct without a second basemap.
@@ -70,14 +65,14 @@ export const landSimplified = feature(simplifiedData, landObjSimp);
 /** Borders mesh from the same 0.5-weight simplified topology as
  *  `landSimplified`. Same arcs guarantee mid-scroll borders align exactly
  *  with the simplified coastline. ~56% cheaper to project than full
- *  `bordersMesh`; swapped in by MiniGlobe when `!nearSettled`. */
+ *  the full-detail mesh; swapped in by MiniGlobe when `!nearSettled`. */
 export const bordersMeshSimplified = mesh(simplifiedData, countriesObjSimp, (a, b) => a !== b);
 /** Mid-tier land for settled frames — denser than `landSimplified` so the
  *  coastline keeps its read at rest, but lighter than the full `land`
  *  mesh. Same arcs as the other two (alignment preserved). */
 export const landMedium = feature(mediumData, landObjMed);
 /** Borders mesh from the 0.15-weight medium topology — settled-frame
- *  companion to `landMedium`. ~30% cheaper than full `bordersMesh` while
+ *  companion to `landMedium`. ~30% cheaper than the full-detail mesh while
  *  keeping border arcs aligned with the medium coastline. */
 export const bordersMeshMedium = mesh(mediumData, countriesObjMed, (a, b) => a !== b);
 const countriesSimplified = feature(

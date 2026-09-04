@@ -6,7 +6,6 @@ import {
   formatQuantity,
   formatReading,
   formatSignedPct,
-  formatSignedPoints,
   GRAMS_PER_TROY_OUNCE,
   nisab,
   relatedForTags,
@@ -46,13 +45,10 @@ describe('windowPointChange', () => {
     // +231%, which is arithmetic pretending to be journalism.
     const c = windowPointChange(series([26, 50, 86]), 2);
     expect(c?.pct).toBe(60);
-    expect(formatSignedPoints(c?.pct ?? 0)).toBe('+60 points');
-  });
-
-  it('says "point", singular, when it moved one', () => {
-    expect(formatSignedPoints(1)).toBe('+1 point');
-    expect(formatSignedPoints(-1)).toBe('−1 point');
-    expect(formatSignedPoints(0)).toBe('unchanged');
+    expect(deltaFrom(c, null, { unit: 'points' })).toMatchObject({
+      direction: 'up',
+      magnitude: '60 points',
+    });
   });
 });
 

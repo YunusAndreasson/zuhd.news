@@ -41,6 +41,7 @@ export const SheetLayout = memo(function SheetLayout({
   handleTitle,
   handleComponent: Handle,
   children,
+  enableDynamicSizing = true,
   ...rest
 }: SheetLayoutProps) {
   const { sheetStyles } = useTheme();
@@ -62,8 +63,7 @@ export const SheetLayout = memo(function SheetLayout({
   // Fixed-snap sheets must NOT get the wrapper: they are handed a bounded
   // column already, and `SheetScrollView`'s `flexShrink: 1` fits the content to
   // it. Capping those at 70% would leave dead space inside an 85% sheet.
-  const fitToContents =
-    (rest.enableDynamicSizing ?? true) && !(rest.snapPoints && rest.snapPoints.length > 0);
+  const fitToContents = enableDynamicSizing && !(rest.snapPoints && rest.snapPoints.length > 0);
   const capStyle = useMemo(
     () => ({ maxHeight: Math.round(height * LAYOUT.sheetMaxFraction) }),
     [height],
@@ -81,6 +81,7 @@ export const SheetLayout = memo(function SheetLayout({
     <BottomSheetModal
       ref={sheetRef}
       enablePanDownToClose
+      enableDynamicSizing={enableDynamicSizing}
       backgroundStyle={sheetStyles.bg}
       handleComponent={null}
       {...rest}

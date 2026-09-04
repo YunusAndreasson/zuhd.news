@@ -1,7 +1,6 @@
 import type { Chokepoint } from '@shared/types';
-import { API_BASE } from '../constants/theme';
 import { isChokepointSnapshot } from '../lib/validate';
-import { useFetchJson } from './useFetchJson';
+import { useApiJson } from './useApiJson';
 
 const EMPTY_CHOKEPOINTS: Chokepoint[] = [];
 
@@ -9,9 +8,7 @@ const EMPTY_CHOKEPOINTS: Chokepoint[] = [];
  *  on relaunch; refreshes silently on app resume. Graceful degrade: any
  *  failure (network, malformed payload, missing endpoint) leaves the returned
  *  list empty — the globe simply skips the chokepoint layer. */
-export function useChokepoints(): { chokepoints: Chokepoint[]; ready: boolean } {
-  const { data, ready } = useFetchJson(`${API_BASE}/api/chokepoints.json`, isChokepointSnapshot, {
-    refreshOnResume: true,
-  });
-  return { chokepoints: data?.chokepoints ?? EMPTY_CHOKEPOINTS, ready };
+export function useChokepoints(): { chokepoints: Chokepoint[] } {
+  const data = useApiJson('/api/chokepoints.json', isChokepointSnapshot);
+  return { chokepoints: data?.chokepoints ?? EMPTY_CHOKEPOINTS };
 }

@@ -6,7 +6,6 @@ import {
   useEffect,
   useEffectEvent,
   useImperativeHandle,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -23,9 +22,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
-import { usePagerSettle } from '../hooks/usePagerSettle';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
+import { useVerticalPager, VERTICAL_PAGER_PROPS } from '../hooks/useVerticalPager';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import type { RiverArticle } from '../lib/news-order';
 import { recordArticleSnap } from '../lib/onboarding-store';
@@ -38,6 +37,7 @@ import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe'
 // gradient view is rendered per column — cells scroll through a fixed
 // fade pattern rather than each cell carrying its own.
 const BG_FADE_LOCATIONS: number[] = [0, 0.02, 0.14, 0.28, 0.48, 0.72, 1];
+const articleKey = (article: RiverArticle) => article.slug;
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -71,6 +71,8 @@ interface ArticleListProps {
    *  do nothing. */
   resolvableEntityIds?: ReadonlySet<string>;
   onArticleChange?: (article: RiverArticle) => void;
+  /** Clears transient teaching UI as soon as the reader starts moving content. */
+  onReadingScrollStart?: () => void;
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
@@ -93,6 +95,7 @@ export const ArticleList = memo(function ArticleList({
   onEntityPress,
   resolvableEntityIds,
   onArticleChange,
+  onReadingScrollStart,
   onRefresh,
   onEndReached,
   onCaughtUp,
@@ -125,13 +128,7 @@ export const ArticleList = memo(function ArticleList({
     [bgAlpha],
   );
   const { width: screenWidth } = useWindowDimensions();
-  // Already ordered by `orderNewsRiver` before it got here — by how many
-  // newsrooms covered the event, then by recency, then de-clumped so the top
-  // of the column is not one category's wall. This component used to do its
-  // own chronological sort with a breaking-story float inside each time
-  // bucket; that logic moved into the ordering function, where it is a pure
-  // function with tests rather than a memo that had to be invalidated by a
-  // clock tick.
+  // Already ordered newest-first by `orderNewsRiver`, across all categories.
   const sortedArticles = articles;
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
@@ -183,6 +180,7 @@ export const ArticleList = memo(function ArticleList({
     resetOverscroll();
   }, [resetOverscroll]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
+  const [resetScrollKey, setResetScrollKey] = useState(0);
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
@@ -201,45 +199,30 @@ export const ArticleList = memo(function ArticleList({
     setLocalRefreshing(false);
   }, [onRefresh]);
 
+  // Keep the native refresh control referentially stable while the reader
+  // pages through stories. Recreating this element on every `currentIndex`
+  // update makes Android rebuild the ScrollView/VirtualizedList subtree even
+  // though pull-to-refresh has not changed; the list can only pull past its
+  // leading edge at index zero, so no index-dependent `enabled` prop is
+  // necessary.
+  const refreshControl = useMemo(
+    () => (
+      <RefreshControl
+        refreshing={localRefreshing}
+        onRefresh={handleRefresh}
+        tintColor={colors.textSecondary}
+        progressBackgroundColor={colors.bg}
+        colors={[colors.textSecondary]}
+      />
+    ),
+    [localRefreshing, handleRefresh, colors.textSecondary, colors.bg],
+  );
+
   // Report current article to parent (initial + on snap/sort change)
   useEffect(() => {
     const article = sortedArticles[currentIndex];
     if (article) onArticleChange?.(article);
   }, [currentIndex, sortedArticles, onArticleChange]);
-
-  // When the data array changes (resume refresh, prepended new articles, sort
-  // re-bucketing), keep the user on the same slug. Without this, prepended
-  // items shift the offset and the user's reading position silently changes
-  // — which is what felt "jumpy" before. Runs in useLayoutEffect so the
-  // scroll adjustment lands before paint with the new data.
-  const prevSlugsRef = useRef<string[]>([]);
-  useLayoutEffect(() => {
-    const newSlugs = sortedArticles.map((a) => a.slug);
-    const prevSlugs = prevSlugsRef.current;
-    prevSlugsRef.current = newSlugs;
-    if (prevSlugs.length === 0 || newSlugs.length === 0) return;
-    const idx = currentIndexRef.current;
-    if (idx <= 0) return; // user at top — let new content sit there
-    const currentSlug = prevSlugs[idx];
-    if (!currentSlug) return;
-    const newIdx = newSlugs.indexOf(currentSlug);
-    if (newIdx < 0 || newIdx === idx) return;
-    listRef.current?.scrollToOffset({ offset: newIdx * itemHeight, animated: false });
-    setCurrentIndex(newIdx);
-  }, [sortedArticles, itemHeight, listRef, setCurrentIndex]);
-
-  useImperativeHandle(ref, () => ({
-    scrollToTop: () => {
-      overscrollFired.set(false);
-      listRef.current?.scrollToOffset({ offset: 0, animated: true });
-    },
-    scrollToSlug: (slug: string) => {
-      const idx = sortedArticles.findIndex((a) => a.slug === slug);
-      if (idx >= 0) {
-        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
-      }
-    },
-  }));
 
   // Find the boundary between new and previously seen articles
   const earlierIndex = useMemo(() => {
@@ -275,25 +258,46 @@ export const ArticleList = memo(function ArticleList({
    *
    * An article that outgrows the page becomes a `ScrollView` (see
    * `ArticlePage`), and the tail of a scroll it did not need arrives here with
-   * no touch-down and no fling, so `pagingEnabled` never snaps it. Shared with
+   * no touch-down and no fling, so native snapping never sees it. Shared with
    * `CardPager`, which has carried this correction since the card decks
    * shipped; the reader is where the bug was actually reported.
    */
   const {
-    handleBeginDrag,
+    handlePagerBeginDrag,
     handleEndDrag,
     handleMomentumBegin,
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-  } = usePagerSettle({
+    getItemLayout,
+    resetToTop,
+  } = useVerticalPager({
     listRef,
     scrollY,
     itemHeight,
     count: articleCount,
     currentIndexRef,
     onSettled: handleSnap,
+    onReadingScrollStart,
+    items: sortedArticles,
+    getItemKey: articleKey,
+    onItemsReordered: setCurrentIndex,
+    preserveAtTop: false,
   });
+
+  useImperativeHandle(ref, () => ({
+    scrollToTop: () => {
+      overscrollFired.set(false);
+      resetToTop();
+      setResetScrollKey((key) => key + 1);
+    },
+    scrollToSlug: (slug: string) => {
+      const idx = sortedArticles.findIndex((a) => a.slug === slug);
+      if (idx >= 0) {
+        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
+      }
+    },
+  }));
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -339,15 +343,6 @@ export const ArticleList = memo(function ArticleList({
     },
   });
 
-  const getItemLayout = useCallback(
-    (_: ArrayLike<RiverArticle> | null | undefined, index: number) => ({
-      length: itemHeight,
-      offset: itemHeight * index,
-      index,
-    }),
-    [itemHeight],
-  );
-
   const renderItem = useCallback(
     ({ item, index }: { item: RiverArticle; index: number }) => (
       <ArticlePage
@@ -365,6 +360,9 @@ export const ArticleList = memo(function ArticleList({
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
         onInnerScrollConsumed={handleInnerScrollConsumed}
+        onReadingScrollStart={onReadingScrollStart}
+        hasNext={index < articleCount - 1}
+        resetScrollKey={resetScrollKey}
         tick={tick}
       />
     ),
@@ -379,11 +377,12 @@ export const ArticleList = memo(function ArticleList({
       resolvableEntityIds,
       earlierIndex,
       handleInnerScrollConsumed,
+      onReadingScrollStart,
+      articleCount,
       tick,
+      resetScrollKey,
     ],
   );
-
-  const keyExtractor = useCallback((item: RiverArticle) => item.slug, []);
 
   if (sortedArticles.length === 0)
     return (
@@ -442,30 +441,21 @@ export const ArticleList = memo(function ArticleList({
         data={sortedArticles}
         extraData={tick}
         renderItem={renderItem}
-        keyExtractor={keyExtractor}
+        keyExtractor={articleKey}
         getItemLayout={getItemLayout}
-        pagingEnabled
-        showsVerticalScrollIndicator={false}
+        snapToInterval={itemHeight}
+        {...VERTICAL_PAGER_PROPS}
         onScroll={scrollHandler}
-        onScrollBeginDrag={handleBeginDrag}
+        onScrollBeginDrag={handlePagerBeginDrag}
         onScrollEndDrag={handleEndDrag}
         onMomentumScrollBegin={handleMomentumBegin}
         onMomentumScrollEnd={handleMomentumEnd}
-        scrollEventThrottle={16}
-        initialNumToRender={2}
-        maxToRenderPerBatch={2}
-        windowSize={3}
+        // The next story is already in the initial/window buffer. Warm later
+        // pages one at a time so Android does not mount two prose-heavy cells
+        // in the same commit immediately after the reader's first swipe.
+        maxToRenderPerBatch={1}
         ListFooterComponent={safeAreaFooter}
-        refreshControl={
-          <RefreshControl
-            refreshing={localRefreshing}
-            onRefresh={currentIndex === 0 ? handleRefresh : undefined}
-            enabled={currentIndex === 0}
-            tintColor={colors.textSecondary}
-            progressBackgroundColor={colors.bg}
-            colors={[colors.textSecondary]}
-          />
-        }
+        refreshControl={refreshControl}
       />
     </View>
   );

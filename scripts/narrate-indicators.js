@@ -44,13 +44,18 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { spawnSync } from 'node:child_process'
-import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
+
+if (hasFlag('market-signals')) {
+  const { runMarketSignals } = await import('./narrate-market-signals.js')
+  await runMarketSignals({ dryRun: hasFlag('dry-run'), noLlm: hasFlag('no-llm') })
+  process.exit(0)
+}
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CACHE_PATH = join(ROOT, 'content', '.indicator-dispatch.json')
@@ -59,8 +64,7 @@ const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
 
-const MODEL = process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5'
-const EFFORT = process.env.ZUHD_DISPATCH_EFFORT || 'medium'
+
 const CONCURRENCY = 3
 /** The window everything recent is measured over. Two weeks is long enough that
  *  a weekly-published series has moved at least once, and short enough that
@@ -380,41 +384,7 @@ ${JSON.stringify(bundle, null, 2)}
 
 Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations": [...] }\`. No markdown, no fences.`
 
-  const env = { ...process.env }
-  // The child must not inherit the parent session marker — see `cycle.md`.
-  delete env.CLAUDECODE
-
-  const t0 = Date.now()
-  const result = spawnSync(
-    'claude',
-    [
-      '--model', MODEL,
-      '--effort', EFFORT,
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p', fullPrompt,
-    ],
-    { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1024 * 1024, env },
-  )
-  const elapsedMs = Date.now() - t0
-
-  if (result.status !== 0) {
-    // Both streams: a non-zero `claude` exit often reports on stdout and leaves
-    // stderr empty, which read as "exit 1: " and said nothing at all.
-    const why =
-      String(result.stderr || '').trim() || String(result.stdout || '').trim() || '(no output)'
-    return { elapsedMs, error: `claude exit ${result.status}: ${why.slice(0, 300)}` }
-  }
-  try {
-    const envelope = parseClaudeEnvelopeWithUsage(result.stdout)
-    const r = envelope.result
-    if (!r || typeof r !== 'object') return { elapsedMs, error: 'no object in result' }
-    return { elapsedMs, out: r, costUsd: envelope.total_cost_usd, usage: envelope.usage }
-  } catch (err) {
-    return { elapsedMs, error: `parse: ${err.message}` }
-  }
+  return callIndicatorModel(fullPrompt)
 }
 
 const clean = (s) =>

@@ -4,7 +4,6 @@ import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import {
   displayConflictSource,
@@ -35,7 +34,6 @@ export const ConflictSheet = memo(function ConflictSheet({
   onCountryPress,
 }: ConflictSheetProps) {
   const { colors } = useTheme();
-  const snapProps = useSheetSnaps(false);
   const openLink = useOpenLink();
   const handleSourcePress = useCallback(() => {
     if (event?.sourceUrl) openLink(event.sourceUrl);
@@ -78,7 +76,7 @@ export const ConflictSheet = memo(function ConflictSheet({
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss} handleTitle={handleTitle}>
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={handleTitle}>
       <SheetScrollView bottomInset={bottomInset}>
         {event && (
           <>

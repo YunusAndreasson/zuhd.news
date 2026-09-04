@@ -30,7 +30,7 @@ export interface OnboardingState {
   version: 1;
   seededAt: number;
   hints: Record<HintId, HintEntry>;
-  /** Lifetime vertical article snaps — hint triggers key off reading depth. */
+  /** Capped reading depth used only to sequence contextual hints. */
   snapCount: number;
   primer: { status: PrimerStatus; decidedAt: number };
 }
@@ -38,6 +38,8 @@ export interface OnboardingState {
 export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe'];
 /** A hint shown in this many separate sessions without being acted on expires. */
 export const MAX_HINT_SHOWS = 3;
+/** No onboarding rule distinguishes reading depth beyond the fourth article. */
+export const ONBOARDING_SNAP_CAP = 3;
 
 // Written by the pre-onboarding cold prompt in _layout.tsx; read at seed as
 // the "this device already spent the OS dialog" signal, and re-written when
@@ -216,8 +218,15 @@ function setHint(id: HintId, status: HintStatus) {
 /** Call on every settled vertical article snap. The first-ever snap is the
  *  swipe lesson performed. */
 export function recordArticleSnap(): void {
+  // Once every depth-gated lesson is eligible, further article navigation is
+  // not onboarding state. Avoid rerendering subscribers and scheduling a
+  // persistence write on every snap for the rest of the app's lifetime.
+  if (state.snapCount >= ONBOARDING_SNAP_CAP) return;
   const first = state.snapCount === 0;
-  let next: OnboardingState = { ...state, snapCount: state.snapCount + 1 };
+  let next: OnboardingState = {
+    ...state,
+    snapCount: Math.min(ONBOARDING_SNAP_CAP, state.snapCount + 1),
+  };
   if (first) {
     next = {
       ...next,

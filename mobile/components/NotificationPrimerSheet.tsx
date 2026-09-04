@@ -1,7 +1,6 @@
 import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import {
   getSnapshot as getOnboarding,
@@ -29,7 +28,6 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
 }: NotificationPrimerSheetProps) {
   const { colors } = useTheme();
   const { setNotifications } = usePreferences();
-  const snapProps = useSheetSnaps(false);
   const busyRef = useRef(false);
 
   const handleEnable = useCallback(async () => {
@@ -61,12 +59,7 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   }, [onDismiss]);
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      onDismiss={handleDismiss}
-      handleTitle="briefings"
-    >
+    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="briefings">
       <SheetScrollView bottomInset={bottomInset}>
         <Text variant="label">two briefings a day</Text>
         <Text variant="body" style={styles.body}>

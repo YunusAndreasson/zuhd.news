@@ -171,25 +171,14 @@ export function formatMagnitudePct(pct: number): string | null {
   return `${Math.abs(rounded)}%`;
 }
 
-/** The same, in percentage points. See `formatSignedPoints` for why the word
- *  is spelled out. */
+/** The same, in percentage points. The word is spelled out so a points move
+ *  cannot be mistaken for a relative percentage. */
 export function formatMagnitudePoints(points: number): string | null {
   if (!Number.isFinite(points)) return null;
   const rounded = Math.round(points);
   if (rounded === 0) return null;
   const magnitude = Math.abs(rounded);
   return `${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
-}
-
-/** A signed difference in percentage points. Says "points" out loud, because
- *  the whole reason this function exists is that "%" would be read as a
- *  relative change. */
-export function formatSignedPoints(points: number): string {
-  if (!Number.isFinite(points)) return '—';
-  const rounded = Math.round(points);
-  if (rounded === 0) return 'unchanged';
-  const magnitude = Math.abs(rounded);
-  return `${rounded > 0 ? '+' : '−'}${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
 }
 
 /**

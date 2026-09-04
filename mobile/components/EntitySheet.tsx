@@ -3,7 +3,7 @@ import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
+import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
 import { riseMeansFor, type Valence, valenceOfChange } from '../lib/valence';
 import { SourceCaption } from './blocks/SourceCaption';
@@ -92,8 +92,6 @@ export const EntitySheet = memo(function EntitySheet({
   onDismiss,
   onArticlePress,
 }: EntitySheetProps) {
-  const snapProps = useSheetSnaps(false);
-
   const related = useMemo(
     () => (indicator ? findRelatedArticles(indicator, articles) : []),
     [indicator, articles],
@@ -109,7 +107,7 @@ export const EntitySheet = memo(function EntitySheet({
   const handleTitle = indicator?.label ?? entity?.mention ?? '';
 
   return (
-    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss} handleTitle={handleTitle}>
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={handleTitle}>
       <SheetScrollView bottomInset={bottomInset}>
         {indicator && (
           <>
@@ -147,7 +145,11 @@ export const EntitySheet = memo(function EntitySheet({
             )}
 
             <Animated.View entering={enter()} style={styles.section}>
-              <SourceCaption label={indicator.sourceLabel} />
+              <SourceCaption
+                label={[indicator.sourceLabel, observationLabel(indicator.asOf)]
+                  .filter(Boolean)
+                  .join(' · ')}
+              />
             </Animated.View>
           </>
         )}

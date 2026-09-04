@@ -1,4 +1,12 @@
-import { memo, useCallback, useImperativeHandle, useLayoutEffect, useMemo, useRef } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -8,13 +16,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
-import { usePagerSettle } from '../../hooks/usePagerSettle';
+import { SPACING } from '../../constants/theme';
+import { useCardVisit } from '../../hooks/useCardVisit';
 import { useScrollState } from '../../hooks/useScrollState';
+import { useVerticalPager, VERTICAL_PAGER_PROPS } from '../../hooks/useVerticalPager';
+import { cardStatus, type DeckPage } from '../../lib/card-history';
 import type { SwipeCard } from '../../lib/cards/rank';
 import { hapticTick } from '../../lib/haptics';
 import { markHintDone } from '../../lib/onboarding-store';
 import { EmptyState } from '../EmptyState';
+import { Text } from '../primitives';
 import { CardView } from './CardView';
+
+const cardKey = (card: DeckPage) => card.id;
 
 /**
  * A column of full-screen cards, paged vertically.
@@ -26,8 +40,8 @@ import { CardView } from './CardView';
  * with a `Card` in place of an `Article` and no globe behind it.
  *
  * It deliberately does not carry `ArticleList`'s other machinery: no pull to
- * refresh (these payloads refresh on resume, not on demand), no caught-up
- * boundary (there is nothing here to have already seen), no overscroll toast.
+ * refresh (these payloads refresh on resume, not on demand) or overscroll toast.
+ * A visit freezes unseen updates ahead of a caught-up boundary and viewed cards.
  */
 
 export interface CardPagerRef {
@@ -36,6 +50,9 @@ export interface CardPagerRef {
 
 interface CardPagerProps {
   cards: SwipeCard[];
+  active: boolean;
+  visible: boolean;
+  section: string;
   viewportHeight: number;
   /** Index of this section in the horizontal pager — the slot it owns in
    *  `progressesSV`, which drives the rail's fill. */
@@ -45,81 +62,95 @@ interface CardPagerProps {
    *  pipeline has not written yet. */
   emptyMessage: string;
   emptyHint?: string;
+  /** Clears transient teaching UI as soon as the reader starts moving content. */
+  onReadingScrollStart?: () => void;
   ref?: React.Ref<CardPagerRef>;
 }
 
 export const CardPager = memo(function CardPager({
   cards,
+  active,
+  visible,
+  section,
   viewportHeight,
   sectionIndex,
   progressesSV,
   emptyMessage,
   emptyHint,
+  onReadingScrollStart,
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
-  const listRef = useAnimatedRef<Animated.FlatList<SwipeCard>>();
+  const listRef = useAnimatedRef<Animated.FlatList<DeckPage>>();
   const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const itemHeight = viewportHeight;
-  const count = cards.length;
+  const [moving, setMoving] = useState(false);
+  const { pages, history } = useCardVisit(section, cards, active, currentIndex, moving || !visible);
+  const count = pages.length;
+  const remaining = pages.filter(
+    (page) => page.kind === 'card' && cardStatus(section, page.card, history) !== 'viewed',
+  ).length;
+  const [resetScrollKey, setResetScrollKey] = useState(0);
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
 
-  useImperativeHandle(ref, () => ({
-    scrollToTop: () => listRef.current?.scrollToOffset({ offset: 0, animated: true }),
-  }));
-
-  // A refresh can legitimately reorder the deck as a new event, a stronger
-  // news tie or an unusual move arrives. Keep the reader on the same card by
-  // stable id instead of silently replacing the page under them.
-  const previousIdsRef = useRef<string[]>([]);
-  useLayoutEffect(() => {
-    const nextIds = cards.map((card) => card.id);
-    const previousIds = previousIdsRef.current;
-    previousIdsRef.current = nextIds;
-    if (previousIds.length === 0 || nextIds.length === 0) return;
-    const previousId = previousIds[currentIndexRef.current];
-    if (!previousId) return;
-    const nextIndex = nextIds.indexOf(previousId);
-    if (nextIndex < 0 || nextIndex === currentIndexRef.current) return;
-    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
-    setCurrentIndex(nextIndex);
-  }, [cards, itemHeight, listRef, setCurrentIndex]);
+  const handleSnap = useCallback(
+    (index: number) => {
+      hapticTick();
+      // The reader has performed the lesson on a data deck. The onboarding
+      // store historically counted article snaps only, so the swipe hint
+      // returned over Markets/Shipping/Outlook after a successful page turn.
+      markHintDone('swipe');
+      setCurrentIndex(index);
+    },
+    [setCurrentIndex],
+  );
 
   /**
    * The whole settle machinery — timers, drag/momentum ownership, the mark an
-   * inner scroll leaves behind — lives in `usePagerSettle`, shared with the
+   * inner scroll leaves behind — lives in `useVerticalPager`, shared with the
    * article river, which had this same bug for as long as this deck had the
    * fix. `onSettled` fires only when the page actually changes.
    */
   const {
-    handleBeginDrag,
+    handlePagerBeginDrag,
     handleEndDrag,
     handleMomentumBegin,
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
-  } = usePagerSettle({
+    getItemLayout,
+    resetToTop,
+  } = useVerticalPager({
     listRef,
     scrollY,
     itemHeight,
     count,
     currentIndexRef,
-    onSettled: useCallback(
-      (index: number) => {
-        hapticTick();
-        // The reader has performed the lesson on a data deck. The onboarding
-        // store historically counted article snaps only, so the swipe hint
-        // returned over Markets/Shipping/Outlook after a successful page turn.
-        markHintDone('swipe');
-        setCurrentIndex(index);
-      },
-      [setCurrentIndex],
-    ),
+    onSettled: handleSnap,
+    onReadingScrollStart,
+    items: pages,
+    getItemKey: cardKey,
+    onItemsReordered: setCurrentIndex,
+    preserveAtTop: false,
   });
+
+  useEffect(() => {
+    if (active && pages.length) {
+      setMoving(false);
+      resetToTop();
+    }
+  }, [active, pages, resetToTop]);
+
+  useImperativeHandle(ref, () => ({
+    scrollToTop: () => {
+      resetToTop();
+      setResetScrollKey((key) => key + 1);
+    },
+  }));
 
   /** Throttle clock for the settle-arm hop below. Shared rather than a ref
    *  because only the UI thread reads or writes it. */
@@ -161,29 +192,47 @@ export const CardPager = memo(function CardPager({
     },
   });
 
-  const getItemLayout = useCallback(
-    (_: ArrayLike<SwipeCard> | null | undefined, index: number) => ({
-      length: itemHeight,
-      offset: itemHeight * index,
-      index,
-    }),
-    [itemHeight],
-  );
-
   const renderItem = useCallback(
-    ({ item, index }: { item: SwipeCard; index: number }) => (
-      <CardView
-        card={item}
-        itemHeight={itemHeight}
-        index={index}
-        scrollY={scrollY}
-        onInnerScrollConsumed={handleInnerScrollConsumed}
-      />
-    ),
-    [handleInnerScrollConsumed, itemHeight, scrollY],
+    ({ item, index }: { item: DeckPage; index: number }) =>
+      item.kind === 'boundary' ? (
+        <View style={[styles.boundary, { height: itemHeight }]}>
+          <Text variant="title" accessibilityRole="header">
+            {remaining === 0 ? 'You’re caught up' : 'End of updates'}
+          </Text>
+          <Text variant="body" tone="secondary">
+            {remaining === 0
+              ? 'You’ve viewed all the updates in this section.'
+              : `${remaining} ${remaining === 1 ? 'update not viewed' : 'updates not viewed'}. Swipe back to review.`}
+          </Text>
+          {item.previouslyViewed > 0 ? (
+            <Text variant="caption" tone="secondary">
+              Previously viewed below · swipe up
+            </Text>
+          ) : null}
+        </View>
+      ) : (
+        <CardView
+          card={item.card}
+          status={item.status}
+          itemHeight={itemHeight}
+          index={index}
+          scrollY={scrollY}
+          onInnerScrollConsumed={handleInnerScrollConsumed}
+          onReadingScrollStart={onReadingScrollStart}
+          hasNext={index < count - 1}
+          resetScrollKey={resetScrollKey}
+        />
+      ),
+    [
+      count,
+      handleInnerScrollConsumed,
+      itemHeight,
+      onReadingScrollStart,
+      scrollY,
+      resetScrollKey,
+      remaining,
+    ],
   );
-
-  const keyExtractor = useCallback((item: SwipeCard) => item.id, []);
 
   if (count === 0) {
     return (
@@ -197,21 +246,30 @@ export const CardPager = memo(function CardPager({
     <Animated.FlatList
       ref={listRef}
       style={styles.list}
-      data={cards}
+      data={pages}
       renderItem={renderItem}
-      keyExtractor={keyExtractor}
+      keyExtractor={cardKey}
       getItemLayout={getItemLayout}
-      pagingEnabled
-      showsVerticalScrollIndicator={false}
+      snapToInterval={itemHeight}
+      {...VERTICAL_PAGER_PROPS}
       onScroll={scrollHandler}
-      onScrollBeginDrag={handleBeginDrag}
-      onMomentumScrollBegin={handleMomentumBegin}
-      onMomentumScrollEnd={handleMomentumEnd}
-      onScrollEndDrag={handleEndDrag}
-      scrollEventThrottle={16}
-      initialNumToRender={2}
+      onScrollBeginDrag={() => {
+        setMoving(true);
+        handlePagerBeginDrag();
+      }}
+      onMomentumScrollBegin={() => {
+        setMoving(true);
+        handleMomentumBegin();
+      }}
+      onMomentumScrollEnd={(event) => {
+        handleMomentumEnd(event);
+        setMoving(false);
+      }}
+      onScrollEndDrag={(event) => {
+        handleEndDrag(event);
+        setMoving(false);
+      }}
       maxToRenderPerBatch={2}
-      windowSize={3}
       ListFooterComponent={safeAreaFooter}
     />
   );
@@ -219,4 +277,5 @@ export const CardPager = memo(function CardPager({
 
 const styles = StyleSheet.create({
   list: { flex: 1 },
+  boundary: { justifyContent: 'center', paddingHorizontal: SPACING.lg, gap: SPACING.md },
 });

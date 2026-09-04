@@ -1,10 +1,9 @@
 import type { TrendAnnotation, TrendBand, TrendHighlight, TrendSeries } from '@shared/types';
 import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
-import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
-import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
+import { scaleLinear, scaleLog } from 'd3-scale';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import {
   GestureDetector,
   type PanGestureConfig,
@@ -20,7 +19,6 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { formatTickLabel, parseFlexibleDate } from '../../lib/date-format';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
@@ -31,11 +29,12 @@ import {
   formatBlockNumber,
   useChartDrawProgress,
 } from './shared';
-
-// Trend blocks live in article/card columns, both of which use
-// `articlePadding`. Matching that layout here avoids mounting the Skia chart
-// at one width and rebuilding every path after the first onLayout callback.
-const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.articlePadding * 2;
+import {
+  buildTrendAreaPath,
+  buildTrendLinePath,
+  buildTrendXLayout,
+  type TrendTimeTick,
+} from './trend-geometry';
 
 type Pt = { x: number; y: number };
 
@@ -61,7 +60,6 @@ const SCRUB_LABEL_W_SINGLE = 96;
 const SCRUB_LABEL_W_MULTI = 132;
 const SCRUB_VALUE_LINE_H = 16;
 const SCRUB_PERIOD_LINE_H = 14;
-const TIME_TICK_COUNT = 4;
 
 function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefined): number {
   if (values.length === 0) return -1;
@@ -83,20 +81,6 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
   }
 }
 
-/** Interpret each period string as a date via the shared year/year-month/ISO
- *  parser. Returns an aligned Date array if every period parses; otherwise
- *  null (caller falls back to index scale). */
-function parsePeriodsAsDates(periods: string[] | undefined): Date[] | null {
-  if (!periods || periods.length === 0) return null;
-  const out: Date[] = [];
-  for (const p of periods) {
-    const d = parseFlexibleDate(p);
-    if (!d) return null;
-    out.push(d);
-  }
-  return out;
-}
-
 interface ChartProps {
   series: TrendSeries[];
   band?: TrendBand;
@@ -109,6 +93,7 @@ interface ChartProps {
   annotations?: TrendAnnotation[];
   scale: 'linear' | 'log';
   showDataDots: boolean;
+  xPositions: number[];
 }
 
 // Memoized: an active scrub gesture re-renders the parent TrendBlock on every
@@ -128,6 +113,7 @@ const Chart = memo(function Chart({
   annotations,
   scale,
   showDataDots,
+  xPositions,
 }: ChartProps) {
   const { seriesPaths, bandPath, points, minY, maxY } = useMemo(() => {
     const flat: number[] = [];
@@ -149,20 +135,11 @@ const Chart = memo(function Chart({
         ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
         : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
 
-    const innerLeft = CHART_LEFT_PAD;
-    const innerRight = width - CHART_RIGHT_PAD;
-    const longest = series.reduce((m, s) => Math.max(m, s.values.length), 0);
-    const xFor = (i: number) =>
-      longest <= 1 ? innerLeft : innerLeft + (i / (longest - 1)) * (innerRight - innerLeft);
-
-    const lineGen = d3Line<{ x: number; y: number }>()
-      .x((d) => d.x)
-      .y((d) => d.y)
-      .curve(curveMonotoneX);
+    const xFor = (i: number) => xPositions[i] ?? CHART_LEFT_PAD;
 
     const seriesPaths: { path: SkPath; color: string }[] = series.map((s, sIdx) => {
       const pts = s.values.map((v, i) => ({ x: xFor(i), y: yScale(v) }));
-      const d = lineGen(pts) ?? '';
+      const d = buildTrendLinePath(pts);
       const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
       const color =
         sIdx === 0 ? colors.textEmphasis : sIdx === 1 ? colors.accent : colors.textSecondary;
@@ -171,13 +148,12 @@ const Chart = memo(function Chart({
 
     let bandPath: SkPath | null = null;
     if (band) {
-      const areaGen = d3Area<{ idx: number; lo: number; hi: number }>()
-        .x((d) => xFor(d.idx))
-        .y0((d) => yScale(d.lo))
-        .y1((d) => yScale(d.hi))
-        .curve(curveMonotoneX);
-      const bandPts = band.low.map((lo, i) => ({ idx: i, lo, hi: band.high[i] ?? lo }));
-      const d = areaGen(bandPts) ?? '';
+      const bandPts = band.low.map((low, i) => ({
+        x: xFor(i),
+        low: yScale(low),
+        high: yScale(band.high[i] ?? low),
+      }));
+      const d = buildTrendAreaPath(bandPts);
       bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
     }
 
@@ -194,7 +170,7 @@ const Chart = memo(function Chart({
       minY: yScale(safeMin),
       maxY: yScale(safeMax),
     };
-  }, [series, band, width, height, scale, colors]);
+  }, [series, band, height, scale, colors, xPositions]);
 
   const chartRightX = width - CHART_RIGHT_PAD;
 
@@ -302,7 +278,7 @@ const Chart = memo(function Chart({
         );
       })}
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_RING_R} color={colors.accent} opacity={0.2} />
-      <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_DOT_R} color={colors.accent} />
+      <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_DOT_R} color={colors.textEmphasis} />
     </Canvas>
   );
 });
@@ -384,15 +360,28 @@ export const TrendBlock = memo(function TrendBlock({
 
   const progress = useChartDrawProgress();
 
-  const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
+  const { width: windowWidth } = useWindowDimensions();
+  // Match the article column on the first paint; onLayout supplies the exact
+  // measured width after layout settles.
+  const [width, setWidth] = useState(() => windowWidth - SPACING.articlePadding * 2);
+
+  const xLayout = useMemo(
+    () =>
+      buildTrendXLayout({
+        periods,
+        seriesLengths: normalizedSeries.map((item) => item.values.length),
+        bandLengths: band ? [band.low.length, band.high.length] : undefined,
+        left: CHART_LEFT_PAD,
+        right: width - CHART_RIGHT_PAD,
+      }),
+    [periods, normalizedSeries, band, width],
+  );
 
   // Compute primary-series points for hit testing (scrub).
   const points: Pt[] = useMemo(() => {
     if (width <= 0 || primaryValues.length === 0) return [];
     const innerTop = CHART_TOP_PAD;
     const innerBottom = height - CHART_BOTTOM_PAD;
-    const innerLeft = CHART_LEFT_PAD;
-    const innerRight = width - CHART_RIGHT_PAD;
     const yDomain: [number, number] =
       scale === 'log' && min > 0
         ? [min, max === min ? min * 10 : max]
@@ -401,12 +390,11 @@ export const TrendBlock = memo(function TrendBlock({
       scale === 'log' && yDomain[0] > 0
         ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
         : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
-    const longest = normalizedSeries.reduce((m, s) => Math.max(m, s.values.length), 0);
     return primaryValues.map((v, i) => ({
-      x: longest <= 1 ? innerLeft : innerLeft + (i / (longest - 1)) * (innerRight - innerLeft),
+      x: xLayout.positions[i] ?? CHART_LEFT_PAD,
       y: yScale(v),
     }));
-  }, [primaryValues, normalizedSeries, width, height, scale, min, max]);
+  }, [primaryValues, xLayout.positions, width, height, scale, min, max]);
 
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
@@ -431,19 +419,7 @@ export const TrendBlock = memo(function TrendBlock({
     },
   );
 
-  // Time-axis ticks: parse periods as dates, use d3-scale-time to pick nice
-  // tick positions, format with d3-scale's auto-formatter.
-  const timeTicks = useMemo(() => {
-    const dates = parsePeriodsAsDates(periods);
-    if (!dates || dates.length < 2 || width <= 0) return null;
-    const innerLeft = CHART_LEFT_PAD;
-    const innerRight = width - CHART_RIGHT_PAD;
-    const xScale = scaleTime()
-      .domain([dates[0] as Date, dates[dates.length - 1] as Date])
-      .range([innerLeft, innerRight]);
-    const ticks = xScale.ticks(TIME_TICK_COUNT);
-    return ticks.map((d) => ({ x: xScale(d), label: formatTickLabel(d, ticks) }));
-  }, [periods, width]);
+  const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
 
   const scrubInfo = (() => {
     if (scrubIdxJs < 0) return null;
@@ -581,6 +557,7 @@ export const TrendBlock = memo(function TrendBlock({
                 colors={colors}
                 annotations={annotations}
                 scale={scale}
+                xPositions={xLayout.positions}
                 // Point markers communicate the scrub stops in interactive
                 // charts. Card previews do not scrub, so mounting dozens of
                 // Skia circles there adds cost and visual noise without

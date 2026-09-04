@@ -1,8 +1,7 @@
 import type { Indicator, TrendsSnapshot } from '@shared/types';
 import { useMemo } from 'react';
-import { API_BASE } from '../constants/theme';
 import { isTrendsSnapshot } from '../lib/validate';
-import { useFetchJson } from './useFetchJson';
+import { useApiJson } from './useApiJson';
 
 const EMPTY_INDICATORS: Indicator[] = [];
 
@@ -18,11 +17,8 @@ export function useTrendsSnapshot(): {
    *  card builder needs more than the indicator list, and the payload was
    *  already being downloaded whole. */
   snapshot: TrendsSnapshot | null;
-  ready: boolean;
 } {
-  const { data, ready } = useFetchJson(`${API_BASE}/api/trends.json`, isTrendsSnapshot, {
-    refreshOnResume: true,
-  });
+  const data = useApiJson('/api/trends.json', isTrendsSnapshot);
   const indicators = data?.indicators ?? EMPTY_INDICATORS;
 
   const byId = useMemo(() => {
@@ -31,5 +27,5 @@ export function useTrendsSnapshot(): {
     return m;
   }, [indicators]);
 
-  return { byId, indicators, snapshot: data, ready };
+  return { byId, indicators, snapshot: data };
 }

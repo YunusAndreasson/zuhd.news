@@ -569,6 +569,10 @@ $BODY_LENGTHS
     || echo "WARNING: swedish translation failed (non-fatal — islam.se keeps the previous payload)" | tee -a "$LOG_FILE"
   echo "Swedish desk exit: $? — $((SECONDS - T375))s" | tee -a "$LOG_FILE"
 
+  # Signal selection is before publishing; failure does not block the news.
+  timeout 420 node scripts/narrate-indicators.js --market-signals 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: market signals failed" | tee -a "$LOG_FILE"
+  commit_only "Market signals $(date -u +%Y-%m-%dT%H:%M)" content/.market-signals.json content/.market-signal-state.json
+
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
   echo "" | tee -a "$LOG_FILE"

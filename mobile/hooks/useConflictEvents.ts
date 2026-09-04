@@ -1,8 +1,7 @@
 import type { ConflictEvent, ConflictSnapshot } from '@shared/types';
 import { useMemo } from 'react';
-import { API_BASE } from '../constants/theme';
 import { isConflictSnapshot } from '../lib/validate';
-import { useFetchJson } from './useFetchJson';
+import { useApiJson } from './useApiJson';
 
 const EMPTY_EVENTS: ConflictEvent[] = [];
 
@@ -37,17 +36,13 @@ export function useConflictEvents(): {
    *  recent day so the markers stay readable; the conditions card wants the
    *  whole week and has to be able to name the window it is summarising. */
   snapshot: ConflictSnapshot | null;
-  ready: boolean;
 } {
-  const { data, ready } = useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot, {
-    refreshOnResume: true,
-  });
+  const data = useApiJson('/api/conflict.json', isConflictSnapshot);
   return useMemo(
     () => ({
       events: data ? filterToLastDay(data.events) : EMPTY_EVENTS,
       snapshot: data,
-      ready,
     }),
-    [data, ready],
+    [data],
   );
 }

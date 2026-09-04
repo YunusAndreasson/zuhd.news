@@ -19,8 +19,7 @@ import PagerView, {
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import { BottomActionBar } from '../components/BottomActionBar';
-import { BriefingBar } from '../components/BriefingBar';
+import { BriefingChrome, type BriefingChromeRef } from '../components/BriefingChrome';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
@@ -42,11 +41,11 @@ import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
-import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -143,9 +142,11 @@ export default function HomeScreen() {
   const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
+  const marketSignals = useMarketSignals();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
-  const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
+  const briefingChromeRef = useRef<BriefingChromeRef>(null);
+  const [briefingVisible, setBriefingVisible] = useState(false);
 
   // Active article tracking (for bottom action bar). Kept in a ref — the
   // selected article only feeds callbacks (share, context), never JSX, so
@@ -234,16 +235,18 @@ export default function HomeScreen() {
   }, []);
 
   const handleBriefingPress = useCallback(() => {
-    if (!briefingPlayer.available) {
-      // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or
-      // the pipeline has been broken longer). Don't attempt playback —
-      // the URL would 404 and the give-up timer would stall the UI.
-      hapticTick();
-      toastRef.current?.show('No briefing available', undefined, 'top');
-      return;
-    }
-    briefingPlayer.toggle();
-  }, [briefingPlayer.available, briefingPlayer.toggle]);
+    briefingChromeRef.current?.toggle();
+  }, []);
+  const handleBriefingUnavailable = useCallback(() => {
+    // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or the
+    // pipeline has been broken longer). Don't attempt a guaranteed 404.
+    hapticTick();
+    toastRef.current?.show('No briefing available', undefined, 'top');
+  }, []);
+  const handleBriefingPlaybackError = useCallback(() => {
+    hapticTick();
+    toastRef.current?.show('Couldn’t play briefing — tap to retry', handleBriefingPress, 'top');
+  }, [handleBriefingPress]);
 
   const handleSourcesPress = useCallback((article: Article) => {
     hapticImpact();
@@ -291,10 +294,8 @@ export default function HomeScreen() {
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
 
-  // The news column: every article, ordered by how many newsrooms covered the
-  // event rather than by which lane it arrived in. See `lib/news-order.ts` —
-  // the four categories became a kicker on the card when the horizontal axis
-  // was needed for sections.
+  // The news column: every article, newest story first across all categories.
+  // `lib/news-order.ts` uses the same timestamp as the visible dateline.
   //
   // Memoized because downstream memos key on it (ChokepointSheet's
   // findRelatedArticles, the card builders' tie-to-the-news), and because
@@ -312,10 +313,10 @@ export default function HomeScreen() {
   // Only real time series with live pipeline analysis cross this boundary.
   // Subject-specific tabs make the rail predictable; dormant non-graph card
   // families are not built at all.
-  const sectionCards = useMemo<Record<string, SwipeCard[]>>(
-    () => buildSwipeSections(columns, river),
-    [columns, river],
-  );
+  const sectionCards = useMemo<Record<string, SwipeCard[]>>(() => {
+    const sections = buildSwipeSections(columns, river);
+    return { ...sections, markets: [...marketSignals, ...sections.markets] };
+  }, [columns, river, marketSignals]);
 
   // Active GDACS alerts whose primary or affected-country list includes the
   // currently open country. Phase 1 matches by full country name (GDACS uses
@@ -438,8 +439,6 @@ export default function HomeScreen() {
   // Refs for values used inside stable callbacks — avoids breaking downstream memos
   const groupedRef = useRef(grouped);
   groupedRef.current = grouped;
-  const lastSeenAtRef = useRef(lastSeenAt);
-  lastSeenAtRef.current = lastSeenAt;
   // The feed's own build stamp. `useArticles` has always returned it and only
   // the heatmap cache key ever read it, so the app knew exactly how fresh it
   // was and never said. A reader who pulls to refresh is asking that question.
@@ -504,7 +503,6 @@ export default function HomeScreen() {
   );
 
   // --- Onboarding: hint pills + notification primer ---
-  const briefingVisible = briefingPlayer.playing || briefingPlayer.elapsed > 0;
   const sheetOpen =
     menuOpen ||
     primerOpen ||
@@ -519,7 +517,10 @@ export default function HomeScreen() {
   sheetOpenRef.current = sheetOpen;
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
-    suppressed: sheetOpen || briefingVisible,
+    // Every lesson targets the story reader. Keeping an armed article hint
+    // over markets/shipping/outlook mislabels those instrument cards as
+    // “stories” and can point at interactions they do not support.
+    suppressed: currentSection !== NEWS || sheetOpen || briefingVisible,
   });
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
@@ -609,14 +610,14 @@ export default function HomeScreen() {
   const handleRefresh = useCallback(async () => {
     hapticImpact();
     try {
-      const n = await refresh();
-      if (n > 0) {
-        const allArticles = Object.values(groupedRef.current).flat();
-        const words = allArticles
-          .filter((a) => a.addedAt > lastSeenAtRef.current)
-          .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
+      const addedArticles = await refresh();
+      if (addedArticles.length > 0) {
+        const words = addedArticles.reduce(
+          (sum, article) => sum + article.sentences.join(' ').split(/\s+/).length,
+          0,
+        );
         const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
-        toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
+        toastRef.current?.show(`${addedArticles.length} new · ~${mins} min read`, undefined, 'top');
         // Scroll to top so new/breaking articles are visible
         newsListRef.current?.scrollToTop();
       } else {
@@ -641,22 +642,19 @@ export default function HomeScreen() {
   // launches. The 8s fallback in _layout.tsx covers any stall.
   // ...but the heatmap only gets a grace period, not a veto. Trading a brief
   // globe pop-in for up to 7s of extra splash is the wrong deal, especially on
-  // a first launch. hideAsync() rejects if the splash is already gone (the
-  // _layout fallback may have fired), so both paths swallow that.
+  // a first launch. `hide()` is idempotent if the _layout fallback already
+  // dismissed the splash.
   useEffect(() => {
     if (loading) return;
     if (heatmapReady) {
-      SplashScreen.hideAsync().catch(() => {});
+      SplashScreen.hide();
       return;
     }
-    const timer = setTimeout(
-      () => SplashScreen.hideAsync().catch(() => {}),
-      HEATMAP_SPLASH_GRACE_MS,
-    );
+    const timer = setTimeout(() => SplashScreen.hide(), HEATMAP_SPLASH_GRACE_MS);
     return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 
-  usePendingNotification(loading, grouped, handleSelectArticle, briefingPlayer.toggle);
+  usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
 
   // The splash normally covers this whole state. But `_layout.tsx` force-hides
   // it after SPLASH_FALLBACK_MS (8s) while the feed keeps retrying for up to
@@ -729,6 +727,7 @@ export default function HomeScreen() {
               resolvableEntityIds={resolvableEntityIds}
               onCountryPress={handleCountryPress}
               onArticleChange={handleArticleChange}
+              onReadingScrollStart={dismissActiveHint}
               progressesSV={sectionProgresses}
               zoomClipOverride={currentZoom.clip}
               tick={tick}
@@ -745,11 +744,15 @@ export default function HomeScreen() {
                 <CardPager
                   ref={cardPagerRefs[index]}
                   cards={sectionCards[section] ?? []}
+                  active={currentSection === index}
+                  visible={!sheetOpen && !briefingVisible}
+                  section={section}
                   viewportHeight={pagerHeight}
                   sectionIndex={index}
                   progressesSV={sectionProgresses}
                   emptyMessage={copy?.message ?? 'nothing here yet'}
                   emptyHint={copy?.hint}
+                  onReadingScrollStart={dismissActiveHint}
                 />
               )}
             </View>
@@ -761,29 +764,19 @@ export default function HomeScreen() {
 
       <HintOverlay hint={activeHint} onDismiss={dismissActiveHint} bottomInset={insets.bottom} />
 
-      {!briefingVisible && (
-        <BottomActionBar
-          bottomInset={insets.bottom}
-          zoomLabel={currentZoom.label}
-          onBriefingPress={handleBriefingPress}
-          onZoomPress={handleZoomToggle}
-          articleActions={currentSection === NEWS}
-          onSharePress={handleBottomShare}
-        />
-      )}
-
-      {/* Briefing player — shown while playing or paused mid-listen */}
-      {briefingVisible && (
-        <BriefingBar
-          playing={briefingPlayer.playing}
-          elapsed={briefingPlayer.elapsed}
-          duration={briefingPlayer.duration}
-          date={briefingPlayer.date}
-          onToggle={briefingPlayer.toggle}
-          onSeek={briefingPlayer.seek}
-          onClose={briefingPlayer.close}
-        />
-      )}
+      <BriefingChrome
+        ref={briefingChromeRef}
+        date={briefing?.date}
+        duration={briefing?.duration}
+        bottomInset={insets.bottom}
+        zoomLabel={currentZoom.label}
+        articleActions={currentSection === NEWS}
+        onZoomPress={handleZoomToggle}
+        onSharePress={handleBottomShare}
+        onUnavailable={handleBriefingUnavailable}
+        onPlaybackError={handleBriefingPlaybackError}
+        onVisibilityChange={setBriefingVisible}
+      />
 
       <MenuSheet
         sheetRef={menuSheetRef}

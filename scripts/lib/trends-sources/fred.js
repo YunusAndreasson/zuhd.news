@@ -38,7 +38,7 @@ function formatPeriod(dateStr, cadence) {
  *
  * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string }} indicator
  * @param {string} apiKey
- * @returns {Promise<{ values: number[], periods: string[], asOf: string } | null>}
+ * @returns {Promise<{ values: number[], periods: string[], asOf: string, dates: string[], completed: boolean[] } | null>}
  */
 export async function fetchFredSeries(indicator, apiKey) {
   const end = new Date()
@@ -97,7 +97,7 @@ export async function fetchFredSeries(indicator, apiKey) {
     const periods = clean.map((o) => formatPeriod(o.date, indicator.cadence))
     const asOf = clean[clean.length - 1].date
 
-    return { values, periods, asOf }
+    return { values, periods, asOf, dates: clean.map((o) => o.date), completed: clean.map(() => true) }
   } catch (err) {
     console.error(`  ✗ fred:${indicator.id}: ${err.message}`)
     return null

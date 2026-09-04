@@ -1,0 +1,159 @@
+steps:
+  - await:
+      visible:
+        text: Daily briefing
+      timeout: 10000
+  - echo: Swipe left from News to Markets; expect the Markets card deck to settle.
+  - swipe:
+      from: { x: 0.82, y: 0.55 }
+      to: { x: 0.18, y: 0.55 }
+      duration: 250
+      momentum: true
+  - echo: Page rapidly through Markets; every swipe must settle on one readable card
+      and overflowing cards must scroll before paging.
+  - swipe: { direction: up, duration: 220 }
+  - swipe: { direction: up, duration: 220 }
+  - swipe: { direction: up, duration: 220 }
+  - swipe: { direction: up, duration: 220 }
+  - swipe: { direction: up, duration: 220 }
+  - swipe: { direction: up, duration: 220 }
+  - echo: Burst-test forward and reverse vertical swipes; expect no half-settled
+      page, skipped recognizer, or lost inner-scroll position.
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.82
+            toX: 0.5
+            toY: 0.22
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.22
+            toX: 0.5
+            toY: 0.82
+            durationMs: 180
+            momentum: true
+          delayMs: 80
+  - echo: Exercise slow inner scrolling and fast edge handoffs near the right edge.
+  - swipe: { direction: up, duration: 400, momentum: false }
+  - swipe: { direction: down, duration: 400, momentum: false }
+  - swipe: { direction: up, duration: 400, momentum: false }
+  - swipe: { direction: up, duration: 400, momentum: false }
+  - swipe: { direction: down, duration: 400, momentum: false }
+  - swipe:
+      from: { x: 0.8, y: 0.22 }
+      to: { x: 0.8, y: 0.82 }
+      duration: 220
+      momentum: true
+  - swipe:
+      from: { x: 0.8, y: 0.82 }
+      to: { x: 0.8, y: 0.22 }
+      duration: 400
+      momentum: false
+  - swipe:
+      from: { x: 0.8, y: 0.82 }
+      to: { x: 0.8, y: 0.22 }
+      duration: 220
+      momentum: true
+  - await: { idle: true }
+  - assert:
+      visible:
+        text: Daily briefing
+executionPrerequisite: Android development client is connected to Metro and
+  showing the first News article.

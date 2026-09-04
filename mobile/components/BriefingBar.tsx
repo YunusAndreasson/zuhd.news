@@ -1,6 +1,12 @@
 import { BlurView } from 'expo-blur';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  type LayoutChangeEvent,
+  Platform,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {
   GestureDetector,
   type PanGestureConfig,
@@ -62,25 +68,27 @@ function computeScrubFraction(x: number, barWidth: number, duration: number): nu
 }
 
 interface BriefingBarProps {
-  playing: boolean;
+  state: 'idle' | 'preparing' | 'playing' | 'paused';
   elapsed: number;
   duration: number;
   date: string;
   onToggle: () => void;
   onSeek: (seconds: number) => void;
-  onClose: () => void;
+  onDismiss: () => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
-  playing,
+  state,
   elapsed,
   duration,
   date,
   onToggle,
   onSeek,
-  onClose,
+  onDismiss,
 }: BriefingBarProps) {
   const { colors } = useTheme();
+  const preparing = state === 'preparing';
+  const playing = state === 'playing';
   const insets = useSafeAreaInsets();
   const barWidthSV = useSharedValue(0);
   const onBarLayout = useCallback(
@@ -90,10 +98,15 @@ export const BriefingBar = memo(function BriefingBar({
     [barWidthSV],
   );
 
-  const progress = duration > 0 ? elapsed / duration : 0;
+  const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
+  const scrubbingRef = useRef(false);
   const reduceMotion = useReducedMotion();
   useEffect(() => {
+    // The gesture owns progressSV while the finger is down. Native playback
+    // status can briefly report the pre-seek position; letting that value start
+    // a timing animation here made the fill fight the finger and snap backward.
+    if (scrubbingRef.current) return;
     if (reduceMotion) {
       progressSV.value = progress;
     } else {
@@ -106,6 +119,7 @@ export const BriefingBar = memo(function BriefingBar({
   }));
 
   const isScrubbing = useSharedValue(0);
+  const panActive = useSharedValue(0);
   // Tooltip scale has its own underdamped spring so grab overshoots past 1
   // before settling — gives the scrub handle a tactile "pop" on contact.
   const tooltipScale = useSharedValue(0.8);
@@ -118,21 +132,34 @@ export const BriefingBar = memo(function BriefingBar({
   }, [duration, durationSV]);
   const [scrubLabel, setScrubLabel] = useState('');
   const prevLabelRef = useRef('');
+  const pendingSeekSec = useSharedValue(0);
 
-  // JS-only side of a scrub: real audio seek + label update. Called via
-  // `scheduleOnRN` from the gesture worklet, but only after the worklet has
-  // already updated `progressSV` for visual feedback — so the bar fill
-  // tracks the finger without waiting for the JS-thread round trip.
+  const beginScrub = useCallback(() => {
+    scrubbingRef.current = true;
+  }, []);
+
+  const endScrub = useCallback(() => {
+    scrubbingRef.current = false;
+  }, []);
+
+  const updateScrubLabel = useCallback((seconds: number) => {
+    const label = formatTime(Math.round(seconds));
+    if (label !== prevLabelRef.current) {
+      prevLabelRef.current = label;
+      setScrubLabel(label);
+    }
+  }, []);
+
+  // Keep native seeking off the per-frame path. During a pan the UI-thread
+  // fill and tooltip preview immediately; one latest-value seek is committed
+  // when the finger lifts. This removes a flood of competing native seekTo()
+  // calls whose delayed status updates could land out of order.
   const commitSeek = useCallback(
     (seconds: number) => {
       onSeek(seconds);
-      const label = formatTime(Math.round(seconds));
-      if (label !== prevLabelRef.current) {
-        prevLabelRef.current = label;
-        setScrubLabel(label);
-      }
+      updateScrubLabel(seconds);
     },
-    [onSeek],
+    [onSeek, updateScrubLabel],
   );
 
   // Ratchet + commit bookkeeping. Both live on the UI thread so the gesture
@@ -163,14 +190,23 @@ export const BriefingBar = memo(function BriefingBar({
       }
 
       const seconds = fraction * durationSV.value;
+      pendingSeekSec.value = seconds;
       const sec = Math.floor(seconds);
       if (sec !== lastCommitSec.value) {
         lastCommitSec.value = sec;
-        scheduleOnRN(commitSeek, seconds);
+        scheduleOnRN(updateScrubLabel, seconds);
       }
     };
     return fn;
-  }, [barWidthSV, durationSV, progressSV, lastDetent, lastCommitSec, commitSeek]);
+  }, [
+    barWidthSV,
+    durationSV,
+    progressSV,
+    pendingSeekSec,
+    lastDetent,
+    lastCommitSec,
+    updateScrubLabel,
+  ]);
 
   const panConfig = useMemo<PanGestureConfig>(
     () => ({
@@ -180,6 +216,8 @@ export const BriefingBar = memo(function BriefingBar({
       failOffsetY: [-10, 10],
       onActivate: (e) => {
         'worklet';
+        panActive.value = 1;
+        scheduleOnRN(beginScrub);
         isScrubbing.value = withSpring(1, ANIMATION.springSoft);
         tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
         scrubX.value = e.x;
@@ -196,11 +234,28 @@ export const BriefingBar = memo(function BriefingBar({
       },
       onFinalize: () => {
         'worklet';
+        if (panActive.value) {
+          scheduleOnRN(commitSeek, pendingSeekSec.value);
+          scheduleOnRN(endScrub);
+          panActive.value = 0;
+        }
         isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
         tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
       },
     }),
-    [track, scrubX, isScrubbing, tooltipScale, lastDetent, lastCommitSec],
+    [
+      track,
+      scrubX,
+      isScrubbing,
+      tooltipScale,
+      panActive,
+      pendingSeekSec,
+      lastDetent,
+      lastCommitSec,
+      beginScrub,
+      commitSeek,
+      endScrub,
+    ],
   );
 
   // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
@@ -217,9 +272,10 @@ export const BriefingBar = memo(function BriefingBar({
         lastDetent.value = -1;
         lastCommitSec.value = -1;
         track(e.x);
+        scheduleOnRN(commitSeek, pendingSeekSec.value);
       },
     }),
-    [track, lastDetent, lastCommitSec],
+    [track, pendingSeekSec, lastDetent, lastCommitSec, commitSeek],
   );
 
   const panGesture = usePanGesture(panConfig);
@@ -248,7 +304,7 @@ export const BriefingBar = memo(function BriefingBar({
     };
   });
 
-  const dateLabel = (() => {
+  const dateLabel = useMemo(() => {
     try {
       return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
         month: 'short',
@@ -257,7 +313,7 @@ export const BriefingBar = memo(function BriefingBar({
     } catch {
       return date;
     }
-  })();
+  }, [date]);
 
   return (
     <Animated.View
@@ -288,8 +344,13 @@ export const BriefingBar = memo(function BriefingBar({
         <View style={styles.barInner}>
           <View style={styles.row}>
             <View style={styles.info}>
-              <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
-                briefing
+              <Text
+                variant="labelSm"
+                tone="emphasis"
+                numberOfLines={1}
+                accessibilityLiveRegion="polite"
+              >
+                {preparing ? 'preparing' : 'briefing'}
                 <Text variant="labelSm">
                   {' · '}
                   {dateLabel}
@@ -308,34 +369,37 @@ export const BriefingBar = memo(function BriefingBar({
               </Text>
             </Text>
 
-            <IconButton
-              onPress={onToggle}
-              accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
-            >
-              <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
-            </IconButton>
+            {preparing ? (
+              <ActivityIndicator
+                size="small"
+                color={colors.textEmphasis}
+                accessibilityLabel="Preparing briefing"
+              />
+            ) : (
+              <IconButton
+                onPress={onToggle}
+                accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
+              >
+                <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
+              </IconButton>
+            )}
 
             {/* Same size as play/pause; visual hierarchy comes from `tone`,
                 not a smaller box — `close-sharp` glyph is already thin so a
                 size step down made the X read meaningfully smaller. */}
-            <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
+            <IconButton
+              onPress={onDismiss}
+              accessibilityLabel={preparing ? 'Cancel briefing loading' : 'Hide briefing player'}
+            >
               <Icon name="close-sharp" tone="secondary" size="lg" />
             </IconButton>
           </View>
 
-          <GestureDetector gesture={scrubGesture}>
+          {preparing ? (
             <View
               style={styles.progressTouch}
-              accessibilityRole="adjustable"
-              accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
-              accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-              onAccessibilityAction={(e) => {
-                const step = Math.max(10, duration * 0.05);
-                if (e.nativeEvent.actionName === 'increment')
-                  onSeek(Math.min(elapsed + step, duration));
-                else if (e.nativeEvent.actionName === 'decrement')
-                  onSeek(Math.max(elapsed - step, 0));
-              }}
+              accessibilityRole="progressbar"
+              accessibilityLabel={`Preparing briefing, ${formatTime(duration)} total`}
             >
               <View
                 style={[
@@ -351,12 +415,43 @@ export const BriefingBar = memo(function BriefingBar({
                   ]}
                 />
               </View>
-              <Animated.View
-                pointerEvents="none"
-                style={[styles.scrubThumb, { backgroundColor: colors.textEmphasis }, thumbStyle]}
-              />
             </View>
-          </GestureDetector>
+          ) : (
+            <GestureDetector gesture={scrubGesture}>
+              <View
+                style={styles.progressTouch}
+                accessibilityRole="adjustable"
+                accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
+                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+                onAccessibilityAction={(e) => {
+                  const step = Math.max(10, duration * 0.05);
+                  if (e.nativeEvent.actionName === 'increment')
+                    onSeek(Math.min(elapsed + step, duration));
+                  else if (e.nativeEvent.actionName === 'decrement')
+                    onSeek(Math.max(elapsed - step, 0));
+                }}
+              >
+                <View
+                  style={[
+                    styles.progressTrack,
+                    { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
+                  ]}
+                >
+                  <Animated.View
+                    style={[
+                      styles.progressFill,
+                      { backgroundColor: colors.textSecondary },
+                      progressStyle,
+                    ]}
+                  />
+                </View>
+                <Animated.View
+                  pointerEvents="none"
+                  style={[styles.scrubThumb, { backgroundColor: colors.textEmphasis }, thumbStyle]}
+                />
+              </View>
+            </GestureDetector>
+          )}
         </View>
       </BarBackground>
     </Animated.View>

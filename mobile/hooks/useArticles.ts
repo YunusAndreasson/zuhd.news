@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
+import { collectNewArticles } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
 import { fetchJson } from '../lib/fetchJson';
 import { flushOnboarding } from '../lib/onboarding-store';
@@ -31,7 +32,7 @@ interface ArticlesState {
   loading: boolean;
   error: string | null;
   lastSeenAt: number;
-  refresh: () => Promise<number>;
+  refresh: () => Promise<Article[]>;
   retry: () => Promise<void>;
   tick: number;
   generated: string | null;
@@ -115,29 +116,32 @@ export function useArticles(): ArticlesState {
   const lastTickAtRef = useRef(0);
   const TICK_GRANULARITY_MS = 60_000;
 
-  const refetchAndDiff = useEffectEvent(async (): Promise<number> => {
-    const fresh = await queryClient.fetchQuery({
+  const refetchAndDiff = useEffectEvent(async (): Promise<Article[]> => {
+    const fresh = await queryClient.query({
       queryKey: FEED_QUERY_KEY,
       queryFn: ({ signal }) => fetchFeed({ cache: 'no-store', signal }),
       // Force the network request — refresh() bypasses staleTime.
       staleTime: 0,
     });
     const newSlugs = slugSet(fresh);
-    const added = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
+    const previousSlugs = prevSlugsRef.current;
+    const added = collectNewArticles(fresh, previousSlugs);
     prevSlugsRef.current = newSlugs;
     lastGeneratedRef.current = fresh.generated;
     return added;
   });
 
-  const hasNewContent = useEffectEvent(async (): Promise<boolean> => {
-    if (!lastGeneratedRef.current) return true;
+  const hasNewContent = useEffectEvent(async (): Promise<'changed' | 'unchanged' | 'unknown'> => {
+    if (!lastGeneratedRef.current) return 'changed';
     try {
       const meta = await fetchJson(`${API_BASE}/api/meta.json`, isMetaResponse, {
         cache: 'no-store',
       });
-      return meta.generated !== lastGeneratedRef.current;
+      return meta.generated !== lastGeneratedRef.current ? 'changed' : 'unchanged';
     } catch {
-      return false; // network error or malformed meta — cached data is fine
+      // Resume refresh is intentionally quiet when offline, but a manual
+      // refresh must not translate an unreadable probe into "up to date".
+      return 'unknown';
     }
   });
 
@@ -154,7 +158,7 @@ export function useArticles(): ArticlesState {
       refreshingRef.current = true;
       try {
         const changed = await hasNewContent();
-        if (changed) await refetchAndDiff();
+        if (changed === 'changed') await refetchAndDiff();
       } catch {
         // silent — existing content is fine
       } finally {
@@ -171,12 +175,13 @@ export function useArticles(): ArticlesState {
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
 
-  const refresh = useCallback(async (): Promise<number> => {
-    if (refreshingRef.current) return 0;
+  const refresh = useCallback(async (): Promise<Article[]> => {
+    if (refreshingRef.current) return [];
     refreshingRef.current = true;
     try {
       const changed = await hasNewContent();
-      if (!changed) return 0;
+      if (changed === 'unknown') throw new Error('Could not verify feed freshness');
+      if (changed === 'unchanged') return [];
       return await refetchAndDiff();
     } finally {
       refreshingRef.current = false;

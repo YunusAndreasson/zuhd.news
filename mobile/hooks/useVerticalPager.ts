@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { type InnerConsumedMark, resolveSettle } from '../lib/pager-settle';
@@ -7,7 +7,7 @@ import { type InnerConsumedMark, resolveSettle } from '../lib/pager-settle';
  * Land a vertically-paged list on a page, always — even when the gesture that
  * moved it was never the list's own.
  *
- * `pagingEnabled` snaps what the list received. A page taller than the screen
+ * Native list snapping handles what the list received. A page taller than the screen
  * scrolls its own last inch first and hands the remainder up, so the list moves
  * with no touch-down and no fling and stops between two pages, both of them
  * half-faded, with no gesture that recovers. This is the correction for that,
@@ -37,7 +37,7 @@ interface Scrollable {
   scrollToOffset: (params: { offset: number; animated?: boolean }) => void;
 }
 
-interface PagerSettleOptions {
+interface VerticalPagerOptions<T> {
   listRef: { current: Scrollable | null };
   scrollY: SharedValue<number>;
   itemHeight: number;
@@ -48,6 +48,14 @@ interface PagerSettleOptions {
   /** Called only when the settle actually changes page — haptics, hint state
    *  and any per-surface bookkeeping belong to the caller, not to this. */
   onSettled: (index: number) => void;
+  /** Clears transient teaching UI as soon as the reader starts paging. */
+  onReadingScrollStart?: () => void;
+  items: readonly T[];
+  getItemKey: (item: T) => string;
+  /** Reconcile state without firing user-driven snap effects such as haptics. */
+  onItemsReordered: (index: number) => void;
+  /** News intentionally exposes newly prepended content while the reader is at the top. */
+  preserveAtTop?: boolean;
 }
 
 /** Long enough that a fling has begun and disarmed this, short enough that a
@@ -61,14 +69,32 @@ const AFTER_SCROLL_MS = 140;
  *  child's edge can page normally. */
 const MARK_EXPIRY_MS = 700;
 
-export function usePagerSettle({
+/** Native paging policy shared by every vertical full-screen list. */
+export const VERTICAL_PAGER_PROPS = {
+  snapToAlignment: 'start',
+  // Native interval snapping uses fast deceleration: normal adds a long
+  // settling tail, especially on iOS. Prose keeps its own normal momentum.
+  decelerationRate: 'fast',
+  disableIntervalMomentum: true,
+  showsVerticalScrollIndicator: false,
+  scrollEventThrottle: 16,
+  initialNumToRender: 2,
+  windowSize: 3,
+} as const;
+
+export function useVerticalPager<T>({
   listRef,
   scrollY,
   itemHeight,
   count,
   currentIndexRef,
   onSettled,
-}: PagerSettleOptions) {
+  onReadingScrollStart,
+  items,
+  getItemKey,
+  onItemsReordered,
+  preserveAtTop = true,
+}: VerticalPagerOptions<T>) {
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const innerConsumedRef = useRef<InnerConsumedMark | null>(null);
   const innerConsumedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -79,6 +105,24 @@ export function usePagerSettle({
    *  deliberate movement. Refs, not state: nothing here renders. */
   const draggingRef = useRef(false);
   const momentumRef = useRef(false);
+  const previousItemKeysRef = useRef<string[]>([]);
+
+  // Data refreshes can reorder a deck. Keep the same stable item under the
+  // reader unless that surface deliberately exposes new content at page zero.
+  useLayoutEffect(() => {
+    const nextKeys = items.map(getItemKey);
+    const previousKeys = previousItemKeysRef.current;
+    previousItemKeysRef.current = nextKeys;
+    if (previousKeys.length === 0 || nextKeys.length === 0) return;
+    const index = currentIndexRef.current;
+    if (!preserveAtTop && index === 0) return;
+    const previousKey = previousKeys[index];
+    if (!previousKey) return;
+    const nextIndex = nextKeys.indexOf(previousKey);
+    if (nextIndex < 0 || nextIndex === index) return;
+    listRef.current?.scrollToOffset({ offset: nextIndex * itemHeight, animated: false });
+    onItemsReordered(nextIndex);
+  }, [currentIndexRef, getItemKey, itemHeight, items, listRef, onItemsReordered, preserveAtTop]);
 
   const clearSettle = useCallback(() => {
     if (settleTimer.current) {
@@ -113,24 +157,51 @@ export function usePagerSettle({
         });
       }
       if (decision.index === currentIndexRef.current) return;
+      // Publish synchronously before the caller's state update. A second
+      // queued settle must observe this decision immediately rather than
+      // dispatching the same page change again against a stale render ref.
+      currentIndexRef.current = decision.index;
       onSettled(decision.index);
     },
     [clearMarkTimer, count, currentIndexRef, itemHeight, listRef, onSettled],
   );
 
   const handleBeginDrag = useCallback(() => {
+    // A fresh touch on the page is not the tail of the preceding text scroll.
+    // Retaining that mark makes a quick chart/title swipe snap back for 700ms.
+    innerConsumedRef.current = null;
+    clearMarkTimer();
     draggingRef.current = true;
     clearSettle();
-  }, [clearSettle]);
+  }, [clearMarkTimer, clearSettle]);
+
+  const handlePagerBeginDrag = useCallback(() => {
+    onReadingScrollStart?.();
+    handleBeginDrag();
+  }, [handleBeginDrag, onReadingScrollStart]);
+
+  const getItemLayout = useCallback(
+    (_: ArrayLike<T> | null | undefined, index: number) => ({
+      length: itemHeight,
+      offset: itemHeight * index,
+      index,
+    }),
+    [itemHeight],
+  );
 
   const handleEndDrag = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const y = e.nativeEvent.contentOffset.y;
+    (_e: NativeSyntheticEvent<NativeScrollEvent>) => {
       draggingRef.current = false;
       clearSettle();
-      settleTimer.current = setTimeout(() => settleToPage(y), AFTER_DRAG_MS);
+      settleTimer.current = setTimeout(() => {
+        if (draggingRef.current || momentumRef.current) return;
+        // The list may keep moving after onScrollEndDrag even without a
+        // momentum-begin event. Read the live offset when the correction
+        // actually runs so congestion cannot snap from a stale coordinate.
+        settleToPage(scrollY.value);
+      }, AFTER_DRAG_MS);
     },
-    [clearSettle, settleToPage],
+    [clearSettle, scrollY, settleToPage],
   );
 
   const handleMomentumBegin = useCallback(() => {
@@ -184,6 +255,21 @@ export function usePagerSettle({
     [clearMarkTimer, currentIndexRef],
   );
 
+  /** Reset navigation state as one operation when the active section tab is
+   * pressed. A plain animated scroll can race a pending settle timer or stale
+   * inner-consumption mark and be pulled back to the page it just left. */
+  const resetToTop = useCallback(() => {
+    clearSettle();
+    clearMarkTimer();
+    innerConsumedRef.current = null;
+    draggingRef.current = false;
+    momentumRef.current = false;
+    currentIndexRef.current = 0;
+    scrollY.value = 0;
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    onItemsReordered(0);
+  }, [clearMarkTimer, clearSettle, currentIndexRef, listRef, onItemsReordered, scrollY]);
+
   useEffect(
     () => () => {
       clearSettle();
@@ -193,11 +279,13 @@ export function usePagerSettle({
   );
 
   return {
-    handleBeginDrag,
+    handlePagerBeginDrag,
     handleEndDrag,
     handleMomentumBegin,
     handleMomentumEnd,
     armSettleFromScroll,
     handleInnerScrollConsumed,
+    getItemLayout,
+    resetToTop,
   };
 }

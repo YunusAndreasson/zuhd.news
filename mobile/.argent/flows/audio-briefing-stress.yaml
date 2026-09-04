@@ -1,0 +1,39 @@
+steps:
+  - echo: Rapidly toggle playback six times; expect every icon state to match the
+      audio state and the bar to remain mounted.
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: gesture-tap
+    args:
+      x: 0.8
+      y: 0.93
+    delayMs: 120
+  - tool: screenshot
+    args:
+      scale: 0.4
+    delayMs: 500
+executionPrerequisite: news.zuhd.app is open on the News screen with the
+  BriefingBar visible and audio currently playing on emulator-5554

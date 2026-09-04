@@ -1,0 +1,26 @@
+steps:
+  - echo: Scroll overflowing analysis up to reveal its source. Fixed gesture
+      duration preserves velocity for the before/after comparison.
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.83
+      toX: 0.5
+      toY: 0.61
+      durationMs: 250
+  - await: { visible: { text: Open Exchange Rates } }
+  - echo: Swipe upward on the chart to page. Keep 250ms gesture velocity constant;
+      expect the next card.
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.46
+      toX: 0.5
+      toY: 0.17
+      durationMs: 250
+  - await: { visible: { text: US 10y Treasury } }
+  - await: { idle: true }
+executionPrerequisite: Android app open on markets at Russian ruble, prose
+  scrolled to top, US 10y Treasury next. Live September 4 dataset on a 411x914
+  logical screen. Raw gestures preserve the measured regions and velocity;
+  this is a dataset-specific timing fragment, not a general navigation test.

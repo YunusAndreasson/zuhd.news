@@ -966,6 +966,16 @@ if (Object.keys(contextIndex).length > 0) {
  * `api/analysis.json` instead: a second endpoint rather than 17KB added to the
  * payload the homepage's instrument rail downloads on every visit.
  */
+// Always publish the optional endpoint, including an empty first-run payload.
+const { isMarketSignalsSnapshot } = await loadShared('market-signals.ts')
+const signalPath = join(ROOT, 'content', '.market-signals.json')
+let marketSignals = { version: 1, generatedAt: new Date().toISOString(), signals: [] }
+try {
+  const candidate = JSON.parse(readFileSync(signalPath, 'utf8'))
+  if (isMarketSignalsSnapshot(candidate) && Date.now() - Date.parse(candidate.generatedAt) < 7 * 86400000) marketSignals = candidate
+} catch { /* optional pipeline output */ }
+writeFileSync(join(DIST_DIR, 'api', 'market-signals.json'), JSON.stringify(marketSignals))
+
 const dispatchSrc = join(ROOT, 'content', '.indicator-dispatch.json')
 const dispatchFile = existsSync(dispatchSrc) ? JSON.parse(readFileSync(dispatchSrc, 'utf8')) : {}
 const dispatch = dispatchFile.items || {}

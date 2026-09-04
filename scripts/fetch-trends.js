@@ -180,6 +180,7 @@ function buildIndicatorEntry(ind, data) {
     sourceLabel: ind.sourceLabel,
     values: data.values,
     periods: data.periods,
+    ...(data.dates ? { dates: data.dates, completed: data.completed } : {}),
     asOf: data.asOf,
   }
 }

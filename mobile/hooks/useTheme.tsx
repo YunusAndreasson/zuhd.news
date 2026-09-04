@@ -1,4 +1,4 @@
-import * as NavigationBar from 'expo-navigation-bar';
+import { NavigationBar } from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useColorScheme } from 'react-native';

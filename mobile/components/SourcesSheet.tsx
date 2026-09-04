@@ -4,7 +4,6 @@ import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
@@ -49,8 +48,6 @@ export const SourcesSheet = memo(function SourcesSheet({
   bottomInset,
   onDismiss,
 }: SourcesSheetProps) {
-  const snapProps = useSheetSnaps(false);
-
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
   useEffect(() => {
@@ -58,7 +55,7 @@ export const SourcesSheet = memo(function SourcesSheet({
   }, [sources]);
 
   return (
-    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss}>
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss}>
       <SheetScrollView bottomInset={bottomInset}>
         {sources.length > 0 && (
           <>

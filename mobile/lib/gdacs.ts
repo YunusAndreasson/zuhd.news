@@ -11,7 +11,7 @@
 // What remains local is `alertAgeDays`, which depends on `./time` and on the
 // app's opacity conventions — the web map ages markers on its own decay curve.
 
-import type { GdacsAlert } from '@shared/types';
+import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { ageDaysFromIso } from './time';
 
 export {
@@ -25,4 +25,13 @@ export {
  *  borderline data still renders at full opacity. */
 export function alertAgeDays(alert: GdacsAlert, now: number = Date.now()): number {
   return ageDaysFromIso(alert.modifiedDate, now);
+}
+
+/** Detail is pre-fetched only for event types with population estimates. */
+export function gdacsDetailFor(
+  alert: GdacsAlert | null,
+  details: Record<string, GdacsDetail>,
+): GdacsDetail | null {
+  if (!alert || (alert.eventtype !== 'EQ' && alert.eventtype !== 'TC')) return null;
+  return details[`${alert.eventtype}:${alert.eventid}`] ?? null;
 }
