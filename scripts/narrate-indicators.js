@@ -46,7 +46,7 @@ import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
-import { validateNumbers, validateProperNouns } from './lib/grounding.js'
+import { seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
@@ -112,6 +112,11 @@ if (!existsSync(PROMPT_PATH)) {
   process.exit(1)
 }
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
+/** Part of `recentFingerprint`, so a prompt edit reaches every item once at
+ *  the next full pass rather than only the ones whose story happens to move
+ *  that day. The output is a function of the prompt and the input; a cache
+ *  key that ignored half of that let a rewritten prompt sit unapplied. */
+const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
 const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
 if (!cache.items) cache.items = {}
 
@@ -365,6 +370,7 @@ const recentFingerprint = (bundle) => {
   return createHash('sha1')
     .update(
       JSON.stringify({
+        prompt: promptHash,
         move: band(bundle.series.changePctOverSeries),
         dayMove: band(bundle.series.dayChangePct),
         baseline: band(bundle.series.last7VsBaseline90Pct),
@@ -405,6 +411,7 @@ let cacheHits = 0
 let rejected = 0
 let failed = 0
 let recentDropped = 0
+let chartEchoes = 0
 let totalCostUsd = 0
 
 if (DRY_RUN) {
@@ -475,6 +482,15 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     recentDropped++
     console.log(`  ~ ${item.key}: recent dropped (${recentBad || 'over cap'}) — "${recentRaw}"`)
   }
+  // Logged and counted, never dropped — see `seriesEchoes`. The prompt forbids
+  // repeating the chart; this line is how the log says whether it listened.
+  if (recent) {
+    const echoed = seriesEchoes(recent, bundle.series)
+    if (echoed.length > 0) {
+      chartEchoes++
+      console.log(`  ~ ${item.key}: reads the chart (${echoed.join(', ')})`)
+    }
+  }
 
   const offered = new Set(bundle.coverage.map((c) => c.slug))
   const citations = (Array.isArray(result.out.citations) ? result.out.citations : [])
@@ -524,5 +540,6 @@ writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
   `  Dispatch: ${generated} new, ${cacheHits} cached, ${recentDropped} recent-dropped, ` +
-    `${rejected} rejected, ${failed} failed; $${totalCostUsd.toFixed(3)} in ${elapsed}s`,
+    `${chartEchoes} chart-echo, ${rejected} rejected, ${failed} failed; ` +
+    `$${totalCostUsd.toFixed(3)} in ${elapsed}s`,
 )

@@ -9,7 +9,7 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { validateNumbers, validateProperNouns, validateGrounding } from './grounding.js'
+import { seriesEchoes, validateNumbers, validateProperNouns, validateGrounding } from './grounding.js'
 
 const bundle = (...titles) => ({ coverage: titles.map((title) => ({ title })) })
 
@@ -77,4 +77,37 @@ test('the combined check runs numbers first and proper nouns only on request', (
   // `standing` is definitional and draws on general knowledge by design, so it
   // opts out of the name scan — "North Sea" must not sink a definition.
   assert.equal(validateGrounding('Brent is priced in the North Sea basin.', b), null)
+})
+
+test('a recent that reads the chart aloud is measured, value by value', () => {
+  // mkt:sse, 2026-09-04 dispatch: the whole first sentence is the series block,
+  // under a chart that draws exactly it. The factory gauge is from the coverage.
+  const series = {
+    windowDays: 66,
+    latest: 3956.4,
+    changePctOverSeries: -2.47,
+    extremes: { high: { value: 4163, on: 'Jun 22' }, low: { value: 3764, on: 'Jul 17' } },
+    asOf: '2026-09-04',
+  }
+  assert.deepEqual(
+    seriesEchoes(
+      'The index sits near 3,956, down about 2.5% over the window from its 4,163 high on Jun 22, with the low of 3,764 on Jul 17. August’s factory gauge rose to 51.5.',
+      series,
+    ),
+    ['3,956', '2.5', '4,163', '3,764'],
+  )
+})
+
+test('a figure from the coverage is not an echo, and a date is not a reading', () => {
+  // A strait averaging 11 ships a day whose low fell on the 11th: the date must
+  // not count as the level, and a contract's size is the coverage's number.
+  const series = { latest: 11, extremes: { high: { value: 22, on: 'Jul 11' }, low: { value: 5.6, on: 'Aug 2' } } }
+  assert.deepEqual(
+    seriesEchoes(
+      'Sweden signed a €4.3 billion deal on 31 August for four frigates; the low came on Jul 11, and 2026 has been quiet.',
+      series,
+    ),
+    [],
+  )
+  assert.deepEqual(seriesEchoes('Nothing here.', null), [])
 })

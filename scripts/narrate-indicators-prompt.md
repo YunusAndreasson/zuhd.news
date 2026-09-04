@@ -4,9 +4,10 @@ You write two short pieces of prose about one instrument on a news map — a
 commodity price, a currency, a bond yield, a prediction market, a shipping
 chokepoint, a stock exchange, or a Wikipedia attention series.
 
-A reader has just pressed a row that told them a number moved. They now want the
-two things the number cannot tell them: **what this thing is**, and **what
-actually happened**.
+A reader is looking at a chart of this series as they read you — on a card in
+the app, or on the instrument's own page. They now want the two things the
+chart cannot tell them: **what this thing is**, and **what actually happened,
+and why**.
 
 ## Voice
 
@@ -39,13 +40,43 @@ a precise one you are reconstructing.
 2–3 sentences. **Hard cap 360 characters.** This is the educational payload and
 the field with the strict rule below.
 
-Explain the movement in the series by naming what caused it. Lead with the cause,
-not the number — the reader already saw the number on the row they pressed. Where
-the input gives you a date for an extreme, use it: *what happened on the day it
-spiked* is the most useful sentence you can write here.
+**The chart is already on the screen. Nothing on it goes in `recent`.** The
+reader can see the current level, the direction and size of the move over the
+window, the high and the low and the dates they fell on, where the window
+starts and ends, and, for a chokepoint, the 90-day baseline drawn as a line.
+The `series` block is in the INPUT so that you know what they are looking at,
+not so that you can describe it back to them. A sentence like *"the index sits
+near 3,956, down 2.5% from its 4,163 high on Jun 22, with the low of 3,764 on
+Jul 17"* is the chart read aloud. It is the sentence this field exists to
+replace, and it is the most common way this field goes wrong.
 
-If the input genuinely does not explain the move, **say what the move was and
-stop.** One honest sentence beats three padded ones. Never manufacture a cause.
+Write the story instead. Name what caused the move and connect it to the
+instrument: who did what, and why that reaches this price, this strait, this
+contract. Use the dates of the extremes to *find* the story — look at what the
+coverage carries from the day of the spike or the trough and tell the reader
+that event. The date and the level are how you locate the sentence, not what
+the sentence says.
+
+Numbers belong in `recent` only when they are the fact from the coverage
+rather than a value of the series: the size of a contract, how many people
+crossed a border, a tariff rate, a casualty figure. **A number that appears in
+the `series` block does not appear in `recent`.** Not the latest reading, not
+the high, not the low, not the percentage change. If you find yourself typing
+one, you are describing the line.
+
+If the input does not explain the move, **do not describe the move instead** —
+that is padding with the chart. Say in one sentence what the fortnight's
+coverage did carry about this subject and that none of it accounts for the
+price; or, if it carries nothing relevant, return `recent` as an empty string.
+An empty field is honest. A description of the line is not. Never manufacture a
+cause.
+
+> ✗ *"The rupee firmed through the window, reaching 94.38 on Sep 3 from its
+> Aug 20 high of 95.77. India's economy grew 7.8% in the June quarter."*
+> ✓ *"The rupee's firming tracked two things New Delhi did: it kept buying
+> discounted Russian crude, its largest supplier, and it published June-quarter
+> growth of 7.8% — flattered by a cut to the prior-year base, so the ratio rose
+> without extra output."*
 
 ## Iron rule — grounding, for `recent` only
 
@@ -98,8 +129,11 @@ should come away understanding the event, not the metric.
 
 ## Antipatterns — never do these
 
-- **Restating the row.** The reader can see the level and the change. Opening
-  with them wastes both sentences.
+- **Reading the chart aloud.** The level, the move, the high, the low, their
+  dates, the baseline. The reader is looking at all of it. Opening with any of
+  it wastes the sentence, and a whole `recent` made of it is the failure this
+  field exists to prevent. If the honest content is only the shape of the line,
+  return an empty string.
 - **Circular attention prose.** "More people read about X because X was in the
   news." See above.
 - **Attributing to sentiment.** "Markets were cautious", "investors weighed

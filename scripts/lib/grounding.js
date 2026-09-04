@@ -250,3 +250,55 @@ function demonymOf(bare, blob) {
 export function validateGrounding(text, bundle, { properNouns = false } = {}) {
   return validateNumbers(text, bundle) ?? (properNouns ? validateProperNouns(text, bundle) : null)
 }
+
+/**
+ * The series values a sentence repeats — the opposite failure to the two above.
+ *
+ * `validateNumbers` asks whether every figure came from the input. This asks
+ * whether a figure came from the one part of the input the reader can already
+ * see: the `series` block, which the chart beside the prose draws. A `recent`
+ * that prints the latest reading, the high, the low or the window's percentage
+ * change is the chart read aloud, and on the 2026-09-04 dispatch that was the
+ * median sentence — four figures each, the opening one usually the level.
+ *
+ * A measurement, not a gate. Returns the echoed tokens so the caller can log
+ * and count them; the prompt is what stops them, and the count in the cycle
+ * log is how you know whether it did. Nothing is rejected for one: "held at
+ * 3.75% since December" is the level plus a fact about it, and deleting it
+ * would trade a mild restatement for no explanation at all.
+ *
+ * Dates are stripped before the scan — "Jul 11" is not a reading of 11 — and
+ * so are years. A token counts when a series value *rounds to it* at the
+ * precision it was printed: "3,956" for 3956.4, "2.5" for −2.47 (the prose
+ * prints magnitudes; the caret carries the sign). Half a unit of the last
+ * printed digit is that test exactly, and it is not loose enough to mistake a
+ * contract's €4.3 billion for a low of 5.6.
+ */
+const MONTH = String.raw`(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?`
+const DATE_TOKENS = new RegExp(
+  String.raw`\b${MONTH}\s+\d{1,2}\b|\b\d{1,2}\s+${MONTH}\b|\b(?:19|20)\d{2}\b`,
+  'gi',
+)
+
+export function seriesEchoes(text, series) {
+  if (!series || typeof series !== 'object') return []
+  const values = []
+  const walk = (v) => {
+    if (typeof v === 'number' && Number.isFinite(v)) values.push(v)
+    else if (v && typeof v === 'object') for (const x of Object.values(v)) walk(x)
+  }
+  walk(series)
+  const scrubbed = String(text).replace(DATE_TOKENS, ' ')
+  // Cannot end on a comma, so "3,956," scans as 3,956 and not as a token with
+  // punctuation attached.
+  const tokens = scrubbed.match(/\d(?:[\d,]*\d)?(?:\.\d+)?/g) || []
+  const echoed = []
+  for (const raw of tokens) {
+    const n = Number(raw.replace(/,/g, ''))
+    if (!Number.isFinite(n)) continue
+    const decimals = (raw.split('.')[1] || '').length
+    const halfUnit = 0.5 * 10 ** -decimals
+    if (values.some((v) => Math.abs(Math.abs(v) - n) <= halfUnit + 1e-9)) echoed.push(raw)
+  }
+  return echoed
+}

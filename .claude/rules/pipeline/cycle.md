@@ -392,3 +392,36 @@ than quietly becoming a fact about our coverage.
 `localhost:7777` over an SSH tunnel, `zuhd-dashboard.service`,
 `scripts/dashboard/`. Six tabs: Pipeline, Quality, Logs, Experiment, Editorial,
 Status.
+
+## The chart is not a source for `recent`
+
+- **The desk's `recent` was the chart read aloud.** Measured on the 2026-09-04
+  dispatch: 121 of 123 instruments carried one, the median held four figures,
+  and the usual opening was the series described back to the reader — *"the
+  index sits near 3,956, down about 2.5% over the window from its 4,163 high
+  on Jun 22, with the low of 3,764 on Jul 17"* — under a chart that draws
+  exactly that. Five central-bank events recited the same two figures (a 4.81%
+  ten-year, a 6.71% mortgage rate) because the coverage carried them, so five
+  cards said one thing. The prompt already said "lead with the cause, not the
+  number"; it also said "where the input gives you a date for an extreme, use
+  it", and the model used it by printing it.
+- **Both prompts now name what the reader is looking at and forbid it.** The
+  `series` block is context; the dates of the extremes are for *finding* the
+  story in that day's coverage; a number that appears in `series` does not
+  appear in `recent`; and an input that does not explain the move gets one
+  sentence about what the fortnight's coverage did carry, or an empty string —
+  never a description of the line. Events write about *this* institution's
+  decision: a backdrop sentence equally true under another bank's name is not
+  about this one.
+- **`seriesEchoes` (`lib/grounding.js`) measures it and does not gate.** A
+  `recent` that repeats a `series` value is logged (`~ key: reads the chart
+  (3,956, 4,163)`) and counted in the `Dispatch:` line as `chart-echo`. A gate
+  would delete "held at 3.75% since December", which is the level plus a fact
+  about it, in exchange for no explanation at all. The prompt is the fix; the
+  count in the next 04:00 log is how you know whether it worked.
+- **The prompt's hash is part of `recentFingerprint`, in both stages.** It was
+  not, so a prompt edit reached only the items whose story or 5-point band
+  happened to move that day. The full pass rewrites ~102 of ~110 items daily
+  regardless (the sorted top-six headline set moves most days, so the
+  "steady state costs nothing" claim holds for a handful), but a prompt edit
+  should reach *all* of them, once, and now does.

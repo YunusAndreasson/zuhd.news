@@ -72,6 +72,9 @@ if (!existsSync(PROMPT_PATH)) {
   process.exit(1)
 }
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
+/** Part of `recentFingerprint` — the same reason as `narrate-indicators.js`:
+ *  a prompt edit reaches every event once, at the next full pass. */
+const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
 const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
 if (!cache.items) cache.items = {}
 
@@ -192,6 +195,7 @@ const recentFingerprint = (bundle) =>
   createHash('sha1')
     .update(
       JSON.stringify({
+        prompt: promptHash,
         bucket: countdownBucket(bundle.event.daysUntil),
         slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
         feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
