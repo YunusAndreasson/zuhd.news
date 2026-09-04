@@ -12,7 +12,10 @@ import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 // IMF PortWatch "Daily Chokepoints Data" feature service (ArcGIS).
-// Schema (confirmed 2026-04): date (epoch ms), portname, n_total + per-type counts.
+// Schema: date, portname, n_total + per-type counts. `date` was an epoch-ms
+// Date field when this was written (confirmed 2026-04) and was re-published as
+// an `esriFieldTypeDateOnly` string ('YYYY-MM-DD') around 2026-04-28 — see
+// `parseArcgisDate` and the pipeline design record for what that cost.
 // Found via hub.arcgis.com search; owning org weJ1QsnbMYJlCHdG.
 const FEATURE_SERVICE = 'https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query'
 
@@ -29,6 +32,48 @@ function formatPeriod(dateStr) {
 
 function ymd(d) {
   return d.toISOString().slice(0, 10)
+}
+
+/**
+ * An ArcGIS date attribute as epoch milliseconds, whichever way the service
+ * serialises it.
+ *
+ * A Date field arrives as epoch ms; a DateOnly field arrives as 'YYYY-MM-DD'.
+ * PortWatch switched from the first to the second around 2026-04-28, and the
+ * per-indicator fetcher below compared the string against a number: `'2026-08-30'
+ * >= 1751000000000` is `NaN >= n`, false for every row, so every row was
+ * filtered and the function returned null — without logging — for 130 days.
+ * The batched snapshot fetcher survived only because it filters on the server
+ * and its own numeric sort, also NaN, was handed rows the server had already
+ * put in date order. Both read through this now.
+ *
+ * @param {unknown} v
+ * @returns {number | null}
+ */
+export function parseArcgisDate(v) {
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null
+  if (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v)) {
+    const t = Date.parse(`${v.slice(0, 10)}T00:00:00Z`)
+    return Number.isFinite(t) ? t : null
+  }
+  return null
+}
+
+/**
+ * The usable rows of a per-indicator response: one `{ ts, calls }` per feature
+ * with a parseable date and a value, inside the window, oldest first. Pure, so
+ * the regression above has a test.
+ *
+ * @param {Array<{ attributes?: Record<string, unknown> }>} features
+ * @param {string} field
+ * @param {number} startMs
+ * @returns {{ ts: number, calls: unknown }[]}
+ */
+export function chokepointRows(features, field, startMs) {
+  return features
+    .map((f) => ({ ts: parseArcgisDate(f.attributes?.date), calls: f.attributes?.[field] }))
+    .filter((r) => r.ts != null && r.calls != null && r.ts >= startMs)
+    .sort((a, b) => a.ts - b.ts)
 }
 
 /**
@@ -75,13 +120,19 @@ export async function fetchPortWatchChokepoint(indicator) {
       return null
     }
 
-    // ArcGIS returns date as epoch ms. DESC-sorted; reverse for chart order.
-    const rows = features
-      .map((f) => ({ ts: f.attributes?.date, calls: f.attributes?.[field] }))
-      .filter((r) => r.ts != null && r.calls != null && r.ts >= start.getTime())
-      .sort((a, b) => a.ts - b.ts)
+    // DESC-sorted by the query; `chokepointRows` reverses for chart order.
+    const rows = chokepointRows(features, field, start.getTime())
 
-    if (rows.length === 0) return null
+    if (rows.length === 0) {
+      // A non-empty response with nothing usable is a schema change until
+      // proven otherwise, and the one line that would have caught the
+      // date-type switch in April is the one that prints what it saw.
+      console.error(
+        `  ✗ portwatch:${indicator.id}: ${features.length} features, 0 usable in the last ` +
+          `${HISTORY_DAYS}d — first date attribute ${JSON.stringify(features[0]?.attributes?.date)}`,
+      )
+      return null
+    }
 
     const values = rows.map((r) => Number(r.calls))
     const periods = rows.map((r) => formatPeriod(new Date(r.ts).toISOString()))
@@ -171,7 +222,11 @@ export async function fetchAllChokepointsSnapshot() {
 
     const out = []
     for (const entry of CHOKEPOINT_CATALOG) {
-      const rows = (byPort.get(entry.portname) || []).sort((x, y) => x.date - y.date)
+      // Parsed once, sorted here rather than trusted to the server's order.
+      const rows = (byPort.get(entry.portname) || [])
+        .map((a) => ({ ...a, _ts: parseArcgisDate(a.date) }))
+        .filter((a) => a._ts != null)
+        .sort((x, y) => x._ts - y._ts)
       if (rows.length === 0) {
         console.error(`  ✗ portwatch-snapshot: ${entry.portname}: no rows`)
         continue
@@ -198,10 +253,10 @@ export async function fetchAllChokepointsSnapshot() {
         baseline90Avg: baselineAvg,
         delta7vs90: delta,
         series: {
-          periods: rows.map((r) => formatPeriod(new Date(r.date).toISOString())),
+          periods: rows.map((r) => formatPeriod(new Date(r._ts).toISOString())),
           total: rows.map((r) => Number(r.n_total ?? 0)),
         },
-        asOf: ymd(new Date(rows[rows.length - 1].date)),
+        asOf: ymd(new Date(rows[rows.length - 1]._ts)),
       })
     }
 

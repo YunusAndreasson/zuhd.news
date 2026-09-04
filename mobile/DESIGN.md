@@ -200,9 +200,13 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   card model.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
-  three is whatever the chip cannot show — the baseline a strait is measured
-  against, the range a belief has travelled, the second window on a monthly
-  series. A percentage that appears in both is the same fact twice.
+  three is whatever the chip cannot show — the range a belief has travelled,
+  the second window on a monthly series, the level a rate has sat at and since
+  when. A percentage that appears in both is the same fact twice. A level the
+  chip measures *against* — a strait's 90-day normal — is not a sentence
+  either: it is a dashed reference line on the chart (`CardSeries.reference`),
+  because the place to show what a percentage is divided by is beside the
+  line it divides.
 - **Two graph-card kinds.** Builders describe graph-backed `Reading` and
   `Belief` cards. `CardView` is typed to that boundary so unreachable table or
   condition rendering branches cannot return unnoticed.
@@ -215,8 +219,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.
 - **The swipe boundary validates and ranks.** `buildSwipeSections` first
-  requires a valid time series and pipeline analysis; `prepareSwipeCards` is the only
-  path from builder output into `CardPager`: it requires explanatory copy,
+  requires a valid time series and pipeline analysis; `prepareSwipeCards` is the
+  path from builder output into `CardPager` — with one exception: the
+  server-ranked market highlights (`lib/cards/market-signals.ts`) are prepended
+  to `markets` in `app/index.tsx` *after* it, bypassing ranking and the kicker
+  cap, because the server owns their selection and revision and the client
+  owns presentation only. `prepareSwipeCards` requires explanatory copy,
   computes ranking metadata internally, and sorts urgent
   updates before the strongest tie to today's news, unusual movement against
   the series' own history, and finally the builder's stable editorial order.

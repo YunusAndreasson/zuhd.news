@@ -124,6 +124,10 @@ export interface CardSeries {
    *  `TrendBlock` already does with the same pair of props. Only use it when
    *  the lines share a unit; two units on one axis is a chart that lies. */
   multi?: TrendSeries[];
+  /** A level the series is measured against — a strait's 90-day normal —
+   *  drawn as a dashed hairline with a gutter label. The chip says how far
+   *  the reading is from it; the line shows where it is. */
+  reference?: { value: number; label: string };
 }
 
 /** One number and its history. Brent, wheat, the strait that moved, nisab. */

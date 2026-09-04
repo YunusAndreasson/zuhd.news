@@ -99,6 +99,18 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   at least 30% earns `current`; otherwise it remains reference. Ranking uses
   current-news relevance and unusual movement so a small percentage does not
   hide a major live story.
+  - **`current` is judged on the source's own lag.** IMF PortWatch publishes
+    ~5 days behind the build — every strait's `asOf`, every cycle — so the
+    three-day rule the price cards share could never mark a strait current,
+    and a Hormuz 57% below its normal rendered as reference for as long as the
+    rule was shared. `straitCards` passes `CHOKEPOINT_CURRENT_DAYS` (10) to
+    `isCurrentObservation`; a stalled fetch still ages out of it.
+  - **The 90-day normal is a line on the chart, not a sentence under it**
+    (`CardSeries.reference`, a dashed hairline labelled at its left end), and
+    the strait's primary vessel class — tankers at Hormuz, container ships at
+    Bab el-Mandeb — is a secondary figure with its own seven-day average and
+    distance from normal. Both were in the payload all along; only the globe
+    sheet read them.
 - **A single FX threshold across this basket is not one rule.** It holds both
   the Lebanese pound and the euro, so a bar calibrated for volatile currencies
   silently excludes stable ones: measured over twelve consecutive snapshots the

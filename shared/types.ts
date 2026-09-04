@@ -566,6 +566,11 @@ export interface Indicator {
   latest?: number | null;
   previous?: number | null;
   marketUrl?: string;
+  /** Polymarket only: the contract's move over the last 24 hours, in points.
+   *  `null` when the API published none for that market. */
+  change24h?: number | null;
+  /** Polymarket only: the outcome the price is for — "Yes". */
+  outcomeLabel?: string;
   /**
    * One written paragraph saying what this indicator is and why a move in it
    * reaches an ordinary life — "fuel, freight and fertiliser move after it".

@@ -11,7 +11,7 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { writeFileSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
@@ -24,6 +24,29 @@ const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
 
 const today = new Date().toISOString().slice(0, 10)
 const SNAPSHOT_PATH = join(TRENDS_DIR, `${today}.json`)
+
+/**
+ * The previous cycle's snapshot, read before this run overwrites today's.
+ *
+ * On the second and later cycles of a day the newest file *is* today's — still
+ * the previous cycle's output, which is what a dynamic source needs to keep
+ * its selection stable across cycles (see `orderCandidates` in the Polymarket
+ * fetcher). Null on a fresh checkout, which degrades to the old behaviour: a
+ * deck chosen from scratch.
+ */
+const priorSnapshot = (() => {
+  if (!existsSync(TRENDS_DIR)) return null
+  const latest = readdirSync(TRENDS_DIR)
+    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+    .sort()
+    .at(-1)
+  if (!latest) return null
+  try {
+    return JSON.parse(readFileSync(join(TRENDS_DIR, latest), 'utf8'))
+  } catch {
+    return null
+  }
+})()
 
 // ── Run ────────────────────────────────────────────────────────────────────
 
@@ -44,7 +67,10 @@ for (const [name, def] of Object.entries(SOURCES)) {
 
   if (def.mode === 'dynamic') {
     console.log(`${name}: top markets`)
-    const results = await def.fetcher()
+    // Yesterday's rows for this source, so a sticky fetcher can recognise
+    // them. A fetcher that ignores the argument (Wikipedia) is unaffected.
+    const incumbents = (priorSnapshot?.indicators ?? []).filter((i) => i?.source === name)
+    const results = await def.fetcher({ incumbents })
     if (results) for (const r of results) indicators.push(r)
     continue
   }

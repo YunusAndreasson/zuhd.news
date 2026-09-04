@@ -22,7 +22,7 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { MARKET_CATALOG, MARKET_TRACKED, instrumentMismatch } from './lib/market-metadata.js'
-import { fetchYahooStock } from './lib/trends-sources/stocks.js'
+import { fetchYahooStock, isStaleAsOf } from './lib/trends-sources/stocks.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.markets.json')
@@ -71,6 +71,14 @@ for (const m of MARKET_TRACKED) {
     continue
   }
 
+  // Stale whichever path said so: the cache serving a week-old series, or a
+  // live fetch whose feed stopped — Yahoo keeps answering with the full axis
+  // and null closes, so the fetch succeeds and only `asOf` knows.
+  const stale = Boolean(data.stale) || isStaleAsOf(data.asOf)
+  if (stale && !data.stale) {
+    console.error(`  ⚠ ${m.id} (${m.symbol}): last completed session ${data.asOf} — marked stale`)
+  }
+
   exchanges.push({
     id: m.id,
     name: m.name,
@@ -92,7 +100,7 @@ for (const m of MARKET_TRACKED) {
     blurb: m.blurb,
     topicTags: m.topicTags,
     countryTags: m.countryTags,
-    ...(data.stale ? { stale: true } : {}),
+    ...(stale ? { stale: true } : {}),
   })
 }
 

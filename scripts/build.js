@@ -1250,6 +1250,10 @@ if (existsSync(iodaSrc)) {
 // the endpoint entirely, with no log line saying so. Falling back to the
 // newest snapshot is what entity pages have always done.
 const trendsSrc = latestTrendsPath()
+/** The indicator ids the snapshot actually carries, for `analysis.json` below.
+ *  Null when there is no snapshot, in which case nothing is filtered. */
+let liveIndicatorIds = null
+let liveSnapshotAsOf = null
 if (trendsSrc && existsSync(trendsSrc)) {
   const snapshot = JSON.parse(readFileSync(trendsSrc, 'utf8'))
   // `standing` joined on, which is why this is a read-modify-write and no
@@ -1276,6 +1280,8 @@ if (trendsSrc && existsSync(trendsSrc)) {
     }),
   }
   writeFileSync(join(DIST_DIR, 'api', 'trends.json'), JSON.stringify(withStanding))
+  liveIndicatorIds = new Set(withStanding.indicators.map((i) => i.id))
+  liveSnapshotAsOf = snapshot.asOf ?? null
   const n = withStanding.indicators.length
   const described = withStanding.indicators.filter((i) => i.standing).length
   const eventsN = withStanding.events.length
@@ -1318,11 +1324,23 @@ if (trendsSrc && existsSync(trendsSrc)) {
  * Doubling a payload for a list no reader sees is the cost this endpoint exists
  * to avoid paying on `trends.json`. They remain on `/api/entity/{id}.json`, and
  * on the chokepoint and exchange payloads, for the surfaces that do show them.
+ *
+ * Only ids the snapshot beside it carries. The dispatch is a cache keyed by
+ * every instrument the desk has ever narrated, and the Polymarket and `wiki-*`
+ * sets rotate, so it holds paragraphs for markets the payload no longer ships:
+ * measured 2026-09-04, 12 of 76 items — 4KB the app downloaded on every launch
+ * and could attach to nothing. The `dropped` count in the log is the health
+ * metric for the sticky Polymarket selection: it should sit near zero.
  */
 {
   const items = {}
+  let dropped = 0
   for (const [id, d] of Object.entries(dispatch)) {
     if (id.includes(':')) continue
+    if (liveIndicatorIds && !liveIndicatorIds.has(id)) {
+      dropped++
+      continue
+    }
     const recent = d?.recent?.trim()
     if (!recent) continue
     items[id] = { recent }
@@ -1337,6 +1355,7 @@ if (trendsSrc && existsSync(trendsSrc)) {
   )
   console.log(
     `  Built: api/analysis.json (${Object.keys(items).length} explained, ` +
+      `${dropped} dropped — not in the ${liveSnapshotAsOf ?? 'current'} snapshot, ` +
       `${dispatchFile.generatedAt ?? 'undated'})`,
   )
 }

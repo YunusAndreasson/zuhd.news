@@ -277,6 +277,13 @@ const isIndicator = (v: unknown): v is Indicator => {
   if (v.values.length < 2) return false;
   if (v.asOf !== undefined && !isIsoDate(v.asOf)) return false;
   if (v.cadence !== undefined && v.cadence !== 'daily' && v.cadence !== 'monthly') return false;
+  // Polymarket publishes `null` here for a market with no day-old price, and
+  // a validator that read null as malformed would drop the whole snapshot —
+  // every market card — for one missing figure.
+  if (v.change24h !== undefined && v.change24h !== null && !isFiniteNumber(v.change24h)) {
+    return false;
+  }
+  if (v.outcomeLabel !== undefined && typeof v.outcomeLabel !== 'string') return false;
   return true;
 };
 

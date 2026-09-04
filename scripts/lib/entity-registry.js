@@ -113,9 +113,12 @@ export const ENTITY_RULES = [
   // to resolve to `portwatch-*` ids that do not exist** (corrected 2026-08-08).
   //
   // The registry was written against `trends-registry.js`, which declares eight
-  // portwatch indicators — but that source has not landed a single row in the
-  // trends payload for as long as the snapshots go back, because chokepoint
-  // series are fetched by `fetch-chokepoints.js` into their own file instead.
+  // portwatch indicators — but that source landed no row in the trends payload
+  // from 2026-04-28 to 2026-09-04: PortWatch re-published its `date` field as a
+  // string and the fetcher's numeric compare dropped every row, silently (fixed
+  // 2026-09-04; see the pipeline design record). The aliases stay regardless:
+  // `cp:*` is what the chokepoint sheet opens, and the `portwatch-*` rows are a
+  // different series — tankers at Hormuz, not all ships.
   // So every one of these pointed at an id the payload never carried, and
   // `indicatorMap` in `build.js` — which exists precisely so a chip cannot open
   // an empty sheet — silently dropped all of them. Measured at the time of the

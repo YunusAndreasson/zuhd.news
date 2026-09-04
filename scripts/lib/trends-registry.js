@@ -84,6 +84,10 @@ export const SOURCES = {
  *    downsample note in `trends-sources/fred.js`.
  *  @property {'eop'|'avg'|'sum'} [aggregation] FRED only, default `eop`. Never
  *    average a step function: it invents levels nobody set.
+ *  @property {'lin'|'chg'|'ch1'|'pch'|'pc1'|'pca'|'cch'|'cca'|'log'} [units]
+ *    FRED only: a transformation the API applies (`pc1` = per cent change from
+ *    a year ago). For a series whose level means nothing to a reader and whose
+ *    rate is the whole story — the CPI.
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
  *  @property {string[]} [countryTags] ISO-2 codes matched against article.location/sources.
  *  @property {'last'|'first'|'max'|'min'} [defaultHighlight]
@@ -202,6 +206,24 @@ export const INDICATORS = [
     seriesId: 'UNRATE',
     cadence: 'monthly',
     topicTags: ['jobs report', 'unemployment', 'payrolls', 'labor market', 'nonfarm', 'bls'],
+    countryTags: ['US'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · BLS',
+  },
+  {
+    // The number a CPI release is about, so the release's card in the app can
+    // draw the same staircase the FOMC card draws for the policy rate. The
+    // tags are US-anchored on purpose: `attach-indicators.js` matches tags
+    // alone, and a bare `inflation` would hand a US 2.9% to a story about
+    // Turkish or British prices.
+    id: 'us-cpi',
+    label: 'US inflation (CPI, y/y)',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'CPIAUCSL',
+    units: 'pc1',
+    cadence: 'monthly',
+    topicTags: ['us inflation', 'us cpi', 'cpi report', 'us consumer prices', 'bls'],
     countryTags: ['US'],
     defaultHighlight: 'last',
     sourceLabel: 'FRED · BLS',

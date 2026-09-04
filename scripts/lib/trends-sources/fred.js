@@ -36,7 +36,7 @@ function formatPeriod(dateStr, cadence) {
 /**
  * Fetch observations for one FRED series.
  *
- * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string }} indicator
+ * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string, units?: string }} indicator
  * @param {string} apiKey
  * @returns {Promise<{ values: number[], periods: string[], asOf: string, dates: string[], completed: boolean[] } | null>}
  */
@@ -76,6 +76,11 @@ export async function fetchFredSeries(indicator, apiKey) {
     url.searchParams.set('frequency', indicator.frequency)
     url.searchParams.set('aggregation_method', indicator.aggregation ?? 'eop')
   }
+  // A transformation FRED applies itself — `pc1` is per cent change from a
+  // year ago, computed over the full series, so the first observation in the
+  // window is populated rather than blank. Used for the CPI, where the level
+  // is an index nobody quotes and the year-on-year rate is the number.
+  if (indicator.units) url.searchParams.set('units', indicator.units)
 
   try {
     const res = await fetch(url, {
