@@ -1258,8 +1258,105 @@
         "2026-09-01-meta-settlement-global-defaults-no-standing"
       ],
       "generatedAt": "2026-09-04T08:25:19.335Z"
+    },
+    "poly-will-alexandria-ocasio-cortez-win-the-2028-democ": {
+      "standingFingerprint": "de763aabfe78b548",
+      "recentFingerprint": "5d6c13ee9ed39ca5",
+      "standing": "A prediction market on the 2028 Democratic presidential nomination, where traders buy and sell contracts that pay out if a named candidate wins. The price is what people will pay for that outcome, not a poll or a forecast.",
+      "recent": "Polymarket itself was the news through late August rather than the race. A study of 152 wallets showed a 97.2% win rate on war-related contracts, a White House aide paid a fine for betting on speeches read early, and the Ninth Circuit ruled that sports bets aren't \"swaps,\" confirming state powers over prediction markets. The contract traded between 14 and 23 across the window.",
+      "citations": [
+        "2026-08-22-polymarket-orcas-secrecy-priced-in-public",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow",
+        "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
+      ],
+      "generatedAt": "2026-09-04T12:27:06.914Z"
+    },
+    "poly-will-jean-luc-mlenchon-win-the-2027-french-presi": {
+      "standingFingerprint": "f2fbd02ba8487d1c",
+      "recentFingerprint": "f191a90fea3cd303",
+      "standing": "A Polymarket contract on whether Jean-Luc Mélenchon, the founder of France Unbowed and the left's standard-bearer in three previous presidential runs, wins the 2027 French presidential election. The price is what traders pay for that outcome, not a forecast.",
+      "recent": "The contract has barely moved over the past month, drifting from 14% on Aug 5 to 13% by Aug 22 and holding there since. Nothing in the window bears on the French race; the prediction-market news instead concerned the platforms themselves, including a Ninth Circuit ruling against Kalshi and a study of 152 Polymarket wallets with a 97.2% win rate.",
+      "citations": [
+        "2026-08-22-polymarket-orcas-secrecy-priced-in-public",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-09-04T12:27:16.571Z"
+    },
+    "poly-fed-rate-hike-in-2026": {
+      "standingFingerprint": "0523c3f9ae572494",
+      "recentFingerprint": "ced66601671b897d",
+      "standing": "A prediction market on whether the US Federal Reserve raises interest rates this year. Traders buy and sell contracts that pay out on the outcome, so the price is the cost of a bet on tighter money — not a forecast.",
+      "recent": "An oil shock pushed the odds to two-in-three, and by 1 September they reached 72%, up from 46% on 16 August. Crypto traders moved the same way, with Bitcoin falling under $79,000 as they bet on Fed hikes, and Warsh said the Fed will have \"work to do\" if inflation doesn't fade.",
+      "citations": [
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut",
+        "2026-08-28-the-independence-trade-the-speech-is-the-instrument"
+      ],
+      "generatedAt": "2026-09-04T12:27:26.077Z"
+    },
+    "poly-will-naftali-bennett-be-the-next-prime-minister-": {
+      "standingFingerprint": "336d75f235932b18",
+      "recentFingerprint": "a14b30cb37fa042d",
+      "standing": "A Polymarket contract on whether Naftali Bennett will be Israel's next prime minister. It prices the odds traders assign to one man taking the office, and moves when the coalition holding it looks more or less durable.",
+      "recent": "The bet has drifted up from 5% on Aug 11 to 9% as Israel's cabinet hardened in public: Ben-Gvir set a first-year quota of 250,000 for expelling Palestinians from Gaza, and Netanyahu said on a Gaza visit that 'we are not retreating.' Nothing in the window names Bennett himself.",
+      "citations": [
+        "2026-09-04-a-quota-is-an-administrative-document"
+      ],
+      "generatedAt": "2026-09-04T12:27:34.833Z"
+    },
+    "poly-will-anthropic-have-the-highest-ipo-market-cap-2": {
+      "standingFingerprint": "b65306ad3f7dce9a",
+      "recentFingerprint": "b52452571164d5bf",
+      "standing": "A Polymarket contract on whether Anthropic will be the largest initial public offering by market capitalisation in a given year. It is a bet on which private company lists biggest, and traders price it against every rival flotation in the pipeline.",
+      "recent": "The contract went from 6% on Aug 5 to a high of 61% on Aug 31 and sits at 58%, an eightfold repricing over the month. The input does not name the news behind the move.",
+      "citations": [],
+      "generatedAt": "2026-09-04T12:27:43.347Z"
+    },
+    "wiki-flood": {
+      "standingFingerprint": "0ff593d65bf66835",
+      "recentFingerprint": "a0fabda00f193e7a",
+      "standing": "A count of how many people read Wikipedia's article on floods each day. It rises when water is displacing people somewhere — a proxy for which disasters the public is actually trying to understand.",
+      "recent": "Readership tracked the Nepal-China border flash flood, where ice and rock collapse rather than rain sent water through the valley: deaths passed 1,000 by 1 September and later 5,000, with 4,500 still missing. The 28 August peak coincided with the Grand Canyon flash flood that left about 15 missing.",
+      "citations": [
+        "2026-09-01-himalaya-glacial-lake-outburst-warning-gap",
+        "2026-09-03-cascade-the-warning-existed-the-evacuation-did-not",
+        "2026-08-31-nepal-floods-five-thousand-dead-catchment",
+        "2026-08-31-grand-canyon-flash-flood-slot-hydrology-warning-lead-time",
+        "2026-09-02-nepal-trekking-season-reopening-against-the-count"
+      ],
+      "generatedAt": "2026-09-04T12:27:53.973Z"
+    },
+    "stocks:VRSN": {
+      "standingFingerprint": "1e2fa1075e350f9e",
+      "recentFingerprint": "0463e7559d448481",
+      "standing": "The company behind the .com and .net registries and the root of much of the domain name system, paid a fee on every registration. Its revenue tracks how many web addresses exist, and its infrastructure resolves a large share of the world's internet lookups.",
+      "recent": "ICANN is terminating the .name top-level domain, ending the internet addresses of about 22,000 people in February. The shares slipped over the window, from a high of $299.20 on Aug 4 to a low of $272.80 on Aug 17 before recovering to $293.40.",
+      "citations": [
+        "2026-09-03-dot-name-tld-termination-domain-identity-lease"
+      ],
+      "generatedAt": "2026-09-04T12:28:03.047Z"
+    },
+    "stocks:SNAP": {
+      "standingFingerprint": "4df326968fb8c893",
+      "recentFingerprint": "6c7798d6312b35f3",
+      "standing": "The company behind Snapchat, a messaging app built on disappearing photos and used heavily by teenagers. Its revenue is almost entirely advertising, which ties the share price to how many young users it holds and how regulators treat them.",
+      "recent": "The stock has drifted lower across the window, from a low of $5.11 on Aug 18 to a high of $5.92 on Aug 25 and back to $5.70. UNICEF reported on Sep 3 that 1 in 5 teens had been targeted for online sexual abuse, keeping platform child-safety obligations in view for the teen-heavy apps.",
+      "citations": [
+        "2026-09-03-unicef-20-million-children-online-sexual-abuse"
+      ],
+      "generatedAt": "2026-09-04T12:28:12.254Z"
+    },
+    "stocks:GOOG": {
+      "standingFingerprint": "d0f483971e1b5c52",
+      "recentFingerprint": "c95cb455a9a9d163",
+      "standing": "The share price of Alphabet, Google's parent and one of the largest companies on the US market. It earns most of its money from search advertising while spending heavily on cloud and AI, so its price is a proxy for both.",
+      "recent": "Google shipped a cybersecurity model priced per token from Mountain View on 2 September, and a rival release drew three incompatible descriptions from three outlets a day later. The stock has drifted down through the window, from $375.40 on Aug 4 to a low of $332 on Sep 1, closing near $339.",
+      "citations": [
+        "2026-09-03-flash-cyber-capability-with-a-price-per-token",
+        "2026-09-04-chatgpt-6-astra-agent-containment-release"
+      ],
+      "generatedAt": "2026-09-04T12:28:21.430Z"
     }
   },
-  "generatedAt": "2026-09-04T08:25:19.335Z",
+  "generatedAt": "2026-09-04T12:28:21.431Z",
   "windowDays": 14
 }
