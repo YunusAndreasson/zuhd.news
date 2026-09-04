@@ -12,7 +12,7 @@ import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardStatus } from '../../lib/card-history';
 import type { CardDelta, DeckCard } from '../../lib/cards/types';
-import { observationLabel } from '../../lib/data-freshness';
+import { observationDate } from '../../lib/data-freshness';
 import { useOpenLink } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { OverflowEndCue } from '../OverflowEndCue';
@@ -75,8 +75,13 @@ const DeltaChip = memo(function DeltaChip({ delta }: { delta: CardDelta }) {
       >
         {delta.magnitude}
       </Text>
+      {/* Plain caption, the same register as the unit on the other side of
+          the dot. This was small caps, which put the window in the kicker's
+          register and made the row three type treatments wide — regular,
+          semibold, caps — for four words. Two now: quiet text, and the one
+          coloured number the row exists to show. */}
       {delta.window ? (
-        <Text variant="labelXs" tone="secondary" numberOfLines={1} style={styles.deltaWindow}>
+        <Text variant="caption" tone="secondary" style={styles.deltaWindow}>
           {delta.window}
         </Text>
       ) : null}
@@ -180,8 +185,13 @@ export const CardFrame = memo(function CardFrame({
   status,
 }: CardFrameProps) {
   const reduceMotion = useReducedMotion();
-  const observed = observationLabel(card.asOf);
+  const observed = observationDate(card.asOf);
   const openLink = useOpenLink();
+
+  // The one word, if any, that opens the kicker line. `current` outranks
+  // `updated`: a card whose data just moved is, to the reader, also new, and
+  // the line has room for one claim.
+  const mark = card.lead ? 'current' : status === 'updated' ? 'updated' : null;
 
   // Only the explanatory prose can become an inner scroll region. The metric,
   // title and chart remain direct children of the pager, which gives every
@@ -239,39 +249,38 @@ export const CardFrame = memo(function CardFrame({
     <View style={[styles.page, { height: itemHeight }]}>
       <View style={styles.column}>
         <Animated.View style={arrival} testID="card-page-header">
-          {/* The kicker line, and on a gated card the one word that says
-              why this screen exists. A disrupted strait is on screen because
-              its data cleared a currentness gate; the
-              nisab and the gold-to-silver ratio are standing reference that
-              happens to have moved a little. Until this mark they arrived in
-              identical weight, so the distinction was one the reader could
-              only make by already knowing which cards the app gates.
+          {/* The one line of metadata a card carries: what kind of thing this
+              is, and the date its number was observed. On a gated card it
+              opens with the one word that says why the screen exists —
+              `current` for a strait whose data just cleared a freshness gate,
+              `updated` for a card whose content changed since the reader last
+              viewed it — and never both, because each is the app saying
+              "look", and one "look" is the budget. Without the mark a
+              disrupted strait and the gold-to-silver ratio arrive in
+              identical weight, and the reader can only tell them apart by
+              already knowing which cards the app gates.
 
               An ink step, not a colour and not opacity — DESIGN.md is
               explicit that quiet is ink, and the chromatic budget is already
-              spent on the delta chip. Nested
-              rather than a flex row so the two halves share a baseline and a
-              screen reader gets one phrase. */}
-          {card.lead || card.kicker || observed ? (
+              spent on the delta chip. Nested rather than a flex row so the
+              halves share a baseline and a screen reader gets one phrase.
+
+              "New to you" and "Previously viewed" used to be a second line
+              of small caps directly under this one. The deck already groups
+              unseen cards ahead of the caught-up page and viewed ones behind
+              it, so both restated the reader's position in the register the
+              kicker was already using — one more line to decipher before
+              reaching the number. */}
+          {mark || card.kicker || observed ? (
             <Text variant="labelXs" tone="secondary">
-              {card.lead ? (
+              {mark ? (
                 <Text variant="labelXs" tone="emphasis">
-                  {card.kicker || observed ? 'current · ' : 'current'}
+                  {card.kicker || observed ? `${mark} · ` : mark}
                 </Text>
               ) : null}
               {card.kicker}
               {card.kicker && observed ? ' · ' : null}
               {observed}
-            </Text>
-          ) : null}
-
-          {status ? (
-            <Text variant="labelXs" tone={status === 'updated' ? 'emphasis' : 'secondary'}>
-              {status === 'updated'
-                ? 'Updated since you last viewed'
-                : status === 'viewed'
-                  ? 'Previously viewed'
-                  : 'New to you'}
             </Text>
           ) : null}
 
@@ -331,16 +340,22 @@ export const CardFrame = memo(function CardFrame({
                   <SourceCaption label={card.sourceLabel} />
                 </View>
               ) : null}
+              {/* Citations sit under the source caption as one right-aligned
+                  group, in the same quiet tier. They were left-aligned
+                  caption rows prefixed "Source ·", which read as more
+                  supporting copy — a fourth paragraph — rather than as the
+                  attribution they are. */}
               {card.sources?.map((source) => (
                 <Text
                   key={source.url}
                   variant="caption"
                   tone="secondary"
+                  numberOfLines={1}
                   accessibilityRole="link"
                   onPress={() => openLink(source.url)}
-                  style={styles.supporting}
+                  style={styles.sourceLink}
                 >
-                  Source · {source.label}
+                  {source.label}
                 </Text>
               ))}
             </Animated.View>
@@ -375,10 +390,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: SPACING.sm,
   },
-  // `sm`, not `xs`. The magnitude is set in a variant with no letter-spacing
-  // and the window beside it is small-caps that does have some, so a 4pt gap
-  // rendered as "33%SINCE JUL 7" — the two ran together and the chip stopped
-  // parsing as two things.
+  // `sm`, not `xs`: the magnitude is semibold and the window beside it is
+  // regular, and at a 4pt gap the two read as one word ("33%since Jul 7").
+  // The same gap the unit keeps from the dot, so the row has one rhythm.
   delta: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
   // The caret's glyph box centres on the line box, but the caps and figures
   // beside it sit in the upper half of theirs, so a centred triangle reads
@@ -395,4 +409,5 @@ const styles = StyleSheet.create({
   analysisViewport: { flex: 1, minHeight: 0, marginTop: SPACING.lg },
   supporting: { marginTop: SPACING.sm },
   source: { marginTop: SPACING.md },
+  sourceLink: { marginTop: SPACING.xs, textAlign: 'right' },
 });

@@ -31,9 +31,22 @@ import { CardFrame } from './CardFrame';
  *   belief       a series, framed as a price on an outcome rather than a fact
  */
 
-/** Secondary figures — nisab's two metals and similar paired readings.
- *  A two-column list rather than a table: the label is the question and the
- *  value is the answer, and a rule between them would imply a total. */
+/** Secondary figures — nisab's two metals, a strait's watched vessel class.
+ *
+ *  One line per figure, at caption size: the question on the left, its answer
+ *  on the right, and a note folded into the question rather than stacked
+ *  under it. They were three type treatments across two lines — a caption
+ *  label, a small-caps note, a body-sized semibold value — plus a hairline
+ *  rule between rows and a hairline bar beneath them, which is a table's
+ *  worth of furniture for two facts that sit between a title and a chart.
+ *  The value is semibold at the label's size, not the body's: a figure the
+ *  size of the prose competed with the title above it for second place, and
+ *  second place belongs to the title.
+ *
+ *  The bar stays where a weight exists. On the nisab card it is the proof for
+ *  "set by silver" — the two thresholds differ by an order of magnitude, and
+ *  a bar shows that in a way two numbers do not. It is also the only rule the
+ *  list draws, so the rows do not need another. */
 const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
   const { colors } = useTheme();
   const maxWeight = Math.max(0, ...figures.map((figure) => figure.weight ?? 0));
@@ -46,41 +59,29 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
           // whole by a pure builder and never reordered, so the index is the
           // honest identity here even when two labels match.
           key={`${i}-${f.label}`}
-          style={[
-            styles.figureRow,
-            i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-          ]}
+          style={styles.figureRow}
         >
-          <View style={styles.figureContent}>
-            <View style={styles.figureMainRow}>
-              <View style={styles.figureLabel}>
-                <Text variant="caption" tone="secondary">
-                  {f.label}
-                </Text>
-                {f.note ? (
-                  <Text variant="labelXs" tone="secondary">
-                    {f.note}
-                  </Text>
-                ) : null}
-              </View>
-              <Text variant="bodyEmphasis" style={styles.figureValue}>
-                {f.value}
-              </Text>
-            </View>
-            {maxWeight > 0 && f.weight != null ? (
-              <View style={[styles.figureBarTrack, { backgroundColor: colors.rule }]}>
-                <View
-                  style={[
-                    styles.figureBarFill,
-                    {
-                      backgroundColor: colors.textEmphasis,
-                      width: `${Math.max(2, (f.weight / maxWeight) * 100)}%`,
-                    },
-                  ]}
-                />
-              </View>
-            ) : null}
+          <View style={styles.figureMainRow}>
+            <Text variant="caption" tone="secondary" style={styles.figureLabel}>
+              {f.note ? `${f.label} · ${f.note}` : f.label}
+            </Text>
+            <Text variant="captionEmphasis" style={styles.figureValue}>
+              {f.value}
+            </Text>
           </View>
+          {maxWeight > 0 && f.weight != null ? (
+            <View style={[styles.figureBarTrack, { backgroundColor: colors.rule }]}>
+              <View
+                style={[
+                  styles.figureBarFill,
+                  {
+                    backgroundColor: colors.textEmphasis,
+                    width: `${Math.max(2, (f.weight / maxWeight) * 100)}%`,
+                  },
+                ]}
+              />
+            </View>
+          ) : null}
         </View>
       ))}
     </View>
@@ -180,24 +181,19 @@ function renderBody(card: SwipeCard, onPress: () => void) {
 
 const styles = StyleSheet.create({
   figures: { marginBottom: SPACING.md },
-  figureRow: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: SPACING.md,
-    // Tight rows. A figure list is two or three lines of data between the
-    // card's opening and its chart, and every point of padding here comes
-    // straight off the bottom of part four.
-    paddingVertical: SPACING.xs,
-  },
-  figureLabel: { flexShrink: 1, gap: SPACING.xxs },
-  figureContent: { flex: 1 },
+  // Tight rows. A figure list is two or three lines of data between the
+  // card's opening and its chart, and every point of padding here comes
+  // straight off the bottom of part four.
+  figureRow: { paddingVertical: SPACING.xs },
+  figureLabel: { flexShrink: 1 },
   figureMainRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'space-between',
     gap: SPACING.md,
   },
-  figureValue: { flexShrink: 0, textAlign: 'right' },
+  // Tabular so a column of right-aligned figures lines up digit for digit.
+  figureValue: { flexShrink: 0, textAlign: 'right', fontVariant: ['tabular-nums'] },
   figureBarTrack: {
     height: StyleSheet.hairlineWidth,
     marginTop: SPACING.xs,

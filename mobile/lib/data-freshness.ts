@@ -50,13 +50,22 @@ export function indicatorObservation(
       : undefined;
 }
 
-/** Quiet, explicit provenance copy used on cards and detail sheets. */
-export function observationLabel(asOf: string | undefined): string {
+/** The observation date alone — "Sep 3". A card's kicker line prints this:
+ *  it is one of three items on the single line of metadata a card carries,
+ *  and "data through" spent half of that line saying what the position
+ *  already said. */
+export function observationDate(asOf: string | undefined): string {
   if (!asOf || !isIsoDate(asOf)) return '';
-  const date = new Date(asOf);
-  return `data through ${date.toLocaleDateString('en', {
+  return new Date(asOf).toLocaleDateString('en', {
     day: 'numeric',
     month: 'short',
     timeZone: 'UTC',
-  })}`;
+  });
+}
+
+/** Quiet, explicit provenance copy for the detail sheets, where it sits in a
+ *  source footer and the phrase has room to be a phrase. */
+export function observationLabel(asOf: string | undefined): string {
+  const date = observationDate(asOf);
+  return date ? `data through ${date}` : '';
 }

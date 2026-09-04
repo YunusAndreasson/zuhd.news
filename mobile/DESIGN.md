@@ -7,10 +7,15 @@ See root `foundation.md` for the philosophy. This document is the operational re
 ## Voice
 
 Chart decks group unseen updates before a quiet “You’re caught up” page, with
-previously viewed cards below. “New to you”, “Updated since you last viewed” and
-“Previously viewed” sit near the observation date, quiet except for stronger
-ink on an update. Status never borrows the favorable/unfavorable delta colors. A visit
-freezes content and ordering; regroup on section entry or foreground return.
+previously viewed cards below. That grouping is the whole of how a card's
+history is told: a card whose content changed since the reader last viewed it
+opens its kicker line with `updated`, in stronger ink, in the slot `current`
+uses — and a card is never both, because each is the app saying "look". There
+is no “New to you” and no “Previously viewed”: both restated the reader's
+position, which the caught-up page already gives, as one more small-caps line
+to decipher before reaching the number. Status never borrows the
+favorable/unfavorable delta colors. A visit freezes content and ordering;
+regroup on section entry or foreground return.
 Only a foreground, visible, settled card viewed for 800 ms is acknowledged.
 Content signatures ignore observation timestamps and editorial promotion;
 history stays on-device and is included in the privacy erase action.
@@ -173,10 +178,23 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   its reading, unit and movement before naming the series; a belief states its
   question before showing the probability, because a percentage without an
   outcome has no meaning. The reading remains the largest type on both. Live
-  analysis is primary body copy; the range, baseline or second-window sentence
-  is supporting caption copy beneath it. Source attribution is the quietest
+  analysis is primary body copy; the baseline or second-window sentence is
+  supporting caption copy beneath it. Source attribution is the quietest
   tier. Long titles scale but never truncate, and a card that still outgrows
   the screen scrolls.
+- **Four tiers, and every line on the card belongs to one.** The answer —
+  reading, unit and move, in `display` over a single `caption` row where the
+  coloured magnitude is the only bold thing. The subject — `title`. The
+  picture — the chart, whose caption, legend, axis extremes and ticks all sit
+  in the quietest register (`labelXs` / `tabular`) so none of them reads as a
+  subtitle. The account — `body` analysis, one `caption` sentence where the
+  chip cannot carry the fact, and the source. Above all four, one `labelXs`
+  line of metadata: an ink-step word if the card earned one, the kicker, the
+  observation date. A polish round in September 2026 found eight type
+  treatments and six small-caps items competing on one screen, which is why
+  the delta window is caption rather than caps, the chart caption is `labelXs`
+  on a card, figures are one caption-sized line each, and the status line is
+  gone. Adding a fifth tier, or a second metadata line, is the regression.
 - **Proximity carries the grouping.** Reading, unit and delta are one tight
   group. The chart begins after an item gap; the explanatory group begins
   after a larger group gap, with supporting movement copy kept close to the
@@ -200,13 +218,17 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   card model.
 - **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
   not prose and gains nothing from being set as prose; what is left for part
-  three is whatever the chip cannot show — the range a belief has travelled,
-  the second window on a monthly series, the level a rate has sat at and since
-  when. A percentage that appears in both is the same fact twice. A level the
-  chip measures *against* — a strait's 90-day normal — is not a sentence
-  either: it is a dashed reference line on the chart (`CardSeries.reference`),
-  because the place to show what a percentage is divided by is beside the
-  line it divides.
+  three is whatever neither the chip nor the chart can show — the second
+  window on a monthly series, the two grains' separate directions under a
+  ratio, the level a rate has sat at and since when. A percentage that
+  appears in both is the same fact twice, and so is a range the y-axis
+  already prints: a belief's "low 26%, high 86%" was the chart read back as
+  prose, and went. A level the chip measures *against* — a strait's 90-day
+  normal — is not a sentence either: it is a dashed reference line on the
+  chart (`CardSeries.reference`), because the place to show what a percentage
+  is divided by is beside the line it divides. Nor is the deck's selection
+  rule a sentence: "largest monthly fall in this 15-currency set" described
+  the builder, not the currency.
 - **Two graph-card kinds.** Builders describe graph-backed `Reading` and
   `Belief` cards. `CardView` is typed to that boundary so unreachable table or
   condition rendering branches cannot return unnoticed.

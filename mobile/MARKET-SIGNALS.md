@@ -2,7 +2,7 @@
 
 The backend scans completed trading sessions for sharp daily moves, four-or-more-session streaks, sustained weekly/monthly moves, reversals, and opposite-direction Nasdaq-100/S&P 500 divergence. It selects at most three highlights. Missing, provisional, misaligned, and stale series are excluded rather than guessed.
 
-Cards use neutral directional color: a rising index is not automatically good news. The observation window, data date, factual description, optional news commentary, and sources have separate roles. Routine chart updates preserve viewed status; meaningful editorial revisions can show “Updated since you last viewed.”
+Cards use neutral directional color: a rising index is not automatically good news. The observation window, data date, factual description, optional news commentary, and sources have separate roles. Routine chart updates preserve viewed status; a meaningful editorial revision opens the card's kicker line with `updated`, in stronger ink.
 
 ## Operations
 

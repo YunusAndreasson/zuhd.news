@@ -20,7 +20,6 @@ import {
   latestOf,
   nisab,
   relatedForTags,
-  seriesExtremes,
   windowChange,
   windowPointChange,
 } from './format';
@@ -354,19 +353,14 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     // `weight` draws the bar under each row, and the bar is the point: the
     // two thresholds differ by an order of magnitude, and "set by silver"
     // is a claim a reader can now see rather than take on trust.
+    //
+    // No per-ounce price beside either. It was the fourth and fifth number
+    // on a card whose reason to exist is one, the chart's axis already
+    // prints the binding metal's level, and a reader who wants the quote has
+    // the entity sheet a press away.
     figures: [
-      {
-        label: 'gold · 85 g',
-        value: `$${formatCount(n.gold)}`,
-        note: `at $${formatReading(goldPrice)}/oz`,
-        weight: n.gold,
-      },
-      {
-        label: 'silver · 595 g',
-        value: `$${formatCount(n.silver)}`,
-        note: `at $${formatReading(silverPrice)}/oz`,
-        weight: n.silver,
-      },
+      { label: 'gold · 85 g', value: `$${formatCount(n.gold)}`, weight: n.gold },
+      { label: 'silver · 595 g', value: `$${formatCount(n.silver)}`, weight: n.silver },
     ],
     series: {
       values: bindingIndicator.values,
@@ -568,7 +562,6 @@ function fxMoverCards(
   return [mover, major]
     .filter((x): x is NonNullable<typeof x> => x !== undefined)
     .map(({ indicator, change, value }) => {
-      const isMajor = indicator.id !== mover?.indicator.id;
       // The unit arrives as a data column — "ZAR / USD" — and the card reads
       // it aloud: how many of these one dollar buys.
       const code = indicator.unit?.split(' / ')[0] ?? '';
@@ -595,13 +588,12 @@ function fxMoverCards(
           'favorable',
           { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
         ),
-        // The sentence says which slot this is, because "the largest move in the
-        // basket" and "the largest move among the majors" are different claims
-        // and a card that makes the wrong one is telling the reader something
-        // untrue about a number they can check.
-        changed: isMajor
-          ? `Largest monthly ${weakened ? 'fall' : 'rise'} among the euro, yen and yuan, measured to ${change.to}.`
-          : `Largest monthly ${weakened ? 'fall' : 'rise'} in this 15-currency set, measured to ${change.to}.`,
+        // No sentence under the analysis. One used to say which slot the
+        // card had taken — "largest monthly fall in this 15-currency set" —
+        // which is a fact about the deck's selection rule, not about the
+        // currency, and the date it ended on was already on the kicker line.
+        // The chip says the move and the desk's paragraph says why; nothing
+        // is left for a third line to add.
         why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,
@@ -931,7 +923,6 @@ function beliefCards(
     .map((indicator) => {
       const value = latestOf(indicator);
       if (value == null) return null;
-      const extremes = seriesExtremes(indicator);
       const change = windowPointChange(indicator, indicator.values.length - 1);
       const day =
         typeof indicator.change24h === 'number' && Number.isFinite(indicator.change24h)
@@ -945,10 +936,6 @@ function beliefCards(
       const dayMove =
         sharp && day !== null
           ? `${day < 0 ? 'Down' : 'Up'} ${formatMagnitudePoints(day) ?? ''} in a day.`
-          : undefined;
-      const range =
-        extremes && extremes.max - extremes.min >= 1
-          ? `Low ${Math.round(extremes.min)}% on ${extremes.minAt}; high ${Math.round(extremes.max)}% on ${extremes.maxAt}.`
           : undefined;
       const card: BeliefCard = {
         id: indicator.id,
@@ -968,11 +955,13 @@ function beliefCards(
         // either of them green.
         delta: deltaFrom(change, null, { unit: 'points' }),
         // In points, never per cent: a contract going 26 → 86 moved 60 points,
-        // and the chip says so. What is left for the sentence is the range,
-        // which is the part that says how settled the belief is — a number
-        // sitting at 88 having never been below 80 is a different fact from
-        // one that got there from 30 last week.
-        changed: [dayMove, range].filter(Boolean).join(' ') || undefined,
+        // and the chip says so. The sentence, when there is one, is only the
+        // day's move. It used to carry the range as well — "Low 26% on Jul
+        // 17; high 86% on Aug 9" — which is the chart's own y-axis read back
+        // as prose: the axis prints both extremes, and the line shows whether
+        // a contract sitting at 88 has never been below 80 or got there from
+        // 30 last week. Two numbers the reader had already seen, with dates.
+        changed: dayMove,
         why: whyFor(analysis, indicator.id, indicator),
         series: {
           values: indicator.values,

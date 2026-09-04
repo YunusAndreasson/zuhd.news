@@ -564,7 +564,12 @@ export const TrendBlock = memo(function TrendBlock({
 
   const inner = (
     <View style={blockContainerStyle[variant]}>
-      <Text variant="labelSm" numberOfLines={2} style={styles.label}>
+      {/* On a card the caption steps down to the axis furniture's own
+          register. At `labelSm` it was the second-largest small-caps thing
+          on the screen — bigger than the kicker, the ticks and the source —
+          and it sat directly under the title, where it read as a subtitle
+          rather than as "what this axis measures". */}
+      <Text variant={isContext ? 'labelXs' : 'labelSm'} numberOfLines={2} style={styles.label}>
         {label}
       </Text>
 

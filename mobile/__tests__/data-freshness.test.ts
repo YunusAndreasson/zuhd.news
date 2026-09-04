@@ -1,6 +1,7 @@
 import {
   isCurrentObservation,
   isIsoDate,
+  observationDate,
   observationLabel,
   oldestObservation,
 } from '../lib/data-freshness';
@@ -29,6 +30,9 @@ describe('data freshness', () => {
 
   it('labels the actual observation and uses the oldest input for derived data', () => {
     expect(observationLabel('2026-08-23')).toBe('data through Aug 23');
+    // The card's kicker line prints the date alone; the phrase is the sheets'.
+    expect(observationDate('2026-08-23')).toBe('Aug 23');
+    expect(observationDate(undefined)).toBe('');
     expect(oldestObservation('2026-09-01', '2026-08-25')).toBe('2026-08-25');
   });
 });

@@ -414,10 +414,10 @@ describe('buildInstrumentCards', () => {
     // winning move the same way on screen — and says so in slate rather than
     // by leaving the chip the colour of the label text beside it.
     expect(belief?.delta?.valence).toBe('neutral');
-    // What is left for the sentence is the range, which is the part that says
-    // how settled the belief is.
-    expect(belief?.changed).toContain('Low 26% on Jul 17');
-    expect(belief?.changed).toContain('high 86% on Aug 9');
+    // Nothing under the analysis on an ordinary day. The range this used to
+    // print — "Low 26% on Jul 17; high 86% on Aug 9" — is the chart's y-axis
+    // read back as prose, and the chip already carries the move.
+    expect(belief?.changed).toBeUndefined();
   });
 
   it('keeps a slot for the majors, so the euro can reach a screen at all', () => {
@@ -452,8 +452,11 @@ describe('buildInstrumentCards', () => {
     // still does not take the second slot, because that slot is a different
     // question.
     expect(cards.map((c) => c.id)).toEqual(['fx-egp-mover', 'fx-eur-mover']);
-    expect(find(cards, 'fx-egp-mover')?.changed).toContain('in this 15-currency set');
-    expect(find(cards, 'fx-eur-mover')?.changed).toContain('among the euro, yen and yuan');
+    // Neither card explains which slot it took. That sentence described the
+    // deck's selection rule, not the currency, and the card's surface is the
+    // chip and the desk's paragraph.
+    expect(find(cards, 'fx-egp-mover')?.changed).toBeUndefined();
+    expect(find(cards, 'fx-eur-mover')?.changed).toBeUndefined();
 
     // A major that did not move is not a slot that fills anyway.
     const quiet = allOf(
@@ -1091,12 +1094,10 @@ describe('graph-card context', () => {
     // The chip keeps the month; the day's move is the sentence, so a card
     // marked current says why on its face.
     expect(card(-10)).toMatchObject({ lead: true });
-    expect(card(-10)?.changed).toBe(
-      'Down 10 points in a day. Low 49% on Sep 4; high 52% on Aug 20.',
-    );
+    expect(card(-10)?.changed).toBe('Down 10 points in a day.');
     expect(card(-10)?.delta).toMatchObject({ direction: 'down', magnitude: '1 point' });
     expect(card(4)).toMatchObject({ lead: false });
-    expect(card(4)?.changed).toBe('Low 49% on Sep 4; high 52% on Aug 20.');
+    expect(card(4)?.changed).toBeUndefined();
     // Polymarket publishes null for a market with no day-old price.
     expect(card(null)).toMatchObject({ lead: false });
     expect(card(undefined)).toMatchObject({ lead: false });
