@@ -1366,8 +1366,181 @@
         "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
       ],
       "generatedAt": "2026-09-04T17:33:31.806Z"
+    },
+    "us-cpi": {
+      "standingFingerprint": "5a449cb77ac17560",
+      "recentFingerprint": "4f3322cce7ff1d7c",
+      "standing": "The year-over-year change in the US consumer price index, the headline measure of how fast American prices are rising. It anchors Federal Reserve rate decisions, wage bargaining and the coupon on inflation-linked debt.",
+      "recent": "The rate has climbed to 3.3% from a low of 2.3% in April 2025, a rise of roughly a third across the window, and sits below the 4.2% peak recorded in May 2026.",
+      "citations": [],
+      "generatedAt": "2026-09-04T22:26:25.441Z"
+    },
+    "portwatch-hormuz-tanker": {
+      "standingFingerprint": "e5446e068101d3c1",
+      "recentFingerprint": "eac407a87a9ee249",
+      "standing": "The count of oil tankers passing each day through the Strait of Hormuz, the narrow sea lane between Iran and Oman that carries roughly a fifth of the world's traded crude. When transits fall, cargoes are rerouted or never sail, and oil prices move.",
+      "recent": "Transits have collapsed to 2 ships a day, hitting zero on Jul 23, as US and Iranian forces exchanged strikes through the strait. Two tankers were attacked leaving Hormuz, a supertanker was stopped after hitting mines, and US drones struck two Iranian oil tankers under a tanker-for-tanker policy. Oil rose 4% on supply fears.",
+      "citations": [
+        "2026-09-02-hormuz-closure-tanker-attacks-war-risk-transmission",
+        "2026-09-03-tanker-for-a-tanker-reciprocity-as-a-targeting-rule",
+        "2026-09-03-hormuz-a-campaign-that-now-has-a-2027-end-date",
+        "2026-08-31-larak-scatterable-mine-claim-unverified-justification",
+        "2026-09-01-gcc-hormuz-geography-divides-recovery"
+      ],
+      "generatedAt": "2026-09-04T22:26:35.105Z"
+    },
+    "portwatch-bab-container": {
+      "standingFingerprint": "6b6f65dccd9e80a2",
+      "recentFingerprint": "9157b3b185ad7c07",
+      "standing": "A daily count of container ships transiting the Bab-el-Mandeb, the strait between Yemen and the Horn of Africa that gates the Red Sea and the Suez route. When traffic falls, boxes go the long way round Africa and freight rates follow.",
+      "recent": "Traffic has thinned as the Houthis pushed toward the strait itself, with 81 killed in a day of advances around Mokha. The group had already struck a Saudi supertanker off Yanbu in late August, and container transits fell from 10 a day on Aug 9 to 3.",
+      "citations": [
+        "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait",
+        "2026-08-24-yanbu-tanker-strike-war-risk-repricing"
+      ],
+      "generatedAt": "2026-09-04T22:26:43.723Z"
+    },
+    "portwatch-suez-total": {
+      "standingFingerprint": "06b1bad65b3c3601",
+      "recentFingerprint": "80313485c6973cc9",
+      "standing": "The count of ships passing through the Suez Canal each day, the sea route between the Mediterranean and the Red Sea. Traffic here is a live read on whether Asia–Europe cargo is sailing the short way or going around Africa.",
+      "recent": "Traffic swung violently within a single day, from 57 ships on Aug 11 to 27 on Aug 12, as fighting closed on the Red Sea approaches: a Houthi missile hit a Saudi supertanker at Yanbu on Aug 24, and 81 were killed in Houthi advances toward the strait. Transits have since recovered to 53.",
+      "citations": [
+        "2026-08-24-yanbu-tanker-strike-war-risk-repricing",
+        "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait"
+      ],
+      "generatedAt": "2026-09-04T22:26:52.578Z"
+    },
+    "portwatch-panama-total": {
+      "standingFingerprint": "7f0536ffdba1c857",
+      "recentFingerprint": "b462222d2d8dbb6c",
+      "standing": "The number of ships crossing the Panama Canal each day, the lock-limited shortcut between the Atlantic and Pacific. Transits depend on rainfall in the lake that fills the locks, so a dry season rations slots and pushes cargo onto longer routes.",
+      "recent": "Transits are running near the low end of the 55-day window, at 31 a day against a high of 83 on Jul 13 and a low of 23 on Jul 22. The canal moved on 21 August to cap daily transits in anticipation of a severe El Niño, and the UN now puts the odds near 100% that the pattern persists to February.",
+      "citations": [
+        "2026-09-03-el-nino-a-forecast-that-arrives-before-the-money",
+        "2026-09-03-el-nino-record-pacific-warming-wmo-forecast"
+      ],
+      "generatedAt": "2026-09-04T22:27:02.426Z"
+    },
+    "portwatch-malacca-total": {
+      "standingFingerprint": "7acb9eb6cb09bd73",
+      "recentFingerprint": "13bf66c54c09b1e5",
+      "standing": "The number of ships passing daily through the Malacca Strait, the narrow sea lane between Malaysia and Indonesia that links the Indian Ocean to the South China Sea. Most of Asia's imported oil and a large share of its container trade pass through it.",
+      "recent": "Transits have drifted down as war reshapes the routes feeding the strait: US strikes on Iran resumed after a month, a supertanker was stopped after hitting mines in the Strait of Hormuz, and oil prices jumped 4pc on supply fears. Houthi advances toward Bab al-Mandab put a second chokepoint on the same Europe-Asia run under armed pressure.",
+      "citations": [
+        "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait",
+        "2026-09-03-hormuz-a-campaign-that-now-has-a-2027-end-date",
+        "2026-09-03-tanker-for-a-tanker-reciprocity-as-a-targeting-rule"
+      ],
+      "generatedAt": "2026-09-04T22:27:12.599Z"
+    },
+    "portwatch-taiwan-total": {
+      "standingFingerprint": "6dc779e64edee7d7",
+      "recentFingerprint": "2206b1ae730750c0",
+      "standing": "A daily count of merchant vessels passing through the Taiwan Strait, the 180-kilometre channel between Taiwan and mainland China. Most of the traffic between East Asia's export ports and the rest of the world runs through it, so the count is a read on regional trade flow.",
+      "recent": "Traffic recovered to 318 ships a day after collapsing to 28 on 10 July, two days before the 401-ship peak on 12 July — a swing that looks like a weather closure and its backlog rather than a political one. Nothing in the current window points at the strait itself; the armed pressure is on Hormuz and Bab al-Mandab.",
+      "citations": [],
+      "generatedAt": "2026-09-04T22:27:21.001Z"
+    },
+    "portwatch-dover-total": {
+      "standingFingerprint": "fd8969b92777bef9",
+      "recentFingerprint": "4c961cb281b46760",
+      "standing": "A count of ships passing through the Dover Strait, the narrow neck of water between England and France where the North Sea funnels into the Channel. It is one of the busiest shipping lanes in the world, and northern Europe's container, ferry and energy traffic all pass through it.",
+      "recent": "Transits have drifted down about a tenth over the window, from 186 on Aug 1 to 147, with the floor at 126 two days after the peak. Nothing in the record explains the decline; the swing between those two dates is larger than the trend itself.",
+      "citations": [],
+      "generatedAt": "2026-09-04T22:27:29.360Z"
+    },
+    "portwatch-gibraltar-total": {
+      "standingFingerprint": "285bc231d46e1060",
+      "recentFingerprint": "a9dc498b4fe4b445",
+      "standing": "A daily count of ships passing between Spain and Morocco, the only sea entrance to the Mediterranean. Everything moving between Atlantic ports and southern Europe, North Africa and the Suez route passes through it, so the tally tracks the health of that trade.",
+      "recent": "Traffic has drifted down from the 150 ships of Aug 16 to 123, with the Mediterranean's other end under pressure: mines stopped a supertanker in the Strait of Hormuz, the US adopted a tanker-for-tanker targeting rule after strikes on two Iranian tankers, and Houthi forces advancing in Yemen killed 81 in a day near the Red Sea strait.",
+      "citations": [
+        "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait",
+        "2026-09-02-hormuz-closure-tanker-attacks-war-risk-transmission",
+        "2026-09-03-tanker-for-a-tanker-reciprocity-as-a-targeting-rule"
+      ],
+      "generatedAt": "2026-09-04T22:27:39.288Z"
+    },
+    "poly-russia-x-ukraine-ceasefire-agreement-by-october-": {
+      "standingFingerprint": "78b5e62204b6f282",
+      "recentFingerprint": "7950b9854be6c6d9",
+      "standing": "A Polymarket contract paying out if Russia and Ukraine agree a ceasefire before a set date. The price is what traders will pay for that outcome, so it moves on diplomacy — envoys, halts, summit language — rather than on territory.",
+      "recent": "The move follows the arrival of a negotiating track: Trump envoys Witkoff and Kushner were expected in Moscow and Kiev, and Ukraine ordered a battlefield halt for Sept. 5-8 to receive them. Pricing tripled from 8 on Aug 21 to 27 on Sep 4, even as both sides kept striking energy sites, including an oil depot near Sochi.",
+      "citations": [
+        "2026-09-04-witkoff-kushner-moscow-kiev-ukraine-halt-order",
+        "2026-09-04-ukraine-russia-drone-exchange-sochi-oil-depot",
+        "2026-09-01-sco-bishkek-declaration-consensus-omissions"
+      ],
+      "generatedAt": "2026-09-04T22:27:49.449Z"
+    },
+    "poly-russia-x-ukraine-ceasefire-by-december-31-2026": {
+      "standingFingerprint": "6d70051b83c190de",
+      "recentFingerprint": "fbf5b617131f622d",
+      "standing": "A Polymarket contract on whether Russia and Ukraine reach a ceasefire before the end of 2026. The price is what traders will pay for that outcome, so it moves on talks, envoys and escalation rather than on the front line alone.",
+      "recent": "The odds fell from 23% on Aug 5 to 14% on Aug 29 as the war widened: Germany formally blamed Russia for the Leipzig airport drone attack, Turkey summoned Kyiv's ambassador over strikes on its ships, and Ukrainian sea drones hit a vessel at Sochi. The recovery to 17% came with Ukraine ordering a battlefield halt for Sept. 5-8 to receive Witkoff and Kushner.",
+      "citations": [
+        "2026-09-04-witkoff-kushner-moscow-kiev-ukraine-halt-order",
+        "2026-09-02-leipzig-drone-attribution-below-article-five",
+        "2026-08-30-black-sea-turkish-ships-neutral-shipping-summons",
+        "2026-09-04-the-refinery-is-the-narrow-part"
+      ],
+      "generatedAt": "2026-09-04T22:27:59.467Z"
+    },
+    "poly-will-openai-have-the-best-ai-model-at-the-end-of": {
+      "standingFingerprint": "9ed4fc57c9144953",
+      "recentFingerprint": "39acb52a1561f987",
+      "standing": "A Polymarket contract on whether OpenAI will hold the strongest AI model when the market settles. The price is what traders pay for that outcome, so it tracks how the frontier race is judged rather than any benchmark result.",
+      "recent": "The contract climbed from 3% on Aug 17 to 18% on Sep 4, a move Polymarket's own market structure has been under scrutiny for: a study of 152 Polymarket wallets showed a 97.2% win rate on war odds, and the Ninth Circuit ruled on Aug 28 that state powers over prediction markets stand.",
+      "citations": [
+        "2026-08-22-polymarket-orcas-secrecy-priced-in-public",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-09-04T22:28:09.368Z"
+    },
+    "poly-iran-leadership-change-by-september-30-202606291": {
+      "standingFingerprint": "274334a968217f60",
+      "recentFingerprint": "a987c7e4073420a5",
+      "standing": "A Polymarket contract on whether Iran's supreme leader or government is replaced by a set date. Traders buy and sell the outcome, so the price is the going rate on regime survival — a market read on how close a state under pressure is to breaking.",
+      "recent": "The price fell through a month in which the war escalated without touching Tehran's hold on power: US strikes resumed after a month's pause, Iran hit two US airbases in Jordan, and a supertanker struck mines in the Strait of Hormuz. It reached 11 on Aug 8 and 3 on Aug 24, and now sits at 4.",
+      "citations": [
+        "2026-09-03-hormuz-a-campaign-that-now-has-a-2027-end-date",
+        "2026-09-03-tanker-for-a-tanker-reciprocity-as-a-targeting-rule",
+        "2026-09-04-the-rotation-calendar-is-the-declaration",
+        "2026-09-03-a-war-by-any-other-name-starts-a-clock"
+      ],
+      "generatedAt": "2026-09-04T22:28:19.564Z"
+    },
+    "poly-will-flvio-bolsonaro-finish-in-second-place-in-t": {
+      "standingFingerprint": "f84260c7c68d56e0",
+      "recentFingerprint": "3d65f19fb2875051",
+      "standing": "A Polymarket contract on whether Flávio Bolsonaro places second in Brazil's presidential election. Prediction-market prices are what traders will pay for an outcome, so the level moves with money at risk rather than with polling averages alone.",
+      "recent": "The contract has held in a narrow band, between 82 on Aug 8 and 88 on Aug 6, and the input carries no Brazilian political news to explain the drift. What moved around Polymarket itself was scrutiny of the venue: 152 wallets showing a 97.2% win rate, and a Ninth Circuit ruling against rival Kalshi.",
+      "citations": [
+        "2026-08-22-polymarket-orcas-secrecy-priced-in-public",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-09-04T22:28:28.621Z"
+    },
+    "poly-will-david-lisnard-win-the-2027-french-president": {
+      "standingFingerprint": "d28693de536fa127",
+      "recentFingerprint": "20f29220f4b40da8",
+      "standing": "A Polymarket contract on whether David Lisnard, the mayor of Cannes and a figure on the French right, wins the 2027 presidential election. The price is what traders will pay for that outcome, not a forecast.",
+      "recent": "The contract has traded in a narrow band of 2 to 4 percent over the past month, reaching 4 on Aug 18 and sitting at 3 now. Nothing in the available material explains the move; at these levels the swings are noise in a thin market rather than a response to any French political event.",
+      "citations": [],
+      "generatedAt": "2026-09-04T22:28:37.260Z"
+    },
+    "stocks:AVGO": {
+      "standingFingerprint": "1fa441f02fa32d18",
+      "recentFingerprint": "bcac824d181e53fe",
+      "standing": "A US semiconductor and infrastructure-software company whose chips sit in data-centre networking and smartphones, and which owns VMware. Its earnings are read as a gauge of AI hardware spending, and its software pricing sets costs for enterprise IT.",
+      "recent": "Broadcom has fallen about 14% over the past three weeks, from $427.80 on Aug 7 to $355.60 on Aug 26, and $357.90 now. The one development in view is on the software side: Broadcom ended VMware's perpetual licenses entirely, a repricing that has pushed smaller VMware customers to reconsider the platform.",
+      "citations": [
+        "2026-09-04-vmware-broadcom-smb-repricing-trust"
+      ],
+      "generatedAt": "2026-09-04T22:28:46.989Z"
     }
   },
-  "generatedAt": "2026-09-04T17:33:31.807Z",
+  "generatedAt": "2026-09-04T22:28:46.989Z",
   "windowDays": 14
 }
