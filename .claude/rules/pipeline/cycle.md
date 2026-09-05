@@ -401,6 +401,94 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   is deleting the feature"* — was right, and the fix it described was
   incomplete rather than wrong.
 
+## A worked example is a template, and the model will hand it back
+
+- **This is the third failure mode of an example, after "too vague" and "too
+  long", and it has now bitten twice in two days.** Measured across the
+  2026-09-05 dispatch: the site's definition of Brent crude was
+  `narrate-indicators-prompt.md`'s own sample sentence at **100% — every word**,
+  and `fomc-2026-09`, `-10` and `-12` shipped one shared paragraph at 49–63% of
+  the ✓ example in `narrate-events-prompt.md`. That example had been added the
+  previous night to fix *"five central-bank events recited the same 4.81%
+  ten-year"*. The duplication was moved, not removed: the cards stopped reciting
+  the chart and started reciting the prompt, and nothing said so.
+- **Both prompts now illustrate with instruments this pipeline does not carry** —
+  Newcastle coal, the Chilean peso, Chad, the Reserve Bank of India, the Bank of
+  Canada — under a heading that says why, and an explicit line: *copy the shape,
+  never the words; if your sentence could be pasted into this file as a new
+  example, it is the wrong sentence.* Verified live after the change: the same
+  FOMC item came back with *"Warsh arrives at his first September meeting having
+  spent Jackson Hole testing how much of the Fed's independence he intends to
+  spend"* — 0% echo.
+- **`promptEcho` (`lib/grounding.js`) is how you find out it stopped working.**
+  It reads the examples out of the prompt the run is actually sending, so it can
+  never fall out of step with the file, and reports the share of the output's
+  5-grams that appear in one. **It gates `recent` at 0.5 and only counts
+  `standing`**, and the asymmetry is what dropping costs: a rejected `recent`
+  ships an empty paragraph on the established "a rejected recent is not a
+  rejected item" path, while a rejected `standing` drops the whole item and the
+  app's decks gate membership on having prose — so gating there would delete a
+  card to avoid a sentence that is at least true. `prompt-echo` joins
+  `chart-echo` in both `Dispatch:` lines.
+- **Two ratchets in `corpus.test.js` measure the artifact rather than the
+  intent**: no shipped sentence is ≥50% its own prompt's example, and no two
+  instruments' `recent` share ≥30% of their 6-grams. The second carries the
+  three known FOMC pairs as a named baseline that **should be deleted** once the
+  next 04:00 pass rewrites them — the file's header is explicit that baselines
+  are observed values, and the point is to catch a *new* pair.
+
+## The prune deletes what a half-written payload could not describe
+
+- **`items` is assembled from payload files that each degrade to `[]` when
+  unreadable, and the prune trims the cache to match it.** So a mid-write
+  `.chokepoints.json` on the 04:00 pass deletes every chokepoint's prose — the
+  exact trade the code comment says is not worth making, with nothing stopping
+  it. The `!NEW_ONLY` guard beside it protects the four other daily passes and
+  does nothing for the one that actually prunes.
+- **Reproduced twice by accident**, testing a prompt change against a checkout
+  whose payloads were a month old: `--only mkt:tase` deleted 37 indicator
+  entries and `--only fomc-2026-09` deleted 7 of 16 events. Both would have been
+  committed but for a backup taken by habit.
+- **`PRUNE_FLOOR` (0.6) declines the prune when the live set has collapsed
+  against the cache**, and logs. Rotation is real — Polymarket questions close,
+  `wiki-*` is re-picked every cycle — but it moves a handful of ids a day, not a
+  third of the file. Below the floor the honest read is "a source did not load",
+  and a stale entry costs a card nobody notices while a wrong prune costs every
+  card that source feeds.
+
+## The market-signal join read half its own signal
+
+- **Not one `mkt:*` entity id exists anywhere in the corpus**, and the coverage
+  join's first arm is `a.entityIds.includes('mkt:tase')`. `extract-entities.js`
+  mints `brent` (437 articles), `cp:hormuz` (70), `nasdaq100` (20) and
+  `stocks:*`; it has never minted an exchange. So for all 30 exchanges that arm
+  is dead, and with it `directNews` — which feeds the ranking tiebreak and the
+  "shared explanatory story" dedup in `selectMarketSignals`. TA-125 drew **0
+  articles from a 327-story window** and its card shipped with no explanation.
+- **`countryTags` is the arm that was missing.** `build.js` has joined the
+  exchange cards' related lists on tags-or-country all along; this stage read
+  tags only. `loadArticles` now returns `countries` — the ISO-2 codes an article
+  links in its body — as a field of its own rather than more words in `hay`,
+  because two-letter codes folded into a substring haystack would have `us`,
+  `in` and `it` matching ordinary prose. **Partial by nature: 5,035 of 9,276
+  articles carry a link**, so it supplements and is ranked below a name match,
+  never replaces one. Measured: TA-125 0 → 12, BIST 7 → 8.
+- **`real` and `won` were tags.** Word-boundary matching stops `smi` matching
+  "transmission" and cannot save a tag that is itself an English word: Ibovespa's
+  two "explanatory" articles for a 5.4% São Paulo rally were a piece on European
+  housing and one on the Pentagon's maintenance backlog, both matched on *real
+  estate*; `won` on the KOSPI is the past tense of "win". Both gone, and b3's
+  bundle went 2 wrong → 1 right. **Country names stay** — removing `turkey` from
+  BIST was tried and measurably cost a Black Sea shipping story the country arm
+  could not see, because only half the corpus carries a link.
+- **Eight ways to fail, all of them `null`, none of them logged.**
+  `validateMarketComment` returned a bare `null` for every rejection and the
+  caller discarded `result.error` in silence, so three cards shipping without an
+  explanation looked exactly like three quiet days. It takes a `reasons` array
+  now (optional, so no caller changed) and the stage logs the reason, the
+  rejected text, and a `commented` count — the same discipline
+  `narrate-indicators.js` has had all along.
+
 ## Tunable parameters and experiments
 
 One variable, one experiment, minimum three days, ≤20% of a parameter's range.

@@ -15,23 +15,35 @@ const atomicWrite = (path, data) => {
   renameSync(`${path}.tmp`, path)
 }
 
-export function validateMarketComment(out, bundle) {
-  if (typeof out?.recent !== 'string' || !out.recent.trim() || out.recent.length > 360) return null
-  if (validateNumbers(out.recent, bundle) || validateProperNouns(out.recent, bundle)) return null
-  if (!Array.isArray(out.evidence) || !out.evidence.length || out.evidence.length > 3) return null
+/**
+ * @param {any} out       The model's parsed object.
+ * @param {any} bundle    What it was given.
+ * @param {string[]} [reasons]  Push-only channel for *why* a comment was
+ *   rejected. Optional so every existing caller and test is unaffected, and it
+ *   exists because there are eight ways to fail here and the return value is
+ *   `null` for all of them — an operator reading a card with no explanation had
+ *   no way to tell a rejected sentence from a model that was never asked.
+ */
+export function validateMarketComment(out, bundle, reasons = []) {
+  const no = (why) => { reasons.push(why); return null }
+  if (typeof out?.recent !== 'string' || !out.recent.trim() || out.recent.length > 360) return no('recent missing, empty or over 360 chars')
+  const bad = validateNumbers(out.recent, bundle) ?? validateProperNouns(out.recent, bundle)
+  if (bad) return no(bad)
+  if (!Array.isArray(out.evidence) || !out.evidence.length || out.evidence.length > 3) return no('evidence missing, empty or over 3')
   const evidence = []
   for (const e of out.evidence) {
     const article = bundle.coverage.find((a) => a.slug === e.slug)
-    if (!article || typeof e.quote !== 'string' || e.quote.length < 20 ||
-        !article.lead.includes(e.quote)) return null
+    if (!article) return no(`cited slug not offered: ${e?.slug}`)
+    if (typeof e.quote !== 'string' || e.quote.length < 20) return no('quote missing or under 20 chars')
+    if (!article.lead.includes(e.quote)) return no(`quote not verbatim in ${article.slug}`)
     evidence.push({ slug: article.slug, title: article.title, date: article.date,
       url: `https://zuhd.news/a/${encodeURIComponent(article.slug)}` })
   }
   // A causal statement requires explicit causal language in its cited evidence,
   // not just the same country or company being named.
   const cause = /because|driven by|in response to|reacted to|triggered|caused|fuelled|fueled|following|amid|on hopes|on fears/i
-  if (cause.test(out.recent) && !out.evidence.some((e) => cause.test(e.quote))) return null
-  if (/will |could |may |buy |sell |forecast|price target/i.test(out.recent)) return null
+  if (cause.test(out.recent) && !out.evidence.some((e) => cause.test(e.quote))) return no('asserts a cause its evidence does not')
+  if (/will |could |may |buy |sell |forecast|price target/i.test(out.recent)) return no('forecasts or advises')
   return { text: out.recent.trim(), citations: evidence }
 }
 
@@ -55,12 +67,41 @@ export async function runMarketSignals({ dryRun = false, noLlm = false, now = Da
   }
   const commentary = { ...old.commentary }
   const published = []
+  /** Why a card has no commentary — an empty list means every selected signal
+   *  got one, which has not yet happened on a real run. */
+  const rejections = []
+  const skipped = []
   let calls = 0
   for (const signal of selection.selected) {
     const { pattern } = signal
+    /**
+     * What the window's coverage says about this instrument.
+     *
+     * Three arms, and the first one has never matched anything. `entityIds` is
+     * minted by `extract-entities.js`, which attaches `brent`, `cp:hormuz`,
+     * `nasdaq100` and `stocks:*` to articles — and **not one `mkt:*` id exists
+     * anywhere in the corpus**, so for all 30 exchanges this arm is dead. It
+     * stays because it is free and correct the day those ids are minted; what
+     * it may not do is stand in for a join that works, and it was doing exactly
+     * that. TA-125 came back with zero articles from a 327-story window.
+     *
+     * `topicTags` is the arm that carries the load, and it is only as good as
+     * an editorial list — Ibovespa's tags included `real`, so its two
+     * "explanatory" articles for a 5.4% rally were a piece on European housing
+     * and one on the Pentagon's maintenance backlog, both matched on *real
+     * estate*. Those tags are pruned (see `market-metadata.js`).
+     *
+     * `countryTags` is new here and is what fixes the zero: an exchange's own
+     * country is the honest fallback when nothing named it directly. Partial by
+     * nature — `a.countries` is present on about half the corpus — and ranked
+     * below the other two, so it supplements rather than floods. `build.js` has
+     * joined the exchange cards' related lists on tags-or-country all along;
+     * this stage was the one reading only half the signal.
+     */
+    const names = (a) => a.entityIds.includes(signal.id) || matchesAnyTag(signal.topicTags, a.hay)
     const coverage = articles.filter((a) => a.date >= pattern.startDate && a.date <= pattern.endDate &&
-      (a.entityIds.includes(signal.id) || matchesAnyTag(signal.topicTags, a.hay)))
-      .sort((a, b) => Number(b.entityIds.includes(signal.id)) - Number(a.entityIds.includes(signal.id)) || b.date.localeCompare(a.date))
+      (names(a) || (a.countries || []).some((c) => signal.countryTags.includes(c))))
+      .sort((a, b) => Number(names(b)) - Number(names(a)) || b.date.localeCompare(a.date))
       .slice(0, 12).map(({ slug, title, date, lead }) => ({ slug, title, date, lead }))
     const facts = factualSummary(signal)
     // `instrument` was the bare ticker, which is also everything the model was
@@ -79,6 +120,7 @@ export async function runMarketSignals({ dryRun = false, noLlm = false, now = Da
     let entry = previous
     if (changed) {
       let validated = null
+      if (!noLlm && !coverage.length) skipped.push(`${signal.id}: no coverage in window`)
       if (!noLlm && coverage.length && calls < 3) {
         calls++
         const result = callModel(`Write at most 360 characters of plain-language context for this observed stock-index pattern.
@@ -93,7 +135,20 @@ Every number and proper noun must be present in INPUT.
 Return JSON { "recent": "...", "evidence": [{"slug":"offered slug", "quote":"verbatim supporting excerpt from its lead, at least 20 characters"}] }.
 If the news does not support useful commentary return {"recent":"","evidence":[]}.
 INPUT:\n${JSON.stringify(bundle)}`)
-        if (result.out) validated = validateMarketComment(result.out, bundle)
+        // **Logged, both ways.** This branch used to discard `result.error` and
+        // a failed validation in silence, so three cards shipping with no
+        // explanation looked identical to three quiet days — see `cycle.md`,
+        // "the caller logs rejected text so the gap stays visible", which the
+        // indicator stage has done all along and this one did not.
+        if (result.error) {
+          rejections.push(`${signal.id}: model error — ${result.error}`)
+        } else if (result.out) {
+          const reasons = []
+          validated = validateMarketComment(result.out, bundle, reasons)
+          if (!validated) rejections.push(`${signal.id}: ${reasons[0] || 'unknown'} — "${String(result.out.recent || '').slice(0, 160)}"`)
+        } else {
+          rejections.push(`${signal.id}: no object in model result`)
+        }
       }
       entry = { eventId: signal.eventId, kind: pattern.kind, changePct: pattern.changePct, newsHash,
         startDate: pattern.startDate, endDate: pattern.endDate,
@@ -119,6 +174,8 @@ INPUT:\n${JSON.stringify(bundle)}`)
   // Keep only recently observed events; bounded storage even as the catalog evolves.
   const events = Object.fromEntries(Object.entries(selection.state).filter(([, e]) => now - Date.parse(e.lastDate) <= 30 * 86400000))
   atomicWrite(statePath, { events, commentary: Object.fromEntries(Object.entries(commentary).filter(([id]) => id in events)) })
-  console.log(JSON.stringify({ marketSignals: published.length, llmCalls: calls, reports: selection.reports }))
+  console.log(JSON.stringify({ marketSignals: published.length, llmCalls: calls,
+    commented: published.filter((p) => p.commentary).length, rejections, skipped,
+    reports: selection.reports }))
   return { ...selection, published }
 }

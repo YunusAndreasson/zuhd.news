@@ -302,3 +302,69 @@ export function seriesEchoes(text, series) {
   }
   return echoed
 }
+
+/**
+ * The prompt's own worked examples, pulled out of the prompt text.
+ *
+ * Derived rather than listed, so it cannot go stale: an example added to the
+ * markdown is checked from the next run, and one deleted stops being checked.
+ * A blockquote is how both narrate prompts write an illustration, and nothing
+ * else in either file uses one.
+ */
+export function promptExamples(promptText) {
+  const out = []
+  let block = []
+  for (const line of String(promptText).split('\n')) {
+    if (line.startsWith('>')) block.push(line.replace(/^>\s?/, ''))
+    else if (block.length) { out.push(block.join(' ')); block = [] }
+  }
+  if (block.length) out.push(block.join(' '))
+  return out
+    .map((t) => t.replace(/[✓✗*_"“”]/g, '').replace(/\s+/g, ' ').trim())
+    .filter((t) => t.split(/\s+/).length >= 12)
+}
+
+const SHINGLE = 5
+const shingles = (text) => {
+  const words = String(text).toLowerCase().replace(/[^a-z0-9\s']/g, ' ').split(/\s+/).filter(Boolean)
+  const out = new Set()
+  for (let i = 0; i + SHINGLE <= words.length; i++) out.add(words.slice(i, i + SHINGLE).join(' '))
+  return out
+}
+
+/**
+ * How much of `text` is the prompt's own example, 0–1.
+ *
+ * **The third failure mode of a worked example, after "too vague" and "too
+ * long": the model hands it back.** Measured on the 2026-09-05 dispatch, the
+ * live definition of Brent crude was `narrate-indicators-prompt.md`'s sample
+ * sentence at 100% — every word — and the three Federal Reserve events shipped
+ * one shared paragraph at 49–63%, which was the ✓ example added the previous
+ * night to stop those same cards reciting the chart. One duplication was traded
+ * for another and nothing said so.
+ *
+ * The prompts name their examples off real rows no longer, which is the actual
+ * fix. This is how you find out it stopped working. It is the same instrument
+ * `seriesEchoes` is and reads the same way: a fraction of the output's 5-grams
+ * that appear in some example.
+ *
+ * Returns `{ frac, example }` for the closest example, or `null` when the text
+ * is too short to shingle. Calibrated against that run: **≥0.5 is a copy** — no
+ * genuine sentence about Warsaw reached even 0.2 of a Doha example — and 0.2 to
+ * 0.5 is a borrowed opener worth logging, the register three `wiki-*` rows fell
+ * into when they all began "Readership tracked…".
+ */
+export function promptEcho(text, examples) {
+  const t = shingles(text)
+  if (!t.size) return null
+  let best = null
+  for (const ex of examples || []) {
+    const e = shingles(ex)
+    if (!e.size) continue
+    let hit = 0
+    for (const s of t) if (e.has(s)) hit++
+    const frac = hit / t.size
+    if (!best || frac > best.frac) best = { frac, example: ex }
+  }
+  return best
+}

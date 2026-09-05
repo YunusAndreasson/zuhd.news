@@ -40,7 +40,7 @@ import { createHash } from 'node:crypto'
 import { spawnSync } from 'node:child_process'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
-import { validateNumbers, validateProperNouns } from './lib/grounding.js'
+import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
@@ -75,6 +75,11 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 /** Part of `recentFingerprint` — the same reason as `narrate-indicators.js`:
  *  a prompt edit reaches every event once, at the next full pass. */
 const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
+/** See `narrate-indicators.js` for the calibration and the run that produced
+ *  it — the three FOMC cards this stage shipped on 2026-09-05 were the same
+ *  example between them, added the night before to stop a different repetition. */
+const PROMPT_EXAMPLES = promptExamples(basePrompt)
+const PROMPT_ECHO_REJECT = 0.5
 const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
 if (!cache.items) cache.items = {}
 
@@ -261,6 +266,7 @@ let cacheHits = 0
 let rejected = 0
 let failed = 0
 let recentDropped = 0
+let promptEchoes = 0
 let totalCostUsd = 0
 
 if (DRY_RUN) {
@@ -303,8 +309,13 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   const standing = clean(result.out.standing)
   const recentRaw = clean(result.out.recent)
 
+  const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
   const recentBad = recentRaw
-    ? (validateNumbers(recentRaw, bundle) ?? validateProperNouns(recentRaw, bundle))
+    ? (validateNumbers(recentRaw, bundle) ??
+       validateProperNouns(recentRaw, bundle) ??
+       (recentEcho && recentEcho.frac >= PROMPT_ECHO_REJECT
+         ? `reproduces a prompt example (${(recentEcho.frac * 100).toFixed(0)}%)`
+         : null))
     : null
 
   const overCap = (s, cap) => s.length > cap * 1.4
@@ -318,6 +329,13 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   if (recentRaw && !recent) {
     recentDropped++
     console.log(`  ~ ${item.key}: recent dropped (${recentBad || 'over cap'}) — "${recentRaw}"`)
+  }
+  // Counted, never dropped — dropping a standing drops the whole event. Same
+  // call and same reasoning as the indicator stage.
+  const standingEcho = promptEcho(standing, PROMPT_EXAMPLES)
+  if (standingEcho && standingEcho.frac >= PROMPT_ECHO_REJECT) {
+    promptEchoes++
+    console.log(`  ~ ${item.key}: standing is ${(standingEcho.frac * 100).toFixed(0)}% a prompt example — "${standing}"`)
   }
 
   const offered = new Set(bundle.coverage.map((c) => c.slug))
@@ -337,12 +355,37 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   console.log(`  ✓ ${item.key}: ${recent || standing}`)
 })
 
+/**
+ * A prune is only as safe as the weakest source that ran, and nothing was
+ * checking that any of them had.
+ *
+ * `items` is assembled from payload files that each degrade to `[]` when
+ * unreadable, so a mid-write `.chokepoints.json` on the 04:00 pass produces a
+ * short list and this loop deletes every chokepoint's prose to match it — the
+ * exact trade the comment above says is not worth making, with nothing to stop
+ * it. Reproduced by accident twice while testing a prompt change against a
+ * checkout whose payloads were a month old: 37 indicator entries and 7 event
+ * entries deleted by a run that asked for one item.
+ *
+ * So the prune declines when the live set has collapsed against the cache it is
+ * about to trim. Rotation is real — Polymarket questions close and `wiki-*` is
+ * re-picked from our own concepts every cycle — but it moves a handful of ids a
+ * day, not a third of the file. Below this the honest read is "a source did not
+ * load", and a stale entry costs a card nobody will notice while a wrong prune
+ * costs every card that source feeds.
+ */
+const PRUNE_FLOOR = 0.6
+
 // Prune ids that have left the events window — an event more than
 // EVENTS_WINDOW_DAYS out drops from `trends.events` at fetch time, and a
 // past one drops here, so without this the file grows a tail of events the
 // site no longer shows.
 {
   const live = new Set(items.map((i) => i.key))
+  const cached = Object.keys(cache.items).length
+  if (cached && live.size < cached * PRUNE_FLOOR) {
+    console.log(`  ⚠ prune skipped: ${live.size} live items against ${cached} cached — a source payload looks missing`)
+  } else {
   let dropped = 0
   for (const k of Object.keys(cache.items)) {
     if (!live.has(k)) {
@@ -351,6 +394,7 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     }
   }
   if (dropped > 0) console.log(`  pruned ${dropped} stale entries`)
+  }
 }
 
 cache.generatedAt = new Date().toISOString()
@@ -360,5 +404,5 @@ writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
   `  Dispatch: ${generated} new, ${cacheHits} cached, ${recentDropped} recent-dropped, ` +
-    `${rejected} rejected, ${failed} failed; $${totalCostUsd.toFixed(3)} in ${elapsed}s`,
+    `${promptEchoes} prompt-echo, ${rejected} rejected, ${failed} failed; $${totalCostUsd.toFixed(3)} in ${elapsed}s`,
 )

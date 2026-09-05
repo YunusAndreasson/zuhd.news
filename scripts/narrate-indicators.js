@@ -46,7 +46,7 @@ import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
-import { seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
+import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
@@ -144,6 +144,18 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
  *  that day. The output is a function of the prompt and the input; a cache
  *  key that ignored half of that let a rewritten prompt sit unapplied. */
 const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
+/** The prompt's own worked examples, so `promptEcho` measures against the file
+ *  this run is sending rather than a list that has to be kept in step. */
+const PROMPT_EXAMPLES = promptExamples(basePrompt)
+/**
+ * Above this share of an example's 5-grams, the output *is* the example.
+ *
+ * Calibrated on the 2026-09-05 dispatch, where the live Brent definition scored
+ * 1.0 against this file's own sample sentence and the three FOMC events scored
+ * 0.49–0.63 against a shared one. Nothing genuine came near it: the exchange
+ * standings written the same day against Warsaw and Doha examples peaked at 0.2.
+ */
+const PROMPT_ECHO_REJECT = 0.5
 const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
 if (!cache.items) cache.items = {}
 
@@ -453,6 +465,7 @@ let rejected = 0
 let failed = 0
 let recentDropped = 0
 let chartEchoes = 0
+let promptEchoes = 0
 let totalCostUsd = 0
 
 if (DRY_RUN) {
@@ -504,8 +517,17 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   // 500 in an index's own name was not in the input. Length is the only gate.
   //
   // `recent` claims what happened last week, so it gets both checks.
+  const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
   const recentBad = recentRaw
-    ? (validateNumbers(recentRaw, bundle) ?? validateProperNouns(recentRaw, bundle))
+    ? (validateNumbers(recentRaw, bundle) ??
+       validateProperNouns(recentRaw, bundle) ??
+       // Handing back the illustration is not an answer about this instrument,
+       // and unlike a chart echo there is no reading on which it is partly
+       // right — so this one gates rather than only counting. It rides the
+       // `recent` path precisely because that path already drops safely.
+       (recentEcho && recentEcho.frac >= PROMPT_ECHO_REJECT
+         ? `reproduces a prompt example (${(recentEcho.frac * 100).toFixed(0)}%)`
+         : null))
     : null
 
   const overCap = (s, cap) => s.length > cap * 1.4
@@ -515,6 +537,17 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     rejected++
     console.log(`  ✗ ${item.key}: standing missing or over cap — "${standing}"`)
     return
+  }
+  // **Counted, never dropped**, which is the opposite call to `recent` above and
+  // rests on what dropping costs. A rejected `recent` ships an empty paragraph;
+  // a rejected `standing` drops the whole item, and the app's graph decks gate
+  // deck membership on having prose — so gating here would delete the card to
+  // avoid a sentence that is at least true. The prompt is the fix; this is how
+  // the log says whether the prompt worked.
+  const standingEcho = promptEcho(standing, PROMPT_EXAMPLES)
+  if (standingEcho && standingEcho.frac >= PROMPT_ECHO_REJECT) {
+    promptEchoes++
+    console.log(`  ~ ${item.key}: standing is ${(standingEcho.frac * 100).toFixed(0)}% a prompt example — "${standing}"`)
   }
   if (recentRaw && !recent) {
     // A rejected `recent` is not a rejected item: the standing sentence is
@@ -551,6 +584,27 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   console.log(`  ✓ ${item.key}: ${recent || standing}`)
 })
 
+/**
+ * A prune is only as safe as the weakest source that ran, and nothing was
+ * checking that any of them had.
+ *
+ * `items` is assembled from payload files that each degrade to `[]` when
+ * unreadable, so a mid-write `.chokepoints.json` on the 04:00 pass produces a
+ * short list and this loop deletes every chokepoint's prose to match it — the
+ * exact trade the comment above says is not worth making, with nothing to stop
+ * it. Reproduced by accident twice while testing a prompt change against a
+ * checkout whose payloads were a month old: 37 indicator entries and 7 event
+ * entries deleted by a run that asked for one item.
+ *
+ * So the prune declines when the live set has collapsed against the cache it is
+ * about to trim. Rotation is real — Polymarket questions close and `wiki-*` is
+ * re-picked from our own concepts every cycle — but it moves a handful of ids a
+ * day, not a third of the file. Below this the honest read is "a source did not
+ * load", and a stale entry costs a card nobody will notice while a wrong prune
+ * costs every card that source feeds.
+ */
+const PRUNE_FLOOR = 0.6
+
 // Prune ids that have left every source payload. Polymarket questions close and
 // Wikipedia series are re-picked from our own concepts every cycle, so without
 // this the file grows a tail of instruments the site no longer shows.
@@ -563,6 +617,10 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
 // not a trade worth making four extra times for a tidier cache.
 if (!NEW_ONLY) {
   const live = new Set(items.map((i) => i.key))
+  const cached = Object.keys(cache.items).length
+  if (cached && live.size < cached * PRUNE_FLOOR) {
+    console.log(`  ⚠ prune skipped: ${live.size} live items against ${cached} cached — a source payload looks missing`)
+  } else {
   let dropped = 0
   for (const k of Object.keys(cache.items)) {
     if (!live.has(k)) {
@@ -571,6 +629,7 @@ if (!NEW_ONLY) {
     }
   }
   if (dropped > 0) console.log(`  pruned ${dropped} stale entries`)
+  }
 }
 
 cache.generatedAt = new Date().toISOString()
@@ -580,6 +639,6 @@ writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
   `  Dispatch: ${generated} new, ${cacheHits} cached, ${recentDropped} recent-dropped, ` +
-    `${chartEchoes} chart-echo, ${rejected} rejected, ${failed} failed; ` +
+    `${chartEchoes} chart-echo, ${promptEchoes} prompt-echo, ${rejected} rejected, ${failed} failed; ` +
     `$${totalCostUsd.toFixed(3)} in ${elapsed}s`,
 )

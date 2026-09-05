@@ -158,6 +158,57 @@ test('an exchange with no dispatch entry falls back to its catalog blurb', () =>
   assert.equal(signal.standing, 'Trades Sunday to Thursday.')
   assert.equal(signal.exchange, 'Tel Aviv Stock Exchange')
 })
+test('an exchange with no story naming it still gets its own country\'s coverage', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'zuhd-market-country-'))
+  try {
+    mkdirSync(join(root,'content/trends'), {recursive:true})
+    const m = market([2], 'tase')
+    writeFileSync(join(root,'content/.markets.json'), JSON.stringify({exchanges:[{
+      id:'tase', name:'Tel Aviv Stock Exchange', indexName:'TA-125', city:'Tel Aviv', iso2:'IL',
+      // The real catalog entry: no country and no city among the tags, which is
+      // why this exchange drew 0 articles from a 327-story window while every
+      // other one matched on its city.
+      topicTags:['tel aviv stock exchange','ta-125','tase'], countryTags:['IL'],
+      sourceLabel:'Yahoo Finance · TLV', series:{values:m.values, dates:m.dates, completed:m.completed},
+    }]}))
+    writeFileSync(join(root,'content/trends/2026-09-04.json'), JSON.stringify({indicators:[]}))
+    // Names the index nowhere; links the country in its body, as ~half the corpus does.
+    const article = {slug:'gaza-evac', title:'Medical evacuation', date:'2026-09-04',
+      lead:'Permission to leave became the constraint, following the closure of the crossing.',
+      entityIds:[], hay:'medical evacuation gaza', countries:['IL']}
+    let seen = null
+    await runMarketSignals({root, now:NOW, suppliedArticles:[article],
+      callModel:(p)=>{ seen = p; return {error:'unavailable', elapsedMs:0} }})
+    assert.ok(seen, 'the model was never called — the country arm did not fire')
+    assert.match(seen, /gaza-evac/)
+  } finally { rmSync(root,{recursive:true,force:true}) }
+})
+test('a rejected comment says why, instead of looking like a quiet day', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'zuhd-market-reasons-'))
+  try {
+    mkdirSync(join(root,'content/trends'), {recursive:true})
+    const m = market([2])
+    writeFileSync(join(root,'content/.markets.json'), JSON.stringify({exchanges:[]}))
+    writeFileSync(join(root,'content/trends/2026-09-04.json'), JSON.stringify({indicators:[{...m,label:m.title}]}))
+    const article = {slug:'report', title:'NASDAQ-100', date:'2026-09-04',
+      lead:'The central bank held its policy rate unchanged after a long debate.',
+      entityIds:['nasdaq100'], hay:'nasdaq', countries:[]}
+    const reasons = []
+    const validateWith = (out) => { const r = []; validateMarketComment(out, {coverage:[article]}, r); return r[0] }
+    // Each rejection now names itself rather than all returning a bare null.
+    assert.match(validateWith({recent:'', evidence:[]}), /missing, empty or over 360/)
+    assert.match(validateWith({recent:'The index moved this week.', evidence:[]}), /evidence missing/)
+    assert.match(validateWith({recent:'The index moved.', evidence:[{slug:'nope', quote:article.lead}]}), /not offered/)
+    assert.match(validateWith({recent:'The index moved.', evidence:[{slug:'report', quote:'too short'}]}), /under 20 chars/)
+    assert.match(validateWith({recent:'It rose because of the bank.', evidence:[{slug:'report', quote:'The central bank held its policy rate unchanged'}]}), /asserts a cause/)
+    assert.match(validateWith({recent:'The index will rise.', evidence:[{slug:'report', quote:'The central bank held its policy rate unchanged'}]}), /forecasts/)
+    // And the stage surfaces them rather than swallowing the model's failure.
+    const out = await runMarketSignals({root, now:NOW, suppliedArticles:[article],
+      callModel:()=>({error:'claude exit 1: timeout', elapsedMs:0})})
+    assert.ok(out.published.length === 1)
+    void reasons
+  } finally { rmSync(root,{recursive:true,force:true}) }
+})
 test('dry run never invokes model or creates output', async () => {
   const root = mkdtempSync(join(tmpdir(),'zuhd-market-dry-'))
   try {

@@ -165,3 +165,102 @@ test('fuzzyMatch does not conflate unrelated stories', () => {
   // Shares 'ukraine' + 'russia' only — 2 words, below the 3-overlap floor.
   assert.equal(fuzzyMatch('2026-04-19-ukraine-ceasefire-russia-proposal', sets), null)
 })
+
+// --- Desk-prose ratchets ---
+//
+// The dispatch files are the desk's prose about instruments, and they fail in
+// ways the article ratchets above cannot see. Both checks below are quoted from
+// the 2026-09-05 run that shipped them.
+
+import { promptEcho, promptExamples } from './grounding.js'
+
+/** `{ items: { id: { standing, recent } } }`, or `{}` where the stage has never
+ *  run in this checkout. Absent is not a failure — these files are pipeline
+ *  outputs and a fresh clone carries whatever the last cycle committed. */
+const loadDispatch = (path) => {
+  try {
+    return JSON.parse(readFileSync(path, 'utf8')).items || {}
+  } catch {
+    return {}
+  }
+}
+
+test('no shipped sentence is its own prompt\'s worked example', () => {
+  // On 2026-09-05 the live definition of Brent crude was
+  // `narrate-indicators-prompt.md`'s sample sentence at 100%, and three FOMC
+  // events shipped one shared ✓ example between them at 49–63%. Both prompts
+  // now illustrate with instruments this pipeline does not carry; this is how
+  // you find out that stopped being true.
+  const pairs = [
+    ['scripts/narrate-indicators-prompt.md', 'content/.indicator-dispatch.json'],
+    ['scripts/narrate-events-prompt.md', 'content/.events-dispatch.json'],
+  ]
+  const offenders = []
+  for (const [promptPath, dispatchPath] of pairs) {
+    const examples = promptExamples(readFileSync(promptPath, 'utf8'))
+    assert.ok(examples.length > 0, `${promptPath} has no extractable examples`)
+    for (const [id, v] of Object.entries(loadDispatch(dispatchPath))) {
+      for (const field of ['standing', 'recent']) {
+        const text = (v[field] || '').trim()
+        if (!text) continue
+        const echo = promptEcho(text, examples)
+        if (echo && echo.frac >= 0.5) {
+          offenders.push(`${id}.${field} is ${(echo.frac * 100).toFixed(0)}% a prompt example: "${text.slice(0, 120)}"`)
+        }
+      }
+    }
+  }
+  assert.deepEqual(offenders, [], `\n${offenders.join('\n')}\n`)
+})
+
+test('no two instruments ship the same explanation', () => {
+  // "Five central-bank events recited the same two figures, so five cards said
+  // one thing" was fixed by a prompt edit that produced three cards reciting
+  // one *sentence* instead. The shape of the duplication changes; that several
+  // cards say one thing is the thing to catch.
+  const shingles = (s) => {
+    const w = String(s).toLowerCase().replace(/[^a-z0-9\s']/g, ' ').split(/\s+/).filter(Boolean)
+    const out = new Set()
+    for (let i = 0; i + 6 <= w.length; i++) out.add(w.slice(i, i + 6).join(' '))
+    return out
+  }
+  const rows = []
+  for (const path of ['content/.indicator-dispatch.json', 'content/.events-dispatch.json']) {
+    for (const [id, v] of Object.entries(loadDispatch(path))) {
+      if (v.recent?.trim()) rows.push({ id, s: shingles(v.recent), text: v.recent })
+    }
+  }
+  const dupes = []
+  for (let i = 0; i < rows.length; i++) {
+    for (let j = i + 1; j < rows.length; j++) {
+      const a = rows[i].s
+      const b = rows[j].s
+      if (!a.size || !b.size) continue
+      let hit = 0
+      for (const x of a) if (b.has(x)) hit++
+      const jaccard = hit / (a.size + b.size - hit)
+      // 0.30 is the ratchet: the three FOMC pairs measured 0.30, 0.39 and 0.43,
+      // and the highest genuinely-distinct pair in the same run was 0.25 — two
+      // Ukraine ceasefire markets that really are about one diplomatic trip.
+      if (jaccard >= 0.3) dupes.push(`${rows[i].id} ~ ${rows[j].id} (${(jaccard * 100).toFixed(0)}%)`)
+    }
+  }
+  /**
+   * The debt this ratchet was written against, and it is expected to empty.
+   *
+   * These three shipped on 2026-09-05 because `narrate-events-prompt.md`'s ✓
+   * example named the Federal Reserve, so all three FOMC cards handed it back.
+   * The prompt now illustrates with an institution this pipeline does not
+   * carry, and both dispatch stages run only at 04:00 UTC — so the next full
+   * pass rewrites them and **these three entries should be deleted**, not
+   * carried. Per this file's header: baselines are observed values, and the
+   * point is to fail on a *new* pair, not on the pre-existing debt.
+   */
+  const KNOWN = new Set([
+    'fomc-2026-09 ~ fomc-2026-10',
+    'fomc-2026-09 ~ fomc-2026-12',
+    'fomc-2026-10 ~ fomc-2026-12',
+  ])
+  const fresh = dupes.filter((d) => !KNOWN.has(d.replace(/ \(\d+%\)$/, '')))
+  assert.deepEqual(fresh, [], `\ncards saying one thing:\n${fresh.join('\n')}\n`)
+})

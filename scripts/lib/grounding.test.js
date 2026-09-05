@@ -9,9 +9,61 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { seriesEchoes, validateNumbers, validateProperNouns, validateGrounding } from './grounding.js'
+import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns, validateGrounding } from './grounding.js'
 
 const bundle = (...titles) => ({ coverage: titles.map((title) => ({ title })) })
+
+// ── promptEcho ────────────────────────────────────────────────────────────
+//
+// Every case here is quoted from the 2026-09-05 dispatch, which shipped the
+// prompt's own examples as live prose on four cards.
+
+test('promptExamples reads the blockquotes and skips the short ones', () => {
+  const prompt = [
+    '## Rules', 'Say what it is.', '',
+    '> The price of a tonne of thermal coal loaded at Newcastle, Australia, and',
+    '> the benchmark Asian power stations buy against.', '',
+    'More rules.', '', '> too short', '',
+  ].join('\n')
+  const ex = promptExamples(prompt)
+  assert.equal(ex.length, 1)
+  assert.match(ex[0], /^The price of a tonne of thermal coal/)
+  assert.ok(!ex.some((e) => e.includes('too short')), 'a three-word quote is not an example')
+})
+
+test('promptEcho catches the verbatim copy that shipped as the Brent definition', () => {
+  const example = "The price of a barrel of North Sea crude, and the benchmark most of the world's oil is sold against. It moves on supply — a strike, a sanction, a strait — and fuel, freight and fertiliser move after it."
+  // What `content/.indicator-dispatch.json` actually carried for `brent`.
+  assert.equal(promptEcho(example, [example]).frac, 1)
+})
+
+test('promptEcho catches the shared paragraph three FOMC cards shipped', () => {
+  const example = 'An oil shock has turned the question from a cut to a hike, and the committee has to decide whether a supply-driven price rise gets the same answer as a demand-driven one — Warsh has said the Fed will have work to do if inflation does not fade.'
+  const shipped = 'An oil shock has turned the question from a cut to a hike, and the committee has to decide whether a supply-driven price rise deserves the same answer as a demand-driven one. A payroll surge pushed hike odds to two-in-three.'
+  const echo = promptEcho(shipped, [example])
+  assert.ok(echo.frac >= 0.5, `expected a copy, got ${echo.frac}`)
+})
+
+test('a genuine sentence written against an example does not trip the gate', () => {
+  // The exchange standings written on 2026-09-05 against Warsaw/Doha examples.
+  const examples = [
+    "The 20 largest companies on the Warsaw Stock Exchange, Poland's main market. State-controlled banks and energy firms dominate it.",
+    'The 20 most traded companies on the Qatar Stock Exchange in Doha, and the deepest equity market in the Gulf outside Saudi Arabia.',
+  ]
+  const written = [
+    "The 100 largest companies on Borsa İstanbul, Türkiye's only stock exchange. Priced in lira, so its index level carries the country's inflation as much as its earnings — read the direction, not the number.",
+    'The Swiss Market Index, the 20 largest and most traded companies on the SIX Swiss Exchange in Zurich. Nestlé, Roche and Novartis carry it, which makes it defensive when the world turns risk-off.',
+  ]
+  for (const w of written) {
+    const echo = promptEcho(w, examples)
+    assert.ok(echo.frac < 0.5, `false positive at ${echo.frac} on: ${w.slice(0, 60)}`)
+  }
+})
+
+test('promptEcho is null on text too short to shingle, and survives no examples', () => {
+  assert.equal(promptEcho('too short', ['a b c d e f g h']), null)
+  assert.equal(promptEcho('a b c d e f g h i j', []), null)
+})
 
 test('a fuller name is an elaboration, not an invention', () => {
   // 2026-08-29, both FOMC meetings: the corpus wrote "Warsh", the sentence

@@ -39,12 +39,13 @@ export function normalizeMarkets(markets, trends, dispatch = {}) {
     id: `mkt:${m.id}`, title: m.indexName, sourceLabel: m.sourceLabel,
     exchange: m.name, city: m.city, country: m.iso2,
     standing: dispatch[`mkt:${m.id}`]?.standing || m.blurb || '',
-    topicTags: m.topicTags || [], values: m.series?.values, dates: m.series?.dates,
+    topicTags: m.topicTags || [], countryTags: m.countryTags || [],
+    values: m.series?.values, dates: m.series?.dates,
     completed: m.series?.completed, stale: m.stale,
   }))
   const indices = (trends.indicators || []).filter((m) => ['sp500', 'nasdaq100'].includes(m.id)).map((m) => ({
     id: m.id, title: m.label, sourceLabel: m.sourceLabel, topicTags: m.topicTags || [],
-    standing: dispatch[m.id]?.standing || '',
+    countryTags: m.countryTags || [], standing: dispatch[m.id]?.standing || '',
     values: m.values, dates: m.dates, completed: m.completed, stale: m.stale,
   }))
   return [...exchanges, ...indices]
@@ -154,7 +155,7 @@ export function selectMarketSignals(raw, previous = {}, now = Date.now(), articl
     const signal = { id: m.id, eventId, title: m.title, sourceLabel: m.sourceLabel || 'Market data',
       exchange: m.exchange || '', city: m.city || '', country: m.country || '', standing: m.standing || '',
       asOf, pattern, series: { values: m.values, dates: m.dates }, directNews: news.map((a) => a.slug),
-      topicTags: m.topicTags || [] }
+      topicTags: m.topicTags || [], countryTags: m.countryTags || [] }
     state[m.id] = { signal, lastDate: asOf, misses: 0 }
     active.push(signal)
     reports.push({ id: m.id, reason: 'qualified', patterns })

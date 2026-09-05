@@ -18,6 +18,19 @@ voice. Specific over generic.
 
 ## The two fields
 
+## About the examples in this file
+
+**Every example below is written about an institution this pipeline does not
+carry, and that is deliberate.** An example naming a real row is a template, not
+an illustration: asked about that row, you will hand it back the example. It has
+already happened here — the ✓ example that used to sit under `recent` named the
+Federal Reserve, and on the next run all three FOMC cards shipped carrying it,
+which is the very failure the "could be pasted onto another institution's card"
+rule below exists to prevent.
+
+So: **copy the shape, never the words.** If your sentence could be pasted into
+this file as a new example, it is the wrong sentence.
+
 ### `standing` — what this event is
 
 1–2 sentences. **Hard cap 240 characters.** Timeless: it must still be true
@@ -28,10 +41,9 @@ This is the one field where your general knowledge is the source. Say what
 the institution or release is, how often it happens, and what it is that
 moves when it lands — who is exposed, what it transmits to.
 
-> The Federal Reserve's rate-setting committee, which meets eight times a year
-> to set the target range for overnight bank lending. Its decisions move the
-> cost of borrowing for the entire dollar economy, and with it every asset
-> priced against the dollar.
+> The Reserve Bank of India's rate-setting committee, which meets six times a
+> year to set the repo rate banks borrow at overnight. Its decisions reach the
+> cost of credit for 1.4 billion people, and the rupee moves with them.
 
 Only assert what you are genuinely sure of. A vaguer sentence that is true
 beats a precise one you are reconstructing.
@@ -64,12 +76,18 @@ sets, with its current level and how long it has sat there printed beneath
 it; do not tell them where it is or how long it has been there. Say why it is
 being decided.
 
-> ✗ *"The committee meets after a bond selloff that pushed the 10-year
-> Treasury yield to 4.81% and the 30-year mortgage rate to 6.71%."*
-> ✓ *"An oil shock has turned the question from a cut to a hike, and the
-> committee has to decide whether a supply-driven price rise gets the same
-> answer as a demand-driven one — Warsh has said the Fed will have work to do
-> if inflation does not fade."*
+> ✗ *"The council meets after a bond selloff that pushed the 10-year benchmark
+> to 3.94% and five-year mortgage rates to 5.20%."*
+> ✓ *"A wildfire season that shut two oil-sands upgraders has put the council
+> between a supply shock it cannot reach and a housing market that is already
+> the most rate-sensitive in the G7 — Macklem has said the Bank will look
+> through a one-off, and the argument is whether this is one."*
+
+Read that ✓ again for what makes it specific: it names the country's *own*
+exposure — oil-sands supply, a rate-sensitive housing market, a named governor.
+Strip those and it is a generic paragraph about a central bank weighing a supply
+shock, which is exactly what you must not write, because it is true of every
+other institution on this calendar in the same month.
 
 **Never predict the outcome.** You are not a forecaster and this is not a
 prediction market's odds row. Say what is at stake and what the market is

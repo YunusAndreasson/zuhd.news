@@ -25,8 +25,36 @@
 //                  is modelled anywhere in this file — Christmas, national
 //                  days and unscheduled halts all still read as trading.
 //   - topicTags / countryTags — matched against article concepts/title and
-//                  ISO2 respectively, for the sheet's related coverage.
+//                  ISO2 respectively, for the sheet's related coverage and for
+//                  the market-signal stage's causal bundle. See "A tag that is
+//                  also an English word" below.
 //   - available  — false means recorded but not drawn, and `reason` says why.
+//
+// A tag that is also an English word
+// ----------------------------------
+// `topicTags` is substring-matched on a word boundary against an article's
+// title, dateline and concepts. That stops `smi` matching "transmission" — the
+// bug `build.js` documents — but a whole-word match cannot save a tag that is
+// itself a whole English word, and two were:
+//
+//   - **`real`** on Ibovespa. Measured on the 2026-09-05 signal, the only two
+//     articles offered to the model as explanations for a 5.4% rally in São
+//     Paulo were a piece on European housing ("renting **real** estate
+//     economics") and one on the Pentagon's maintenance backlog ("the
+//     Pentagon's **real** estate decays").
+//   - **`won`** on the KOSPI, which is the past tense of "win" and matches
+//     every election, every court case and every match report in the corpus.
+//
+// Both are gone. The rule they leave behind: a currency name earns a tag only
+// when it is not also ordinary English — `lira`, `rupiah`, `ringgit` and
+// `renminbi` are fine, and `peso`, `krona` and `rand` are borderline enough to
+// be worth re-measuring if one of those cards ever explains itself oddly.
+//
+// **Country names stay, and the duplication with `countryTags` is deliberate.**
+// It looks redundant and is not: `countryTags` is matched against the ISO-2
+// codes an article links in its body, and only about half the corpus carries
+// one. Removing `turkey` from BIST's tags was tried and measurably cost a
+// Black Sea shipping story that the country arm could not see.
 //
 // Why the expectations are pinned
 // -------------------------------
@@ -268,7 +296,7 @@ export const MARKET_CATALOG = [
     sessionEnd: '15:30',
     days: [1, 2, 3, 4, 5],
     blurb: 'Dominated by Samsung and SK Hynix — a proxy for the global semiconductor cycle.',
-    topicTags: ['kospi', 'korea exchange', 'south korea', 'seoul', 'samsung', 'won'],
+    topicTags: ['kospi', 'korea exchange', 'south korea', 'seoul', 'samsung'],
     countryTags: ['KR'],
     available: true,
   },
@@ -424,7 +452,7 @@ export const MARKET_CATALOG = [
     sessionEnd: '18:00',
     days: [1, 2, 3, 4, 5],
     blurb: 'Latin America’s largest exchange, driven by iron ore, oil and Brazilian rates.',
-    topicTags: ['ibovespa', 'b3', 'brazil', 'sao paulo', 'real'],
+    topicTags: ['ibovespa', 'b3', 'brazil', 'sao paulo'],
     countryTags: ['BR'],
     available: true,
   },

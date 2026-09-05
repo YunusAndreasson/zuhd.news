@@ -16,6 +16,18 @@ editorialising, no "could", "may", "experts warn", "it remains to be seen". Plai
 past and present tense. Active voice. Specific over generic. The facts carry the
 weight — you never have to tell the reader that something is important.
 
+## About the examples in this file
+
+**Every example below is written about an instrument this pipeline does not
+carry, and that is deliberate.** An example naming a real row is a template, not
+an illustration: asked about that row, you will hand it back the example. This
+has happened twice — the Brent definition on the live site was this file's own
+sample sentence, word for word, and three Federal Reserve cards shipped the same
+day carrying one shared example between them.
+
+So: **copy the shape, never the words.** If your sentence could be pasted into
+this file as a new example, it is the wrong sentence.
+
 ## The two fields
 
 ### `standing` — what this instrument is
@@ -28,9 +40,9 @@ thing measures, and the one fact that makes it worth watching — what it is a
 price *of*, who is exposed to it, what it transmits to. Write it for someone who
 has never seen the ticker before and is not embarrassed about that.
 
-> The price of a barrel of North Sea crude, and the benchmark most of the world's
-> oil is sold against. It moves on supply — a strike, a sanction, a strait — and
-> fuel, freight and fertiliser move after it.
+> The price of a tonne of thermal coal loaded at Newcastle, Australia, and the
+> benchmark Asian power stations buy against. It moves on weather and on Chinese
+> hydro output, and electricity bills across the region move after it.
 
 **An index is not its exchange, and the card headlines the index.** A reader
 looking at `TA-125`, `BIST 100`, `MASI` or `IPC` does not know what those letters
@@ -94,11 +106,11 @@ price; or, if it carries nothing relevant, return `recent` as an empty string.
 An empty field is honest. A description of the line is not. Never manufacture a
 cause.
 
-> ✗ *"The rupee firmed through the window, reaching 94.38 on Sep 3 from its
-> Aug 20 high of 95.77. India's economy grew 7.8% in the June quarter."*
-> ✓ *"The rupee's firming tracked two things New Delhi did: it kept buying
-> discounted Russian crude, its largest supplier, and it published June-quarter
-> growth of 7.8% — flattered by a cut to the prior-year base, so the ratio rose
+> ✗ *"The peso firmed through the window, reaching 902 on Sep 3 from its Aug 20
+> high of 947. Chile's economy grew 2.4% in the June quarter."*
+> ✓ *"The peso's firming tracked the copper price it lives on: Escondida's union
+> settled without a stoppage, and the government published a June-quarter figure
+> of 2.4% that was flattered by a cut to the prior-year base, so the ratio rose
 > without extra output."*
 
 ## Iron rule — grounding, for `recent` only
@@ -144,11 +156,16 @@ Explain the event itself.** What happened, who did it, why it matters. Treat the
 spike as a pointer to a story and then tell the reader that story. A reader
 should come away understanding the event, not the metric.
 
-> ✗ *"Interest in Iran rose sharply last week as the country returned to the
+> ✗ *"Interest in Chad rose sharply last week as the country returned to the
 > headlines, with attention peaking mid-week."*
-> ✓ *"Readership tracked the strikes on Natanz: the peak on 23 July followed
-> Israel's announcement that it had hit the enrichment halls, and the second,
-> smaller rise came with Tehran's response three days later."*
+> ✓ *"The spike on 14 May followed the dissolution of parliament in N'Djamena,
+> and the smaller second rise came three days later when the army closed the
+> border with Sudan and 40,000 refugees were left on the far side."*
+
+Note what the good version does *not* do: it never says the word "readership",
+"attention" or "interest" at all. It goes straight to the event. Opening with
+"Readership tracked…" is this example's shape leaking into your sentence —
+three rows shipped that opener on one run.
 
 ## Antipatterns — never do these
 

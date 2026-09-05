@@ -55,6 +55,22 @@ export const loadArticles = (windowStart) => {
           .filter(Boolean)
           .map(canonicalIndicatorId),
         hay: [meta.title, meta.location, ...concepts].join(' ').toLowerCase(),
+        // The ISO-2 codes the body links, which is the one place an article
+        // states which countries it is *about* — `hay` carries a dateline and a
+        // headline, and neither says that a story filed from Brussels is about
+        // Turkey.
+        //
+        // **Partial, and a caller must treat it that way: 5,035 of 9,276
+        // articles carry at least one link.** The writer adds them where the
+        // prose names a country, so a story that says "a UK-resident son"
+        // rather than "[the UK](country:GB)" has none. Good enough to be a
+        // supplementary arm of a join, not good enough to be the only one.
+        //
+        // A field of its own rather than more words in `hay`, deliberately:
+        // `hay` is substring-matched against editorial tag lists, and folding
+        // two-letter codes into it would have `us`, `in` and `it` matching
+        // ordinary prose. `build.js` keeps the same split for the same reason.
+        countries: [...new Set(String(body || '').match(/\(country:([A-Z]{2})\)/g)?.map((m) => m.slice(9, 11)) || [])],
       })
     } catch {
       /* A malformed article is the corpus test's problem, not a narration stage's. */
