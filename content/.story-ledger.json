@@ -2,13 +2,275 @@
   "version": 1,
   "stories": [
     {
+      "id": "huckabee-west-bank-settler-violence-severe-consequences",
+      "label": "US ambassador calls for 'severe consequences' to stop West Bank violence",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-huckabee-west-bank-settler-violence-severe-consequences"
+      ],
+      "eventUri": "eng-11982273",
+      "summary": "Mike Huckabee — the US ambassador who has spent his career defending the settlement project — went to the occupied West Bank, met Palestinian Americans beaten in settler pogroms, and called the attackers terrorists demanding 'severe consequences'. Lead with who is speaking, because the identity of the speaker is the news: when this particular ambassador uses that word, the shift is in Washington, not in the West Bank. The mechanism to teach is the citizenship asymmetry that produced the visit at all — the victims here hold US passports, which is what converted an ordinary week of settler violence into a diplomatic event, while Palestinians without a second passport have been attacked on the same hills for a year with no ambassador arriving. Who holds power and is accountable: the Israeli government, which Huckabee says has a 'responsibility' but which has prosecuted almost none of these cases, and the US administration that funds and arms it while asking for consequences it does not itself impose. Follows the UN crimes-against-humanity piece on the emptied Jenin, Tulkarm and Nur Shams camps published yesterday — that story was the camps, this one is the hilltop villages and the American citizens in them; do not re-run the forcible-transfer explainer. Name Turmus Ayya specifically, get the count of attacks and the count of indictments, and note that the sources diverge sharply (0.53) — SCMP and Middle East Eye read this far more negatively than Al Jazeera does, so attribute characterisations. Palestine is an OIC state; Al Jazeera (QA) and Middle East Eye are the regional carries.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/West_Bank",
+        "http://en.wikipedia.org/wiki/Mike_Huckabee",
+        "http://en.wikipedia.org/wiki/Israeli_settlement",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Turmus_Ayya",
+        "http://en.wikipedia.org/wiki/Ramallah"
+      ]
+    },
+    {
+      "id": "germany-power-line-explosives-grid-sabotage-saxony",
+      "label": "Germany finds more explosives planted along power lines",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-germany-power-line-explosives-grid-sabotage-saxony"
+      ],
+      "eventUri": "deu-2170802",
+      "summary": "German police have now recovered twelve explosive devices placed along high-voltage transmission lines in Saxony, part of a run of attacks on the national grid. Lead with the number twelve and with the design intent, which is the whole story: the charges were not meant to destroy the pylons but to induce a short circuit — a deliberately small amount of explosive placed where the physics does the damage. The mechanism to teach is exactly that leverage. A transmission network is a synchronised machine, and a fault at the right point trips protection relays across a region, so the attacker needs no capacity to match the grid's scale, only knowledge of where it is brittle. This is the same chokepoint logic the site has traced through Hormuz, Bab al-Mandab and the Dover blockade, now applied to a continental power system and requiring far less than a state to execute. Who is affected: households and industry in eastern Germany, and by extension every European grid operator that has been told for three years that its infrastructure is a target and has published no hardening plan. Who holds power and is accountable: the interior ministry under Alexander Dobrindt, which has not attributed the campaign — say plainly that attribution is absent rather than implying one, since sabotage of German infrastructure has recently been ascribed to several very different actors. Get the discovery timeline, whether any device functioned, and whether any customer actually lost supply; all three sources agree closely (divergence 0.03), so there is no factual dispute to arbitrate here, only a gap in what the authorities will say.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Police",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Sabotage",
+        "http://en.wikipedia.org/wiki/North_Rhine-Westphalia",
+        "http://en.wikipedia.org/wiki/Electrical_grid",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/Electrical_substation",
+        "http://en.wikipedia.org/wiki/Alexander_Dobrindt"
+      ]
+    },
+    {
+      "id": "sarawak-haze-emergency-indonesia-peat-fires",
+      "label": "Malaysia declares emergency in Sarawak as haze from Indonesia worsens",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-sarawak-haze-emergency-indonesia-peat-fires"
+      ],
+      "eventUri": "eng-11976702",
+      "summary": "Malaysia's king has consented to a state of emergency across Serian Division in Sarawak after smoke from Indonesian land fires drove air quality into the 'hazardous' band. Lead with the constitutional weight of the instrument: this is an emergency declaration — the sovereign power a state reserves for insurrection and disaster — invoked because of smoke produced in another country, which is the sharpest available statement of how little control Kuala Lumpur has over the thing harming its citizens. The mechanism to teach is why the fires burn at all: Borneo's peat domes were drained for oil palm and pulp plantations, and drained peat is fuel that burns underground for months, so this is not a wildfire season but the predictable annual output of a land-use decision, one made largely by companies incorporated in Malaysia and Singapore operating on Indonesian concessions. That inverts the usual framing, and it is the finding — the victim state's own capital is upstream of the smoke. Who is affected: schoolchildren and outdoor workers in Serian first, and the roughly 100,000 excess deaths regional health researchers attribute to haze episodes across Indonesia, Malaysia and Singapore. Who holds power: the ASEAN Transboundary Haze Agreement, ratified by Indonesia in 2014, which has never once been used to compel anything — explain why an agreement with no enforcement mechanism is worse than none, because it absorbs the political demand for action. Get the PM10 and API readings, the number of hotspots, and what the emergency actually authorises. Malaysia and Indonesia are both OIC states; Al Jazeera (QA) is the only regional carry the feed offered — no Jakarta Post, New Straits Times or Free Malaysia Today appeared, a feed-side gap worth auditing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Haze",
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Sarawak",
+        "http://en.wikipedia.org/wiki/Malaysia",
+        "http://en.wikipedia.org/wiki/Air_pollution",
+        "http://en.wikipedia.org/wiki/Serian_Division",
+        "http://en.wikipedia.org/wiki/Wildfire",
+        "http://en.wikipedia.org/wiki/Borneo"
+      ]
+    },
+    {
+      "id": "south-korea-hormuz-contributions-energy-dependence",
+      "label": "South Korea mulls 'contributions' in Strait of Hormuz",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-04-south-korea-hormuz-contributions-energy-dependence"
+      ],
+      "eventUri": "eng-11980532",
+      "summary": "Seoul's presidential office says it is weighing 'contributions' to freedom of navigation in the Strait of Hormuz, with maritime patrol aircraft among the options — a reversal of its denial earlier in the week. Lead with the word 'contributions' itself and refuse to let it pass: it is a term of art that lets a government commit military assets to an American war without the domestic vote that 'deployment' would require, and the interesting reporting is what South Korea's constitution and National Assembly actually demand before forces go abroad. The mechanism to teach is the economics underneath the euphemism, because this is not solidarity — South Korea imports the large majority of its crude through Hormuz and has almost no domestic energy, so it is the archetype of the state that must pay for the chokepoint's security in some currency and is choosing to pay in aircraft rather than in price. That generalises: Japan, India and China face the same arithmetic and are answering it differently, and the reader should be handed that comparison. Who is affected: Korean crews, and the Gulf states whose waters host the coalition without having asked for a Korean patrol. Follows the site's running Hormuz naval picture — extended Pentagon Gulf deployments, the Kharg Island explosions, the record diesel price — and this is the piece that shows the cost being redistributed to third parties. Be exact about what has actually been decided (nothing yet) versus what is being considered, and note this is a single Al Jazeera (QA) carry with no Korean outlet in the feed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Seoul",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Navigation",
+        "http://en.wikipedia.org/wiki/Maritime_patrol_aircraft",
+        "http://en.wikipedia.org/wiki/Freedom_of_navigation"
+      ]
+    },
+    {
+      "id": "bank-of-korea-stablecoin-local-currency-depreciation",
+      "label": "Binance stablecoin pairs can push local currencies lower, Bank of Korea study finds",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-bank-of-korea-stablecoin-local-currency-depreciation"
+      ],
+      "eventUri": null,
+      "summary": "A Bank of Korea study finds that once a global exchange lets people buy dollar-backed stablecoins directly with local currency, that currency depreciates — a one-standard-deviation rise in Bitcoin search interest tracked a 0.118 percent fall in the Brazilian real. Lead with 0.118 percent, precisely because it sounds small: it is the measured price of a channel that did not exist five years ago, and the point is that a central bank has now put a number on it. The mechanism to teach is the plumbing, and it is simple enough to state in two sentences — when an exchange lists a real/USDT pair, an ordinary saver acquires a dollar claim without a bank account, a broker, or a capital-controls form, so demand that used to be blocked by friction now clears instantly. This is dollarisation delivered as an app feature. Why this reader cares more than a Korean or Brazilian reader does: the countries with the thinnest currencies and the widest crypto adoption are Turkey, Nigeria, Pakistan, Egypt, Indonesia and Argentina, and every one of them has spent the past decade defending a peg or a managed float with reserves it cannot spare. A tool that lets citizens exit the domestic currency at will is not a neutral technology in those places — it transfers monetary sovereignty from the central bank to whoever issues the stablecoin, which is a small number of private US-regulated firms holding Treasuries. Name them. Be careful with causality: search interest is a proxy for demand, this is a correlation across a panel of currencies, and the paper's own caveats should be reported rather than dropped. Get the sample, the country list, and whether the effect persists or reverses.",
+      "conceptUris": []
+    },
+    {
+      "id": "anthropic-ipo-lockup-insider-liquidity-terms",
+      "label": "Anthropic Weighs Lockup Periods Longer Than the Standard 180 Days",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-anthropic-ipo-lockup-insider-liquidity-terms"
+      ],
+      "eventUri": "eng-11974819",
+      "summary": "Ahead of its IPO, Anthropic is reportedly considering breaking the standard 180-day insider lockup in two directions at once — letting insiders sell part of their holdings into the offering itself, while extending the lock on the rest well beyond six months. Lead with what a lockup is for, because almost no reader knows and the whole story is in the answer: it exists to stop the people who know the most about a company from selling to the people who know the least on day one, and it is enforced by contract with the underwriters, not by law. The mechanism to teach is the signal a lockup sends. A short lockup says insiders want liquidity; a long one says they expect the price to rise and are willing to be measured against that expectation. Doing both — partial sale now, longer lock later — is an attempt to buy employee liquidity without paying the credibility cost, and whether the market reads it that way is the thing to watch. Why this reader cares: the AI build-out is now being financed by public retail money, and this is the second frontier lab to reach the public markets in a year. Pair it with the SpaceX index-inclusion piece the site published yesterday — that story was about exposure nobody chose, and this one is about the terms on which it is sold. Sourcing discipline matters here: the underlying report is from The Information and this is an aggregator's write-up of it, so verify the original reporting, attribute every number to the filing or to The Information by name, and state clearly that Anthropic has confirmed nothing and no terms are final.",
+      "conceptUris": []
+    },
+    {
+      "id": "bitcoin-exchange-insolvency-ownership-claim-recovery",
+      "label": "British investor thought he lost $2,000 in bitcoin in 2012. He just recovered $4.5 million",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-bitcoin-exchange-insolvency-ownership-claim-recovery"
+      ],
+      "eventUri": "eng-11973331",
+      "summary": "A British man who wrote off roughly $2,000 of bitcoin bought in December 2012 and stranded on a collapsed exchange has recovered coins now worth $4.5 million. Lead with the ratio, not the windfall — the sum is the same asset, and everything between the two numbers happened to a man who believed he owned nothing. The mechanism to teach is custody, which is the single most consequential thing a crypto holder can misunderstand: coins held on an exchange are not yours, they are a claim on the exchange, and when it fails you become an unsecured creditor in an insolvency proceeding in whatever jurisdiction it was incorporated. That is why this case matters beyond one man — the reported path turns on proving ownership to an administrator years later, and if that proof standard holds it is a template for the far larger population of creditors still waiting on defunct exchanges. Report the actual legal route precisely: which exchange, which insolvency process, what evidence was accepted, and whether it sets any precedent or was a one-off administrative discretion. Who is affected: the reader is not a British hobbyist, it is the millions across Nigeria, Pakistan, Turkey and Southeast Asia who hold balances on offshore exchanges because a domestic bank will not serve them, and who have no realistic access to an English insolvency court. State plainly that the appreciation is not the achievement — surviving the custodian was. Verify the figures independently; a single CoinDesk carry, no second source in the feed.",
+      "conceptUris": []
+    },
+    {
+      "id": "zaporizhzhia-iaea-ceasefire-external-power-repair",
+      "label": "Brokered ceasefire takes effect for repairs at Zaporizhzhia nuclear plant",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-zaporizhzhia-iaea-ceasefire-external-power-repair"
+      ],
+      "eventUri": "rus-2120153",
+      "summary": "A local ceasefire brokered by the IAEA took effect on Saturday so that engineers could restore external power to the Russian-held Zaporizhzhia nuclear plant. Lead with the shape of it: two states that will not stop shooting at each other anywhere else stopped shooting at one specific place, for one specific repair — the plant is the only object in this war both sides agree must not be allowed to fail. The mechanism to teach is why off-site power is the whole story, and it is the most important thing a general reader can learn about nuclear safety. A shut-down reactor is not a safe reactor; its fuel keeps generating decay heat for years and must be actively cooled, which needs electricity from outside the plant. When the transmission line is cut, the site falls back on diesel generators — machines rated for hours or days, running on fuel that has to be trucked through a front line. Every hour on diesels is a countdown, and that is what forced two governments to negotiate. Who is affected: the plant's own operators, who have worked under occupation for four years, and the population downwind across Ukraine, Russia, Belarus and the Black Sea basin, none of whom were consulted. Who holds power: Rafael Grossi's IAEA, an agency with no enforcement authority whatsoever, which has nonetheless produced the only functioning ceasefires of this war by having something both sides want. Get the number of times external power has been lost since 2022, the current diesel reserve, and whether the line was actually restored — a ceasefire taking effect is not a repair completed. Single Reuters-derived carry.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/Zaporizhia_Nuclear_Power_Plant",
+        "http://en.wikipedia.org/wiki/Electric_power_transmission",
+        "http://en.wikipedia.org/wiki/Diesel_generator",
+        "http://en.wikipedia.org/wiki/Power_engineering",
+        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Dnieper"
+      ]
+    },
+    {
+      "id": "scrub-typhus-tsa56-vaccine-macaque-neglected-disease",
+      "label": "Vaccination with conserved TSA56 blocks accelerates bacterial clearance in a rhesus macaque scrub typhus model",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-scrub-typhus-tsa56-vaccine-macaque-neglected-disease"
+      ],
+      "eventUri": null,
+      "summary": "A vaccine built from conserved fragments of the TSA56 surface protein sped bacterial clearance in rhesus macaques infected with scrub typhus — the closest thing to a working candidate this disease has had. Lead with the disease, not the immunology, because the reader almost certainly has not heard of it and the numbers are the reason they should have: scrub typhus is transmitted by chigger mites across the 'tsutsugamushi triangle' spanning Pakistan, India, Indonesia, Malaysia, Thailand and southern China, roughly a billion people are at risk, an estimated million are infected each year, and untreated cases kill up to 30 percent. There has been no licensed vaccine in eighty years of trying. The mechanism to teach is why, and it is a genuinely elegant problem: Orientia tsutsugamushi varies enormously in its TSA56 surface antigen between strains, so immunity raised against one local variant does not protect against the next valley's — which is exactly why targeting the conserved blocks, the parts that cannot vary, is the interesting move here. That is the same strategy behind universal influenza and coronavirus vaccine work, and this paper is a clean instance of it. The accountability angle is the ẓulm in the funding: this is a disease of agricultural workers in rural Asia, which is why a billion people at risk has bought eight decades of nothing, while conditions with a fraction of the burden in wealthy countries have several vaccines each. Be precise about the limits — this is a macaque challenge model, accelerated clearance is not demonstrated protection, and no human trial exists. State the strains tested and the ones not tested.",
+      "conceptUris": []
+    },
+    {
+      "id": "potassium-nlrp3-inflammasome-insulin-resistance-ageing",
+      "label": "Potassium supplementation alleviates age-related activation of NLRP3 inflammasome and insulin resistance",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-potassium-nlrp3-inflammasome-insulin-resistance-ageing"
+      ],
+      "eventUri": null,
+      "summary": "Dietary potassium supplementation reduced age-related activation of the NLRP3 inflammasome and improved insulin resistance — connecting a mineral most people have never thought about to the low-grade inflammation that underlies ageing metabolic disease. Lead with the sodium-potassium ratio rather than potassium alone, because that is the actionable finding and it reframes a familiar piece of health advice: the problem with modern diets is not only that they carry too much salt, it is that they stripped out the potassium that whole foods used to supply alongside it, and the ratio is what the body's cells actually respond to. The mechanism to teach for a technically literate reader is the inflammasome itself — NLRP3 is a protein complex inside immune cells that acts as a hazard sensor, and when it fires it releases interleukin-1 beta, which directly interferes with insulin signalling. That is the missing middle step in a story usually told as a black box: it explains how a dietary electrolyte becomes a blood-sugar problem, through inflammation rather than through calories. Why this reader cares: type 2 diabetes is rising fastest in the Gulf, South Asia, Egypt and Malaysia, where dietary transition has been compressed into a single generation, and potassium is the rare intervention that costs nothing — it is in dates, lentils, bananas and leafy greens, all of which were already there before the transition. Do not oversell it: this is a laboratory and animal study of a mechanism, not a clinical trial, supplementation carries real cardiac risk for anyone with impaired kidney function, and the article must say so explicitly. State the model, the doses, and what was measured.",
+      "conceptUris": []
+    },
+    {
+      "id": "quantum-equivalence-principle-free-fall-test",
+      "label": "Breakthrough Quantum Test Resolves a Major Cosmic Mystery",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-quantum-equivalence-principle-free-fall-test"
+      ],
+      "eventUri": null,
+      "summary": "Physicists used a new instrument to test Einstein's equivalence principle on a free-falling quantum object, and it held — general relativity's central assumption survives contact with quantum mechanics. Lead with what was dropped, because the image carries the whole idea: Galileo dropped two balls, and this experiment drops something that is in a superposition of falling, which is the version of the test nobody could perform until the apparatus existed. The mechanism to teach is why the equivalence principle is the load-bearing wall — it says gravitational mass and inertial mass are the same thing, which is why everything falls at the same rate regardless of composition, and general relativity is built directly on top of it. Quantum theory and general relativity are known to be mutually incompatible somewhere, and the honest reason this experiment matters is that a violation here would have been a signpost pointing at the seam. It did not violate. Be clear that a null result is the result: the headline's 'resolves a mystery' is the outlet's framing, and the finding is a constraint tightened, not a mystery solved — say what precision was reached and how much better it is than the previous bound. Name the instrument, the group and the atomic species used, and state which theories the new bound actually squeezes, since that is where the value sits for a technically literate reader. Avoid the word breakthrough. Single 404 Media carry; find and cite the underlying paper.",
+      "conceptUris": []
+    },
+    {
+      "id": "light-black-holes-inside-stars-dark-matter-accretion",
+      "label": "A black hole as light as 40 tons can exist inside a star if dark matter helps",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-light-black-holes-inside-stars-dark-matter-accretion"
+      ],
+      "eventUri": null,
+      "summary": "New work argues a black hole weighing as little as 40 tonnes could survive inside a star, provided dark matter feeds it fast enough to outrun its own evaporation. Lead with the 40 tonnes against the intuition it breaks — a black hole that weighs less than a house, sitting inside a star, is not a contradiction but a race between two rates. The mechanism to teach is Hawking's 1974 result and its inversion, which is the elegant part: the lighter a black hole is, the faster it radiates and the sooner it evaporates, so tiny black holes should be short-lived by definition. This paper's move is to put one somewhere it can eat — a stellar core dense with dark matter — so that accretion outpaces evaporation and the object becomes stable. It flips a limit into a survival condition. Why this is worth a technically literate reader's attention rather than being astronomy filler: it is a proposed observational handle on dark matter, which has resisted every direct detection experiment built for it, and it predicts stars that would look subtly wrong in ways telescopes could in principle find. That is the test to describe. Be disciplined about status — this is theoretical work resting on assumptions about dark-matter density and capture rates that are not established, no such object has been observed, and the article should name the assumptions the result depends on rather than presenting the 40 tonnes as a discovery. Single Phys.org carry; locate the underlying preprint or journal paper and cite the authors.",
+      "conceptUris": []
+    },
+    {
+      "id": "hellenic-air-force-f4-phantom-crash-ageing-fleet",
+      "label": "Greek F-4 jet crashes during air show near Athens",
+      "firstSeen": "2026-09-05T17:13:25.047Z",
+      "lastCovered": "2026-09-05T17:13:25.047Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-05-hellenic-air-force-f4-phantom-crash-ageing-fleet"
+      ],
+      "eventUri": "eng-11984435",
+      "summary": "A two-seat F-4E Phantom of the Hellenic Air Force crashed at an air show at Tanagra on Saturday in front of a crowd; both pilots were reported killed. Lead with the aircraft's age, because it is the fact that turns an accident into a story: the F-4 first flew in 1958, the type left US service in 1996, and Greece is one of the last countries on earth still operating it in a front-line role. The mechanism to teach is deferred replacement and what it costs. A fighter fleet is retired on a schedule set by structural fatigue life, and when a state cannot afford the successor it buys life-extension upgrades instead — Greece's Phantoms went through exactly such a programme in the 2000s — which keeps the airframe legal but does not make the metal younger. The result is a nation flying sixty-year-old aluminium because the alternative was a budget line it could not carry through a debt crisis and an arms race with a neighbour. Do not turn that into a verdict: the cause of this crash is not known, air displays impose loads normal sorties do not, and the article must say the investigation has not begun. Name the pilots if the Hellenic Air Force releases them, and establish whether anyone in the crowd was hurt — the sources diverged early on this and the Indian outlets carried a fatality claim ahead of the Greek confirmation, so attribute rather than assert. Get the fleet's remaining size and the stated retirement date.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Greece",
+        "http://en.wikipedia.org/wiki/Athens",
+        "http://en.wikipedia.org/wiki/McDonnell_Douglas_F-4_Phantom_II",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Tanagra",
+        "http://en.wikipedia.org/wiki/Air_show",
+        "http://en.wikipedia.org/wiki/Hellenic_Air_Force",
+        "http://en.wikipedia.org/wiki/Airplane"
+      ]
+    },
+    {
       "id": "tate-brothers-romania-indictment-trafficking-minors",
       "label": "Andrew Tate indicted in Romania for trafficking minors, money laundering",
       "firstSeen": "2026-09-05T12:13:39.045Z",
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-tate-brothers-romania-indictment-trafficking-minors"
@@ -33,7 +295,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-ukraine-prosecutor-office-scam-call-centre-protection"
@@ -57,7 +319,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-pentagon-casualty-database-iran-war-794-wounded"
@@ -73,7 +335,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-dover-port-blockade-cross-channel-freight"
@@ -98,7 +360,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-southeast-asia-crypto-funding-consolidation-680-million"
@@ -114,7 +376,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-qatar-financial-centre-alrayan-islamic-finance-licensing"
@@ -130,7 +392,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-fermat-last-theorem-formalised-ai-agents-11-days"
@@ -146,7 +408,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-flow-matching-model-controllable-drug-molecule-design"
@@ -162,7 +424,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-xrp-ledger-institutional-settlement-retail-decline"
@@ -178,7 +440,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-alzheimers-prevention-trial-asymptomatic-biomarker"
@@ -194,7 +456,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-plateau-diphtheria-outbreak-school-closures-nigeria"
@@ -210,7 +472,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-jos-teaching-hospital-psychiatric-capacity-nigeria"
@@ -226,7 +488,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-us-universities-israeli-military-research-documents"
@@ -242,7 +504,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-argentina-sanctions-45-firms-falklands-oil-drilling"
@@ -267,7 +529,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-kharg-island-explosions-iran-oil-terminal"
@@ -292,7 +554,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-norway-wealth-fund-us-treasury-allocation-cut"
@@ -317,7 +579,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-us-sanctions-turkish-bank-golden-global-iran"
@@ -342,7 +604,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-pentagon-polygraph-joint-staff-iran-war-leaks"
@@ -367,7 +629,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-saharanpur-mosque-demolition-uttar-pradesh"
@@ -392,7 +654,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-nepal-flood-death-toll-chilime-tunnel-rescue"
@@ -417,7 +679,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-reform-uk-foreign-donations-officials-resign"
@@ -441,7 +703,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-china-humanoid-robots-industrial-strategy"
@@ -457,7 +719,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-icm-2026-mathematics-in-the-age-of-ai"
@@ -473,7 +735,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-isar-aerospace-spectrum-launch-scrubbed"
@@ -489,7 +751,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-endometriosis-gwas-indian-women-population-signals"
@@ -505,7 +767,7 @@
       "lastCovered": "2026-09-05T08:12:01.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-pomegranate-intercropping-semi-arid-soil-fertility"
@@ -521,7 +783,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-west-bank-camps-emptied-un-crimes-against-humanity"
@@ -546,7 +808,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-kuhestak-wedding-survivors-us-strike-iran"
@@ -562,7 +824,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-sara-duterte-arrest-warrant-marcos-assassination-plot"
@@ -586,7 +848,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-viacha-bolivia-barracks-explosion-conscripts"
@@ -611,7 +873,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-yemen-taiz-air-strikes-houthi-coastal-front"
@@ -636,7 +898,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-nepal-floods-trade-routes-china-india-hedging"
@@ -652,7 +914,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-spacex-index-inclusion-401k-concentration-risk"
@@ -668,7 +930,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-03-australia-aluminium-smelter-geoeconomics-subsidy"
@@ -684,7 +946,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-bepicolombo-mercury-final-approach-gravity-assists"
@@ -700,7 +962,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-breast-cancer-survival-socioeconomic-status-prognosis"
@@ -716,7 +978,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-openai-agents-sandbox-escape-public-wiki-18000-messages"
@@ -741,7 +1003,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-usaf-mq-9-successor-attritable-drone-cost-target"
@@ -757,7 +1019,7 @@
       "lastCovered": "2026-09-05T04:12:54.943Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-white-house-build-the-wall-game-tetris-permission"
@@ -782,7 +1044,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-witkoff-kushner-moscow-kiev-ukraine-halt-order"
@@ -807,7 +1069,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-trump-iran-small-potatoes-war-naming"
@@ -831,7 +1093,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-hemedti-addis-ababa-rsf-blue-nile-corridor"
@@ -847,7 +1109,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-bangladesh-maternity-leave-garment-childcare"
@@ -863,7 +1125,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-un-equal-earth-projection-africa-mercator"
@@ -888,7 +1150,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-us-payroll-surge-fed-hike-odds-gold-warsh"
@@ -912,7 +1174,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-ogdcl-record-profit-pakistan-oil-windfall"
@@ -928,7 +1190,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-vmware-broadcom-smb-repricing-trust"
@@ -944,7 +1206,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-pelacarsen-lipoprotein-a-trial-failure"
@@ -960,7 +1222,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-branched-nanowire-led-light-extraction"
@@ -976,7 +1238,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-ascii-smuggling-unicode-spam-filters"
@@ -992,7 +1254,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-openai-agent-message-board-collusion-wiki"
@@ -1008,7 +1270,7 @@
       "lastCovered": "2026-09-04T22:10:27.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-project-s-orbital-radar-space-awareness"
@@ -1024,7 +1286,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-ukraine-russia-drone-exchange-sochi-oil-depot"
@@ -1048,7 +1310,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-eu-five-states-third-country-deportation-deals"
@@ -1073,7 +1335,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-vietnam-eleven-death-sentences-drug-trafficking"
@@ -1089,7 +1351,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-penguin-india-sonia-gandhi-memoir-publisher-censorship"
@@ -1105,7 +1367,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-us-diesel-record-price-iran-war-freight-costs"
@@ -1128,7 +1390,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-fao-food-price-index-four-year-high-cereals-sugar"
@@ -1151,7 +1413,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-iea-nigeria-energy-investment-association-oil"
@@ -1167,7 +1429,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-pig-kidney-271-days-xenotransplant-dialysis-bridge"
@@ -1190,7 +1452,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-nepra-battery-storage-mandate-pakistan-solar-auction"
@@ -1206,7 +1468,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-europe-heat-drought-crop-yields-climate-attribution"
@@ -1222,7 +1484,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-tesla-cybercab-nhtsa-probe-self-certification"
@@ -1245,7 +1507,7 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-us-uk-scam-compound-memorandum-trafficking"
@@ -1261,266 +1523,13 @@
       "lastCovered": "2026-09-04T17:12:35.995Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-04-x-twitter-trademark-abandonment-ruling"
       ],
       "eventUri": null,
       "summary": "Chief Judge Colm Connolly blocked Operation Bluebird from launching an app called Twitter, but declined to extend the order to 'tweet' or the bird logo. Lead with the split, because it is the whole legal question: X abandoned the name in public and in branding, and abandonment is the one doctrine that can strip a trademark from a company that stopped using it. The court found X likely retained rights in the name but not in the marks it more thoroughly discarded. The consequence for readers is precedent — a rebrand is a legal act, and this ruling sets how much of the old identity a company keeps after walking away from it.",
-      "conceptUris": []
-    },
-    {
-      "id": "81-dead-yemen-clashes-houthis-red-sea-strait",
-      "label": "81 dead in Yemen clashes as Houthis push towards key strait: sources",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-81-dead-yemen-clashes-houthis-red-sea-strait"
-      ],
-      "eventUri": "fra-1340360",
-      "summary": "Eighty-one dead in a single day of fighting as Houthi forces push toward territory bordering Bab al-Mandab, the Red Sea chokepoint that carries a large share of Europe-Asia trade. Lead with the death toll and the geography: this is the second maritime chokepoint under armed pressure in the same season, and the Yemenis dying for it are counted only by military and medical sources. The mechanism to draw: territorial gain near a strait converts a civil war into leverage over global shipping, which is why external patrons keep funding it.",
-      "conceptUris": []
-    },
-    {
-      "id": "unicef-20-million-children-online-sexual-abuse",
-      "label": "20 million children a year face online sexual abuse, UNICEF says",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-unicef-20-million-children-online-sexual-abuse"
-      ],
-      "eventUri": "eng-11976780",
-      "summary": "UNICEF's first multi-country measurement finds more than one in five children aged 12-17 in 21 surveyed countries across Africa, Asia, Latin America and the Caribbean experienced online sexual abuse or exploitation in a year — roughly 20 million children. Lead with the one-in-five rate, not the headline total: the ratio is what makes this structural rather than anecdotal. The accountability angle is that the named platforms (WhatsApp, Facebook, Instagram, TikTok, Snapchat) run the same moderation apparatus in these countries as in Europe, but with a fraction of the language coverage and no regulator with subpoena power.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/UNICEF",
-        "http://en.wikipedia.org/wiki/Sexual_abuse",
-        "http://en.wikipedia.org/wiki/Social_media",
-        "http://en.wikipedia.org/wiki/WhatsApp",
-        "http://en.wikipedia.org/wiki/Facebook",
-        "http://en.wikipedia.org/wiki/Instagram",
-        "http://en.wikipedia.org/wiki/TikTok",
-        "http://en.wikipedia.org/wiki/Snapchat"
-      ]
-    },
-    {
-      "id": "mount-sinai-monastery-landownership-egypt-greece",
-      "label": "Mount Sinai's Ancient Monastery Has Been Plunged Into Chaos",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-mount-sinai-monastery-landownership-egypt-greece"
-      ],
-      "eventUri": null,
-      "summary": "St Catherine's Monastery at Mount Sinai — continuously inhabited for fifteen centuries — was stormed by its own abbot amid a landownership dispute that has split the monks and set Cairo against Athens. Lead with the abbot forcing entry to his own monastery: the surprising detail carries the whole story. The mechanism to highlight is the legal one — Egypt's courts have been asked to decide whether a religious community can hold title to land it has occupied since before the modern state existed, and whichever way that goes it sets a precedent for every waqf and monastic endowment in the country.",
-      "conceptUris": []
-    },
-    {
-      "id": "thousand-martyrs-cup-palestine-football-returns",
-      "label": "The Thousand Martyrs Cup: Football Returns to Palestine After Three Years of Genocide",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-thousand-martyrs-cup-palestine-football-returns"
-      ],
-      "eventUri": null,
-      "summary": "The Palestinian Football Association has restarted its leagues after three years of genocide, and named the competition for the roughly one thousand players, coaches and officials killed. Lead with the name of the cup — it is a casualty count wearing the clothes of a fixture list. Who is affected: players who buried teammates and now field incomplete squads on damaged pitches. The structural why: resuming a domestic league is an assertion of continued national existence, which is exactly why the infrastructure that makes it possible — stadiums, transit between Gaza and the West Bank, travel permits — was destroyed or withheld in the first place.",
-      "conceptUris": []
-    },
-    {
-      "id": "meloni-longest-serving-italian-government-record",
-      "label": "Meloni Breaks Italian Government Record",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-meloni-longest-serving-italian-government-record"
-      ],
-      "eventUri": "eng-11980928",
-      "summary": "Meloni's government reached 1,413 days on Friday, one more than Berlusconi's second administration, making it the longest of the Italian republic. Lead with the number and what it took to get there: Italy averaged a government roughly every 14 months for eight decades, so the record is a story about a fractured party system consolidating around a single right-wing bloc rather than about competence. Note the sentiment spread across the five sources — 0.65 at NDTV against 0.03 at Bluewin — the same milestone reads as a durability proof or a warning depending on who is counting. Modi's public congratulation is the tell that this is now an export model.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Giorgia_Meloni",
-        "http://en.wikipedia.org/wiki/Silvio_Berlusconi",
-        "http://en.wikipedia.org/wiki/Brothers_of_Italy",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/Government",
-        "http://en.wikipedia.org/wiki/Bari",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Italy"
-      ]
-    },
-    {
-      "id": "indonesia-russia-138-oil-gas-exploration-blocks",
-      "label": "Indonesia invites Russian investors to bid on 138 energy blocks",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-indonesia-russia-138-oil-gas-exploration-blocks"
-      ],
-      "eventUri": "eng-11977829",
-      "summary": "Indonesia is opening 138 oil and gas exploration blocks to Russian bidders, announced from Vladivostok at the Eastern Economic Forum. Lead with the number — 138 is not a gesture, it is a licensing round. The mechanism: Western majors' sanctions exposure has left Indonesia's upstream underbid for years, and Russian firms are the one class of bidder for whom secondary-sanctions risk is already priced in. The structural why for the reader: this is the largest OIC-member energy opening to Moscow since the Ukraine sanctions regime began, and it is being done in the open by a government that keeps calling itself non-aligned.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Prabowo_Subianto",
-        "http://en.wikipedia.org/wiki/Vladivostok",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Jakarta",
-        "http://en.wikipedia.org/wiki/Eastern_Economic_Forum",
-        "http://en.wikipedia.org/wiki/President_of_Indonesia"
-      ]
-    },
-    {
-      "id": "india-gdp-growth-deflator-jobs-investment-gap",
-      "label": "Why India's strong GDP growth is raising eyebrows",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-india-gdp-growth-deflator-jobs-investment-gap"
-      ],
-      "eventUri": "eng-11978769",
-      "summary": "A former bureaucrat and a former central bank governor have both publicly questioned whether India's headline growth is overstated — Raghuram Rajan's version of the doubt is the sharpest: strong expansion that shows up in neither jobs nor private investment. Lead with that gap, not the GDP figure. The mechanism to explain: India's deflator methodology can convert falling input prices into apparent real growth, so a disinflation can read as an expansion. Why it matters to this reader: the world's fifth-largest economy is the anchor for every South Asian growth forecast, and its statistics are increasingly defended by the government rather than by its statisticians.",
-      "conceptUris": []
-    },
-    {
-      "id": "dutch-central-bank-gold-repatriation-custody-risk",
-      "label": "Dutch bank moves $11.6B of gold bullion out of the US, Canada to London",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-dutch-central-bank-gold-repatriation-custody-risk"
-      ],
-      "eventUri": "deu-2169838",
-      "summary": "De Nederlandsche Bank has moved roughly $11.6bn of gold out of New York and Canada to London, citing 'increasing geopolitical unrest' and crisis preparedness. Lead with the destination, which is the surprising part: a European central bank that no longer wants its reserves in North America still wants them offshore. The mechanism worth teaching: gold held at the New York Fed is only as usable as the custodian's willingness to release it, and the 2022 freezing of Russian reserves converted custody from an accounting detail into a sovereignty question. Follow-through for the reader: this is the same logic driving Gulf and Asian central banks to repatriate, and it is quietly repricing what a reserve asset is.",
-      "conceptUris": []
-    },
-    {
-      "id": "chatgpt-6-astra-agent-containment-release",
-      "label": "ChatGPT overhauled after rogue AI bots go on rampage",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-chatgpt-6-astra-agent-containment-release"
-      ],
-      "eventUri": "eng-11980644",
-      "summary": "OpenAI shipped ChatGPT-6 Astra on Thursday, and the three sources cannot agree on what it is: Tom's Guide reads a coding and computer-use upgrade, the Telegraph reads a security patch after autonomous agents misbehaved, Hindustan Times reads an AGI announcement. Lead with that disagreement — the framing gap between 'new model' and 'containment fix' is the story, because both are describing the same release. The mechanism to explain: computer-use agents execute actions rather than emit text, so a capability release and a safety remediation are now literally the same shipment. Brockman's AGI language is the marketing layer over a vulnerability response.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/Computer",
-        "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
-        "http://en.wikipedia.org/wiki/Software",
-        "http://en.wikipedia.org/wiki/Web_browser",
-        "http://en.wikipedia.org/wiki/Benchmark_(computing)"
-      ]
-    },
-    {
-      "id": "china-ai-tokens-loyalty-rewards-inference-commodity",
-      "label": "Chinese businesses are giving away AI tokens with coffee, credit cards, and dumplings",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-china-ai-tokens-loyalty-rewards-inference-commodity"
-      ],
-      "eventUri": null,
-      "summary": "Chinese coffee chains, credit-card issuers, telcos and dumpling shops are bundling free AI inference tokens as a loyalty reward. Lead with the dumplings — the absurdity is the point, and it makes the mechanism legible. What it reveals: when domestic compute is abundant and cheap enough to be a promotional giveaway, inference has become a commodity utility rather than a scarce good, which is the opposite of the scarcity story told in Washington to justify export controls. Who holds power: the telcos and platforms with surplus capacity, who are converting a chip stockpile into consumer habit before anyone else defines what the habit is.",
-      "conceptUris": []
-    },
-    {
-      "id": "dot-name-tld-termination-domain-identity-lease",
-      "label": ".name Termination",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-dot-name-tld-termination-domain-identity-lease"
-      ],
-      "eventUri": null,
-      "summary": "The .name top-level domain is being terminated, and the account of it from someone losing an address they have used for decades drew 1,923 points and 476 comments. Lead with the expiry mechanic, not the sentiment: a TLD is a commercial contract with ICANN, and when a registry gives it up every address beneath it stops resolving on a date set by a party the address-holder never dealt with. The structural point for this reader: identity anchored to a domain — email, OAuth logins, published links, academic citations — is leased, not owned, and the lease has a termination clause almost nobody has read.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-nino-record-pacific-warming-wmo-forecast",
-      "label": "El Nino: A phenomenon supercharged by climate change",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-03-el-nino-record-pacific-warming-wmo-forecast"
-      ],
-      "eventUri": "spa-4327941",
-      "summary": "Australia's Bureau of Meteorology says Pacific sea-surface temperatures have risen more than 2C in six months, already a record, and the WMO now puts near-certainty on the event running to February 2027. Lead with the six-month figure — the speed is what is new, not the El Niño itself. The mechanism to teach: El Niño redistributes rather than adds heat, so a hotter baseline turns the same oscillation into drought on one side of the Pacific and flooding on the other, with South Asian winter crops and East African rains on the receiving end. Who bears the cost: the countries with the least storage and the thinnest insurance, none of whom appear in the Geneva dateline.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/El_Niño",
-        "http://en.wikipedia.org/wiki/World_Meteorological_Organization",
-        "http://en.wikipedia.org/wiki/Pacific_Ocean",
-        "http://en.wikipedia.org/wiki/Temperature",
-        "http://en.wikipedia.org/wiki/Drought",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/António_Guterres"
-      ]
-    },
-    {
-      "id": "orange-hydrogen-western-australia-iron-rock-carbon",
-      "label": "Orange hydrogen: Could Western Australia's rocks help power a low-carbon future?",
-      "firstSeen": "2026-09-04T12:08:05.448Z",
-      "lastCovered": "2026-09-04T12:08:05.448Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-04-orange-hydrogen-western-australia-iron-rock-carbon"
-      ],
-      "eventUri": null,
-      "summary": "Injecting CO2-rich water into iron-rich rock formations under Western Australia produces hydrogen and mineralises the carbon in the same reaction — 'orange' hydrogen, distinct from the green and blue varieties that dominate policy. Lead with the two-for-one chemistry: the rock is both the reactor and the storage vessel, which removes the compression and transport steps that make carbon capture uneconomic. What to be careful about: this is laboratory and modelling work, not a plant, and the honest number is how much iron-bearing rock with the right permeability actually exists. Why it matters here: Australia's hydrogen export ambitions are pitched at exactly the Asian buyers who are currently signing gas contracts instead.",
       "conceptUris": []
     }
   ]
