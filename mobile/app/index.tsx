@@ -635,6 +635,41 @@ export default function HomeScreen() {
     }
   }, [refresh]);
 
+  /**
+   * Pull to refresh on a card column.
+   *
+   * The same `refresh()` the feed uses, because the same build writes both: it
+   * probes `/api/meta.json`, and a moved `generated` invalidates every
+   * `useApiJson` snapshot at once — trends, chokepoints, analysis, market
+   * signals. So a pull on Markets really does refetch the cards under the
+   * finger; nothing here is a placebo.
+   *
+   * What differs is what it can honestly say afterwards. `refresh()` returns
+   * the *articles* it added, which on Markets is the wrong subject entirely —
+   * "3 new · ~2 min read" over a deck of price cards is an answer to a question
+   * nobody asked, and scrolling the news list to the top is invisible from
+   * here. A rebuilt site is reported as one, and an unchanged one gets the
+   * feed's own "already up to date" with the build time on it.
+   */
+  const handleCardRefresh = useCallback(async () => {
+    hapticImpact();
+    try {
+      const addedArticles = await refresh();
+      const built = generatedRef.current ? Date.parse(generatedRef.current) : Number.NaN;
+      toastRef.current?.show(
+        addedArticles.length > 0
+          ? 'Updated'
+          : Number.isFinite(built)
+            ? `Already up to date · ${formatTimeAgo(built)}`
+            : 'Already up to date',
+        undefined,
+        'top',
+      );
+    } catch {
+      toastRef.current?.show('Could not refresh', undefined, 'top');
+    }
+  }, [refresh]);
+
   // Hold the splash until we have something for *every* visible layer:
   // article cache loaded AND heatmap (the largest globe canvas) ready.
   // The mount-only globe layers (chokepoints, GDACS, conflicts, trends)
@@ -753,6 +788,7 @@ export default function HomeScreen() {
                   emptyMessage={copy?.message ?? 'nothing here yet'}
                   emptyHint={copy?.hint}
                   onReadingScrollStart={dismissActiveHint}
+                  onRefresh={handleCardRefresh}
                 />
               )}
             </View>

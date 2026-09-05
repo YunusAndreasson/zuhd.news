@@ -290,11 +290,42 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   explain this movement. Validated against the offered set and re-resolved
   against the corpus at build time, since an article can be renamed between the
   run that wrote the file and the build that reads it.
-- **Catalog prose wins over generated prose.** The 11 chokepoint and 30 exchange
-  `blurb` strings are seeded as `standing` and never regenerated — they are
-  editorial judgements, and this stage paraphrasing them would be the failure
-  "editorial lists are editorial" is about. It also takes 41 of 98 items out of
-  the expensive first run.
+- **Catalog prose wins over generated prose — for a chokepoint, and only
+  there.** A strait's blurb *is* a definition: *"One-fifth of global seaborne
+  oil passes through this 21-mile strait between Iran and Oman"* answers what,
+  where and why in one line, and paraphrasing it would be the failure
+  "editorial lists are editorial" is about.
+- **The same rule applied to exchanges answered a question nobody asked.** All
+  30 blurbs are colour written for a reader who already knows the ticker —
+  *"Trades Sunday to Thursday. Heavily weighted to banks, defence and
+  technology"* never says that TA-125 is the Tel Aviv Stock Exchange's largest
+  125 listings, and *"The Arab world's oldest exchange, founded in Alexandria in
+  1883"* says nothing at all about the number EGX 30 puts on a card. Underneath
+  that is a subject mismatch: **the blurb describes the exchange while every
+  surface headlines the index**, so a reader arriving at `BIST 100` was handed
+  Borsa İstanbul's biography and still could not read the chart. The model
+  writes the exchange `standing` now, with the blurb in the bundle as material
+  it is told to keep and as the fallback if its sentence is missing or over cap
+  — the editorial claim survives, the identification goes in front of it.
+  Measured on five live exchanges: *"The 100 largest companies on Borsa
+  İstanbul, Türkiye's only stock exchange. Priced in lira, so its index level
+  carries the country's inflation as much as its earnings"* — the blurb's whole
+  claim, after an answer to the question the card raises.
+- **Worked examples in a prompt get copied verbatim onto the instruments they
+  name.** The first version illustrated the rule with TA-125 and EGX 30, both in
+  the catalog, and the very first live call returned the example sentence
+  word-for-word as TA-125's standing. The examples are Warsaw and Doha now —
+  indices this catalog does not carry — under a line saying to copy the shape
+  and not the words. Any example naming a real row is a template, not an
+  illustration.
+- **`promptHash` is in `standingFingerprint` too.** It was only in
+  `recentFingerprint`, so a rewritten standing rubric reached nothing: the
+  standing key hashes *identity*, and identity is exactly what never changes.
+  It costs no calls — both fields come back from one call, and the recent
+  fingerprint already busts on any prompt edit.
+- **The exchange blurbs no longer take 30 items out of the first run**, only the
+  11 chokepoints. In practice this is free for the same reason: those 30 were
+  being called anyway and having half the answer thrown away.
 - **The writer is handed the number, and matched on the subject rather than the
   prose.** `attach-indicators.js` (Stage 1.7) puts current levels on the
   selection before Stage 2, so an article can say "Brent at $88.90, down 15.6%

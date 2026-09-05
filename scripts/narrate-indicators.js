@@ -75,6 +75,33 @@ const WINDOW_DAYS = 14
 const MAX_COVERAGE = 12
 const MAX_FEED = 12
 const STANDING_CAP = 240
+
+/**
+ * The classes whose hand-written `blurb` *is* the definition, so this stage
+ * never regenerates it.
+ *
+ * A chokepoint's blurb answers the reader's whole question in one line — *"One
+ * fifth of global seaborne oil passes through this 21-mile strait between Iran
+ * and Oman"* says what the thing is, where it is, and why it is on a news map.
+ * Paraphrasing that would be the failure `cycle.md`'s "editorial lists are
+ * editorial" is about.
+ *
+ * **An exchange's blurb is not, and every one of the 32 was written on the
+ * assumption that the reader already knows the ticker.** *"Trades Sunday to
+ * Thursday. Heavily weighted to banks, defence and technology"* never says that
+ * TA-125 is the Tel Aviv Stock Exchange's largest 125 listings; *"The Arab
+ * world's oldest exchange, founded in Alexandria in 1883"* says nothing
+ * whatever about the number EGX 30 puts on the card. There is a second mismatch
+ * underneath: **the blurb describes the exchange while every card headlines the
+ * index**, so a reader who arrives at `BIST 100` is answered with a sentence
+ * about Borsa İstanbul and still does not know what the 100 counts.
+ *
+ * So for an exchange the model writes it, with the blurb in the bundle as
+ * material it is told to keep — the editorial claim survives, the
+ * identification goes in front of it, and the catalog is still the fallback if
+ * the model's sentence is missing or over cap.
+ */
+const BLURB_IS_DEFINITION = new Set(['chokepoint'])
 const RECENT_CAP = 360
 
 const FORCE = process.env.NARRATE_INDICATORS_FORCE === '1'
@@ -331,17 +358,31 @@ const threadsFor = (item) =>
     .map((t) => ({ label: t.label, arc: t.arc, summary: t.summary }))
 
 const buildBundle = (item) => ({
-  instrument: { kind: item.klass, ...item.identity },
+  // `catalogBlurb` rides the identity block rather than sitting beside it,
+  // because for the classes that have one it *is* part of what the instrument
+  // is. It was absent entirely while the blurb short-circuited `standing` for
+  // every item that carried one — the model was told to write a definition and
+  // never shown the editorial sentence its output had to agree with.
+  instrument: { kind: item.klass, ...item.identity, ...(item.catalogBlurb ? { blurb: item.catalogBlurb } : {}) },
   series: item.series,
   coverage: coverageFor(item),
   feedWindow: feedFor(item),
   threads: threadsFor(item),
 })
 
-/** Identity only — what `standing` is about. */
+/**
+ * Identity only — what `standing` is about.
+ *
+ * `promptHash` is in here for the same reason `recentFingerprint` carries it:
+ * the output is a function of the prompt and the input, and a key that ignores
+ * half of that leaves a rewritten rubric unapplied on every item whose identity
+ * never changes — which is all of them, since identity is what this hashes.
+ * It costs nothing: both fields come back from one call, and `recentFingerprint`
+ * already busts on a prompt edit.
+ */
 const standingFingerprint = (item) =>
   createHash('sha1')
-    .update(JSON.stringify({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb }))
+    .update(JSON.stringify({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb, prompt: promptHash }))
     .digest('hex')
     .slice(0, 16)
 
@@ -450,10 +491,9 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   }
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
-  // The catalog's own sentence wins where there is one. Chokepoints and
-  // exchanges carry hand-written blurbs and regenerating them would be this
-  // stage overwriting an editorial judgement with a paraphrase of it.
-  const standing = item.catalogBlurb || clean(result.out.standing)
+  const standing = BLURB_IS_DEFINITION.has(item.klass)
+    ? item.catalogBlurb || clean(result.out.standing)
+    : clean(result.out.standing) || item.catalogBlurb
   const recentRaw = clean(result.out.recent)
 
   // **`standing` is not grounding-checked, and that is the field's definition

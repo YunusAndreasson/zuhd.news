@@ -8,14 +8,43 @@ const sd = (v) => {
   return Math.sqrt(v.reduce((a, b) => a + (b - mean) ** 2, 0) / (v.length - 1))
 }
 
-export function normalizeMarkets(markets, trends) {
+/**
+ * Who the instrument is, alongside what it did.
+ *
+ * `title` is the *index* — `TA-125`, `BIST 100`, `MASI`, `IPC` — because that is
+ * what the card headlines and what the series belongs to. On its own it is four
+ * characters that mean nothing to a reader who has not met the ticker, which is
+ * the complaint this block answers: the card said an index fell 4.8% and never
+ * said what the index was, where it trades, or what it counts.
+ *
+ * So `exchange`, `city`, `country` and `standing` ride along. Two things need
+ * them, and they are different needs:
+ *
+ *  - **The card**, which can now name the exchange under the ticker and carry
+ *    the definitional sentence whether or not a model was called. Commentary
+ *    is written only when the window carries coverage, so on an ordinary day
+ *    it is empty — and an empty comment used to leave `BIST 100` unexplained
+ *    on its own card.
+ *  - **The model**, whose every proper noun must appear in the INPUT bundle
+ *    (`validateProperNouns`). Before this it could not write "Borsa İstanbul"
+ *    or "Türkiye" into a sentence about `mkt:bist` without being rejected for
+ *    inventing them.
+ *
+ * `standing` comes from the indicator dispatch, keyed by the same `mkt:{id}`
+ * these ids are minted as, so the definition on this card and the one on
+ * `/e/mkt:bist` are the same string rather than two paraphrases.
+ */
+export function normalizeMarkets(markets, trends, dispatch = {}) {
   const exchanges = (markets.exchanges || []).filter((m) => m.indexName !== 'S&P 500').map((m) => ({
     id: `mkt:${m.id}`, title: m.indexName, sourceLabel: m.sourceLabel,
+    exchange: m.name, city: m.city, country: m.iso2,
+    standing: dispatch[`mkt:${m.id}`]?.standing || m.blurb || '',
     topicTags: m.topicTags || [], values: m.series?.values, dates: m.series?.dates,
     completed: m.series?.completed, stale: m.stale,
   }))
   const indices = (trends.indicators || []).filter((m) => ['sp500', 'nasdaq100'].includes(m.id)).map((m) => ({
     id: m.id, title: m.label, sourceLabel: m.sourceLabel, topicTags: m.topicTags || [],
+    standing: dispatch[m.id]?.standing || '',
     values: m.values, dates: m.dates, completed: m.completed, stale: m.stale,
   }))
   return [...exchanges, ...indices]
@@ -123,6 +152,7 @@ export function selectMarketSignals(raw, previous = {}, now = Date.now(), articl
     const eventId = sameEvent ? prev.signal.eventId : `${m.id}:${pattern.endDate}:${pattern.direction}`
     const news = articles.filter((a) => a.entityIds?.includes(m.id) && a.date >= pattern.startDate && a.date <= pattern.endDate)
     const signal = { id: m.id, eventId, title: m.title, sourceLabel: m.sourceLabel || 'Market data',
+      exchange: m.exchange || '', city: m.city || '', country: m.country || '', standing: m.standing || '',
       asOf, pattern, series: { values: m.values, dates: m.dates }, directNews: news.map((a) => a.slug),
       topicTags: m.topicTags || [] }
     state[m.id] = { signal, lastDate: asOf, misses: 0 }

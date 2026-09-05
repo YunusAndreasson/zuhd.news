@@ -32,8 +32,31 @@ has never seen the ticker before and is not embarrassed about that.
 > oil is sold against. It moves on supply — a strike, a sanction, a strait — and
 > fuel, freight and fertiliser move after it.
 
+**An index is not its exchange, and the card headlines the index.** A reader
+looking at `TA-125`, `BIST 100`, `MASI` or `IPC` does not know what those letters
+stand for, which country they belong to, or what they count. So for a stock
+exchange, `standing` opens by saying so — the index's own name expanded where it
+has one, the exchange and country it belongs to, and what it tracks (how many
+companies, chosen how) — and only then gives the fact that makes it worth
+watching. The catalog's `blurb` in the INPUT is that second half, already
+written by an editor: keep its claim, and put the identification in front of it.
+
+The two examples below are written about indices this catalog does **not**
+carry, so that you write your own sentence rather than reaching for one of
+these. Copy the shape, never the words.
+
+> ✗ *"Poland's benchmark. Dominated by state-controlled banks and energy."*
+> ✓ *"The 20 largest companies on the Warsaw Stock Exchange, Poland's main
+> market. State-controlled banks and energy firms dominate it."*
+
+> ✗ *"The deepest equity market in the Gulf outside Saudi Arabia."*
+> ✓ *"The 20 most traded companies on the Qatar Stock Exchange in Doha, and the
+> deepest equity market in the Gulf outside Saudi Arabia."*
+
 Only assert what you are genuinely sure of. A vaguer sentence that is true beats
-a precise one you are reconstructing.
+a precise one you are reconstructing. If you do not know how an index is
+constituted, name the exchange and the country and stop — that is still the
+thing the reader was missing.
 
 ### `recent` — what has happened, and why
 

@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
   useAnimatedRef,
@@ -19,6 +19,7 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { SPACING } from '../../constants/theme';
 import { useCardVisit } from '../../hooks/useCardVisit';
 import { useScrollState } from '../../hooks/useScrollState';
+import { useTheme } from '../../hooks/useTheme';
 import { useVerticalPager, VERTICAL_PAGER_PROPS } from '../../hooks/useVerticalPager';
 import { cardStatus, type DeckPage } from '../../lib/card-history';
 import type { SwipeCard } from '../../lib/cards/rank';
@@ -39,8 +40,14 @@ const cardKey = (card: DeckPage) => card.id;
  * every snap, progress written into the shared value the section rail reads —
  * with a `Card` in place of an `Article` and no globe behind it.
  *
- * It deliberately does not carry `ArticleList`'s other machinery: no pull to
- * refresh (these payloads refresh on resume, not on demand) or overscroll toast.
+ * It deliberately does not carry `ArticleList`'s overscroll toast. It *does*
+ * carry pull to refresh: the claim that "these payloads refresh on resume, not
+ * on demand" was true of the mechanism and false about the reader, who has one
+ * gesture for "get me the new thing" and found it working on one of four tabs.
+ * `onRefresh` reaches the same `/api/meta.json` probe the feed uses, and a
+ * changed build invalidates every snapshot at once, so a pull on Markets
+ * refreshes the cards it is pulling on.
+ *
  * A visit freezes unseen updates ahead of a caught-up boundary and viewed cards.
  */
 
@@ -64,6 +71,9 @@ interface CardPagerProps {
   emptyHint?: string;
   /** Clears transient teaching UI as soon as the reader starts moving content. */
   onReadingScrollStart?: () => void;
+  /** Pull to refresh. Rejects to signal failure; the caller owns the toast, the
+   *  same contract `ArticleList` has. Omit and the control is not rendered. */
+  onRefresh?: () => Promise<void>;
   ref?: React.Ref<CardPagerRef>;
 }
 
@@ -78,9 +88,11 @@ export const CardPager = memo(function CardPager({
   emptyMessage,
   emptyHint,
   onReadingScrollStart,
+  onRefresh,
   ref,
 }: CardPagerProps) {
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
   const listRef = useAnimatedRef<Animated.FlatList<DeckPage>>();
   const { scrollY, currentIndex, setCurrentIndex } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
@@ -96,6 +108,44 @@ export const CardPager = memo(function CardPager({
   // Memoized for the same reason `ArticleList` memoizes its own: an inline
   // element remounts the footer on every render of a paging list.
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const handleRefresh = useCallback(async () => {
+    if (!onRefresh) return;
+    setRefreshing(true);
+    // try/catch and deliberately not try/finally — `ArticleList.handleRefresh`
+    // documents why at length: React Compiler cannot lower a finalizer and
+    // silently drops the whole file when one is present. The catch swallows, so
+    // control always reaches the reset.
+    try {
+      await onRefresh();
+    } catch {
+      // The injected handler owns its own toast.
+    }
+    setRefreshing(false);
+  }, [onRefresh]);
+
+  /**
+   * Referentially stable for the reason `ArticleList` spells out: rebuilding
+   * this element makes Android rebuild the whole VirtualizedList subtree, and
+   * this list re-renders on every snap.
+   *
+   * `undefined` when no handler was passed, so a caller that does not support
+   * refreshing does not get a control that spins and does nothing.
+   */
+  const refreshControl = useMemo(
+    () =>
+      onRefresh ? (
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+          tintColor={colors.textSecondary}
+          progressBackgroundColor={colors.bg}
+          colors={[colors.textSecondary]}
+        />
+      ) : undefined,
+    [onRefresh, refreshing, handleRefresh, colors.textSecondary, colors.bg],
+  );
 
   const handleSnap = useCallback(
     (index: number) => {
@@ -235,10 +285,21 @@ export const CardPager = memo(function CardPager({
   );
 
   if (count === 0) {
+    // A ScrollView rather than a View, purely so the empty state can be pulled.
+    // This is the screen where a reader most wants to retry — "no market graphs
+    // yet" is what a failed fetch looks like — and it was the one screen with
+    // no gesture at all. `alwaysBounceVertical` because a page that exactly
+    // fills its viewport has nothing to drag against on iOS.
     return (
-      <View style={{ height: viewportHeight }}>
+      <ScrollView
+        style={{ height: viewportHeight }}
+        contentContainerStyle={{ height: viewportHeight }}
+        refreshControl={refreshControl}
+        alwaysBounceVertical={!!onRefresh}
+        showsVerticalScrollIndicator={false}
+      >
         <EmptyState message={emptyMessage} hint={emptyHint} />
-      </View>
+      </ScrollView>
     );
   }
 
@@ -252,6 +313,7 @@ export const CardPager = memo(function CardPager({
       getItemLayout={getItemLayout}
       snapToInterval={itemHeight}
       {...VERTICAL_PAGER_PROPS}
+      refreshControl={refreshControl}
       onScroll={scrollHandler}
       onScrollBeginDrag={() => {
         setMoving(true);

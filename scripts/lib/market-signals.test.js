@@ -123,6 +123,41 @@ test('pipeline writes factual fallback on model failure and reuses unchanged rev
     assert.equal(update.published[0].eventId,first.published[0].eventId)
   } finally { rmSync(root,{recursive:true,force:true}) }
 })
+test('an exchange signal carries who the index belongs to, with or without a comment', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'zuhd-market-identity-'))
+  try {
+    mkdirSync(join(root,'content/trends'), {recursive:true})
+    const m = market([2], 'bist')
+    // The exchange payload's own field names, which is what `normalizeMarkets`
+    // reads: `indexName` is the ticker on the card, `name` the exchange under it.
+    writeFileSync(join(root,'content/.markets.json'), JSON.stringify({exchanges:[{
+      id:'bist', name:'Borsa İstanbul', indexName:'BIST 100', city:'Istanbul', iso2:'TR',
+      blurb:'Türkiye’s only exchange.', sourceLabel:'Yahoo Finance · IST', topicTags:[],
+      series:{values:m.values, dates:m.dates, completed:m.completed},
+    }]}))
+    writeFileSync(join(root,'content/trends/2026-09-04.json'), JSON.stringify({indicators:[]}))
+    writeFileSync(join(root,'content/.indicator-dispatch.json'), JSON.stringify({items:{
+      'mkt:bist': {standing:'The 100 largest companies on Borsa İstanbul, Türkiye’s only exchange.'},
+    }}))
+    // No coverage, so no model call and no commentary — the ordinary day, and
+    // the one the card used to render as a bare ticker over an empty paragraph.
+    const out = await runMarketSignals({root, now:NOW, suppliedArticles:[],
+      callModel:()=>{throw Error('must not run')}})
+    const signal = out.published[0]
+    assert.equal(signal.title, 'BIST 100')
+    assert.equal(signal.exchange, 'Borsa İstanbul')
+    assert.equal(signal.city, 'Istanbul')
+    assert.equal(signal.country, 'TR')
+    assert.equal(signal.commentary, '')
+    assert.match(signal.standing, /Borsa İstanbul/)
+  } finally { rmSync(root,{recursive:true,force:true}) }
+})
+test('an exchange with no dispatch entry falls back to its catalog blurb', () => {
+  const [signal] = normalizeMarkets({exchanges:[{id:'tase', name:'Tel Aviv Stock Exchange',
+    indexName:'TA-125', city:'Tel Aviv', iso2:'IL', blurb:'Trades Sunday to Thursday.'}]}, {})
+  assert.equal(signal.standing, 'Trades Sunday to Thursday.')
+  assert.equal(signal.exchange, 'Tel Aviv Stock Exchange')
+})
 test('dry run never invokes model or creates output', async () => {
   const root = mkdtempSync(join(tmpdir(),'zuhd-market-dry-'))
   try {

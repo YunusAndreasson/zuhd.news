@@ -71,9 +71,58 @@ test('contract accepts the additive payload and rejects malformed data', () => {
 });
 test('cards retain neutral semantic color, an exact window, and factual fallback', () => {
   const card = firstCard();
+  // No `exchange` on this fixture — the two US indices arrive from the trends
+  // feed rather than the exchange catalog and carry none — so the kicker keeps
+  // the pattern label and `facts` is the only prose there is.
   expect(card.kicker).toBe('Rising streak');
+  expect(card.changed).toBeUndefined();
   expect(card.delta).toMatchObject({ direction: 'up', valence: 'neutral', window: '4 sessions' });
   expect(card.why).toBe(fixtureSignal.facts);
+});
+test('an exchange signal names the exchange above its ticker and defines it below', () => {
+  const card = firstCard({
+    ...snapshot,
+    signals: [
+      {
+        ...fixtureSignal,
+        title: 'BIST 100',
+        exchange: 'Borsa İstanbul',
+        city: 'Istanbul',
+        country: 'TR',
+        standing: 'The 100 largest companies on Borsa İstanbul, Türkiye’s only exchange.',
+      },
+    ],
+  });
+  expect(card.title).toBe('BIST 100');
+  expect(card.kicker).toBe('Borsa İstanbul');
+  // The pattern label keeps its own line rather than being dropped.
+  expect(card.changed).toBe('Rising streak');
+  // The definition replaces the arithmetic, which the reading, the delta chip
+  // and the chart above it already state three times over.
+  expect(card.why).toBe('The 100 largest companies on Borsa İstanbul, Türkiye’s only exchange.');
+  expect(card.why).not.toContain(fixtureSignal.facts);
+});
+test('a defined exchange with a comment shows both, definition first', () => {
+  const card = firstCard({
+    ...snapshot,
+    signals: [
+      {
+        ...fixtureSignal,
+        exchange: 'Borsa İstanbul',
+        standing: 'What it is.',
+        commentary: 'Why it moved.',
+      },
+    ],
+  });
+  expect(card.why).toBe('What it is.\n\nWhy it moved.');
+});
+test('the additive identity fields are optional but must be strings', () => {
+  expect(
+    isMarketSignalsSnapshot({ ...snapshot, signals: [{ ...fixtureSignal, exchange: 'B3' }] }),
+  ).toBe(true);
+  expect(
+    isMarketSignalsSnapshot({ ...snapshot, signals: [{ ...fixtureSignal, standing: 42 }] }),
+  ).toBe(false);
 });
 test('source links and commentary remain attached to the selected signal', () => {
   const card = firstCard({

@@ -3,7 +3,17 @@ export interface MarketSignal {
   id: string;
   eventId: string;
   revision: string;
+  /** The index — `BIST 100`, `TA-125`. What the card headlines, and on its own
+   *  meaningless to a reader who has not met the ticker. */
   title: string;
+  /** Who the index belongs to: the exchange, its city, its ISO-2 country, and
+   *  the definitional sentence from the indicator dispatch. Optional because
+   *  they are additive — a client reading an older snapshot sees them absent,
+   *  not wrong. `standing` is present whether or not `commentary` is. */
+  exchange?: string;
+  city?: string;
+  country?: string;
+  standing?: string;
   sourceLabel: string;
   asOf: string;
   pattern: {
@@ -36,6 +46,8 @@ export function isMarketSignalsSnapshot(v: unknown): v is MarketSignalsSnapshot 
   return v.signals.every((s) => {
     if (!object(s) || !['id','eventId','revision','title','sourceLabel','facts'].every((k) => typeof s[k] === 'string' && !!s[k]) ||
       typeof s.commentary !== 'string' || !date(s.asOf) || !object(s.pattern) || !object(s.series)) return false;
+    // Additive since 2026-09-05, so absent is valid and a wrong *type* is not.
+    if (!['exchange','city','country','standing'].every((k) => s[k] === undefined || typeof s[k] === 'string')) return false;
     const p = s.pattern, series = s.series;
     const dates = series.dates;
     if (!['sharp','weekly','monthly','streak','reversal','divergence'].includes(String(p.kind)) ||

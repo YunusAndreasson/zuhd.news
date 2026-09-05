@@ -616,8 +616,14 @@ export function createSheet(): Sheet {
 
       if (pin) {
         // A definition, at the definition's weight — same reasoning as the
-        // chokepoint card above, and the same `catalogBlurb` seeding behind it.
-        if (ex.blurb) nodes.push(el('p', 'map-sheet-standing', ex.blurb))
+        // chokepoint card above. The dispatch's `standing` first, the catalog
+        // blurb behind it: those were the same string until the exchange
+        // standing started being written against the *index*, and the hero
+        // directly above this prints `BIST 100` while every blurb answers
+        // about Borsa İstanbul. A reader who does not know the ticker was
+        // being handed the exchange's biography instead.
+        const definition = ex.standing || ex.blurb
+        if (definition) nodes.push(el('p', 'map-sheet-standing', definition))
 
         // A quarter of closes, with a rule where the drawn window started — the
         // same job the 90-day baseline does on a chokepoint. A day's move says

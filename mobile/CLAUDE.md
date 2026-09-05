@@ -139,6 +139,18 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   the gold/silver card graphs its ratio rather than flattening silver beneath
   gold on a shared dollar scale. A subtype or component may remain a secondary
   figure, but it cannot be the reading above a chart of something else.
+- **Pull to refresh is on every column, not only `news`.** `CardPager`'s own
+  comment said the card payloads "refresh on resume, not on demand", which was
+  true of the mechanism and beside the point: a reader has one gesture for *get
+  me the new thing* and it worked on one of four tabs. It is real, not a
+  placebo — `useArticles.refresh()` probes `/api/meta.json`, and a moved
+  `generated` runs `invalidateApiJson`, which marks every `useApiJson` snapshot
+  stale at once. What differs from `news` is only what it may claim afterwards:
+  `refresh()` returns the *articles* it added, and "3 new · ~2 min read" over a
+  deck of price cards answers a question nobody asked, so a card column toasts
+  "Updated" or the feed's own "already up to date". The empty state is a
+  `ScrollView` for this alone — "no market graphs yet" is what a failed fetch
+  looks like, and it was the one screen in the app with no gesture at all.
 - **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed. Cards pass it;
   sheets do not.
@@ -193,6 +205,16 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   Hand-written fallback definitions are not rendered in the graph decks; static
   copy does not earn a card. Related articles remain ranking metadata and are
   not repeated below analysis that already names the news.
+- **The one card headed by a ticker has to say what the ticker is.** A market
+  signal card led with `BIST 100` over *"BIST 100 fell 4.8% over 4 consecutive
+  sessions"* — a symbol the reader may never have met, explained by the reading,
+  the delta chip and the chart above it restated in prose. The kicker carries
+  the exchange now (`Borsa İstanbul`, the subject slot doing subject work
+  instead of repeating the delta), the pattern label moves to `changed`, and the
+  paragraph is the desk's definition of the index followed by its account of the
+  move where there is one. `facts` survives only as the last rung, because a
+  card with no `why` is a card with nothing under its chart and the two US
+  indices arrive from the trends feed carrying no exchange.
 - **The card answers the question the chart raises, which is *why did this
   move*.** The desk writes two paragraphs per instrument and they are not
   interchangeable: `standing` says what the thing is, written once and

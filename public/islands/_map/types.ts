@@ -121,10 +121,16 @@ export interface MapExchange {
   /** Date of the most recent close, `YYYY-MM-DD`. */
   asOf: string
   sourceLabel: string
-  /** The catalog's hand-written sentence, which `narrate-indicators.js` also
-   *  seeds as this exchange's `standing` and never regenerates — so the two
-   *  are the same string and the card carries only this one. */
+  /** The catalog's hand-written sentence — why this exchange is worth watching.
+   *  Written for someone who already knows the ticker, which is exactly the
+   *  reader it does not serve. The fallback, not the card's first choice. */
   blurb: string
+  /** What the index *is*, from the indicator dispatch. It used to be the blurb
+   *  verbatim (`narrate-indicators.js` seeded it and never regenerated), so the
+   *  card carried only one of the two; it is now written against the index
+   *  rather than the exchange, because the card headlines `BIST 100` and the
+   *  blurb answered about Borsa İstanbul. Absent on a build older than that. */
+  standing?: string
   /** Why the index moved, tied to recent coverage. Joined on by `build.js`
    *  from the indicator dispatch; absent on an exchange the 04:00 stage has
    *  not reached, and on any build older than that stage. */
