@@ -1,37 +1,37 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, 4 completed at snapshot, avg 8/cycle (62 yesterday)" },
-    "freshness": { "median": 0.3, "p90": 0.6, "max": 0.7, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 15, "tech": 14, "science": 11 },
-    "multiSource": { "value": 17, "target": 4, "met": true },
+    "articles": { "value": 57, "detail": "5 cycles, all completed, avg 10/cycle (68 yesterday)" },
+    "freshness": { "median": 0.2, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 15, "science": 9, "tech": 12 },
+    "multiSource": { "value": 15, "target": 4, "met": true },
     "regions": {
-      "count": 7,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 21, "ME": 12, "AS": 11, "EU": 10, "AF": 6, "GL": 1, "OC": 1 }
+      "breakdown": { "AM": 17, "EU": 14, "AS": 11, "AF": 8, "ME": 6, "OC": 1 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 62,
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn / TRT World (tied)", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 57,
     "duplicates": 0,
-    "avgCycleDuration": 1443
+    "avgCycleDuration": 1535
   },
-  "experiment": "Skipped — every goal metric clears its target, no experiment is active, and no pause gate is set. The one persistent weakness, single-source science and tech, was shown by the 2026-05-09 floor experiment to be capped by feed supply rather than by any selector parameter, so spending the slot on the tunable surface would not reach it.",
-  "weakestArea": "Multi-source depth remains concentrated in politics and economy: of the 47 articles committed so far today, politics ran 6 of 16 multi-source and economy 5 of 12, while science managed 1 of 9 and tech 1 of 10. That is a real improvement on yesterday, when science had none, but a fifth of daily output still rests on a single outlet each. Regional balance also skewed: the Americas took 21 of 62 (34%) against 14 yesterday, and Oceania fell to a single article.",
+  "experiment": "Skipped — all four goals clear their targets, no experiment is active, and no pause gate is set. The one soft spot, a 12 → 9 science count, sits comfortably above the 5/day floor and moves with feed supply rather than with any parameter on the tunable surface.",
+  "weakestArea": "Middle East representation is furthest from its own recent norm: 6 articles today against 13 yesterday, even though the day's biggest running threads — Houthi movement on the strait, Pentagon Gulf deployments, the Iran war's political aftermath, RSF diplomacy — are all regionally anchored. Those datelines landed in Washington, Seoul and Addis rather than in the region itself, so the region tag undercounts the coverage. Science output also fell 12 → 9 (16% of the day), the lowest category, though sci-tech together hold 37% against a 25% target.",
   "watching": [
-    "The Iran war has crossed into economic warfare: Hormuz strikes resumed, a rename was floated from Washington, tanker-for-tanker policy was adopted, and the oil shock is now cited against a Fed cut — four datelines describing one transmission chain.",
-    "Russia is being sourced into Iran's missile programme at the same time as US labs are reported arming Israel quietly, which puts both patrons on the record within a single day.",
-    "Sudan produced three separate arcs — the African Union backing rejected, an airstrike on a UN convoy, and a Dilling dateline — while Radio Dabanga carried two of them alone.",
-    "AI industry consolidation and fragility landed together: Nvidia buying Hugging Face, simultaneous outages across the major providers, Google shipping a cyber model, and ASEAN writing rules around all of it.",
-    "Nepal appears twice from opposite ends of the same flood — a warning system that failed and a corridor now shut — which is a follow-through worth keeping paired."
+    "Houthi advance on the strait alongside extended Pentagon Gulf deployments and Seoul's denial of a Hormuz contribution — a widening naval picture around a single chokepoint.",
+    "Trump publicly downplaying the six-month Iran war as 'small potatoes' against documented costs of $37.5B and 18 killed, with midterm timing in view.",
+    "Russia-Ukraine reciprocal energy-infrastructure strikes plus sea drones reaching Sochi, running against a localised truce for envoy movement.",
+    "RSF chief's visit to Ethiopia — Sudan's war acquiring a second regional patron track.",
+    "OpenAI shipping GPT-6 Astra in the same day-window as a reported agent sandbox escape, a capability-and-containment pairing worth following.",
+    "Diesel at a record high and food prices at a four-year high arriving together, with a payroll surge lifting September hike odds."
   ],
   "coverageGaps": [
-    "Oceania recorded one article (Brisbane) and the Pacific Islands are again unrepresented, a third consecutive day at or below two.",
-    "Science ran nine articles with one multi-source story; the sourcing cluster cannot lift while the category is structurally single-outlet.",
-    "The metrics file again lists general-desk outlets — Mirror, Albanian Daily News, The National — among science sources, which suggests the science tag is being applied to non-specialist copy.",
-    "Latin America improved on yesterday with Caracas and Trujillo datelines, but Bolivia and Venezuela still arrive mainly through US-facing framings.",
-    "Central Asia surfaced only through Kazakhstan charging a scholar; no economic or energy coverage from the region despite the oil story running all day."
+    "Oceania at a single article for the second consecutive day, carried only by the Pacific Forum contest story.",
+    "Latin America appears almost entirely through US-facing or Falklands-framed stories; little domestic reporting from the region in its own right.",
+    "Middle East datelines are thin relative to the volume of Middle East subject matter — the region is being covered from Washington more than from within it.",
+    "Science and tech remain structurally single-source: specialist outlets do not cluster into Event Registry events, so multi-source credit accrues almost entirely to politics and economy."
   ],
-  "context": "Output held at 62 for a second day across five cycles averaging 1443s (selector 283s, writer 275s, editor 112s) — the slowest daily average this week, though every stage sat far inside its timeout and the fifth cycle was still publishing when metrics were taken. Unique sources recovered sharply from 44 to 62, so concentration reversed yesterday's drift and no outlet exceeds 10%. Freshness stayed strong at a 0.3 median but is computed on 16 dated articles of 62, a thin sample. Duplicates held at zero for a sixth day. All datelines today are cities, so yesterday's non-city dateline problem did not recur. No experiment has run since May, and the reason is unchanged."
+  "context": "The 2026-05-09 selector-floor experiment established that published multi-source rate is capped by the feed's per-cycle multi-source supply (~9 stories), not by the selector's floors, so the remaining sourcing weakness in science and tech is not reachable from the tunable parameter surface and should not consume an experiment slot. Throughput eased from 68 to 57 with all five cycles completing cleanly and zero duplicates, so the drop reflects feed volume rather than pipeline failure. Source concentration is unusually flat today — 57 unique sources across 57 articles, top outlet at 7%."
 }
