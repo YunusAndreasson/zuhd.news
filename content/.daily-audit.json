@@ -1,37 +1,35 @@
 {
-  "date": "2026-09-05",
+  "date": "2026-09-06",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles, all completed, avg 10/cycle (70 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 15, "economy": 12, "science": 12, "tech": 11 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
+    "articles": { "value": 56, "detail": "5 cycles completed, avg 9 published/cycle" },
+    "freshness": { "median": 0, "p90": 1, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 14, "science": 11, "tech": 9 },
+    "multiSource": { "value": 14, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 7,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 17, "AM": 12, "AS": 8, "ME": 8, "AF": 5 }
+      "breakdown": { "ME": 15, "EU": 14, "AM": 14, "AS": 8, "AF": 3, "OC": 1, "GL": 1 }
     },
-    "sciTech": { "ratio": 46, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 43,
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 1473
+    "avgCycleDuration": 1475
   },
-  "experiment": "Skipped — every goal clears its target, no experiment is active, and no pause gate is set. The day's soft spots (region breadth, throughput) both track feed supply rather than any lever on the tunable surface.",
-  "weakestArea": "Region breadth is the only metric that moved against its own recent norm: 5 regions instead of 6, with Oceania absent entirely after two consecutive days at a single article, and Africa down to 5. Europe at 17 of 50 is the most concentrated the region mix has been this week, largely because the Iran-war aftermath, the Dover blockade, the Saxony grid sabotage and the Reform UK donations story all landed on European datelines the same day. The count still sits comfortably above the 4-region target, so this is drift worth naming rather than a breach.",
+  "experiment": "Skipped — all four goals met with margin, and no active experiment was pending evaluation. The one defect worth acting on today (a same-event duplicate, below) lives in scripts/lib/dedup.js, which is outside the tunable-parameter surface; changing a feed cap would not address it.",
+  "weakestArea": "Not a headline metric but a blind spot: two articles published today carry the identical title 'Israel Destroys Nabatieh Hospital' (06:29 cycle, slug nabatieh-hospital-strike-arab-salim-evacuation-warning; 13:34 cycle, slug ghandour-hospital-destroyed-lebanon-seventeen-hospitals), yet duplicates reports 0. They came from distinct source clusters with different eventUris and zero URL overlap, so the URL, slug and eventUri layers all passed them, and the title-overlap layer at dedup.js:253 is gated behind isNicheOnly() — both stories are multi-source mainstream, so it never ran. Africa is the weakest genuine coverage metric at 3 of 56 articles (5%), down from 5 yesterday, though the region-count target is met at 7.",
   "watching": [
-    "The Hormuz corridor is now carrying three separate threads at once — US-Iran tanker strikes, the Kharg Island explosions, and gasoline crossing $4 on pass-through — so the chokepoint is becoming an economic story as much as a military one.",
-    "Pentagon accountability on the Iran war is compounding: a 794-wounded casualty database, polygraphs on the Joint Staff over leaks, and the AGM-154 debris findings at the Sirik wedding strike.",
-    "Anthropic's IPO lockup and insider-liquidity terms alongside Southeast Asian crypto funding consolidating at $680M — two different readings of where AI and digital-asset capital is concentrating.",
-    "Nigeria has three distinct domestic threads running (Plateau diphtheria, Jos psychiatric capacity, the Reps committee dissolution), an unusually deep single-country showing worth sustaining.",
-    "AI-in-mathematics arrived twice in one day — Fermat's Last Theorem formalised in 11 days by agents, and ICM 2026 framing the field around it.",
-    "Zaporizhzhia external power repair under an IAEA-brokered local ceasefire, a rare de-escalation marker in an otherwise escalating energy-infrastructure war."
+    "Hormuz escalation is the dominant thread — six articles today (US strikes on Iranian tankers, Iran declaring a Hormuz zone, tankers turning back, US Navy escorts, Iran's new economic war unit, bloc pressure over a tanker); this is the cluster most likely to generate duplicate coverage across cycles.",
+    "Lebanon hospital strikes are compounding — the Nabatieh/Ghandour destruction and the ministry's 17-damaged-hospitals count, against a cumulative toll near 9,000 since 2023.",
+    "Sudan coverage is holding across two angles (aid convoy strike, war self-financing) despite Africa's overall thinness at 3 articles.",
+    "Tech dipped 11 to 9 and sci-tech ratio 43% to 36% day-over-day; both remain well above target but the direction is worth a second day of observation before reading anything into it."
   ],
   "coverageGaps": [
-    "Oceania produced nothing at all today, the first zero-region day this week after two days at one article.",
-    "Latin America appears only through Argentina's Falklands sanctions and the Viacha barracks explosion — both incident-driven, with no domestic policy or economy reporting from the region.",
-    "Africa fell to 5 articles and three of those are Nigeria, so the continent is effectively covered through one country.",
-    "Science and tech remain structurally single-source: specialist outlets do not cluster into Event Registry events, so all 16 multi-source credits accrue to politics and economy."
+    "Africa at 3 of 56 articles (5%), down from 5 yesterday — Sudan and Nigeria carry it almost alone, with no Sahel, Horn or Southern Africa politics beyond a single Gauteng nurses story.",
+    "Oceania at 1 article and no Pacific-region coverage at all.",
+    "Freshness is computed on only 19 of 56 articles, so the median of 0 rests on roughly a third of the day's output — the remaining articles carry no resolvable publication date to lag against.",
+    "Latin America appears only through incident reporting (Bolivia barracks blast, Colombia drone swarm, Haiti permits) with no policy or economy coverage."
   ],
-  "context": "Throughput eased from 70 to 50 with all five cycles completing cleanly and zero duplicates, so the drop reflects feed volume, not pipeline failure. The category mix is the flattest it has been in weeks — 15/12/12/11 across politics, economy, science and tech, with sci-tech at 46% against a 25% target — and source concentration is healthy at 11% for the top outlet (Nature). One queued experiment remains parked: 2026-05-08-numerical-density is no longer blocked by its predecessor but targets scripts/write-prompt.md, which is outside the daily-tuning parameter surface, so it cannot be promoted from this seat and needs an operator decision."
+  "context": "No experiment was active coming into today and there is no noNewExperimentsUntil gate in place, so the slot is free whenever a well-founded proposal exists. The duplicate-title finding is the highest-value item on the board but needs an operator decision: extending dedup's title-overlap layer to multi-source stories would touch scripts/lib/dedup.js, outside the daily-tuning parameter surface, and the 2026-05-02 recap experiment deliberately scoped that layer to niche-only sources to limit false positives on recurring conflict clusters — precisely the Lebanon-strike pattern that produced today's collision."
 }
