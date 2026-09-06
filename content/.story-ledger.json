@@ -2,13 +2,219 @@
   "version": 1,
   "stories": [
     {
+      "id": "delhi-satya-niketan-pg-collapse-unpermitted-floors",
+      "label": "1 dead, several trapped as boys' PG building collapses near DU campus",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-delhi-satya-niketan-pg-collapse-unpermitted-floors"
+      ],
+      "eventUri": "eng-11985850",
+      "summary": "A building housing a boys' paying-guest hostel collapsed in Satya Niketan, south Delhi, killing at least one and trapping an estimated 40-50 people, most of them Delhi University students. Lead with the building's use, not the rubble: Satya Niketan's low-rise residential plots have been informally converted into dense student PG accommodation, adding floors and load without structural reassessment, and the paying-guest sector sits in a regulatory gap between residential building code and commercial lodging licensing. That is the mechanism — the collapse is not an act of God but the terminal state of an unpermitted vertical extension. Who holds power and is accountable: the owner who added the floors, and the MCD building department whose sanction plan (if any) should be obtainable. Who bears it: students from outside Delhi with no bargaining power over housing safety, paying cash rent for beds. Get the number of sanctioned versus actual floors, whether the structure was on any unsafe-building list, and the confirmed toll — early trapped-person estimates from the scene are unreliable and should be attributed to officials, not stated flat. Three Indian outlets carry this with high sentiment divergence (0.36), so attribute characterisations and count only what NDRF and the fire service confirm.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Satya",
+        "http://en.wikipedia.org/wiki/Fire_department",
+        "http://en.wikipedia.org/wiki/Delhi_University",
+        "http://en.wikipedia.org/wiki/Delhi_Police",
+        "http://en.wikipedia.org/wiki/Fire_engine",
+        "http://en.wikipedia.org/wiki/National_Disaster_Response_Force",
+        "http://en.wikipedia.org/wiki/New_Delhi"
+      ]
+    },
+    {
+      "id": "russia-trilateral-summit-preconditions-ryabkov",
+      "label": "Russia leaves door open to trilateral summit with US and China",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-russia-trilateral-summit-preconditions-ryabkov"
+      ],
+      "eventUri": "rus-2120557",
+      "summary": "Deputy Foreign Minister Sergei Ryabkov says Moscow has not ruled out a Putin-Trump-Xi meeting, but that its substance and expected outcomes must be settled before preparations begin. Lead with that precondition, because it is the actual news: Ryabkov is describing the difference between a summit and a photograph, and the insistence on pre-negotiated outcomes is how great powers avoid the humiliation of a meeting that produces nothing. The mechanism to teach is summit sequencing — heads of state arrive last, after officials have already written the communique, which is why a leaders' meeting announced without that groundwork signals theatre rather than agreement. Context the reader needs, and the reason this matters today: Witkoff and Kushner are in Moscow this weekend, with Peskov calling the meeting evidence of 'an atmosphere of trust', and Zelenskyy has pledged a unilateral pause on Ukrainian air strikes for the duration of the talks. Do not re-run that trip as the story; use it to show that Russia is trading incremental access for time while keeping the trilateral frame in reserve. The structural why for our reader: a US-Russia-China format would sideline both Europe and Ukraine from a settlement about Ukraine, and that exclusion is the point of proposing it. Sources agree closely (divergence 0.14) but TASS and TRT frame Russian intent differently — attribute framing, report the quote.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Summit_(meeting)",
+        "http://en.wikipedia.org/wiki/Asia-Pacific_Economic_Cooperation",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/TASS"
+      ]
+    },
+    {
+      "id": "south-kordofan-wfp-convoy-attack-deconfliction",
+      "label": "Int'l coalition condemns attack on WFP aid convoy in Kordofan, Sudan",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-south-kordofan-wfp-convoy-attack-deconfliction"
+      ],
+      "eventUri": null,
+      "summary": "Ten Western missions and the EU, as the Coalition for Atrocity Prevention and Justice in Sudan, issued a joint statement condemning an attack on a World Food Programme convoy in South Kordofan. Lead with what the convoy was carrying and to whom — South Kordofan and the Nuba Mountains hold populations that have been cut off from assistance for months, and an attacked convoy is not a diplomatic incident but a subtraction from a food ration. The mechanism to explain is deconfliction: humanitarian convoys move only after their routes and timings are notified to every armed party, so an attack on a deconflicted convoy is either a targeting decision or proof that no party controls its own units — and both readings are damning. Name the actors: the statement should say who is being condemned, and if it does not, that evasion is itself the story, because a condemnation that declines to name a perpetrator is how atrocity-prevention language substitutes for atrocity prevention. Who holds power: the SAF and the RSF, who control access, and the ten governments whose leverage is limited to statements. Who bears it: civilians in a region already assessed at famine or near-famine thresholds. Sudan is an OIC state and Radio Dabanga is the regional voice — no other outlet in today's feed carried this at all, which is the coverage gap worth naming.",
+      "conceptUris": []
+    },
+    {
+      "id": "catatumbo-drone-swarm-colombia-cost-asymmetry",
+      "label": "Colombia vows crackdown after deadly drone swarm attack (VIDEOS) -- RT World News",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-06-catatumbo-drone-swarm-colombia-cost-asymmetry",
+        "2026-09-06-germany-counter-drone-units-cost-asymmetry"
+      ],
+      "eventUri": "spa-4330016",
+      "summary": "A drone swarm struck a Colombian military compound in Norte de Santander, killing three soldiers and wounding four, and President Abelardo de la Espriella has promised intensified operations against armed groups. Lead with the swarm, not the crackdown: a non-state armed group in the Catatumbo region coordinating multiple armed drones against a fixed military position is a capability threshold, and it was reached with commercial airframes and improvised munitions costing a few hundred dollars each. That is the mechanism and the whole significance — the cost asymmetry between a hobby drone and the counter-measures needed to stop it means the advantage sits with the attacker, which is why this tactic has migrated from Ukraine and the Middle East to a Latin American insurgency within a few years. The structural why: Colombia's post-2016 security architecture assumed the surviving armed groups were a policing problem, and drone swarms make them an air-defence problem the army is not equipped or doctrinally organised for. Who bears the escalation: civilians in Catatumbo, a coca-producing border region where every previous 'intensified operation' has produced displacement. Sourcing note: RT is the only carrier in the feed and it is not an investigative outlet — report the casualty figures as Colombian military claims, attribute the president's language, and do not adopt RT's framing of the government's response.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ocaña,_Norte_de_Santander",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Norte_de_Santander_Department",
+        "http://en.wikipedia.org/wiki/National_Liberation_Army_(Colombia)",
+        "http://en.wikipedia.org/wiki/Military_affairs",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/Colombia",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Airport"
+      ]
+    },
+    {
+      "id": "nigerian-worker-doha-airport-sponsorship-handover",
+      "label": "Uncertainty as Nigerian woman remains unreachable after arriving Doha airport",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-nigerian-worker-doha-airport-sponsorship-handover"
+      ],
+      "eventUri": "eng-11984977",
+      "summary": "Saratu Jibo Yusuf, 37, flew Lagos to Doha on Qatar Airways QR1408 on 1 September and has been unreachable since landing; her family says they cannot establish where she is or who received her. Name her and give the flight and date, because specificity is what separates this from a rumour. But the article is the route, not the individual: recruitment agencies move Nigerian women to Gulf domestic work on visit or work visas sponsored by an employer who takes custody of the passport on arrival, and the point of disappearance is almost always the airport handover, after which the worker has no independent legal standing to travel, resign or complain. That is the mechanism to explain plainly — the kafala-derived sponsorship system makes 'unreachable' a structural outcome rather than a mystery. Who holds power: the sponsoring employer, the recruitment agent in Lagos, and the two governments whose labour-migration agreement is supposed to make this traceable. Who is accountable: Nigeria's NAPTIP and its mission in Doha, and Qatar's labour ministry, which has published reforms whose enforcement is the open question. Get what the family has been told by the airline, the agency and the embassy, and what the recruitment paperwork actually says. Nigeria and Qatar are both OIC states; Premium Times is the regional voice and no Gulf outlet in the feed carried it.",
+      "conceptUris": []
+    },
+    {
+      "id": "oic-tanker-strike-denunciation-enforcement-gap",
+      "label": "OIC denounces US strike on Iranian tanker in Persian Gulf",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-oic-tanker-strike-denunciation-enforcement-gap"
+      ],
+      "eventUri": null,
+      "summary": "Iran's mission to the Organisation of Islamic Cooperation has condemned the US strike on an Iranian oil tanker as a 'cowardly attack' and pressed the body to respond. Lead with the institution, not the adjective: the OIC has 57 member states, the second-largest intergovernmental membership after the UN, and the question our reader actually wants answered is what it can do — which is convene, resolve and refer, with no enforcement instrument, no sanctions authority and a consensus rule that lets any member block. Explain that machinery honestly, because the gap between the OIC's demographic weight and its operative power is the structural story, and it recurs every time the ummah's institutions are tested. The complication worth naming: several OIC members host the US bases and fleet infrastructure that make the strikes possible, and Gulf members' own tanker traffic is being priced out of the strait by the same escalation, so 'the Muslim world' is not a single interest here. Who bears it: crews on Iranian and third-country hulls, and the Gulf economies absorbing war-risk insurance premiums. Sourcing discipline: this is Iranian state media reporting its own mission's statement — carry the fact of the démarche, attributed by name, and do not carry Mehr's characterisation of the strike's legality as settled. No non-Iranian outlet in today's feed covered the OIC angle; say so. This continues the Hormuz arc institutionally — do not re-run the tanker-exchange explainer already published this cycle.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-azerbaijan-transit-corridor-blockade-substitute",
+      "label": "Iran, Azerbaijan keen to expand transit coop. border projects",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-iran-azerbaijan-transit-corridor-blockade-substitute"
+      ],
+      "eventUri": null,
+      "summary": "Iran's roads and urban development minister Farzaneh Sadegh, heading the Iran-Azerbaijan joint commission, met Azerbaijani officials on expanding transit corridors, border crossings and oil and gas cooperation. Lead with the timing, which the wire copy leaves implicit: Iran is negotiating overland freight capacity in the same week its maritime exports are being struck at sea. That is the mechanism — a state whose seaborne trade runs through a contested chokepoint substitutes land routes, and the North-South Transport Corridor through Azerbaijan to Russia is the only high-volume alternative Iran controls a leg of. Give the reader the arithmetic that makes this hard: rail and road move a small fraction of what a tanker does per unit cost, so overland transit is a resilience measure, not a replacement, and it takes years of fixed investment to build under wartime financing conditions. The structural why: sanctions and blockade push trade off the sea and onto neighbours' territory, which converts an economic problem into a dependency on Baku — a state with its own alignment to Israel and Turkey, and unresolved friction with Tehran over the Zangezur route. That tension is the story's edge; do not present the meeting as straightforward cooperation. Both are OIC members; Mehr is the regional carrier and no Azerbaijani outlet appeared in the feed. State-media sourcing — carry the fact of the commission and the stated agenda, not the optimism.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-war-economy-parallel-networks-ceasefire-cost",
+      "label": "Communist Party: 'Sudan's war economy deepens the economic abyss'",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-sudan-war-economy-parallel-networks-ceasefire-cost"
+      ],
+      "eventUri": null,
+      "summary": "The Sudanese Communist Party's economic committee argues the war has produced a parallel economy in which military and commercial interests are fused with smuggling networks, pushing the country into its gravest crisis since independence. Lead with the fusion, not the party: the analytical claim worth carrying is that Sudan's belligerents are not funding a war out of an economy, they are running an economy out of a war — gold exported through informal channels, fuel and food imports controlled at checkpoints, and currency arbitrage between areas held by different armies. That is the mechanism, and its consequence is the one our reader should take away: when the fighting itself is the revenue model, a ceasefire is a loss of income for the people who would have to sign it, which is why Sudan's war has outlasted every mediation timetable. Who holds power: the SAF and RSF command economies and the trading houses attached to each. Who bears it: households facing food-price inflation and unemployment in a country with the world's largest displacement crisis. Sourcing discipline matters — this is a political party's analysis, not a central bank release, so attribute every claim to the SCP's economic committee, flag that the party is an opposition actor with its own programme, and separate its documented observations from its prescriptions. Radio Dabanga is the Sudanese regional voice; note that no international outlet in the feed covered Sudan's war economy today at all.",
+      "conceptUris": []
+    },
+    {
+      "id": "vehicle-co2-lstm-metaheuristic-tuning-real-world-testing",
+      "label": "Vehicle CO₂ emission prediction based on firefly with ant colony optimization tuned long short-term memory model",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-vehicle-co2-lstm-metaheuristic-tuning-real-world-testing"
+      ],
+      "eventUri": null,
+      "summary": "A neural network that predicts per-vehicle CO₂ emissions, with its hyperparameters chosen by two nature-inspired search algorithms — firefly and ant colony optimisation — rather than by hand or grid search. Lead with the prediction error against the simple baseline, and if the paper does not report one, say that plainly, because a model's headline accuracy is meaningless without knowing what a linear regression on engine size and fuel type would have achieved. The mechanism is worth two clean sentences for a technically literate non-ML reader: an LSTM keeps a running internal state, so it can learn how emissions depend on a driving sequence rather than on a single instant; and metaheuristic tuning treats 'which architecture' as a search problem, where ant colony optimisation reinforces parameter paths that scored well, exactly as ants reinforce a trail to food. Why our reader should care beyond the method: emissions regulation is moving from laboratory type-approval to real-world conformity testing, and per-vehicle prediction from telemetry is how a regulator or a city fleet audits emissions without a dynamometer for every car — which is precisely the capability middle-income countries with no test infrastructure lack. Keep the scepticism honest: metaheuristic tuning papers are a crowded genre, the gains are often within run-to-run variance, and this is an accepted manuscript ahead of the version of record. Report the dataset and whether the evaluation was held out.",
+      "conceptUris": []
+    },
+    {
+      "id": "mine-tailings-hybrid-cement-clinker-substitution",
+      "label": "Effect of calcined lithium slag, copper tailings and tungsten tailings on the properties and microstructure of hybrid cements",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-mine-tailings-hybrid-cement-clinker-substitution"
+      ],
+      "eventUri": null,
+      "summary": "Researchers substituted calcined lithium slag and copper and tungsten mine tailings into hybrid cements and measured strength and microstructure against conventional blends. Lead with the replacement fraction and the strength retained at that fraction — that single ratio is what decides whether this is a laboratory result or a usable specification. The mechanism to teach is genuinely satisfying and needs no chemistry background: Portland cement gets its strength from clinker, and clinker is made by burning limestone, which releases CO₂ twice over — once from the fuel and once from the limestone itself as it decomposes. Cement is around 8% of global CO₂ for exactly that reason. Mine tailings and calcined slag are already-processed silicates that can react with cement's own by-products to make binder without a new kiln, so every tonne substituted removes both an emission and a waste pile. That is why the structural stakes are larger than the paper: tailings dams are among the deadliest industrial structures in the world — Brumadinho killed 270 people in 2019 — and they sit disproportionately in mining regions of Latin America, Africa and Central Asia, where the cement to build with is also imported and expensive. A material that turns the liability into the input addresses both. Discipline the claim: lab-scale mortar characterisation is not a construction standard, tailings composition varies by orebody so results may not transfer, and this is an accepted manuscript ahead of the version of record.",
+      "conceptUris": []
+    },
+    {
+      "id": "stress-hyperglycemia-ratio-trajectory-icu-mortality",
+      "label": "Association of stress hyperglycemia ratio trajectories and cumulative stress hyperglycemia burden with in-hospital mortality in ICU patients with heart failure: a retrospective cohort study",
+      "firstSeen": "2026-09-06T12:09:16.727Z",
+      "lastCovered": "2026-09-06T12:09:16.727Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-06-stress-hyperglycemia-ratio-trajectory-icu-mortality"
+      ],
+      "eventUri": null,
+      "summary": "A retrospective cohort of intensive-care heart-failure patients finds that the trajectory of the stress hyperglycaemia ratio over time, and the cumulative burden it accumulates, predict in-hospital death better than a single admission glucose reading. Lead with the mortality difference between trajectory groups — that number is the finding. The mechanism is the elegant part and the reason this is worth explaining to a general reader: critical illness floods the body with cortisol and catecholamines, which raise blood glucose regardless of whether the patient is diabetic, so an absolute glucose value cannot distinguish a diabetic running near their own normal from a non-diabetic in severe physiological stress. The stress hyperglycaemia ratio fixes this by dividing admission glucose by the patient's own long-term average estimated from HbA1c — it measures how far you have moved from your own baseline, not from the population's. Reframing a measurement as relative rather than absolute is a general scientific move, and this is a clean instance of it. Why it matters practically: ICUs already draw glucose several times a day, so a trajectory-based risk score costs nothing new to compute — which makes it usable in hospitals that cannot afford additional diagnostics, not only in well-resourced ones. Hold the claim to what the design supports: this is retrospective and observational, it shows association and not that correcting glucose improves survival, and it is an accepted manuscript ahead of the version of record.",
+      "conceptUris": []
+    },
+    {
       "id": "nabatieh-hospital-strike-arab-salim-evacuation-warning",
       "label": "Israel attacks a hospital in Nabatieh, Lebanon",
       "firstSeen": "2026-09-06T08:12:19.497Z",
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nabatieh-hospital-strike-arab-salim-evacuation-warning"
@@ -33,7 +239,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-niger-failed-coup-france-accusation-front-line-mutiny"
@@ -49,7 +255,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-croatia-lika-hazardous-waste-dump-zagreb-protest"
@@ -74,7 +280,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-trump-super-pac-ten-million-texas-senate-paxton"
@@ -99,7 +305,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-iran-economic-war-headquarters-ministry-of-economy"
@@ -115,7 +321,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-adani-defence-ak-203-ammunition-india-localisation"
@@ -140,7 +346,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-lodhran-brick-kiln-child-death-bonded-labour"
@@ -156,7 +362,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-khyber-dowry-wedding-expenditure-household-debt"
@@ -172,7 +378,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-isro-employee-bodies-space-privatisation-clarity"
@@ -197,7 +403,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-parameter-efficient-fine-tuning-bayesian-optimisation-llm"
@@ -213,7 +419,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-phenylephrine-block-copolymer-micelle-sustained-release"
@@ -229,7 +435,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-06-plasmonic-photonic-fano-resonance-refractive-index-sensor"
@@ -245,7 +451,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-centcom-strikes-three-iranian-tankers-irgc-missile-reply"
@@ -270,7 +476,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-anak-krakatau-ash-jakarta-airport-209-flights"
@@ -295,7 +501,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-jhiram-ghati-nia-court-convicts-ten-thirteen-years"
@@ -320,7 +526,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-balochistan-shor-parod-thousand-nomads-relocation"
@@ -336,7 +542,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-australia-coalition-flag-burning-criminal-offence"
@@ -352,7 +558,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-haiti-tps-ends-care-workers-disabled-clients"
@@ -368,7 +574,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-bitcoin-episodic-spikes-execution-risk-otc-desks"
@@ -384,7 +590,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-adlington-green-belt-1275-homes-resubmitted"
@@ -400,7 +606,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-seattle-times-newsday-sue-openai-microsoft-sdny"
@@ -425,7 +631,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-large-plasmid-multi-gene-co-expression-transfection"
@@ -441,7 +647,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-uss-abraham-lincoln-286-days-biofouling-readiness"
@@ -457,7 +663,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-migraine-without-aura-resting-state-fmri-networks"
@@ -473,7 +679,7 @@
       "lastCovered": "2026-09-06T04:12:48.464Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-gondwana-sphenodontian-los-colorados-argentina"
@@ -489,7 +695,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-hormuz-us-iran-tanker-strikes-shipping-corridor"
@@ -514,7 +720,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-sirik-wedding-agm-154-jsow-debris-civilian-deaths"
@@ -530,7 +736,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-witkoff-kushner-kyiv-moscow-zelenskyy-strike-pause"
@@ -546,7 +752,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-clancy-mistrial-postpartum-psychosis-insanity-defence"
@@ -571,7 +777,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-nigeria-reps-ad-hoc-committees-dissolved-oversight-gap"
@@ -587,7 +793,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-medicare-advantage-plan-exits-disclosure-asymmetry"
@@ -603,7 +809,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-us-gasoline-four-dollars-hormuz-pass-through"
@@ -628,7 +834,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-trump-beef-imports-herd-lows-rancher-backlash"
@@ -652,7 +858,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-alphafold3-repulsive-force-conformational-sampling"
@@ -668,7 +874,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-sea-shell-powder-cement-replacement-ml-strength"
@@ -684,7 +890,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-barley-straw-biochar-pellets-pharmaceutical-removal"
@@ -700,7 +906,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-05-tnbc-multi-epitope-construct-reassessment-immunoinformatics"
@@ -716,7 +922,7 @@
       "lastCovered": "2026-09-05T22:08:47.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-04-record-high-89-in-u-s-say-government-corruption-widespread"
@@ -732,7 +938,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-huckabee-west-bank-settler-violence-severe-consequences"
@@ -757,7 +963,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-germany-power-line-explosives-grid-sabotage-saxony"
@@ -782,7 +988,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-sarawak-haze-emergency-indonesia-peat-fires"
@@ -807,7 +1013,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-04-south-korea-hormuz-contributions-energy-dependence"
@@ -832,7 +1038,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-bank-of-korea-stablecoin-local-currency-depreciation"
@@ -848,7 +1054,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-anthropic-ipo-lockup-insider-liquidity-terms"
@@ -864,7 +1070,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-bitcoin-exchange-insolvency-ownership-claim-recovery"
@@ -880,7 +1086,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-zaporizhzhia-iaea-ceasefire-external-power-repair"
@@ -905,7 +1111,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-scrub-typhus-tsa56-vaccine-macaque-neglected-disease"
@@ -921,7 +1127,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-potassium-nlrp3-inflammasome-insulin-resistance-ageing"
@@ -937,7 +1143,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-quantum-equivalence-principle-free-fall-test"
@@ -953,7 +1159,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-light-black-holes-inside-stars-dark-matter-accretion"
@@ -969,7 +1175,7 @@
       "lastCovered": "2026-09-05T17:13:25.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-05-hellenic-air-force-f4-phantom-crash-ageing-fleet"
@@ -994,7 +1200,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-tate-brothers-romania-indictment-trafficking-minors"
@@ -1019,7 +1225,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-ukraine-prosecutor-office-scam-call-centre-protection"
@@ -1043,7 +1249,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-pentagon-casualty-database-iran-war-794-wounded"
@@ -1059,7 +1265,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-dover-port-blockade-cross-channel-freight"
@@ -1084,7 +1290,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-southeast-asia-crypto-funding-consolidation-680-million"
@@ -1100,7 +1306,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-qatar-financial-centre-alrayan-islamic-finance-licensing"
@@ -1116,7 +1322,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-fermat-last-theorem-formalised-ai-agents-11-days"
@@ -1132,7 +1338,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-flow-matching-model-controllable-drug-molecule-design"
@@ -1148,7 +1354,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-xrp-ledger-institutional-settlement-retail-decline"
@@ -1164,7 +1370,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-alzheimers-prevention-trial-asymptomatic-biomarker"
@@ -1180,7 +1386,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-plateau-diphtheria-outbreak-school-closures-nigeria"
@@ -1196,7 +1402,7 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-jos-teaching-hospital-psychiatric-capacity-nigeria"
@@ -1212,292 +1418,13 @@
       "lastCovered": "2026-09-05T12:13:39.045Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-us-universities-israeli-military-research-documents"
       ],
       "eventUri": null,
       "summary": "More than 1,000 pages of internal university and US-Israeli military documents describe a decades-long programme funding military research collaborations with at least 30 US universities. Lead with the document count and the number of institutions, because the finding is scale and duration rather than any single grant: this was not a set of individual professors' choices but a standing bilateral programme with a budget line, and it ran while the universities involved told their own students they had no such ties. The mechanism to teach is how defence money enters a university — through binational research foundations and dual-use framings where the deliverable is a sensor, a materials process or an autonomy algorithm, so no document ever has to say weapon, and the researcher can truthfully say they did not build one. That is precisely how accountability is engineered out of the chain, and it is the reason the paper trail rather than the science is the story. Who holds power: the funding foundations and the university research offices that accepted and did not disclose. Who is on the other end: the populations these systems are eventually fielded against, who appear nowhere in the paperwork. Verify the document provenance and name the universities and the dollar figures the documents support — no more. This is original document-based reporting, which is what clears the single-source bar; distinguish throughout between what the documents show and what the outlet infers.",
-      "conceptUris": []
-    },
-    {
-      "id": "argentina-sanctions-45-firms-falklands-oil-drilling",
-      "label": "Argentina sanctions 45 firms, individuals over UK-linked Falklands oil drilling",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-argentina-sanctions-45-firms-falklands-oil-drilling"
-      ],
-      "eventUri": "eng-11981425",
-      "summary": "Argentina opened sanction proceedings against 45 named companies and individuals for drilling hydrocarbons off the Falklands without its authorisation — a sovereignty claim enforced through corporate liability rather than force. Lead with the number 45 and the mechanism: Buenos Aires cannot reach the islands, so it reaches the balance sheets and directors of the firms working them, and any company that takes a Falklands licence now carries Argentine legal exposure. The structural why: energy law is becoming the instrument of a territorial dispute the UK considers settled, and it arrives as Milei courts Washington while Trump and London spar. Note the asymmetry of who bears cost — the drillers and their insurers, not the states.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Falkland_Islands",
-        "http://en.wikipedia.org/wiki/Argentina",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/President_of_Argentina"
-      ]
-    },
-    {
-      "id": "kharg-island-explosions-iran-oil-terminal",
-      "label": "Explosions at Iran's Kharg Island oil terminal; tanker reported hit by missile",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-kharg-island-explosions-iran-oil-terminal"
-      ],
-      "eventUri": "eng-11983928",
-      "summary": "Successive explosions were heard around Kharg Island — the terminal through which the large majority of Iran's crude exports physically leave the country — with News18 reporting a tanker struck by a missile and Iran's ISNA blaming a US attack. Lead with the single point of failure: Kharg is one island, and a chokepoint story that has run for months as shipping-lane risk has now moved onto the loading infrastructure itself. Be precise about what is unconfirmed — no fire or smoke was visible, and the source of the blasts is not established; attribute the US claim to ISNA rather than asserting it. Follow-on from the Hormuz naval picture and the record diesel price already covered: if Kharg loading stops, the price transmits worldwide within days.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Kharg_Island",
-        "http://en.wikipedia.org/wiki/Persian_Gulf",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Oil_tanker",
-        "http://en.wikipedia.org/wiki/Tanker_(ship)",
-        "http://en.wikipedia.org/wiki/Oil_terminal",
-        "http://en.wikipedia.org/wiki/Export"
-      ]
-    },
-    {
-      "id": "norway-wealth-fund-us-treasury-allocation-cut",
-      "label": "World's biggest wealth fund eyes ditching $80bn in US Treasuries",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-norway-wealth-fund-us-treasury-allocation-cut"
-      ],
-      "eventUri": "eng-11980993",
-      "summary": "Norway's $2.3tn sovereign wealth fund — the world's largest single equity owner — has proposed an overhaul that would cut its US Treasury allocation by close to $80bn in favour of other debt. Lead with the number and the reason given: yield, not politics. The structural why is what the reader should take away — Treasuries have been priced on the assumption that the largest official and quasi-official pools hold them by default; when the biggest of those pools starts treating them as one bond among many, the marginal buyer thins out and the US pays more to borrow. Pair with the Dutch gold-repatriation story already covered: two separate custodians of national savings quietly reducing exposure to the dollar system in the same window.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Norway",
-        "http://en.wikipedia.org/wiki/Government_bond",
-        "http://en.wikipedia.org/wiki/Norges_Bank",
-        "http://en.wikipedia.org/wiki/United_States_Treasury_security",
-        "http://en.wikipedia.org/wiki/Government_debt",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Sovereign_wealth_fund",
-        "http://en.wikipedia.org/wiki/Government_Pension_Fund_of_Norway"
-      ]
-    },
-    {
-      "id": "us-sanctions-turkish-bank-golden-global-iran",
-      "label": "US imposes sanctions on Turkish bank, prompting legal threat",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-us-sanctions-turkish-bank-golden-global-iran"
-      ],
-      "eventUri": "eng-11982216",
-      "summary": "The US Treasury sanctioned Golden Global Yatırım Bankası and its subsidiaries over alleged facilitation of Iranian oil revenue — a NATO member's bank cut out of the dollar system, and the bank is threatening to sue. Lead with who is actually affected: not Tehran, but a Turkish institution and its depositors, and by extension every mid-sized bank in an OIC economy that clears in dollars. The mechanism to explain is secondary sanctions — Washington does not need jurisdiction over the transaction, only over the currency it settles in. That is the ẓulm here: the cost of pressuring Iran is being levied on third countries who were not party to the dispute. Note the legal threat as the new element — targets are starting to contest designations rather than quietly comply.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Economic_sanctions",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Bank"
-      ]
-    },
-    {
-      "id": "pentagon-polygraph-joint-staff-iran-war-leaks",
-      "label": "'Unprecedented' Pentagon polygraph probe targets 50 Joint Staff members in crackdown on Iran war leaks",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-pentagon-polygraph-joint-staff-iran-war-leaks"
-      ],
-      "eventUri": "eng-11983482",
-      "summary": "Fifty members of the US Joint Staff were put through polygraph examinations over leaks to journalists, including reporting that the Iran war has drained stocks of critical munitions. Lead with the 50 and with what was leaked — the hunt confirms the substance of the story it is meant to suppress. Who holds power: the Pentagon leadership, using a device courts do not accept as evidence to police its own officers. Who is affected: serving officers with no realistic way to refuse, and the public's ability to learn the war's real cost. Structural why — six months into a war being publicly described as 'small potatoes', the institution's response to an accounting of its munitions is counter-intelligence rather than an answer. Note that no leaker has been publicly identified.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Polygraph",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Joint_Chiefs_of_Staff",
-        "http://en.wikipedia.org/wiki/The_New_York_Times",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/Classified_information"
-      ]
-    },
-    {
-      "id": "saharanpur-mosque-demolition-uttar-pradesh",
-      "label": "Saharanpur authorities demolish 'illegal' mosque; SP MP Iqra Hasan prevented from reaching site",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-saharanpur-mosque-demolition-uttar-pradesh"
-      ],
-      "eventUri": "eng-11983692",
-      "summary": "A mosque inside the Saharanpur collectorate compound in Uttar Pradesh was demolished at dawn under heavy police deployment, and the constituency's own MP, Iqra Hasan, says she was placed under house arrest to keep her from the site. Lead with the sequencing: declared illegal by a city magistrate in July, razed on a Saturday morning, with the elected representative physically prevented from attending. The mechanism worth explaining is administrative — a municipal legality finding, not a court verdict, is what carried out the demolition, which is how India's 'bulldozer' practice routes around judicial review. Owaisi's counter-claim that the mosque predates the collectorate is the factual dispute to state plainly. Name the actors: the district administration, the state police, the affected congregation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mosque",
-        "http://en.wikipedia.org/wiki/Saharanpur",
-        "http://en.wikipedia.org/wiki/District",
-        "http://en.wikipedia.org/wiki/Uttar_Pradesh",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/Samajwadi_Party",
-        "http://en.wikipedia.org/wiki/House_arrest",
-        "http://en.wikipedia.org/wiki/Magistrate"
-      ]
-    },
-    {
-      "id": "nepal-flood-death-toll-chilime-tunnel-rescue",
-      "label": "Rescuers continue grim search for Nepal flood survivors as death toll passes 1,300",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-nepal-flood-death-toll-chilime-tunnel-rescue"
-      ],
-      "eventUri": "fra-1340443",
-      "summary": "Nine days after a wall of ice, rock and mud came down the Trishuli valley, two men were pulled alive from a tunnel at the Chilime hydropower site; police now put the dead at 1,344 with 4,898 still missing. Lead with the tunnel and the nine days, then the missing figure — it is nearly four times the confirmed dead, which is the real measure of this disaster. Who is affected: Nepali workers at run-of-river hydropower sites built directly in glacial-flood paths, plus the Indian and Chinese rescue teams now operating inside a country that balances between both. The structural why is glacial lake outburst risk meeting a hydropower build-out sited for water, not for hazard. Follows our earlier piece on the floods' effect on Nepal's China-India trade routes; this is the human accounting of the same event.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/Tunnel",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/Hydroelectric_power_station",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Mud",
-        "http://en.wikipedia.org/wiki/Kathmandu",
-        "http://en.wikipedia.org/wiki/Himalayas"
-      ]
-    },
-    {
-      "id": "reform-uk-foreign-donations-officials-resign",
-      "label": "Two senior Reform UK officials resign as Farage faces fresh foreign donations scandal",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-reform-uk-foreign-donations-officials-resign"
-      ],
-      "eventUri": "eng-11979922",
-      "summary": "Channel 4 footage appears to show senior Reform UK figures discussing how to disguise donations from foreign sources; James Orr and Dan Jukes have resigned and the party has opened an investigation — all of it landing during Reform's own conference. Lead with the mechanism being described on camera, not the resignations: UK law bars foreign political donations, so the interesting detail is the described workaround, which is what makes this a story about the enforceability of election finance rules rather than one party's embarrassment. Who holds power and who is accountable: the Electoral Commission, whose remedy for a party polling at the front of the field is a fine measured in tens of thousands. Keep Farage's response and the party's denial in the frame.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nigel_Farage",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Reform_UK",
-        "http://en.wikipedia.org/wiki/Birmingham",
-        "http://en.wikipedia.org/wiki/Channel_4",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Jordan_Bardella"
-      ]
-    },
-    {
-      "id": "china-humanoid-robots-industrial-strategy",
-      "label": "Humanoid Robots and China's Vision of the Future",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-china-humanoid-robots-industrial-strategy"
-      ],
-      "eventUri": null,
-      "summary": "China's humanoid robot programme is read in the West as state propaganda and at home as industrial policy; the piece's argument is that the same machine is interpreted by who built it. Lead with the concrete industrial fact rather than the framing — humanoids are being pushed as a manufacturing answer to a shrinking working-age population, and the supply chain for actuators, reducers and rare-earth magnets sits largely inside China. The mechanism for the reader: whoever owns the component stack sets the price of embodied automation everywhere else. Keep it factual and avoid the essay's speculative register; state what has actually been demonstrated and deployed versus what is staged for exhibitions.",
-      "conceptUris": []
-    },
-    {
-      "id": "icm-2026-mathematics-in-the-age-of-ai",
-      "label": "Live from ICM 2026: What Is Math For in the Age of AI?",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-icm-2026-mathematics-in-the-age-of-ai"
-      ],
-      "eventUri": null,
-      "summary": "At the International Congress of Mathematicians — the field's four-yearly gathering — the working question was no longer whether machines can prove theorems but what mathematicians actually value in doing mathematics if they can. Lead with the venue and the shift: ICM is where the discipline sets its own agenda, and the agenda item is now its own displacement. For a technically literate reader the concrete hooks are formal proof assistants and machine-generated proofs that are verifiable but not humanly readable — a result nobody understands is still a result, and that is the real epistemic change. Avoid hype: distinguish what AI systems have verifiably contributed from what is anticipated.",
-      "conceptUris": []
-    },
-    {
-      "id": "isar-aerospace-spectrum-launch-scrubbed",
-      "label": "Isar Aerospace Calls Off 4 September Spectrum Launch Attempt",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-isar-aerospace-spectrum-launch-scrubbed"
-      ],
-      "eventUri": null,
-      "summary": "Isar Aerospace scrubbed the second flight of its Spectrum rocket from Andøya, calling it off hours after Nordland Police had already closed the surrounding land and sea. Lead with what is at stake rather than the scrub itself: Spectrum's first flight failed shortly after liftoff, and this vehicle is Europe's leading private attempt at an orbital launcher that does not depend on Arianespace or on American rideshare. The mechanism for the reader — small-launcher economics require flight cadence, and each scrub burns range time and money a startup does not have. Note the ground-truth detail: the road and maritime closures came into effect before the decision, which is what a launch attempt costs a region even when nothing flies.",
-      "conceptUris": []
-    },
-    {
-      "id": "endometriosis-gwas-indian-women-population-signals",
-      "label": "Genome-wide association analysis of endometriosis in Indian women supports shared genetic susceptibility and suggestive population-specific signals",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-endometriosis-gwas-indian-women-population-signals"
-      ],
-      "eventUri": null,
-      "summary": "The first genome-wide association study of endometriosis in Indian women finds the known European-derived risk loci largely replicate, plus suggestive signals that appear specific to this population. Lead with what that asymmetry means in practice: endometriosis affects roughly one in ten women of reproductive age worldwide, but the genetics underpinning diagnosis and drug targets were mapped almost entirely in European cohorts, so risk scores built from them underperform for everyone else. Who is affected: South Asian women facing a condition already diagnosed years late. The mechanism to explain is why ancestry-specific reference data matters — it is not representation for its own sake, it is whether a predictive model works on you. Be careful with 'suggestive': these signals are below genome-wide significance and need replication.",
-      "conceptUris": []
-    },
-    {
-      "id": "pomegranate-intercropping-semi-arid-soil-fertility",
-      "label": "Diversified pomegranate-based intercropping systems to enhance productivity, profitability, and soil fertility in semi-arid ecosystems",
-      "firstSeen": "2026-09-05T08:12:01.981Z",
-      "lastCovered": "2026-09-05T08:12:01.981Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-pomegranate-intercropping-semi-arid-soil-fertility"
-      ],
-      "eventUri": null,
-      "summary": "Planting field crops between pomegranate rows in semi-arid conditions raised productivity, farm income and soil fertility together — three things usually traded off against each other. Lead with the measured yield and income figures per hectare from the trial, not the agronomy jargon. Who is affected: smallholders across the semi-arid belt from the Deccan through the Sahel and the Middle East, farming land where irrigation is scarce and monoculture orchards leave the ground bare and eroding between rows. The mechanism to explain is simple and teachable — the space between tree rows is idle sunlight and idle water-holding soil, and intercropping monetises it while the tree canopy is still small. State the limits honestly: this is a single-site trial, and labour intensity is the cost it does not price.",
       "conceptUris": []
     }
   ]
