@@ -1318,8 +1318,59 @@
       "recent": "",
       "citations": [],
       "generatedAt": "2026-09-06T12:24:15.195Z"
+    },
+    "poly-will-china-invade-taiwan-before-2027": {
+      "standingFingerprint": "fad582336885addf",
+      "recentFingerprint": "a04fe031270dc3f1",
+      "standing": "A Polymarket contract that pays out if China mounts a military invasion of Taiwan before the end of 2026. It is a live price on the single event that would sever the strait carrying most of the world's advanced semiconductors.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-06T17:28:48.440Z"
+    },
+    "poly-will-afd-win-between-42-and-45-of-all-valid-seco": {
+      "standingFingerprint": "21c4a0ab9d0d4603",
+      "recentFingerprint": "c6940fd440a73af2",
+      "standing": "A Polymarket contract on the Alternative für Deutschland's share of valid votes in a German federal election, paying out only if the party lands inside a narrow 42–45% band. Traders price the tail of the polling distribution, not the average.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-06T17:28:54.741Z"
+    },
+    "poly-will-afd-win-42-45-seats-in-the-2026-sachsen-anh": {
+      "standingFingerprint": "1ecb9b81612a68b3",
+      "recentFingerprint": "8d72af96aa6a5505",
+      "standing": "A Polymarket contract paying out if the AfD takes between 42 and 45 seats in Saxony-Anhalt's 2026 state election. The price is what traders will pay for that band, not a poll or a forecast.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-06T17:29:04.439Z"
+    },
+    "poly-will-marco-rubio-win-the-2028-republican-preside": {
+      "standingFingerprint": "3382228c5238a30a",
+      "recentFingerprint": "009e34058e17ce26",
+      "standing": "A Polymarket contract on whether Marco Rubio becomes the Republican presidential nominee in 2028. Traders buy and sell a share that pays out if he wins, so the price reads as the odds the market is willing to put on him.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-06T17:29:10.655Z"
+    },
+    "poly-will-gavin-newsom-win-the-2028-us-presidential-e": {
+      "standingFingerprint": "126cf520e9cccb7e",
+      "recentFingerprint": "8a31b42df2526e22",
+      "standing": "A Polymarket contract on whether California's governor becomes the next US president, settling at 100 if he wins the 2028 general election and zero otherwise. Traders price it as a share of the whole field, so it moves against every rival at once.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-06T17:29:17.423Z"
+    },
+    "xmr": {
+      "standingFingerprint": "71d953c868d3281c",
+      "recentFingerprint": "273fce2edb397482",
+      "standing": "A cryptocurrency whose ledger hides sender, receiver and amount by default, unlike Bitcoin's public chain. That opacity makes it the settlement asset of choice for ransomware crews and for anyone moving value outside the banking system.",
+      "recent": "Two strands of the fortnight's news point at the same use case: a group calling itself VantaCore began extorting Russian companies with custom ransomware, hitting at least seven, and North Korea's earnings machinery was described as running without ever touching a bank. Neither report puts a figure on the flows.",
+      "citations": [
+        "2026-09-02-vantacore-ransom-note-without-a-ransom",
+        "2026-08-25-pyongyang-revenue-that-never-touches-a-bank"
+      ],
+      "generatedAt": "2026-09-06T17:29:26.447Z"
     }
   },
-  "generatedAt": "2026-09-06T12:24:15.195Z",
+  "generatedAt": "2026-09-06T17:29:26.448Z",
   "windowDays": 14
 }
