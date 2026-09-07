@@ -34,7 +34,7 @@ operator/dev detail in `DEV.md`.
 | `npm run dev` | watch + local server (`SKIP_OG=1`) |
 | `npm run build` | `scripts/build.js` → `dist/` |
 | `npm run verify` | `lint && typecheck && test` — run before committing |
-| `npm run lint` | Biome 2.5.5, **linter only** (`biome.jsonc`); formatter is off on purpose |
+| `npm run lint` | Biome 2.5.12, **linter only** (`biome.jsonc`); formatter is off on purpose |
 | `npm run typecheck` | two projects: `tsconfig.islands.json` (islands + `shared/`, strict) and `tsconfig.node.json` (`allowJs`+`checkJs`, `strict` OFF) |
 | `npm test` | `node --test scripts/lib/*.test.js` |
 | `npm run deadcode` | knip (`knip.jsonc`) — unused *files* and *exports*, which Biome cannot |
