@@ -1,35 +1,36 @@
 {
-  "date": "2026-09-06",
+  "date": "2026-09-07",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles completed, avg 9 published/cycle" },
-    "freshness": { "median": 0, "p90": 1, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 14, "science": 11, "tech": 9 },
-    "multiSource": { "value": 14, "target": 4, "met": true },
+    "articles": { "value": 64, "detail": "5 cycles completed, avg 11 published/cycle (up from 56 yesterday)" },
+    "freshness": { "median": 0, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 14, "science": 13, "tech": 12 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 7,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 15, "EU": 14, "AM": 14, "AS": 8, "AF": 3, "OC": 1, "GL": 1 }
+      "breakdown": { "EU": 24, "AS": 15, "AM": 12, "ME": 7, "AF": 6 }
     },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 45,
-    "duplicates": 0,
-    "avgCycleDuration": 1475
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 49,
+    "duplicates": 1,
+    "avgCycleDuration": 1488
   },
-  "experiment": "Skipped — all four goals met with margin, and no active experiment was pending evaluation. The one defect worth acting on today (a same-event duplicate, below) lives in scripts/lib/dedup.js, which is outside the tunable-parameter surface; changing a feed cap would not address it.",
-  "weakestArea": "Not a headline metric but a blind spot: two articles published today carry the identical title 'Israel Destroys Nabatieh Hospital' (06:29 cycle, slug nabatieh-hospital-strike-arab-salim-evacuation-warning; 13:34 cycle, slug ghandour-hospital-destroyed-lebanon-seventeen-hospitals), yet duplicates reports 0. They came from distinct source clusters with different eventUris and zero URL overlap, so the URL, slug and eventUri layers all passed them, and the title-overlap layer at dedup.js:253 is gated behind isNicheOnly() — both stories are multi-source mainstream, so it never ran. Africa is the weakest genuine coverage metric at 3 of 56 articles (5%), down from 5 yesterday, though the region-count target is met at 7.",
+  "experiment": "Skipped — all four goals met with margin and no experiment was pending evaluation. The one real defect today (a double-published article, below) is caused by the editor's tool grant in scripts/run-cycle.sh and the absence of a duplicate-URL check in scripts/validate-articles.js, both outside the tunable-parameter surface; no feed or selector cap would have prevented it.",
+  "weakestArea": "The duplicate is a structural gap, not a metric miss: the 12:04 cycle shipped 2026-09-07-ziltivekimab-trials-halted-inflammation-hypothesis.md and -inflation-hypothesis.md — same STAT URL, same title, same timestamp. The editor detected it and wrote 'File deletion is blocked in this session for me — you'll need to git rm this file manually' (log line 121), but TOOLS_EDITOR is 'Read,Edit,Glob,Grep' with no Bash, so the editor can diagnose a duplicate it structurally cannot remove, and nothing downstream acts on the request. validate-articles.js has no same-URL check, so both files passed to build and commit. This is the same failure shape as the 2026-07-01 writer incident where a missing tool in the grant silently cost articles. Both copies are live now.",
   "watching": [
-    "Hormuz escalation is the dominant thread — six articles today (US strikes on Iranian tankers, Iran declaring a Hormuz zone, tankers turning back, US Navy escorts, Iran's new economic war unit, bloc pressure over a tanker); this is the cluster most likely to generate duplicate coverage across cycles.",
-    "Lebanon hospital strikes are compounding — the Nabatieh/Ghandour destruction and the ministry's 17-damaged-hospitals count, against a cumulative toll near 9,000 since 2023.",
-    "Sudan coverage is holding across two angles (aid convoy strike, war self-financing) despite Africa's overall thinness at 3 articles.",
-    "Tech dipped 11 to 9 and sci-tech ratio 43% to 36% day-over-day; both remain well above target but the direction is worth a second day of observation before reading anything into it."
+    "The ziltivekimab double-publish is one instance of a class: any writer slug collision inside a single cycle escapes dedup, which compares the selection against already-published articles rather than the batch against itself at write time.",
+    "Oceania and global-scope articles both fell to zero today (1 and 1 yesterday), dropping unique regions 7 to 5 even as the count target stayed met.",
+    "Africa recovered to 6 articles from 3 yesterday, carried by Premium Times Nigeria at 5 — the recovery rests on one outlet.",
+    "Europe at 24 of 64 (38%) is the heaviest single-region concentration in the last several days, roughly double yesterday's 14.",
+    "Tech rebounded 9 to 12 and sci-tech ratio 36% to 39%, so yesterday's noted dip did not persist into a second day."
   ],
   "coverageGaps": [
-    "Africa at 3 of 56 articles (5%), down from 5 yesterday — Sudan and Nigeria carry it almost alone, with no Sahel, Horn or Southern Africa politics beyond a single Gauteng nurses story.",
-    "Oceania at 1 article and no Pacific-region coverage at all.",
-    "Freshness is computed on only 19 of 56 articles, so the median of 0 rests on roughly a third of the day's output — the remaining articles carry no resolvable publication date to lag against.",
-    "Latin America appears only through incident reporting (Bolivia barracks blast, Colombia drone swarm, Haiti permits) with no policy or economy coverage."
+    "Oceania at zero articles for the first time this week; no Pacific coverage at all.",
+    "Freshness is computed on 11 of 64 articles, so the median of 0 rests on about a sixth of the day's output — a smaller base than yesterday's 19 of 56, and the metric should be read as weakly supported.",
+    "Africa's 6 articles come almost entirely from Nigeria via Premium Times; no Sahel, Horn or Southern Africa coverage.",
+    "Latin America has no distinct policy or economy thread; the AM count of 12 is dominated by US coverage."
   ],
-  "context": "No experiment was active coming into today and there is no noNewExperimentsUntil gate in place, so the slot is free whenever a well-founded proposal exists. The duplicate-title finding is the highest-value item on the board but needs an operator decision: extending dedup's title-overlap layer to multi-source stories would touch scripts/lib/dedup.js, outside the daily-tuning parameter surface, and the 2026-05-02 recap experiment deliberately scoped that layer to niche-only sources to limit false positives on recurring conflict clusters — precisely the Lebanon-strike pattern that produced today's collision."
+  "context": "No experiment was active coming into today and there is no noNewExperimentsUntil gate, so the slot stays free. Two operator decisions are outstanding and neither is a tuning parameter: (1) the two live ziltivekimab articles need one deleted, and (2) the editor either needs a deletion capability in TOOLS_EDITOR or, preferably, validate-articles.js needs a same-source-URL duplicate check so the gate is deterministic rather than dependent on the editor noticing. Yesterday's audit raised a related but distinct case — two same-title Lebanon hospital articles from different clusters that dedup's title-overlap layer skipped because it is gated to niche-only sources. Today's is simpler and cheaper to close: identical URL, identical title, same commit."
 }
