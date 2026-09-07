@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "turk-arms-transfers-israel-third-state-complicity",
+      "label": "Volker Turk urges halt to arms transfers to Israel over legal risks",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-turk-arms-transfers-israel-third-state-complicity"
+      ],
+      "eventUri": "eng-11987934",
+      "summary": "The UN human rights chief told states to stop transferring arms to Israel where there is a risk they are used in violations, and told companies to end business supporting illegal settlements. Lead with the legal mechanism, not the appeal: Turk is naming third-state complicity as the exposure, which converts an occupation story into a supplier-liability story for every government and firm in the chain. Note the sentiment divergence of 0.79 across the cluster — this is a story Western and non-Western outlets frame very differently. WRITER WARNING: the cluster's second source (TimesNow) and the auto-extracted concepts are about a separate Turk statement on AI risk and are NOT about arms transfers; do not cite TimesNow or the AI framing for this article. Source only from TRT World.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Human_rights",
+        "http://en.wikipedia.org/wiki/Geneva",
+        "http://en.wikipedia.org/wiki/United_Nations_Human_Rights_Council",
+        "http://en.wikipedia.org/wiki/Existentialism",
+        "http://en.wikipedia.org/wiki/Global_catastrophic_risk",
+        "http://en.wikipedia.org/wiki/Volker_Türk"
+      ]
+    },
+    {
+      "id": "romualdez-arrest-warrant-flood-control-kickbacks",
+      "label": "Romualdez suffers from 'panic attack' - Remulla",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-romualdez-arrest-warrant-flood-control-kickbacks"
+      ],
+      "eventUri": "eng-11986086",
+      "summary": "The Sandiganbayan issued an arrest warrant against former House speaker Martin Romualdez — the president's cousin — over alleged kickbacks in the flood-control programme. Lead with the institution, not the panic attack: an anti-graft court reached the sitting president's own family, and the designated detention site is an ordinary Quezon City jail. The structural why is that the money was flood-control budget, so the alleged theft has a body count in a country that floods annually. Follow-up context: this is the accountability arm of the Philippine infrastructure-corruption scandal, and Reuters puts the alleged kickbacks at the centre of it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Martin_Romualdez",
+        "http://en.wikipedia.org/wiki/Sandiganbayan",
+        "http://en.wikipedia.org/wiki/Ombudsman",
+        "http://en.wikipedia.org/wiki/Ombudsman_of_the_Philippines",
+        "http://en.wikipedia.org/wiki/Flood_control",
+        "http://en.wikipedia.org/wiki/Manila",
+        "http://en.wikipedia.org/wiki/Lawyer",
+        "http://en.wikipedia.org/wiki/Philippines"
+      ]
+    },
+    {
+      "id": "ghauri-peca-physical-remand-nccia-press-freedom",
+      "label": "NCCIA gets journalist Bilal Ghauri's 3-day physical remand in Peca case",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-ghauri-peca-physical-remand-nccia-press-freedom"
+      ],
+      "eventUri": null,
+      "summary": "An Islamabad magistrate handed the National Cyber Crime Investigation Agency three days of physical — not judicial — custody of journalist Bilal Ghauri under PECA. Lead with the distinction between physical and judicial remand: physical remand puts a journalist in the investigating agency's own cells, which is the coercive mechanism, and it was granted on an FIR. The structural why is that Pakistan's cybercrime statute is now the default instrument for detaining reporters, so a press-freedom case is processed as a computer-crime case. Follow-up context: this continues our Pakistan information-law thread (the PIC RTI harm-test ruling) — same question of who decides what may be published, arriving through a different statute.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-army-false-capture-claim-eze-bounty",
+      "label": "After initial 'capture', army declares notorious terror kingpin wanted, places ₦30 million bounty",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-nigeria-army-false-capture-claim-eze-bounty"
+      ],
+      "eventUri": null,
+      "summary": "The Nigerian Army has declared Ifeanyi Eze wanted with a ₦30 million bounty — a man it had already announced as captured, before he resurfaced in January. Lead with the retraction, not the bounty: the military published a false capture claim and the correction came only when the subject reappeared, which is an accountability gap in how security operations are reported to Nigerians. The structural why is that unverified 'neutralised/captured' claims are the routine currency of Nigerian security communiqués, so the public has no way to audit the war's progress. Affected: residents of Imo State and the South-east who were told the threat was over.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-crude-basket-100-import-bill-hormuz",
+      "label": "India's Crude Oil Benchmark Tops $100 as Middle East War Escalates",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-india-crude-basket-100-import-bill-hormuz"
+      ],
+      "eventUri": "eng-11985569",
+      "summary": "India's crude import basket — the FOB average of the sweet and sour grades it actually buys — passed $100 a barrel at the end of last week. Lead with the number and what it measures: this is not Brent, it is the price India pays, and India imports roughly 85% of its crude. The mechanism to highlight is the transmission chain from Hormuz risk to a national import bill to fuel subsidies and the rupee — the war's cost is being paid by a country that is not in it. Follow-up context: continues our Hormuz thread (war-risk insurance, tankers turning back) but shifts the frame from shipping to a specific importing economy, so avoid re-reporting the insurance mechanism.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Oil_tanker",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/West_Texas_Intermediate"
+      ]
+    },
+    {
+      "id": "russia-uranium-share-2040-western-underinvestment",
+      "label": "Russia could account for over 30% of global uranium supplies by 2040 -- FT",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-russia-uranium-share-2040-western-underinvestment"
+      ],
+      "eventUri": null,
+      "summary": "An FT analysis projects Russia at 36% of global uranium supply by 2040, because Western producers have underinvested and new deposits are stuck in permitting. Lead with the causal ordering: this is not Russian expansion but Western abdication — the share grows because nobody else is opening mines. The mechanism to highlight is permitting and capital lead times of a decade or more, which means the 2040 number is already largely determined by decisions not taken now. The consequence: every country building nuclear capacity for decarbonisation is building dependence on a supplier currently under sanctions. Attribute carefully — TASS is relaying an FT report, so frame the claim as the FT's, not Moscow's.",
+      "conceptUris": []
+    },
+    {
+      "id": "jlr-4000-job-cuts-tata-ev-transition-tariffs",
+      "label": "Tata-owned Jaguar Land Rover to cut 4,000 jobs globally",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-jlr-4000-job-cuts-tata-ev-transition-tariffs"
+      ],
+      "eventUri": "eng-11987995",
+      "summary": "JLR will cut about 4,000 roles over two years under a 'strategic transformation programme'. Lead with the ownership fact the British coverage tends to bury: this is an Indian conglomerate deciding the fate of Solihull and Halewood, an inversion of the colonial-era direction of industrial control. The mechanism is the squeeze between tariffs, a collapsing China luxury market, and the capital cost of the EV transition — three pressures landing on one plant network. Affected: 4,000 workers and the West Midlands supply chain that depends on them.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Jaguar_Land_Rover",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Automotive_industry",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Tata_Motors",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Electric_vehicle"
+      ]
+    },
+    {
+      "id": "wmo-wildfire-heat-air-quality-feedback-loop",
+      "label": "Heatwaves and wildfires are setting back air quality improvements, UN finds",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-wmo-wildfire-heat-air-quality-feedback-loop"
+      ],
+      "eventUri": "eng-11987319",
+      "summary": "The WMO finds that wildfires and heatwaves are erasing air-quality gains in regions where particulate pollution had been falling. Lead with the feedback loop, which is the teachable mechanism: heat drives fire, fire loads the air with particulates, and heat also cooks nitrogen oxides into ground-level ozone — so emissions cuts get cancelled by the climate the emissions caused. The structural point for the reader is that clean-air policy is now hostage to climate policy; a country can do everything right on vehicles and industry and still lose. Ground it in the specific regions the WMO names rather than treating it as a global average.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Meteorological_Organization",
+        "http://en.wikipedia.org/wiki/Wildfire",
+        "http://en.wikipedia.org/wiki/Air_pollution",
+        "http://en.wikipedia.org/wiki/Heat_wave",
+        "http://en.wikipedia.org/wiki/Particulates",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Ozone"
+      ]
+    },
+    {
+      "id": "sarawak-haze-school-closures-transboundary-liability",
+      "label": "Schools Close Across Sarawak Due to Toxic Haze From Indonesian Wildfires",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-sarawak-haze-school-closures-transboundary-liability"
+      ],
+      "eventUri": null,
+      "summary": "Weeks of fires across Sumatra and Kalimantan, worsened by a severe dry season, have pushed haze over the border and shut schools across Sarawak. Lead with the children kept home in one country by fires burning in another. The mechanism is transboundary: smoke crosses a border that liability does not, and ASEAN's haze agreement has no enforcement, so Malaysia absorbs a public-health cost it cannot regulate. Pair naturally with the WMO air-quality piece — this is the same feedback loop with a named victim. Note this is peat and plantation burning in a bad dry year, not wilderness fire.",
+      "conceptUris": []
+    },
+    {
+      "id": "ziltivekimab-trials-halted-inflammation-hypothesis",
+      "label": "Novo Nordisk stops two cardiovascular trials of drug aimed at lowering inflammation",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-ziltivekimab-trials-halted-inflammation-hypothesis"
+      ],
+      "eventUri": "eng-11988337",
+      "summary": "Novo Nordisk halted two cardiovascular outcome trials of ziltivekimab, its anti-inflammatory heart drug. Lead with what the failure tests: the inflammation hypothesis of heart disease — the idea that lowering IL-6 signalling, independent of cholesterol, prevents heart attacks. This is a negative result on a decades-old scientific bet, and negative results are the part of drug development readers almost never see. The structural why: a company can stop trials for futility or for strategy, and those are different facts — be precise about which reason Novo gave, and do not report a business decision as a scientific verdict if the stated ground is futility, or vice versa.",
+      "conceptUris": []
+    },
+    {
+      "id": "usdt-two-signing-keys-cross-chain-key-reuse",
+      "label": "Half of all USDT sits behind two signing keys, security review finds",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-usdt-two-signing-keys-cross-chain-key-reuse"
+      ],
+      "eventUri": null,
+      "summary": "Hacken's review found roughly $91.3 billion of USDT on Tron — about half the circulating supply — governed by a contract whose administrative control reduces to two signing keys, with key reuse extending that authority across Ethereum, Avalanche and Celo. Lead with the number and the count: $91.3bn behind two keys. The mechanism is key reuse across chains, which turns a single compromise into a multi-chain one and quietly negates the redundancy multi-chain issuance is supposed to buy. For a reader in a country where USDT functions as a dollar substitute, this is custody risk in the plumbing, not a market story. Be precise: Hacken found no compromise and no incident, and Tether's rating was upgraded in the same review — this is a structural finding, not a breach.",
+      "conceptUris": []
+    },
+    {
+      "id": "lake-mariner-data-centre-fire-local-oversight-gap",
+      "label": "The AI data center boom is causing new accountability problems",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-lake-mariner-data-centre-fire-local-oversight-gap"
+      ],
+      "eventUri": null,
+      "summary": "A June fire at the unfinished Lake Mariner data centre in Somerset, New York met firefighters who found no working alarm, no suppression system and three dead hydrants. Lead with the dead hydrants — a concrete detail that carries the whole argument. The mechanism is a regulatory mismatch: AI capacity is being built at a speed that outruns local fire codes, inspection capacity and utility planning, in small municipalities with no leverage over the operators. The structural why is that the compute buildout externalises its risk onto volunteer fire departments and ratepayers while the returns accrue elsewhere — the accountability gap is jurisdictional, not technical.",
+      "conceptUris": []
+    },
+    {
+      "id": "berlin-second-leak-credential-reuse-blast-radius",
+      "label": "Berlin investigates new data leak after hackers publish stolen login credentials",
+      "firstSeen": "2026-09-07T12:12:46.092Z",
+      "lastCovered": "2026-09-07T12:12:46.092Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-berlin-second-leak-credential-reuse-blast-radius"
+      ],
+      "eventUri": null,
+      "summary": "A second trove of Berlin government data has appeared online, with stolen login credentials published, while Germany's BSI separately warned about the Rhysida ransomware group. Lead with the word 'second': the recurrence is the story, because it means the first breach's credentials were never fully rotated or the same access path was never closed. The mechanism to explain is credential publication as a follow-on attack — dumped logins are reusable against every other service where a city employee reused them, so the blast radius outlives the original intrusion. Affected: residents whose records sit in city agency systems, who have no way to opt out of a government database.",
+      "conceptUris": []
+    },
+    {
       "id": "ohio-candidate-attack-subfederal-protection-gap",
       "label": "Armed assailant attacks Ohio Democratic candidate during campaign stop",
       "firstSeen": "2026-09-07T08:12:36.463Z",
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ohio-candidate-attack-subfederal-protection-gap"
@@ -33,7 +286,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-sagar-hooch-methanol-excise-arbitrage-border"
@@ -58,7 +311,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-malaysia-assembly-act-reform-delay-chilling-effect"
@@ -74,7 +327,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-pakistan-kp-threat-framing-federal-security-politics"
@@ -90,7 +343,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-niger-state-village-head-killing-rural-authority"
@@ -106,7 +359,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-russia-dprk-road-bridge-sanctions-monitoring-aperture"
@@ -131,7 +384,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-china-insurer-recapitalisation-solvency-equity-channel"
@@ -156,7 +409,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ecb-energy-shock-tightening-second-round-transmission"
@@ -172,7 +425,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-myeloma-circulating-tumour-cells-staging-blood"
@@ -188,7 +441,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-anticipatory-grief-family-carers-invisible-load"
@@ -204,7 +457,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-nursing-notes-speech-recognition-offline-privacy-tradeoff"
@@ -220,7 +473,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-isro-nasa-moon-invitation-export-control-access"
@@ -245,7 +498,7 @@
       "lastCovered": "2026-09-07T08:12:36.463Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-llm-authorship-disclosure-norm-hacker-news"
@@ -261,7 +514,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-anak-krakatau-ash-jet-engine-corridor-closure"
@@ -286,7 +539,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-iran-nuclear-agreement-abandoned-war-aim-termination"
@@ -311,7 +564,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-mcd-sealing-order-enforcement-by-catastrophe-student-housing"
@@ -336,7 +589,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-north-korea-second-destroyer-build-rate-sea-based-deterrent"
@@ -361,7 +614,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-greenland-eu-package-critical-minerals-self-rule"
@@ -386,7 +639,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-un-correct-the-map-projection-kashmir-depiction-claim"
@@ -402,7 +655,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-europe-return-hubs-offshore-asylum-jurisdiction"
@@ -418,7 +671,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ukraine-wartime-debt-service-preferred-creditor-net-transfer"
@@ -434,7 +687,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-india-gdp-ranking-nominal-dollar-exchange-rate-illusion"
@@ -450,7 +703,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-liquid-network-elements-bug-federated-sidechain-trust"
@@ -466,7 +719,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-independent-mail-collective-shutdown-deliverability-consolidation"
@@ -482,7 +735,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ethiopia-ntd-urban-slum-rural-burden-targeting"
@@ -498,7 +751,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-07-social-isolation-neet-weak-ties-labour-market"
@@ -514,7 +767,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-05-private-german-rocket-makes-history-reaches-orbit-from-europ"
@@ -530,7 +783,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-afd-saxony-anhalt-record-firewall-coalition-arithmetic"
@@ -555,7 +808,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-prohibited-zone-transit-passage-war-risk"
@@ -580,7 +833,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-pakistan-pic-rti-harm-test-classification-reviewable"
@@ -596,7 +849,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-miami-767-freighter-overrun-runway-safety-area"
@@ -621,7 +874,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-pentagon-polygraphs-munitions-stockpile-production-rate"
@@ -646,7 +899,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-tankers-turn-back-war-risk-insurance-transmission"
@@ -671,7 +924,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-gauteng-nurses-ultimatum-health-system-austerity-delivery"
@@ -687,7 +940,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption"
@@ -703,7 +956,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-long-beach-black-jet-osint-registration-paper-trail"
@@ -719,7 +972,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-active-flaps-rotor-fatigue-loads-helicopter-test"
@@ -735,7 +988,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-label-free-metabolic-imaging-immune-cells-blood"
@@ -751,7 +1004,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-childhood-psychological-maltreatment-online-aggression-cohort"
@@ -767,7 +1020,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-06-oic-tanker-strike-denunciation-enforcement-gap",
@@ -793,7 +1046,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-gaza-zeitoun-mass-funeral-malaka-family-rubble-recovery"
@@ -818,7 +1071,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-ghandour-hospital-destroyed-lebanon-seventeen-hospitals"
@@ -843,7 +1096,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-lavrov-leipzig-drone-attribution-escalation-threshold"
@@ -868,7 +1121,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-mail-in-voting-supreme-court-emergency-docket-midterms"
@@ -884,7 +1137,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-cabo-verde-fogo-bus-crash-road-safety-regulation"
@@ -909,7 +1162,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-opec-plus-quotas-unchanged-war-outage-price-ceiling"
@@ -934,7 +1187,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-navy-escort-war-risk-premium-burden-sharing"
@@ -959,7 +1212,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-bitcoin-mortgage-rehypothecation-counterparty-risk"
@@ -975,7 +1228,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-chromium-sandbox-escape-rce-downstream-patch-lag"
@@ -991,7 +1244,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-isar-aerospace-spectrum-orbit-europe-launch-sovereignty"
@@ -1007,7 +1260,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-ukraine-wallet-drainer-token-approval-takedown"
@@ -1023,7 +1276,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nepal-trishuli-flood-hydropower-siting-glacial-outburst"
@@ -1048,7 +1301,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-core-mantle-boundary-bands-deep-learning-seismology"
@@ -1064,7 +1317,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-delhi-satya-niketan-pg-collapse-unpermitted-floors"
@@ -1089,7 +1342,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-russia-trilateral-summit-preconditions-ryabkov"
@@ -1114,7 +1367,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-south-kordofan-wfp-convoy-attack-deconfliction"
@@ -1130,7 +1383,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-06-catatumbo-drone-swarm-colombia-cost-asymmetry",
@@ -1158,7 +1411,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nigerian-worker-doha-airport-sponsorship-handover"
@@ -1174,7 +1427,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-iran-azerbaijan-transit-corridor-blockade-substitute"
@@ -1190,7 +1443,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-sudan-war-economy-parallel-networks-ceasefire-cost"
@@ -1206,7 +1459,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-vehicle-co2-lstm-metaheuristic-tuning-real-world-testing"
@@ -1222,7 +1475,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-mine-tailings-hybrid-cement-clinker-substitution"
@@ -1238,250 +1491,13 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-stress-hyperglycemia-ratio-trajectory-icu-mortality"
       ],
       "eventUri": null,
       "summary": "A retrospective cohort of intensive-care heart-failure patients finds that the trajectory of the stress hyperglycaemia ratio over time, and the cumulative burden it accumulates, predict in-hospital death better than a single admission glucose reading. Lead with the mortality difference between trajectory groups — that number is the finding. The mechanism is the elegant part and the reason this is worth explaining to a general reader: critical illness floods the body with cortisol and catecholamines, which raise blood glucose regardless of whether the patient is diabetic, so an absolute glucose value cannot distinguish a diabetic running near their own normal from a non-diabetic in severe physiological stress. The stress hyperglycaemia ratio fixes this by dividing admission glucose by the patient's own long-term average estimated from HbA1c — it measures how far you have moved from your own baseline, not from the population's. Reframing a measurement as relative rather than absolute is a general scientific move, and this is a clean instance of it. Why it matters practically: ICUs already draw glucose several times a day, so a trajectory-based risk score costs nothing new to compute — which makes it usable in hospitals that cannot afford additional diagnostics, not only in well-resourced ones. Hold the claim to what the design supports: this is retrospective and observational, it shows association and not that correcting glucose improves survival, and it is an accepted manuscript ahead of the version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "nabatieh-hospital-strike-arab-salim-evacuation-warning",
-      "label": "Israel attacks a hospital in Nabatieh, Lebanon",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-nabatieh-hospital-strike-arab-salim-evacuation-warning"
-      ],
-      "eventUri": "eng-11984320",
-      "summary": "Israel struck a hospital in Nabatieh and killed at least two people in Arab Salim after ordering residents out that morning; Al Jazeera's carry puts the cumulative toll at nearly 9,000 killed in Lebanon since 2023. Lead with the hospital, not the evacuation notice — the warning is what converts a protected medical facility into a claimed legitimate target in the military's own account, and the mechanism worth teaching is exactly that: an advance warning does not lift the protection medical facilities hold under IHL, it only shifts the argument about who is responsible for the dead. Who is affected: patients and staff in a district hospital serving southern Lebanon, and villagers in Arab Salim given hours to abandon homes. Who holds power: the Israeli military, whose spokesperson Ella Waweya posted the target map on X — name her and quote the post, because the targeting claim is being made publicly and can therefore be tested. Sources diverge sharply (0.43): Mehr (IR) reads this at -0.7 and Al Jazeera at -0.4, so attribute characterisations and count only what is documented. Lebanon is an OIC state and the regional carries are Al Jazeera (QA) and Mehr (IR) — use both, and give the 9,000 figure its provenance rather than stating it flat.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Southern_Lebanon",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Airstrike",
-        "http://en.wikipedia.org/wiki/Terrorism"
-      ]
-    },
-    {
-      "id": "niger-failed-coup-france-accusation-front-line-mutiny",
-      "label": "Failed Coup: Niger blames France, neighbouring countries, threatens international action",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-niger-failed-coup-france-accusation-front-line-mutiny"
-      ],
-      "eventUri": "eng-11983411",
-      "summary": "Niger's military government says France and unnamed neighbouring states backed an attempted coup against it — soldiers abandoned front-line positions in what the authorities call a mutiny — and is threatening to take the accusation to international bodies. France calls it 'pure fiction'. Lead with the two claims side by side and adjudicate neither: the story is that a junta which itself took power by coup is now using foreign-subversion charges as a governing instrument, and the reader should be handed the evidentiary standard rather than a verdict. The mechanism to teach is the Sahel's post-2020 pattern — soldiers pulled off counter-insurgency lines to secure the capital, which is how coup-proofing degrades the very security mission that justified the coup. Who bears it: civilians in the border zones where those front lines were. Get the date, the units involved, what 'international action' concretely means, and whether any evidence has been produced. A Nigerian outlet on a West African sovereignty dispute is the right voice; note that no French or Nigerien source appeared in the feed to answer back beyond the denial.",
-      "conceptUris": []
-    },
-    {
-      "id": "croatia-lika-hazardous-waste-dump-zagreb-protest",
-      "label": "Thousands protest in Croatia to demand government clean up toxic waste",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-croatia-lika-hazardous-waste-dump-zagreb-protest"
-      ],
-      "eventUri": "eng-11984613",
-      "summary": "Tens of thousands marched in Zagreb — one of Croatia's largest protests in years — demanding the government clear an illegal dump of hazardous waste that residents say is poisoning the Lika highlands around Gospić. Lead with the tonnage and where the waste came from: the concepts point at Italy, and cross-border waste dumping is the mechanism to explain, because hazardous waste flows down the same gradient as every other cost — from richer jurisdictions with strict disposal pricing to poorer ones with weak inspection. That makes this an EU-internal accountability story, not a Croatian litter problem. Who holds power: the ministry that permitted or failed to inspect the site, and the brokers who moved the material; name them if the reporting does. Who is affected: people drinking water from a karst landscape, where limestone means contamination travels fast and remediation is close to impossible. Get the volume, the classification of the waste, how long it sat there, and what enforcement action has actually been taken.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Croatia",
-        "http://en.wikipedia.org/wiki/Gospić",
-        "http://en.wikipedia.org/wiki/Zagreb",
-        "http://en.wikipedia.org/wiki/Waste",
-        "http://en.wikipedia.org/wiki/Lika",
-        "http://en.wikipedia.org/wiki/Tonne",
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Hazardous_waste"
-      ]
-    },
-    {
-      "id": "trump-super-pac-ten-million-texas-senate-paxton",
-      "label": "Trump's super PAC pours $10M into Ken Paxton's Texas Senate race against James Talarico",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-trump-super-pac-ten-million-texas-senate-paxton"
-      ],
-      "eventUri": "eng-11985021",
-      "summary": "A Trump-aligned super PAC filed with the FEC on Saturday to spend $10m on Texas television and digital advertising — the first major outside spending of the midterm cycle. Lead with the vehicle, not the candidates: a super PAC may raise and spend without limit provided it does not coordinate with the campaign, and the entire architecture of US election finance since Citizens United rests on that word 'coordinate', which is nearly unenforceable in practice. That is the mechanism a non-American reader needs. The structural point: $10m in a single state race, announced 60 days out, is how a national figure converts personal political capital into control over a party's Senate roster — the money is the endorsement. Who is affected: Texas voters, and every candidate now priced out of a media market. Sources agree closely (divergence 0.14) but split on framing — the New York Post reads it as cavalry arriving, Al Jazeera as a spending escalation; report the filing and the number, and attribute the framing. Do not write horse-race copy; write about the instrument.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Ken_Paxton",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Make_America_Great_Again",
-        "http://en.wikipedia.org/wiki/Texas",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Texas_Senate"
-      ]
-    },
-    {
-      "id": "iran-economic-war-headquarters-ministry-of-economy",
-      "label": "Iran sets up economic war task force amid fighting with US",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-iran-economic-war-headquarters-ministry-of-economy"
-      ],
-      "eventUri": null,
-      "summary": "Iran's economy ministry has stood up a dedicated 'economic war headquarters' to centrally identify wartime disruptions and issue fixes, spokesman Morteza Zamanian says. Lead with the institution, not the rhetoric: a state creating a permanent command structure for economic disruption is conceding that the blockade is not an episode to be waited out but a condition to be administered. The mechanism to teach is what such a body actually does — allocating scarce foreign exchange, rationing imported inputs, prioritising which factories keep running — because that is how a wartime economy quietly becomes a command economy, and the distributional consequences land on households through price and availability, not through any announced policy. Who is affected: Iranian importers, manufacturers dependent on foreign inputs, and ordinary savers already absorbing depreciation. Sourcing discipline: this is Iranian state media reporting on its own government's institutional action — acceptable for the fact of the body's creation, attributed by name, but do not carry its framing of who is winning. No independent corroboration appeared in the feed; say so. Note the entity-linker attached junk concepts (Argentina's economy ministry, Quebec's National Assembly) — ignore them. Continues the Hormuz arc from the economic side rather than the naval one; do not re-run the tanker-strike explainer.",
-      "conceptUris": []
-    },
-    {
-      "id": "adani-defence-ak-203-ammunition-india-localisation",
-      "label": "Adani Defence secures 5-year AK-203 ammunition pact as India deepens Rs 5,124-cr rifle localisation push",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-adani-defence-ak-203-ammunition-india-localisation"
-      ],
-      "eventUri": "eng-11984269",
-      "summary": "Adani Defence will supply small-calibre ammunition to Indo-Russian Rifles Private Ltd for five years, binding the ammunition stream to the Rs 5,124-crore AK-203 rifle programme at Korwa, Amethi. Lead with the structure of the deal rather than the value: locking ammunition and rifle production into one domestic chain is how a state converts an import relationship into an industrial asset it owns, and it is also how a single private conglomerate acquires a permanent position inside a sovereign function. Both halves are the story. The mechanism to explain is the arithmetic of small arms — the rifle is a one-off purchase, the 7.62x39mm is a perpetual annuity, so whoever holds the ammunition contract holds the longer revenue and the greater leverage. Structural why for our reader: this is India reducing dependence on Russian supply lines strained by the Ukraine war, an example of a non-Western state industrialising its way out of a client relationship. Accountability angle: Adani's expansion into defence deserves the same scrutiny as its ports and power businesses — name the ownership, the tender process if disclosed, and whether the contract was competed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/AK-203",
-        "http://en.wikipedia.org/wiki/Arms_industry",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Rifle",
-        "http://en.wikipedia.org/wiki/Aerospace",
-        "http://en.wikipedia.org/wiki/Assault_rifle",
-        "http://en.wikipedia.org/wiki/7.62×39mm"
-      ]
-    },
-    {
-      "id": "lodhran-brick-kiln-child-death-bonded-labour",
-      "label": "Minor boy burnt alive in kiln in Punjab's Lodhran",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-lodhran-brick-kiln-child-death-bonded-labour"
-      ],
-      "eventUri": null,
-      "summary": "Six-year-old Arsalan died after falling into a functioning brick kiln near Chak 337/WB in Dunyapur, Lodhran, while at the site with his father Shehzad — Rescue 1122 confirmed the death. Name the child; that is the point. But the article is not the accident, it is the workplace: Pakistan's brick kilns run on peshgi, the advance-payment system that binds entire families to a kiln operator until a debt that compounds faster than wages is repaid, which is why a six-year-old was at a firing kiln at all rather than in school. Explain that mechanism plainly — bonded labour is illegal under the Bonded Labour System (Abolition) Act 1992 and the practice is nonetheless the sector's normal operating model, with provincial labour inspectorates that number in the dozens against tens of thousands of kilns. Who holds power and is accountable: the kiln owner, and the Punjab labour department whose inspection regime does not reach these sites. Lead with the death, hold it to a single paragraph, and give the reader the system that produced it. Get the kiln's registration status and whether any case was registered.",
-      "conceptUris": []
-    },
-    {
-      "id": "khyber-dowry-wedding-expenditure-household-debt",
-      "label": "Khyber residents call for curbing extravagant weddings, dowry",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-05-khyber-dowry-wedding-expenditure-household-debt"
-      ],
-      "eventUri": null,
-      "summary": "Residents of Khyber district are pressing for sustained campaigns against extravagant wedding spending and dowry, saying the expectation has put middle- and lower-middle-income households under real financial strain. Lead with the household arithmetic, not the cultural framing — what a wedding costs against what a family earns in a year, and what is borrowed to cover the gap. The mechanism to explain is why the practice persists against everyone's stated interest: it is a signalling equilibrium, where a family that spends less is read as having failed rather than as having chosen restraint, so no single household can defect first. That is why the residents are asking for collective campaigns rather than individual thrift. The structural consequence: dowry expectation delays marriage, drives debt, and prices daughters as liabilities — and Pakistan has legislated against it repeatedly (the Dowry and Bridal Gifts (Restriction) Act 1976, unenforced) which is the accountability gap to name. This story sits directly on the site's own premise of zuhd, restraint against excess — write it as economics and social mechanism, not as a sermon, and let the reader draw the connection.",
-      "conceptUris": []
-    },
-    {
-      "id": "isro-employee-bodies-space-privatisation-clarity",
-      "label": "ISRO employee associations seek clarity on privatisation plans",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-isro-employee-bodies-space-privatisation-clarity"
-      ],
-      "eventUri": "eng-11985266",
-      "summary": "FEED DEFECT — READ FIRST: this cluster's headline (a Times of India video about a VHP garba notice in Maharashtra) does not match its body or its concepts. The actual event, carried by both sources' text, is that nine employee bodies representing thousands of ISRO staff have made a joint representation to the Department of Space seeking clarity on the agency's future as India opens its space sector to private industry. Write only the ISRO story; discard the garba headline entirely and do not mention it. The angle: for the first time since liberalisation began, ISRO's own workforce has formally asked what is left for the agency once PSLV and SSLV production moves to private consortia — the workers are the ones raising the governance question the policy never answered. Mechanism to teach: India is transferring launch-vehicle manufacture to industry while keeping ISRO as designer and regulator, and the unresolved part is whether the same institution can develop a vehicle, hand it to a competitor's supply chain, and then certify it. Who is affected: technical staff at Vikram Sarabhai Space Centre and the other centres, and by extension a space programme whose credibility rests on public-sector continuity rather than on cost. Non-Western state with agency, not a setting for someone else's policy — write it that way.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indian_Space_Research_Organisation",
-        "http://en.wikipedia.org/wiki/Launch_vehicle",
-        "http://en.wikipedia.org/wiki/Department_of_Space",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Public_sector_undertakings_in_India",
-        "http://en.wikipedia.org/wiki/Small_Satellite_Launch_Vehicle",
-        "http://en.wikipedia.org/wiki/Polar_Satellite_Launch_Vehicle",
-        "http://en.wikipedia.org/wiki/Private_sector"
-      ]
-    },
-    {
-      "id": "parameter-efficient-fine-tuning-bayesian-optimisation-llm",
-      "label": "Evaluating parameter-efficient fine-tuning of large language models for sentiment analysis with bayesian optimization",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-parameter-efficient-fine-tuning-bayesian-optimisation-llm"
-      ],
-      "eventUri": null,
-      "summary": "A systematic evaluation of parameter-efficient fine-tuning — adapting a large language model by training a small fraction of its weights rather than all of them — with Bayesian optimisation used to search the hyperparameter space instead of grid search. Lead with the compute ratio: PEFT methods such as LoRA train on the order of a percent of a model's parameters, which is the difference between adapting a frontier model on a single GPU and needing a cluster. That number is the whole story, and it is an access story: it is why a university in Lahore, Cairo or Nairobi can specialise a model for a local language or domain at all. The mechanism to explain for a technically literate but non-ML reader: fine-tuning inserts small trainable adapter matrices alongside frozen weights, so the base model is never rewritten; Bayesian optimisation matters because PEFT's benefit evaporates if you have to burn the savings searching for the right rank and learning rate. Be honest about scope — the benchmark task is sentiment analysis, a narrow and well-trodden one, so report what generalises and what does not. Note this is an accepted manuscript ahead of the final version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "phenylephrine-block-copolymer-micelle-sustained-release",
-      "label": "Phenylephrine encapsulation in amphiphilic block copolymer micelles: drug-polymer interactions, solubilization and sustained release",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-phenylephrine-block-copolymer-micelle-sustained-release"
-      ],
-      "eventUri": null,
-      "summary": "Researchers loaded phenylephrine into micelles self-assembled from amphiphilic block copolymers and measured how the drug interacts with the polymer, how much more of it goes into solution, and how slowly it comes back out. Lead with the release profile, because that number is what separates a formulation result from a chemistry curiosity. The mechanism to teach is elegant and worth two sentences: a block copolymer has one water-loving end and one water-fearing end, so in water the chains spontaneously fold into spheres with an oily core, and a poorly soluble drug hides in that core and leaks out gradually. That single trick — no new drug molecule, only a new container — is how dose frequency falls and side-effect peaks flatten. Structural why for our reader: reformulation is the cheapest route to better medicines in places that cannot afford novel compounds, since the active ingredient is off-patent and the excipients are commodity polymers. Keep the claim disciplined: this is in-vitro solubilisation and release, not a clinical result, and it is an accepted manuscript pending the final version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "plasmonic-photonic-fano-resonance-refractive-index-sensor",
-      "label": "Hybrid plasmonic-photonic multi-Fano resonance refractive index sensor using periodic gold nano-bar assisted microcavity coupling",
-      "firstSeen": "2026-09-06T08:12:19.497Z",
-      "lastCovered": "2026-09-06T08:12:19.497Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-plasmonic-photonic-fano-resonance-refractive-index-sensor"
-      ],
-      "eventUri": null,
-      "summary": "A refractive-index sensor built by coupling a photonic microcavity to a periodic array of gold nano-bars, producing multiple Fano resonances — sharp, asymmetric dips in the transmitted spectrum whose position shifts when the material touching the surface changes. Lead with the sensitivity figure and the detection limit; everything else is scaffolding for that number. The mechanism to explain, and it is genuinely satisfying: a Fano resonance is what you get when a broad, lossy mode and a narrow, long-lived mode interfere, and the resulting lineshape is far steeper than either alone — so a tiny change in refractive index moves a very sharp edge, which is why the readout is precise. Why a non-physicist should care: refractive index is a proxy for what is dissolved in a fluid, so this class of device underlies label-free biosensing — detecting a pathogen or biomarker without tagging it with a fluorescent dye, which is the step that makes diagnostics expensive and cold-chain dependent. Be careful not to overclaim: this is a simulated and characterised photonic structure, not a deployed assay. Accepted manuscript ahead of the version of record.",
       "conceptUris": []
     }
   ]
