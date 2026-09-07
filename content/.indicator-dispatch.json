@@ -1425,8 +1425,80 @@
         "2026-09-07-ecb-energy-shock-tightening-second-round-transmission"
       ],
       "generatedAt": "2026-09-07T08:30:10.717Z"
+    },
+    "poly-will-new-people-nl-gain-the-most-seats-in-the-ne": {
+      "standingFingerprint": "c3515a33a43d8a74",
+      "recentFingerprint": "c3cd90268df6b2d7",
+      "standing": "A Polymarket contract that settles at 100 if the New People party wins the most seats in the election named, and at zero otherwise. The price is simply what traders will pay for that outcome, not a poll or a forecast.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-07T12:29:00.697Z"
+    },
+    "poly-will-nvidia-be-the-largest-company-in-the-world-": {
+      "standingFingerprint": "62355180f60d3a46",
+      "recentFingerprint": "47d1764be8a97ed1",
+      "standing": "A Polymarket contract paying out if NVIDIA holds the top spot in global market capitalisation by a set date. It prices a bet on whether AI chip demand keeps one supplier above every other listed company on earth.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-07T12:29:08.213Z"
+    },
+    "poly-will-kamala-harris-win-the-2028-democratic-presi": {
+      "standingFingerprint": "288da91044a1bf50",
+      "recentFingerprint": "db934591eb859bb4",
+      "standing": "A Polymarket contract paying out if Kamala Harris becomes the Democratic nominee for president in 2028. Traders buy and sell shares in the outcome, so the price is what money is willing to pay for it, not a poll.",
+      "recent": "The fortnight's news about these markets was regulatory, not political: New Jersey asked the Supreme Court to settle whether event contracts are gambling for states to police or swaps for the federal CFTC, days after the Ninth Circuit ruled Kalshi's sports contracts were not swaps. Nothing in it bears on the nomination.",
+      "citations": [
+        "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption",
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow"
+      ],
+      "generatedAt": "2026-09-07T12:29:17.687Z"
+    },
+    "wiki-israel": {
+      "standingFingerprint": "426ef0880c06ca31",
+      "recentFingerprint": "2f59554e91bcacec",
+      "standing": "The Wikipedia article on Israel, and the number of people who open it each day. The count rises when the country is at the centre of a news event, so the line is a rough gauge of how far a story has travelled beyond the region.",
+      "recent": "Israeli strikes destroyed Ghandour Hospital in Nabatieh al-Fawqa in southern Lebanon, killing seven. In Geneva, UN human rights chief Volker Turk told states to halt arms transfers to Israel where they risk being used in violations, and told companies to end business supporting illegal settlements. Gaza's health ministry says 1,334 have died since October's ceasefire.",
+      "citations": [
+        "2026-09-06-ghandour-hospital-destroyed-lebanon-seventeen-hospitals",
+        "2026-09-07-turk-arms-transfers-israel-third-state-complicity",
+        "2026-09-03-gaza-ceasefire-that-did-not-stop-the-killing",
+        "2026-09-06-nabatieh-hospital-strike-arab-salim-evacuation-warning"
+      ],
+      "generatedAt": "2026-09-07T12:29:29.007Z"
+    },
+    "stocks:WULF": {
+      "standingFingerprint": "3aa4c6c3a217f6a1",
+      "recentFingerprint": "f2c426f23bd6fe63",
+      "standing": "A US bitcoin-mining company that has converted its power-heavy sites into rented capacity for AI computing, so its shares trade on data-centre contracts and electricity costs rather than on the coin price alone.",
+      "recent": "A fire at the Lake Mariner site drew firefighters who found three dead hydrants and no working alarm, exposing a gap in local oversight of the Somerset campus. Nothing else in the fortnight's reporting bears on the company's contracted capacity.",
+      "citations": [
+        "2026-09-07-lake-mariner-data-centre-fire-local-oversight-gap"
+      ],
+      "generatedAt": "2026-09-07T12:29:37.618Z"
+    },
+    "stocks:GOOGL": {
+      "standingFingerprint": "bb5d104a3e7793c0",
+      "recentFingerprint": "d9833b928c130ded",
+      "standing": "Shares in Alphabet, the Mountain View holding company that owns Google — search, YouTube, Android, Maps and the Google Cloud business. Advertising sold against search results supplies most of its revenue, so the stock tracks the ad market.",
+      "recent": "A federal judge in Alexandria ruled Google will not have to divest its ad exchange, leaving the auction business that sits between publishers and advertisers intact under a liability finding alone. In the same fortnight Google Maps began rendering one lake under two names depending on the country a user views it from, and MapQuest topped app charts by refusing the change.",
+      "citations": [
+        "2026-09-02-adx-liability-without-divestiture",
+        "2026-08-30-google-maps-lake-america-toponym-platform-sovereignty",
+        "2026-09-01-lake-america-map-naming-per-jurisdiction"
+      ],
+      "generatedAt": "2026-09-07T12:29:47.249Z"
+    },
+    "stocks:NVO": {
+      "standingFingerprint": "01dd49379a92eb14",
+      "recentFingerprint": "46a5eaea29e0e992",
+      "standing": "The Copenhagen drugmaker behind the semaglutide obesity and diabetes franchise, listed in New York as an ADR. One company's pipeline carries much of Denmark's export earnings and stock market value, so its trial results move a national economy.",
+      "recent": "Novo Nordisk halted two cardiovascular outcome trials of ziltivekimab for futility. The drug tested the inflammation hypothesis of heart disease — that damping IL-6 signalling prevents heart attacks independently of cholesterol — and stopping for futility is a scientific verdict on that decades-old bet, not a strategic retreat.",
+      "citations": [
+        "2026-09-07-ziltivekimab-trials-halted-inflammation-hypothesis"
+      ],
+      "generatedAt": "2026-09-07T12:29:56.695Z"
     }
   },
-  "generatedAt": "2026-09-07T08:30:10.718Z",
+  "generatedAt": "2026-09-07T12:29:56.695Z",
   "windowDays": 14
 }
