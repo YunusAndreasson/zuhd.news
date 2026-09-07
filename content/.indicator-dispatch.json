@@ -1508,8 +1508,62 @@
         "2026-08-24-monitors-acr-the-escape-hatch-closes"
       ],
       "generatedAt": "2026-09-07T17:27:24.439Z"
+    },
+    "poly-will-company-c-be-the-largest-company-in-the-wor": {
+      "standingFingerprint": "76a2a4843ef21bac",
+      "recentFingerprint": "892494db10536cc6",
+      "standing": "A Polymarket contract paying out if Apple holds the top spot in global market capitalisation by a set date. It prices the crowd's money on a ranking that turns on a handful of megacap valuations moving relative to each other.",
+      "recent": "The market these bets trade on spent the window under legal siege rather than reacting to Apple. The Ninth Circuit ruled in San Francisco that sports contracts are not \"swaps,\" leaving states a hand in regulation; New Jersey then asked the Supreme Court to settle the question, and Connecticut filed against Kalshi.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow",
+        "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption"
+      ],
+      "generatedAt": "2026-09-07T22:26:25.290Z"
+    },
+    "stocks:TSM": {
+      "standingFingerprint": "71d6d8217467ecbd",
+      "recentFingerprint": "3c6612266be904cd",
+      "standing": "The world's largest contract chipmaker, listed in New York as an ADR. It fabricates the leading-edge processors that Apple, Nvidia and Qualcomm design but do not build, so its output constrains most of the industry's roadmap.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-07T22:26:31.493Z"
+    },
+    "stocks:AAPL": {
+      "standingFingerprint": "608b54142577880b",
+      "recentFingerprint": "abdc703f738e1cc9",
+      "standing": "Shares in the Cupertino-based maker of the iPhone, Mac and Apple Watch, listed on Nasdaq. It is one of the most widely held stocks in the world, so index funds and pension portfolios move with it whether or not they chose it.",
+      "recent": "John Ternus took over as chief executive from Tim Cook on 1 September, inheriting a manufacturing base in Zhengzhou built to run without warehouses or inventory. Days earlier enterprise buyers cleared out Mac stock the company had not planned for, and OpenAI denied a claim that it took Apple trade secrets.",
+      "citations": [
+        "2026-09-01-apple-succession-chairman-pay-authority-transfer",
+        "2026-09-01-unified-memory-local-inference-demand-shock",
+        "2026-08-29-zero-inventory-labour-flexibility-apple-china-lock-in",
+        "2026-09-01-trade-secret-doctrine-ai-engineer-mobility"
+      ],
+      "generatedAt": "2026-09-07T22:26:41.257Z"
+    },
+    "stocks:AMZN": {
+      "standingFingerprint": "f424672df22087c5",
+      "recentFingerprint": "7deb59c60ad2cba6",
+      "standing": "Shares in the Seattle retailer that runs the largest online store in the United States and, in AWS, the largest cloud computing business in the world. Retail supplies the volume; the cloud and advertising arms supply most of the profit.",
+      "recent": "The FTC and 22 states sued Amazon on 31 August over its advertising auctions, alleging advertisers were overcharged $20 billion through a surcharge and a clearing price they could not verify. A week later a Boeing 767 freighter in Amazon livery overran the runway at Miami International, crossed unpaved ground and struck a van and a car, killing five people on the ground.",
+      "citations": [
+        "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price",
+        "2026-09-06-miami-767-freighter-overrun-runway-safety-area",
+        "2026-09-07-ntsb-amazon-767-miami-overrun-contract-carrier"
+      ],
+      "generatedAt": "2026-09-07T22:26:50.116Z"
+    },
+    "stocks:BA": {
+      "standingFingerprint": "1ac40aaa1a478ba2",
+      "recentFingerprint": "a00c64afdc72e155",
+      "standing": "The share price of Boeing, the American maker of commercial jetliners, defence systems and space hardware, and one of the two firms building nearly every large passenger aircraft in service.",
+      "recent": "The window's news carries one aviation story: the NTSB's account of a 767 freighter, flown for Amazon by a contract carrier, overrunning at Miami, in which at least 5 people died. Those findings were published after the price had already fallen, and nothing else in the period accounts for the move.",
+      "citations": [
+        "2026-09-07-ntsb-amazon-767-miami-overrun-contract-carrier"
+      ],
+      "generatedAt": "2026-09-07T22:27:10.600Z"
     }
   },
-  "generatedAt": "2026-09-07T17:27:24.439Z",
+  "generatedAt": "2026-09-07T22:27:10.600Z",
   "windowDays": 14
 }
