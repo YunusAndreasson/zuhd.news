@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "ohio-candidate-attack-subfederal-protection-gap",
+      "label": "Armed assailant attacks Ohio Democratic candidate during campaign stop",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-ohio-candidate-attack-subfederal-protection-gap"
+      ],
+      "eventUri": "eng-11986957",
+      "summary": "An armed man lunged at Amy Acton, the Democratic candidate for Ohio governor, at the Canfield Fair; she was unharmed but several people were injured, and Newsweek names the accused as a registered Republican. Lead with the setting rather than the politics: a county fair is the most ordinary form of American retail campaigning, unticketed and unscreened, and that openness is precisely the exposure — candidate protection below the federal level is essentially absent, funded by campaigns themselves rather than by any agency. The mechanism to teach is the substitution: as physical risk rises, campaigns retreat to controlled venues and paid media, so political violence does not merely injure people, it prices ordinary voters out of contact with the people seeking to govern them. Acton is also a public-health figure — she ran Ohio's pandemic response and was targeted with armed protests at her home for it, which places this on a continuous line rather than at a start. Who holds power: the campaigns and state authorities deciding what protection candidates get, and those who have made health officials into political enemies. Discipline the claims: this is early, two sources with divergence 0.20, and the assailant's motive is not established — report the charge, the injuries and the fair's security arrangements as officials state them, and do not infer intent from party registration.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Ohio",
+        "http://en.wikipedia.org/wiki/Amy_Acton",
+        "http://en.wikipedia.org/wiki/Acton,_London",
+        "http://en.wikipedia.org/wiki/Mahoning_County,_Ohio",
+        "http://en.wikipedia.org/wiki/Canfield,_Ohio",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)"
+      ]
+    },
+    {
+      "id": "sagar-hooch-methanol-excise-arbitrage-border",
+      "label": "Madhya Pradesh's hooch tragedy has a UP connection",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-sagar-hooch-methanol-excise-arbitrage-border"
+      ],
+      "eventUri": "eng-11984225",
+      "summary": "Eleven people are dead in Sagar, Madhya Pradesh, from spurious liquor, and investigators are tracing the supply to cheaper illicit stock crossing from Uttar Pradesh — a recurring pattern in the Bundelkhand districts that straddle the border. Lead with the poison, named: these deaths are methanol, which the body metabolises into formic acid, which destroys the optic nerve and then the kidneys, so survivors are frequently blinded rather than merely ill. That is why hooch kills in clusters within hours and why the antidote is ethanol itself. The mechanism our reader should carry is the arbitrage: Indian states set their own excise duty, so a bottle's legal price can differ sharply across a state line, and every duty gap creates a smuggling margin that illicit distillers fill with industrial alcohol they cannot assay. Prohibition and high excise do not remove the demand, they remove the quality control — the toll is a policy output, not an accident, and it lands entirely on the poorest drinkers, who buy by the sachet. Who holds power and is accountable: the excise departments of both states, whose officers licence, inspect and are routinely alleged to be paid not to. Who bears it: daily-wage families in Sagar district. Single-source Indian outlet — attribute the death toll and the UP link to the officials making the claim, get the arrests and whether any excise staff have been suspended, and report how many survivors have lost their sight, which is the number usually left out.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Liquor",
+        "http://en.wikipedia.org/wiki/Sagar_district",
+        "http://en.wikipedia.org/wiki/Madhya_Pradesh",
+        "http://en.wikipedia.org/wiki/Sagar,_Madhya_Pradesh",
+        "http://en.wikipedia.org/wiki/Chief_minister",
+        "http://en.wikipedia.org/wiki/Bundelkhand",
+        "http://en.wikipedia.org/wiki/Tehsil",
+        "http://en.wikipedia.org/wiki/Member_of_parliament"
+      ]
+    },
+    {
+      "id": "malaysia-assembly-act-reform-delay-chilling-effect",
+      "label": "Reforms on Malaysia's 'draconian' Peaceful Assembly Act encounter further delays",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-malaysia-assembly-act-reform-delay-chilling-effect"
+      ],
+      "eventUri": null,
+      "summary": "Malaysia's promised repeal of the restrictive provisions of its Peaceful Assembly Act has slipped again, while — as one campaigner puts it — people are still being arrested, investigated and intimidated for speaking out. Lead with the gap between the announcement and the statute book, because that gap is the story and it is measurable: name the date the reform was promised, the number of times it has been deferred, and the count of people investigated under the Act since that promise. The mechanism worth explaining is why assembly law is the load-bearing one: a notification requirement quietly becomes a permission regime when the penalty for not notifying is criminal, so the state never has to ban a protest — it only has to leave organisers uncertain whether they will be charged, and the chilling happens before anyone assembles. That is why reformers target the criminal penalty rather than the notice rule. The structural why our reader will recognise: this is a reformist government elected on civil-liberties pledges discovering that the security apparatus it inherited is useful, a pattern from Kuala Lumpur to Tunis to Islamabad — the laws outlive the governments that campaigned against them. Who holds power: the home ministry and the police, who decide whom to investigate. Who bears it: students, opposition organisers and migrant-rights campaigners. Sourcing: Global Voices (NL) is the only carry and the feed contained no Malaysian outlet — New Straits Times or Free Malaysia Today would be the regional voices and neither appeared, a feed-side gap on an OIC-member story. Anchor to the Act's actual sections and to documented cases, not to the piece's characterisations.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-kp-threat-framing-federal-security-politics",
+      "label": "Punjab CM Maryam flayed over remarks about terror threat from provinces",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-pakistan-kp-threat-framing-federal-security-politics"
+      ],
+      "eventUri": null,
+      "summary": "Punjab's chief minister said the threat Pakistan faces comes from Khyber Pakhtunkhwa rather than from India, and PTI leader Asad Qaiser, speaking in Swabi, called the remark irresponsible. Lead with what the sentence does, not with the row: a sitting chief minister has relocated the country's security threat from an external border to another province of the same federation, and that is a description under which Pashtun citizens become the danger rather than the people most killed by it. The mechanism our reader should take away is how counter-terrorism becomes internal politics — KP has absorbed the overwhelming majority of Pakistan's militant violence for two decades, so framing it as the source rather than the site inverts victim and cause, and it licenses operations, displacement and checkpoints that fall on the population already bearing the attacks. Note the federal arithmetic honestly: Punjab holds more than half the country's population and most of its fiscal and military weight, KP is governed by the opposition, and security framing is one of the instruments through which the centre disciplines a province it does not control. Who holds power: the Punjab government, the federal security establishment and the operations they authorise. Who bears it: residents of Waziristan, Bannu and Swat. Single-source Dawn (PK), the regional carry — quote Maryam Nawaz's remark exactly and in full context rather than through the rebuttal, give the PTI response in its own words, and set both against the recorded casualty distribution by province rather than against either party's claim.",
+      "conceptUris": []
+    },
+    {
+      "id": "niger-state-village-head-killing-rural-authority",
+      "label": "Police arrest 29 suspects over murder, other allegations in Niger",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-niger-state-village-head-killing-rural-authority"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria's Niger State police command says it arrested 29 people in a monthly crime round-up, four of them over the killing of Bawa Barde, a 53-year-old village head, in Munya local government area. Lead with the victim by name and by office, because the office is the point: a village head is the lowest rung of Nigeria's traditional authority and the only functioning state presence in much of rural Niger State — the person who resolves land disputes, identifies strangers and negotiates with armed groups. Killing one is not ordinary homicide; it removes the sole node of governance in a settlement, which is why armed groups target them. That is the mechanism, and it explains why banditry expands into cleared ground rather than being pushed back. The structural why: Munya sits on the corridor between the Kaduna forests and the Federal Capital Territory, cattle-rustling disputes there run along farmer-herder lines that are also ethnic and religious ones, and a state whose response arrives as a monthly arrest tally is a state operating after the fact. Note the accountability gap plainly — arrests announced at a press briefing are not charges, and Nigeria's conviction rate on rural killings is very low, so report what the 29 are actually charged with and whether any earlier round-up produced a prosecution. Who bears it: farming households in Munya. Premium Times (NG) is the regional carry and the only source; attribute every figure to the state command, and do not adopt police framing of guilt.",
+      "conceptUris": []
+    },
+    {
+      "id": "russia-dprk-road-bridge-sanctions-monitoring-aperture",
+      "label": "Prime ministers of Russia, DPRK open road bridge across Tumannaya River via video link",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-russia-dprk-road-bridge-sanctions-monitoring-aperture"
+      ],
+      "eventUri": "rus-2120837",
+      "summary": "Russia and North Korea have opened their first road bridge across the Tumannaya (Tumen) River, the two prime ministers cutting the ribbon by video link. Lead with the word first: the two countries have shared a border for eighty years and until today it could be crossed only by a single Soviet-era rail bridge, so this is not an upgrade but the creation of a second physical channel where there was one. The mechanism our reader should carry is why that matters more than its modest scale — a rail crossing moves what the railway timetable and gauge allow, is easy to count from orbit and easy to interdict, while a road crossing moves trucks, on no schedule, in numbers that are far harder to audit. Sanctions monitoring on North Korea depends on observing chokepoints; adding a road bridge widens the aperture and lowers the cost of everything that already moves — labour, munitions components, fuel, food — without any of it appearing in a manifest. Set that against the ledger: the UN panel of experts that monitored these transfers was terminated after Russia's veto in 2024, so the bridge opens into an environment with no standing international monitor at all. Who holds power: Moscow and Pyongyang, and the Security Council members who no longer have an inspection instrument. Who bears it: North Koreans, for whom the border's economics are survival, and the region absorbing a deepening arms relationship. Two sources, TASS (RU) and US News relaying Reuters — TASS is Russian state media and will frame this as symbolic friendship; report the bridge's stated capacity, its length and its opening date as facts, and attribute all characterisation of intent.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Mikhail_Mishustin",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Russia",
+        "http://ru.wikipedia.org/wiki/Пак_Тхэ_Сон",
+        "http://en.wikipedia.org/wiki/Red_Army",
+        "http://en.wikipedia.org/wiki/Hero_of_Labor_(North_Korea)",
+        "http://en.wikipedia.org/wiki/Government"
+      ]
+    },
+    {
+      "id": "china-insurer-recapitalisation-solvency-equity-channel",
+      "label": "China insurer capital injections could boost stock investments, analysts say",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-china-insurer-recapitalisation-solvency-equity-channel"
+      ],
+      "eventUri": "eng-11985907",
+      "summary": "Beijing plans to inject capital into five large state-owned insurers and three other institutions, and analysts read it as a move to unlock equity buying rather than to shore up failing firms. Lead with the indirection, because it is the whole mechanism and it is teachable in three sentences: an insurer's regulator requires it to hold capital against the riskiness of what it owns, and shares carry a far heavier charge than bonds, so a solvency-constrained insurer cannot buy equities however attractive they look. Add capital at the top and the same balance sheet can suddenly hold more stock — the state has not bought a single share, but it has changed the arithmetic that decides who can. That is monetary-adjacent policy conducted through prudential rules, and it is invisible in any interest-rate story. Why our reader should care well beyond China: insurers and pension funds are the largest pools of long-duration savings in every economy, and whether they sit in government bonds or in equity is set by capital rules rather than by conviction — the same lever governs Gulf sovereign allocations, Malaysian and Indonesian takaful funds, and European pension reform. Note the honest caveat: analyst expectation is not an announced mandate, the injection's stated purpose is solvency, and channelling household insurance premiums toward propping up a domestic equity market transfers risk to policyholders who bought protection, not exposure. Who holds power: China's finance ministry and the financial regulator. Single-source Reuters copy via Yahoo — anchor to the injection's actual size and named recipients, and treat the equity effect as the analyst forecast it is.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Renminbi",
+        "http://en.wikipedia.org/wiki/Insurance",
+        "http://en.wikipedia.org/wiki/State-owned_enterprise",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Ministry_of_Finance_of_the_People's_Republic_of_China",
+        "http://en.wikipedia.org/wiki/Industrial_and_Commercial_Bank_of_China",
+        "http://en.wikipedia.org/wiki/Taiping_Rebellion"
+      ]
+    },
+    {
+      "id": "ecb-energy-shock-tightening-second-round-transmission",
+      "label": "Deutsche Bank expects ECB to extend rate hikes through December",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-ecb-energy-shock-tightening-second-round-transmission"
+      ],
+      "eventUri": "eng-11987320",
+      "summary": "Deutsche Bank now expects the European Central Bank to raise rates 25 basis points in December on top of a September hike, revising a forecast that had rates peaking earlier, and it names persistent energy risk as the reason. Lead with the cause, not the call: a central bank is being pushed to keep tightening by the price of energy, and the price of energy is currently being set by a war around the Strait of Hormuz. That is the transmission our reader should carry, and it runs the opposite way to the usual telling — the ECB has no instrument that produces a barrel of oil, so raising rates cannot lower an energy price. What it can do is suppress everything else in the basket hard enough to offset it, which means the domestic economy absorbs the cost of a supply shock originating two thousand miles away. Households and firms with debt pay for a strait they will never see. Explain the second-round mechanism honestly, since it is the bank's actual justification: what central bankers fear is not the energy price itself but its passage into wages and services pricing, which is what turns a shock into an inflation regime — and that is a judgement about expectations, not a measurement. The structural why for our reader: emerging-market and OIC-economy borrowers are priced off the euro and dollar curves, so a longer European tightening cycle raises the cost of refinancing in Cairo, Rabat and Ankara without anything changing in those economies. Single Reuters wire item carried via AOL — attribute the forecast to Deutsche Bank Research as a forecast, give the current ECB rate and the actual inflation print, and write no market commentary.",
+      "conceptUris": []
+    },
+    {
+      "id": "myeloma-circulating-tumour-cells-staging-blood",
+      "label": "Circulating tumor cells identify a disseminated genomic high-risk phenotype within IMS-IMWG 2025 staging in newly diagnosed multiple myeloma",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-myeloma-circulating-tumour-cells-staging-blood"
+      ],
+      "eventUri": null,
+      "summary": "A study in Leukemia finds that counting tumour cells circulating in the blood sharpens the brand-new 2025 international genomic staging system for newly diagnosed multiple myeloma — identifying patients whose high-risk clones have already left the marrow. Lead with what the blood adds that the marrow cannot say: myeloma is diagnosed and staged from a bone marrow biopsy taken at one spot in one bone, and the whole limitation of that is spatial — a needle samples one place in a disease distributed through the entire skeleton. Cells found in the bloodstream are evidence that the cancer has acquired the ability to travel, which is a property of the disease rather than of the sampling site, and that is why it carries information staging misses. The mechanism is worth two clean sentences and the reader will keep it. Why it matters practically: a marrow biopsy is painful, requires a trained operator and a procedure room, and cannot be repeated often; a blood draw can be done anywhere and monitored over time, which is what makes this relevant far outside well-resourced haematology centres. Myeloma is also markedly more common and diagnosed later in African-descended and South Asian populations, so risk tools built on better-served cohorts systematically misclassify exactly the patients presenting latest — say whether this cohort's composition is reported. Discipline the claim: single study, report the sample size, the detection method for circulating cells, the threshold used, the follow-up duration and the confidence intervals on any survival difference. Refining a staging system is not a treatment, and no reader should take a clinical conclusion from it.",
+      "conceptUris": []
+    },
+    {
+      "id": "anticipatory-grief-family-carers-invisible-load",
+      "label": "An interpretive phenomenological study exploring cognitive experiences of anticipatory grief among primary family caregivers of patients with advanced lung cancer",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-anticipatory-grief-family-carers-invisible-load"
+      ],
+      "eventUri": null,
+      "summary": "A qualitative study documents anticipatory grief — mourning that begins before a death — in the primary family carers of people with advanced lung cancer, and reports what those carers describe happening to their thinking. Lead with the phenomenon named plainly, because most people have felt it and have never had a word for it: grief that starts while the person is still alive, and which carers routinely conceal because expressing it feels like a betrayal of hope. That concealment is the finding worth carrying — the distress is invisible by design, so it is absent from every clinical record and every support pathway. The mechanism to explain: the primary carer is also the person administering medication, tracking symptoms and making decisions, so cognitive effects of grief — intrusive rehearsal of the death, difficulty holding attention, decision paralysis — degrade the quality of care delivered at exactly the point it matters most. This is not a wellbeing footnote; it is a patient-safety pathway. Why this reaches our reader directly: in most of the world, and overwhelmingly in Muslim societies, terminal care is delivered at home by a daughter, wife or son with no training, no respite and no bereavement service, and the palliative-care infrastructure that Western studies assume simply does not exist — the finding is more consequential where the support is thinner. Handle the method honestly: interpretive phenomenological analysis works with a small purposive sample and makes no claim to prevalence, so report the number of carers interviewed, the country and setting, and present the themes as description rather than as measurement. Accepted manuscript ahead of the version of record.",
+      "conceptUris": []
+    },
+    {
+      "id": "nursing-notes-speech-recognition-offline-privacy-tradeoff",
+      "label": "Evaluation and comparison of the quality of nursing notes created by online and offline speech recognition software and handwritten",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-nursing-notes-speech-recognition-offline-privacy-tradeoff"
+      ],
+      "eventUri": null,
+      "summary": "Researchers compared nursing notes produced three ways — dictated into cloud speech recognition, dictated into software running locally, and written by hand — and scored their quality. Lead with the offline arm, because that is the comparison nobody usually runs and it is the one with consequences: cloud recognition is more accurate because it runs large models on someone else's servers, which means every dictated clinical note leaves the hospital, and the accuracy gap between cloud and local is the exact price of keeping patient data inside the building. Report that gap as a number if the study gives one. The mechanism our technically literate reader will want: recognition quality on clinical speech is dominated by vocabulary and acoustic conditions, not by general fluency — drug names, dosages and abbreviations spoken over ward noise are where these systems fail, and they fail by substituting a plausible word, so an error in a medication name does not look like an error. Handwriting fails visibly; speech recognition fails silently. That asymmetry is the safety argument and should be stated. Why it matters beyond one ward: documentation time is one of the largest non-clinical loads on nurses everywhere, and it is heaviest where staffing ratios are worst, so this is a technology whose benefit is largest in exactly the hospitals least able to run cloud services or to buy the licences. Discipline the claim: accepted manuscript ahead of the version of record, single site, one language — report the number of notes, the language and the scoring instrument, and note that a quality score is not a patient outcome.",
+      "conceptUris": []
+    },
+    {
+      "id": "isro-nasa-moon-invitation-export-control-access",
+      "label": "Sergio Gor says US market is open for Indian space startups: 'Our investors are watching you'",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-isro-nasa-moon-invitation-export-control-access"
+      ],
+      "eventUri": "eng-11987289",
+      "summary": "The US ambassador to India told an audience in Bengaluru that the American market is open to Indian space startups and that US investors are watching, while confirming NASA has formally invited ISRO into its Moon base programme. Lead with the invitation, not the investor flattery, and lead with why it is remarkable: the United States sanctioned ISRO's cryogenic engine programme in 1992 and kept Indian space entities under export restriction for years, and the same agency is now asking it onto a lunar base. That reversal is the story and it should be stated as a fact with dates. The mechanism our reader should carry is what actually opens: space technology moves under export-control regimes, so 'the market is open' means specific licensing barriers are being lowered, and a startup's ability to sell a component or accept an investment turns on a control classification rather than on the quality of its engineering. Access is a political permission, not a commercial outcome. Then the structural why, which is the part worth being clear-eyed about: the invitation arrives as Washington assembles a lunar coalition against a Chinese-Russian one, and the same US administration is simultaneously in a tariff dispute with New Delhi — so India is being courted in orbit and pressured on trade by the same government, which is precisely the leverage that dependence on foreign investment and foreign launch licences creates. Who holds power: the US State Department, which grants the licences. Single-source MoneyControl (IN) reporting an ambassador's remarks — treat this as a speech, quote it exactly, and confirm the NASA-ISRO invitation independently before stating it flat.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Bangalore",
+        "http://en.wikipedia.org/wiki/Gor",
+        "http://en.wikipedia.org/wiki/Amazon_(company)",
+        "http://en.wikipedia.org/wiki/List_of_ambassadors_of_the_United_States_to_India",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Indian_Space_Research_Organisation"
+      ]
+    },
+    {
+      "id": "llm-authorship-disclosure-norm-hacker-news",
+      "label": "Your intellectual fly is open when you use an LLM to author a post",
+      "firstSeen": "2026-09-07T08:12:36.463Z",
+      "lastCovered": "2026-09-07T08:12:36.463Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-07-llm-authorship-disclosure-norm-hacker-news"
+      ],
+      "eventUri": null,
+      "summary": "An essay arguing that machine-generated prose is now recognisable to readers, and that publishing it unmarked exposes the author rather than concealing the machine, has drawn 639 points and 404 comments on Hacker News — an attention signal that the working software community has reached a position on this. VERIFY FIRST: read the post and establish the author (the URL points to Bryan Cantrill's blog), its original publication date — it appears to be from December 2025, resurfaced now, which must be stated plainly rather than written as new — and its actual argument before writing a line. The story is the norm forming, not the essay: a community that spent two years arguing about whether models can write is settling instead on a disclosure rule, and disclosure norms are how professions handle tools they cannot ban. Explain the mechanism our reader will recognise, because it is the load-bearing claim: writing is not the packaging of a thought but the process that tests it, so text generated without that process can be fluent and structurally empty — and the reader detects the absence of thinking, not the presence of a machine. That is why the tell is not a stylistic artefact that better models will remove. Give the counter-argument its weight rather than dismissing it: for the very large number of people working in a second or third language, generated prose lowers a real barrier that has always favoured native English speakers in technical fields, and a norm against it has a distributional cost worth naming. Discipline: this is a single-author opinion piece, so report its argument as an argument, quantify the comment thread's actual split rather than asserting consensus, and do not write it as a finding.",
+      "conceptUris": []
+    },
+    {
       "id": "anak-krakatau-ash-jet-engine-corridor-closure",
       "label": "Batik Air cancels scheduled KL-Jakarta flights today due to volcanic ash",
       "firstSeen": "2026-09-07T04:14:13.547Z",
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-anak-krakatau-ash-jet-engine-corridor-closure"
@@ -33,7 +286,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-iran-nuclear-agreement-abandoned-war-aim-termination"
@@ -58,7 +311,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-mcd-sealing-order-enforcement-by-catastrophe-student-housing"
@@ -83,7 +336,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-north-korea-second-destroyer-build-rate-sea-based-deterrent"
@@ -108,7 +361,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-greenland-eu-package-critical-minerals-self-rule"
@@ -133,7 +386,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-un-correct-the-map-projection-kashmir-depiction-claim"
@@ -149,7 +402,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-europe-return-hubs-offshore-asylum-jurisdiction"
@@ -165,7 +418,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ukraine-wartime-debt-service-preferred-creditor-net-transfer"
@@ -181,7 +434,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-india-gdp-ranking-nominal-dollar-exchange-rate-illusion"
@@ -197,7 +450,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-liquid-network-elements-bug-federated-sidechain-trust"
@@ -213,7 +466,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-independent-mail-collective-shutdown-deliverability-consolidation"
@@ -229,7 +482,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-ethiopia-ntd-urban-slum-rural-burden-targeting"
@@ -245,7 +498,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-07-social-isolation-neet-weak-ties-labour-market"
@@ -261,7 +514,7 @@
       "lastCovered": "2026-09-07T04:14:13.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-05-private-german-rocket-makes-history-reaches-orbit-from-europ"
@@ -277,7 +530,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-afd-saxony-anhalt-record-firewall-coalition-arithmetic"
@@ -302,7 +555,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-prohibited-zone-transit-passage-war-risk"
@@ -327,7 +580,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-pakistan-pic-rti-harm-test-classification-reviewable"
@@ -343,7 +596,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-miami-767-freighter-overrun-runway-safety-area"
@@ -368,7 +621,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-pentagon-polygraphs-munitions-stockpile-production-rate"
@@ -393,7 +646,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-tankers-turn-back-war-risk-insurance-transmission"
@@ -418,7 +671,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-gauteng-nurses-ultimatum-health-system-austerity-delivery"
@@ -434,7 +687,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption"
@@ -450,7 +703,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-long-beach-black-jet-osint-registration-paper-trail"
@@ -466,7 +719,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-active-flaps-rotor-fatigue-loads-helicopter-test"
@@ -482,7 +735,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-label-free-metabolic-imaging-immune-cells-blood"
@@ -498,7 +751,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-06-childhood-psychological-maltreatment-online-aggression-cohort"
@@ -514,7 +767,7 @@
       "lastCovered": "2026-09-06T22:13:07.532Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-06-oic-tanker-strike-denunciation-enforcement-gap",
@@ -540,7 +793,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-gaza-zeitoun-mass-funeral-malaka-family-rubble-recovery"
@@ -565,7 +818,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-ghandour-hospital-destroyed-lebanon-seventeen-hospitals"
@@ -590,7 +843,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-lavrov-leipzig-drone-attribution-escalation-threshold"
@@ -615,7 +868,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-mail-in-voting-supreme-court-emergency-docket-midterms"
@@ -631,7 +884,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-cabo-verde-fogo-bus-crash-road-safety-regulation"
@@ -656,7 +909,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-opec-plus-quotas-unchanged-war-outage-price-ceiling"
@@ -681,7 +934,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-hormuz-navy-escort-war-risk-premium-burden-sharing"
@@ -706,7 +959,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-bitcoin-mortgage-rehypothecation-counterparty-risk"
@@ -722,7 +975,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-chromium-sandbox-escape-rce-downstream-patch-lag"
@@ -738,7 +991,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-isar-aerospace-spectrum-orbit-europe-launch-sovereignty"
@@ -754,7 +1007,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-ukraine-wallet-drainer-token-approval-takedown"
@@ -770,7 +1023,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nepal-trishuli-flood-hydropower-siting-glacial-outburst"
@@ -795,7 +1048,7 @@
       "lastCovered": "2026-09-06T17:12:24.477Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-06-core-mantle-boundary-bands-deep-learning-seismology"
@@ -811,7 +1064,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-delhi-satya-niketan-pg-collapse-unpermitted-floors"
@@ -836,7 +1089,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-russia-trilateral-summit-preconditions-ryabkov"
@@ -861,7 +1114,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-south-kordofan-wfp-convoy-attack-deconfliction"
@@ -877,7 +1130,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-06-catatumbo-drone-swarm-colombia-cost-asymmetry",
@@ -905,7 +1158,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nigerian-worker-doha-airport-sponsorship-handover"
@@ -921,7 +1174,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-iran-azerbaijan-transit-corridor-blockade-substitute"
@@ -937,7 +1190,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-sudan-war-economy-parallel-networks-ceasefire-cost"
@@ -953,7 +1206,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-vehicle-co2-lstm-metaheuristic-tuning-real-world-testing"
@@ -969,7 +1222,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-mine-tailings-hybrid-cement-clinker-substitution"
@@ -985,7 +1238,7 @@
       "lastCovered": "2026-09-06T12:09:16.727Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-06-stress-hyperglycemia-ratio-trajectory-icu-mortality"
@@ -1001,7 +1254,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-nabatieh-hospital-strike-arab-salim-evacuation-warning"
@@ -1026,7 +1279,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-niger-failed-coup-france-accusation-front-line-mutiny"
@@ -1042,7 +1295,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-croatia-lika-hazardous-waste-dump-zagreb-protest"
@@ -1067,7 +1320,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-trump-super-pac-ten-million-texas-senate-paxton"
@@ -1092,7 +1345,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-iran-economic-war-headquarters-ministry-of-economy"
@@ -1108,7 +1361,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-adani-defence-ak-203-ammunition-india-localisation"
@@ -1133,7 +1386,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-lodhran-brick-kiln-child-death-bonded-labour"
@@ -1149,7 +1402,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-05-khyber-dowry-wedding-expenditure-household-debt"
@@ -1165,7 +1418,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-isro-employee-bodies-space-privatisation-clarity"
@@ -1190,7 +1443,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-parameter-efficient-fine-tuning-bayesian-optimisation-llm"
@@ -1206,7 +1459,7 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-phenylephrine-block-copolymer-micelle-sustained-release"
@@ -1222,257 +1475,13 @@
       "lastCovered": "2026-09-06T08:12:19.497Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-06-plasmonic-photonic-fano-resonance-refractive-index-sensor"
       ],
       "eventUri": null,
       "summary": "A refractive-index sensor built by coupling a photonic microcavity to a periodic array of gold nano-bars, producing multiple Fano resonances — sharp, asymmetric dips in the transmitted spectrum whose position shifts when the material touching the surface changes. Lead with the sensitivity figure and the detection limit; everything else is scaffolding for that number. The mechanism to explain, and it is genuinely satisfying: a Fano resonance is what you get when a broad, lossy mode and a narrow, long-lived mode interfere, and the resulting lineshape is far steeper than either alone — so a tiny change in refractive index moves a very sharp edge, which is why the readout is precise. Why a non-physicist should care: refractive index is a proxy for what is dissolved in a fluid, so this class of device underlies label-free biosensing — detecting a pathogen or biomarker without tagging it with a fluorescent dye, which is the step that makes diagnostics expensive and cold-chain dependent. Be careful not to overclaim: this is a simulated and characterised photonic structure, not a deployed assay. Accepted manuscript ahead of the version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "centcom-strikes-three-iranian-tankers-irgc-missile-reply",
-      "label": "Iranian tankers hit after IRGC 'attack on US ships'",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-centcom-strikes-three-iranian-tankers-irgc-missile-reply"
-      ],
-      "eventUri": "eng-11984692",
-      "summary": "US Central Command struck three Iranian oil tankers on Saturday; the IRGC says it answered with ballistic missiles at a US carrier group and attacked an unmanned US vessel entering what it calls the strait's protected zone. Lead with Hegseth's phrase — Iran's tanker fleet is 'defenceless' — because it concedes the targets are commercial hulls with civilian crews, not warships. The mechanism: both navies are now enforcing rival readings of a lapsed transit corridor by shooting at merchant shipping, so the chokepoint closes by attrition and insurance pricing rather than by any declared blockade. Continues the breaking Hormuz arc (Kharg Island explosions, the $4 gasoline pass-through); note the US advisory telling citizens in Bahrain to raise vigilance, which is how the Gulf states get drawn in.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Kharg_Island",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
-        "http://en.wikipedia.org/wiki/Tanker_(ship)",
-        "http://en.wikipedia.org/wiki/United_States_Navy",
-        "http://en.wikipedia.org/wiki/Oil_tanker",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "anak-krakatau-ash-jakarta-airport-209-flights",
-      "label": "Airport cancels 209 flights after volcano erupts",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-anak-krakatau-ash-jakarta-airport-209-flights"
-      ],
-      "eventUri": "eng-11983734",
-      "summary": "Anak Krakatau's eruption shut Soekarno-Hatta, Indonesia's main airport, cancelling 209 flights, and Jakarta ended its Car Free Day an hour early as ash reached the city 150km away. Who is affected: 30 million people in Jabodetabek breathing volcanic ash, plus every passenger routed through Southeast Asia's fourth-busiest hub. The mechanism to explain is why ash closes airspace at all — silicate glass melts in a jet engine's hot section and refuses on the turbine blades, which is why there is no partial-risk operating regime, only closure. Structural why: a single-hub aviation dependency next to an active volcano that has erupted repeatedly since 1927 concentrates national connectivity in one ash plume's path.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Anak_Krakatoa",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Volcanic_ash",
-        "http://en.wikipedia.org/wiki/Volcano",
-        "http://en.wikipedia.org/wiki/Jakarta",
-        "http://en.wikipedia.org/wiki/Types_of_volcanic_eruptions",
-        "http://en.wikipedia.org/wiki/Soekarno–Hatta_International_Airport",
-        "http://en.wikipedia.org/wiki/Java"
-      ]
-    },
-    {
-      "id": "jhiram-ghati-nia-court-convicts-ten-thirteen-years",
-      "label": "2013 Jhiram Ghati Attack: NIA Court Convicts 10 Accused, 13 Years After 27 Were Killed in Maoist Ambush",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-jhiram-ghati-nia-court-convicts-ten-thirteen-years"
-      ],
-      "eventUri": "eng-11984143",
-      "summary": "A special NIA court in Jagdalpur convicted all 10 surviving accused in the 2013 Jhiram Ghati ambush that killed 27 people, including most of Chhattisgarh's Congress state leadership; sentencing is set for 16 September. Lead with the arithmetic of delay — 13 years to a verdict, and the count of 'surviving accused' means several defendants died before judgment, which is itself the story about how India's counter-insurgency courts work. The structural why: convictions came under the NIA Act's special-court track, and the political conspiracy allegations Congress has pressed for a decade were not what the court adjudicated. Precedent matters more than the incident: this is the template for prosecuting Naxalite-insurgency cases now that the state declares the insurgency near-defeated.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/National_Investigation_Agency",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Maoism",
-        "http://en.wikipedia.org/wiki/Chhattisgarh",
-        "http://en.wikipedia.org/wiki/Jagdalpur",
-        "http://en.wikipedia.org/wiki/Bastar_district",
-        "http://en.wikipedia.org/wiki/Naxalite–Maoist_insurgency",
-        "http://en.wikipedia.org/wiki/Nand_Kumar_Patel"
-      ]
-    },
-    {
-      "id": "balochistan-shor-parod-thousand-nomads-relocation",
-      "label": "1,000 nomads to be relocated for Shor Parod operation: Balochistan CM Bugti",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-balochistan-shor-parod-thousand-nomads-relocation"
-      ],
-      "eventUri": null,
-      "summary": "Balochistan Chief Minister Sarfraz Bugti told the provincial assembly that roughly 1,000 people in a nomadic settlement in Mastung's Shor Parod area will be 'temporarily' relocated so a security operation can proceed. Who holds power and who bears the cost: the state clears the terrain, a pastoral community that is not party to the conflict loses its ground, and 'temporary' is a word with no stated end date, no named destination and no compensation figure in the announcement. The mechanism worth explaining is population clearance as a precondition for kinetic operations — it converts an anti-militant operation into a displacement event, and Balochistan has a long record of relocations that did not reverse. Follow-up hook: whether the assembly is given a return date.",
-      "conceptUris": []
-    },
-    {
-      "id": "australia-coalition-flag-burning-criminal-offence",
-      "label": "Coalition denies flag-burning ban an attempt to undercut One Nation as Labor says push has 'element of desperation'",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-australia-coalition-flag-burning-criminal-offence"
-      ],
-      "eventUri": "eng-11985402",
-      "summary": "Australia's Coalition would create new criminal offences for burning the national flag and defacing historical monuments, and legislate 26 January as Australia Day. Lead with what the package actually criminalises: symbolic political speech, at the same moment it fixes in statute the date Indigenous Australians mark as Invasion Day. The mechanism is the ratchet — Angus Taylor denies the policy is aimed at outflanking One Nation, but the structural point is that a minor party's programme becomes law by being adopted, not by winning seats. Consequence for the reader: flag-desecration bans travel; where they exist they are used disproportionately against protesters from minority communities, which is the empirical record worth citing rather than the parties' motives.",
-      "conceptUris": []
-    },
-    {
-      "id": "haiti-tps-ends-care-workers-disabled-clients",
-      "label": "Families lose 'lifeline' after Haitian caregivers let go as TPS status ends",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-haiti-tps-ends-care-workers-disabled-clients"
-      ],
-      "eventUri": null,
-      "summary": "Termination of Temporary Protected Status for Haitians has pulled work permits from care workers, and disabled Americans are losing the aides they depend on — a Long Island mother's son lost his caregiver, Jean, at the end of July. Lead with the transmission: an immigration status revocation is a labour-supply shock in a sector already short-staffed and paid near minimum wage, so the cost lands on disabled clients and their families, not on the policy's targets. The mechanism to explain is TPS itself — a discretionary designation that can be withdrawn by a single administrative decision regardless of conditions in Haiti, where over a million people are displaced. Structural why: the US care economy is built on workers whose legal right to work is revocable at will.",
-      "conceptUris": []
-    },
-    {
-      "id": "bitcoin-episodic-spikes-execution-risk-otc-desks",
-      "label": "How bitcoin's sudden explosive price spikes make market timing practically impossible for crypto traders",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-bitcoin-episodic-spikes-execution-risk-otc-desks"
-      ],
-      "eventUri": null,
-      "summary": "Bitcoin's average daily volatility has fallen as the asset institutionalised, but OTC desks say episodic spikes still make large orders unfillable at the screen price. The counter-intuitive number to lead with: a maturing market can get harder, not easier, to trade at size, because returns concentrate into a handful of sessions a year. The mechanism is execution risk versus price risk — a fund that is out of the market on the wrong day misses most of the annual return, which is why desks now recommend holding over timing. Who is affected: pension and treasury allocators newly exposed to bitcoin at $80,000, and retail traders who see the same chart but bear worse slippage. Keep it structural; do not write investment advice.",
-      "conceptUris": []
-    },
-    {
-      "id": "adlington-green-belt-1275-homes-resubmitted",
-      "label": "Plan for 1,275 homes after Adlington new town bid rejected",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-adlington-green-belt-1275-homes-resubmitted"
-      ],
-      "eventUri": null,
-      "summary": "Months after the UK government rejected a 10,000-home new town at Adlington, Cheshire, developers have submitted plans for 1,275 homes on the same green belt land. Lead with the ratio — the scheme returns at an eighth the size, which is the mechanism: a proposal too large to approve is re-tabled below the threshold that triggers national scrutiny, and the land-use decision is made anyway, incrementally, by a local authority. The structural why for readers outside Britain: green belt is a supply constraint that pushes housing costs up, and salami-slicing is how it erodes without anyone voting to end it. Who holds power: the developer choosing the application size, not the residents who defeated the new town.",
-      "conceptUris": []
-    },
-    {
-      "id": "seattle-times-newsday-sue-openai-microsoft-sdny",
-      "label": "Seattle Times and Newsday are the latest publications to sue OpenAI and Microsoft",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-seattle-times-newsday-sue-openai-microsoft-sdny"
-      ],
-      "eventUri": "eng-11983602",
-      "summary": "The Seattle Times and Newsday filed in the Southern District of New York against OpenAI and Microsoft, arguing journalism could be left 'broken beyond repair' by models trained on it. Lead with the venue, not the rhetoric: SDNY is where the New York Times case already sits, so these filings are consolidating a single forum's answer to whether training on copyrighted text is fair use. The mechanism the reader needs: regional dailies have no licensing leverage individually, so litigation is their only route to the terms national publishers negotiated privately. Structural stake for a Muslim reader thinking about information supply — if local newsrooms cannot fund reporting, the models lose the ground truth they are trained on, and so does everyone reading them.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Microsoft",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/The_Seattle_Times",
-        "http://en.wikipedia.org/wiki/Newsday",
-        "http://en.wikipedia.org/wiki/Lawsuit",
-        "http://en.wikipedia.org/wiki/United_States_District_Court_for_the_Southern_District_of_New_York",
-        "http://en.wikipedia.org/wiki/United_States_district_court"
-      ]
-    },
-    {
-      "id": "large-plasmid-multi-gene-co-expression-transfection",
-      "label": "Optimizing multi-gene co-expression with large plasmids",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-large-plasmid-multi-gene-co-expression-transfection"
-      ],
-      "eventUri": null,
-      "summary": "A method paper on getting several genes to express together from a single large plasmid in mammalian cells — the bottleneck is that transfection efficiency falls as plasmid length in base pairs rises, so multi-protein constructs quietly under-deliver. Lead with the constraint, not the result: this is the engineering ceiling under cell-therapy and multi-subunit vaccine manufacturing, and it is why complex biologics are expensive to produce at scale. The reader is technically literate but not a molecular biologist — explain a plasmid as a circular DNA cassette and transfection as getting it through the membrane, then give the size/efficiency tradeoff as a number. Relevance beyond the bench: manufacturing capacity, not discovery, is what determines whether a therapy reaches middle-income countries.",
-      "conceptUris": []
-    },
-    {
-      "id": "uss-abraham-lincoln-286-days-biofouling-readiness",
-      "label": "USS Abraham Lincoln Is Getting A Badly Needed Scrubbing While In Thailand",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-uss-abraham-lincoln-286-days-biofouling-readiness"
-      ],
-      "eventUri": null,
-      "summary": "The carrier USS Abraham Lincoln pulled into Thailand caked in rust and biofouling after 286 consecutive days at sea. Lead with that number — a standard carrier deployment is around seven months, and 286 days is what sustaining simultaneous Gulf and Pacific presence actually costs in hull condition. The mechanism: biofouling adds drag, which raises fuel burn on the escorts and shortens the service life of coatings and seawater systems, so deferred maintenance is a debt paid later in yard time. Structural why for a reader following Hormuz: material readiness is the real constraint on how long the US can hold two theatres, and it degrades invisibly until a ship is pulled from the line. Attribute to The War Zone's imagery; note no Navy comment on the deployment extension.",
-      "conceptUris": []
-    },
-    {
-      "id": "migraine-without-aura-resting-state-fmri-networks",
-      "label": "Abnormal brain activity in patients with migraine without aura based on resting-state functional magnetic resonance imaging",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-migraine-without-aura-resting-state-fmri-networks"
-      ],
-      "eventUri": null,
-      "summary": "Resting-state fMRI finds altered network activity in people with migraine who never experience aura — the group that is hardest to diagnose because there is no visual warning sign to report. Lead with the diagnostic gap: migraine without aura is identified by patient description alone, which is why it is under-treated and disproportionately dismissed in women, who carry roughly three times the prevalence. The mechanism to explain is independent component analysis — the scan finds networks that co-activate at rest, so the finding is about baseline brain organisation, not about what happens during an attack. Be careful with the claim: an imaging correlate is not yet a clinical test, and the paper is an accepted manuscript ahead of final version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "gondwana-sphenodontian-los-colorados-argentina",
-      "label": "Earliest-diverging rhynchocephalian from Gondwana: a new sphenodontian from the upper triassic los colorados formation (northwestern Argentina)",
-      "firstSeen": "2026-09-06T04:12:48.464Z",
-      "lastCovered": "2026-09-06T04:12:48.464Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-06-gondwana-sphenodontian-los-colorados-argentina"
-      ],
-      "eventUri": null,
-      "summary": "A new sphenodontian from the Upper Triassic Los Colorados Formation in northwestern Argentina is the earliest-diverging rhynchocephalian yet found in Gondwana — the lineage whose only surviving member is New Zealand's tuatara. Lead with the geography, not the taxonomy: placing the deepest branch in the southern supercontinent shifts where the group is thought to have originated, and that is an argument about Gondwana, not about a single fossil. The mechanism worth explaining to a lay reader is what 'earliest-diverging' means — position on the family tree, not simply the oldest bone. Structural note: the specimen was found and described in Argentina, a reminder that Southern Hemisphere palaeontology keeps rewriting a phylogeny assembled largely from northern fossils.",
       "conceptUris": []
     }
   ]
