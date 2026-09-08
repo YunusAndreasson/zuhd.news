@@ -1,36 +1,36 @@
 {
-  "date": "2026-09-07",
+  "date": "2026-09-08",
   "metrics": {
-    "articles": { "value": 64, "detail": "5 cycles completed, avg 11 published/cycle (up from 56 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 14, "science": 13, "tech": 12 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 58, "detail": "5 cycles completed, avg 10 published/cycle (down from 65 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.7, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 14, "tech": 12, "science": 10 },
+    "multiSource": { "value": 16, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 24, "AS": 15, "AM": 12, "ME": 7, "AF": 6 }
+      "breakdown": { "EU": 19, "AM": 13, "ME": 10, "AS": 10, "AF": 4, "OC": 2 }
     },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 49,
-    "duplicates": 1,
-    "avgCycleDuration": 1488
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 52,
+    "duplicates": 0,
+    "avgCycleDuration": 1425
   },
-  "experiment": "Skipped — all four goals met with margin and no experiment was pending evaluation. The one real defect today (a double-published article, below) is caused by the editor's tool grant in scripts/run-cycle.sh and the absence of a duplicate-URL check in scripts/validate-articles.js, both outside the tunable-parameter surface; no feed or selector cap would have prevented it.",
-  "weakestArea": "The duplicate is a structural gap, not a metric miss: the 12:04 cycle shipped 2026-09-07-ziltivekimab-trials-halted-inflammation-hypothesis.md and -inflation-hypothesis.md — same STAT URL, same title, same timestamp. The editor detected it and wrote 'File deletion is blocked in this session for me — you'll need to git rm this file manually' (log line 121), but TOOLS_EDITOR is 'Read,Edit,Glob,Grep' with no Bash, so the editor can diagnose a duplicate it structurally cannot remove, and nothing downstream acts on the request. validate-articles.js has no same-URL check, so both files passed to build and commit. This is the same failure shape as the 2026-07-01 writer incident where a missing tool in the grant silently cost articles. Both copies are live now.",
+  "experiment": "Skipped — all four goals are met with margin, no experiment was pending evaluation, and no noNewExperimentsUntil gate is set. The day's one real defect (a same-event double-publish, below) sits in scripts/lib/dedup.js layer gating, which is outside the tunable-parameter surface; no feed cap or selector floor would have caught it.",
+  "weakestArea": "Africa at 4 articles and Oceania at 2 are the thinnest regions, but neither breaches a target — the genuine miss is a same-event double-publish that the duplicates counter reads as zero. The 08:43 cycle shipped 2026-09-08-navier-stokes-blow-up-claim-verification-burden (tech, Quanta Magazine) and the 11:48 cycle shipped 2026-09-08-navier-stokes-ai-assisted-proof-steps-verification (science, New Scientist) — one AI-assisted Navier-Stokes proof claim, two articles, two categories, three hours apart. The URL layer cannot see it because the URLs differ, and the title-overlap layer is gated to niche-only sources, so two mainstream outlets covering one event pass straight through. This is the second consecutive day a duplicate has shipped and the third distinct shape of the same failure: same URL (2026-09-07 ziltivekimab), same title from different clusters (2026-09-06 Lebanon hospital), and now same event under different categories.",
   "watching": [
-    "The ziltivekimab double-publish is one instance of a class: any writer slug collision inside a single cycle escapes dedup, which compares the selection against already-published articles rather than the batch against itself at write time.",
-    "Oceania and global-scope articles both fell to zero today (1 and 1 yesterday), dropping unique regions 7 to 5 even as the count target stayed met.",
-    "Africa recovered to 6 articles from 3 yesterday, carried by Premium Times Nigeria at 5 — the recovery rests on one outlet.",
-    "Europe at 24 of 64 (38%) is the heaviest single-region concentration in the last several days, roughly double yesterday's 14.",
-    "Tech rebounded 9 to 12 and sci-tech ratio 36% to 39%, so yesterday's noted dip did not persist into a second day."
+    "The two ziltivekimab articles from 2026-09-07 are still both live in content/articles/ — yesterday's audit flagged them and nothing has removed either copy.",
+    "Category split has flattened toward politics: 22 of 58 (38%) with science down to 10 from 13, the lowest science count this week, though still above the 5/day floor.",
+    "Freshness is computed on 21 of 58 articles, a better base than yesterday's 11 of 64, and the median held at 0.1 with a max of only 1.3 days.",
+    "Al Jazeera at 12 source mentions is nearly double any other outlet today and well above its own 5 yesterday — a one-day spike driven by Middle East volume (ME rose 7 to 10), not a trend yet.",
+    "Multi-source count rose 13 to 16, the highest reading this week, while total output fell 65 to 58 — the selector traded volume for corroboration."
   ],
   "coverageGaps": [
-    "Oceania at zero articles for the first time this week; no Pacific coverage at all.",
-    "Freshness is computed on 11 of 64 articles, so the median of 0 rests on about a sixth of the day's output — a smaller base than yesterday's 19 of 56, and the metric should be read as weakly supported.",
-    "Africa's 6 articles come almost entirely from Nigeria via Premium Times; no Sahel, Horn or Southern Africa coverage.",
-    "Latin America has no distinct policy or economy thread; the AM count of 12 is dominated by US coverage."
+    "Africa has 4 articles, all conflict or crime (Sokoto banditry, Somali piracy, Kenya amnesty) — no African economy, science or policy thread at all.",
+    "Oceania has 2 articles and both are Australia-framed (India AI compute, seaweed carbon); no Pacific island coverage for a second consecutive day.",
+    "Latin America appears only as three scattered datelines (Bogotá, Mexico City, São Sebastião) with no sustained regional story.",
+    "Science fell to 10 and leans heavily on Nature and STAT; Phys.org, Carbon Brief and Quanta contributed one article each, so the category rests on two outlets."
   ],
-  "context": "No experiment was active coming into today and there is no noNewExperimentsUntil gate, so the slot stays free. Two operator decisions are outstanding and neither is a tuning parameter: (1) the two live ziltivekimab articles need one deleted, and (2) the editor either needs a deletion capability in TOOLS_EDITOR or, preferably, validate-articles.js needs a same-source-URL duplicate check so the gate is deterministic rather than dependent on the editor noticing. Yesterday's audit raised a related but distinct case — two same-title Lebanon hospital articles from different clusters that dedup's title-overlap layer skipped because it is gated to niche-only sources. Today's is simpler and cheaper to close: identical URL, identical title, same commit."
+  "context": "The experiment slot has now been free since 2026-05-26 and the metrics have not asked for it back — every goal has been met on consecutive audits. The open work is structural rather than parametric, and two items are outstanding for the operator: (1) the 2026-09-07 ziltivekimab pair still needs one copy removed, and (2) the dedup title-overlap layer in scripts/lib/dedup.js is gated to niche-only sources, which is why today's Quanta/New Scientist pair on the same Navier-Stokes claim republished cleanly. Ungating that layer for mainstream outlets, or adding a same-event check to scripts/validate-articles.js, would close all three duplicate shapes seen this week; both are outside the daily-tuning parameter surface and need an operator decision."
 }
