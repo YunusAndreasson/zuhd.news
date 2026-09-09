@@ -1,25 +1,5 @@
 [
   {
-    "ts": "2026-06-18T17:57:59.774Z",
-    "cycleId": "2026-06-18T17-57",
-    "cycleHour": "17",
-    "rvs": 51.26,
-    "clusters": {
-      "picking": null,
-      "writing": 88,
-      "briefing": 0,
-      "sourcing": 42.54,
-      "coverage": 79.34
-    },
-    "articleCount": 25,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "article 2026-06-18-israel-cuts-eu-contact-kallas-apartheid-merz has source with country:null",
-      "article 2026-06-18-ukraine-moscow-refinery-drone-strike-biggest-in-years has source with country:null"
-    ],
-    "degenerate": true
-  },
-  {
     "ts": "2026-06-18T22:50:35.592Z",
     "cycleId": "2026-06-18T22-50",
     "cycleHour": "22",
@@ -6731,6 +6711,26 @@
     "guardrailFailures": [
       "category science below floor 2 (got 1)",
       "category tech below floor 2 (got 1)"
+    ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-09-09T04:22:45.392Z",
+    "cycleId": "2026-09-09T04-22",
+    "cycleHour": "04",
+    "schema": 2,
+    "rvs": 64.68,
+    "clusters": {
+      "picking": null,
+      "writing": 56.25,
+      "briefing": null,
+      "sourcing": 48.24,
+      "coverage": 92.36
+    },
+    "articleCount": 12,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 2)"
     ],
     "degenerate": false
   }
