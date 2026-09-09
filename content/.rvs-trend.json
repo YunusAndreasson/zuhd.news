@@ -1,22 +1,5 @@
 [
   {
-    "ts": "2026-06-19T08:45:59.675Z",
-    "cycleId": "2026-06-19T08-45",
-    "cycleHour": "08",
-    "rvs": 48.61,
-    "clusters": {
-      "picking": null,
-      "writing": 84.09,
-      "briefing": 0,
-      "sourcing": 33.15,
-      "coverage": 81.59
-    },
-    "articleCount": 11,
-    "briefCount": 0,
-    "guardrailFailures": [],
-    "degenerate": true
-  },
-  {
     "ts": "2026-06-19T12:54:12.543Z",
     "cycleId": "2026-06-19T12-54",
     "cycleHour": "12",
@@ -6738,6 +6721,24 @@
       "article 2026-09-09-gulf-war-migrant-workers-kafala-blocks-exit missing fields or body too short",
       "category economy below floor 3 (got 2)"
     ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-09-09T17:25:24.839Z",
+    "cycleId": "2026-09-09T17-25",
+    "cycleHour": "17",
+    "schema": 2,
+    "rvs": 78.07,
+    "clusters": {
+      "picking": null,
+      "writing": 94.23,
+      "briefing": null,
+      "sourcing": 48.46,
+      "coverage": 86.12
+    },
+    "articleCount": 13,
+    "briefCount": 0,
+    "guardrailFailures": [],
     "degenerate": false
   }
 ]
