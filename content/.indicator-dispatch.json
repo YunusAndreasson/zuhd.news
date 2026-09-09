@@ -1481,8 +1481,60 @@
         "2026-09-09-us-advisory-chinese-models-distillation-as-capability-theft"
       ],
       "generatedAt": "2026-09-09T08:29:10.509Z"
+    },
+    "poly-will-the-first-announced-price-of-the-foldable-i": {
+      "standingFingerprint": "1e37ded7ca2f1eed",
+      "recentFingerprint": "d500e00ffa2c13a2",
+      "standing": "A Polymarket contract paying out if Apple's first foldable iPhone carries a launch price of $2,000 or more. It trades as a percentage and is a wager on how Apple prices an untested hardware category, not on whether the phone ships.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-09T12:24:26.144Z"
+    },
+    "poly-2026-balance-of-power-r-senate-d-house-444": {
+      "standingFingerprint": "3559e6e2e85d0236",
+      "recentFingerprint": "6e43e48994929791",
+      "standing": "A Polymarket contract on the 2026 US midterms resolving yes only if Republicans hold the Senate while Democrats take the House. It prices one specific split-Congress outcome, not either chamber on its own.",
+      "recent": "The window's news about this market was about the venue rather than the vote: the Ninth Circuit held that Kalshi's sports contracts are not \"swaps\" and left states their regulatory power, Connecticut filed against Kalshi the day before, and New Jersey asked the Supreme Court to settle the preemption question. A White House teleprompter operator also paid to close an insider-trading case over bets on the president's speeches. None of it bears on how Congress splits.",
+      "citations": [
+        "2026-08-28-kalshi-takes-legal-blow-in-court-ruling-confirming-state-pow",
+        "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption",
+        "2026-08-29-teleprompter-operator-kalshi-insider-trading-fine"
+      ],
+      "generatedAt": "2026-09-09T12:24:36.645Z"
+    },
+    "poly-will-openai-have-the-best-ai-model-at-the-end-of": {
+      "standingFingerprint": "d4d401430cc2f143",
+      "recentFingerprint": "8617daa1ce7db380",
+      "standing": "A Polymarket contract paying out if OpenAI's best model tops a named leaderboard when the year closes. It prices how traders rank the frontier labs against each other, and resolves against a benchmark rather than revenue or usage.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-09T12:24:43.816Z"
+    },
+    "wiki-germany": {
+      "standingFingerprint": "5b24338c1007a4e9",
+      "recentFingerprint": "b6a3986e6be0826b",
+      "standing": "The daily count of people reading the English Wikipedia article on Germany. It rises when the country itself becomes the story rather than the setting, so it tracks elections, security incidents and industrial shocks that push outsiders to look the place up.",
+      "recent": "Alternative for Germany took 44.5% in Saxony-Anhalt, the first far-right win of a Land since the war, and the Brandmauer — every other party refusing coalition — kept it out of government while handing it the whole opposition. Alongside it: Russia ordered the St. Petersburg consulate shut over the Leipzig drone attack, and police found 12 explosives on power lines in Saxony.",
+      "citations": [
+        "2026-09-06-afd-saxony-anhalt-record-firewall-coalition-arithmetic",
+        "2026-09-09-afd-saxony-anhalt-brandmauer-as-multiplier",
+        "2026-09-07-russia-german-consulate-closure-leipzig-drone-reciprocity",
+        "2026-09-05-germany-power-line-explosives-grid-sabotage-saxony",
+        "2026-09-02-leipzig-consulate-closure-retaliation-below-treaty"
+      ],
+      "generatedAt": "2026-09-09T12:24:53.958Z"
+    },
+    "stocks:USB": {
+      "standingFingerprint": "a33bc87698ed0e1c",
+      "recentFingerprint": "cec9ed41c9ac2ca4",
+      "standing": "The Minneapolis-based lender that is one of the largest commercial banks in the United States, with a payments-processing arm far bigger than its balance sheet suggests. Its shares trade as a read on regional lending and card volumes.",
+      "recent": "The bank completed a live cross-border payment with USBDC, its own stablecoin, settling on Stellar rather than a private ledger. The instrument it bypasses is correspondent banking — the chain of intermediary banks a dollar crosses on its way abroad, which charges at every hop and is where compliance gatekeeping is enforced.",
+      "citations": [
+        "2026-09-09-usbdc-stablecoin-correspondent-banking-bypass"
+      ],
+      "generatedAt": "2026-09-09T12:25:03.235Z"
     }
   },
-  "generatedAt": "2026-09-09T08:29:10.509Z",
+  "generatedAt": "2026-09-09T12:25:03.235Z",
   "windowDays": 14
 }
