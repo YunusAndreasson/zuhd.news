@@ -1,37 +1,37 @@
 {
-  "date": "2026-09-09",
+  "date": "2026-09-10",
   "metrics": {
-    "articles": { "value": 64, "detail": "5 cycles completed, avg 10 published/cycle (up from 58 yesterday)" },
-    "freshness": { "median": 0.2, "p90": 0.9, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "tech": 15, "economy": 14, "science": 12 },
-    "multiSource": { "value": 15, "target": 4, "met": true },
+    "articles": { "value": 63, "detail": "5 of 5 cycles completed, avg 10 published/cycle (64 yesterday)" },
+    "freshness": { "median": 0.3, "p90": 0.8, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 15, "tech": 15, "science": 13 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
     "regions": {
-      "count": 7,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 23, "ME": 14, "AF": 10, "EU": 7, "AS": 7, "GL": 2, "OC": 1 }
+      "breakdown": { "AM": 23, "EU": 15, "ME": 11, "AS": 8, "AF": 5, "OC": 1 }
     },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "sciTech": { "ratio": 44, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 50,
     "duplicates": 0,
-    "avgCycleDuration": 1383
+    "avgCycleDuration": 1329
   },
-  "experiment": "Skipped — all four goals are met with margin, nothing was pending evaluation, and no noNewExperimentsUntil gate is set. The day's real defect is a fourth distinct duplicate shape (identical title, different source URLs, six days apart), which lives in scripts/lib/dedup.js and scripts/validate-articles.js — outside the tunable-parameter surface. No feed cap or selector floor would have caught it.",
-  "weakestArea": "Regional balance is the softest metric that still passes: the Americas took 23 of 64 articles (36%) while Oceania fell to 1 and Europe halved from 19 to 7 overnight. But the genuine miss is again duplication that the counter reads as zero. Two articles now share the exact title \"Experts Sell Their Judgment\" — 2026-09-03 (Johannesburg, Rest of World) and 2026-09-09 (Shenzhen, Rest of World) — same outlet, same beat, different URLs and datelines, so every dedup layer passes them. A corpus scan finds 25 exact title collisions since 2026-06-01; roughly half are legitimate developing-story follow-ups, the rest are recaps that shipped twice. This is the fourth duplicate shape logged in four days, after same-URL (2026-09-07 ziltivekimab), same-title-from-different-clusters (2026-09-06 Nabatieh hospital) and same-event-across-categories (2026-09-08 Navier-Stokes).",
+  "experiment": "Skipped — all four goals are met with margin, no active experiment was due for evaluation, and no noNewExperimentsUntil gate is set. The one queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the daily-tuning surface, so it stays queued.",
+  "weakestArea": "Top-source share is the metric closest to its limit: Dawn supplied 9 of 63 articles (14%), up from Al Jazeera's 7% lead yesterday, and three of today's Islamabad datelines (journalist detention, election commissioner, insect barcoding) come from it. Still 6 points under the 20% cap, and the other 49 sources hold at most 4 each, so this is worth watching rather than changing anything. Africa also halved, 10 to 5, all politics and health.",
   "watching": [
-    "The Iran/Gulf war cluster took roughly ten of today's 64 articles — IAEA referral, aviation sanctions, strikes on Jordan and Bahrain, the Saudi refinery, Hormuz rerouting, migrant workers, Indian market exposure — distinct angles so far, but the single-event concentration is the highest this week.",
-    "Europe fell from 19 articles to 7 in one day while the Americas rose from 13 to 23; neither breaches a target, but the swing is larger than any day-over-day move this week.",
-    "Africa recovered from 4 to 10 and finally spans more than conflict — Ekiti rice farming, Lassa preparedness, Liberian fistula care, Lake Tana weed modelling.",
-    "Science rose to 12 and now draws on ten distinct outlets against yesterday's five, so the category no longer rests on Nature and STAT alone.",
-    "Freshness is computed on only 15 of 64 articles, a thinner base than yesterday's 21 of 58, so the 0.2 median is less well supported than it looks.",
-    "Both prior duplicate pairs are still live in content/articles/ — the 2026-09-07 ziltivekimab pair and the 2026-09-08 Navier-Stokes pair; three audits have now flagged the first and nothing has removed a copy."
+    "The Iran/Gulf war cluster again spans categories — Iranian strikes on Jordan's Azraq base, Seoul weighing a Hormuz force, Bahrain naval drone defence, Iranian household borrowing, oil and Fed odds, Trump tying the war to the vote, and Mokha falling to the Houthis.",
+    "Three climate-extremes pieces landed on one day — August tying the heat record, a lengthening extreme-heat season, and El Niño nearing historic strength — distinct angles but one underlying story.",
+    "Europe recovered from 7 to 15 articles and now includes an EU economic thread (the EU's own Starlink) after yesterday's gap.",
+    "Science draws on nine distinct outlets for 13 articles, keeping the category off any single specialist source.",
+    "Freshness still rests on a thin base — 11 of 63 articles carry a measurable lag, down from 15 yesterday.",
+    "Yesterday's exact-title duplicate pairs remain live in content/articles/ (e.g. \"Heart Inflammation Bet Fails Again\", \"Experts Sell Their Judgment\"); no new collision was published today."
   ],
   "coverageGaps": [
-    "Oceania has 1 article, the lowest this week, and there is still no Pacific island coverage for a third consecutive day.",
-    "Europe's 7 articles are Saxony-Anhalt, the NATS outage and war-adjacent energy stories; no EU economic or regulatory thread at all.",
-    "Latin America appears only as Peru's tomb find and Rubio's Colombia trip — two isolated items, no sustained regional story.",
-    "Economy at 14 leans on markets and corporate filings (Florida insurer, LIV Golf, stablecoin pilots); no development-economics or trade-policy reporting outside the Hormuz rerouting angle."
+    "Oceania has a single article (Wellington rat poison) and there is no Pacific island coverage for a fourth consecutive day.",
+    "Latin America appears only as Argentina's inflation print and Mexicali solar cooling — no Brazil, Andean or Central American story.",
+    "Africa fell to 5 articles, and none is economy or tech; the continent's coverage is Algeria–UAE, Sudan, Libya, Zimbabwean migrants and a Nigerian diphtheria outbreak.",
+    "South and Southeast Asia beyond Pakistan is thin — one Indian trade story, one Adani financing, one Philippine ferry fire."
   ],
-  "context": "The experiment slot has been free since 2026-05-26 and every goal has been met on consecutive audits, so parametric tuning has nothing to fix. The open work is structural and still needs an operator decision: the title-overlap layer in scripts/lib/dedup.js is gated to niche-only sources, which is why two mainstream Rest of World pieces republished under one title today, and scripts/validate-articles.js has no duplicate-title or duplicate-URL gate at all. Ungating the title layer for mainstream outlets and adding a title-collision check at validation would close all four shapes seen this week. Both files are outside the daily-tuning parameter surface. Three duplicate pairs remain live and unremoved."
+  "context": "The experiment slot has been empty since 2026-05-26 and every goal has passed on consecutive audits, so parametric tuning has nothing to act on. The open structural work flagged yesterday is unchanged and needs an operator decision: the title-overlap dedup layer in scripts/lib/dedup.js is gated to niche-only sources, and scripts/validate-articles.js has no duplicate-title or duplicate-URL gate. Both files are outside the tuning surface."
 }
