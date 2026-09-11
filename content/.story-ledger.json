@@ -2,13 +2,504 @@
   "version": 1,
   "stories": [
     {
+      "id": "idc-server-record-memory-squeeze",
+      "label": "Higher prices can't crimp server sales as AI drives demand",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-11-idc-server-record-memory-squeeze",
+        "2026-09-11-us-cpi-august-the-war-in-the-price-index"
+      ],
+      "eventUri": "eng-11996786",
+      "summary": "IDC says Q2 was a record for server vendor revenue even as high memory prices hit PC shipments, and AI infrastructure spending is spreading beyond the hyperscalers to corporate and government buyers. Lead with the split: AI servers are eating the memory supply, so the same shortage that inflates server revenue makes consumer laptops dearer. Give the IDC growth figure and the GPU-server share, and name which vendors and countries are gaining as sovereign-AI buyers enter the market.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Stock",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Consumer_price_index",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Wall_Street",
+        "http://en.wikipedia.org/wiki/S&P_500_Index",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "bab-al-mandab-taken-two-chokepoints-one-axis",
+      "label": "Yemen's Houthis take over strait vital to global shipping",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-bab-al-mandab-taken-two-chokepoints-one-axis"
+      ],
+      "eventUri": "eng-11998140",
+      "summary": "The development since our Mokha, coast/pipeline and Taiz pieces: Ansarallah (the Houthis) now control the Bab al-Mandab strait itself, including Perim island. Earlier coverage only said they 'may' have taken it. Lead with the strait, not the pipeline. Chatham House's Farea al-Muslimi says Iran, directly and through allies, now holds both of the region's chokepoints, carrying more than 35% of the global fuel and oil trade. Mechanism: a strait is closed by risk, not by a physical blockade. Guns on Perim, 3km from the shipping lane, change war-risk insurance and routing for every Suez-bound ship. Report the lane widths, daily transits before and now, and the war-risk premium. On why the Saudi-backed forces collapsed, use Drop Site's reporting (https://www.dropsitenews.com/p/ansarallah-houthis-saudi-yemen-red-sea-bab-al-mandab): rival factions with no unified command. Al Jazeera frames the advance as being about more than the Red Sea; The National has the US diplomacy angle. Say who pays: Egypt's Suez revenue, East African importers, and Yemenis on the coast. Selection note: this is the fourth Yemen-war piece in 24 hours, taken only because the strait itself falling is the new event. Its 1,579-article coverage and 350-point Hacker News thread confirm the attention.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
+      ]
+    },
+    {
+      "id": "putin-troops-lithuania-two-red-lines-one-day",
+      "label": "Putin Issues Blunt Warning to Europe Over Ukraine Troop Plan: 'This Means War'",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-putin-troops-lithuania-two-red-lines-one-day"
+      ],
+      "eventUri": "spa-4336326",
+      "summary": "Speaking in New Delhi at the BRICS summit, Putin said any deployment of European troops to Ukraine would be 'a war against Russia'. On the same day the Kremlin said it would adjust its nuclear posture if Lithuania hosts nuclear weapons, as the Baltic state is reported to be considering in a constitutional change (RT: https://www.rt.com/russia/645455-peskov-lithuania-nuclear-weapons/; verify with Lithuanian or Western sources). Lead with the two red lines drawn in one day: troops on Ukrainian soil and nuclear weapons on NATO's eastern edge. Mechanism: deterrence by declaration, stated from a Global South stage whose host, India, does not contradict it. Report what the European troop plan actually is (which countries, what mandate, ceasefire-dependent or not) and where Lithuania's debate stands. Include Zelensky's new line the same day that Ukraine 'must engage in peace talks' while demanding stronger US sanctions (Kyiv Independent). Selection note: both outlets in the cluster are Indian, with no European or Russian primary source; the writer should corroborate the quote with Kremlin transcripts. This is the second story in the BRICS-Delhi arc; do not repeat the 09-11 consensus piece.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/New_Delhi",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/BRICS",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Xi_Jinping"
+      ]
+    },
+    {
+      "id": "spain-western-sahara-citizenship-a-colony-admitted",
+      "label": "'A historic day': Spain moves closer to citizenship for Western Saharans",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-spain-western-sahara-citizenship-a-colony-admitted"
+      ],
+      "eventUri": "spa-4336480",
+      "summary": "Spain's parliament has backed citizenship for Western Saharans born in the territory while Madrid ruled it as a colony. Lead with campaigner Mohamed Mohamedna and the vote. Mechanism: Spain handed the territory over in 1975 without completing decolonisation, and the UN still lists Spain as the de jure administering power. Granting citizenship is Madrid admitting, in law, that those born under its rule were its nationals. The tension: in 2022 Madrid endorsed Morocco's autonomy plan. Report the vote margin and which parties opposed (the PP is named), how many Sahrawis could qualify (the Tindouf camps and the diaspora), what stage the bill is at, and how Rabat and the Polisario responded. Accountability: a former coloniser partially paying a debt it walked away from. Morocco is an OIC member; Al Jazeera (QA) is the regional outlet. Do not repeat our 09-10 Algeria–UAE piece.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Morocco",
+        "http://en.wikipedia.org/wiki/Western_Sahara",
+        "http://en.wikipedia.org/wiki/Ceuta",
+        "http://en.wikipedia.org/wiki/Congress_of_Deputies",
+        "http://en.wikipedia.org/wiki/People's_Party_(Spain)",
+        "http://en.wikipedia.org/wiki/Sahrawi_people",
+        "http://en.wikipedia.org/wiki/Rabat"
+      ]
+    },
+    {
+      "id": "9-11-families-saudi-accountability-25-years-deferred",
+      "label": "Some 9/11 Families Use Ceremony to Push Trump on Saudi Arabia",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-9-11-families-saudi-accountability-25-years-deferred"
+      ],
+      "eventUri": "eng-12002171",
+      "summary": "At the 25th-anniversary ceremony, some victims' families called on Trump to hold Saudi Arabia accountable for its alleged role in the attacks: 'For 25 years, administration after administration...'. Lead with that line and who said it. Mechanism: the JASTA civil suit in Manhattan federal court, the declassified FBI files (the 2021 release on Omar al-Bayoumi), and why every administration since has put the Saudi relationship first. That is sharper now that Riyadh is a wartime ally under Houthi fire. Say plainly what has been proven and what is alleged, and give the case's current stage. Kept separate from our Mamdani anniversary piece: that was about a Muslim mayor made the subject, this is about a state's accountability. Saudi Arabia is an OIC member; Al Jazeera (QA) covered the same ceremony and is added as the regional voice.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/Aircraft_hijacking",
+        "http://en.wikipedia.org/wiki/New_York_City",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Anti-Americanism",
+        "http://en.wikipedia.org/wiki/World_Trade_Center_site"
+      ]
+    },
+    {
+      "id": "brics-payment-links-upi-as-the-blocs-plumbing",
+      "label": "Russia Takes Steps to Create a Space Council With BRICS Partners",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-brics-payment-links-upi-as-the-blocs-plumbing"
+      ],
+      "eventUri": "eng-11996904",
+      "summary": "India's commerce minister Piyush Goyal urged BRICS members to link their payment systems and trade in local currencies, putting forward UPI, which now handles over 250 billion transactions. Lead with India offering its own payment rail as the bloc's plumbing. Mechanism: linking domestic instant-payment systems settles trade bilaterally without passing through SWIFT or dollar correspondent banks. That is the practical form of de-dollarisation, as opposed to a common currency India has repeatedly rejected. It matters most for sanctioned members (Russia, Iran). Report which links already exist (UPI with the UAE, Singapore and others; Russia's SPFS and Mir), what the summit text commits to, and the currency-mismatch problem India found holding surplus rupees in Russia. Russia's proposed BRICS space council (Bloomberg) is the secondary item. Third piece in the BRICS-Delhi arc; do not repeat the consensus or trade-deficit pieces.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/BRICS",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/New_Delhi",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Summit_(meeting)",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/China"
+      ]
+    },
+    {
+      "id": "pakistan-petroleum-levy-a-tax-stacked-on-a-war-price",
+      "label": "'Decisive phase': JI chief announces Islamabad march on Sept 20 against petroleum levy",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-pakistan-petroleum-levy-a-tax-stacked-on-a-war-price"
+      ],
+      "eventUri": "eng-12003091",
+      "summary": "Jamaat-i-Islami chief Hafiz Naeemur Rehman says the party will march on Islamabad on 20 September unless the petroleum levy is withdrawn. Lead with the levy itself, in rupees per litre and as a share of the pump price. Mechanism: the levy is Pakistan's main non-shareable revenue, so it does not go to the provinces, and the IMF programme sets its target. When oil tops $108, a fixed per-litre levy stacks a domestic tax on a war-driven price, and the government cannot cut it without breaching an IMF benchmark. Report the current levy, this fiscal year's collection target, what it raised last year, and the government's reply. Who pays: commuters, farmers on diesel, and transporters, who pass it into food prices. Treat JI as the actor, not the story. The subject is who carries the cost of the oil shock. Dawn (PK) is the regional outlet.",
+      "conceptUris": []
+    },
+    {
+      "id": "denmark-hypoxia-a-sea-fed-by-farms",
+      "label": "In Denmark, the sea can't breathe",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-denmark-hypoxia-a-sea-fed-by-farms"
+      ],
+      "eventUri": null,
+      "summary": "Oxygen depletion in Danish coastal waters has hit record levels and coastal fisheries are disappearing. Lead with the measured area of hypoxic sea floor this year against the historical record. Mechanism: nitrogen runoff from farming feeds algal blooms, the algae die and decompose, and the decomposition uses up the oxygen near the bottom. Warmer water holds less oxygen and stratifies, so less oxygen mixes down from the surface. Both drivers are rising together. Name who is responsible: Denmark's intensive livestock farming and the delayed nitrogen targets in its 'green tripartite' agreement. Report the monitoring agency (Aarhus University/DCE), the fish species lost, and the fishers' livelihoods. This fills a European science gap without heat-record repetition.",
+      "conceptUris": []
+    },
+    {
+      "id": "foraminifera-coiling-flips-a-proxy-that-was-a-lineage",
+      "label": "Why Do These Fossil Shells Flip Their Spirals Every Few Millennia?",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-foraminifera-coiling-flips-a-proxy-that-was-a-lineage"
+      ],
+      "eventUri": null,
+      "summary": "In the fossil record, the foraminifera Globorotalia and its relatives switch between left- and right-coiling shells every few thousand years, and the switches happen across whole oceans. Lead with the pattern. The mechanism researchers now propose: the flips may record an evolutionary process that is rarely observed in the wild, such as cryptic species replacing one another, not a response to temperature. Explain why that matters: paleoclimatologists have used coiling direction as an ocean-temperature proxy, so if coiling tracks lineage instead, parts of the climate record built on it need checking. Name the researchers, the cores and the dating.",
+      "conceptUris": []
+    },
+    {
+      "id": "grass-genome-the-family-that-feeds-us-redated",
+      "label": "New genome study rewrites the early history of grasses, the world's most important plant family",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-grass-genome-the-family-that-feeds-us-redated"
+      ],
+      "eventUri": null,
+      "summary": "An international team including Elizabeth Kellogg (Danforth Center) has produced a chromosome-level genome of an early-diverging grass, which changes the picture of how grasses first evolved. Grasses are the family of wheat, rice, maize, sorghum and millet, which supply most of humanity's calories. Lead with what was revised: the timing or number of the ancient whole-genome duplications, or which traits came first. Mechanism for the reader: genome duplications give plants spare gene copies that can evolve new functions, and knowing where they sit on the tree tells breeders which genes are shared across all cereals. Name the species sequenced, the journal, and what changes for crop-genetics work on drought or heat tolerance. Keep claims to the paper.",
+      "conceptUris": []
+    },
+    {
+      "id": "florida-dmv-breach-one-officers-saved-login",
+      "label": "Florida says motor vehicle data breach tied to credentials stolen from officer's personal device",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-florida-dmv-breach-one-officers-saved-login"
+      ],
+      "eventUri": null,
+      "summary": "Florida's motor-vehicle department confirmed the breach claimed by ShinyHunters. It began with credentials stored on a police officer's personal device. Lead with that entry point: a state database of every driver was opened with one officer's saved login on a phone or home computer. Mechanism: law-enforcement access to DMV records (through systems like DAVID) is granted to thousands of officers as a standing right, so the security of the whole database is only as strong as the least-protected device holding a valid login. Report how many records were exposed and what fields (licence photos, addresses, SSNs?), whether MFA was required, how many agencies hold similar access, and ShinyHunters' pattern of credential-based mass theft (Salesforce, Ticketmaster).",
+      "conceptUris": []
+    },
+    {
+      "id": "fcas-collapse-rafale-f5-europe-cannot-share-a-fighter",
+      "label": "France Accelerates Rafale F5 Upgrade After Collapse Of FCAS Next-Gen Fighter Project",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-fcas-collapse-rafale-f5-europe-cannot-share-a-fighter"
+      ],
+      "eventUri": null,
+      "summary": "The Franco-German-Spanish FCAS sixth-generation fighter programme has collapsed, and France is instead speeding up the Rafale F5 upgrade with drone wingmen to carry its air force into the late 2030s. Lead with the collapse. This is Europe's largest joint defence project, and it failed at the moment Europe says it must rearm without the US. Mechanism: industrial work-share. Dassault and Airbus could not agree on who leads design and owns the intellectual property, and a shared fighter depends on that. Report when and how FCAS ended, what Germany and Spain do now (join the UK-Italy-Japan GCAP?), the F5's new capabilities (the ASN4G nuclear missile, the stealthy combat drone), cost and timeline. Structural point for our reader: the Rafale is a major export to Egypt, Qatar, the UAE, India and Indonesia, and F5 decides what those air forces fly next. TWZ is a specialist outlet; separate programme claims from delivered capability.",
+      "conceptUris": []
+    },
+    {
+      "id": "project-jupiter-renewables-a-gas-plant-matched-on-paper",
+      "label": "Oracle promises 2 GW of renewables to match Stargate data center emissions",
+      "firstSeen": "2026-09-11T22:09:24.782Z",
+      "lastCovered": "2026-09-11T22:09:24.782Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-project-jupiter-renewables-a-gas-plant-matched-on-paper"
+      ],
+      "eventUri": null,
+      "summary": "Oracle is promising 2 GW of renewable projects in New Mexico to 'match' the emissions of Project Jupiter, the $165 billion Stargate data centre it is building for OpenAI in Santa Teresa, as local opposition threatens delays. Lead with the accounting: the site itself runs on on-site natural gas and fuel cells, and the renewables are built elsewhere on the grid. Mechanism: annual 'matching' lets a gas-powered campus claim to be clean without cutting a single hour of its own combustion. The pledge is timed to win permits, not required by any rule. Report Jupiter's gas capacity, its air-permit status, water use in the Chihuahuan desert, who opposes it (the border community of Santa Teresa and Sunland Park), and whether the 2 GW is contracted or only promised. Distinct from our 09-11 Michigan town-hall piece: this one is about emissions accounting, not consent.",
+      "conceptUris": []
+    },
+    {
+      "id": "assisted-dying-commons-reversal",
+      "label": "Why did MPs reject the assisted dying bill?",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-assisted-dying-commons-reversal"
+      ],
+      "eventUri": "eng-11994029",
+      "summary": "After twice voting in favour, the Commons rejected legalising assisted dying in England and Wales, to gasps in the chamber. Lead with the reversal and the vote margin, then the mechanism: which safeguards and which blocs of MPs switched between readings (disability-rights concerns, palliative-care funding, the judicial-oversight change), and how many Muslim and faith-bloc MPs voted against. Say what happens next: whether the bill is dead for this parliament and where Scotland's separate bill now stands. Dawn's coverage gives the Pakistani/Muslim-reader framing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Assisted_suicide",
+        "http://en.wikipedia.org/wiki/Member_of_parliament",
+        "http://en.wikipedia.org/wiki/Parliament_of_the_United_Kingdom",
+        "http://en.wikipedia.org/wiki/England_and_Wales",
+        "http://en.wikipedia.org/wiki/Labour_Party_(UK)",
+        "http://en.wikipedia.org/wiki/House_of_Commons_of_the_United_Kingdom",
+        "http://en.wikipedia.org/wiki/House_of_Lords",
+        "http://en.wikipedia.org/wiki/United_Kingdom"
+      ]
+    },
+    {
+      "id": "gop-midterm-convention-dallas-finale",
+      "label": "Trump's Grand Midterm Convention Finale: 'I'm a Little Bit Tired of Politics'",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-gop-midterm-convention-dallas-finale"
+      ],
+      "eventUri": "eng-11997775",
+      "summary": "Republicans held an unusual midterm convention in Dallas to rescue a House majority, and Trump closed it by saying he was 'a little bit tired of politics'. Lead with the gap between the staging and the numbers: a Quinnipiac poll the same week puts Democrats 11 points ahead on House control. Explain why a party invents a midterm convention (nationalising a race that is usually local), what the Iran war and prices did to the pitch, and note that a protester waving Mexican and Palestinian flags was removed during Vance's keynote to 'USA' chants. Al Jazeera's takeaways give the outside view.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/Dallas",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Dividend"
+      ]
+    },
+    {
+      "id": "flavio-bolsonaro-film-financing-probe",
+      "label": "Flavio Bolsonaro probed for corruption as Brazil election tightens",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-flavio-bolsonaro-film-financing-probe"
+      ],
+      "eventUri": "por-1328061",
+      "summary": "Weeks before Brazil's presidential vote, court documents show the right's candidate Flavio Bolsonaro is under Federal Police investigation for corruption and money laundering over financing sought for a film about his father, the jailed former president. Lead with the film-financing mechanism and who allegedly paid. Then the structural point: Brazil's Supreme Court (Justice André Mendonça's role) is again deciding the fate of a Bolsonaro, and the family will frame it as lawfare. Give the latest polling gap and the election date. This fills a Latin America gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Flávio_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Jair_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Federal_Police_of_Brazil",
+        "http://en.wikipedia.org/wiki/Supreme_Federal_Court",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/André_Mendonça",
+        "http://en.wikipedia.org/wiki/Brazilian_Senate",
+        "http://en.wikipedia.org/wiki/Money_laundering"
+      ]
+    },
+    {
+      "id": "pakistan-iran-houthi-saudi-mediation",
+      "label": "Why Pakistan is talking to Iran as the Houthi-Saudi fight escalates",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-pakistan-iran-houthi-saudi-mediation"
+      ],
+      "eventUri": "eng-11997838",
+      "summary": "On Thursday night Iran's foreign minister Araghchi called both Pakistan's army chief Field Marshal Asim Munir and Saudi foreign minister Prince Faisal. Lead with the two calls. The mechanism: Pakistan is bound to Riyadh by its mutual defence pact (the 'Mecca pact') and shares a border with Iran, so a Houthi-Saudi war could legally pull a nuclear-armed Muslim state into a fight with its neighbour's ally. Explain what the pact commits Pakistan to, why Islamabad is positioning as channel rather than combatant, and what it stands to lose on either side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Mecca",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "nigeria-assembly-south-africa-boycott",
+      "label": "Xenophobia: Nigerian lawmakers boycott SA-hosted legislative conferences, urge state assemblies to follow suit",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-nigeria-assembly-south-africa-boycott"
+      ],
+      "eventUri": "eng-12001391",
+      "summary": "Nigeria's National Assembly has suspended official visits to South Africa and will boycott legislative conferences it hosts, citing the safety of Nigerians there, and is urging state assemblies to do the same. This follows the earlier returnee story (Ondo) and 300 Zimbabweans stranded at a Johannesburg consulate. Lead with the boycott as a parliamentary sanction between Africa's two largest economies. Explain why legislatures act where the foreign ministry won't, and name the continental forums affected (SADC PF, Pan-African Parliament in Midrand).",
+      "conceptUris": []
+    },
+    {
+      "id": "houthi-coast-saudi-pipeline-oil-108",
+      "label": "Ansarallah completes takeover of Yemen’s Red Sea coast, strikes Saudi pipeline; Oil tops $108",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-houthi-coast-saudi-pipeline-oil-108"
+      ],
+      "eventUri": null,
+      "summary": "After taking Mokha, Ansarallah (the Houthis) now hold Yemen's whole Red Sea coast and may have taken Perim and Zuraq islands at Bab al-Mandab (TWZ). They have also struck a Saudi pipeline, and Brent is above $108. Lead with the pipeline. Confirm which one: if it is the East-West line to Yanbu, it is Riyadh's bypass around a contested Hormuz, and its Red Sea exit now runs past Houthi guns. The economic mechanism is both chokepoints closing at once, with diesel prices hit first. Say who pays: import-dependent Pakistan, Egypt (Suez revenue), East Africa.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-adb-digitalisation-loan-overruled",
+      "label": "Pakistan greenlights $200m ADB loan despite questions over digitalisation project",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-pakistan-adb-digitalisation-loan-overruled"
+      ],
+      "eventUri": "eng-12002449",
+      "summary": "Pakistan's Central Development Working Party approved a $200 million (Rs57bn) Asian Development Bank loan for FBR/revenue digitalisation although the government's own Planning Commission raised serious objections. It was one of seven projects worth Rs116bn cleared in one sitting. Lead with the government's planners warning against the loan and being overruled. Explain the mechanism: why a debt-strapped state borrows in dollars for systems earlier loans already paid for, what the Planning Commission and PIDE flagged, and who repays.",
+      "conceptUris": []
+    },
+    {
+      "id": "maharashtra-tokenised-power-assets",
+      "label": "India's richest state considers selling tokenized claims of its power assets to fund new infrastructure",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-maharashtra-tokenised-power-assets"
+      ],
+      "eventUri": null,
+      "summary": "Maharashtra is drafting a 'DELTA Act' that would make it the first Indian state with a law on blockchain-based property tokenisation, and it may sell tokenised claims on its own power-transmission assets to fund new infrastructure. Lead with a state government selling fractional claims on its grid. The mechanism: asset recycling in a new wrapper that sidesteps state borrowing limits. Explain who could buy, what investors actually own if the utility defaults, and how this fits with RBI and SEBI hostility to crypto.",
+      "conceptUris": []
+    },
+    {
+      "id": "indonesia-peat-fires-record-emissions",
+      "label": "El Niño: Indonesia fire emissions in 2026 ‘on track’ to match record for this century",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-indonesia-peat-fires-record-emissions"
+      ],
+      "eventUri": null,
+      "summary": "Indonesia's wildfires are on track to emit as much as the worst fire year this century, likely 2015, as El Niño dries the country out. Lead with the emissions comparison in megatonnes of CO2. Then the mechanism: fires on drained peatland burn underground for weeks and release centuries of stored carbon, which is why Indonesia's fire years rival whole nations' annual emissions. Cover the haze reaching Malaysia and Singapore, the health toll, and whether the post-2015 peat-restoration and plantation-licence rules held. This is a distinct angle from the El Niño odds story.",
+      "conceptUris": []
+    },
+    {
+      "id": "pfas-flash-heating-silver-fluoride",
+      "label": "Electrical pulses convert PFAS waste into valuable silver fluoride",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-pfas-flash-heating-silver-fluoride"
+      ],
+      "eventUri": null,
+      "summary": "James Tour's lab at Rice University uses rapid electrical (flash Joule) pulses to break PFAS 'forever chemicals' from firefighting foam and capture the fluoride as silver fluoride, a reagent industry buys. The paper is in Nature Chemical Engineering. Lead with the inversion: a waste that costs money to destroy becomes a product. The mechanism is the C–F bond, the strongest in organic chemistry, which is why PFAS persist. Report the energy cost per kilogram and the recovery yield, and say plainly that this is a lab demonstration, not a plant.",
+      "conceptUris": []
+    },
+    {
+      "id": "michigan-los-alamos-data-center-town-hall",
+      "label": "‘We Did Not Invite You.’ Citizens Rage at Town Hall Over Proposed Nuclear AI Data Center",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-michigan-los-alamos-data-center-town-hall"
+      ],
+      "eventUri": null,
+      "summary": "The University of Michigan and Los Alamos National Laboratory plan a large AI data centre in a small Michigan township, reportedly tied to nuclear-weapons research computing, and residents at a packed town hall said they were never consulted. Lead with the quote 'We did not invite you'. Explain how the project skipped local consent (federal and university land, state preemption, NDAs), what it will draw in power and water, and who decides. It shows AI infrastructure being sited by institutions that answer to no local voter.",
+      "conceptUris": []
+    },
+    {
+      "id": "esa-nyx-cargo-return-contract",
+      "label": "ESA Awards The Exploration Company a €760M Space Station Cargo Contract",
+      "firstSeen": "2026-09-11T17:06:04.926Z",
+      "lastCovered": "2026-09-11T17:06:04.926Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-esa-nyx-cargo-return-contract"
+      ],
+      "eventUri": null,
+      "summary": "ESA has given the Franco-German startup The Exploration Company a €760 million Phase 2 contract for a demonstration flight of its Nyx capsule, with options for two more missions to the space station. Lead with Europe paying a startup to build what it has never had: a way to bring cargo back from orbit. The mechanism is the same as the IRIS2 and Venus stories this week, Europe buying independence from US vendors. Say which launcher Nyx flies on and when, and whether a crewed version is planned.",
+      "conceptUris": []
+    },
+    {
       "id": "mamdani-9-11-anniversary-a-mayor-made-the-subject",
       "label": "Facing Islamophobia, Mamdani Keeps Focus on 9/11 Victims",
       "firstSeen": "2026-09-11T12:09:03.823Z",
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-mamdani-9-11-anniversary-a-mayor-made-the-subject"
@@ -33,7 +524,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-pims-fire-fir-the-case-that-had-to-be-ordered"
@@ -49,7 +540,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-bukavu-school-fire-a-city-no-one-is-answerable-for"
@@ -74,7 +565,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-tashiev-appeal-a-verdict-that-satisfies-no-one"
@@ -90,7 +581,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-nse-ipo-the-sellers-keep-more-of-the-exchange"
@@ -115,7 +606,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-bangladesh-lng-terminals-a-dependence-built-in-steel"
@@ -131,7 +622,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-ula-sale-a-duopoly-that-skipped-reusability"
@@ -147,7 +638,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-quantum-free-fall-interferometer-the-test-a-century-waited-for"
@@ -163,7 +654,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-reform-uk-climate-factcheck-a-platform-built-on-45-claims"
@@ -179,7 +670,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-clickfix-the-user-runs-the-exploit"
@@ -195,7 +686,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-ai-labs-asia-hires-buying-the-policy-desk"
@@ -211,7 +702,7 @@
       "lastCovered": "2026-09-11T12:09:03.823Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-11-kvn-fibre-drone-microphone-an-ambush-jamming-cannot-reach"
@@ -227,7 +718,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-hong-kong-vigil-sentences-a-memorial-made-subversion"
@@ -252,7 +743,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-brics-delhi-a-consensus-with-a-belligerent-inside"
@@ -277,7 +768,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-taiz-displacement-a-front-line-behind-the-strait"
@@ -293,7 +784,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-ondo-returnees-xenophobia-the-sending-state-pays"
@@ -309,7 +800,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-india-bank-strike-the-branch-as-public-service"
@@ -334,7 +825,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-akwa-ibom-abandoned-wells-a-liability-with-no-owner"
@@ -350,7 +841,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-kalshi-equity-perps-a-stock-without-the-stock-regulator"
@@ -366,7 +857,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-indonesia-captive-coal-the-battery-that-burns-coal"
@@ -382,7 +873,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-nhs-heat-cancellations-a-theatre-too-hot-to-operate"
@@ -398,7 +889,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-ai-disaster-forecasts-a-model-that-learned-from-physics"
@@ -414,7 +905,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-shopify-back-to-native-the-cross-platform-bet-reversed"
@@ -430,7 +921,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-russia-5g-a-network-your-iphone-cannot-join"
@@ -446,7 +937,7 @@
       "lastCovered": "2026-09-11T08:06:16.680Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-openai-unpublished-math-priority-held-by-the-lab"
@@ -462,7 +953,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-h1b-grace-period-a-layoff-that-is-also-a-deportation"
@@ -487,7 +978,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-russia-foreign-recruits-a-job-offer-that-ends-at-the-front"
@@ -512,7 +1003,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-moscow-embassy-guard-treason-a-plot-only-the-accuser-has-seen"
@@ -537,7 +1028,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-ali-al-taher-blast-a-demolition-measured-in-magnitude"
@@ -562,7 +1053,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-pereira-earthquake-a-census-that-skips-the-renters"
@@ -578,7 +1069,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-enflame-ipo-a-valuation-written-by-export-controls"
@@ -594,7 +1085,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-drc-cobalt-uranium-a-cargo-declared-by-its-main-metal"
@@ -610,7 +1101,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-vietnam-surplus-success-that-reads-as-transshipment"
@@ -626,7 +1117,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-unicef-climate-schools-the-school-year-as-a-casualty"
@@ -651,7 +1142,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-medulloblastoma-crep-a-tumour-that-needs-its-brake-off"
@@ -667,7 +1158,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-anthropic-threat-report-the-vendor-as-sole-witness"
@@ -692,7 +1183,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-california-ai-toy-ban-regulating-the-design-not-the-speech"
@@ -717,7 +1208,7 @@
       "lastCovered": "2026-09-11T04:05:41.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-11-shershen-sam-an-interceptor-supply-you-can-swap"
@@ -733,7 +1224,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-10-iris2-contracts-the-price-of-not-renting-starlink",
@@ -759,7 +1250,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-sudan-burhan-dialogue-a-guest-list-is-a-mandate"
@@ -775,7 +1266,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-pakistan-cec-consultation-the-referee-chosen-by-the-players"
@@ -791,7 +1282,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-uk-israel-arms-integration-a-supplier-you-cannot-suspend"
@@ -807,7 +1298,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-canada-ukraine-drone-deal-aid-that-counts-as-spending"
@@ -832,7 +1323,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-iran-household-debt-pressure-that-lands-on-the-kitchen"
@@ -848,7 +1339,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-spirit-data-google-bankruptcy-sells-what-vendors-made"
@@ -864,7 +1355,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-envision-venus-radar-a-pledge-is-not-an-instrument"
@@ -880,7 +1371,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-antibiotic-resistance-cell-wall-transport-the-supply-line"
@@ -896,7 +1387,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-heat-season-creep-a-protection-written-to-the-calendar"
@@ -912,7 +1403,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-treasury-scam-reports-a-network-seen-one-transfer-at-a-time"
@@ -928,7 +1419,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-linkedin-browsergate-standing-a-harm-you-cannot-see"
@@ -944,7 +1435,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-miami-767-overrun-the-seconds-after-touchdown"
@@ -961,451 +1452,6 @@
         "http://en.wikipedia.org/wiki/Boeing_767",
         "http://en.wikipedia.org/wiki/Airport"
       ]
-    },
-    {
-      "id": "trump-iran-war-end-date-the-election-calendar",
-      "label": "Trump's Iran war now has a midterm election problem",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-trump-iran-war-end-date-the-election-calendar"
-      ],
-      "eventUri": "eng-11996134",
-      "summary": "Trump now says the seven-month war with Iran will end 'immediately after' the November midterms, and blames Tehran for trying to sway the vote. Lead with the date: a US president has tied the end of a war to the US election calendar, not to any military or diplomatic condition. The mechanism: under the War Powers Resolution, Congress has the power to end hostilities, but seven months in it has not voted to, so the only deadline left is the one the president sets for himself. If the war can stop on a date of his choosing, the reason it continues until then is political. Who pays for those two months: Iranian civilians under strikes, Gulf migrant workers, Jordanian and Bahraini host communities, and drivers paying $105 oil. Report the exact quote, what Tehran has said in reply, the state of any talks, polling on the war, and whether Democrats or Republicans in Congress have moved on a war-powers vote. Do not repeat our 09-04 'small potatoes' naming piece; this is about the timetable. Regional carry: Al Jazeera (QA) and Dawn (PK). Feed note: politics multi-source floor not met — the other multi-source politics clusters were Thune/$5,000 payout (already ran as 'trump dividend') and the Jordan airbase damage (ran 09-10 08:00).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Iran–Iraq_War",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon"
-      ]
-    },
-    {
-      "id": "algeria-uae-rupture-an-encirclement-answered",
-      "label": "Algeria cuts diplomatic ties with UAE -- RT Africa",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-algeria-uae-rupture-an-encirclement-answered"
-      ],
-      "eventUri": "eng-11998299",
-      "summary": "Algeria has severed diplomatic relations with the United Arab Emirates, summoning the ambassador and giving him notice to leave, and accusing Abu Dhabi of 'hostile conduct' after repeated warnings. Lead with the break itself: two Arab, Muslim-majority states cutting ties is rare, and this one comes in the middle of a Gulf war. The mechanism: the UAE has built influence across North Africa and the Sahel with money, arms and ports, backing Haftar in Libya, the RSF in Sudan, and deepening ties with Morocco and Israel. Algeria sees each as encirclement. Report exactly what Algiers accuses the UAE of (media campaigns, Sahel/Mali, Western Sahara, Morocco-Israel normalisation), what the UAE says, and what it means for Emirati investment, flights and the Algerian community in the Gulf. Name who holds power: Tebboune and Mohamed bin Zayed. Discipline: RT is Russian state media; attribute it and confirm the Algerian foreign ministry's statement directly (APS). Feed note: no regional (Algerian, Arab or Gulf) outlet in today's feed carries this; feed-side gap.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Algeria",
-        "http://en.wikipedia.org/wiki/Diplomacy",
-        "http://en.wikipedia.org/wiki/Algiers",
-        "http://en.wikipedia.org/wiki/Abu_Dhabi",
-        "http://en.wikipedia.org/wiki/Abdelmadjid_Tebboune",
-        "http://en.wikipedia.org/wiki/Morocco",
-        "http://en.wikipedia.org/wiki/Israel"
-      ]
-    },
-    {
-      "id": "ebola-2026-china-the-donor-who-did-not-step-in",
-      "label": "Why Is China Less Active in the 2026 Ebola Epidemic?",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-ebola-2026-china-the-donor-who-did-not-step-in"
-      ],
-      "eventUri": null,
-      "summary": "In 2014 China sent labs, medical teams and aid to West Africa's Ebola outbreak. In 2026, with the US having dismantled USAID and cut its global-health work, China is richer and more powerful but doing less. Lead with that comparison: the gap the US left is not being filled. The mechanism: outbreak response depends on a few donors paying for surveillance, labs, contact tracing and vaccines. When the biggest one exits and the second declines to step in, the cost falls on the affected health systems and on WHO, which is short of money. Report where the 2026 epidemic is, the case and death counts, what China has actually given (money, teams, the Sierra Leone lab it built in 2014), what the US has cut, and who is paying now (WHO, Africa CDC, Gavi, the Gulf states). Who bears it: health workers and families in the affected countries. It fills an Africa/Asia gap with a global-health story, not a conflict one.",
-      "conceptUris": []
-    },
-    {
-      "id": "kazakhstan-senate-abolished-one-reading-for-a-treaty",
-      "label": "What Kazakhstan's New Unicameral Parliament Means for Its Foreign Policy",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-kazakhstan-senate-abolished-one-reading-for-a-treaty"
-      ],
-      "eventUri": null,
-      "summary": "Kazakhstan has abolished its Senate and now has a single-chamber parliament. Lead with what was removed: the upper chamber rarely blocked anything, but it was where treaties and foreign agreements got a second reading from people with diplomatic experience. The mechanism: a second chamber is a delay and a check; without it, ratification of treaties on oil, uranium, transit corridors and security moves faster and depends more on the presidency. Report when and how the change was made (referendum or constitutional amendment), how the new chamber is elected, who sat in the Senate (presidential appointees, regional representatives), and which pending agreements (Middle Corridor, Russian and Chinese pipeline deals, EU critical-minerals partnership) now go through one vote. Who holds power: President Tokayev. Structural why for our reader: Kazakhstan is an OIC state balancing Russia, China, the West and the Gulf, and fewer checks at home means that balance rests on one office. Feed note: no Central Asian regional outlet in today's feed; feed-side gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "oil-105-fed-hike-the-war-arrives-twice",
-      "label": "Oil jumps to $105, pushing up chances of a US interest rate increase",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice"
-      ],
-      "eventUri": "eng-11994260",
-      "summary": "Brent rose about 4% to $105 after the biggest jump in attacks on shipping since the Iran war began, and markets now price a higher chance that the Federal Reserve raises rates. Lead with the chain: attacks on tankers, then the oil price, then US rates. The mechanism: an oil shock raises US inflation, and if the Fed responds by tightening, the cost moves to every country that borrows in dollars or imports fuel. A stronger dollar makes oil dearer again in rupees, pounds and naira. So the war reaches Pakistan, Egypt, India and Kenya twice, once through the fuel bill and once through the interest rate. Report which attacks set off the move, futures-implied odds of a Fed hike, the US CPI data due, and the impact on import bills in named economies (mint for India). Do not repeat our South Africa GDP or Turkey forecast pieces; this is the Fed channel. Regional carry: Al Jazeera (QA). Feed note: economy multi-source floor not met — this was the only multi-source economy cluster in the feed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Brent_Crude",
-        "http://en.wikipedia.org/wiki/Barrel",
-        "http://en.wikipedia.org/wiki/United_States_dollar"
-      ]
-    },
-    {
-      "id": "mexicali-solar-subsidy-cooling-without-rationing",
-      "label": "Sun-captured city: Extreme heat and subsidised solar in Mexicali",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-mexicali-solar-subsidy-cooling-without-rationing"
-      ],
-      "eventUri": null,
-      "summary": "In Mexicali, one of Mexico's hottest cities, subsidised rooftop solar is being used to cut the power bills of poor households that depend on air conditioning to survive the summer. Lead with a household: the bill before and after, and the temperature outside. The mechanism: Mexico's electricity tariffs are already subsidised by the state utility CFE, but in extreme heat poor households still ration cooling to avoid crossing into higher tariff tiers, and that rationing is a health risk. Solar panels shift the subsidy from paying for power to paying for the means to make it. Report who funds the programme (federal, state, CFE), how many homes, the cost per home, the savings and the heat-health data. Fills the Latin America gap with a development-economics story rather than crime.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-nino-historic-odds-the-monsoon-it-weakens",
-      "label": "75pc chance of 'historic' El Nino this year: US agency",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-el-nino-historic-odds-the-monsoon-it-weakens"
-      ],
-      "eventUri": "eng-11998304",
-      "summary": "NOAA now gives a 75% chance that this year's El Niño reaches 'historic' strength. Lead with the number and what 'historic' means in measurement: the sea-surface temperature anomaly in the central Pacific (the Oceanic Niño Index) passing about +2°C, a level reached only in 1982-83, 1997-98 and 2015-16. The mechanism: El Niño moves the tropical Pacific's heat and rain east, which weakens the Indian and Indonesian monsoons, dries southern Africa and floods coastal Peru and Ecuador. Each earlier event left a known trail of drought, fires and food-price rises. Report NOAA's full forecast, the peak timing, and the expected effects on Pakistan, India, Indonesia and Malaysia (palm oil), and southern Africa's maize. Do not repeat our 09-07 Amazon drought and Panama Canal pieces; this is the upgrade and the Asia/Africa impact. Dawn (PK) is the outlet of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "four-color-theorem-new-proof-why-not-just-that",
-      "label": "The Four-Color Theorem Gets a Rare New Proof",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-four-color-theorem-new-proof-why-not-just-that"
-      ],
-      "eventUri": null,
-      "summary": "The four-colour theorem, proven in 1976 by Appel and Haken with a computer check of nearly 2,000 configurations, has a new proof. Lead with why that matters: the original was the first major theorem that no human could check by hand, and mathematicians have wanted a proof that explains why it is true, not just one that confirms it. The mechanism for our technical reader: the old method reduced every map to a finite set of 'unavoidable' configurations and showed each was 'reducible'. Say what the new proof does differently, whether it still needs a computer, and what new insight into graphs it gives. Name the mathematicians and their institutions. Do not tie this to the Navier-Stokes piece; it is about human-readable proof.",
-      "conceptUris": []
-    },
-    {
-      "id": "grb-220101a-one-burst-two-collapses",
-      "label": "Gamma ray burst may have been two supernovae in one | New Scientist",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-grb-220101a-one-burst-two-collapses"
-      ],
-      "eventUri": null,
-      "summary": "After four years of analysis, astronomers propose that GRB 220101A, a gamma-ray burst Swift detected on New Year's Day 2022, was a collapsing star that formed a neutron star which then collapsed again, two explosions in one event. Lead with the sequence. The mechanism: long gamma-ray bursts are usually explained by a single collapse into a black hole; a two-stage collapse would leave a signature in the light curve. Report what in the data supports the model, what alternative explanations remain, how far away the burst was (it was one of the most energetic ever recorded), and what observations could test it. Keep claims to what the paper shows.",
-      "conceptUris": []
-    },
-    {
-      "id": "autonomous-car-safety-data-the-baseline-is-the-claim",
-      "label": "Growing proof that autonomous cars save lives",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-autonomous-car-safety-data-the-baseline-is-the-claim"
-      ],
-      "eventUri": null,
-      "summary": "IEEE Spectrum reviews the growing crash data on driverless cars, and the evidence now suggests they cause fewer injury crashes than human drivers. Lead with the strongest number and its denominator: crashes per million miles, and how many miles the data covers. The mechanism for our technical reader: the comparison is only fair if the human baseline matches the robot's conditions (city streets, weather, time of day), and if crashes are reported the same way. Human crashes are under-reported; robotaxi crashes all go to NHTSA. Report which companies' data (Waymo, Zoox, Baidu Apollo), who did the analysis, how the baseline was built, and what types of crash the cars still get wrong. Second point: this is the evidence regulators will use to approve robotaxis in new cities, including Dubai, Abu Dhabi and Riyadh. Hacker News discussion (428 points) is the attention signal; cite IEEE Spectrum as the source.",
-      "conceptUris": []
-    },
-    {
-      "id": "wildberries-ddos-the-seller-pays-for-the-defence",
-      "label": "Russian e-commerce giant Wildberries says DDoS attack delayed payments to sellers",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-wildberries-ddos-the-seller-pays-for-the-defence"
-      ],
-      "eventUri": null,
-      "summary": "Wildberries, Russia's largest online marketplace, says a DDoS attack on the systems sellers use to track and withdraw earnings delayed their payments. Lead with who was hurt: the delay fell on the small sellers, not the platform. The mechanism: a DDoS floods a service with traffic; the damage here came from Wildberries' own defensive lockdown, which froze withdrawals. When one platform is the payment rail for hundreds of thousands of sellers, its security response becomes their cash-flow crisis. Report how long payments were delayed, how many sellers were affected, who claimed the attack (Ukrainian or pro-Ukrainian hacker groups have hit Russian platforms throughout the war), and Wildberries' merger with the Russ outdoor-advertising group. Structural why: Wildberries is a major employer and marketplace for sellers in Kazakhstan, Uzbekistan and Kyrgyzstan too.",
-      "conceptUris": []
-    },
-    {
-      "id": "mk38-mod4-drones-a-shot-that-costs-less-than-the-target",
-      "label": "Navy Destroyer Packs New 'Piggy-Backed' Point Defense System That Combines 30mm And .50 Cal Guns",
-      "firstSeen": "2026-09-10T17:04:12.522Z",
-      "lastCovered": "2026-09-10T17:04:12.522Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-mk38-mod4-drones-a-shot-that-costs-less-than-the-target"
-      ],
-      "eventUri": null,
-      "summary": "The US Navy has installed the Mk 38 Mod 4, a 30mm cannon with a .50-calibre gun mounted on top, on at least one destroyer, mainly to shoot down drones. Lead with the cost arithmetic: a Standard Missile interceptor costs $2m or more, a Houthi or Iranian one-way drone costs tens of thousands, and a gun round costs a few hundred dollars. The mechanism for our technical reader: missile defence against cheap drones loses on cost and on magazine depth, because a destroyer cannot reload its vertical launch cells at sea. Guns trade range for an almost unlimited number of shots. Report the gun's range and rate of fire, the ammunition (proximity-fused 30mm), how many ships will get it, and what the Red Sea and Hormuz campaigns showed about interceptor use. Discipline: TWZ is a specialist defence outlet; separate demonstrated capability from Navy claims.",
-      "conceptUris": []
-    },
-    {
-      "id": "mokha-falls-a-coastline-is-a-weapon",
-      "label": "Why fall of Yemen's historic coffee port Mokha matters | The National",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-mokha-falls-a-coastline-is-a-weapon"
-      ],
-      "eventUri": "eng-11998140",
-      "summary": "The Houthis have launched a major ground assault around Bab al-Mandab and taken Mokha, with hundreds dead. That changes the Red Sea war from missiles to territory. Lead with who now holds the coastline. A movement that controls the shore facing the strait no longer needs to hit a tanker to threaten one: it can hold shipping at risk with shore-based anti-ship missiles, radar and small boats. That makes the Red Sea route, which Saudi Arabia is now relying on for its oil exports because Hormuz is contested, a permanent risk rather than an occasional one. Do NOT repeat our 09-09 chokepoint-arithmetic piece (Yanbu, Ras Tanura, shares of world supply) or the 09-09 displacement piece. This entry is the ground war: which forces held Mokha (Saudi-backed government troops, the UAE-backed National Resistance / Tareq Saleh forces, or others), how the line broke, what the death toll is and who the dead are, and what Mokha's coffee-port history and fishing economy mean for the people living there now. Accountability: name who supplies both sides, and say what the Saudi-Houthi strike exchange has done to civilians along the coast. Regional carry: Dawn (PK) and The National (AE). This is the third entry on the Yemen/Red Sea arc; keep it on territory.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Mocha,_Yemen",
-        "http://en.wikipedia.org/wiki/Port"
-      ]
-    },
-    {
-      "id": "beihai-ship-fire-the-hot-work-permit",
-      "label": "China: Cargo ship fire kills at least 20",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-beihai-ship-fire-the-hot-work-permit"
-      ],
-      "eventUri": "eng-11998100",
-      "summary": "At least 20 people were killed and five are missing after a cargo ship caught fire while docked for repairs in Beihai, Guangxi. Lead with 'docked for repairs'. The dead were almost certainly shipyard workers, not crew at sea, and ship repair is where that happens: hot work (welding and cutting) inside enclosed holds and tanks that still hold fuel residue, paint solvents and gas. It is one of the most dangerous jobs in industry, and it is increasingly done by subcontracted labour. The mechanism: before any welding in a confined space, the space must be tested and certified 'gas-free', and a fire watch must be posted. When a fire kills 20 people in a repair berth, the question is whether that permit existed, who signed it, and how many workers were inside. Second point, the economic one: China does most of the world's shipbuilding and a growing share of its repair work, and it wins that work partly on cost, which comes from labour and subcontracting. Report the shipyard's name and owner, the vessel's name, flag and owner, how many of the dead were subcontractors, what Xinhua and the Guangxi authorities have said about the cause, and whether anyone has been detained. Check the location: Express puts it at Qingdao but DW and Xinhua say Beihai. Use what state media confirms. Name victims where reporting allows.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Cargo_ship",
-        "http://en.wikipedia.org/wiki/Qingdao",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Xinhua_News_Agency",
-        "http://en.wikipedia.org/wiki/Beihai",
-        "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Conflagration"
-      ]
-    },
-    {
-      "id": "turkey-mtp-forecast-cut-an-import-bill-as-inflation",
-      "label": "Turkey cuts growth and inflation forecasts as Gulf war weighs on economy",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-turkey-mtp-forecast-cut-an-import-bill-as-inflation"
-      ],
-      "eventUri": null,
-      "summary": "Türkiye has cut its growth forecast and raised (or pushed back) its inflation path in the new Medium-Term Programme, citing the Gulf war. Lead with the revised numbers, old against new. The mechanism: Türkiye imports almost all of its oil and gas, so a Gulf war reaches it as an energy import bill. That widens the current-account deficit, pressures the lira, and feeds inflation just as the central bank's disinflation programme since 2023 was starting to work. The central bank then has to choose between keeping rates high, which chokes growth, and cutting, which risks the lira. Second mechanism: the forecast is also a policy signal to foreign investors who returned for the carry trade, and a missed inflation target is what makes that money leave. Report the MTP's figures for GDP, CPI and the current account, the oil-price assumption behind them, what the central bank's rate path looks like, and who in Türkiye bears it: wage earners whose minimum-wage rise is set against the official inflation forecast. The source RSS item has no summary, so the writer must verify every figure against the MTP itself or Anadolu / Daily Sabah coverage. Regional carry: Salaam Gateway (AE); add Anadolu or Daily Sabah if found.",
-      "conceptUris": []
-    },
-    {
-      "id": "njeem-italy-icc-release-the-border-deal-as-impunity",
-      "label": "A Libyan General Accused of Crimes Against Humanity Was Arrested in Turin. Why Did Italy Let Him Go?",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-njeem-italy-icc-release-the-border-deal-as-impunity"
-      ],
-      "eventUri": null,
-      "summary": "Gen. Osama Njeem (Almasri) was wanted by the ICC for crimes against humanity at Mitiga prison in Tripoli, where detainees, many of them migrants intercepted at sea, were tortured, raped and extorted. Italy arrested him in Turin in January 2025 on the ICC warrant, then released him within days and flew him home on a state aircraft. Lead with the state flight. The mechanism: an ICC member state has a legal duty to arrest and surrender, but the Court has no police. Its warrants are only as strong as the member state holding the suspect. Italy's interest in Libya's coastguard and detention system, the arrangement that keeps migrants from reaching Italian shores, is what New Lines lays out as the reason he was released. So the migration deal and the impunity are the same policy. Accountability: name the ministers involved (Nordio, Piantedosi, Meloni), the procedural reason Italy gave, what the ICC said about Italy's non-compliance, and what Italian prosecutors and parliament have done since. Name the victims and witnesses where New Lines does. Structural why: the EU's externalised border runs through men like Njeem, and the people held at Mitiga are largely African and Muslim. No regional (Libyan or Arab) outlet in today's feed carries this; note as a feed gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "joburg-consulate-zimbabweans-eviction-without-a-court",
-      "label": "Pleas for help as 300 Zimbabweans stuck at Joburg consulate in wake of anti-immigrant protests",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-joburg-consulate-zimbabweans-eviction-without-a-court"
-      ],
-      "eventUri": null,
-      "summary": "About 300 Zimbabweans driven from their homes by the anti-immigrant 'March and March' movement are camped at their consulate in Johannesburg, waiting for a repatriation that has not come. Lead with Simpiwe Ndlovu, seven months pregnant, ordered out of her Hillbrow flat by a group of men while her landlord went along with it. The mechanism: the eviction was carried out by a vigilante group, not the state, and it worked because a landlord, a neighbour or an employer can end a migrant's housing without any legal process. Documentation, whether a permit or the expiring Zimbabwe Exemption Permit, gives no protection against a crowd. Second mechanism: the consulate is the only body left responsible for these people, and a sending state with little money cannot pay to bring its citizens home. That is the gap they are stuck in. Accountability: report what SAPS and the Home Affairs ministry have done about March and March, whether anyone has been arrested, what Harare's government says about repatriation, and what the UNHCR/IOM are doing. Tie to the ANC ballot-exclusion and pre-election politics only if the reporting does. This fills the Africa gap with displacement, not conflict.",
-      "conceptUris": []
-    },
-    {
-      "id": "bilal-ghauri-peca-remand-before-trial",
-      "label": "NCCIA handed journalist Bilal Ghauri's custody for another 2 days in Peca case",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-bilal-ghauri-peca-remand-before-trial"
-      ],
-      "eventUri": "eng-11988683",
-      "summary": "An Islamabad magistrate has extended journalist Bilal Ghauri's physical remand by two more days in a case brought by the National Cyber Crime Investigation Agency under the Prevention of Electronic Crimes Act. Lead with 'physical remand': a journalist is being held in police custody, not judicial custody, over something he published. The mechanism: the 2025 PECA amendments created the offence of spreading 'false' information likely to cause 'fear, panic or unrest', punishable by up to three years, and created the NCCIA to enforce it. The offence does not require proof of harm, and 'false' is decided by the agency that makes the arrest. So the law turns a disputed story into a criminal case, and remand becomes the punishment before any trial. Report exactly what Ghauri posted or reported, what the FIR alleges, what his lawyers and the PFUJ / journalist bodies say, and how many journalists have been booked under PECA since the amendment. Tie to our Islamabad containers piece only as context for the wider crackdown; the angle here is the law. Dawn (PK) is the regional outlet of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-aviation-emissions-the-technology-assumption-fails",
-      "label": "UK aviation emissions to be 50% higher than thought by 2050, government admits",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-uk-aviation-emissions-the-technology-assumption-fails"
-      ],
-      "eventUri": null,
-      "summary": "The UK government now expects aviation emissions in 2050 to be about 50% higher than its own previous projection. It has cut its assumptions for electric aircraft and sustainable aviation fuels (SAF), and it is doing this just before it approves airport expansion. Lead with the revision and its timing. The mechanism: the 'Jet Zero' strategy let passenger numbers keep growing on the assumption that technology would cut emissions per flight. If the technology is slower, the gap has to be closed by fewer flights, by carbon removals bought elsewhere, or by other sectors cutting more. Second mechanism: SAF made from waste oils and crops is limited by feedstock. There is not enough used cooking oil on earth to fuel aviation, and the rest competes with food and land, often in countries such as Indonesia and Malaysia. Report the old and new figures, which assumptions changed, what the Climate Change Committee has said, and which airport decisions (Heathrow's third runway, Gatwick, Luton) are pending.",
-      "conceptUris": []
-    },
-    {
-      "id": "plateau-diphtheria-a-vaccine-gap-counted-in-children",
-      "label": "Diphtheria deaths rise to 27 as suspected cases hit 303 in Plateau",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-plateau-diphtheria-a-vaccine-gap-counted-in-children"
-      ],
-      "eventUri": "eng-11998069",
-      "summary": "Suspected diphtheria cases in Plateau State, Nigeria, have reached 303, with 27 deaths. Lead with the case-fatality rate, about 9%. Diphtheria has been almost entirely preventable with a cheap vaccine for decades, so every one of these deaths marks a gap in routine immunisation. The mechanism: the toxin is neutralised by diphtheria antitoxin (DAT), but DAT is scarce worldwide, made by very few producers and often not stocked where outbreaks occur. That is why the death rate climbs once cases outpace supply. Second mechanism: outbreaks cluster in children who missed their three doses of the pentavalent vaccine. Nigeria has one of the largest numbers of 'zero-dose' children in the world, and in Plateau, insecurity and displacement disrupt clinic access. Report the ages of the victims, which LGAs (Jos North and others) are affected, vaccination coverage in the state, whether DAT is available, what NCDC and WHO have deployed, and how this compares with the 2023–24 Kano outbreak. Premium Times (NG) is the regional outlet of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "coral-probiotics-epigenome-a-treatment-that-reaches-the-genes",
-      "label": "Bacterial inoculation elicits changes to the coral epigenome",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-coral-probiotics-epigenome-a-treatment-that-reaches-the-genes"
-      ],
-      "eventUri": null,
-      "summary": "A Nature Communications study finds that inoculating corals with beneficial bacteria ('coral probiotics') changes the coral's epigenome, its DNA methylation, and not only its microbiome. Lead with that. It suggests a probiotic treatment could change how the coral's own genes are regulated, which is a possible route to heat tolerance that outlasts the treatment. The mechanism, stated carefully: methylation marks change which genes are expressed without changing the DNA sequence. The open questions are whether the changes improve survival under heat stress, how long they last, and whether they pass to the next generation. Report exactly what was measured and what was not. The author list (Villela, Cardoso, García, Cui, Delgadillo-Ordoñez) suggests the Peixoto lab at KAUST in Saudi Arabia; verify the affiliation, and if confirmed lead with Red Sea science. Red Sea corals are among the most heat-tolerant in the world, and this August tied the hottest month on record. Give the species, the bacteria used, the experimental design and the effect sizes.",
-      "conceptUris": []
-    },
-    {
-      "id": "solar-geoengineering-roadmap-who-decides-the-monsoon",
-      "label": "This road map could help us decide whether to deploy solar geoengineering",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-solar-geoengineering-roadmap-who-decides-the-monsoon"
-      ],
-      "eventUri": null,
-      "summary": "The San Francisco nonprofit Reflective has published a detailed road map of the experiments, observations and infrastructure it says are needed before anyone can decide whether to deploy stratospheric aerosol injection. Lead with the gap it lists: what we do not yet know about injecting sulphur dioxide into the stratosphere to reflect sunlight. The mechanism: the aerosols cool the planet within a year, but they do not remove any carbon, so stopping suddenly brings rapid 'termination shock' warming. They also shift rainfall patterns, and the models disagree most about the monsoons of South Asia and the Sahel. Second point, the accountability one: a single rich actor could deploy SAI, while the costs of changed rainfall land on countries that have no say. So who funds the research, and who sits on the governance of any decision, is the story. Report who funds Reflective, which experiments it proposes (outdoor or modelling), their cost and timeline, and what critics and Global South scientists, such as the DEGREES Initiative, say.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-earth-ai-fake-imagery-the-evidence-category",
-      "label": "Google Earth's AI experiment lasted 24 hours. The damage to trust will linger",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-google-earth-ai-fake-imagery-the-evidence-category"
-      ],
-      "eventUri": null,
-      "summary": "Google shipped a generative-AI feature in Google Earth that could produce realistic fake satellite imagery. It pulled the feature within 24 hours, during the Iran war. Lead with the 24 hours and what was made during them. The mechanism: satellite imagery is the evidence that open-source investigators, journalists and courts use to confirm strike damage, mass graves and troop movements, because it has been treated as hard to fake. Once a mainstream tool can generate convincing imagery, every real image can be denied as fake. The damage is to the whole category of evidence, not only to the images that were faked. Second mechanism: provenance, such as C2PA signing and the providers' own archives, is the defence, and most imagery that circulates in a war has no provenance attached. Report what the feature did, how it got through review, which fakes circulated (strike sites in Iran, the Gulf or Israel), who used them, and what Google has said. Structural why: Gaza, Sudan and Yemen documentation rests on the same imagery.",
-      "conceptUris": []
-    },
-    {
-      "id": "oz-ai-avatars-rural-care-a-replacement-priced-as-access",
-      "label": "Oz says 'AI-based avatars' can help rural communities. Some leaders disagree",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-oz-ai-avatars-rural-care-a-replacement-priced-as-access"
-      ],
-      "eventUri": null,
-      "summary": "CMS Administrator Mehmet Oz is promoting 'AI-based avatars' as a way to deliver care to rural communities, and rural health leaders are pushing back. Lead with who gets the avatar and who keeps the doctor. The mechanism: rural US hospitals are closing and losing obstetric units because Medicaid cuts and low patient numbers make them unprofitable. An AI front end is cheaper than staff, so it risks becoming a replacement for clinicians rather than an addition to them, in exactly the places with the fewest alternatives. Second mechanism, for our technical reader: the question is what the avatar is allowed to do. Triage, reminders and intake are one thing; diagnosis or prescribing are another. Also ask who is liable when it is wrong, and whether CMS will pay for it through the Rural Health Transformation fund. Report what Oz actually proposed, the funding involved, which vendors are in line, and what the rural leaders say. Structural why: the same pitch, an AI instead of the clinic you cannot staff, is being sold to health ministries in Pakistan, Nigeria and Indonesia.",
-      "conceptUris": []
-    },
-    {
-      "id": "geoscan-optical-navigation-when-jamming-stops-working",
-      "label": "System for controlling drones without satellite navigation unveiled in Russia",
-      "firstSeen": "2026-09-10T12:06:29.962Z",
-      "lastCovered": "2026-09-10T12:06:29.962Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-10-geoscan-optical-navigation-when-jamming-stops-working"
-      ],
-      "eventUri": null,
-      "summary": "Russian drone maker Geoscan has unveiled an optical navigation system for drones where satellite navigation is unavailable, and it won an 'Autonomous Navigation' trial category. Lead with why this matters now. GNSS jamming and spoofing are everywhere across Ukraine, Russia, the Baltic, the Gulf and the eastern Mediterranean, so a drone that needs GPS can be taken out without being shot at. The mechanism, for our technical reader: visual navigation matches a downward camera's view against stored maps or satellite imagery (terrain or scene matching), or tracks its own motion from frame to frame (visual odometry). It cannot be jammed, but it drifts, and it fails over water, snow, featureless desert or at night without thermal imaging. Second mechanism: once drones do not need GPS, jamming stops working as a defence, which shifts the burden back to physical interception. That is the arms race behind Ukraine's deep strikes and Russia's Shahed/Geran waves. Discipline: TASS is Russian state media and this is a company claim from a trial Geoscan won. Report what was demonstrated, under what conditions and with what accuracy, and separate that from the marketing. Note that Western and Ukrainian firms field similar systems.",
-      "conceptUris": []
     }
   ]
 }
