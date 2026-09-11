@@ -1,37 +1,36 @@
 {
-  "date": "2026-09-10",
+  "date": "2026-09-11",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 of 5 cycles completed, avg 10 published/cycle (64 yesterday)" },
-    "freshness": { "median": 0.3, "p90": 0.8, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 15, "tech": 15, "science": 13 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
+    "articles": { "value": 63, "detail": "5 of 5 cycles completed, avg 13 published/cycle (63 yesterday); metrics snapshot taken mid-cycle-5, which is why cycles.completed reads 4" },
+    "freshness": { "median": 0.3, "p90": 0.7, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 16, "tech": 14, "science": 11 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 23, "EU": 15, "ME": 11, "AS": 8, "AF": 5, "OC": 1 }
+      "breakdown": { "AM": 21, "EU": 14, "AS": 11, "ME": 10, "AF": 7, "OC": 0 }
     },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 14, "target": 20, "met": true },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 11, "target": 20, "met": true },
     "uniqueSources": 50,
     "duplicates": 0,
-    "avgCycleDuration": 1329
+    "avgCycleDuration": 1440
   },
-  "experiment": "Skipped — all four goals are met with margin, no active experiment was due for evaluation, and no noNewExperimentsUntil gate is set. The one queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the daily-tuning surface, so it stays queued.",
-  "weakestArea": "Top-source share is the metric closest to its limit: Dawn supplied 9 of 63 articles (14%), up from Al Jazeera's 7% lead yesterday, and three of today's Islamabad datelines (journalist detention, election commissioner, insect barcoding) come from it. Still 6 points under the 20% cap, and the other 49 sources hold at most 4 each, so this is worth watching rather than changing anything. Africa also halved, 10 to 5, all politics and health.",
+  "experiment": "Skipped — all four goals are met with margin, no experiment was active or due for evaluation, and no noNewExperimentsUntil gate is set. The one queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, outside the daily-tuning surface, so it stays queued.",
+  "weakestArea": "Region count is the narrowest margin: 5 against a target of 4, down from 6 yesterday because Oceania produced nothing at all. Every other goal clears by a wide gap — freshness 0.3 against 1.0, sci-tech 40% against 25%, multi-source 9 against 4, top source 11% against a 20% cap. Science also slipped 13 to 11 and multi-source 12 to 9, both still comfortably clear.",
   "watching": [
-    "The Iran/Gulf war cluster again spans categories — Iranian strikes on Jordan's Azraq base, Seoul weighing a Hormuz force, Bahrain naval drone defence, Iranian household borrowing, oil and Fed odds, Trump tying the war to the vote, and Mokha falling to the Houthis.",
-    "Three climate-extremes pieces landed on one day — August tying the heat record, a lengthening extreme-heat season, and El Niño nearing historic strength — distinct angles but one underlying story.",
-    "Europe recovered from 7 to 15 articles and now includes an EU economic thread (the EU's own Starlink) after yesterday's gap.",
-    "Science draws on nine distinct outlets for 13 articles, keeping the category off any single specialist source.",
-    "Freshness still rests on a thin base — 11 of 63 articles carry a measurable lag, down from 15 yesterday.",
-    "Yesterday's exact-title duplicate pairs remain live in content/articles/ (e.g. \"Heart Inflammation Bet Fails Again\", \"Experts Sell Their Judgment\"); no new collision was published today."
+    "The Red Sea took three separate articles in one day — Houthis seizing the island guarding Bab al-Mandab, the coast at Mocha, and Pakistan mediating the Saudi-Houthi rift — a single escalation now split across politics and economy.",
+    "The Nigeria-South Africa xenophobia thread produced two Nigerian datelines, Abuja's assembly boycott and Ondo's fund for returnees, and is the reason Africa recovered from 5 to 7.",
+    "BRICS opening in New Delhi drew three angles on one summit: the Iran war overshadowing it, Putin's line on troops, and India offering UPI to the bloc.",
+    "Freshness still rests on a thin base — only 12 of 63 articles carry a measurable publication lag.",
+    "Sourcing remains the weak RVS cluster at 40 (writing 88, coverage 85) on the 22:00 production score, unchanged in character since the 2026-05-16 finding that the feed's ~9 multi-source stories per cycle cap the published rate."
   ],
   "coverageGaps": [
-    "Oceania has a single article (Wellington rat poison) and there is no Pacific island coverage for a fourth consecutive day.",
-    "Latin America appears only as Argentina's inflation print and Mexicali solar cooling — no Brazil, Andean or Central American story.",
-    "Africa fell to 5 articles, and none is economy or tech; the continent's coverage is Algeria–UAE, Sudan, Libya, Zimbabwean migrants and a Nigerian diphtheria outbreak.",
-    "South and Southeast Asia beyond Pakistan is thin — one Indian trade story, one Adani financing, one Philippine ferry fire."
+    "Oceania is at zero for the first time in this run and has been at zero or one for five consecutive days; there is still no Pacific island coverage.",
+    "Latin America is three articles — Brazil's Flávio Bolsonaro probe, Colombian earthquake aid, and Mexicali-adjacent nothing today — with no Andean economy or Central American story.",
+    "Africa's seven are all politics or extractives; the continent has no tech or science dateline for a second day.",
+    "Southeast Asia appears only as Indonesian fires and Singapore data centres, with nothing from Vietnam, Thailand or the Philippines."
   ],
-  "context": "The experiment slot has been empty since 2026-05-26 and every goal has passed on consecutive audits, so parametric tuning has nothing to act on. The open structural work flagged yesterday is unchanged and needs an operator decision: the title-overlap dedup layer in scripts/lib/dedup.js is gated to niche-only sources, and scripts/validate-articles.js has no duplicate-title or duplicate-URL gate. Both files are outside the tuning surface."
+  "context": "The experiment slot has been empty since 2026-05-26 and every goal has now passed on consecutive audits, so the parametric levers have nothing to act on. The open structural work is unchanged and needs an operator decision rather than a tuning experiment: the title-overlap dedup layer in scripts/lib/dedup.js is still gated to niche-only sources, and scripts/validate-articles.js still has no duplicate-title or duplicate-URL gate. Both files sit outside the tuning surface."
 }
