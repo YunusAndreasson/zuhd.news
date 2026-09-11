@@ -2,13 +2,284 @@
   "version": 1,
   "stories": [
     {
+      "id": "h1b-grace-period-a-layoff-that-is-also-a-deportation",
+      "label": "Trump Administration Moves To End 60-Day H-1B Grace Period For Laid-Off Foreign Workers",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-h1b-grace-period-a-layoff-that-is-also-a-deportation"
+      ],
+      "eventUri": "eng-11999147",
+      "summary": "DHS proposes ending the up-to-60-day grace period that H-1B, O-1 and L-1 workers get after losing a job, so a layoff would require leaving the US almost immediately. Lead with the mechanism: the employer's decision to cut a worker now also decides the worker's legal status, which moves bargaining power further to the employer. Most affected are Indian professionals, who hold the large majority of H-1Bs. This follows the six-figure H-1B fee covered 2026-08-24 and, like that fee, it arrives by rulemaking rather than legislation. Multi-source, but both outlets are Indian; no US outlet in the cluster.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/H-1B_visa",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Homeland_Security",
+        "http://en.wikipedia.org/wiki/Travel_visa",
+        "http://en.wikipedia.org/wiki/Foreign_worker",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "russia-foreign-recruits-a-job-offer-that-ends-at-the-front",
+      "label": "Amnesty accuses Russia of trafficking foreigners to fight in Ukraine",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-russia-foreign-recruits-a-job-offer-that-ends-at-the-front"
+      ],
+      "eventUri": "eng-11998165",
+      "summary": "Amnesty says men from Brazil, Colombia, Sri Lanka and South Africa were lured to Russia with offers of well-paid civilian or non-combat jobs, then sent to the Ukrainian front, which Amnesty calls human trafficking. Lead with the bait-and-switch: a job contract turned into military service. The victims are Global South workers whose own states have little leverage to bring them back. Explain the recruitment pipeline (agents, contracts in Russian, confiscated passports if Amnesty documents them) and what their home governments have done so far.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Human_trafficking",
+        "http://en.wikipedia.org/wiki/Amnesty_International",
+        "http://en.wikipedia.org/wiki/Colombia",
+        "http://en.wikipedia.org/wiki/Sri_Lanka",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Moscow"
+      ]
+    },
+    {
+      "id": "moscow-embassy-guard-treason-a-plot-only-the-accuser-has-seen",
+      "label": "British embassy guard in Moscow accused of spying for Ukraine",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-moscow-embassy-guard-treason-a-plot-only-the-accuser-has-seen"
+      ],
+      "eventUri": "rus-2122489",
+      "summary": "The FSB arrested a former guard at the British Embassy in Moscow on treason charges. It says he gathered information on British diplomats so Ukraine's SBU could stage a terror attack on them and blame Russia. Everything rests on FSB assertions, with no public evidence, and sentiment divergence is high (0.56) across Russian, British, Indian and Turkish outlets. Lead with what is claimed versus what is shown. The structural point: the accusation targets British diplomats directly, and a treason charge against a local embassy employee gives Moscow both a pretext and a pressure lever. Anadolu gives a non-Western read.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Security_Service_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://ru.wikipedia.org/wiki/Федеральная_служба_безопасности_Российской_Федерации",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Federal_Security_Service"
+      ]
+    },
+    {
+      "id": "ali-al-taher-blast-a-demolition-measured-in-magnitude",
+      "label": "Israel destroys Hezbollah tunnel network in south Lebanon, triggering tremor",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-ali-al-taher-blast-a-demolition-measured-in-magnitude"
+      ],
+      "eventUri": "eng-11999797",
+      "summary": "Israel blew up tunnels under the Ali al-Taher ridge in southern Lebanon, and USGS recorded the blast as a magnitude-4.1 tremor. Lead with that number: the demolition was large enough to register on seismographs, a measure of how much Lebanese land is being destroyed during an occupation that keeps going. This advances the Ali al-Taher ridge story covered 2026-09-08 (terrain as leverage). Report what else sits on and near the ridge (villages, farmland) and the state of the ceasefire terms. Single source (AFP via SCMP). Lebanon is an OIC member; no regional outlet in the feed carried this event.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Southern_Lebanon",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Terrorism"
+      ]
+    },
+    {
+      "id": "pereira-earthquake-a-census-that-skips-the-renters",
+      "label": "'Pay-by-the-day' living in Pereira: The forgotten survivors of Colombia's earthquake",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-pereira-earthquake-a-census-that-skips-the-renters"
+      ],
+      "eventUri": null,
+      "summary": "In Pereira, earthquake survivors who rented rooms by the day are falling out of the relief system. Their housing left no lease or title in their name, so they struggle to be counted as victims and now face homelessness, overcrowded shelters and illness. Lead with the mechanism: aid is allocated by documented tenancy, and the poorest survivors had none. This fills the audit's Latin America gap (no Andean story in the last cycle). Say who runs the victim census and what it requires.",
+      "conceptUris": []
+    },
+    {
+      "id": "enflame-ipo-a-valuation-written-by-export-controls",
+      "label": "Enflame shares surge 200% in Shanghai debut as AI chip frenzy intensifies By Investing.com",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-enflame-ipo-a-valuation-written-by-export-controls"
+      ],
+      "eventUri": "eng-12000563",
+      "summary": "Tencent-backed AI chipmaker Enflame roughly tripled on its first day of trading in Shanghai. Lead with the 200% jump. The structural why: US export controls on Nvidia created a protected domestic market, and Beijing is steering capital into it through the STAR board. The question is whether the valuation prices in actual chip performance or just the policy guarantee of demand. Name Enflame's customers (Tencent) and what the IPO funds.",
+      "conceptUris": []
+    },
+    {
+      "id": "drc-cobalt-uranium-a-cargo-declared-by-its-main-metal",
+      "label": "DRC's cobalt exports contain unreported uranium—our study estimates the global nuclear risk",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-drc-cobalt-uranium-a-cargo-declared-by-its-main-metal"
+      ],
+      "eventUri": null,
+      "summary": "A study finds that cobalt concentrate exported from the Democratic Republic of Congo's Copperbelt carries uranium that no one declares, and estimates how much nuclear material leaves the country undeclared through the battery supply chain. Lead with the estimated tonnage. The mechanism: export paperwork and safeguards track the commodity being sold, not what rides along with it, so a battery-mineral trade doubles as an unmonitored uranium flow. Congolese mining communities carry the radiological exposure, while refiners (mostly in China) receive the material. This fills the audit's Africa-economy gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "vietnam-surplus-success-that-reads-as-transshipment",
+      "label": "Vietnam pays the price for its trade success",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-vietnam-surplus-success-that-reads-as-transshipment"
+      ],
+      "eventUri": null,
+      "summary": "Vietnam's record trade surplus with the US makes it a likely target for Washington's tariff and transshipment enforcement, while much of what it exports is assembled from Chinese inputs. Lead with the size of the surplus. The mechanism: Vietnam grew by absorbing supply chains that left China, so the more it succeeds, the more it looks to Washington like a pass-through for Chinese goods. Hanoi's balancing between Washington and Beijing is the stake. Southeast Asia is thin in recent coverage. No multi-source economy story was available this cycle; the only multi-source items tagged economy were a mislabelled espionage story and the already-covered Trump dividend.",
+      "conceptUris": []
+    },
+    {
+      "id": "unicef-climate-schools-the-school-year-as-a-casualty",
+      "label": "Climate hazards disrupted school for 1 in 10 students in 2025: UNICEF",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-unicef-climate-schools-the-school-year-as-a-casualty"
+      ],
+      "eventUri": "eng-11996886",
+      "summary": "UNICEF data from 106 countries shows more than 171 million students, about 1 in 10 worldwide, lost school time to heatwaves, floods, storms, drought and wildfire in 2025. Lead with the 171 million. Show where the losses concentrate (Pakistan and South Asia among the worst hit), and explain that school closures in heat are a policy choice made for lack of cooled, flood-proof buildings. Keep this separate from yesterday's heat-record pieces: the subject is lost learning, not temperature.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/UNICEF",
+        "http://en.wikipedia.org/wiki/Heat_wave",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/Storm",
+        "http://en.wikipedia.org/wiki/Drought",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Wildfire"
+      ]
+    },
+    {
+      "id": "medulloblastoma-crep-a-tumour-that-needs-its-brake-off",
+      "label": "CReP-mediated control of eIF2α phosphorylation is a critical node in MYC-driven medulloblastoma",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-medulloblastoma-crep-a-tumour-that-needs-its-brake-off"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Communications study finds that MYC-driven medulloblastoma, the most aggressive subgroup of the most common malignant childhood brain tumour, depends on the phosphatase regulator CReP (PPP1R15B) to keep eIF2α phosphorylation, the cell's stress brake on protein synthesis, under control. Lead with the dependency: a tumour driven by MYC's demand for protein needs that brake held off, so removing CReP turns MYC's own overdrive against the tumour. Make clear this is preclinical, and say whether existing integrated-stress-response drugs could reach the target.",
+      "conceptUris": []
+    },
+    {
+      "id": "anthropic-threat-report-the-vendor-as-sole-witness",
+      "label": "Anthropic blocks 'malicious use' of AI that could develop biological weapons",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-anthropic-threat-report-the-vendor-as-sole-witness"
+      ],
+      "eventUri": "eng-11999682",
+      "summary": "Anthropic's threat report says it disrupted attempts to use Claude for work that could support biological and conventional weapons development, a Russia-linked cyber-espionage campaign, and an Iranian propaganda operation. Lead with the bioweapons attempts and what 'disrupted' actually meant (bans, classifiers, reporting to authorities). The structural point: the company is both the only witness to this misuse and the only party grading its own safeguards, and there is no external auditor. This is a distinct event from the 09-05 and 09-09 Anthropic stories (IPO lockup, researcher resignation).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Biological_agent",
+        "http://en.wikipedia.org/wiki/Surveillance",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/Biology",
+        "http://en.wikipedia.org/wiki/Cyberattack",
+        "http://en.wikipedia.org/wiki/Chikungunya",
+        "http://en.wikipedia.org/wiki/Pathogen"
+      ]
+    },
+    {
+      "id": "california-ai-toy-ban-regulating-the-design-not-the-speech",
+      "label": "California enacts new curbs on social media for children",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-california-ai-toy-ban-regulating-the-design-not-the-speech"
+      ],
+      "eventUri": "eng-12000032",
+      "summary": "Governor Newsom signed two laws: one bars exposing under-16s to behaviourally addictive social-media features, the other bans toys containing AI companion chatbots. Lead with the toy ban, a first-of-its-kind prohibition on a product category rather than a feature. The mechanism: regulating design (infinite scroll, streaks, companion bots) instead of content, which is how the law tries to get past First Amendment challenges. California sets de facto national standards, so name the industry groups likely to sue and when the laws take effect.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gavin_Newsom",
+        "http://en.wikipedia.org/wiki/California",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Chatbot",
+        "http://en.wikipedia.org/wiki/Social_media",
+        "http://en.wikipedia.org/wiki/Governor_of_California",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Algorithm"
+      ]
+    },
+    {
+      "id": "shershen-sam-an-interceptor-supply-you-can-swap",
+      "label": "Ukraine's New Shershen SAM Can Fire A Wild Mix Of Adapted Air-To-Air Missiles",
+      "firstSeen": "2026-09-11T04:05:41.086Z",
+      "lastCovered": "2026-09-11T04:05:41.086Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-11-shershen-sam-an-interceptor-supply-you-can-swap"
+      ],
+      "eventUri": null,
+      "summary": "Ukraine's new Shershen ground-based air-defence system fires air-to-air missiles adapted from several families, using an open launcher-and-fire-control architecture instead of one missile tied to one launcher. Lead with the mix-and-match design. The mechanism: when Patriot and NASAMS interceptors are rationed by foreign suppliers, the scarce resource is integration, not missiles, and an open architecture lets Kyiv use whatever stock arrives. Contrast with the closed, vendor-locked systems it replaces.",
+      "conceptUris": []
+    },
+    {
       "id": "iris2-contracts-the-price-of-not-renting-starlink",
       "label": "Aerospacelab, Thales Alenia Space Secure €5.4 Billion in IRIS2 Contracts",
       "firstSeen": "2026-09-10T17:04:12.522Z",
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-09-10-iris2-contracts-the-price-of-not-renting-starlink",
@@ -34,7 +305,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-sudan-burhan-dialogue-a-guest-list-is-a-mandate"
@@ -50,7 +321,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-pakistan-cec-consultation-the-referee-chosen-by-the-players"
@@ -66,7 +337,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-uk-israel-arms-integration-a-supplier-you-cannot-suspend"
@@ -82,7 +353,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-canada-ukraine-drone-deal-aid-that-counts-as-spending"
@@ -107,7 +378,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-iran-household-debt-pressure-that-lands-on-the-kitchen"
@@ -123,7 +394,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-spirit-data-google-bankruptcy-sells-what-vendors-made"
@@ -139,7 +410,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-envision-venus-radar-a-pledge-is-not-an-instrument"
@@ -155,7 +426,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-antibiotic-resistance-cell-wall-transport-the-supply-line"
@@ -171,7 +442,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-heat-season-creep-a-protection-written-to-the-calendar"
@@ -187,7 +458,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-treasury-scam-reports-a-network-seen-one-transfer-at-a-time"
@@ -203,7 +474,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-linkedin-browsergate-standing-a-harm-you-cannot-see"
@@ -219,7 +490,7 @@
       "lastCovered": "2026-09-10T22:05:06.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-10-miami-767-overrun-the-seconds-after-touchdown"
@@ -244,7 +515,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-trump-iran-war-end-date-the-election-calendar"
@@ -269,7 +540,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-algeria-uae-rupture-an-encirclement-answered"
@@ -294,7 +565,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-ebola-2026-china-the-donor-who-did-not-step-in"
@@ -310,7 +581,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-kazakhstan-senate-abolished-one-reading-for-a-treaty"
@@ -326,7 +597,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-oil-105-fed-hike-the-war-arrives-twice"
@@ -351,7 +622,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-mexicali-solar-subsidy-cooling-without-rationing"
@@ -367,7 +638,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-el-nino-historic-odds-the-monsoon-it-weakens"
@@ -383,7 +654,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-four-color-theorem-new-proof-why-not-just-that"
@@ -399,7 +670,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-grb-220101a-one-burst-two-collapses"
@@ -415,7 +686,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-autonomous-car-safety-data-the-baseline-is-the-claim"
@@ -431,7 +702,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-wildberries-ddos-the-seller-pays-for-the-defence"
@@ -447,7 +718,7 @@
       "lastCovered": "2026-09-10T17:04:12.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-10-mk38-mod4-drones-a-shot-that-costs-less-than-the-target"
@@ -463,7 +734,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-mokha-falls-a-coastline-is-a-weapon"
@@ -488,7 +759,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-beihai-ship-fire-the-hot-work-permit"
@@ -513,7 +784,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-turkey-mtp-forecast-cut-an-import-bill-as-inflation"
@@ -529,7 +800,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-njeem-italy-icc-release-the-border-deal-as-impunity"
@@ -545,7 +816,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-joburg-consulate-zimbabweans-eviction-without-a-court"
@@ -561,7 +832,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-bilal-ghauri-peca-remand-before-trial"
@@ -577,7 +848,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-uk-aviation-emissions-the-technology-assumption-fails"
@@ -593,7 +864,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-plateau-diphtheria-a-vaccine-gap-counted-in-children"
@@ -609,7 +880,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-coral-probiotics-epigenome-a-treatment-that-reaches-the-genes"
@@ -625,7 +896,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-solar-geoengineering-roadmap-who-decides-the-monsoon"
@@ -641,7 +912,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-google-earth-ai-fake-imagery-the-evidence-category"
@@ -657,7 +928,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-oz-ai-avatars-rural-care-a-replacement-priced-as-access"
@@ -673,7 +944,7 @@
       "lastCovered": "2026-09-10T12:06:29.962Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-10-geoscan-optical-navigation-when-jamming-stops-working"
@@ -689,7 +960,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-idlib-ordnance-warehouse-the-clearance-that-killed"
@@ -714,7 +985,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-jordan-f15s-damaged-an-apron-is-a-target"
@@ -739,7 +1010,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-seoul-hormuz-deployment-a-vote-not-a-courtesy"
@@ -755,7 +1026,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-ecuador-us-vessels-presence-without-a-base"
@@ -780,7 +1051,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-portsmouth-hotel-protest-a-target-chosen-by-appearance"
@@ -796,7 +1067,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-india-brics-deficit-a-bloc-is-not-a-balance-of-payments"
@@ -821,7 +1092,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-russia-migrant-fees-legal-status-as-a-subscription"
@@ -837,7 +1108,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-sgx-perpetuals-leverage-cleared-offshore"
@@ -853,7 +1124,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-pakistan-insect-barcoding-the-library-is-the-capacity"
@@ -869,7 +1140,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-hong-kong-child-suicide-predictive-is-not-causal"
@@ -894,7 +1165,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-seattle-surveillance-the-ordinance-and-the-database"
@@ -910,7 +1181,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-hermeus-ramjet-test-time-is-the-bottleneck"
@@ -926,7 +1197,7 @@
       "lastCovered": "2026-09-10T08:10:29.790Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-10-hyimpulse-saxavord-hosting-a-launch-is-not-launching"
@@ -942,7 +1213,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-mount-hermon-visit-a-line-moved-by-presence"
@@ -967,7 +1238,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-makkah-pact-trigger-who-decides-the-condition-is-met"
@@ -992,7 +1263,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-palawan-ferry-fire-the-manifest-nobody-can-check"
@@ -1017,7 +1288,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-sweden-election-muslims-as-actors-not-subject-matter"
@@ -1033,7 +1304,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-pcc-fto-listing-a-label-that-carries-powers"
@@ -1049,7 +1320,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-us-canada-tariffs-who-actually-pays-the-crossing"
@@ -1074,7 +1345,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-trump-dividend-a-transfer-that-has-to-be-borrowed"
@@ -1099,7 +1370,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-adani-airports-a-monopoly-priced-per-passenger"
@@ -1123,7 +1394,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-august-record-the-spike-and-the-line-underneath"
@@ -1139,7 +1410,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-1080-rebound-the-interval-is-the-measurement"
@@ -1155,7 +1426,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-community-notes-latam-a-bridging-algorithm-needs-a-crowd"
@@ -1179,7 +1450,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-cisa-rebuild-an-information-broker-made-of-staff"
@@ -1195,7 +1466,7 @@
       "lastCovered": "2026-09-10T04:11:10.715Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-10-uk-space-strategy-assured-access-is-not-sovereign-launch"
@@ -1203,245 +1474,6 @@
       "eventUri": null,
       "summary": "The UK's new Space Strategy quietly finishes a substitution that has been under way for a year: 'sovereign launch capability' has become 'assured access to space', and the strategy names Germany and other allies as the people who will do the launching. Lead with the two phrases side by side, because the swap is the policy. The mechanism our reader should carry is what sovereign launch means and why states pay for it: a satellite you cannot put in orbit yourself is a capability someone else can withhold — for imaging, navigation, encrypted communications and early warning — and the withholding does not require an embargo, only a scheduling decision. 'Assured access' is a purchasing arrangement that manages that risk rather than removing it, and its assurance is exactly as strong as the alliance behind it on the day you need a launch. Second mechanism, and the accountability question European Spaceflight is asking: the government has not said what happens to the unallocated European Launcher Challenge money, so report the figure, who was competing for it, and what the British launch companies and the Shetland and Sutherland spaceports do now. Structural why for our reader: this is the same calculation Turkiye, Saudi Arabia, the UAE, Indonesia and Pakistan are making about launch, chip fabrication and compute — build the capability at national scale and overpay, or buy assurance and accept the dependency. Britain, a G7 economy with a space industry and its own spaceports, has just chosen to buy. Report the strategy's actual commitments, the budget lines, and the response from UK Space Agency contractors.",
       "conceptUris": []
-    },
-    {
-      "id": "iaea-iran-unsc-referral-a-file-that-changes-rooms",
-      "label": "IAEA board resolves to report Iran to Security Council over nuclear programme",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-iaea-iran-unsc-referral-a-file-that-changes-rooms"
-      ],
-      "eventUri": "eng-11992878",
-      "summary": "The IAEA Board of Governors has referred Iran to the UN Security Council for non-compliance with the NPT — the first such referral in twenty years, and the last one preceded the sanctions architecture that has shaped Iranian life ever since. Lead with the referral and the twenty-year gap, not with the rhetoric around it. The mechanism our reader should carry is what a referral actually does: the Board is a technical body of 35 states whose finding is a legal trigger, and once the file sits with the Security Council the question stops being about centrifuges and becomes about which permanent member will veto what — so the vote count on the resolution, and which states abstained, is the real information. Second mechanism, and the part Western coverage skips: Iran's argument, made by deputy foreign minister Kazem Gharibabadi, is that its facilities were bombed and that safeguards obligations cannot be enforced against a state whose inspected sites were destroyed by an inspecting party's ally — report that argument on its merits and report what the IAEA says in reply. Note the cluster's own title mismatch: the BBC headline in this cluster is about the closure of the Syria file, which is a separate and much smaller item; the Iran referral is the story. Who is affected: 90 million Iranians for whom every previous turn of this ratchet arrived as medicine that could not be imported and aircraft that could not be maintained. Discipline: Mehr is Iranian state media, attribute it as such; sentiment divergence on this cluster is 0.71, the widest in the feed, so the desks genuinely disagree — say who reads it how. Regional carry is Al Jazeera (QA), TRT (TR) and Mehr (IR), so the OIC requirement is met.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
-        "http://en.wikipedia.org/wiki/United_Nations_Security_Council",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Vienna",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Syria"
-      ]
-    },
-    {
-      "id": "pisa-scores-a-ranking-that-cannot-explain-itself",
-      "label": "'Wake-up call': Aussie student scores hit record low",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-pisa-scores-a-ranking-that-cannot-explain-itself"
-      ],
-      "eventUri": "por-1325955",
-      "summary": "A new PISA round has landed and the story is not Australia's record low on its own — it is the direction of travel. Lead with the pairing the feed supplies and Western coverage does not: Australian scores fell to their worst on record while the Philippines, one of the poorest school systems in the assessment, improved, and Filipino teachers' own union says the gain was paid for out of teachers' and parents' pockets rather than out of any budget. The mechanism our reader should carry is what PISA measures and what it cannot: it is a sample-based test of 15-year-olds in reading, mathematics and science, scaled so that a national average is comparable across countries and years, and it is therefore very good at ranking and very bad at explaining — the OECD supplies the number, and every education ministry supplies its own causal story to go with it. Australia's ministry blames classroom disruption and phones; the Alliance of Concerned Teachers in Manila says the socioeconomic conditions of learners are what the score is actually tracking, and the research broadly agrees with them. Second mechanism, and the accountability question: a single comparable number across systems is an enormously powerful policy instrument, which is why it gets reached for to justify reforms it cannot support. Who is affected: our reader's own children — PISA scores are what ministries in Malaysia, Indonesia, the Gulf and Turkey cite when they restructure a curriculum. Give the actual score movements, the sample sizes, and the OECD's own confidence intervals, and say plainly which changes are within the margin of error.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Programme_for_International_Student_Assessment",
-        "http://en.wikipedia.org/wiki/OECD",
-        "http://en.wikipedia.org/wiki/Mathematics",
-        "http://en.wikipedia.org/wiki/Education",
-        "http://en.wikipedia.org/wiki/Natural_science",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Germany"
-      ]
-    },
-    {
-      "id": "ukraine-arctic-drone-strike-range-as-the-finding",
-      "label": "Ukraine Carried Out Its Deepest Drone Strike On Russia Ever",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-ukraine-arctic-drone-strike-range-as-the-finding"
-      ],
-      "eventUri": null,
-      "summary": "A Ukrainian drone hit a gas processing plant 1,700 miles from the border, in Russia's Arctic, which is the furthest any Ukrainian strike has reached. Lead with the distance, because range is the finding: 1,700 miles removes the assumption that depth equals safety, and it means no Russian energy installation is now out of reach of a weapon that costs a fraction of what defending against it costs. The mechanism our reader should carry is the economics of that asymmetry — a long-range one-way drone is cheap, slow and hard to intercept efficiently, so an interceptor costing many times more must be positioned everywhere the drone might go; the defender pays by area, the attacker pays by unit. Second mechanism, and the reason this is not only a Ukraine story: the target was energy processing, which continues the doctrine we reported at Novorossiysk yesterday and which the US is running against Kharg and the Houthis against Saudi terminals — three theatres converging on cargo and processing as the target of choice. Do not re-report the Novorossiysk strike; this is about reach. Who bears it: read alongside Brent above $100, because every successful strike on Russian or Gulf energy infrastructure arrives in Karachi, Dhaka and Cairo as a fuel price, not as a headline. Discipline: TWZ is a specialist defence outlet and the damage assessment rests on imagery and Ukrainian claims — state clearly what is confirmed, what Russian authorities say, and whether anyone was killed.",
-      "conceptUris": []
-    },
-    {
-      "id": "islamabad-containers-protest-policing-by-seizure",
-      "label": "Goods transport owners demand release of containers seized by Islamabad police",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-islamabad-containers-protest-policing-by-seizure"
-      ],
-      "eventUri": null,
-      "summary": "Islamabad police have impounded goods containers ahead of a PTI long march at the end of the month, and the people demanding them back are not politicians — they are the transporters whose trucks and cargo are sitting in a police yard. Lead with them, because the container is the story: Pakistan's standard method of blocking a protest is to weld shipping containers across the capital's roads, and the containers are commandeered from private hauliers who are not compensated, not charged with anything, and not told when they will get their property back. The mechanism our reader should carry is the cost transfer — a state that wants to shut a city can do it without passing a law or declaring an emergency, simply by requisitioning private assets, so the price of suppressing a protest is paid by small logistics operators and by every importer whose cargo is inside. Second mechanism: blocking the capital's arteries also halts commercial freight through it, so the measure taxes an economy already under an IMF programme. Accountability: name the ministry, the police authority that ordered the seizure, how many containers, whose they are, and what legal instrument is claimed to authorise it — and what the Islamabad High Court has previously ruled about exactly this practice. Structural why: this is protest policing by property seizure, and it is quieter and cheaper than arrests, which is precisely why it recurs. Dawn (PK) is the regional outlet of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "yemen-displacement-the-war-s-instrument-not-its-side-effect",
-      "label": "Nearly 20,000 displaced in Yemen as Saudi-Ansarallah conflict intensifies",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-yemen-displacement-the-war-s-instrument-not-its-side-effect"
-      ],
-      "eventUri": null,
-      "summary": "Nearly 20,000 Yemenis have been displaced as fighting between Saudi-aligned forces and Ansarallah intensifies, and almost no one has reported it. Write only the Yemen item from this dispatch — the source is a daily digest, so take the Yemen section, verify its figures against the underlying UN or IOM displacement reporting it cites, and attribute precisely; do not carry the digest's other items. Lead with the 20,000 and with where they went, because displacement in Yemen is not a single flight — it is the fourth or fifth move for many of these families since 2015, into governorates already hosting more displaced people than residents, in a country where the food pipeline was cut back this year along with Sudan's. The mechanism our reader should carry is why a Gulf war reopens a Yemeni front: Ansarallah's strikes on Saudi Red Sea terminals, which we reported this week, invite a ground response, and the response lands on civilians in Marib, al-Jawf and Hodeidah rather than on the men who fired. Second mechanism: displacement is the war's principal instrument in Yemen, not its side effect — controlling who can live where decides who controls the territory afterwards. Accountability: name which forces advanced where, who supplies them, and what the humanitarian agencies say they can and cannot fund. Zulm has named victims: give numbers, districts and, where the reporting allows, names. FEED NOTE: no Yemeni, Gulf or wider Arab outlet in today's feed carries this displacement at all — the only source is a US investigative outlet. That is a feed-side gap on an OIC-region story and should be audited; the OIC regional-carry requirement cannot be met from this feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-africa-gdp-the-oil-price-arrives-as-a-quarter",
-      "label": "We're still standing — SA's GDP contracted, but this does not a recession make",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-south-africa-gdp-the-oil-price-arrives-as-a-quarter"
-      ],
-      "eventUri": null,
-      "summary": "South Africa's economy contracted in the quarter that the Middle East war peaked, and the transmission line runs straight through the oil price. Lead with the contraction figure and the specific channel: South Africa imports crude, refines little of it domestically since the refinery closures, and prices fuel through a regulated formula that passes the import cost to every household and every truck within weeks — so an April-to-June oil shock 7,000km away shows up as a Q2 GDP number in Pretoria. The mechanism our reader should carry is why one contracting quarter is not a recession: the technical definition requires two consecutive quarters, and the distinction matters because it is what ratings agencies and the bond market price, which in turn sets what the state pays to borrow and therefore what is left for anything else. Second mechanism, and the structural why: this is the standard shape of the commodity-importing middle-income economy — Egypt, Pakistan, Kenya and Bangladesh all sit on the same line, where a war none of them is party to arrives as a currency slide, a fuel price and a widening current-account deficit, and the only available response is monetary tightening that suppresses the domestic growth they need. Fills the Africa-economy gap the audit flagged: Africa's recent coverage here has been conflict and crime only. Report the sector breakdown — which industries contracted, which held — the fixed-investment number, and what the Reserve Bank has actually said about the next rate decision.",
-      "conceptUris": []
-    },
-    {
-      "id": "thai-china-rail-transfer-which-tier-was-actually-sold",
-      "label": "'Basic' Chinese knowledge sharing dims Thai rail job prospects",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-thai-china-rail-transfer-which-tier-was-actually-sold"
-      ],
-      "eventUri": null,
-      "summary": "Thailand agreed to a Chinese-built high-speed railway partly on the promise of technology transfer, and Thai engineers and academics now say what they received was basic — operating manuals and maintenance procedure, not design capability. Lead with that gap between what was promised and what arrived, because it is the central question of every infrastructure deal our reader's country has signed. The mechanism to carry: technology transfer is not a single thing, and the difference between tiers decides everything — training to operate a system leaves the buyer dependent on the seller for every upgrade and spare part for forty years; training to maintain it reduces the bill; training to design it creates a domestic industry, and it is the tier that is almost never actually transferred, because it is the seller's entire competitive advantage. A contract that says 'technology transfer' without specifying the tier has promised nothing enforceable. Second mechanism, and the accountability question: the real cost of the railway is not the construction price but the lifetime dependency, and that liability sits in an annex no parliament debates. Structural why for our reader: Indonesia's Jakarta-Bandung line, Pakistan's ML-1, Nigeria's Lagos-Kano and Egypt's Chinese-built lines were all sold on the same promise, and Thailand is the first case where local engineers have said publicly what they got. Report the specific contract language, who was trained in what and for how long, how many of the promised skilled jobs materialised, and what the Chinese contractor says in reply.",
-      "conceptUris": []
-    },
-    {
-      "id": "sodium-batteries-escaping-a-mineral-not-a-supplier",
-      "label": "Sodium batteries are coming to Europe",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-sodium-batteries-escaping-a-mineral-not-a-supplier"
-      ],
-      "eventUri": null,
-      "summary": "Sodium-ion batteries are entering the European market as the answer to critical-mineral dependence, and the manufacturers with a commanding lead in them are Chinese. Lead with that irony, because it is the mechanism: sodium chemistry was pursued precisely to escape lithium, cobalt and nickel — minerals whose mining and refining are concentrated in a handful of countries — and the escape route has been built by the same industry that dominates the thing being escaped. The chemistry our reader should carry, stated plainly: sodium sits directly below lithium in the periodic table and behaves similarly in a cell, it is effectively unlimited and can be won from seawater or common salt deposits, but the ion is larger and heavier, so the cell stores less energy per kilogram — which makes it poor for long-range cars and very good for grid storage, backup power and cheap two- and three-wheelers, where weight does not matter and price does. Second mechanism, and the structural why: refining and cell manufacturing, not the raw resource, are where the value and the leverage sit — this is exactly the lesson of cobalt in the DRC and of lithium in Chile and Zimbabwe, where the mineral leaves and the industry does not. For our reader the practical stake is grid storage in Nigeria, Pakistan, Indonesia and Egypt, where an unreliable grid and cheap stationary batteries are a far better match than in Europe. Report the actual energy densities, the cost per kilowatt-hour against lithium iron phosphate, which European plants are being built, and who owns the patents.",
-      "conceptUris": []
-    },
-    {
-      "id": "lassa-fever-readiness-a-deadline-not-a-surprise",
-      "label": "Lassa fever: NCDC identifies preparedness gaps, unveils readiness plan ahead of peak season",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-lassa-fever-readiness-a-deadline-not-a-surprise"
-      ],
-      "eventUri": "eng-11996485",
-      "summary": "Nigeria's disease control agency has published, before the outbreak rather than during it, the specific gaps in its own readiness for the Lassa fever season that begins in the dry months. Lead with the inversion: an agency naming its own weaknesses ahead of the curve is the rarest thing in outbreak reporting, and the newsworthy part is which gaps it admits to — laboratory turnaround, treatment-centre beds, ribavirin stocks, case-management training, or the sheer number of states with no diagnostic capacity at all. The mechanism our reader should carry is why Lassa is seasonal and therefore forecastable: it is a rodent-borne arenavirus carried by the multimammate rat, which moves into homes and food stores as the dry season concentrates it, so the epidemic curve is driven by an ecological calendar and the response window is known months in advance — the failure, when it comes, is never a surprise, it is a procurement deadline that was missed. Second mechanism, and the accountability line: Lassa kills a substantial share of the hospitalised cases and disproportionately kills health workers, because early Lassa looks exactly like malaria and the isolation decision is made before the test comes back. Structural why: this is one of the WHO's priority pathogens with no licensed vaccine, and the reason there is none is that the market is West African — the same logic that left Ebola without a vaccine until it reached a capital city. Give the NCDC's own numbers: last season's cases and deaths, the case fatality rate, turnaround times, how many treatment centres exist and where.",
-      "conceptUris": []
-    },
-    {
-      "id": "gondwana-supercontinent-mountains-that-fed-an-ocean",
-      "label": "The Remnants of a Lost 'Supercontinent' Just Rewrote the History of Life on Earth",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-gondwana-supercontinent-mountains-that-fed-an-ocean"
-      ],
-      "eventUri": null,
-      "summary": "New work finds that Gondwana — the ancient landmass that included what is now Africa, Arabia, India, South America, Australia and Antarctica — was large enough to qualify as a full supercontinent, and that reclassification bears directly on the Cambrian explosion, the moment complex animal life diversified. Lead with the causal claim rather than the label: assembling a supercontinent means colliding continental plates, which raises mountains, and eroding new mountains washes calcium, phosphorus and other nutrients into shallow seas at a rate the ocean had never seen — so the argument is that plate tectonics set the table for the diversification of animals. The mechanism our reader should carry is that this is a claim about deep coupling between the solid Earth and the biosphere, and the evidence for it is not fossils but geochemistry: isotope ratios and detrital zircon ages in rocks that let researchers date and locate collisions half a billion years old. Second point, and the honest one: reclassifying Gondwana as a supercontinent is a threshold judgement about size and continuity, so report what criterion the team applied and which specialists dispute it. Structural why, and why this belongs on a global desk rather than a Western one: the rock record that carries this evidence sits in Oman, Namibia, India and Brazil, and the field seasons that produced it depended on those countries' geological surveys. Name the study, the journal, the authors and the specific measurements, and say plainly what remains contested.",
-      "conceptUris": []
-    },
-    {
-      "id": "iphone-duo-a-ceiling-the-second-hand-market-descends-from",
-      "label": "Apple's long-rumored foldable becomes reality with the $2,000 iPhone Duo",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-iphone-duo-a-ceiling-the-second-hand-market-descends-from"
-      ],
-      "eventUri": "eng-11995528",
-      "summary": "Apple has shipped a foldable, the iPhone Duo, at $2,000 — years after Samsung, Huawei and Honor made the category ordinary in Asia. Lead with the price and the lateness together, because that pairing is the whole story: Apple did not invent this category, it waited until the hinge and the crease were solved by others and then priced the result at roughly the annual income of a large share of the world. The mechanism our reader should carry is what a $2,000 phone does to the second-hand market that most of the world actually buys in — flagship prices set the ceiling that used and refurbished prices descend from, so an Apple price rise propagates through Karachi's Saddar, Lagos's Computer Village and Jakarta's resellers for years afterwards. Second mechanism, for our technical reader: the engineering constraint on a folding display is the crease and the hinge cycle count, and the interesting specifications are therefore the hinge rating, the display substrate and how the battery volume was recovered — not the camera. Third, and the one worth naming: the foldable is being sold as an AI device, which is a claim about Siri that Apple has made and missed before; report what is actually shipping versus what is promised for a later release. Consolidate the whole event into this one entry — the cluster carries Al Jazeera, TRT and The National alongside the US coverage, and Hacker News ran it at 659 points, so treat the developer reaction as part of the reporting. Do not write a product review; write who this is priced for and who it is not.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/IPhone",
-        "http://en.wikipedia.org/wiki/Apple_Inc.",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Smartphone",
-        "http://en.wikipedia.org/wiki/Electric_battery",
-        "http://en.wikipedia.org/wiki/Siri",
-        "http://en.wikipedia.org/wiki/Samsung"
-      ]
-    },
-    {
-      "id": "automattic-leave-three-hats-one-person",
-      "label": "Automattic CEO Matt Mullenweg Put on 'Leave of Absence'",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-automattic-leave-three-hats-one-person"
-      ],
-      "eventUri": null,
-      "summary": "Automattic's board has put Matt Mullenweg on leave, and he announced it himself in a company Slack channel by accusing the board of conspiring behind his back. Lead with why a private company's boardroom fight is a public-infrastructure story: Mullenweg is co-founder of WordPress, which runs a very large share of all websites, and he simultaneously controls the commercial company Automattic, the WordPress Foundation and the wordpress.org distribution point that every one of those sites updates from. The mechanism our reader should carry is the governance flaw that concentration creates — an open-source project's licence guarantees the code is free, but it guarantees nothing about the servers that ship it or the trademark that names it, and when one person holds all three, a personal dispute becomes an availability question for millions of sites that never signed anything with him. That is not hypothetical: the 2024 WP Engine fight demonstrated the plugin repository could be altered unilaterally. Second mechanism, and the practical part: a board can remove a CEO but cannot easily remove a foundation trustee or a domain owner, so ask precisely which of the three hats this leave of absence touches. Who is affected: the enormous number of small businesses, newsrooms and NGOs across South Asia, Africa and the Middle East running on WordPress precisely because it was the free, self-hostable option — they carry the risk of this governance and have no vote in it. Report the board's statement, Mullenweg's own words, and what has actually changed about who controls wordpress.org.",
-      "conceptUris": []
-    },
-    {
-      "id": "sanders-superintelligence-ban-a-penalty-that-cannot-be-budgeted",
-      "label": "'Corporate Death Penalty': Bernie Sanders Backs Permanent Ban On Superintelligent AI",
-      "firstSeen": "2026-09-09T22:09:39.170Z",
-      "lastCovered": "2026-09-09T22:09:39.170Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-09-sanders-superintelligence-ban-a-penalty-that-cannot-be-budgeted"
-      ],
-      "eventUri": "spa-4334679",
-      "summary": "A sitting US senator has pledged federal legislation to permanently ban artificial superintelligence and pause advanced development, with revocation of a corporate charter — the 'corporate death penalty' — as the enforcement mechanism. Lead with the enforcement instrument rather than the ban, because that is the novel part: fines are priced in as a cost of business by companies with these balance sheets, whereas dissolving a corporation is the one penalty that cannot be budgeted for, and it has almost never been used against a large American firm. The mechanism our reader should carry is why a permanent ban is close to unenforceable as drafted: 'superintelligence' has no technical definition that a statute can test, model weights cross borders as files, and a US-only prohibition relocates the work to jurisdictions that will compete to host it — so the bill's real function is to force a definition into law, and what that definition ends up saying matters more than whether the ban passes. Continue the arc we ran this week: this follows the resignation of a researcher who left Anthropic and OpenAI over exactly this, and it is the first time that exit has produced a legislative vehicle. Accountability: name what the bill actually covers, its cosponsors and its realistic path, and get the labs' response. Structural why for our reader: a US ban would not stop the technology, it would relocate the compute — and the Gulf, Malaysia and Indonesia are already bidding for those data centres, which is the same story as the sovereign-compute deals we have been tracking. Discipline: this is a pledge and a press event, not a passed law; report it as such, and note News18 is the only carry in the feed despite 527 outlets on the wider cluster.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Superintelligence",
-        "http://en.wikipedia.org/wiki/Technology",
-        "http://en.wikipedia.org/wiki/Research"
-      ]
     }
   ]
 }
