@@ -1584,8 +1584,123 @@
         "2026-09-10-uk-israel-arms-integration-a-supplier-you-cannot-suspend"
       ],
       "generatedAt": "2026-09-10T22:23:21.951Z"
+    },
+    "poly-fed-rate-hike-by-september-2026-meeting": {
+      "standingFingerprint": "f9e7683c9f1105f7",
+      "recentFingerprint": "e3a6eed702d61061",
+      "standing": "A Polymarket contract that pays out if the Federal Reserve raises its policy rate at its September 2026 meeting. A hike lifts US borrowing costs, from mortgages to the dollar debt of emerging economies.",
+      "recent": "At Jackson Hole, Warsh said the Fed will have \"work to do\" if inflation doesn't fade. An oil shock then turned bets on a cut into bets on a hike, and a payroll surge added to them. When Houthis captured Yemen's port of Mocha on Thursday, oil jumped again and hike bets rose with it.",
+      "citations": [
+        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice",
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut",
+        "2026-08-28-the-independence-trade-the-speech-is-the-instrument"
+      ],
+      "generatedAt": "2026-09-11T08:20:42.725Z"
+    },
+    "poly-will-crude-oil-reach-a-new-all-time-high-by-dece": {
+      "standingFingerprint": "bf42150fb66dddef",
+      "recentFingerprint": "bf2f5bed1466c380",
+      "standing": "A Polymarket contract that pays out if crude oil trades above its all-time record price before the deadline. Its price is what traders will stake on a supply shock severe enough to break that record.",
+      "recent": "Houthis captured Yemen's port of Mocha on Thursday, putting the group in control of a harbour beside one of the busiest tanker lanes, and oil jumped the same day. The same shock lifted the Fed odds too: a dearer barrel feeds inflation, so the war reached both the fuel price and the rate path at once.",
+      "citations": [
+        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice"
+      ],
+      "generatedAt": "2026-09-11T08:21:07.199Z"
+    },
+    "poly-strait-of-hormuz-traffic-returns-to-normal-by-oc": {
+      "standingFingerprint": "e264b0f7d038053f",
+      "recentFingerprint": "594a94c8d1308e8b",
+      "standing": "A Polymarket contract that pays out if shipping through the Strait of Hormuz returns to normal before its deadline. About a fifth of the world's seaborne oil passes the strait, so the price is a bet on the Gulf's main export route reopening.",
+      "recent": "Hostilities resumed when the US struck Iran for the first time in a month: a supertanker hit mines in the Strait of Hormuz, three tankers turned back, the US struck Iranian tankers, and Iran's Rezaei threatened a Gulf exclusion zone. Trade between the Emirates and Oman jumped 175% as cargo went overland around the strait.",
+      "citations": [
+        "2026-09-06-hormuz-tankers-turn-back-war-risk-insurance-transmission",
+        "2026-09-08-us-strikes-iranian-tankers-kharg-jask-escalation-ladder",
+        "2026-09-08-iran-maritime-exclusion-zone-threat-war-risk-premiums-gulf",
+        "2026-09-09-uae-oman-land-trade-the-bypass-and-its-ceiling"
+      ],
+      "generatedAt": "2026-09-11T08:21:29.755Z"
+    },
+    "wiki-united-kingdom": {
+      "standingFingerprint": "2000248a6e9f397d",
+      "recentFingerprint": "6609470617e4b871",
+      "standing": "Daily reads of the English Wikipedia article on the United Kingdom, the union of England, Scotland, Wales and Northern Ireland. Its baseline is high, so only news that reaches readers well beyond Britain moves it.",
+      "recent": "The UK sanctioned Israeli settlements as entities rather than settlers, a step no G7 state had taken, and Israel shut the British consulate in Jerusalem that served Palestinians. In Portsmouth, masked crowds blocked migrant buses after 140 asylum seekers landed from Normandy, and protesters later mistook Pakistan's youth cricketers for migrants.",
+      "citations": [
+        "2026-09-08-uk-settlement-sanctions-entities-not-individuals",
+        "2026-09-08-israel-closes-british-consulate-settlement-goods-ban",
+        "2026-09-07-portsmouth-dockside-obstruction-asylum-processing",
+        "2026-09-10-portsmouth-hotel-protest-a-target-chosen-by-appearance"
+      ],
+      "generatedAt": "2026-09-11T08:21:54.918Z"
+    },
+    "stocks:SHEL": {
+      "standingFingerprint": "2e3e4969b8d55dd9",
+      "recentFingerprint": "5701fd1b39c9fae2",
+      "standing": "Shell plc's New York-listed shares. The London-based major is Europe's largest oil company and the world's biggest LNG trader, so its price tracks crude, gas prices and refining margins.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-11T08:22:12.303Z"
+    },
+    "stocks:TSLA": {
+      "standingFingerprint": "43d91d2c9f7ab956",
+      "recentFingerprint": "bf03fec31ffcccdc",
+      "standing": "Shares of Tesla, the US electric-car maker listed on Nasdaq, whose valuation rests less on cars sold than on bets about self-driving taxis, robots and batteries. It is heavy enough to move the S&P 500 and Nasdaq-100.",
+      "recent": "Tesla's Cybercab began carrying paying passengers in Austin, with no steering wheel and no regulatory approval. A day later, federal regulators opened a safety probe into 1,000 Cybercabs, and the shares dropped 6% as the launch was labelled a bust.",
+      "citations": [
+        "2026-09-04-deploying-first-turns-approval-into-removal",
+        "2026-09-04-tesla-cybercab-nhtsa-probe-self-certification"
+      ],
+      "generatedAt": "2026-09-11T08:22:31.627Z"
+    },
+    "stocks:NVDA": {
+      "standingFingerprint": "b5a84ec6b53402d5",
+      "recentFingerprint": "8a3445751c65d2cd",
+      "standing": "Nvidia designs the graphics processors that train and run most large AI models. Its share price has become the market's running bet on how much the big cloud companies will spend on AI.",
+      "recent": "Nvidia spent the fortnight paying for reach beyond its own chips: $3.5 billion in bonds for an option on a MediaTek stake, which sent MediaTek's shares up 10%, then $12.9 billion for the AI platform Hugging Face. Kalshi now wants to list round-the-clock perpetual futures on the stock, regulated by the CFTC rather than the SEC.",
+      "citations": [
+        "2026-09-03-the-neutral-hub-was-a-line-item-on-a-chip-balance-sheet",
+        "2026-09-01-nvidia-mediatek-convertible-ecosystem-option",
+        "2026-09-11-kalshi-equity-perps-a-stock-without-the-stock-regulator"
+      ],
+      "generatedAt": "2026-09-11T08:22:53.471Z"
+    },
+    "stocks:AAPL": {
+      "standingFingerprint": "608b54142577880b",
+      "recentFingerprint": "0a02388b05b82d6f",
+      "standing": "Shares of Apple, the Cupertino maker of the iPhone and Mac, traded on Nasdaq. It is one of the largest companies by market value, so it weighs heavily in the S&P 500 and Nasdaq-100, and its manufacturing runs largely through China.",
+      "recent": "The climb came as enterprise AI buyers emptied Apple's Mac inventory, and John Ternus took over from Cook as CEO. The launch event then brought the Duo, a $1,999 passport-shaped foldable, which Samsung met with a roasting spree, and left the standard iPhone 18 out of the lineup.",
+      "citations": [
+        "2026-09-01-unified-memory-local-inference-demand-shock",
+        "2026-09-01-apple-succession-chairman-pay-authority-transfer",
+        "2026-09-09-iphone-duo-a-ceiling-the-second-hand-market-descends-from"
+      ],
+      "generatedAt": "2026-09-11T08:23:12.290Z"
+    },
+    "stocks:ERIC": {
+      "standingFingerprint": "bd5c9df231aae093",
+      "recentFingerprint": "96882223e5630e88",
+      "standing": "US-listed shares of Sweden's Ericsson, which builds the radio and core equipment mobile networks run on. With Nokia and Huawei it supplies most of the world's 5G gear, so it trades on how much operators spend.",
+      "recent": "The only related story of the fortnight was Moscow's launch of a Russian 5G network that no iPhone can join, and nothing in it accounts for the share price.",
+      "citations": [],
+      "generatedAt": "2026-09-11T08:23:28.215Z"
+    },
+    "stocks:NOK": {
+      "standingFingerprint": "c355001e7b3e0d9f",
+      "recentFingerprint": "e50ba565ead885ec",
+      "standing": "Nokia's shares as traded in New York, priced in dollars. The Finnish company sells the radio, fibre and core equipment that mobile operators build their networks from, so its price follows what carriers spend on 5G.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-11T08:23:42.067Z"
+    },
+    "stocks:SHOP": {
+      "standingFingerprint": "f77717f47d35f16e",
+      "recentFingerprint": "3feac7f22dd17a70",
+      "standing": "Shares of the Ottawa-based company whose software runs online stores for millions of independent merchants. Most of its revenue is a cut of what those shops sell, so the stock trades as a read on online spending outside Amazon.",
+      "recent": "The fortnight's one Shopify story was about engineering, not earnings: the company is rewriting its apps in Swift and Kotlin, dropping React Native, the Meta framework it championed from 2020. Nothing in it touches merchant sales or revenue, and it does not explain the fall in the shares.",
+      "citations": [],
+      "generatedAt": "2026-09-11T08:24:00.112Z"
     }
   },
-  "generatedAt": "2026-09-10T22:23:21.952Z",
+  "generatedAt": "2026-09-11T08:24:00.112Z",
   "windowDays": 14
 }
