@@ -132,6 +132,7 @@ test('an exchange signal carries who the index belongs to, with or without a com
     // reads: `indexName` is the ticker on the card, `name` the exchange under it.
     writeFileSync(join(root,'content/.markets.json'), JSON.stringify({exchanges:[{
       id:'bist', name:'Borsa İstanbul', indexName:'BIST 100', city:'Istanbul', iso2:'TR',
+      lat:41.0082, lng:28.9784,
       blurb:'Türkiye’s only exchange.', sourceLabel:'Yahoo Finance · IST', topicTags:[],
       series:{values:m.values, dates:m.dates, completed:m.completed},
     }]}))
@@ -148,10 +149,37 @@ test('an exchange signal carries who the index belongs to, with or without a com
     assert.equal(signal.exchange, 'Borsa İstanbul')
     assert.equal(signal.city, 'Istanbul')
     assert.equal(signal.country, 'TR')
+    // Carried from the catalog so the app's globe can place the exchange —
+    // 25 of the 30 cities are missing from shared/globe/coordinates.ts, so a
+    // client-side city lookup would miss most of them.
+    assert.equal(signal.lat, 41.0082)
+    assert.equal(signal.lng, 28.9784)
     assert.equal(signal.commentary, '')
     assert.match(signal.standing, /Borsa İstanbul/)
   } finally { rmSync(root,{recursive:true,force:true}) }
 })
+test('an index with no exchange publishes no coordinates — absent, never 0,0', async () => {
+  // The two indices that arrive from the trends feed rather than the exchange
+  // catalog have no place. `0, 0` is the Gulf of Guinea, and a mark there
+  // would be the app asserting a location the data does not have.
+  const root = mkdtempSync(join(tmpdir(), 'zuhd-market-noplace-'))
+  try {
+    mkdirSync(join(root,'content/trends'), {recursive:true})
+    writeFileSync(join(root,'content/.markets.json'), JSON.stringify({exchanges:[]}))
+    writeFileSync(join(root,'content/trends/2026-09-04.json'), JSON.stringify({indicators:[market([2])]}))
+    writeFileSync(join(root,'content/.indicator-dispatch.json'), JSON.stringify({items:{}}))
+    const out = await runMarketSignals({root, now:NOW, suppliedArticles:[],
+      callModel:()=>{throw Error('must not run')}})
+    // Guard against a vacuous pass: the assertion below means nothing if no
+    // signal was published at all.
+    assert.equal(out.published.length, 1)
+    const signal = out.published[0]
+    assert.equal(signal.id, 'nasdaq100')
+    assert.equal('lat' in signal, false)
+    assert.equal('lng' in signal, false)
+  } finally { rmSync(root,{recursive:true,force:true}) }
+})
+
 test('an exchange with no dispatch entry falls back to its catalog blurb', () => {
   const [signal] = normalizeMarkets({exchanges:[{id:'tase', name:'Tel Aviv Stock Exchange',
     indexName:'TA-125', city:'Tel Aviv', iso2:'IL', blurb:'Trades Sunday to Thursday.'}]}, {})

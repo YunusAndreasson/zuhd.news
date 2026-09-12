@@ -166,6 +166,14 @@ INPUT:\n${JSON.stringify(bundle)}`)
       revision: `${signal.eventId}:${entry.revision}`, sourceLabel: signal.sourceLabel,
       exchange: signal.exchange || '', city: signal.city || '', country: signal.country || '',
       standing: signal.standing || '',
+      // Where the exchange is, for the app's globe. Spread rather than
+      // defaulted, like the selection step that produced it: the indices from
+      // the trends feed have no place, and `0, 0` is the Gulf of Guinea.
+      // This serializer copies fields by name, so a field the selection
+      // carries but this line omits never reaches the payload — which is
+      // exactly how the coordinates were first lost.
+      ...(Number.isFinite(signal.lat) && Number.isFinite(signal.lng)
+        ? { lat: signal.lat, lng: signal.lng } : {}),
       asOf: signal.asOf, pattern, series: signal.series, facts,
       commentary: comment?.text || '', citations: comment?.citations || [] })
   }

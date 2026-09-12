@@ -37,7 +37,7 @@ const sd = (v) => {
 export function normalizeMarkets(markets, trends, dispatch = {}) {
   const exchanges = (markets.exchanges || []).filter((m) => m.indexName !== 'S&P 500').map((m) => ({
     id: `mkt:${m.id}`, title: m.indexName, sourceLabel: m.sourceLabel,
-    exchange: m.name, city: m.city, country: m.iso2,
+    exchange: m.name, city: m.city, country: m.iso2, lat: m.lat, lng: m.lng,
     standing: dispatch[`mkt:${m.id}`]?.standing || m.blurb || '',
     topicTags: m.topicTags || [], countryTags: m.countryTags || [],
     values: m.series?.values, dates: m.series?.dates,
@@ -154,6 +154,10 @@ export function selectMarketSignals(raw, previous = {}, now = Date.now(), articl
     const news = articles.filter((a) => a.entityIds?.includes(m.id) && a.date >= pattern.startDate && a.date <= pattern.endDate)
     const signal = { id: m.id, eventId, title: m.title, sourceLabel: m.sourceLabel || 'Market data',
       exchange: m.exchange || '', city: m.city || '', country: m.country || '', standing: m.standing || '',
+      // Spread rather than `|| 0`: the two indices that arrive from the trends
+      // feed have no exchange and therefore no place, and `0, 0` is the Gulf of
+      // Guinea. Absent is the honest value and the validator accepts it.
+      ...(Number.isFinite(m.lat) && Number.isFinite(m.lng) ? { lat: m.lat, lng: m.lng } : {}),
       asOf, pattern, series: { values: m.values, dates: m.dates }, directNews: news.map((a) => a.slug),
       topicTags: m.topicTags || [], countryTags: m.countryTags || [] }
     state[m.id] = { signal, lastDate: asOf, misses: 0 }

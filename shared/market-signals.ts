@@ -14,6 +14,14 @@ export interface MarketSignal {
   city?: string;
   country?: string;
   standing?: string;
+  /** Where the exchange is, straight from the same catalog `exchange`/`city`
+   *  come from. Carried rather than joined client-side because 25 of the 30
+   *  exchange cities are not in `shared/globe/coordinates.ts` — a `city`
+   *  lookup would miss most of them, and a second copy of the catalog is the
+   *  kind of duplication that parts silently. Optional on the same terms as
+   *  the three above: absent on an older snapshot, never wrong. */
+  lat?: number;
+  lng?: number;
   sourceLabel: string;
   asOf: string;
   pattern: {
@@ -48,6 +56,10 @@ export function isMarketSignalsSnapshot(v: unknown): v is MarketSignalsSnapshot 
       typeof s.commentary !== 'string' || !date(s.asOf) || !object(s.pattern) || !object(s.series)) return false;
     // Additive since 2026-09-05, so absent is valid and a wrong *type* is not.
     if (!['exchange','city','country','standing'].every((k) => s[k] === undefined || typeof s[k] === 'string')) return false;
+    // Same terms for the coordinates, plus a range check: a bad pair puts a
+    // mark somewhere on the globe rather than failing, which is worse.
+    if (s.lat !== undefined && !(typeof s.lat === 'number' && Number.isFinite(s.lat) && Math.abs(s.lat) <= 90)) return false;
+    if (s.lng !== undefined && !(typeof s.lng === 'number' && Number.isFinite(s.lng) && Math.abs(s.lng) <= 180)) return false;
     const p = s.pattern, series = s.series;
     const dates = series.dates;
     if (!['sharp','weekly','monthly','streak','reversal','divergence'].includes(String(p.kind)) ||
