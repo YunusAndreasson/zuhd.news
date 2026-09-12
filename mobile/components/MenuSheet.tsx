@@ -782,7 +782,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.md,
     borderRadius: RADIUS.floating,
     // Outlined, not filled: a destructive control should read as deliberate
-    // rather than inviting. Matches the BottomActionBar pill's hairline edge.
+    // rather than inviting. Matches the hairline edge the map's `zoom` and
+    // `listen` pills use.
     borderWidth: StyleSheet.hairlineWidth,
   },
 });

@@ -11,34 +11,55 @@ import type {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Platform, Share, StyleSheet, View } from 'react-native';
-import PagerView, {
-  type PagerViewOnPageScrollEvent,
-  type PagerViewOnPageSelectedEvent,
-} from 'react-native-pager-view';
-import { useSharedValue } from 'react-native-reanimated';
+import {
+  type LayoutChangeEvent,
+  Platform,
+  Share,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import { BriefingChrome, type BriefingChromeRef } from '../components/BriefingChrome';
+import type { ArticleListRef } from '../components/ArticleList';
+import {
+  BriefingChrome,
+  type BriefingChromeRef,
+  type BriefingStatus,
+} from '../components/BriefingChrome';
+import { CardSheet } from '../components/CardSheet';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
-import { CardPager, type CardPagerRef } from '../components/cards/CardPager';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import type { TapResult } from '../components/globe/MiniGlobe';
+import { MiniGlobe, type MiniGlobeRef, type TapResult } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
+import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
+import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
+import { IndicatorStrip } from '../components/map/IndicatorStrip';
+import { MapFeed } from '../components/map/MapFeed';
+import { MapHeader } from '../components/map/MapHeader';
+import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
+import { SheetMasthead } from '../components/map/SheetMasthead';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
-import { SectionBar } from '../components/SectionBar';
+import { ReaderLayer } from '../components/reader/ReaderLayer';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, SECTIONS } from '../constants/theme';
+import { CATEGORIES, EASING, EDITORIAL, SPACING } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -55,37 +76,39 @@ import { articleTime, formatExactTime, formatTimeAgo } from '../lib/article-util
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
-import { buildSwipeSections } from '../lib/cards/sections';
+import { buildRankedInstruments } from '../lib/cards/sections';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
+import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
+import { useOpenLink } from '../lib/open-link';
+import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 
-/** `news` is leftmost because it is the section with something new to say five
- *  times a day. The rail's order is the app's claim about what matters, and it
- *  is written down once — in `SECTIONS`. */
-const NEWS = SECTIONS.indexOf('news');
+/**
+ * One screen.
+ *
+ * There used to be four, on a horizontal rail: a river of stories and three
+ * decks of data cards, with a globe living behind the first as a backdrop.
+ * That shape asked the reader to hold a taxonomy — to remember that chokepoint
+ * traffic was filed under "shipping" — and it left the app's best surface,
+ * a live earth with every story and hazard already plotted on it, looking like
+ * wallpaper. It was tappable the whole time. Nothing said so.
+ *
+ * What replaced it:
+ *
+ *   **the strip**   three gauges, ranked, above the earth
+ *   **the earth**   one canvas, mounted here, turned to whatever matters most
+ *   **the sheet**   the app's only list — what is flashing, then the day
+ *   **the reader**  a layer over all of it, not a place you navigate to
+ *
+ * The globe is owned by this component rather than by the news column, and
+ * that is the load-bearing part: the map and the reader are two layers over
+ * one canvas, so opening a story is the earth continuing to turn rather than
+ * a cut to a second earth.
+ */
 
-/** One pager per instrument column, indexed the same way as `SECTIONS` so a
- *  section's slot in the progress array, its ref and its label all agree. */
-const cardPagerRefs = SECTIONS.map(() => createRef<CardPagerRef>());
 const newsListRef = createRef<ArticleListRef>();
-
-/** Empty-state copy per data section. A deck is empty when the available
- *  snapshots did not produce a valid card, which is a quiet degrade. */
-const EMPTY_COPY: Record<string, { message: string; hint: string }> = {
-  markets: {
-    message: 'no market graphs yet',
-    hint: 'No market series with a current explanation are available',
-  },
-  shipping: {
-    message: 'no shipping graphs yet',
-    hint: 'No chokepoint series with a current explanation are available',
-  },
-  outlook: {
-    message: 'no outlook graphs yet',
-    hint: 'No probability series with a current explanation are available',
-  },
-};
 
 // Give the reader time to arrive at the caught-up boundary and read it before
 // anything asks them for something. The delay used to be measured against the
@@ -100,10 +123,29 @@ const PRIMER_PRESENT_DELAY_MS = 2600;
 // heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
 const HEATMAP_SPLASH_GRACE_MS = 1200;
 
+/** The sheet at rest, as a fraction of the window. Enough for the masthead,
+ *  the block and a couple of stories — the day's shape without covering the
+ *  earth it sits under. */
+const SHEET_PEEK_FRACTION = 0.38;
+/** Expanded. Not 1: a strip of globe stays visible so the sheet reads as
+ *  sitting over the map rather than having replaced it. */
+const SHEET_FULL_FRACTION = 0.88;
+
+/** How much of the band between the strip and the sheet the disc fills. */
+const GLOBE_FILL = 0.46;
+
+/** Flight time when the camera is sent somewhere — a strip slot, a NOW row,
+ *  the day's opening view. Long enough to read as travel over a surface. */
+const FLY_MS = 700;
+
 export default function HomeScreen() {
-  const { colors } = useTheme();
+  const { colors, textVariants } = useTheme();
   const { preferences } = usePreferences();
-  const { current: currentZoom, toggle: handleZoomToggle } = useZoomCycle();
+  const reduceMotion = useReducedMotion();
+  const { current: currentZoom, toggle: handleZoomToggle, step: handleZoomStep } = useZoomCycle();
+  const insets = useSafeAreaInsets();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
   const sourcesSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -113,17 +155,12 @@ export default function HomeScreen() {
   const conflictSheetRef = useRef<BottomSheetMethodsRef>(null);
   const disambiguationSheetRef = useRef<BottomSheetMethodsRef>(null);
   const entitySheetRef = useRef<BottomSheetMethodsRef>(null);
-  const pagerRef = useRef<PagerView>(null);
-  // There is one article column now, so a pending navigation is just a slug
-  // waiting for the pager to finish arriving at `news`.
-  const pendingSlugRef = useRef<string | null>(null);
-  const completeArticleNavigation = useCallback((page: number) => {
-    if (page !== NEWS) return;
-    const slug = pendingSlugRef.current;
-    if (!slug) return;
-    pendingSlugRef.current = null;
-    newsListRef.current?.scrollToSlug(slug);
-  }, []);
+  const cardSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const mapSheetRef = useRef<MapSheetRef>(null);
+  const globeRef = useRef<MiniGlobeRef>(null);
+  const briefingChromeRef = useRef<BriefingChromeRef>(null);
+
   const {
     grouped,
     briefing,
@@ -142,18 +179,27 @@ export default function HomeScreen() {
   const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
-  const marketSignals = useMarketSignals();
+  const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
   const network = useNetworkState();
-  const insets = useSafeAreaInsets();
-  const briefingChromeRef = useRef<BriefingChromeRef>(null);
-  const [briefingVisible, setBriefingVisible] = useState(false);
 
-  // Active article tracking (for bottom action bar). Kept in a ref — the
-  // selected article only feeds callbacks (share, context), never JSX, so
-  // state here would re-render the whole HomeScreen tree on every snap.
+  const [briefingVisible, setBriefingVisible] = useState(false);
+  const [briefingStatus, setBriefingStatus] = useState<BriefingStatus>({
+    available: false,
+    resumable: false,
+  });
+  const [readerOpen, setReaderOpen] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  /** Where the sheet has settled. The globe only takes touches at peek: when
+   *  the sheet is expanded the earth is a sliver behind it, translated and
+   *  faded, and a tap there would hit-test against geometry that has moved. */
+  const [sheetDetent, setSheetDetent] = useState<MapSheetDetent>('peek');
+
+  // Active article tracking (for share). Kept in a ref — the selected article
+  // only feeds callbacks, never JSX, so state here would re-render the whole
+  // screen on every snap.
   const activeArticleRef = useRef<RiverArticle | null>(null);
 
-  // Sheet payloads (refs come from useSheetRefs above)
+  // Sheet payloads
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
   const [sheetDivergence, setSheetDivergence] = useState<number | null>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
@@ -162,28 +208,258 @@ export default function HomeScreen() {
   const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
-  // The two payload-less sheets need explicit open flags so the hint overlay
+  const [activeCard, setActiveCard] = useState<SwipeCard | null>(null);
+  // The three payload-less sheets need explicit open flags so the hint overlay
   // can yield the airspace; every other sheet's openness is derived from its
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
-  // The ids `EntitySheet` can actually resolve. Derived once here rather than
-  // per article page — every page would otherwise rebuild the same set.
+  const [instrumentsOpen, setInstrumentsOpen] = useState(false);
+
+  // ---------------------------------------------------------------------
+  // The camera
+  //
+  // One scroll offset, written by whichever list is in front — the sheet's
+  // when the map is showing, the reader's when it is not. One value rather
+  // than two so the globe's prop identity never changes; `itemHeight` is what
+  // switches, because a sheet row and a full-screen article page are
+  // different distances through the same track.
+  // ---------------------------------------------------------------------
+  const cameraScrollY = useSharedValue(0);
+  const cameraOwner = useSharedValue(0);
+  const cameraLat = useSharedValue(0);
+  const cameraLng = useSharedValue(0);
+  const sheetProgress = useSharedValue(0);
+  const listOffset = useSharedValue(0);
+  const headerHeight = useSharedValue(0);
+  const readerProgress = useSharedValue(0);
+  /** The story the reader is opening onto. A slug, not an index: a bookmark
+   *  that has rotated out of the feed is injected in the same render the
+   *  reader opens in, so its index does not exist until after that commit. */
+  const pendingReaderSlugRef = useRef<string | null>(null);
+  /** Mirrors `readerOpen` onto the UI thread for the globe's fade. */
+  const readerOpenSV = useSharedValue(0);
+  /** Set the first time the reader moves the camera themselves. The opening
+   *  orientation is a statement the app makes once; after that the camera is
+   *  the reader's and re-aiming it would be the app talking over them. */
+  const cameraClaimedRef = useRef(false);
+  const restingTargetRef = useRef<string | null>(null);
+
+  const toastRef = useRef<ToastRef>(null);
+
+  // ---------------------------------------------------------------------
+  // Layout
+  // ---------------------------------------------------------------------
+  const [topChromeHeight, setTopChromeHeight] = useState(0);
+  const onTopChromeLayout = useCallback((e: LayoutChangeEvent) => {
+    setTopChromeHeight(e.nativeEvent.layout.height);
+  }, []);
+
+  const sheetPeek = Math.round(screenHeight * SHEET_PEEK_FRACTION);
+  const sheetFull = Math.round(screenHeight * SHEET_FULL_FRACTION);
+
+  // The earth sits in the band between the strip and the sheet at rest, and
+  // is sized to the smaller of what the width and that band allow. As a
+  // backdrop it was `0.9 × width` — wider than the screen, deliberately — but
+  // a disc that size on this screen would be three-quarters hidden behind the
+  // list.
+  const globeBand = Math.max(120, screenHeight - sheetPeek - topChromeHeight);
+  const globeRadius = Math.round(Math.min(screenWidth * GLOBE_FILL, globeBand * GLOBE_FILL));
+  const globeCenterY = Math.round(topChromeHeight + globeBand / 2);
+
+  // Row height, computed once from the resolved type rather than measured.
+  // The list lays out with this number and the camera divides by it, so they
+  // have to be one number; a row that grew to fit its title would put the
+  // globe on the wrong story. Titles clamp to two lines instead — the reader
+  // is where long text lives and it has no such constraint.
+  const rowHeight = useMemo(() => {
+    const titleLine = textVariants.title.lineHeight ?? 26;
+    const metaLine = textVariants.labelXs.lineHeight ?? 13;
+    return Math.round(SPACING.smPlus * 2 + titleLine * 2 + SPACING.xs + metaLine);
+  }, [textVariants]);
+
+  // ---------------------------------------------------------------------
+  // Derived content
+  // ---------------------------------------------------------------------
+  const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
+
+  const columns = useMemo(
+    () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
+    [trends, chokepoints, analysis, river],
+  );
+
+  /** One ranked list across every instrument family. The three desks used to
+   *  rank each pool against itself, which could only ever compare a strait
+   *  with other straits. */
+  const rankedInstruments = useMemo(
+    () => buildRankedInstruments(columns, marketSignals, river),
+    [columns, marketSignals, river],
+  );
+
+  const { strip, now } = useMemo(
+    () =>
+      buildNowSurfaces({
+        ranked: rankedInstruments,
+        chokepoints,
+        // The card view of a signal carries no geometry — a `Card` never
+        // does. Placement reads the raw payload, where the exchange's
+        // coordinates are.
+        signals: rawSignals,
+        gdacsAlerts,
+      }),
+    [rankedInstruments, chokepoints, rawSignals, gdacsAlerts],
+  );
+
+  /**
+   * The exchanges the globe draws.
+   *
+   * Only the flagged ones, and only where a place is honest: `buildNowSurfaces`
+   * has already run the placement ladder, so this is a filter rather than a
+   * second resolution. Thirty static exchange dots would be noise — a mark is
+   * here because its index did something, which is the same rule every card
+   * in the app is admitted under.
+   */
+  const marketMarks = useMemo(
+    () =>
+      [...strip, ...now]
+        .filter((item) => item.id.startsWith('market-signal:') && item.coords)
+        .map((item) => ({
+          id: item.id,
+          // The exchange, not the ticker: the mark stands for a place, and
+          // `Borsa İstanbul` is a place where `BIST 100` is a number.
+          label: 'label' in item ? item.label : item.kicker,
+          lat: (item.coords as LatLng)[0],
+          lng: (item.coords as LatLng)[1],
+        })),
+    [strip, now],
+  );
+
+  const odds = useMemo(() => oddsByStory(trends), [trends]);
+  const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
+
+  const storyRows = useMemo(
+    () => buildStoryRows({ river, lastSeenAt, odds: oddsLabelBySlug }),
+    [river, lastSeenAt, oddsLabelBySlug],
+  );
+  const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
+
   const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
   const activeIndicator = useMemo(
     () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
     [activeEntity, indicatorsById],
   );
+
+  const dateLabel = useMemo(() => {
+    const built = generated ? Date.parse(generated) : Number.NaN;
+    const when = Number.isFinite(built) ? new Date(built) : new Date();
+    return when.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+  }, [generated]);
+
+  // ---------------------------------------------------------------------
+  // Refs for stable callbacks
+  // ---------------------------------------------------------------------
+  const groupedRef = useRef(grouped);
+  groupedRef.current = grouped;
+  const generatedRef = useRef(generated);
+  generatedRef.current = generated;
+  const chokepointsRef = useRef(chokepoints);
+  chokepointsRef.current = chokepoints;
+  const gdacsAlertsRef = useRef(gdacsAlerts);
+  gdacsAlertsRef.current = gdacsAlerts;
+  const conflictEventsRef = useRef(conflictEvents);
+  conflictEventsRef.current = conflictEvents;
+  const storyRowsRef = useRef(storyRows);
+  storyRowsRef.current = storyRows;
+  const rankedRef = useRef(rankedInstruments);
+  rankedRef.current = rankedInstruments;
+  const readerOpenRef = useRef(readerOpen);
+  readerOpenRef.current = readerOpen;
+
+  // ---------------------------------------------------------------------
+  // Camera control
+  // ---------------------------------------------------------------------
+  /** Send the camera somewhere and hold it there until the reader scrolls.
+   *  The shortest way round: a flight from Tokyo to San Francisco crosses the
+   *  Pacific, not Europe and the Atlantic. */
+  const flyTo = useCallback(
+    (coords: LatLng | null) => {
+      if (!coords) return;
+      const [lat, lng] = coords;
+      let delta = lng - cameraLng.value;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      const duration = reduceMotion ? 0 : FLY_MS;
+      cameraOwner.value = 1;
+      cameraLat.value = withTiming(lat, { duration, easing: EASING.inOut });
+      cameraLng.value = withTiming(cameraLng.value + delta, {
+        duration,
+        easing: EASING.inOut,
+      });
+    },
+    [cameraLat, cameraLng, cameraOwner, reduceMotion],
+  );
+
+  /** A finger on the list takes the camera back. Fires from the scroll
+   *  worklet's begin-drag, never from `onScroll`, so a programmatic scroll
+   *  cannot silently reclaim it. */
+  const handleListDragStart = useCallback(() => {
+    cameraClaimedRef.current = true;
+    cameraOwner.value = 0;
+  }, [cameraOwner]);
+
+  // The opening view. The whole planet turns to the loudest thing on it, and
+  // that thing carries a label — which is also the only signifier the globe
+  // has ever had that it is addressable at all.
+  useEffect(() => {
+    if (cameraClaimedRef.current) return;
+    const target = strip.find((item) => item.coords);
+    if (!target?.coords) return;
+    if (restingTargetRef.current === target.id) return;
+    restingTargetRef.current = target.id;
+    flyTo(target.coords);
+  }, [strip, flyTo]);
+
+  // ---------------------------------------------------------------------
+  // Navigation
+  // ---------------------------------------------------------------------
+  /**
+   * Open the reader on a story.
+   *
+   * The camera is held on that story's dateline through the whole transition
+   * (`flyTo` sets `cameraOwner = 1`), and that hold is what makes opening
+   * seamless rather than a flicker. Opening switches `itemHeight` from a sheet
+   * row to a full screen while the shared scroll offset still belongs to the
+   * sheet; for as long as the scroll owned the camera there would be a frame
+   * where sheet row three reads as reader page 0.04. Held on a target, the
+   * reaction ignores the offset entirely, and the reader's first real swipe
+   * (`onDragStart`) hands it back.
+   */
+  const openReaderAt = useCallback(
+    (slug: string) => {
+      pendingReaderSlugRef.current = slug;
+      const row = storyRowsRef.current.find((r) => r.slug === slug);
+      // No coordinates: leave the camera where it is rather than hold it on a
+      // stale target. `getCoords` falls back all the way to source HQ, so in
+      // practice every story has a place.
+      if (row?.coords) flyTo(row.coords);
+      if (readerOpenRef.current) {
+        // Already reading, so the open effect will not run again — jump now.
+        // One frame of deferral lets a just-injected bookmark commit first.
+        requestAnimationFrame(() => newsListRef.current?.scrollToSlug(slug));
+        return;
+      }
+      setReaderOpen(true);
+    },
+    [flyTo],
+  );
+
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
       menuSheetRef.current?.dismiss();
       // `category` is still in the signature because callers (bookmarks,
       // notification payloads, related-story rows) know it and the feed is
-      // still grouped by it underneath. Navigation no longer depends on it:
-      // every article lives in one column now.
+      // still grouped by it underneath.
       const actual = CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug));
-
-      // If the article rotated out of the feed, inject the bookmarked copy
       if (!actual) {
         const bookmark = getBookmarks().find((b) => b.article.slug === slug);
         if (bookmark) {
@@ -193,185 +469,126 @@ export default function HomeScreen() {
           return;
         }
       }
-
-      pendingSlugRef.current = slug;
-      if (currentSectionRef.current === NEWS) {
-        // Same-page navigation has no onPageSelected event. Defer one frame so
-        // a just-injected bookmarked article has committed to the FlatList.
-        requestAnimationFrame(() => completeArticleNavigation(NEWS));
-      } else {
-        programmaticPageRef.current = true;
-        pagerRef.current?.setPage(NEWS);
-      }
+      openReaderAt(slug);
     },
-    [completeArticleNavigation, injectArticle],
+    [injectArticle, openReaderAt],
   );
 
-  const handleArticleBookmark = useCallback((article: RiverArticle) => {
-    // The article carries its own category now. It used to be inferred from
-    // which tab you were on, which was right only because the tab *was* the
-    // category — an assumption that would have silently mis-filed every
-    // bookmark the moment the axis started carrying sections.
-    const category = article.category;
-    const added = toggleBookmark(article, category);
-    markHintDone('bookmark');
-    hapticNotification();
-    if (added) {
-      toastRef.current?.show('Saved to bookmarks');
-    } else {
-      // Removal is one swipe/long-press away from being accidental — offer a
-      // one-tap undo (actionable toast lingers 4s) that re-adds the bookmark.
-      toastRef.current?.show('Removed — tap to undo', () => {
-        toggleBookmark(article, category);
-        hapticTick();
-      });
-    }
-  }, []);
+  const handleStoryPress = useCallback(
+    (row: StoryRow) => {
+      hapticImpact();
+      openReaderAt(row.slug);
+    },
+    [openReaderAt],
+  );
 
-  const handleMenuPress = useCallback(() => {
-    hapticImpact();
-    setMenuOpen(true);
-    menuSheetRef.current?.present();
-  }, []);
-
-  const handleBriefingPress = useCallback(() => {
-    briefingChromeRef.current?.toggle();
-  }, []);
-  const handleBriefingUnavailable = useCallback(() => {
-    // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or the
-    // pipeline has been broken longer). Don't attempt a guaranteed 404.
-    hapticTick();
-    toastRef.current?.show('No briefing available', undefined, 'top');
-  }, []);
-  const handleBriefingPlaybackError = useCallback(() => {
-    hapticTick();
-    toastRef.current?.show('Couldn’t play briefing — tap to retry', handleBriefingPress, 'top');
-  }, [handleBriefingPress]);
-
-  const handleSourcesPress = useCallback((article: Article) => {
-    hapticImpact();
-    markHintDone('sources');
-    setSheetSources(article.sources);
-    setSheetDivergence(article.sentimentDivergence ?? null);
-    sourcesSheetRef.current?.present();
-  }, []);
-
-  const handleTimeAgoPress = useCallback((article: Article) => {
-    hapticTick();
-    toastRef.current?.show(formatExactTime(articleTime(article)), undefined, 'top');
-  }, []);
-
-  const handleBottomShare = useCallback(() => {
+  /**
+   * Close the reader onto the map.
+   *
+   * The camera is held on the story that was being read, for the same reason
+   * opening holds it — `itemHeight` is about to switch back while the offset
+   * still belongs to the reader. Setting the target directly rather than
+   * flying: the scroll-driven camera was already resting on that page, so the
+   * globe is already there and there is nothing to animate. The map then shows
+   * where the story you just read is, until a drag on the sheet takes over.
+   */
+  const handleCloseReader = useCallback(() => {
     const active = activeArticleRef.current;
-    if (!active) return;
-    hapticImpact();
-    const url = `https://zuhd.news/a/${active.slug}`;
-    const title = active.title;
-    const content = Platform.select({
-      ios: { url, title },
-      default: { message: `${title}\n${url}`, title },
-    });
-    if (!content) return;
-    Share.share(
-      content,
-      Platform.select({
-        ios: { subject: `${title} \u2014 zuhd.news` },
-        default: { dialogTitle: 'Share' },
-      }),
-    ).catch(() => {});
+    const row = active ? storyRowsRef.current.find((r) => r.slug === active.slug) : undefined;
+    if (row?.coords) {
+      cameraLat.value = row.coords[0];
+      cameraLng.value = row.coords[1];
+      cameraOwner.value = 1;
+    }
+    setReaderOpen(false);
+  }, [cameraLat, cameraLng, cameraOwner]);
+
+  const openCard = useCallback((card: SwipeCard) => {
+    setActiveCard(card);
+    cardSheetRef.current?.present();
   }, []);
 
-  const handleArticleChange = useCallback((article: RiverArticle) => {
-    activeArticleRef.current = article;
-  }, []);
-
-  // Ref for handleCountryPress, kept stable so the memoized renderItem in
-  // ArticleList doesn't invalidate on every chokepoint refetch.
-  const chokepointsRef = useRef(chokepoints);
-  chokepointsRef.current = chokepoints;
-  const gdacsAlertsRef = useRef(gdacsAlerts);
-  gdacsAlertsRef.current = gdacsAlerts;
-  const conflictEventsRef = useRef(conflictEvents);
-  conflictEventsRef.current = conflictEvents;
-
-  // The news column: every article, newest story first across all categories.
-  // `lib/news-order.ts` uses the same timestamp as the visible dateline.
-  //
-  // Memoized because downstream memos key on it (ChokepointSheet's
-  // findRelatedArticles, the card builders' tie-to-the-news), and because
-  // every article carries its real category so nothing downstream has to
-  // guess it back from concept tags, which never name one.
-  const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
-
-  // Concrete card pools are pure functions of payloads already in memory. The
-  // builder omits a card rather than rendering a broken one when its payload
-  // is missing, so deck assembly does not need a separate loading state.
-  const columns = useMemo(
-    () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
-    [trends, chokepoints, analysis, river],
-  );
-  // Only real time series with live pipeline analysis cross this boundary.
-  // Subject-specific tabs make the rail predictable; dormant non-graph card
-  // families are not built at all.
-  const sectionCards = useMemo<Record<string, SwipeCard[]>>(() => {
-    const sections = buildSwipeSections(columns, river);
-    return { ...sections, markets: [...marketSignals, ...sections.markets] };
-  }, [columns, river, marketSignals]);
-
-  // Active GDACS alerts whose primary or affected-country list includes the
-  // currently open country. Phase 1 matches by full country name (GDACS uses
-  // the same long-form names as our shared/countries dataset for the major
-  // jurisdictions); mismatches simply yield an empty strip.
-  const countryAlerts = useMemo<GdacsAlert[]>(() => {
-    const name = countrySheet?.countryName;
-    if (!name) return [];
-    const score = (l: GdacsAlert['alertlevel']) => (l === 'Red' ? 2 : l === 'Orange' ? 1 : 0);
-    return gdacsAlerts
-      .filter((a) => a.country === name || a.affectedCountries.includes(name))
-      .sort((a, b) => score(b.alertlevel) - score(a.alertlevel));
-  }, [countrySheet?.countryName, gdacsAlerts]);
-
-  const handleCountryAlertPress = useCallback((alert: GdacsAlert) => {
-    setActiveAlert(alert);
-    disasterSheetRef.current?.present();
-  }, []);
-
-  // Hop into the CountrySheet by country name, synthesizing a minimal
-  // TapResult (no globe location/time). Shared by the disaster/conflict
-  // sheets' onCountryPress. `data` defaults to the shared dataset lookup.
-  const openCountry = useCallback(
-    (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
-      setCountrySheet({ countryName, location: null, localTime: null, data });
-      countrySheetRef.current?.present();
+  const handleStripPress = useCallback(
+    (item: StripItem) => {
+      hapticImpact();
+      markHintDone('globe');
+      flyTo(item.coords);
+      openCard(item.card);
     },
-    [],
+    [flyTo, openCard],
   );
 
-  const handleEntityPress = useCallback(
-    (entity: Entity) => {
-      // Don't present the sheet if we can't resolve the indicator — the
-      // reader taps, nothing happens, worse UX than no tap affordance at
-      // all. This shouldn't fire in practice (extractor only emits ids
-      // that exist in the catalog), but snapshot vs frontmatter can drift
-      // briefly after a deploy.
-      if (!indicatorsById.get(entity.indicatorId)) return;
+  const handleNowPress = useCallback(
+    (item: NowItem) => {
+      hapticImpact();
+      flyTo(item.coords);
+      if (item.kind === 'hazard' && item.gdacsEventId) {
+        const alert = gdacsAlertsRef.current.find((a) => a.eventid === item.gdacsEventId);
+        if (alert) {
+          setActiveAlert(alert);
+          disasterSheetRef.current?.present();
+        }
+        return;
+      }
+      if (item.card) openCard(item.card);
+    },
+    [flyTo, openCard],
+  );
+
+  // After the reader — or the map — has committed. `MiniGlobe` is a child, so
+  // its effects have already re-registered the camera reaction against the new
+  // `itemHeight` by the time this runs. This parks the shared offset where the
+  // surface now in front really is, so that when a drag hands the camera back
+  // it resumes from there and not from the other surface's offset.
+  useEffect(() => {
+    readerOpenSV.value = readerOpen ? 1 : 0;
+    if (readerOpen) {
+      const slug = pendingReaderSlugRef.current;
+      const index = slug ? storyRowsRef.current.findIndex((r) => r.slug === slug) : -1;
+      cameraScrollY.value = Math.max(0, index) * Math.max(1, screenHeight);
+      if (slug) newsListRef.current?.scrollToSlug(slug);
+    } else {
+      cameraScrollY.value = Math.max(0, listOffset.value - headerHeight.value);
+    }
+  }, [readerOpen, readerOpenSV, cameraScrollY, headerHeight, listOffset, screenHeight]);
+
+  const openLink = useOpenLink();
+  /** The contract's own card where the deck admitted it; otherwise the market
+   *  itself — a price is only worth printing if the reader can check it. */
+  const handleOddsPress = useCallback(
+    (value: StoryOdds) => {
       hapticTick();
-      setActiveEntity(entity);
-      entitySheetRef.current?.present();
+      const card = rankedRef.current.find((c) => c.id === value.id);
+      if (card) openCard(card);
+      else if (value.marketUrl) openLink(value.marketUrl);
     },
-    [indicatorsById],
+    [openCard, openLink],
   );
 
+  const handleInstrumentsPress = useCallback(() => {
+    hapticImpact();
+    setInstrumentsOpen(true);
+    instrumentsSheetRef.current?.present();
+  }, []);
+
+  const handleInstrumentSelect = useCallback(
+    (card: SwipeCard) => {
+      instrumentsSheetRef.current?.dismiss();
+      openCard(card);
+    },
+    [openCard],
+  );
+
+  // ---------------------------------------------------------------------
+  // Globe taps — unchanged dispatch, one new destination
+  // ---------------------------------------------------------------------
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       hapticImpact();
       // Any path here — globe tap, marker tap, or inline country link — proves
       // the reader found the map layer; the globe hint retires on all of them.
       markHintDone('globe');
-      // Multiple overlapping markers — surface a chooser instead of
-      // arbitrarily picking one. The chooser fires onSelect with the
-      // chosen candidate, which is dispatched back through this same
-      // handler (sans candidates field) to open its target sheet.
+      cameraClaimedRef.current = true;
       if (result.candidates && result.candidates.length > 1) {
         setChooserCandidates(result.candidates);
         disambiguationSheetRef.current?.present();
@@ -393,6 +610,11 @@ export default function HomeScreen() {
         }
         return;
       }
+      if (result.marketSignalId) {
+        const card = rankedRef.current.find((c) => c.id === result.marketSignalId);
+        if (card) openCard(card);
+        return;
+      }
       if (result.chokepointId) {
         const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
         if (cp) {
@@ -401,12 +623,13 @@ export default function HomeScreen() {
         }
         return;
       }
-      // Hotspot glow tap → toast with tap-to-navigate
+      // A hotspot is a cluster of coverage, not a thing — it stands for the
+      // stories under it, so it opens the top one rather than a sheet about
+      // a glow.
       if (result.isHotspot) {
         const label = result.hotspotLabels?.[0] ?? result.countryName;
         if (!label) return;
         toastRef.current?.show(label, () => {
-          // Find article matching this hotspot label
           for (const cat of CATEGORIES) {
             const match = groupedRef.current[cat].find((a) => {
               if (a.threadLabel) {
@@ -425,119 +648,143 @@ export default function HomeScreen() {
         });
         return;
       }
-      // Country/dot tap → sheet
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
-    [handleSelectArticle],
+    [handleSelectArticle, openCard],
   );
 
-  const toastRef = useRef<ToastRef>(null);
-
-  const [currentSection, setCurrentSection] = useState(NEWS);
-
-  // Refs for values used inside stable callbacks — avoids breaking downstream memos
-  const groupedRef = useRef(grouped);
-  groupedRef.current = grouped;
-  // The feed's own build stamp. `useArticles` has always returned it and only
-  // the heatmap cache key ever read it, so the app knew exactly how fresh it
-  // was and never said. A reader who pulls to refresh is asking that question.
-  const generatedRef = useRef(generated);
-  generatedRef.current = generated;
-  const currentSectionRef = useRef(currentSection);
-  currentSectionRef.current = currentSection;
-
-  const [pagerHeight, setPagerHeight] = useState(0);
-  const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
-    setPagerHeight(e.nativeEvent.layout.height);
+  // ---------------------------------------------------------------------
+  // The rest of the handlers, carried over
+  // ---------------------------------------------------------------------
+  const handleArticleBookmark = useCallback((article: RiverArticle) => {
+    const category = article.category;
+    const added = toggleBookmark(article, category);
+    markHintDone('bookmark');
+    hapticNotification();
+    if (added) {
+      toastRef.current?.show('Saved to bookmarks');
+    } else {
+      toastRef.current?.show('Removed — tap to undo', () => {
+        toggleBookmark(article, category);
+        hapticTick();
+      });
+    }
   }, []);
 
-  const pagerOffset = useSharedValue(0);
-  const sectionProgresses = useSharedValue(SECTIONS.map(() => 0));
+  const handleMenuPress = useCallback(() => {
+    hapticImpact();
+    setMenuOpen(true);
+    menuSheetRef.current?.present();
+  }, []);
 
-  // Set when a tab tap dispatches `setPage`, so the `onPageSelected` that
-  // lands ~250ms later (once the pager transition finishes) doesn't tick a
-  // second time. A *swiped* page change has no tap to precede it, so the flag
-  // is clear and `onPageSelected` owns the haptic.
-  const programmaticPageRef = useRef(false);
+  const handleBriefingPress = useCallback(() => {
+    briefingChromeRef.current?.toggle();
+  }, []);
+  const handleBriefingUnavailable = useCallback(() => {
+    hapticTick();
+    toastRef.current?.show('No briefing available', undefined, 'top');
+  }, []);
+  const handleBriefingPlaybackError = useCallback(() => {
+    hapticTick();
+    toastRef.current?.show('Couldn’t play briefing — tap to retry', handleBriefingPress, 'top');
+  }, [handleBriefingPress]);
 
-  const onPageSelected = useCallback(
-    (e: PagerViewOnPageSelectedEvent) => {
-      const page = e.nativeEvent.position;
-      pagerOffset.set(page);
-      if (programmaticPageRef.current) {
-        programmaticPageRef.current = false;
-      } else {
-        hapticTick();
-      }
-      setCurrentSection(page);
-      completeArticleNavigation(page);
+  const handleSourcesPress = useCallback((article: Article) => {
+    hapticImpact();
+    markHintDone('sources');
+    setSheetSources(article.sources);
+    setSheetDivergence(article.sentimentDivergence ?? null);
+    sourcesSheetRef.current?.present();
+  }, []);
+
+  const handleTimeAgoPress = useCallback((article: Article) => {
+    hapticTick();
+    toastRef.current?.show(formatExactTime(articleTime(article)), undefined, 'top');
+  }, []);
+
+  const handleShare = useCallback(() => {
+    const active = activeArticleRef.current;
+    if (!active) return;
+    hapticImpact();
+    const url = `https://zuhd.news/a/${active.slug}`;
+    const title = active.title;
+    const content = Platform.select({
+      ios: { url, title },
+      default: { message: `${title}\n${url}`, title },
+    });
+    if (!content) return;
+    Share.share(
+      content,
+      Platform.select({
+        ios: { subject: `${title} — zuhd.news` },
+        default: { dialogTitle: 'Share' },
+      }),
+    ).catch(() => {});
+  }, []);
+
+  const handleArticleChange = useCallback((article: RiverArticle) => {
+    activeArticleRef.current = article;
+  }, []);
+
+  const countryAlerts = useMemo<GdacsAlert[]>(() => {
+    const name = countrySheet?.countryName;
+    if (!name) return [];
+    const score = (l: GdacsAlert['alertlevel']) => (l === 'Red' ? 2 : l === 'Orange' ? 1 : 0);
+    return gdacsAlerts
+      .filter((a) => a.country === name || a.affectedCountries.includes(name))
+      .sort((a, b) => score(b.alertlevel) - score(a.alertlevel));
+  }, [countrySheet?.countryName, gdacsAlerts]);
+
+  const handleCountryAlertPress = useCallback((alert: GdacsAlert) => {
+    setActiveAlert(alert);
+    disasterSheetRef.current?.present();
+  }, []);
+
+  const openCountry = useCallback(
+    (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
+      setCountrySheet({ countryName, location: null, localTime: null, data });
+      countrySheetRef.current?.present();
     },
-    [completeArticleNavigation, pagerOffset],
+    [],
   );
 
-  const onPageScroll = useCallback(
-    (e: PagerViewOnPageScrollEvent) => {
-      pagerOffset.set(e.nativeEvent.position + e.nativeEvent.offset);
-    },
-    [pagerOffset],
-  );
-
-  // Tapping the label you are already on returns that column to the top —
-  // the one gesture the rail offers beyond saying where you are.
-  const onSectionPress = useCallback(
-    (index: number) => {
-      if (index === currentSection) {
-        if (index === NEWS) newsListRef.current?.scrollToTop();
-        else cardPagerRefs[index]?.current?.scrollToTop();
-      } else {
-        // Claim the haptic here rather than letting `onPageSelected` fire it
-        // when the transition lands — feedback belongs on the touch, not a
-        // quarter-second after it. Matches `CountryCardsCarousel.goToPage`.
-        programmaticPageRef.current = true;
-        pagerRef.current?.setPage(index);
-      }
+  const handleEntityPress = useCallback(
+    (entity: Entity) => {
+      if (!indicatorsById.get(entity.indicatorId)) return;
       hapticTick();
+      setActiveEntity(entity);
+      entitySheetRef.current?.present();
     },
-    [currentSection],
+    [indicatorsById],
   );
 
-  // --- Onboarding: hint pills + notification primer ---
   const sheetOpen =
     menuOpen ||
     primerOpen ||
+    instrumentsOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
     activeChokepoint !== null ||
     activeAlert !== null ||
     activeConflict !== null ||
+    activeCard !== null ||
     chooserCandidates.length > 0 ||
     activeEntity !== null;
   const sheetOpenRef = useRef(sheetOpen);
   sheetOpenRef.current = sheetOpen;
+
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
-    // Every lesson targets the story reader. Keeping an armed article hint
-    // over markets/shipping/outlook mislabels those instrument cards as
-    // “stories” and can point at interactions they do not support.
-    suppressed: currentSection !== NEWS || sheetOpen || briefingVisible,
+    suppressed: sheetOpen || briefingVisible,
+    surface: readerOpen ? 'reader' : 'map',
   });
+
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
   const primerTriedRef = useRef(false);
 
   const handleCaughtUp = useCallback(() => {
-    // No toast here any more. It announced "Caught up" in floating chrome one
-    // swipe before the reader reached the divider that says the same thing in
-    // the column — one fact, two places. The divider owns the moment now
-    // (see ArticlePage's earlier-boundary); this callback is purely the
-    // primer gate.
-    //
-    // The "caught up" moment is the app's one demonstrated-value point — the
-    // only place the notification primer may appear. Any prior answer
-    // (primer, legacy cold prompt, OS permission state) blocks it;
-    // `earlierIndex` requires a prior lastSeenAt, so it can never fire on a
-    // cold first launch.
     if (primerTriedRef.current) return;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
     primerTriedRef.current = true;
@@ -552,9 +799,6 @@ export default function HomeScreen() {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
 
-  // Keep closed sheet shells outside unrelated HomeScreen updates. These
-  // callbacks used to be recreated inline, which invalidated every memoized
-  // sheet and made all nine native modal wrappers reconcile together.
   const handleMenuDismiss = useCallback(() => setMenuOpen(false), []);
   const handleCountryDismiss = useCallback(() => setCountrySheet(null), []);
   const handleDisasterDismiss = useCallback(() => setActiveAlert(null), []);
@@ -563,6 +807,8 @@ export default function HomeScreen() {
   const handleChokepointDismiss = useCallback(() => setActiveChokepoint(null), []);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
+  const handleCardDismiss = useCallback(() => setActiveCard(null), []);
+  const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
   const handleSourcesDismiss = useCallback(() => {
     setSheetSources([]);
     setSheetDivergence(null);
@@ -609,6 +855,7 @@ export default function HomeScreen() {
 
   const handleRefresh = useCallback(async () => {
     hapticImpact();
+    setRefreshing(true);
     try {
       const addedArticles = await refresh();
       if (addedArticles.length > 0) {
@@ -618,8 +865,6 @@ export default function HomeScreen() {
         );
         const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
         toastRef.current?.show(`${addedArticles.length} new · ~${mins} min read`, undefined, 'top');
-        // Scroll to top so new/breaking articles are visible
-        newsListRef.current?.scrollToTop();
       } else {
         const built = generatedRef.current ? Date.parse(generatedRef.current) : Number.NaN;
         toastRef.current?.show(
@@ -632,53 +877,35 @@ export default function HomeScreen() {
       }
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');
+    } finally {
+      setRefreshing(false);
     }
   }, [refresh]);
 
-  /**
-   * Pull to refresh on a card column.
-   *
-   * The same `refresh()` the feed uses, because the same build writes both: it
-   * probes `/api/meta.json`, and a moved `generated` invalidates every
-   * `useApiJson` snapshot at once — trends, chokepoints, analysis, market
-   * signals. So a pull on Markets really does refetch the cards under the
-   * finger; nothing here is a placebo.
-   *
-   * What differs is what it can honestly say afterwards. `refresh()` returns
-   * the *articles* it added, which on Markets is the wrong subject entirely —
-   * "3 new · ~2 min read" over a deck of price cards is an answer to a question
-   * nobody asked, and scrolling the news list to the top is invisible from
-   * here. A rebuilt site is reported as one, and an unchanged one gets the
-   * feed's own "already up to date" with the build time on it.
-   */
-  const handleCardRefresh = useCallback(async () => {
-    hapticImpact();
-    try {
-      const addedArticles = await refresh();
-      const built = generatedRef.current ? Date.parse(generatedRef.current) : Number.NaN;
-      toastRef.current?.show(
-        addedArticles.length > 0
-          ? 'Updated'
-          : Number.isFinite(built)
-            ? `Already up to date · ${formatTimeAgo(built)}`
-            : 'Already up to date',
-        undefined,
-        'top',
-      );
-    } catch {
-      toastRef.current?.show('Could not refresh', undefined, 'top');
-    }
-  }, [refresh]);
+  // The earth recedes as the sheet rises — up a little and quieter — so an
+  // expanded list reads as sitting over the map rather than beside a globe
+  // competing with it. A transform and an opacity, never a reprojection: this
+  // tracks a finger at 60fps and `callReproject` is ~5 ms. Finger-tracked, so
+  // it is exempt from Reduce Motion like the sheet itself. Full strength while
+  // reading: the globe behind the reader's prose is its backdrop.
+  const globeStyle = useAnimatedStyle(() => {
+    const p = readerOpenSV.value === 1 ? 0 : sheetProgress.value;
+    return {
+      opacity: interpolate(p, [0, 1], [1, 0.4], Extrapolation.CLAMP),
+      transform: [
+        { translateY: interpolate(p, [0, 1], [0, -globeBand * 0.2], Extrapolation.CLAMP) },
+      ],
+    };
+  });
 
-  // Hold the splash until we have something for *every* visible layer:
-  // article cache loaded AND heatmap (the largest globe canvas) ready.
-  // The mount-only globe layers (chokepoints, GDACS, conflicts, trends)
-  // each cache locally, so they typically resolve before heatmap on warm
-  // launches. The 8s fallback in _layout.tsx covers any stall.
-  // ...but the heatmap only gets a grace period, not a veto. Trading a brief
-  // globe pop-in for up to 7s of extra splash is the wrong deal, especially on
-  // a first launch. `hide()` is idempotent if the _layout fallback already
-  // dismissed the splash.
+  const handleHeaderLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      headerHeight.value = e.nativeEvent.layout.height;
+    },
+    [headerHeight],
+  );
+
+  // Hold the splash until we have something for *every* visible layer.
   useEffect(() => {
     if (loading) return;
     if (heatmapReady) {
@@ -691,20 +918,66 @@ export default function HomeScreen() {
 
   usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
 
-  // The splash normally covers this whole state. But `_layout.tsx` force-hides
-  // it after SPLASH_FALLBACK_MS (8s) while the feed keeps retrying for up to
-  // ~30s (10s timeout x retry: 2) — so on a cold first launch over a slow
-  // connection there is a window where the splash is gone and we still have no
-  // articles. Returning null there paints a bare `colors.bg` void, which reads
-  // as a crashed app. Render the standard empty state instead so the launch
-  // always has content.
+  const renderList = useCallback(
+    ({
+      scrollEnabled,
+      onScrollOffset,
+    }: {
+      scrollEnabled: boolean;
+      onScrollOffset: typeof listOffset;
+    }) => (
+      <MapFeed
+        rows={storyRows}
+        now={now}
+        rowHeight={rowHeight}
+        scrollEnabled={scrollEnabled}
+        listOffset={onScrollOffset}
+        cameraScrollY={cameraScrollY}
+        headerHeight={headerHeight}
+        onHeaderLayout={handleHeaderLayout}
+        onDragStart={handleListDragStart}
+        onStoryPress={handleStoryPress}
+        onNowPress={handleNowPress}
+        onInstrumentsPress={handleInstrumentsPress}
+        onRefresh={handleRefresh}
+        refreshing={refreshing}
+        bottomInset={insets.bottom}
+      />
+    ),
+    [
+      cameraScrollY,
+      handleHeaderLayout,
+      handleInstrumentsPress,
+      handleListDragStart,
+      handleNowPress,
+      handleRefresh,
+      handleStoryPress,
+      headerHeight,
+      insets.bottom,
+      now,
+      refreshing,
+      rowHeight,
+      storyRows,
+    ],
+  );
+
+  const masthead = useMemo(
+    () => (
+      <SheetMasthead
+        dateLabel={dateLabel}
+        storyCount={river.length}
+        briefingAvailable={briefingStatus.available}
+        briefingResumable={briefingStatus.resumable}
+        briefingDuration={briefingStatus.duration}
+        onBriefingPress={handleBriefingPress}
+      />
+    ),
+    [briefingStatus, dateLabel, handleBriefingPress, river.length],
+  );
+
   if (loading)
     return (
       <Screen>
-        {/* "loading" + "fetching" said the same thing twice, and foundation.md
-            is explicit that information appears exactly once. By the time this
-            is visible the splash has already run its 8s, so the useful thing to
-            say is that the wait is abnormal — not to restate the spinner. */}
         <EmptyState message="loading" hint="This is taking longer than usual" />
       </Screen>
     );
@@ -717,101 +990,110 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.screen, { backgroundColor: colors.bg }]}>
-      <SectionBar
-        pagerOffset={pagerOffset}
-        sectionProgresses={sectionProgresses}
-        currentSection={currentSection}
-        onSectionPress={onSectionPress}
-        onMenuPress={handleMenuPress}
+      {/* The one earth. Everything below is a layer over it. */}
+      <Animated.View style={[styles.globeLayer, globeStyle]} pointerEvents="none">
+        <MiniGlobe
+          ref={globeRef}
+          articles={river}
+          heatmapPoints={heatmapPoints}
+          chokepoints={chokepoints}
+          gdacsAlerts={gdacsAlerts}
+          conflictEvents={conflictEvents}
+          marketMarks={marketMarks}
+          scrollY={cameraScrollY}
+          itemHeight={readerOpen ? Math.max(1, screenHeight) : rowHeight}
+          cameraTrack={cameraTrack}
+          cameraOwner={cameraOwner}
+          cameraLat={cameraLat}
+          cameraLng={cameraLng}
+          width={screenWidth}
+          height={screenHeight}
+          radius={globeRadius}
+          centerY={globeCenterY}
+          zoomClipOverride={currentZoom.clip}
+          tick={tick}
+        />
+      </Animated.View>
+
+      <GlobeGestureLayer
+        globeRef={globeRef}
+        canvasTop={0}
+        cameraOwner={cameraOwner}
+        cameraLat={cameraLat}
+        cameraLng={cameraLng}
+        clip={currentZoom.clip ?? 90}
+        onTap={handleCountryPress}
+        onZoomStep={handleZoomStep}
+        onImpact={hapticImpact}
+        enabled={!readerOpen && sheetDetent === 'peek'}
       />
 
-      {/* The stories, then one page per family of instruments. The globe lives
-          on the first page only — it is the backdrop to the stories it
-          locates, and there is nothing on a wheat price for it to point at.
-          One instance now instead of one per category, which is also the
-          cheapest perf win in this change. */}
-      <PagerView
-        ref={pagerRef}
-        style={styles.pager}
-        initialPage={NEWS}
-        onPageSelected={onPageSelected}
-        onPageScroll={onPageScroll}
-        onLayout={onPagerLayout}
-        overdrag
-        offscreenPageLimit={1}
-      >
-        <View key={SECTIONS[NEWS]} collapsable={false}>
-          {pagerHeight > 0 && (
-            <ArticleList
-              ref={newsListRef}
-              articles={river}
-              heatmapPoints={heatmapPoints}
-              chokepoints={chokepoints}
-              gdacsAlerts={gdacsAlerts}
-              conflictEvents={conflictEvents}
-              viewportHeight={pagerHeight}
-              sectionIndex={NEWS}
-              lastSeenAt={lastSeenAt}
-              onRefresh={handleRefresh}
-              onEndReached={handleEndReached}
-              onCaughtUp={handleCaughtUp}
-              onBookmarkPress={handleArticleBookmark}
-              onSourcesPress={handleSourcesPress}
-              onTimeAgoPress={handleTimeAgoPress}
-              onEntityPress={handleEntityPress}
-              resolvableEntityIds={resolvableEntityIds}
-              onCountryPress={handleCountryPress}
-              onArticleChange={handleArticleChange}
-              onReadingScrollStart={dismissActiveHint}
-              progressesSV={sectionProgresses}
-              zoomClipOverride={currentZoom.clip}
-              tick={tick}
-            />
-          )}
-        </View>
+      <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
+        <MapHeader
+          onMenuPress={handleMenuPress}
+          onZoomPress={handleZoomToggle}
+          zoomLabel={currentZoom.label}
+        />
+        <IndicatorStrip items={strip} onSelect={handleStripPress} />
+      </View>
 
-        {SECTIONS.filter((s) => s !== 'news').map((section) => {
-          const index = SECTIONS.indexOf(section);
-          const copy = EMPTY_COPY[section];
-          return (
-            <View key={section} collapsable={false}>
-              {pagerHeight > 0 && (
-                <CardPager
-                  ref={cardPagerRefs[index]}
-                  cards={sectionCards[section] ?? []}
-                  active={currentSection === index}
-                  visible={!sheetOpen && !briefingVisible}
-                  section={section}
-                  viewportHeight={pagerHeight}
-                  sectionIndex={index}
-                  progressesSV={sectionProgresses}
-                  emptyMessage={copy?.message ?? 'nothing here yet'}
-                  emptyHint={copy?.hint}
-                  onReadingScrollStart={dismissActiveHint}
-                  onRefresh={handleCardRefresh}
-                />
-              )}
-            </View>
-          );
-        })}
-      </PagerView>
+      <MapSheet
+        ref={mapSheetRef}
+        peek={sheetPeek}
+        full={sheetFull}
+        progress={sheetProgress}
+        header={masthead}
+        renderList={renderList}
+        onDetentChange={setSheetDetent}
+      />
+
+      <ReaderLayer
+        visible={readerOpen}
+        articles={river}
+        viewportHeight={screenHeight}
+        lastSeenAt={lastSeenAt}
+        progressSV={readerProgress}
+        scrollY={cameraScrollY}
+        globeRef={globeRef}
+        resolvableEntityIds={resolvableEntityIds}
+        tick={tick}
+        listRef={newsListRef}
+        onClose={handleCloseReader}
+        onRefresh={handleRefresh}
+        onEndReached={handleEndReached}
+        onCaughtUp={handleCaughtUp}
+        onCountryPress={handleCountryPress}
+        onBookmarkPress={handleArticleBookmark}
+        onSourcesPress={handleSourcesPress}
+        onTimeAgoPress={handleTimeAgoPress}
+        onEntityPress={handleEntityPress}
+        onArticleChange={handleArticleChange}
+        onReadingScrollStart={dismissActiveHint}
+        onShare={handleShare}
+        onDragStart={handleListDragStart}
+        oddsBySlug={odds}
+        onOddsPress={handleOddsPress}
+      />
 
       <Toast ref={toastRef} />
 
-      <HintOverlay hint={activeHint} onDismiss={dismissActiveHint} bottomInset={insets.bottom} />
+      <HintOverlay
+        hint={activeHint}
+        onDismiss={dismissActiveHint}
+        bottomInset={insets.bottom}
+        // Over the reader there is nothing at the bottom to clear; over the
+        // map there is the sheet at rest.
+        bottomOffset={readerOpen ? 0 : sheetPeek}
+      />
 
       <BriefingChrome
         ref={briefingChromeRef}
         date={briefing?.date}
         duration={briefing?.duration}
-        bottomInset={insets.bottom}
-        zoomLabel={currentZoom.label}
-        articleActions={currentSection === NEWS}
-        onZoomPress={handleZoomToggle}
-        onSharePress={handleBottomShare}
         onUnavailable={handleBriefingUnavailable}
         onPlaybackError={handleBriefingPlaybackError}
         onVisibilityChange={setBriefingVisible}
+        onStatusChange={setBriefingStatus}
       />
 
       <MenuSheet
@@ -821,6 +1103,21 @@ export default function HomeScreen() {
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
+      />
+
+      <CardSheet
+        sheetRef={cardSheetRef}
+        bottomInset={insets.bottom}
+        card={activeCard}
+        onDismiss={handleCardDismiss}
+      />
+
+      <InstrumentsSheet
+        sheetRef={instrumentsSheetRef}
+        bottomInset={insets.bottom}
+        cards={rankedInstruments}
+        onSelect={handleInstrumentSelect}
+        onDismiss={handleInstrumentsDismiss}
       />
 
       <CountrySheet
@@ -855,6 +1152,7 @@ export default function HomeScreen() {
         chokepoints={chokepoints}
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
+        instruments={rankedInstruments}
         bottomInset={insets.bottom}
         onDismiss={handleChooserDismiss}
         onSelect={handleChooserSelect}
@@ -898,10 +1196,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  pager: {
-    flex: 1,
-  },
+  screen: { flex: 1 },
+  globeLayer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  topChrome: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 },
 });

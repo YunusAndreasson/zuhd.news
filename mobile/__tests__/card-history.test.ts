@@ -1,11 +1,5 @@
 import Storage from 'expo-sqlite/kv-store';
-import {
-  buildDeckVisit,
-  cardStatus,
-  cardVersion,
-  clearCardHistory,
-  markCardViewed,
-} from '../lib/card-history';
+import { cardStatus, cardVersion, clearCardHistory, markCardViewed } from '../lib/card-history';
 import type { SwipeCard } from '../lib/cards/rank';
 
 jest.mock('expo-sqlite/kv-store', () => ({
@@ -46,25 +40,9 @@ test('changed analysis, numbers and chart points are updates', () => {
   ])
     expect(cardStatus('markets', changed)).toBe('updated');
 });
-test('partition retains ranking within groups and does not mutate input or existing visit', () => {
-  const other = { ...card, id: 'wheat' };
-  markCardViewed('markets', card);
-  const cards = [card, other];
-  const visit = buildDeckVisit('markets', cards);
-  expect(visit.map((p) => p.id)).toEqual(['wheat', '__caught-up__', 'oil']);
-  markCardViewed('markets', other);
-  expect(visit.map((p) => p.id)).toEqual(['wheat', '__caught-up__', 'oil']);
-  expect(buildDeckVisit('markets', cards).map((p) => p.id)).toEqual([
-    '__caught-up__',
-    'oil',
-    'wheat',
-  ]);
-  expect(cards).toEqual([card, other]);
-});
-test('privacy erase forgets versions and empty decks have no completion claim', () => {
+test('privacy erase forgets every version it recorded', () => {
   markCardViewed('markets', card);
   clearCardHistory();
   expect(cardStatus('markets', card)).toBe('new');
-  expect(buildDeckVisit('markets', [])).toEqual([]);
   expect(cardVersion(card)).toBe(cardVersion({ ...card }));
 });

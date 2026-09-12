@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import type { SwipeCard } from '../lib/cards/rank';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
@@ -16,6 +17,7 @@ import {
   GLYPH_HALF,
   getConflictGlyphPath,
   getGlyphPath,
+  MARKET_PATH,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Pressable, Text } from './primitives';
@@ -32,6 +34,9 @@ interface DisambiguationSheetProps extends BaseSheetProps {
   chokepoints: Chokepoint[];
   alerts: GdacsAlert[];
   conflictEvents: ConflictEvent[];
+  /** The ranked instruments, so a flagged exchange's row can name its index
+   *  and its exchange rather than its id. */
+  instruments: SwipeCard[];
   /** Fires when a row is tapped. Parent should dismiss this sheet and
    *  re-dispatch the candidate through its existing tap handler. */
   onSelect: (result: TapResult) => void;
@@ -46,7 +51,7 @@ interface DisplayRow {
   result: TapResult;
   primary: string;
   secondary: string;
-  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'article' | 'hotspot';
+  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'market' | 'article' | 'hotspot';
   /** GDACS-only — drives the glyph + tint inside the icon canvas. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
@@ -62,6 +67,7 @@ function buildRow(
   chokepointsById: Map<string, Chokepoint>,
   alertsById: Map<string, GdacsAlert>,
   conflictById: Map<string, ConflictEvent>,
+  marketsById: Map<string, SwipeCard>,
 ): DisplayRow | null {
   if (result.gdacsEventId) {
     const alert = alertsById.get(result.gdacsEventId);
@@ -104,6 +110,17 @@ function buildRow(
       primary: cp.name,
       secondary: 'maritime chokepoint',
       kind: 'chokepoint',
+    };
+  }
+  if (result.marketSignalId) {
+    const card = marketsById.get(result.marketSignalId);
+    if (!card) return null;
+    return {
+      key: `market-${card.id}`,
+      result,
+      primary: card.title,
+      secondary: card.kicker ? card.kicker.toLowerCase() : 'market index',
+      kind: 'market',
     };
   }
   if (result.isHotspot) {
@@ -187,6 +204,31 @@ function RowIcon({ row, tint }: RowIconProps) {
         />
         <Path
           path={CHOKEPOINT_PATH}
+          color={colors.textSecondary}
+          style="stroke"
+          strokeWidth={1.6}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ROW_ICON / 2 - GLYPH_HALF },
+            { translateY: ROW_ICON / 2 - GLYPH_HALF },
+          ]}
+        />
+      </Canvas>
+    );
+  }
+  if (row.kind === 'market') {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.textSecondary}
+          opacity={0.12}
+        />
+        <Path
+          path={MARKET_PATH}
           color={colors.textSecondary}
           style="stroke"
           strokeWidth={1.6}
@@ -299,6 +341,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   chokepoints,
   alerts,
   conflictEvents,
+  instruments,
   bottomInset,
   onDismiss,
   onSelect,
@@ -307,13 +350,21 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     const cpById = new Map(chokepoints.map((c) => [c.id, c]));
     const alertById = new Map(alerts.map((a) => [a.eventid, a]));
     const conflictById = new Map(conflictEvents.map((e) => [e.id, e]));
+    const marketById = new Map(instruments.map((c) => [c.id, c]));
     const out: DisplayRow[] = [];
     for (let i = 0; i < candidates.length; i++) {
-      const row = buildRow(candidates[i] as TapResult, i, cpById, alertById, conflictById);
+      const row = buildRow(
+        candidates[i] as TapResult,
+        i,
+        cpById,
+        alertById,
+        conflictById,
+        marketById,
+      );
       if (row) out.push(row);
     }
     return out;
-  }, [candidates, chokepoints, alerts, conflictEvents]);
+  }, [candidates, chokepoints, alerts, conflictEvents, instruments]);
 
   const handleSelect = useCallback(
     (result: TapResult) => {

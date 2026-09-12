@@ -6,6 +6,7 @@ import {
   type AccessibilityActionEvent,
   type GestureResponderEvent,
   Pressable,
+  Pressable as RNPressable,
   ScrollView,
   StyleSheet,
   View,
@@ -18,7 +19,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { SPACING } from '../constants/theme';
+import { PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useInnerScrollReporter } from '../hooks/useInnerScrollReporter';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime, computeFontScale, formatTimeAgo } from '../lib/article-utils';
@@ -26,12 +27,13 @@ import { hapticImpact, hapticTick } from '../lib/haptics';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
+import { MARKET_CAVEAT, type StoryOdds } from '../lib/predictions';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { OverflowEndCue } from './OverflowEndCue';
 import { Text } from './primitives';
 
 // Title's distance from the container top. Smaller than the prior 32px gap
-// so the headline sits closer to the SectionBar; the article backdrop
+// so the headline sits close to the top of the reader; the article backdrop
 // gradient (rendered once in ArticleList) handles the top map-bleed.
 const CONTENT_PADDING_TOP = 18;
 
@@ -39,8 +41,69 @@ const CONTENT_PADDING_TOP = 18;
 // reader feels a touch more relaxed than the rest of the app, paired with
 // the slightly tighter `SPACING.articlePadding` to widen the column. The
 // scale lives local because it's a per-surface tuning; the padding lives
-// in `SPACING` so `SectionBar` can mirror it.
+// in `SPACING` so the map's header, sheet and strip can mirror it.
 const READER_TEXT_SCALE = 1.04;
+
+/**
+ * What the market thinks about this story, directly under its headline.
+ *
+ * This is the merge. Contracts used to live in their own deck a swipe away
+ * from the news they price; the link between them was written by the pipeline
+ * all along (`relatedArticles` on every `poly-*` indicator) and simply never
+ * read in this direction.
+ *
+ * Three rules, all load-bearing:
+ *   - **Level, then movement in points.** A contract going 26 → 86 moved 60
+ *     points; "+231%" is arithmetic pretending to be journalism.
+ *   - **Never a favorable/unfavorable tint.** On the odds of a war that would
+ *     be a verdict. Every piece of this line is in the secondary ink tiers.
+ *   - **The caveat is always printed.** A price is set by people with money on
+ *     the outcome, and it is not a forecast. `MARKET_CAVEAT` is a constant so
+ *     no generated description can ever quietly replace it.
+ */
+const OddsLine = memo(function OddsLine({
+  odds,
+  onPress,
+}: {
+  odds: StoryOdds;
+  onPress?: (odds: StoryOdds) => void;
+}) {
+  const { colors } = useTheme();
+  const handlePress = useCallback(() => onPress?.(odds), [odds, onPress]);
+  const spoken = [`Traders price this at ${odds.level}`, odds.move, MARKET_CAVEAT]
+    .filter(Boolean)
+    .join(', ');
+  return (
+    <RNPressable
+      onPress={onPress ? handlePress : undefined}
+      style={({ pressed }) => [
+        styles.odds,
+        { borderColor: colors.rule },
+        pressed && onPress ? PRESSED_STYLE : null,
+      ]}
+      accessibilityRole={onPress ? 'button' : 'text'}
+      accessibilityLabel={spoken}
+      accessibilityHint={onPress ? "Opens the market's chart" : undefined}
+    >
+      <Text variant="labelXs" tone="secondary">
+        traders price this at
+      </Text>
+      <View style={styles.oddsRow}>
+        <Text variant="tabularEmphasis" scale={1.25}>
+          {odds.level}
+        </Text>
+        {odds.move ? (
+          <Text variant="caption" tone="secondary">
+            {odds.move}
+          </Text>
+        ) : null}
+      </View>
+      <Text variant="labelXs" tone="secondary">
+        {MARKET_CAVEAT}
+      </Text>
+    </RNPressable>
+  );
+});
 
 interface ArticlePageProps {
   article: RiverArticle;
@@ -68,6 +131,10 @@ interface ArticlePageProps {
   /** Changes when the active section label is pressed. */
   resetScrollKey?: number;
   tick?: number;
+  /** What a prediction market tied to this story says, if one is. */
+  odds?: StoryOdds | null;
+  /** Opens the contract's card. */
+  onOddsPress?: (odds: StoryOdds) => void;
 }
 
 function GlobeTapZone({
@@ -130,6 +197,8 @@ export const ArticlePage = memo(function ArticlePage({
   hasNext = false,
   resetScrollKey = 0,
   tick: _tick,
+  odds = null,
+  onOddsPress,
 }: ArticlePageProps) {
   const { colors, font, typography } = useTheme();
   const timeAgo = formatTimeAgo(articleTime(article));
@@ -400,6 +469,8 @@ export const ArticlePage = memo(function ArticlePage({
           </Text>
         </Pressable>
 
+        {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
+
         <View style={styles.textViewport} testID="article-text-region">
           <ScrollView
             ref={textScrollRef}
@@ -437,12 +508,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: CONTENT_PADDING_TOP,
-    // Clear the BottomActionBar across all platforms. The bar's top edge
-    // sits at `max(bottomInset, SPACING.sm) + ~24px pill height` from the
-    // screen bottom; on Android with no inset that's only 32px, which the
-    // previous SPACING.xl matched exactly (zero buffer). SPACING.xxl gives
-    // ≥16px of breathing room everywhere and ~26px on devices with a home
-    // indicator — enough to feel deliberate, not enough to waste viewport.
+    // Clears the home indicator and the floating briefing bar while it
+    // plays. This was sized against a row of action pills that sat here
+    // before the map screen; those are gone, but the briefing bar occupies
+    // the same band when audio is on, so the value still does its job.
+    // SPACING.xxl gives ≥16px of breathing room everywhere and ~26px on
+    // devices with a home indicator — deliberate, without wasting viewport.
     paddingBottom: SPACING.xxl,
   },
   textViewport: {
@@ -473,6 +544,22 @@ const styles = StyleSheet.create({
   earlierNote: {
     marginTop: SPACING.sm,
     textAlign: 'center',
+  },
+  // Ruled above and below and never filled. It is not the article's prose and
+  // must not read as a continuation of it — but a tinted box would spend the
+  // chromatic budget on a price, which is exactly what the rule against
+  // tinting odds exists to prevent.
+  odds: {
+    marginBottom: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  oddsRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: SPACING.sm,
+    marginVertical: SPACING.xxs,
   },
   kicker: {
     marginBottom: SPACING.xxs,

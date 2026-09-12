@@ -239,29 +239,52 @@ describe('actions', () => {
 });
 
 describe('eligibleHint', () => {
-  const ctx = { screenReader: false };
+  const reader = { screenReader: false, surface: 'reader' as const };
+  const map = { screenReader: false, surface: 'map' as const };
 
-  it('fresh state → swipe', () => {
-    loadStore();
-    const h = loadHints();
+  it('fresh state on the map → globe, before anything else', () => {
+    // The map is the home screen. Gating this lesson behind three articles
+    // would mean a reader who never opens one is never told the earth can be
+    // tapped — which is the problem the redesign exists to solve.
     const s = loadStore();
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('swipe');
+    const h = loadHints();
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
   });
 
-  it('one hint at a time — one tip per article read, in sequence', () => {
+  it('fresh state in the reader → swipe', () => {
     const s = loadStore();
     const h = loadHints();
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('swipe');
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBe('swipe');
+  });
+
+  it('one hint at a time — one reading tip per article read, in sequence', () => {
+    const s = loadStore();
+    const h = loadHints();
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBe('swipe');
     s.recordArticleSnap(); // swipe done, snapCount 1 → 2nd article
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('sources');
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBe('sources');
     s.dismissHint('sources');
     s.recordArticleSnap(); // 3rd article
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('bookmark');
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBe('bookmark');
     s.markHintDone('bookmark');
     s.recordArticleSnap(); // 4th article
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('globe');
+    // The globe is not taught in the reader any more; its lesson lives where
+    // the globe is the thing on screen.
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBeNull();
+  });
+
+  it('the globe lesson does not wait for the reading lessons', () => {
+    const s = loadStore();
+    const h = loadHints();
+    expect(s.getSnapshot().hints.swipe.status).toBe('pending');
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+  });
+
+  it('the map never teaches a reading gesture', () => {
+    const s = loadStore();
+    const h = loadHints();
     s.markHintDone('globe');
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
   });
 
   it('a later hint waits for its predecessor to resolve', () => {
@@ -270,18 +293,22 @@ describe('eligibleHint', () => {
     s.recordArticleSnap();
     s.recordArticleSnap(); // depth for bookmark reached…
     s.dismissHint('sources');
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('bookmark');
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBe('bookmark');
   });
 
   it('globe hint is withheld from screen-reader users', () => {
     const s = loadStore();
     const h = loadHints();
-    s.markHintDone('swipe');
-    s.markHintDone('sources');
-    s.markHintDone('bookmark');
-    for (let i = 0; i < 3; i++) s.recordArticleSnap();
-    expect(h.eligibleHint(s.getSnapshot(), { screenReader: true })).toBeNull();
-    expect(h.eligibleHint(s.getSnapshot(), { screenReader: false })).toBe('globe');
+    expect(h.eligibleHint(s.getSnapshot(), { ...map, screenReader: true })).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+  });
+
+  it('each lesson belongs to exactly one surface', () => {
+    const h = loadHints();
+    expect(h.hintSurface('globe')).toBe('map');
+    expect(h.hintSurface('swipe')).toBe('reader');
+    expect(h.hintSurface('sources')).toBe('reader');
+    expect(h.hintSurface('bookmark')).toBe('reader');
   });
 
   it('an exhausted showCount blocks a still-pending hint', () => {
@@ -299,14 +326,15 @@ describe('eligibleHint', () => {
     s2.flushOnboarding();
     s2 = loadStore();
     s2.recordHintShown('swipe');
-    expect(h.eligibleHint(s2.getSnapshot(), ctx)).toBeNull();
+    expect(h.eligibleHint(s2.getSnapshot(), reader)).toBeNull();
   });
 
-  it('existing users are never eligible for anything', () => {
+  it('existing users are never eligible for anything, on either surface', () => {
     mockFiles.set(LAST_SEEN_PATH, '1');
     const s = loadStore();
     const h = loadHints();
-    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), reader)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
   });
 });
 

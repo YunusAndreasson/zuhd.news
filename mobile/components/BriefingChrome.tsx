@@ -1,46 +1,49 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
-import { BottomActionBar } from './BottomActionBar';
 import { BriefingBar } from './BriefingBar';
 
 export interface BriefingChromeRef {
   toggle: () => void;
 }
 
+/** What the masthead needs to draw its control. Deliberately none of the
+ *  high-frequency fields — see the note on the component. */
+export interface BriefingStatus {
+  available: boolean;
+  resumable: boolean;
+  duration?: number;
+}
+
 interface BriefingChromeProps {
   date?: string;
   duration?: number;
-  bottomInset: number;
-  zoomLabel: string;
-  articleActions: boolean;
-  onZoomPress: () => void;
-  onSharePress: () => void;
   onUnavailable: () => void;
   onPlaybackError: () => void;
   onVisibilityChange: (visible: boolean) => void;
+  /** Fired when the *slow* fields change, never on an elapsed tick. */
+  onStatusChange: (status: BriefingStatus) => void;
 }
 
 /**
  * Owns the high-frequency audio status subscription at the edge of the screen.
  *
- * Keeping useBriefingPlayer here means the 500 ms elapsed-time cadence updates
- * only the player chrome, rather than reconciling HomeScreen, its PagerView,
- * every article/card page, and all sheet shells twice per second.
+ * Keeping `useBriefingPlayer` here means the 500 ms elapsed-time cadence
+ * updates only the player chrome, rather than reconciling HomeScreen, every
+ * list row, the globe and all the sheet shells twice per second.
+ *
+ * That constraint is why the masthead's control is not simply rendered from
+ * the player: it needs `available`, `resumable` and `duration`, and lifting
+ * the hook to get them would lift `elapsed` with it. Those three change at
+ * most a few times per session, so they are reported upward through
+ * `onStatusChange` and `elapsed` never leaves this component.
+ *
+ * The bar it renders is the *playing* state only. The way in moved to the
+ * sheet's masthead: as a pill in the corner of the globe it was a control
+ * sized to stay out of the way, which is a control nobody finds.
  */
 export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
   function BriefingChrome(
-    {
-      date,
-      duration,
-      bottomInset,
-      zoomLabel,
-      articleActions,
-      onZoomPress,
-      onSharePress,
-      onUnavailable,
-      onPlaybackError,
-      onVisibilityChange,
-    },
+    { date, duration, onUnavailable, onPlaybackError, onVisibilityChange, onStatusChange },
     ref,
   ) {
     const player = useBriefingPlayer(date, duration);
@@ -68,25 +71,20 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
     }, [onVisibilityChange, visible]);
 
     useEffect(() => {
+      onStatusChange({
+        available: player.available,
+        resumable: player.resumable,
+        duration: player.duration,
+      });
+    }, [onStatusChange, player.available, player.resumable, player.duration]);
+
+    useEffect(() => {
       if (player.failureCount === 0) return;
       setPresented(false);
       onPlaybackError();
     }, [onPlaybackError, player.failureCount]);
 
-    if (!visible) {
-      return (
-        <BottomActionBar
-          bottomInset={bottomInset}
-          zoomLabel={zoomLabel}
-          briefingDuration={player.duration}
-          briefingResumable={player.resumable}
-          onBriefingPress={handleToggle}
-          onZoomPress={onZoomPress}
-          articleActions={articleActions}
-          onSharePress={onSharePress}
-        />
-      );
-    }
+    if (!visible) return null;
 
     return (
       <BriefingBar

@@ -162,6 +162,37 @@ function chokepointPath(): SkPath {
  *  graphic confidence as GDACS event types instead of as a generic ring. */
 export const CHOKEPOINT_PATH: SkPath = chokepointPath();
 
+function marketPath(): SkPath {
+  // A candle: the open-high-low-close mark, which is what an index's session
+  // actually is, plus the axis it sits on.
+  //
+  // Shape says what, colour says which way — so the silhouette has to be
+  // *unmistakably* a market and carry no direction of its own. A downward
+  // arrow would say "fell" in the shape channel, which is the channel the
+  // layer alphabet reserves for identity; the reading and its coloured delta
+  // in the strip above own direction. A candle is directionless and nothing
+  // else on this globe looks remotely like one.
+  const cx = GLYPH_HALF;
+  const cy = GLYPH_HALF;
+  return (
+    Skia.PathBuilder.Make()
+      // The wick — high to low
+      .moveTo(cx, cy - 8)
+      .lineTo(cx, cy + 8)
+      // The body — open to close, a rectangle straddling the wick
+      .moveTo(cx - 3.5, cy - 4)
+      .lineTo(cx + 3.5, cy - 4)
+      .lineTo(cx + 3.5, cy + 4)
+      .lineTo(cx - 3.5, cy + 4)
+      .close()
+      .detach()
+  );
+}
+
+/** Market pictogram — a candle. Marks the exchange behind an index the
+ *  server flagged as having moved. */
+export const MARKET_PATH: SkPath = marketPath();
+
 export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
   EQ: 'Earthquake',
   TC: 'Tropical cyclone',

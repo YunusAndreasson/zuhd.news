@@ -56,12 +56,77 @@ makes this set safe — the absence of that shape is. Before touching these thre
 scan worklet regions for inline functions passed to `.map`/`.filter`/`.forEach`/…;
 a release build cannot name the offender if one survives.
 
-## The two axes
+## One screen
 
-Horizontal swipe = section (`news` · `markets` · `shipping` · `outlook`), vertical
-paging = item inside one. Every column but `news` is a `CardPager` over a
-`Card[]`; `news` is `ArticleList` over the ordered river and owns the only
-globe. `SectionBar` follows the pager and draws a rule after `news`.
+There is no section rail. `app/index.tsx` is a single map screen, and every
+surface is a layer over **one** `MiniGlobe` mounted at its root:
+
+```
+MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
+GlobeGestureLayer                     drag rotates · pinch steps zoom · tap hit-tests
+MapHeader + IndicatorStrip            wordmark, zoom, menu · three ranked gauges
+MapSheet                              custom, non-modal, peek/full · masthead + NOW + river
+ReaderLayer                           ArticleList over the river, presented over the map
+platform sheets                       card · instruments · chokepoint · country · …
+```
+
+It replaced four sections on a horizontal pager, with the globe living as a
+backdrop behind `news` only. That shape made the reader hold a taxonomy —
+chokepoint traffic was "shipping" — and left the one surface with every story
+and hazard already plotted on it looking like wallpaper. It was tappable the
+whole time; nothing said so.
+
+- **One globe, and the map and the reader share it.** `ArticleList` no longer
+  renders `MiniGlobe`; it receives `globeRef` and publishes into the screen's
+  `cameraScrollY`. Two globes would mean opening a story cuts to a second earth
+  instead of the same one continuing to turn. Both lists index the same camera
+  track (the river), and `itemHeight` is what switches — a sheet row and a
+  full-screen page are different distances along it.
+- **The camera has two owners, and a finger outranks the list.**
+  `MiniGlobe.cameraOwner`: `0` the list's scroll offset, `1` a target —
+  a drag on the globe, a strip or NOW selection, or the opening view. The next
+  *drag* on the list (`onBeginDrag`, never `onScroll`) hands it back. The
+  opening view turns the planet to the day's top instrument once; after the
+  reader moves the camera the app never re-aims it.
+- **Row height is shared with the camera, so rows never grow.** The sheet's
+  camera finds the story under the reader by `scrollY / rowHeight`. `MapFeed`
+  lays out with exactly that number and titles clamp to two lines; the NOW
+  block lives in `ListHeaderComponent`, outside the indexed data, and its
+  measured height is subtracted before publishing. A row that grew to fit its
+  title would put the globe on the wrong story.
+- **The strip prints numbers; the NOW block prints titles; they never share an
+  item.** `buildNowSurfaces` (`lib/now.ts`) builds both in one pass and excludes
+  the strip's ids from the block, because an instrument as `HORMUZ −57% ▼` above
+  the globe and again as a row below it is one fact twice. The block holds no
+  stories (the river's first row already *is* the lead story) and no conflict
+  events (UCDP publishes months in arrears, and NOW over a March event is a
+  false claim).
+- **The sheet is hand-built on purpose, and it is the only one.** A platform
+  sheet is modal: it scrims the globe, caps Android at two detents it picks,
+  and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
+  rather than arbitrating them: at peek the list does not scroll; the list
+  never bounces; the pan decides ownership once per gesture and holds it.
+  Every other sheet stays a platform sheet.
+- **Instruments without a place are one tap away, always.** Brent, gold, the
+  ten-year, nisab, FX movers and every contract have no honest location, so
+  they are not on the globe. `all instruments →` under the NOW block is never
+  conditional, and `InstrumentsSheet` lists every card in `buildRankedInstruments`
+  order. Placing Brent in the North Sea to avoid a list would be inventing
+  locations for half the deck.
+- **Predictions are merged into the story they settle, never plotted.**
+  `lib/predictions.ts` inverts the `relatedArticles` the narration stage writes
+  onto `poly-*` indicators. A feed row carries a bare `62%`; the reader carries
+  the level, the move in **points**, and `MARKET_CAVEAT`. Odds are never tinted
+  favorable/unfavorable — a green likelier war is the app taking a side.
+- **The globe's gesture layer is hidden from screen readers, so the list must
+  be complete.** VoiceOver activates an element at its geometric centre, which
+  on a globe is a lottery country. Every mark that matters has a row in the
+  strip, the NOW block or the instruments sheet; that is the accessible path,
+  and a new mark layer without a row is an accessibility regression.
+
+The card doctrine below still holds. The cards render in `CardSheet` rather
+than on deck pages, but `CardView`/`CardFrame` are unchanged, and every rule
+about what a card may say is about the card, not where it is shown.
 
 - **The data axis is specific, and the graph rule has exactly one exemption.**
   `markets` holds prices, rates, currencies and crypto; `shipping` holds
@@ -139,23 +204,18 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   the gold/silver card graphs its ratio rather than flattening silver beneath
   gold on a shared dollar scale. A subtype or component may remain a secondary
   figure, but it cannot be the reading above a chart of something else.
-- **Pull to refresh is on every column, not only `news`.** `CardPager`'s own
-  comment said the card payloads "refresh on resume, not on demand", which was
-  true of the mechanism and beside the point: a reader has one gesture for *get
-  me the new thing* and it worked on one of four tabs. It is real, not a
-  placebo — `useArticles.refresh()` probes `/api/meta.json`, and a moved
-  `generated` runs `invalidateApiJson`, which marks every `useApiJson` snapshot
-  stale at once. What differs from `news` is only what it may claim afterwards:
-  `refresh()` returns the *articles* it added, and "3 new · ~2 min read" over a
-  deck of price cards answers a question nobody asked, so a card column toasts
-  "Updated" or the feed's own "already up to date". The empty state is a
-  `ScrollView` for this alone — "no market graphs yet" is what a failed fetch
-  looks like, and it was the one screen in the app with no gesture at all.
-- **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber ate five
-  page swipes in a row before `scrubbable={false}` existed. Cards pass it;
-  sheets do not.
-- **Nothing may steal the vertical one either, and the fix for that once ate
-  the content instead.** A card taller than the page carries an inner
+- **Pull to refresh is on the sheet's list, and it is real.**
+  `useArticles.refresh()` probes `/api/meta.json`; a moved `generated` runs
+  `invalidateApiJson`, which marks every `useApiJson` snapshot stale at once —
+  trends, chokepoints, analysis, market signals — so the strip, the NOW block
+  and the marks all refetch from the one gesture.
+- **The horizontal axis belongs to going back.** With the rail gone, a
+  sideways swipe in the reader returns to the map (`useSwipeBackGesture`, the
+  same thresholds the multi-page sheets use). `TrendBlock`'s scrubber ate five
+  page swipes in a row before `scrubbable={false}` existed; cards still pass
+  it, because a card's chart must not steal the gesture that dismisses it.
+- **Nothing may steal the reader's vertical axis, and the fix for that once
+  ate the content instead.** A card taller than the page carries an inner
   `ScrollView`. Handing its leftover overscroll up to the pager parks the list
   between two pages — the parent moves having never been dragged, so
   `pagingEnabled`, which only snaps a gesture the list received itself, has
@@ -173,8 +233,10 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
     `onContentLayout` measures, so the naive comparison is 80pt optimistic and
     was the truncation's proximate cause;
   - `nestedScrollEnabled` is **on**, because without it the first guard is moot;
-  - `CardPager.settleToPage` corrects the resting offset — and it is armed from
-    the *scroll worklet*, not only from `onScrollEndDrag`. That matters: the
+  - `settleToPage` (`lib/pager-settle.ts`, used by `ArticleList`) corrects the
+    resting offset — and it is armed from the *scroll worklet*, not only from
+    `onScrollEndDrag`. The card decks carried this first; they are gone, the
+    reader still needs it. That matters: the
     handoff produces neither a drag end nor a momentum end on the parent, so a
     drag-armed timer can never see it. The worklet hop is throttled to 10/sec
     and declines while `draggingRef`/`momentumRef` are set, so it never fires
@@ -193,12 +255,12 @@ globe. `SectionBar` follows the pager and draws a rule after `news`.
   front — so it needs every paragraph before it renders anything. 17.2KB, prose
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
-- **The bottom bar is not global.** `zoom` drives the globe, which lives on
-  `news` alone, and `share` shares `activeArticleRef` — so on a card column one
-  pill did nothing and the other sent a link to an unrelated article. Both are
-  gated on `articleActions` now; `listen` stays everywhere because the briefing
-  is not about what is on screen. Sharing a card needs a per-card URL and only
-  the indicator-backed ones have one (`/e/{id}`).
+- **There is no bottom bar, and each of its three pills went somewhere
+  specific.** `listen` is the button on the sheet's masthead — as a corner pill
+  over the globe it was sized to stay out of the way and was not found.
+  `share` is in the reader's top-right chrome, where it can only mean the page
+  under it (it used to share the last article read from any section). `zoom`
+  is a word pill in `MapHeader`, the accessible path beside pinch.
 
 - **The graph and pipeline analysis stay visible.** The reading, chart, the
   desk's analysis, delta and current change make up the recurring surface.

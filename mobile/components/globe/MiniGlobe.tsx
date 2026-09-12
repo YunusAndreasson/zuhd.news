@@ -58,9 +58,12 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import { BLACK, WHITE, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
+import { coverageRanks } from '../../lib/now';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
+import { chokepointValence } from '../../lib/valence';
 import {
   CITY_LIGHT_COORDS,
   CITY_LIGHT_COUNT,
@@ -74,7 +77,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -144,6 +147,26 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
   return {
     sprites: points.map(() => spec.srcRect),
     transforms: points.map((p) => Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center)),
+  };
+}
+
+/** Atlas inputs for the story layer: one baked glow, per-instance size and
+ *  alpha. `RSXform`'s first component is scale·cos θ, so a uniform scale is
+ *  free — and the translate has to be scaled with it or a shrunk sprite
+ *  drifts off its own centre. Alpha rides the `colors` channel the same way
+ *  the conflict layer's recency does, which means `colorBlendMode="modulate"`
+ *  is mandatory here too. */
+function storyAtlas(
+  spec: GlowSpec,
+  marks: { x: number; y: number; scale: number; alpha: number }[],
+) {
+  if (marks.length === 0) return null;
+  return {
+    sprites: marks.map(() => spec.srcRect),
+    transforms: marks.map((m) =>
+      Skia.RSXform(m.scale, 0, m.x - spec.center * m.scale, m.y - spec.center * m.scale),
+    ),
+    colors: marks.map((m) => Float32Array.of(1, 1, 1, m.alpha)),
   };
 }
 
@@ -270,13 +293,57 @@ const MAKKAH_GLOW = makeGlowSpec(MAKKAH_GLOW_LAYERS, 48);
 
 // Scroll-order offsets for ghost pins (± settled index). Module constant so
 // the literal doesn't reallocate every frame inside callReproject.
-const GHOST_OFFSETS = [-2, -1, 1, 2] as const;
-const GHOST_DEDUPE_PX2 = 900; // 30px²
+const STORY_DEDUPE_PX2 = 900; // 30px²
 
-// Disruption thresholds for chokepoint visual state. A chokepoint becomes
-// "disrupted" at ±15% from baseline; intensity saturates at ±30% so the
-// glow doesn't keep brightening forever during extreme events.
-const CHOKEPOINT_DISRUPTED_DELTA = 0.15;
+/** Sweep order for the story layer: after the settled story, the one before
+ *  it, then the one after, then two before, and so on. Outward from where the
+ *  reader is, so the dedupe keeps the marks nearest their attention. */
+const STORY_SWEEP = [-1, 1] as const;
+
+/**
+ * How a story mark says how big the story is, and how fresh.
+ *
+ * Every article in the column gets a mark now, not just the two either side
+ * of the settled one. As a backdrop, ±2 was right: the globe was ground under
+ * the story you were reading and the neighbours were a hint of where you were
+ * going. As the home screen it is a map of the day, and a map of the day that
+ * plots three of forty stories is a map of nothing.
+ *
+ * Two channels, both ported from the web map's rules, which record what was
+ * measured to arrive at them:
+ *
+ *   **size** is the percentile rank of `eventCoverage` over the stories that
+ *   publish one — never the raw figure, and never a log curve. The field is
+ *   absent on roughly two thirds of articles and occasionally holds nonsense
+ *   (the corpus has values in the tens of thousands, which is not a number of
+ *   outlets), so both alternatives pin most of the map at the minimum radius
+ *   while a handful of bad rows saturate the top. A story with no figure
+ *   draws at `STORY_UNKNOWN_RANK`, deliberately above the minimum: that says
+ *   "unknown", where the smallest mark would say "least covered".
+ *
+ *   **alpha** decays on a 72-hour half-life with a floor, so a three-day-old
+ *   story is present but quiet. Note this is *not* the 18h curve the hotspot
+ *   layer uses: 18 hours over a 72-hour window is right for a density field
+ *   and puts a column of individual marks almost entirely on the floor.
+ */
+const STORY_SCALE_MIN = 0.62;
+const STORY_SCALE_MAX = 1.15;
+const STORY_UNKNOWN_RANK = 0.28;
+const STORY_ALPHA_FLOOR = 0.45;
+const STORY_HALF_LIFE_HOURS = 72;
+
+// How bright a disrupted chokepoint glows. Magnitude only — *whether* it is
+// disrupted is `chokepointValence`'s answer and nobody else's.
+//
+// This used to hold its own threshold: `absDelta > 0.15`, against
+// `lib/valence.ts`'s 0.1 and `straitCards`' 0.3 materiality gate. That is the
+// exact shape the valence module was created to end — the same strait
+// reading disrupted on a card and quiet in the sheet that card opens, with
+// nothing in either file saying the other existed. It was also *absolute*,
+// so a strait running 20% **above** its normal lit the alarm tint: traffic
+// rerouted *to* a passage is the same disruption seen from the other end,
+// and the app's stated position is to name the squeeze and leave the busy
+// side slate.
 const CHOKEPOINT_SATURATION_DELTA = 0.3;
 
 // Vertical advance between baselines of a wrapped country label. Tuned for
@@ -367,6 +434,9 @@ export interface TapResult {
   /** Set when the tap landed on a conflict-event marker. The parent
    *  resolves the id against the events list and opens ConflictSheet. */
   conflictEventId?: string;
+  /** Set when the tap landed on an exchange whose index has moved. The
+   *  parent resolves it against the ranked instruments and opens the card. */
+  marketSignalId?: string;
   /** Populated when the tap lands on 2+ overlapping markers. The parent
    *  presents a chooser sheet listing these candidates; tapping one
    *  re-dispatches that candidate through the same hit handler. When set,
@@ -386,10 +456,47 @@ interface MiniGlobeProps {
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
+  /**
+   * Exchanges behind an index the server flagged as having moved.
+   *
+   * Pre-resolved to coordinates by the screen rather than derived here: the
+   * placement ladder (the signal's own `lat`/`lng`, else its country's
+   * centroid, else no mark) belongs with the ranking that produced the list,
+   * and this component should not have to know what a `MarketSignal` is.
+   */
+  marketMarks?: { id: string; label: string; lat: number; lng: number }[];
   scrollY: SharedValue<number>;
   itemHeight: number;
+  /**
+   * What the camera flies along, as a flat `[lat, lng, lat, lng, …]` array —
+   * one pair per scrollable row, `null, null` for a row with no place.
+   *
+   * Defaults to the article set, which is what the reader wants: one pair per
+   * page, indexed by `scrollY / itemHeight`. The map screen's sheet has a
+   * different list — a block of instruments above the river — so it supplies
+   * its own track rather than having the globe guess that row *n* is article
+   * *n*. Marks are unaffected: they come from `articleGeo`, which stays the
+   * article set on every surface.
+   */
+  cameraTrack?: (number | null)[];
+  /**
+   * Who is moving the camera: `0` the list, `1` a finger on the globe.
+   *
+   * A drag decouples from the list rather than fighting it — while the finger
+   * owns the camera the settled row, its country highlight and its label all
+   * hold still, so releasing does not snap the reader somewhere they did not
+   * scroll to. The next list scroll takes ownership back.
+   */
+  cameraOwner?: SharedValue<number>;
+  /** Where the finger has put the camera. Read only while `cameraOwner` is 1. */
+  cameraLat?: SharedValue<number>;
+  cameraLng?: SharedValue<number>;
   width: number;
   height: number;
+  /** Globe disc radius in px. Defaults to the backdrop's `0.9 × width`. */
+  radius?: number;
+  /** Globe centre, px from the top of the canvas. Defaults to `height × 2/3`. */
+  centerY?: number;
   /** User-driven zoom override. null = scroll-adaptive clip (default);
    *  a number forces that clip angle. Transitions animate via the
    *  overrideActive/overrideAngle pair inside MiniGlobe. */
@@ -425,7 +532,11 @@ interface GlobeState {
   /** Neighboring articles in scroll order (±2 from the settled index). Fainter
    *  than the main dot and deduped against each other + the main dot so tight
    *  geographic clusters don't smudge into a single glow. */
-  ghostDots: { x: number; y: number }[];
+  /** Every article in the column that is on the near side of the globe, one
+   *  mark each. `scale` is coverage percentile, `alpha` is recency — see
+   *  `STORY_SCALE_MIN` and friends. The settled story is not in here: it
+   *  keeps its own larger glow and its label. */
+  storyMarks: { x: number; y: number; scale: number; alpha: number }[];
   dotLabel: { text: string; sub?: string; x: number; y: number } | null;
   /** Country name anchored near the highlighted country's centroid. Rendered
    *  at every zoom level (including fully zoomed-out) so the reader always
@@ -466,6 +577,10 @@ interface GlobeState {
     intensity: number;
     disrupted: boolean;
   }[];
+  /** Exchanges with a flagged index move. Projected every frame like
+   *  chokepoints: the set is at most three and it is the thing the opening
+   *  camera is most often pointed at, so it must not blink out mid-scroll. */
+  marketMarks: { x: number; y: number; id: string; label: string }[];
   /** GDACS disaster markers — Orange/Red current events. Projected every
    *  frame like chokepoints (small set, reference signal). `recencyAlpha`
    *  ∈ [0.5, 1] fades events older than ~7 days. */
@@ -679,13 +794,14 @@ const EMPTY_GLOBE: GlobeState = {
   northPole: null,
   southPole: null,
   dot: null,
-  ghostDots: [],
+  storyMarks: [],
   dotLabel: null,
   countryLabel: null,
   makkah: null,
   subsolar: null,
   hotspotGlows: [],
   chokepoints: [],
+  marketMarks: [],
   gdacsMarks: [],
   conflictMarks: [],
   neighborLabels: [],
@@ -938,13 +1054,14 @@ function projectInitial(
     northPole,
     southPole,
     dot,
-    ghostDots: [],
+    storyMarks: [],
     dotLabel: null,
     countryLabel: null,
     makkah,
     subsolar,
     hotspotGlows: [],
     chokepoints: [],
+    marketMarks: [],
     gdacsMarks: [],
     conflictMarks: [],
     neighborLabels: [],
@@ -963,10 +1080,17 @@ export const MiniGlobe = memo(function MiniGlobe({
   chokepoints,
   gdacsAlerts,
   conflictEvents,
+  marketMarks,
   scrollY,
   itemHeight,
+  cameraTrack,
+  cameraOwner,
+  cameraLat,
+  cameraLng,
   width,
   height,
+  radius,
+  centerY,
   zoomClipOverride = null,
   tick: _tick,
   ref,
@@ -985,12 +1109,20 @@ export const MiniGlobe = memo(function MiniGlobe({
   const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
   const makkahTexture = useGlowTexture(MAKKAH_GLOW, colors.dome);
 
-  const globeRadius = width * 0.9;
+  // Where the earth sits, in canvas pixels.
+  //
+  // The defaults are the backdrop geometry this component was born with — a
+  // disk wider than the screen, centred on the lower rule-of-thirds line, so
+  // it bleeds off both sides and reads as ground under the prose. The map
+  // screen overrides both: there the earth is a bounded disc in the band
+  // between the indicator strip and the sheet, and a radius of `0.9 × width`
+  // would put most of it behind the list.
+  //
+  // Passed in rather than derived from a mode flag because only the screen
+  // knows how much of its height the sheet is taking.
+  const globeRadius = radius ?? width * 0.9;
   const cx = width / 2;
-  // Vertical center sits on the lower rule-of-thirds line (2/3 from top).
-  // Was 0.75 — pulled up a touch so the globe disk reads as the lower
-  // composition anchor rather than crowding the bottom edge.
-  const cy = height * (2 / 3);
+  const cy = centerY ?? height * (2 / 3);
   // Cartographic typography:
   //   - Dot label  → SemiBold mixed case + halo. The *only* Title-Case label
   //     on the globe; intentionally non-atlas-style because it's the editorial
@@ -1049,16 +1181,35 @@ export const MiniGlobe = memo(function MiniGlobe({
   const anchorFloorRef = useRef(ANCHOR_LABEL_OPACITY_DARK);
   anchorFloorRef.current = light ? ANCHOR_LABEL_OPACITY_LIGHT : ANCHOR_LABEL_OPACITY_DARK;
 
-  // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
+  // Precompute per-article: coords + country feature + names + the two mark
+  // channels. All of it is static per snapshot, so none of it belongs in
+  // `callReproject` — the frame loop projects and culls, it does not rank.
+  //
+  // `_tick` is in the dependency list for the same reason the hotspot memo
+  // has it: alpha is derived from `Date.now()`, which React cannot infer.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: _tick is an explicit clock invalidation for the recency decay below
   const articleGeo = useMemo(() => {
+    const ranks = coverageRanks(articles);
+    const now = Date.now();
+    const lambda = Math.LN2 / STORY_HALF_LIFE_HOURS;
     return articles.map((a) => {
       const coords = getCoords(a);
       if (!coords) return null;
       const country = findCountry(coords[0], coords[1], a.location);
       const countryName = country?.properties?.name ?? null;
-      return { lat: coords[0], lng: coords[1], country, countryName, location: a.location };
+      const rank = ranks.get(a.slug) ?? STORY_UNKNOWN_RANK;
+      const ageHours = Math.max(0, (now - articleTime(a)) / 3_600_000);
+      return {
+        lat: coords[0],
+        lng: coords[1],
+        country,
+        countryName,
+        location: a.location,
+        scale: STORY_SCALE_MIN + (STORY_SCALE_MAX - STORY_SCALE_MIN) * rank,
+        alpha: STORY_ALPHA_FLOOR + (1 - STORY_ALPHA_FLOOR) * Math.exp(-lambda * ageHours),
+      };
     });
-  }, [articles]);
+  }, [articles, _tick]);
 
   // Eager initial state — project synchronously on mount so the Canvas + Skia shaders
   // are warm before the first swipe (avoids useEffect → reaction → scheduleOnRN lag)
@@ -1157,11 +1308,13 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
   }, [heatmapPoints, articles, articleGeo, _tick]);
 
-  // Flat coord array for UI thread interpolation
+  // Flat coord array for UI thread interpolation. `cameraTrack` wins where a
+  // surface supplies one; the article set is the default because that is what
+  // the reader scrolls.
   const coordsSV = useSharedValue<(number | null)[]>([]);
   useEffect(() => {
-    coordsSV.value = articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
-  }, [articleGeo, coordsSV]);
+    coordsSV.value = cameraTrack ?? articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
+  }, [articleGeo, cameraTrack, coordsSV]);
 
   // Zoom control — two shared values that together describe the effective
   // clip angle each frame:
@@ -1223,6 +1376,20 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Precompute the per-frame derivations once per snapshot: uppercase label,
   // [lng,lat] tuple (reused inside geoDistance + proj), and absolute delta
   // of the primary vessel class (drives intensity + disrupted flag).
+  // Same shape as the chokepoint enrichment below: a `[lng, lat]` tuple built
+  // once per snapshot rather than per frame, because `geoDistance` and `proj`
+  // both want one and building it inside the loop allocates forty times a
+  // second for no reason.
+  const enrichedMarketMarks = useMemo(
+    () =>
+      (marketMarks ?? []).map((m) => ({
+        id: m.id,
+        label: m.label,
+        coords: [m.lng, m.lat] as [number, number],
+      })),
+    [marketMarks],
+  );
+
   const enrichedChokepoints = useMemo(
     () =>
       (chokepoints ?? []).map((cp) => ({
@@ -1234,12 +1401,17 @@ export const MiniGlobe = memo(function MiniGlobe({
         // the "ambient reference geography" intent.
         label: cp.name,
         coords: [cp.lng, cp.lat] as [number, number],
+        // Signed, because direction decides meaning here and magnitude only
+        // decides brightness.
+        delta: cp.delta7vs90[cp.primaryField] ?? 0,
         absDelta: Math.abs(cp.delta7vs90[cp.primaryField] ?? 0),
       })),
     [chokepoints],
   );
   const chokepointsRef = useRef(enrichedChokepoints);
   chokepointsRef.current = enrichedChokepoints;
+  const marketMarksRef = useRef(enrichedMarketMarks);
+  marketMarksRef.current = enrichedMarketMarks;
   // GDACS alerts — precompute per-frame derivations once per snapshot:
   // [lng,lat] tuple and recency alpha (fade events older than 14 days down
   // to ~0.5; the data layer drops anything past 30 days). Greens are
@@ -1441,26 +1613,44 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) dot = { x: pt[0], y: pt[1] };
       }
 
-      // Ghost dots — ±2 articles on either side of the settled one. Skipped
-      // when behind the globe or when they'd visually smudge into the main
-      // dot / an earlier ghost (30px proximity dedupe, ~1° at default zoom).
-      const ghostDots: { x: number; y: number }[] = [];
+      // Story marks — every article in the column, sized by how widely it is
+      // covered and faded by how old it is. This replaced a ±2 window around
+      // the settled story: see the constants above for why the whole set is
+      // right once the globe is the home screen rather than a backdrop.
+      //
+      // Nearest-first, outward from the settled story, so that when two
+      // stories collide the one the reader is closest to survives the dedupe
+      // rather than whichever happened to come first in the column.
+      const storyMarks: GlobeState['storyMarks'] = [];
       const accepted: { x: number; y: number }[] = dot ? [dot] : [];
-      for (const offset of GHOST_OFFSETS) {
-        const idx = settledIndex + offset;
-        if (idx < 0 || idx >= geoData.length) continue;
-        const g = geoData[idx];
-        if (!g) continue;
-        // Cull against the zoom cone, not the hemisphere — direct point
-        // projection ignores `.clipAngle` (see clipRad note above), so a
-        // ghost between clipRad and 90° would stamp its glow in the sky.
-        if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= clipRad) continue;
-        const pt = proj([g.lng, g.lat]);
-        if (!pt) continue;
-        const [gx, gy] = pt;
-        if (accepted.some((a) => isNear(gx, gy, a.x, a.y, GHOST_DEDUPE_PX2))) continue;
-        accepted.push({ x: gx, y: gy });
-        ghostDots.push({ x: gx, y: gy });
+      const span = geoData.length;
+      for (let step = 1; step <= span; step += 1) {
+        for (const dir of STORY_SWEEP) {
+          const idx = settledIndex + step * dir;
+          if (idx < 0 || idx >= span) continue;
+          const g = geoData[idx];
+          if (!g) continue;
+          // Cull against the zoom cone, not the hemisphere — direct point
+          // projection ignores `.clipAngle` (see clipRad note above), so a
+          // mark between clipRad and 90° would stamp its glow in the sky.
+          if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= clipRad) continue;
+          const pt = proj([g.lng, g.lat]);
+          if (!pt) continue;
+          const [gx, gy] = pt;
+          // 445 of 705 stories share a coordinate on the web's payload, and
+          // this column is no different — without the dedupe a capital with
+          // six datelines is one smudge six glows deep.
+          let clash = false;
+          for (const a of accepted) {
+            if (isNear(gx, gy, a.x, a.y, STORY_DEDUPE_PX2)) {
+              clash = true;
+              break;
+            }
+          }
+          if (clash) continue;
+          accepted.push({ x: gx, y: gy });
+          storyMarks.push({ x: gx, y: gy, scale: g.scale, alpha: g.alpha });
+        }
       }
 
       // Country highlight — reuse path object. Large countries (Russia,
@@ -1809,8 +1999,21 @@ export const MiniGlobe = memo(function MiniGlobe({
           id: cp.id,
           label: cp.label,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
-          disrupted: cp.absDelta > CHOKEPOINT_DISRUPTED_DELTA,
+          disrupted: chokepointValence(cp.delta) === 'unfavorable',
         });
+      }
+
+      // Exchanges whose index the server flagged. Same cull + project pattern
+      // as chokepoints, and always projected for the same reason: the set is
+      // tiny and the opening camera is usually pointed at one of them, so a
+      // mark that blinks out mid-scroll is a mark that is not there when the
+      // reader looks for what the strip just promised.
+      const marketProjected: GlobeState['marketMarks'] = [];
+      for (const m of marketMarksRef.current) {
+        if (geoDistance(m.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(m.coords);
+        if (!pt) continue;
+        marketProjected.push({ x: pt[0], y: pt[1], id: m.id, label: m.label });
       }
 
       // GDACS alerts — same cull + project pattern as chokepoints. Per-tier
@@ -2159,13 +2362,14 @@ export const MiniGlobe = memo(function MiniGlobe({
         northPole,
         southPole,
         dot,
-        ghostDots,
+        storyMarks,
         dotLabel,
         countryLabel,
         makkah,
         subsolar,
         hotspotGlows,
         chokepoints: chokepointMarks,
+        marketMarks: marketProjected,
         gdacsMarks,
         conflictMarks,
         neighborLabels: keptNeighbours,
@@ -2231,6 +2435,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastReactOA = useSharedValue(Number.NaN);
   const lastReactOG = useSharedValue(Number.NaN);
   const lastReactSettled = useSharedValue(-1);
+  // The list's last window, held so a finger-owned frame can reuse it rather
+  // than recomputing a row index the finger never touched.
+  const lastReactLo = useSharedValue(0);
+  const lastReactHi = useSharedValue(0);
 
   useAnimatedReaction(
     () => ({
@@ -2239,8 +2447,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       oG: overrideAngle.value,
       len: coordsSV.value.length,
       busy: reprojectBusy.value,
+      // Reading a possibly-absent shared value has to happen here, in the
+      // prepare block, not in the body: the reaction only re-runs on values
+      // it actually read.
+      owner: cameraOwner ? cameraOwner.value : 0,
+      dragLat: cameraLat ? cameraLat.value : 0,
+      dragLng: cameraLng ? cameraLng.value : 0,
     }),
-    ({ sy, oA, oG, len, busy }, previous) => {
+    ({ sy, oA, oG, len, busy, owner, dragLat, dragLng }, previous) => {
       if (len === 0) return;
 
       // Do not update the last-published inputs while busy: once the current
@@ -2254,6 +2468,37 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (!justReleased && hasFired.value && now - lastTimeRef.value < 32) return;
       hasFired.value = true;
       lastTimeRef.value = now;
+
+      // Finger owns the camera: publish where it put us and leave the list's
+      // window alone. The throttle above still applies, so a drag reprojects
+      // at the same ~30fps everything else does — the budget is the budget.
+      if (owner === 1) {
+        if (
+          Math.abs(dragLng - lastReactLng.value) < 0.01 &&
+          Math.abs(dragLat - lastReactLat.value) < 0.01 &&
+          Math.abs(oA - lastReactOA.value) < 1e-4 &&
+          Math.abs(oG - lastReactOG.value) < 0.01
+        ) {
+          return;
+        }
+        lastReactLng.value = dragLng;
+        lastReactLat.value = dragLat;
+        lastReactOA.value = oA;
+        lastReactOG.value = oG;
+        reprojectBusy.value = true;
+        scheduleOnRN(
+          runScrollReproject,
+          dragLng,
+          dragLat,
+          lastReactSettled.value,
+          lastReactLo.value,
+          lastReactHi.value,
+          lastReactFrac.value,
+          oA,
+          oG,
+        );
+        return;
+      }
 
       const coords = coordsSV.value;
       const articleCount = len / 2;
@@ -2352,6 +2597,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       lastReactOA.value = oA;
       lastReactOG.value = oG;
       lastReactSettled.value = settled;
+      lastReactLo.value = lo;
+      lastReactHi.value = hi;
 
       reprojectBusy.value = true;
       scheduleOnRN(runScrollReproject, lng, lat, settled, lo, hi, frac, oA, oG);
@@ -2456,6 +2703,47 @@ export const MiniGlobe = memo(function MiniGlobe({
       );
   }, [hotspots]);
 
+  // Re-project when the disc moves or resizes. `layoutRef` is written every
+  // render so the *next* projection picks the new geometry up, but nothing
+  // schedules one: the reaction fires on scroll and on the zoom override, and
+  // neither changed. Without this the globe keeps its old radius until the
+  // reader's next scroll — visible on rotation, and on the first frame after
+  // safe-area insets resolve and the map's band changes height.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [globeRadius, cy]);
+
+  // Re-project when the flagged exchanges change. Same reason as the
+  // chokepoint effect below: the marks arrive from their own fetch, after
+  // the frame that would otherwise have drawn them.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [enrichedMarketMarks]);
+
   // Re-project when chokepoint data arrives (first API fetch, or a cycle-level refresh)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
@@ -2556,6 +2844,23 @@ export const MiniGlobe = memo(function MiniGlobe({
             localTime: null,
             data: null,
             chokepointId: c.id,
+          });
+        }
+      }
+
+      // Exchange marks — same 36px tap zone as the other reference markers.
+      // Tiered above GDACS and conflict on purpose: there are at most three
+      // of them, they are the marks the opening camera and the strip point
+      // at, and a reader who taps what the gauge above just named should get
+      // that and not a Green flood alert that happens to share the pixel.
+      for (const m of state.marketMarks) {
+        if (isNear(x, y, m.x, m.y, 1296)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            marketSignalId: m.id,
           });
         }
       }
@@ -2815,7 +3120,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [colors.atmosphere, light]);
 
   // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
-  const ghostAtlas = useMemo(() => glowAtlas(GHOST_GLOW, state.ghostDots), [state.ghostDots]);
+  const storyMarkAtlas = useMemo(
+    () => storyAtlas(GHOST_GLOW, state.storyMarks),
+    [state.storyMarks],
+  );
   // Conflict markers ride the SAME baked texture as ghost dots, just
   // with per-instance alpha encoded into the colors array. One Skia
   // draw call regardless of marker count, no separate texture bake.
@@ -3142,6 +3450,45 @@ export const MiniGlobe = memo(function MiniGlobe({
         );
       })}
 
+      {/* Exchanges whose index has moved. A candle, in the same 22pt stroked
+          family as the hazard glyphs and the strait's channel — shape says
+          what, and nothing else on this globe looks like one.
+          Directionless on purpose: the coloured delta lives in the strip
+          above, and a mark that also leaned up or down would be spending the
+          identity channel on something the colour channel already owns.
+          Always labelled. An unlabelled dot on a sphere reads as texture;
+          a labelled one reads as addressable, and on this screen that label
+          is the only thing telling the reader the earth can be tapped. */}
+      {state.marketMarks.map((m) => {
+        const labelTx = waterFont
+          ? m.x - waterFont.measureText(m.label).width / 2
+          : m.x - m.label.length * 2.5;
+        return (
+          <Group key={m.id}>
+            <Path
+              path={MARKET_PATH}
+              color={colors.text}
+              style="stroke"
+              strokeWidth={1.0}
+              strokeJoin="round"
+              strokeCap="round"
+              opacity={light ? 0.6 : 0.7}
+              transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
+            />
+            <HaloLabel
+              x={labelTx}
+              y={m.y + 20}
+              text={m.label}
+              font={waterFont}
+              color={colors.text}
+              opacity={light ? 0.75 : 0.55}
+              haloColor={colors.bg}
+              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
+            />
+          </Group>
+        );
+      })}
+
       {/* GDACS disaster markers — three tiers. Green is the ambient pulse:
           a tiny tinted dot (no glyph, no backdrop, tight tap zone) — many
           appear, none shouts. Orange and Red are read-and-tap landmarks:
@@ -3317,15 +3664,20 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Ghost dots — adjacent articles in the scroll, rendered under the
-          main dot so the settled story always reads brightest. Drawn as a
-          single Atlas call against a baked glow texture (one draw + N
-          transforms instead of N × 3 Circle+BlurMask draws). */}
-      {ghostAtlas && (
+      {/* Story marks — every article in the column, under the settled one so
+          it always reads brightest. One Atlas call against a baked glow, with
+          size and alpha per instance, rather than N × 3 Circle+BlurMask
+          draws: forty marks cost the same as the four this replaced.
+          `colorBlendMode="modulate"` is load-bearing — Atlas's default colors
+          blend is `dstOver`, which paints each colour *behind* its sprite and
+          fills the transparent bounding box with solid squares. */}
+      {storyMarkAtlas && (
         <Atlas
           image={ghostTexture}
-          sprites={ghostAtlas.sprites}
-          transforms={ghostAtlas.transforms}
+          sprites={storyMarkAtlas.sprites}
+          transforms={storyMarkAtlas.transforms}
+          colors={storyMarkAtlas.colors}
+          colorBlendMode="modulate"
         />
       )}
 

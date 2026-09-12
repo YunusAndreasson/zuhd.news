@@ -11,12 +11,13 @@ import Animated, {
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
 import type { CardStatus } from '../../lib/card-history';
-import type { CardDelta, DeckCard } from '../../lib/cards/types';
+import type { DeckCard } from '../../lib/cards/types';
 import { observationDate } from '../../lib/data-freshness';
 import { useOpenLink } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
+import { DeltaChip } from '../DeltaChip';
 import { OverflowEndCue } from '../OverflowEndCue';
-import { Icon, Text } from '../primitives';
+import { Text } from '../primitives';
 
 /**
  * The card anatomy, as a component.
@@ -41,53 +42,6 @@ const READING_SCALE = 1.55;
  *  number. */
 const LONG_READING = 9;
 const LONG_READING_SCALE = 1.25;
-
-/**
- * Which way the number went, and what that does to the person reading.
- *
- * Two channels on purpose (see `CardDelta`): the caret says the direction, the
- * colour says the consequence. Both are always present, and the colour is a
- * three-value channel rather than a two-value one that is sometimes absent —
- * a card about the price of oil gets a caret in rose, a card about bitcoin
- * gets one in slate, and slate is the app saying it will not tell you whether
- * that is good news. The near-white fallback this used to take is gone: it was
- * indistinguishable from the label text beside it, so the reader's first job
- * was deciding whether a chip was coloured at all.
- */
-const DeltaChip = memo(function DeltaChip({ delta }: { delta: CardDelta }) {
-  const tone = delta.valence;
-  return (
-    <View style={styles.delta}>
-      {delta.direction !== 'flat' ? (
-        <View style={styles.deltaCaret}>
-          <Icon name={delta.direction === 'up' ? 'caret-up' : 'caret-down'} size="sm" tone={tone} />
-        </View>
-      ) : null}
-      {/* Semibold tabular type makes the move readable *as a number* inside a
-          mixed metadata row. Set like the regular unit or small-caps window,
-          it disappears into them and defeats the point of taking the move out
-          of a sentence. */}
-      <Text
-        variant="tabularEmphasis"
-        tone={tone}
-        scale={1.15}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-      >
-        {delta.magnitude}
-      </Text>
-      {/* Plain caption, the same register as the unit on the other side of
-          the dot. This was small caps, which put the window in the kicker's
-          register and made the row three type treatments wide — regular,
-          semibold, caps — for four words. Two now: quiet text, and the one
-          coloured number the row exists to show. */}
-      {delta.window ? (
-        <Text variant="caption" tone="secondary" style={styles.deltaWindow}>
-          {delta.window}
-        </Text>
-      ) : null}
-    </View>
-  );
-});
 
 /** The focal number, its unit and its movement are one answer. Keeping this
  * group independent from the title lets a measurement lead with the answer
@@ -374,11 +328,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: SPACING.md,
-    // Clears the BottomActionBar with room to spare. `SPACING.xxl` alone is
-    // what `ArticlePage` uses and it is exactly the bar's height on a device
-    // with a home indicator — zero buffer, which put the source caption
-    // under the SHARE pill on the first card that scrolled. A card's last
-    // element is a caption rather than prose, so it needs the extra tier.
+    // A card's last element is a caption rather than prose, so it needs one
+    // more tier of room than `ArticlePage`'s `SPACING.xxl`. That was learned
+    // when the cards were full-screen pages under a row of action pills —
+    // at `xxl` alone the source caption sat under the share pill. Cards open
+    // in a sheet now, where the same extra tier keeps the caption clear of
+    // the sheet's bottom edge and the home indicator.
     paddingBottom: SPACING.xxl + SPACING.md,
   },
   reading: { marginTop: SPACING.xxs },
@@ -390,19 +345,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: SPACING.sm,
   },
-  // `sm`, not `xs`: the magnitude is semibold and the window beside it is
-  // regular, and at a 4pt gap the two read as one word ("33%since Jul 7").
-  // The same gap the unit keeps from the dot, so the row has one rhythm.
-  delta: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
-  // The caret's glyph box centres on the line box, but the caps and figures
-  // beside it sit in the upper half of theirs, so a centred triangle reads
-  // low. One point up is the whole correction.
-  // Pulled back against the gap above: the caret and the number it points at
-  // are one unit and must not sit as far apart as the number and its window.
-  deltaCaret: { marginBottom: 1, marginRight: -SPACING.xs },
-  // The window is the least important half of the chip and the first thing
-  // that may be dropped when the row wraps at large Dynamic Type.
-  deltaWindow: { flexShrink: 1 },
   titleAfterMetric: { marginTop: SPACING.smPlus },
   titleBeforeMetric: { marginTop: SPACING.sm },
   block: { marginTop: SPACING.md },

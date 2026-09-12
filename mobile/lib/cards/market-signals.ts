@@ -48,6 +48,21 @@ export function marketSignalCards(
         kind: 'reading',
         title: s.title,
         editorialRevision: s.revision,
+        /**
+         * A signal exists only because it cleared a pattern score, so it is on
+         * screen because its data is new — which is exactly what `lead` means
+         * everywhere else in the deck, and what earns the `current ·` ink step.
+         *
+         * It also admits the card to the strip's urgent tier. That is a change
+         * of position worth stating: these cards used to bypass ranking
+         * entirely, on the grounds that the server owns their selection. It
+         * still does — the server decides *which* signals exist and when they
+         * revise. But choosing which three of forty instruments occupy three
+         * fixed slots above the globe is presentation, and prepending them
+         * unranked would hand two of those three slots to whichever exchanges
+         * happened to qualify, over a strait that had closed.
+         */
+        lead: true,
         // The exchange the index belongs to, directly above its ticker — the
         // kicker is the subject slot, and the pattern label that used to sit
         // here is not a subject. It restated the delta chip immediately below

@@ -15,11 +15,17 @@ import { Text } from './primitives';
 
 // One whispered line per undiscoverable interaction. No icon, no arrow, no
 // dome gold — a hint is chrome whispering, not the brand accent speaking.
+//
+// `swipe` used to end "· sideways for sections". There are no sections: a
+// sideways swipe in the reader is now the way back to the map, so the old
+// line would have taught the one gesture that closes the thing it is
+// teaching. A hint that is wrong is worse than no hint, because a reader
+// who follows it and gets a different result stops trusting the next one.
 const HINT_COPY: Record<HintId, string> = {
-  swipe: 'swipe up for next · sideways for sections',
+  swipe: 'swipe up for next · sideways for the map',
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
-  globe: 'tap a country on the globe',
+  globe: 'tap anything on the globe',
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;
@@ -28,6 +34,17 @@ interface HintOverlayProps {
   hint: HintId | null;
   onDismiss: () => void;
   bottomInset: number;
+  /**
+   * Height of whatever occupies the bottom of the screen, which the pill must
+   * sit above.
+   *
+   * It used to clear a row of three small pills a few dozen points tall, so a
+   * fixed offset was enough. The map screen has a sheet there instead, a
+   * third of the window deep at rest — and a fixed offset put the pill on
+   * top of the sheet's own rows, covering the thing a hint is most likely to
+   * be pointing at. The screen knows the sheet's height; this does not.
+   */
+  bottomOffset?: number;
 }
 
 /** The single onboarding hint pill. Rendered once in HomeScreen — never
@@ -37,6 +54,7 @@ export const HintOverlay = memo(function HintOverlay({
   hint,
   onDismiss,
   bottomInset,
+  bottomOffset = 0,
 }: HintOverlayProps) {
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
@@ -59,11 +77,16 @@ export const HintOverlay = memo(function HintOverlay({
 
   return (
     <View
-      // Clear of the BottomActionBar pills below (their band ends at
-      // max(inset, sm) + pill height) and of bottom toasts (inset + xl).
+      // Above the sheet when there is one, and always clear of the home
+      // indicator and of bottom toasts (inset + xl).
       style={[
         styles.container,
-        { bottom: Math.max(bottomInset, SPACING.sm) + SPACING.xxl + SPACING.md },
+        {
+          bottom: Math.max(
+            bottomOffset + SPACING.md,
+            Math.max(bottomInset, SPACING.sm) + SPACING.xxl + SPACING.md,
+          ),
+        },
       ]}
       pointerEvents="box-none"
       accessibilityLiveRegion="polite"

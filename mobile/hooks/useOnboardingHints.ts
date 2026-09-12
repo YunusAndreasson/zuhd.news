@@ -6,7 +6,6 @@ import {
   getSnapshot,
   type HintId,
   MAX_HINT_SHOWS,
-  ONBOARDING_SNAP_CAP,
   type OnboardingState,
   recordHintShown,
   subscribe,
@@ -23,16 +22,37 @@ const DWELL_MS: Record<HintId, number> = {
 };
 
 // Reading-depth gates (lifetime snap counts): one tip per article read, in
-// sequence — sources on the 2nd article, bookmark on the 3rd, globe on the
-// 4th. Sparser gates (3rd/5th/7th) were tried and read as "no tips at all";
-// a lesson the reader performs on their own still retires its hint before it
-// ever arms.
+// sequence — sources on the 2nd article, bookmark on the 3rd. Sparser gates
+// (3rd/5th/7th) were tried and read as "no tips at all"; a lesson the reader
+// performs on their own still retires its hint before it ever arms.
 const SOURCES_MIN_SNAPS = 1;
 const BOOKMARK_MIN_SNAPS = 2;
-const GLOBE_MIN_SNAPS = ONBOARDING_SNAP_CAP;
+
+/**
+ * Where the reader is, because a lesson only makes sense where its gesture
+ * does something.
+ *
+ * The globe lesson used to be the fourth tip, after three articles and three
+ * other hints, because the globe was a backdrop behind the reader and there
+ * was no reason to point at it before the reader had learned to read. It is
+ * the home screen now — and the whole case for the redesign is that nobody
+ * discovered it was tappable. Gating that lesson behind three articles would
+ * mean a reader who stays on the map, which is the default, is never told.
+ * So it is taught on the map, first, and nowhere else; and the reading
+ * lessons are taught in the reader, where "swipe up for next" is true.
+ */
+export type HintSurface = 'map' | 'reader';
 
 interface HintContext {
   screenReader: boolean;
+  surface: HintSurface;
+}
+
+/** Which surface a lesson belongs to. A pill whose surface the reader has
+ *  just left is hidden rather than left pointing at a gesture that no longer
+ *  applies. */
+export function hintSurface(id: HintId): HintSurface {
+  return id === 'globe' ? 'map' : 'reader';
 }
 
 function showable(state: OnboardingState, id: HintId): boolean {
@@ -46,11 +66,14 @@ function resolved(state: OnboardingState, id: HintId): boolean {
 
 /** Pure eligibility: the single hint that may arm right now, or null.
  *  One hint on screen at a time, ever — first match in ORDER wins.
- *  The globe hint is withheld from screen-reader users: its target
- *  (GlobeTapZone) is deliberately hidden from the a11y tree, so the hint
- *  would instruct an action they cannot perform — their path is the inline
- *  country links, which need no hint. */
+ *  The globe hint is withheld from screen-reader users: its target (the
+ *  globe's gesture layer) is deliberately hidden from the a11y tree, so the
+ *  hint would instruct an action they cannot perform — their path is the
+ *  strip, the NOW block and the instruments sheet, which need no hint. */
 export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId | null {
+  if (ctx.surface === 'map') {
+    return showable(state, 'globe') && !ctx.screenReader ? 'globe' : null;
+  }
   if (showable(state, 'swipe') && state.snapCount === 0) return 'swipe';
   if (
     showable(state, 'sources') &&
@@ -64,24 +87,22 @@ export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId |
     state.snapCount >= BOOKMARK_MIN_SNAPS
   )
     return 'bookmark';
-  if (
-    showable(state, 'globe') &&
-    resolved(state, 'bookmark') &&
-    state.snapCount >= GLOBE_MIN_SNAPS &&
-    !ctx.screenReader
-  )
-    return 'globe';
   return null;
 }
 
 /** Decides which single onboarding hint pill is visible. `ready` gates until
  *  the feed + globe have painted; `suppressed` hides hints while any sheet or
- *  the briefing player owns the pill's airspace. */
-export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }): {
+ *  the briefing player owns the pill's airspace; `surface` says whether the
+ *  reader is looking at the map or reading. */
+export function useOnboardingHints(opts: {
+  ready: boolean;
+  suppressed: boolean;
+  surface: HintSurface;
+}): {
   activeHint: HintId | null;
   dismissActiveHint: () => void;
 } {
-  const { ready, suppressed } = opts;
+  const { ready, suppressed, surface } = opts;
   const state = useSyncExternalStore(subscribe, getSnapshot);
   const [screenReader, setScreenReader] = useState(false);
   const [activeHint, setActiveHint] = useState<HintId | null>(null);
@@ -104,14 +125,18 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
   // hide — that status lands on the final permitted showing and only blocks
   // future sessions.
   const activeStatus = activeHint ? state.hints[activeHint].status : null;
+  const offSurface = activeHint !== null && hintSurface(activeHint) !== surface;
   useEffect(() => {
-    if (activeHint && (suppressed || activeStatus === 'done' || activeStatus === 'dismissed')) {
+    if (
+      activeHint &&
+      (suppressed || offSurface || activeStatus === 'done' || activeStatus === 'dismissed')
+    ) {
       setActiveHint(null);
     }
-  }, [activeHint, activeStatus, suppressed]);
+  }, [activeHint, activeStatus, offSurface, suppressed]);
 
   const eligible =
-    ready && !suppressed && !activeHint ? eligibleHint(state, { screenReader }) : null;
+    ready && !suppressed && !activeHint ? eligibleHint(state, { screenReader, surface }) : null;
   const armId = eligible === 'swipe' && launchedViaPushRef.current ? null : eligible;
 
   // Arm after the dwell. `snapCount` in the deps restarts the countdown on

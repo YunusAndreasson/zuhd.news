@@ -6,19 +6,16 @@ See root `foundation.md` for the philosophy. This document is the operational re
 
 ## Voice
 
-Chart decks group unseen updates before a quiet “You’re caught up” page, with
-previously viewed cards below. That grouping is the whole of how a card's
-history is told: a card whose content changed since the reader last viewed it
+The river marks the first story the reader has already seen with an `earlier`
+ink step on its meta line, and the reader draws the same boundary as a full
+“caught up” rule. A card whose content changed since the reader last viewed it
 opens its kicker line with `updated`, in stronger ink, in the slot `current`
 uses — and a card is never both, because each is the app saying "look". There
 is no “New to you” and no “Previously viewed”: both restated the reader's
-position, which the caught-up page already gives, as one more small-caps line
-to decipher before reaching the number. Status never borrows the
-favorable/unfavorable delta colors. A visit freezes content and ordering;
-regroup on section entry or foreground return.
-Only a foreground, visible, settled card viewed for 800 ms is acknowledged.
-Content signatures ignore observation timestamps and editorial promotion;
-history stays on-device and is included in the privacy erase action.
+position as one more small-caps line to decipher before reaching the number.
+Status never borrows the favorable/unfavorable delta colors. Content
+signatures ignore observation timestamps and editorial promotion; history
+stays on-device and is included in the privacy erase action.
 
 One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop and the `BriefingBar`'s iOS-only frosted glass (see §Native chrome carve-outs), no decorative icons. Restraint is the brand.
 
@@ -146,6 +143,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 ### Sheets
 - Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
+- **`MapSheet` is the one sheet that is not a platform sheet, and must stay the only one.** It is the map screen's persistent list, and a platform sheet is modal: it scrims the globe, caps Android at two detents it chooses, and cannot persist. It owns three rules that remove gesture conflicts instead of arbitrating them — at peek the list does not scroll, the list never bounces, and the pan decides ownership once per gesture and holds it. A second hand-built sheet is the regression; everything that opens *from* the map is a platform sheet.
 - **Sheets are platform sheets** — SwiftUI on iOS, Material3 `ModalBottomSheet` on Android, via `@expo/ui/community/bottom-sheet`. Three consequences, and all three are why code that used to exist no longer does:
   - `SheetHandle` is passed to `SheetLayout` as `handleComponent` but is **rendered as the sheet's first child**, not handed to the native sheet. Native sheets don't render a custom handle — the library reads only null-vs-non-null off that prop to decide whether to draw the platform's own indicator. `SheetLayout` pins it to `null` so our handle, its title, and the back chevron survive. Don't "fix" that back to `handleComponent={Handle}`; it silently deletes the title and the way multi-page sheets navigate.
   - **There is no backdrop to render.** The scrim is the system's. `renderBackdrop` and the `BottomSheetBackdrop` that fed it are gone from every sheet and from `BaseSheetProps`.
@@ -160,7 +158,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
 
-### Cards (`components/cards/`) — every column except `news`
+### Cards (`components/cards/`) — opened in `CardSheet`
 
 - **The rule that decides what exists.** A card earns a screen if a reader who
   gives it four seconds can tell someone else something true they did not know.
@@ -240,20 +238,22 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   rather than a placeholder when a payload is missing, so a partial snapshot
   degrades to fewer cards and never a broken screen. Because they are pure,
   the arithmetic is pinned by tests rather than by looking at a simulator.
-- **The swipe boundary validates and ranks.** `buildSwipeSections` first
-  requires a valid time series and pipeline analysis; `prepareSwipeCards` is the
-  path from builder output into `CardPager` — with one exception: the
-  server-ranked market highlights (`lib/cards/market-signals.ts`) are prepended
-  to `markets` in `app/index.tsx` *after* it, bypassing ranking and the kicker
-  cap, because the server owns their selection and revision and the client
-  owns presentation only. `prepareSwipeCards` requires explanatory copy,
-  computes ranking metadata internally, and sorts urgent
-  updates before the strongest tie to today's news, unusual movement against
-  the series' own history, and finally the builder's stable editorial order.
-  Relevance uses the strongest linked story rather than summing matches, so a
-  broad aggregate cannot win merely by carrying more tags. A final two-card
-  run cap keeps one kicker from becoming a hidden lane. Raw display units are
-  never compared. Refresh reordering anchors the visible card by id.
+- **One ranked list across every instrument family.** `buildRankedInstruments`
+  (`lib/cards/sections.ts`) applies the admission gate — a valid series and
+  pipeline analysis, or a scheduled date with analysis — and then calls
+  `prepareSwipeCards` once over the union. The three desks used to rank each
+  pool against itself, which could only ever compare a strait with other
+  straits; three fixed strip slots need the comparison across kinds.
+  `prepareSwipeCards` sorts urgent updates before the strongest tie to today's
+  news, unusual movement against the series' own history, and finally the
+  builder's stable editorial order. Relevance uses the strongest linked story
+  rather than summing matches, so a broad aggregate cannot win merely by
+  carrying more tags. Raw display units are never compared.
+- **Market signals rank like everything else.** The server owns their
+  *selection* and *revision*; which three of forty instruments occupy three
+  fixed slots is presentation, so they join the pool with `lead: true` rather
+  than being prepended unranked — prepending would hand two slots to whichever
+  exchanges qualified, over a strait that had closed.
 - **Number grammar lives in `lib/cards/format.ts`, and using it is not
   optional.** Two rules there exist because getting them wrong produces a
   plausible, wrong sentence: a change is always measured over a window the card
@@ -292,79 +292,27 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   rewriting: `git show eeba139d^:mobile/components/blocks/index.tsx`.
 
 ### Screens
-- Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
-- **Two axes, and they are the whole navigation.** Horizontal swipe moves
-  between four sections (`news` · `markets` · `shipping` · `outlook`); vertical
-  paging moves between full-screen items inside one. Nothing should require the
-  reader to aim at a small target.
-- **The data sections are focused graph desks.** `markets` is prices, rates,
-  currencies and crypto; `shipping` is chokepoint traffic; `outlook` is
-  probability markets. A real time series plus live pipeline explanation is
-  the admission rule. Static reference, Wikipedia attention, calendars and
-  snapshot-only conditions stay out of the primary rail.
-- **A card's graph visualises its headline quantity.** If the payload has only
-  total-traffic history, a chokepoint card cannot headline tankers; if the
-  headline is a gold/silver ratio, the graph is that ratio rather than two raw
-  prices whose scale makes one invisible. Secondary figures may explain the
-  components without replacing the promised visual.
-- **Progress appears once.** The tab underline is the deck progress signal;
-  cards do not repeat it as `current / total` text.
-- **Nothing may steal the horizontal swipe.** `TrendBlock`'s scrubber spans the
-  chart, and on a card that is most of the screen — five page swipes in a row
-  did nothing but drag a dot along a line. Charts on cards pass
-  `scrubbable={false}`; scrubbing lives in sheets, where there is no pager to
-  compete with. Any new gesture on a card owes the same check.
-- `SectionBar` follows the pager. Four specific labels may scroll on a narrow
-  phone or at large Dynamic Type; abbreviating ("curr") is not the alternative.
-  Driven by the
-  settled `currentSection`, not by `pagerOffset` — a rail sliding under a live
-  drag fights the drag, while the indicator tracking the finger is the part
-  that should feel live.
-- **Pressing the active section label is a hard return to top.** It cancels
-  pending pager settlement, clears nested-scroll ownership, resets the outer
-  page and resets any mounted prose scroller. It must work even when the first
-  card/article is already selected but its text is scrolled.
-- **The rail groups, because the sections are not peers.** A rule sits after
-  `news`: it is an article river and the other three are data-card decks, so
-  drawing all four at identical weight would make a false claim about
-  symmetry the content does not keep. Full point, not `hairlineWidth` — a
-  10pt vertical hairline disappears at some Android densities, and a group rule
-  nobody can see does not group.
-- **Overflow scrolls; it must never truncate. Gesture ownership is spatial.**
-  Only the prose/analysis region owns an inner vertical `ScrollView`; a swipe
-  beginning on the title, metric, chart, globe, or surrounding page belongs to
-  the outer pager immediately. This keeps each touch under one owner from
-  touch-down through release and lets readers page without throwing the swipe.
-  The inner region arms itself from its measured content and viewport heights,
-  with one point of rounding tolerance. A touch that begins in prose remains a
-  native text scroll even at either edge; to page, begin the next swipe on the
-  title, metric, chart, globe or surrounding page. No second edge recognizer
-  may sit over the prose scroller, and no programmatic page correction may run
-  while the finger is still down. This preserves bidirectional text scrolling,
-  large Dynamic Type content and source captions without the mid-swipe freezes
-  caused by competing scroll owners.
-- **Page settling uses native fast deceleration** with `snapToInterval` and
-  `disableIntervalMomentum`; prose retains normal native scrolling. A new
-  outer-page drag clears the previous text-consumption marker immediately,
-  so reading text never imposes a cooldown on the next chart/title swipe.
-  Inherited text-scroll tails still retain their page correction.
-- **A card arrives; it does not appear.** `CardFrame` runs the same
-  scroll-linked opacity + translate as `ArticlePage` (incoming rises 14pt,
-  outgoing leaves 6pt — the asymmetry is what makes it read as arrival). Use
-  the shared interpolation rather than a mount animation: with three pages held
-  in a list, a mount animation plays two screens away and is over unseen.
-  Gated on `useReducedMotion()`, like the reader's.
-- All four categories share one strictly newest-first column inside `news` —
-  see `lib/news-order.ts`. Order uses the story timestamp shown in the dateline;
-  coverage and category mixing must never move older news above newer news.
-  The globe lives on `news` only: it is the backdrop to
-  the stories it locates, and there is nothing on a wheat price for it to
-  point at.
+- Root `app/index.tsx` is the only route, and it is one screen. Overlays use sheets, not pushed routes.
+- **One earth, and every surface is a layer over it.** `MiniGlobe` is mounted once at the screen root; the strip, the sheet and the reader all sit above the same canvas. The reader is presented over the map rather than navigated to, so opening a story is the globe continuing to turn toward its dateline rather than a cut to a second earth.
+- **Three surfaces, and each answers a different question.**
+  - **The strip** (`IndicatorStrip`) — three gauges above the earth: subject, reading, move. *How much.* Fixed slots, ranked contents, no marquee: a ticker moves when nothing has happened, which is an engagement mechanic.
+  - **The sheet** (`MapSheet`) — the day's masthead with the briefing, a NOW block of what else is flashing, `all instruments →`, then the strictly newest-first river. *What.*
+  - **The reader** (`ReaderLayer`) — the article pager, unchanged. *What happened, in full.*
+- **Information appears exactly once across those three.** The strip prints numbers; the NOW block prints titles and never repeats an item the strip holds; the river's first row is the lead story, so the NOW block holds no stories at all. `buildNowSurfaces` enforces this in one pass rather than trusting callers.
+- **Salience is named, not enlarged.** On a day something matters, the opening camera turns the planet to it and its mark carries a label. Mark size stays normalised within its own layer — coverage percentile for stories — exactly as the web map does it. A bigger dot asks the reader to compare areas, which people do badly; a name asks them to read, which is the app's whole medium.
+- **The globe's marks follow one alphabet: shape says what, colour says which way.** Stories are glows; straits are two facing coastlines; exchanges are a candle; hazards are their GDACS pictograms. A new layer gets a new silhouette and no new hue. A mark never leans up or down — direction is the delta chip's channel.
+- **Gesture ownership is spatial, and each axis has one job.** On the map: a drag on the exposed globe rotates it, a drag on the sheet moves the sheet or scrolls its list, and nothing overlaps. In the reader: vertical is paging, horizontal is back to the map. The reader's vertical axis keeps every nested-scroll guard it had — only prose owns an inner vertical `ScrollView`; a swipe beginning on the title, metric, chart or globe belongs to the pager from touch-down through release, and no programmatic page correction runs while the finger is down.
+- **The camera belongs to whoever touched last.** Scrolling the list flies the globe along the stories; a drag on the globe, or a selection from the strip or NOW, takes it; the next drag on the list gives it back. The opening orientation happens once per day's top item and never after the reader has moved the camera — re-aiming it would be the app talking over them.
+- **Overflow scrolls; it must never truncate.** In the reader, the inner prose region arms itself from its measured content and viewport heights, with one point of rounding tolerance. In the sheet, rows are a fixed height shared with the camera, so a title clamps to two lines instead of growing — the reader is where long text lives.
+- **Page settling uses native fast deceleration** with `snapToInterval` and `disableIntervalMomentum`; prose retains normal native scrolling. A new outer-page drag clears the previous text-consumption marker immediately, so reading text never imposes a cooldown on the next swipe.
+- **A card arrives; it does not appear.** `CardFrame` runs a scroll-linked opacity + translate (incoming rises 14pt, outgoing leaves 6pt). Inside `CardSheet` there is no pager, so the same interpolation resolves at offset 0 — fully arrived — which is the correct reading of the same code. Gated on `useReducedMotion()`.
+- **The river is strictly newest-first** — see `lib/news-order.ts`. Order uses the story timestamp shown in the dateline; coverage and category mixing must never move older news above newer news.
+- **Every mark on the globe has a row somewhere, because the globe is hidden from screen readers.** VoiceOver activates an element at its geometric centre, which on a globe is a lottery country. The strip, the NOW block and the instruments sheet are the accessible path to everything the earth shows; a mark layer without one is an accessibility regression.
 - For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.
 
 ### Onboarding (contextual hint pills + notification primer)
 - **No tutorial mode, no synthetic content.** Never inject fake/self-referential content (welcome articles, sample data) into the feed — teaching happens on REAL articles the reader is already looking at. This was tried and rejected.
-- **Hint pills** (`components/HintOverlay.tsx`): one small-caps `labelSm` line on an INVERTED pill (`colors.text` fill + `tone="inverse"` text — monochrome flipped for maximum visibility; the quiet `pillBg` recipe was tried and got overlooked), bottom-centered, ONE at a time, ever. Triggered one per article read (`hooks/useOnboardingHints.ts`: swipe after ~8s on the first article, sources on the 2nd, bookmark on the 3rd, globe on the 4th — sparser gates were tried and read as "no tips at all"), retired forever by performing the action or tapping the pill, expired after 3 ignored sessions. State in `lib/onboarding-store.ts` (bookmark-store pattern). No icon, no dome gold — a hint is chrome whispering, not the accent speaking. Don't add new always-on chrome for teaching; extend this system.
+- **Hint pills** (`components/HintOverlay.tsx`): one small-caps `labelSm` line on an INVERTED pill (`colors.text` fill + `tone="inverse"` text — monochrome flipped for maximum visibility; the quiet `pillBg` recipe was tried and got overlooked), bottom-centered, ONE at a time, ever. Each lesson is taught on the surface where its gesture does something (`hooks/useOnboardingHints.ts`, `hintSurface`). On the map, the globe lesson comes first and waits for nothing — it is the home screen, and gating it behind three articles would mean a reader who stays on the map is never told the earth can be tapped. In the reader, one tip per article read: swipe after ~8s on the first article, sources on the 2nd, bookmark on the 3rd (sparser gates were tried and read as "no tips at all"). A pill whose surface the reader has just left is hidden. Every hint is retired forever by performing the action or tapping the pill, and expires after 3 ignored sessions. State in `lib/onboarding-store.ts` (bookmark-store pattern). No icon, no dome gold — a hint is chrome whispering, not the accent speaking. Don't add new always-on chrome for teaching; extend this system.
 - **Notification primer** (`components/NotificationPrimerSheet.tsx`): the OS permission dialog is never fired cold. The one-time primer sheet (presented at the first "caught up" moment, session 2+) is the only ask path; the MenuSheet toggle is the durable control. Any new permission ask must follow this soft-primer shape.
 - **Replay**: settings has a "show tips again" row → `resetOnboarding()` (re-arms hints + reading depth; never re-arms the primer).
 

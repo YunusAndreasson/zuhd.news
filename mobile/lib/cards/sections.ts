@@ -38,6 +38,40 @@ const admitted = (card: Card): card is DeckCard =>
   hasGraphAndAnalysis(card) || isScheduledWithAnalysis(card);
 
 /**
+ * Every instrument the app may show, as one ranked list.
+ *
+ * The rail used to split these across three desks, so each column was ranked
+ * against itself and a strait could only ever be compared with other straits.
+ * There is one screen now and three fixed slots above the globe, so the
+ * comparison that matters is across kinds: a chokepoint that has closed
+ * against an index that fell against a contract that moved sixty points.
+ * `prepareSwipeCards` already answers exactly that, lexicographically, and
+ * calling it once over the union is the whole change.
+ *
+ * Market signals join the pool rather than being prepended to it — see the
+ * `lead` comment in `market-signals.ts` for why that is presentation and not
+ * a client overriding the server's selection.
+ *
+ * A missing payload shortens the list rather than weakening the rule.
+ */
+export function buildRankedInstruments(
+  columns: InstrumentColumns,
+  signals: Card[],
+  articles: Article[],
+): SwipeCard[] {
+  return prepareSwipeCards(
+    [
+      ...signals,
+      ...columns.markets,
+      ...columns.straits,
+      ...columns.predictions,
+      ...columns.scheduled,
+    ].filter(admitted),
+    articles,
+  );
+}
+
+/**
  * Turn concrete payload pools into the three graph desks promised by the rail.
  *
  * Missing payloads simply shorten the relevant deck rather than weakening the

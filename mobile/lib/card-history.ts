@@ -59,25 +59,3 @@ export function clearCardHistory(): void {
   history = {};
   save();
 }
-
-export type DeckPage =
-  | { id: string; kind: 'card'; card: SwipeCard; status: CardStatus }
-  | { id: string; kind: 'boundary'; previouslyViewed: number };
-
-/** Stable partition preserves editorial importance inside each group. */
-export function buildDeckVisit(section: string, cards: SwipeCard[]): DeckPage[] {
-  if (!cards.length) return [];
-  const pages = cards.map((card): DeckPage & { kind: 'card' } => ({
-    id: card.id,
-    kind: 'card',
-    card,
-    status: cardStatus(section, card),
-  }));
-  const unseen = pages.filter((page) => page.status !== 'viewed');
-  const seen = pages.filter((page) => page.status === 'viewed');
-  return [
-    ...unseen,
-    { id: '__caught-up__', kind: 'boundary', previouslyViewed: seen.length },
-    ...seen,
-  ];
-}

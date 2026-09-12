@@ -1,4 +1,4 @@
-import type { Chokepoint, ConflictEvent, Entity, GdacsAlert, HeatmapPoint } from '@shared/types';
+import type { Entity } from '@shared/types';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import {
   memo,
@@ -28,10 +28,11 @@ import { useVerticalPager, VERTICAL_PAGER_PROPS } from '../hooks/useVerticalPage
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import type { RiverArticle } from '../lib/news-order';
 import { recordArticleSnap } from '../lib/onboarding-store';
+import type { StoryOdds } from '../lib/predictions';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
-import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
+import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
 // Article backdrop gradient stops. Hoisted to the list container so a single
 // gradient view is rendered per column — cells scroll through a fixed
@@ -49,14 +50,7 @@ interface ArticleListProps {
    *  category, which the card shows as a kicker and the bookmark store files
    *  it under — neither has to infer it from which page you were on. */
   articles: RiverArticle[];
-  heatmapPoints?: HeatmapPoint[];
-  chokepoints?: Chokepoint[];
-  gdacsAlerts?: GdacsAlert[];
-  conflictEvents?: ConflictEvent[];
   viewportHeight: number;
-  /** Slot this column owns in `progressesSV` — the horizontal axis carries
-   *  sections now, and news is one of them rather than four of them. */
-  sectionIndex: number;
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: () => void;
@@ -73,20 +67,37 @@ interface ArticleListProps {
   onArticleChange?: (article: RiverArticle) => void;
   /** Clears transient teaching UI as soon as the reader starts moving content. */
   onReadingScrollStart?: () => void;
-  progressesSV: SharedValue<number[]>;
-  zoomClipOverride?: number | null;
+  /** A finger has started dragging the pager. The screen uses it to hand the
+   *  globe's camera back to the scroll position after a selection — or the
+   *  flight that opened the reader — took it. A drag, not a scroll: a
+   *  programmatic jump must never reclaim the camera on the reader's behalf. */
+  onDragStart?: () => void;
+  /** slug → the prediction market the desk tied to that story. */
+  oddsBySlug?: ReadonlyMap<string, StoryOdds>;
+  onOddsPress?: (odds: StoryOdds) => void;
+  /** How far through the column the reader is, 0–1. The section rail used to
+   *  draw this as a fill under the active tab; the reader draws its own line
+   *  now that there is no rail. */
+  progressSV: SharedValue<number>;
+  /**
+   * The one globe, owned by the screen.
+   *
+   * `ArticleList` used to render `MiniGlobe` itself, which was right while the
+   * globe belonged to the news column. It belongs to the screen now — the map
+   * and the reader are two layers over the same canvas, which is why opening
+   * a story does not cut to a second earth — so the list receives the ref it
+   * needs for hit-testing rather than owning the component.
+   */
+  globeRef?: React.RefObject<MiniGlobeRef | null>;
+  /** Published to the globe's camera. Owned by the screen; see `useScrollState`. */
+  scrollY: SharedValue<number>;
   tick?: number;
   ref?: React.Ref<ArticleListRef>;
 }
 
 export const ArticleList = memo(function ArticleList({
   articles,
-  heatmapPoints,
-  chokepoints,
-  gdacsAlerts,
-  conflictEvents,
   viewportHeight,
-  sectionIndex,
   lastSeenAt,
   onCountryPress,
   onBookmarkPress,
@@ -96,11 +107,15 @@ export const ArticleList = memo(function ArticleList({
   resolvableEntityIds,
   onArticleChange,
   onReadingScrollStart,
+  onDragStart,
+  oddsBySlug,
+  onOddsPress,
   onRefresh,
   onEndReached,
   onCaughtUp,
-  progressesSV,
-  zoomClipOverride,
+  progressSV,
+  globeRef,
+  scrollY: scrollYProp,
   tick,
   ref,
 }: ArticleListProps) {
@@ -140,7 +155,7 @@ export const ArticleList = memo(function ArticleList({
     overscrollFired,
     caughtUpFired,
     overscrollTimer,
-  } = useScrollState();
+  } = useScrollState(scrollYProp);
 
   const bgFadeStyle = useAnimatedStyle(() => {
     'worklet';
@@ -155,8 +170,12 @@ export const ArticleList = memo(function ArticleList({
 
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
+  /** Set for exactly one settle after a programmatic jump. A jump is the
+   *  screen opening a story, not the reader turning a page — and the first
+   *  recorded snap is what retires the swipe lesson, so counting a tap on a
+   *  row as a swipe would teach the reader nothing and mark it learned. */
+  const jumpingRef = useRef(false);
   const listRef = useAnimatedRef<Animated.FlatList<RiverArticle>>();
-  const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
   const containerTopRef = useRef(0);
   const resetOverscroll = useCallback(() => {
@@ -238,6 +257,13 @@ export const ArticleList = memo(function ArticleList({
 
   const handleSnap = useCallback(
     (idx: number) => {
+      if (jumpingRef.current) {
+        // No haptic, no review prompt, no onboarding snap: nothing here was
+        // the reader's gesture.
+        jumpingRef.current = false;
+        setCurrentIndex(idx);
+        return;
+      }
       if (earlierIndex > 0 && idx === earlierIndex - 1 && !caughtUpFired.current) {
         caughtUpFired.current = true;
         hapticNotification();
@@ -285,6 +311,14 @@ export const ArticleList = memo(function ArticleList({
     preserveAtTop: false,
   });
 
+  const handleBeginDrag = useCallback(
+    (...args: Parameters<typeof handlePagerBeginDrag>) => {
+      onDragStart?.();
+      handlePagerBeginDrag(...args);
+    },
+    [handlePagerBeginDrag, onDragStart],
+  );
+
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
       overscrollFired.set(false);
@@ -294,7 +328,18 @@ export const ArticleList = memo(function ArticleList({
     scrollToSlug: (slug: string) => {
       const idx = sortedArticles.findIndex((a) => a.slug === slug);
       if (idx >= 0) {
-        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
+        // A jump, not an animated scroll. This used to animate, which was
+        // right when it moved a visible column a page or two; it now opens
+        // the reader onto any of forty stories, and an animated scroll to the
+        // thirtieth sends the globe's camera through all twenty-nine datelines
+        // in between.
+        const target = idx * itemHeight;
+        // Only arm the suppression if the list will actually move — a jump to
+        // the page already showing emits no scroll, no settle ever consumes
+        // the flag, and the reader's *next* real swipe would be swallowed.
+        if (Math.abs(scrollY.value - target) > 0.5) jumpingRef.current = true;
+        listRef.current?.scrollToOffset({ offset: target, animated: false });
+        setCurrentIndex(idx);
       }
     },
   }));
@@ -309,11 +354,7 @@ export const ArticleList = memo(function ArticleList({
       scrollY.value = event.contentOffset.y;
       const total = Math.max((articleCount - 1) * itemHeight, 1);
       const progress = Math.max(0, Math.min(event.contentOffset.y / total, 1));
-      progressesSV.modify((arr) => {
-        'worklet';
-        arr[sectionIndex] = progress;
-        return arr;
-      });
+      progressSV.value = progress;
 
       // Detect overscroll past the last article
       const maxScroll = (articleCount - 1) * itemHeight;
@@ -359,6 +400,8 @@ export const ArticleList = memo(function ArticleList({
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        odds={oddsBySlug?.get(item.slug) ?? null}
+        onOddsPress={onOddsPress}
         onInnerScrollConsumed={handleInnerScrollConsumed}
         onReadingScrollStart={onReadingScrollStart}
         hasNext={index < articleCount - 1}
@@ -369,6 +412,12 @@ export const ArticleList = memo(function ArticleList({
     [
       itemHeight,
       scrollY,
+      // A ref object from the screen, stable for the app's lifetime — listed
+      // because biome cannot prove that across a prop boundary, and a
+      // dependency that never changes costs nothing.
+      globeRef,
+      oddsBySlug,
+      onOddsPress,
       onCountryPress,
       onBookmarkPress,
       onSourcesPress,
@@ -401,20 +450,6 @@ export const ArticleList = memo(function ArticleList({
         });
       }}
     >
-      <MiniGlobe
-        ref={globeRef}
-        articles={sortedArticles}
-        heatmapPoints={heatmapPoints}
-        chokepoints={chokepoints}
-        gdacsAlerts={gdacsAlerts}
-        conflictEvents={conflictEvents}
-        scrollY={scrollY}
-        itemHeight={itemHeight}
-        width={screenWidth}
-        height={viewportHeight}
-        zoomClipOverride={zoomClipOverride}
-        tick={tick}
-      />
       {/* Single article backdrop fade — sits between MiniGlobe and the
           FlatList so cells scroll through a fixed fade pattern instead of
           each cell carrying its own. pointerEvents:none keeps the per-cell
@@ -446,7 +481,7 @@ export const ArticleList = memo(function ArticleList({
         snapToInterval={itemHeight}
         {...VERTICAL_PAGER_PROPS}
         onScroll={scrollHandler}
-        onScrollBeginDrag={handlePagerBeginDrag}
+        onScrollBeginDrag={handleBeginDrag}
         onScrollEndDrag={handleEndDrag}
         onMomentumScrollBegin={handleMomentumBegin}
         onMomentumScrollEnd={handleMomentumEnd}
