@@ -9,6 +9,7 @@ import {
 } from 'react-native-gesture-handler';
 import { type SharedValue, useSharedValue } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { WHITE } from '../../constants/theme';
 import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
 
 /**
@@ -96,7 +97,10 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       // something was found, and drawing it over empty ocean would claim
       // there had been.
       if (!result) return;
-      globeRef.current?.showPulse(x, localY);
+      // A story is found, not selected: its own hue bursts where the mark was,
+      // in place of the neutral selection ring every other mark gets.
+      if (result.storySlug) globeRef.current?.collect(x, localY, result.storyColor ?? WHITE);
+      else globeRef.current?.showPulse(x, localY);
       onImpact();
       onTap(result);
     },
@@ -179,7 +183,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       {/* Hidden from the accessibility tree, deliberately and for the same
           reason the reader's tap zone is: VoiceOver activates an element at
           its geometric centre, which on a globe is a lottery country. Every
-          mark that matters has a row — in the strip, the NOW block or the
+          mark that matters has a row — in the strip, the alert block or the
           instruments sheet — and those rows are the accessible path. */}
       <View
         style={styles.layer}

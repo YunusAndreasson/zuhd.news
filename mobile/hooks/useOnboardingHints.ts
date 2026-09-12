@@ -69,7 +69,7 @@ function resolved(state: OnboardingState, id: HintId): boolean {
  *  The globe hint is withheld from screen-reader users: its target (the
  *  globe's gesture layer) is deliberately hidden from the a11y tree, so the
  *  hint would instruct an action they cannot perform — their path is the
- *  strip, the NOW block and the instruments sheet, which need no hint. */
+ *  strip, the alert block and the instruments sheet, which need no hint. */
 export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId | null {
   if (ctx.surface === 'map') {
     return showable(state, 'globe') && !ctx.screenReader ? 'globe' : null;

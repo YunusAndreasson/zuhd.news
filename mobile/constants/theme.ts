@@ -124,6 +124,32 @@ export const DARK_COLORS = {
   toneFavorableText: '#82a98a',
   toneUnfavorableText: '#a98080',
   toneNeutralText: '#8298a9',
+  // Globe marks — the web map's palette verbatim (`public/islands/_map/style.ts`),
+  // in both themes. The web map is dark-only, and a story, a hazard or a strait
+  // should be the same colour on the phone as in the browser; a second light
+  // palette would be two maps that disagree. A story's hue says its category,
+  // every other layer's hue says what kind of thing it is.
+  markPolitics: '#d2604a',
+  markEconomy: '#d0a24a',
+  markScience: '#4fa0a4',
+  markTech: '#8b96d4',
+  markOther: '#8a8a8a',
+  /** The ring on a story its sources disagree sharply about. */
+  markContested: '#e8e2d4',
+  markGdacs: '#b8763f',
+  markThermal: '#d98a4a',
+  markFamine: '#a98bc9',
+  markConflict: '#c05252',
+  markConflictFill: '#8c2f2f',
+  /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
+  markStrait: '#8d97a6',
+  markStraitPinch: '#c9a84c',
+  markStraitSurge: '#5f9ea0',
+  markMarketUp: '#9aab86',
+  markMarketDown: '#c08a6a',
+  /** The one unmuted tone on the globe, as on the web map. */
+  markGenocide: '#f5372b',
+  markGenocideCore: '#0b0d11',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -170,6 +196,28 @@ export const LIGHT_COLORS = {
   toneFavorableText: '#3f6b48',
   toneUnfavorableText: '#884d51',
   toneNeutralText: '#475f70',
+  // See DARK_COLORS.markPolitics — the same web palette in both themes.
+  markPolitics: '#d2604a',
+  markEconomy: '#d0a24a',
+  markScience: '#4fa0a4',
+  markTech: '#8b96d4',
+  markOther: '#8a8a8a',
+  /** The ring on a story its sources disagree sharply about. */
+  markContested: '#e8e2d4',
+  markGdacs: '#b8763f',
+  markThermal: '#d98a4a',
+  markFamine: '#a98bc9',
+  markConflict: '#c05252',
+  markConflictFill: '#8c2f2f',
+  /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
+  markStrait: '#8d97a6',
+  markStraitPinch: '#c9a84c',
+  markStraitSurge: '#5f9ea0',
+  markMarketUp: '#9aab86',
+  markMarketDown: '#c08a6a',
+  /** The one unmuted tone on the globe, as on the web map. */
+  markGenocide: '#f5372b',
+  markGenocideCore: '#0b0d11',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
@@ -189,6 +237,28 @@ export function withAlpha(hex: string, alpha: number): string {
   const g = parseInt(expand(m.length === 3 ? (m[1] ?? '0') : m.slice(2, 4)), 16);
   const b = parseInt(expand(m.length === 3 ? (m[2] ?? '0') : m.slice(4, 6)), 16);
   return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/**
+ * A story's category → the hue its globe mark is drawn in.
+ *
+ * One table for the mark and for the dot in the sheet's preview that names
+ * it, so the light a reader tapped and the words that open under it cannot
+ * disagree about what colour the story is.
+ */
+export function categoryMarkColor(category: string | undefined, colors: ColorPalette): string {
+  switch (category) {
+    case 'politics':
+      return colors.markPolitics;
+    case 'economy':
+      return colors.markEconomy;
+    case 'science':
+      return colors.markScience;
+    case 'tech':
+      return colors.markTech;
+    default:
+      return colors.markOther;
+  }
 }
 
 export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
@@ -506,6 +576,29 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
+    /**
+     * A headline in a list of headlines — the sheet's river, search, saved,
+     * the instruments list. One step under `title`, which is what an opened
+     * story or a sheet's own subject uses: a row is an entry point and the
+     * story it opens is the destination, and at the same size the two read as
+     * the same tier. It was `title` × 0.86 (18pt), which made each row a
+     * banner and put a 7pt jump between the headline and its 11pt metadata.
+     * 16pt semibold sits a clear step over `body` and holds two lines of a
+     * long headline in a row the globe camera can still divide by.
+     *
+     * Leading between heading and body: heading leading packs two lines of
+     * semibold too tight at this size, body leading makes a headline read as
+     * a paragraph. Tracking is half of `trackingHeading` for the same reason.
+     */
+    rowTitle: {
+      ...font.semiBold,
+      ...ANDROID_TEXT_BASE,
+      fontSize: Math.round(typography.sizeBase * 0.94),
+      lineHeight: Math.round(Math.round(typography.sizeBase * 0.94) * 1.28),
+      letterSpacing: typography.trackingHeading / 2,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
+      color: colors.text,
+    } as TextStyle,
     /** Editorial lead — subtitle under a display title, About-page opener. */
     lead: {
       ...font.regular,
@@ -650,6 +743,7 @@ export type TextVariant = keyof TextVariants;
 export const VARIANT_CAP: Record<TextVariant, number> = {
   display: MAX_FONT_SCALE.heading,
   title: MAX_FONT_SCALE.heading,
+  rowTitle: MAX_FONT_SCALE.heading,
   lead: MAX_FONT_SCALE.heading,
   body: MAX_FONT_SCALE.body,
   bodyEmphasis: MAX_FONT_SCALE.body,

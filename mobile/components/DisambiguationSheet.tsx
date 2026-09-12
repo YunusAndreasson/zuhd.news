@@ -7,6 +7,12 @@ import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
+import {
+  type FamineArea,
+  famineBlocks,
+  type GenocideSituation,
+  type ThermalEvent,
+} from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
@@ -20,6 +26,14 @@ import {
   MARKET_PATH,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
+import {
+  FAMINE_FRAME_PATH,
+  FAMINE_FRAME_STROKE,
+  getFamineBlocksPath,
+  THERMAL_CORE_PATH,
+  THERMAL_RAY_STROKE,
+  THERMAL_RAYS_PATH,
+} from './globe/overlay-glyphs';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -37,6 +51,9 @@ interface DisambiguationSheetProps extends BaseSheetProps {
   /** The ranked instruments, so a flagged exchange's row can name its index
    *  and its exchange rather than its id. */
   instruments: SwipeCard[];
+  famineAreas: FamineArea[];
+  thermalEvents: ThermalEvent[];
+  genocideSituations: GenocideSituation[];
   /** Fires when a row is tapped. Parent should dismiss this sheet and
    *  re-dispatch the candidate through its existing tap handler. */
   onSelect: (result: TapResult) => void;
@@ -51,7 +68,18 @@ interface DisplayRow {
   result: TapResult;
   primary: string;
   secondary: string;
-  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'market' | 'article' | 'hotspot';
+  kind:
+    | 'gdacs'
+    | 'chokepoint'
+    | 'conflict'
+    | 'market'
+    | 'article'
+    | 'hotspot'
+    | 'famine'
+    | 'thermal'
+    | 'genocide';
+  /** Famine-only — how many of the column's blocks are filled. */
+  blocks?: number;
   /** GDACS-only — drives the glyph + tint inside the icon canvas. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
@@ -68,7 +96,46 @@ function buildRow(
   alertsById: Map<string, GdacsAlert>,
   conflictById: Map<string, ConflictEvent>,
   marketsById: Map<string, SwipeCard>,
+  overlays: {
+    famine: Map<string, FamineArea>;
+    thermal: Map<string, ThermalEvent>;
+    genocide: Map<string, GenocideSituation>;
+  },
 ): DisplayRow | null {
+  if (result.genocideId) {
+    const g = overlays.genocide.get(result.genocideId);
+    if (!g) return null;
+    return {
+      key: `genocide-${g.id}`,
+      result,
+      primary: g.name,
+      secondary: 'genocide · as determined by the UN',
+      kind: 'genocide',
+    };
+  }
+  if (result.famineAreaId) {
+    const a = overlays.famine.get(result.famineAreaId);
+    if (!a) return null;
+    return {
+      key: `famine-${a.id}`,
+      result,
+      primary: a.area,
+      secondary: `${a.phaseName.toLowerCase()} · IPC phase ${a.phase}`,
+      kind: 'famine',
+      blocks: famineBlocks(a.phase),
+    };
+  }
+  if (result.thermalEventId) {
+    const e = overlays.thermal.get(result.thermalEventId);
+    if (!e) return null;
+    return {
+      key: `thermal-${e.id}`,
+      result,
+      primary: e.near ?? 'Thermal anomaly',
+      secondary: `thermal anomaly · ${Math.round(e.frp).toLocaleString('en-US')} MW`,
+      kind: 'thermal',
+    };
+  }
   if (result.gdacsEventId) {
     const alert = alertsById.get(result.gdacsEventId);
     if (!alert) return null;
@@ -154,6 +221,75 @@ interface RowIconProps {
 
 function RowIcon({ row, tint }: RowIconProps) {
   const { colors } = useTheme();
+  const glyphTransform = [
+    { translateX: ROW_ICON / 2 - GLYPH_HALF },
+    { translateY: ROW_ICON / 2 - GLYPH_HALF },
+  ];
+  // The hazard layers from the web keep their globe hues here too: the row
+  // names the mark the reader just tapped, and a grey column would not.
+  if (row.kind === 'famine') {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.markFamine}
+          opacity={0.14}
+        />
+        <Path
+          path={FAMINE_FRAME_PATH}
+          color={colors.markFamine}
+          style="stroke"
+          strokeWidth={FAMINE_FRAME_STROKE}
+          transform={glyphTransform}
+        />
+        <Path
+          path={getFamineBlocksPath(row.blocks ?? 0)}
+          color={colors.markFamine}
+          transform={glyphTransform}
+        />
+      </Canvas>
+    );
+  }
+  if (row.kind === 'thermal') {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.markThermal}
+          opacity={0.14}
+        />
+        <Path path={THERMAL_CORE_PATH} color={colors.markThermal} transform={glyphTransform} />
+        <Path
+          path={THERMAL_RAYS_PATH}
+          color={colors.markThermal}
+          style="stroke"
+          strokeWidth={THERMAL_RAY_STROKE}
+          strokeCap="round"
+          transform={glyphTransform}
+        />
+      </Canvas>
+    );
+  }
+  if (row.kind === 'genocide') {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={9} color={colors.markGenocideCore} />
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={9}
+          color={colors.markGenocide}
+          style="stroke"
+          strokeWidth={1.6}
+        />
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={3} color={colors.markGenocide} />
+      </Canvas>
+    );
+  }
   if (row.kind === 'gdacs' && row.eventtype) {
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
@@ -342,6 +478,9 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   alerts,
   conflictEvents,
   instruments,
+  famineAreas,
+  thermalEvents,
+  genocideSituations,
   bottomInset,
   onDismiss,
   onSelect,
@@ -351,6 +490,11 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     const alertById = new Map(alerts.map((a) => [a.eventid, a]));
     const conflictById = new Map(conflictEvents.map((e) => [e.id, e]));
     const marketById = new Map(instruments.map((c) => [c.id, c]));
+    const overlays = {
+      famine: new Map(famineAreas.map((a) => [a.id, a])),
+      thermal: new Map(thermalEvents.map((e) => [e.id, e])),
+      genocide: new Map(genocideSituations.map((g) => [g.id, g])),
+    };
     const out: DisplayRow[] = [];
     for (let i = 0; i < candidates.length; i++) {
       const row = buildRow(
@@ -360,11 +504,21 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
         alertById,
         conflictById,
         marketById,
+        overlays,
       );
       if (row) out.push(row);
     }
     return out;
-  }, [candidates, chokepoints, alerts, conflictEvents, instruments]);
+  }, [
+    candidates,
+    chokepoints,
+    alerts,
+    conflictEvents,
+    instruments,
+    famineAreas,
+    thermalEvents,
+    genocideSituations,
+  ]);
 
   const handleSelect = useCallback(
     (result: TapResult) => {

@@ -147,7 +147,43 @@ interface CountrySheetProps extends BaseSheetProps {
   activeAlerts?: GdacsAlert[];
   /** Called when the user taps an alert chip — opens DisasterSheet. */
   onAlertPress?: (alert: GdacsAlert) => void;
+  /**
+   * The hazard marks the globe draws in this country — famine classifications
+   * and genocide determinations. The globe's gesture layer is hidden from
+   * screen readers, so these rows are the accessible path to those marks.
+   */
+  hazards?: CountryHazard[];
 }
+
+export interface CountryHazard {
+  key: string;
+  title: string;
+  detail: string;
+  onPress: () => void;
+}
+
+const HazardRow = memo(function HazardRow({ hazard }: { hazard: CountryHazard }) {
+  const { colors } = useTheme();
+  return (
+    <Pressable
+      haptic="tick"
+      onPress={hazard.onPress}
+      style={[styles.alertChip, { borderColor: colors.rule }]}
+      accessibilityRole="button"
+      accessibilityLabel={`${hazard.title}, ${hazard.detail}`}
+    >
+      <View style={styles.alertChipText}>
+        <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
+          {hazard.title}
+        </Text>
+        <Text variant="labelXs" tone="secondary" numberOfLines={1}>
+          {hazard.detail}
+        </Text>
+      </View>
+      <Icon name="chevron-forward" size="sm" tone="secondary" />
+    </Pressable>
+  );
+});
 
 const ALERT_CHIP_GLYPH = 28;
 const ALERT_CHIP_DOT_SIZE = 6;
@@ -219,6 +255,7 @@ export const CountrySheet = memo(function CountrySheet({
   country,
   activeAlerts,
   onAlertPress,
+  hazards,
   bottomInset,
   onDismiss,
 }: CountrySheetProps) {
@@ -385,6 +422,16 @@ export const CountrySheet = memo(function CountrySheet({
               </Text>
               {activeAlerts.map((a) => (
                 <AlertChip key={a.eventid} alert={a} onPress={onAlertPress} />
+              ))}
+            </Animated.View>
+          )}
+          {hazards && hazards.length > 0 && (
+            <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
+              <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+                on the map
+              </Text>
+              {hazards.map((h) => (
+                <HazardRow key={h.key} hazard={h} />
               ))}
             </Animated.View>
           )}

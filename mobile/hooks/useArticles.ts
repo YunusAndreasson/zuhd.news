@@ -6,6 +6,7 @@ import { flushBookmarks } from '../lib/bookmark-store';
 import { collectNewArticles } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
 import { fetchJson } from '../lib/fetchJson';
+import { flushFound } from '../lib/found-store';
 import { flushOnboarding } from '../lib/onboarding-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isMetaResponse } from '../lib/validate';
@@ -178,6 +179,7 @@ export function useArticles(): ArticlesState {
   const handleBackground = useEffectEvent(() => {
     saveLastSeenAt(Date.now());
     flushBookmarks();
+    flushFound();
     flushOnboarding();
   });
 

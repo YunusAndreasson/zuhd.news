@@ -25,7 +25,7 @@ const HINT_COPY: Record<HintId, string> = {
   swipe: 'swipe up for next · sideways for the map',
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
-  globe: 'tap anything on the globe',
+  globe: 'tap a light on the globe to find its story',
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;

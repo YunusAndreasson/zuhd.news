@@ -3,7 +3,13 @@ import type { Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from '../lib/cards/rank';
 import type { CardDelta, GraphCard, ReadingCard } from '../lib/cards/types';
 import type { RiverArticle } from '../lib/news-order';
-import { buildNowSurfaces, coverageRanks, HAZARD_MAX_AGE_DAYS, NOW_LIMIT } from '../lib/now';
+import {
+  buildNowSurfaces,
+  coverageRanks,
+  HAZARD_MAX_AGE_DAYS,
+  NOW_LIMIT,
+  rowKicker,
+} from '../lib/now';
 
 const NOW = Date.parse('2026-09-12T09:00:00Z');
 
@@ -203,23 +209,15 @@ describe('buildNowSurfaces — placement', () => {
 });
 
 describe('buildNowSurfaces — the block', () => {
-  it('never repeats a fact the strip already prints', () => {
-    const ranked: SwipeCard[] = ['a', 'b', 'c'].map((id) => reading(id, { lead: true }));
+  it('holds no instrument, gated or not, moving or not — the sheet is for news', () => {
+    const ranked: SwipeCard[] = [
+      reading('moved', { lead: true }),
+      reading('still', { lead: true, delta: undefined }),
+      reading('quiet'),
+    ];
     const { strip, now } = base({ ranked });
-    expect(strip.map((s) => s.id)).toEqual(['a', 'b', 'c']);
+    expect(strip.map((s) => s.id)).toEqual(['moved', 'quiet']);
     expect(now).toHaveLength(0);
-  });
-
-  it('admits a gated reading the strip cannot hold, because it has no move', () => {
-    const ranked: SwipeCard[] = [reading('a', { lead: true, delta: undefined })];
-    const { now } = base({ ranked });
-    expect(now.map((n) => n.id)).toEqual(['a']);
-    expect(now[0]?.kind).toBe('instrument');
-  });
-
-  it('excludes an ungated instrument — a card must have changed, not merely rank', () => {
-    const ranked: SwipeCard[] = ['a', 'b'].map((id) => reading(id, { delta: undefined }));
-    expect(base({ ranked }).now).toHaveLength(0);
   });
 
   it('is empty on a quiet day rather than padded', () => {
@@ -229,7 +227,6 @@ describe('buildNowSurfaces — the block', () => {
   it('admits a Red alert', () => {
     const { now } = base({ gdacsAlerts: [alert('1')] });
     expect(now).toHaveLength(1);
-    expect(now[0]?.kind).toBe('hazard');
     expect(now[0]?.gdacsEventId).toBe('1');
     expect(now[0]?.coords).toEqual([14.6, 121]);
   });
@@ -243,23 +240,20 @@ describe('buildNowSurfaces — the block', () => {
     expect(base({ gdacsAlerts: [alert('1', { modifiedDate: stale })] }).now).toHaveLength(0);
   });
 
-  it('orders newest first across kinds', () => {
-    const ranked: SwipeCard[] = [
-      reading('old', { lead: true, asOf: '2026-09-08', delta: undefined }),
-      reading('new', { lead: true, asOf: '2026-09-11', delta: undefined }),
-    ];
+  it('orders newest first', () => {
     const { now } = base({
-      ranked,
-      gdacsAlerts: [alert('mid', { modifiedDate: '2026-09-10T00:00:00Z' })],
+      gdacsAlerts: [
+        alert('old', { modifiedDate: '2026-09-08T00:00:00Z' }),
+        alert('new', { modifiedDate: '2026-09-11T00:00:00Z' }),
+        alert('mid', { modifiedDate: '2026-09-10T00:00:00Z' }),
+      ],
     });
-    expect(now.map((n) => n.id)).toEqual(['new', 'gdacs:TC:mid', 'old']);
+    expect(now.map((n) => n.id)).toEqual(['gdacs:TC:new', 'gdacs:TC:mid', 'gdacs:TC:old']);
   });
 
   it('caps the block so it cannot become a second river', () => {
-    const ranked: SwipeCard[] = Array.from({ length: NOW_LIMIT + 2 }, (_, i) =>
-      reading(`c${i}`, { lead: true, asOf: '2026-09-11', delta: undefined }),
-    );
-    expect(base({ ranked }).now).toHaveLength(NOW_LIMIT);
+    const gdacsAlerts = Array.from({ length: NOW_LIMIT + 2 }, (_, i) => alert(`a${i}`));
+    expect(base({ gdacsAlerts }).now).toHaveLength(NOW_LIMIT);
   });
 });
 
@@ -330,15 +324,12 @@ describe('buildNowSurfaces — what a slot and a row may say', () => {
     ];
     const { strip, now } = base({ ranked });
     expect(strip.map((s) => s.id)).toEqual(['a', 'b', 'c']);
-    // Kept out of the strip, not out of the screen: a sharp contract still
-    // reaches the block, where the row has room for the whole question.
-    expect(now.map((n) => n.id)).toEqual(['poly-ceasefire']);
+    // Nor a row in the news sheet: it rides the story it settles as an odds
+    // chip, and the instruments sheet lists it in full.
+    expect(now).toHaveLength(0);
   });
 
   it('names a strait row by its kind rather than calling it an instrument', () => {
-    const ranked: SwipeCard[] = [
-      reading('strait-kerch', { lead: true, kicker: undefined, delta: undefined }),
-    ];
-    expect(base({ ranked }).now[0]?.kicker).toBe('shipping');
+    expect(rowKicker(reading('strait-kerch', { kicker: undefined }))).toBe('shipping');
   });
 });

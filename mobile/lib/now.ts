@@ -12,15 +12,17 @@ import { EVENT_TYPE_EYEBROW } from './gdacs';
  *   the strip   every market, strait and currency that moved, as a row of
  *               gauges above the earth — subject, reading, direction —
  *               largest move first, swiped sideways. Answers *how much*.
- *   the block   what else is flashing, as titles. Answers *what*.
- *               Gated, so on a quiet day it is short or empty.
+ *   the block   a live Red hazard alert, as a title, above the river.
+ *               Gated, so on almost every day it is empty.
  *
- * They are built by one function because the invariant between them is not
- * something a caller can be trusted to remember: `foundation.md` forbids a fact
- * appearing twice, and an instrument printed as `HORMUZ −57% ▼` at the top of
- * the screen and again as a row thirty points below it is the same fact twice.
- * The block therefore takes the strip's ids and skips them — enforced here,
- * not at the call site.
+ * **The sheet is for news.** The block used to carry instruments too — every
+ * strait, index and contract a builder marked `lead` — and once the strip held
+ * every reading that moved, what was left of that was contracts and dates
+ * sitting above the stories as if they were stories. They left the sheet: a
+ * contract still rides the story it settles as an odds chip, and every
+ * instrument is one tap away at the end of the strip. What stays is a Red
+ * alert, which is news that has no article yet and whose globe mark would
+ * otherwise have no accessible row.
  *
  * Three deliberate absences:
  *
@@ -38,7 +40,8 @@ import { EVENT_TYPE_EYEBROW } from './gdacs';
  *
  *   **No blended score anywhere.** `lib/cards/rank.ts` already ranks
  *   lexicographically and says why: a blend lets a large market move bury a
- *   genuinely new event. The strip reads straight off that order. The block is
+ *   genuinely new event. The strip re-sorts by one plain quantity, the size of
+ *   the move, and keeps that order between equal moves. The block is
  *   newest-first, because everything in it has already cleared a gate — the
  *   gate does the selecting, so the only question left is what just happened.
  */
@@ -72,20 +75,15 @@ export interface StripItem {
   card: SwipeCard;
 }
 
-export type NowKind = 'instrument' | 'hazard';
-
 export interface NowItem {
   id: string;
-  kind: NowKind;
   title: string;
   kicker: string;
-  /** Epoch ms of the observation the row stands on — the block's sort key. */
+  /** Epoch ms of the alert's last update — the block's sort key. */
   at: number;
   coords: LatLng | null;
-  /** Set when `kind === 'instrument'`. Opens `CardSheet`. */
-  card?: SwipeCard;
-  /** Set when `kind === 'hazard'`. Opens `DisasterSheet`. */
-  gdacsEventId?: string;
+  /** Opens `DisasterSheet`. */
+  gdacsEventId: string;
 }
 
 export interface NowSurfaces {
@@ -152,13 +150,6 @@ function locateCard(
   return null;
 }
 
-/** The observation a card stands on, as epoch ms. `asOf` is deliberately not
- *  the fetch time — a file rebuilt today can still hold older source data. */
-function cardTime(card: SwipeCard, fallback: number): number {
-  const t = parseTime(card.asOf);
-  return Number.isFinite(t) ? t : fallback;
-}
-
 function toStripItem(
   card: SwipeCard,
   chokepoints: Chokepoint[],
@@ -193,7 +184,6 @@ function hazardItems(alerts: GdacsAlert[], now: number): NowItem[] {
     if (!Number.isFinite(at) || at < cutoff) continue;
     items.push({
       id: `gdacs:${alert.eventtype}:${alert.eventid}`,
-      kind: 'hazard',
       title: alert.name,
       kicker: EVENT_TYPE_EYEBROW[alert.eventtype] ?? 'hazard',
       at,
@@ -205,8 +195,7 @@ function hazardItems(alerts: GdacsAlert[], now: number): NowItem[] {
 }
 
 /**
- * The line under an instrument's title in any list row — the NOW block and the
- * instruments sheet both print it, so it is decided here once.
+ * The line under an instrument's title in the instruments sheet's rows.
  *
  * Strait cards are the builders' only kickerless cards, because their title is
  * the place; a row reading "current · instrument" said nothing about a strait.
@@ -216,14 +205,11 @@ export function rowKicker(card: SwipeCard): string {
 }
 
 /**
- * The strip and the block, in one pass so the dedupe cannot drift.
+ * The strip and the block, in one pass.
  *
  * `ranked` arrives in `prepareSwipeCards` order, which is urgent first. The
  * strip takes every reading with a move and re-sorts it by the size of that
- * move; the block takes every *remaining* card that a builder marked `lead` —
- * the ones gated on their own data being new, rather than on their subject
- * mattering, which leaves the contracts and the dates — plus any live Red
- * alert, newest first.
+ * move; the block takes live Red alerts, newest first.
  */
 export function buildNowSurfaces({
   ranked,
@@ -237,8 +223,8 @@ export function buildNowSurfaces({
   // subject, and a prediction market's subject is its question — every
   // contract shares the kicker "what traders think", so a slot holding one
   // printed a level and a move under a label that named nothing. A scheduled
-  // date has no move at all. Both still reach the block below, where a row has
-  // room for the whole question.
+  // date has no move at all. Both stay in the instruments sheet, and a
+  // contract also rides the story it settles as an odds chip.
   //
   // A reading with no delta has no up or down to glance at, which is the one
   // thing the strip is for; it stays in the instruments sheet.
@@ -251,23 +237,7 @@ export function buildNowSurfaces({
     .sort((a, b) => b.size - a.size || a.order - b.order)
     .map(({ card }) => toStripItem(card, chokepoints, signals, countryCentroid));
 
-  const onStrip = new Set(strip.map((item) => item.id));
-
-  const instruments: NowItem[] = [];
-  for (const card of ranked) {
-    if (onStrip.has(card.id) || !card.lead) continue;
-    instruments.push({
-      id: card.id,
-      kind: 'instrument',
-      title: card.title,
-      kicker: rowKicker(card),
-      at: cardTime(card, now),
-      coords: locateCard(card, chokepoints, signals, countryCentroid),
-      card,
-    });
-  }
-
-  const block = [...hazardItems(gdacsAlerts, now), ...instruments]
+  const block = hazardItems(gdacsAlerts, now)
     // Newest first. Ties break on id so a rebuild cannot shuffle the block
     // under a reader who is looking at it.
     .sort((a, b) => b.at - a.at || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))

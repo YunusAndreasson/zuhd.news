@@ -5,7 +5,6 @@ import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
-import { FEED_ROW_TITLE_SCALE } from './map/FeedRow';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -69,12 +68,12 @@ const Row = memo(function Row({
       style={[styles.row, { borderBottomColor: colors.rule }]}
     >
       <View style={styles.subject}>
-        <Text variant="title" scale={FEED_ROW_TITLE_SCALE} numberOfLines={2}>
+        <Text variant="rowTitle" numberOfLines={2}>
           {card.title}
         </Text>
         <View style={styles.meta}>
           {/* `current` earns the same ink step it gets on a card and in the
-              NOW block — a builder gated this row on its own data being new,
+              reader — a builder gated this row on its own data being new,
               and that is the one thing a ranked list cannot show by order. */}
           {card.lead ? (
             <Text variant="labelXs" tone="emphasis" numberOfLines={1}>

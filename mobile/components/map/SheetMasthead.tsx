@@ -1,110 +1,54 @@
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { RADIUS, SPACING } from '../../constants/theme';
-import { useTheme } from '../../hooks/useTheme';
-import { briefingActionLabel } from '../../lib/audio-duration';
-import { Icon, Pressable, Text } from '../primitives';
+import { SPACING } from '../../constants/theme';
+import type { FoundProgress } from '../../lib/story-places';
+import { Text } from '../primitives';
 
 /**
- * The first thing in the sheet: what day it is, how much there is, and the
- * briefing.
+ * Above the sheet's list: how much of today's news the reader has found, or
+ * that a pull is checking for more.
  *
- * The briefing used to be a `listen · 12 min` pill in the bottom-left corner,
- * floating over the globe among two other pills — which is why the brief
- * included "we also need a way to start the daily briefing" for a feature
- * that had shipped. A control sized to stay out of the globe's way, placed
- * where nothing else on the screen was, reads as chrome. Here it is the one
- * button on the masthead of the day's list, which is where a reader goes
- * looking for "start here".
+ * It held the day's date, the story count and the briefing button. The
+ * briefing moved to the top left of `MapHeader`, and the date went to give the
+ * news the room — the list's own rows carry each story's age.
  *
- * The date is not decoration either. It is the app saying which cycle this
- * is — the pipeline commits five times a day and the reader has no other way
- * to tell a fresh column from a cached one.
+ * The count came back as progress. Every story on the globe is a light until
+ * it is opened, so the line is the game's only scoreboard, and before the
+ * first find it is also the only thing saying the lights are stories at all.
+ * A pull's "checking" line takes the slot while it runs, because that is the
+ * one thing a pull-to-refresh has no other way to say. Both are a live region,
+ * so a screen reader hears them without moving focus.
  */
+export function progressLine({ found, total }: FoundProgress): string | null {
+  if (total <= 0) return null;
+  if (found <= 0) return `${total} ${total === 1 ? 'story' : 'stories'} on the globe`;
+  if (found >= total) return `all ${total} found`;
+  return `found ${found} of ${total}`;
+}
+
 export const SheetMasthead = memo(function SheetMasthead({
-  dateLabel,
-  storyCount,
   refreshing = false,
-  briefingAvailable,
-  briefingResumable,
-  briefingDuration,
-  onBriefingPress,
+  progress,
 }: {
-  /** "Friday 12 September" — the day the column was built. */
-  dateLabel: string;
-  storyCount: number;
-  /** A pull on the resting sheet is checking for a new cycle. Said in the
-   *  line that holds the count, because the count is what may change. */
+  /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
-  briefingAvailable: boolean;
-  briefingResumable: boolean;
-  briefingDuration?: number;
-  onBriefingPress: () => void;
+  progress?: FoundProgress;
 }) {
-  const { colors } = useTheme();
-  const label = briefingActionLabel(briefingResumable, briefingDuration);
-
+  const line = refreshing ? 'checking for new stories' : progress ? progressLine(progress) : null;
   return (
-    <View style={styles.row}>
-      <View style={styles.titles}>
-        <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
-          {dateLabel}
+    <View accessibilityLiveRegion="polite">
+      {line ? (
+        <Text variant="caption" numberOfLines={1} style={styles.line}>
+          {line}
         </Text>
-        <Text variant="caption" numberOfLines={1} accessibilityLiveRegion="polite">
-          {refreshing
-            ? 'checking for new stories'
-            : storyCount === 1
-              ? '1 story'
-              : `${storyCount} stories`}
-        </Text>
-      </View>
-
-      {/* Absent rather than disabled when there is no briefing. A dead
-          control the reader has to press to discover is dead is the failure
-          the old pill's "No briefing available" toast already made once. */}
-      {briefingAvailable ? (
-        <Pressable
-          onPress={onBriefingPress}
-          haptic="none"
-          hitSlop={SPACING.md}
-          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-          accessibilityRole="button"
-          accessibilityLabel={briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}
-          accessibilityHint={
-            briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-          }
-        >
-          <Icon name="play" size="sm" tone="default" />
-          <Text variant="labelXs" tone="default">
-            {label}
-          </Text>
-        </Pressable>
       ) : null}
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  line: {
     paddingHorizontal: SPACING.articlePadding,
-    paddingTop: SPACING.xs,
-    paddingBottom: SPACING.smPlus,
-    gap: SPACING.md,
-  },
-  titles: { flex: 1, minWidth: 0 },
-  // The one place in the app a glyph sits inside a word pill. A play triangle
-  // is not decoration here: it is the difference between a label that reads
-  // as a heading and a control that reads as pressable, on a row whose other
-  // half is a heading.
-  listen: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-    paddingVertical: SPACING.xs,
-    paddingHorizontal: SPACING.smPlus,
-    borderRadius: RADIUS.floating,
-    borderWidth: StyleSheet.hairlineWidth,
+    paddingBottom: SPACING.sm,
   },
 });

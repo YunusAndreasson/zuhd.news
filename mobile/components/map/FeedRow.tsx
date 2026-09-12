@@ -7,11 +7,11 @@ import { Pressable, Text } from '../primitives';
 /**
  * One row of the sheet's list — and there is only one, on purpose.
  *
- * The NOW block and the river use this same component. Two row designs in one
- * scroller would tell the reader that a strait and a story are different kinds
- * of thing to *read*, when the only difference is what opens when you press
- * them. What separates them is the block's heading and the `current` ink step,
- * both of which the app already uses to mean exactly this.
+ * The alert block and the river use this same component. Two row designs in
+ * one scroller would tell the reader that an alert and a story are different
+ * kinds of thing to *read*, when the only difference is what opens when you
+ * press them. What separates them is the block's heading and the `current` ink
+ * step, both of which the app already uses to mean exactly this.
  *
  * **Title first, metadata under it.** `foundation.md` calls headlines the
  * entry point, and a scanning eye should hit them rather than a row of
@@ -19,8 +19,14 @@ import { Pressable, Text } from '../primitives';
  * and saved lists already use.
  *
  * **`current` is an ink step, never a colour** — the same rule and the same
- * slot `CardFrame` uses. The chromatic budget on this screen is spent on the
- * delta chips in the strip above.
+ * slot `CardFrame` uses.
+ *
+ * **The one colour on a row is the story's globe hue**, as a dot before the
+ * metadata: the same hue the globe drew the story's beacon in, filled while
+ * the story is still a light to find and a ring once it has been opened —
+ * the web rail's read state. It is a dot and never the text: the web hues are
+ * mark colours, and at 11pt on cream several of them are not legible ink.
+ * An alert row has no category and no dot.
  *
  * **Every row is exactly `height` tall.** That is not a layout convenience:
  * the globe's camera finds the row under the reader by dividing scroll offset
@@ -30,13 +36,8 @@ import { Pressable, Text } from '../primitives';
  * such constraint.
  */
 
-/**
- * The title's share of the `title` variant. At full size a semibold 21pt
- * headline made each row a banner — the sheet at rest showed two of them —
- * and because every row reserves two lines, a one-line title sat in a band of
- * empty space. `index.tsx` sizes the row from this same number.
- */
-export const FEED_ROW_TITLE_SCALE = 0.86;
+/** The category dot's diameter — a beacon at row scale. */
+const DOT = 7;
 
 export interface FeedRowProps {
   /** Uniform, and shared with the globe camera. See above. */
@@ -55,6 +56,15 @@ export interface FeedRowProps {
    * and its "a market, not a forecast" caveat, is in the reader.
    */
   odds?: string | null;
+  /**
+   * The reader has already opened this story — from its globe mark, this row
+   * or the reader. The title drops to secondary ink, the way the web's rail
+   * greys a read story. An ink step and not a badge: the row cannot grow, and
+   * the globe already says it louder by no longer drawing the mark.
+   */
+  found?: boolean;
+  /** The story's category hue (`categoryMarkColor`). Absent → no dot. */
+  hue?: string;
   onPress: () => void;
   accessibilityLabel: string;
   accessibilityHint?: string;
@@ -66,6 +76,8 @@ export const FeedRow = memo(function FeedRow({
   meta,
   mark,
   odds,
+  found = false,
+  hue,
   onPress,
   accessibilityLabel,
   accessibilityHint,
@@ -81,14 +93,22 @@ export const FeedRow = memo(function FeedRow({
       style={[styles.row, { height, borderBottomColor: colors.rule }]}
     >
       <Text
-        variant="title"
-        scale={FEED_ROW_TITLE_SCALE}
+        variant="rowTitle"
+        tone={found ? 'secondary' : 'default'}
         numberOfLines={2}
         maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
       >
         {title}
       </Text>
       <View style={styles.meta}>
+        {hue ? (
+          <View
+            style={[
+              styles.dot,
+              found ? { borderColor: hue, borderWidth: 1.2 } : { backgroundColor: hue },
+            ]}
+          />
+        ) : null}
         {mark ? (
           <Text variant="labelXs" tone="emphasis" numberOfLines={1}>
             {`${mark} · `}
@@ -121,4 +141,5 @@ const styles = StyleSheet.create({
   // Takes the slack so the odds chip stays pinned right and the kicker
   // truncates rather than pushing it off the row.
   metaText: { flex: 1 },
+  dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
 });

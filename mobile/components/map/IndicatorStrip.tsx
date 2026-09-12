@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native'
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
-import { Pressable, Text } from '../primitives';
+import { Icon, Pressable, Text } from '../primitives';
 
 /**
  * The gauges above the earth, swiped sideways.
@@ -31,6 +31,12 @@ import { Pressable, Text } from '../primitives';
  * strait's story is "−57%" and an index's is its level and "4.8%". The delta's
  * window is dropped — "vs its 90-day normal" does not fit a slot — and it is
  * on the card the slot opens.
+ *
+ * **`all →` ends the row.** The instruments without a move — the nisab, the
+ * contracts, the dates — and the full ranked list live in `InstrumentsSheet`,
+ * and the end of a row that is sorted from loudest to quietest is where a
+ * reader who wants more has already arrived. It used to sit under the NOW
+ * block in the news sheet, which is for news.
  *
  * Tapping a slot turns the planet to that mark and opens its card. That is
  * also how a reader learns the globe is addressable at all — the mapping is
@@ -106,9 +112,12 @@ function Slot({
 export const IndicatorStrip = memo(function IndicatorStrip({
   items,
   onSelect,
+  onAll,
 }: {
   items: StripItem[];
   onSelect: (item: StripItem) => void;
+  /** Opens every instrument as one ranked list. */
+  onAll: () => void;
 }) {
   const { width: screenWidth } = useWindowDimensions();
   const slotWidth = Math.round(
@@ -134,6 +143,19 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       {items.map((item) => (
         <Slot key={item.id} item={item} width={slotWidth} onPress={onSelect} />
       ))}
+      <Pressable
+        onPress={onAll}
+        haptic="none"
+        style={styles.all}
+        accessibilityRole="button"
+        accessibilityLabel="All instruments"
+        accessibilityHint="Opens every market, strait, currency and contract as a ranked list"
+      >
+        <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
+          all
+        </Text>
+        <Icon name="chevron-forward" size="sm" tone="secondary" />
+      </Pressable>
     </ScrollView>
   );
 });
@@ -153,4 +175,11 @@ const styles = StyleSheet.create({
   slot: { justifyContent: 'flex-end' },
   label: { marginBottom: 1 },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
+  all: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    gap: SPACING.xs,
+    paddingVertical: SPACING.xs,
+  },
 });

@@ -56,13 +56,23 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { BLACK, WHITE, withAlpha } from '../../constants/theme';
+import { BLACK, categoryMarkColor, WHITE, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import { coverageRanks } from '../../lib/now';
+import {
+  type FamineArea,
+  famineAlpha,
+  famineBlocks,
+  type GenocideSituation,
+  type ThermalEvent,
+  thermalAlpha,
+  thermalScale,
+} from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
+import { type StoryPlace, topUnfound, unfoundSlugs } from '../../lib/story-places';
 import { chokepointValence } from '../../lib/valence';
 import {
   CITY_LIGHT_COORDS,
@@ -78,6 +88,14 @@ import {
   getSeas,
 } from './detail-geo';
 import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
+import {
+  FAMINE_FRAME_PATH,
+  FAMINE_FRAME_STROKE,
+  getFamineBlocksPath,
+  THERMAL_CORE_PATH,
+  THERMAL_RAY_STROKE,
+  THERMAL_RAYS_PATH,
+} from './overlay-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -150,24 +168,72 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
   };
 }
 
-/** Atlas inputs for the story layer: one baked glow, per-instance size and
- *  alpha. `RSXform`'s first component is scale·cos θ, so a uniform scale is
- *  free — and the translate has to be scaled with it or a shrunk sprite
- *  drifts off its own centre. Alpha rides the `colors` channel the same way
- *  the conflict layer's recency does, which means `colorBlendMode="modulate"`
- *  is mandatory here too. */
-function storyAtlas(
-  spec: GlowSpec,
-  marks: { x: number; y: number; scale: number; alpha: number }[],
+interface PlaceMark {
+  coords: [number, number];
+  slug: string;
+  color: string;
+  rgb: readonly [number, number, number];
+  scale: number;
+  alpha: number;
+  count: number;
+  contested: boolean;
+}
+
+const EMPTY_FOUND: ReadonlySet<string> = new Set();
+
+/** `#rrggbb` → 0–1 channels, for the Atlas colour channel. */
+function hexRgb(hex: string): readonly [number, number, number] {
+  const m = hex.replace('#', '');
+  return [
+    Number.parseInt(m.slice(0, 2), 16) / 255,
+    Number.parseInt(m.slice(2, 4), 16) / 255,
+    Number.parseInt(m.slice(4, 6), 16) / 255,
+  ];
+}
+
+/** Atlas inputs for the story layer: one baked white sprite, per-instance
+ *  scale, and the category hue × recency alpha in the colour channel.
+ *  `RSXform`'s first component is scale·cos θ, so a uniform scale is free —
+ *  and the translate has to be scaled with it or a shrunk sprite drifts off
+ *  its own centre. `colorBlendMode="modulate"` is mandatory at the call site:
+ *  Atlas's default colours blend is `dstOver`, which fills each sprite's
+ *  transparent box with a solid square. */
+function storyAtlas(size: number, src: ReturnType<typeof rect>, marks: GlobeState['storyMarks']) {
+  if (marks.length === 0) return null;
+  const center = size / 2;
+  const sprites: ReturnType<typeof rect>[] = [];
+  const transforms: ReturnType<typeof Skia.RSXform>[] = [];
+  const colors: Float32Array[] = [];
+  for (const m of marks) {
+    sprites.push(src);
+    transforms.push(Skia.RSXform(m.scale, 0, m.x - center * m.scale, m.y - center * m.scale));
+    colors.push(Float32Array.of(m.rgb[0], m.rgb[1], m.rgb[2], m.alpha));
+  }
+  return { sprites, transforms, colors };
+}
+
+/** Atlas inputs for a hazard layer stamped from the baked sprite sheet: the
+ *  cell per mark, a third of the baked size times the mark's own scale, and
+ *  the layer's hue × the mark's alpha. Modulate blend, as for stories. */
+function overlayAtlas(
+  marks: readonly { x: number; y: number; alpha: number; scale: number }[],
+  srcFor: (index: number) => ReturnType<typeof rect>,
+  rgb: readonly [number, number, number],
 ) {
   if (marks.length === 0) return null;
-  return {
-    sprites: marks.map(() => spec.srcRect),
-    transforms: marks.map((m) =>
-      Skia.RSXform(m.scale, 0, m.x - spec.center * m.scale, m.y - spec.center * m.scale),
-    ),
-    colors: marks.map((m) => Float32Array.of(1, 1, 1, m.alpha)),
-  };
+  const half = OVERLAY_CELL / 2;
+  const sprites: ReturnType<typeof rect>[] = [];
+  const transforms: ReturnType<typeof Skia.RSXform>[] = [];
+  const colors: Float32Array[] = [];
+  for (let i = 0; i < marks.length; i++) {
+    const m = marks[i];
+    if (!m) continue;
+    const k = m.scale / OVERLAY_RES;
+    sprites.push(srcFor(i));
+    transforms.push(Skia.RSXform(k, 0, m.x - half * k, m.y - half * k));
+    colors.push(Float32Array.of(rgb[0], rgb[1], rgb[2], m.alpha));
+  }
+  return { sprites, transforms, colors };
 }
 
 /** Atlas inputs for the conflict layer. Same pipeline as glowAtlas — the
@@ -178,12 +244,16 @@ function storyAtlas(
  *  The explicit modulate mode is load-bearing, not stylistic: Atlas's
  *  default colors blend is `dstOver`, which paints each color *behind*
  *  the sprite — filling its transparent bounding box with solid squares. */
-function conflictAtlas(spec: GlowSpec, marks: { x: number; y: number; recencyAlpha: number }[]) {
+function conflictAtlas(
+  spec: GlowSpec,
+  marks: { x: number; y: number; recencyAlpha: number }[],
+  rgb: readonly [number, number, number],
+) {
   if (marks.length === 0) return null;
   return {
     sprites: marks.map(() => spec.srcRect),
     transforms: marks.map((m) => Skia.RSXform(1, 0, m.x - spec.center, m.y - spec.center)),
-    colors: marks.map((m) => Float32Array.of(1, 1, 1, m.recencyAlpha)),
+    colors: marks.map((m) => Float32Array.of(rgb[0], rgb[1], rgb[2], m.recencyAlpha)),
   };
 }
 
@@ -242,6 +312,10 @@ const graticuleLines = geoGraticule()
 );
 
 const PULSE_EASING = Easing.out(Easing.cubic);
+/** The found burst's length. The screen waits this long before flying the
+ *  camera, so the burst plays where the mark was rather than being dragged. */
+export const COLLECT_MS = 420;
+const COLLECT_REDUCED_MS = 150;
 const ZOOM_EASING = Easing.inOut(Easing.cubic);
 const ZOOM_DURATION = 260;
 
@@ -291,14 +365,44 @@ const GHOST_GLOW = makeGlowSpec(GHOST_GLOW_LAYERS, 32);
 const DOT_GLOW = makeGlowSpec(DOT_GLOW_LAYERS, 56);
 const MAKKAH_GLOW = makeGlowSpec(MAKKAH_GLOW_LAYERS, 48);
 
-// Scroll-order offsets for ghost pins (± settled index). Module constant so
-// the literal doesn't reallocate every frame inside callReproject.
-const STORY_DEDUPE_PX2 = 900; // 30px²
+// Story beacons — the web's filled circle with a dark rim, over a soft halo in
+// the same hue. Both are baked white and tinted per instance through the Atlas
+// colour channel, so four categories still cost two draw calls. There is no
+// screen-space dedupe any more: marks are places now, a place already merges
+// its stories, and two places that overlap at a wide zoom are both tappable —
+// the hit test takes the nearest, as the web's does.
+const STORY_HALO_LAYERS: GlowLayer[] = [
+  { r: 11, opacity: 0.1, blur: 6 },
+  { r: 6.5, opacity: 0.24, blur: 3 },
+];
+const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
+const BEACON_SIZE = 16;
+const BEACON_CENTER = BEACON_SIZE / 2;
+/** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
+const BEACON_R = 5.5;
+const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
+/** The web's `sentimentDivergence` bar for the contested ring. */
+const CONTESTED_DIVERGENCE = 0.35;
+/** A story tap's catch radius, squared (32 px). */
+const STORY_HIT_PX2 = 1024;
+/** Web: a strait is disrupted past ±15% of its 90-day normal. */
+const STRAIT_SURGE_DELTA = 0.15;
 
-/** Sweep order for the story layer: after the settled story, the one before
- *  it, then the one after, then two before, and so on. Outward from where the
- *  reader is, so the dedupe keeps the marks nearest their attention. */
-const STORY_SWEEP = [-1, 1] as const;
+/**
+ * The hazard glyphs are baked at 3× into one white sprite sheet and stamped
+ * back at a third, so a 22 pt glyph stays crisp on a 3× screen and a hundred
+ * famine columns cost one draw call. Cells, left to right: the famine column
+ * with 0, 1, 2 and 3 blocks filled, then the thermal burst.
+ */
+const OVERLAY_RES = 3;
+const OVERLAY_CELL = GLYPH_HALF * 2 * OVERLAY_RES;
+const OVERLAY_CELLS = 5;
+const THERMAL_CELL = 4;
+const overlayCell = (i: number) => rect(i * OVERLAY_CELL, 0, OVERLAY_CELL, OVERLAY_CELL);
+const FAMINE_SRC = [overlayCell(0), overlayCell(1), overlayCell(2), overlayCell(3)] as const;
+const THERMAL_SRC = overlayCell(THERMAL_CELL);
+/** The catch radius every reference mark shares, squared (36 px). */
+const MARK_HIT_PX2 = 1296;
 
 /**
  * How a story mark says how big the story is, and how fresh.
@@ -437,6 +541,18 @@ export interface TapResult {
   /** Set when the tap landed on an exchange whose index has moved. The
    *  parent resolves it against the ranked instruments and opens the card. */
   marketSignalId?: string;
+  /** Set when the tap landed on a story mark: the newest story at that place
+   *  the reader has not found yet. The parent opens it in the sheet, and the
+   *  mark stops being drawn once the found store records it. */
+  storySlug?: string;
+  /** The tapped mark's hue, so the found burst is drawn in the same colour. */
+  storyColor?: string;
+  /** An IPC famine classification — opens `OverlaySheet`. */
+  famineAreaId?: string;
+  /** A FIRMS thermal anomaly — opens `OverlaySheet`. */
+  thermalEventId?: string;
+  /** A UN genocide determination — opens `OverlaySheet`. */
+  genocideId?: string;
   /** Populated when the tap lands on 2+ overlapping markers. The parent
    *  presents a chooser sheet listing these candidates; tapping one
    *  re-dispatches that candidate through the same hit handler. When set,
@@ -448,6 +564,8 @@ export interface TapResult {
 export interface MiniGlobeRef {
   hitTest: (x: number, y: number) => TapResult | null;
   showPulse: (x: number, y: number) => void;
+  /** The found burst: a story mark's own hue swelling and fading at `x, y`. */
+  collect: (x: number, y: number, color: string) => void;
 }
 
 interface MiniGlobeProps {
@@ -457,6 +575,20 @@ interface MiniGlobeProps {
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
   /**
+   * The river grouped into places (`lib/story-places.ts`). Each place with a
+   * story the reader has not found is one tappable mark, in the category hue
+   * of its newest unfound story.
+   */
+  places?: StoryPlace[];
+  /** Stories the reader has opened. Their marks are not drawn. */
+  foundSlugs?: ReadonlySet<string>;
+  /** IPC famine classifications, from `/api/ipc.json`. */
+  famineAreas?: FamineArea[];
+  /** FIRMS thermal anomalies joined to coverage, from `/api/firms.json`. */
+  thermalEvents?: ThermalEvent[];
+  /** UN genocide determinations, from `/api/genocide.json`. */
+  genocideSituations?: GenocideSituation[];
+  /**
    * Exchanges behind an index the server flagged as having moved.
    *
    * Pre-resolved to coordinates by the screen rather than derived here: the
@@ -464,7 +596,13 @@ interface MiniGlobeProps {
    * centroid, else no mark) belongs with the ranking that produced the list,
    * and this component should not have to know what a `MarketSignal` is.
    */
-  marketMarks?: { id: string; label: string; lat: number; lng: number }[];
+  marketMarks?: {
+    id: string;
+    label: string;
+    lat: number;
+    lng: number;
+    direction?: 'up' | 'down' | 'flat';
+  }[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   /**
@@ -536,7 +674,23 @@ interface GlobeState {
    *  mark each. `scale` is coverage percentile, `alpha` is recency — see
    *  `STORY_SCALE_MIN` and friends. The settled story is not in here: it
    *  keeps its own larger glow and its label. */
-  storyMarks: { x: number; y: number; scale: number; alpha: number }[];
+  storyMarks: {
+    x: number;
+    y: number;
+    scale: number;
+    alpha: number;
+    slug: string;
+    color: string;
+    rgb: readonly [number, number, number];
+    /** Unfound stories at this place. */
+    count: number;
+    contested: boolean;
+  }[];
+  /** Stack counts show beside places with at least this many unfound stories. */
+  storyCountMin: number;
+  famineMarks: { x: number; y: number; id: string; blocks: number; alpha: number; scale: number }[];
+  thermalMarks: { x: number; y: number; id: string; alpha: number; scale: number }[];
+  genocideMarks: { x: number; y: number; id: string; label: string }[];
   dotLabel: { text: string; sub?: string; x: number; y: number } | null;
   /** Country name anchored near the highlighted country's centroid. Rendered
    *  at every zoom level (including fully zoomed-out) so the reader always
@@ -576,11 +730,19 @@ interface GlobeState {
     label: string;
     intensity: number;
     disrupted: boolean;
+    /** Traffic well above its normal — the web's teal strait. */
+    surge: boolean;
   }[];
   /** Exchanges with a flagged index move. Projected every frame like
    *  chokepoints: the set is at most three and it is the thing the opening
    *  camera is most often pointed at, so it must not blink out mid-scroll. */
-  marketMarks: { x: number; y: number; id: string; label: string }[];
+  marketMarks: {
+    x: number;
+    y: number;
+    id: string;
+    label: string;
+    direction?: 'up' | 'down' | 'flat';
+  }[];
   /** GDACS disaster markers — Orange/Red current events. Projected every
    *  frame like chokepoints (small set, reference signal). `recencyAlpha`
    *  ∈ [0.5, 1] fades events older than ~7 days. */
@@ -795,6 +957,10 @@ const EMPTY_GLOBE: GlobeState = {
   southPole: null,
   dot: null,
   storyMarks: [],
+  storyCountMin: 3,
+  famineMarks: [],
+  thermalMarks: [],
+  genocideMarks: [],
   dotLabel: null,
   countryLabel: null,
   makkah: null,
@@ -1055,6 +1221,10 @@ function projectInitial(
     southPole,
     dot,
     storyMarks: [],
+    storyCountMin: 3,
+    famineMarks: [],
+    thermalMarks: [],
+    genocideMarks: [],
     dotLabel: null,
     countryLabel: null,
     makkah,
@@ -1081,6 +1251,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   gdacsAlerts,
   conflictEvents,
   marketMarks,
+  places,
+  foundSlugs,
+  famineAreas,
+  thermalEvents,
+  genocideSituations,
   scrollY,
   itemHeight,
   cameraTrack,
@@ -1105,7 +1280,49 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Glow textures baked once per color so each glow renders as a single
   // Atlas draw instead of N concentric Circle+BlurMask draws.
-  const ghostTexture = useGlowTexture(GHOST_GLOW, colors.textEmphasis);
+  // Baked white and tinted per instance (conflict hue). Baking in
+  // `textEmphasis` tinted near-black in light mode, where modulate multiplies
+  // a hue by almost zero.
+  const ghostTexture = useGlowTexture(GHOST_GLOW, WHITE);
+  const storyHaloTexture = useGlowTexture(STORY_HALO, WHITE);
+  const beaconTexture = useTexture(
+    <Group>
+      <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R + 1.2} color={BLACK} />
+      <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R} color={WHITE} />
+    </Group>,
+    { width: BEACON_SIZE, height: BEACON_SIZE },
+    [],
+  );
+  const overlayTexture = useTexture(
+    <Group>
+      {FAMINE_SRC.map((_, blocks) => (
+        <Group
+          key={`famine-${blocks}`}
+          transform={[{ translateX: blocks * OVERLAY_CELL }, { scale: OVERLAY_RES }]}
+        >
+          <Path
+            path={FAMINE_FRAME_PATH}
+            color={WHITE}
+            style="stroke"
+            strokeWidth={FAMINE_FRAME_STROKE}
+          />
+          <Path path={getFamineBlocksPath(blocks)} color={WHITE} />
+        </Group>
+      ))}
+      <Group transform={[{ translateX: THERMAL_CELL * OVERLAY_CELL }, { scale: OVERLAY_RES }]}>
+        <Path path={THERMAL_CORE_PATH} color={WHITE} />
+        <Path
+          path={THERMAL_RAYS_PATH}
+          color={WHITE}
+          style="stroke"
+          strokeWidth={THERMAL_RAY_STROKE}
+          strokeCap="round"
+        />
+      </Group>
+    </Group>,
+    { width: OVERLAY_CELL * OVERLAY_CELLS, height: OVERLAY_CELL },
+    [],
+  );
   const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
   const makkahTexture = useGlowTexture(MAKKAH_GLOW, colors.dome);
 
@@ -1210,6 +1427,55 @@ export const MiniGlobe = memo(function MiniGlobe({
       };
     });
   }, [articles, _tick]);
+
+  // Places → what each story mark draws: its newest unfound story, that
+  // story's category hue, and the widest coverage and freshest alpha among the
+  // stories still unfound there. Static per snapshot and per find, so the frame
+  // loop only culls and projects.
+  const placeMarks = useMemo(() => {
+    const found = foundSlugs ?? EMPTY_FOUND;
+    const indexBySlug = new Map<string, number>();
+    for (let i = 0; i < articles.length; i++) {
+      const a = articles[i];
+      if (a) indexBySlug.set(a.slug, i);
+    }
+    const marks: PlaceMark[] = [];
+    for (const place of places ?? []) {
+      const slug = topUnfound(place, found);
+      if (!slug) continue;
+      const top = indexBySlug.get(slug);
+      if (top == null) continue;
+      let scale = 0;
+      let alpha = 0;
+      let count = 0;
+      let contested = false;
+      for (const s of unfoundSlugs(place, found)) {
+        const i = indexBySlug.get(s);
+        if (i == null) continue;
+        count += 1;
+        const g = articleGeo[i];
+        if (g && g.scale > scale) scale = g.scale;
+        if (g && g.alpha > alpha) alpha = g.alpha;
+        if ((articles[i]?.sentimentDivergence ?? 0) >= CONTESTED_DIVERGENCE) contested = true;
+      }
+      // The river is `RiverArticle[]`; the prop is typed as the wider `Article`.
+      const category = (articles[top] as { category?: string } | undefined)?.category;
+      const color = categoryMarkColor(category, colors);
+      marks.push({
+        coords: [place.lng, place.lat],
+        slug,
+        color,
+        rgb: hexRgb(color),
+        scale: scale || STORY_SCALE_MIN,
+        alpha: alpha || STORY_ALPHA_FLOOR,
+        count,
+        contested,
+      });
+    }
+    return marks;
+  }, [places, foundSlugs, articles, articleGeo, colors]);
+  const placeMarksRef = useRef(placeMarks);
+  placeMarksRef.current = placeMarks;
 
   // Eager initial state — project synchronously on mount so the Canvas + Skia shaders
   // are warm before the first swipe (avoids useEffect → reaction → scheduleOnRN lag)
@@ -1385,6 +1651,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       (marketMarks ?? []).map((m) => ({
         id: m.id,
         label: m.label,
+        direction: m.direction,
         coords: [m.lng, m.lat] as [number, number],
       })),
     [marketMarks],
@@ -1492,6 +1759,50 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [conflictEvents]);
   const conflictEventsRef = useRef(enrichedConflict);
   conflictEventsRef.current = enrichedConflict;
+  // The hazard layers ported from the web, shaped once per snapshot like the
+  // conflict events above so the frame loop only culls and projects.
+  const enrichedFamine = useMemo(
+    () =>
+      (famineAreas ?? [])
+        .map((a) => {
+          const blocks = famineBlocks(a.phase);
+          return {
+            id: a.id,
+            coords: [a.lng, a.lat] as [number, number],
+            blocks,
+            alpha: famineAlpha(a.ageMonths),
+            // Web: the gravest phase draws larger, and on top.
+            scale: 0.8 + 0.1 * blocks,
+          };
+        })
+        .sort((p, q) => p.blocks - q.blocks),
+    [famineAreas],
+  );
+  const famineRef = useRef(enrichedFamine);
+  famineRef.current = enrichedFamine;
+  const enrichedThermal = useMemo(
+    () =>
+      (thermalEvents ?? []).map((e) => ({
+        id: e.id,
+        coords: [e.lng, e.lat] as [number, number],
+        alpha: thermalAlpha(e.confidence),
+        scale: thermalScale(e.frp),
+      })),
+    [thermalEvents],
+  );
+  const thermalRef = useRef(enrichedThermal);
+  thermalRef.current = enrichedThermal;
+  const enrichedGenocide = useMemo(
+    () =>
+      (genocideSituations ?? []).map((g) => ({
+        id: g.id,
+        coords: [g.lng, g.lat] as [number, number],
+        label: g.name.toUpperCase(),
+      })),
+    [genocideSituations],
+  );
+  const genocideRef = useRef(enrichedGenocide);
+  genocideRef.current = enrichedGenocide;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -1626,45 +1937,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) dot = { x: pt[0], y: pt[1] };
       }
 
-      // Story marks — every article in the column, sized by how widely it is
-      // covered and faded by how old it is. This replaced a ±2 window around
-      // the settled story: see the constants above for why the whole set is
-      // right once the globe is the home screen rather than a backdrop.
-      //
-      // Nearest-first, outward from the settled story, so that when two
-      // stories collide the one the reader is closest to survives the dedupe
-      // rather than whichever happened to come first in the column.
+      // Story marks — one per place with a story the reader has not found.
+      // Everything but position was decided in `placeMarks`; this culls against
+      // the zoom cone (direct point projection ignores `.clipAngle`, see
+      // clipRad above) and projects.
       const storyMarks: GlobeState['storyMarks'] = [];
-      const accepted: { x: number; y: number }[] = dot ? [dot] : [];
-      const span = geoData.length;
-      for (let step = 1; step <= span; step += 1) {
-        for (const dir of STORY_SWEEP) {
-          const idx = settledIndex + step * dir;
-          if (idx < 0 || idx >= span) continue;
-          const g = geoData[idx];
-          if (!g) continue;
-          // Cull against the zoom cone, not the hemisphere — direct point
-          // projection ignores `.clipAngle` (see clipRad note above), so a
-          // mark between clipRad and 90° would stamp its glow in the sky.
-          if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= clipRad) continue;
-          const pt = proj([g.lng, g.lat]);
-          if (!pt) continue;
-          const [gx, gy] = pt;
-          // 445 of 705 stories share a coordinate on the web's payload, and
-          // this column is no different — without the dedupe a capital with
-          // six datelines is one smudge six glows deep.
-          let clash = false;
-          for (const a of accepted) {
-            if (isNear(gx, gy, a.x, a.y, STORY_DEDUPE_PX2)) {
-              clash = true;
-              break;
-            }
-          }
-          if (clash) continue;
-          accepted.push({ x: gx, y: gy });
-          storyMarks.push({ x: gx, y: gy, scale: g.scale, alpha: g.alpha });
-        }
+      const storyCamera: [number, number] = [geoLng, geoLat];
+      for (const m of placeMarksRef.current) {
+        if (geoDistance(m.coords, storyCamera) >= clipRad) continue;
+        const pt = proj(m.coords);
+        if (!pt) continue;
+        storyMarks.push({
+          x: pt[0],
+          y: pt[1],
+          scale: m.scale,
+          alpha: m.alpha,
+          slug: m.slug,
+          color: m.color,
+          rgb: m.rgb,
+          count: m.count,
+          contested: m.contested,
+        });
       }
+      // Web: a count beside every stack of 3+, and of 2+ once zoomed in.
+      const storyCountMin = clipAngle < 60 ? 2 : 3;
 
       // Country highlight — reuse path object. Large countries (Russia,
       // Canada, Brazil) can push this past 1k vertices; during mid-scroll
@@ -2013,6 +2309,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           label: cp.label,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: chokepointValence(cp.delta) === 'unfavorable',
+          surge: cp.delta > STRAIT_SURGE_DELTA,
         });
       }
 
@@ -2026,7 +2323,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (geoDistance(m.coords, cameraCoords) >= clipRad) continue;
         const pt = proj(m.coords);
         if (!pt) continue;
-        marketProjected.push({ x: pt[0], y: pt[1], id: m.id, label: m.label });
+        marketProjected.push({
+          x: pt[0],
+          y: pt[1],
+          id: m.id,
+          label: m.label,
+          direction: m.direction,
+        });
       }
 
       // GDACS alerts — same cull + project pattern as chokepoints. Per-tier
@@ -2067,6 +2370,38 @@ export const MiniGlobe = memo(function MiniGlobe({
           id: e.id,
           recencyAlpha: e.recencyAlpha,
         });
+      }
+
+      // Hazard layers — same cull + project. About a hundred IPC areas, a
+      // handful of thermal clusters and two genocide marks: trivial next to
+      // the land path.
+      const famineMarks: GlobeState['famineMarks'] = [];
+      for (const a of famineRef.current) {
+        if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(a.coords);
+        if (!pt) continue;
+        famineMarks.push({
+          x: pt[0],
+          y: pt[1],
+          id: a.id,
+          blocks: a.blocks,
+          alpha: a.alpha,
+          scale: a.scale,
+        });
+      }
+      const thermalMarks: GlobeState['thermalMarks'] = [];
+      for (const e of thermalRef.current) {
+        if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(e.coords);
+        if (!pt) continue;
+        thermalMarks.push({ x: pt[0], y: pt[1], id: e.id, alpha: e.alpha, scale: e.scale });
+      }
+      const genocideMarks: GlobeState['genocideMarks'] = [];
+      for (const g of genocideRef.current) {
+        if (geoDistance(g.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(g.coords);
+        if (!pt) continue;
+        genocideMarks.push({ x: pt[0], y: pt[1], id: g.id, label: g.label });
       }
 
       // Country + water-feature labels.
@@ -2402,6 +2737,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         southPole,
         dot,
         storyMarks,
+        storyCountMin,
+        famineMarks,
+        thermalMarks,
+        genocideMarks,
         dotLabel,
         countryLabel,
         makkah,
@@ -2827,11 +3166,57 @@ export const MiniGlobe = memo(function MiniGlobe({
       );
   }, [chokepoints]);
 
+  // Re-project when a story is found or the places change: the reaction only
+  // fires on camera movement, and a tap that finds a story moves nothing.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [placeMarks]);
+
+  // Re-project when a hazard layer arrives — each is its own fetch, and lands
+  // after the frame that would otherwise have drawn it.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [enrichedFamine, enrichedThermal, enrichedGenocide]);
+
   // Tap pulse — radial ring that expands and fades on globe tap
   const pulseX = useSharedValue(0);
   const pulseY = useSharedValue(0);
   const pulseR = useSharedValue(0);
   const pulseOpacity = useSharedValue(0);
+
+  // Found burst — the story's own hue swelling and fading where its mark was.
+  // Two shapes so it reads as a thing collected rather than a tap ring: a disc
+  // that grows as it fades, and a hairline ring that outruns it.
+  const collectX = useSharedValue(0);
+  const collectY = useSharedValue(0);
+  const collectDiscR = useSharedValue(0);
+  const collectRingR = useSharedValue(0);
+  const collectOpacity = useSharedValue(0);
+  const [collectColor, setCollectColor] = useState<string>(WHITE);
 
   useImperativeHandle(ref, () => ({
     showPulse(x: number, y: number) {
@@ -2850,6 +3235,28 @@ export const MiniGlobe = memo(function MiniGlobe({
         pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
       }
       pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
+    },
+    collect(x: number, y: number, color: string) {
+      setCollectColor(color);
+      collectX.value = x;
+      collectY.value = y;
+      collectOpacity.value = 0.95;
+      // Reduce Motion: no growth, only the fade — the same substitution the
+      // tap pulse makes. The mark still disappears, which is the confirmation.
+      if (reduceMotion) {
+        collectDiscR.value = 7;
+        collectRingR.value = 0;
+        collectOpacity.value = withTiming(0, {
+          duration: COLLECT_REDUCED_MS,
+          easing: PULSE_EASING,
+        });
+        return;
+      }
+      collectDiscR.value = 5;
+      collectRingR.value = 7;
+      collectDiscR.value = withTiming(14, { duration: COLLECT_MS, easing: PULSE_EASING });
+      collectRingR.value = withTiming(32, { duration: COLLECT_MS, easing: PULSE_EASING });
+      collectOpacity.value = withTiming(0, { duration: COLLECT_MS, easing: PULSE_EASING });
     },
     hitTest(x: number, y: number): TapResult | null {
       // Collect unique story labels (or titles) for a country from the current article set
@@ -2881,6 +3288,48 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Tier order here is the priority used when only a single hit
       // resolves and (more importantly) the order in which candidates
       // appear in the chooser.
+      // Story marks first. The nearest story within its catch radius wins
+      // outright — no chooser — unless a reference mark sits nearer the finger:
+      // finding the news is what the globe is for, and a chooser between a
+      // story and a Green flood alert is a speed bump on every other tap.
+      // Hotspots, the settled dot and Makkah never outrank a story: each of
+      // those stands for coverage, and the story is the coverage.
+      let story: { slug: string; color: string; d2: number } | null = null;
+      for (const m of state.storyMarks) {
+        const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
+        if (d2 <= STORY_HIT_PX2 && (!story || d2 < story.d2)) {
+          story = { slug: m.slug, color: m.color, d2 };
+        }
+      }
+      if (story) {
+        let overlay = Number.POSITIVE_INFINITY;
+        const marks = [
+          state.chokepoints,
+          state.marketMarks,
+          state.gdacsMarks,
+          state.conflictMarks,
+          state.famineMarks,
+          state.thermalMarks,
+          state.genocideMarks,
+        ];
+        for (const layer of marks) {
+          for (const m of layer) {
+            const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
+            if (d2 <= MARK_HIT_PX2 && d2 < overlay) overlay = d2;
+          }
+        }
+        if (story.d2 <= overlay) {
+          return {
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            storySlug: story.slug,
+            storyColor: story.color,
+          };
+        }
+      }
+
       const candidates: TapResult[] = [];
 
       // Hotspot glows — tight hit area (r²=900) signals precise intent.
@@ -2959,6 +3408,42 @@ export const MiniGlobe = memo(function MiniGlobe({
             localTime: null,
             data: null,
             conflictEventId: m.id,
+          });
+        }
+      }
+
+      // Hazard layers — the reference marks' 36 px zone. A famine column in
+      // Sudan and a conflict event beside it resolve through the chooser.
+      for (const g of state.genocideMarks) {
+        if (isNear(x, y, g.x, g.y, MARK_HIT_PX2)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            genocideId: g.id,
+          });
+        }
+      }
+      for (const a of state.famineMarks) {
+        if (isNear(x, y, a.x, a.y, MARK_HIT_PX2)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            famineAreaId: a.id,
+          });
+        }
+      }
+      for (const e of state.thermalMarks) {
+        if (isNear(x, y, e.x, e.y, MARK_HIT_PX2)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            thermalEventId: e.id,
           });
         }
       }
@@ -3186,16 +3671,32 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [colors.atmosphere, light]);
 
   // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
-  const storyMarkAtlas = useMemo(
-    () => storyAtlas(GHOST_GLOW, state.storyMarks),
+  const storyHaloAtlas = useMemo(
+    () => storyAtlas(STORY_HALO.size.width, STORY_HALO.srcRect, state.storyMarks),
+    [state.storyMarks],
+  );
+  const storyBeaconAtlas = useMemo(
+    () => storyAtlas(BEACON_SIZE, BEACON_SRC, state.storyMarks),
     [state.storyMarks],
   );
   // Conflict markers ride the SAME baked texture as ghost dots, just
   // with per-instance alpha encoded into the colors array. One Skia
   // draw call regardless of marker count, no separate texture bake.
   const conflictGlowAtlas = useMemo(
-    () => conflictAtlas(GHOST_GLOW, state.conflictMarks),
-    [state.conflictMarks],
+    () => conflictAtlas(GHOST_GLOW, state.conflictMarks, hexRgb(colors.markConflict)),
+    [state.conflictMarks, colors.markConflict],
+  );
+  const famineAtlas = useMemo(() => {
+    const marks = state.famineMarks;
+    return overlayAtlas(
+      marks,
+      (i) => FAMINE_SRC[marks[i]?.blocks ?? 0] ?? FAMINE_SRC[0],
+      hexRgb(colors.markFamine),
+    );
+  }, [state.famineMarks, colors.markFamine]);
+  const thermalAtlas = useMemo(
+    () => overlayAtlas(state.thermalMarks, () => THERMAL_SRC, hexRgb(colors.markThermal)),
+    [state.thermalMarks, colors.markThermal],
   );
   const dotAtlas = useMemo(() => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []), [state.dot]);
   const makkahAtlas = useMemo(
@@ -3448,11 +3949,18 @@ export const MiniGlobe = memo(function MiniGlobe({
           center mark) so the marker reads semantically as a narrow water
           passage rather than as an anonymous ring. Same family as the
           disaster glyphs — 22pt box, stroked, transformed into position.
-          Quiet when transit flow is near baseline, accent-tinted when
-          disrupted (±>15% from 90d average). Label is always drawn. */}
+          In the web's strait hues: slate at rest, gold when traffic is
+          pinched below its 90-day normal, teal when it surges above it.
+          Label is always drawn. */}
       {state.chokepoints.map((c) => {
-        const glyphOpacity = 0.35 + 0.45 * c.intensity;
-        const glyphColor = c.disrupted ? colors.accent : colors.rule;
+        // The web's three strait states: at rest, pinched below its normal
+        // (gold), surging above it (teal).
+        const glyphOpacity = 0.6 + 0.35 * c.intensity;
+        const glyphColor = c.disrupted
+          ? colors.markStraitPinch
+          : c.surge
+            ? colors.markStraitSurge
+            : colors.markStrait;
         // Label centering uses measureText when the font has loaded;
         // before that we fall back to a char-count approximation so the
         // first frame doesn't misplace the text.
@@ -3462,15 +3970,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         const labelTy = c.y + 20;
         return (
           <Group key={c.id}>
-            {c.disrupted && (
+            {(c.disrupted || c.surge) && (
               <Circle cx={c.x} cy={c.y} r={12} dither>
                 <RadialGradient
                   c={vec(c.x, c.y)}
                   r={12}
                   colors={[
-                    withAlpha(colors.accent, 0.22 * c.intensity),
-                    withAlpha(colors.accent, 0.08 * c.intensity),
-                    withAlpha(colors.accent, 0),
+                    withAlpha(glyphColor, 0.22 * c.intensity),
+                    withAlpha(glyphColor, 0.08 * c.intensity),
+                    withAlpha(glyphColor, 0),
                   ]}
                   positions={[0, 0.5, 1]}
                 />
@@ -3499,7 +4007,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               // 0.7 light clears AA on all ocean surfaces while the
               // quiet-vs-disrupted hierarchy still reads through the accent
               // ink, glow ring, and stronger halo of the disrupted state.
-              color={c.disrupted ? colors.accent : colors.text}
+              color={c.disrupted ? colors.markStraitPinch : colors.text}
               haloColor={colors.bg}
               opacity={c.disrupted ? 0.9 : light ? 0.7 : 0.55}
               haloOpacity={
@@ -3533,12 +4041,18 @@ export const MiniGlobe = memo(function MiniGlobe({
           <Group key={m.id}>
             <Path
               path={MARKET_PATH}
-              color={colors.text}
+              color={
+                m.direction === 'up'
+                  ? colors.markMarketUp
+                  : m.direction === 'down'
+                    ? colors.markMarketDown
+                    : colors.markStrait
+              }
               style="stroke"
-              strokeWidth={1.0}
+              strokeWidth={1.2}
               strokeJoin="round"
               strokeCap="round"
-              opacity={light ? 0.6 : 0.7}
+              opacity={0.95}
               transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
             />
             <HaloLabel
@@ -3566,20 +4080,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           ambient ones. Keys by eventid for stable reconciliation across
           feed refetches. */}
       {state.gdacsMarks.map((m) => {
-        // Monochrome disaster glyphs — severity expressed through stroke
-        // weight, opacity, and (high-tier only) an outer alarm ring.
-        // Foundation rule "color carries meaning only" applied strictly:
-        // the editorial story dot, focused-country highlight, Makkah
-        // dome, and night terminator already do all the semantic
-        // colour-lifting on the globe; piling three alert hues on top
-        // would chase its own monochrome restraint and force the reader
-        // to disambiguate by hue. Severity now reads from glyph weight
-        // alone — low/medium/high are visually distinct without any
-        // chromatic vocabulary, and the high-tier ring is the universal
-        // "this is the consequential one" mark. Sheet UIs (CountrySheet,
-        // DisasterSheet, DisambiguationSheet) keep the tinted chips —
-        // flat chrome on a sheet bg is a different semantic context
-        // where colour coding doesn't compete with editorial layers.
+        // Disaster glyphs in the web map's one hazard hue (`markGdacs`).
+        // Severity is still stroke weight, opacity and (high tier only) an
+        // outer alarm ring, never a second colour: the hue says "hazard"
+        // and the weight says how bad.
         const isHigh = m.alertlevel === 'Red';
         const isLow = m.alertlevel === 'Green';
         const strokeWidth = isHigh ? 1.8 : isLow ? 1.0 : 1.4;
@@ -3593,7 +4097,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                 cx={GLYPH_HALF}
                 cy={GLYPH_HALF}
                 r={GLYPH_HALF + 2.5}
-                color={colors.text}
+                color={colors.markGdacs}
                 style="stroke"
                 strokeWidth={1}
                 opacity={0.55 * m.recencyAlpha}
@@ -3601,7 +4105,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             )}
             <Path
               path={getGlyphPath(m.eventtype)}
-              color={colors.text}
+              color={colors.markGdacs}
               style="stroke"
               strokeWidth={strokeWidth}
               strokeJoin="round"
@@ -3618,7 +4122,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           via a single <Atlas/> call. The kinetic/unrest distinction
           stays in the data and shows up in ConflictSheet's eyebrow +
           DisambiguationSheet's row icon, where pictograms earn their
-          place. The globe just gets quiet dots so the layer reads as
+          place. The globe gets glows in the web's conflict red so the layer reads as
           ambient context rather than its own pictogram vocabulary. One
           Skia draw call regardless of marker count — the perf cost is
           the same whether the layer shows 5 events or 200. Per-instance
@@ -3737,15 +4241,105 @@ export const MiniGlobe = memo(function MiniGlobe({
           `colorBlendMode="modulate"` is load-bearing — Atlas's default colors
           blend is `dstOver`, which paints each colour *behind* its sprite and
           fills the transparent bounding box with solid squares. */}
-      {storyMarkAtlas && (
+      {/* Famine (IPC phase) and thermal anomalies — the web's column and
+          burst, in its hues, one Atlas each from the baked sprite sheet.
+          Under the stories: they are the ground a story happens on. */}
+      {famineAtlas && (
         <Atlas
-          image={ghostTexture}
-          sprites={storyMarkAtlas.sprites}
-          transforms={storyMarkAtlas.transforms}
-          colors={storyMarkAtlas.colors}
+          image={overlayTexture}
+          sprites={famineAtlas.sprites}
+          transforms={famineAtlas.transforms}
+          colors={famineAtlas.colors}
           colorBlendMode="modulate"
         />
       )}
+      {thermalAtlas && (
+        <Atlas
+          image={overlayTexture}
+          sprites={thermalAtlas.sprites}
+          transforms={thermalAtlas.transforms}
+          colors={thermalAtlas.colors}
+          colorBlendMode="modulate"
+        />
+      )}
+
+      {storyHaloAtlas && (
+        <Atlas
+          image={storyHaloTexture}
+          sprites={storyHaloAtlas.sprites}
+          transforms={storyHaloAtlas.transforms}
+          colors={storyHaloAtlas.colors}
+          colorBlendMode="modulate"
+        />
+      )}
+      {storyBeaconAtlas && (
+        <Atlas
+          image={beaconTexture}
+          sprites={storyBeaconAtlas.sprites}
+          transforms={storyBeaconAtlas.transforms}
+          colors={storyBeaconAtlas.colors}
+          colorBlendMode="modulate"
+        />
+      )}
+      {/* The web's ring on a story its sources disagree sharply about. */}
+      {state.storyMarks.map((m) =>
+        m.contested ? (
+          <Circle
+            key={`contested-${m.slug}`}
+            cx={m.x}
+            cy={m.y}
+            r={BEACON_R * m.scale + 3}
+            color={colors.markContested}
+            style="stroke"
+            strokeWidth={1.2}
+            opacity={0.85 * m.alpha}
+          />
+        ) : null,
+      )}
+      {/* How many stories are still to find at a place. */}
+      {subFont &&
+        state.storyMarks.map((m) =>
+          m.count >= state.storyCountMin ? (
+            <HaloLabel
+              key={`count-${m.slug}`}
+              x={m.x + BEACON_R * m.scale + 3}
+              y={m.y - 4}
+              text={String(m.count)}
+              font={subFont}
+              color={colors.textEmphasis}
+              haloColor={colors.bg}
+              opacity={0.9}
+              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
+            />
+          ) : null,
+        )}
+
+      {/* Genocide, as determined by a UN body — a dark disc, a red ring and
+          core, and its name always on. Above every story, as on the web: it
+          is the one mark on this globe that is never ambient. */}
+      {state.genocideMarks.map((g) => (
+        <Group key={`genocide-${g.id}`}>
+          <Circle cx={g.x} cy={g.y} r={9} color={colors.markGenocideCore} />
+          <Circle
+            cx={g.x}
+            cy={g.y}
+            r={9}
+            color={colors.markGenocide}
+            style="stroke"
+            strokeWidth={1.6}
+          />
+          <Circle cx={g.x} cy={g.y} r={3} color={colors.markGenocide} />
+          <HaloLabel
+            x={g.x + 13}
+            y={g.y + 4}
+            text={g.label}
+            font={subFont}
+            color={colors.markGenocide}
+            haloColor={colors.bg}
+            haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
+          />
+        </Group>
+      ))}
 
       {/* Story dot — single Atlas draw against the baked dot texture. */}
       {dotAtlas && (
@@ -3768,6 +4362,19 @@ export const MiniGlobe = memo(function MiniGlobe({
         style="stroke"
         strokeWidth={1.4}
       />
+
+      {/* Found burst — see `collect`. */}
+      <Group opacity={collectOpacity}>
+        <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
+        <Circle
+          cx={collectX}
+          cy={collectY}
+          r={collectRingR}
+          color={collectColor}
+          style="stroke"
+          strokeWidth={1.6}
+        />
+      </Group>
 
       {/* Water-feature labels — named lakes (major only), major rivers,
           seas/bays/gulfs. Italic per atlas convention (hydrography). Drawn

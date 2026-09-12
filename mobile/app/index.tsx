@@ -1,4 +1,5 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import { topojsonNameFromCode } from '@shared/countries/iso';
 import type {
   Article,
   ArticleSource,
@@ -37,30 +38,43 @@ import {
 import { CardSheet } from '../components/CardSheet';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
-import { CountrySheet } from '../components/CountrySheet';
+import { type CountryHazard, CountrySheet } from '../components/CountrySheet';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import { MiniGlobe, type MiniGlobeRef, type TapResult } from '../components/globe/MiniGlobe';
+import {
+  COLLECT_MS,
+  MiniGlobe,
+  type MiniGlobeRef,
+  type TapResult,
+} from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
-import { FEED_ROW_TITLE_SCALE } from '../components/map/FeedRow';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { IndicatorStrip } from '../components/map/IndicatorStrip';
 import { MapFeed } from '../components/map/MapFeed';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { SheetMasthead } from '../components/map/SheetMasthead';
+import { type PreviewSibling, StoryPreview } from '../components/map/StoryPreview';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
+import { type OverlaySelection, OverlaySheet } from '../components/OverlaySheet';
 import { Screen } from '../components/primitives';
 import { ReaderLayer } from '../components/reader/ReaderLayer';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { ANIMATION, CATEGORIES, EASING, EDITORIAL, SPACING } from '../constants/theme';
+import {
+  ANIMATION,
+  CATEGORIES,
+  categoryMarkColor,
+  EASING,
+  EDITORIAL,
+  SPACING,
+} from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -69,6 +83,7 @@ import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
+import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -79,13 +94,16 @@ import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bo
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
+import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
 import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
+import { displayLocation } from '../lib/place-names';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
+import { buildStoryPlaces, foundProgress } from '../lib/story-places';
 
 /**
  * One screen.
@@ -125,8 +143,7 @@ const PRIMER_PRESENT_DELAY_MS = 2600;
 // heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
 const HEATMAP_SPLASH_GRACE_MS = 1200;
 
-/** The sheet at rest, as a fraction of the window. Enough for the masthead,
- *  the block and a couple of stories — the day's shape without covering the
+/** The sheet at rest, as a fraction of the window. Enough for a few stories — the day's shape without covering the
  *  earth it sits under. */
 const SHEET_PEEK_FRACTION = 0.38;
 /** Expanded. Not 1: a strip of globe stays visible so the sheet reads as
@@ -136,7 +153,7 @@ const SHEET_FULL_FRACTION = 0.88;
 /** How much of the band between the strip and the sheet the disc fills. */
 const GLOBE_FILL = 0.46;
 
-/** Flight time when the camera is sent somewhere — a strip slot, a NOW row,
+/** Flight time when the camera is sent somewhere — a strip slot, an alert row,
  *  the day's opening view. Long enough to read as travel over a surface. */
 const FLY_MS = 700;
 
@@ -144,7 +161,7 @@ export default function HomeScreen() {
   const { colors, textVariants } = useTheme();
   const { preferences } = usePreferences();
   const reduceMotion = useReducedMotion();
-  const { current: currentZoom, toggle: handleZoomToggle, step: handleZoomStep } = useZoomCycle();
+  const { current: currentZoom, step: handleZoomStep } = useZoomCycle();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
@@ -158,6 +175,7 @@ export default function HomeScreen() {
   const disambiguationSheetRef = useRef<BottomSheetMethodsRef>(null);
   const entitySheetRef = useRef<BottomSheetMethodsRef>(null);
   const cardSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
@@ -179,6 +197,9 @@ export default function HomeScreen() {
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { events: conflictEvents } = useConflictEvents();
+  const famineAreas = useFamineAreas();
+  const thermalEvents = useThermalEvents();
+  const genocideSituations = useGenocideSituations();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
@@ -195,6 +216,16 @@ export default function HomeScreen() {
    *  the sheet is expanded the earth is a sliver behind it, translated and
    *  faded, and a tap there would hit-test against geometry that has moved. */
   const [sheetDetent, setSheetDetent] = useState<MapSheetDetent>('peek');
+  /**
+   * The story open in the sheet, found from its mark on the globe — or null
+   * when the sheet shows the river. The sheet stays two detents: a preview is
+   * what the sheet *holds*, not a third place to leave it.
+   */
+  const [sheetStory, setSheetStory] = useState<string | null>(null);
+  /** Where the river was when a preview replaced it, so closing the preview
+   *  puts the reader back there rather than at the top. */
+  const riverOffsetRef = useRef(0);
+  const flyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Active article tracking (for share). Kept in a ref — the selected article
   // only feeds callbacks, never JSX, so state here would re-render the whole
@@ -211,6 +242,7 @@ export default function HomeScreen() {
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
   const [activeCard, setActiveCard] = useState<SwipeCard | null>(null);
+  const [activeOverlay, setActiveOverlay] = useState<OverlaySelection | null>(null);
   // The three payload-less sheets need explicit open flags so the hint overlay
   // can yield the airspace; every other sheet's openness is derived from its
   // payload state above.
@@ -259,7 +291,7 @@ export default function HomeScreen() {
 
   const sheetPeek = Math.round(screenHeight * SHEET_PEEK_FRACTION);
   // Expanded, the sheet stops under the gauges rather than at a fixed share of
-  // the window. A fixed 88% ran the masthead into the strip's readings on a
+  // the window. A fixed 88% ran the sheet's top into the strip's readings on a
   // 411pt phone, whose top chrome is taller than 12% of the screen.
   const sheetFull = Math.round(
     Math.min(screenHeight * SHEET_FULL_FRACTION, screenHeight - topChromeHeight),
@@ -282,7 +314,7 @@ export default function HomeScreen() {
   const rowHeight = useMemo(() => {
     // `Text` rounds a scaled line height, so this does too: the row the list
     // lays out and the row the camera divides by must agree to the pixel.
-    const titleLine = Math.round((textVariants.title.lineHeight ?? 26) * FEED_ROW_TITLE_SCALE);
+    const titleLine = Math.round(textVariants.rowTitle.lineHeight ?? 21);
     const metaLine = textVariants.labelXs.lineHeight ?? 13;
     return Math.round(SPACING.sm * 2 + titleLine * 2 + SPACING.xs + metaLine);
   }, [textVariants]);
@@ -330,17 +362,19 @@ export default function HomeScreen() {
    */
   const marketMarks = useMemo(
     () =>
-      [...strip, ...now]
+      strip
         .filter((item) => item.id.startsWith('market-signal:') && item.coords)
         .map((item) => ({
           id: item.id,
           // The exchange, not the ticker: the mark stands for a place, and
           // `Borsa İstanbul` is a place where `BIST 100` is a number.
-          label: 'label' in item ? item.label : item.kicker,
+          label: item.label,
+          // Coloured by which way the index went, as on the web map.
+          direction: item.delta?.direction,
           lat: (item.coords as LatLng)[0],
           lng: (item.coords as LatLng)[1],
         })),
-    [strip, now],
+    [strip],
   );
 
   const odds = useMemo(() => oddsByStory(trends), [trends]);
@@ -358,15 +392,37 @@ export default function HomeScreen() {
     [activeEntity, indicatorsById],
   );
 
-  const dateLabel = useMemo(() => {
-    const built = generated ? Date.parse(generated) : Number.NaN;
-    const when = Number.isFinite(built) ? new Date(built) : new Date();
-    return when.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
-  }, [generated]);
+  // ---------------------------------------------------------------------
+  // Finding the news
+  //
+  // Every story on the globe is a light until the reader opens it — from its
+  // mark, its row or a page in the reader — and a found story's mark is no
+  // longer drawn. `lib/found-store.ts` holds the set; `lib/story-places.ts`
+  // groups the river into the places the marks stand for.
+  // ---------------------------------------------------------------------
+  const foundSlugs = useFoundSlugs();
+  const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
+  const progress = useMemo(() => foundProgress(storyRows, foundSlugs), [storyRows, foundSlugs]);
+
+  // Against the loaded river only: pruning against an empty one is exactly the
+  // partial-payload wipe the store's age guard exists to refuse.
+  useEffect(() => {
+    if (river.length === 0) return;
+    pruneFound(new Set(river.map((a) => a.slug)));
+  }, [river]);
+
+  useEffect(
+    () => () => {
+      if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
+    },
+    [],
+  );
 
   // ---------------------------------------------------------------------
   // Refs for stable callbacks
   // ---------------------------------------------------------------------
+  const sheetStoryRef = useRef(sheetStory);
+  sheetStoryRef.current = sheetStory;
   const groupedRef = useRef(grouped);
   groupedRef.current = grouped;
   const generatedRef = useRef(generated);
@@ -377,6 +433,12 @@ export default function HomeScreen() {
   gdacsAlertsRef.current = gdacsAlerts;
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
+  const famineAreasRef = useRef(famineAreas);
+  famineAreasRef.current = famineAreas;
+  const thermalEventsRef = useRef(thermalEvents);
+  thermalEventsRef.current = thermalEvents;
+  const genocideRef = useRef(genocideSituations);
+  genocideRef.current = genocideSituations;
   const storyRowsRef = useRef(storyRows);
   storyRowsRef.current = storyRows;
   const rankedRef = useRef(rankedInstruments);
@@ -483,12 +545,87 @@ export default function HomeScreen() {
     [injectArticle, openReaderAt],
   );
 
+  /**
+   * Record a find, and mark the day complete once — with the one success
+   * haptic the game has — when it was the last light on the globe.
+   */
+  const findStory = useCallback((slug: string) => {
+    if (!markFound(slug)) return;
+    const { found, total } = foundProgress(storyRowsRef.current, getFound());
+    if (total > 0 && found === total) {
+      hapticNotification();
+      toastRef.current?.show(
+        `All ${total} found · new stories arrive through the day`,
+        undefined,
+        'top',
+      );
+    }
+  }, []);
+
   const handleStoryPress = useCallback(
     (row: StoryRow) => {
       hapticImpact();
+      findStory(row.slug);
       openReaderAt(row.slug);
     },
+    [findStory, openReaderAt],
+  );
+
+  /**
+   * Open a story in the sheet — the tap on a light.
+   *
+   * The order is the interaction. The store records the find first, so the
+   * next reprojection drops the mark on the same frame the burst starts over
+   * it; the sheet swaps to the preview at once, so the words arrive with the
+   * burst; and the camera waits for the burst to finish before it flies, so
+   * the colour plays where the mark was instead of being dragged across the
+   * earth. A tap on another light while a preview is open simply does it again.
+   */
+  const openStoryInSheet = useCallback(
+    (slug: string, afterBurst: boolean) => {
+      const row = storyRowsRef.current.find((r) => r.slug === slug);
+      if (!row) return;
+      if (sheetStoryRef.current === null) {
+        // The river's own offset: its scroll handler publishes content offset
+        // minus the header, and nothing else writes it while the map is up.
+        riverOffsetRef.current = Math.max(0, cameraScrollY.value + headerHeight.value);
+      }
+      findStory(slug);
+      markHintDone('globe');
+      cameraClaimedRef.current = true;
+      setSheetStory(slug);
+      if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
+      flyTimerRef.current = null;
+      const coords = row.coords;
+      if (!coords) return;
+      if (afterBurst && !reduceMotion) {
+        flyTimerRef.current = setTimeout(() => flyTo(coords), COLLECT_MS - 120);
+      } else {
+        flyTo(coords);
+      }
+    },
+    [cameraScrollY, findStory, flyTo, headerHeight, reduceMotion],
+  );
+
+  const closeStoryPreview = useCallback(() => {
+    if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
+    flyTimerRef.current = null;
+    setSheetStory(null);
+  }, []);
+
+  const handlePreviewRead = useCallback(
+    (slug: string) => {
+      hapticImpact();
+      openReaderAt(slug);
+    },
     [openReaderAt],
+  );
+
+  const handlePreviewSibling = useCallback(
+    (slug: string) => {
+      openStoryInSheet(slug, false);
+    },
+    [openStoryInSheet],
   );
 
   /**
@@ -510,6 +647,9 @@ export default function HomeScreen() {
       cameraOwner.value = 1;
     }
     setReaderOpen(false);
+    // Paging through the reader moved the camera to another story; a preview
+    // left open underneath follows it, so the sheet names where the globe is.
+    if (active && sheetStoryRef.current) setSheetStory(active.slug);
   }, [cameraLat, cameraLng, cameraOwner]);
 
   const openCard = useCallback((card: SwipeCard) => {
@@ -531,17 +671,13 @@ export default function HomeScreen() {
     (item: NowItem) => {
       hapticImpact();
       flyTo(item.coords);
-      if (item.kind === 'hazard' && item.gdacsEventId) {
-        const alert = gdacsAlertsRef.current.find((a) => a.eventid === item.gdacsEventId);
-        if (alert) {
-          setActiveAlert(alert);
-          disasterSheetRef.current?.present();
-        }
-        return;
+      const alert = gdacsAlertsRef.current.find((a) => a.eventid === item.gdacsEventId);
+      if (alert) {
+        setActiveAlert(alert);
+        disasterSheetRef.current?.present();
       }
-      if (item.card) openCard(item.card);
     },
-    [flyTo, openCard],
+    [flyTo],
   );
 
   // After the reader — or the map — has committed. `MiniGlobe` is a child, so
@@ -588,6 +724,11 @@ export default function HomeScreen() {
     [openCard],
   );
 
+  const openOverlay = useCallback((selection: OverlaySelection) => {
+    setActiveOverlay(selection);
+    overlaySheetRef.current?.present();
+  }, []);
+
   // ---------------------------------------------------------------------
   // Globe taps — unchanged dispatch, one new destination
   // ---------------------------------------------------------------------
@@ -598,9 +739,28 @@ export default function HomeScreen() {
       // the reader found the map layer; the globe hint retires on all of them.
       markHintDone('globe');
       cameraClaimedRef.current = true;
+      if (result.storySlug) {
+        openStoryInSheet(result.storySlug, true);
+        return;
+      }
       if (result.candidates && result.candidates.length > 1) {
         setChooserCandidates(result.candidates);
         disambiguationSheetRef.current?.present();
+        return;
+      }
+      if (result.genocideId) {
+        const situation = genocideRef.current.find((g) => g.id === result.genocideId);
+        if (situation) openOverlay({ kind: 'genocide', situation });
+        return;
+      }
+      if (result.famineAreaId) {
+        const area = famineAreasRef.current.find((a) => a.id === result.famineAreaId);
+        if (area) openOverlay({ kind: 'famine', area });
+        return;
+      }
+      if (result.thermalEventId) {
+        const event = thermalEventsRef.current.find((e) => e.id === result.thermalEventId);
+        if (event) openOverlay({ kind: 'thermal', event });
         return;
       }
       if (result.gdacsEventId) {
@@ -660,7 +820,7 @@ export default function HomeScreen() {
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
-    [handleSelectArticle, openCard],
+    [handleSelectArticle, openCard, openOverlay, openStoryInSheet],
   );
 
   // ---------------------------------------------------------------------
@@ -732,9 +892,13 @@ export default function HomeScreen() {
     ).catch(() => {});
   }, []);
 
-  const handleArticleChange = useCallback((article: RiverArticle) => {
-    activeArticleRef.current = article;
-  }, []);
+  const handleArticleChange = useCallback(
+    (article: RiverArticle) => {
+      activeArticleRef.current = article;
+      findStory(article.slug);
+    },
+    [findStory],
+  );
 
   const countryAlerts = useMemo<GdacsAlert[]>(() => {
     const name = countrySheet?.countryName;
@@ -744,6 +908,37 @@ export default function HomeScreen() {
       .filter((a) => a.country === name || a.affectedCountries.includes(name))
       .sort((a, b) => score(b.alertlevel) - score(a.alertlevel));
   }, [countrySheet?.countryName, gdacsAlerts]);
+
+  /** The hazard marks in the open country, as rows — see `CountrySheet.hazards`.
+   *  Thermal anomalies carry no country, only the stories they were joined to,
+   *  so they are reachable from those stories rather than from here. */
+  const countryHazards = useMemo<CountryHazard[]>(() => {
+    const name = countrySheet?.countryName;
+    if (!name) return [];
+    const rows: CountryHazard[] = [];
+    for (const situation of genocideSituations) {
+      const country = situation.profile ?? (situation.iso2 && topojsonNameFromCode(situation.iso2));
+      if (country !== name) continue;
+      rows.push({
+        key: `genocide-${situation.id}`,
+        title: `Genocide · ${situation.name}`,
+        detail: 'as determined by the UN',
+        onPress: () => openOverlay({ kind: 'genocide', situation }),
+      });
+    }
+    const areas = famineAreas.filter((a) => a.iso2 && topojsonNameFromCode(a.iso2) === name);
+    // Gravest phase first; the rows are a list of places, not a tally.
+    areas.sort((a, b) => b.phase - a.phase);
+    for (const area of areas) {
+      rows.push({
+        key: `famine-${area.id}`,
+        title: area.area,
+        detail: `${area.phaseName.toLowerCase()} · IPC phase ${area.phase}`,
+        onPress: () => openOverlay({ kind: 'famine', area }),
+      });
+    }
+    return rows;
+  }, [countrySheet?.countryName, famineAreas, genocideSituations, openOverlay]);
 
   const handleCountryAlertPress = useCallback((alert: GdacsAlert) => {
     setActiveAlert(alert);
@@ -778,6 +973,7 @@ export default function HomeScreen() {
     activeAlert !== null ||
     activeConflict !== null ||
     activeCard !== null ||
+    activeOverlay !== null ||
     chooserCandidates.length > 0 ||
     activeEntity !== null;
   const sheetOpenRef = useRef(sheetOpen);
@@ -817,6 +1013,7 @@ export default function HomeScreen() {
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
   const handleCardDismiss = useCallback(() => setActiveCard(null), []);
+  const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
   const handleSourcesDismiss = useCallback(() => {
     setSheetSources([]);
@@ -849,6 +1046,20 @@ export default function HomeScreen() {
       handleSelectArticle(slug, category);
     },
     [handleSelectArticle],
+  );
+  const handleOverlayArticlePress = useCallback(
+    (slug: string, category: Category) => {
+      overlaySheetRef.current?.dismiss();
+      handleSelectArticle(slug, category);
+    },
+    [handleSelectArticle],
+  );
+  const handleOverlayCountryPress = useCallback(
+    (countryName: string) => {
+      overlaySheetRef.current?.dismiss();
+      openCountry(countryName);
+    },
+    [openCountry],
   );
   const handleEntityArticlePress = useCallback(
     (slug: string, category: Category) => {
@@ -908,6 +1119,11 @@ export default function HomeScreen() {
     mapSheetRef.current?.collapse();
   }, []);
   useHardwareBack({ enabled: !readerOpen && sheetDetent === 'full', onBack: collapseSheet });
+  // And at peek, back leaves a story preview for the river before the app.
+  useHardwareBack({
+    enabled: !readerOpen && sheetDetent === 'peek' && sheetStory !== null,
+    onBack: closeStoryPreview,
+  });
 
   //
   // One animated style per view. The first version shared a single style
@@ -957,6 +1173,32 @@ export default function HomeScreen() {
 
   usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
 
+  /** What the sheet's preview shows, or null for the river. */
+  const preview = useMemo(() => {
+    if (!sheetStory) return null;
+    const row = storyRows.find((r) => r.slug === sheetStory);
+    if (!row) return null;
+    const place = places.find((p) => p.slugs.includes(sheetStory));
+    const siblings: PreviewSibling[] = [];
+    for (const slug of place?.slugs ?? []) {
+      if (slug === sheetStory || foundSlugs.has(slug)) continue;
+      const sibling = storyRows.find((r) => r.slug === slug);
+      if (sibling) siblings.push({ slug, title: sibling.title, meta: sibling.meta });
+    }
+    const location = displayLocation(row.article.location) ?? row.article.location;
+    return {
+      row,
+      siblings,
+      meta: location ? `${row.meta} · ${location}` : row.meta,
+      color: categoryMarkColor(row.article.category, colors),
+    };
+  }, [sheetStory, storyRows, places, foundSlugs, colors]);
+
+  // A refresh can rotate the previewed story out of the river.
+  useEffect(() => {
+    if (sheetStory && !preview) setSheetStory(null);
+  }, [sheetStory, preview]);
+
   const renderList = useCallback(
     ({
       scrollEnabled,
@@ -964,31 +1206,53 @@ export default function HomeScreen() {
     }: {
       scrollEnabled: boolean;
       onScrollOffset: typeof listOffset;
-    }) => (
-      <MapFeed
-        rows={storyRows}
-        now={now}
-        rowHeight={rowHeight}
-        scrollEnabled={scrollEnabled}
-        listOffset={onScrollOffset}
-        cameraScrollY={cameraScrollY}
-        headerHeight={headerHeight}
-        onHeaderLayout={handleHeaderLayout}
-        onDragStart={handleListDragStart}
-        onStoryPress={handleStoryPress}
-        onNowPress={handleNowPress}
-        onInstrumentsPress={handleInstrumentsPress}
-        // The briefing's player floats over the bottom of the sheet while it is
-        // up; the same allowance the reader's pages keep for it, so the last
-        // story can still be scrolled clear of the bar.
-        bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
-      />
-    ),
+    }) =>
+      preview ? (
+        <StoryPreview
+          slug={preview.row.slug}
+          title={preview.row.title}
+          meta={preview.meta}
+          color={preview.color}
+          sentences={preview.row.article.sentences}
+          siblings={preview.siblings}
+          rowHeight={rowHeight}
+          scrollEnabled={scrollEnabled}
+          onScrollOffset={onScrollOffset}
+          bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
+          onRead={handlePreviewRead}
+          onClose={closeStoryPreview}
+          onSelectSibling={handlePreviewSibling}
+        />
+      ) : (
+        <MapFeed
+          rows={storyRows}
+          now={now}
+          rowHeight={rowHeight}
+          scrollEnabled={scrollEnabled}
+          listOffset={onScrollOffset}
+          cameraScrollY={cameraScrollY}
+          headerHeight={headerHeight}
+          onHeaderLayout={handleHeaderLayout}
+          onDragStart={handleListDragStart}
+          onStoryPress={handleStoryPress}
+          onNowPress={handleNowPress}
+          // The briefing's player floats over the bottom of the sheet while it is
+          // up; the same allowance the reader's pages keep for it, so the last
+          // story can still be scrolled clear of the bar.
+          bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
+          found={foundSlugs}
+          initialOffset={riverOffsetRef.current}
+        />
+      ),
     [
       briefingVisible,
       cameraScrollY,
+      closeStoryPreview,
+      foundSlugs,
+      handlePreviewRead,
+      handlePreviewSibling,
+      preview,
       handleHeaderLayout,
-      handleInstrumentsPress,
       handleListDragStart,
       handleNowPress,
       handleStoryPress,
@@ -1001,21 +1265,8 @@ export default function HomeScreen() {
   );
 
   const masthead = useMemo(
-    () => (
-      <SheetMasthead
-        dateLabel={dateLabel}
-        storyCount={river.length}
-        refreshing={refreshing}
-        // While the player bar is up it is the control. A second pill reading
-        // "resume · 10 min" over audio that was already playing said the
-        // opposite of what was happening; it returns when the bar is hidden.
-        briefingAvailable={briefingStatus.available && !briefingVisible}
-        briefingResumable={briefingStatus.resumable}
-        briefingDuration={briefingStatus.duration}
-        onBriefingPress={handleBriefingPress}
-      />
-    ),
-    [briefingStatus, briefingVisible, dateLabel, handleBriefingPress, refreshing, river.length],
+    () => <SheetMasthead refreshing={refreshing} progress={progress} />,
+    [refreshing, progress],
   );
 
   if (loading)
@@ -1043,6 +1294,11 @@ export default function HomeScreen() {
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
+          places={places}
+          foundSlugs={foundSlugs}
+          famineAreas={famineAreas}
+          thermalEvents={thermalEvents}
+          genocideSituations={genocideSituations}
           scrollY={cameraScrollY}
           itemHeight={readerOpen ? Math.max(1, screenHeight) : rowHeight}
           cameraTrack={cameraTrack}
@@ -1078,10 +1334,15 @@ export default function HomeScreen() {
       >
         <MapHeader
           onMenuPress={handleMenuPress}
-          onZoomPress={handleZoomToggle}
-          zoomLabel={currentZoom.label}
+          // While the player bar is up it is the control. A second pill
+          // reading "resume · 10 min" over audio that was already playing said
+          // the opposite of what was happening; it returns when the bar hides.
+          briefingAvailable={briefingStatus.available && !briefingVisible}
+          briefingResumable={briefingStatus.resumable}
+          briefingDuration={briefingStatus.duration}
+          onBriefingPress={handleBriefingPress}
         />
-        <IndicatorStrip items={strip} onSelect={handleStripPress} />
+        <IndicatorStrip items={strip} onSelect={handleStripPress} onAll={handleInstrumentsPress} />
       </Animated.View>
 
       <Animated.View
@@ -1096,7 +1357,9 @@ export default function HomeScreen() {
           header={masthead}
           renderList={renderList}
           onDetentChange={setSheetDetent}
-          onPullDown={handleRefresh}
+          // With a preview open, a pull down at rest goes back to the river —
+          // the same gesture a reader uses to put anything in this sheet away.
+          onPullDown={sheetStory ? closeStoryPreview : handleRefresh}
         />
       </Animated.View>
 
@@ -1180,6 +1443,7 @@ export default function HomeScreen() {
         country={countrySheet}
         activeAlerts={countryAlerts}
         onAlertPress={handleCountryAlertPress}
+        hazards={countryHazards}
         bottomInset={insets.bottom}
         onDismiss={handleCountryDismiss}
       />
@@ -1201,6 +1465,16 @@ export default function HomeScreen() {
         onCountryPress={handleConflictCountryPress}
       />
 
+      <OverlaySheet
+        sheetRef={overlaySheetRef}
+        overlay={activeOverlay}
+        articles={river}
+        bottomInset={insets.bottom}
+        onDismiss={handleOverlayDismiss}
+        onArticlePress={handleOverlayArticlePress}
+        onCountryPress={handleOverlayCountryPress}
+      />
+
       <DisambiguationSheet
         sheetRef={disambiguationSheetRef}
         candidates={chooserCandidates}
@@ -1208,6 +1482,9 @@ export default function HomeScreen() {
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         instruments={rankedInstruments}
+        famineAreas={famineAreas}
+        thermalEvents={thermalEvents}
+        genocideSituations={genocideSituations}
         bottomInset={insets.bottom}
         onDismiss={handleChooserDismiss}
         onSelect={handleChooserSelect}

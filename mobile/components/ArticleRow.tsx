@@ -1,6 +1,8 @@
 import type { Category } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
-import { SPACING, titleFontScale } from '../constants/theme';
+import { memo, useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { categoryMarkColor, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import { Box, Pressable, Text } from './primitives';
@@ -28,7 +30,7 @@ export const ArticleRow = memo(function ArticleRow({
   onLongPress,
   delayLongPress = 400,
 }: ArticleRowProps) {
-  const titleScale = useMemo(() => titleFontScale(title.length), [title]);
+  const { colors } = useTheme();
 
   const handlePress = useCallback(() => {
     onPress(slug, category);
@@ -47,14 +49,27 @@ export const ArticleRow = memo(function ArticleRow({
       accessibilityLabel={title}
     >
       <Box paddingY="screenPadding" rule="bottom">
-        <Text variant="title" scale={titleScale} numberOfLines={2}>
+        {/* `rowTitle`, like the sheet's river: a list of headlines is one
+            tier under the story it opens. The dot is the story's globe hue. */}
+        <Text variant="rowTitle" numberOfLines={2}>
           {title}
         </Text>
-        <Text variant="labelXs" style={{ marginTop: SPACING.xs }}>
-          {category} · {formatTimeAgo(time)}
-          {location ? ` · ${displayLocation(location)}` : ''}
-        </Text>
+        <View style={styles.meta}>
+          <View style={[styles.dot, { backgroundColor: categoryMarkColor(category, colors) }]} />
+          <Text variant="labelXs" numberOfLines={1} style={styles.metaText}>
+            {category} · {formatTimeAgo(time)}
+            {location ? ` · ${displayLocation(location)}` : ''}
+          </Text>
+        </View>
       </Box>
     </Pressable>
   );
+});
+
+const DOT = 7;
+
+const styles = StyleSheet.create({
+  meta: { flexDirection: 'row', alignItems: 'center', marginTop: SPACING.xs },
+  dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
+  metaText: { flex: 1 },
 });

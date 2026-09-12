@@ -15,7 +15,7 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * render here exactly as they rendered there — the reading, the chart, the
  * desk's paragraph, the delta chip, the source caption, the same four tiers
  * in the same order. What changed is only how you arrive: a mark on the
- * globe, a slot in the strip, a row in the NOW block or in the instruments
+ * globe, a slot in the strip, or a row in the instruments
  * list, rather than remembering which tab it lived under.
  *
  * **A fixed snap rather than content sizing.** Every other sheet in the app

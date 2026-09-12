@@ -21,6 +21,7 @@ import type {
 import type { Preferences } from '../constants/theme';
 import type { Bookmark } from './bookmark-store';
 import { isIsoDate } from './data-freshness';
+import type { FamineSnapshot, GenocideSnapshot, ThermalSnapshot } from './overlays';
 
 const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -332,3 +333,55 @@ const isBookmark = (v: unknown): v is Bookmark =>
 
 export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
   Array.isArray(v) && v.every(isBookmark);
+
+// Hazard overlays ported from the web map. Narrow on purpose: each checks only
+// the fields the app reads, so a field the web adds cannot fail the app's
+// fetch. A malformed row fails the whole snapshot, like every validator here —
+// a layer that silently drops marks is harder to notice than an empty one.
+
+const isFamineArea = (v: unknown): boolean =>
+  isObject(v) &&
+  typeof v.id === 'string' &&
+  typeof v.area === 'string' &&
+  typeof v.iso3 === 'string' &&
+  isFiniteNumber(v.phase) &&
+  typeof v.phaseName === 'string' &&
+  isFiniteNumber(v.lat) &&
+  isFiniteNumber(v.lng) &&
+  typeof v.vintage === 'string' &&
+  isFiniteNumber(v.ageMonths);
+
+export const isFamineSnapshot = (v: unknown): v is FamineSnapshot =>
+  isObject(v) && Array.isArray(v.areas) && v.areas.every(isFamineArea);
+
+const THERMAL_CONFIDENCE = new Set(['low', 'nominal', 'high']);
+
+const isThermalEvent = (v: unknown): boolean =>
+  isObject(v) &&
+  typeof v.id === 'string' &&
+  isFiniteNumber(v.lat) &&
+  isFiniteNumber(v.lng) &&
+  isFiniteNumber(v.t) &&
+  isFiniteNumber(v.frp) &&
+  isFiniteNumber(v.pixels) &&
+  typeof v.confidence === 'string' &&
+  THERMAL_CONFIDENCE.has(v.confidence) &&
+  (v.relatedArticles === undefined || isStringArray(v.relatedArticles));
+
+export const isThermalSnapshot = (v: unknown): v is ThermalSnapshot =>
+  isObject(v) && Array.isArray(v.events) && v.events.every(isThermalEvent);
+
+const isGenocideSituation = (v: unknown): boolean =>
+  isObject(v) &&
+  typeof v.id === 'string' &&
+  typeof v.name === 'string' &&
+  isFiniteNumber(v.lat) &&
+  isFiniteNumber(v.lng) &&
+  (v.finding === 'determination' || v.finding === 'risk') &&
+  typeof v.body === 'string' &&
+  typeof v.document === 'string' &&
+  typeof v.date === 'string' &&
+  typeof v.summary === 'string';
+
+export const isGenocideSnapshot = (v: unknown): v is GenocideSnapshot =>
+  isObject(v) && Array.isArray(v.situations) && v.situations.every(isGenocideSituation);

@@ -3,6 +3,7 @@ import { clearBookmarks } from './bookmark-store';
 import { clearCardHistory } from './card-history';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
+import { clearFound } from './found-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
 import { resetReviewState } from './store-review';
@@ -36,6 +37,7 @@ export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
   clearBookmarks();
+  clearFound();
   clearCardHistory();
   resetOnboarding();
   resetReviewState();

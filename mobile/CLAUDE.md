@@ -64,8 +64,8 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag rotates · pinch steps zoom · tap hit-tests
-MapHeader + IndicatorStrip            wordmark, zoom, menu · every mover, swiped, largest first
-MapSheet                              custom, non-modal, peek/full · masthead + NOW + river
+MapHeader + IndicatorStrip            briefing, wordmark, menu · every mover, swiped, largest first
+MapSheet                              custom, non-modal, peek/full · news only: Red alerts + river
 ReaderLayer                           ArticleList over the river, presented over the map
 platform sheets                       card · instruments · chokepoint · country · …
 ```
@@ -90,17 +90,20 @@ whole time; nothing said so.
   reader moves the camera the app never re-aims it.
 - **Row height is shared with the camera, so rows never grow.** The sheet's
   camera finds the story under the reader by `scrollY / rowHeight`. `MapFeed`
-  lays out with exactly that number and titles clamp to two lines; the NOW
+  lays out with exactly that number and titles clamp to two lines; the alert
   block lives in `ListHeaderComponent`, outside the indexed data, and its
   measured height is subtracted before publishing. A row that grew to fit its
   title would put the globe on the wrong story.
-- **The strip prints numbers; the NOW block prints titles; they never share an
-  item.** `buildNowSurfaces` (`lib/now.ts`) builds both in one pass and excludes
-  the strip's ids from the block, because an instrument as `HORMUZ −57% ▼` above
-  the globe and again as a row below it is one fact twice. The block holds no
-  stories (the river's first row already *is* the lead story) and no conflict
-  events (UCDP publishes months in arrears, and NOW over a March event is a
-  false claim).
+- **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
+  (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
+  instruments a builder marked `lead`; once the strip held every reading that
+  moved, what was left there was contracts and dates sitting above the stories
+  as though they were stories, so the block now holds only live Red GDACS
+  alerts — news with no article yet, whose globe mark needs an accessible row.
+  It holds no stories (the river's first row already *is* the lead story) and
+  no conflict events (UCDP publishes months in arrears, and NOW over a March
+  event is a false claim). A contract still reaches the sheet the one honest
+  way: as the odds chip on the story it settles.
 - **The strip scrolls sideways and holds every reading that moved, largest
   move first.** It was three fixed slots, and the reader asked for all the
   markets, straits and currencies in one swipe, sorted so the most dramatic
@@ -108,9 +111,8 @@ whole time; nothing said so.
   sort reads — set by `deltaFrom` for percent moves, by `straitDelta` and by
   the market-signal builder — and is absent for a move in points, which sorts
   last. Contracts (their subject is a question) and dates (no move) never take
-  a slot, so with every moving reading on the strip, the NOW block is left with
-  those plus Red alerts. Slots are sized for 3.4 across: the cut slot is the
-  only sign the row continues.
+  a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
+  row continues.
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
@@ -119,7 +121,7 @@ whole time; nothing said so.
   Every other sheet stays a platform sheet.
 - **Instruments without a place are one tap away, always.** Brent, gold, the
   ten-year, nisab, FX movers and every contract have no honest location, so
-  they are not on the globe. `all instruments →` under the NOW block is never
+  they are not on the globe. `all →` at the end of the strip is never
   conditional, and `InstrumentsSheet` lists every card in `buildRankedInstruments`
   order. Placing Brent in the North Sea to avoid a list would be inventing
   locations for half the deck.
@@ -128,10 +130,37 @@ whole time; nothing said so.
   onto `poly-*` indicators. A feed row carries a bare `62%`; the reader carries
   the level, the move in **points**, and `MARKET_CAVEAT`. Odds are never tinted
   favorable/unfavorable — a green likelier war is the app taking a side.
+- **The globe is how the news is found.** Every story is a beacon in its
+  category hue at its *place* (`lib/story-places.ts` merges stories within
+  5 km, or one dateline within 120 km, as the web does), and tapping one
+  finds it: `MiniGlobe.collect` bursts in that hue, `lib/found-store.ts`
+  records the slug, the next reprojection stops drawing the mark, and the
+  sheet swaps its river for `StoryPreview`. The camera flies only after the
+  burst (`COLLECT_MS`) so the colour plays where the mark was.
+  - **The preview is what the sheet holds, not a third detent.** `MapSheet`
+    is still peek/full; `renderList` returns `StoryPreview` or `MapFeed`.
+    Close is the ✕, a pull down at rest, or Android back — a pull at rest
+    only refreshes when the river is showing. `MapFeed` remounts with
+    `initialOffset` so closing a preview does not lose the river's place.
+  - **Found is opening, from anywhere** — the mark, the row, or a page
+    turned to in the reader (`handleArticleChange`). Pruning drops a slug
+    only when it has left the feed *and* is two weeks old, so a partial
+    payload cannot relight the globe.
+  - **A story outranks everything but a nearer reference mark.** The hit
+    test takes the nearest beacon within 32 px and returns it without a
+    chooser unless a strait, exchange, hazard or conflict mark is closer to
+    the finger. Hotspots, the settled dot and Makkah never outrank a story.
+- **The hazard layers are the web's.** IPC famine (`/api/ipc.json`), FIRMS
+  thermal (`/api/firms.json`) and UN genocide determinations
+  (`/api/genocide.json`) are fetched by `hooks/useOverlays.ts`, drawn from a
+  3× baked sprite sheet as one tinted Atlas per layer, and open
+  `OverlaySheet`. Their accessible path is `CountrySheet`'s "on the map"
+  rows; thermal events carry no country, so theirs is the stories they were
+  joined to.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
-  strip, the NOW block or the instruments sheet; that is the accessible path,
+  strip, the alert block or the instruments sheet; that is the accessible path,
   and a new mark layer without a row is an accessibility regression.
 
 The card doctrine below still holds. The cards render in `CardSheet` rather
@@ -220,11 +249,12 @@ about what a card may say is about the card, not where it is shown.
   both platforms differently — on Android its SwipeRefreshLayout took the
   collapse drag, on iOS `bounces={false}` meant it could never fire — so
   `MapSheet.onPullDown` fires when a drag that began at peek stretches the
-  sheet past `PULL_TRIGGER`, and the masthead's count line says
-  `checking for new stories` while it runs. `useArticles.refresh()` probes
+  sheet past `PULL_TRIGGER`, and a single line above the list says
+  `checking for new stories` while it runs — the sheet has no masthead
+  otherwise, having given its date and story count to the news. `useArticles.refresh()` probes
   `/api/meta.json`; a moved `generated` runs `invalidateApiJson`, which marks
   every `useApiJson` snapshot stale at once — trends, chokepoints, analysis,
-  market signals — so the strip, the NOW block and the marks all refetch from
+  market signals — so the strip, the alert block and the marks all refetch from
   the one gesture.
 - **The sheet's pan waits for a direction before it decides.** Its first
   update can carry `translationY === 0` (observed on every drag on the
@@ -291,11 +321,14 @@ about what a card may say is about the card, not where it is shown.
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the button on the sheet's masthead — as a corner pill
-  over the globe it was sized to stay out of the way and was not found.
-  `share` is in the reader's top-right chrome, where it can only mean the page
-  under it (it used to share the last article read from any section). `zoom`
-  is a word pill in `MapHeader`, the accessible path beside pinch.
+  specific.** `listen` is the pill at the top left of `MapHeader` — as a
+  corner pill over the globe it was sized to stay out of the way and was not
+  found, and as the button on the sheet's masthead it made the first row of
+  the news list a control panel. `share` is in the reader's top-right chrome,
+  where it can only mean the page under it (it used to share the last article
+  read from any section). `zoom` is gone from the chrome: pinch on the globe
+  steps through `useZoomCycle`'s levels, so readers who cannot pinch get the
+  opening zoom only.
 
 - **The graph and pipeline analysis stay visible.** The reading, chart, the
   desk's analysis, delta and current change make up the recurring surface.

@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -6,16 +6,16 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { SPACING } from '../../constants/theme';
+import { categoryMarkColor, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { StoryRow } from '../../lib/map-feed';
 import type { NowItem } from '../../lib/now';
 import { EmptyState } from '../EmptyState';
-import { Icon, Pressable, Text } from '../primitives';
+import { Text } from '../primitives';
 import { FeedRow } from './FeedRow';
 
 /**
- * The sheet's list: what is flashing, then the day.
+ * The sheet's list: the news, newest first, with any live Red alert above it.
  *
  * ## Why the block is in the list header rather than in the data
  *
@@ -31,7 +31,13 @@ import { FeedRow } from './FeedRow';
  * The river directly below it is strictly newest-first, so its first row *is*
  * the lead story. A block above that repeating it would be the one thing
  * `foundation.md` forbids outright. What the block carries is what the river
- * structurally cannot: instruments and live hazards. See `lib/now.ts`.
+ * structurally cannot: a Red hazard with no article yet. See `lib/now.ts`.
+ *
+ * ## Why there are no instruments here
+ *
+ * The sheet is for news. Straits, markets, currencies and contracts are the
+ * strip's — every one that moved is on it, and `all →` at its end opens the
+ * rest — so a block of them here was the same subject in two places.
  */
 
 interface MapFeedProps {
@@ -49,49 +55,35 @@ interface MapFeedProps {
   onDragStart: () => void;
   onStoryPress: (row: StoryRow) => void;
   onNowPress: (item: NowItem) => void;
-  onInstrumentsPress: () => void;
   bottomInset: number;
+  /** Stories the reader has opened; their rows drop to secondary ink. */
+  found?: ReadonlySet<string>;
+  /**
+   * Where to put the list on mount. The sheet swaps this list for a story
+   * preview and back, which remounts it; without this every return from a
+   * preview would drop the reader at the top of the river.
+   */
+  initialOffset?: number;
 }
 
 const NowBlock = memo(function NowBlock({
   now,
   rowHeight,
   onNowPress,
-  onInstrumentsPress,
 }: {
   now: NowItem[];
   rowHeight: number;
   onNowPress: (item: NowItem) => void;
-  onInstrumentsPress: () => void;
 }) {
-  const { colors } = useTheme();
+  if (now.length === 0) return null;
   return (
     <View>
-      {now.length > 0 ? (
-        <>
-          <Text variant="labelXs" tone="emphasis" style={styles.heading}>
-            now
-          </Text>
-          {now.map((item) => (
-            <NowRow key={item.id} item={item} rowHeight={rowHeight} onPress={onNowPress} />
-          ))}
-        </>
-      ) : null}
-
-      {/* Always present, block or no block. It is the only route to Brent,
-          gold, the ten-year, the nisab, the currency movers and every
-          contract — none of which are anywhere on the earth — so it cannot
-          be conditional on a quiet day. */}
-      <Pressable
-        onPress={onInstrumentsPress}
-        accessibilityRole="button"
-        accessibilityLabel="All instruments"
-        accessibilityHint="Opens every market, strait and contract as a ranked list"
-        style={[styles.tail, { borderBottomColor: colors.rule }]}
-      >
-        <Text variant="labelXs">all instruments</Text>
-        <Icon name="chevron-forward" size="sm" tone="secondary" />
-      </Pressable>
+      <Text variant="labelXs" tone="emphasis" style={styles.heading}>
+        now
+      </Text>
+      {now.map((item) => (
+        <NowRow key={item.id} item={item} rowHeight={rowHeight} onPress={onNowPress} />
+      ))}
     </View>
   );
 });
@@ -111,15 +103,12 @@ const NowRow = memo(function NowRow({
       height={rowHeight}
       title={item.title}
       meta={item.kicker}
-      // The same ink step a card and an instruments row use, in the same
-      // slot. A row is in this block because its data is new, and that is
-      // the one thing a heading alone cannot say about an individual row.
+      // The same ink step a card uses, in the same slot: the alert is live,
+      // and that is what a heading alone cannot say about an individual row.
       mark="current"
       onPress={handlePress}
       accessibilityLabel={`${item.title}, ${item.kicker}`}
-      accessibilityHint={
-        item.kind === 'hazard' ? 'Opens the alert' : "Opens the chart and the desk's analysis"
-      }
+      accessibilityHint="Opens the alert"
     />
   );
 });
@@ -127,12 +116,15 @@ const NowRow = memo(function NowRow({
 const StoryFeedRow = memo(function StoryFeedRow({
   row,
   rowHeight,
+  found,
   onPress,
 }: {
   row: StoryRow;
   rowHeight: number;
+  found: boolean;
   onPress: (row: StoryRow) => void;
 }) {
+  const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(row), [onPress, row]);
   return (
     <FeedRow
@@ -141,8 +133,10 @@ const StoryFeedRow = memo(function StoryFeedRow({
       meta={row.meta}
       mark={row.mark}
       odds={row.odds}
+      found={found}
+      hue={categoryMarkColor(row.article.category, colors)}
       onPress={handlePress}
-      accessibilityLabel={row.title}
+      accessibilityLabel={found ? `${row.title}, found` : row.title}
       accessibilityHint={row.odds ? `Read the story. Traders price this at ${row.odds}` : 'Read'}
     />
   );
@@ -160,10 +154,22 @@ export const MapFeed = memo(function MapFeed({
   onDragStart,
   onStoryPress,
   onNowPress,
-  onInstrumentsPress,
   bottomInset,
+  found,
+  initialOffset = 0,
 }: MapFeedProps) {
   const listRef = useAnimatedRef<Animated.FlatList<StoryRow>>();
+
+  // Mount-only: the offset belongs to the moment the list came back.
+  const initialOffsetRef = useRef(initialOffset);
+  useEffect(() => {
+    const offset = initialOffsetRef.current;
+    if (offset <= 0) return;
+    const frame = requestAnimationFrame(() => {
+      listRef.current?.scrollToOffset({ offset, animated: false });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [listRef]);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -191,9 +197,14 @@ export const MapFeed = memo(function MapFeed({
 
   const renderItem = useCallback(
     ({ item }: { item: StoryRow }) => (
-      <StoryFeedRow row={item} rowHeight={rowHeight} onPress={onStoryPress} />
+      <StoryFeedRow
+        row={item}
+        rowHeight={rowHeight}
+        found={found?.has(item.slug) ?? false}
+        onPress={onStoryPress}
+      />
     ),
-    [onStoryPress, rowHeight],
+    [found, onStoryPress, rowHeight],
   );
 
   const keyExtractor = useCallback((item: StoryRow) => item.slug, []);
@@ -210,15 +221,10 @@ export const MapFeed = memo(function MapFeed({
   const header = useMemo(
     () => (
       <View onLayout={onHeaderLayout}>
-        <NowBlock
-          now={now}
-          rowHeight={rowHeight}
-          onNowPress={onNowPress}
-          onInstrumentsPress={onInstrumentsPress}
-        />
+        <NowBlock now={now} rowHeight={rowHeight} onNowPress={onNowPress} />
       </View>
     ),
-    [now, onHeaderLayout, onInstrumentsPress, onNowPress, rowHeight],
+    [now, onHeaderLayout, onNowPress, rowHeight],
   );
 
   const contentContainerStyle = useMemo(
@@ -232,6 +238,8 @@ export const MapFeed = memo(function MapFeed({
       style={styles.list}
       data={rows}
       renderItem={renderItem}
+      // A find re-renders the rows whose ink changed.
+      extraData={found}
       keyExtractor={keyExtractor}
       getItemLayout={getItemLayout}
       ListHeaderComponent={header}
@@ -261,13 +269,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: SPACING.xs,
     paddingBottom: SPACING.xs,
-  },
-  tail: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: SPACING.articlePadding,
-    paddingVertical: SPACING.smPlus,
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
