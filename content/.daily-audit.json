@@ -1,36 +1,37 @@
 {
-  "date": "2026-09-11",
+  "date": "2026-09-12",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 of 5 cycles completed, avg 13 published/cycle (63 yesterday); metrics snapshot taken mid-cycle-5, which is why cycles.completed reads 4" },
-    "freshness": { "median": 0.3, "p90": 0.7, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 16, "tech": 14, "science": 11 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
+    "articles": { "value": 52, "detail": "5 of 5 cycles completed, avg ~10 published/cycle (63 yesterday)" },
+    "freshness": { "median": 0, "p90": 0.8, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 13, "science": 9, "tech": 9 },
+    "multiSource": { "value": 16, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 21, "EU": 14, "AS": 11, "ME": 10, "AF": 7, "OC": 0 }
+      "breakdown": { "EU": 19, "AM": 14, "ME": 9, "AS": 7, "AF": 2, "OC": 1 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 50,
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature / Dawn (tied)", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1440
+    "avgCycleDuration": 1205
   },
-  "experiment": "Skipped — all four goals are met with margin, no experiment was active or due for evaluation, and no noNewExperimentsUntil gate is set. The one queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, outside the daily-tuning surface, so it stays queued.",
-  "weakestArea": "Region count is the narrowest margin: 5 against a target of 4, down from 6 yesterday because Oceania produced nothing at all. Every other goal clears by a wide gap — freshness 0.3 against 1.0, sci-tech 40% against 25%, multi-source 9 against 4, top source 11% against a 20% cap. Science also slipped 13 to 11 and multi-source 12 to 9, both still comfortably clear.",
+  "experiment": "Skipped — all four goals clear with margin, no experiment was active or due for evaluation, and no noNewExperimentsUntil gate is set. The queued 2026-05-08-numerical-density item edits scripts/write-prompt.md, outside the daily-tuning surface, so it stays queued.",
+  "weakestArea": "Africa, at two articles, is the furthest any dimension sits from where it should be, even though the region goal itself passes on count (6 unique regions against a target of 4). Maiduguri and Edfu are the whole continent today, down from seven yesterday, and both are security stories. Europe's 19 is the mirror image and partly an artifact: ten of today's articles carry a London dateline, most of them Nature and Phys.org science and tech pieces datelined to the publisher rather than the work, so the EU figure overstates genuine European coverage by roughly half.",
   "watching": [
-    "The Red Sea took three separate articles in one day — Houthis seizing the island guarding Bab al-Mandab, the coast at Mocha, and Pakistan mediating the Saudi-Houthi rift — a single escalation now split across politics and economy.",
-    "The Nigeria-South Africa xenophobia thread produced two Nigerian datelines, Abuja's assembly boycott and Ondo's fund for returnees, and is the reason Africa recovered from 5 to 7.",
-    "BRICS opening in New Delhi drew three angles on one summit: the Iran war overshadowing it, Putin's line on troops, and India offering UPI to the bloc.",
-    "Freshness still rests on a thin base — only 12 of 63 articles carry a measurable publication lag.",
-    "Sourcing remains the weak RVS cluster at 40 (writing 88, coverage 85) on the 22:00 production score, unchanged in character since the 2026-05-16 finding that the feed's ~9 multi-source stories per cycle cap the published rate."
+    "The Saudi bypass pipeline published twice in nineteen hours — 'Drones Shut Saudi Pipeline' (TRT/RT/Dawn, eventCoverage 127) and 'Drones Reach Saudi Pipeline' (Anadolu/UrduPoint, eventCoverage 414) — same Riyadh dateline, same Maysan drones, same 7m barrels/day figure, distinct event URIs.",
+    "That pipeline thread is now four articles across two days when yesterday's Mocha 'Houthis Seize Red Sea Coast' is counted; one escalation is being split across economy and politics on consecutive cycles.",
+    "BRICS in New Delhi again produced three separate pieces — the IMF overhaul demand, the restated return right, and Pezeshkian working the floor — the second consecutive day the summit has fanned out this way.",
+    "Multi-source count jumped 9 to 16 without a floor change, the highest in this run; worth confirming it holds rather than reading it as a new baseline.",
+    "Freshness rests on a wider base than yesterday — 22 of 52 articles carry a measurable lag, up from 12 of 63 — and the median came in at 0."
   ],
   "coverageGaps": [
-    "Oceania is at zero for the first time in this run and has been at zero or one for five consecutive days; there is still no Pacific island coverage.",
-    "Latin America is three articles — Brazil's Flávio Bolsonaro probe, Colombian earthquake aid, and Mexicali-adjacent nothing today — with no Andean economy or Central American story.",
-    "Africa's seven are all politics or extractives; the continent has no tech or science dateline for a second day.",
-    "Southeast Asia appears only as Indonesian fires and Singapore data centres, with nothing from Vietnam, Thailand or the Philippines."
+    "Africa is two articles, both security, with no economy, science or tech dateline from the continent for a third day.",
+    "Oceania is a single article, continuing five-plus days at zero or one, and still nothing from the Pacific islands.",
+    "Latin America's five are all conflict or accident — US strikes on Ecuadorian boats, Chilean fire, Argentine helicopters, Colombian minerals-for-security — with no Andean or Central American economy story.",
+    "Southeast Asia appears only obliquely through India's Sabah consulate; Vietnam, Thailand, Indonesia and the Philippines are absent outright.",
+    "Ten of the nineteen European articles are London publisher-datelines on non-European science and tech, leaving continental Europe thinner than the region count suggests."
   ],
-  "context": "The experiment slot has been empty since 2026-05-26 and every goal has now passed on consecutive audits, so the parametric levers have nothing to act on. The open structural work is unchanged and needs an operator decision rather than a tuning experiment: the title-overlap dedup layer in scripts/lib/dedup.js is still gated to niche-only sources, and scripts/validate-articles.js still has no duplicate-title or duplicate-URL gate. Both files sit outside the tuning surface."
+  "context": "The experiment slot has been empty since 2026-05-26 and every goal has now passed on six consecutive audits, so the parametric levers have nothing left to act on. Today supplies direct evidence for the structural item that has been carried in this field for days: the Saudi pipeline pair is a clean same-event double-publish under different titles from different multi-source clusters, which is exactly the case the title-overlap layer in scripts/lib/dedup.js cannot see because it is gated to niche-only sources, and which scripts/validate-articles.js has no duplicate-title gate to catch either. Both files sit outside the tuning surface and need an operator decision."
 }
