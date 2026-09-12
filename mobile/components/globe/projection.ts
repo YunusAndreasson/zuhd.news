@@ -6,7 +6,7 @@
  */
 
 import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
-import { geoCircle, geoContains } from 'd3-geo';
+import { geoCircle, geoContains, geoGraticule } from 'd3-geo';
 import { countries, countryAreas, countryBboxes } from './shared';
 
 // ── Astronomical / time constants ──────────────────────────────────────────
@@ -15,6 +15,8 @@ export const NORTH_POLE: [number, number] = [0, 90];
 export const SOUTH_POLE: [number, number] = [0, -90];
 export const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
 export const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
+/** The faint grid under the land: meridians and parallels every 30°, no minor lines. */
+export const GRATICULE_LINES = geoGraticule().stepMinor([360, 360]).stepMajor([30, 30])();
 
 /** Exponential decay λ for story-pin opacity — Math.LN2 / 18h = 18-hour half-life. */
 export const DECAY_LAMBDA = Math.LN2 / 18;
@@ -155,6 +157,39 @@ export function getSunPosition(): [number, number] {
   const hourAngle = ((d.getUTCHours() + d.getUTCMinutes() / 60) / 24) * 360 - 180;
   cachedSunPos = [-hourAngle, declination];
   return cachedSunPos;
+}
+
+// ── Night shadow ───────────────────────────────────────────────────────────
+
+const nightCircleGen = geoCircle();
+let nightCircles: {
+  sunLng: number;
+  sunLat: number;
+  night: GeoJSON.Polygon;
+  twilight: GeoJSON.Polygon;
+} | null = null;
+
+/**
+ * The night hemisphere and the low-sun band around it, centred on the
+ * antisolar point. Regenerated only when the sun has moved — which, through
+ * `getSunPosition`'s cache, is once a minute — rather than every frame:
+ * generating a circle is trigonometry per vertex, and the frame loop was
+ * paying for it thirty times a second to get the same two polygons back.
+ */
+export function getNightCircles(
+  sunLng: number,
+  sunLat: number,
+): { night: GeoJSON.Polygon; twilight: GeoJSON.Polygon } {
+  if (!nightCircles || nightCircles.sunLng !== sunLng || nightCircles.sunLat !== sunLat) {
+    const center: [number, number] = [sunLng + 180, -sunLat];
+    nightCircles = {
+      sunLng,
+      sunLat,
+      night: nightCircleGen.center(center).radius(90)(),
+      twilight: nightCircleGen.center(center).radius(96)(),
+    };
+  }
+  return nightCircles;
 }
 
 // ── Local time formatting ──────────────────────────────────────────────────

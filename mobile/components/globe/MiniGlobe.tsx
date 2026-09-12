@@ -19,6 +19,7 @@ import {
   RadialGradient,
   Rect,
   rect,
+  type SkFont,
   Skia,
   Text as SkiaText,
   type SkPath,
@@ -28,16 +29,9 @@ import {
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
+import { geoContains, geoDistance, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
 import {
-  geoCircle,
-  geoContains,
-  geoDistance,
-  geoGraticule,
-  geoInterpolate,
-  geoOrthographic,
-  geoPath,
-} from 'd3-geo';
-import {
+  Fragment,
   memo,
   useCallback,
   useEffect,
@@ -74,6 +68,7 @@ import {
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import { type StoryPlace, topUnfound, unfoundSlugs } from '../../lib/story-places';
 import { chokepointValence } from '../../lib/valence';
+import { type CapCuller, createCapCuller } from './cap-cull';
 import {
   CITY_LIGHT_COORDS,
   CITY_LIGHT_COUNT,
@@ -105,7 +100,9 @@ import {
   DECAY_LAMBDA,
   findCountry,
   formatLocalTime,
+  GRATICULE_LINES,
   getMoonPhase,
+  getNightCircles,
   getSunPosition,
   invalidateSunCaches,
   isNear,
@@ -302,14 +299,26 @@ function HaloLabel({
 }
 
 const skiaCtx = createSkiaPathContext();
-const nightCircleGen = geoCircle();
 
-// Equator + polar circles (Arctic 66.56°N, Antarctic 66.56°S)
-const graticuleLines = geoGraticule()
-  .stepMinor([360, 360]) // no minor lines
-  .stepMajor([30, 30])(
-  // meridians + parallels every 30°
-);
+// Label widths, by font. The labels are a fixed vocabulary — countries,
+// straits, exchanges, water — but each measurement is a JSI call into Skia,
+// and the frame loop's collision packer plus the render that follows it made
+// about eighty of them per frame. Cleared for a font when its rendering flags
+// change: subpixel positioning and hinting move advance widths.
+const textWidths = new WeakMap<SkFont, Map<string, number>>();
+function textWidth(font: SkFont, text: string): number {
+  let widths = textWidths.get(font);
+  if (!widths) {
+    widths = new Map();
+    textWidths.set(font, widths);
+  }
+  let w = widths.get(text);
+  if (w === undefined) {
+    w = font.measureText(text).width;
+    widths.set(text, w);
+  }
+  return w;
+}
 
 const PULSE_EASING = Easing.out(Easing.cubic);
 /** The found burst's length. The screen waits this long before flying the
@@ -499,14 +508,10 @@ const ANCHOR_LABEL_OPACITY_LIGHT = 0.75;
 /** Widest line in `lines`, measured by font width when loaded; otherwise
  *  approximated at `fallbackChar` pixels per character so first-paint
  *  collision packing still works before fonts resolve. */
-function measureLines(
-  lines: string[],
-  font: { measureText: (s: string) => { width: number } } | null,
-  fallbackChar: number,
-): number {
+function measureLines(lines: string[], font: SkFont | null, fallbackChar: number): number {
   let w = 0;
   for (const line of lines) {
-    const lw = font ? font.measureText(line).width : line.length * fallbackChar;
+    const lw = font ? textWidth(font, line) : line.length * fallbackChar;
     if (lw > w) w = lw;
   }
   return w;
@@ -521,6 +526,21 @@ function measureLines(
 const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
   wrapCountryLabel(displayCountryName(name) ?? name),
 );
+
+// Bounding-cap cullers for every path the frame loop projects, built once at
+// module load. A part wholly outside the view cone is dropped before d3-geo
+// rotates, clips and winding-tests it, which is most of the planet at any
+// zoom tighter than a hemisphere — see `cap-cull.ts` for why the result is
+// exact rather than approximate.
+const landMediumCull = createCapCuller(landMedium);
+const landSimplifiedCull = createCapCuller(landSimplified);
+const iceSheetsCull = createCapCuller(iceSheets);
+const iceSheetsSimplifiedCull = createCapCuller(iceSheetsSimplified);
+const bordersMediumCull = createCapCuller(bordersMeshMedium);
+const bordersSimplifiedCull = createCapCuller(bordersMeshSimplified);
+const arcticCircleCull = createCapCuller(ARCTIC_CIRCLE);
+const antarcticCircleCull = createCapCuller(ANTARCTIC_CIRCLE);
+const graticuleCull = createCapCuller(GRATICULE_LINES);
 
 export interface TapResult {
   countryName: string;
@@ -1078,22 +1098,22 @@ function projectInitial(
   }
 
   const [sunLng, sunLat] = getSunPosition();
-  const nightCenter: [number, number] = [sunLng + 180, -sunLat];
+  const nightCircles = getNightCircles(sunLng, sunLat);
   const nightBuilder = Skia.PathBuilder.Make();
   ctx.setPath(nightBuilder);
-  pg.context(ctx)(nightCircleGen.center(nightCenter).radius(90)());
+  pg.context(ctx)(nightCircles.night);
   const np = nightBuilder.detach();
 
   // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
   const twilightBuilder = Skia.PathBuilder.Make();
   ctx.setPath(twilightBuilder);
-  pg.context(ctx)(nightCircleGen.center(nightCenter).radius(96)());
+  pg.context(ctx)(nightCircles.twilight);
   const tp = twilightBuilder.detach();
 
   // Equator + polar circles
   const graticuleBuilder = Skia.PathBuilder.Make();
   ctx.setPath(graticuleBuilder);
-  pg.context(ctx)(graticuleLines);
+  pg.context(ctx)(GRATICULE_LINES);
   pg.context(ctx)(ARCTIC_CIRCLE);
   pg.context(ctx)(ANTARCTIC_CIRCLE);
   const gp = graticuleBuilder.detach();
@@ -1376,6 +1396,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       f.setSubpixel(1 as unknown as boolean);
       f.setEdging(FontEdging.SubpixelAntiAlias);
       f.setHinting(FontHinting.None);
+      textWidths.delete(f);
     }
   }, [labelFont, subFont, countryFont, neighborFont, waterFont]);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
@@ -1608,6 +1629,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   // once the scroll settles. Keeping the pair in parallel refs avoids a
   // per-frame name lookup inside callReproject.
   const cachedCountrySimplifiedRef = useRef<GeoJSON.Feature | null>(null);
+  // Cullers for the pair above, rebuilt only when the settled country changes:
+  // Russia, Canada and the United States are MultiPolygons whose far-flung
+  // parts are usually off the disc.
+  const cachedCountryCullRef = useRef<CapCuller | null>(null);
+  const cachedCountrySimplifiedCullRef = useRef<CapCuller | null>(null);
   // Spherical centroid of the currently settled country, cached alongside
   // the feature. geoCentroid is O(n vertices) — computing it once per
   // settled-country change (instead of per frame) is what keeps this new
@@ -1840,6 +1866,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         cachedCountrySimplifiedRef.current = settledName
           ? (countrySimplifiedByName[settledName] ?? null)
           : null;
+        cachedCountryCullRef.current = cachedCountryRef.current
+          ? createCapCuller(cachedCountryRef.current)
+          : null;
+        cachedCountrySimplifiedCullRef.current = cachedCountrySimplifiedRef.current
+          ? createCapCuller(cachedCountrySimplifiedRef.current)
+          : null;
         // Centroid cached alongside the feature — projected per frame to
         // follow rotation. Reads from the precomputed map (which uses the
         // largest-polygon centroid for MultiPolygon features), keeping the
@@ -1913,7 +1945,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       const landBuilder = landPathRef.current;
       landBuilder.reset();
       skiaCtx.setPath(landBuilder);
-      pg.context(skiaCtx)(nearSettled ? landMedium : landSimplified);
+      pg.context(skiaCtx)(
+        (nearSettled ? landMediumCull : landSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+      );
       const landPath = landBuilder.build();
 
       // Ice sheets — Antarctica + Greenland. Swapped to simplified during
@@ -1922,7 +1956,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       const iceBuilder = icePathRef.current;
       iceBuilder.reset();
       skiaCtx.setPath(iceBuilder);
-      pg.context(skiaCtx)(nearSettled ? iceSheets : iceSheetsSimplified);
+      pg.context(skiaCtx)(
+        (nearSettled ? iceSheetsCull : iceSheetsSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+      );
       const icePath = iceBuilder.build();
 
       // Dot — culled against the zoom cone like every other point marker.
@@ -1972,11 +2008,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         const countryBuilder = countryPathRef.current;
         countryBuilder.reset();
         skiaCtx.setPath(countryBuilder);
-        const src =
-          nearSettled || !cachedCountrySimplifiedRef.current
-            ? cachedCountryRef.current
-            : cachedCountrySimplifiedRef.current;
-        pg.context(skiaCtx)(src);
+        const cull =
+          (nearSettled ? null : cachedCountrySimplifiedCullRef.current) ??
+          cachedCountryCullRef.current;
+        if (cull) pg.context(skiaCtx)(cull.visible(geoLng, geoLat, clipAngle));
         countryPath = countryBuilder.build();
       }
 
@@ -2015,7 +2050,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       const bordersBuilder = bordersPathRef.current;
       bordersBuilder.reset();
       skiaCtx.setPath(bordersBuilder);
-      pg.context(skiaCtx)(nearSettled ? bordersMeshMedium : bordersMeshSimplified);
+      pg.context(skiaCtx)(
+        (nearSettled ? bordersMediumCull : bordersSimplifiedCull).visible(
+          geoLng,
+          geoLat,
+          clipAngle,
+        ),
+      );
       const bordersPath = bordersBuilder.build();
 
       // --- Always-on cheap layers: project every frame so they stay present
@@ -2028,8 +2069,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Night shadow
       const [sunLng, sunLat] = getSunPosition();
-      const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-      const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
+      const { night: nightGeo, twilight: twilightGeo } = getNightCircles(sunLng, sunLat);
       const nightBuilder = nightPathRef.current;
       nightBuilder.reset();
       skiaCtx.setPath(nightBuilder);
@@ -2040,7 +2080,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const twilightBuilder = twilightPathRef.current;
       twilightBuilder.reset();
       skiaCtx.setPath(twilightBuilder);
-      pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
+      pg.context(skiaCtx)(twilightGeo);
       const twilightPath = twilightBuilder.build();
 
       // Poles — culled against the clip cone like every other point marker:
@@ -2067,7 +2107,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Subsolar point — drives the day-side ocean specular highlight.
       // The night layer above already computes (sunLng, sunLat); the
-      // subsolar point is just the antipode of nightCenter, i.e. the
+      // subsolar point is just the antipode of the night hemisphere's centre, i.e. the
       // direct sunLng/sunLat. Culled against the clip cone — point
       // projection doesn't clip, so a sun between clipRad and 90° away
       // would center the specular blob outside the disk near the limb.
@@ -2082,9 +2122,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       const graticuleBuilder = graticulePathRef.current;
       graticuleBuilder.reset();
       skiaCtx.setPath(graticuleBuilder);
-      pg.context(skiaCtx)(graticuleLines);
-      pg.context(skiaCtx)(ARCTIC_CIRCLE);
-      pg.context(skiaCtx)(ANTARCTIC_CIRCLE);
+      pg.context(skiaCtx)(graticuleCull.visible(geoLng, geoLat, clipAngle));
+      pg.context(skiaCtx)(arcticCircleCull.visible(geoLng, geoLat, clipAngle));
+      pg.context(skiaCtx)(antarcticCircleCull.visible(geoLng, geoLat, clipAngle));
       const graticulePath = graticuleBuilder.build();
 
       // Dot label — the only remaining nearSettled gate. Two reasons:
@@ -2560,10 +2600,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         // before fonts finish loading. Country label is multi-line (1–2
         // rows): use the widest row.
         const cWidth = measureLines(countryLabel.lines, cfont, 6);
-        const dWidth = lfont ? lfont.measureText(dotLabel.text).width : dotLabel.text.length * 7;
+        const dWidth = lfont ? textWidth(lfont, dotLabel.text) : dotLabel.text.length * 7;
         const sWidth = dotLabel.sub
           ? sfont
-            ? sfont.measureText(dotLabel.sub).width
+            ? textWidth(sfont, dotLabel.sub)
             : dotLabel.sub.length * 5
           : 0;
         // Country label AABB — centered on x, first baseline at y, each
@@ -2631,10 +2671,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
         if (dotLabel) {
-          const dw = lfont ? lfont.measureText(dotLabel.text).width : dotLabel.text.length * 7;
+          const dw = lfont ? textWidth(lfont, dotLabel.text) : dotLabel.text.length * 7;
           const sw = dotLabel.sub
             ? sfont
-              ? sfont.measureText(dotLabel.sub).width
+              ? textWidth(sfont, dotLabel.sub)
               : dotLabel.sub.length * 5
             : 0;
           occupied.push({
@@ -2651,7 +2691,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // TÜRKIYE and "Bab-el-Mandeb" across ETHIOPIA. The boxes mirror the
         // render side: centred on the mark, baseline 20 below it.
         for (const c of chokepointMarks) {
-          const tw = wfont ? wfont.measureText(c.label).width : c.label.length * 5;
+          const tw = wfont ? textWidth(wfont, c.label) : c.label.length * 5;
           const yc = c.y + 20;
           occupied.push({
             x0: c.x - tw / 2 - pad,
@@ -2661,7 +2701,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
         for (const m of marketProjected) {
-          const tw = wfont ? wfont.measureText(m.label).width : m.label.length * 5;
+          const tw = wfont ? textWidth(wfont, m.label) : m.label.length * 5;
           const yc = m.y + 20;
           occupied.push({
             x0: m.x - tw / 2 - pad,
@@ -2698,7 +2738,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         const wkept: GlobeState['waterLabels'] = [];
         for (const w of waterLabels) {
-          const tw = wfont ? wfont.measureText(w.name).width : w.name.length * 5;
+          const tw = wfont ? textWidth(wfont, w.name) : w.name.length * 5;
           // River labels render 7px above their coord (see render side),
           // everything else at its coord.
           const yc = w.kind === 'river' ? w.y - 7 : w.y;
@@ -3931,7 +3971,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // refetches (top-12 list reorders frequently — index keys would
         // reuse Group children for unrelated hotspots).
         return (
-          <Group key={`${z.lat.toFixed(2)},${z.lng.toFixed(2)}`}>
+          <Fragment key={`${z.lat.toFixed(2)},${z.lng.toFixed(2)}`}>
             <Circle cx={z.x} cy={z.y} r={haloR} dither>
               <RadialGradient
                 c={vec(z.x, z.y)}
@@ -3941,7 +3981,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               />
             </Circle>
             <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.6 * fade} />
-          </Group>
+          </Fragment>
         );
       })}
 
@@ -3965,11 +4005,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         // before that we fall back to a char-count approximation so the
         // first frame doesn't misplace the text.
         const labelTx = waterFont
-          ? c.x - waterFont.measureText(c.label).width / 2
+          ? c.x - textWidth(waterFont, c.label) / 2
           : c.x - c.label.length * 2.5;
         const labelTy = c.y + 20;
         return (
-          <Group key={c.id}>
+          <Fragment key={c.id}>
             {(c.disrupted || c.surge) && (
               <Circle cx={c.x} cy={c.y} r={12} dither>
                 <RadialGradient
@@ -4020,7 +4060,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                     : LABEL_HALO_OPACITY_DARK
               }
             />
-          </Group>
+          </Fragment>
         );
       })}
 
@@ -4035,10 +4075,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           is the only thing telling the reader the earth can be tapped. */}
       {state.marketMarks.map((m) => {
         const labelTx = waterFont
-          ? m.x - waterFont.measureText(m.label).width / 2
+          ? m.x - textWidth(waterFont, m.label) / 2
           : m.x - m.label.length * 2.5;
         return (
-          <Group key={m.id}>
+          <Fragment key={m.id}>
             <Path
               path={MARKET_PATH}
               color={
@@ -4065,7 +4105,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               haloColor={colors.bg}
               haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
             />
-          </Group>
+          </Fragment>
         );
       })}
 
@@ -4318,7 +4358,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           core, and its name always on. Above every story, as on the web: it
           is the one mark on this globe that is never ambient. */}
       {state.genocideMarks.map((g) => (
-        <Group key={`genocide-${g.id}`}>
+        <Fragment key={`genocide-${g.id}`}>
           <Circle cx={g.x} cy={g.y} r={9} color={colors.markGenocideCore} />
           <Circle
             cx={g.x}
@@ -4338,7 +4378,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             haloColor={colors.bg}
             haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
           />
-        </Group>
+        </Fragment>
       ))}
 
       {/* Story dot — single Atlas draw against the baked dot texture. */}
@@ -4388,7 +4428,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           labels off the densest overlaps. */}
       {waterFont &&
         state.waterLabels.map((w, i) => {
-          const tx = w.x - waterFont.measureText(w.name).width / 2;
+          const tx = w.x - textWidth(waterFont, w.name) / 2;
           // River labels land directly on the river line — nudge them up
           // by ~7px (one x-height) so the label sits just above the line
           // rather than bisecting it. Lakes and seas stay at their centroid.
@@ -4430,11 +4470,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         state.neighborLabels.map((n) => {
           const firstY = n.y - ((n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT) / 2;
           return (
-            <Group key={n.name}>
+            <Fragment key={n.name}>
               {n.lines.map((line, i) => (
                 <SkiaText
                   key={`${n.name}-${i}`}
-                  x={n.x - neighborFont.measureText(line).width / 2}
+                  x={n.x - textWidth(neighborFont, line) / 2}
                   y={firstY + i * NEIGHBOR_LINE_HEIGHT}
                   text={line}
                   font={neighborFont}
@@ -4448,7 +4488,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                   opacity={(light ? 0.95 : 0.92) * n.opacity}
                 />
               ))}
-            </Group>
+            </Fragment>
           );
         })}
 
@@ -4464,7 +4504,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         (() => {
           const cl = state.countryLabel;
           return cl.lines.map((line, i) => {
-            const tx = cl.x - countryFont.measureText(line).width / 2;
+            const tx = cl.x - textWidth(countryFont, line) / 2;
             const ty = cl.y + i * LABEL_LINE_HEIGHT;
             return (
               <HaloLabel

@@ -1,0 +1,51 @@
+steps:
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.2
+          y: 0.4
+        - type: Up
+          x: 0.8
+          y: 0.42
+          delayMs: 1200
+      interpolate: 72
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.8
+          y: 0.42
+        - type: Up
+          x: 0.2
+          y: 0.4
+          delayMs: 1200
+      interpolate: 72
+    delayMs: 600
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.5
+          y: 0.22
+        - type: Up
+          x: 0.52
+          y: 0.58
+          delayMs: 1200
+      interpolate: 72
+    delayMs: 600
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.52
+          y: 0.58
+        - type: Up
+          x: 0.5
+          y: 0.22
+          delayMs: 1200
+      interpolate: 72
+    delayMs: 600
+executionPrerequisite: zuhd app on the map screen (emulator-5554, 1080x2400),
+  sheet at peek, no sheet/reader open, globe visible between the strip and the
+  sheet (globe band ~y 0.17-0.62).
