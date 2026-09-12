@@ -42,7 +42,7 @@ const admitted = (card: Card): card is DeckCard =>
  *
  * The rail used to split these across three desks, so each column was ranked
  * against itself and a strait could only ever be compared with other straits.
- * There is one screen now and three fixed slots above the globe, so the
+ * There is one screen now, with one strip and one NOW block, so the
  * comparison that matters is across kinds: a chokepoint that has closed
  * against an index that fell against a contract that moved sixty points.
  * `prepareSwipeCards` already answers exactly that, lexicographically, and

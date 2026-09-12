@@ -24,6 +24,7 @@ import { Icon, Pressable, Text } from '../primitives';
 export const SheetMasthead = memo(function SheetMasthead({
   dateLabel,
   storyCount,
+  refreshing = false,
   briefingAvailable,
   briefingResumable,
   briefingDuration,
@@ -32,6 +33,9 @@ export const SheetMasthead = memo(function SheetMasthead({
   /** "Friday 12 September" — the day the column was built. */
   dateLabel: string;
   storyCount: number;
+  /** A pull on the resting sheet is checking for a new cycle. Said in the
+   *  line that holds the count, because the count is what may change. */
+  refreshing?: boolean;
   briefingAvailable: boolean;
   briefingResumable: boolean;
   briefingDuration?: number;
@@ -46,8 +50,12 @@ export const SheetMasthead = memo(function SheetMasthead({
         <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
           {dateLabel}
         </Text>
-        <Text variant="caption" numberOfLines={1}>
-          {storyCount === 1 ? '1 story' : `${storyCount} stories`}
+        <Text variant="caption" numberOfLines={1} accessibilityLiveRegion="polite">
+          {refreshing
+            ? 'checking for new stories'
+            : storyCount === 1
+              ? '1 story'
+              : `${storyCount} stories`}
         </Text>
       </View>
 

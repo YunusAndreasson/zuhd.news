@@ -2,6 +2,7 @@ import {
   type ReactElement,
   type ReactNode,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -53,7 +54,7 @@ import { hapticTick } from '../../lib/haptics';
  *     the top that is pulled down does nothing — so the pan can take that drag
  *     simultaneously without the content rubber-banding under it. This is the
  *     same reason `SectionBar`'s rail sets it.
- *  3. **The pan decides once per gesture, on the first update, and holds.**
+ *  3. **The pan decides once per gesture, on its first directed update, and holds.**
  *     A drag that starts as the list's stays the list's to the release. Half a
  *     swipe moving the sheet and half scrolling the list is the failure mode
  *     that made the article pager's nested-scroll guards necessary, and it is
@@ -94,6 +95,12 @@ interface MapSheetProps {
     onScrollOffset: SharedValue<number>;
   }) => ReactElement;
   onDetentChange?: (detent: MapSheetDetent) => void;
+  /**
+   * A pull on the sheet at rest, past `PULL_TRIGGER`. The list cannot host
+   * pull-to-refresh — pulled down at its top it belongs to the sheet — so the
+   * gesture lives one level out, on the sheet that has nowhere lower to go.
+   */
+  onPullDown?: () => void;
   ref?: React.Ref<MapSheetRef>;
 }
 
@@ -104,6 +111,11 @@ const FLICK_VELOCITY = 550;
 /** How far a drag must travel before the pan claims it, so a tap on a row
  *  does not nudge the sheet. */
 const CLAIM_SLOP = 8;
+
+/** How far past peek a pull must carry the finger, in points, to ask for a
+ *  refresh — and the share of that travel the sheet visibly follows. */
+const PULL_TRIGGER = 72;
+const PULL_RESISTANCE = 0.35;
 
 /** The two detents, as accessibility actions. */
 const ADJUST_ACTIONS = [{ name: 'increment' as const }, { name: 'decrement' as const }];
@@ -120,6 +132,7 @@ export function MapSheet({
   header,
   renderList,
   onDetentChange,
+  onPullDown,
   ref,
 }: MapSheetProps) {
   const { colors } = useTheme();
@@ -133,6 +146,8 @@ export function MapSheet({
   const dragStart = useSharedValue(travel);
   const owner = useSharedValue(UNDECIDED);
   const listOffset = useSharedValue(0);
+  // Finger travel past peek during a pull, for the refresh trigger.
+  const pull = useSharedValue(0);
 
   // Published for the globe, which translates and fades as the sheet rises.
   // A reaction, not `useDerivedValue`: this writes to a value the screen owns,
@@ -140,7 +155,9 @@ export function MapSheet({
   // of its inputs — Reanimated is free to evaluate one lazily or not at all
   // when nothing reads *it*, and here nothing does.
   useAnimatedReaction(
-    () => 1 - offset.value / travel,
+    // Clamped: a pull stretches the sheet below peek, and the globe's fade
+    // must not read that as a negative rise.
+    () => Math.max(0, Math.min(1, 1 - offset.value / travel)),
     (next) => {
       progress.value = next;
     },
@@ -154,6 +171,15 @@ export function MapSheet({
   // parent started keeping the detent in its own state, would have been a
   // setState on another component in the middle of this one's render.
   const detentRef = useRef<MapSheetDetent>('peek');
+
+  // `travel` changes once the screen has measured its top chrome, because the
+  // expanded stop is "under the gauges" rather than a fixed share of the
+  // window. `offset` is in travel's units, so re-pin it to the detent the sheet
+  // rests on; left alone, a peeking sheet sits at the old travel and shows a
+  // sliver more or less than peek.
+  useEffect(() => {
+    offset.value = detentRef.current === 'full' ? 0 : travel;
+  }, [offset, travel]);
   const settle = useCallback(
     (next: MapSheetDetent) => {
       if (detentRef.current === next) return;
@@ -182,6 +208,13 @@ export function MapSheet({
     [offset, reduceMotion, settle],
   );
 
+  // Named, because `scheduleOnRN` must never be handed an inline arrow from a
+  // worklet (the TestFlight 288/289/292 abort), and optional-chained here so the
+  // worklet need not know whether a parent passed a handler.
+  const handlePullDown = useCallback(() => {
+    onPullDown?.();
+  }, [onPullDown]);
+
   const panConfig = useMemo(
     () => ({
       // Vertical drags only; a horizontal swipe on a row belongs to the row.
@@ -191,10 +224,17 @@ export function MapSheet({
         'worklet';
         dragStart.value = offset.value;
         owner.value = UNDECIDED;
+        pull.value = 0;
       },
       onUpdate: (e: { translationY: number }) => {
         'worklet';
         if (owner.value === UNDECIDED) {
+          // The first update can carry no translation at all — on the
+          // emulator it did, on every drag — and a decision taken on a zero
+          // reads "not pulling down". That handed every collapse drag on the
+          // expanded sheet to the list, so the sheet could not be closed by
+          // hand. Wait for a direction.
+          if (e.translationY === 0) return;
           const atTop = listOffset.value <= 0.5;
           const pullingDown = e.translationY > 0;
           // Not expanded → nothing below can use a vertical drag.
@@ -204,12 +244,29 @@ export function MapSheet({
         }
         if (owner.value !== SHEET) return;
         const next = dragStart.value + e.translationY;
-        offset.value = next < 0 ? 0 : next > travel ? travel : next;
+        if (next > travel) {
+          // Past peek the sheet follows at a fraction of the finger, which is
+          // what makes a pull read as a pull rather than as a stuck sheet.
+          pull.value = next - travel;
+          offset.value = travel + pull.value * PULL_RESISTANCE;
+        } else {
+          pull.value = 0;
+          offset.value = next < 0 ? 0 : next;
+        }
       },
       onDeactivate: (e: { velocityY: number }) => {
         'worklet';
         if (owner.value !== SHEET) return;
         owner.value = UNDECIDED;
+        // Only a pull that began at rest. A collapse from full that overshoots
+        // peek is a collapse, not a request for new stories.
+        if (pull.value >= PULL_TRIGGER && dragStart.value >= travel - 0.5) {
+          pull.value = 0;
+          animateTo(travel, 0, 'peek');
+          scheduleOnRN(handlePullDown);
+          return;
+        }
+        pull.value = 0;
         const v = e.velocityY;
         // A throw decides on its own; otherwise the nearer stop wins.
         const expand =
@@ -221,7 +278,7 @@ export function MapSheet({
         owner.value = UNDECIDED;
       },
     }),
-    [animateTo, dragStart, listOffset, offset, owner, travel],
+    [animateTo, dragStart, handlePullDown, listOffset, offset, owner, pull, travel],
   );
 
   const pan = usePanGesture(panConfig);

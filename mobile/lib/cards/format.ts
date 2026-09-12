@@ -155,10 +155,11 @@ export function deltaFrom(
   // A flat chip carries no arrow — there is no direction to point — but it is
   // still coloured, because a monochrome chip in a column of slate ones reads
   // as a fourth state rather than as the quietest one.
+  const size = unit === 'percent' ? Math.abs(change.pct) : undefined;
   if (magnitude === null)
-    return { direction: 'flat', magnitude: 'unchanged', window, valence: 'neutral' };
+    return { direction: 'flat', magnitude: 'unchanged', window, valence: 'neutral', size };
   const direction = change.pct > 0 ? 'up' : 'down';
-  return { direction, magnitude, window, valence: valenceOf(direction, riseMeans) };
+  return { direction, magnitude, window, valence: valenceOf(direction, riseMeans), size };
 }
 
 /** The magnitude alone, unsigned, or null when it rounds to nothing. Rounding

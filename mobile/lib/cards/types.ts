@@ -53,6 +53,13 @@ export interface CardDelta {
   /** Pre-formatted magnitude, unsigned — "5.2%", "60 points". The arrow is
    *  the sign; printing both is the same fact twice. */
   magnitude: string;
+  /** The same move as an unsigned percentage, for ordering and nothing else —
+   *  the strip puts the largest first. Absent where the move is in points: a
+   *  contract's sixty points and a price's six percent are not one scale. The
+   *  windows still differ (a day, a month, a 90-day normal); the strip accepts
+   *  that, because what it answers is "what moved most", not "what moved most
+   *  unusually", and `lib/cards/rank.ts` records why the second was rejected. */
+  size?: number;
   /** The window it moved over, in the card's own words: "since 22 Jul",
    *  "on the month", "vs its 90-day normal". A change without its window is
    *  the mistake `windowChange` exists to prevent. */

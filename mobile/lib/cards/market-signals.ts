@@ -57,10 +57,11 @@ export function marketSignalCards(
          * of position worth stating: these cards used to bypass ranking
          * entirely, on the grounds that the server owns their selection. It
          * still does — the server decides *which* signals exist and when they
-         * revise. But choosing which three of forty instruments occupy three
-         * fixed slots above the globe is presentation, and prepending them
-         * unranked would hand two of those three slots to whichever exchanges
-         * happened to qualify, over a strait that had closed.
+         * revise. But the order instruments reach the screen in is
+         * presentation, and prepending them unranked put whichever exchanges
+         * happened to qualify ahead of a strait that had closed. (The strip
+         * re-sorts by the size of the move; this order still decides the NOW
+         * block, the instruments sheet and ties.)
          */
         lead: true,
         // The exchange the index belongs to, directly above its ticker — the
@@ -79,6 +80,7 @@ export function marketSignalCards(
         delta: {
           direction: p.direction > 0 ? 'up' : 'down',
           magnitude: `${Math.abs(p.changePct).toFixed(1)}%`,
+          size: Math.abs(p.changePct),
           window: `${p.sessions} ${p.sessions === 1 ? 'session' : 'sessions'}`,
           valence: 'neutral',
         },

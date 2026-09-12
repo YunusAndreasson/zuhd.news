@@ -46,6 +46,9 @@ export interface ArticleListRef {
 }
 
 interface ArticleListProps {
+  /** Room taken above the pages by chrome floating over them — the reader's
+   *  status bar and share/close row. Added to each page's top padding. */
+  topInset?: number;
   /** The whole feed as one ordered column. Each article carries its real
    *  category, which the card shows as a kicker and the bookmark store files
    *  it under — neither has to infer it from which page you were on. */
@@ -117,6 +120,7 @@ export const ArticleList = memo(function ArticleList({
   globeRef,
   scrollY: scrollYProp,
   tick,
+  topInset = 0,
   ref,
 }: ArticleListProps) {
   const { colors, bgAlpha } = useTheme();
@@ -402,6 +406,7 @@ export const ArticleList = memo(function ArticleList({
         onCountryPress={onCountryPress}
         odds={oddsBySlug?.get(item.slug) ?? null}
         onOddsPress={onOddsPress}
+        topInset={topInset}
         onInnerScrollConsumed={handleInnerScrollConsumed}
         onReadingScrollStart={onReadingScrollStart}
         hasNext={index < articleCount - 1}
@@ -411,6 +416,7 @@ export const ArticleList = memo(function ArticleList({
     ),
     [
       itemHeight,
+      topInset,
       scrollY,
       // A ref object from the screen, stable for the app's lifetime — listed
       // because biome cannot prove that across a prop boundary, and a

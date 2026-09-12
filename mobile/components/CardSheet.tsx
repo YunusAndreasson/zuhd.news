@@ -1,5 +1,5 @@
-import { memo, useMemo } from 'react';
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { LAYOUT } from '../constants/theme';
 import type { CardStatus } from '../lib/card-history';
@@ -24,11 +24,22 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * `CardFrame` owns that scroller — so it wants a bounded column, which is
  * what `snapPoints` gives it. Content sizing would measure the frame's own
  * `height: itemHeight` and produce a sheet sized to a guess.
+ *
+ * **Measured, not guessed.** The column the card fills is the sheet's own
+ * layout. Sizing it as 85% of the window less a handle allowance left a band
+ * of empty sheet under the analysis on a 411pt Android phone, where the
+ * handle is shorter than the allowance; the guess now covers only the first
+ * frame, before the column has been measured.
+ *
+ * **No handle title.** The card prints its own kicker line directly under the
+ * handle — `current · what traders think · Sep 12` — so a title reading
+ * "what traders think" above it was the same fact twice, one line apart.
  */
 
-/** Room for the handle above the card's own column, so the frame's internal
- *  scroll boundary lands where the sheet actually ends. */
+/** Room for the handle above the card's column, for the first-frame estimate. */
 const HANDLE_ALLOWANCE = 56;
+/** Below this a measurement is a sheet still presenting, not a column to fill. */
+const MIN_COLUMN = 240;
 
 interface CardSheetProps extends BaseSheetProps {
   card: SwipeCard | null;
@@ -46,10 +57,17 @@ export const CardSheet = memo(function CardSheet({
   // above it, so the arrival interpolation resolves at offset 0 — fully
   // arrived, no transform. That is the correct reading of the same code.
   const scrollY = useSharedValue(0);
-  const itemHeight = useMemo(
-    () => Math.max(240, Math.round(height * LAYOUT.sheetMaxFraction) - HANDLE_ALLOWANCE),
+  const estimate = useMemo(
+    () => Math.max(MIN_COLUMN, Math.round(height * LAYOUT.sheetMaxFraction) - HANDLE_ALLOWANCE),
     [height],
   );
+  const [measured, setMeasured] = useState<number | null>(null);
+  const handleColumnLayout = useCallback((event: LayoutChangeEvent) => {
+    const next = Math.round(event.nativeEvent.layout.height);
+    if (next < MIN_COLUMN) return;
+    setMeasured((prev) => (prev === next ? prev : next));
+  }, []);
+  const itemHeight = measured ?? estimate;
   const snapPoints = useMemo(() => [`${Math.round(LAYOUT.sheetMaxFraction * 100)}%`], []);
 
   return (
@@ -58,9 +76,8 @@ export const CardSheet = memo(function CardSheet({
       onDismiss={onDismiss}
       enableDynamicSizing={false}
       snapPoints={snapPoints}
-      handleTitle={card?.kicker ?? undefined}
     >
-      <View style={styles.column}>
+      <View style={styles.column} onLayout={handleColumnLayout}>
         {card ? (
           <CardView
             card={card}

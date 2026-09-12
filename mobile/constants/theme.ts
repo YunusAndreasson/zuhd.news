@@ -593,6 +593,18 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       letterSpacing: typography.trackingCaps,
       color: colors.textSecondary,
     } as TextStyle,
+    /** `labelXs` set solid, for a caps label allowed to wrap to a second line
+     *  — the strip's gauge subjects. Body leading (1.55) suits one caps line
+     *  sitting in a row; across a wrap it opened a gap between "STRAIT OF"
+     *  and "HORMUZ" wide enough to read as two separate labels. */
+    labelXsTight: {
+      ...font.smallCaps,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeXs,
+      lineHeight: typography.sizeXs * typography.leadingHeading,
+      letterSpacing: typography.trackingCaps,
+      color: colors.textSecondary,
+    } as TextStyle,
     /** Tabular numerals — time readouts, counts, any fixed-width layout */
     tabular: {
       ...font.regular,
@@ -647,6 +659,7 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
   label: MAX_FONT_SCALE.label,
   labelSm: MAX_FONT_SCALE.label,
   labelXs: MAX_FONT_SCALE.label,
+  labelXsTight: MAX_FONT_SCALE.label,
   tabular: MAX_FONT_SCALE.tabular,
   tabularEmphasis: MAX_FONT_SCALE.tabular,
   sectionHeading: MAX_FONT_SCALE.body,
@@ -694,6 +707,7 @@ export const VARIANT_TEXT_PROPS: Partial<Record<TextVariant, Partial<RNTextProps
   label: { dynamicTypeRamp: 'callout' },
   labelSm: { dynamicTypeRamp: 'footnote' },
   labelXs: { dynamicTypeRamp: 'caption1' },
+  labelXsTight: { dynamicTypeRamp: 'caption1' },
   tabular: { dynamicTypeRamp: 'caption1' },
   tabularEmphasis: { dynamicTypeRamp: 'caption1' },
   sectionHeading: { dynamicTypeRamp: 'footnote' },

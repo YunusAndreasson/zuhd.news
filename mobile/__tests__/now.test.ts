@@ -1,17 +1,15 @@
 import type { MarketSignal } from '@shared/market-signals';
 import type { Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from '../lib/cards/rank';
-import type { GraphCard, ReadingCard } from '../lib/cards/types';
+import type { CardDelta, GraphCard, ReadingCard } from '../lib/cards/types';
 import type { RiverArticle } from '../lib/news-order';
-import {
-  buildNowSurfaces,
-  coverageRanks,
-  HAZARD_MAX_AGE_DAYS,
-  NOW_LIMIT,
-  STRIP_SLOTS,
-} from '../lib/now';
+import { buildNowSurfaces, coverageRanks, HAZARD_MAX_AGE_DAYS, NOW_LIMIT } from '../lib/now';
 
 const NOW = Date.parse('2026-09-12T09:00:00Z');
+
+function move(size: number | undefined, direction: 'up' | 'down' = 'down'): CardDelta {
+  return { direction, magnitude: `${size}%`, valence: 'neutral', size };
+}
 const DAY = 86_400_000;
 
 function reading(id: string, extra: Partial<ReadingCard> = {}): GraphCard {
@@ -21,6 +19,7 @@ function reading(id: string, extra: Partial<ReadingCard> = {}): GraphCard {
     kicker: `${id} desk`,
     title: `${id} title`,
     reading: '100',
+    delta: move(1),
     why: `${id} explained`,
     series: { values: [1, 2], periods: ['p0', 'p1'], label: id },
     ...extra,
@@ -105,24 +104,59 @@ function base(over: Partial<Parameters<typeof buildNowSurfaces>[0]> = {}) {
 }
 
 describe('buildNowSurfaces — the strip', () => {
-  it('takes the first three of the ranked order, unchanged', () => {
-    const ranked: SwipeCard[] = ['a', 'b', 'c', 'd'].map((id) => reading(id));
-    const { strip } = base({ ranked });
-    expect(strip).toHaveLength(STRIP_SLOTS);
-    expect(strip.map((s) => s.id)).toEqual(['a', 'b', 'c']);
+  it('holds every reading that moved, not a fixed number of them', () => {
+    const ranked: SwipeCard[] = ['a', 'b', 'c', 'd', 'e'].map((id) => reading(id));
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['a', 'b', 'c', 'd', 'e']);
   });
 
-  it('is short rather than padded when there are fewer instruments', () => {
-    const { strip } = base({ ranked: [reading('only')] });
-    expect(strip).toHaveLength(1);
+  it('puts the largest move first, whichever way it went', () => {
+    const ranked: SwipeCard[] = [
+      reading('gold', { delta: move(0.8, 'up') }),
+      reading('strait-hormuz', { delta: move(57) }),
+      reading('fx-try', { delta: move(2.4, 'up') }),
+      reading('market-signal:bist', { delta: move(4.8) }),
+    ];
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual([
+      'strait-hormuz',
+      'market-signal:bist',
+      'fx-try',
+      'gold',
+    ]);
   });
 
-  it('labels a slot with the kicker — the subject — not the title', () => {
-    const { strip } = base({ ranked: [reading('bist', { kicker: 'Borsa İstanbul' })] });
-    expect(strip[0]?.label).toBe('Borsa İstanbul');
+  it('keeps the ranked order between equal moves', () => {
+    const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { delta: move(3) }));
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['b', 'a', 'c']);
   });
 
-  it('falls back to the title when a card has no kicker', () => {
+  it('sorts a move with no percentage after every move with one', () => {
+    const ranked: SwipeCard[] = [
+      reading('points', { delta: move(undefined, 'up') }),
+      reading('flat', { delta: move(0) }),
+    ];
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['flat', 'points']);
+  });
+
+  it('leaves out a reading with no move — there is nothing to glance at', () => {
+    const { strip } = base({ ranked: [reading('nisab', { delta: undefined }), reading('only')] });
+    expect(strip.map((s) => s.id)).toEqual(['only']);
+  });
+
+  it('labels a slot with what the number measures — the title, not the kicker', () => {
+    // A kicker heads a title on a card; alone it is often a category or longer
+    // than the thing it heads, and "AUSTRALIAN SECURITIES EXC…" named nothing.
+    const { strip } = base({
+      ranked: [
+        reading('market-signal:asx', {
+          kicker: 'Australian Securities Exchange',
+          title: 'S&P/ASX 200',
+        }),
+      ],
+    });
+    expect(strip[0]?.label).toBe('S&P/ASX 200');
+  });
+
+  it('uses the title for a kickerless card too', () => {
     const { strip } = base({ ranked: [reading('x', { kicker: undefined })] });
     expect(strip[0]?.label).toBe('x title');
   });
@@ -176,15 +210,15 @@ describe('buildNowSurfaces — the block', () => {
     expect(now).toHaveLength(0);
   });
 
-  it('admits a gated instrument the strip had no room for', () => {
-    const ranked: SwipeCard[] = ['a', 'b', 'c', 'd'].map((id) => reading(id, { lead: true }));
+  it('admits a gated reading the strip cannot hold, because it has no move', () => {
+    const ranked: SwipeCard[] = [reading('a', { lead: true, delta: undefined })];
     const { now } = base({ ranked });
-    expect(now.map((n) => n.id)).toEqual(['d']);
+    expect(now.map((n) => n.id)).toEqual(['a']);
     expect(now[0]?.kind).toBe('instrument');
   });
 
   it('excludes an ungated instrument — a card must have changed, not merely rank', () => {
-    const ranked: SwipeCard[] = ['a', 'b', 'c', 'd'].map((id) => reading(id));
+    const ranked: SwipeCard[] = ['a', 'b'].map((id) => reading(id, { delta: undefined }));
     expect(base({ ranked }).now).toHaveLength(0);
   });
 
@@ -211,11 +245,8 @@ describe('buildNowSurfaces — the block', () => {
 
   it('orders newest first across kinds', () => {
     const ranked: SwipeCard[] = [
-      reading('s1'),
-      reading('s2'),
-      reading('s3'),
-      reading('old', { lead: true, asOf: '2026-09-08' }),
-      reading('new', { lead: true, asOf: '2026-09-11' }),
+      reading('old', { lead: true, asOf: '2026-09-08', delta: undefined }),
+      reading('new', { lead: true, asOf: '2026-09-11', delta: undefined }),
     ];
     const { now } = base({
       ranked,
@@ -225,8 +256,8 @@ describe('buildNowSurfaces — the block', () => {
   });
 
   it('caps the block so it cannot become a second river', () => {
-    const ranked: SwipeCard[] = Array.from({ length: 3 + NOW_LIMIT + 2 }, (_, i) =>
-      reading(`c${i}`, { lead: true, asOf: '2026-09-11' }),
+    const ranked: SwipeCard[] = Array.from({ length: NOW_LIMIT + 2 }, (_, i) =>
+      reading(`c${i}`, { lead: true, asOf: '2026-09-11', delta: undefined }),
     );
     expect(base({ ranked }).now).toHaveLength(NOW_LIMIT);
   });
@@ -279,5 +310,35 @@ describe('coverageRanks', () => {
 
   it('gives a lone figure the top rank rather than dividing by zero', () => {
     expect(coverageRanks([story('a', 12)]).get('a')).toBe(1);
+  });
+});
+
+describe('buildNowSurfaces — what a slot and a row may say', () => {
+  const belief = (id: string, extra: Partial<ReadingCard> = {}): SwipeCard =>
+    ({
+      ...reading(id, extra),
+      kind: 'belief',
+      kicker: 'what traders think',
+    }) as unknown as SwipeCard;
+
+  it('never gives a slot to a prediction market, whose subject is a question', () => {
+    const ranked: SwipeCard[] = [
+      belief('poly-ceasefire', { lead: true }),
+      reading('a'),
+      reading('b'),
+      reading('c'),
+    ];
+    const { strip, now } = base({ ranked });
+    expect(strip.map((s) => s.id)).toEqual(['a', 'b', 'c']);
+    // Kept out of the strip, not out of the screen: a sharp contract still
+    // reaches the block, where the row has room for the whole question.
+    expect(now.map((n) => n.id)).toEqual(['poly-ceasefire']);
+  });
+
+  it('names a strait row by its kind rather than calling it an instrument', () => {
+    const ranked: SwipeCard[] = [
+      reading('strait-kerch', { lead: true, kicker: undefined, delta: undefined }),
+    ];
+    expect(base({ ranked }).now[0]?.kicker).toBe('shipping');
   });
 });

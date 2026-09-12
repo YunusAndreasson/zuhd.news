@@ -47,6 +47,7 @@ import { MiniGlobe, type MiniGlobeRef, type TapResult } from '../components/glob
 import { HintOverlay } from '../components/HintOverlay';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
+import { FEED_ROW_TITLE_SCALE } from '../components/map/FeedRow';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { IndicatorStrip } from '../components/map/IndicatorStrip';
 import { MapFeed } from '../components/map/MapFeed';
@@ -59,7 +60,7 @@ import { ReaderLayer } from '../components/reader/ReaderLayer';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EASING, EDITORIAL, SPACING } from '../constants/theme';
+import { ANIMATION, CATEGORIES, EASING, EDITORIAL, SPACING } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -69,6 +70,7 @@ import { useHeatmap } from '../hooks/useHeatmap';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
+import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
@@ -97,7 +99,7 @@ import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
  *
  * What replaced it:
  *
- *   **the strip**   three gauges, ranked, above the earth
+ *   **the strip**   every mover, largest first, swiped sideways above the earth
  *   **the earth**   one canvas, mounted here, turned to whatever matters most
  *   **the sheet**   the app's only list — what is flashing, then the day
  *   **the reader**  a layer over all of it, not a place you navigate to
@@ -256,7 +258,12 @@ export default function HomeScreen() {
   }, []);
 
   const sheetPeek = Math.round(screenHeight * SHEET_PEEK_FRACTION);
-  const sheetFull = Math.round(screenHeight * SHEET_FULL_FRACTION);
+  // Expanded, the sheet stops under the gauges rather than at a fixed share of
+  // the window. A fixed 88% ran the masthead into the strip's readings on a
+  // 411pt phone, whose top chrome is taller than 12% of the screen.
+  const sheetFull = Math.round(
+    Math.min(screenHeight * SHEET_FULL_FRACTION, screenHeight - topChromeHeight),
+  );
 
   // The earth sits in the band between the strip and the sheet at rest, and
   // is sized to the smaller of what the width and that band allow. As a
@@ -273,9 +280,11 @@ export default function HomeScreen() {
   // globe on the wrong story. Titles clamp to two lines instead — the reader
   // is where long text lives and it has no such constraint.
   const rowHeight = useMemo(() => {
-    const titleLine = textVariants.title.lineHeight ?? 26;
+    // `Text` rounds a scaled line height, so this does too: the row the list
+    // lays out and the row the camera divides by must agree to the pixel.
+    const titleLine = Math.round((textVariants.title.lineHeight ?? 26) * FEED_ROW_TITLE_SCALE);
     const metaLine = textVariants.labelXs.lineHeight ?? 13;
-    return Math.round(SPACING.smPlus * 2 + titleLine * 2 + SPACING.xs + metaLine);
+    return Math.round(SPACING.sm * 2 + titleLine * 2 + SPACING.xs + metaLine);
   }, [textVariants]);
 
   // ---------------------------------------------------------------------
@@ -888,6 +897,36 @@ export default function HomeScreen() {
   // tracks a finger at 60fps and `callReproject` is ~5 ms. Finger-tracked, so
   // it is exempt from Reduce Motion like the sheet itself. Full strength while
   // reading: the globe behind the reader's prose is its backdrop.
+  // While a story is open the reader is translucent over the earth — the
+  // backdrop gradient in `ArticleList` is what keeps its prose legible — so the
+  // map's own chrome has to leave, or the strip and the sheet read through the
+  // top of the page.
+  // Android's back collapses an expanded sheet before it leaves the app. The
+  // map is the root screen, so without this the one key a reader reaches for
+  // to get back down to the globe closed zuhd instead.
+  const collapseSheet = useCallback(() => {
+    mapSheetRef.current?.collapse();
+  }, []);
+  useHardwareBack({ enabled: !readerOpen && sheetDetent === 'full', onBack: collapseSheet });
+
+  //
+  // One animated style per view. The first version shared a single style
+  // between the header and the sheet's layer, and on the Android emulator only
+  // the header came back when a story closed — the sheet stayed at opacity 0,
+  // present and touchable but invisible.
+  const topChromeStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(readerOpenSV.value === 1 ? 0 : 1, {
+      duration: reduceMotion ? 0 : ANIMATION.normal,
+      easing: EASING.out,
+    }),
+  }));
+  const sheetLayerStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(readerOpenSV.value === 1 ? 0 : 1, {
+      duration: reduceMotion ? 0 : ANIMATION.normal,
+      easing: EASING.out,
+    }),
+  }));
+
   const globeStyle = useAnimatedStyle(() => {
     const p = readerOpenSV.value === 1 ? 0 : sheetProgress.value;
     return {
@@ -939,23 +978,23 @@ export default function HomeScreen() {
         onStoryPress={handleStoryPress}
         onNowPress={handleNowPress}
         onInstrumentsPress={handleInstrumentsPress}
-        onRefresh={handleRefresh}
-        refreshing={refreshing}
-        bottomInset={insets.bottom}
+        // The briefing's player floats over the bottom of the sheet while it is
+        // up; the same allowance the reader's pages keep for it, so the last
+        // story can still be scrolled clear of the bar.
+        bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
       />
     ),
     [
+      briefingVisible,
       cameraScrollY,
       handleHeaderLayout,
       handleInstrumentsPress,
       handleListDragStart,
       handleNowPress,
-      handleRefresh,
       handleStoryPress,
       headerHeight,
       insets.bottom,
       now,
-      refreshing,
       rowHeight,
       storyRows,
     ],
@@ -966,13 +1005,17 @@ export default function HomeScreen() {
       <SheetMasthead
         dateLabel={dateLabel}
         storyCount={river.length}
-        briefingAvailable={briefingStatus.available}
+        refreshing={refreshing}
+        // While the player bar is up it is the control. A second pill reading
+        // "resume · 10 min" over audio that was already playing said the
+        // opposite of what was happening; it returns when the bar is hidden.
+        briefingAvailable={briefingStatus.available && !briefingVisible}
         briefingResumable={briefingStatus.resumable}
         briefingDuration={briefingStatus.duration}
         onBriefingPress={handleBriefingPress}
       />
     ),
-    [briefingStatus, dateLabel, handleBriefingPress, river.length],
+    [briefingStatus, briefingVisible, dateLabel, handleBriefingPress, refreshing, river.length],
   );
 
   if (loading)
@@ -1028,24 +1071,34 @@ export default function HomeScreen() {
         enabled={!readerOpen && sheetDetent === 'peek'}
       />
 
-      <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
+      <Animated.View
+        style={[styles.topChrome, topChromeStyle]}
+        onLayout={onTopChromeLayout}
+        pointerEvents={readerOpen ? 'none' : 'box-none'}
+      >
         <MapHeader
           onMenuPress={handleMenuPress}
           onZoomPress={handleZoomToggle}
           zoomLabel={currentZoom.label}
         />
         <IndicatorStrip items={strip} onSelect={handleStripPress} />
-      </View>
+      </Animated.View>
 
-      <MapSheet
-        ref={mapSheetRef}
-        peek={sheetPeek}
-        full={sheetFull}
-        progress={sheetProgress}
-        header={masthead}
-        renderList={renderList}
-        onDetentChange={setSheetDetent}
-      />
+      <Animated.View
+        style={[styles.sheetLayer, sheetLayerStyle]}
+        pointerEvents={readerOpen ? 'none' : 'box-none'}
+      >
+        <MapSheet
+          ref={mapSheetRef}
+          peek={sheetPeek}
+          full={sheetFull}
+          progress={sheetProgress}
+          header={masthead}
+          renderList={renderList}
+          onDetentChange={setSheetDetent}
+          onPullDown={handleRefresh}
+        />
+      </Animated.View>
 
       <ReaderLayer
         visible={readerOpen}
@@ -1075,7 +1128,9 @@ export default function HomeScreen() {
         onOddsPress={handleOddsPress}
       />
 
-      <Toast ref={toastRef} />
+      {/* Over the map a top toast starts under the gauges; "12 new · ~9 min
+          read" landed on the strip's readings. The reader has no strip. */}
+      <Toast ref={toastRef} topOffset={readerOpen ? undefined : topChromeHeight} />
 
       <HintOverlay
         hint={activeHint}
@@ -1198,5 +1253,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   globeLayer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  sheetLayer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   topChrome: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 },
 });

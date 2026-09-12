@@ -64,7 +64,7 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag rotates · pinch steps zoom · tap hit-tests
-MapHeader + IndicatorStrip            wordmark, zoom, menu · three ranked gauges
+MapHeader + IndicatorStrip            wordmark, zoom, menu · every mover, swiped, largest first
 MapSheet                              custom, non-modal, peek/full · masthead + NOW + river
 ReaderLayer                           ArticleList over the river, presented over the map
 platform sheets                       card · instruments · chokepoint · country · …
@@ -101,6 +101,16 @@ whole time; nothing said so.
   stories (the river's first row already *is* the lead story) and no conflict
   events (UCDP publishes months in arrears, and NOW over a March event is a
   false claim).
+- **The strip scrolls sideways and holds every reading that moved, largest
+  move first.** It was three fixed slots, and the reader asked for all the
+  markets, straits and currencies in one swipe, sorted so the most dramatic
+  change sits at the left. `CardDelta.size` is the unsigned percentage the
+  sort reads — set by `deltaFrom` for percent moves, by `straitDelta` and by
+  the market-signal builder — and is absent for a move in points, which sorts
+  last. Contracts (their subject is a question) and dates (no move) never take
+  a slot, so with every moving reading on the strip, the NOW block is left with
+  those plus Red alerts. Slots are sized for 3.4 across: the cut slot is the
+  only sign the row continues.
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
@@ -171,7 +181,7 @@ about what a card may say is about the card, not where it is shown.
     rule was shared. `straitCards` passes `CHOKEPOINT_CURRENT_DAYS` (10) to
     `isCurrentObservation`; a stalled fetch still ages out of it.
   - **The 90-day normal is a line on the chart, not a sentence under it**
-    (`CardSeries.reference`, a dashed hairline labelled at its left end), and
+    (`CardSeries.reference`, a dashed hairline labelled on the first stretch of it the series leaves clear), and
     the strait's primary vessel class — tankers at Hormuz, container ships at
     Bab el-Mandeb — is a secondary figure with its own seven-day average and
     distance from normal. Both were in the payload all along; only the globe
@@ -204,11 +214,36 @@ about what a card may say is about the card, not where it is shown.
   the gold/silver card graphs its ratio rather than flattening silver beneath
   gold on a shared dollar scale. A subtype or component may remain a secondary
   figure, but it cannot be the reading above a chart of something else.
-- **Pull to refresh is on the sheet's list, and it is real.**
-  `useArticles.refresh()` probes `/api/meta.json`; a moved `generated` runs
-  `invalidateApiJson`, which marks every `useApiJson` snapshot stale at once —
-  trends, chokepoints, analysis, market signals — so the strip, the NOW block
-  and the marks all refetch from the one gesture.
+- **Pull to refresh is a pull on the sheet at rest, not on its list, and it
+  is real.** The list cannot host it: pulled down at its top, the expanded
+  list belongs to the sheet, which collapses. A `RefreshControl` there broke
+  both platforms differently — on Android its SwipeRefreshLayout took the
+  collapse drag, on iOS `bounces={false}` meant it could never fire — so
+  `MapSheet.onPullDown` fires when a drag that began at peek stretches the
+  sheet past `PULL_TRIGGER`, and the masthead's count line says
+  `checking for new stories` while it runs. `useArticles.refresh()` probes
+  `/api/meta.json`; a moved `generated` runs `invalidateApiJson`, which marks
+  every `useApiJson` snapshot stale at once — trends, chokepoints, analysis,
+  market signals — so the strip, the NOW block and the marks all refetch from
+  the one gesture.
+- **The sheet's pan waits for a direction before it decides.** Its first
+  update can carry `translationY === 0` (observed on every drag on the
+  Android emulator), and ownership decided on that zero read as "not pulling
+  down", which gave every collapse drag on the expanded sheet to the list.
+- **The reader has no background of its own, so the map's chrome leaves.**
+  `ArticleList` draws the backdrop gradient — clear at the top, opaque under
+  the prose — and that is what lets the same earth keep turning behind a
+  story. An opaque `ReaderLayer` hid the globe while every page turn still
+  paid to reproject it. With the layer translucent, the header, the strip and
+  the sheet fade out and stop taking touches while a story is open, each on
+  its **own** `useAnimatedStyle`: one style shared by the two views brought
+  only the header back when the story closed, and the sheet sat at opacity 0,
+  invisible but touchable. Pages take `topInset` (status bar + the reader's
+  share/close row), which the section rail used to supply by sitting in flow
+  above the pager.
+- **Android's back collapses an expanded sheet before it leaves the app.** The
+  map is the root screen, so without `useHardwareBack` on the full detent the
+  key a reader uses to get back down to the globe closed zuhd.
 - **The horizontal axis belongs to going back.** With the rail gone, a
   sideways swipe in the reader returns to the map (`useSwipeBackGesture`, the
   same thresholds the multi-page sheets use). `TrendBlock`'s scrubber ate five

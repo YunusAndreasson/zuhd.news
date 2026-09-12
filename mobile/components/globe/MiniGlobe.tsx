@@ -1507,6 +1507,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       frac: number,
       overrideActiveVal: number,
       overrideAngleVal: number,
+      // Something other than the list is moving the camera — a finger or a
+      // flight. Forces the in-motion detail tier; see `nearSettled`.
+      cameraMoving = false,
     ) => {
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
@@ -1586,7 +1589,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       const activeMid = overrideActiveVal > 0.001 && overrideActiveVal < 0.999;
       const angleChanging = Math.abs(overrideAngleVal - lastAngle) > 0.01;
       const zoomInFlight = activeMid || angleChanging;
-      const nearSettled = !zoomInFlight && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
+      // A camera the list does not own has no `frac` of its own: the reaction
+      // hands over the list's last one, which is ~0 at rest. Without
+      // `cameraMoving`, every frame of a globe drag was therefore projected at
+      // full settled detail — on the emulator, 26 of 26 frames over four drags.
+      const nearSettled =
+        !zoomInFlight && !cameraMoving && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
 
       // Land — reset reuses the PathBuilder's underlying buffer.
       // Mid-scroll uses the ~2k-vertex simplified topology (vs 5k full); at
@@ -1606,9 +1614,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       pg.context(skiaCtx)(nearSettled ? iceSheets : iceSheetsSimplified);
       const icePath = iceBuilder.build();
 
-      // Dot
+      // Dot — culled against the zoom cone like every other point marker.
+      // While the list was the camera's only owner the settled story *was*
+      // the camera target, so it could never leave the disk. A drag, a
+      // selection or the opening view can now aim the camera elsewhere, and
+      // direct projection ignores `.clipAngle` (see clipRad above): the dot
+      // and its "London · 20:17" label floated in the sky beside the globe.
       let dot: { x: number; y: number } | null = null;
-      if (geo) {
+      if (geo && geoDistance([geo.lng, geo.lat], [geoLng, geoLat]) < clipRad) {
         const pt = proj([geo.lng, geo.lat]);
         if (pt) dot = { x: pt[0], y: pt[1] };
       }
@@ -2297,6 +2310,32 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
 
+        // Strait and exchange labels are always drawn, so they seed the sweep
+        // the way the country and dot labels do, and a neighbour or water name
+        // that crosses one yields. Unseeded, "Bosporus Strait" printed across
+        // TÜRKIYE and "Bab-el-Mandeb" across ETHIOPIA. The boxes mirror the
+        // render side: centred on the mark, baseline 20 below it.
+        for (const c of chokepointMarks) {
+          const tw = wfont ? wfont.measureText(c.label).width : c.label.length * 5;
+          const yc = c.y + 20;
+          occupied.push({
+            x0: c.x - tw / 2 - pad,
+            x1: c.x + tw / 2 + pad,
+            y0: yc - 10 - pad,
+            y1: yc + 3 + pad,
+          });
+        }
+        for (const m of marketProjected) {
+          const tw = wfont ? wfont.measureText(m.label).width : m.label.length * 5;
+          const yc = m.y + 20;
+          occupied.push({
+            x0: m.x - tw / 2 - pad,
+            x1: m.x + tw / 2 + pad,
+            y0: yc - 10 - pad,
+            y1: yc + 3 + pad,
+          });
+        }
+
         const nkept: GlobeState['neighborLabels'] = [];
         for (const n of neighborLabels) {
           const w = measureLines(n.lines, nfont, 5);
@@ -2404,6 +2443,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       frac: number,
       overrideActiveVal: number,
       overrideAngleVal: number,
+      cameraMoving: boolean,
     ) => {
       try {
         callReproject(
@@ -2415,6 +2455,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           frac,
           overrideActiveVal,
           overrideAngleVal,
+          cameraMoving,
         );
       } finally {
         reprojectBusy.value = false;
@@ -2439,6 +2480,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   // than recomputing a row index the finger never touched.
   const lastReactLo = useSharedValue(0);
   const lastReactHi = useSharedValue(0);
+  // Whether the last frame a finger or a flight published was in motion, so the
+  // frame after the camera stops is redrawn at full detail — once.
+  const lastReactMoving = useSharedValue(false);
 
   useAnimatedReaction(
     () => ({
@@ -2473,18 +2517,38 @@ export const MiniGlobe = memo(function MiniGlobe({
       // window alone. The throttle above still applies, so a drag reprojects
       // at the same ~30fps everything else does — the budget is the budget.
       if (owner === 1) {
-        if (
+        const unchanged =
           Math.abs(dragLng - lastReactLng.value) < 0.01 &&
           Math.abs(dragLat - lastReactLat.value) < 0.01 &&
           Math.abs(oA - lastReactOA.value) < 1e-4 &&
-          Math.abs(oG - lastReactOG.value) < 0.01
-        ) {
+          Math.abs(oG - lastReactOG.value) < 0.01;
+        if (unchanged) {
+          // The camera has stopped. The reaction re-runs when the in-flight
+          // projection releases `busy`, so this is where a drag or a flight
+          // comes to rest, and the frame it last published was the in-motion
+          // tier. Redraw it at full detail, once.
+          if (!lastReactMoving.value) return;
+          lastReactMoving.value = false;
+          reprojectBusy.value = true;
+          scheduleOnRN(
+            runScrollReproject,
+            dragLng,
+            dragLat,
+            lastReactSettled.value,
+            lastReactLo.value,
+            lastReactHi.value,
+            lastReactFrac.value,
+            oA,
+            oG,
+            false,
+          );
           return;
         }
         lastReactLng.value = dragLng;
         lastReactLat.value = dragLat;
         lastReactOA.value = oA;
         lastReactOG.value = oG;
+        lastReactMoving.value = true;
         reprojectBusy.value = true;
         scheduleOnRN(
           runScrollReproject,
@@ -2496,6 +2560,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           lastReactFrac.value,
           oA,
           oG,
+          true,
         );
         return;
       }
@@ -2600,8 +2665,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       lastReactLo.value = lo;
       lastReactHi.value = hi;
 
+      lastReactMoving.value = false;
       reprojectBusy.value = true;
-      scheduleOnRN(runScrollReproject, lng, lat, settled, lo, hi, frac, oA, oG);
+      scheduleOnRN(runScrollReproject, lng, lat, settled, lo, hi, frac, oA, oG, false);
     },
   );
 

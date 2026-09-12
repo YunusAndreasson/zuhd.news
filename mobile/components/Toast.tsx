@@ -49,7 +49,16 @@ function getExiting(pos: ToastPosition, reduceMotion: boolean) {
   return base.duration(ANIMATION.normal).easing(EASING.in);
 }
 
-export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
+export const Toast = memo(function Toast({
+  ref,
+  topOffset,
+}: {
+  ref?: React.Ref<ToastRef>;
+  /** Where a top toast may start, measured from the top of the window.
+   *  Defaults to the safe area. A screen with chrome along the top passes its
+   *  height, so a toast cannot land on the controls it is reporting on. */
+  topOffset?: number;
+}) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
@@ -94,7 +103,9 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
   }, [dismiss]);
 
   const positionStyle =
-    pos === 'top' ? { top: insets.top + SPACING.xl } : { bottom: insets.bottom + SPACING.xl };
+    pos === 'top'
+      ? { top: (topOffset ?? insets.top) + SPACING.xl }
+      : { bottom: insets.bottom + SPACING.xl };
 
   if (!visible) return null;
 

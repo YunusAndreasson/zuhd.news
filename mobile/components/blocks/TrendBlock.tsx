@@ -54,6 +54,11 @@ const EVENT_DOT_R = 4;
 const ENDPOINT_DOT_R = 4;
 const ENDPOINT_RING_R = 8;
 const LABEL_ROW_HEIGHT = 14;
+/** Width of one `labelXs` caps character with its tracking, for sizing the
+ *  reference label before it has been laid out. */
+const REFERENCE_LABEL_CHAR_WIDTH = 7.5;
+/** How far along the line each candidate position for the label moves. */
+const REFERENCE_LABEL_STEP = 8;
 const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
 const CHART_BOTTOM_PAD = 14;
 // 56, not 44. This is both the plot's right inset and the width of the box the
@@ -435,6 +440,43 @@ export const TrendBlock = memo(function TrendBlock({
     };
   }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference]);
 
+  // Where the reference label sits on its line: the first stretch, from the
+  // left, that the series leaves clear for a label-wide band — above the line
+  // by preference, below it otherwise. Pinned to the left end, "NORMAL 10.2"
+  // printed straight across the curve of a disrupted strait whose normal sits
+  // under its early peak.
+  const referenceLabelPos = useMemo(() => {
+    if (referenceY == null || !reference) return { left: CHART_LEFT_PAD, top: 0 };
+    const text = `${reference.label} ${formatBlockNumber(reference.value)}`;
+    const labelWidth = text.length * REFERENCE_LABEL_CHAR_WIDTH;
+    const aboveTop = referenceY - LABEL_ROW_HEIGHT;
+    const belowBottom = referenceY + LABEL_ROW_HEIGHT;
+    // Segments, not points: a steep daily descent steps clean over a 14pt
+    // band between two readings, which is how the first version of this
+    // missed the Hormuz curve it was written for.
+    const clearOf = (x0: number, x1: number, bandTop: number, bandBottom: number) => {
+      for (let i = 1; i < points.length; i += 1) {
+        const a = points[i - 1];
+        const b = points[i];
+        if (!a || !b || b.x < x0 || a.x > x1) continue;
+        if (Math.max(a.y, b.y) >= bandTop && Math.min(a.y, b.y) <= bandBottom) return false;
+      }
+      return true;
+    };
+    const lastLeft = Math.max(CHART_LEFT_PAD, width - CHART_RIGHT_PAD - labelWidth);
+    for (let left = CHART_LEFT_PAD; left <= lastLeft; left += REFERENCE_LABEL_STEP) {
+      if (clearOf(left, left + labelWidth, aboveTop, referenceY)) {
+        return { left, top: Math.max(0, aboveTop) };
+      }
+    }
+    for (let left = CHART_LEFT_PAD; left <= lastLeft; left += REFERENCE_LABEL_STEP) {
+      if (clearOf(left, left + labelWidth, referenceY, belowBottom)) {
+        return { left, top: Math.min(referenceY + 2, height - LABEL_ROW_HEIGHT) };
+      }
+    }
+    return { left: CHART_LEFT_PAD, top: Math.max(0, aboveTop) };
+  }, [points, reference, referenceY, width, height]);
+
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
@@ -685,13 +727,7 @@ export const TrendBlock = memo(function TrendBlock({
                   that hides when it matters is not a label. Clamped so a
                   reference at the very top still prints. */}
               {reference && referenceY != null ? (
-                <View
-                  pointerEvents="none"
-                  style={[
-                    styles.referenceLabelWrap,
-                    { top: Math.max(0, referenceY - LABEL_ROW_HEIGHT) },
-                  ]}
-                >
+                <View pointerEvents="none" style={[styles.referenceLabelWrap, referenceLabelPos]}>
                   <Text
                     variant="labelXs"
                     tone="secondary"

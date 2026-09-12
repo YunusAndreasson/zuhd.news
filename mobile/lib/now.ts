@@ -9,8 +9,9 @@ import { EVENT_TYPE_EYEBROW } from './gdacs';
  *
  * Two surfaces, built together so they cannot disagree:
  *
- *   the strip   three gauges above the earth — subject, reading, direction.
- *               Answers *how much*. Ranked, so it is always full.
+ *   the strip   every market, strait and currency that moved, as a row of
+ *               gauges above the earth — subject, reading, direction —
+ *               largest move first, swiped sideways. Answers *how much*.
  *   the block   what else is flashing, as titles. Answers *what*.
  *               Gated, so on a quiet day it is short or empty.
  *
@@ -45,10 +46,6 @@ import { EVENT_TYPE_EYEBROW } from './gdacs';
 /** `[latitude, longitude]`, the order `getCoords` and `CITY_COORDS` use.
  *  `MiniGlobe` projects `[lng, lat]`, so a mark layer flips it — once, there. */
 export type LatLng = readonly [number, number];
-
-/** Three slots. Fixed, so a reader learns where to look; the contents change
- *  with the day, which is what a news app's gauges are for. */
-export const STRIP_SLOTS = 3;
 
 /** A fourth and fifth row turn the block into a second river. Four is the most
  *  it may claim is happening at once. */
@@ -170,10 +167,12 @@ function toStripItem(
 ): StripItem {
   return {
     id: card.id,
-    // The kicker is the subject slot — `Borsa İstanbul` over `BIST 100` — and
-    // is shorter than the title on every card that has one, which is what a
-    // third of a phone's width can carry. Title is the fallback.
-    label: card.kicker?.trim() || card.title,
+    // The title, not the kicker. On a card the kicker sits above the title and
+    // the two read as one; alone in a third of a phone, the label has to name
+    // what the number measures. The deck's kickers are often a category
+    // ("currency", "metal", "zakat") or longer than the title they head — the
+    // emulator printed "AUSTRALIAN SECURITIES EXC…" over the S&P/ASX 200.
+    label: card.title,
     reading: card.reading,
     readingNote: card.readingNote,
     delta: card.delta,
@@ -206,12 +205,25 @@ function hazardItems(alerts: GdacsAlert[], now: number): NowItem[] {
 }
 
 /**
+ * The line under an instrument's title in any list row — the NOW block and the
+ * instruments sheet both print it, so it is decided here once.
+ *
+ * Strait cards are the builders' only kickerless cards, because their title is
+ * the place; a row reading "current · instrument" said nothing about a strait.
+ */
+export function rowKicker(card: SwipeCard): string {
+  return card.kicker?.trim() || (card.id.startsWith('strait-') ? 'shipping' : 'markets');
+}
+
+/**
  * The strip and the block, in one pass so the dedupe cannot drift.
  *
  * `ranked` arrives in `prepareSwipeCards` order, which is urgent first. The
- * strip takes the first three; the block takes every *remaining* card that a
- * builder marked `lead` — the ones gated on their own data being new, rather
- * than on their subject mattering — plus any live Red alert, newest first.
+ * strip takes every reading with a move and re-sorts it by the size of that
+ * move; the block takes every *remaining* card that a builder marked `lead` —
+ * the ones gated on their own data being new, rather than on their subject
+ * mattering, which leaves the contracts and the dates — plus any live Red
+ * alert, newest first.
  */
 export function buildNowSurfaces({
   ranked,
@@ -221,9 +233,23 @@ export function buildNowSurfaces({
   countryCentroid,
   now = Date.now(),
 }: NowInputs): NowSurfaces {
+  // Readings only. A contract never takes a slot: a slot's label is its
+  // subject, and a prediction market's subject is its question — every
+  // contract shares the kicker "what traders think", so a slot holding one
+  // printed a level and a move under a label that named nothing. A scheduled
+  // date has no move at all. Both still reach the block below, where a row has
+  // room for the whole question.
+  //
+  // A reading with no delta has no up or down to glance at, which is the one
+  // thing the strip is for; it stays in the instruments sheet.
+  //
+  // Largest move first. `Array.prototype.sort` is stable, so equal moves keep
+  // the ranked order, and a move measured in points (no `size`) sorts last.
   const strip = ranked
-    .slice(0, STRIP_SLOTS)
-    .map((card) => toStripItem(card, chokepoints, signals, countryCentroid));
+    .filter((card) => card.kind === 'reading' && card.delta)
+    .map((card, order) => ({ card, order, size: card.delta?.size ?? -1 }))
+    .sort((a, b) => b.size - a.size || a.order - b.order)
+    .map(({ card }) => toStripItem(card, chokepoints, signals, countryCentroid));
 
   const onStrip = new Set(strip.map((item) => item.id));
 
@@ -234,7 +260,7 @@ export function buildNowSurfaces({
       id: card.id,
       kind: 'instrument',
       title: card.title,
-      kicker: card.kicker?.trim() || 'instrument',
+      kicker: rowKicker(card),
       at: cardTime(card, now),
       coords: locateCard(card, chokepoints, signals, countryCentroid),
       card,

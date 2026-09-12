@@ -3,7 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
+import { FEED_ROW_TITLE_SCALE } from './map/FeedRow';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -25,6 +27,13 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * Rows carry the reading *and* the delta with its window, unlike the strip
  * above the globe — there is no gauge row competing here, so the full chip
  * fits and the information appears in exactly one place on this surface.
+ *
+ * **The same row shape as the sheet's list.** Title first, at `FeedRow`'s
+ * scale and allowed two lines, then `current · kicker` on one line under it.
+ * This list used to print `current` above the title and the kicker below it,
+ * which spent a line on every row and cut every contract's question — the
+ * one kind of title that is a whole sentence — to "Iran-Oman Hormuz pact…".
+ * The rows here are not indexed by a camera, so a second line costs nothing.
  */
 
 const Row = memo(function Row({
@@ -36,9 +45,10 @@ const Row = memo(function Row({
 }) {
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(card), [card, onPress]);
+  const kicker = rowKicker(card);
 
   const spoken = [
-    card.kicker,
+    kicker,
     card.title,
     card.reading,
     card.readingNote,
@@ -59,22 +69,22 @@ const Row = memo(function Row({
       style={[styles.row, { borderBottomColor: colors.rule }]}
     >
       <View style={styles.subject}>
-        {/* `current` earns the same ink step it gets on a card and in the
-            NOW block — a builder gated this row on its own data being new,
-            and that is the one thing a ranked list cannot show by order. */}
-        {card.lead ? (
-          <Text variant="labelXs" tone="emphasis" numberOfLines={1}>
-            current
-          </Text>
-        ) : null}
-        <Text variant="title" numberOfLines={1}>
+        <Text variant="title" scale={FEED_ROW_TITLE_SCALE} numberOfLines={2}>
           {card.title}
         </Text>
-        {card.kicker ? (
-          <Text variant="labelXs" numberOfLines={1}>
-            {card.kicker}
+        <View style={styles.meta}>
+          {/* `current` earns the same ink step it gets on a card and in the
+              NOW block — a builder gated this row on its own data being new,
+              and that is the one thing a ranked list cannot show by order. */}
+          {card.lead ? (
+            <Text variant="labelXs" tone="emphasis" numberOfLines={1}>
+              {'current · '}
+            </Text>
+          ) : null}
+          <Text variant="labelXs" numberOfLines={1} style={styles.metaText}>
+            {kicker}
           </Text>
-        ) : null}
+        </View>
       </View>
       <View style={styles.figures}>
         <Text variant="tabularEmphasis" scale={1.2} numberOfLines={1}>
@@ -119,6 +129,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   subject: { flex: 1, minWidth: 0 },
+  meta: { flexDirection: 'row', alignItems: 'center', marginTop: SPACING.xxs },
+  // Shrinks so a long kicker truncates rather than pushing the row's figures.
+  metaText: { flexShrink: 1 },
   // Right-aligned so a column of readings lines up and the eye can run down
   // the numbers without re-finding the edge on every row.
   figures: { alignItems: 'flex-end' },

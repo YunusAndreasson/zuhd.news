@@ -1,6 +1,6 @@
 import type { Article, Entity } from '@shared/types';
-import { memo, useCallback, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   type SharedValue,
@@ -144,9 +144,22 @@ export const ReaderLayer = memo(function ReaderLayer({
     [onTimeAgoPress],
   );
 
+  // The pages start under the chrome, not under the status bar. The section
+  // rail used to sit in flow above the pager and push every page down; with it
+  // gone the headline ran under the clock and the share/close buttons sat on
+  // its first line.
+  const [chromeHeight, setChromeHeight] = useState(0);
+  const handleChromeLayout = useCallback((event: LayoutChangeEvent) => {
+    setChromeHeight(Math.round(event.nativeEvent.layout.height));
+  }, []);
+
   return (
     <Animated.View
-      style={[styles.layer, { backgroundColor: colors.bg }, layerStyle]}
+      // No background of its own. `ArticleList` draws the backdrop gradient,
+      // clear at the top and opaque under the prose, so the same earth the map
+      // was showing keeps turning behind the story — an opaque layer here hid
+      // it, and every page turn still paid to reproject a globe nobody saw.
+      style={[styles.layer, layerStyle]}
       pointerEvents={visible ? 'auto' : 'none'}
       accessibilityElementsHidden={!visible}
       importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'}
@@ -178,6 +191,7 @@ export const ReaderLayer = memo(function ReaderLayer({
               onDragStart={onDragStart}
               oddsBySlug={oddsBySlug}
               onOddsPress={onOddsPress}
+              topInset={insets.top + chromeHeight}
             />
           ) : null}
 
@@ -187,7 +201,11 @@ export const ReaderLayer = memo(function ReaderLayer({
             />
           </View>
 
-          <View style={[styles.chrome, { top: insets.top }]} pointerEvents="box-none">
+          <View
+            style={[styles.chrome, { top: insets.top }]}
+            pointerEvents="box-none"
+            onLayout={handleChromeLayout}
+          >
             {onShare ? (
               <IconButton
                 onPress={onShare}

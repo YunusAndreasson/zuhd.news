@@ -132,6 +132,7 @@ Each variant is a complete typographic decision. Pick the closest match; if none
 | `label`           | sizeBase| smallCaps    | textSecondary     | Sheet titles, primary labels                      |
 | `labelSm`         | sizeSm  | smallCaps    | textSecondary     | Section labels                                    |
 | `labelXs`         | sizeXs  | smallCaps    | textSecondary     | Metadata labels, swipe actions                    |
+| `labelXsTight`    | sizeXs  | smallCaps    | textSecondary     | Caps labels that may wrap — the strip's gauges    |
 | `tabular`         | sizeXs  | regular (tab)| text              | Time/count readouts                               |
 | `tabularEmphasis` | sizeXs  | semiBold (tab)| emphasis         | Scrub tooltips, emphasised readouts               |
 | `sectionHeading`  | sizeSm  | italic       | accent            | "How each outlet framed this story" lines         |
@@ -243,7 +244,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   pipeline analysis, or a scheduled date with analysis — and then calls
   `prepareSwipeCards` once over the union. The three desks used to rank each
   pool against itself, which could only ever compare a strait with other
-  straits; three fixed strip slots need the comparison across kinds.
+  straits; one strip and one NOW block need the comparison across kinds.
   `prepareSwipeCards` sorts urgent updates before the strongest tie to today's
   news, unusual movement against the series' own history, and finally the
   builder's stable editorial order. Relevance uses the strongest linked story
@@ -295,7 +296,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Root `app/index.tsx` is the only route, and it is one screen. Overlays use sheets, not pushed routes.
 - **One earth, and every surface is a layer over it.** `MiniGlobe` is mounted once at the screen root; the strip, the sheet and the reader all sit above the same canvas. The reader is presented over the map rather than navigated to, so opening a story is the globe continuing to turn toward its dateline rather than a cut to a second earth.
 - **Three surfaces, and each answers a different question.**
-  - **The strip** (`IndicatorStrip`) — three gauges above the earth: subject, reading, move. *How much.* Fixed slots, ranked contents, no marquee: a ticker moves when nothing has happened, which is an engagement mechanic.
+  - **The strip** (`IndicatorStrip`) — a sideways-scrolling row of gauges above the earth: subject, reading, move, for every market, strait and currency that moved, largest move first. *How much.* Equal-width slots, 3.4 across so the cut one says the row continues; no marquee, because a ticker moves when nothing has happened, which is an engagement mechanic.
   - **The sheet** (`MapSheet`) — the day's masthead with the briefing, a NOW block of what else is flashing, `all instruments →`, then the strictly newest-first river. *What.*
   - **The reader** (`ReaderLayer`) — the article pager, unchanged. *What happened, in full.*
 - **Information appears exactly once across those three.** The strip prints numbers; the NOW block prints titles and never repeats an item the strip holds; the river's first row is the lead story, so the NOW block holds no stories at all. `buildNowSurfaces` enforces this in one pass rather than trusting callers.

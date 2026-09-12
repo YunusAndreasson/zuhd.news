@@ -133,6 +133,8 @@ interface ArticlePageProps {
   tick?: number;
   /** What a prediction market tied to this story says, if one is. */
   odds?: StoryOdds | null;
+  /** Extra room above the headline for chrome floating over the page. */
+  topInset?: number;
   /** Opens the contract's card. */
   onOddsPress?: (odds: StoryOdds) => void;
 }
@@ -198,6 +200,7 @@ export const ArticlePage = memo(function ArticlePage({
   resetScrollKey = 0,
   tick: _tick,
   odds = null,
+  topInset = 0,
   onOddsPress,
 }: ArticlePageProps) {
   const { colors, font, typography } = useTheme();
@@ -419,7 +422,14 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      <Animated.View style={[styles.contentLayout, fadeStyle]} pointerEvents="box-none">
+      <Animated.View
+        style={[
+          styles.contentLayout,
+          topInset > 0 && { paddingTop: CONTENT_PADDING_TOP + topInset },
+          fadeStyle,
+        ]}
+        pointerEvents="box-none"
+      >
         {showEarlierDivider && (
           <View
             style={styles.earlierBoundary}

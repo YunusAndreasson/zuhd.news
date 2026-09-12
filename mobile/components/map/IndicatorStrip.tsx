@@ -1,44 +1,59 @@
 import { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Pressable, Text } from '../primitives';
 
 /**
- * Three gauges above the earth.
+ * The gauges above the earth, swiped sideways.
  *
  * The brief was "keep the indicators of whether things are going up and down
- * on the markets and straits, but put them at the top", and the shape follows
- * from two constraints rather than from taste.
+ * on the markets and straits, but put them at the top" — and then, having
+ * lived with three fixed slots, "the rail should be swipeable, with markets,
+ * straits and currencies all there, the most dramatic change at the left".
  *
- * **Three fixed slots, ranked contents.** Fixed so a reader learns where to
- * look and can check the row without reading it; ranked so what occupies them
- * is today's answer rather than a watchlist that can be entirely uninteresting
- * on the morning something else is screaming. `lib/cards/rank.ts` decides,
- * lexicographically, and `buildNowSurfaces` hands the first three here.
+ * **Every reading that moved, largest move first.** `buildNowSurfaces` sorts
+ * by the unsigned size of each card's delta, so the first slot is the biggest
+ * move of the day and a swipe runs down to the quiet ones. A glance at the
+ * carets and their colour is the whole read; the number is there for whoever
+ * stops.
  *
- * **No marquee.** A ticker moves when nothing has happened, which is the
- * engagement mechanic `foundation.md` names in the list of things this is not.
- * These sit still until the day changes them.
+ * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
+ * fit a phone's width — the partial slot at the edge is what says the row
+ * continues. No scroll indicator, no arrow, no dots.
  *
- * Each slot carries the reading *and* the move, not one or the other, because
- * the two kinds of card need different halves: a strait's story is "−57%" and
- * a contract's is "62%" — its own delta, "+14 points", means nothing without
- * the level. The delta's window is dropped: "vs its 90-day normal" does not
- * fit a third of a phone, and it is on the card this slot opens.
+ * **Still no marquee.** The row moves when a finger moves it. A ticker moves
+ * when nothing has happened, which is the engagement mechanic `foundation.md`
+ * names in the list of things this is not.
+ *
+ * Each slot carries the reading *and* the move, not one or the other: a
+ * strait's story is "−57%" and an index's is its level and "4.8%". The delta's
+ * window is dropped — "vs its 90-day normal" does not fit a slot — and it is
+ * on the card the slot opens.
  *
  * Tapping a slot turns the planet to that mark and opens its card. That is
  * also how a reader learns the globe is addressable at all — the mapping is
  * created by the action, since nothing about a dot on a sphere announces it.
  */
 
-function Slot({ item, onPress }: { item: StripItem; onPress: (item: StripItem) => void }) {
+/** Slots visible across the row. Not a whole number, so one is always cut. */
+const VISIBLE_SLOTS = 3.4;
+
+function Slot({
+  item,
+  width,
+  onPress,
+}: {
+  item: StripItem;
+  width: number;
+  onPress: (item: StripItem) => void;
+}) {
   const handlePress = useCallback(() => onPress(item), [item, onPress]);
 
-  // Spoken as one sentence. A screen reader landing on three separate numbers
-  // with no subject is the strip's version of the globe's lottery-country
-  // problem, and unlike the globe this one is cheap to fix.
+  // Spoken as one sentence. A screen reader landing on separate numbers with
+  // no subject is the strip's version of the globe's lottery-country problem,
+  // and unlike the globe this one is cheap to fix.
   const spoken = [
     item.label,
     item.reading,
@@ -57,14 +72,18 @@ function Slot({ item, onPress }: { item: StripItem; onPress: (item: StripItem) =
     <Pressable
       onPress={handlePress}
       haptic="none"
-      style={styles.slot}
+      style={[styles.slot, { width }]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityHint="Turns the globe to this and opens its card"
     >
+      {/* Two lines, because the subject is the one part of a slot that
+          cannot be abbreviated honestly: on a 411pt phone a single line cut
+          "Strait of Hormuz" and "Toronto Stock Exchange" to "STRAIT OF HOR…"
+          and "TORONTO STO…", which left numbers with no subject. */}
       <Text
-        variant="labelXs"
-        numberOfLines={1}
+        variant="labelXsTight"
+        numberOfLines={2}
         maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         style={styles.label}
       >
@@ -91,32 +110,47 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   items: StripItem[];
   onSelect: (item: StripItem) => void;
 }) {
+  const { width: screenWidth } = useWindowDimensions();
+  const slotWidth = Math.round(
+    (screenWidth - SPACING.articlePadding - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS,
+  );
+
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
   // starts clean.
   if (items.length === 0) return null;
 
   return (
-    <View style={styles.row} accessibilityRole="summary" pointerEvents="box-none">
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      // A flung row that runs past its end and springs back is the row
+      // performing; it stops where the finger leaves it.
+      bounces={false}
+      overScrollMode="never"
+      contentContainerStyle={styles.row}
+      accessibilityLabel="Markets, straits and currencies, largest move first"
+    >
       {items.map((item) => (
-        <Slot key={item.id} item={item} onPress={onSelect} />
+        <Slot key={item.id} item={item} width={slotWidth} onPress={onSelect} />
       ))}
-    </View>
+    </ScrollView>
   );
 });
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: SPACING.xs,
     paddingBottom: SPACING.sm,
     gap: SPACING.md,
   },
-  // Equal thirds rather than content width: three gauges that jump sideways
-  // as the day's figures change lengths are three gauges you have to read
-  // before you can find the one you wanted.
-  slot: { flex: 1, minWidth: 0 },
+  // Equal widths rather than content width: gauges that change size as the
+  // day's figures change length are gauges you have to read before you can
+  // find the one you wanted.
+  // Bottom-aligned, so the readings share a line whether a label took one
+  // line or two.
+  slot: { justifyContent: 'flex-end' },
   label: { marginBottom: 1 },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
 });

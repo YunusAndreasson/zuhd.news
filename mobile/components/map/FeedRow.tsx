@@ -30,6 +30,14 @@ import { Pressable, Text } from '../primitives';
  * such constraint.
  */
 
+/**
+ * The title's share of the `title` variant. At full size a semibold 21pt
+ * headline made each row a banner — the sheet at rest showed two of them —
+ * and because every row reserves two lines, a one-line title sat in a band of
+ * empty space. `index.tsx` sizes the row from this same number.
+ */
+export const FEED_ROW_TITLE_SCALE = 0.86;
+
 export interface FeedRowProps {
   /** Uniform, and shared with the globe camera. See above. */
   height: number;
@@ -72,7 +80,12 @@ export const FeedRow = memo(function FeedRow({
       accessibilityHint={accessibilityHint}
       style={[styles.row, { height, borderBottomColor: colors.rule }]}
     >
-      <Text variant="title" numberOfLines={2} maxFontSizeMultiplier={MAX_FONT_SCALE.heading}>
+      <Text
+        variant="title"
+        scale={FEED_ROW_TITLE_SCALE}
+        numberOfLines={2}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
+      >
         {title}
       </Text>
       <View style={styles.meta}>

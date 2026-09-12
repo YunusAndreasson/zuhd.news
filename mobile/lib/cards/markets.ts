@@ -643,13 +643,15 @@ function straitWhy(c: Chokepoint): string | undefined {
 function straitDelta(d: number): CardDelta | undefined {
   const magnitude = formatMagnitudePct(d * 100);
   const window = 'vs its 90-day normal';
+  const size = Math.abs(d * 100);
   if (magnitude === null)
-    return { direction: 'flat', magnitude: 'at its normal', window, valence: 'neutral' };
+    return { direction: 'flat', magnitude: 'at its normal', window, valence: 'neutral', size };
   return {
     direction: d > 0 ? 'up' : 'down',
     magnitude,
     window,
     valence: chokepointValence(d),
+    size,
   };
 }
 

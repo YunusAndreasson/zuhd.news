@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo } from 'react';
-import { type LayoutChangeEvent, RefreshControl, StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
   useAnimatedRef,
@@ -50,8 +50,6 @@ interface MapFeedProps {
   onStoryPress: (row: StoryRow) => void;
   onNowPress: (item: NowItem) => void;
   onInstrumentsPress: () => void;
-  onRefresh: () => Promise<void>;
-  refreshing: boolean;
   bottomInset: number;
 }
 
@@ -163,11 +161,8 @@ export const MapFeed = memo(function MapFeed({
   onStoryPress,
   onNowPress,
   onInstrumentsPress,
-  onRefresh,
-  refreshing,
   bottomInset,
 }: MapFeedProps) {
-  const { colors } = useTheme();
   const listRef = useAnimatedRef<Animated.FlatList<StoryRow>>();
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -226,17 +221,6 @@ export const MapFeed = memo(function MapFeed({
     [now, onHeaderLayout, onInstrumentsPress, onNowPress, rowHeight],
   );
 
-  const refreshControl = useMemo(
-    () => (
-      <RefreshControl
-        refreshing={refreshing}
-        onRefresh={onRefresh}
-        tintColor={colors.textSecondary}
-      />
-    ),
-    [colors.textSecondary, onRefresh, refreshing],
-  );
-
   const contentContainerStyle = useMemo(
     () => ({ paddingBottom: bottomInset + SPACING.lg }),
     [bottomInset],
@@ -260,7 +244,10 @@ export const MapFeed = memo(function MapFeed({
       // a list the sheet's pan can safely run beside at the top.
       bounces={false}
       overScrollMode="never"
-      refreshControl={refreshControl}
+      // No RefreshControl. Pulled down at the top this list belongs to the
+      // sheet, which collapses; on Android a SwipeRefreshLayout took that drag
+      // instead, and on iOS `bounces={false}` meant it could never fire. The
+      // refresh is a pull on the sheet at rest — `MapSheet.onPullDown`.
       showsVerticalScrollIndicator={false}
     />
   );
