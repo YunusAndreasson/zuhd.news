@@ -83,9 +83,6 @@ interface MapSheetProps {
   peek: number;
   /** The tallest the sheet expands to, in px. */
   full: number;
-  /** The natural height of the list's current content. The expanded sheet
-   *  stops at it (plus the handle and header), between `peek` and `full`. */
-  contentHeight?: number | null;
   /** The height the expanded sheet actually stops at, published for the
    *  globe's grown transform. Written only from here. */
   expandedHeight?: SharedValue<number>;
@@ -106,6 +103,10 @@ interface MapSheetProps {
     scrollEnabled: boolean;
     onScrollOffset: SharedValue<number>;
     sheetGesture: SheetGesture;
+    /** Report the natural height of the list's current content. The expanded
+     *  sheet stops at it (plus the handle and header), between `peek` and
+     *  `full`. Stable. */
+    onContentHeight: (height: number) => void;
   }) => ReactElement;
   onDetentChange?: (detent: MapSheetDetent) => void;
   /**
@@ -141,7 +142,6 @@ const LIST = 2;
 export function MapSheet({
   peek,
   full,
-  contentHeight = null,
   expandedHeight,
   progress,
   header,
@@ -169,6 +169,10 @@ export function MapSheet({
   // Where "expanded" is: 0 when the story needs every point of `full`, more
   // when it is shorter. Animated alongside `offset` so the two never part.
   const [chrome, setChrome] = useState(0);
+  // The card's height is this sheet's state, not the screen's: it changes on
+  // every landing, and held by the screen it re-rendered the whole map — globe
+  // props, strip, masthead — a second time per swipe to move one number here.
+  const [contentHeight, setContentHeight] = useState<number | null>(null);
   const onChromeLayout = useCallback((e: LayoutChangeEvent) => {
     setChrome(e.nativeEvent.layout.height);
   }, []);
@@ -393,6 +397,7 @@ export function MapSheet({
     scrollEnabled: detent === 'full',
     onScrollOffset: listOffset,
     sheetGesture: pan,
+    onContentHeight: setContentHeight,
   });
 
   return (

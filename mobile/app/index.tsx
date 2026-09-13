@@ -317,8 +317,6 @@ export default function HomeScreen() {
   /** Where the grown sheet stops — the story's own height, capped at
    *  `layout.full`. Written by `MapSheet`; read by the globe's transform. */
   const sheetExpanded = useSharedValue(layout.full);
-  /** The current card's natural height, from the deck. */
-  const [cardHeight, setCardHeight] = useState<number | null>(null);
   // The briefing's player floats over the bottom of the sheet while it is up,
   // so the card's last line still has to scroll clear of it.
   const cardBottomInset = insets.bottom + (briefingVisible ? SPACING.xxl : 0);
@@ -1322,10 +1320,12 @@ export default function HomeScreen() {
       scrollEnabled,
       onScrollOffset,
       sheetGesture,
+      onContentHeight,
     }: {
       scrollEnabled: boolean;
       onScrollOffset: SharedValue<number>;
       sheetGesture: Parameters<typeof StoryDeck>[0]['sheetGesture'];
+      onContentHeight: (height: number) => void;
     }) => (
       <StoryDeck
         count={storyCount}
@@ -1336,7 +1336,7 @@ export default function HomeScreen() {
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
         onScrollOffset={onScrollOffset}
-        onContentHeight={setCardHeight}
+        onContentHeight={onContentHeight}
         keyOf={keyOfDeck}
         renderStory={renderStory}
         renderEnd={renderEnd}
@@ -1491,7 +1491,6 @@ export default function HomeScreen() {
         ref={mapSheetRef}
         peek={layout.peek}
         full={layout.full}
-        contentHeight={cardHeight}
         expandedHeight={sheetExpanded}
         progress={sheetProgress}
         header={masthead}
@@ -1539,7 +1538,10 @@ export default function HomeScreen() {
         rows={storyRows}
         now={now}
         found={foundSlugs}
-        currentSlug={storyRows[frontIndex]?.slug ?? null}
+        // Only while open: the slug changes on every swipe, and a closed sheet
+        // re-rendered for it on each one. Opening sets both props together, so
+        // the sheet still scrolls to the story on the card.
+        currentSlug={indexOpen ? (storyRows[frontIndex]?.slug ?? null) : null}
         open={indexOpen}
         onSelect={handleIndexSelect}
         onNowPress={handleIndexNowPress}
