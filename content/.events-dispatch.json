@@ -2,25 +2,28 @@
   "items": {
     "fomc-2026-09": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "8f15512b7d198a45",
-      "standing": "The rate-setting committee of the US central bank, which meets eight times a year to set the overnight federal funds rate. It anchors the dollar, sets the floor under borrowing costs worldwide, and every other major economy prices off it.",
-      "recent": "August consumer prices rose 0.4% as the Houthi capture of Yemen's port of Mocha pushed oil to $105, leaving the committee facing a supply shock and a payroll surge at once. Warsh has to decide whether an import-driven price rise is worth tightening into, and the 30-year mortgage at 6.71% is what that answer reaches.",
+      "recentFingerprint": "d03e59564ddea4d1",
+      "standing": "The rate-setting meeting of the US central bank's Open Market Committee, held eight times a year to set the federal funds target that anchors dollar borrowing costs worldwide. Credit prices everywhere adjust to it.",
+      "recent": "The committee arrives with the oil shock already in the price index: August consumer prices rose 0.4% after Houthi fighters took Yemen's port of Mocha and crude reached $105. Hike odds moved to two-in-three on a payroll surge, and the question is whether a supply shock reaching American mortgages at 6.71% is one the Fed treats as its own.",
       "citations": [
         "2026-09-11-us-cpi-august-the-war-in-the-price-index",
         "2026-09-10-oil-105-fed-hike-the-war-arrives-twice",
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut",
         "2026-09-04-us-payroll-surge-fed-hike-odds-gold-warsh",
-        "2026-08-29-warsh-imported-inflation-dollar-transmission-emerging-debt",
         "2026-09-03-term-premium-a-war-priced-into-a-mortgage"
       ],
-      "generatedAt": "2026-09-12T04:44:44.476Z"
+      "generatedAt": "2026-09-13T04:44:05.601Z"
     },
     "boe-2026-09": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "12657264d72cb174",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate, the rate paid on reserves held at the Bank. Its decisions set UK mortgage and savings rates, and sterling moves with them.",
-      "recent": "Andrew Bailey arrives at this meeting having warned the G20 that AI threatens a global economic downturn, a growth alarm from the governor who chairs the committee. It meets with oil at $105 after attacks on shipping, a cost paid in pounds at the pump, and the vote settles which of those two risks the committee weighs heavier.",
-      "citations": [],
-      "generatedAt": "2026-09-11T04:48:27.262Z"
+      "recentFingerprint": "0883177e83ce8b95",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote individually on Bank Rate roughly eight times a year. Its decisions set the floor under British mortgage costs and savings returns, and sterling moves on the split.",
+      "recent": "Bailey used a G20 appearance to warn that AI could cause a global economic downturn, an unusual framing from a governor whose committee meets amid a bond selloff that has pushed yields to multi-decade highs on inflation fears. The question the vote settles is whether a long-end repricing the Bank does not control changes what it does with the rate it does.",
+      "citations": [
+        "2026-09-02-long-end-selloff-term-premium-not-policy-rate",
+        "2026-09-03-term-premium-a-war-priced-into-a-mortgage"
+      ],
+      "generatedAt": "2026-09-13T04:44:22.856Z"
     },
     "boj-2026-09": {
       "standingFingerprint": "b08124a86f654bb7",
@@ -57,13 +60,13 @@
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "d2d607c391e64799",
-      "standing": "The European Central Bank's rate-setting council, which meets about every six weeks to set the deposit rate for the countries that share the euro. Its decisions reach mortgages, business loans and government borrowing across the bloc.",
-      "recent": "Attacks on tankers have pushed Brent to $105, and the ECB has to decide whether an energy shock it cannot reach is now spreading into wider prices strongly enough to justify more hikes. Deutsche Bank has already raised its ECB peak to 2.75%. This meeting tests whether Frankfurt treats fuel as a passing cost or a lasting one.",
+      "recentFingerprint": "3b384c40d0b890bb",
+      "standing": "The European Central Bank's Governing Council, which sets the single policy rate for the twenty countries that use the euro. One decision has to fit economies as different as Germany's exporters and Greece's borrowers, and the euro moves with it.",
+      "recent": "The council meets after an energy shock that has pushed forecasters to mark up where the ECB stops rather than when it starts cutting — Deutsche Bank now puts the peak rate at 2.75%. What it settles is whether Frankfurt treats fuel costs feeding into wages and services as second-round transmission it must lean against, or a price level it looks through.",
       "citations": [
         "2026-09-07-ecb-energy-shock-tightening-second-round-transmission"
       ],
-      "generatedAt": "2026-09-11T04:49:52.083Z"
+      "generatedAt": "2026-09-13T04:44:33.430Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
@@ -78,11 +81,14 @@
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "62449fa7ec27c89e",
-      "standing": "The Bank of England's nine-member Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions feed straight into UK mortgage and savings rates, and sterling trades on every one.",
-      "recent": "Andrew Bailey warned the G20 that AI risks a global downturn, and since then Brent has jumped to $105 on attacks on tankers, raising the fuel bill paid in pounds. This meeting sets that growth worry against an oil price driven by attacks at sea, which no rate decision lowers, and settles which of the two the committee answers first.",
-      "citations": [],
-      "generatedAt": "2026-09-11T04:50:44.470Z"
+      "recentFingerprint": "bc5241967b93f4f0",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its votes are published individually, and they set the price of credit for British households, most of whom refinance a fixed mortgage every two to five years.",
+      "recent": "Bailey has spent the run-up arguing a case outside the rate itself, telling the G20 that AI could cause a global economic downturn. The committee meets into a bond market that has pushed yields to multi-decade highs on inflation fears, and with oil at $105 — a supply shock Bank Rate cannot reach, landing on borrowers who reprice on a short fixed cycle.",
+      "citations": [
+        "2026-09-02-long-end-selloff-term-premium-not-policy-rate",
+        "2026-09-03-term-premium-a-war-priced-into-a-mortgage"
+      ],
+      "generatedAt": "2026-09-13T04:44:42.755Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -100,32 +106,34 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "099c9fbf1cd3f929",
-      "standing": "The annual meeting of heads of state and government from the world's twenty largest economies, plus the EU and African Union. It has no treaty powers and decides by consensus, so its output is a communiqué whose wording each member must accept.",
-      "recent": "The US presidency has spent the run-up trying to rally the bloc against China's trade surplus while keeping Russia at the table — Siluanov's return to the finance track drew a European boycott of the family photo. Andrew Bailey used the same forum to warn that AI could cause a global downturn. What December settles is whether a coalition split over Moscow can agree on any text at all.",
+      "recentFingerprint": "7826cc5113a73b45",
+      "standing": "The annual meeting of heads of state and government from nineteen countries plus the European and African Unions, hosted by a rotating presidency. It sets no binding law, but the communiqué it does or does not agree on marks where the world's largest economies still share a position.",
+      "recent": "The US presidency has already turned its year of hosting into a campaign, with Treasury asking other members to make its case against China's surplus at the Asheville ministerial, where European finance ministers boycotted the family photo over Siluanov's return. Zelensky has said he is ready to meet Putin face-to-face in Miami, and Moscow has not ruled out a Putin-Trump-Xi summit.",
       "citations": [
+        "2026-09-01-g20-siluanov-return-coalition-cohesion",
         "2026-08-31-g20-china-surplus-coalition-tariffs",
-        "2026-09-01-g20-siluanov-return-coalition-cohesion"
+        "2026-09-06-russia-trilateral-summit-preconditions-ryabkov",
+        "2026-09-12-ukraine-strikes-miami-g20-meeting-refused"
       ],
-      "generatedAt": "2026-09-12T04:45:23.751Z"
+      "generatedAt": "2026-09-13T04:44:52.961Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "a0710d0f1d516c4e",
-      "standing": "The European Central Bank's Governing Council meets eight times a year to set interest rates for every country that uses the euro. Its rates feed into mortgages, business loans and government borrowing from Lisbon to Helsinki.",
-      "recent": "Brent's jump to $105 after attacks on shipping in the Iran war has made this an energy decision for the ECB. The question is whether dearer fuel is feeding into wages and wider prices, the second-round effect that turns a price spike into a case for higher rates. Deutsche Bank has already raised its call for the ECB's peak rate to 2.75%.",
+      "recentFingerprint": "2aa290c7f87fc0ce",
+      "standing": "The European Central Bank's Governing Council, which sets the deposit rate for the twenty countries sharing the euro. Its decisions set the cost of borrowing for some 350 million people, and reach every sovereign bond market in the bloc at once.",
+      "recent": "The question at Frankfurt is no longer when the tightening stops but where it ends: Deutsche Bank has lifted its ECB peak to 2.75%, on the argument that an energy shock is passing into wages and prices rather than fading. That is a second-round problem a central bank is expected to answer, unlike a one-off. This meeting settles how much further the Council is willing to go.",
       "citations": [
         "2026-09-07-ecb-energy-shock-tightening-second-round-transmission"
       ],
-      "generatedAt": "2026-09-11T04:52:04.837Z"
+      "generatedAt": "2026-09-13T04:45:02.722Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "4bf285fbe6cd2709",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its decisions pass quickly into British mortgages, many of them on short fixed terms, and into the pound.",
-      "recent": "Andrew Bailey told the G20 that AI could cause a global economic downturn, putting a growth risk on the record. Brent has since jumped to $105 on attacks on shipping, raising the fuel bill paid in pounds. The decision settles which the Bank treats as the larger threat: the slowdown its governor named, or an oil price it cannot reach.",
+      "recentFingerprint": "c8b84efe448c30af",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote individually on Bank Rate at eight scheduled meetings a year. The rate sets the floor under British mortgage pricing and business lending, and sterling moves with the vote split.",
+      "recent": "Governor Andrew Bailey went to the G20 warning that AI could cause a global economic downturn — an unusual thing for a central banker to put ahead of the near-term inflation question the committee actually votes on. The meeting also comes with oil at $105 and long-dated government borrowing costs at multi-decade highs worldwide, a squeeze the MPC can do nothing about but must decide whether to lean against.",
       "citations": [],
-      "generatedAt": "2026-09-11T04:52:31.266Z"
+      "generatedAt": "2026-09-13T04:45:11.940Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
@@ -140,13 +148,13 @@
     },
     "fred-us-retail-sales-2026-09-16": {
       "standingFingerprint": "88dc24dc4edbc81f",
-      "recentFingerprint": "052a06837267bbc0",
-      "standing": "The Census Bureau's monthly tally of receipts at US retail and food-service businesses, published about two weeks after the month it covers. Consumer spending drives most of the American economy, so the print moves rate expectations.",
+      "recentFingerprint": "4efd9ac1d00b58b9",
+      "standing": "The Census Bureau's monthly estimate of sales at US retail and food-service businesses, drawn from a survey of thousands of firms. It is the earliest broad read on household spending, which drives roughly two-thirds of the American economy.",
       "recent": "",
       "citations": [],
-      "generatedAt": "2026-09-09T04:42:07.887Z"
+      "generatedAt": "2026-09-13T04:44:13.446Z"
     }
   },
-  "generatedAt": "2026-09-12T04:45:23.873Z",
+  "generatedAt": "2026-09-13T04:45:11.977Z",
   "windowDays": 14
 }
