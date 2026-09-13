@@ -1,5 +1,6 @@
 import Storage from 'expo-sqlite/kv-store';
 import { useSyncExternalStore } from 'react';
+import { createDebouncedWrite, createListeners } from './store-plumbing';
 
 /**
  * Which stories the reader has found.
@@ -9,9 +10,8 @@ import { useSyncExternalStore } from 'react';
  * drawing a found story's mark, and that is the whole game: what is still lit
  * is what you have not seen yet.
  *
- * Same shape as `bookmark-store.ts`: loaded synchronously on import, emitted
- * to `useSyncExternalStore`, persisted on a debounce and flushed when the app
- * backgrounds.
+ * Loaded synchronously on import, emitted to `useSyncExternalStore`, persisted
+ * on a debounce and flushed when the app backgrounds (`store-plumbing.ts`).
  *
  * **Pruning is deliberately lazy.** A slug is dropped only when it is both
  * absent from the live feed *and* older than `PRUNE_AFTER_MS`. Pruning on
@@ -21,7 +21,7 @@ import { useSyncExternalStore } from 'react';
 
 const FOUND_KEY = 'zuhd_found_v1';
 const MAX_FOUND = 600;
-export const PRUNE_AFTER_MS = 14 * 24 * 60 * 60 * 1000;
+const PRUNE_AFTER_MS = 14 * 24 * 60 * 60 * 1000;
 
 type FoundMap = Record<string, number>;
 
@@ -33,7 +33,7 @@ function isFoundMap(value: unknown): value is FoundMap {
 
 let found: FoundMap = {};
 let snapshot: ReadonlySet<string> = new Set();
-const listeners = new Set<() => void>();
+const listeners = createListeners();
 
 try {
   const stored = Storage.getItemSync(FOUND_KEY);
@@ -48,28 +48,15 @@ snapshot = new Set(Object.keys(found));
 
 function emit() {
   snapshot = new Set(Object.keys(found));
-  for (const fn of listeners) fn();
+  listeners.emit();
 }
 
-let persistTimer: ReturnType<typeof setTimeout> | null = null;
-
-function persistNow() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = null;
-  try {
-    Storage.setItemSync(FOUND_KEY, JSON.stringify(found));
-  } catch {}
-}
-
-function persistDebounced() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = setTimeout(persistNow, 250);
-}
+const persist = createDebouncedWrite(() => {
+  Storage.setItemSync(FOUND_KEY, JSON.stringify(found));
+}, 250);
 
 /** Flush any pending write — call from app-background transitions. */
-export function flushFound(): void {
-  if (persistTimer) persistNow();
-}
+export const flushFound = persist.flush;
 
 /** Returns true when this call found the story; false if it already was. */
 export function markFound(slug: string, now = Date.now()): boolean {
@@ -84,7 +71,7 @@ export function markFound(slug: string, now = Date.now()): boolean {
     found = next;
   }
   emit();
-  persistDebounced();
+  persist.later();
   return true;
 }
 
@@ -102,20 +89,17 @@ export function pruneFound(liveSlugs: ReadonlySet<string>, now = Date.now()): vo
   if (!changed) return;
   found = next;
   emit();
-  persistDebounced();
+  persist.later();
 }
 
 /** Erase all progress. Immediate, like `clearBookmarks`. */
 export function clearFound(): void {
   found = {};
   emit();
-  persistNow();
+  persist.now();
 }
 
-export function subscribe(callback: () => void): () => void {
-  listeners.add(callback);
-  return () => listeners.delete(callback);
-}
+const subscribe = listeners.subscribe;
 
 export function getSnapshot(): ReadonlySet<string> {
   return snapshot;

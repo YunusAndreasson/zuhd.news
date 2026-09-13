@@ -1,15 +1,9 @@
 import { getCoords } from '../components/globe/storyDots';
-import {
-  articleTime,
-  ccToFlag,
-  computeFontScale,
-  formatExactTime,
-  formatTimeAgo,
-} from '../lib/article-utils';
+import { articleTime, ccToFlag, formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import type { Article } from '@shared/types';
 
-// Minimal Article factory — only fields used by getCoords/formatTimeAgo/computeFontScale
+// Minimal Article factory — only fields used by getCoords/formatTimeAgo
 function makeArticle(overrides: Partial<Article> = {}): Article {
   return {
     slug: 'test',
@@ -227,105 +221,5 @@ describe('formatTimeAgo', () => {
     const result = formatTimeAgo(new Date(2026, 3, 1, 10, 0, 0).getTime());
     expect(result).toMatch(/[A-Za-z]/);
     expect(result.length).toBeGreaterThan(0);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// formatExactTime — contextual absolute time shown when tapping the dateline
-// ---------------------------------------------------------------------------
-describe('formatExactTime', () => {
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
-
-  it('uses Today, HH:MM for same-calendar-day timestamps', () => {
-    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
-    jest.setSystemTime(now);
-    expect(formatExactTime(new Date(2026, 3, 16, 9, 5, 0).getTime())).toBe('Today, 09:05');
-    expect(formatExactTime(new Date(2026, 3, 16, 0, 0, 0).getTime())).toBe('Today, 00:00');
-  });
-
-  it('uses Yesterday, HH:MM for the previous calendar day', () => {
-    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
-    jest.setSystemTime(now);
-    expect(formatExactTime(new Date(2026, 3, 15, 23, 45, 0).getTime())).toBe('Yesterday, 23:45');
-  });
-
-  it('uses weekday, HH:MM for 2–6 days back', () => {
-    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
-    jest.setSystemTime(now);
-    // 4 days back from Thursday Apr 16 = Sunday Apr 12
-    const result = formatExactTime(new Date(2026, 3, 12, 10, 15, 0).getTime());
-    expect(result).toMatch(/^[A-Za-z]+, 10:15$/);
-  });
-
-  it("does not label a 6-days-23-hours-old timestamp with today's weekday", () => {
-    // Thursday Apr 16 23:00 → last Thursday Apr 9 23:30 is 6.98 elapsed days
-    // but 7 calendar days back; "Thursday, 23:30" would read as today.
-    const now = new Date(2026, 3, 16, 23, 0, 0).getTime();
-    jest.setSystemTime(now);
-    const result = formatExactTime(new Date(2026, 3, 9, 23, 30, 0).getTime());
-    expect(result).not.toMatch(/^Thursday/);
-    expect(result).toMatch(/, 23:30$/); // falls through to the dated form
-  });
-
-  it('uses Mon D, HH:MM for older same-year timestamps', () => {
-    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
-    jest.setSystemTime(now);
-    const result = formatExactTime(new Date(2026, 0, 5, 8, 0, 0).getTime());
-    // matches "Jan 5, 08:00" or locale equivalent ending with the time
-    expect(result).toMatch(/, 08:00$/);
-    expect(result).not.toContain('2026');
-  });
-
-  it('uses Mon D, YYYY for prior-year timestamps (no time)', () => {
-    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
-    jest.setSystemTime(now);
-    const result = formatExactTime(new Date(2024, 5, 1, 12, 0, 0).getTime());
-    expect(result).toContain('2024');
-    expect(result).not.toContain(':');
-  });
-});
-
-// ---------------------------------------------------------------------------
-// computeFontScale — content length → scale factor
-// ---------------------------------------------------------------------------
-
-describe('computeFontScale', () => {
-  it('returns 1 for short articles', () => {
-    expect(computeFontScale('Short', ['Hello'])).toBe(1);
-  });
-
-  it('returns 1 at exactly the threshold', () => {
-    // title.length*2 + sentences.join(' ').length = 450
-    // title = "T" (1*2=2), sentences need total length 448
-    const title = 'T';
-    const body = 'x'.repeat(448);
-    expect(computeFontScale(title, [body])).toBe(1);
-  });
-
-  it('returns a value between 0.95 and 1 just above threshold', () => {
-    const title = 'T';
-    const body = 'x'.repeat(449); // contentLength = 2 + 449 = 451
-    const scale = computeFontScale(title, [body]);
-    expect(scale).toBeLessThan(1);
-    expect(scale).toBeGreaterThan(0.95);
-  });
-
-  it('floors at 0.95 for very long articles', () => {
-    const title = 'A'.repeat(100);
-    const body = 'B'.repeat(1000);
-    // contentLength = 200 + 1000 = 1200, 450/1200 = 0.375 < 0.95
-    expect(computeFontScale(title, [body])).toBe(0.95);
-  });
-
-  it('returns 1 for empty title and sentences (not NaN)', () => {
-    // contentLength = 0 <= 450
-    expect(computeFontScale('', [])).toBe(1);
-  });
-
-  it('joins multiple sentences with spaces', () => {
-    // ["ab", "cd"] → "ab cd" → length 5
-    // title "T" → 2, total = 7 ≤ 450
-    expect(computeFontScale('T', ['ab', 'cd'])).toBe(1);
   });
 });

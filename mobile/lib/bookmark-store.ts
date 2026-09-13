@@ -1,6 +1,7 @@
 import type { Article, Category } from '@shared/types';
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
+import { createDebouncedWrite, createListeners } from './store-plumbing';
 import { isBookmarkArray } from './validate';
 
 // ---------------------------------------------------------------------------
@@ -21,7 +22,7 @@ const BOOKMARKS_FILE = new File(Paths.document, 'zuhd-bookmarks.json');
 const BOOKMARKS_KEY = 'zuhd_bookmarks';
 
 let bookmarks: Bookmark[] = [];
-const listeners = new Set<() => void>();
+const listeners = createListeners();
 
 // Load synchronously on import so UI has instant state. A schema-drift
 // bookmark (e.g. missing `sentences`) would crash on first render — validate
@@ -42,29 +43,12 @@ try {
   bookmarks = [];
 }
 
-function emit() {
-  for (const fn of listeners) fn();
-}
-
-let persistTimer: ReturnType<typeof setTimeout> | null = null;
-
-function persistNow() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = null;
-  try {
-    Storage.setItemSync(BOOKMARKS_KEY, JSON.stringify(bookmarks));
-  } catch {}
-}
-
-function persistDebounced() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = setTimeout(persistNow, 100);
-}
+const persist = createDebouncedWrite(() => {
+  Storage.setItemSync(BOOKMARKS_KEY, JSON.stringify(bookmarks));
+}, 100);
 
 /** Flush any pending write — call from app-background transitions. */
-export function flushBookmarks(): void {
-  if (persistTimer) persistNow();
-}
+export const flushBookmarks = persist.flush;
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -74,13 +58,13 @@ export function toggle(article: Article, category: Category): boolean {
   const idx = bookmarks.findIndex((b) => b.article.slug === article.slug);
   if (idx >= 0) {
     bookmarks = bookmarks.filter((_, i) => i !== idx);
-    emit();
-    persistDebounced();
+    listeners.emit();
+    persist.later();
     return false; // removed
   }
   bookmarks = [{ article, category, savedAt: Date.now() }, ...bookmarks];
-  emit();
-  persistDebounced();
+  listeners.emit();
+  persist.later();
   return true; // added
 }
 
@@ -89,18 +73,15 @@ export function toggle(article: Article, category: Category): boolean {
  *  delete should not be sitting in a timer if the app is killed a moment later. */
 export function clearBookmarks(): void {
   bookmarks = [];
-  emit();
-  persistNow();
+  listeners.emit();
+  persist.now();
 }
 
 // ---------------------------------------------------------------------------
 // useSyncExternalStore interface
 // ---------------------------------------------------------------------------
 
-export function subscribe(callback: () => void): () => void {
-  listeners.add(callback);
-  return () => listeners.delete(callback);
-}
+export const subscribe = listeners.subscribe;
 
 export function getSnapshot(): Bookmark[] {
   return bookmarks;

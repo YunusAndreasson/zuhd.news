@@ -9,7 +9,6 @@ import {
   GRAMS_PER_TROY_OUNCE,
   nisab,
   relatedForTags,
-  seriesExtremes,
   windowChange,
   windowPointChange,
 } from '../lib/cards/format';
@@ -70,17 +69,6 @@ describe('formatting', () => {
     expect(formatSignedPct(-9.14)).toBe('−9.1%');
     expect(formatSignedPct(16.2)).toBe('+16%');
     expect(formatSignedPct(0)).toBe('unchanged');
-  });
-});
-
-describe('seriesExtremes', () => {
-  it('reports both extremes with the period they happened in', () => {
-    expect(seriesExtremes(series([16, 32, 17], ['Jul 10', 'Jul 19', 'Aug 9']))).toEqual({
-      min: 16,
-      minAt: 'Jul 10',
-      max: 32,
-      maxAt: 'Jul 19',
-    });
   });
 });
 

@@ -1,5 +1,4 @@
 import { isMarketSignalsSnapshot, type MarketSignalsSnapshot } from '@shared/market-signals';
-import { cardVersion } from '../lib/card-history';
 import { marketSignalCards } from '../lib/cards/market-signals';
 
 jest.mock('expo-sqlite/kv-store', () => ({
@@ -144,11 +143,6 @@ test('source links and commentary remain attached to the selected signal', () =>
   });
   expect(card.why).toContain('Supported context.');
   expect(card.sources).toEqual([{ label: 'Report', url: 'https://zuhd.news/a/report' }]);
-});
-test('ordinary chart updates retain viewed revision; editorial updates do not', () => {
-  const card = firstCard();
-  expect(cardVersion({ ...card, reading: '104', asOf: '2026-09-05' })).toBe(cardVersion(card));
-  expect(cardVersion({ ...card, editorialRevision: 'event:2' })).not.toBe(cardVersion(card));
 });
 test('missing and expired payloads contribute no cards', () => {
   expect(marketSignalCards(null, now)).toEqual([]);

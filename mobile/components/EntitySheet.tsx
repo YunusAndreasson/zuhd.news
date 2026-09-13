@@ -3,6 +3,7 @@ import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
+import { formatReading, formatSignedPct } from '../lib/cards/format';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
 import { riseMeansFor, type Valence, valenceOfChange } from '../lib/valence';
@@ -24,18 +25,6 @@ interface EntitySheetProps extends BaseSheetProps {
   articles: Article[];
   /** Asks the parent to scroll the feed to a specific article slug. */
   onArticlePress?: (slug: string, category: Category) => void;
-}
-
-/** Format indicator `latest` for the headline readout. Large integers (indices,
- *  view counts) are space-separated; sub-10 floats get a decimal; everything
- *  else rounds to integer. Unitless — caller appends `indicator.unit`. */
-function formatLatest(value: number, unit?: string): string {
-  if (!Number.isFinite(value)) return '—';
-  // Percentages / small numbers keep decimals; BTC/$ stay integer-rounded.
-  if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
-  // Large integer values get thin-space separators (e.g. 76 238)
-  const rounded = Math.round(value);
-  return rounded.toLocaleString('en-US');
 }
 
 /**
@@ -65,11 +54,12 @@ function formatDelta(
     return { text: '', tone: 'neutral' };
   }
   if (previous === 0) return { text: '', tone: 'neutral' };
-  const delta = (latest - previous) / Math.abs(previous);
-  const pct = Math.round(delta * 100);
-  if (pct === 0) return { text: 'steady', tone: 'neutral' };
-  const sign = pct > 0 ? '+' : '';
-  return { text: `${sign}${pct}% vs prev`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
+  const pct = ((latest - previous) / Math.abs(previous)) * 100;
+  // The card's own signed-percent grammar — a true minus, one decimal under
+  // ten — so a move reads the same in the chip and in the sheet it opens.
+  const signed = formatSignedPct(pct);
+  if (signed === 'unchanged') return { text: signed, tone: 'neutral' };
+  return { text: `${signed} vs prev`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
 }
 
 function findRelatedArticles(indicator: Indicator, articles: Article[]): Article[] {
@@ -114,7 +104,7 @@ export const EntitySheet = memo(function EntitySheet({
             {latest != null && (
               <Animated.View entering={enter()}>
                 <Text selectable variant="title" tone="emphasis">
-                  {formatLatest(latest, indicator.unit)}
+                  {formatReading(latest, indicator.unit)}
                   {indicator.unit ? ` ${indicator.unit}` : ''}
                 </Text>
                 {delta.text ? (

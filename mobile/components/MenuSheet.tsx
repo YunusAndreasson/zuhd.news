@@ -265,16 +265,7 @@ function ToggleRow({
       accessibilityLabel={label}
       accessibilityHint={hint}
     >
-      <View style={styles.rowText}>
-        <Text variant="label" tone="default">
-          {label}
-        </Text>
-        {hint && (
-          <Text variant="caption" style={styles.hint}>
-            {hint}
-          </Text>
-        )}
-      </View>
+      <RowLabel label={label} hint={hint} />
       <Toggle value={value} />
     </Pressable>
   );
@@ -358,6 +349,22 @@ function InlineOptionRow<T extends string>({
   );
 }
 
+/** A settings row's label, with its hint under it. */
+function RowLabel({ label, hint }: { label: string; hint?: string }) {
+  return (
+    <View style={styles.rowText}>
+      <Text variant="label" tone="default">
+        {label}
+      </Text>
+      {hint && (
+        <Text variant="caption" style={styles.hint}>
+          {hint}
+        </Text>
+      )}
+    </View>
+  );
+}
+
 /** Read-only settings row — a fact, not a control. */
 function ReadoutRow({ label, value, hint }: { label: string; value: string; hint?: string }) {
   const { colors } = useTheme();
@@ -371,16 +378,7 @@ function ReadoutRow({ label, value, hint }: { label: string; value: string; hint
       accessibilityLabel={`${label}, ${value}`}
       accessibilityHint={hint}
     >
-      <View style={styles.rowText}>
-        <Text variant="label" tone="default">
-          {label}
-        </Text>
-        {hint && (
-          <Text variant="caption" style={styles.hint}>
-            {hint}
-          </Text>
-        )}
-      </View>
+      <RowLabel label={label} hint={hint} />
       <Text variant="caption">{value}</Text>
     </View>
   );

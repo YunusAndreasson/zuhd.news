@@ -58,10 +58,6 @@ export const NOW_LIMIT = 4;
  *  window `useGdacsAlerts` renders and keeps a month-old Red off a NOW block. */
 export const HAZARD_MAX_AGE_DAYS = 7;
 
-/** Top quartile of the stories that publish a coverage figure. Drives mark
- *  size on the globe; never a gate for the block. */
-export const STORY_PROMINENT_RANK = 0.75;
-
 export interface StripItem {
   /** The card's own id — also the globe mark's id, so a tap on either lights
    *  the same thing. */

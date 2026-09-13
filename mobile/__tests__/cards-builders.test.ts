@@ -5,7 +5,7 @@ import {
   type InstrumentCardInputs,
   type InstrumentColumns,
 } from '../lib/cards/markets';
-import { buildSwipeSections } from '../lib/cards/sections';
+import { buildRankedInstruments } from '../lib/cards/sections';
 import type { Card } from '../lib/cards/types';
 
 /** `analysis` defaults to empty, which is the state a build older than
@@ -332,7 +332,7 @@ describe('buildInstrumentCards', () => {
     );
     // The gate is the point: carrying no `why` at all, this card was built and
     // then dropped here, so the column documented as opening with it never did.
-    expect(buildSwipeSections(bare, []).markets.map((c) => c.id)).toContain('nisab');
+    expect(buildRankedInstruments(bare, [], []).map((c) => c.id)).toContain('nisab');
   });
 
   it('graphs the gold-to-silver ratio that the metals card headlines', () => {
@@ -796,8 +796,7 @@ describe('scheduled events', () => {
       now: NOW,
     });
 
-    const sections = buildSwipeSections(columns, []);
-    const ids = sections.outlook.map((c) => c.id);
+    const ids = buildRankedInstruments(columns, [], []).map((c) => c.id);
     expect(ids).toContain('event-fomc-2026-09');
     expect(ids).toContain('event-opec-2026-08');
 
@@ -872,7 +871,7 @@ describe('scheduled events', () => {
     expect(boe?.kind === 'scheduled' ? boe.series : undefined).toBeUndefined();
     expect(boe?.changed).toBeUndefined();
     // Still a full card — the gate asks for analysis, never for a graph.
-    expect(buildSwipeSections(columns, []).outlook.map((c) => c.id)).toContain('event-boe-2026-09');
+    expect(buildRankedInstruments(columns, [], []).map((c) => c.id)).toContain('event-boe-2026-09');
   });
 
   it('does not admit a date the desk has written nothing about', () => {
@@ -891,7 +890,7 @@ describe('scheduled events', () => {
     // Built, then refused at the gate — `why` is still mandatory. What the
     // scheduled kind relaxes is the graph, not the analysis.
     expect(columns.scheduled.map((c) => c.id)).toEqual(['event-bare-2026-09']);
-    expect(buildSwipeSections(columns, []).outlook.map((c) => c.id)).toEqual([]);
+    expect(buildRankedInstruments(columns, [], []).map((c) => c.id)).toEqual([]);
   });
 
   it('looks ahead a season, not a year, and keeps the nearest few', () => {

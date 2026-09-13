@@ -1,6 +1,5 @@
 import Storage from 'expo-sqlite/kv-store';
 import { clearBookmarks } from './bookmark-store';
-import { clearCardHistory } from './card-history';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { clearFound } from './found-store';
@@ -31,6 +30,7 @@ const KEYS = [
   'zuhd_review_count', // article snaps since the last rating prompt
   'zuhd_review_prompted', // when the rating prompt was last shown
   'REACT_QUERY_OFFLINE_CACHE', // the persisted article cache
+  'zuhd_card_history_v1', // viewed-card history, written only by older builds
 ];
 
 export async function eraseLocalData(): Promise<void> {
@@ -38,7 +38,6 @@ export async function eraseLocalData(): Promise<void> {
   // keys afterwards.
   clearBookmarks();
   clearFound();
-  clearCardHistory();
   resetOnboarding();
   resetReviewState();
   resetDataUsage();

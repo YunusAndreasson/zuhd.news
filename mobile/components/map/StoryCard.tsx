@@ -23,7 +23,7 @@ import type { RiverArticle } from '../../lib/news-order';
 import { useOpenLink } from '../../lib/open-link';
 import { displayLocation } from '../../lib/place-names';
 import type { StoryOdds } from '../../lib/predictions';
-import { articleKicker, LEAD_SENTENCES } from '../../lib/story-card';
+import { articleKicker, leadOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../globe/MiniGlobe';
 import { OddsLine } from '../OddsLine';
 import { Pressable, Text } from '../primitives';
@@ -186,8 +186,8 @@ export const StoryCard = memo(function StoryCard({
   // "This court sat unused for 30 years." — alone on a line with the rest of
   // it blank, which at rest was a line of lead the card had been sized to show
   // and did not. Run on, the same words take a line or two fewer.
-  const lead = interleave(sentences.slice(0, LEAD_SENTENCES));
-  const rest = interleave(sentences.slice(LEAD_SENTENCES));
+  const lead = interleave(leadOf(sentences));
+  const rest = interleave(restOf(sentences));
 
   const accessibilityActions = useMemo(
     () => [

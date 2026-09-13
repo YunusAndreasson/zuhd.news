@@ -1,3 +1,5 @@
+import { createListeners } from './store-plumbing';
+
 /**
  * Session data meter.
  *
@@ -22,7 +24,7 @@
  */
 
 let bytes = 0;
-const listeners = new Set<() => void>();
+const listeners = createListeners();
 
 /** Exact UTF-8 length. `String.length` counts UTF-16 units and would undercount
  *  every non-Latin headline in the feed. */
@@ -44,15 +46,10 @@ export function utf8ByteLength(s: string): number {
 export function recordBytes(n: number): void {
   if (!Number.isFinite(n) || n <= 0) return;
   bytes += n;
-  for (const l of listeners) l();
+  listeners.emit();
 }
 
-export function subscribe(callback: () => void): () => void {
-  listeners.add(callback);
-  return () => {
-    listeners.delete(callback);
-  };
-}
+export const subscribe = listeners.subscribe;
 
 export function getSnapshot(): number {
   return bytes;
@@ -61,7 +58,7 @@ export function getSnapshot(): number {
 /** Test seam. */
 export function resetDataUsage(): void {
   bytes = 0;
-  for (const l of listeners) l();
+  listeners.emit();
 }
 
 /** Human-readable, in the app's register: whole numbers, no false precision.

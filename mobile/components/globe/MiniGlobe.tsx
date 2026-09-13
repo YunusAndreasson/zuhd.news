@@ -37,7 +37,14 @@ import {
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
-import { geoContains, geoDistance, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
+import {
+  type GeoProjection,
+  geoContains,
+  geoDistance,
+  geoInterpolate,
+  geoOrthographic,
+  geoPath,
+} from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -56,10 +63,17 @@ import {
   useDerivedValue,
   useReducedMotion,
   useSharedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { BLACK, type ColorPalette, categoryMarkColor, WHITE } from '../../constants/theme';
+import {
+  ANIMATION,
+  BLACK,
+  type ColorPalette,
+  categoryMarkColor,
+  WHITE,
+} from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
@@ -75,7 +89,12 @@ import {
   thermalScale,
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
-import { type StoryPlace, topUnfound, unfoundSlugs } from '../../lib/story-places';
+import {
+  type FoundProgress,
+  type StoryPlace,
+  topUnfound,
+  unfoundSlugs,
+} from '../../lib/story-places';
 import { chokepointValence } from '../../lib/valence';
 import { type CapCuller, createCapCuller } from './cap-cull';
 import {
@@ -175,6 +194,8 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
 }
 
 interface PlaceMark {
+  /** Every story here is found: a quiet ring, not a beacon. */
+  read: boolean;
   coords: [number, number];
   slug: string;
   color: string;
@@ -289,6 +310,9 @@ const PULSE_EASING = Easing.out(Easing.cubic);
 /** The found burst's length. The screen waits this long before flying the
  *  camera, so the burst plays where the mark was rather than being dragged. */
 export const COLLECT_MS = 420;
+/** The still-to-find ring: its distance outside the disc, and its weight. */
+const RING_GAP = 6;
+const RING_WIDTH = 2;
 const COLLECT_REDUCED_MS = 150;
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
@@ -352,6 +376,11 @@ const BEACON_SIZE = 16;
 const BEACON_CENTER = BEACON_SIZE / 2;
 /** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
 const BEACON_R = 5.5;
+/** A place whose stories are all found keeps a hollow ring this size: small
+ *  enough that the beacons still to find stay the loud marks, visible enough to
+ *  say where the reader has been. */
+const READ_R = 3.5;
+const READ_ALPHA = 0.7;
 const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
 /** The web's `sentimentDivergence` bar for the contested ring. */
 const CONTESTED_DIVERGENCE = 0.35;
@@ -571,8 +600,11 @@ interface MiniGlobeProps {
    * of its newest unfound story.
    */
   places?: StoryPlace[];
-  /** Stories the reader has opened. Their marks are not drawn. */
+  /** Stories the reader has opened. A place whose stories are all found keeps a
+   *  hollow ring rather than a beacon. */
   foundSlugs?: ReadonlySet<string>;
+  /** Found stories of those with a place — the ring outside the globe. */
+  foundProgress?: FoundProgress;
   /** IPC famine classifications, from `/api/ipc.json`. */
   famineAreas?: FamineArea[];
   /** FIRMS thermal anomalies joined to coverage, from `/api/firms.json`. */
@@ -699,6 +731,8 @@ interface GlobeState {
   }[];
   /** Stack counts show beside places with at least this many unfound stories. */
   storyCountMin: number;
+  /** Places whose stories are all found. Tappable, below any beacon in reach. */
+  readMarks: { x: number; y: number; slug: string; color: string }[];
   famineMarks: { x: number; y: number; id: string; blocks: number; alpha: number; scale: number }[];
   thermalMarks: { x: number; y: number; id: string; alpha: number; scale: number }[];
   genocideMarks: { x: number; y: number; id: string; label: string }[];
@@ -943,6 +977,7 @@ const EMPTY_GLOBE: GlobeState = {
   dot: null,
   storyMarks: [],
   storyCountMin: 3,
+  readMarks: [],
   famineMarks: [],
   thermalMarks: [],
   genocideMarks: [],
@@ -1507,6 +1542,11 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     overlayAtlas(f.thermalMarks, () => THERMAL_SRC, hexRgb(colors.markThermal)),
   );
 
+  // Places read to the end — a hollow ring in the story's hue, under the
+  // beacons, so the lights still to find stay the loud ones.
+  for (const m of f.readMarks) {
+    c.drawCircle(m.x, m.y, READ_R, strokePaint(m.color, READ_ALPHA, 1.2));
+  }
   // Story beacons — halo, then the rimmed disc.
   drawAtlasLayer(
     c,
@@ -1674,6 +1714,41 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   return { ground, marks, labels };
 }
 
+/**
+ * Trace the great circle from `from` to `to` into `builder` in `steps`
+ * segments, lifting the pen wherever the arc leaves the camera's cone or a
+ * point will not project.
+ *
+ * The cull is per point, not per endpoint: a source's headquarters is routinely
+ * outside the zoom cone while the story-side stretch of its arc is visible. And
+ * point projection ignores `.clipAngle`, so an unculled point would draw the arc
+ * into the sky, or fold a far-side stretch back mirrored across the disk.
+ */
+function traceGreatCircle(
+  builder: SkPathBuilder,
+  from: [number, number],
+  to: [number, number],
+  steps: number,
+  camera: [number, number],
+  clipRad: number,
+  proj: GeoProjection,
+): void {
+  const interp = geoInterpolate(from, to);
+  let started = false;
+  for (let i = 0; i <= steps; i++) {
+    const ll = interp(i / steps);
+    const p = geoDistance(ll, camera) < clipRad ? proj(ll) : null;
+    if (!p) {
+      started = false;
+      continue;
+    }
+    if (!started) {
+      builder.moveTo(p[0], p[1]);
+      started = true;
+    } else builder.lineTo(p[0], p[1]);
+  }
+}
+
 export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
@@ -1683,6 +1758,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   marketMarks,
   places,
   foundSlugs,
+  foundProgress,
   famineAreas,
   thermalEvents,
   genocideSituations,
@@ -1877,7 +1953,28 @@ export const MiniGlobe = memo(function MiniGlobe({
     const marks: PlaceMark[] = [];
     for (const place of places ?? []) {
       const slug = topUnfound(place, found);
-      if (!slug) continue;
+      if (!slug) {
+        // Every story here is found. The place keeps a ring in its newest
+        // story's hue: a globe that empties as it is read hides where the
+        // reader has been, and a tap there can still reopen the story.
+        const newest = place.slugs[0];
+        const i = newest == null ? undefined : indexBySlug.get(newest);
+        if (newest == null || i == null) continue;
+        const category = (articles[i] as { category?: string } | undefined)?.category;
+        const color = categoryMarkColor(category, colors);
+        marks.push({
+          read: true,
+          coords: [place.lng, place.lat],
+          slug: newest,
+          color,
+          rgb: hexRgb(color),
+          scale: STORY_SCALE_MIN,
+          alpha: 1,
+          count: 0,
+          contested: false,
+        });
+        continue;
+      }
       const top = indexBySlug.get(slug);
       if (top == null) continue;
       let scale = 0;
@@ -1897,6 +1994,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const category = (articles[top] as { category?: string } | undefined)?.category;
       const color = categoryMarkColor(category, colors);
       marks.push({
+        read: false,
         coords: [place.lng, place.lat],
         slug,
         color,
@@ -2434,11 +2532,16 @@ export const MiniGlobe = memo(function MiniGlobe({
       // the zoom cone (direct point projection ignores `.clipAngle`, see
       // clipRad above) and projects.
       const storyMarks: GlobeState['storyMarks'] = [];
+      const readMarks: GlobeState['readMarks'] = [];
       const storyCamera: [number, number] = [geoLng, geoLat];
       for (const m of placeMarksRef.current) {
         if (geoDistance(m.coords, storyCamera) >= clipRad) continue;
         const pt = proj(m.coords);
         if (!pt) continue;
+        if (m.read) {
+          readMarks.push({ x: pt[0], y: pt[1], slug: m.slug, color: m.color });
+          continue;
+        }
         storyMarks.push({
           x: pt[0],
           y: pt[1],
@@ -2638,27 +2741,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
-          const interp = geoInterpolate(storyPt, MAKKAH.coords);
-          let started = false;
-          for (let i = 0; i <= 16; i++) {
-            const ll = interp(i / 16);
-            // Explicit cone cull — point projection ignores `.clipAngle`, so
-            // a beyond-cone point would draw the arc into the sky and a
-            // far-side point would fold it back mirrored across the disk.
-            if (geoDistance(ll, [geoLng, geoLat]) >= clipRad) {
-              started = false;
-              continue;
-            }
-            const p = proj(ll);
-            if (!p) {
-              started = false;
-              continue;
-            }
-            if (!started) {
-              qiblaBuilder.moveTo(p[0], p[1]);
-              started = true;
-            } else qiblaBuilder.lineTo(p[0], p[1]);
-          }
+          traceGreatCircle(
+            qiblaBuilder,
+            storyPt,
+            MAKKAH.coords,
+            16,
+            [geoLng, geoLat],
+            clipRad,
+            proj,
+          );
           hasQibla = true;
         }
       }
@@ -2677,29 +2768,15 @@ export const MiniGlobe = memo(function MiniGlobe({
             const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
             // Skip if source is at the same location as the story
             if (geoDistance(srcPt, storyPt) < 0.05) continue;
-            const interp = geoInterpolate(srcPt, storyPt);
-            let started = false;
-            for (let i = 0; i <= 10; i++) {
-              const ll = interp(i / 10);
-              // Per-point cone cull (not an endpoint check): the source HQ is
-              // routinely outside the zoom cone while the story-side stretch
-              // of the arc is visible — and point projection ignores
-              // `.clipAngle`, so unculled points would land in the sky or
-              // fold back mirrored across the disk.
-              if (geoDistance(ll, [geoLng, geoLat]) >= clipRad) {
-                started = false;
-                continue;
-              }
-              const p = proj(ll);
-              if (!p) {
-                started = false;
-                continue;
-              }
-              if (!started) {
-                sourceArcsBuilder.moveTo(p[0], p[1]);
-                started = true;
-              } else sourceArcsBuilder.lineTo(p[0], p[1]);
-            }
+            traceGreatCircle(
+              sourceArcsBuilder,
+              srcPt,
+              storyPt,
+              10,
+              [geoLng, geoLat],
+              clipRad,
+              proj,
+            );
             hasSourceArcs = true;
           }
         }
@@ -3255,6 +3332,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         dot,
         storyMarks,
         storyCountMin,
+        readMarks,
         famineMarks,
         thermalMarks,
         genocideMarks,
@@ -3876,6 +3954,16 @@ export const MiniGlobe = memo(function MiniGlobe({
           story = { slug: m.slug, color: m.color, d2 };
         }
       }
+      // A read place reopens its newest story, but only with no unread light in
+      // reach: the lights still to find are what a tap on the globe is for.
+      if (!story) {
+        for (const m of frame.readMarks) {
+          const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
+          if (d2 <= STORY_HIT_PX2 && (!story || d2 < story.d2)) {
+            story = { slug: m.slug, color: m.color, d2 };
+          }
+        }
+      }
       if (story) {
         let overlay = Number.POSITIVE_INFINITY;
         const marks = [
@@ -4195,6 +4283,29 @@ export const MiniGlobe = memo(function MiniGlobe({
     return recorder.finishRecordingAsPicture();
   }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere, colors.dome]);
 
+  // What is still to find, as a ring just outside the globe. The track is the
+  // day's stories with a place; the arc is what is left, starting at twelve
+  // o'clock and shrinking back toward it with each find — after the burst, so
+  // the colour at the mark plays first. A number already says it on the sheet's
+  // masthead; this says it where the lights are, without a word.
+  const foundTotal = foundProgress?.total ?? 0;
+  const leftFraction = foundTotal > 0 ? (foundTotal - (foundProgress?.found ?? 0)) / foundTotal : 0;
+  const ringLeft = useSharedValue(leftFraction);
+  useEffect(() => {
+    ringLeft.value = reduceMotion
+      ? leftFraction
+      : withDelay(
+          COLLECT_MS,
+          withTiming(leftFraction, { duration: ANIMATION.slow, easing: PULSE_EASING }),
+        );
+  }, [leftFraction, reduceMotion, ringLeft]);
+  const ringPath = useMemo(() => {
+    const r = globeRadius + RING_GAP;
+    return Skia.PathBuilder.Make()
+      .addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360)
+      .build();
+  }, [cx, cy, globeRadius]);
+
   // Atmospheric rim + ocean-disk gradient stops. Memoized per-theme so the
   // declarative RadialGradient props stay referentially stable during scroll.
   const rimColors = useMemo(() => {
@@ -4296,6 +4407,29 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Marks — hotspots, straits, exchanges, hazards, the country
           highlight, rivers, arcs, stories and the settled dot. */}
       <Picture picture={marksPicture} />
+
+      {/* Still to find — see `ringLeft`. */}
+      {foundTotal > 0 ? (
+        <Group>
+          <Circle
+            cx={cx}
+            cy={cy}
+            r={globeRadius + RING_GAP}
+            color={colors.rule}
+            style="stroke"
+            strokeWidth={RING_WIDTH}
+          />
+          <Path
+            path={ringPath}
+            start={0}
+            end={ringLeft}
+            color={colors.textSecondary}
+            style="stroke"
+            strokeWidth={RING_WIDTH}
+            strokeCap="round"
+          />
+        </Group>
+      ) : null}
 
       {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
           fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake

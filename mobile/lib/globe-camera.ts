@@ -13,8 +13,8 @@
  * `translate([cx, cy])`.
  */
 
-const RAD = Math.PI / 180;
-const DEG = 180 / Math.PI;
+const DEG2RAD = Math.PI / 180;
+const RAD2DEG = 180 / Math.PI;
 
 /** The tightest clip a pinch reaches — the old closest zoom level. */
 export const MIN_CLIP = 10;
@@ -29,14 +29,14 @@ export const MAX_LAT = 82;
  */
 export const MAX_FLING_PX_S = 1400;
 /** Below this a release is a stop, not a throw. */
-export const MIN_FLING_PX_S = 180;
+const MIN_FLING_PX_S = 180;
 /** Longitude turns faster near the poles; past this it would spin. */
 const MIN_COS_LAT = 0.2;
 
 /** The orthographic scale at a clip angle: the disc radius over sin(clip). */
 export function projScaleFor(clip: number, radius: number): number {
   'worklet';
-  return radius / Math.sin(clip * RAD);
+  return radius / Math.sin(clip * DEG2RAD);
 }
 
 /**
@@ -53,10 +53,10 @@ export function dragDelta(
 ): { dLng: number; dLat: number } {
   'worklet';
   const scale = projScaleFor(clip, radius);
-  const cosLat = Math.max(MIN_COS_LAT, Math.cos(lat * RAD));
+  const cosLat = Math.max(MIN_COS_LAT, Math.cos(lat * DEG2RAD));
   return {
-    dLng: (-changeX / (scale * cosLat)) * DEG,
-    dLat: (changeY / scale) * DEG,
+    dLng: (-changeX / (scale * cosLat)) * RAD2DEG,
+    dLat: (changeY / scale) * RAD2DEG,
   };
 }
 
@@ -87,9 +87,9 @@ export function flingVelocity(
 export function pinchClip(clip: number, scaleChange: number): number {
   'worklet';
   if (!(scaleChange > 0)) return clip;
-  const s = Math.sin(clip * RAD) / scaleChange;
-  const lo = Math.sin(MIN_CLIP * RAD);
-  const next = Math.asin(s >= 1 ? 1 : s <= lo ? lo : s) * DEG;
+  const s = Math.sin(clip * DEG2RAD) / scaleChange;
+  const lo = Math.sin(MIN_CLIP * DEG2RAD);
+  const next = Math.asin(s >= 1 ? 1 : s <= lo ? lo : s) * RAD2DEG;
   return next < MIN_CLIP ? MIN_CLIP : next > MAX_CLIP ? MAX_CLIP : next;
 }
 
@@ -123,11 +123,11 @@ export function invertOrthographic(
   const vx = Math.cos(lam) * cosPhi;
   const vy = Math.sin(lam) * cosPhi;
   const vz = Math.sin(phi);
-  const dPhi = -camLat * RAD;
+  const dPhi = -camLat * DEG2RAD;
   const cosD = Math.cos(dPhi);
   const sinD = Math.sin(dPhi);
-  let lng = Math.atan2(vy, vx * cosD + vz * sinD) * DEG + camLng;
-  const lat = Math.asin(Math.max(-1, Math.min(1, vz * cosD - vx * sinD))) * DEG;
+  let lng = Math.atan2(vy, vx * cosD + vz * sinD) * RAD2DEG + camLng;
+  const lat = Math.asin(Math.max(-1, Math.min(1, vz * cosD - vx * sinD))) * RAD2DEG;
   lng = ((((lng + 180) % 360) + 360) % 360) - 180;
   return [lng, lat];
 }

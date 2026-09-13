@@ -13,13 +13,14 @@ import type { Article } from '@shared/types';
  */
 
 /** The hook and the why-it-matters sentence. */
-export const LEAD_SENTENCES = 2;
+const LEAD_SENTENCES = 2;
 
-export function leadOf(sentences: readonly string[]): string[] {
+/** Generic so a card can split its rendered sentences, not only the strings. */
+export function leadOf<T>(sentences: readonly T[]): T[] {
   return sentences.slice(0, LEAD_SENTENCES);
 }
 
-export function restOf(sentences: readonly string[]): string[] {
+export function restOf<T>(sentences: readonly T[]): T[] {
   return sentences.slice(LEAD_SENTENCES);
 }
 

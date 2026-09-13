@@ -1,6 +1,6 @@
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo } from 'react';
+import { type ComponentProps, memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
@@ -219,12 +219,47 @@ interface RowIconProps {
   tint: string;
 }
 
+/** Centres a glyph in a row icon. */
+const GLYPH_TRANSFORM = [
+  { translateX: ROW_ICON / 2 - GLYPH_HALF },
+  { translateY: ROW_ICON / 2 - GLYPH_HALF },
+];
+
+/** A glyph stroked over a disc of its own colour — the shape the hazard,
+ *  conflict, strait and exchange rows share. */
+function GlyphIcon({
+  path,
+  color,
+  discOpacity,
+}: {
+  path: ComponentProps<typeof Path>['path'];
+  color: string;
+  discOpacity: number;
+}) {
+  return (
+    <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+      <Circle
+        cx={ROW_ICON / 2}
+        cy={ROW_ICON / 2}
+        r={ROW_ICON / 2}
+        color={color}
+        opacity={discOpacity}
+      />
+      <Path
+        path={path}
+        color={color}
+        style="stroke"
+        strokeWidth={1.6}
+        strokeJoin="round"
+        strokeCap="round"
+        transform={GLYPH_TRANSFORM}
+      />
+    </Canvas>
+  );
+}
+
 function RowIcon({ row, tint }: RowIconProps) {
   const { colors } = useTheme();
-  const glyphTransform = [
-    { translateX: ROW_ICON / 2 - GLYPH_HALF },
-    { translateY: ROW_ICON / 2 - GLYPH_HALF },
-  ];
   // The hazard layers from the web keep their globe hues here too: the row
   // names the mark the reader just tapped, and a grey column would not.
   if (row.kind === 'famine') {
@@ -242,12 +277,12 @@ function RowIcon({ row, tint }: RowIconProps) {
           color={colors.markFamine}
           style="stroke"
           strokeWidth={FAMINE_FRAME_STROKE}
-          transform={glyphTransform}
+          transform={GLYPH_TRANSFORM}
         />
         <Path
           path={getFamineBlocksPath(row.blocks ?? 0)}
           color={colors.markFamine}
-          transform={glyphTransform}
+          transform={GLYPH_TRANSFORM}
         />
       </Canvas>
     );
@@ -262,14 +297,14 @@ function RowIcon({ row, tint }: RowIconProps) {
           color={colors.markThermal}
           opacity={0.14}
         />
-        <Path path={THERMAL_CORE_PATH} color={colors.markThermal} transform={glyphTransform} />
+        <Path path={THERMAL_CORE_PATH} color={colors.markThermal} transform={GLYPH_TRANSFORM} />
         <Path
           path={THERMAL_RAYS_PATH}
           color={colors.markThermal}
           style="stroke"
           strokeWidth={THERMAL_RAY_STROKE}
           strokeCap="round"
-          transform={glyphTransform}
+          transform={GLYPH_TRANSFORM}
         />
       </Canvas>
     );
@@ -291,92 +326,18 @@ function RowIcon({ row, tint }: RowIconProps) {
     );
   }
   if (row.kind === 'gdacs' && row.eventtype) {
-    return (
-      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={ROW_ICON / 2} color={tint} opacity={0.18} />
-        <Path
-          path={getGlyphPath(row.eventtype)}
-          color={tint}
-          style="stroke"
-          strokeWidth={1.6}
-          strokeJoin="round"
-          strokeCap="round"
-          transform={[
-            { translateX: ROW_ICON / 2 - GLYPH_HALF },
-            { translateY: ROW_ICON / 2 - GLYPH_HALF },
-          ]}
-        />
-      </Canvas>
-    );
+    return <GlyphIcon path={getGlyphPath(row.eventtype)} color={tint} discOpacity={0.18} />;
   }
   if (row.kind === 'conflict' && row.conflictFamily) {
     return (
-      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={ROW_ICON / 2} color={tint} opacity={0.18} />
-        <Path
-          path={getConflictGlyphPath(row.conflictFamily)}
-          color={tint}
-          style="stroke"
-          strokeWidth={1.6}
-          strokeJoin="round"
-          strokeCap="round"
-          transform={[
-            { translateX: ROW_ICON / 2 - GLYPH_HALF },
-            { translateY: ROW_ICON / 2 - GLYPH_HALF },
-          ]}
-        />
-      </Canvas>
+      <GlyphIcon path={getConflictGlyphPath(row.conflictFamily)} color={tint} discOpacity={0.18} />
     );
   }
   if (row.kind === 'chokepoint') {
-    return (
-      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle
-          cx={ROW_ICON / 2}
-          cy={ROW_ICON / 2}
-          r={ROW_ICON / 2}
-          color={colors.textSecondary}
-          opacity={0.12}
-        />
-        <Path
-          path={CHOKEPOINT_PATH}
-          color={colors.textSecondary}
-          style="stroke"
-          strokeWidth={1.6}
-          strokeJoin="round"
-          strokeCap="round"
-          transform={[
-            { translateX: ROW_ICON / 2 - GLYPH_HALF },
-            { translateY: ROW_ICON / 2 - GLYPH_HALF },
-          ]}
-        />
-      </Canvas>
-    );
+    return <GlyphIcon path={CHOKEPOINT_PATH} color={colors.textSecondary} discOpacity={0.12} />;
   }
   if (row.kind === 'market') {
-    return (
-      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle
-          cx={ROW_ICON / 2}
-          cy={ROW_ICON / 2}
-          r={ROW_ICON / 2}
-          color={colors.textSecondary}
-          opacity={0.12}
-        />
-        <Path
-          path={MARKET_PATH}
-          color={colors.textSecondary}
-          style="stroke"
-          strokeWidth={1.6}
-          strokeJoin="round"
-          strokeCap="round"
-          transform={[
-            { translateX: ROW_ICON / 2 - GLYPH_HALF },
-            { translateY: ROW_ICON / 2 - GLYPH_HALF },
-          ]}
-        />
-      </Canvas>
-    );
+    return <GlyphIcon path={MARKET_PATH} color={colors.textSecondary} discOpacity={0.12} />;
   }
   if (row.kind === 'hotspot') {
     // Pulse pattern — three concentric layers read as "density radiating

@@ -315,6 +315,21 @@ export const BriefingBar = memo(function BriefingBar({
     }
   }, [date]);
 
+  // One track for both states: preparing shows it, playing lays the scrubber
+  // over it.
+  const progressTrack = (
+    <View
+      style={[
+        styles.progressTrack,
+        { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
+      ]}
+    >
+      <Animated.View
+        style={[styles.progressFill, { backgroundColor: colors.textSecondary }, progressStyle]}
+      />
+    </View>
+  );
+
   return (
     <Animated.View
       entering={FadeInDown.duration(ANIMATION.normal).withInitialValues({
@@ -401,20 +416,7 @@ export const BriefingBar = memo(function BriefingBar({
               accessibilityRole="progressbar"
               accessibilityLabel={`Preparing briefing, ${formatTime(duration)} total`}
             >
-              <View
-                style={[
-                  styles.progressTrack,
-                  { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
-                ]}
-              >
-                <Animated.View
-                  style={[
-                    styles.progressFill,
-                    { backgroundColor: colors.textSecondary },
-                    progressStyle,
-                  ]}
-                />
-              </View>
+              {progressTrack}
             </View>
           ) : (
             <GestureDetector gesture={scrubGesture}>
@@ -431,20 +433,7 @@ export const BriefingBar = memo(function BriefingBar({
                     onSeek(Math.max(elapsed - step, 0));
                 }}
               >
-                <View
-                  style={[
-                    styles.progressTrack,
-                    { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
-                  ]}
-                >
-                  <Animated.View
-                    style={[
-                      styles.progressFill,
-                      { backgroundColor: colors.textSecondary },
-                      progressStyle,
-                    ]}
-                  />
-                </View>
+                {progressTrack}
                 <Animated.View
                   pointerEvents="none"
                   style={[styles.scrubThumb, { backgroundColor: colors.textEmphasis }, thumbStyle]}

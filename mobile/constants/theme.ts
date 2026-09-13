@@ -140,7 +140,6 @@ export const DARK_COLORS = {
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
   markConflict: '#c05252',
-  markConflictFill: '#8c2f2f',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
@@ -208,7 +207,6 @@ export const LIGHT_COLORS = {
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
   markConflict: '#c05252',
-  markConflictFill: '#8c2f2f',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
@@ -367,7 +365,6 @@ export const GAP = {
   tight: SPACING.xs,
   row: SPACING.sm,
   item: SPACING.md,
-  group: SPACING.lg,
   section: SPACING.xl,
 } as const;
 export type GapToken = keyof typeof GAP;
@@ -437,7 +434,6 @@ export const ICON = {
  *  beside (not above) the country name, `display` for stacked sheet-header
  *  badges where the flag is its own row. */
 export const FLAG = {
-  chip: 16,
   row: 18,
   inline: 22,
   display: 32,
@@ -445,7 +441,6 @@ export const FLAG = {
 
 /** Non-radius, non-icon layout primitives. */
 export const LAYOUT = {
-  progressBarHeight: 2,
   /** Ceiling for a sheet, as a fraction of window height. Every sheet is
    *  content-sized through `SheetLayout`, so this is the only thing
    *  bounding a long one — it is the height the old fixed `'85%'` snap used
@@ -489,9 +484,6 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
  * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
  * wrong shape once the axis was needed for something else.
  */
-export const SECTIONS = ['news', 'markets', 'shipping', 'outlook'] as const;
-export type Section = (typeof SECTIONS)[number];
-
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */
 export const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
 
@@ -526,18 +518,11 @@ export const EASING = {
  * and takes no value from here.
  */
 export const OPACITY = {
-  // Interactive states
-  disabled: 0.5,
+  // Interactive state
   pressed: 0.7,
-  hover: 0.85,
   // Decorative / chrome layers
-  barely: 0.03,
-  faint: 0.08,
   soft: 0.15,
   muted: 0.28,
-  half: 0.45,
-  strong: 0.7,
-  dominant: 0.9,
 } as const;
 
 /** Interactive transform scale — applied on Pressable press via PRESSED_STYLE. */

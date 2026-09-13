@@ -98,7 +98,7 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
 /** A level the series is measured against — a strait's 90-day normal —
  *  drawn as a dashed hairline with its label at the left end. It joins the
  *  y-extent, so the line is always on the canvas. */
-export interface TrendReference {
+interface TrendReference {
   value: number;
   label: string;
 }
@@ -536,6 +536,21 @@ export const TrendBlock = memo(function TrendBlock({
 
   const panConfig = useMemo<PanGestureConfig>(() => {
     const pointsX = points.map((p) => p.x);
+    // The nearest point to the finger, on touch-down and as it moves.
+    const scrubTo = (e: { x: number }) => {
+      'worklet';
+      if (pointsX.length === 0) return;
+      let best = 0;
+      let bestD = Number.POSITIVE_INFINITY;
+      for (let i = 0; i < pointsX.length; i++) {
+        const d = Math.abs((pointsX[i] ?? 0) - e.x);
+        if (d < bestD) {
+          bestD = d;
+          best = i;
+        }
+      }
+      scrubIdx.value = best;
+    };
     return {
       // Disabled rather than unmounted: the detector stays in the tree so the
       // chart's layout is identical either way, and the horizontal drag falls
@@ -543,34 +558,8 @@ export const TrendBlock = memo(function TrendBlock({
       enabled: scrubbable,
       activeOffsetX: [-5, 5],
       failOffsetY: [-10, 10],
-      onActivate: (e) => {
-        'worklet';
-        if (pointsX.length === 0) return;
-        let best = 0;
-        let bestD = Number.POSITIVE_INFINITY;
-        for (let i = 0; i < pointsX.length; i++) {
-          const d = Math.abs((pointsX[i] ?? 0) - e.x);
-          if (d < bestD) {
-            bestD = d;
-            best = i;
-          }
-        }
-        scrubIdx.value = best;
-      },
-      onUpdate: (e) => {
-        'worklet';
-        if (pointsX.length === 0) return;
-        let best = 0;
-        let bestD = Number.POSITIVE_INFINITY;
-        for (let i = 0; i < pointsX.length; i++) {
-          const d = Math.abs((pointsX[i] ?? 0) - e.x);
-          if (d < bestD) {
-            bestD = d;
-            best = i;
-          }
-        }
-        scrubIdx.value = best;
-      },
+      onActivate: scrubTo,
+      onUpdate: scrubTo,
       onFinalize: () => {
         'worklet';
         scrubIdx.value = -1;

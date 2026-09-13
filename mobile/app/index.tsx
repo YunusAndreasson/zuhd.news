@@ -53,7 +53,6 @@ import { IndexSheet } from '../components/IndexSheet';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
-import { IndicatorStrip } from '../components/map/IndicatorStrip';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { SheetMasthead } from '../components/map/SheetMasthead';
@@ -285,11 +284,6 @@ export default function HomeScreen() {
   const onTopChromeLayout = useCallback((e: LayoutChangeEvent) => {
     setTopChromeHeight(e.nativeEvent.layout.height);
   }, []);
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const onHeaderLayout = useCallback((e: LayoutChangeEvent) => {
-    setHeaderHeight(e.nativeEvent.layout.height);
-  }, []);
-  const stripHeight = Math.max(0, topChromeHeight - headerHeight);
 
   // The sheet at rest is sized from the card's type, not a fraction of the
   // window, and the globe takes what is left — see `lib/deck-layout.ts`.
@@ -298,8 +292,7 @@ export default function HomeScreen() {
       computeDeckLayout({
         width: screenWidth,
         height: screenHeight,
-        headerHeight,
-        stripHeight,
+        chromeHeight: topChromeHeight,
         bottomInset: insets.bottom,
         fontScale,
         lines: {
@@ -315,7 +308,7 @@ export default function HomeScreen() {
           body: VARIANT_CAP.body,
         },
       }),
-    [screenWidth, screenHeight, headerHeight, stripHeight, insets.bottom, fontScale, textVariants],
+    [screenWidth, screenHeight, topChromeHeight, insets.bottom, fontScale, textVariants],
   );
   /** Where the grown sheet stops — the story's own height, capped at
    *  `layout.full`. Written by `MapSheet`; read by the globe's transform. */
@@ -1151,14 +1144,6 @@ export default function HomeScreen() {
     };
   });
 
-  // The strip gets out of the way of a grown story, on its own animated style —
-  // one style shared between two views once left one of them invisible but
-  // still touchable on the Android emulator.
-  const stripStyle = useAnimatedStyle(() => {
-    const p = Math.min(1, Math.max(0, sheetProgress.value));
-    return { opacity: 1 - p, transform: [{ translateY: -stripHeight * p }] };
-  });
-
   // Hold the splash until we have something for *every* visible layer.
   useEffect(() => {
     if (loading) return;
@@ -1274,13 +1259,25 @@ export default function HomeScreen() {
     () => (
       <SheetMasthead
         refreshing={refreshing}
+        index={frontIndex}
+        count={storyCount}
+        position={storyProgress}
         progress={progress}
         alert={now[0]?.title ?? null}
         onPress={handleIndexPress}
         onAlertPress={handleMastheadAlertPress}
       />
     ),
-    [refreshing, progress, now, handleIndexPress, handleMastheadAlertPress],
+    [
+      refreshing,
+      frontIndex,
+      storyCount,
+      storyProgress,
+      progress,
+      now,
+      handleIndexPress,
+      handleMastheadAlertPress,
+    ],
   );
 
   if (loading)
@@ -1310,6 +1307,7 @@ export default function HomeScreen() {
           marketMarks={marketMarks}
           places={places}
           foundSlugs={foundSlugs}
+          foundProgress={progress}
           famineAreas={famineAreas}
           thermalEvents={thermalEvents}
           genocideSituations={genocideSituations}
@@ -1357,29 +1355,21 @@ export default function HomeScreen() {
       />
 
       <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
-        <View onLayout={onHeaderLayout}>
-          <MapHeader
-            onMenuPress={handleMenuPress}
-            // While the player bar is up it is the control. A second pill
-            // reading "resume · 10 min" over audio that was already playing
-            // said the opposite of what was happening; it returns when the
-            // bar hides.
-            briefingAvailable={briefingStatus.available && !briefingVisible}
-            briefingResumable={briefingStatus.resumable}
-            briefingDuration={briefingStatus.duration}
-            onBriefingPress={handleBriefingPress}
-          />
-        </View>
-        <Animated.View
-          style={stripStyle}
-          pointerEvents={sheetDetent === 'full' ? 'none' : 'box-none'}
-        >
-          <IndicatorStrip
-            items={strip}
-            onSelect={handleStripPress}
-            onAll={handleInstrumentsPress}
-          />
-        </Animated.View>
+        <MapHeader
+          onMenuPress={handleMenuPress}
+          // While the player bar is up it is the control. A second play button
+          // over audio that was already playing said the opposite of what was
+          // happening; it returns when the bar hides.
+          briefingAvailable={briefingStatus.available && !briefingVisible}
+          briefingResumable={briefingStatus.resumable}
+          briefingDuration={briefingStatus.duration}
+          onBriefingPress={handleBriefingPress}
+          items={strip}
+          onSelect={handleStripPress}
+          onAll={handleInstrumentsPress}
+          recede={sheetProgress}
+          gaugesEnabled={sheetDetent !== 'full'}
+        />
       </View>
 
       <MapSheet

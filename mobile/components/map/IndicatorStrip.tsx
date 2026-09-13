@@ -1,12 +1,18 @@
-import { memo, useCallback } from 'react';
-import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { memo, useCallback, useState } from 'react';
+import {
+  type LayoutChangeEvent,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
 
 /**
- * The gauges above the earth, swiped sideways.
+ * The gauges above the earth, swiped sideways between `MapHeader`'s buttons.
  *
  * The brief was "keep the indicators of whether things are going up and down
  * on the markets and straits, but put them at the top" — and then, having
@@ -20,8 +26,8 @@ import { Icon, Pressable, Text } from '../primitives';
  * stops.
  *
  * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
- * fit a phone's width — the partial slot at the edge is what says the row
- * continues. No scroll indicator, no arrow, no dots.
+ * fit the room between the bar's buttons — the partial slot at the menu's edge
+ * is what says the row continues. No scroll indicator, no arrow, no dots.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
@@ -120,10 +126,15 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   /** Opens every instrument as one ranked list. */
   onAll: () => void;
 }) {
+  // Sized from the room the bar actually leaves, which changes when the listen
+  // button comes and goes; the window's width is only the first guess.
   const { width: screenWidth } = useWindowDimensions();
-  const slotWidth = Math.round(
-    (screenWidth - SPACING.articlePadding - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS,
-  );
+  const [viewport, setViewport] = useState(screenWidth / 2);
+  const handleLayout = useCallback((e: LayoutChangeEvent) => {
+    const next = Math.round(e.nativeEvent.layout.width);
+    setViewport((prev) => (prev === next ? prev : next));
+  }, []);
+  const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
@@ -138,6 +149,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       // performing; it stops where the finger leaves it.
       bounces={false}
       overScrollMode="never"
+      onLayout={handleLayout}
       contentContainerStyle={styles.row}
       accessibilityLabel="Markets, straits and currencies, largest move first"
     >
@@ -163,7 +175,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
 
 const styles = StyleSheet.create({
   row: {
-    paddingHorizontal: SPACING.articlePadding,
     paddingTop: SPACING.xs,
     paddingBottom: SPACING.sm,
     gap: SPACING.md,

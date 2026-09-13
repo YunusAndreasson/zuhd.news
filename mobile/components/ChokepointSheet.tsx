@@ -4,6 +4,7 @@ import { Text as RNText, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { formatQuantity, formatVsNormal } from '../lib/cards/format';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
 import { chokepointValence, type Valence } from '../lib/valence';
@@ -22,21 +23,16 @@ interface ChokepointSheetProps extends BaseSheetProps {
   onArticlePress?: (slug: string, category: Category) => void;
 }
 
-function formatCount(n: number): string {
-  return n < 10 ? n.toFixed(1) : Math.round(n).toString();
-}
-
-/** A vessel class against its own 90-day normal.
+/** A vessel class against its own 90-day normal, in the card's words.
  *
  *  The tone comes from `chokepointValence` rather than from a threshold of its
  *  own. It used to hold one: 15% here against the card's 10%, so the same
  *  strait could read disrupted on the card and quiet in the sheet that card
- *  opens, and nothing in either file said the other existed. */
+ *  opens, and nothing in either file said the other existed. The text was the
+ *  same drift in words — `-57% vs 90d` here, `−57% vs its normal` on the card —
+ *  so it comes from the card's formatter too. */
 function formatDelta(delta: number): { text: string; tone: Valence } {
-  const pct = Math.round(delta * 100);
-  if (pct === 0) return { text: 'steady', tone: 'neutral' };
-  const sign = pct > 0 ? '+' : '';
-  return { text: `${sign}${pct}% vs 90d`, tone: chokepointValence(delta) };
+  return { text: formatVsNormal(delta), tone: chokepointValence(delta) };
 }
 
 function findRelatedArticles(chokepoint: Chokepoint, articles: Article[]): Article[] {
@@ -80,7 +76,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       return [
         {
           label: v.label,
-          value: `${formatCount(current)} / day \u00b7 ${deltaText}`,
+          value: `${formatQuantity(current)} a day \u00b7 ${deltaText}`,
           tone,
         },
       ];
@@ -110,9 +106,9 @@ export const ChokepointSheet = memo(function ChokepointSheet({
                   brief title; only these two sites bold a title, so no
                   dedicated bold-title variant yet (<3 call sites). */}
               <Text selectable variant="title" tone="emphasis" style={font.bold}>
-                {formatCount(current)}{' '}
+                {formatQuantity(current)}{' '}
                 <RNText style={{ ...font.regular, color: colors.textSecondary }}>
-                  {primaryLabel}/day
+                  {primaryLabel} a day
                 </RNText>
               </Text>
               <Text variant="captionEmphasis" tone={deltaTone} style={styles.delta}>

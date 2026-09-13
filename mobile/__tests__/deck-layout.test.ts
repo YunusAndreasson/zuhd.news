@@ -16,8 +16,7 @@ function small(overrides: Partial<DeckLayoutInput> = {}): DeckLayoutInput {
   return {
     width: 360,
     height: 640,
-    headerHeight: 72,
-    stripHeight: 56,
+    chromeHeight: 128,
     bottomInset: 24,
     fontScale: 1,
     lines: SMALL_LINES,
@@ -53,8 +52,7 @@ describe('computeDeckLayout', () => {
     const layout = computeDeckLayout({
       width: 430,
       height: 932,
-      headerHeight: 107,
-      stripHeight: 64,
+      chromeHeight: 171,
       bottomInset: 34,
       fontScale: 1,
       lines: LARGE_LINES,
@@ -66,12 +64,12 @@ describe('computeDeckLayout', () => {
     expect(layout.radius).toBe(198);
   });
 
-  it('grows the story under the header, leaving the globe a band', () => {
+  it('grows the story under the bar, leaving the globe a band', () => {
     const layout = computeDeckLayout(small());
     expect(layout.storyBand).toBe(BAND_MIN);
-    expect(layout.full).toBe(640 - 72 - BAND_MIN);
+    expect(layout.full).toBe(640 - 128 - BAND_MIN);
     expect(layout.storyRadius).toBe(64);
-    expect(layout.storyCenterY).toBe(72 + BAND_MIN / 2);
+    expect(layout.storyCenterY).toBe(128 + BAND_MIN / 2);
   });
 });
 
@@ -88,12 +86,12 @@ describe('grownGlobeTransform', () => {
   it("gives a short story's globe the band its sheet did not take", () => {
     const layout = computeDeckLayout(small());
     const tall = grownGlobeTransform(layout, 640);
-    // A story 380pt tall: the band under a 72pt header is 188, not 140.
-    const short = grownGlobeTransform(layout, 640, 380);
+    // A story 324pt tall: the band under a 128pt bar is 188, not 140.
+    const short = grownGlobeTransform(layout, 640, 324);
     expect(short.scale).toBeGreaterThan(tall.scale);
     expect(short.scale * layout.radius).toBeCloseTo(Math.round(0.46 * 188));
     const landed = 320 + short.scale * (layout.centerY - 320) + short.translateY;
-    expect(landed).toBeCloseTo(72 + 188 / 2);
+    expect(landed).toBeCloseTo(128 + 188 / 2);
   });
 
   it('never draws the grown disc larger than the resting one', () => {

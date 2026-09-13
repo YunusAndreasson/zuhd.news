@@ -1,63 +1,22 @@
-import { memo, type ReactNode, useCallback } from 'react';
-import {
-  Pressable as RNPressable,
-  type PressableProps as RNPressableProps,
-  type StyleProp,
-  type ViewStyle,
-} from 'react-native';
-import Animated from 'react-native-reanimated';
+import { memo, type ReactNode } from 'react';
 import { HIT_SLOP } from '../../constants/theme';
-import { useSpringPress } from '../../hooks/useSpringPress';
-import { fireHaptic, type HapticTier } from '../../lib/haptics';
+import { Pressable, type PressableProps } from './Pressable';
 
-export interface IconButtonProps extends Omit<RNPressableProps, 'style' | 'onPress' | 'children'> {
-  onPress: () => void;
-  haptic?: HapticTier;
-  style?: StyleProp<ViewStyle>;
+export interface IconButtonProps extends Omit<PressableProps, 'children'> {
   accessibilityLabel: string;
   children: ReactNode;
 }
 
-const AnimatedPressable = Animated.createAnimatedComponent(RNPressable);
-
 /**
- * Compact icon-only button. Bakes spring press, haptics, `hitSlop`, and
- * `accessibilityRole="button"` so callers supply only `onPress`,
- * `accessibilityLabel`, and an `<Icon>` child.
+ * Compact icon-only button: a `Pressable` with `hitSlop` and
+ * `accessibilityRole="button"` baked in, so callers supply only `onPress`,
+ * `accessibilityLabel`, and an `<Icon>` child. Spring press and haptics come
+ * from `Pressable` itself.
  */
 export const IconButton = memo(function IconButton({
-  onPress,
-  haptic = 'impact',
-  style,
   hitSlop = HIT_SLOP,
   accessibilityRole = 'button',
-  onPressIn,
-  onPressOut,
-  children,
   ...rest
 }: IconButtonProps) {
-  const {
-    animatedStyle,
-    onPressIn: handlePressIn,
-    onPressOut: handlePressOut,
-  } = useSpringPress(onPressIn, onPressOut);
-
-  const handlePress = useCallback(() => {
-    fireHaptic(haptic);
-    onPress();
-  }, [onPress, haptic]);
-
-  return (
-    <AnimatedPressable
-      {...rest}
-      onPress={handlePress}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      hitSlop={hitSlop}
-      accessibilityRole={accessibilityRole}
-      style={[style, animatedStyle]}
-    >
-      {children}
-    </AnimatedPressable>
-  );
+  return <Pressable {...rest} hitSlop={hitSlop} accessibilityRole={accessibilityRole} />;
 });

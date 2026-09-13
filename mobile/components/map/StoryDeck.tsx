@@ -2,6 +2,7 @@ import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef } from 'r
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
+  cancelAnimation,
   type SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
@@ -10,7 +11,8 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION, SPACING } from '../../constants/theme';
+import { SPACING } from '../../constants/theme';
+import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
  * The river, one story at a time, swiped sideways.
@@ -19,7 +21,7 @@ import { ANIMATION, SPACING } from '../../constants/theme';
  *
  * The sheet's vertical axis is already spoken for twice — pulling the sheet up
  * reads the story, and a grown story scrolls. The horizontal axis on the sheet
- * was free: the strip scrolls sideways too, but at the other end of the screen
+ * was free: the gauges scroll sideways too, but at the other end of the screen
  * with the globe between them, so ownership stays spatial.
  *
  * ## The gesture, and the three it has to stay out of the way of
@@ -34,6 +36,16 @@ import { ANIMATION, SPACING } from '../../constants/theme';
  * - **The camera.** The pan writes `progress` on the UI thread and nothing
  *   else; the globe turns along the great circle between two datelines under
  *   the finger with no JS work per frame.
+ *
+ * ## The release
+ *
+ * The card follows the finger from where the pan claimed it, not from where
+ * the touch began — measuring from touch-down made the card jump the 16 pt the
+ * claim waits for. On release it lands on the story nearest where it would
+ * come to rest if it kept decelerating (`lib/deck-swipe.ts`), so a slow drag
+ * past halfway and a short flick both turn it, and the spring carries the
+ * finger's velocity into the landing instead of starting from rest. A card
+ * still settling can be caught by the next swipe exactly where it is.
  *
  * ## Why the index is committed on release, not when the spring lands
  *
@@ -50,15 +62,12 @@ import { ANIMATION, SPACING } from '../../constants/theme';
  * top, so every card arrives showing its kicker.
  */
 
-/** How much of the next card shows at the right edge. The only sign the row
- *  continues — no dots, no `3 / 48`. */
-export const DECK_CUT = SPACING.smPlus;
-/** Share of a card's width a drag must cover to commit to the next story. */
-const COMMIT = 0.28;
-/** A flick this fast commits regardless of distance. */
-const FLICK_VELOCITY = 550;
-/** Past either end the deck follows the finger at a fraction of it. */
-const RUBBER = 0.25;
+/** How much of the next card shows at the right edge — the sign, beside the
+ *  masthead's track, that the row continues. */
+const DECK_CUT = SPACING.smPlus;
+/** Perceived duration of a landing, in ms. Critically damped, so a card
+ *  arrives without a bounce the globe would have to follow past a dateline. */
+const SETTLE_MS = 380;
 
 type SheetGesture = ReturnType<typeof usePanGesture>;
 
@@ -190,43 +199,49 @@ export const StoryDeck = memo(function StoryDeck({
   onSettle,
 }: StoryDeckProps) {
   const pitch = Math.max(1, width - DECK_CUT);
+  /** Where the card was when the pan claimed it, and the finger's translation then. */
   const start = useSharedValue(0);
+  const startX = useSharedValue(0);
+  /** The story last handed to `onSettle`, so a caught card is not re-committed. */
+  const committed = useSharedValue(index);
+  useEffect(() => {
+    committed.value = index;
+  }, [committed, index]);
 
   const panConfig = useMemo(
     () => ({
       activeOffsetX: [-16, 16] as [number, number],
       failOffsetY: [-12, 12] as [number, number],
-      onActivate: () => {
+      onActivate: (e: { translationX: number }) => {
         'worklet';
-        start.value = Math.round(progress.value);
+        // Catch a card that is still landing where it is, not where it was going.
+        cancelAnimation(progress);
+        start.value = progress.value;
+        startX.value = e.translationX;
         scheduleOnRN(onDragStart);
       },
       onUpdate: (e: { translationX: number }) => {
         'worklet';
-        let next = start.value - e.translationX / pitch;
-        if (next < 0) next *= RUBBER;
-        else if (next > count) next = count + (next - count) * RUBBER;
-        progress.value = next;
+        progress.value = rubberBand(start.value - (e.translationX - startX.value) / pitch, count);
       },
       onDeactivate: (e: { translationX: number; velocityX: number }) => {
         'worklet';
-        const base = start.value;
-        const moved = -e.translationX / pitch;
-        const velocity = -e.velocityX;
-        let target = base;
-        if (moved > COMMIT || velocity > FLICK_VELOCITY) target = base + 1;
-        else if (moved < -COMMIT || velocity < -FLICK_VELOCITY) target = base - 1;
-        if (target < 0) target = 0;
-        if (target > count) target = count;
+        const position = start.value - (e.translationX - startX.value) / pitch;
+        const velocity = -e.velocityX / pitch;
+        const target = deckTarget(Math.round(start.value), position, velocity, count);
         progress.value = withSpring(target, {
-          ...ANIMATION.springSoft,
-          velocity: velocity / pitch,
+          duration: SETTLE_MS,
+          dampingRatio: 1,
+          velocity,
           overshootClamping: true,
         });
-        if (target !== base) scheduleOnRN(onSettle, target);
+        if (target !== committed.value) {
+          committed.value = target;
+          scheduleOnRN(onSettle, target);
+        }
       },
     }),
-    [count, onDragStart, onSettle, pitch, progress, start],
+    [committed, count, onDragStart, onSettle, pitch, progress, start, startX],
   );
   const pan = usePanGesture(panConfig);
 

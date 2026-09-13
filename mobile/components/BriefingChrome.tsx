@@ -37,9 +37,9 @@ interface BriefingChromeProps {
  * most a few times per session, so they are reported upward through
  * `onStatusChange` and `elapsed` never leaves this component.
  *
- * The bar it renders is the *playing* state only. The way in is the pill at
- * the top left of `MapHeader`: as a pill in the corner of the globe it was a
- * control sized to stay out of the way, which is a control nobody finds.
+ * The bar it renders is the *playing* state only. The way in is the play
+ * button that opens `MapHeader`'s row: as a pill in the corner of the globe it
+ * was a control sized to stay out of the way, which is a control nobody finds.
  */
 export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
   function BriefingChrome(

@@ -80,28 +80,6 @@ export function windowPointChange(
   return { ...relative, pct: latest - earlier };
 }
 
-/** Highest and lowest observation in the series, with their period labels. */
-export function seriesExtremes(
-  indicator: Pick<Indicator, 'values' | 'periods'>,
-): { min: number; minAt: string; max: number; maxAt: string } | null {
-  const { values, periods } = indicator;
-  if (values.length === 0) return null;
-  let minI = 0;
-  let maxI = 0;
-  for (let i = 1; i < values.length; i++) {
-    const v = values[i];
-    if (v === undefined) continue;
-    if (v < (values[minI] ?? Number.POSITIVE_INFINITY)) minI = i;
-    if (v > (values[maxI] ?? Number.NEGATIVE_INFINITY)) maxI = i;
-  }
-  return {
-    min: values[minI] as number,
-    minAt: periods[minI] ?? '',
-    max: values[maxI] as number,
-    maxAt: periods[maxI] ?? '',
-  };
-}
-
 /**
  * The reading itself — one number at arm's length.
  *
@@ -192,6 +170,13 @@ export function formatQuantity(n: number): string {
   if (!Number.isFinite(n)) return '—';
   if (Math.abs(n) >= 10) return Math.round(n).toLocaleString('en-US');
   return Number(n.toFixed(1)).toString();
+}
+
+/** A strait's traffic against its own 90-day normal, as the card and the
+ *  sheet it opens both print it. `delta` is a fraction (−0.57 is 57% below). */
+export function formatVsNormal(delta: number): string {
+  const signed = formatSignedPct(delta * 100);
+  return signed === 'unchanged' ? 'at its normal' : `${signed} vs its normal`;
 }
 
 /** US-grouped integer with no unit. For populations and counts. */

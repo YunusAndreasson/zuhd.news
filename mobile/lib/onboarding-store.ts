@@ -3,11 +3,12 @@ import * as Notifications from 'expo-notifications';
 import * as SecureStore from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import { getPreferences } from './storage';
+import { createDebouncedWrite, createListeners } from './store-plumbing';
 
 // ---------------------------------------------------------------------------
 // First-run onboarding state: the one-at-a-time hint pills (contextual
 // teaching on real articles) and the notification primer. One file-backed
-// store (same pattern as bookmark-store: sync load at import, module-level
+// store (sync load at import, module-level
 // actions callable from hot paths, useSyncExternalStore interface, debounced
 // persist).
 // ---------------------------------------------------------------------------
@@ -138,36 +139,19 @@ try {
 // Persistence + subscription plumbing
 // ---------------------------------------------------------------------------
 
-const listeners = new Set<() => void>();
+const listeners = createListeners();
 
-function emit() {
-  for (const fn of listeners) fn();
-}
-
-let persistTimer: ReturnType<typeof setTimeout> | null = null;
-
-function persistNow() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = null;
-  try {
-    Storage.setItemSync(ONBOARDING_KEY, JSON.stringify(state));
-  } catch {}
-}
-
-function persistDebounced() {
-  if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = setTimeout(persistNow, 100);
-}
+const persist = createDebouncedWrite(() => {
+  Storage.setItemSync(ONBOARDING_KEY, JSON.stringify(state));
+}, 100);
 
 /** Flush any pending write — call from app-background transitions. */
-export function flushOnboarding(): void {
-  if (persistTimer) persistNow();
-}
+export const flushOnboarding = persist.flush;
 
 function commit(next: OnboardingState) {
   state = next;
-  emit();
-  persistDebounced();
+  listeners.emit();
+  persist.later();
 }
 
 // ---------------------------------------------------------------------------
@@ -195,7 +179,7 @@ async function resolveLegacyPrimer(): Promise<void> {
 }
 
 if (justSeeded) {
-  persistDebounced();
+  persist.later();
   resolveLegacyPrimer();
 }
 
@@ -276,10 +260,7 @@ export async function markOsPromptSpent(): Promise<void> {
 // useSyncExternalStore interface
 // ---------------------------------------------------------------------------
 
-export function subscribe(callback: () => void): () => void {
-  listeners.add(callback);
-  return () => listeners.delete(callback);
-}
+export const subscribe = listeners.subscribe;
 
 export function getSnapshot(): OnboardingState {
   return state;
@@ -300,5 +281,5 @@ export function resetOnboarding(): void {
     hints: seedHints('pending'),
     snapCount: 0,
   });
-  persistNow();
+  persist.now();
 }

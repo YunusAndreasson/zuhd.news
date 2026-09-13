@@ -8,7 +8,7 @@ export type RiverArticle = Article & { category: Category };
 /** Newest story first, using the same timestamp as the visible dateline.
  * Slug breaks exact ties deterministically; coverage and category never
  * promote an older story above a newer one. */
-export function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
+function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
   const recency = articleTime(b) - articleTime(a);
   if (recency !== 0) return recency;
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;

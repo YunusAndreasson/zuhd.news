@@ -1,22 +1,12 @@
-import { memo, type ReactNode, useEffect, useRef } from 'react';
+import { memo, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import Animated, {
-  Extrapolation,
-  interpolate,
-  type SharedValue,
-  useAnimatedStyle,
-  useDerivedValue,
-  useReducedMotion,
-} from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
-import { useInnerScrollReporter } from '../../hooks/useInnerScrollReporter';
-import type { CardStatus } from '../../lib/card-history';
+import { useScrollable } from '../../hooks/useScrollable';
 import type { DeckCard } from '../../lib/cards/types';
 import { observationDate } from '../../lib/data-freshness';
 import { useOpenLink } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { DeltaChip } from '../DeltaChip';
-import { OverflowEndCue } from '../OverflowEndCue';
 import { Text } from '../primitives';
 
 /**
@@ -25,9 +15,9 @@ import { Text } from '../primitives';
  * Every data card is this shell with one block in the middle. The order is not
  * decoration: measurements lead with their value, beliefs lead with the
  * question that gives their percentage meaning, and both continue through the
- * graph, live `standing` analysis and supporting movement context. The section
- * rail already owns progress, and the analysis already carries the news
- * context, so this shell does not repeat either as card furniture.
+ * graph, live `standing` analysis and supporting movement context. The analysis
+ * already carries the news context, so this shell does not repeat it as card
+ * furniture.
  */
 
 /** The reading is the largest thing on the screen and the only thing sized
@@ -106,110 +96,34 @@ const CardTitle = memo(function CardTitle({
 });
 
 interface CardFrameProps {
-  status?: CardStatus;
   card: DeckCard;
-  /** Full page height. The card owns the whole screen, like an article does. */
+  /** The height of the column the card fills. */
   itemHeight: number;
-  /** This card's position in the column, for the arrival animation. */
-  index: number;
-  /** The column's scroll offset, shared with the UI thread. */
-  scrollY: SharedValue<number>;
-  /** Reports that this card consumed part of a vertical gesture before the
-   * parent pager saw its remainder. */
-  onInnerScrollConsumed?: (index: number) => void;
-  onReadingScrollStart?: () => void;
-  hasNext?: boolean;
-  /** Changes when the active section label is pressed. */
-  resetScrollKey?: number;
   /** The block that makes this card its kind — a chart, rows, figures. It
    *  stays outside the prose scroll region so vertical swipes here page. */
   children?: ReactNode;
 }
 
-export const CardFrame = memo(function CardFrame({
-  card,
-  itemHeight,
-  index,
-  scrollY,
-  onInnerScrollConsumed,
-  onReadingScrollStart,
-  hasNext = false,
-  resetScrollKey = 0,
-  children,
-  status,
-}: CardFrameProps) {
-  const reduceMotion = useReducedMotion();
+export const CardFrame = memo(function CardFrame({ card, itemHeight, children }: CardFrameProps) {
   const observed = observationDate(card.asOf);
   const openLink = useOpenLink();
 
-  // The one word, if any, that opens the kicker line. `current` outranks
-  // `updated`: a card whose data just moved is, to the reader, also new, and
-  // the line has room for one claim.
-  const mark = card.lead ? 'current' : status === 'updated' ? 'updated' : null;
+  // The one word, if any, that opens the kicker line.
+  const mark = card.lead ? 'current' : null;
 
-  // Only the explanatory prose can become an inner scroll region. The metric,
-  // title and chart remain direct children of the pager, which gives every
-  // touch one vertical owner from touch-down through release.
-  const innerScroll = useInnerScrollReporter(index, onInnerScrollConsumed, onReadingScrollStart);
-  const textScrollRef = useRef<ScrollView>(null);
-  const previousResetScrollKey = useRef(resetScrollKey);
-
-  useEffect(() => {
-    if (previousResetScrollKey.current === resetScrollKey) return;
-    previousResetScrollKey.current = resetScrollKey;
-    textScrollRef.current?.scrollTo({ y: 0, animated: false });
-  }, [resetScrollKey]);
-
-  const pageStart = index * itemHeight;
-  const offset = useDerivedValue(() => {
-    'worklet';
-    if (index === 0 && scrollY.value <= 0) return 0;
-    return scrollY.value - pageStart;
-  });
-
-  /**
-   * The card arrives rather than appearing.
-   *
-   * This is the same interpolation the article reader uses, deliberately: the
-   * app already taught the reader that a vertical swipe lifts the next thing
-   * into place, and a card column that merely cut from one screen to the next
-   * felt like a different app bolted on. The asymmetry is the whole effect —
-   * the incoming card rises 14pt into position while the outgoing one leaves
-   * only 6pt, so the motion reads as arrival rather than as a conveyor.
-   *
-   * Tracked off the finger, not fired on mount: with three pages held in the
-   * list, a mount animation plays for a card two screens away and is over
-   * before anyone sees it.
-   */
-  const arrival = useAnimatedStyle(() => {
-    if (reduceMotion) return { opacity: 1 };
-    const off = offset.value;
-    return {
-      opacity: interpolate(off, [-itemHeight, 0, itemHeight * 0.4], [0, 1, 0], Extrapolation.CLAMP),
-      transform: [
-        {
-          translateY: interpolate(
-            off,
-            [-itemHeight * 0.3, 0, itemHeight * 0.4],
-            [14, 0, -6],
-            Extrapolation.CLAMP,
-          ),
-        },
-      ],
-    };
-  });
+  // Only the explanatory prose can become an inner scroll region, and only when
+  // it is genuinely taller than the room left for it.
+  const innerScroll = useScrollable();
 
   return (
     <View style={[styles.page, { height: itemHeight }]}>
       <View style={styles.column}>
-        <Animated.View style={arrival} testID="card-page-header">
+        <View testID="card-page-header">
           {/* The one line of metadata a card carries: what kind of thing this
               is, and the date its number was observed. On a gated card it
               opens with the one word that says why the screen exists —
-              `current` for a strait whose data just cleared a freshness gate,
-              `updated` for a card whose content changed since the reader last
-              viewed it — and never both, because each is the app saying
-              "look", and one "look" is the budget. Without the mark a
+              `current` for a strait whose data just cleared a freshness gate.
+              Without the mark a
               disrupted strait and the gold-to-silver ratio arrive in
               identical weight, and the reader can only tell them apart by
               already knowing which cards the app gates.
@@ -253,17 +167,16 @@ export const CardFrame = memo(function CardFrame({
               <CardTitle card={card} afterMetric />
             </>
           )}
-        </Animated.View>
+        </View>
 
         {children ? (
-          <Animated.View style={[styles.block, arrival]} testID="card-chart-region">
+          <View style={styles.block} testID="card-chart-region">
             {children}
-          </Animated.View>
+          </View>
         ) : null}
 
         <View style={styles.analysisViewport} testID="card-text-region">
           <ScrollView
-            ref={textScrollRef}
             style={styles.fill}
             pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
             showsVerticalScrollIndicator={innerScroll.scrollable}
@@ -271,12 +184,8 @@ export const CardFrame = memo(function CardFrame({
             nestedScrollEnabled
             onLayout={innerScroll.onLayout}
             onContentSizeChange={innerScroll.onContentSizeChange}
-            onScrollBeginDrag={innerScroll.onScrollBeginDrag}
-            onScrollEndDrag={innerScroll.onScrollEndDrag}
-            onScroll={innerScroll.onScroll}
-            scrollEventThrottle={16}
           >
-            <Animated.View style={arrival}>
+            <View>
               {card.why ? <Text variant="body">{card.why}</Text> : null}
 
               {card.changed ? (
@@ -312,8 +221,7 @@ export const CardFrame = memo(function CardFrame({
                   {source.label}
                 </Text>
               ))}
-            </Animated.View>
-            {innerScroll.scrollable && hasNext ? <OverflowEndCue /> : null}
+            </View>
           </ScrollView>
         </View>
       </View>

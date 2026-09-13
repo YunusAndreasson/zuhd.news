@@ -1,82 +1,150 @@
+import { Canvas, Group, Path, Skia } from '@shopify/react-native-skia';
 import { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { RADIUS, SPACING } from '../../constants/theme';
+import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';
-import { Icon, IconButton, Pressable, Text } from '../primitives';
+import type { StripItem } from '../../lib/now';
+import { Icon, IconButton } from '../primitives';
+import { IndicatorStrip } from './IndicatorStrip';
 
 /**
- * The one line of chrome above the earth: the briefing, the name, the menu.
+ * The one bar above the earth: listen · every gauge that moved · menu.
  *
- * **The briefing is top left**, where a reader's eye starts. It was a corner
- * pill over the globe (not found), then the button on the sheet's masthead
- * (found, but it made the first row of the news list a control panel). Here
- * it is the first thing on the screen and the sheet below is left to news.
+ * It was two rows — the briefing, a centred `zuhd.news` and the menu, with the
+ * gauges on a line of their own under them — and the name took a whole row of
+ * globe to say something the menu already says. One row gives that height back
+ * to the earth.
+ *
+ * **Listen is first**, where a reader's eye starts: a round play button, the
+ * only filled control on the bar. It was a word pill in this corner, and before
+ * that a corner pill over the globe (not found) and the button on the sheet's
+ * masthead (found, but it made the first row of the news list a control panel).
  * Absent rather than disabled when there is no briefing, and while the player
  * is up — a dead control the reader has to press to discover is dead is the
  * failure the old pill's "No briefing available" toast already made once.
  *
- * **The wordmark is centred.** With the rail gone there is no other text at
- * the top of the screen, and an app that opens on a rotating planet should
- * say its own name once. Equal side zones keep it on the screen's midline
- * whether or not the briefing button is there.
+ * **The gauges fill the middle** and scroll sideways between the two buttons;
+ * the slot cut at the menu's edge is what says the row continues.
  *
- * **No zoom control.** Pinch on the globe steps through the same levels.
+ * **The menu is last and quietest**: settings and pages, visited rarely.
+ *
+ * **The mark stands in when there is nothing to read.** Before the gauges load,
+ * and while a story is grown and the gauges have stepped aside, the zuhd mark
+ * sits where they were — the name said once, in the space nothing else needs.
  */
+
+/** The zuhd mark — `public/logo.svg`, the same three shapes on a 32-unit box. */
+const MARK_PATH = Skia.Path.MakeFromSVGString(
+  'M4.5 4.5H12L4.5 16.25Z M19.5 4.5H27.5L12 27.5H4.5Z M27.5 16.25V27.5H20Z',
+);
+const MARK_SIZE = 20;
+/** The play button's diameter: a 14pt glyph with room around it. */
+const LISTEN_SIZE = 32;
+
+const ZuhdMark = memo(function ZuhdMark({ color }: { color: string }) {
+  if (!MARK_PATH) return null;
+  return (
+    <Canvas style={styles.mark}>
+      <Group transform={[{ scale: MARK_SIZE / 32 }]}>
+        <Path path={MARK_PATH} color={color} />
+      </Group>
+    </Canvas>
+  );
+});
+
 export const MapHeader = memo(function MapHeader({
   onMenuPress,
   briefingAvailable,
   briefingResumable,
   briefingDuration,
   onBriefingPress,
+  items,
+  onSelect,
+  onAll,
+  recede,
+  gaugesEnabled,
 }: {
   onMenuPress: () => void;
   briefingAvailable: boolean;
   briefingResumable: boolean;
   briefingDuration?: number;
   onBriefingPress: () => void;
+  items: StripItem[];
+  onSelect: (item: StripItem) => void;
+  onAll: () => void;
+  /** 0 at rest, 1 with a story grown: the gauges step aside for the mark. */
+  recede: SharedValue<number>;
+  /** False while a story is grown, so a faded gauge cannot be tapped. */
+  gaugesEnabled: boolean;
 }) {
-  const { colors } = useTheme();
+  const { colors, textVariants } = useTheme();
+  const { fontScale } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  // The verb alone. "resume · 10 min" ran into the centred wordmark on a 411pt
-  // phone; the length is still spoken, and the player bar shows it once the
-  // briefing is playing.
-  const action = briefingResumable ? 'resume' : 'listen';
   const minutes = formatAudioDurationMinutes(briefingDuration);
+  const hasGauges = items.length > 0;
+
+  // The row is as tall as a gauge whether or not the gauges have arrived, so
+  // their arrival does not move the globe, whose centre is measured from here.
+  const gaugeHeight = Math.ceil(
+    (textVariants.labelXsTight.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.chrome) +
+      (textVariants.tabularEmphasis.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.tabular) +
+      1 +
+      SPACING.xs +
+      SPACING.sm,
+  );
+
+  const gaugesStyle = useAnimatedStyle(() => {
+    const p = Math.min(1, Math.max(0, recede.value));
+    return { opacity: 1 - p, transform: [{ translateY: -SPACING.sm * p }] };
+  });
+  const markStyle = useAnimatedStyle(() => {
+    if (!hasGauges) return { opacity: 1 };
+    return { opacity: Math.min(1, Math.max(0, recede.value)) };
+  }, [hasGauges]);
+  const markSpoken = !hasGauges || !gaugesEnabled;
 
   return (
     <View style={[styles.row, { paddingTop: insets.top + SPACING.xs }]} pointerEvents="box-none">
-      <View style={styles.side} pointerEvents="box-none">
-        {briefingAvailable ? (
-          <Pressable
-            onPress={onBriefingPress}
-            haptic="none"
-            hitSlop={SPACING.md}
-            style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-            accessibilityRole="button"
-            accessibilityLabel={`${briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}${minutes ? `, ${minutes}` : ''}`}
-            accessibilityHint={
-              briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-            }
-          >
-            <Icon name="play" size="sm" tone="default" />
-            <Text variant="labelXs" tone="default" numberOfLines={1}>
-              {action}
-            </Text>
-          </Pressable>
-        ) : null}
-      </View>
-
-      <Text variant="wordmark" tone="emphasis" accessibilityRole="header">
-        zuhd.news
-      </Text>
-
-      <View style={[styles.side, styles.sideEnd]} pointerEvents="box-none">
-        <IconButton onPress={onMenuPress} accessibilityLabel="Menu" style={styles.menu}>
-          <Icon name="menu" size="md" />
+      {briefingAvailable ? (
+        <IconButton
+          onPress={onBriefingPress}
+          haptic="none"
+          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+          accessibilityLabel={`${briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}${minutes ? `, ${minutes}` : ''}`}
+          accessibilityHint={
+            briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+          }
+        >
+          <Icon name="play" size="sm" tone="default" />
         </IconButton>
+      ) : null}
+
+      <View style={[styles.middle, { minHeight: gaugeHeight }]} pointerEvents="box-none">
+        <Animated.View
+          style={[styles.fill, gaugesStyle]}
+          pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
+        >
+          <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} />
+        </Animated.View>
+        <Animated.View
+          style={[StyleSheet.absoluteFill, styles.center, markStyle]}
+          pointerEvents="none"
+          accessible={markSpoken}
+          accessibilityRole="header"
+          accessibilityLabel="zuhd.news"
+          accessibilityElementsHidden={!markSpoken}
+          importantForAccessibility={markSpoken ? 'yes' : 'no-hide-descendants'}
+        >
+          <ZuhdMark color={colors.textEmphasis} />
+        </Animated.View>
       </View>
+
+      <IconButton onPress={onMenuPress} accessibilityLabel="Menu">
+        <Icon name="menu" size="md" />
+      </IconButton>
     </View>
   );
 });
@@ -90,22 +158,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.articlePadding,
     gap: SPACING.smPlus,
   },
-  side: { flex: 1, flexDirection: 'row', alignItems: 'center', minWidth: 0 },
-  sideEnd: { justifyContent: 'flex-end' },
+  middle: { flex: 1, minWidth: 0, justifyContent: 'center' },
+  fill: { flex: 1, justifyContent: 'center' },
+  center: { alignItems: 'center', justifyContent: 'center' },
   // Hairline edge so the control stays defined over whatever the globe puts
   // behind it — land, coastline, city-glow — where the low-lift `pillBg` fill
-  // alone can disappear. Definition over elevation: no shadow. The play
-  // triangle is what makes a word pill read as pressable rather than a label.
+  // alone can disappear. Definition over elevation: no shadow.
   listen: {
-    flexDirection: 'row',
+    width: LISTEN_SIZE,
+    height: LISTEN_SIZE,
+    borderRadius: LISTEN_SIZE / 2,
     alignItems: 'center',
-    gap: SPACING.xs,
-    paddingVertical: SPACING.xs,
-    paddingHorizontal: SPACING.smPlus,
-    borderRadius: RADIUS.floating,
+    justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,
   },
-  // Pull the glyph up ~1px so its optical centre lines up with the wordmark's
-  // x-height rather than the row's geometric midline.
-  menu: { transform: [{ translateY: -1 }] },
+  mark: { width: MARK_SIZE, height: MARK_SIZE },
 });

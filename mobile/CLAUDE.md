@@ -64,9 +64,9 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
-MapHeader + IndicatorStrip            briefing, wordmark, menu · every mover, swiped, largest first
+MapHeader                             one row: listen · every mover, swiped, largest first · menu
 MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
-  SheetMasthead                       found N of M · all → (IndexSheet), or a live Red alert
+  SheetMasthead                       3 of 48 · a track that fills · all news › (IndexSheet), or a Red alert
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
 platform sheets                       index · card · instruments · chokepoint · country · …
 ```
@@ -139,10 +139,18 @@ whole time; nothing said so.
   category hue at its *place* (`lib/story-places.ts` merges stories within
   5 km, or one dateline within 120 km, as the web does), and tapping one
   finds it: `MiniGlobe.collect` bursts in that hue, `lib/found-store.ts`
-  records the slug, the next reprojection stops drawing the mark, and the deck
+  records the slug, and the deck
   **jumps** to that story (`focusStory`) and stays at peek. The camera flies
   only after the burst (`COLLECT_MS`) so the colour plays where the mark was.
   Tapping the same place again gives its next unfound story.
+  - **A found place is dimmed, never erased.** Once every story at a place is
+    found its beacon becomes a hollow ring in the newest story's hue
+    (`READ_R`), under the beacons still to find; a tap on it reopens that
+    story, but only with no unread light in reach. A globe that emptied as it
+    was read hid where the reader had been. Outside the disc a thin ring is
+    what is left to find — `MiniGlobe` reads `foundProgress`, the same count
+    as the masthead, and the arc shrinks back toward twelve o'clock after each
+    burst (instantly under Reduce Motion).
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
     camera is held (`cameraOwner = 1`), the position jumps, and the camera
@@ -327,14 +335,21 @@ about what a card may say is about the card, not where it is shown.
     The new index is committed when the finger lifts, not in the spring's
     completion callback — `scheduleOnRN` from an animation callback aborted
     the app once.
-  - **The deck carries no position.** A `3 / 15` counter was added to the old
-    card decks and removed. Position is the kicker's time-ago, `earlier ·` on
-    the first story already seen (landing there fires `handleCaughtUp`), the
-    next card's 10pt cut edge, and an end card that says the day is finite.
-  - **The masthead line is the door to the whole day.** `found N of M · all →`
-    opens `IndexSheet` — every alert and story as a row at natural height, the
-    list a reader scans the day in, and the accessible path. It opens scrolled
-    to the story on the card, whose row says `on the card`.
+  - **The masthead is where you are, and the door to the whole day.** One
+    row: `3 of 48`, a track whose fill reads the deck's `progress` on the UI
+    thread (so it moves under the finger), `found N` once anything is found,
+    and `all news ›`, which opens `IndexSheet` — every alert and story as a
+    row at natural height, scrolled to the story on the card, whose row says
+    `on the card`. The deck carried no position for a while (a `3 / 15`
+    counter on the old card decks was removed); swiping through a day then
+    felt like an unmarked corridor with no obvious way back to the list, and
+    the reader asked for both.
+  - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
+    projects the release with a deceleration rate instead of asking two
+    questions (28% of the width, or 550 pt/s), capped at one story. The card
+    follows the finger from where the pan claimed it, not from touch-down
+    (which jumped it 16 pt), the landing spring carries the finger's velocity,
+    and a card still landing is caught where it is.
 - **There is no full-screen reader, and it is not coming back as the default.**
   `ReaderLayer`, `ArticleList`, `ArticlePage`, `useVerticalPager` and
   `lib/pager-settle.ts` were deleted on 2026-09-13. A modal reader for every
@@ -376,7 +391,7 @@ about what a card may say is about the card, not where it is shown.
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the pill at the top left of `MapHeader` — as a
+  specific.** `listen` is the round play button that opens `MapHeader`'s row — as a
   corner pill over the globe it was sized to stay out of the way and was not
   found, and as the button on the sheet's masthead it made the first row of
   the news list a control panel. `share` is a word on the grown card, where it

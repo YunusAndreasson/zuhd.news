@@ -1,8 +1,4 @@
-import {
-  briefingActionLabel,
-  formatAudioDurationMinutes,
-  resolveAudioDuration,
-} from '../lib/audio-duration';
+import { formatAudioDurationMinutes, resolveAudioDuration } from '../lib/audio-duration';
 
 describe('audio duration', () => {
   it('prefers the loaded player duration over feed metadata', () => {
@@ -22,11 +18,5 @@ describe('audio duration', () => {
     expect(formatAudioDurationMinutes(745)).toBe('12 min');
     expect(formatAudioDurationMinutes(20)).toBe('1 min');
     expect(formatAudioDurationMinutes(0)).toBeNull();
-  });
-
-  it('labels the briefing action from resumability and available duration', () => {
-    expect(briefingActionLabel(false, 745)).toBe('listen · 12 min');
-    expect(briefingActionLabel(true, 745)).toBe('resume · 12 min');
-    expect(briefingActionLabel(true, undefined)).toBe('resume');
   });
 });

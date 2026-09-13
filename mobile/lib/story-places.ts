@@ -20,8 +20,8 @@ import type { StoryRow } from './map-feed';
  * pairwise pass is cheaper than the web's grid bucketing, which exists for 705.
  */
 
-export const PLACE_SPLIT_KM = 120;
-export const PLACE_SAME_KM = 5;
+const PLACE_SPLIT_KM = 120;
+const PLACE_SAME_KM = 5;
 
 const EARTH_KM = 6371;
 

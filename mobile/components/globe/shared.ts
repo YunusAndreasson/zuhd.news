@@ -182,15 +182,15 @@ export const countryCentroidNames: string[] = [];
 export const countryCentroidPoints: [number, number][] = [];
 export const countryCentroidUnits: [number, number, number][] = [];
 {
-  const DEG = Math.PI / 180;
+  const DEG2RAD = Math.PI / 180;
   const sortedNames = Object.keys(countryCentroids).sort(
     (a, b) => (countryAreas[b] ?? 0) - (countryAreas[a] ?? 0),
   );
   for (const name of sortedNames) {
     const c = countryCentroids[name];
     if (!c) continue;
-    const latR = c[1] * DEG;
-    const lngR = c[0] * DEG;
+    const latR = c[1] * DEG2RAD;
+    const lngR = c[0] * DEG2RAD;
     const cosLat = Math.cos(latR);
     countryCentroidNames.push(name);
     countryCentroidPoints.push(c);
@@ -198,7 +198,7 @@ export const countryCentroidUnits: [number, number, number][] = [];
   }
 }
 
-const DEG = 180 / Math.PI;
+const RAD2DEG = 180 / Math.PI;
 
 /** Skia path target bridged into d3-geo's `.context()` API. Extends GeoContext
  * so `pg.context(ctx)` accepts it without a cast; `setPath` retargets writes
@@ -223,8 +223,8 @@ export function createSkiaPathContext(): SkiaGeoContext {
     arc(x: number, y: number, r: number, startAngle: number, endAngle: number) {
       _path?.addArc(
         { x: x - r, y: y - r, width: r * 2, height: r * 2 },
-        startAngle * DEG,
-        (endAngle - startAngle) * DEG,
+        startAngle * RAD2DEG,
+        (endAngle - startAngle) * RAD2DEG,
       );
     },
     closePath() {

@@ -72,8 +72,6 @@ export interface CardDelta {
 }
 
 interface CardBase {
-  /** Server-authored meaningful revision for recurring market events. */
-  editorialRevision?: string;
   sources?: { label: string; url: string }[];
   /** Stable across rebuilds — it is the pager's key and the scroll anchor. */
   id: string;

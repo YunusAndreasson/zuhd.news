@@ -47,7 +47,6 @@ export function marketSignalCards(
         id: `market-signal:${s.id}`,
         kind: 'reading',
         title: s.title,
-        editorialRevision: s.revision,
         /**
          * A signal exists only because it cleared a pattern score, so it is on
          * screen because its data is new — which is exactly what `lead` means

@@ -34,7 +34,7 @@
  * great circle, which has a closed form.
  */
 
-const DEG = Math.PI / 180;
+const DEG2RAD = Math.PI / 180;
 const HALF_PI = Math.PI / 2;
 /** Slack past `radius + clip`, in radians. Far below a pixel at any zoom; it
  *  only keeps floating-point rounding from culling a part that grazes the
@@ -69,8 +69,8 @@ function capOf<T>(coords: T, points: GeoJSON.Position[]): Part<T> {
   let sy = 0;
   let sz = 0;
   for (const p of points) {
-    const lat = (p[1] ?? 0) * DEG;
-    const lng = (p[0] ?? 0) * DEG;
+    const lat = (p[1] ?? 0) * DEG2RAD;
+    const lng = (p[0] ?? 0) * DEG2RAD;
     const c = Math.cos(lat);
     sx += c * Math.cos(lng);
     sy += c * Math.sin(lng);
@@ -83,8 +83,8 @@ function capOf<T>(coords: T, points: GeoJSON.Position[]): Part<T> {
   sz /= n;
   let minDot = 1;
   for (const p of points) {
-    const lat = (p[1] ?? 0) * DEG;
-    const lng = (p[0] ?? 0) * DEG;
+    const lat = (p[1] ?? 0) * DEG2RAD;
+    const lng = (p[0] ?? 0) * DEG2RAD;
     const c = Math.cos(lat);
     const d = c * Math.cos(lng) * sx + c * Math.sin(lng) * sy + Math.sin(lat) * sz;
     if (d < minDot) minDot = d;
@@ -97,7 +97,7 @@ function lineOf(coords: GeoJSON.Position[]): Part<GeoJSON.Position[]> {
   const part = capOf(coords, coords);
   const lng = coords[0]?.[0];
   if (lng !== undefined && coords.length > 1 && coords.every((p) => p[0] === lng)) {
-    part.meridian = lng * DEG;
+    part.meridian = lng * DEG2RAD;
   }
   return part;
 }
@@ -153,14 +153,14 @@ export function createCapCuller(input: Input): CapCuller {
   return {
     partCount: polygons.length + lines.length,
     visible(camLng, camLat, clipAngleDeg) {
-      const lat = camLat * DEG;
-      const lng = camLng * DEG;
+      const lat = camLat * DEG2RAD;
+      const lng = camLng * DEG2RAD;
       const cosLat = Math.cos(lat);
       const sinLat = Math.sin(lat);
       const cx = cosLat * Math.cos(lng);
       const cy = cosLat * Math.sin(lng);
       const cz = sinLat;
-      const clip = clipAngleDeg * DEG + MARGIN;
+      const clip = clipAngleDeg * DEG2RAD + MARGIN;
 
       polygonOut.length = 0;
       for (const p of polygons) {

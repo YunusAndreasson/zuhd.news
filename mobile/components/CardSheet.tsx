@@ -1,8 +1,6 @@
 import { memo, useCallback, useMemo, useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
 import { LAYOUT } from '../constants/theme';
-import type { CardStatus } from '../lib/card-history';
 import type { SwipeCard } from '../lib/cards/rank';
 import { CardView } from './cards/CardView';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -43,20 +41,10 @@ const MIN_COLUMN = 240;
 
 interface CardSheetProps extends BaseSheetProps {
   card: SwipeCard | null;
-  status?: CardStatus;
 }
 
-export const CardSheet = memo(function CardSheet({
-  sheetRef,
-  card,
-  status,
-  onDismiss,
-}: CardSheetProps) {
+export const CardSheet = memo(function CardSheet({ sheetRef, card, onDismiss }: CardSheetProps) {
   const { height } = useWindowDimensions();
-  // Not a shared value the card can scroll: inside a sheet there is no pager
-  // above it, so the arrival interpolation resolves at offset 0 — fully
-  // arrived, no transform. That is the correct reading of the same code.
-  const scrollY = useSharedValue(0);
   const estimate = useMemo(
     () => Math.max(MIN_COLUMN, Math.round(height * LAYOUT.sheetMaxFraction) - HANDLE_ALLOWANCE),
     [height],
@@ -78,15 +66,7 @@ export const CardSheet = memo(function CardSheet({
       snapPoints={snapPoints}
     >
       <View style={styles.column} onLayout={handleColumnLayout}>
-        {card ? (
-          <CardView
-            card={card}
-            itemHeight={itemHeight}
-            index={0}
-            scrollY={scrollY}
-            status={status}
-          />
-        ) : null}
+        {card ? <CardView card={card} itemHeight={itemHeight} /> : null}
       </View>
     </SheetLayout>
   );

@@ -17,6 +17,7 @@ import {
   formatQuantity,
   formatReading,
   formatSignedPct,
+  formatVsNormal,
   latestOf,
   nisab,
   relatedForTags,
@@ -695,11 +696,10 @@ function straitClassFigure(c: Chokepoint): CardFigure | undefined {
   if (!cls || v == null || d == null || !Number.isFinite(v) || !Number.isFinite(d)) {
     return undefined;
   }
-  const signed = formatSignedPct(d * 100);
   return {
     label: cls.plural,
     value: `${formatQuantity(v)} a day`,
-    note: signed === 'unchanged' ? 'at its normal' : `${signed} vs its normal`,
+    note: formatVsNormal(d),
   };
 }
 

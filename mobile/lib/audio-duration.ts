@@ -24,9 +24,3 @@ export function formatAudioDurationMinutes(duration: number | undefined): string
   const minutes = Math.max(1, Math.round(duration / 60));
   return `${minutes} min`;
 }
-
-export function briefingActionLabel(resumable: boolean, duration: number | undefined): string {
-  const action = resumable ? 'resume' : 'listen';
-  const durationLabel = formatAudioDurationMinutes(duration);
-  return durationLabel ? `${action} · ${durationLabel}` : action;
-}
