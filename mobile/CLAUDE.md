@@ -63,7 +63,7 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
-GlobeGestureLayer                     drag rotates · pinch steps zoom · tap hit-tests
+GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
 MapHeader + IndicatorStrip            briefing, wordmark, menu · every mover, swiped, largest first
 MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
   SheetMasthead                       found N of M · all → (IndexSheet), or a live Red alert
@@ -113,7 +113,11 @@ whole time; nothing said so.
   the market-signal builder — and is absent for a move in points, which sorts
   last. Contracts (their subject is a question) and dates (no move) never take
   a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
-  row continues.
+  row continues. **A subject is one line and is never cut**: a strait prints
+  its short form (`stripLabel` — `Hormuz Str.`, the full name is still what a
+  screen reader says) and a slot widens past the 3.4 rhythm for a longer name
+  rather than ellipsizing it. Two-line subjects made the whole strip two caps
+  lines tall for the sake of "STRAIT OF / HORMUZ".
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
@@ -161,6 +165,19 @@ whole time; nothing said so.
   `OverlaySheet`. Their accessible path is `CountrySheet`'s "on the map"
   rows; thermal events carry no country, so theirs is the stories they were
   joined to.
+- **The globe moves the way the web's map moves.** A drag keeps the ground
+  under the finger (`dragDelta`: the projection's own `radius / sin(clip)`,
+  not a fixed degrees-per-point, which turned the earth at half the finger's
+  speed zoomed in); a release glides (`withDecay`, capped at MapLibre's
+  1400 pt/s, dropped under Reduce Motion) and a touch stops it; a pinch zooms
+  continuously about the fingers (`pinchClip` + `anchorZoom`), and pinching out
+  to the story's own framing hands zoom back to it. The arithmetic lives in
+  `lib/globe-camera.ts`, pinned against d3 in `__tests__/globe-camera.test.ts`.
+  - **A gesture starts from `viewLat`/`viewLng`, never from `cameraLat`/`cameraLng`.**
+    Those only mean something while a target owns the camera; while the deck
+    owns it they keep whatever the last flight left, and a drag that took the
+    camera from them snapped the earth back to a story already swiped past.
+    `MiniGlobe` publishes where it is drawing the camera, whoever owns it.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
@@ -281,9 +298,23 @@ about what a card may say is about the card, not where it is shown.
     tested): masthead, kicker, two title lines and five lead lines at the
     reader's font scale, capped so the globe keeps 34% of the window, floored
     at kicker + title + one line, and never leaving the globe under 140pt.
-    Grown, the globe keeps 20% (≥140pt). It is computed once per window and
-    font scale, never per card — a sheet whose height followed each story
-    would move the globe's centre, and reproject, on every swipe.
+    It is computed once per window and font scale, never per card — a resting
+    sheet whose height followed each story would move the globe's centre, and
+    reproject, on every swipe.
+  - **Grown, the sheet stops at the story's own height** (`MapSheet`
+    `contentHeight`), capped so the globe keeps 20% (≥140pt). A fixed full
+    stop left a third of the screen blank under a four-sentence story while
+    the earth sat in a 140pt band. This one *may* follow each card, because
+    the grown globe is a transform: `grownGlobeTransform` reads the height the
+    sheet actually stopped at on the UI thread, and never draws the disc
+    larger than at rest.
+  - **The lead and the rest are each one paragraph.** A block per sentence
+    spent a paragraph gap after every sentence and stranded a short hook on a
+    line of its own. `renderSentences(…, runs)` returns inline runs for it.
+  - **Body text carries no `letterSpacing`.** On Android a paragraph with any
+    tracking measures a line taller than it draws, and `textAlignVertical:
+    'center'` split that phantom line into blank space above and below it —
+    in every sheet, not only the card.
   - **The grown globe is a transform** (`grownGlobeTransform`), so the gesture
     layer is tap-to-collapse while grown: marks are not where the projection
     thinks they are under the scale.
@@ -302,7 +333,8 @@ about what a card may say is about the card, not where it is shown.
     next card's 10pt cut edge, and an end card that says the day is finite.
   - **The masthead line is the door to the whole day.** `found N of M · all →`
     opens `IndexSheet` — every alert and story as a row at natural height, the
-    list a reader scans the day in, and the accessible path.
+    list a reader scans the day in, and the accessible path. It opens scrolled
+    to the story on the card, whose row says `on the card`.
 - **There is no full-screen reader, and it is not coming back as the default.**
   `ReaderLayer`, `ArticleList`, `ArticlePage`, `useVerticalPager` and
   `lib/pager-settle.ts` were deleted on 2026-09-13. A modal reader for every
@@ -350,8 +382,7 @@ about what a card may say is about the card, not where it is shown.
   the news list a control panel. `share` is a word on the grown card, where it
   can only mean the story it sits under (it used to share the last article
   read from any section). `zoom` is gone from the chrome: pinch on the globe
-  steps through `useZoomCycle`'s levels, so readers who cannot pinch get the
-  opening zoom only.
+  zooms continuously, so readers who cannot pinch get the opening zoom only.
 
 - **The graph and pipeline analysis stay visible.** The reading, chart, the
   desk's analysis, delta and current change make up the recurring surface.
@@ -443,6 +474,16 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
 ## Perf reminders
 
 - Globe touches a 32ms JS budget; don't regress `callReproject` throttling.
+- **The globe's moving layers never go through React.** `callReproject`
+  projects, then `recordGlobeFrame` records three `SkPicture`s (ground, marks,
+  labels) that reach the canvas through **one** shared value. A drag frame's
+  React commit (~39 ms, dev build, emulator) became ~9 ms of recording, at
+  identical pixels. Skia replays the whole canvas on the UI thread whenever any
+  shared value it reads changes, so publish once per projection and never put a
+  `setState` back into the frame. On the emulator that replay is GL-pipe time,
+  and framestats files it under the input phase of the next frame — a native
+  profile showed the same main-thread CPU before and after, and 35% less JS
+  CPU for 1.8× the redraws. Judge UI-thread GPU cost on hardware.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
 - React Compiler is **installed but NOT enabled** — in any build. The only
   switch is `app.json` → `experiments.reactCompiler`, which flows

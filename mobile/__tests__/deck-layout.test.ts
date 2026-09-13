@@ -84,4 +84,20 @@ describe('grownGlobeTransform', () => {
     const landed = 320 + scale * (layout.centerY - 320) + translateY;
     expect(landed).toBeCloseTo(layout.storyCenterY);
   });
+
+  it("gives a short story's globe the band its sheet did not take", () => {
+    const layout = computeDeckLayout(small());
+    const tall = grownGlobeTransform(layout, 640);
+    // A story 380pt tall: the band under a 72pt header is 188, not 140.
+    const short = grownGlobeTransform(layout, 640, 380);
+    expect(short.scale).toBeGreaterThan(tall.scale);
+    expect(short.scale * layout.radius).toBeCloseTo(Math.round(0.46 * 188));
+    const landed = 320 + short.scale * (layout.centerY - 320) + short.translateY;
+    expect(landed).toBeCloseTo(72 + 188 / 2);
+  });
+
+  it('never draws the grown disc larger than the resting one', () => {
+    const layout = computeDeckLayout(small());
+    expect(grownGlobeTransform(layout, 640, layout.peek - 200).scale).toBeLessThanOrEqual(1);
+  });
 });

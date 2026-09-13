@@ -1,0 +1,184 @@
+/**
+ * The camera arithmetic a finger needs, in the globe's own projection.
+ *
+ * The web's map feels like a map because the ground under the finger stays
+ * under the finger, a released drag glides, and a pinch zooms around the
+ * fingers. Each of those is a statement about `geoOrthographic`, so each is
+ * written here once, as a worklet, and pinned against d3 in
+ * `__tests__/globe-camera.test.ts` — the failure mode is a globe that turns a
+ * little too fast or zooms toward the wrong place, which nobody reports.
+ *
+ * Conventions match `MiniGlobe`: the camera is `[lng, lat]` in degrees and the
+ * projection is `rotate([-lng, -lat, 0])`, `scale(radius / sin(clip))`,
+ * `translate([cx, cy])`.
+ */
+
+const RAD = Math.PI / 180;
+const DEG = 180 / Math.PI;
+
+/** The tightest clip a pinch reaches — the old closest zoom level. */
+export const MIN_CLIP = 10;
+/** A hemisphere: an orthographic projection cannot show more. */
+export const MAX_CLIP = 90;
+/** Past this the pole is under the finger and the projection has no up. */
+export const MAX_LAT = 82;
+/**
+ * The fastest a released drag may leave the finger, in points per second —
+ * MapLibre's `dragPan` default. A flick on a phone reports far more, and
+ * handing that straight to a decay sends the earth round twice.
+ */
+export const MAX_FLING_PX_S = 1400;
+/** Below this a release is a stop, not a throw. */
+export const MIN_FLING_PX_S = 180;
+/** Longitude turns faster near the poles; past this it would spin. */
+const MIN_COS_LAT = 0.2;
+
+/** The orthographic scale at a clip angle: the disc radius over sin(clip). */
+export function projScaleFor(clip: number, radius: number): number {
+  'worklet';
+  return radius / Math.sin(clip * RAD);
+}
+
+/**
+ * Camera change for a finger movement, so the point under the finger moves
+ * with it. At the centre of the disc a longitude step of `Δλ` moves the ground
+ * `scale · cos φ · Δλ` points and a latitude step moves it `scale · Δφ`.
+ */
+export function dragDelta(
+  changeX: number,
+  changeY: number,
+  clip: number,
+  radius: number,
+  lat: number,
+): { dLng: number; dLat: number } {
+  'worklet';
+  const scale = projScaleFor(clip, radius);
+  const cosLat = Math.max(MIN_COS_LAT, Math.cos(lat * RAD));
+  return {
+    dLng: (-changeX / (scale * cosLat)) * DEG,
+    dLat: (changeY / scale) * DEG,
+  };
+}
+
+/**
+ * Release velocity in degrees per second, capped at `MAX_FLING_PX_S` along the
+ * direction of travel. Zero when the release was slower than a throw.
+ */
+export function flingVelocity(
+  velocityX: number,
+  velocityY: number,
+  clip: number,
+  radius: number,
+  lat: number,
+): { vLng: number; vLat: number } {
+  'worklet';
+  const speed = Math.hypot(velocityX, velocityY);
+  if (speed < MIN_FLING_PX_S) return { vLng: 0, vLat: 0 };
+  const k = speed > MAX_FLING_PX_S ? MAX_FLING_PX_S / speed : 1;
+  const d = dragDelta(velocityX * k, velocityY * k, clip, radius, lat);
+  return { vLng: d.dLng, vLat: d.dLat };
+}
+
+/**
+ * The clip after a pinch step. The disc's apparent scale is `1 / sin(clip)`,
+ * so a pinch that spreads the fingers by `scaleChange` divides `sin(clip)` by
+ * it. Clamped to `[MIN_CLIP, MAX_CLIP]`.
+ */
+export function pinchClip(clip: number, scaleChange: number): number {
+  'worklet';
+  if (!(scaleChange > 0)) return clip;
+  const s = Math.sin(clip * RAD) / scaleChange;
+  const lo = Math.sin(MIN_CLIP * RAD);
+  const next = Math.asin(s >= 1 ? 1 : s <= lo ? lo : s) * DEG;
+  return next < MIN_CLIP ? MIN_CLIP : next > MAX_CLIP ? MAX_CLIP : next;
+}
+
+/**
+ * The `[lng, lat]` under a screen point, or null off the disc. The same answer
+ * as `geoOrthographic().rotate([-camLng, -camLat, 0]).invert`, written out so
+ * it can run in a gesture worklet.
+ */
+export function invertOrthographic(
+  x: number,
+  y: number,
+  camLng: number,
+  camLat: number,
+  scale: number,
+  cx: number,
+  cy: number,
+): [number, number] | null {
+  'worklet';
+  const px = (x - cx) / scale;
+  const py = (cy - y) / scale;
+  const z = Math.hypot(px, py);
+  if (z > 1) return null;
+  const c = Math.asin(z);
+  const sinC = Math.sin(c);
+  const cosC = Math.cos(c);
+  // Raw orthographic inverse, in the rotated frame.
+  const lam = Math.atan2(px * sinC, z * cosC);
+  const phi = Math.asin(z === 0 ? 0 : (py * sinC) / z);
+  // Undo d3's rotation: φ by −camLat, then λ by −camLng.
+  const cosPhi = Math.cos(phi);
+  const vx = Math.cos(lam) * cosPhi;
+  const vy = Math.sin(lam) * cosPhi;
+  const vz = Math.sin(phi);
+  const dPhi = -camLat * RAD;
+  const cosD = Math.cos(dPhi);
+  const sinD = Math.sin(dPhi);
+  let lng = Math.atan2(vy, vx * cosD + vz * sinD) * DEG + camLng;
+  const lat = Math.asin(Math.max(-1, Math.min(1, vz * cosD - vx * sinD))) * DEG;
+  lng = ((((lng + 180) % 360) + 360) % 360) - 180;
+  return [lng, lat];
+}
+
+/** Shortest signed longitude difference `a − b`, in (−180, 180]. */
+function lngDiff(a: number, b: number): number {
+  'worklet';
+  let d = (a - b) % 360;
+  if (d > 180) d -= 360;
+  if (d <= -180) d += 360;
+  return d;
+}
+
+/** Fixed-point passes in `anchorZoom`. One leaves ~0.3 px per step of drift
+ *  off-centre (6 px over a 2× pinch); three converge below a hundredth. */
+const ANCHOR_PASSES = 3;
+
+/**
+ * Camera after a pinch step that keeps the ground the fingers hold under them:
+ * the point under `(fromX, fromY)` at `fromScale` ends under `(toX, toY)` at
+ * `toScale`, so a pinch zooms about the fingers and a two-finger drag turns the
+ * earth with them, as the web's map does.
+ *
+ * Each pass moves the camera by the held point minus the point under the
+ * fingers now. A camera step is a rotation, not a translation, so one pass is
+ * only first-order off the centre of the disc; a few converge. Null when the
+ * fingers are off the disc: zoom about the centre then.
+ */
+export function anchorZoom(
+  fromX: number,
+  fromY: number,
+  toX: number,
+  toY: number,
+  camLng: number,
+  camLat: number,
+  fromScale: number,
+  toScale: number,
+  cx: number,
+  cy: number,
+): { lng: number; lat: number } | null {
+  'worklet';
+  const target = invertOrthographic(fromX, fromY, camLng, camLat, fromScale, cx, cy);
+  if (!target) return null;
+  let lng = camLng;
+  let lat = camLat;
+  for (let i = 0; i < ANCHOR_PASSES; i++) {
+    const under = invertOrthographic(toX, toY, lng, lat, toScale, cx, cy);
+    if (!under) return null;
+    lng += lngDiff(target[0], under[0]);
+    lat += target[1] - under[1];
+    lat = lat > MAX_LAT ? MAX_LAT : lat < -MAX_LAT ? -MAX_LAT : lat;
+  }
+  return { lng, lat };
+}

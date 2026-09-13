@@ -86,7 +86,6 @@ import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
-import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards } from '../lib/cards/markets';
@@ -164,7 +163,6 @@ export default function HomeScreen() {
   const { colors, textVariants } = useTheme();
   const { preferences } = usePreferences();
   const reduceMotion = useReducedMotion();
-  const { current: currentZoom, step: handleZoomStep } = useZoomCycle();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight, fontScale } = useWindowDimensions();
 
@@ -264,6 +262,16 @@ export default function HomeScreen() {
   const cameraOwner = useSharedValue(0);
   const cameraLat = useSharedValue(0);
   const cameraLng = useSharedValue(0);
+  /** Where the globe last drew the camera, whoever owned it — what a gesture
+   *  that takes the camera starts from. */
+  const viewLat = useSharedValue(0);
+  const viewLng = useSharedValue(0);
+  /** The pinch's zoom override, and the clips the globe published with it. */
+  const zoomActive = useSharedValue(0);
+  const zoomAngle = useSharedValue(90);
+  const globeClip = useSharedValue(90);
+  const storyClip = useSharedValue(90);
+  const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetProgress = useSharedValue(0);
   /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
@@ -309,7 +317,11 @@ export default function HomeScreen() {
       }),
     [screenWidth, screenHeight, headerHeight, stripHeight, insets.bottom, fontScale, textVariants],
   );
-  const grown = useMemo(() => grownGlobeTransform(layout, screenHeight), [layout, screenHeight]);
+  /** Where the grown sheet stops — the story's own height, capped at
+   *  `layout.full`. Written by `MapSheet`; read by the globe's transform. */
+  const sheetExpanded = useSharedValue(layout.full);
+  /** The current card's natural height, from the deck. */
+  const [cardHeight, setCardHeight] = useState<number | null>(null);
   // The briefing's player floats over the bottom of the sheet while it is up,
   // so the card's last line still has to scroll clear of it.
   const cardBottomInset = insets.bottom + (briefingVisible ? SPACING.xxl : 0);
@@ -465,6 +477,15 @@ export default function HomeScreen() {
     },
     [cameraLat, cameraLng, cameraOwner, reduceMotion],
   );
+
+  /** A pinch has ended: redraw at full detail once any hand-back has eased. */
+  const handleZoomSettle = useCallback((delayMs: number) => {
+    if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
+    zoomSettleTimerRef.current = setTimeout(() => {
+      zoomSettleTimerRef.current = null;
+      globeRef.current?.settle();
+    }, delayMs);
+  }, []);
 
   // ---------------------------------------------------------------------
   // The deck
@@ -1124,6 +1145,7 @@ export default function HomeScreen() {
   // finger-tracked, so it is exempt from Reduce Motion like the sheet itself.
   const globeStyle = useAnimatedStyle(() => {
     const p = Math.min(1, Math.max(0, sheetProgress.value));
+    const grown = grownGlobeTransform(layout, screenHeight, sheetExpanded.value);
     return {
       transform: [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }],
     };
@@ -1227,6 +1249,7 @@ export default function HomeScreen() {
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
         onScrollOffset={onScrollOffset}
+        onContentHeight={setCardHeight}
         keyOf={keyOfDeck}
         renderStory={renderStory}
         renderEnd={renderEnd}
@@ -1299,7 +1322,12 @@ export default function HomeScreen() {
           height={screenHeight}
           radius={layout.radius}
           centerY={layout.centerY}
-          zoomClipOverride={currentZoom.clip}
+          zoomActive={zoomActive}
+          zoomAngle={zoomAngle}
+          clipOut={globeClip}
+          storyClipOut={storyClip}
+          viewLat={viewLat}
+          viewLng={viewLng}
           tick={tick}
         />
       </Animated.View>
@@ -1310,9 +1338,18 @@ export default function HomeScreen() {
         cameraOwner={cameraOwner}
         cameraLat={cameraLat}
         cameraLng={cameraLng}
-        clip={currentZoom.clip ?? 90}
+        viewLat={viewLat}
+        viewLng={viewLng}
+        zoomActive={zoomActive}
+        zoomAngle={zoomAngle}
+        clip={globeClip}
+        storyClip={storyClip}
+        radius={layout.radius}
+        centerX={screenWidth / 2}
+        centerY={layout.centerY}
+        reduceMotion={reduceMotion}
         onTap={handleCountryPress}
-        onZoomStep={handleZoomStep}
+        onZoomSettle={handleZoomSettle}
         onImpact={hapticImpact}
         enabled={sheetDetent === 'peek'}
         collapseMode={sheetDetent === 'full'}
@@ -1349,6 +1386,8 @@ export default function HomeScreen() {
         ref={mapSheetRef}
         peek={layout.peek}
         full={layout.full}
+        contentHeight={cardHeight}
+        expandedHeight={sheetExpanded}
         progress={sheetProgress}
         header={masthead}
         renderList={renderList}
@@ -1395,6 +1434,8 @@ export default function HomeScreen() {
         rows={storyRows}
         now={now}
         found={foundSlugs}
+        currentSlug={storyRows[frontIndex]?.slug ?? null}
+        open={indexOpen}
         onSelect={handleIndexSelect}
         onNowPress={handleIndexNowPress}
       />

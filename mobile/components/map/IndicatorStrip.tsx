@@ -78,22 +78,23 @@ function Slot({
     <Pressable
       onPress={handlePress}
       haptic="none"
-      style={[styles.slot, { width }]}
+      style={[styles.slot, { minWidth: width }]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityHint="Turns the globe to this and opens its card"
     >
-      {/* Two lines, because the subject is the one part of a slot that
-          cannot be abbreviated honestly: on a 411pt phone a single line cut
-          "Strait of Hormuz" and "Toronto Stock Exchange" to "STRAIT OF HOR…"
-          and "TORONTO STO…", which left numbers with no subject. */}
+      {/* One line, never cut. A fixed-width slot either ellipsized the
+          subject ("STRAIT OF HOR…", a number with no subject) or wrapped it,
+          and a wrap made the whole strip two caps lines tall. So the subject
+          takes its conventional short form (`stripLabel`) and a slot is as
+          wide as its longest line, never narrower than the rhythm below. */}
       <Text
         variant="labelXsTight"
-        numberOfLines={2}
+        numberOfLines={1}
         maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         style={styles.label}
       >
-        {item.label}
+        {item.short}
       </Text>
       <View style={styles.value}>
         <Text

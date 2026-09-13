@@ -327,7 +327,12 @@ export function makeTypography(sizeScale: number = 1) {
      *  multipliers that had drifted across SourceCaption and LocationsBlock —
      *  one auditable value so the label-to-neighbour rhythm stays consistent. */
     leadingTight: 1.1,
-    trackingCaps: 1.2,
+    /** Small-caps tracking, in points. It was 1.2 — 11% of an 11pt label —
+     *  and every kicker, strip subject and action word read as letters set
+     *  apart rather than as words. The web sets its caps at 0.08em; 0.6pt is
+     *  about that on the 11pt labels that carry most of it, and less on the
+     *  larger tiers, which need it less. */
+    trackingCaps: 0.6,
     trackingWordmark: -0.3,
     /** Editorial H1 tracking — slight negative letterspacing tightens bold
      *  large text so headlines read with publication weight rather than
@@ -609,17 +614,17 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       color: colors.accent,
     } as TextStyle,
     /** Paragraph text with oldstyle nums.
-     *  letterSpacing: Source Sans 3 Regular is on the thin side; SF compensates
-     *  for halation on dark backgrounds via per-size optical tracking, custom
-     *  fonts don't. +0.1 opens the prose enough to remove the smear without
-     *  changing rhythm. Applied to all three body variants so emphasis and
-     *  italic stay metrically consistent with regular. */
+     *  No letterSpacing, on purpose. It carried +0.1 to open Source Sans on
+     *  dark, and on Android a paragraph with any letterSpacing is measured as
+     *  though it wraps a line more than it draws: with `textAlignVertical:
+     *  'center'` the phantom line split into a blank gap above and below
+     *  every paragraph — a line of white space under "self-evacuate." on the
+     *  story card, and the same in every sheet. It also read as loose type. */
     body: {
       ...font.regular,
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
-      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
@@ -629,7 +634,6 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
-      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.textEmphasis,
     } as TextStyle,
@@ -639,7 +643,6 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
-      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
@@ -686,10 +689,11 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       letterSpacing: typography.trackingCaps,
       color: colors.textSecondary,
     } as TextStyle,
-    /** `labelXs` set solid, for a caps label allowed to wrap to a second line
-     *  — the strip's gauge subjects. Body leading (1.55) suits one caps line
-     *  sitting in a row; across a wrap it opened a gap between "STRAIT OF"
-     *  and "HORMUZ" wide enough to read as two separate labels. */
+    /** `labelXs` set solid — the strip's gauge subjects, where a caps line
+     *  sits directly over a reading and body leading (1.55) would open a gap
+     *  the strip pays for in height. Subjects are one line now (`stripLabel`);
+     *  the solid leading was first chosen because a wrapped "STRAIT OF" /
+     *  "HORMUZ" at body leading read as two separate labels. */
     labelXsTight: {
       ...font.smallCaps,
       ...ANDROID_TEXT_BASE,

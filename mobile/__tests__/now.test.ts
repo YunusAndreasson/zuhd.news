@@ -9,6 +9,7 @@ import {
   HAZARD_MAX_AGE_DAYS,
   NOW_LIMIT,
   rowKicker,
+  stripLabel,
 } from '../lib/now';
 
 const NOW = Date.parse('2026-09-12T09:00:00Z');
@@ -165,6 +166,24 @@ describe('buildNowSurfaces — the strip', () => {
   it('uses the title for a kickerless card too', () => {
     const { strip } = base({ ranked: [reading('x', { kicker: undefined })] });
     expect(strip[0]?.label).toBe('x title');
+  });
+
+  it('prints a strait on one line as its short form and keeps the full name to speak', () => {
+    // A slot wrapped "STRAIT OF / HORMUZ" onto two lines, which made the whole
+    // strip two caps lines tall for one long name.
+    const { strip } = base({ ranked: [reading('strait-hormuz', { title: 'Strait of Hormuz' })] });
+    expect(strip[0]?.short).toBe('Hormuz Str.');
+    expect(strip[0]?.label).toBe('Strait of Hormuz');
+  });
+});
+
+describe('stripLabel', () => {
+  it('shortens both spellings of a strait and leaves everything else alone', () => {
+    expect(stripLabel('Strait of Gibraltar')).toBe('Gibraltar Str.');
+    expect(stripLabel('Kerch Strait')).toBe('Kerch Str.');
+    expect(stripLabel('Bab el-Mandeb')).toBe('Bab el-Mandeb');
+    expect(stripLabel('Suez Canal')).toBe('Suez Canal');
+    expect(stripLabel('South African rand')).toBe('South African rand');
   });
 });
 

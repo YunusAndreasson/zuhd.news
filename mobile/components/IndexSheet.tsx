@@ -1,5 +1,5 @@
-import { memo, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
+import { memo, useCallback, useEffect, useRef } from 'react';
+import { type LayoutChangeEvent, type ScrollView, StyleSheet, View } from 'react-native';
 import { categoryMarkColor, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { StoryRow } from '../lib/map-feed';
@@ -29,35 +29,56 @@ interface IndexSheetProps extends BaseSheetProps {
   rows: StoryRow[];
   now: NowItem[];
   found: ReadonlySet<string>;
+  /** The story on the card under the sheet. Marked, so a reader twenty
+   *  swipes in can see where they are in the day. */
+  currentSlug: string | null;
+  /** The sheet is presented — the moment to bring the current row into view. */
+  open: boolean;
   onSelect: (slug: string) => void;
   onNowPress: (item: NowItem) => void;
 }
 
+/** The ink step on the row whose story is on the card. */
+const CURRENT_MARK = 'on the card';
+
 const StoryIndexRow = memo(function StoryIndexRow({
   row,
   found,
+  current,
   onPress,
+  onLayoutRow,
 }: {
   row: StoryRow;
   found: boolean;
+  current: boolean;
   onPress: (slug: string) => void;
+  onLayoutRow: (slug: string, y: number) => void;
 }) {
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(row.slug), [onPress, row.slug]);
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => onLayoutRow(row.slug, e.nativeEvent.layout.y),
+    [onLayoutRow, row.slug],
+  );
+  const label = [row.title, current ? CURRENT_MARK : null, found ? 'found' : null]
+    .filter(Boolean)
+    .join(', ');
   return (
-    <FeedRow
-      title={row.title}
-      meta={row.meta}
-      mark={row.mark}
-      odds={row.odds}
-      found={found}
-      hue={categoryMarkColor(row.article.category, colors)}
-      onPress={handlePress}
-      accessibilityLabel={found ? `${row.title}, found` : row.title}
-      accessibilityHint={
-        row.odds ? `Shows the story. Traders price this at ${row.odds}` : 'Shows the story'
-      }
-    />
+    <View onLayout={handleLayout}>
+      <FeedRow
+        title={row.title}
+        meta={row.meta}
+        mark={current ? CURRENT_MARK : row.mark}
+        odds={row.odds}
+        found={found}
+        hue={categoryMarkColor(row.article.category, colors)}
+        onPress={handlePress}
+        accessibilityLabel={label}
+        accessibilityHint={
+          row.odds ? `Shows the story. Traders price this at ${row.odds}` : 'Shows the story'
+        }
+      />
+    </View>
   );
 });
 
@@ -88,12 +109,51 @@ export const IndexSheet = memo(function IndexSheet({
   rows,
   now,
   found,
+  currentSlug,
+  open,
   onSelect,
   onNowPress,
 }: IndexSheetProps) {
+  // Opened twenty stories in, the list used to start at the top, and the
+  // reader had to find their place in the day by hand. It opens with the row
+  // above the current one at the top instead, so what came just before is in
+  // view too. Offsets are collected as rows lay out; whichever of the row and
+  // the sheet arrives second does the scroll.
+  const scrollRef = useRef<ScrollView>(null);
+  const offsets = useRef(new Map<string, number>());
+  const scrolledFor = useRef<string | null>(null);
+  // Held in refs so the layout callback stays stable: a callback that changed
+  // with the current slug would re-render every row on every swipe of the deck.
+  const stateRef = useRef({ open, currentSlug, rows });
+  stateRef.current = { open, currentSlug, rows };
+  const scrollToCurrent = useCallback(() => {
+    const { open: isOpen, currentSlug: slug, rows: list } = stateRef.current;
+    if (!isOpen || !slug || scrolledFor.current === slug) return;
+    const y = offsets.current.get(slug);
+    if (y === undefined) return;
+    const index = list.findIndex((r) => r.slug === slug);
+    const above = index > 0 ? offsets.current.get(list[index - 1]?.slug ?? '') : undefined;
+    scrollRef.current?.scrollTo({ y: above ?? y, animated: false });
+    scrolledFor.current = slug;
+  }, []);
+  const handleLayoutRow = useCallback(
+    (slug: string, y: number) => {
+      offsets.current.set(slug, y);
+      if (slug === stateRef.current.currentSlug) scrollToCurrent();
+    },
+    [scrollToCurrent],
+  );
+  useEffect(() => {
+    if (!open) {
+      scrolledFor.current = null;
+      return;
+    }
+    if (currentSlug) scrollToCurrent();
+  }, [currentSlug, open, scrollToCurrent]);
+
   return (
     <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="today">
-      <SheetScrollView bottomInset={bottomInset}>
+      <SheetScrollView ref={scrollRef} bottomInset={bottomInset}>
         {now.length > 0 ? (
           <>
             <Text variant="labelXs" tone="emphasis" style={styles.heading}>
@@ -108,7 +168,14 @@ export const IndexSheet = memo(function IndexSheet({
           </>
         ) : null}
         {rows.map((row) => (
-          <StoryIndexRow key={row.slug} row={row} found={found.has(row.slug)} onPress={onSelect} />
+          <StoryIndexRow
+            key={row.slug}
+            row={row}
+            found={found.has(row.slug)}
+            current={row.slug === currentSlug}
+            onPress={onSelect}
+            onLayoutRow={handleLayoutRow}
+          />
         ))}
       </SheetScrollView>
     </SheetLayout>

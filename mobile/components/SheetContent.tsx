@@ -1,6 +1,6 @@
 import { BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
-import type { ComponentProps } from 'react';
-import { StyleSheet } from 'react-native';
+import type { ComponentProps, Ref } from 'react';
+import { type ScrollView, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -31,6 +31,9 @@ type EnteringAnimation = ComponentProps<typeof Animated.View>['entering'];
 type ScrollViewProps = ComponentProps<typeof BottomSheetScrollView>;
 
 interface SheetScrollViewProps extends Omit<ScrollViewProps, 'contentContainerStyle' | 'style'> {
+  /** For a sheet that has to scroll itself — `IndexSheet` opening on the
+   *  current story. Passed straight through (React 19: `ref` is a prop). */
+  ref?: Ref<ScrollView>;
   bottomInset: number;
   contentContainerStyle?: ScrollViewProps['contentContainerStyle'];
   style?: ScrollViewProps['style'];

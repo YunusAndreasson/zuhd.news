@@ -1,0 +1,42 @@
+steps:
+  # Two flings: a short fast drag, then time for any glide to finish.
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.25
+          y: 0.4
+        - type: Up
+          x: 0.75
+          y: 0.41
+          delayMs: 150
+      interpolate: 10
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.75
+          y: 0.4
+        - type: Up
+          x: 0.25
+          y: 0.39
+          delayMs: 150
+      interpolate: 10
+    delayMs: 1800
+  # Zoom in, then back out, on the globe.
+  - tool: gesture-pinch
+    args:
+      centerX: 0.5
+      centerY: 0.4
+      startDistance: 0.15
+      endDistance: 0.45
+      durationMs: 800
+    delayMs: 1800
+  - tool: gesture-pinch
+    args:
+      centerX: 0.5
+      centerY: 0.4
+      startDistance: 0.45
+      endDistance: 0.15
+      durationMs: 800
+    delayMs: 1200

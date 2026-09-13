@@ -1,16 +1,21 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, type ReactNode, useCallback, useMemo, useSyncExternalStore } from 'react';
 import {
   type AccessibilityActionEvent,
   Pressable as RNPressable,
+  Text as RNText,
   StyleSheet,
   View,
 } from 'react-native';
-import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { MAX_FONT_SCALE, PROSE_BREAK_PROPS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
+import {
+  getSnapshot as getBookmarks,
+  subscribe as subscribeBookmarks,
+} from '../../lib/bookmark-store';
 import { hapticTick } from '../../lib/haptics';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
@@ -74,6 +79,17 @@ interface StoryCardProps {
 }
 
 const DOT = 7;
+
+/** Sentences as spans of one paragraph, a space between each. A nested `Text`
+ *  keeps its typography and its links but drops its block margins. */
+function interleave(nodes: ReactNode[]): ReactNode[] {
+  const out: ReactNode[] = [];
+  for (let i = 0; i < nodes.length; i++) {
+    if (i > 0) out.push(' ');
+    out.push(nodes[i]);
+  }
+  return out;
+}
 
 export const StoryCard = memo(function StoryCard({
   row,
@@ -153,6 +169,7 @@ export const StoryCard = memo(function StoryCard({
         undefined,
         tappableEntities,
         onEntityPress,
+        true,
       ),
     [
       article.sentences,
@@ -164,8 +181,13 @@ export const StoryCard = memo(function StoryCard({
       onEntityPress,
     ],
   );
-  const lead = sentences.slice(0, LEAD_SENTENCES);
-  const rest = sentences.slice(LEAD_SENTENCES);
+  // Each half is one paragraph, not a block per sentence. Four one-sentence
+  // blocks spent a paragraph gap after every sentence and left a short hook —
+  // "This court sat unused for 30 years." — alone on a line with the rest of
+  // it blank, which at rest was a line of lead the card had been sized to show
+  // and did not. Run on, the same words take a line or two fewer.
+  const lead = interleave(sentences.slice(0, LEAD_SENTENCES));
+  const rest = interleave(sentences.slice(LEAD_SENTENCES));
 
   const accessibilityActions = useMemo(
     () => [
@@ -189,6 +211,14 @@ export const StoryCard = memo(function StoryCard({
   const handleBookmark = useCallback(() => onBookmark(article), [article, onBookmark]);
   const handleShare = useCallback(() => onShare(article), [article, onShare]);
   const sourceCount = article.sources.length;
+  // The word says what the store says. It read `save` after a save, so the
+  // only confirmation was a toast that had gone by the time the reader looked
+  // back, and a second tap — the natural way to check — silently unsaved it.
+  const bookmarks = useSyncExternalStore(subscribeBookmarks, getBookmarks, getBookmarks);
+  const saved = useMemo(
+    () => bookmarks.some((b) => b.article.slug === article.slug),
+    [bookmarks, article.slug],
+  );
 
   return (
     <View style={[styles.card, { paddingBottom: bottomInset + SPACING.lg }]}>
@@ -219,10 +249,24 @@ export const StoryCard = memo(function StoryCard({
       {/* The lead is a large, obvious target for "tell me more" — but not an
           accessibility element of its own: the sentences are read as text. */}
       <RNPressable onPress={onOpen} accessible={false}>
-        {lead}
+        <RNText
+          {...PROSE_BREAK_PROPS}
+          style={mdStyles.sentence}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        >
+          {lead}
+        </RNText>
       </RNPressable>
 
-      {rest}
+      {rest.length > 0 ? (
+        <RNText
+          {...PROSE_BREAK_PROPS}
+          style={mdStyles.sentence}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        >
+          {rest}
+        </RNText>
+      ) : null}
 
       {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
 
@@ -244,11 +288,12 @@ export const StoryCard = memo(function StoryCard({
           onPress={handleBookmark}
           haptic="none"
           accessibilityRole="button"
-          accessibilityLabel="Save this story"
+          accessibilityLabel={saved ? 'Saved. Remove from bookmarks' : 'Save this story'}
+          accessibilityState={{ selected: saved }}
           hitSlop={SPACING.sm}
         >
-          <Text variant="labelSm" tone="secondary">
-            save
+          <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'}>
+            {saved ? 'saved' : 'save'}
           </Text>
         </Pressable>
         <Pressable

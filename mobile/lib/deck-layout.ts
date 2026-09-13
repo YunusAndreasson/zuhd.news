@@ -24,9 +24,13 @@ import { LAYOUT, SPACING } from '../constants/theme';
  * never per card. A sheet whose height followed each story would move the
  * globe's centre on every swipe, and every move is a reprojection.
  *
- * Grown, the card is the whole story and the strip steps out of the way; the
- * globe keeps a band of `STORY_BAND_FRACTION` of the window (at least
- * `BAND_MIN`), drawn by scaling the resting disc rather than reprojecting it.
+ * Grown, the card is the whole story and the strip steps out of the way. The
+ * sheet stops at the story's own height, capped so the globe always keeps a
+ * band of `STORY_BAND_FRACTION` of the window (at least `BAND_MIN`); a short
+ * story leaves the earth more room rather than a third of the screen blank
+ * under its last line. The globe is drawn there by scaling the resting disc,
+ * never by reprojecting it — so unlike the resting height, this one is free to
+ * follow each card.
  */
 
 /** How much of the band between the chrome and the sheet the disc fills. */
@@ -71,9 +75,12 @@ export interface DeckLayoutInput {
 }
 
 export interface DeckLayout {
+  width: number;
+  /** MapHeader's height — the top of the grown globe's band. */
+  header: number;
   /** Sheet height at rest. */
   peek: number;
-  /** Sheet height with a story grown. */
+  /** The tallest the sheet grows; a shorter story stops lower. */
   full: number;
   /** The globe at rest. */
   band: number;
@@ -115,6 +122,8 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   const full = Math.max(peek, height - headerHeight - storyBand);
 
   return {
+    width,
+    header: headerHeight,
     peek,
     full,
     band,
@@ -127,18 +136,28 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
 }
 
 /**
- * The transform that draws the resting disc as the grown one.
+ * The transform that draws the resting disc in the band a grown sheet leaves.
+ *
+ * `sheetHeight` is where the grown sheet actually stopped — `layout.full` for
+ * the longest stories, less for a short one. The band is what is left under
+ * the header; the disc fills `GLOBE_FILL` of it, never larger than at rest,
+ * because a scaled-up canvas is a blurred one.
  *
  * The canvas is the whole window and scales about its own centre, so a point
  * at `centerY` lands at `height/2 + scale·(centerY − height/2)`; the
- * translation moves that onto `storyCenterY`. A transform, never a
- * reprojection: it tracks the sheet under a finger at 60fps.
+ * translation moves that onto the band's centre. A transform, never a
+ * reprojection: it runs on the UI thread, tracking the sheet at 60fps.
  */
 export function grownGlobeTransform(
   layout: DeckLayout,
   height: number,
+  sheetHeight: number = layout.full,
 ): { scale: number; translateY: number } {
-  const scale = layout.radius > 0 ? layout.storyRadius / layout.radius : 1;
+  'worklet';
+  const band = Math.max(BAND_MIN, height - layout.header - sheetHeight);
+  const radius = Math.round(GLOBE_FILL * Math.min(layout.width, band));
+  const scale = layout.radius > 0 ? Math.min(1, radius / layout.radius) : 1;
   const mid = height / 2;
-  return { scale, translateY: layout.storyCenterY - mid - scale * (layout.centerY - mid) };
+  const centerY = layout.header + band / 2;
+  return { scale, translateY: centerY - mid - scale * (layout.centerY - mid) };
 }

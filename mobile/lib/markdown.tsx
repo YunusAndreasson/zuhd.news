@@ -217,9 +217,8 @@ export function makeMarkdownStyles(
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
-      // Mirrors the `body` variant tracking — Source Sans 3 Regular reads
-      // tight on dark; +0.1 opens prose without changing rhythm.
-      letterSpacing: 0.1,
+      // No letterSpacing, like the `body` variant: on Android any tracking
+      // makes a paragraph measure a line taller than it draws.
       // iOS measures line widths from glyph advances and ignores the kern
       // trail letterSpacing adds after the rightmost glyph. With the article
       // container's overflow:hidden, that ~1pt overhang clips the trailing
@@ -369,6 +368,11 @@ export function renderSentences(
    *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
   entities?: Entity[],
   onEntityPress?: EntityPressHandler,
+  /** Return each sentence as inline runs rather than its own block `Text`,
+   *  for a caller that sets several sentences as one paragraph. Nesting the
+   *  block form inside a paragraph put roughly a line of extra leading above
+   *  it on Android: each sentence carried its own `lineHeight` as a span. */
+  runs = false,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -404,6 +408,20 @@ export function renderSentences(
     return used;
   };
 
+  const perSentence = (key: number, segments: Segment[]): ReactNode =>
+    runs ? (
+      <Fragment key={key}>{renderSegments(segments, mdStyles, openLink, onEntityPress)}</Fragment>
+    ) : (
+      <Text
+        key={key}
+        {...SENTENCE_TEXT_PROPS}
+        style={[mdStyles.sentence, sizeStyle]}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+      >
+        {renderSegments(segments, mdStyles, openLink, onEntityPress)}
+      </Text>
+    );
+
   return sentences.map((sentence, i) => {
     if (i === 0) {
       // Strip "Location — " prefix from first sentence if present
@@ -431,26 +449,12 @@ export function renderSentences(
             <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
               {dateline}
             </Text>
-            <Text
-              {...SENTENCE_TEXT_PROPS}
-              style={[mdStyles.sentence, sizeStyle]}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-            >
-              {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-            </Text>
+            {runs ? '\n' : null}
+            {perSentence(i, segmentsForRender)}
           </Fragment>
         );
       }
-      return (
-        <Text
-          key={i}
-          {...SENTENCE_TEXT_PROPS}
-          style={[mdStyles.sentence, sizeStyle]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
-          {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-        </Text>
-      );
+      return perSentence(i, segmentsForRender);
     }
     const baseSegments = parseInline(sentence);
     const segmentsForRender = entities?.length

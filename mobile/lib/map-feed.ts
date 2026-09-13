@@ -54,10 +54,15 @@ export function buildStoryRows({ river, lastSeenAt, odds }: BuildStoryRowsInput)
   // "was this here last time you looked", not "when did it happen".
   let boundaryMarked = lastSeenAt <= 0;
 
-  return river.map((article) => {
+  return river.map((article, index) => {
     const seen = article.addedAt <= lastSeenAt;
     let mark: string | null = null;
-    if (!boundaryMarked && seen) {
+    // A boundary on the newest story is no boundary: nothing arrived since the
+    // last visit, and `earlier ·` over the card the app opens on read as a
+    // label on the day's lead story rather than as a place in the river.
+    if (!boundaryMarked && seen && index === 0) {
+      boundaryMarked = true;
+    } else if (!boundaryMarked && seen) {
       mark = 'earlier';
       boundaryMarked = true;
     }

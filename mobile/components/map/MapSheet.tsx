@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   type SharedValue,
@@ -39,7 +39,11 @@ import { hapticTick } from '../../lib/haptics';
  *
  * Peek and full, and they are one story at two depths: at peek the story card
  * — kicker, title, the lead — and at full the same card grown into the whole
- * story, with the globe still above it. A middle stop would be a third place
+ * story, with the globe still above it. **Full is the story's own height**
+ * (`contentHeight`), capped at `full`: a four-sentence story stopped a third
+ * of the screen short of a fixed full stop, and that third was blank while
+ * the earth above it sat in a 140pt band. A swipe while grown springs the
+ * sheet to the next story's height. A middle stop would be a third place
  * to leave a card with nothing that belongs there. There is no full-screen
  * reader to hand off to; a modal reader was intrusive and lost the earth.
  *
@@ -77,8 +81,14 @@ type SheetGesture = ReturnType<typeof usePanGesture>;
 interface MapSheetProps {
   /** Visible height at rest, in px. */
   peek: number;
-  /** Visible height when expanded, in px. */
+  /** The tallest the sheet expands to, in px. */
   full: number;
+  /** The natural height of the list's current content. The expanded sheet
+   *  stops at it (plus the handle and header), between `peek` and `full`. */
+  contentHeight?: number | null;
+  /** The height the expanded sheet actually stops at, published for the
+   *  globe's grown transform. Written only from here. */
+  expandedHeight?: SharedValue<number>;
   /** 0 at peek, 1 at full. Read by the globe; written only from here. */
   progress: SharedValue<number>;
   /** Always visible, above the list. */
@@ -131,6 +141,8 @@ const LIST = 2;
 export function MapSheet({
   peek,
   full,
+  contentHeight = null,
+  expandedHeight,
   progress,
   header,
   renderList,
@@ -146,6 +158,28 @@ export function MapSheet({
   // sheet is pushed down from its expanded position, so peek is the maximum.
   const travel = Math.max(1, full - peek);
   const offset = useSharedValue(travel);
+  // The reactions below read these, not the render-time numbers. A reaction
+  // closes over what it was created with, and when the window changed size the
+  // old one fired on the re-pinned offset with the old travel — a progress of
+  // 0.3 at rest, which drew the globe shrunk and shifted up until the sheet
+  // was next moved. Nothing re-runs the new reaction until a value it reads
+  // changes, so the values have to be shared.
+  const travelSV = useSharedValue(travel);
+  const fullSV = useSharedValue(full);
+  // Where "expanded" is: 0 when the story needs every point of `full`, more
+  // when it is shorter. Animated alongside `offset` so the two never part.
+  const [chrome, setChrome] = useState(0);
+  const onChromeLayout = useCallback((e: LayoutChangeEvent) => {
+    setChrome(e.nativeEvent.layout.height);
+  }, []);
+  const fit =
+    contentHeight !== null && chrome > 0
+      ? Math.min(full, Math.max(peek, Math.ceil(chrome + contentHeight)))
+      : full;
+  const openTarget = full - fit;
+  const openTargetRef = useRef(openTarget);
+  openTargetRef.current = openTarget;
+  const openAt = useSharedValue(openTarget);
   const dragStart = useSharedValue(travel);
   const owner = useSharedValue(UNDECIDED);
   const listOffset = useSharedValue(0);
@@ -160,11 +194,20 @@ export function MapSheet({
   useAnimatedReaction(
     // Clamped: a pull stretches the sheet below peek, and the globe's fade
     // must not read that as a negative rise.
-    () => Math.max(0, Math.min(1, 1 - offset.value / travel)),
+    () => {
+      const span = Math.max(1, travelSV.value - openAt.value);
+      return Math.max(0, Math.min(1, (travelSV.value - offset.value) / span));
+    },
     (next) => {
       progress.value = next;
     },
-    [travel],
+  );
+  useAnimatedReaction(
+    () => fullSV.value - openAt.value,
+    (next) => {
+      if (expandedHeight) expandedHeight.value = next;
+    },
+    [expandedHeight],
   );
 
   // The last detent the sheet settled on, held in a ref so `settle` can
@@ -181,8 +224,25 @@ export function MapSheet({
   // rests on; left alone, a peeking sheet sits at the old travel and shows a
   // sliver more or less than peek.
   useEffect(() => {
-    offset.value = detentRef.current === 'full' ? 0 : travel;
-  }, [offset, travel]);
+    travelSV.value = travel;
+    fullSV.value = full;
+    offset.value = detentRef.current === 'full' ? openTargetRef.current : travel;
+  }, [full, fullSV, offset, travel, travelSV]);
+
+  // A different story, or the same one measured: move the expanded stop. At
+  // rest nothing visible changes; grown, the sheet springs to the new height.
+  useEffect(() => {
+    if (detentRef.current !== 'full') {
+      openAt.value = openTarget;
+      return;
+    }
+    const move = (to: number) =>
+      reduceMotion
+        ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
+        : withSpring(to, ANIMATION.springSoft);
+    openAt.value = move(openTarget);
+    offset.value = move(openTarget);
+  }, [offset, openAt, openTarget, reduceMotion]);
   const settle = useCallback(
     (next: MapSheetDetent) => {
       if (detentRef.current === next) return;
@@ -243,7 +303,7 @@ export function MapSheet({
           // Not expanded → nothing below can use a vertical drag.
           // Expanded and already at the top and pulling down → the list has
           // nowhere to go, so the sheet takes it.
-          owner.value = offset.value > 0.5 || (atTop && pullingDown) ? SHEET : LIST;
+          owner.value = offset.value > openAt.value + 0.5 || (atTop && pullingDown) ? SHEET : LIST;
         }
         if (owner.value !== SHEET) return;
         const next = dragStart.value + e.translationY;
@@ -254,7 +314,7 @@ export function MapSheet({
           offset.value = travel + pull.value * PULL_RESISTANCE;
         } else {
           pull.value = 0;
-          offset.value = next < 0 ? 0 : next;
+          offset.value = next < openAt.value ? openAt.value : next;
         }
       },
       onDeactivate: (e: { velocityY: number }) => {
@@ -273,15 +333,19 @@ export function MapSheet({
         const v = e.velocityY;
         // A throw decides on its own; otherwise the nearer stop wins.
         const expand =
-          v < -FLICK_VELOCITY ? true : v > FLICK_VELOCITY ? false : offset.value < travel / 2;
-        animateTo(expand ? 0 : travel, v, expand ? 'full' : 'peek');
+          v < -FLICK_VELOCITY
+            ? true
+            : v > FLICK_VELOCITY
+              ? false
+              : offset.value < (openAt.value + travel) / 2;
+        animateTo(expand ? openAt.value : travel, v, expand ? 'full' : 'peek');
       },
       onFinalize: () => {
         'worklet';
         owner.value = UNDECIDED;
       },
     }),
-    [animateTo, dragStart, handlePullDown, listOffset, offset, owner, pull, travel],
+    [animateTo, dragStart, handlePullDown, listOffset, offset, openAt, owner, pull, travel],
   );
 
   const pan = usePanGesture(panConfig);
@@ -290,9 +354,10 @@ export function MapSheet({
     ref,
     () => ({
       expand: () => {
+        const to = openTargetRef.current;
         offset.value = reduceMotion
-          ? withTiming(0, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(0, ANIMATION.springSoft);
+          ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
+          : withSpring(to, ANIMATION.springSoft);
         settle('full');
       },
       collapse: () => {
@@ -311,7 +376,7 @@ export function MapSheet({
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
       const expand = event.nativeEvent.actionName === 'increment';
-      offset.value = withTiming(expand ? 0 : travel, {
+      offset.value = withTiming(expand ? openTargetRef.current : travel, {
         duration: ANIMATION.fast,
         easing: EASING.out,
       });
@@ -348,18 +413,20 @@ export function MapSheet({
           {/* A hairline indicator and nothing else. The sheet's own top edge
               already reads as an edge against the globe; a second rule under
               the handle would be the same boundary drawn twice. */}
-          <View
-            style={styles.handleWrap}
-            accessibilityRole="adjustable"
-            accessibilityLabel="Story"
-            accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
-            accessibilityHint="Swipe up to read the whole story, down to see the globe"
-            accessibilityActions={ADJUST_ACTIONS}
-            onAccessibilityAction={handleAccessibilityAction}
-          >
-            <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
+          <View onLayout={onChromeLayout}>
+            <View
+              style={styles.handleWrap}
+              accessibilityRole="adjustable"
+              accessibilityLabel="Story"
+              accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
+              accessibilityHint="Swipe up to read the whole story, down to see the globe"
+              accessibilityActions={ADJUST_ACTIONS}
+              onAccessibilityAction={handleAccessibilityAction}
+            >
+              <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
+            </View>
+            {header}
           </View>
-          {header}
           {list}
         </View>
       </GestureDetector>

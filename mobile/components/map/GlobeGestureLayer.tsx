@@ -7,9 +7,24 @@ import {
   usePinchGesture,
   useTapGesture,
 } from 'react-native-gesture-handler';
-import { type SharedValue, useSharedValue } from 'react-native-reanimated';
+import {
+  cancelAnimation,
+  Easing,
+  type SharedValue,
+  useSharedValue,
+  withDecay,
+  withTiming,
+} from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { WHITE } from '../../constants/theme';
+import {
+  anchorZoom,
+  dragDelta,
+  flingVelocity,
+  MAX_LAT,
+  pinchClip,
+  projScaleFor,
+} from '../../lib/globe-camera';
 import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
 
 /**
@@ -17,46 +32,64 @@ import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
  *
  * The globe canvas is `pointerEvents="none"` — it always has been — and a
  * sibling view collects the touches and asks the renderer what is under them.
- * That much is unchanged from the article reader's `GlobeTapZone`. What is new
- * is the other two gestures.
  *
- * ## Why drag and pinch exist now
+ * ## It moves the way the web's map moves
  *
- * The camera used to be the scroll position and nothing else, which was right
- * when the globe was a backdrop: it was ground under the story you were
- * reading, and there was nothing to look for on it. As the home screen it
- * visibly promises to be a map, and a map that cannot be turned is a picture
- * of a map. A drag hands the camera to the finger until the next list scroll
- * takes it back — see `cameraOwner` in `MiniGlobe`.
+ * The website's globe felt more natural than this one for three reasons, none
+ * of them the renderer: the ground drifted out from under the finger, a released
+ * drag stopped dead, and a pinch jumped between three zoom levels. MapLibre does
+ * none of that, so neither does this:
  *
- * ## Why it runs at 30fps and that is correct
+ * - **The ground stays under the finger.** A drag converts points to degrees at
+ *   the projection's own scale (`dragDelta`), which is `radius / sin(clip)` — the
+ *   old fixed `0.28° · clip/90` turned the earth at half the finger's speed at a
+ *   tight zoom.
+ * - **A release glides.** `withDecay` on the camera, from the release velocity
+ *   capped at MapLibre's 1400 pt/s. A touch stops it. Reduce Motion drops the
+ *   glide: it is momentum the reader did not ask for, where the drag itself is
+ *   direct manipulation and is not gated.
+ * - **A pinch zooms continuously, about the fingers.** It writes the clip
+ *   override `MiniGlobe` already reads, and turns the camera so the ground under
+ *   the fingers stays there (`anchorZoom`), which also makes a two-finger drag
+ *   turn the earth. Pinching out to the story's own framing hands zoom back to it.
  *
- * The rotation feeds the same reprojection pipeline the scroll does, under the
- * same 32 ms throttle and the same latest-only backpressure. A projection is
- * ~5 ms p95 on the JS thread and the comment above the throttle records what
- * happened at 16 ms: d3-geo plus `setState` could not finish inside a frame
- * and the thread was overwhelmed. Sixty is not available at any price worth
- * paying, and a drag that tracks at thirty reads as weight, not as lag.
+ * All three feed the same reprojection pipeline the deck does, under the same
+ * throttle and latest-only backpressure — see `MiniGlobe`.
  *
- * ## Degrees per pixel
+ * ## Where a gesture picks the camera up
  *
- * Scaled by the clip angle so the earth turns under the finger at roughly the
- * same surface speed whatever the zoom — dragging an inch at 10° of clip moves
- * a much smaller arc than an inch at 90°. Latitude is clamped short of the
- * poles: an orthographic projection at ±90° has no defined "up", and the
- * graticule tears.
+ * `cameraLat` / `cameraLng` only mean something while a target owns the camera.
+ * While the deck owns it they keep whatever the last flight left, so a gesture
+ * that took the camera from them snapped the earth back to a story the reader
+ * had already swiped past. A gesture starts from `viewLat` / `viewLng` instead:
+ * where the globe last drew the camera, whoever was moving it.
+ *
+ * Latitude is clamped short of the poles: an orthographic projection at ±90°
+ * has no defined "up", and the graticule tears.
  */
 
-/** Degrees of rotation per point of drag at full (90°) clip. */
-const DEG_PER_PX = 0.28;
-/** Past this the pole is under the cursor and the projection has no up. */
-const MAX_LAT = 82;
-/** The widest clip, and the reference the drag speed is scaled against. */
-const MAX_CLIP = 90;
-/** How far a pinch must travel before it steps a zoom level. Generous: a
- *  level change is a 260 ms animation, and one per accidental two-finger
- *  wobble would make the earth lurch. */
-const PINCH_STEP = 1.35;
+/** Per-frame velocity retention while a released drag glides. Reanimated's
+ *  0.998 default coasts for seconds; this settles in about half of one, which
+ *  is what a MapLibre throw feels like. */
+const FLING_DECELERATION = 0.994;
+/** How long zoom takes to hand back to the story's framing. */
+const ZOOM_RELEASE_MS = 260;
+const ZOOM_EASING = Easing.inOut(Easing.cubic);
+
+/** Take the camera for a gesture, starting from where it was last drawn. */
+function takeCamera(
+  owner: SharedValue<number>,
+  lat: SharedValue<number>,
+  lng: SharedValue<number>,
+  viewLat: SharedValue<number>,
+  viewLng: SharedValue<number>,
+) {
+  'worklet';
+  if (owner.value === 1) return;
+  lat.value = viewLat.value;
+  lng.value = viewLng.value;
+  owner.value = 1;
+}
 
 interface GlobeGestureLayerProps {
   globeRef: React.RefObject<MiniGlobeRef | null>;
@@ -65,14 +98,24 @@ interface GlobeGestureLayerProps {
   cameraOwner: SharedValue<number>;
   cameraLat: SharedValue<number>;
   cameraLng: SharedValue<number>;
-  /**
-   * The clip angle currently in effect, in degrees. A plain number: it only
-   * scales the drag, and it changes at most three times in a session.
-   */
-  clip: number;
+  /** Where the globe last drew the camera, whoever owned it. */
+  viewLat: SharedValue<number>;
+  viewLng: SharedValue<number>;
+  /** `MiniGlobe`'s zoom override: 0 follows the story, 1 holds `zoomAngle`. */
+  zoomActive: SharedValue<number>;
+  zoomAngle: SharedValue<number>;
+  /** The clip in effect at the last projection, in degrees. */
+  clip: SharedValue<number>;
+  /** The clip the story in front would take on its own. */
+  storyClip: SharedValue<number>;
+  /** The globe disc, in canvas points. */
+  radius: number;
+  centerX: number;
+  centerY: number;
+  reduceMotion: boolean;
   onTap: (result: TapResult) => void;
-  /** One discrete zoom level in (`1`) or out (`-1`). */
-  onZoomStep: (direction: 1 | -1) => void;
+  /** A pinch has ended; redraw at full detail once `delayMs` has passed. */
+  onZoomSettle: (delayMs: number) => void;
   onImpact: () => void;
   enabled?: boolean;
   /**
@@ -91,9 +134,18 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   cameraOwner,
   cameraLat,
   cameraLng,
+  viewLat,
+  viewLng,
+  zoomActive,
+  zoomAngle,
   clip,
+  storyClip,
+  radius,
+  centerX,
+  centerY,
+  reduceMotion,
   onTap,
-  onZoomStep,
+  onZoomSettle,
   onImpact,
   enabled = true,
   collapseMode = false,
@@ -139,58 +191,157 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       enabled: turnable,
       // Enough travel that a slightly imprecise tap is still a tap.
       minDist: 6,
+      // One finger. Competing gestures go to whichever activates first, and a
+      // pan with no pointer cap took every two-finger touch before the pinch
+      // could — observed on the emulator: a pinch logged `pan activate` and
+      // never `pinch activate`. A second finger now fails the pan; the pinch
+      // turns the earth with two fingers itself.
+      maxPointers: 1,
+      onBegin: () => {
+        'worklet';
+        // A finger on the earth stops a glide or a flight, as it does on the web.
+        cancelAnimation(cameraLat);
+        cancelAnimation(cameraLng);
+      },
       onActivate: () => {
         'worklet';
-        cameraOwner.value = 1;
+        takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
       },
       onUpdate: ({ changeX, changeY }: { changeX: number; changeY: number }) => {
         'worklet';
-        // At a tight clip the visible arc is small, so the same finger travel
-        // should turn the earth less. `clip / MAX_CLIP` is that ratio.
-        const scale = (DEG_PER_PX * clip) / MAX_CLIP;
-        let lng = cameraLng.value - changeX * scale;
+        const d = dragDelta(changeX, changeY, clip.value, radius, cameraLat.value);
         // Keep longitude in (−180, 180] so the slerp that resumes on the next
         // scroll does not take the long way round.
+        let lng = cameraLng.value + d.dLng;
         if (lng > 180) lng -= 360;
         if (lng < -180) lng += 360;
         cameraLng.value = lng;
-        const lat = cameraLat.value + changeY * scale;
+        const lat = cameraLat.value + d.dLat;
         cameraLat.value = lat > MAX_LAT ? MAX_LAT : lat < -MAX_LAT ? -MAX_LAT : lat;
       },
+      onDeactivate: ({
+        velocityX,
+        velocityY,
+        canceled,
+      }: {
+        velocityX: number;
+        velocityY: number;
+        canceled: boolean;
+      }) => {
+        'worklet';
+        if (canceled || reduceMotion) return;
+        const v = flingVelocity(velocityX, velocityY, clip.value, radius, cameraLat.value);
+        if (v.vLng === 0 && v.vLat === 0) return;
+        cameraLng.value = withDecay({ velocity: v.vLng, deceleration: FLING_DECELERATION });
+        cameraLat.value = withDecay({
+          velocity: v.vLat,
+          deceleration: FLING_DECELERATION,
+          clamp: [-MAX_LAT, MAX_LAT],
+        });
+      },
     }),
-    [cameraLat, cameraLng, cameraOwner, clip, turnable],
+    [cameraLat, cameraLng, cameraOwner, clip, radius, reduceMotion, turnable, viewLat, viewLng],
   );
 
-  // One step per gesture. `armed` reopens on the next pinch, so a long
-  // two-finger drag cannot walk through every level.
-  const armed = useSharedValue(true);
+  // The focus the last pinch update held, so the next one can keep that ground
+  // under the fingers wherever they have moved.
+  const focusX = useSharedValue(0);
+  const focusY = useSharedValue(0);
   const pinchConfig = useMemo(
     () => ({
       enabled: turnable,
-      onActivate: () => {
+      onActivate: ({ focalX, focalY }: { focalX: number; focalY: number }) => {
         'worklet';
-        armed.value = true;
+        cancelAnimation(cameraLat);
+        cancelAnimation(cameraLng);
+        cancelAnimation(zoomActive);
+        cancelAnimation(zoomAngle);
+        takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
+        // Start the override at the clip already on screen, so taking zoom
+        // from the story — or from a hand-back still easing — moves nothing.
+        zoomAngle.value = clip.value;
+        zoomActive.value = 1;
+        focusX.value = focalX;
+        focusY.value = focalY - canvasTop;
       },
-      onUpdate: ({ scale }: { scale: number }) => {
+      onUpdate: ({
+        scaleChange,
+        focalX,
+        focalY,
+        numberOfPointers,
+      }: {
+        scaleChange: number;
+        focalX: number;
+        focalY: number;
+        numberOfPointers: number;
+      }) => {
         'worklet';
-        if (!armed.value) return;
-        if (scale > PINCH_STEP) {
-          armed.value = false;
-          scheduleOnRN(onZoomStep, 1);
-        } else if (scale < 1 / PINCH_STEP) {
-          armed.value = false;
-          scheduleOnRN(onZoomStep, -1);
+        // The frames while a finger lifts carry one pointer: the focal point
+        // snaps to the finger that stayed and the scale collapses (0.47 was
+        // observed), which read as a lurch of the earth at the end of every
+        // pinch. Only a two-finger frame is a pinch.
+        if (numberOfPointers < 2) return;
+        const from = zoomAngle.value;
+        const to = pinchClip(from, scaleChange);
+        const y = focalY - canvasTop;
+        const cam = anchorZoom(
+          focusX.value,
+          focusY.value,
+          focalX,
+          y,
+          cameraLng.value,
+          cameraLat.value,
+          projScaleFor(from, radius),
+          projScaleFor(to, radius),
+          centerX,
+          centerY,
+        );
+        zoomAngle.value = to;
+        if (cam) {
+          cameraLng.value = cam.lng;
+          cameraLat.value = cam.lat;
         }
+        focusX.value = focalX;
+        focusY.value = y;
+      },
+      onDeactivate: () => {
+        'worklet';
+        // Pinched back out to the story's own framing: give zoom back to it.
+        const release = zoomAngle.value >= storyClip.value - 0.5;
+        const duration = reduceMotion ? 0 : ZOOM_RELEASE_MS;
+        if (release) zoomActive.value = withTiming(0, { duration, easing: ZOOM_EASING });
+        // A JS timer, never an animation callback: `scheduleOnRN` from a
+        // completion worklet aborts the app (worklets 0.10).
+        scheduleOnRN(onZoomSettle, release ? duration + 50 : 0);
       },
     }),
-    [armed, onZoomStep, turnable],
+    [
+      cameraLat,
+      cameraLng,
+      cameraOwner,
+      canvasTop,
+      centerX,
+      centerY,
+      clip,
+      focusX,
+      focusY,
+      onZoomSettle,
+      radius,
+      reduceMotion,
+      storyClip,
+      turnable,
+      viewLat,
+      viewLng,
+      zoomActive,
+      zoomAngle,
+    ],
   );
 
   const tap = useTapGesture(tapConfig);
   const pan = usePanGesture(panConfig);
   const pinch = usePinchGesture(pinchConfig);
   // Competing, not simultaneous: a two-finger pinch and a one-finger drag are
-  // different intentions and letting both run turns a zoom into a lurch.
+  // different intentions. The pinch turns the earth with the fingers itself.
   const gesture = useCompetingGestures(pinch, pan, tap);
 
   return (

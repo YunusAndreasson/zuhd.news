@@ -66,8 +66,10 @@ export interface StripItem {
   /** The card's own id — also the globe mark's id, so a tap on either lights
    *  the same thing. */
   id: string;
-  /** Subject, short enough for a third of a phone's width. */
+  /** Subject, in full — what a screen reader says. */
   label: string;
+  /** The subject as the slot prints it, on one line (`stripLabel`). */
+  short: string;
   reading: string;
   readingNote?: string;
   delta?: CardDelta;
@@ -150,6 +152,24 @@ function locateCard(
   return null;
 }
 
+/**
+ * A slot's subject on one line.
+ *
+ * Slot subjects wrapped to two lines so "Strait of Hormuz" was never cut to
+ * "STRAIT OF HOR…" — which made the whole strip two caps lines tall for the
+ * sake of the longest name in it, and set "STRAIT OF" over "HORMUZ" as though
+ * they were two labels. The long ones are almost all straits, and a strait has
+ * a conventional short form: the name and `Str.`. The number beside it already
+ * says ships a day, and the card it opens carries the full name.
+ */
+export function stripLabel(title: string): string {
+  const of = /^Strait of (.+)$/.exec(title);
+  if (of) return `${of[1]} Str.`;
+  const suffix = /^(.+) Strait$/.exec(title);
+  if (suffix) return `${suffix[1]} Str.`;
+  return title;
+}
+
 function toStripItem(
   card: SwipeCard,
   chokepoints: Chokepoint[],
@@ -164,6 +184,7 @@ function toStripItem(
     // ("currency", "metal", "zakat") or longer than the title they head — the
     // emulator printed "AUSTRALIAN SECURITIES EXC…" over the S&P/ASX 200.
     label: card.title,
+    short: stripLabel(card.title),
     reading: card.reading,
     readingNote: card.readingNote,
     delta: card.delta,

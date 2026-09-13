@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useEffect, useMemo } from 'react';
+import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
@@ -75,6 +75,9 @@ interface StoryDeckProps {
   scrollEnabled: boolean;
   /** Raw scroll offset of the current card, for the sheet's pan. */
   onScrollOffset: SharedValue<number>;
+  /** The current card's natural height, so a grown sheet can stop at it.
+   *  Reported when it lays out and again whenever a card becomes current. */
+  onContentHeight?: (height: number) => void;
   keyOf: (index: number) => string;
   renderStory: (index: number) => ReactNode;
   renderEnd: () => ReactNode;
@@ -93,6 +96,7 @@ const DeckSlot = memo(function DeckSlot({
   sheetGesture,
   scrollEnabled,
   onScrollOffset,
+  onContentHeight,
   children,
 }: {
   position: number;
@@ -103,6 +107,7 @@ const DeckSlot = memo(function DeckSlot({
   sheetGesture: SheetGesture;
   scrollEnabled: boolean;
   onScrollOffset: SharedValue<number>;
+  onContentHeight?: (height: number) => void;
   children: ReactNode;
 }) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -119,6 +124,20 @@ const DeckSlot = memo(function DeckSlot({
       if (current) onScrollOffset.value = event.contentOffset.y;
     },
   });
+
+  // Cached, because a card's size is only reported when it lays out, and the
+  // neighbour a swipe lands on laid out while it was still off to the side.
+  const contentHeight = useRef<number | null>(null);
+  const handleContentSize = useCallback(
+    (_width: number, height: number) => {
+      contentHeight.current = height;
+      if (current) onContentHeight?.(height);
+    },
+    [current, onContentHeight],
+  );
+  useEffect(() => {
+    if (current && contentHeight.current !== null) onContentHeight?.(contentHeight.current);
+  }, [current, onContentHeight]);
 
   const readable = current && scrollEnabled;
   // A card leaving the front, or a sheet coming down to rest, goes back to its
@@ -142,6 +161,7 @@ const DeckSlot = memo(function DeckSlot({
           style={styles.fill}
           scrollEnabled={readable}
           onScroll={scrollHandler}
+          onContentSizeChange={handleContentSize}
           scrollEventThrottle={16}
           bounces={false}
           overScrollMode="never"
@@ -162,6 +182,7 @@ export const StoryDeck = memo(function StoryDeck({
   sheetGesture,
   scrollEnabled,
   onScrollOffset,
+  onContentHeight,
   keyOf,
   renderStory,
   renderEnd,
@@ -226,6 +247,7 @@ export const StoryDeck = memo(function StoryDeck({
             sheetGesture={sheetGesture}
             scrollEnabled={scrollEnabled}
             onScrollOffset={onScrollOffset}
+            onContentHeight={onContentHeight}
           >
             {i === count ? renderEnd() : renderStory(i)}
           </DeckSlot>

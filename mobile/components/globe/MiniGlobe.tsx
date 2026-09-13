@@ -2,28 +2,36 @@ import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
 import {
-  Atlas,
+  BlendMode,
   BlurMask,
+  BlurStyle,
   Canvas,
   Circle,
   ColorMatrix,
   CubicSampling,
-  DashPathEffect,
   FontEdging,
   FontHinting,
   Group,
   Image,
   LinearGradient,
+  PaintStyle,
   Path,
   Picture,
   RadialGradient,
   Rect,
   rect,
+  type SkCanvas,
+  type SkColor,
   type SkFont,
+  type SkImage,
   Skia,
-  Text as SkiaText,
+  type SkPaint,
   type SkPath,
   type SkPathBuilder,
+  type SkPicture,
+  StrokeCap,
+  StrokeJoin,
+  TileMode,
   useFont,
   useImage,
   useTexture,
@@ -31,11 +39,11 @@ import {
 } from '@shopify/react-native-skia';
 import { geoContains, geoDistance, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
 import {
-  Fragment,
   memo,
   useCallback,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -45,12 +53,13 @@ import {
   Easing,
   type SharedValue,
   useAnimatedReaction,
+  useDerivedValue,
   useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { BLACK, categoryMarkColor, WHITE, withAlpha } from '../../constants/theme';
+import { BLACK, type ColorPalette, categoryMarkColor, WHITE } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
@@ -254,50 +263,6 @@ function conflictAtlas(
   };
 }
 
-/** Skia text drawn with an opaque halo for primary-tier labels (focused
- *  country, chokepoint). Two passes — stroked bg behind the glyphs, then
- *  the fill — so the label reads over land tint, borders, and the highlight
- *  glow. Skia's <Text> has no textShadow primitive, hence the manual stroke. */
-function HaloLabel({
-  x,
-  y,
-  text,
-  font,
-  color,
-  haloColor,
-  opacity = 1,
-  haloOpacity = 1,
-  haloWidth = LABEL_HALO_WIDTH,
-}: {
-  x: number;
-  y: number;
-  text: string;
-  font: ReturnType<typeof useFont>;
-  color: string;
-  haloColor: string;
-  opacity?: number;
-  haloOpacity?: number;
-  haloWidth?: number;
-}) {
-  if (!font) return null;
-  return (
-    <>
-      <SkiaText
-        x={x}
-        y={y}
-        text={text}
-        font={font}
-        color={haloColor}
-        opacity={haloOpacity}
-        style="stroke"
-        strokeWidth={haloWidth}
-        strokeJoin="round"
-      />
-      <SkiaText x={x} y={y} text={text} font={font} color={color} opacity={opacity} />
-    </>
-  );
-}
-
 const skiaCtx = createSkiaPathContext();
 
 // Label widths, by font. The labels are a fixed vocabulary — countries,
@@ -325,8 +290,6 @@ const PULSE_EASING = Easing.out(Easing.cubic);
  *  camera, so the burst plays where the mark was rather than being dragged. */
 export const COLLECT_MS = 420;
 const COLLECT_REDUCED_MS = 150;
-const ZOOM_EASING = Easing.inOut(Easing.cubic);
-const ZOOM_DURATION = 260;
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -410,6 +373,11 @@ const THERMAL_CELL = 4;
 const overlayCell = (i: number) => rect(i * OVERLAY_CELL, 0, OVERLAY_CELL, OVERLAY_CELL);
 const FAMINE_SRC = [overlayCell(0), overlayCell(1), overlayCell(2), overlayCell(3)] as const;
 const THERMAL_SRC = overlayCell(THERMAL_CELL);
+/** A famine column's drawn frame is 10 × 14 of its 16-unit box, at up to
+ *  1.1× scale — about 15 × 21 pt. Two columns closer than that on both axes
+ *  overlap, and the lesser one is not drawn. */
+const FAMINE_COLLIDE_X = 16;
+const FAMINE_COLLIDE_Y = 22;
 /** The catch radius every reference mark shares, squared (36 px). */
 const MARK_HIT_PX2 = 1296;
 
@@ -586,6 +554,9 @@ export interface MiniGlobeRef {
   showPulse: (x: number, y: number) => void;
   /** The found burst: a story mark's own hue swelling and fading at `x, y`. */
   collect: (x: number, y: number, color: string) => void;
+  /** Redraw the last camera at full detail — after a pinch, whose frames drew
+   *  the in-motion tier and which no later camera movement will replace. */
+  settle: () => void;
 }
 
 interface MiniGlobeProps {
@@ -662,10 +633,23 @@ interface MiniGlobeProps {
   radius?: number;
   /** Globe centre, px from the top of the canvas. Defaults to `height × 2/3`. */
   centerY?: number;
-  /** User-driven zoom override. null = scroll-adaptive clip (default);
-   *  a number forces that clip angle. Transitions animate via the
-   *  overrideActive/overrideAngle pair inside MiniGlobe. */
-  zoomClipOverride?: number | null;
+  /**
+   * The zoom override, written by a pinch. The clip each frame is
+   * `rawClip + (zoomAngle − rawClip) · zoomActive`: 0 follows the story's own
+   * framing, 1 holds `zoomAngle`, and a value between is a hand-back easing.
+   */
+  zoomActive: SharedValue<number>;
+  zoomAngle: SharedValue<number>;
+  /** Published by every projection: the clip in effect, and the story's own. */
+  clipOut?: SharedValue<number>;
+  storyClipOut?: SharedValue<number>;
+  /**
+   * Published by every projection request: where the camera is being drawn,
+   * whoever owns it. A gesture that takes the camera starts here — `cameraLat`
+   * and `cameraLng` go stale while the deck owns it.
+   */
+  viewLat?: SharedValue<number>;
+  viewLng?: SharedValue<number>;
   tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
@@ -933,40 +917,14 @@ const Moon = memo(function Moon({
   );
 });
 
-/** Country highlight — the focal "figure" of the globe: a soft glow for body
- *  plus a crisp outline for definition. Small countries get a stronger glow so
- *  they stay visible at globe scale. The outline is what separates the focused
- *  country from the quiet ground — the soft fill alone (0.12–0.25) read almost
- *  identically to the 0.3 neighbour borders, so nothing popped. */
-const CountryHighlight = memo(function CountryHighlight({
-  path: p,
-  countryName,
-  color,
-}: {
-  path: SkPath;
-  countryName: string | null;
-  color: string;
-}) {
+/** Country highlight opacity — scaled by area so small nations still read at
+ *  globe scale. The soft glow is the body; a crisp outline (drawn separately,
+ *  brighter than the borders and coastline) is what makes the focused country
+ *  lead the figure-ground hierarchy. */
+function countryHighlightOpacity(countryName: string | null): number {
   const area = countryName ? (countryAreas[countryName] ?? 0) : 0;
-  const opacity = area < 0.001 ? 0.25 : area < 0.005 ? 0.18 : 0.12;
-  return (
-    <>
-      <Path path={p} color={color} opacity={opacity}>
-        <BlurMask blur={1} style="solid" />
-      </Path>
-      {/* Crisp focal outline — no blur, brighter than the borders/coastline so
-          the focused country clearly leads the figure-ground hierarchy. */}
-      <Path
-        path={p}
-        color={color}
-        style="stroke"
-        strokeWidth={1}
-        strokeJoin="round"
-        opacity={0.5}
-      />
-    </>
-  );
-});
+  return area < 0.001 ? 0.25 : area < 0.005 ? 0.18 : 0.12;
+}
 
 const EMPTY_GLOBE: GlobeState = {
   landPath: null,
@@ -1058,217 +1016,662 @@ function collectCityLights(
   return { hasNight, hasTwilight };
 }
 
-/** Pure projection — creates fresh Skia paths, no shared mutable state. */
-function projectInitial(
-  geo: { lat: number; lng: number; country: GeoJSON.Feature | null },
+// ── Frame recording ───────────────────────────────────────────────────────
+//
+// The globe's moving layers — land, night, borders, every mark and every label
+// — were about 150 declarative Skia nodes fed by a `setState` per projection.
+// A drag frame spent ~35 ms in React reconciling them on the JS thread (dev
+// build, emulator), on top of the projection, before the UI thread saw a pixel.
+//
+// They are now recorded straight into three `SkPicture`s per projection and
+// handed to the canvas as shared values, which Skia redraws on the UI thread
+// with no React render at all — the route its docs give for a scene whose
+// command count changes frame to frame. Three rather than one because two
+// declarative layers sit between them: the static limb glaze (under the marks)
+// and the tap pulse and found burst, which animate on the UI thread under the
+// labels.
+//
+// A label `Picture` was tried once before and reverted with no commit gain.
+// That one still arrived through `setState`, so React still reconciled a tree
+// per frame; this one removes the render, which is where the time went.
+//
+// The helpers below reproduce what the declarative nodes did, from
+// `@shopify/react-native-skia/src/sksg/Recorder`: a node's `color` sets the
+// paint colour, its `opacity` multiplies that colour's own alpha, and paints
+// antialias. Keep draw order in step with the comments beside each layer.
+
+const frameRecorder = Skia.PictureRecorder();
+/** Reset before every draw. The recorder copies a paint when a draw is
+ *  recorded, so one mutable paint serves the whole frame. */
+const framePaint = Skia.Paint();
+const BASE_PAINT = Skia.Paint();
+BASE_PAINT.setAntiAlias(true);
+const SOURCE_ARC_DASH = Skia.PathEffect.MakeDash([6, 3], 0);
+const QIBLA_DASH = Skia.PathEffect.MakeDash([4, 2], 0);
+const HIGHLIGHT_BLUR = Skia.MaskFilter.MakeBlur(BlurStyle.Solid, 1, true);
+
+function recordEmptyPicture(): SkPicture {
+  frameRecorder.beginRecording(Skia.XYWHRect(0, 0, 1, 1));
+  return frameRecorder.finishRecordingAsPicture();
+}
+const EMPTY_PICTURE = recordEmptyPicture();
+
+/** Theme colours are a small fixed vocabulary; each is parsed once. */
+const parsedColors = new Map<string, SkColor>();
+function skColor(color: string): SkColor {
+  let c = parsedColors.get(color);
+  if (!c) {
+    c = Skia.Color(color);
+    parsedColors.set(color, c);
+  }
+  return c;
+}
+
+/** `color` with its alpha replaced — `withAlpha`, without a string to parse. */
+function tint(color: string, alpha: number): SkColor {
+  const c = skColor(color);
+  return Float32Array.of(c[0] ?? 0, c[1] ?? 0, c[2] ?? 0, alpha);
+}
+
+function plainPaint(): SkPaint {
+  framePaint.assign(BASE_PAINT);
+  return framePaint;
+}
+
+/** A fill in `color` at `opacity`, as `<Path color opacity>` drew it. */
+function fillPaint(color: string, opacity = 1): SkPaint {
+  const c = skColor(color);
+  const paint = plainPaint();
+  paint.setColor(c);
+  paint.setAlphaf((c[3] ?? 1) * opacity);
+  return paint;
+}
+
+function strokePaint(
+  color: string,
+  opacity: number,
+  width: number,
+  join?: StrokeJoin,
+  cap?: StrokeCap,
+): SkPaint {
+  const paint = fillPaint(color, opacity);
+  paint.setStyle(PaintStyle.Stroke);
+  paint.setStrokeWidth(width);
+  if (join !== undefined) paint.setStrokeJoin(join);
+  if (cap !== undefined) paint.setStrokeCap(cap);
+  return paint;
+}
+
+/** A `<Circle dither>` holding a `<RadialGradient>`. */
+function drawGlow(
+  canvas: SkCanvas,
+  x: number,
+  y: number,
   r: number,
-  centerX: number,
-  centerY: number,
-): GlobeState {
-  const clipAngle = clipAngleForCountry(geo.country?.properties?.name ?? null);
-  const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
-  const proj = geoOrthographic()
-    .clipAngle(clipAngle)
-    .precision(8)
-    .rotate([-geo.lng, -geo.lat, 0])
-    .scale(projScale)
-    .translate([centerX, centerY]);
-  const pg = geoPath(proj);
-  const ctx = createSkiaPathContext();
+  colors: SkColor[],
+  positions: number[],
+) {
+  const paint = plainPaint();
+  paint.setDither(true);
+  paint.setShader(Skia.Shader.MakeRadialGradient(vec(x, y), r, colors, positions, TileMode.Clamp));
+  canvas.drawCircle(x, y, r, paint);
+}
 
-  const landBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(landBuilder);
-  pg.context(ctx)(landMedium);
-  const lp = landBuilder.detach();
+/** A 22 pt glyph path, placed by its box's top-left corner. */
+function drawGlyph(canvas: SkCanvas, path: SkPath, x: number, y: number, paint: SkPaint) {
+  canvas.save();
+  canvas.translate(x - GLYPH_HALF, y - GLYPH_HALF);
+  canvas.drawPath(path, paint);
+  canvas.restore();
+}
 
-  // Permanent ice sheets (Antarctica, Greenland) — drawn as a lighter fill
-  // on top of the land silhouette so the globe reads climatologically.
-  const iceBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(iceBuilder);
-  pg.context(ctx)(iceSheets);
-  const ip = iceBuilder.detach();
+/**
+ * Text with an opaque halo, for primary-tier labels (focused country,
+ * chokepoint). Two passes — a stroked halo behind the glyphs, then the fill —
+ * so the label reads over land tint, borders and the highlight glow. Skia text
+ * has no shadow primitive, hence the manual stroke.
+ */
+function drawHaloText(
+  canvas: SkCanvas,
+  text: string,
+  x: number,
+  y: number,
+  font: SkFont,
+  color: string,
+  haloColor: string,
+  opacity: number,
+  haloOpacity: number,
+) {
+  canvas.drawText(
+    text,
+    x,
+    y,
+    strokePaint(haloColor, haloOpacity, LABEL_HALO_WIDTH, StrokeJoin.Round),
+    font,
+  );
+  canvas.drawText(text, x, y, fillPaint(color, opacity), font);
+}
 
-  // Neighbouring country borders — mesh + no resampling for speed
-  proj.precision(0);
-  const bordersBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(bordersBuilder);
-  pg.context(ctx)(bordersMeshMedium);
-  const bp = bordersBuilder.detach();
-  proj.precision(8);
+type AtlasInputs = {
+  sprites: ReturnType<typeof rect>[];
+  transforms: ReturnType<typeof Skia.RSXform>[];
+  colors?: Float32Array[];
+} | null;
 
-  let cp: GlobeState['countryPath'] = null;
-  if (geo.country) {
-    const builder = Skia.PathBuilder.Make();
-    ctx.setPath(builder);
-    pg.context(ctx)(geo.country);
-    cp = builder.detach();
+/** An `<Atlas>`; tinted atlases modulate, for the reason `storyAtlas` gives. */
+function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInputs) {
+  if (!image || !atlas) return;
+  if (atlas.colors) {
+    canvas.drawAtlas(
+      image,
+      atlas.sprites,
+      atlas.transforms,
+      plainPaint(),
+      BlendMode.Modulate,
+      atlas.colors,
+    );
+  } else {
+    canvas.drawAtlas(image, atlas.sprites, atlas.transforms, plainPaint());
+  }
+}
+
+interface GlobeTextures {
+  ghost: SkImage | null;
+  storyHalo: SkImage | null;
+  beacon: SkImage | null;
+  overlay: SkImage | null;
+  dot: SkImage | null;
+  makkah: SkImage | null;
+}
+
+const NO_TEXTURES: GlobeTextures = {
+  ghost: null,
+  storyHalo: null,
+  beacon: null,
+  overlay: null,
+  dot: null,
+  makkah: null,
+};
+
+interface FrameStyle {
+  width: number;
+  height: number;
+  globeRadius: number;
+  colors: ColorPalette;
+  light: boolean;
+  fonts: {
+    label: SkFont | null;
+    sub: SkFont | null;
+    country: SkFont | null;
+    neighbor: SkFont | null;
+    water: SkFont | null;
+  };
+  textures: GlobeTextures;
+}
+
+/** One projected frame, recorded as the three pictures the canvas draws. */
+interface FramePictures {
+  ground: SkPicture;
+  marks: SkPicture;
+  labels: SkPicture;
+}
+
+function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
+  const { colors, light, fonts, textures } = s;
+  const bounds = Skia.XYWHRect(0, 0, s.width, s.height);
+  const haloOpacity = light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK;
+  const haloOpacitySoft = light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT;
+
+  // ── Ground: between the ocean disc and the limb glaze ──────────────────
+  let c = frameRecorder.beginRecording(bounds);
+
+  // Subsolar specular highlight — additive WHITE at the projected
+  // sun-overhead point. Land draws on top, so it only shows on water, which
+  // is the physically correct behaviour: ocean reflects, land doesn't.
+  // WHITE because the phenomenon is brighter-than-ambient in both modes.
+  if (f.subsolar) {
+    drawGlow(
+      c,
+      f.subsolar.x,
+      f.subsolar.y,
+      s.globeRadius * 0.55,
+      [
+        skColor(`${WHITE}${light ? '14' : '24'}`),
+        skColor(`${WHITE}${light ? '08' : '10'}`),
+        skColor(`${WHITE}00`),
+      ],
+      [0, 0.45, 1],
+    );
   }
 
-  const [sunLng, sunLat] = getSunPosition();
-  const nightCircles = getNightCircles(sunLng, sunLat);
-  const nightBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(nightBuilder);
-  pg.context(ctx)(nightCircles.night);
-  const np = nightBuilder.detach();
-
-  // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
-  const twilightBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(twilightBuilder);
-  pg.context(ctx)(nightCircles.twilight);
-  const tp = twilightBuilder.detach();
-
-  // Equator + polar circles
-  const graticuleBuilder = Skia.PathBuilder.Make();
-  ctx.setPath(graticuleBuilder);
-  pg.context(ctx)(GRATICULE_LINES);
-  pg.context(ctx)(ARCTIC_CIRCLE);
-  pg.context(ctx)(ANTARCTIC_CIRCLE);
-  const gp = graticuleBuilder.detach();
-
-  // Point markers below are culled against the clip cone, not the hemisphere:
-  // direct point projection ignores `.clipAngle` (d3 clips streams only), so a
-  // point between clipRad and 90° projects outside the disk, and a far-side
-  // point comes back mirrored *inside* it — proj() never returns null.
-  const clipRad = (clipAngle * Math.PI) / 180;
-
-  // Poles
-  let northPole: GlobeState['northPole'] = null;
-  let southPole: GlobeState['southPole'] = null;
-  if (geoDistance(NORTH_POLE, [geo.lng, geo.lat]) < clipRad) {
-    const npp = proj(NORTH_POLE);
-    if (npp) northPole = { x: npp[0], y: npp[1] };
-  }
-  if (geoDistance(SOUTH_POLE, [geo.lng, geo.lat]) < clipRad) {
-    const spp = proj(SOUTH_POLE);
-    if (spp) southPole = { x: spp[0], y: spp[1] };
+  // Land — a faint fill for body plus a crisp coastline for definition. The
+  // edge, not a brighter fill, lifts the map out of the faded register, and
+  // light mode leans on it harder: cream ocean against the `accent` land fill
+  // is a low-contrast pair.
+  if (f.landPath) {
+    c.drawPath(f.landPath, fillPaint(colors.accent, light ? 0.32 : 0.1));
+    c.drawPath(f.landPath, strokePaint(colors.text, light ? 0.5 : 0.3, 0.6, StrokeJoin.Round));
   }
 
-  let dot: GlobeState['dot'] = null;
-  const pt = proj([geo.lng, geo.lat]);
-  if (pt) dot = { x: pt[0], y: pt[1] };
-
-  // Makkah
-  let makkah: GlobeState['makkah'] = null;
-  if (geoDistance(MAKKAH.coords, [geo.lng, geo.lat]) < clipRad) {
-    const mp = proj(MAKKAH.coords);
-    if (mp) makkah = { x: mp[0], y: mp[1] };
+  // Permanent ice — Antarctica and Greenland. The one layer whose colour must
+  // not flip with mode: `text` darkens in light mode, which painted the ice
+  // darker than the land around it.
+  if (f.icePath) {
+    c.drawPath(f.icePath, fillPaint(light ? WHITE : colors.text, light ? 0.32 : 0.16));
   }
 
-  // Subsolar point — projected position of [sunLng, sunLat]
-  let subsolar: GlobeState['subsolar'] = null;
-  if (geoDistance([sunLng, sunLat], [geo.lng, geo.lat]) < clipRad) {
-    const sp = proj([sunLng, sunLat]);
-    if (sp) subsolar = { x: sp[0], y: sp[1] };
+  if (f.bordersPath) {
+    c.drawPath(f.bordersPath, strokePaint(colors.accent, 0.3, 0.7, StrokeJoin.Round));
   }
 
-  // City lights — first-paint pass. The reaction tick (~32 ms later) will
-  // rebuild these into ref'd paths, but computing them here too means the
-  // very first frame after mount already shows the night-side glow rather
-  // than popping in on next tick.
-  const DEG2RAD = Math.PI / 180;
-  const sunLatR0 = sunLat * DEG2RAD;
-  const sunLngR0 = sunLng * DEG2RAD;
-  const sunCosLat0 = Math.cos(sunLatR0);
-  const sunUnitX0 = sunCosLat0 * Math.cos(sunLngR0);
-  const sunUnitY0 = sunCosLat0 * Math.sin(sunLngR0);
-  const sunUnitZ0 = Math.sin(sunLatR0);
-  const camLatR0 = geo.lat * DEG2RAD;
-  const camLngR0 = geo.lng * DEG2RAD;
-  const camCosLat0 = Math.cos(camLatR0);
-  const camUnitX0 = camCosLat0 * Math.cos(camLngR0);
-  const camUnitY0 = camCosLat0 * Math.sin(camLngR0);
-  const camUnitZ0 = Math.sin(camLatR0);
-  const clipCos0 = Math.cos((clipAngle * Math.PI) / 180);
-  // Civil-twilight city tier is zoom-gated identically to the per-frame
-  // pass, so the first paint matches what the next tick will draw.
-  const cityTwilightOpacity0 =
-    clipAngle < PLACES_APPEAR_CLIP
-      ? Math.min(
-          1,
-          Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
-        )
-      : 0;
-  const cityNightBuilder0 = Skia.PathBuilder.Make();
-  const cityTwilightBuilder0 = Skia.PathBuilder.Make();
-  const cityRes0 = collectCityLights(
-    proj,
-    sunUnitX0,
-    sunUnitY0,
-    sunUnitZ0,
-    camUnitX0,
-    camUnitY0,
-    camUnitZ0,
-    clipCos0,
-    cityNightBuilder0,
-    cityTwilightBuilder0,
-    cityTwilightOpacity0 > 0,
+  // Equator + polar circles.
+  if (f.graticulePath) {
+    c.drawPath(f.graticulePath, strokePaint(colors.accent, light ? 0.15 : 0.08, 0.5));
+  }
+
+  // Low-sun band, then the night veil and the terminator stroke. Dark mode
+  // needs a heavier hand on both: over the near-black ocean, BLACK at the
+  // light-mode opacities moved a channel by one or two units and the seam
+  // vanished.
+  if (f.twilightPath) c.drawPath(f.twilightPath, fillPaint(BLACK, light ? 0.06 : 0.12));
+  if (f.nightPath) {
+    c.drawPath(f.nightPath, fillPaint(BLACK, light ? 0.15 : 0.2));
+    c.drawPath(f.nightPath, strokePaint(colors.atmosphere, 0.12, 0.7));
+  }
+
+  // Night-side city lights, after the veil so it darkens land but not them.
+  // `textEmphasis` inverts with mode so the dots contrast in both palettes.
+  if (f.cityLightsTwilightPath) {
+    c.drawPath(
+      f.cityLightsTwilightPath,
+      fillPaint(colors.textEmphasis, (light ? 0.22 : 0.32) * f.cityTwilightOpacity),
+    );
+  }
+  if (f.cityLightsNightPath) {
+    c.drawPath(f.cityLightsNightPath, fillPaint(colors.textEmphasis, light ? 0.42 : 0.6));
+  }
+  const ground = frameRecorder.finishRecordingAsPicture();
+
+  // ── Marks: between the limb glaze and the tap pulse ─────────────────────
+  c = frameRecorder.beginRecording(bounds);
+
+  // Coverage hotspots — a gradient halo and a sharp core. Monochrome, and a
+  // diffuse texture unlike the story beacons, so a story stays the focal point.
+  for (const z of f.hotspotGlows) {
+    const fade = 0.45 + 0.55 * z.recency;
+    drawGlow(
+      c,
+      z.x,
+      z.y,
+      18 + z.intensity * 16,
+      [
+        tint(colors.text, (0.18 + z.intensity * 0.18) * fade),
+        tint(colors.text, (0.08 + z.intensity * 0.1) * fade),
+        tint(colors.text, 0),
+      ],
+      [0, 0.35, 1],
+    );
+    c.drawCircle(z.x, z.y, 0.9 + z.intensity * 0.7, fillPaint(colors.text, 0.6 * fade));
+  }
+
+  // Chokepoints — the strait pictogram in the web's three states: slate at
+  // rest, gold when traffic is pinched below its normal, teal when it surges.
+  // Always labelled; the label's ink and halo are WCAG-audited (2026-07-04).
+  const water = fonts.water;
+  for (const cp of f.chokepoints) {
+    const glyphColor = cp.disrupted
+      ? colors.markStraitPinch
+      : cp.surge
+        ? colors.markStraitSurge
+        : colors.markStrait;
+    if (cp.disrupted || cp.surge) {
+      drawGlow(
+        c,
+        cp.x,
+        cp.y,
+        12,
+        [
+          tint(glyphColor, 0.22 * cp.intensity),
+          tint(glyphColor, 0.08 * cp.intensity),
+          tint(glyphColor, 0),
+        ],
+        [0, 0.5, 1],
+      );
+    }
+    drawGlyph(
+      c,
+      CHOKEPOINT_PATH,
+      cp.x,
+      cp.y,
+      strokePaint(glyphColor, 0.6 + 0.35 * cp.intensity, 1.0, StrokeJoin.Round, StrokeCap.Round),
+    );
+    if (water) {
+      drawHaloText(
+        c,
+        cp.label,
+        cp.x - textWidth(water, cp.label) / 2,
+        cp.y + 20,
+        water,
+        cp.disrupted ? colors.markStraitPinch : colors.text,
+        colors.bg,
+        cp.disrupted ? 0.9 : light ? 0.7 : 0.55,
+        cp.disrupted
+          ? light
+            ? LABEL_HALO_OPACITY_LIGHT_STRONG
+            : LABEL_HALO_OPACITY_DARK_STRONG
+          : haloOpacity,
+      );
+    }
+  }
+
+  // Exchanges whose index moved — a candle, directionless in shape (the
+  // strip's delta owns direction), always labelled so the earth reads as
+  // addressable.
+  for (const m of f.marketMarks) {
+    drawGlyph(
+      c,
+      MARKET_PATH,
+      m.x,
+      m.y,
+      strokePaint(
+        m.direction === 'up'
+          ? colors.markMarketUp
+          : m.direction === 'down'
+            ? colors.markMarketDown
+            : colors.markStrait,
+        0.95,
+        1.2,
+        StrokeJoin.Round,
+        StrokeCap.Round,
+      ),
+    );
+    if (water) {
+      drawHaloText(
+        c,
+        m.label,
+        m.x - textWidth(water, m.label) / 2,
+        m.y + 20,
+        water,
+        colors.text,
+        colors.bg,
+        light ? 0.75 : 0.55,
+        haloOpacity,
+      );
+    }
+  }
+
+  // GDACS — one hazard hue; severity is stroke weight, opacity and (Red only)
+  // an outer alarm ring. Upstream order is Green → Orange → Red.
+  for (const m of f.gdacsMarks) {
+    const isHigh = m.alertlevel === 'Red';
+    const isLow = m.alertlevel === 'Green';
+    c.save();
+    c.translate(m.x - GLYPH_HALF, m.y - GLYPH_HALF);
+    if (isHigh) {
+      c.drawCircle(
+        GLYPH_HALF,
+        GLYPH_HALF,
+        GLYPH_HALF + 2.5,
+        strokePaint(colors.markGdacs, 0.55 * m.recencyAlpha, 1),
+      );
+    }
+    c.drawPath(
+      getGlyphPath(m.eventtype),
+      strokePaint(
+        colors.markGdacs,
+        (isHigh ? 0.95 : isLow ? 0.45 : 0.75) * m.recencyAlpha,
+        isHigh ? 1.8 : isLow ? 1.0 : 1.4,
+        StrokeJoin.Round,
+        StrokeCap.Round,
+      ),
+    );
+    c.restore();
+  }
+
+  // Conflict events — the ghost glow, one Atlas, recency in the colour channel.
+  drawAtlasLayer(
+    c,
+    textures.ghost,
+    conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
   );
 
-  // Qibla arc — great circle from story location to Makkah. Interpolated
-  // points are culled against the clip cone explicitly (see the clipRad note
-  // above): beyond-cone points would draw the arc into the sky and far-side
-  // points would fold it back mirrored across the disk.
-  let qp: GlobeState['qiblaPath'] = null;
-  if (geoDistance([geo.lng, geo.lat], MAKKAH.coords) > 0.02) {
-    const interp = geoInterpolate([geo.lng, geo.lat], MAKKAH.coords);
-    const builder = Skia.PathBuilder.Make();
-    let started = false;
-    for (let i = 0; i <= 30; i++) {
-      const ll = interp(i / 30);
-      if (geoDistance(ll, [geo.lng, geo.lat]) >= clipRad) {
-        started = false;
-        continue;
-      }
-      const p = proj(ll);
-      if (!p) {
-        started = false;
-        continue;
-      }
-      if (!started) {
-        builder.moveTo(p[0], p[1]);
-        started = true;
-      } else builder.lineTo(p[0], p[1]);
-    }
-    qp = builder.detach();
+  // Country highlight — soft glow, then the crisp focal outline.
+  if (f.countryPath) {
+    const glow = fillPaint(colors.text, countryHighlightOpacity(f.countryName));
+    glow.setMaskFilter(HIGHLIGHT_BLUR);
+    c.drawPath(f.countryPath, glow);
+    c.drawPath(f.countryPath, strokePaint(colors.text, 0.5, 1, StrokeJoin.Round));
   }
 
-  return {
-    landPath: lp,
-    icePath: ip,
-    bordersPath: bp,
-    countryPath: cp,
-    countryName: geo.country?.properties?.name ?? null,
-    nightPath: np,
-    twilightPath: tp,
-    graticulePath: gp,
-    qiblaPath: qp,
-    sourceArcs: null,
-    arcOpacity: 1,
-    northPole,
-    southPole,
-    dot,
-    storyMarks: [],
-    storyCountMin: 3,
-    famineMarks: [],
-    thermalMarks: [],
-    genocideMarks: [],
-    dotLabel: null,
-    countryLabel: null,
-    makkah,
-    subsolar,
-    hotspotGlows: [],
-    chokepoints: [],
-    marketMarks: [],
-    gdacsMarks: [],
-    conflictMarks: [],
-    neighborLabels: [],
-    waterLabels: [],
-    riversPath: null,
-    riversOpacity: 0,
-    cityLightsNightPath: cityRes0.hasNight ? cityNightBuilder0.detach() : null,
-    cityLightsTwilightPath: cityRes0.hasTwilight ? cityTwilightBuilder0.detach() : null,
-    cityTwilightOpacity: cityTwilightOpacity0,
-  };
+  // Major rivers — after the highlight so a river through the focused country
+  // stays visible; a `bg` halo under a `textEmphasis` stroke.
+  if (f.riversPath) {
+    c.drawPath(
+      f.riversPath,
+      strokePaint(
+        colors.bg,
+        (light ? 0.8 : 0.65) * f.riversOpacity,
+        2.5,
+        StrokeJoin.Round,
+        StrokeCap.Round,
+      ),
+    );
+    c.drawPath(
+      f.riversPath,
+      strokePaint(
+        colors.textEmphasis,
+        (light ? 0.85 : 0.55) * f.riversOpacity,
+        1.2,
+        StrokeJoin.Round,
+        StrokeCap.Round,
+      ),
+    );
+  }
+
+  // Source arcs (long-short dash: flow) and the qibla arc (denser, round-capped
+  // dash: direction). Dashing halves the ink, so the qibla carries ~1.7× the
+  // opacity it had as a solid line.
+  if (f.sourceArcs) {
+    const paint = strokePaint(colors.accent, (light ? 0.25 : 0.15) * f.arcOpacity, 0.5);
+    paint.setPathEffect(SOURCE_ARC_DASH);
+    c.drawPath(f.sourceArcs, paint);
+  }
+  if (f.qiblaPath) {
+    const paint = strokePaint(
+      colors.dome,
+      (light ? 0.34 : 0.2) * f.arcOpacity,
+      1.2,
+      undefined,
+      StrokeCap.Round,
+    );
+    paint.setPathEffect(QIBLA_DASH);
+    c.drawPath(f.qiblaPath, paint);
+  }
+
+  drawAtlasLayer(c, textures.makkah, glowAtlas(MAKKAH_GLOW, f.makkah ? [f.makkah] : []));
+
+  // Famine and thermal — the ground a story happens on, so under the stories.
+  const famine = f.famineMarks;
+  drawAtlasLayer(
+    c,
+    textures.overlay,
+    overlayAtlas(
+      famine,
+      (i) => FAMINE_SRC[famine[i]?.blocks ?? 0] ?? FAMINE_SRC[0],
+      hexRgb(colors.markFamine),
+    ),
+  );
+  drawAtlasLayer(
+    c,
+    textures.overlay,
+    overlayAtlas(f.thermalMarks, () => THERMAL_SRC, hexRgb(colors.markThermal)),
+  );
+
+  // Story beacons — halo, then the rimmed disc.
+  drawAtlasLayer(
+    c,
+    textures.storyHalo,
+    storyAtlas(STORY_HALO.size.width, STORY_HALO.srcRect, f.storyMarks),
+  );
+  drawAtlasLayer(c, textures.beacon, storyAtlas(BEACON_SIZE, BEACON_SRC, f.storyMarks));
+  // The web's ring on a story its sources disagree sharply about.
+  for (const m of f.storyMarks) {
+    if (!m.contested) continue;
+    c.drawCircle(
+      m.x,
+      m.y,
+      BEACON_R * m.scale + 3,
+      strokePaint(colors.markContested, 0.85 * m.alpha, 1.2),
+    );
+  }
+  // How many stories are still to find at a place.
+  const sub = fonts.sub;
+  if (sub) {
+    for (const m of f.storyMarks) {
+      if (m.count < f.storyCountMin) continue;
+      drawHaloText(
+        c,
+        String(m.count),
+        m.x + BEACON_R * m.scale + 3,
+        m.y - 4,
+        sub,
+        colors.textEmphasis,
+        colors.bg,
+        0.9,
+        haloOpacity,
+      );
+    }
+  }
+
+  // Genocide, as determined by a UN body — above every story, and never ambient.
+  for (const g of f.genocideMarks) {
+    c.drawCircle(g.x, g.y, 9, fillPaint(colors.markGenocideCore));
+    c.drawCircle(g.x, g.y, 9, strokePaint(colors.markGenocide, 1, 1.6));
+    c.drawCircle(g.x, g.y, 3, fillPaint(colors.markGenocide));
+    if (sub) {
+      drawHaloText(
+        c,
+        g.label,
+        g.x + 13,
+        g.y + 4,
+        sub,
+        colors.markGenocide,
+        colors.bg,
+        1,
+        haloOpacity,
+      );
+    }
+  }
+
+  // The settled story's dot.
+  drawAtlasLayer(c, textures.dot, glowAtlas(DOT_GLOW, f.dot ? [f.dot] : []));
+  const marks = frameRecorder.finishRecordingAsPicture();
+
+  // ── Labels: above the tap pulse ─────────────────────────────────────────
+  c = frameRecorder.beginRecording(bounds);
+
+  // Water — lightest tier, no halo (stroked text dominated the settled-frame
+  // budget). Light mode borrows body ink at 0.92, the WCAG floor for this tier.
+  if (water) {
+    const ink = light ? colors.text : colors.textSecondary;
+    const inkAlpha = skColor(ink)[3] ?? 1;
+    const paint = fillPaint(ink);
+    for (const w of f.waterLabels) {
+      paint.setAlphaf(inkAlpha * (light ? 0.92 : 0.9) * w.opacity);
+      // River labels sit one x-height above their line rather than bisecting it.
+      c.drawText(
+        w.name,
+        w.x - textWidth(water, w.name) / 2,
+        w.kind === 'river' ? w.y - 7 : w.y,
+        paint,
+        water,
+      );
+    }
+  }
+
+  // Neighbour countries — small caps, body ink, centred per line on the block.
+  const neighbor = fonts.neighbor;
+  if (neighbor) {
+    const inkAlpha = skColor(colors.text)[3] ?? 1;
+    const paint = fillPaint(colors.text);
+    for (const n of f.neighborLabels) {
+      paint.setAlphaf(inkAlpha * (light ? 0.95 : 0.92) * n.opacity);
+      const firstY = n.y - ((n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT) / 2;
+      for (let i = 0; i < n.lines.length; i++) {
+        const line = n.lines[i];
+        if (!line) continue;
+        c.drawText(
+          line,
+          n.x - textWidth(neighbor, line) / 2,
+          firstY + i * NEIGHBOR_LINE_HEIGHT,
+          paint,
+          neighbor,
+        );
+      }
+    }
+  }
+
+  // The focused country — secondary tier, soft halo, first baseline at (x, y).
+  const country = fonts.country;
+  const cl = f.countryLabel;
+  if (country && cl) {
+    for (let i = 0; i < cl.lines.length; i++) {
+      const line = cl.lines[i];
+      if (!line) continue;
+      drawHaloText(
+        c,
+        line,
+        cl.x - textWidth(country, line) / 2,
+        cl.y + i * LABEL_LINE_HEIGHT,
+        country,
+        colors.textEmphasis,
+        colors.bg,
+        light ? 0.85 : 0.8,
+        haloOpacitySoft,
+      );
+    }
+  }
+
+  // Location · local time — primary tier: where the news happened is the most
+  // important text on the globe.
+  const dl = f.dotLabel;
+  if (dl && fonts.label) {
+    drawHaloText(
+      c,
+      dl.text,
+      dl.x + 6,
+      dl.y + 4,
+      fonts.label,
+      colors.textEmphasis,
+      colors.bg,
+      0.95,
+      haloOpacity,
+    );
+    if (dl.sub && sub) {
+      drawHaloText(
+        c,
+        dl.sub,
+        dl.x + 6,
+        dl.y + 18,
+        sub,
+        colors.textEmphasis,
+        colors.bg,
+        light ? 0.7 : 0.75,
+        haloOpacitySoft,
+      );
+    }
+  }
+
+  // Pole markers — tiny crosses.
+  const poleInk = fillPaint(colors.accent, light ? 0.25 : 0.2);
+  for (const pole of [f.northPole, f.southPole]) {
+    if (!pole) continue;
+    c.drawRect(Skia.XYWHRect(pole.x - 3, pole.y - 0.4, 6, 0.8), poleInk);
+    c.drawRect(Skia.XYWHRect(pole.x - 0.4, pole.y - 3, 0.8, 6), poleInk);
+  }
+  const labels = frameRecorder.finishRecordingAsPicture();
+
+  return { ground, marks, labels };
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
@@ -1292,7 +1695,12 @@ export const MiniGlobe = memo(function MiniGlobe({
   height,
   radius,
   centerY,
-  zoomClipOverride = null,
+  zoomActive,
+  zoomAngle,
+  clipOut,
+  storyClipOut,
+  viewLat,
+  viewLng,
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
@@ -1504,13 +1912,48 @@ export const MiniGlobe = memo(function MiniGlobe({
   const placeMarksRef = useRef(placeMarks);
   placeMarksRef.current = placeMarks;
 
-  // Eager initial state — project synchronously on mount so the Canvas + Skia shaders
-  // are warm before the first swipe (avoids useEffect → reaction → scheduleOnRN lag)
-  const [state, setState] = useState<GlobeState>(() => {
-    const firstGeo = articleGeo.find((g) => g != null);
-    if (!firstGeo) return EMPTY_GLOBE;
-    return projectInitial(firstGeo, globeRadius, cx, cy);
+  // The last projected frame: what `hitTest` reads, and what a redraw replays
+  // when only the style changed (theme, a font, a texture).
+  const frameRef = useRef<GlobeState>(EMPTY_GLOBE);
+  // The moving layers, recorded once per projection and published as ONE
+  // shared value — see "Frame recording" above. Skia's canvas re-records its
+  // whole command list on the UI thread whenever any shared value it reads
+  // changes (`NativeReanimatedContainer` starts one mapper over all of them),
+  // so three separate writes replayed the canvas up to three times per
+  // projection: 60 of 64 drag frames flagged a slow UI thread. The derived
+  // values below are flushed before that mapper, which then runs once.
+  const framePictures = useSharedValue<FramePictures>({
+    ground: EMPTY_PICTURE,
+    marks: EMPTY_PICTURE,
+    labels: EMPTY_PICTURE,
   });
+  const groundPicture = useDerivedValue(() => framePictures.value.ground);
+  const marksPicture = useDerivedValue(() => framePictures.value.marks);
+  const labelsPicture = useDerivedValue(() => framePictures.value.labels);
+  // Textures bake on the UI thread; they reach here once each, by reaction,
+  // rather than being read synchronously on every frame.
+  const texturesRef = useRef<GlobeTextures>(NO_TEXTURES);
+  // Assigned every render so a draw always sees the current theme and fonts;
+  // `callReproject` is a stable closure and calls through it.
+  const drawRef = useRef<(frame: GlobeState) => void>(() => {});
+  drawRef.current = (frame: GlobeState) => {
+    const pictures = recordGlobeFrame(frame, {
+      width,
+      height,
+      globeRadius,
+      colors,
+      light,
+      fonts: {
+        label: labelFont,
+        sub: subFont,
+        country: countryFont,
+        neighbor: neighborFont,
+        water: waterFont,
+      },
+      textures: texturesRef.current,
+    });
+    framePictures.value = pictures;
+  };
 
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
   const hotspots = useMemo((): Hotspot[] => {
@@ -1616,9 +2059,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   // override (1). overrideAngle is the fixed target in degrees. Keeping them
   // separate lets 2×→3× (override→override) animate by sliding overrideAngle
   // alone, while 1×↔N× fades overrideActive without the angle ever glitching.
-  const overrideActive = useSharedValue(0);
-  const overrideAngle = useSharedValue(90);
-  const prevOverrideRef = useRef<number | null>(null);
+  // Owned by the screen and written by a pinch (`GlobeGestureLayer`).
+  const overrideActive = zoomActive;
+  const overrideAngle = zoomAngle;
   // Last overrideAngleVal seen by callReproject — compared frame-over-frame
   // to decide whether an override→override slide is in flight.
   const lastOverrideAngleRef = useRef(90);
@@ -1835,6 +2278,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   );
   const genocideRef = useRef(enrichedGenocide);
   genocideRef.current = enrichedGenocide;
+  const clipOutRef = useRef(clipOut);
+  clipOutRef.current = clipOut;
+  const storyClipOutRef = useRef(storyClipOut);
+  storyClipOutRef.current = storyClipOut;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -1901,6 +2348,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Blend the scroll-driven clip with the user override. Each withTiming
       // call supplying these values is already eased, so no extra shaping.
       const clipAngle = rawClip + (overrideAngleVal - rawClip) * overrideActiveVal;
+      // What a gesture scales against and hands zoom back to.
+      if (clipOutRef.current) clipOutRef.current.value = clipAngle;
+      if (storyClipOutRef.current) storyClipOutRef.current.value = rawClip;
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
       // Cull cone for labels and ambient markers. d3-geo's `.clipAngle` only
       // clips path generation, not direct point projection — so without an
@@ -2421,11 +2871,30 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Hazard layers — same cull + project. About a hundred IPC areas, a
       // handful of thermal clusters and two genocide marks: trivial next to
       // the land path.
+      // Famine columns collide in screen space, gravest first, the way the
+      // web's symbol layer places them. Sudan alone is dozens of areas within
+      // a few pixels of each other at the resting zoom, and drawn unculled they
+      // piled into one violet smear in which no column could be read. The
+      // area rows in `CountrySheet` still list every one.
       const famineMarks: GlobeState['famineMarks'] = [];
-      for (const a of famineRef.current) {
+      const famineSrc = famineRef.current;
+      for (let i = famineSrc.length - 1; i >= 0; i--) {
+        const a = famineSrc[i];
+        if (!a) continue;
         if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
         const pt = proj(a.coords);
         if (!pt) continue;
+        let crowded = false;
+        for (const kept of famineMarks) {
+          if (
+            Math.abs(kept.x - pt[0]) < FAMINE_COLLIDE_X &&
+            Math.abs(kept.y - pt[1]) < FAMINE_COLLIDE_Y
+          ) {
+            crowded = true;
+            break;
+          }
+        }
+        if (crowded) continue;
         famineMarks.push({
           x: pt[0],
           y: pt[1],
@@ -2435,6 +2904,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           scale: a.scale,
         });
       }
+      // Placed gravest first; drawn gravest last, so it stays on top.
+      famineMarks.reverse();
       const thermalMarks: GlobeState['thermalMarks'] = [];
       for (const e of thermalRef.current) {
         if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
@@ -2767,7 +3238,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         keptWaters = wkept;
       }
 
-      setState({
+      const frame: GlobeState = {
         landPath,
         icePath,
         bordersPath,
@@ -2803,13 +3274,16 @@ export const MiniGlobe = memo(function MiniGlobe({
         cityLightsNightPath: cityRes.hasNight ? cityNightBuilder.build() : null,
         cityLightsTwilightPath: cityRes.hasTwilight ? cityTwilightBuilder.build() : null,
         cityTwilightOpacity: labelOpacity,
-      });
+      };
+      frameRef.current = frame;
+      drawRef.current(frame);
     },
     [],
   );
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call.
-  // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
+  // 16ms overwhelmed the JS thread when each frame also rendered React; re-measure
+  // (projection + picture recording) before touching it.
   // A projection can itself exceed that budget on low-end devices, so also
   // keep only one scroll-driven projection in flight. While it runs, the
   // reaction continues tracking scrollY; clearing the busy flag retriggers
@@ -2848,10 +3322,87 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
     [callReproject, reprojectBusy],
   );
+
+  /** Replay the last frame with the current style — nothing moved. */
+  const redrawLast = useCallback(() => {
+    drawRef.current(frameRef.current);
+  }, []);
+
+  // First frame: project the opening story before the reaction's first tick,
+  // so the earth is never drawn empty.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: mount only — callReproject is stable and reads refs
+  useLayoutEffect(() => {
+    if (lastReprojRef.current) return;
+    const geos = articleGeoRef.current;
+    const first = geos.findIndex((g) => g != null);
+    const geo = geos[first];
+    if (!geo) return;
+    callReproject(
+      geo.lng,
+      geo.lat,
+      first,
+      first,
+      first,
+      0,
+      overrideActive.value,
+      overrideAngle.value,
+    );
+  }, []);
+
+  // The theme is only colour: replay the frame.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: colors and light are read through drawRef
+  useEffect(() => {
+    redrawLast();
+  }, [colors, light, redrawLast]);
+
+  // A font changes label widths, so the label packer has to run again.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [labelFont, subFont, countryFont, neighborFont, waterFont]);
+
+  const receiveTextures = useCallback(
+    (
+      ghost: SkImage | null,
+      storyHalo: SkImage | null,
+      beacon: SkImage | null,
+      overlay: SkImage | null,
+      dot: SkImage | null,
+      makkah: SkImage | null,
+    ) => {
+      texturesRef.current = { ghost, storyHalo, beacon, overlay, dot, makkah };
+      redrawLast();
+    },
+    [redrawLast],
+  );
+  useAnimatedReaction(
+    () => ({
+      ghost: ghostTexture.value,
+      storyHalo: storyHaloTexture.value,
+      beacon: beaconTexture.value,
+      overlay: overlayTexture.value,
+      dot: dotTexture.value,
+      makkah: makkahTexture.value,
+    }),
+    (t) => {
+      scheduleOnRN(receiveTextures, t.ghost, t.storyHalo, t.beacon, t.overlay, t.dot, t.makkah);
+    },
+  );
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
   // tick still fires every 32ms while withTiming animations ease, but if the
   // resulting (lng, lat, frac, oA, oG) round to the same values as last
-  // frame, skip the JS hop + d3-geo reproject + setState entirely. Epsilons
+  // frame, skip the JS hop + d3-geo reproject + recording entirely. Epsilons
   // chosen so any change that would move a pixel or shift a sub-degree of
   // rotation still passes through.
   const lastReactSy = useSharedValue(Number.NaN);
@@ -2934,6 +3485,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastReactOA.value = oA;
         lastReactOG.value = oG;
         lastReactMoving.value = true;
+        if (viewLat) viewLat.value = dragLat;
+        if (viewLng) viewLng.value = dragLng;
         reprojectBusy.value = true;
         scheduleOnRN(
           runScrollReproject,
@@ -3053,6 +3606,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       lastReactHi.value = hi;
 
       lastReactMoving.value = false;
+      // The deck's camera, published for a gesture that takes it over.
+      if (viewLat) viewLat.value = lat;
+      if (viewLng) viewLng.value = lng;
       reprojectBusy.value = true;
       scheduleOnRN(runScrollReproject, lng, lat, settled, lo, hi, frac, oA, oG, false);
     },
@@ -3104,41 +3660,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     );
   }, [callReproject, overrideActive, overrideAngle]);
 
-  // Zoom prop → animated override. Three transition shapes:
-  //   override → null       : fade overrideActive to 0 (angle untouched)
-  //   null      → override  : snap overrideAngle to target, fade active to 1
-  //   override → override   : slide overrideAngle to new target, active stays 1
-  //
-  // The settle finalizer runs from a JS-side timer, NOT a withTiming
-  // completion callback: with reanimated 4.5.0 / worklets 0.10.0,
-  // `scheduleOnRN` from an animation-completion worklet SIGABRTs the app
-  // (JSI `isObject()` assert in libworklets on mqt_v_js) — reproduced on
-  // every zoom tap on the Android dev build, 2026-07-04. Every other
-  // scheduleOnRN in the app runs from gesture/reaction worklets and is
-  // fine. withTiming is wall-clock–based, so a timeout at duration plus
-  // one frame of slack lands after the animation deterministically; the
-  // effect cleanup mirrors the old `finished` guard by cancelling the
-  // finalize of an interrupted (re-targeted) zoom.
-  useEffect(() => {
-    const prev = prevOverrideRef.current;
-    prevOverrideRef.current = zoomClipOverride;
-    // Reduce Motion: land on the target immediately instead of easing the
-    // camera across. The zoom is a discrete, tap-triggered transition, so a
-    // cut is the accessible equivalent — the destination framing is identical.
-    const duration = reduceMotion ? 0 : ZOOM_DURATION;
-    const opts = { duration, easing: ZOOM_EASING };
-    if (zoomClipOverride === null) {
-      overrideActive.value = withTiming(0, opts);
-    } else if (prev === null) {
-      overrideAngle.value = zoomClipOverride;
-      overrideActive.value = withTiming(1, opts);
-    } else {
-      overrideAngle.value = withTiming(zoomClipOverride, opts);
-    }
-    const timer = setTimeout(finalizeReproject, duration + 50);
-    return () => clearTimeout(timer);
-  }, [zoomClipOverride, overrideActive, overrideAngle, finalizeReproject, reduceMotion]);
-
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
@@ -3176,7 +3697,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         overrideActive.value,
         overrideAngle.value,
       );
-  }, [globeRadius, cy]);
+  }, [globeRadius, cx, cy, width, height]);
 
   // Re-project when the flagged exchanges change. Same reason as the
   // chokepoint effect below: the marks arrive from their own fetch, after
@@ -3267,6 +3788,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   const [collectColor, setCollectColor] = useState<string>(WHITE);
 
   useImperativeHandle(ref, () => ({
+    settle() {
+      // Called from a JS timer after a pinch — never from an animation
+      // completion worklet, where `scheduleOnRN` aborts the app (worklets 0.10).
+      finalizeReproject();
+    },
     showPulse(x: number, y: number) {
       pulseX.value = x;
       pulseY.value = y;
@@ -3307,6 +3833,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       collectOpacity.value = withTiming(0, { duration: COLLECT_MS, easing: PULSE_EASING });
     },
     hitTest(x: number, y: number): TapResult | null {
+      const frame = frameRef.current;
       // Collect unique story labels (or titles) for a country from the current article set
       const storiesFor = (name: string) => {
         const seen = new Set<string>();
@@ -3343,7 +3870,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Hotspots, the settled dot and Makkah never outrank a story: each of
       // those stands for coverage, and the story is the coverage.
       let story: { slug: string; color: string; d2: number } | null = null;
-      for (const m of state.storyMarks) {
+      for (const m of frame.storyMarks) {
         const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
         if (d2 <= STORY_HIT_PX2 && (!story || d2 < story.d2)) {
           story = { slug: m.slug, color: m.color, d2 };
@@ -3352,13 +3879,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (story) {
         let overlay = Number.POSITIVE_INFINITY;
         const marks = [
-          state.chokepoints,
-          state.marketMarks,
-          state.gdacsMarks,
-          state.conflictMarks,
-          state.famineMarks,
-          state.thermalMarks,
-          state.genocideMarks,
+          frame.chokepoints,
+          frame.marketMarks,
+          frame.gdacsMarks,
+          frame.conflictMarks,
+          frame.famineMarks,
+          frame.thermalMarks,
+          frame.genocideMarks,
         ];
         for (const layer of marks) {
           for (const m of layer) {
@@ -3381,7 +3908,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const candidates: TapResult[] = [];
 
       // Hotspot glows — tight hit area (r²=900) signals precise intent.
-      for (const z of state.hotspotGlows) {
+      for (const z of frame.hotspotGlows) {
         if (isNear(x, y, z.x, z.y, 900)) {
           const name = z.countryName ?? '';
           const tz = name ? COUNTRY_TZ[name] : undefined;
@@ -3399,7 +3926,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Chokepoint rings — ambient markers. 36px tap zone, generous so small
       // rings are still reliably tappable, but smaller than the article-dot
       // window so chokepoints near the settled pin don't eat its taps.
-      for (const c of state.chokepoints) {
+      for (const c of frame.chokepoints) {
         if (isNear(x, y, c.x, c.y, 1296)) {
           candidates.push({
             countryName: '',
@@ -3416,7 +3943,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // of them, they are the marks the opening camera and the strip point
       // at, and a reader who taps what the gauge above just named should get
       // that and not a Green flood alert that happens to share the pixel.
-      for (const m of state.marketMarks) {
+      for (const m of frame.marketMarks) {
         if (isNear(x, y, m.x, m.y, 1296)) {
           candidates.push({
             countryName: '',
@@ -3433,7 +3960,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // for Green-tier compensated for an invisible-feeling 2px ambient
       // dot; with the unified 22px glyph the visual now matches the
       // tap target across severity levels.
-      for (const m of state.gdacsMarks) {
+      for (const m of frame.gdacsMarks) {
         if (isNear(x, y, m.x, m.y, 1296)) {
           candidates.push({
             countryName: '',
@@ -3448,7 +3975,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Conflict-event markers — same 36px tap zone. Conflict density in a
       // theatre like Sudan or Gaza will produce overlapping hits regularly;
       // those resolve to the disambiguation chooser via the candidates path.
-      for (const m of state.conflictMarks) {
+      for (const m of frame.conflictMarks) {
         if (isNear(x, y, m.x, m.y, 1296)) {
           candidates.push({
             countryName: '',
@@ -3462,7 +3989,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Hazard layers — the reference marks' 36 px zone. A famine column in
       // Sudan and a conflict event beside it resolve through the chooser.
-      for (const g of state.genocideMarks) {
+      for (const g of frame.genocideMarks) {
         if (isNear(x, y, g.x, g.y, MARK_HIT_PX2)) {
           candidates.push({
             countryName: '',
@@ -3473,7 +4000,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
       }
-      for (const a of state.famineMarks) {
+      for (const a of frame.famineMarks) {
         if (isNear(x, y, a.x, a.y, MARK_HIT_PX2)) {
           candidates.push({
             countryName: '',
@@ -3484,7 +4011,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
         }
       }
-      for (const e of state.thermalMarks) {
+      for (const e of frame.thermalMarks) {
         if (isNear(x, y, e.x, e.y, MARK_HIT_PX2)) {
           candidates.push({
             countryName: '',
@@ -3497,7 +4024,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Article dot — wider catch zone.
-      const dot = state.dot;
+      const dot = frame.dot;
       if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
         const geoData = articleGeoRef.current[lastSettled.current];
         if (geoData?.countryName) {
@@ -3513,7 +4040,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Makkah pin.
-      if (state.makkah && isNear(x, y, state.makkah.x, state.makkah.y, 3600)) {
+      if (frame.makkah && isNear(x, y, frame.makkah.x, frame.makkah.y, 3600)) {
         candidates.push({
           countryName: 'Saudi Arabia',
           location: MAKKAH.name,
@@ -3687,19 +4214,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     return [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`];
   }, [colors.atmosphere, light]);
 
-  // Day-side ocean specular highlight stops. Soft additive lift centered on
-  // the projected subsolar point — reads as the sun glint a real lit sphere
-  // shows from orbit. WHITE is the right primitive here: the phenomenon is
-  // brighter-than-ambient in *both* modes, and the bg-inverting text/bg
-  // tokens reverse polarity in light mode (would draw a dark spot). Light
-  // mode runs at lower alpha because the cream ocean tone leaves less
-  // contrast headroom; the highlight is still perceptible as a subtle
-  // warming of the disk near the sun.
-  const specularColors = useMemo(
-    () => [`${WHITE}${light ? '14' : '24'}`, `${WHITE}${light ? '08' : '10'}`, `${WHITE}00`],
-    [light],
-  );
-
   // Inner-limb atmospheric glaze. The outer rim renders atmosphere *outside*
   // the disk; this complementary inner ring catches grazing-angle refraction
   // along the curved limb so the disk reads as a sphere with volume rather
@@ -3717,40 +4231,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       `${atm}00`,
     ];
   }, [colors.atmosphere, light]);
-
-  // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
-  const storyHaloAtlas = useMemo(
-    () => storyAtlas(STORY_HALO.size.width, STORY_HALO.srcRect, state.storyMarks),
-    [state.storyMarks],
-  );
-  const storyBeaconAtlas = useMemo(
-    () => storyAtlas(BEACON_SIZE, BEACON_SRC, state.storyMarks),
-    [state.storyMarks],
-  );
-  // Conflict markers ride the SAME baked texture as ghost dots, just
-  // with per-instance alpha encoded into the colors array. One Skia
-  // draw call regardless of marker count, no separate texture bake.
-  const conflictGlowAtlas = useMemo(
-    () => conflictAtlas(GHOST_GLOW, state.conflictMarks, hexRgb(colors.markConflict)),
-    [state.conflictMarks, colors.markConflict],
-  );
-  const famineAtlas = useMemo(() => {
-    const marks = state.famineMarks;
-    return overlayAtlas(
-      marks,
-      (i) => FAMINE_SRC[marks[i]?.blocks ?? 0] ?? FAMINE_SRC[0],
-      hexRgb(colors.markFamine),
-    );
-  }, [state.famineMarks, colors.markFamine]);
-  const thermalAtlas = useMemo(
-    () => overlayAtlas(state.thermalMarks, () => THERMAL_SRC, hexRgb(colors.markThermal)),
-    [state.thermalMarks, colors.markThermal],
-  );
-  const dotAtlas = useMemo(() => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []), [state.dot]);
-  const makkahAtlas = useMemo(
-    () => glowAtlas(MAKKAH_GLOW, state.makkah ? [state.makkah] : []),
-    [state.makkah],
-  );
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
@@ -3792,154 +4272,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         <RadialGradient c={vec(cx, cy)} r={globeRadius} colors={oceanColors} positions={[0, 1]} />
       </Circle>
 
-      {/* Subsolar specular highlight — additive WHITE radial gradient at the
-          projected sun-overhead point. Land draws on top, so the spot is
-          only visible where it falls on water (which is the physically
-          correct behaviour: ocean reflects, land doesn't). Hidden when the
-          subsolar point is on the far side of the globe. Radius scales with
-          the globe so the spot reads at the same proportion across screen
-          sizes. Single Skia draw, no per-frame allocation. */}
-      {state.subsolar && (
-        <Circle cx={state.subsolar.x} cy={state.subsolar.y} r={globeRadius * 0.55} dither>
-          <RadialGradient
-            c={vec(state.subsolar.x, state.subsolar.y)}
-            r={globeRadius * 0.55}
-            colors={specularColors}
-            positions={[0, 0.45, 1]}
-          />
-        </Circle>
-      )}
-
-      {/* Land silhouette — a faint fill for body plus a crisp coastline edge
-          for definition. The edge (not a brighter fill) is what lifts the map
-          out of the "faded" register: a defined outline reads as cartography
-          and matches the line-led typographic brand, where a louder fill would
-          just smear. Drawn in `text` (brighter than the `accent` interior
-          borders below) so the coast > borders hierarchy reads. Reuses the
-          already-projected `landPath`, so it's one extra GPU-batched stroke. */}
-      {state.landPath && (
-        <Path path={state.landPath} color={colors.accent} opacity={light ? 0.32 : 0.1} />
-      )}
-      {state.landPath && (
-        <Path
-          path={state.landPath}
-          color={colors.text}
-          style="stroke"
-          strokeWidth={0.6}
-          strokeJoin="round"
-          // Light mode leans harder on the coastline: cream ocean vs the gentle
-          // `accent` land fill is a low-contrast pair, so the crisp `text` edge
-          // is what actually carries figure-ground there (dark mode already has
-          // the near-black ocean doing that work). Stays "definition over
-          // brightness" — a sharper line, not a louder fill.
-          opacity={light ? 0.5 : 0.3}
-        />
-      )}
-
-      {/* Permanent ice sheets — Antarctica + Greenland. Scientifically the two
-          land masses covered in year-round ice; rendered as a bright fill over
-          `landPath` so the globe reads climatologically correct. Opacity kept
-          modest so Greenland doesn't punch through the article backdrop.
-          Ice is the one globe layer whose semantic color shouldn't flip with
-          mode — snow is white in both. `colors.text` flips polarity (light
-          on dark / dark on light), so reusing it here painted Greenland and
-          Antarctica *darker* than the surrounding land in light mode (alpha-
-          composited ~#9A over ~#CE land — climatologically inverted). Hard-
-          coding white in light mode keeps ice brighter than land in both. */}
-      {state.icePath && (
-        <Path
-          path={state.icePath}
-          color={light ? WHITE : colors.text}
-          opacity={light ? 0.32 : 0.16}
-        />
-      )}
-
-      {/* Neighbouring country borders — visible when scroll is at rest */}
-      {state.bordersPath && (
-        <Path
-          path={state.bordersPath}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.7}
-          strokeJoin="round"
-          opacity={0.3}
-        />
-      )}
-
-      {/* Equator + polar circles */}
-      {state.graticulePath && (
-        <Path
-          path={state.graticulePath}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.5}
-          opacity={light ? 0.15 : 0.08}
-        />
-      )}
-
-      {/* Low-sun band — faint gradient where sun is near the horizon (0–6°
-          below). Dark-mode bump mirrors the night-shadow rationale below:
-          BLACK at 0.06 over the dark-mode ocean composite (~rgb(16,17,20))
-          is only a ~1 unit per-channel step — invisible — so the dawn/dusk
-          annulus disappeared and the day/night seam read as a hard edge.
-          0.12 lifts it to ~2 units (perceptible) while staying well under
-          the 0.28 night opacity so the ladder twilight < night still reads.
-          Light mode at 0.06 already gives ~15 units against the cream bg
-          — leave it. */}
-      {state.twilightPath && (
-        <Path path={state.twilightPath} color={BLACK} opacity={light ? 0.06 : 0.12} />
-      )}
-
-      {/* Night shadow — darker overlay on the unlit hemisphere.
-          Dark mode needs a heavier hand: dark-mode ocean composites to
-          ~rgb(16,17,20), so BLACK at 0.15 produced only a 2–3 unit per-
-          channel step — below perceptual threshold, leaving day and night
-          visually identical on water. 0.20 lifts the differential to ~4
-          units (readable) without driving the unlit hemisphere to near-
-          black — at 0.28 the night side swallowed the land/coastline detail,
-          reading as a dead zone. The terminator stroke + twilight band still
-          carry the seam, so the softer fill loses no day/night legibility.
-          Light mode already had ~36 units of contrast at 0.15 — leave it. */}
-      {state.nightPath && (
-        <Path path={state.nightPath} color={BLACK} opacity={light ? 0.15 : 0.2} />
-      )}
-
-      {/* Terminator — thin stroke at the day/night boundary */}
-      {state.nightPath && (
-        <Path
-          path={state.nightPath}
-          color={colors.atmosphere}
-          style="stroke"
-          strokeWidth={0.7}
-          opacity={0.12}
-        />
-      )}
-
-      {/* Night-side city lights — drawn AFTER the night veil so the dim of
-          the unlit hemisphere darkens land but not the lights themselves.
-          Two tiers: civil-twilight cities sit at half opacity for a soft
-          gradient across the terminator, deep-night cities render brighter.
-          `textEmphasis` inverts with mode (white-on-dark vs dark-on-light)
-          so the dots have contrast against the night-side land tint in
-          both palettes — a single hardcoded white would vanish on the
-          light-mode cream-and-gray composite. The story dot still owns the
-          night side visually: city pinpricks are 0.9-px hard pixels with
-          no glow, while the editorial dot is a multi-layer baked Atlas
-          glow at ~14 px — different visual register entirely. */}
-      {state.cityLightsTwilightPath && (
-        <Path
-          path={state.cityLightsTwilightPath}
-          color={colors.textEmphasis}
-          opacity={(light ? 0.22 : 0.32) * state.cityTwilightOpacity}
-        />
-      )}
-      {state.cityLightsNightPath && (
-        <Path
-          path={state.cityLightsNightPath}
-          color={colors.textEmphasis}
-          opacity={light ? 0.42 : 0.6}
-        />
-      )}
+      {/* Ground — subsolar glint, land, ice, borders, graticule, night and
+          city lights. Recorded per projection; see `recordGlobeFrame`. */}
+      <Picture picture={groundPicture} />
 
       {/* Inner-limb atmospheric glaze — companion to the outer rim. Reads
           as the slice of atmosphere refracting light around the curved
@@ -3958,441 +4293,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       </Circle>
 
-      {/* Coverage hotspots — RadialGradient halo + sharp core dot.
-          Gradient shader gives smoother falloff than stacked BlurMask circles
-          and skips the blur pass entirely. Recency fades older hotspots:
-          fresh stories are prominent, stale ones whisper. Opacities lifted
-          (core 0.42→0.6, halo peak/mid roughly doubled, recency floor
-          0.3→0.45) so coverage clusters — where the news is concentrated —
-          actually read as warmth on the globe instead of staying subliminal.
-          Stays monochrome (`colors.text`); the diffuse blurred halo reads as a
-          different texture from the sharp editorial story dot, so the dot
-          remains the brightest, most-focal point. */}
-      {state.hotspotGlows.map((z) => {
-        const fade = 0.45 + 0.55 * z.recency;
-        const haloR = 18 + z.intensity * 16;
-        const peak = withAlpha(colors.text, (0.18 + z.intensity * 0.18) * fade);
-        const mid = withAlpha(colors.text, (0.08 + z.intensity * 0.1) * fade);
-        const edge = withAlpha(colors.text, 0);
-        const coreR = 0.9 + z.intensity * 0.7;
-        // Key by lat,lng so reconciliation stays stable across heatmap
-        // refetches (top-12 list reorders frequently — index keys would
-        // reuse Group children for unrelated hotspots).
-        return (
-          <Fragment key={`${z.lat.toFixed(2)},${z.lng.toFixed(2)}`}>
-            <Circle cx={z.x} cy={z.y} r={haloR} dither>
-              <RadialGradient
-                c={vec(z.x, z.y)}
-                r={haloR}
-                colors={[peak, mid, edge]}
-                positions={[0, 0.35, 1]}
-              />
-            </Circle>
-            <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.6 * fade} />
-          </Fragment>
-        );
-      })}
-
-      {/* Chokepoint glyphs — strait pictogram (two facing coastline arcs +
-          center mark) so the marker reads semantically as a narrow water
-          passage rather than as an anonymous ring. Same family as the
-          disaster glyphs — 22pt box, stroked, transformed into position.
-          In the web's strait hues: slate at rest, gold when traffic is
-          pinched below its 90-day normal, teal when it surges above it.
-          Label is always drawn. */}
-      {state.chokepoints.map((c) => {
-        // The web's three strait states: at rest, pinched below its normal
-        // (gold), surging above it (teal).
-        const glyphOpacity = 0.6 + 0.35 * c.intensity;
-        const glyphColor = c.disrupted
-          ? colors.markStraitPinch
-          : c.surge
-            ? colors.markStraitSurge
-            : colors.markStrait;
-        // Label centering uses measureText when the font has loaded;
-        // before that we fall back to a char-count approximation so the
-        // first frame doesn't misplace the text.
-        const labelTx = waterFont
-          ? c.x - textWidth(waterFont, c.label) / 2
-          : c.x - c.label.length * 2.5;
-        const labelTy = c.y + 20;
-        return (
-          <Fragment key={c.id}>
-            {(c.disrupted || c.surge) && (
-              <Circle cx={c.x} cy={c.y} r={12} dither>
-                <RadialGradient
-                  c={vec(c.x, c.y)}
-                  r={12}
-                  colors={[
-                    withAlpha(glyphColor, 0.22 * c.intensity),
-                    withAlpha(glyphColor, 0.08 * c.intensity),
-                    withAlpha(glyphColor, 0),
-                  ]}
-                  positions={[0, 0.5, 1]}
-                />
-              </Circle>
-            )}
-            <Path
-              path={CHOKEPOINT_PATH}
-              color={glyphColor}
-              style="stroke"
-              strokeWidth={1.0}
-              strokeJoin="round"
-              strokeCap="round"
-              opacity={glyphOpacity}
-              transform={[{ translateX: c.x - GLYPH_HALF }, { translateY: c.y - GLYPH_HALF }]}
-            />
-            <HaloLabel
-              x={labelTx}
-              y={labelTy}
-              text={c.label}
-              font={waterFont}
-              // Baseline ink is body `text`, not `textSecondary`: chokepoint
-              // labels are steady-state text visible at every zoom, and
-              // textSecondary at whisper opacity bottomed out at 1.8–2.8:1
-              // against the night-side ocean composite (WCAG 2.2 AA needs
-              // 4.5:1 at this size; audit 2026-07-04). text at 0.55 dark /
-              // 0.7 light clears AA on all ocean surfaces while the
-              // quiet-vs-disrupted hierarchy still reads through the accent
-              // ink, glow ring, and stronger halo of the disrupted state.
-              color={c.disrupted ? colors.markStraitPinch : colors.text}
-              haloColor={colors.bg}
-              opacity={c.disrupted ? 0.9 : light ? 0.7 : 0.55}
-              haloOpacity={
-                c.disrupted
-                  ? light
-                    ? LABEL_HALO_OPACITY_LIGHT_STRONG
-                    : LABEL_HALO_OPACITY_DARK_STRONG
-                  : light
-                    ? LABEL_HALO_OPACITY_LIGHT
-                    : LABEL_HALO_OPACITY_DARK
-              }
-            />
-          </Fragment>
-        );
-      })}
-
-      {/* Exchanges whose index has moved. A candle, in the same 22pt stroked
-          family as the hazard glyphs and the strait's channel — shape says
-          what, and nothing else on this globe looks like one.
-          Directionless on purpose: the coloured delta lives in the strip
-          above, and a mark that also leaned up or down would be spending the
-          identity channel on something the colour channel already owns.
-          Always labelled. An unlabelled dot on a sphere reads as texture;
-          a labelled one reads as addressable, and on this screen that label
-          is the only thing telling the reader the earth can be tapped. */}
-      {state.marketMarks.map((m) => {
-        const labelTx = waterFont
-          ? m.x - textWidth(waterFont, m.label) / 2
-          : m.x - m.label.length * 2.5;
-        return (
-          <Fragment key={m.id}>
-            <Path
-              path={MARKET_PATH}
-              color={
-                m.direction === 'up'
-                  ? colors.markMarketUp
-                  : m.direction === 'down'
-                    ? colors.markMarketDown
-                    : colors.markStrait
-              }
-              style="stroke"
-              strokeWidth={1.2}
-              strokeJoin="round"
-              strokeCap="round"
-              opacity={0.95}
-              transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
-            />
-            <HaloLabel
-              x={labelTx}
-              y={m.y + 20}
-              text={m.label}
-              font={waterFont}
-              color={colors.text}
-              opacity={light ? 0.75 : 0.55}
-              haloColor={colors.bg}
-              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
-            />
-          </Fragment>
-        );
-      })}
-
-      {/* GDACS disaster markers — three tiers. Green is the ambient pulse:
-          a tiny tinted dot (no glyph, no backdrop, tight tap zone) — many
-          appear, none shouts. Orange and Red are read-and-tap landmarks:
-          backdrop disc + stroked event-type glyph at chokepoint-tier
-          weight (no glow, so the editorial story dot stays dominant).
-          Recency fades all tiers; anything past 30 days is dropped at the
-          data layer. Render order is Green → Orange → Red (set upstream
-          in enrichedGdacs) so consequential markers always paint over
-          ambient ones. Keys by eventid for stable reconciliation across
-          feed refetches. */}
-      {state.gdacsMarks.map((m) => {
-        // Disaster glyphs in the web map's one hazard hue (`markGdacs`).
-        // Severity is still stroke weight, opacity and (high tier only) an
-        // outer alarm ring, never a second colour: the hue says "hazard"
-        // and the weight says how bad.
-        const isHigh = m.alertlevel === 'Red';
-        const isLow = m.alertlevel === 'Green';
-        const strokeWidth = isHigh ? 1.8 : isLow ? 1.0 : 1.4;
-        const strokeOpacity = (isHigh ? 0.95 : isLow ? 0.45 : 0.75) * m.recencyAlpha;
-        const tx = m.x - GLYPH_HALF;
-        const ty = m.y - GLYPH_HALF;
-        return (
-          <Group key={`gdacs-${m.eventid}`} transform={[{ translateX: tx }, { translateY: ty }]}>
-            {isHigh && (
-              <Circle
-                cx={GLYPH_HALF}
-                cy={GLYPH_HALF}
-                r={GLYPH_HALF + 2.5}
-                color={colors.markGdacs}
-                style="stroke"
-                strokeWidth={1}
-                opacity={0.55 * m.recencyAlpha}
-              />
-            )}
-            <Path
-              path={getGlyphPath(m.eventtype)}
-              color={colors.markGdacs}
-              style="stroke"
-              strokeWidth={strokeWidth}
-              strokeJoin="round"
-              strokeCap="round"
-              opacity={strokeOpacity}
-            />
-          </Group>
-        );
-      })}
-
-      {/* Conflict-event markers — ghost-dot glow family, batched. Same
-          baked texture as the neighbour-article pins (no separate bake;
-          shared `ghostTexture` above), stamped at every event location
-          via a single <Atlas/> call. The kinetic/unrest distinction
-          stays in the data and shows up in ConflictSheet's eyebrow +
-          DisambiguationSheet's row icon, where pictograms earn their
-          place. The globe gets glows in the web's conflict red so the layer reads as
-          ambient context rather than its own pictogram vocabulary. One
-          Skia draw call regardless of marker count — the perf cost is
-          the same whether the layer shows 5 events or 200. Per-instance
-          recency fade rides the `colors` array (white × recencyAlpha,
-          modulate blend — see conflictAtlas() for why the explicit
-          blend mode is required), so older events whisper relative to
-          fresh ones whenever the data window spans multiple days. */}
-      {conflictGlowAtlas && (
-        <Atlas
-          image={ghostTexture}
-          sprites={conflictGlowAtlas.sprites}
-          transforms={conflictGlowAtlas.transforms}
-          colors={conflictGlowAtlas.colors}
-          colorBlendMode="modulate"
-        />
-      )}
-
-      {/* Country highlight — opacity scales with area so small nations pop */}
-      {state.countryPath && (
-        <CountryHighlight
-          path={state.countryPath}
-          countryName={state.countryName}
-          color={colors.text}
-        />
-      )}
-
-      {/* Major river lines — zoom-gated so nothing draws at globe scale.
-          Rendered AFTER the country highlight so rivers crossing the
-          highlighted country (Ganges through India, Volga through Russia)
-          stay visible. Halo (bg, 2.5px) underneath a dark textEmphasis
-          stroke (1.2px) gives the rivers a high-contrast edge over both
-          the plain land tint and the highlight's soft glow. */}
-      {state.riversPath && (
-        <>
-          <Path
-            path={state.riversPath}
-            color={colors.bg}
-            style="stroke"
-            strokeWidth={2.5}
-            strokeJoin="round"
-            strokeCap="round"
-            opacity={(light ? 0.8 : 0.65) * state.riversOpacity}
-          />
-          <Path
-            path={state.riversPath}
-            color={colors.textEmphasis}
-            style="stroke"
-            strokeWidth={1.2}
-            strokeJoin="round"
-            strokeCap="round"
-            opacity={(light ? 0.85 : 0.55) * state.riversOpacity}
-          />
-        </>
-      )}
-
-      {/* Source arcs — information flow lines from source HQs to story
-          location. Dashed (long-short cadence) so the arcs read as movement /
-          flow rather than as solid borders — same color family as
-          bordersPath, but a different visual rhythm so the reader's eye
-          doesn't conflate "where info came from" with "country boundary".
-          Distinct cadence from the qibla arc (3-3) which uses an even
-          contemplative rhythm. Single GPU pass per frame. */}
-      {state.sourceArcs && (
-        <Path
-          path={state.sourceArcs}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.5}
-          opacity={(light ? 0.25 : 0.15) * state.arcOpacity}
-        >
-          <DashPathEffect intervals={[6, 3]} />
-        </Path>
-      )}
-
-      {/* Qibla arc — great circle toward Makkah. Dashed so it reads as a
-          direction/intention rather than as a fact line — same monochrome
-          tone, different cadence from sourceArcs and bordersPath, which are
-          both solid strokes in the same color family. Path effects are GPU-
-          applied at draw time, no JS cost.
-          Visibility tuning: dashing halves the visible ink, so the prior
-          0.2/0.12 opacities (set when the arc was solid) made the dashed
-          version vanish. Compensated three ways:
-            • opacity ~1.7× (light 0.34, dark 0.2) — restores the perceived
-              ink density of the original solid arc
-            • intervals [4, 2] not [3, 3] — denser cadence, ~67% on instead
-              of 50%, still unambiguously dashed
-            • strokeWidth 1.2 + strokeCap round — round caps add ~1px of ink
-              per dash end so each segment reads as a deliberate token
-              instead of a thin sliver. */}
-      {state.qiblaPath && (
-        <Path
-          path={state.qiblaPath}
-          color={colors.dome}
-          style="stroke"
-          strokeWidth={1.2}
-          strokeCap="round"
-          opacity={(light ? 0.34 : 0.2) * state.arcOpacity}
-        >
-          <DashPathEffect intervals={[4, 2]} />
-        </Path>
-      )}
-
-      {/* Makkah — golden qibla reference point, baked Atlas. */}
-      {makkahAtlas && (
-        <Atlas
-          image={makkahTexture}
-          sprites={makkahAtlas.sprites}
-          transforms={makkahAtlas.transforms}
-        />
-      )}
-
-      {/* Story marks — every article in the column, under the settled one so
-          it always reads brightest. One Atlas call against a baked glow, with
-          size and alpha per instance, rather than N × 3 Circle+BlurMask
-          draws: forty marks cost the same as the four this replaced.
-          `colorBlendMode="modulate"` is load-bearing — Atlas's default colors
-          blend is `dstOver`, which paints each colour *behind* its sprite and
-          fills the transparent bounding box with solid squares. */}
-      {/* Famine (IPC phase) and thermal anomalies — the web's column and
-          burst, in its hues, one Atlas each from the baked sprite sheet.
-          Under the stories: they are the ground a story happens on. */}
-      {famineAtlas && (
-        <Atlas
-          image={overlayTexture}
-          sprites={famineAtlas.sprites}
-          transforms={famineAtlas.transforms}
-          colors={famineAtlas.colors}
-          colorBlendMode="modulate"
-        />
-      )}
-      {thermalAtlas && (
-        <Atlas
-          image={overlayTexture}
-          sprites={thermalAtlas.sprites}
-          transforms={thermalAtlas.transforms}
-          colors={thermalAtlas.colors}
-          colorBlendMode="modulate"
-        />
-      )}
-
-      {storyHaloAtlas && (
-        <Atlas
-          image={storyHaloTexture}
-          sprites={storyHaloAtlas.sprites}
-          transforms={storyHaloAtlas.transforms}
-          colors={storyHaloAtlas.colors}
-          colorBlendMode="modulate"
-        />
-      )}
-      {storyBeaconAtlas && (
-        <Atlas
-          image={beaconTexture}
-          sprites={storyBeaconAtlas.sprites}
-          transforms={storyBeaconAtlas.transforms}
-          colors={storyBeaconAtlas.colors}
-          colorBlendMode="modulate"
-        />
-      )}
-      {/* The web's ring on a story its sources disagree sharply about. */}
-      {state.storyMarks.map((m) =>
-        m.contested ? (
-          <Circle
-            key={`contested-${m.slug}`}
-            cx={m.x}
-            cy={m.y}
-            r={BEACON_R * m.scale + 3}
-            color={colors.markContested}
-            style="stroke"
-            strokeWidth={1.2}
-            opacity={0.85 * m.alpha}
-          />
-        ) : null,
-      )}
-      {/* How many stories are still to find at a place. */}
-      {subFont &&
-        state.storyMarks.map((m) =>
-          m.count >= state.storyCountMin ? (
-            <HaloLabel
-              key={`count-${m.slug}`}
-              x={m.x + BEACON_R * m.scale + 3}
-              y={m.y - 4}
-              text={String(m.count)}
-              font={subFont}
-              color={colors.textEmphasis}
-              haloColor={colors.bg}
-              opacity={0.9}
-              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
-            />
-          ) : null,
-        )}
-
-      {/* Genocide, as determined by a UN body — a dark disc, a red ring and
-          core, and its name always on. Above every story, as on the web: it
-          is the one mark on this globe that is never ambient. */}
-      {state.genocideMarks.map((g) => (
-        <Fragment key={`genocide-${g.id}`}>
-          <Circle cx={g.x} cy={g.y} r={9} color={colors.markGenocideCore} />
-          <Circle
-            cx={g.x}
-            cy={g.y}
-            r={9}
-            color={colors.markGenocide}
-            style="stroke"
-            strokeWidth={1.6}
-          />
-          <Circle cx={g.x} cy={g.y} r={3} color={colors.markGenocide} />
-          <HaloLabel
-            x={g.x + 13}
-            y={g.y + 4}
-            text={g.label}
-            font={subFont}
-            color={colors.markGenocide}
-            haloColor={colors.bg}
-            haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
-          />
-        </Fragment>
-      ))}
-
-      {/* Story dot — single Atlas draw against the baked dot texture. */}
-      {dotAtlas && (
-        <Atlas image={dotTexture} sprites={dotAtlas.sprites} transforms={dotAtlas.transforms} />
-      )}
+      {/* Marks — hotspots, straits, exchanges, hazards, the country
+          highlight, rivers, arcs, stories and the settled dot. */}
+      <Picture picture={marksPicture} />
 
       {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
           fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
@@ -4424,184 +4327,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       </Group>
 
-      {/* Water-feature labels — named lakes (major only), major rivers,
-          seas/bays/gulfs. Italic per atlas convention (hydrography). Drawn
-          lightest of the three label tiers so the visual hierarchy reads:
-          focused country > neighbours > waters.
-          Halo deliberately removed: stroked-text rasterization dominated
-          the settled-frame budget (path widening + stroke pass per
-          glyph × ~50 labels). textSecondary at high opacity reads
-          cleanly against bg and the 20% land tint; river strokes only
-          cross labels briefly and the collision packer already keeps
-          labels off the densest overlaps. */}
-      {waterFont &&
-        state.waterLabels.map((w, i) => {
-          const tx = w.x - textWidth(waterFont, w.name) / 2;
-          // River labels land directly on the river line — nudge them up
-          // by ~7px (one x-height) so the label sits just above the line
-          // rather than bisecting it. Lakes and seas stay at their centroid.
-          const ty = w.kind === 'river' ? w.y - 7 : w.y;
-          return (
-            <SkiaText
-              key={`${w.kind}-${w.name}-${i}`}
-              x={tx}
-              y={ty}
-              text={w.name}
-              font={waterFont}
-              // Light mode borrows the body-text ink at reduced opacity
-              // instead of `textSecondary` at full: #666-on-cream sitting
-              // over the pale land tint washed out to near-invisible.
-              // 0.92 is the WCAG floor for this tier — the worst composite
-              // (river label over night-side land) sits at 4.59:1 there,
-              // clearing AA; the prior 0.78 bottomed out at 3.6:1. Still
-              // below the neighbour multiplier (0.95 × text), so the
-              // "lightest tier" rank survives alongside the italic-vs-
-              // small-caps distinction. Dark mode is untouched.
-              color={light ? colors.text : colors.textSecondary}
-              opacity={(light ? 0.92 : 0.9) * w.opacity}
-            />
-          );
-        })}
-
-      {/* Neighbour country labels — emerge at 2x zoom, fade toward full
-          opacity as zoom tightens. Small caps per atlas convention; one
-          step smaller than the focused country so the hierarchy reads:
-          highlighted country = primary, neighbours = secondary.
-          Long names wrap to two lines (Google Maps convention, same
-          balanced split as the focused label); the block centers
-          vertically on the centroid and each line centers independently.
-          Rendered BEFORE the highlighted country label so the focused
-          country's name draws on top if they collide. Halo removed for
-          the same perf reason as water labels; readability comes from
-          the body-text color tone + a high tier-multiplier instead. */}
-      {neighborFont &&
-        state.neighborLabels.map((n) => {
-          const firstY = n.y - ((n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT) / 2;
-          return (
-            <Fragment key={n.name}>
-              {n.lines.map((line, i) => (
-                <SkiaText
-                  key={`${n.name}-${i}`}
-                  x={n.x - textWidth(neighborFont, line) / 2}
-                  y={firstY + i * NEIGHBOR_LINE_HEIGHT}
-                  text={line}
-                  font={neighborFont}
-                  // `text` (not `textSecondary`) — the muted gray was getting
-                  // eaten by the land tint, especially in dark mode where #999
-                  // sits within ~1px of the terrain shade. Body-text tone keeps
-                  // the hierarchy intact (focused label still owns `textEmphasis`
-                  // + halo) while making neighbours legible without re-adding
-                  // the per-frame halo passes that the comment above warns off.
-                  color={colors.text}
-                  opacity={(light ? 0.95 : 0.92) * n.opacity}
-                />
-              ))}
-            </Fragment>
-          );
-        })}
-
-      {/* Country name — always rendered (every zoom level) when a country is
-          highlighted and its centroid is on the visible hemisphere. Anchored
-          below the centroid so it stays clear of the city/time dot label.
-          Long names wrap to two lines (Google Maps convention) — see
-          `wrapCountryLabel`. Each line is centered independently so the
-          stack reads as a balanced block. The state's `(x, y)` is the
-          baseline of the FIRST line; subsequent lines stack at LABEL_LINE_HEIGHT. */}
-      {state.countryLabel &&
-        countryFont &&
-        (() => {
-          const cl = state.countryLabel;
-          return cl.lines.map((line, i) => {
-            const tx = cl.x - textWidth(countryFont, line) / 2;
-            const ty = cl.y + i * LABEL_LINE_HEIGHT;
-            return (
-              <HaloLabel
-                key={`country-${i}`}
-                x={tx}
-                y={ty}
-                text={line}
-                font={countryFont}
-                color={colors.textEmphasis}
-                haloColor={colors.bg}
-                opacity={light ? 0.85 : 0.8}
-                haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT}
-              />
-            );
-          });
-        })()}
-
-      {/* Dot label — location · local time. Primary tier: the *location*
-          where the news happened is the most important text on the globe,
-          so it carries a halo and the heavier 14pt SemiBold weight while
-          the country label below sits at the secondary 12pt tier. */}
-      {state.dotLabel && labelFont && (
-        <>
-          <HaloLabel
-            x={state.dotLabel.x + 6}
-            y={state.dotLabel.y + 4}
-            text={state.dotLabel.text}
-            font={labelFont}
-            color={colors.textEmphasis}
-            haloColor={colors.bg}
-            opacity={light ? 0.95 : 0.95}
-            haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
-          />
-          {state.dotLabel.sub && subFont && (
-            <HaloLabel
-              x={state.dotLabel.x + 6}
-              y={state.dotLabel.y + 18}
-              text={state.dotLabel.sub}
-              font={subFont}
-              color={colors.textEmphasis}
-              haloColor={colors.bg}
-              opacity={light ? 0.7 : 0.75}
-              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT}
-            />
-          )}
-        </>
-      )}
-
-      {/* Pole markers — tiny crosses */}
-      {state.northPole && (
-        <>
-          <Rect
-            x={state.northPole.x - 3}
-            y={state.northPole.y - 0.4}
-            width={6}
-            height={0.8}
-            color={colors.accent}
-            opacity={light ? 0.25 : 0.2}
-          />
-          <Rect
-            x={state.northPole.x - 0.4}
-            y={state.northPole.y - 3}
-            width={0.8}
-            height={6}
-            color={colors.accent}
-            opacity={light ? 0.25 : 0.2}
-          />
-        </>
-      )}
-      {state.southPole && (
-        <>
-          <Rect
-            x={state.southPole.x - 3}
-            y={state.southPole.y - 0.4}
-            width={6}
-            height={0.8}
-            color={colors.accent}
-            opacity={light ? 0.25 : 0.2}
-          />
-          <Rect
-            x={state.southPole.x - 0.4}
-            y={state.southPole.y - 3}
-            width={0.8}
-            height={6}
-            color={colors.accent}
-            opacity={light ? 0.25 : 0.2}
-          />
-        </>
-      )}
+      {/* Labels — water, neighbours, the focused country, the dot label
+          and the poles, above the tap pulse. */}
+      <Picture picture={labelsPicture} />
     </Canvas>
   );
 });
