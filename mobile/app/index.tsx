@@ -1500,6 +1500,7 @@ export default function HomeScreen() {
         sheetRef={cardSheetRef}
         bottomInset={insets.bottom}
         card={activeCard}
+        peekHeight={layout.peek}
         onDismiss={handleCardDismiss}
       />
 

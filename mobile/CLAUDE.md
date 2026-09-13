@@ -401,9 +401,10 @@ about what a card may say is about the card, not where it is shown.
   - **The next story peeks by 24pt of its text** (`DECK_PEEK`), not by a
     slot edge. The deck used to cut 16pt of a slot whose text sits 14pt in, so
     two points of the next headline showed — a glitch, not an affordance. The
-    current card's column is narrower by the peek and a 16pt gap, and the
-    neighbours fade as a story is grown (`peekFade`), returning as one is
-    swiped in.
+    current card's column is narrower by the peek and a 16pt gap. A resting
+    neighbour is drawn at `PEEK_OPACITY` (0.4) so the next headline does not
+    pull the eye off the one being read, and fades out entirely as a story is
+    grown (`peekFade`); either way it comes up to full as it is swiped in.
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -428,19 +429,17 @@ about what a card may say is about the card, not where it is shown.
 - **A card's chart must not steal a swipe.** `TrendBlock`'s scrubber ate five
   page swipes in a row before `scrubbable={false}` existed; `CardView` still
   passes it.
-- **An inner scroll that truncates is worse than one that parks.** `CardFrame`
-  carries an inner `ScrollView` for a card taller than its sheet. With
-  `nestedScrollEnabled` off — once turned off to stop a pager parking between
-  two pages — Android's parent intercepted every vertical drag and the inner
-  scroll never ran: four cards at default type (the Kerch strait, the
-  fifteen-currency table, the nisab, wheat-and-rice) silently lost their
-  source captions, and two a whole related-stories section. **A card citing
-  IMF PortWatch never said so.** Two guards stay load-bearing: the inner
-  scroll arms only when content is genuinely taller (`CardFrame` must add
-  `COLUMN_PAD_V` back — it sits outside the measured view, and the naive
-  comparison was 80pt optimistic), and `nestedScrollEnabled` is **on**.
-  Trading a visible layout glitch for silent data loss is the worse bug,
-  because nobody reports it.
+- **A card is one column, scrolled by its sheet, and opens as high as a
+  resting story.** `CardFrame` was a fixed-height page with its analysis in an
+  inner `ScrollView` — the full-screen pager's shape, where a vertical drag had
+  to page. That inner scroll once silently cut four cards' source captions
+  when Android's parent intercepted it (**a card citing IMF PortWatch never
+  said so**); in a sheet it had no job left, so it and `useScrollable` are
+  gone and `CardSheet` scrolls the whole card. `CardSheet` opens at the news
+  card's resting height (`layout.peek`) so the globe's flight to a gauge stays
+  in view, and the reader pulls it up; Android's platform sheet has only a
+  ~half and a full state, so it lands at half there. It is still a modal
+  platform sheet — the map behind it dims.
 - **`recent` reaches the app through `/api/analysis.json`, and that is a
   second endpoint on purpose.** `build.js` withholds it from `api/trends.json`
   because that payload is also what the website's instrument rail downloads on

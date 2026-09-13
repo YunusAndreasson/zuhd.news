@@ -1,7 +1,6 @@
 import { memo, type ReactNode } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
-import { useScrollable } from '../../hooks/useScrollable';
 import type { DeckCard } from '../../lib/cards/types';
 import { observationDate } from '../../lib/data-freshness';
 import { useOpenLink } from '../../lib/open-link';
@@ -97,29 +96,21 @@ const CardTitle = memo(function CardTitle({
 
 interface CardFrameProps {
   card: DeckCard;
-  /** The height of the column the card fills. */
-  itemHeight: number;
-  /** The block that makes this card its kind — a chart, rows, figures. It
-   *  stays outside the prose scroll region so vertical swipes here page. */
+  /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
 }
 
-export const CardFrame = memo(function CardFrame({ card, itemHeight, children }: CardFrameProps) {
+export const CardFrame = memo(function CardFrame({ card, children }: CardFrameProps) {
   const observed = observationDate(card.asOf);
   const openLink = useOpenLink();
 
   // The one word, if any, that opens the kicker line.
   const mark = card.lead ? 'current' : null;
 
-  // Only the explanatory prose can become an inner scroll region, and only when
-  // it is genuinely taller than the room left for it.
-  const innerScroll = useScrollable();
-
   return (
-    <View style={[styles.page, { height: itemHeight }]}>
-      <View style={styles.column}>
-        <View testID="card-page-header">
-          {/* The one line of metadata a card carries: what kind of thing this
+    <View style={styles.column}>
+      <View testID="card-page-header">
+        {/* The one line of metadata a card carries: what kind of thing this
               is, and the date its number was observed. On a gated card it
               opens with the one word that says why the screen exists —
               `current` for a strait whose data just cleared a freshness gate.
@@ -139,101 +130,86 @@ export const CardFrame = memo(function CardFrame({ card, itemHeight, children }:
               it, so both restated the reader's position in the register the
               kicker was already using — one more line to decipher before
               reaching the number. */}
-          {mark || card.kicker || observed ? (
-            <Text variant="labelXs" tone="secondary">
-              {mark ? (
-                <Text variant="labelXs" tone="emphasis">
-                  {card.kicker || observed ? `${mark} · ` : mark}
-                </Text>
-              ) : null}
-              {card.kicker}
-              {card.kicker && observed ? ' · ' : null}
-              {observed}
-            </Text>
-          ) : null}
+        {mark || card.kicker || observed ? (
+          <Text variant="labelXs" tone="secondary">
+            {mark ? (
+              <Text variant="labelXs" tone="emphasis">
+                {card.kicker || observed ? `${mark} · ` : mark}
+              </Text>
+            ) : null}
+            {card.kicker}
+            {card.kicker && observed ? ' · ' : null}
+            {observed}
+          </Text>
+        ) : null}
 
-          {/* Measurements answer first; a belief and a date ask first. A bare
+        {/* Measurements answer first; a belief and a date ask first. A bare
                 “62%” is not a useful fact until the reader knows which outcome
                 it prices, and “in 3 weeks” is not one until they know what
                 lands — while “$89 a barrel” is already self-describing. */}
-          {card.kind === 'belief' || card.kind === 'scheduled' ? (
-            <>
-              <CardTitle card={card} />
-              <CardReading card={card} afterTitle />
-            </>
-          ) : (
-            <>
-              <CardReading card={card} />
-              <CardTitle card={card} afterMetric />
-            </>
-          )}
-        </View>
+        {card.kind === 'belief' || card.kind === 'scheduled' ? (
+          <>
+            <CardTitle card={card} />
+            <CardReading card={card} afterTitle />
+          </>
+        ) : (
+          <>
+            <CardReading card={card} />
+            <CardTitle card={card} afterMetric />
+          </>
+        )}
+      </View>
 
-        {children ? (
-          <View style={styles.block} testID="card-chart-region">
-            {children}
-          </View>
+      {children ? (
+        <View style={styles.block} testID="card-chart-region">
+          {children}
+        </View>
+      ) : null}
+
+      {/* The card is one column, scrolled by its sheet. It used to be a page of
+            fixed height with the analysis in a scroll view of its own — the
+            shape of a full-screen pager, where a vertical drag had to page.
+            In a sheet that nesting only hid the source caption behind a
+            second scroll a reader had no reason to look for. */}
+      <View style={styles.analysis} testID="card-text-region">
+        {card.why ? <Text variant="body">{card.why}</Text> : null}
+
+        {card.changed ? (
+          <Text variant="caption" tone="secondary" style={card.why ? styles.supporting : undefined}>
+            {card.changed}
+          </Text>
         ) : null}
 
-        <View style={styles.analysisViewport} testID="card-text-region">
-          <ScrollView
-            style={styles.fill}
-            pointerEvents={innerScroll.scrollable ? 'auto' : 'box-none'}
-            showsVerticalScrollIndicator={innerScroll.scrollable}
-            scrollEnabled={innerScroll.scrollable}
-            nestedScrollEnabled
-            onLayout={innerScroll.onLayout}
-            onContentSizeChange={innerScroll.onContentSizeChange}
-          >
-            <View>
-              {card.why ? <Text variant="body">{card.why}</Text> : null}
-
-              {card.changed ? (
-                <Text
-                  variant="caption"
-                  tone="secondary"
-                  style={card.why ? styles.supporting : undefined}
-                >
-                  {card.changed}
-                </Text>
-              ) : null}
-
-              {card.sourceLabel ? (
-                <View style={styles.source}>
-                  <SourceCaption label={card.sourceLabel} />
-                </View>
-              ) : null}
-              {/* Citations sit under the source caption as one right-aligned
+        {card.sourceLabel ? (
+          <View style={styles.source}>
+            <SourceCaption label={card.sourceLabel} />
+          </View>
+        ) : null}
+        {/* Citations sit under the source caption as one right-aligned
                   group, in the same quiet tier. They were left-aligned
                   caption rows prefixed "Source ·", which read as more
                   supporting copy — a fourth paragraph — rather than as the
                   attribution they are. */}
-              {card.sources?.map((source) => (
-                <Text
-                  key={source.url}
-                  variant="caption"
-                  tone="secondary"
-                  numberOfLines={1}
-                  accessibilityRole="link"
-                  onPress={() => openLink(source.url)}
-                  style={styles.sourceLink}
-                >
-                  {source.label}
-                </Text>
-              ))}
-            </View>
-          </ScrollView>
-        </View>
+        {card.sources?.map((source) => (
+          <Text
+            key={source.url}
+            variant="caption"
+            tone="secondary"
+            numberOfLines={1}
+            accessibilityRole="link"
+            onPress={() => openLink(source.url)}
+            style={styles.sourceLink}
+          >
+            {source.label}
+          </Text>
+        ))}
       </View>
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  page: { overflow: 'hidden' },
-  fill: { flex: 1 },
   column: {
-    flex: 1,
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: SPACING.md,
     // A card's last element is a caption rather than prose, so it needs one
@@ -256,7 +232,7 @@ const styles = StyleSheet.create({
   titleAfterMetric: { marginTop: SPACING.smPlus },
   titleBeforeMetric: { marginTop: SPACING.sm },
   block: { marginTop: SPACING.md },
-  analysisViewport: { flex: 1, minHeight: 0, marginTop: SPACING.lg },
+  analysis: { marginTop: SPACING.lg },
   supporting: { marginTop: SPACING.sm },
   source: { marginTop: SPACING.md },
   sourceLink: { marginTop: SPACING.xs, textAlign: 'right' },

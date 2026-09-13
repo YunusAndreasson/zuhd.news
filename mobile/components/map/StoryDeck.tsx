@@ -72,6 +72,12 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * as a seam. A peek is either a legible piece of the next story or nothing.
  */
 const DECK_PEEK = SPACING.lg;
+/**
+ * How strongly a resting neighbour is drawn. The peek says the row continues;
+ * at full ink the next headline competed with the one being read, and the eye
+ * went to the edge of the screen. It comes up to full as it is swiped in.
+ */
+const PEEK_OPACITY = 0.4;
 /** Between the end of the current card's text and the start of the next one's. */
 const DECK_GAP = SPACING.md;
 /** Where the next slot starts, from the right edge: its peek plus its own padding. */
@@ -143,7 +149,7 @@ const DeckSlot = memo(function DeckSlot({
     // back as it arrives, so a swipe while reading still shows what is coming.
     const fade = peekFade ? Math.min(1, Math.max(0, peekFade.value)) : 0;
     return {
-      opacity: 1 - fade * away,
+      opacity: (1 - (1 - PEEK_OPACITY) * away) * (1 - fade * away),
       transform: [{ translateX: offset * pitch }],
     };
   });

@@ -86,23 +86,13 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
   );
 });
 
-export const CardView = memo(function CardView({
-  card,
-  itemHeight,
-}: {
-  card: SwipeCard;
-  itemHeight: number;
-}) {
+export const CardView = memo(function CardView({ card }: { card: SwipeCard }) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
     if (card.link) openLink(card.link);
   }, [card.link, openLink]);
 
-  return (
-    <CardFrame card={card} itemHeight={itemHeight}>
-      {renderBody(card, onPress)}
-    </CardFrame>
-  );
+  return <CardFrame card={card}>{renderBody(card, onPress)}</CardFrame>;
 });
 
 const CardTrend = memo(function CardTrend({
