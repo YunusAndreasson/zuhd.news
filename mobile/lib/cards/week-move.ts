@@ -1,5 +1,6 @@
-import { chokepointValence, type RiseMeans, valenceOf } from '../valence';
-import { formatMagnitudePct } from './format';
+import type { Indicator } from '@shared/types';
+import { chokepointValence, type RiseMeans, riseMeansFor, valenceOf } from '../valence';
+import { deltaFrom, formatMagnitudePct, windowChange, windowPointChange } from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
 import type { CardDelta } from './types';
@@ -157,4 +158,33 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
     ? chokepointValence(pct / 100)
     : valenceOf(direction, riseMeansOf(card.delta));
   return { delta: { direction, magnitude, window, valence, size }, points: move.points };
+}
+
+/**
+ * An indicator's move for a sheet that shows the indicator itself (an entity
+ * tapped in a story), in the gauges' grammar: the seven-day move where the
+ * series has a week, and the last step, with the day it started, where it
+ * does not.
+ *
+ * `EntitySheet` printed "+0.3% vs prev" for one step while the card for the same
+ * indicator printed a thirty-observation chip, so Brent could read up on the card
+ * and down in the sheet. The quantity is the published series as it is: this
+ * sheet prints the rate, not the currency, so there is no inversion here.
+ * A prediction contract moves in points, never as a percentage of a percentage.
+ */
+export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta | undefined {
+  if (indicator.source === 'polymarket') {
+    return deltaFrom(windowPointChange(indicator, 1), null, { unit: 'points' });
+  }
+  const riseMeans = riseMeansFor(indicator);
+  const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
+  const week = weekMove(indicator.values, indicator.periods, year);
+  if (week) {
+    return deltaFrom(
+      { pct: week.pct, from: week.from, to: '', points: week.points.length - 1 },
+      riseMeans,
+      { window: `over ${WEEK_DAYS} days` },
+    );
+  }
+  return deltaFrom(windowChange(indicator, 1), riseMeans);
 }

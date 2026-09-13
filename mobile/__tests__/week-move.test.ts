@@ -1,5 +1,6 @@
 import type { ReadingCard } from '../lib/cards/types';
-import { gaugeMove, periodDays, WEEK_DAYS, weekMove } from '../lib/cards/week-move';
+import type { Indicator } from '@shared/types';
+import { gaugeMove, indicatorMove, periodDays, WEEK_DAYS, weekMove } from '../lib/cards/week-move';
 
 const labels = (from: number, to: number, month = 'Sep') => {
   const out: string[] = [];
@@ -118,5 +119,33 @@ describe('gaugeMove', () => {
       direction: 'flat',
       magnitude: 'unchanged',
     });
+  });
+});
+
+describe('indicatorMove', () => {
+  const indicator = (extra: Partial<Indicator>): Indicator => ({
+    id: 'brent',
+    label: 'Brent',
+    unit: '$/bbl',
+    source: 'fred',
+    sourceLabel: 'FRED',
+    values: [100, 101, 102, 103, 104, 105, 106, 110],
+    periods: ['Sep 4', 'Sep 5', 'Sep 6', 'Sep 7', 'Sep 8', 'Sep 9', 'Sep 10', 'Sep 11'],
+    asOf: '2026-09-11',
+    ...extra,
+  });
+
+  it("uses the week where the series has one, in the gauges' words", () => {
+    expect(indicatorMove(indicator({}))).toMatchObject({ magnitude: '10%', window: 'over 7 days' });
+  });
+
+  it('falls back to the last step, naming the day it started', () => {
+    const monthly = indicator({ values: [100, 95], periods: ['Jun 2026', 'Jul 2026'] });
+    expect(indicatorMove(monthly)).toMatchObject({ direction: 'down', window: 'since Jun 2026' });
+  });
+
+  it('moves a contract in points', () => {
+    const contract = indicator({ id: 'poly-x', source: 'polymarket', unit: '%', values: [40, 52] });
+    expect(indicatorMove(contract)?.magnitude).toBe('12 points');
   });
 });

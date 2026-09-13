@@ -1,9 +1,11 @@
-import { memo, useCallback } from 'react';
+import type { RelatedArticleRef } from '@shared/types';
+import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { citedAnnotations, windowReference } from '../../lib/cards/card-chart';
 import type { SwipeCard } from '../../lib/cards/rank';
-import type { CardFigure, CardSeries } from '../../lib/cards/types';
+import type { CardDelta, CardFigure, CardSeries } from '../../lib/cards/types';
 import { useOpenLink } from '../../lib/open-link';
 import { TrendBlock } from '../blocks/TrendBlock';
 import { Text } from '../primitives';
@@ -86,22 +88,54 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
   );
 });
 
-export const CardView = memo(function CardView({ card }: { card: SwipeCard }) {
+export const CardView = memo(function CardView({
+  card,
+  onStoryPress,
+}: {
+  card: SwipeCard;
+  /** Opens one of the stories the card cites. */
+  onStoryPress?: (slug: string) => void;
+}) {
   const openLink = useOpenLink();
   const onPress = useCallback(() => {
     if (card.link) openLink(card.link);
   }, [card.link, openLink]);
 
-  return <CardFrame card={card}>{renderBody(card, onPress)}</CardFrame>;
+  return (
+    <CardFrame card={card} onStoryPress={onStoryPress}>
+      {renderBody(card, onPress)}
+    </CardFrame>
+  );
 });
 
+/**
+ * The card's chart, and it can be read off.
+ *
+ * It was `scrubbable={false}` for as long as cards were pages on a pager,
+ * where a horizontal drag on the chart ate the swipe to the next card. A card
+ * is a sheet now, whose only gesture is vertical, and a chart nobody can put a
+ * number on was the most-reached chart in the app.
+ *
+ * Two things are drawn besides the line: the value the chip's move is measured
+ * from (`windowReference`), so "since Jul 24" has a place on the chart, and
+ * the stories the desk cited, numbered as they are listed under the analysis.
+ */
 const CardTrend = memo(function CardTrend({
   series,
+  delta,
+  cited,
   onPress,
 }: {
   series: CardSeries;
+  delta?: CardDelta;
+  cited?: RelatedArticleRef[];
   onPress?: () => void;
 }) {
+  const reference = useMemo(
+    () => series.reference ?? windowReference(series, delta),
+    [series, delta],
+  );
+  const annotations = useMemo(() => citedAnnotations(series, cited), [series, cited]);
   return (
     <TrendBlock
       values={series.multi ? undefined : series.values}
@@ -110,9 +144,9 @@ const CardTrend = memo(function CardTrend({
       label={series.label}
       unit={series.unit}
       highlight={series.highlight}
-      reference={series.reference}
+      reference={reference}
+      annotations={annotations}
       variant="context"
-      scrubbable={false}
       onPress={onPress}
     />
   );
@@ -124,14 +158,21 @@ function renderBody(card: SwipeCard, onPress: () => void) {
       return (
         <>
           {card.figures ? <Figures figures={card.figures} /> : null}
-          <CardTrend series={card.series} />
+          <CardTrend series={card.series} delta={card.delta} cited={card.cited} />
         </>
       );
 
     case 'belief':
       // The market page is the only way to check the claim, and a belief
       // card that cannot be checked is just a number with a mood.
-      return <CardTrend series={card.series} onPress={card.link ? onPress : undefined} />;
+      return (
+        <CardTrend
+          series={card.series}
+          delta={card.delta}
+          cited={card.cited}
+          onPress={card.link ? onPress : undefined}
+        />
+      );
 
     // The history of the thing being decided, where the desk publishes one —
     // two years of the Fed target range under "FOMC decides in 18 days". Where
@@ -139,7 +180,7 @@ function renderBody(card: SwipeCard, onPress: () => void) {
     // empty space: a countdown and the account of what is at stake are a whole
     // card on their own.
     case 'scheduled':
-      return card.series ? <CardTrend series={card.series} /> : null;
+      return card.series ? <CardTrend series={card.series} cited={card.cited} /> : null;
   }
 }
 

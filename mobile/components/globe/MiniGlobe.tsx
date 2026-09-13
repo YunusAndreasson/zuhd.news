@@ -552,7 +552,7 @@ export interface TapResult {
   hotspotLabels?: string[];
   isHotspot?: boolean;
   /** Set when the tap landed on an ambient chokepoint ring. The parent
-   *  resolves the ID to the full Chokepoint payload and opens ChokepointSheet. */
+   *  resolves the ID to the full Chokepoint payload and opens the strait's card. */
   chokepointId?: string;
   /** Set when the tap landed on a GDACS disaster marker. The parent resolves
    *  the eventid against the alerts list and opens DisasterSheet. */

@@ -27,9 +27,9 @@ interface RelatedStoriesProps {
   entering?: ComponentProps<typeof Animated.View>['entering'];
 }
 
-/** "related stories" heading + ArticleRow list, shared by ChokepointSheet and
- *  EntitySheet. Renders nothing for an empty list; callers still gate on
- *  `onArticlePress` so the stagger index only advances when it shows. */
+/** "related stories" heading + ArticleRow list, used by EntitySheet. Renders
+ *  nothing for an empty list; callers still gate on `onArticlePress` so the
+ *  stagger index only advances when it shows. */
 export function RelatedStories({ articles, onArticlePress, entering }: RelatedStoriesProps) {
   if (articles.length === 0) return null;
   return (

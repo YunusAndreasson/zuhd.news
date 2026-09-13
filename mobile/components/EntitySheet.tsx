@@ -1,14 +1,15 @@
 import type { Article, Category, Entity, Indicator } from '@shared/types';
 import { memo, useMemo } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { formatReading, formatSignedPct } from '../lib/cards/format';
+import { formatReading } from '../lib/cards/format';
+import { indicatorMove } from '../lib/cards/week-move';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
-import { riseMeansFor, type Valence, valenceOfChange } from '../lib/valence';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
+import { DeltaChip } from './DeltaChip';
 import { Text } from './primitives';
 import { MAX_RELATED, RelatedStories } from './RelatedStories';
 import { SheetScrollView } from './SheetContent';
@@ -25,41 +26,6 @@ interface EntitySheetProps extends BaseSheetProps {
   articles: Article[];
   /** Asks the parent to scroll the feed to a specific article slug. */
   onArticlePress?: (slug: string, category: Category) => void;
-}
-
-/**
- * The indicator's last move, in the app's one colour channel.
- *
- * This used to tint on *magnitude*: dome gold at five per cent or more, grey
- * below it. Two things were wrong with that. Gold is the globe's hue and
- * spending it here made a routine tick look like a finding; and a reader who
- * had just seen brent's card chip in rose met the same indicator in this sheet
- * in gold, which is the app saying two different things about one number.
- * `riseMeansFor` is the same lookup the card uses, so it now cannot.
- */
-function formatDelta(
-  indicator: Indicator,
-  latest?: number | null,
-  previous?: number | null,
-): {
-  text: string;
-  tone: Valence;
-} {
-  if (
-    latest == null ||
-    previous == null ||
-    !Number.isFinite(latest) ||
-    !Number.isFinite(previous)
-  ) {
-    return { text: '', tone: 'neutral' };
-  }
-  if (previous === 0) return { text: '', tone: 'neutral' };
-  const pct = ((latest - previous) / Math.abs(previous)) * 100;
-  // The card's own signed-percent grammar — a true minus, one decimal under
-  // ten — so a move reads the same in the chip and in the sheet it opens.
-  const signed = formatSignedPct(pct);
-  if (signed === 'unchanged') return { text: signed, tone: 'neutral' };
-  return { text: `${signed} vs prev`, tone: valenceOfChange(pct, riseMeansFor(indicator)) };
 }
 
 function findRelatedArticles(indicator: Indicator, articles: Article[]): Article[] {
@@ -90,10 +56,10 @@ export const EntitySheet = memo(function EntitySheet({
   const enter = makeStaggerEnter();
 
   const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
-  const previous = indicator?.previous ?? indicator?.values[indicator.values.length - 2];
-  const delta = indicator
-    ? formatDelta(indicator, latest, previous)
-    : { text: '', tone: 'neutral' as const };
+  // The gauges' grammar and the card's colour rule (`indicatorMove`): it was a
+  // one-step "vs prev" here while the card said thirty observations, so one
+  // indicator could read up on the card and down in its sheet.
+  const delta = useMemo(() => (indicator ? indicatorMove(indicator) : undefined), [indicator]);
   const handleTitle = indicator?.label ?? entity?.mention ?? '';
 
   return (
@@ -107,10 +73,10 @@ export const EntitySheet = memo(function EntitySheet({
                   {formatReading(latest, indicator.unit)}
                   {indicator.unit ? ` ${indicator.unit}` : ''}
                 </Text>
-                {delta.text ? (
-                  <Text variant="captionEmphasis" tone={delta.tone} style={styles.delta}>
-                    {delta.text}
-                  </Text>
+                {delta ? (
+                  <View style={styles.delta}>
+                    <DeltaChip delta={delta} scale={1} />
+                  </View>
                 ) : null}
               </Animated.View>
             )}

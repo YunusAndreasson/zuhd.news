@@ -1,3 +1,4 @@
+import { dataDecimals } from '@shared/chart/series';
 import type { TrendAnnotation, TrendBand, TrendHighlight, TrendSeries } from '@shared/types';
 import {
   Canvas,
@@ -506,6 +507,8 @@ export const TrendBlock = memo(function TrendBlock({
     if (scrubIdxJs < 0) return null;
     const v = primaryValues[scrubIdxJs];
     if (v === undefined) return null;
+    // The source's precision, the web chart's rule (`shared/chart/series.ts`).
+    const decimals = Math.min(dataDecimals(primaryValues), 4);
     // Multi-series readout: stack labels in the value field if more than one.
     const lines =
       normalizedSeries.length > 1
@@ -513,11 +516,11 @@ export const TrendBlock = memo(function TrendBlock({
             .map((s) => {
               const sv = s.values[scrubIdxJs];
               if (sv === undefined) return null;
-              return `${s.label}: ${formatBlockNumber(sv, unit)}`;
+              return `${s.label}: ${formatBlockNumber(sv, unit, decimals)}`;
             })
             .filter((l): l is string => l !== null)
             .join('\n')
-        : formatBlockNumber(v, unit);
+        : formatBlockNumber(v, unit, decimals);
     return {
       idx: scrubIdxJs,
       value: lines,

@@ -201,7 +201,7 @@ export const LIGHT_COLORS = {
   // but luminance-deepened to clear WCAG AA body (≥ 4.5:1) on cream `bg`.
   // Used by `tone="favorable|unfavorable|neutral"` on `<Text>` and by
   // sites that color body/caption text by sentiment (SourceRow,
-  // ChokepointSheet weather, DisambiguationSheet rows, etc.).
+  // DisambiguationSheet rows, etc.).
   toneFavorableText: '#3f6b48',
   toneUnfavorableText: '#884d51',
   toneNeutralText: '#475f70',

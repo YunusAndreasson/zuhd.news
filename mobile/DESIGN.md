@@ -144,7 +144,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ## Patterns
 
 ### Sheets
-- Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
+- Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `CountrySheet`, `SourcesSheet` are the references.
 - **`MapSheet` is the one sheet that is not a platform sheet, and must stay the only one.** It is the map screen's persistent story card, and a platform sheet is modal: it scrims the globe, caps Android at two detents it chooses, and cannot persist. It owns three rules that remove gesture conflicts instead of arbitrating them — at peek the card does not scroll, nothing in it bounces, and the pan decides ownership once per gesture and holds it. A second hand-built sheet is the regression; everything that opens *from* the map is a platform sheet.
 - **Sheets are platform sheets** — SwiftUI on iOS, Material3 `ModalBottomSheet` on Android, via `@expo/ui/community/bottom-sheet`. Three consequences, and all three are why code that used to exist no longer does:
   - `SheetHandle` is passed to `SheetLayout` as `handleComponent` but is **rendered as the sheet's first child**, not handed to the native sheet. Native sheets don't render a custom handle — the library reads only null-vs-non-null off that prop to decide whether to draw the platform's own indicator. `SheetLayout` pins it to `null` so our handle, its title, and the back chevron survive. Don't "fix" that back to `handleComponent={Handle}`; it silently deletes the title and the way multi-page sheets navigate.
@@ -154,7 +154,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through. Note the scroll views are plain React Native ones under the new library: a native sheet coordinates scrolling itself, so none of gorhom's gesture-arbitration wrappers are needed.
 - **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** The re-exported RN `ScrollView`/`FlatList` do not receive it from a wrapper. A sheet with explicit `snapPoints` gives its content a bounded column, so `flex: 1` is right — that's what `SheetSearchPage`'s list and `CountrySheet`'s `rankingWrap` use. A content-sized sheet gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
 - Prose sheet pages (About, privacy, contact) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy. External links go through `SheetLink` (`SheetContent.tsx`), which owns the underline + `bodyEmphasis` treatment so a link on About and a link on privacy cannot drift apart.
-- Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage`, `ChokepointSheet` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
+- Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
 - Nav rows and info rows in `MenuSheet` are the same control (padding, chevron, pushes a page) and share `label`. Don't size the secondary group down — the divider carries the hierarchy, and shrinking it drops the tap target under 44pt.
 - Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
@@ -276,10 +276,9 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   metal weights that define the nisab threshold.
 
 ### Blocks (`components/blocks/`)
-- Three data-display components, used directly by the sheets that need them:
-  `TrendBlock` and `SourceCaption` (`EntitySheet`, `ChokepointSheet`) and
-  `CompareBlock` (`ChokepointSheet`). Import the component; there is no
-  data-driven dispatcher.
+- Data-display components, used directly by the surfaces that need them:
+  `TrendBlock` and `SourceCaption` (`EntitySheet`, the cards). Import the
+  component; there is no data-driven dispatcher.
 - Every block accepts `variant: 'article' | 'context'` — full-bleed vs embedded sizing.
 - `blockContainerStyle` (in `blocks/shared.ts`) supplies the outer margin rhythm. Use it.
 - `blocks/locations-geo.ts` is not a block — it's the hi-res lake/river/sea

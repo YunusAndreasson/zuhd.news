@@ -8,7 +8,7 @@ import type {
 } from '@shared/types';
 import { indicatorObservation, isCurrentObservation, oldestObservation } from '../data-freshness';
 import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
-import { vesselClass } from '../vessel-classes';
+import { VESSEL_CLASSES } from '../vessel-classes';
 import {
   deltaFrom,
   formatCount,
@@ -230,6 +230,7 @@ function staplesCard(
     delta,
     changed,
     why: whyFor(analysis, wheat.id, wheat),
+    cited: analysis.get(wheat.id)?.relatedArticles,
     series: {
       values: wheat.values,
       periods: wheat.periods,
@@ -282,6 +283,7 @@ function indicatorCard(
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
     why: whyFor(analysis, indicator.id, indicator),
+    cited: analysis.get(indicator.id)?.relatedArticles,
     series: {
       values: indicator.values,
       periods: indicator.periods,
@@ -351,6 +353,7 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     // built and then silently dropped by `hasGraphAndAnalysis`, which is how
     // the card this column is documented as opening with never opened it.
     why: whyFor(analysis, bindingIndicator.id, bindingIndicator),
+    cited: analysis.get(bindingIndicator.id)?.relatedArticles,
     // `weight` draws the bar under each row, and the bar is the point: the
     // two thresholds differ by an order of magnitude, and "set by silver"
     // is a claim a reader can now see rather than take on trust.
@@ -442,6 +445,7 @@ function metalsPairCard(
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
     why: whyFor(analysis, gold.id, gold),
+    cited: analysis.get(gold.id)?.relatedArticles,
     series: {
       values: ratioSeries,
       periods: gold.periods,
@@ -596,6 +600,7 @@ function fxMoverCards(
         // The chip says the move and the desk's paragraph says why; nothing
         // is left for a third line to add.
         why: whyFor(analysis, indicator.id, indicator),
+        cited: analysis.get(indicator.id)?.relatedArticles,
         series: {
           values: indicator.values,
           periods: indicator.periods,
@@ -635,9 +640,9 @@ function straitWhy(c: Chokepoint): string | undefined {
 }
 
 /** The distance from a strait's own 90-day normal, as a chip. The valence is
- *  one-sided and `chokepointValence` says why; `ChokepointSheet` reads the
- *  same function, so the sheet a strait card opens can no longer call the same
- *  strait quiet while the card calls it disrupted. */
+ *  one-sided and `chokepointValence` says why; the globe's strait mark reads the
+ *  same function, so a mark can no longer call a strait quiet while its card
+ *  calls it disrupted. */
 function straitDelta(d: number): CardDelta | undefined {
   const magnitude = formatMagnitudePct(d * 100);
   const window = 'vs its 90-day normal';
@@ -678,29 +683,43 @@ const STRAIT_CURRENT_FALL = 0.3;
 const CHOKEPOINT_CURRENT_DAYS = 10;
 
 /**
- * The vessel class this strait is watched for, beside the all-ships reading.
+ * What the strait's own sheet used to add under its chart, as card figures:
+ * every vessel class the strait carries against its own normal, the primary
+ * class first, and a sea-state line when the waves crossed the small-craft
+ * threshold. A tap on the strait's globe mark opened that sheet and a tap on
+ * its gauge opened this card, so the same strait had two answers depending on
+ * where the reader touched. There is one now, and it carries both.
  *
- * The chart is total traffic, because that is the only history PortWatch
- * publishes; but the story of Hormuz is tankers and the story of Bab el-Mandeb
- * is container ships, and the pipeline has been shipping that class's own
- * seven-day average and distance from normal all along — read only by the
- * globe sheet. One row, and only where the class is not the total itself:
- * "all ships" under a reading of all ships is the same fact twice.
+ * A class that barely uses the strait (under half a ship a day, now and
+ * normally) is left out: "0.1 a day, +100% vs its normal" is noise that looks
+ * like news. The total is the reading, so it is not a figure.
  */
-function straitClassFigure(c: Chokepoint): CardFigure | undefined {
-  const field = c.primaryField;
-  if (field === 'n_total') return undefined;
-  const cls = vesselClass(field);
-  const v = c.last7Avg[field];
-  const d = c.delta7vs90[field];
-  if (!cls || v == null || d == null || !Number.isFinite(v) || !Number.isFinite(d)) {
-    return undefined;
+function straitFigures(c: Chokepoint): CardFigure[] {
+  const figures: CardFigure[] = [];
+  const classes = [...VESSEL_CLASSES].sort(
+    (a, b) => Number(b.field === c.primaryField) - Number(a.field === c.primaryField),
+  );
+  for (const cls of classes) {
+    const v = c.last7Avg[cls.field];
+    const base = c.baseline90Avg[cls.field];
+    const d = c.delta7vs90[cls.field];
+    if (v == null || d == null || !Number.isFinite(v) || !Number.isFinite(d)) continue;
+    if (base != null && base < 0.5 && v < 0.5) continue;
+    figures.push({
+      label: cls.plural,
+      value: `${formatQuantity(v)} a day`,
+      note: formatVsNormal(d),
+    });
   }
-  return {
-    label: cls.plural,
-    value: `${formatQuantity(v)} a day`,
-    note: formatVsNormal(d),
-  };
+  const weather = c.weather;
+  if (weather?.alert) {
+    figures.push({
+      label: 'seas',
+      value: weather.alert === 'very_rough' ? 'very rough' : 'rough',
+      note: `${weather.maxWave24hM.toFixed(1)} m peak in 24h`,
+    });
+  }
+  return figures;
 }
 
 /** Smooth noisy daily ship counts into the same seven-day measure used by the
@@ -799,9 +818,7 @@ function straitCards(
     // are a figure rather than a second chart: the card's subject is the
     // traffic and its history, and the odds are one number that says what the
     // market thinks happens next.
-    const figures: CardFigure[] = [];
-    const cls = straitClassFigure(c);
-    if (cls) figures.push(cls);
+    const figures: CardFigure[] = straitFigures(c);
     if (odds) figures.push({ label: odds.label, value: odds.value });
     return {
       id: `strait-${c.id}`,
@@ -828,6 +845,9 @@ function straitCards(
         reference: base != null ? { value: base, label: 'normal' } : undefined,
       },
       related: c.relatedArticles,
+      // The build ranks these by the desk's citations, falling back to tag
+      // matches, which is the list the strait's sheet re-derived by keyword.
+      cited: c.relatedArticles,
       sourceLabel: odds ? 'IMF PortWatch · Polymarket' : 'IMF PortWatch',
     };
   });
@@ -838,8 +858,8 @@ function straitCards(
  *
  * It was a good card in the wrong medium. The globe on `news` already draws
  * all eleven as ambient rings, positions them where they actually are, and
- * opens `ChokepointSheet` on a tap — which carries the blurb, the standing
- * paragraph, what is happening there now, the weather and the full series.
+ * opens the strait's own card on a tap — which carries what is happening there
+ * now, every vessel class, the weather and the series.
  * A flat table of the same eleven names, sorted, was a worse version of a
  * thing the reader could already touch, and it cost a whole screen in a
  * column that has to earn every one.
@@ -964,6 +984,7 @@ function beliefCards(
         // 30 last week. Two numbers the reader had already seen, with dates.
         changed: dayMove,
         why: whyFor(analysis, indicator.id, indicator),
+        cited: analysis.get(indicator.id)?.relatedArticles,
         series: {
           values: indicator.values,
           periods: indicator.periods,

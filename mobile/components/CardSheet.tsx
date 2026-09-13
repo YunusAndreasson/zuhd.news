@@ -37,6 +37,8 @@ interface CardSheetProps extends BaseSheetProps {
   card: SwipeCard | null;
   /** The resting story card's height: where the card first opens. */
   peekHeight: number;
+  /** Opens a story the card cites. */
+  onStoryPress?: (slug: string) => void;
 }
 
 export const CardSheet = memo(function CardSheet({
@@ -45,6 +47,7 @@ export const CardSheet = memo(function CardSheet({
   card,
   peekHeight,
   onDismiss,
+  onStoryPress,
 }: CardSheetProps) {
   const snapPoints = useMemo(
     () => [Math.round(peekHeight), `${Math.round(LAYOUT.sheetMaxFraction * 100)}%`],
@@ -60,7 +63,9 @@ export const CardSheet = memo(function CardSheet({
       index={0}
     >
       <SheetScrollView bottomInset={bottomInset} contentContainerStyle={styles.flush}>
-        {card ? <CardView card={card} /> : null}
+        {/* Keyed by card, so the next card mounts fresh: its chart draws in and
+            measures its own width, instead of inheriting the last card's. */}
+        {card ? <CardView key={card.id} card={card} onStoryPress={onStoryPress} /> : null}
       </SheetScrollView>
     </SheetLayout>
   );

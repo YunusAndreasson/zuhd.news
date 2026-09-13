@@ -566,7 +566,7 @@ describe('buildInstrumentCards', () => {
       'strait-dover',
     ]);
     // The eleven-strait comparison table is gone. The globe on `news` draws
-    // all eleven as tappable rings and `ChokepointSheet` says more about any
+    // all eleven as tappable rings and each strait's card says more about any
     // of them than a flat sorted list of the same names could.
     expect(find(cards, 'straits')).toBeUndefined();
   });

@@ -4,7 +4,6 @@ import type {
   Article,
   ArticleSource,
   Category,
-  Chokepoint,
   ConflictEvent,
   Entity,
   GdacsAlert,
@@ -35,7 +34,6 @@ import {
   type BriefingStatus,
 } from '../components/BriefingChrome';
 import { CardSheet } from '../components/CardSheet';
-import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
 import { type CountryHazard, CountrySheet } from '../components/CountrySheet';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
@@ -174,7 +172,6 @@ export default function HomeScreen() {
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
   const sourcesSheetRef = useRef<BottomSheetMethodsRef>(null);
   const countrySheetRef = useRef<BottomSheetMethodsRef>(null);
-  const chokepointSheetRef = useRef<BottomSheetMethodsRef>(null);
   const disasterSheetRef = useRef<BottomSheetMethodsRef>(null);
   const conflictSheetRef = useRef<BottomSheetMethodsRef>(null);
   const disambiguationSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -240,7 +237,6 @@ export default function HomeScreen() {
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
   const [sheetDivergence, setSheetDivergence] = useState<number | null>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
-  const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
   const [activeAlert, setActiveAlert] = useState<GdacsAlert | null>(null);
   const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
@@ -375,6 +371,9 @@ export default function HomeScreen() {
    * here because its index did something, which is the same rule every card
    * in the app is admitted under.
    */
+  const stripRef = useRef(strip);
+  stripRef.current = strip;
+
   const marketMarks = useMemo(
     () =>
       strip
@@ -749,10 +748,14 @@ export default function HomeScreen() {
         return;
       }
       if (result.chokepointId) {
-        const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
-        if (cp) {
-          setActiveChokepoint(cp);
-          chokepointSheetRef.current?.present();
+        // The strait's card, the same one its gauge opens. The mark opened a
+        // sheet of its own with a different chart, and a strait read one way
+        // from the top of the screen and another from the globe.
+        const id = `strait-${result.chokepointId}`;
+        const card = rankedRef.current.find((c) => c.id === id);
+        if (card) {
+          setSelectedGauge(stripRef.current.find((item) => item.id === id) ?? null);
+          openCard(card);
         }
         return;
       }
@@ -918,7 +921,6 @@ export default function HomeScreen() {
     indexOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
-    activeChokepoint !== null ||
     activeAlert !== null ||
     activeConflict !== null ||
     activeCard !== null ||
@@ -1097,13 +1099,20 @@ export default function HomeScreen() {
   const handleDisasterDismiss = useCallback(() => setActiveAlert(null), []);
   const handleConflictDismiss = useCallback(() => setActiveConflict(null), []);
   const handleChooserDismiss = useCallback(() => setChooserCandidates([]), []);
-  const handleChokepointDismiss = useCallback(() => setActiveChokepoint(null), []);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
   const handleCardDismiss = useCallback(() => {
     setActiveCard(null);
     setSelectedGauge(null);
   }, []);
+  const handleCardStoryPress = useCallback(
+    (slug: string) => {
+      cardSheetRef.current?.dismiss();
+      // The category is re-resolved from the feed; this is only the fallback.
+      handleSelectArticle(slug, 'politics');
+    },
+    [handleSelectArticle],
+  );
   const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
   const handleIndexDismiss = useCallback(() => setIndexOpen(false), []);
@@ -1131,13 +1140,6 @@ export default function HomeScreen() {
       handleCountryPress(candidate);
     },
     [handleCountryPress],
-  );
-  const handleChokepointArticlePress = useCallback(
-    (slug: string, category: Category) => {
-      chokepointSheetRef.current?.dismiss();
-      handleSelectArticle(slug, category);
-    },
-    [handleSelectArticle],
   );
   const handleOverlayArticlePress = useCallback(
     (slug: string, category: Category) => {
@@ -1519,6 +1521,7 @@ export default function HomeScreen() {
         card={activeCard}
         peekHeight={layout.peek}
         onDismiss={handleCardDismiss}
+        onStoryPress={handleCardStoryPress}
       />
 
       <InstrumentsSheet
@@ -1579,15 +1582,6 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         onDismiss={handleChooserDismiss}
         onSelect={handleChooserSelect}
-      />
-
-      <ChokepointSheet
-        sheetRef={chokepointSheetRef}
-        chokepoint={activeChokepoint}
-        articles={river}
-        bottomInset={insets.bottom}
-        onDismiss={handleChokepointDismiss}
-        onArticlePress={handleChokepointArticlePress}
       />
 
       <EntitySheet

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   // `lg`, not `md`: the sheet rhythm has two tiers — `md` (16) separates
   // paragraphs inside one thought, `lg` (24) separates labeled sections. Every
   // section here carries its own heading, so it belongs to the section tier,
-  // the same one SheetAboutPage, ChokepointSheet and EntitySheet use. At `md`
+  // the same one SheetAboutPage and EntitySheet use. At `md`
   // the privacy page sat a tier tighter than every other sheet in the app.
   section: {
     marginTop: SPACING.lg,

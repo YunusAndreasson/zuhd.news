@@ -63,8 +63,17 @@ const PREFIX_UNITS = new Set(['$', '€', '£', '¥', '₹']);
  *  Grouping is applied to fractions too. `toFixed(1)` was used for those and
  *  it drops the separators, so one chart could show `78317.8` above `62,802`
  *  — same axis, same series, two different ways of writing a number. */
-export function formatBlockNumber(n: number, unit?: string): string {
-  const s = n.toLocaleString(undefined, { maximumFractionDigits: 1 });
+export function formatBlockNumber(n: number, unit?: string, decimals?: number): string {
+  // `decimals` is the source's own precision (`dataDecimals`), for a readout of
+  // one observation: at one decimal Brent's 124.24 and 124.16 both read 124.2,
+  // and the scrubber showed the same number on two different days.
+  const s =
+    decimals === undefined
+      ? n.toLocaleString(undefined, { maximumFractionDigits: 1 })
+      : n.toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
   if (!unit) return s;
   if (PREFIX_UNITS.has(unit)) return `${unit}${s}`;
   if (unit === '%') return `${s}${unit}`;

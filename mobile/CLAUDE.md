@@ -290,7 +290,13 @@ about what a card may say is about the card, not where it is shown.
   prints `current ·` before the kicker — an ink step, never a colour, because the
   chromatic budget is spent on `CardDelta`.
 - **Straits are graphs, not a duplicate table.** `MiniGlobe` still locates all
-  eleven and opens their detailed sheets; the concrete `straits` pool gives
+  eleven, and a tap on one opens that strait's card — the one its gauge opens.
+  It opened a `ChokepointSheet` of its own until 2026-09-13, with a raw daily
+  chart, the vessel classes and the weather, while the gauge opened a card with
+  a seven-day-average chart and the odds: one strait, two answers, chosen by
+  where the reader touched. The card carries both now (`straitFigures`, every
+  class against its normal, primary first, and a sea-state line) and the sheet
+  is deleted. The concrete `straits` pool gives
   each usable total-traffic history its own swipe piece inside `shipping`. A fall of
   at least 30% earns `current`; otherwise it remains reference. Ranking uses
   current-news relevance and unusual movement so a small percentage does not
@@ -303,10 +309,10 @@ about what a card may say is about the card, not where it is shown.
     `isCurrentObservation`; a stalled fetch still ages out of it.
   - **The 90-day normal is a line on the chart, not a sentence under it**
     (`CardSeries.reference`, a dashed hairline labelled on the first stretch of it the series leaves clear), and
-    the strait's primary vessel class — tankers at Hormuz, container ships at
-    Bab el-Mandeb — is a secondary figure with its own seven-day average and
-    distance from normal. Both were in the payload all along; only the globe
-    sheet read them.
+    every vessel class — tankers at Hormuz first, container ships at Bab
+    el-Mandeb first — is a secondary figure with its own seven-day average and
+    distance from normal. Both were in the payload all along; only the old
+    globe sheet read them.
 - **A single FX threshold across this basket is not one rule.** It holds both
   the Lebanese pound and the euro, so a bar calibrated for volatile currencies
   silently excludes stable ones: measured over twelve consecutive snapshots the
@@ -440,9 +446,17 @@ about what a card may say is about the card, not where it is shown.
 - **Android's back puts a grown story down before it leaves the app.** The
   map is the root screen, so without `useHardwareBack` on the full detent the
   key a reader uses to get back down to the globe closed zuhd.
-- **A card's chart must not steal a swipe.** `TrendBlock`'s scrubber ate five
-  page swipes in a row before `scrubbable={false}` existed; `CardView` still
-  passes it.
+- **A card's chart can be read off, and draws what its chip and its analysis
+  refer to.** `scrubbable={false}` was right while cards were pages — the
+  scrubber ate five page swipes in a row — and wrong once a card became a sheet
+  whose only gesture is vertical: the most-reached chart in the app could not be
+  read. `CardTrend` (`lib/cards/card-chart.ts`, tested) also draws the value the
+  chip's window opened on (`since Jul 24`) as a dashed rule, and the stories the
+  desk cited (`card.cited`, from `/api/analysis.json` or the strait's ranked
+  list) as numbered dots that match the `in the news` rows under the analysis. A
+  readout prints the source's precision (`dataDecimals`, the web chart's rule),
+  not one decimal. `EntitySheet` uses the same chip grammar (`indicatorMove`)
+  instead of a one-step `vs prev`.
 - **A card is one column, scrolled by its sheet, and opens as high as a
   resting story.** `CardFrame` was a fixed-height page with its analysis in an
   inner `ScrollView` — the full-screen pager's shape, where a vertical drag had

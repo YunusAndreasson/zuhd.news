@@ -1,12 +1,15 @@
+import type { RelatedArticleRef } from '@shared/types';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
+import { useTheme } from '../../hooks/useTheme';
+import { MAX_CITED } from '../../lib/cards/card-chart';
 import type { DeckCard } from '../../lib/cards/types';
 import { observationDate } from '../../lib/data-freshness';
 import { useOpenLink } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { DeltaChip } from '../DeltaChip';
-import { Text } from '../primitives';
+import { Pressable, Text } from '../primitives';
 
 /**
  * The card anatomy, as a component.
@@ -98,9 +101,58 @@ interface CardFrameProps {
   card: DeckCard;
   /** The block that makes this card its kind — a chart, rows, figures. */
   children?: ReactNode;
+  /** Opens one of the stories the card cites. The list is not drawn without it. */
+  onStoryPress?: (slug: string) => void;
 }
 
-export const CardFrame = memo(function CardFrame({ card, children }: CardFrameProps) {
+/**
+ * The stories the desk's analysis was grounded in, numbered as the chart marks
+ * them. The paragraph above says why the line moved; these are where it says
+ * so, and a reader who wants the story behind a dot on the line reaches it in
+ * one tap instead of searching the day for it.
+ */
+const CitedStories = memo(function CitedStories({
+  cited,
+  onPress,
+}: {
+  cited: RelatedArticleRef[];
+  onPress: (slug: string) => void;
+}) {
+  const { colors } = useTheme();
+  return (
+    <View style={styles.cited}>
+      <Text variant="labelXs" tone="secondary">
+        in the news
+      </Text>
+      {cited.slice(0, MAX_CITED).map((story, i) => (
+        <Pressable
+          key={story.slug}
+          onPress={() => onPress(story.slug)}
+          accessibilityRole="link"
+          accessibilityLabel={`${story.title}${story.dateFormatted ? `, ${story.dateFormatted}` : ''}`}
+          accessibilityHint="Opens the story on the map"
+          style={[styles.citedRow, { borderBottomColor: colors.rule }]}
+        >
+          <Text variant="labelXs" tone="accent" style={styles.citedNumber}>
+            {i + 1}
+          </Text>
+          <View style={styles.citedText}>
+            <Text variant="rowTitle" numberOfLines={2}>
+              {story.title}
+            </Text>
+            {story.dateFormatted ? (
+              <Text variant="caption" tone="secondary">
+                {story.dateFormatted}
+              </Text>
+            ) : null}
+          </View>
+        </Pressable>
+      ))}
+    </View>
+  );
+});
+
+export const CardFrame = memo(function CardFrame({ card, children, onStoryPress }: CardFrameProps) {
   const observed = observationDate(card.asOf);
   const openLink = useOpenLink();
 
@@ -180,6 +232,10 @@ export const CardFrame = memo(function CardFrame({ card, children }: CardFramePr
           </Text>
         ) : null}
 
+        {card.cited && card.cited.length > 0 && onStoryPress ? (
+          <CitedStories cited={card.cited} onPress={onStoryPress} />
+        ) : null}
+
         {card.sourceLabel ? (
           <View style={styles.source}>
             <SourceCaption label={card.sourceLabel} />
@@ -235,5 +291,16 @@ const styles = StyleSheet.create({
   analysis: { marginTop: SPACING.lg },
   supporting: { marginTop: SPACING.sm },
   source: { marginTop: SPACING.md },
+  cited: { marginTop: SPACING.lg },
+  citedRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: SPACING.sm,
+    paddingVertical: SPACING.smPlus,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  // A fixed column, so the titles align whether the list reaches 3 or not.
+  citedNumber: { width: SPACING.md, fontVariant: ['tabular-nums'] },
+  citedText: { flex: 1, minWidth: 0 },
   sourceLink: { marginTop: SPACING.xs, textAlign: 'right' },
 });

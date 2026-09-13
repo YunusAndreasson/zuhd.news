@@ -111,6 +111,10 @@ interface CardBase {
   why?: string;
   /** News ties used to rank the card; not repeated on its visible surface. */
   related?: RelatedArticleRef[];
+  /** The stories the desk's analysis was grounded in, most relevant first —
+   *  listed under the analysis and marked on the chart by their number. Not
+   *  `related`, which ranks the card by tag matches and is never shown. */
+  cited?: RelatedArticleRef[];
   /** Attribution, rendered through `SourceCaption`. */
   sourceLabel?: string;
   /** Somewhere to verify the claim: a Polymarket event, an OHCHR page. */
