@@ -87,6 +87,19 @@ describe('gaugeMove', () => {
     expect(gaugeMove(c)?.delta.valence).toBe('favorable');
   });
 
+  it("colours the week from the series' table even when the card's own chip is flat", () => {
+    // Brent unchanged over its thirty observations, down 6% on the week: a fall
+    // in something whose rise hurts is favorable, not slate.
+    const c = card('brent', [100, 1, 1, 1, 1, 1, 1, 94], week, {
+      delta: { direction: 'flat', magnitude: 'unchanged', valence: 'neutral' },
+    });
+    expect(gaugeMove(c)?.delta.valence).toBe('favorable');
+    const fx = card('fx-rub-mover', [80, 1, 1, 1, 1, 1, 1, 88], week, {
+      delta: { direction: 'flat', magnitude: 'unchanged', valence: 'neutral' },
+    });
+    expect(gaugeMove(fx)?.delta.valence).toBe('unfavorable');
+  });
+
   it('quotes the currency, not the published rate', () => {
     // 80 → 88 rubles to the dollar is the ruble down 9.1%, not up 10%.
     const c = card('fx-rub-mover', [80, 1, 1, 1, 1, 1, 1, 88], week, {

@@ -68,6 +68,7 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import {
+  API_BASE,
   CATEGORIES,
   categoryMarkColor,
   EASING,
@@ -90,10 +91,11 @@ import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
-import { buildInstrumentCards } from '../lib/cards/markets';
+import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
 import { computeDeckLayout, grownGlobeTransform, grownReach } from '../lib/deck-layout';
+import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
@@ -107,6 +109,7 @@ import {
 import { useOpenLink } from '../lib/open-link';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { maybeRequestReview } from '../lib/store-review';
+import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
 
 /**
@@ -446,6 +449,8 @@ export default function HomeScreen() {
   generatedRef.current = generated;
   const chokepointsRef = useRef(chokepoints);
   chokepointsRef.current = chokepoints;
+  const trendsRef = useRef(trends);
+  trendsRef.current = trends;
   const gdacsAlertsRef = useRef(gdacsAlerts);
   gdacsAlertsRef.current = gdacsAlerts;
   const conflictEventsRef = useRef(conflictEvents);
@@ -752,10 +757,17 @@ export default function HomeScreen() {
         // sheet of its own with a different chart, and a strait read one way
         // from the top of the screen and another from the globe.
         const id = `strait-${result.chokepointId}`;
-        const card = rankedRef.current.find((c) => c.id === id);
+        const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
+        // Built from the strait alone when the deck has none: the marks come
+        // from `chokepoints.json`, the deck waits for `trends.json`.
+        const card =
+          rankedRef.current.find((c) => c.id === id) ??
+          (cp ? straitCardFor(cp, trendsRef.current, new Date()) : null);
         if (card) {
           setSelectedGauge(stripRef.current.find((item) => item.id === id) ?? null);
           openCard(card);
+        } else if (cp) {
+          toastRef.current?.show(cp.name);
         }
         return;
       }
@@ -1106,12 +1118,31 @@ export default function HomeScreen() {
     setSelectedGauge(null);
   }, []);
   const handleCardStoryPress = useCallback(
-    (slug: string) => {
+    async (slug: string) => {
+      const inFeed = CATEGORIES.some((c) => groupedRef.current[c].some((a) => a.slug === slug));
+      if (inFeed) {
+        cardSheetRef.current?.dismiss();
+        // The category is re-resolved from the feed.
+        handleSelectArticle(slug, 'politics');
+        return;
+      }
+      // A card cites a fortnight of coverage and the feed holds about a day
+      // and a half, so most cited stories have to be fetched. The card stays
+      // open until the story is in hand: a failed tap loses the reader nothing.
+      try {
+        const story = await fetchJson(`${API_BASE}/api/story/${slug}.json`, isStoryPayload);
+        const resolved = articleFromStory(story);
+        if (!resolved) throw new Error('unreadable story');
+        pinStory(slug);
+        injectArticle(resolved.article, resolved.category);
+      } catch {
+        toastRef.current?.show('Could not open that story');
+        return;
+      }
       cardSheetRef.current?.dismiss();
-      // The category is re-resolved from the feed; this is only the fallback.
-      handleSelectArticle(slug, 'politics');
+      focusStory(slug, { grow: true });
     },
-    [handleSelectArticle],
+    [focusStory, handleSelectArticle, injectArticle, pinStory],
   );
   const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);

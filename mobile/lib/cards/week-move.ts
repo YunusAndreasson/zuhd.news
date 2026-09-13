@@ -111,8 +111,10 @@ export function weekMove(
   return null;
 }
 
-/** What a rise means for this card, read back off the chip it already carries,
- *  so the gauge and the card cannot colour the same direction differently. */
+/** What a rise means, read back off the card's own chip. The fallback only,
+ *  for composite cards with no row in `RISE_MEANS` (the staples, the metals):
+ *  a flat or slate chip over the card's long window says nothing about the
+ *  week, and reading it first turned a 6% weekly fall in Brent slate. */
 function riseMeansOf(delta: CardDelta | undefined): RiseMeans {
   if (!delta || delta.direction === 'flat' || delta.valence === 'neutral') return null;
   if (delta.direction === 'up') return delta.valence;
@@ -154,9 +156,17 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
     };
   }
   const direction = pct > 0 ? 'up' : 'down';
+  // The table first (`riseMeansFor`), as everywhere else. A currency card
+  // quotes the currency, whose rise is good news, so it carries that literal;
+  // a strait is coloured by its own one-sided rule.
   const valence = card.id.startsWith('strait-')
     ? chokepointValence(pct / 100)
-    : valenceOf(direction, riseMeansOf(card.delta));
+    : valenceOf(
+        direction,
+        card.id.startsWith('fx-')
+          ? 'favorable'
+          : (riseMeansFor({ id: card.id }) ?? riseMeansOf(card.delta)),
+      );
   return { delta: { direction, magnitude, window, valence, size }, points: move.points };
 }
 

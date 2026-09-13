@@ -803,54 +803,87 @@ function straitCards(
         c.series.total.length === c.series.periods.length,
     )
     .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-  return ranked.map(({ c, d }) => {
-    const last7 = c.last7Avg.n_total;
-    const base = c.baseline90Avg.n_total;
-    const traffic = trailingSevenDayAverage(c.series.total);
-    const periods = c.series.periods.slice(c.series.periods.length - traffic.length);
-    // The payload's published seven-day reading is authoritative. Using it at
-    // the endpoint prevents the headline and graph from reporting different
-    // quantities. Preserve its precision: rounding only the chart made a
-    // headline of 0.1 ships a day terminate at 0 on the graph.
-    if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
-    const odds = straitOdds(snapshot, c);
-    // The class row first, then the forecast beside the measurement. The odds
-    // are a figure rather than a second chart: the card's subject is the
-    // traffic and its history, and the odds are one number that says what the
-    // market thinks happens next.
-    const figures: CardFigure[] = straitFigures(c);
-    if (odds) figures.push({ label: odds.label, value: odds.value });
-    return {
-      id: `strait-${c.id}`,
-      kind: 'reading' as const,
-      // A large fall in an old observation remains important reference, but
-      // it is not a current development. The date still appears on every card.
-      lead: d <= -STRAIT_CURRENT_FALL && isCurrentObservation(c.asOf, now, CHOKEPOINT_CURRENT_DAYS),
-      asOf: c.asOf,
-      title: c.name,
-      reading: last7 == null ? '—' : formatQuantity(last7),
-      readingNote: 'ships a day',
-      delta: straitDelta(d),
-      why: straitWhy(c),
-      figures: figures.length > 0 ? figures : undefined,
-      series: {
-        values: traffic,
-        periods,
-        label: 'seven-day average, all ships',
-        unit: 'a day',
-        highlight: 'last' as const,
-        // The normal the chip measures against, on the chart it is measured
-        // on. This was a sentence — "Its own 90-day normal is N ships a day"
-        // — which put the one number the line needed a screen-line below it.
-        reference: base != null ? { value: base, label: 'normal' } : undefined,
-      },
-      related: c.relatedArticles,
-      // The build ranks these by the desk's citations, falling back to tag
-      // matches, which is the list the strait's sheet re-derived by keyword.
-      cited: c.relatedArticles,
-      sourceLabel: odds ? 'IMF PortWatch · Polymarket' : 'IMF PortWatch',
-    };
-  });
+  return ranked.map(({ c, d }) => straitCard(c, d, snapshot, now));
+}
+
+/**
+ * One strait's card, from the strait's own data, for a tap on its globe mark
+ * when the deck has no card for it. The deck is built only once `trends.json`
+ * has loaded, while the strait marks come from `chokepoints.json` alone, so a
+ * mark drawn before trends arrived (or offline, or after trends failed) was a
+ * tappable mark that did nothing. Without a snapshot the card simply carries no
+ * odds. Null when the strait has no usable history to chart.
+ */
+export function straitCardFor(
+  c: Chokepoint,
+  snapshot: TrendsSnapshot | null,
+  now: Date,
+): (ReadingCard & { series: CardSeries }) | null {
+  const d = totalTrafficDelta(c);
+  if (
+    d === null ||
+    typeof c.last7Avg.n_total !== 'number' ||
+    !Number.isFinite(c.last7Avg.n_total) ||
+    c.series.total.length < 2 ||
+    c.series.total.length !== c.series.periods.length
+  ) {
+    return null;
+  }
+  return straitCard(c, d, snapshot, now);
+}
+
+function straitCard(
+  c: Chokepoint,
+  d: number,
+  snapshot: TrendsSnapshot | null,
+  now: Date,
+): ReadingCard & { series: CardSeries } {
+  const last7 = c.last7Avg.n_total;
+  const base = c.baseline90Avg.n_total;
+  const traffic = trailingSevenDayAverage(c.series.total);
+  const periods = c.series.periods.slice(c.series.periods.length - traffic.length);
+  // The payload's published seven-day reading is authoritative. Using it at
+  // the endpoint prevents the headline and graph from reporting different
+  // quantities. Preserve its precision: rounding only the chart made a
+  // headline of 0.1 ships a day terminate at 0 on the graph.
+  if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
+  const odds = snapshot ? straitOdds(snapshot, c) : undefined;
+  // The class row first, then the forecast beside the measurement. The odds
+  // are a figure rather than a second chart: the card's subject is the
+  // traffic and its history, and the odds are one number that says what the
+  // market thinks happens next.
+  const figures: CardFigure[] = straitFigures(c);
+  if (odds) figures.push({ label: odds.label, value: odds.value });
+  return {
+    id: `strait-${c.id}`,
+    kind: 'reading' as const,
+    // A large fall in an old observation remains important reference, but
+    // it is not a current development. The date still appears on every card.
+    lead: d <= -STRAIT_CURRENT_FALL && isCurrentObservation(c.asOf, now, CHOKEPOINT_CURRENT_DAYS),
+    asOf: c.asOf,
+    title: c.name,
+    reading: last7 == null ? '—' : formatQuantity(last7),
+    readingNote: 'ships a day',
+    delta: straitDelta(d),
+    why: straitWhy(c),
+    figures: figures.length > 0 ? figures : undefined,
+    series: {
+      values: traffic,
+      periods,
+      label: 'seven-day average, all ships',
+      unit: 'a day',
+      highlight: 'last' as const,
+      // The normal the chip measures against, on the chart it is measured
+      // on. This was a sentence — "Its own 90-day normal is N ships a day"
+      // — which put the one number the line needed a screen-line below it.
+      reference: base != null ? { value: base, label: 'normal' } : undefined,
+    },
+    related: c.relatedArticles,
+    // The build ranks these by the desk's citations, falling back to tag
+    // matches, which is the list the strait's sheet re-derived by keyword.
+    cited: c.relatedArticles,
+    sourceLabel: odds ? 'IMF PortWatch · Polymarket' : 'IMF PortWatch',
+  };
 }
 
 /*
