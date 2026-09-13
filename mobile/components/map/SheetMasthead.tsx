@@ -4,6 +4,7 @@ import { type SharedValue, useAnimatedReaction, useSharedValue } from 'react-nat
 import { PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
+import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { MASTHEAD_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
 import { Icon, IconButton, Text } from '../primitives';
@@ -20,10 +21,10 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  *  2. **`now · …`** while a live Red alert exists. Alerts never enter the deck
  *     (the camera track is stories only), so this line is where a hazard with
  *     no article yet reaches the sheet. It opens the alert.
- *  3. **A segmented track and a list button** otherwise: one segment per story,
- *     lit up to the one on the card. Drag along it to preview a story's place
- *     (`12 of 48` floats over the finger) and lift to jump there; tap to jump.
- *     The list button opens every story as a list.
+ *  3. **A segmented track, listen and the list** otherwise: one segment per
+ *     story, lit up to the one on the card. Drag along it to preview a story's
+ *     place (`12 of 48` floats over the finger) and lift to jump there; tap to
+ *     jump. Listen plays the day's briefing; the list opens every story.
  *
  * **The track is the status; nothing restates it.** It was `3 of 48 · 12 found
  * ━━━ all news ›` — the position twice (digits and bar), the found count a
@@ -33,10 +34,12 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  * (the row's label) and the index sheet's. The list icon is the signifier that
  * the row opens the list — the one thing the track cannot say.
  *
- * **Nothing that plays sits beside it.** For one build the listen button led
- * this row, and a play button next to a progress bar is that bar's play head —
- * while the briefing's own player has a second progress bar. Listen lives in
- * the top bar.
+ * **Listen sits with the list, at the far end from the track.** For one build
+ * it led this row, right against the start of the track, and a play button
+ * touching a progress bar is that bar's play head. Beside the list button it is
+ * one of the row's two doors — the day's stories as a list, the day's stories
+ * as audio. It left the top bar so the gauges could run to the edge. Absent
+ * rather than disabled when there is no briefing, and while the player is up.
  *
  * **The track follows the finger** twice over: its fill reads the deck's own
  * `progress` on the UI thread, so it moves with a swipe on the card, and it is
@@ -65,6 +68,10 @@ export const SheetMasthead = memo(function SheetMasthead({
   onPress,
   onAlertPress,
   onSeek,
+  listenAvailable = false,
+  listenResumable = false,
+  listenDuration,
+  onListenPress,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
@@ -84,6 +91,11 @@ export const SheetMasthead = memo(function SheetMasthead({
   onAlertPress?: () => void;
   /** Jump to a story from the track. */
   onSeek?: (index: number) => void;
+  /** Today's briefing exists and its player is not already up. */
+  listenAvailable?: boolean;
+  listenResumable?: boolean;
+  listenDuration?: number;
+  onListenPress?: () => void;
 }) {
   const { colors } = useTheme();
   const showingAlert = !refreshing && !!alert;
@@ -147,6 +159,7 @@ export const SheetMasthead = memo(function SheetMasthead({
   if (count <= 0) return null;
 
   const found = progress?.found ?? 0;
+  const listenMinutes = formatAudioDurationMinutes(listenDuration);
   const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${found > 0 ? `, ${found} found on the globe` : ''}`;
 
   return (
@@ -169,6 +182,19 @@ export const SheetMasthead = memo(function SheetMasthead({
       >
         <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} />
       </ScrubBar>
+      {listenAvailable && onListenPress ? (
+        <IconButton
+          onPress={onListenPress}
+          haptic="none"
+          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+          accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}` : ''}`}
+          accessibilityHint={
+            listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+          }
+        >
+          <Icon name="play" size="sm" tone="default" />
+        </IconButton>
+      ) : null}
       {onPress ? (
         <IconButton
           onPress={onPress}
@@ -184,6 +210,9 @@ export const SheetMasthead = memo(function SheetMasthead({
 
 /** The track's thickness: a rule you can see, not a control you can grab. */
 const TRACK = 3;
+/** The listen button's diameter: a 14pt glyph with room around it, as tall as
+ *  the row. */
+const LISTEN_SIZE = MASTHEAD_ROW;
 
 const styles = StyleSheet.create({
   row: {
@@ -195,6 +224,15 @@ const styles = StyleSheet.create({
     minHeight: MASTHEAD_ROW + SPACING.sm,
   },
   shrink: { flexShrink: 1 },
+  // Hairline edge so the button holds its shape on the sheet without a shadow.
+  listen: {
+    width: LISTEN_SIZE,
+    height: LISTEN_SIZE,
+    borderRadius: LISTEN_SIZE / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: StyleSheet.hairlineWidth,
+  },
   // The touch area is taller than the 3pt track it holds.
   scrub: { flex: 1, paddingVertical: SPACING.smPlus, justifyContent: 'center' },
 });

@@ -12,6 +12,7 @@ import {
   projScaleFor,
   reachFor,
   SWIPE_OUT_MAX,
+  SWIPE_OUT_TRAVEL,
   swipeClip,
   viewAngleFor,
 } from '../lib/globe-camera';
@@ -231,16 +232,22 @@ describe('swipeClip', () => {
   });
 
   it('rises over a long crossing, in proportion to the travel', () => {
-    const near = swipeClip(30, 30, 0.5, 15);
-    const far = swipeClip(30, 30, 0.5, 60);
+    const near = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL / 4);
+    const far = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL);
     expect(near).toBeGreaterThan(30);
     expect(far).toBeGreaterThan(near);
     expect(scale(30) / scale(far)).toBeCloseTo(SWIPE_OUT_MAX, 6);
     // Further than the whole rise earns nothing more.
-    expect(swipeClip(30, 30, 0.5, 150)).toBeCloseTo(far, 6);
+    expect(swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL * 2)).toBeCloseTo(far, 6);
+  });
+
+  it('is flat at both ends, so the zoom does not jump when a swipe starts or lands', () => {
+    const start = swipeClip(30, 30, 0.02, SWIPE_OUT_TRAVEL);
+    const middle = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL);
+    expect(start - 30).toBeLessThan((middle - 30) * 0.01);
   });
 
   it('never zooms out past the whole planet', () => {
-    expect(swipeClip(60, 60, 0.5, 120)).toBe(MAX_CLIP);
+    expect(swipeClip(70, 70, 0.5, 180)).toBe(MAX_CLIP);
   });
 });

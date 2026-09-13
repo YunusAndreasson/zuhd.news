@@ -62,10 +62,20 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * top, so every card arrives showing its kicker.
  */
 
-/** How much of the next card shows at the right edge — the sign, beside the
- *  masthead's track, that the row continues. It was 10pt, which read as a
- *  rendering seam rather than as the edge of another story. */
-const DECK_CUT = SPACING.md;
+/**
+ * How much of the next story's *text* shows at the right edge — the sign,
+ * beside the masthead's track, that the row continues.
+ *
+ * Measured to the text, not to the slot. It was a 16pt cut of a slot whose
+ * text sits 14pt in (`articlePadding`), so the reader saw two points of the
+ * next headline — a rendering glitch, not a card — and 10pt before that read
+ * as a seam. A peek is either a legible piece of the next story or nothing.
+ */
+const DECK_PEEK = SPACING.lg;
+/** Between the end of the current card's text and the start of the next one's. */
+const DECK_GAP = SPACING.md;
+/** Where the next slot starts, from the right edge: its peek plus its own padding. */
+const DECK_INSET = DECK_PEEK + SPACING.articlePadding;
 /** Perceived duration of a landing, in ms. Critically damped, so a card
  *  arrives without a bounce the globe would have to follow past a dateline. */
 const SETTLE_MS = 380;
@@ -75,6 +85,9 @@ type SheetGesture = ReturnType<typeof usePanGesture>;
 interface StoryDeckProps {
   /** Stories in the river. The end card sits at index `count`. */
   count: number;
+  /** 0 at rest, 1 grown: the neighbours' peek fades while a story is read, so
+   *  the next headline does not sit beside the reading column. */
+  peekFade?: SharedValue<number>;
   /** The committed story. */
   index: number;
   /** Position in stories, shared with the globe's camera. */
@@ -100,6 +113,7 @@ interface StoryDeckProps {
 const DeckSlot = memo(function DeckSlot({
   position,
   progress,
+  peekFade,
   pitch,
   width,
   current,
@@ -111,6 +125,7 @@ const DeckSlot = memo(function DeckSlot({
 }: {
   position: number;
   progress: SharedValue<number>;
+  peekFade?: SharedValue<number>;
   pitch: number;
   width: number;
   current: boolean;
@@ -121,9 +136,17 @@ const DeckSlot = memo(function DeckSlot({
   children: ReactNode;
 }) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
-  const slotStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: (position - progress.value) * pitch }],
-  }));
+  const slotStyle = useAnimatedStyle(() => {
+    const offset = position - progress.value;
+    const away = Math.min(1, Math.abs(offset));
+    // A resting neighbour fades with the grown sheet; one being swiped in comes
+    // back as it arrives, so a swipe while reading still shows what is coming.
+    const fade = peekFade ? Math.min(1, Math.max(0, peekFade.value)) : 0;
+    return {
+      opacity: 1 - fade * away,
+      transform: [{ translateX: offset * pitch }],
+    };
+  });
 
   const nativeConfig = useMemo(() => ({ simultaneousWith: sheetGesture }), [sheetGesture]);
   const native = useNativeGesture(nativeConfig);
@@ -186,6 +209,7 @@ const DeckSlot = memo(function DeckSlot({
 
 export const StoryDeck = memo(function StoryDeck({
   count,
+  peekFade,
   index,
   progress,
   width,
@@ -199,7 +223,10 @@ export const StoryDeck = memo(function StoryDeck({
   onDragStart,
   onSettle,
 }: StoryDeckProps) {
-  const pitch = Math.max(1, width - DECK_CUT);
+  const pitch = Math.max(1, width - DECK_INSET);
+  // A slot reaches past the pitch into the next one's left padding, which is
+  // empty, so the current text ends `DECK_GAP` before the next text begins.
+  const slotWidth = Math.max(1, width - DECK_PEEK - DECK_GAP + SPACING.articlePadding);
   /** Where the card was when the pan claimed it, and the finger's translation then. */
   const start = useSharedValue(0);
   const startX = useSharedValue(0);
@@ -257,8 +284,9 @@ export const StoryDeck = memo(function StoryDeck({
             key={keyOf(i)}
             position={i}
             progress={progress}
+            peekFade={peekFade}
             pitch={pitch}
-            width={width}
+            width={slotWidth}
             current={i === index}
             sheetGesture={sheetGesture}
             scrollEnabled={scrollEnabled}

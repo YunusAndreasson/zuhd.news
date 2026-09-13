@@ -1281,6 +1281,7 @@ export default function HomeScreen() {
     }) => (
       <StoryDeck
         count={storyCount}
+        peekFade={sheetProgress}
         index={frontIndex}
         progress={storyProgress}
         width={screenWidth}
@@ -1302,6 +1303,7 @@ export default function HomeScreen() {
       keyOfDeck,
       renderEnd,
       renderStory,
+      sheetProgress,
       screenWidth,
       storyCount,
       storyProgress,
@@ -1320,10 +1322,22 @@ export default function HomeScreen() {
         onPress={handleIndexPress}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
+        // While the player bar is up it is the control. A second play button
+        // over audio that was already playing said the opposite of what was
+        // happening; it returns when the bar hides.
+        listenAvailable={briefingStatus.available && !briefingVisible}
+        listenResumable={briefingStatus.resumable}
+        listenDuration={briefingStatus.duration}
+        onListenPress={handleBriefingPress}
       />
     ),
     [
       goToStory,
+      briefingStatus.available,
+      briefingStatus.resumable,
+      briefingStatus.duration,
+      briefingVisible,
+      handleBriefingPress,
       refreshing,
       frontIndex,
       storyCount,
@@ -1415,13 +1429,6 @@ export default function HomeScreen() {
         <MapHeader
           onHomePress={handleHomePress}
           homeKey={homeKey}
-          // While the player bar is up it is the control. A second play button
-          // over audio that was already playing said the opposite of what was
-          // happening; it returns when the bar hides.
-          briefingAvailable={briefingStatus.available && !briefingVisible}
-          briefingResumable={briefingStatus.resumable}
-          briefingDuration={briefingStatus.duration}
-          onBriefingPress={handleBriefingPress}
           items={strip}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}

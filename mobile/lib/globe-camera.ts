@@ -213,10 +213,10 @@ export function viewAngleFor(scale: number, reach: number): number {
 
 /** The most a swipe zooms out on its way between two stories, as a factor of
  *  the globe's scale. Never past the whole planet. */
-export const SWIPE_OUT_MAX = 1.7;
+export const SWIPE_OUT_MAX = 1.25;
 /** Camera travel, in degrees, that earns the whole zoom-out. A swipe between
  *  two stories in one region barely leaves the ground. */
-const SWIPE_OUT_TRAVEL = 60;
+export const SWIPE_OUT_TRAVEL = 90;
 
 /**
  * The clip partway through a swipe from one story's framing to the next.
@@ -224,8 +224,10 @@ const SWIPE_OUT_TRAVEL = 60;
  * **Out, across, in** — the shape of a map's `flyTo`: the camera rises in
  * proportion to how far it is going, the planet turns under it, and it comes
  * down close over the story it lands on. Interpolated in log scale, because
- * zoom is perceived as a ratio, and the rise is a sine over the swipe so both
- * ends land on their framings exactly.
+ * zoom is perceived as a ratio. The rise is `sin²`, not `sin`: flat at both
+ * ends, so the planet does not start moving the instant a finger does, and a
+ * card settling onto its story does not bounce the zoom on the way in. At 1.7×
+ * with a plain sine it read as the map jumping on every swipe.
  *
  * It replaced a smoothstep between the two framings, which — once zooming grew
  * the planet itself instead of the ground inside a fixed disc — made the whole
@@ -245,7 +247,8 @@ export function swipeClip(
   const to = Math.log(1 / Math.sin(toClip * DEG2RAD));
   const reach =
     travelDeg <= 0 ? 0 : travelDeg >= SWIPE_OUT_TRAVEL ? 1 : travelDeg / SWIPE_OUT_TRAVEL;
-  const out = Math.log(SWIPE_OUT_MAX) * reach * Math.sin(Math.PI * t);
+  const bump = Math.sin(Math.PI * t);
+  const out = Math.log(SWIPE_OUT_MAX) * reach * bump * bump;
   const logScale = from + (to - from) * eased - out;
   if (logScale <= 0) return MAX_CLIP;
   return Math.asin(Math.exp(-logScale)) * RAD2DEG;

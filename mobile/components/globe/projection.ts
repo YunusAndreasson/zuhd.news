@@ -323,18 +323,19 @@ export function findCountry(
 // ── Clip-angle math ────────────────────────────────────────────────────────
 
 /** Clip angle for a country's spherical area — smaller countries get tighter
- *  clip (more zoom). Below 0.002 sr → 25°; above 0.03 sr → 45°; linear between.
+ *  clip (more zoom). Below 0.002 sr → 30°; above 0.03 sr → 40°; linear between.
  *
  *  The cap was 70°, and before that 90°. Once zooming grew the planet itself
  *  rather than the ground inside a fixed disc, a swipe from a small country
  *  to a large one swelled and shrank the whole globe by 2.2× — a wobble with
- *  no meaning. At 45° the framings span 1.7×, every story lands close over
- *  its place, and the travel between two stories is carried by the swipe's
- *  own zoom-out (`swipeClip`) instead of by the difference in their sizes. */
+ *  no meaning. 25°–45° still spanned 1.7× and read as the map jumping on
+ *  every swipe; at 30°–40° the framings span 1.3×, and the travel between two
+ *  stories is carried by the swipe's own gentle zoom-out (`swipeClip`) instead
+ *  of by the difference in their sizes. */
 function clipAngleForArea(area: number): number {
-  if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 20;
-  return 45;
+  if (area < 0.002) return 30;
+  if (area < 0.03) return 30 + ((area - 0.002) / (0.03 - 0.002)) * 10;
+  return 40;
 }
 
 /** Clip angle for a named country (lookup `countryAreas`, fall back to 1 sr). */

@@ -64,9 +64,9 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
-MapHeader                             one row: Z (home) · every mover, swiped, largest first · listen
+MapHeader                             one row on a shade: Z (home) · every mover, swiped, largest first
 MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
-  SheetMasthead                       a segmented story track you scrub · list (IndexSheet), or a Red alert
+  SheetMasthead                       a segmented story track you scrub · listen · list (IndexSheet), or a Red alert
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
 platform sheets                       index · card · instruments · chokepoint · country · …
 ```
@@ -203,11 +203,12 @@ whole time; nothing said so.
     screen's edge.
   - **A swipe rises, crosses and comes down close.** `swipeClip`
     (`lib/globe-camera.ts`, tested) zooms out in proportion to the camera's
-    travel between two stories — up to `SWIPE_OUT_MAX`, never past the whole
-    planet — and lands on the next story's framing. Framings span 25°–45°
-    (`clipAngleForArea`); at 25°–70° the planet itself swelled and shrank 2.2×
-    between a small country and a large one once zoom grew the globe, which
-    read as a wobble.
+    travel between two stories — up to `SWIPE_OUT_MAX` (1.25×), never past the
+    whole planet, flat at both ends — and lands on the next story's framing.
+    Framings span 30°–40° (`clipAngleForArea`). Subtle is the point, and it has
+    been overdone twice: at 25°–70° the planet swelled and shrank 2.2× between a
+    small country and a large one once zoom grew the globe, and 25°–45° with a
+    1.7× plain-sine rise still read as the map jumping on every swipe.
   - **The grown globe's transform is applied inside the canvas**
     (`MiniGlobe.canvasTransform`), not to its view. A view transform scales
     pixels, so a zoomed globe wider than the screen was cut at the canvas's
@@ -390,11 +391,19 @@ about what a card may say is about the card, not where it is shown.
     player's scrubber, so the two cannot drift apart.
     - It briefly read `3 of 48 · 12 found ━━ all news ›` (the position twice,
       the found count a third time beside the globe's ring), and for one build
-      led with the listen button — a play button beside a progress bar is that
-      bar's play head, and the player has a progress bar of its own. Nothing
-      that plays sits on this row.
+      led with the listen button against the start of the track — a play
+      button touching a progress bar is that bar's play head. Listen now sits
+      beside the list button at the row's far end, one of its two doors (the
+      day as a list, the day as audio), which gave the top bar's gauges its
+      slot.
     - The deck once carried no position at all, and swiping a day felt like an
       unmarked corridor.
+  - **The next story peeks by 24pt of its text** (`DECK_PEEK`), not by a
+    slot edge. The deck used to cut 16pt of a slot whose text sits 14pt in, so
+    two points of the next headline showed — a glitch, not an affordance. The
+    current card's column is narrower by the peek and a 16pt gap, and the
+    neighbours fade as a story is grown (`peekFade`), returning as one is
+    swiped in.
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -442,10 +451,11 @@ about what a card may say is about the card, not where it is shown.
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the round play button fixed at the right of `MapHeader` — as a
-  corner pill over the globe it was sized to stay out of the way and was not
-  found, and as the button on the sheet's masthead it made the first row of
-  the news list a control panel. `share` is a word on the grown card, where it
+  specific.** `listen` is the round play button beside the list button on the
+  sheet's masthead — as a corner pill over the globe it was sized to stay out
+  of the way and was not found, it spent a few builds at the right of
+  `MapHeader`, and at the start of the masthead's track it read as that
+  track's play head. `share` is a word on the grown card, where it
   can only mean the story it sits under (it used to share the last article
   read from any section). `zoom` is gone from the chrome: pinch on the globe
   zooms continuously, so readers who cannot pinch get the opening zoom only.
