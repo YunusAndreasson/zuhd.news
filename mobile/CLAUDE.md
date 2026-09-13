@@ -615,6 +615,23 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   its own component (`ScrubReadout`), so a step along the line re-renders the
   number and not the block, and its scrub stops are one path. None of this is
   measured on hardware yet — judge it there before building on it.
+- **At rest the app renders zero frames, and two shapes break that silently.**
+  Neither shows in a React profile. Check with `dumpsys gfxinfo news.zuhd.app
+  reset`, then read "Total frames rendered" after 5 s untouched, beside a
+  screenshot, because a JS error also renders nothing.
+  - **Never use Skia's `usePathValue`.** It writes its path and reads it back
+    (`notifyChange`) in one derived value, so it subscribes to itself and runs
+    every frame forever. Each run re-played the whole globe canvas on the UI
+    thread: 23 frames in 5 s and 74% main-thread CPU with nothing moving (0 and
+    6% after). Use `useDerivedValue` returning a built path, as `ringPath` does.
+  - **A `useAnimatedStyle` updater runs once on the JS thread when it mounts.**
+    A JS read of a shared value the UI thread has changed blocks on
+    `runOnUISync` until the UI thread answers. `DeckSlot` mounts as a swipe
+    lands, mid-spring, so that read was 150–290 ms of each landing's commit on
+    the emulator (landings 1,166 → 578 ms in total). An updater for something
+    that mounts while its inputs animate returns a style computed from props
+    when `globalThis.__RUNTIME_KIND === 1`, and keeps those props out of its
+    dependency list.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
 - React Compiler is **installed but NOT enabled** — in any build. The only
   switch is `app.json` → `experiments.reactCompiler`, which flows

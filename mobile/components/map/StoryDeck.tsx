@@ -118,6 +118,7 @@ interface StoryDeckProps {
 
 const DeckSlot = memo(function DeckSlot({
   position,
+  restOffset,
   progress,
   peekFade,
   pitch,
@@ -130,6 +131,8 @@ const DeckSlot = memo(function DeckSlot({
   children,
 }: {
   position: number;
+  /** Where this slot rests relative to the committed story, for its first style. */
+  restOffset: number;
   progress: SharedValue<number>;
   peekFade?: SharedValue<number>;
   pitch: number;
@@ -143,6 +146,21 @@ const DeckSlot = memo(function DeckSlot({
 }) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const slotStyle = useAnimatedStyle(() => {
+    // Reanimated runs this once on the JS thread when the slot mounts, for its
+    // first style. A slot mounts as a swipe lands, while the spring is writing
+    // `progress` on the UI thread, and a JS read of a value the UI thread has
+    // changed blocks until the UI thread answers (`runOnUISync`): 150–290 ms
+    // of every landing's commit on the emulator, with the globe's reproject
+    // queued behind it. So the first style is the one the slot rests at,
+    // computed from props, and the UI mapper, which starts straight after,
+    // draws the real one; a frame drawn before it takes over matches at rest.
+    if (globalThis.__RUNTIME_KIND === 1) {
+      const rest = Math.min(1, Math.abs(restOffset));
+      return {
+        opacity: 1 - (1 - PEEK_OPACITY) * rest,
+        transform: [{ translateX: restOffset * pitch }],
+      };
+    }
     const offset = position - progress.value;
     const away = Math.min(1, Math.abs(offset));
     // A resting neighbour fades with the grown sheet; one being swiped in comes
@@ -152,7 +170,9 @@ const DeckSlot = memo(function DeckSlot({
       opacity: (1 - (1 - PEEK_OPACITY) * away) * (1 - fade * away),
       transform: [{ translateX: offset * pitch }],
     };
-  });
+    // `restOffset` only picks the first style; left to the closure it would
+    // restart this mapper on every slot at every landing.
+  }, [position, pitch, progress, peekFade]);
 
   const nativeConfig = useMemo(() => ({ simultaneousWith: sheetGesture }), [sheetGesture]);
   const native = useNativeGesture(nativeConfig);
@@ -289,6 +309,7 @@ export const StoryDeck = memo(function StoryDeck({
           <DeckSlot
             key={keyOf(i)}
             position={i}
+            restOffset={i - index}
             progress={progress}
             peekFade={peekFade}
             pitch={pitch}

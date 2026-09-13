@@ -35,7 +35,6 @@ import {
   type Transforms3d,
   useFont,
   useImage,
-  usePathValue,
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
@@ -4646,10 +4645,16 @@ export const MiniGlobe = memo(function MiniGlobe({
   // it when the planet outgrows the screen: a ring left at the resting size
   // would be a reticle drawn across the ground.
   const ringRadius = useDerivedValue(() => framePictures.value.disc + RING_GAP);
-  const ringPath = usePathValue((builder) => {
-    'worklet';
+  // A plain derived value, never Skia's `usePathValue`: that hook writes its
+  // path and then reads it back (`notifyChange`) inside the same derived
+  // value, so the value subscribes to itself and re-runs every frame. Each run
+  // handed the canvas a new path, and the whole globe replayed on the UI thread
+  // ~60 times a second with nothing moving.
+  const ringPath = useDerivedValue(() => {
     const r = framePictures.value.disc + RING_GAP;
-    builder.addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360);
+    return Skia.PathBuilder.Make()
+      .addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360)
+      .build();
   });
 
   return (

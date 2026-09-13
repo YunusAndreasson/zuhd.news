@@ -1,0 +1,28 @@
+steps:
+  # Four stories forward, two back, on the resting card (sheet at peek).
+  - tool: gesture-swipe
+    args: { fromX: 0.85, fromY: 0.86, toX: 0.2, toY: 0.86, durationMs: 250 }
+  - tool: gesture-swipe
+    args: { fromX: 0.85, fromY: 0.86, toX: 0.2, toY: 0.86, durationMs: 250 }
+    delayMs: 900
+  - tool: gesture-swipe
+    args: { fromX: 0.85, fromY: 0.86, toX: 0.2, toY: 0.86, durationMs: 250 }
+    delayMs: 900
+  - tool: gesture-swipe
+    args: { fromX: 0.85, fromY: 0.86, toX: 0.2, toY: 0.86, durationMs: 250 }
+    delayMs: 900
+  - tool: gesture-swipe
+    args: { fromX: 0.2, fromY: 0.86, toX: 0.85, toY: 0.86, durationMs: 250 }
+    delayMs: 900
+  - tool: gesture-swipe
+    args: { fromX: 0.2, fromY: 0.86, toX: 0.85, toY: 0.86, durationMs: 250 }
+    delayMs: 900
+  # Grow the story, then put it down.
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.82, toX: 0.5, toY: 0.3, durationMs: 300 }
+    delayMs: 1200
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.45, toX: 0.5, toY: 0.95, durationMs: 300 }
+    delayMs: 1500
+executionPrerequisite: zuhd app on the map screen (1080x2400, 420dpi), sheet at
+  peek on a story with at least four stories after it, no platform sheet open.
