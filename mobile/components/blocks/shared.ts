@@ -1,4 +1,3 @@
-import type { BlockTone } from '@shared/types';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import {
@@ -8,7 +7,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, type ColorPalette, EASING, RADIUS, SPACING } from '../../constants/theme';
+import { ANIMATION, EASING, RADIUS, SPACING } from '../../constants/theme';
 
 /** Where a block is being rendered. `article` variant is the full-bleed
  *  article-page look; `context` is the embedded-in-timeline look (smaller
@@ -18,7 +17,7 @@ import { ANIMATION, type ColorPalette, EASING, RADIUS, SPACING } from '../../con
 export type BlockVariant = 'article' | 'context';
 
 /** Shared outer-container spacing for every non-prose block. Keeps margin
- *  rhythm consistent between ActorsBlock, CompareBlock, LocationsBlock,
+ *  rhythm consistent between ActorsBlock, LocationsBlock,
  *  QuoteBlock and TrendBlock without per-component style duplication. */
 export const blockContainerStyle = StyleSheet.create({
   article: { marginBottom: SPACING.md },
@@ -85,23 +84,6 @@ export function formatBlockNumber(n: number, unit?: string, decimals?: number): 
   // anything. They are zero-width and screen readers ignore them, so the
   // scrub tooltip and the accessibility label are unaffected.
   return `${s} ${unit.replace(/\//g, '\u2060/\u2060')}`;
-}
-
-/** Background fill for a typed block tone. Untyped tones fall back to a
- *  mid-luminance grey (`textSecondary`) so per-cell opacity carries the value
- *  hierarchy instead. Returns the *background* palette — distinct from
- *  `toneColor` in theme.ts, which returns the higher-contrast text palette. */
-export function blockToneBg(tone: BlockTone | undefined, colors: ColorPalette): string {
-  switch (tone) {
-    case 'favorable':
-      return colors.toneFavorable;
-    case 'unfavorable':
-      return colors.toneUnfavorable;
-    case 'neutral':
-      return colors.toneNeutral;
-    default:
-      return colors.textSecondary;
-  }
 }
 
 /** Mount-time draw progress for a chart block: a `0 → 1` shared value that

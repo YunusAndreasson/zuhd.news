@@ -23,7 +23,3 @@ export const VESSEL_CLASSES: readonly VesselClass[] = [
   { field: 'n_general_cargo', label: 'General cargo', plural: 'general cargo ships' },
   { field: 'n_roro', label: 'Ro-Ro', plural: 'ro-ro ships' },
 ];
-
-export function vesselClass(field: VesselField): VesselClass | undefined {
-  return VESSEL_CLASSES.find((v) => v.field === field);
-}

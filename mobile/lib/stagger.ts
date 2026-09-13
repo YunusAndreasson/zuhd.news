@@ -1,4 +1,4 @@
-import { FadeIn, FadeInDown } from 'react-native-reanimated';
+import { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, staggerDelay } from '../constants/theme';
 
 /** Staggered fade-in-down entrance for a block at a known `index`. Wraps the
@@ -8,15 +8,6 @@ import { ANIMATION, staggerDelay } from '../constants/theme';
  *  (SourcesSheet, ContextSheet, MenuSheet, CountrySheet, SheetInfoPage…). */
 export function staggerEnter(index: number, duration: number = ANIMATION.normal) {
   return FadeInDown.duration(duration).delay(staggerDelay(index));
-}
-
-/** Opacity-only staggered entrance (no vertical travel), for rows that animate
- *  in place inside an already-moving surface — the article/context blocks
- *  (ActorsBlock, CompareBlock, TimelineBlock) use this where the drop-in
- *  `staggerEnter` would double up on the parent's motion. Callers keep their
- *  own `useReducedMotion()` guard, exactly as with `staggerEnter`. */
-export function staggerFadeIn(index: number, duration: number = ANIMATION.normal) {
-  return FadeIn.duration(duration).delay(staggerDelay(index));
 }
 
 /** Counter-based variant for sheets that reveal a handful of hero rows in

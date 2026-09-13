@@ -54,10 +54,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 
 ### Sentiment / severity color
 
-The sentiment palette splits into background and foreground variants:
-
-- **`colors.toneFavorable / toneUnfavorable / toneNeutral`** — background fills only. Tuned for `BLACK` foreground text on the tone (CompareBlock pills, TimelineBlock spans, TreemapBlock cells). Do not use as foreground text on `bg`: in light mode the contrast is ~3.4:1 (AA-large only).
-- **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — foreground text variants. Hue-aligned with the bg-tones, but luminance-deepened in light mode to clear AA body (≥ 4.5:1) on cream `bg`. In dark mode the values are identical to the bg-tones (dark `bg` already has ample headroom). The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these.
+- **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — the sentiment hues (sage / rose / slate) for foreground text. Luminance-deepened in light mode to clear AA body (≥ 4.5:1) on cream `bg`; muted values in dark mode, where `bg` already has ample headroom. The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these. The background-fill tones that once paired with them went with the last blocks that drew tone pills (`CompareBlock`, `TimelineBlock`, `TreemapBlock`).
 
 **Direction is not sentiment, and every move is coloured.** The rule lives in
 `lib/valence.ts` and nowhere else. Two channels that must not be collapsed into

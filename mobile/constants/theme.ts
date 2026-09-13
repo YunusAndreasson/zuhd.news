@@ -110,24 +110,13 @@ export const DARK_COLORS = {
   // the same opaque hex as the ocean Rect — alpha tricks would diverge.
   water: '#191e24',
   toastBg: 'rgba(48,48,48,0.92)',
-  // Tone family — sage / rose / slate. Lifted one luminance step from the
-  // original muted set (#6b8f71 / #8f6b6b / #6b7f8f) so BLACK reads cleanly
-  // on tone-pill backgrounds in CompareBlock at 13pt: rose climbs from
-  // 4.48 → 6.09 contrast (was failing AA), the others sit at 7+. Still
-  // muted — saturation is unchanged, only luminance.
-  //
-  // ⚠️ Use these as BACKGROUND fills only (with BLACK foreground text).
-  // For foreground TEXT colored by sentiment, use the `*Text` siblings
-  // below — they're tuned for AA contrast against `bg`, not against BLACK.
-  toneFavorable: '#82a98a',
-  toneUnfavorable: '#a98080',
-  toneNeutral: '#8298a9',
-  // Tone-family text variants. Used when a sentiment hue must be applied
-  // to *foreground* text (sources sentiment label, country-card headline,
-  // chokepoint weather alert). In dark mode the bg-variant already has
-  // ample contrast on `bg` (~7.5:1), so the text-variants intentionally
-  // mirror the bg values — keeps a single visual identity. In light mode
-  // the values diverge (see LIGHT_COLORS) to clear AA body on cream.
+  // Tone family — sage / rose / slate, for when a sentiment hue must be
+  // applied to *foreground* text (sources sentiment label, country-card
+  // headline, chokepoint weather alert). On the dark `bg` these muted values
+  // already clear AA (~7.5:1); in light mode they are deepened (see
+  // LIGHT_COLORS) to clear AA body on cream. The background fills that shared
+  // these hues (`toneFavorable` etc.) went with the last block that drew
+  // tone pills.
   toneFavorableText: '#82a98a',
   toneUnfavorableText: '#a98080',
   toneNeutralText: '#8298a9',
@@ -186,19 +175,8 @@ export const LIGHT_COLORS = {
   // land (gray) reads as the warmer surface.
   water: '#d6d9da',
   toastBg: 'rgba(240,237,230,0.95)',
-  // Background tones — paired with BLACK foreground in CompareBlock pills,
-  // used as decorative fills in TimelineBlock/TreemapBlock. Mid-luminance
-  // is mandatory for the BLACK-on-tone contrast (L≈0.25–0.35 gives BLACK
-  // 5.5–8:1). Standalone fills on cream sit at ~2.1–3.1:1, which is
-  // acceptable for non-essential decorative UI.
-  //
-  // ⚠️ Do NOT use these as foreground TEXT on cream — contrast is ~3.4:1
-  // (AA-large only, fails AA body). Use the `*Text` siblings below.
-  toneFavorable: '#82a98a',
-  toneUnfavorable: '#a98080',
-  toneNeutral: '#8298a9',
-  // Foreground-text tone variants. Hue-aligned with the bg-tones above
-  // but luminance-deepened to clear WCAG AA body (≥ 4.5:1) on cream `bg`.
+  // Foreground-text tone variants. The dark palette's sage / rose / slate,
+  // luminance-deepened to clear WCAG AA body (≥ 4.5:1) on cream `bg`.
   // Used by `tone="favorable|unfavorable|neutral"` on `<Text>` and by
   // sites that color body/caption text by sentiment (SourceRow,
   // DisambiguationSheet rows, etc.).
@@ -808,9 +786,7 @@ export const VARIANT_TEXT_PROPS: Partial<Record<TextVariant, Partial<RNTextProps
 
 /** Tone override — maps a semantic tone name to a palette color. The
  *  sentiment tones (`favorable`, `unfavorable`, `neutral`) resolve to the
- *  `*Text` palette variants tuned for foreground contrast on `bg` — the
- *  bg-tones (`colors.toneFavorable` etc.) are background-only and won't
- *  pass AA body in light mode as foreground text. */
+ *  `*Text` palette variants tuned for foreground contrast on `bg`. */
 export type TextTone =
   | 'default'
   | 'secondary'
