@@ -1,37 +1,38 @@
 {
-  "date": "2026-09-12",
+  "date": "2026-09-13",
   "metrics": {
-    "articles": { "value": 52, "detail": "5 of 5 cycles completed, avg ~10 published/cycle (63 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.8, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 13, "science": 9, "tech": 9 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 of 5 cycles completed, ~12/cycle (52 yesterday)" },
+    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.7, "target": 1.0, "met": true },
+    "categories": { "politics": 26, "economy": 14, "tech": 14, "science": 8 },
+    "multiSource": { "value": 18, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 19, "AM": 14, "ME": 9, "AS": 7, "AF": 2, "OC": 1 }
+      "breakdown": { "AM": 16, "EU": 15, "ME": 13, "AS": 10, "AF": 8, "OC": 0 }
     },
     "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature / Dawn (tied)", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 1205
+    "avgCycleDuration": 1296
   },
-  "experiment": "Skipped — all four goals clear with margin, no experiment was active or due for evaluation, and no noNewExperimentsUntil gate is set. The queued 2026-05-08-numerical-density item edits scripts/write-prompt.md, outside the daily-tuning surface, so it stays queued.",
-  "weakestArea": "Africa, at two articles, is the furthest any dimension sits from where it should be, even though the region goal itself passes on count (6 unique regions against a target of 4). Maiduguri and Edfu are the whole continent today, down from seven yesterday, and both are security stories. Europe's 19 is the mirror image and partly an artifact: ten of today's articles carry a London dateline, most of them Nature and Phys.org science and tech pieces datelined to the publisher rather than the work, so the EU figure overstates genuine European coverage by roughly half.",
+  "experiment": "Skipped — every goal passes with margin, nothing was active or due for evaluation, and no noNewExperimentsUntil gate is set. The queued 2026-05-08-numerical-density item edits scripts/write-prompt.md, which is outside the daily-tuning surface, so it stays queued.",
+  "weakestArea": "Regions is the tightest goal today at 5 against a target of 4, and the missing one is Oceania at zero for a seventh consecutive day. Africa recovered strongly — 8 articles from Abuja, Bakura, Barkin Ladi, Johannesburg, Soweto and Cape Town, with a genuine economy piece (Growthpoint's Waterfront discount) rather than security alone — so the continent is no longer the gap it was yesterday. What replaced it is the Americas: all 16 AM articles are United States or Canada, with no Latin American dateline at all, so the region with the largest count is also the least internally diverse.",
   "watching": [
-    "The Saudi bypass pipeline published twice in nineteen hours — 'Drones Shut Saudi Pipeline' (TRT/RT/Dawn, eventCoverage 127) and 'Drones Reach Saudi Pipeline' (Anadolu/UrduPoint, eventCoverage 414) — same Riyadh dateline, same Maysan drones, same 7m barrels/day figure, distinct event URIs.",
-    "That pipeline thread is now four articles across two days when yesterday's Mocha 'Houthis Seize Red Sea Coast' is counted; one escalation is being split across economy and politics on consecutive cycles.",
-    "BRICS in New Delhi again produced three separate pieces — the IMF overhaul demand, the restated return right, and Pezeshkian working the floor — the second consecutive day the summit has fanned out this way.",
-    "Multi-source count jumped 9 to 16 without a floor change, the highest in this run; worth confirming it holds rather than reading it as a new baseline.",
-    "Freshness rests on a wider base than yesterday — 22 of 52 articles carry a measurable lag, up from 12 of 63 — and the median came in at 0."
+    "Trump's Doonbeg trip produced five articles across two categories — Irish whiskey tariffs, refinery strikes halted, Irish unification, AI guardrails, and tying the war's end to the midterms — one trip fanned into five distinct event URIs.",
+    "The Hormuz/Red Sea escalation is now roughly seven articles in a single day (Saudi oil routes, Hormuz tanker projectile, Bahrain boycott, Putin on ship seizures, Iraq's drone launcher, plus the Yemen truce and the 58 Saudi strikes), split across politics and economy.",
+    "Sweden's election published twice in one day — 'Sweden Votes On Far Right' and 'Sweden's Left Bloc Leads' — same country, same vote, separate clusters, which is the same title-layer dedup blind spot flagged yesterday on the Saudi pipeline pair.",
+    "Four separate AI-caution pieces (AI Giants Urge Slowdown, Amodei Urges Pacing AI, Bengio Explains AI Deception, Trump Declines AI Guardrails) landed the same day from different angles; worth confirming this is genuine breadth and not one news peg quadrupled.",
+    "Multi-source held its jump — 18 today after 16 yesterday, up from the ~9 typical earlier in the run — so the lift now looks like a level, not a one-day spike.",
+    "Freshness is measurable on only 19 of 62 articles; the 0.3 median is sound but rests on a narrow base."
   ],
   "coverageGaps": [
-    "Africa is two articles, both security, with no economy, science or tech dateline from the continent for a third day.",
-    "Oceania is a single article, continuing five-plus days at zero or one, and still nothing from the Pacific islands.",
-    "Latin America's five are all conflict or accident — US strikes on Ecuadorian boats, Chilean fire, Argentine helicopters, Colombian minerals-for-security — with no Andean or Central American economy story.",
-    "Southeast Asia appears only obliquely through India's Sabah consulate; Vietnam, Thailand, Indonesia and the Philippines are absent outright.",
-    "Ten of the nineteen European articles are London publisher-datelines on non-European science and tech, leaving continental Europe thinner than the region count suggests."
+    "Oceania is at zero for a seventh day — no Australia, New Zealand or Pacific island dateline.",
+    "Latin America is entirely absent: all 16 Americas articles are US or Canadian, with nothing from Brazil, Mexico, the Andes or Central America.",
+    "Central Asia and the Caucasus produced nothing, as they have all week.",
+    "Science is the thinnest category at 8, and two of those (Sagar hooch toll, cancer-pain video scoring) are closer to public-health incident reporting than research coverage, leaving perhaps six genuine science stories.",
+    "East Asia appears almost entirely through Beijing (robotics, cancer-pain study); Japan and Korea are absent outright."
   ],
-  "context": "The experiment slot has been empty since 2026-05-26 and every goal has now passed on six consecutive audits, so the parametric levers have nothing left to act on. Today supplies direct evidence for the structural item that has been carried in this field for days: the Saudi pipeline pair is a clean same-event double-publish under different titles from different multi-source clusters, which is exactly the case the title-overlap layer in scripts/lib/dedup.js cannot see because it is gated to niche-only sources, and which scripts/validate-articles.js has no duplicate-title gate to catch either. Both files sit outside the tuning surface and need an operator decision."
+  "context": "The experiment slot has been empty since 2026-05-26 and all four goals have now passed on seven consecutive audits — the parametric levers in the tuning surface have nothing left to act on, and the remaining problems are structural. Today adds a second clean instance of the same-event double-publish pattern: the Sweden election pair, following yesterday's Saudi pipeline pair. Both are multi-source clusters with distinct event URIs and near-identical subject matter, which is exactly what the title-overlap layer in scripts/lib/dedup.js cannot catch because it is gated to niche-only sources, and which scripts/validate-articles.js has no duplicate-title gate to catch either. Two occurrences in two days moves this from a curiosity to a pattern; both files sit outside the tuning surface and need an operator decision."
 }
