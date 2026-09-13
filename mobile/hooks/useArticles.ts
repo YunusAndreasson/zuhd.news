@@ -118,7 +118,10 @@ export function useArticles(): ArticlesState {
   const lastTickAtRef = useRef(0);
   const TICK_GRANULARITY_MS = 60_000;
 
-  const refetchAndDiff = useEffectEvent(async (): Promise<Article[]> => {
+  // Plain callbacks, not effect events: `refresh` below is an ordinary
+  // callback and React only lets an effect event be called from an effect. Both
+  // read refs for everything that changes, so they are stable as they are.
+  const refetchAndDiff = useCallback(async (): Promise<Article[]> => {
     const fresh = await queryClient.query({
       queryKey: FEED_QUERY_KEY,
       queryFn: ({ signal }) => fetchFeed({ cache: 'no-store', signal }),
@@ -131,9 +134,9 @@ export function useArticles(): ArticlesState {
     prevSlugsRef.current = newSlugs;
     lastGeneratedRef.current = fresh.generated;
     return added;
-  });
+  }, [queryClient]);
 
-  const hasNewContent = useEffectEvent(async (): Promise<'changed' | 'unchanged' | 'unknown'> => {
+  const hasNewContent = useCallback(async (): Promise<'changed' | 'unchanged' | 'unknown'> => {
     if (!lastGeneratedRef.current) return 'changed';
     try {
       const meta = await fetchJson(`${API_BASE}/api/meta.json`, isMetaResponse, {
@@ -145,7 +148,7 @@ export function useArticles(): ArticlesState {
       // refresh must not translate an unreadable probe into "up to date".
       return 'unknown';
     }
-  });
+  }, []);
 
   // Foreground resume: refresh if away > 5 min. Tick is bumped only when
   // a real minute has elapsed since the last bump, so quick app-switches
@@ -197,7 +200,7 @@ export function useArticles(): ArticlesState {
     } finally {
       refreshingRef.current = false;
     }
-  }, [queryClient]); // refetchAndDiff/hasNewContent are stable useEffectEvent refs
+  }, [queryClient, hasNewContent, refetchAndDiff]);
 
   const retry = useCallback(async () => {
     await query.refetch();
