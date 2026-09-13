@@ -9,6 +9,7 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
+import type { Transforms3d } from '@shopify/react-native-skia';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -20,9 +21,9 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import Animated, {
+import {
   type SharedValue,
-  useAnimatedStyle,
+  useDerivedValue,
   useReducedMotion,
   useSharedValue,
   withTiming,
@@ -94,7 +95,7 @@ import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bo
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
-import { computeDeckLayout, grownGlobeTransform } from '../lib/deck-layout';
+import { computeDeckLayout, grownGlobeTransform, grownReach } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
@@ -1183,13 +1184,18 @@ export default function HomeScreen() {
   // band left above the grown sheet. A transform, never a reprojection — this
   // tracks a finger at 60fps and a projection is tens of milliseconds. It is
   // finger-tracked, so it is exempt from Reduce Motion like the sheet itself.
-  const globeStyle = useAnimatedStyle(() => {
+  //
+  // **Applied inside the canvas, not to the view.** A view transform scales the
+  // canvas's pixels, and once zooming grew the planet past the screen that cut
+  // a zoomed globe at the canvas's edge and shrank the cut with it: dark bands
+  // down both sides of the grown band. Skia applies this one to the drawing,
+  // and the projection already reaches the ground it uncovers (`grownReach`).
+  const globeTransform = useDerivedValue<Transforms3d>(() => {
     const p = Math.min(1, Math.max(0, sheetProgress.value));
     const grown = grownGlobeTransform(layout, screenHeight, sheetExpanded.value);
-    return {
-      transform: [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }],
-    };
+    return [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }];
   });
+  const globeReach = useMemo(() => grownReach(layout, screenHeight), [layout, screenHeight]);
 
   // Hold the splash until we have something for *every* visible layer.
   useEffect(() => {
@@ -1345,7 +1351,7 @@ export default function HomeScreen() {
   return (
     <View style={[styles.screen, { backgroundColor: colors.bg }]}>
       {/* The one earth. Everything below is a layer over it. */}
-      <Animated.View style={[styles.globeLayer, globeStyle]} pointerEvents="none">
+      <View style={styles.globeLayer} pointerEvents="none">
         <MiniGlobe
           ref={globeRef}
           articles={river}
@@ -1369,6 +1375,8 @@ export default function HomeScreen() {
           height={screenHeight}
           radius={layout.radius}
           centerY={layout.centerY}
+          canvasTransform={globeTransform}
+          canvasReach={globeReach}
           zoomActive={zoomActive}
           zoomAngle={zoomAngle}
           clipOut={globeClip}
@@ -1377,7 +1385,7 @@ export default function HomeScreen() {
           viewLng={viewLng}
           tick={tick}
         />
-      </Animated.View>
+      </View>
 
       <GlobeGestureLayer
         globeRef={globeRef}

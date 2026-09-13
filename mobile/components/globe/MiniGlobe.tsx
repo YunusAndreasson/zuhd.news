@@ -31,6 +31,7 @@ import {
   StrokeCap,
   StrokeJoin,
   TileMode,
+  type Transforms3d,
   useFont,
   useImage,
   usePathValue,
@@ -78,7 +79,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
-import { reachFor, viewAngleFor } from '../../lib/globe-camera';
+import { reachFor, swipeClip, viewAngleFor } from '../../lib/globe-camera';
 import { coverageRanks } from '../../lib/now';
 import {
   type FamineArea,
@@ -683,6 +684,15 @@ interface MiniGlobeProps {
    */
   viewLat?: SharedValue<number>;
   viewLng?: SharedValue<number>;
+  /**
+   * The grown-story transform, applied to the drawing inside the canvas. A
+   * view transform would scale the canvas's pixels and cut a zoomed globe at
+   * the canvas's edge; this one shrinks ground the projection drew past it.
+   */
+  canvasTransform?: SharedValue<Transforms3d>;
+  /** How far from the globe's centre the projection must reach: past the
+   *  screen when `canvasTransform` can shrink it (`grownReach`). */
+  canvasReach?: number;
   tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
@@ -1312,7 +1322,9 @@ interface FrameOut extends FramePictures {
 
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
-  const bounds = Skia.XYWHRect(0, 0, s.width, s.height);
+  // Recorded well past the canvas: a grown story shrinks the drawing, and what
+  // lies outside the screen at rest has to come into it (`canvasTransform`).
+  const bounds = Skia.XYWHRect(-s.width, -s.height, 3 * s.width, 3 * s.height);
   const haloOpacity = light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK;
   const haloOpacitySoft = light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT;
 
@@ -1847,6 +1859,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   thermalEvents,
   genocideSituations,
   storyProgress,
+  canvasTransform,
+  canvasReach = 0,
   cameraTrack,
   cameraOwner,
   cameraLat,
@@ -2474,8 +2488,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy, width, height });
-  layoutRef.current = { globeRadius, cx, cy, width, height };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach });
+  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
 
@@ -2500,6 +2514,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         cy: centerY,
         width: canvasW,
         height: canvasH,
+        canvasReach: grownReach,
       } = layoutRef.current;
       const geoData = articleGeoRef.current;
 
@@ -2534,15 +2549,20 @@ export const MiniGlobe = memo(function MiniGlobe({
           : null;
       }
 
-      // Adaptive zoom — interpolate clip angle between adjacent articles.
-      // Smoothstep easing gives a cinematic camera-move feel: the zoom
-      // eases out of the current framing and eases into the next.
+      // Adaptive zoom — each story's own framing at rest, and between two of
+      // them the swipe rises in proportion to how far the camera travels and
+      // comes down close over the next (`swipeClip`).
       const loCountry = geoData[loIndex]?.countryName ?? null;
       const hiCountry = geoData[hiIndex]?.countryName ?? null;
       const loClip = clipAngleForCountry(loCountry);
       const hiClip = clipAngleForCountry(hiCountry);
-      const ef = frac * frac * (3 - 2 * frac); // Hermite smoothstep
-      const rawClip = loClip + (hiClip - loClip) * ef;
+      const loGeo = geoData[loIndex];
+      const hiGeo = geoData[hiIndex];
+      const travelDeg =
+        loGeo && hiGeo && loIndex !== hiIndex
+          ? (geoDistance([loGeo.lng, loGeo.lat], [hiGeo.lng, hiGeo.lat]) * 180) / Math.PI
+          : 0;
+      const rawClip = swipeClip(loClip, hiClip, frac, travelDeg);
       // Blend the scroll-driven clip with the user override. Each withTiming
       // call supplying these values is already eased, so no extra shaping.
       const clipAngle = rawClip + (overrideAngleVal - rawClip) * overrideActiveVal;
@@ -2565,7 +2585,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       // outgrows the screen. d3-geo's `.clipAngle` only clips path generation,
       // not direct point projection, so every point marker below is culled
       // against it too (`clipRad`).
-      const viewAngle = viewAngleFor(projScale, reachFor(centerX, centerY, canvasW, canvasH));
+      const viewAngle = viewAngleFor(
+        projScale,
+        Math.max(grownReach, reachFor(centerX, centerY, canvasW, canvasH)),
+      );
       const clipRad = (viewAngle * Math.PI) / 180;
       const clipCos = Math.cos(clipRad);
 
@@ -3891,7 +3914,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         overrideActive.value,
         overrideAngle.value,
       );
-  }, [globeRadius, cx, cy, width, height]);
+  }, [globeRadius, cx, cy, width, height, canvasReach]);
 
   // Re-project when the flagged exchanges change. Same reason as the
   // chokepoint effect below: the marks arrive from their own fetch, after
@@ -4309,6 +4332,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // biome-ignore lint/correctness/useExhaustiveDependencies: _tick forces recalc on app resume
   const moonPhase = useMemo(() => getMoonPhase(), [_tick]);
   const moonR = globeRadius * 0.05;
+  const canvasOrigin = useMemo(() => vec(width / 2, height / 2), [width, height]);
 
   // Position moon astronomically: elongation from sun determines sky position.
   // At new moon (phase=0) it's near the sun → day side → hidden.
@@ -4428,90 +4452,92 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-      {/* Stars and the moon — behind the planet, so clipped to outside its
+      <Group transform={canvasTransform} origin={canvasOrigin}>
+        {/* Stars and the moon — behind the planet, so clipped to outside its
           limb, which moves with the zoom (`discClip`). */}
-      <Group clip={discClip} invertClip>
-        <Picture picture={starsPicture} />
-        {moonPos.visible && (
-          <Moon
-            x={moonPos.x}
-            y={moonPos.y}
-            r={moonR}
-            phase={moonPhase}
-            texture={moonTexture}
-            clip={moonClip}
-            accentColor={colors.accent}
-            bgAlpha={bgAlpha}
-          />
-        )}
-      </Group>
+        <Group clip={discClip} invertClip>
+          <Picture picture={starsPicture} />
+          {moonPos.visible && (
+            <Moon
+              x={moonPos.x}
+              y={moonPos.y}
+              r={moonR}
+              phase={moonPhase}
+              texture={moonTexture}
+              clip={moonClip}
+              accentColor={colors.accent}
+              bgAlpha={bgAlpha}
+            />
+          )}
+        </Group>
 
-      {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
+        {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
           daylight, the graticule, land, ice, borders, night, city lights and
           the inner-limb glaze. Recorded per projection; see
           `recordGlobeFrame`. */}
-      <Picture picture={groundPicture} />
+        <Picture picture={groundPicture} />
 
-      {/* Marks — hotspots, straits, exchanges, hazards, the country
+        {/* Marks — hotspots, straits, exchanges, hazards, the country
           highlight, rivers, arcs, stories and the settled dot. */}
-      <Picture picture={marksPicture} />
+        <Picture picture={marksPicture} />
 
-      {/* Still to find — see `ringLeft`. */}
-      {foundTotal > 0 ? (
-        <Group>
-          <Circle
-            cx={cx}
-            cy={cy}
-            r={ringRadius}
-            color={colors.rule}
-            style="stroke"
-            strokeWidth={RING_WIDTH}
-          />
-          <Path
-            path={ringPath}
-            start={0}
-            end={ringLeft}
-            color={colors.textSecondary}
-            style="stroke"
-            strokeWidth={RING_WIDTH}
-            strokeCap="round"
-          />
-        </Group>
-      ) : null}
+        {/* Still to find — see `ringLeft`. */}
+        {foundTotal > 0 ? (
+          <Group>
+            <Circle
+              cx={cx}
+              cy={cy}
+              r={ringRadius}
+              color={colors.rule}
+              style="stroke"
+              strokeWidth={RING_WIDTH}
+            />
+            <Path
+              path={ringPath}
+              start={0}
+              end={ringLeft}
+              color={colors.textSecondary}
+              style="stroke"
+              strokeWidth={RING_WIDTH}
+              strokeCap="round"
+            />
+          </Group>
+        ) : null}
 
-      {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
+        {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
           fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
           glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
           read as generic mobile-UI chrome borrowed from any other app. The
           stroke now belongs to the same drawing family as everything else
           on the canvas, so the gesture confirmation feels diegetic. No
           BlurMask = one less filter pass per tap. */}
-      <Circle
-        cx={pulseX}
-        cy={pulseY}
-        r={pulseR}
-        color={colors.textEmphasis}
-        opacity={pulseOpacity}
-        style="stroke"
-        strokeWidth={1.4}
-      />
-
-      {/* Found burst — see `collect`. */}
-      <Group opacity={collectOpacity}>
-        <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
         <Circle
-          cx={collectX}
-          cy={collectY}
-          r={collectRingR}
-          color={collectColor}
+          cx={pulseX}
+          cy={pulseY}
+          r={pulseR}
+          color={colors.textEmphasis}
+          opacity={pulseOpacity}
           style="stroke"
-          strokeWidth={1.6}
+          strokeWidth={1.4}
         />
-      </Group>
 
-      {/* Labels — water, neighbours, the focused country, the dot label
+        {/* Found burst — see `collect`. */}
+        <Group opacity={collectOpacity}>
+          <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
+          <Circle
+            cx={collectX}
+            cy={collectY}
+            r={collectRingR}
+            color={collectColor}
+            style="stroke"
+            strokeWidth={1.6}
+          />
+        </Group>
+
+        {/* Labels — water, neighbours, the focused country, the dot label
           and the poles, above the tap pulse. */}
-      <Picture picture={labelsPicture} />
+        <Picture picture={labelsPicture} />
+      </Group>
     </Canvas>
   );
 });

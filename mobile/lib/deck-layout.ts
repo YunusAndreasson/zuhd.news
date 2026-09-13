@@ -162,3 +162,35 @@ export function grownGlobeTransform(
   const centerY = layout.header + band / 2;
   return { scale, translateY: centerY - mid - scale * (layout.centerY - mid) };
 }
+
+/**
+ * How far from the resting globe's centre the canvas has to be drawn for a
+ * grown story's globe to still reach every edge of the screen.
+ *
+ * The grown transform shrinks the canvas's drawing toward the band above the
+ * sheet. Ground the projection never drew — past the screen, because nothing
+ * there was visible at rest — would then open up as dark bands down both sides
+ * of a zoomed globe. So the projection is carried out to where the screen's
+ * corners land under the strongest shrink, at the tallest and the shortest
+ * grown sheet, and never less than the resting screen's own corners.
+ */
+export function grownReach(layout: DeckLayout, height: number): number {
+  const cx = layout.width / 2;
+  const mid = height / 2;
+  let reach = 0;
+  const corners = (scale: number, translateY: number) => {
+    for (const px of [0, layout.width]) {
+      for (const py of [0, height]) {
+        const x = cx + (px - cx) / scale;
+        const y = mid + (py - mid - translateY) / scale;
+        reach = Math.max(reach, Math.hypot(x - cx, y - layout.centerY));
+      }
+    }
+  };
+  corners(1, 0);
+  const tallest = grownGlobeTransform(layout, height, layout.full);
+  corners(tallest.scale, tallest.translateY);
+  const shortest = grownGlobeTransform(layout, height, layout.peek);
+  corners(shortest.scale, shortest.translateY);
+  return Math.ceil(reach);
+}

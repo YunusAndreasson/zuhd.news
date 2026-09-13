@@ -323,16 +323,18 @@ export function findCountry(
 // ── Clip-angle math ────────────────────────────────────────────────────────
 
 /** Clip angle for a country's spherical area — smaller countries get tighter
- *  clip (more zoom). Below 0.002 sr → 25°; above 0.03 sr → 70°; linear between.
- *  The 70° cap (was 90°) keeps the 1×→2× camera step feeling like a zoom
- *  instead of a warp on large countries (Russia, Canada, Brazil): delta drops
- *  from 6× to ~3.9× tighter at the cost of slightly less "this nation is
- *  vast" framing. Also reduces per-frame land/country vertex draws at 1× for
- *  big countries (clipCircle keeps fewer points after the test). */
+ *  clip (more zoom). Below 0.002 sr → 25°; above 0.03 sr → 45°; linear between.
+ *
+ *  The cap was 70°, and before that 90°. Once zooming grew the planet itself
+ *  rather than the ground inside a fixed disc, a swipe from a small country
+ *  to a large one swelled and shrank the whole globe by 2.2× — a wobble with
+ *  no meaning. At 45° the framings span 1.7×, every story lands close over
+ *  its place, and the travel between two stories is carried by the swipe's
+ *  own zoom-out (`swipeClip`) instead of by the difference in their sizes. */
 function clipAngleForArea(area: number): number {
   if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 45;
-  return 70;
+  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 20;
+  return 45;
 }
 
 /** Clip angle for a named country (lookup `countryAreas`, fall back to 1 sr). */

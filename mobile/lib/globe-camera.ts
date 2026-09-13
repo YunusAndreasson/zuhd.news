@@ -210,3 +210,43 @@ export function viewAngleFor(scale: number, reach: number): number {
   if (!(scale > reach)) return MAX_CLIP;
   return Math.asin(reach / scale) * RAD2DEG;
 }
+
+/** The most a swipe zooms out on its way between two stories, as a factor of
+ *  the globe's scale. Never past the whole planet. */
+export const SWIPE_OUT_MAX = 1.7;
+/** Camera travel, in degrees, that earns the whole zoom-out. A swipe between
+ *  two stories in one region barely leaves the ground. */
+const SWIPE_OUT_TRAVEL = 60;
+
+/**
+ * The clip partway through a swipe from one story's framing to the next.
+ *
+ * **Out, across, in** — the shape of a map's `flyTo`: the camera rises in
+ * proportion to how far it is going, the planet turns under it, and it comes
+ * down close over the story it lands on. Interpolated in log scale, because
+ * zoom is perceived as a ratio, and the rise is a sine over the swipe so both
+ * ends land on their framings exactly.
+ *
+ * It replaced a smoothstep between the two framings, which — once zooming grew
+ * the planet itself instead of the ground inside a fixed disc — made the whole
+ * globe swell and shrink by two times between a small country and a large one,
+ * with no relation to where the camera was going.
+ */
+export function swipeClip(
+  fromClip: number,
+  toClip: number,
+  frac: number,
+  travelDeg: number,
+): number {
+  'worklet';
+  const t = frac <= 0 ? 0 : frac >= 1 ? 1 : frac;
+  const eased = t * t * (3 - 2 * t);
+  const from = Math.log(1 / Math.sin(fromClip * DEG2RAD));
+  const to = Math.log(1 / Math.sin(toClip * DEG2RAD));
+  const reach =
+    travelDeg <= 0 ? 0 : travelDeg >= SWIPE_OUT_TRAVEL ? 1 : travelDeg / SWIPE_OUT_TRAVEL;
+  const out = Math.log(SWIPE_OUT_MAX) * reach * Math.sin(Math.PI * t);
+  const logScale = from + (to - from) * eased - out;
+  if (logScale <= 0) return MAX_CLIP;
+  return Math.asin(Math.exp(-logScale)) * RAD2DEG;
+}

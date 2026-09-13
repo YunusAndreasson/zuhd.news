@@ -201,6 +201,19 @@ whole time; nothing said so.
     glaze are recorded into the ground picture at the projected limb, the stars
     and moon are clipped outside it, and the found ring follows it off the
     screen's edge.
+  - **A swipe rises, crosses and comes down close.** `swipeClip`
+    (`lib/globe-camera.ts`, tested) zooms out in proportion to the camera's
+    travel between two stories — up to `SWIPE_OUT_MAX`, never past the whole
+    planet — and lands on the next story's framing. Framings span 25°–45°
+    (`clipAngleForArea`); at 25°–70° the planet itself swelled and shrank 2.2×
+    between a small country and a large one once zoom grew the globe, which
+    read as a wobble.
+  - **The grown globe's transform is applied inside the canvas**
+    (`MiniGlobe.canvasTransform`), not to its view. A view transform scales
+    pixels, so a zoomed globe wider than the screen was cut at the canvas's
+    edge and shrunk with the cut — dark bands down both sides of the band. The
+    projection reaches `grownReach` so the ground the shrink uncovers exists,
+    and pictures record past the canvas.
   - **The grid and daylight are the web's, for the web's reasons.** Twelve
     meridians and five parallels walked at 5° (`GRATICULE_LINES`), under the
     land — the curvature of the lines is what says sphere; the old

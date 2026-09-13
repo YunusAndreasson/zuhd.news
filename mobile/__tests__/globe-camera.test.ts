@@ -11,6 +11,8 @@ import {
   pinchClip,
   projScaleFor,
   reachFor,
+  SWIPE_OUT_MAX,
+  swipeClip,
   viewAngleFor,
 } from '../lib/globe-camera';
 
@@ -211,5 +213,34 @@ describe('viewAngleFor', () => {
   it('measures to the farthest corner, wherever the centre sits', () => {
     expect(reachFor(100, 100, 400, 500)).toBeCloseTo(Math.hypot(300, 400));
     expect(reachFor(350, 450, 400, 500)).toBeCloseTo(Math.hypot(350, 450));
+  });
+});
+
+describe('swipeClip', () => {
+  const scale = (clip: number) => 1 / Math.sin((clip * Math.PI) / 180);
+
+  it('lands exactly on each framing', () => {
+    expect(swipeClip(25, 45, 0, 80)).toBeCloseTo(25, 6);
+    expect(swipeClip(25, 45, 1, 80)).toBeCloseTo(45, 6);
+  });
+
+  it('does not leave the ground between two stories in one place', () => {
+    const mid = swipeClip(25, 45, 0.5, 0);
+    expect(mid).toBeGreaterThan(25);
+    expect(mid).toBeLessThan(45);
+  });
+
+  it('rises over a long crossing, in proportion to the travel', () => {
+    const near = swipeClip(30, 30, 0.5, 15);
+    const far = swipeClip(30, 30, 0.5, 60);
+    expect(near).toBeGreaterThan(30);
+    expect(far).toBeGreaterThan(near);
+    expect(scale(30) / scale(far)).toBeCloseTo(SWIPE_OUT_MAX, 6);
+    // Further than the whole rise earns nothing more.
+    expect(swipeClip(30, 30, 0.5, 150)).toBeCloseTo(far, 6);
+  });
+
+  it('never zooms out past the whole planet', () => {
+    expect(swipeClip(60, 60, 0.5, 120)).toBe(MAX_CLIP);
   });
 });

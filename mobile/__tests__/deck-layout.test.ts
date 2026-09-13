@@ -3,6 +3,7 @@ import {
   computeDeckLayout,
   type DeckLayoutInput,
   grownGlobeTransform,
+  grownReach,
 } from '../lib/deck-layout';
 
 // Line heights as `makeTextVariants` resolves them on a 360-wide window
@@ -97,5 +98,31 @@ describe('grownGlobeTransform', () => {
   it('never draws the grown disc larger than the resting one', () => {
     const layout = computeDeckLayout(small());
     expect(grownGlobeTransform(layout, 640, layout.peek - 200).scale).toBeLessThanOrEqual(1);
+  });
+});
+
+describe('grownReach', () => {
+  it('covers every screen corner under any grown transform', () => {
+    const layout = computeDeckLayout(small());
+    const reach = grownReach(layout, 640);
+    for (const sheet of [layout.full, layout.peek, 324, 400]) {
+      const { scale, translateY } = grownGlobeTransform(layout, 640, sheet);
+      for (const [px, py] of [
+        [0, 0],
+        [360, 0],
+        [0, 640],
+        [360, 640],
+      ] as const) {
+        // The canvas point a screen corner shows once the drawing is shrunk.
+        const x = 180 + (px - 180) / scale;
+        const y = 320 + (py - 320 - translateY) / scale;
+        expect(Math.hypot(x - 180, y - layout.centerY)).toBeLessThanOrEqual(reach + 1);
+      }
+    }
+  });
+
+  it('reaches past the resting screen, which the shrink uncovers', () => {
+    const layout = computeDeckLayout(small());
+    expect(grownReach(layout, 640)).toBeGreaterThan(Math.hypot(180, 640 - layout.centerY));
   });
 });
