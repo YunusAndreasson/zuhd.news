@@ -82,6 +82,7 @@ import { alertAgeDays } from '../../lib/gdacs';
 import { reachFor, swipeClip, viewAngleFor } from '../../lib/globe-camera';
 import { coverageRanks } from '../../lib/now';
 import {
+  conflictScale,
   type FamineArea,
   famineAlpha,
   famineBlocks,
@@ -107,6 +108,7 @@ import {
   CITY_LIGHT_UNITS,
 } from './city-lights';
 import {
+  getLakeFillFeatureCollection,
   getLakeLabels,
   getMajorRiverFeatureCollection,
   getRiverLabels,
@@ -121,6 +123,7 @@ import {
   THERMAL_RAY_STROKE,
   THERMAL_RAYS_PATH,
 } from './overlay-glyphs';
+import { CAPITALS } from './places';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -141,6 +144,8 @@ import {
   PLACES_APPEAR_CLIP,
   PLACES_FULL_CLIP,
   RIVERS_APPEAR_CLIP,
+  RIVERS_REST_CLIP,
+  RIVERS_REST_OPACITY,
   SOUTH_POLE,
 } from './projection';
 import {
@@ -275,15 +280,23 @@ function overlayAtlas(
  *  the sprite — filling its transparent bounding box with solid squares. */
 function conflictAtlas(
   spec: GlowSpec,
-  marks: { x: number; y: number; recencyAlpha: number }[],
+  marks: { x: number; y: number; recencyAlpha: number; scale: number }[],
   rgb: readonly [number, number, number],
 ) {
   if (marks.length === 0) return null;
-  return {
-    sprites: marks.map(() => spec.srcRect),
-    transforms: marks.map((m) => Skia.RSXform(1, 0, m.x - spec.center, m.y - spec.center)),
-    colors: marks.map((m) => Float32Array.of(rgb[0], rgb[1], rgb[2], m.recencyAlpha)),
-  };
+  const sprites: ReturnType<typeof rect>[] = [];
+  const transforms: ReturnType<typeof Skia.RSXform>[] = [];
+  const colors: Float32Array[] = [];
+  for (let i = 0; i < marks.length; i++) {
+    const m = marks[i];
+    if (!m) continue;
+    // Sized by the death toll (`conflictScale`), about the mark's centre.
+    const k = m.scale;
+    sprites.push(spec.srcRect);
+    transforms.push(Skia.RSXform(k, 0, m.x - spec.center * k, m.y - spec.center * k));
+    colors.push(Float32Array.of(rgb[0], rgb[1], rgb[2], m.recencyAlpha));
+  }
+  return { sprites, transforms, colors };
 }
 
 const skiaCtx = createSkiaPathContext();
@@ -385,6 +398,14 @@ const READ_R = 3.5;
 /** The ring around the selected gauge's place: clear of a strait's glyph and
  *  its glow, inside the hit radius a finger would use on it. */
 const SELECTED_R = 15;
+/** A capital's dot, and how far right of it its name starts. */
+const CAPITAL_DOT_R = 1.6;
+const CAPITAL_TEXT_DX = 4;
+
+/** Built on the first frame that needs them, so the 50m river and lake
+ *  topologies decode on the first settled frame rather than at launch. */
+let riversCuller: CapCuller | null = null;
+let lakesCuller: CapCuller | null = null;
 const READ_ALPHA = 0.7;
 const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
 /** The web's `sentimentDivergence` bar for the contested ring. */
@@ -718,6 +739,9 @@ interface Hotspot {
 
 interface GlobeState {
   landPath: SkPath | null;
+  /** The large lakes (`LAKE_FILL_MIN_AREA`), cut out of the land. Settled
+   *  frames only; null while the camera moves. */
+  lakesPath: SkPath | null;
   icePath: SkPath | null;
   bordersPath: SkPath | null;
   countryPath: SkPath | null;
@@ -838,6 +862,8 @@ interface GlobeState {
     y: number;
     id: string;
     recencyAlpha: number;
+    /** `conflictScale` of the event's fatalities. */
+    scale: number;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
@@ -855,6 +881,9 @@ interface GlobeState {
     y: number;
     opacity: number;
   }[];
+  /** Country capitals (`places.ts`) that survived the label packer: a dot and
+   *  a name, at every zoom, below the neighbour countries in priority. */
+  capitalLabels: { name: string; x: number; y: number }[];
   /** Water-feature labels — named lakes, major rivers, seas/bays/gulfs.
    *  Same zoom gate as neighbour labels. Drawn at a lighter visual weight
    *  (secondary tone, lower opacity) so they read as tertiary context
@@ -990,6 +1019,8 @@ function countryHighlightOpacity(countryName: string | null): number {
 
 const EMPTY_GLOBE: GlobeState = {
   landPath: null,
+  lakesPath: null,
+  capitalLabels: [],
   icePath: null,
   bordersPath: null,
   countryPath: null,
@@ -1395,6 +1426,13 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.drawPath(f.landPath, fillPaint(colors.accent, light ? 0.32 : 0.1));
     c.drawPath(f.landPath, strokePaint(colors.text, light ? 0.5 : 0.3, 0.6, StrokeJoin.Round));
   }
+  // Lakes, cut back out of the land: the ground, then the ocean's own tint,
+  // then the same shoreline the coast gets.
+  if (f.lakesPath) {
+    c.drawPath(f.lakesPath, fillPaint(colors.bg));
+    c.drawPath(f.lakesPath, fillPaint(colors.atmosphere, light ? 0.12 : 0.08));
+    c.drawPath(f.lakesPath, strokePaint(colors.text, light ? 0.4 : 0.25, 0.5, StrokeJoin.Round));
+  }
 
   // Permanent ice — Antarctica and Greenland. The one layer whose colour must
   // not flip with mode: `text` darkens in light mode, which painted the ice
@@ -1769,6 +1807,19 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
           neighbor,
         );
       }
+    }
+  }
+
+  // Capitals — a dot and a name in the small regular face, quieter than the
+  // country they sit in. No halo, for the water labels' reason.
+  const capitalFont = fonts.sub;
+  if (capitalFont && f.capitalLabels.length > 0) {
+    const inkAlpha = skColor(colors.text)[3] ?? 1;
+    const paint = fillPaint(colors.text);
+    paint.setAlphaf(inkAlpha * (light ? 0.8 : 0.7));
+    for (const capital of f.capitalLabels) {
+      c.drawCircle(capital.x, capital.y, CAPITAL_DOT_R, paint);
+      c.drawText(capital.name, capital.x + CAPITAL_TEXT_DX, capital.y + 3, paint, capitalFont);
     }
   }
 
@@ -2333,6 +2384,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const qiblaPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const sourceArcsRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const riversPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const lakesPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   // City-light tier builders — reset each frame, populated by collectCityLights.
   // Two paths (deep night vs civil twilight) so each tier paints at its own
   // opacity in the JSX without needing per-instance Atlas alpha.
@@ -2469,6 +2521,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       id: e.id,
       coords: [e.lng, e.lat] as [number, number],
       recencyAlpha: Math.max(0.4, 1 - eventAgeDays(e, latestMs) / 14),
+      scale: conflictScale(e.fatalities),
     }));
   }, [conflictEvents]);
   const conflictEventsRef = useRef(enrichedConflict);
@@ -2668,6 +2721,19 @@ export const MiniGlobe = memo(function MiniGlobe({
         (nearSettled ? landFullCull : landSimplifiedCull).visible(geoLng, geoLat, viewAngle),
       );
       const landPath = landBuilder.build();
+
+      // Lakes, on settled frames: the 110m coastline has no inland water, so
+      // Lake Chad and Lake Victoria were land. ~150 polygons of 50m outline is
+      // settle-frame work, like the full coastline above, never drag work.
+      let lakesPath: GlobeState['lakesPath'] = null;
+      if (nearSettled) {
+        if (!lakesCuller) lakesCuller = createCapCuller(getLakeFillFeatureCollection());
+        const lakeBuilder = lakesPathRef.current;
+        lakeBuilder.reset();
+        skiaCtx.setPath(lakeBuilder);
+        pg.context(skiaCtx)(lakesCuller.visible(geoLng, geoLat, viewAngle));
+        lakesPath = lakeBuilder.build();
+      }
 
       // Ice sheets — Antarctica + Greenland. Swapped to simplified during
       // scroll the same way land is. Projecting every frame (not gated) so
@@ -3119,6 +3185,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           y: pt[1],
           id: e.id,
           recencyAlpha: e.recencyAlpha,
+          scale: e.scale,
         });
       }
 
@@ -3245,6 +3312,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (const a of anchorBuf) neighborLabels.push(a);
       for (const o of otherBuf) neighborLabels.push(o);
 
+      // Capitals, at every zoom: below the neighbours in the packer, so a
+      // country's name wins over its capital's where they collide.
+      const capitalLabels: GlobeState['capitalLabels'] = [];
+      for (const capital of CAPITALS) {
+        const u = capital.unit;
+        if (u[0] * camUnitX + u[1] * camUnitY + u[2] * camUnitZ <= clipCos) continue;
+        const pt = proj(capital.coords);
+        if (!pt) continue;
+        capitalLabels.push({ name: capital.name, x: pt[0], y: pt[1] });
+      }
+
       if (placesActive) {
         // Lakes — filter to visually-significant size at globe scale
         // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
@@ -3295,24 +3373,25 @@ export const MiniGlobe = memo(function MiniGlobe({
             kind: 'sea',
           });
         }
+      }
 
-        // Major river lines — the single heaviest per-frame projection
-        // (~9k vertices). Gated on a tighter threshold than the cheap
-        // layers above so that small-country 1× framings (clip ≈ 25°)
-        // get the whisper of neighbour labels + water names without
-        // triggering the river-path settle-frame spike. Path is rewound
-        // (not reset) so the underlying buffer stays allocated between
-        // frames. Opacity uses its own fade band so rivers ease in
-        // independently as the reader zooms past 22°.
-        if (clipAngle < RIVERS_APPEAR_CLIP) {
-          const riverBuilder = riversPathRef.current;
-          riverBuilder.reset();
-          skiaCtx.setPath(riverBuilder);
-          pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
-          riversPath = riverBuilder.build();
-          const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
-          riversOpacity = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
-        }
+      // Major river lines — the single heaviest projection (~9k vertices,
+      // culled to the visible cap). Zoomed past RIVERS_APPEAR_CLIP they draw
+      // on every frame and ease in as the reader zooms. At the resting story
+      // framings (up to RIVERS_REST_CLIP) they draw on settled frames only, at
+      // a quiet opacity: the Niger, the Darling and the Murray are all rank 3,
+      // and a reader looking at Mali or Australia saw none of them.
+      const riversZoomed = clipAngle < RIVERS_APPEAR_CLIP;
+      if (riversZoomed || (nearSettled && clipAngle <= RIVERS_REST_CLIP)) {
+        if (!riversCuller) riversCuller = createCapCuller(getMajorRiverFeatureCollection());
+        const riverBuilder = riversPathRef.current;
+        riverBuilder.reset();
+        skiaCtx.setPath(riverBuilder);
+        pg.context(skiaCtx)(riversCuller.visible(geoLng, geoLat, viewAngle));
+        riversPath = riverBuilder.build();
+        const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
+        const ramp = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
+        riversOpacity = nearSettled ? Math.max(RIVERS_REST_OPACITY, ramp) : ramp;
       }
 
       // Label collision — dot label (location · time) versus country name
@@ -3371,8 +3450,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (lakes → rivers → seas) acts as sub-priority. N² on ≤ ~100 rects
       // stays sub-ms on the JS thread.
       let keptNeighbours = neighborLabels;
+      let keptCapitals = capitalLabels;
       let keptWaters = waterLabels;
-      if (neighborLabels.length > 0 || waterLabels.length > 0) {
+      if (neighborLabels.length > 0 || capitalLabels.length > 0 || waterLabels.length > 0) {
         const lfont = labelFontRef.current;
         const cfont = countryFontRef.current;
         const sfont = subFontRef.current;
@@ -3467,6 +3547,27 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
         keptNeighbours = nkept;
 
+        const ckept: GlobeState['capitalLabels'] = [];
+        for (const capital of capitalLabels) {
+          const tw = sfont ? textWidth(sfont, capital.name) : capital.name.length * 5;
+          const x0 = capital.x - CAPITAL_DOT_R - pad;
+          const x1 = capital.x + CAPITAL_TEXT_DX + tw + pad;
+          const y0 = capital.y - 9 - pad;
+          const y1 = capital.y + 4 + pad;
+          let collides = false;
+          for (const o of occupied) {
+            if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
+              collides = true;
+              break;
+            }
+          }
+          if (!collides) {
+            ckept.push(capital);
+            occupied.push({ x0, y0, x1, y1 });
+          }
+        }
+        keptCapitals = ckept;
+
         const wkept: GlobeState['waterLabels'] = [];
         for (const w of waterLabels) {
           const tw = wfont ? textWidth(wfont, w.name) : w.name.length * 5;
@@ -3494,6 +3595,8 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const frame: GlobeState = {
         landPath,
+        lakesPath,
+        capitalLabels: keptCapitals,
         icePath,
         bordersPath,
         countryPath,

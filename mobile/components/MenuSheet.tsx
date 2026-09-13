@@ -42,6 +42,7 @@ import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
+import { SheetMapKeyPage } from './SheetMapKeyPage';
 import { SheetSearchPage } from './SheetSearchPage';
 import { Toggle } from './Toggle';
 
@@ -191,7 +192,7 @@ const SETTINGS: readonly SettingEntry[] = [
   },
 ];
 
-type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved';
+type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved' | 'map key';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
 
@@ -594,6 +595,11 @@ export const MenuSheet = memo(function MenuSheet({
             hint="Appearance, text size, haptics, notifications"
             onPress={() => navPush('settings')}
           />
+          <NavRow
+            label="map key"
+            hint="What each mark on the globe means"
+            onPress={() => navPush('map key')}
+          />
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
@@ -689,6 +695,10 @@ export const MenuSheet = memo(function MenuSheet({
           ) : null}
         </>
       );
+    }
+
+    if (current === 'map key') {
+      return <SheetMapKeyPage />;
     }
 
     if (current === 'saved') {

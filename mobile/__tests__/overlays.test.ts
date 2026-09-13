@@ -1,4 +1,10 @@
-import { famineAlpha, famineBlocks, thermalAlpha, thermalScale } from '../lib/overlays';
+import {
+  conflictScale,
+  famineAlpha,
+  famineBlocks,
+  thermalAlpha,
+  thermalScale,
+} from '../lib/overlays';
 import { isFamineSnapshot, isGenocideSnapshot, isThermalSnapshot } from '../lib/validate';
 
 // Shapes copied from the live payloads on 2026-09-12, trimmed to one row.
@@ -105,5 +111,21 @@ describe('overlay encodings', () => {
     expect([thermalAlpha('high'), thermalAlpha('nominal'), thermalAlpha('low')]).toEqual([
       0.95, 0.8, 0.5,
     ]);
+  });
+});
+
+describe('conflictScale', () => {
+  it('grows with the death toll on a log scale, between 0.8 and 1.4', () => {
+    expect(conflictScale(0)).toBeCloseTo(0.8);
+    expect(conflictScale(9)).toBeCloseTo(1.1);
+    expect(conflictScale(99)).toBeCloseTo(1.4);
+    expect(conflictScale(5000)).toBeCloseTo(1.4);
+    expect(conflictScale(10)).toBeGreaterThan(conflictScale(1));
+  });
+
+  it('draws an unknown count at the minimum rather than guessing', () => {
+    expect(conflictScale(undefined)).toBeCloseTo(0.8);
+    expect(conflictScale(Number.NaN)).toBeCloseTo(0.8);
+    expect(conflictScale(-3)).toBeCloseTo(0.8);
   });
 });

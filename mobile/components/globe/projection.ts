@@ -150,6 +150,18 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
  *  a rivers projection would cause. Visible from 22° → 10°. */
 export const RIVERS_APPEAR_CLIP = 22;
 
+/**
+ * The widest framing that still draws rivers, on settled frames only: the
+ * resting story framings top out at 40° (`clipAngleForArea`). Below
+ * `RIVERS_APPEAR_CLIP` they draw on every frame, as before. Between the two
+ * they are drawn once the camera stops, because the rank-3 set is ~9k
+ * vertices and a drag must not pay for it, but a reader looking at Mali saw no
+ * Niger and one looking at Australia no Murray–Darling without pinching in.
+ */
+export const RIVERS_REST_CLIP = 40.5;
+/** How strongly the resting rivers draw: present, never louder than a border. */
+export const RIVERS_REST_OPACITY = 0.5;
+
 // ── Reference locations ────────────────────────────────────────────────────
 
 /** Makkah — qibla direction reference. [lng, lat] for d3-geo. */

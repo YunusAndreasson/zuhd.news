@@ -55,36 +55,71 @@ export interface SeaLabel {
 
 let cachedLakes: LakeLabel[] | null = null;
 let cachedRivers: RiverLabel[] | null = null;
-let cachedMajorRiverFC: GeoJSON.FeatureCollection | null = null;
+const cachedMajorRiverFC = new Map<number, GeoJSON.FeatureCollection>();
+let cachedLakeFill: GeoJSON.FeatureCollection | null = null;
+
+/**
+ * The smallest lake filled on the ground, in steradians (about 1,300 km²).
+ *
+ * The 110m coastline has no inland water at all, so Lake Chad, Lake Victoria
+ * and Lake Eyre were land. Set just under Lake Chad, the smallest lake a reader
+ * following Sahel news would expect to see. That keeps the great African,
+ * Andean and Australian lakes and drops the reservoirs and ponds a planet-scale
+ * view cannot resolve.
+ */
+export const LAKE_FILL_MIN_AREA = 3e-5;
+
+/** A lake Natural Earth splits into halves, named as the whole lake. */
+const LAKE_PART = / (North|South)$/;
 
 export function getLakeLabels(): LakeLabel[] {
   if (cachedLakes) return cachedLakes;
   // Dedupe by name for the same reason as rivers — some named lakes (Great
-  // Salt Lake, Salton Sea) ship as multiple polygons. Keep the largest one
-  // per name so labels are never stacked.
-  const bestByName = new Map<string, LakeLabel>();
+  // Salt Lake, Salton Sea) ship as multiple polygons. The label sits on the
+  // largest polygon, and the area is the whole lake's, so a lake Natural Earth
+  // halves ("Lake Eyre North" and "Lake Eyre South") is one "Lake Eyre" that
+  // clears the size floor, where each half alone fell under it and the lake
+  // was never named.
+  const bestByName = new Map<string, LakeLabel & { largest: number }>();
   for (const f of getLakesHiRes().features) {
-    const name = (f.properties as { name?: string } | undefined)?.name;
-    if (!name) continue;
+    const raw = (f.properties as { name?: string } | undefined)?.name;
+    if (!raw) continue;
+    const name = raw.replace(LAKE_PART, '');
     try {
       const coords = geoCentroid(f) as [number, number];
       if (!Number.isFinite(coords[0]) || !Number.isFinite(coords[1])) continue;
       const area = geoArea(f);
       const prev = bestByName.get(name);
-      if (!prev || area > prev.area) {
+      if (!prev) {
         bestByName.set(name, {
           name,
           coords,
           unit: lngLatToUnit(coords[0], coords[1]),
           area,
+          largest: area,
         });
+      } else if (area > prev.largest) {
+        bestByName.set(name, {
+          name,
+          coords,
+          unit: lngLatToUnit(coords[0], coords[1]),
+          area: prev.area + area,
+          largest: area,
+        });
+      } else {
+        prev.area += area;
       }
     } catch {
       // Skip degenerate geometries silently — consistent with the rest of
       // the globe pipeline, which prefers missing data over a crash.
     }
   }
-  cachedLakes = [...bestByName.values()];
+  cachedLakes = [...bestByName.values()].map(({ name, coords, unit, area }) => ({
+    name,
+    coords,
+    unit,
+    area,
+  }));
   return cachedLakes;
 }
 
@@ -131,18 +166,36 @@ export function getRiverLabels(): RiverLabel[] {
   return out;
 }
 
-/** GeoJSON FeatureCollection of the major rivers that get labels (rank
- *  ≤ 3), suitable for passing to d3-geo's `pg.context()(...)` so MiniGlobe
- *  can draw the lines on the globe itself when zoomed. Built lazily on
- *  first access so a reader who never zooms pays no cost. */
-export function getMajorRiverFeatureCollection(): GeoJSON.FeatureCollection {
-  if (cachedMajorRiverFC) return cachedMajorRiverFC;
+/** GeoJSON FeatureCollection of the rivers at or under `maxRank`, suitable
+ *  for passing to d3-geo's `pg.context()(...)` so MiniGlobe can draw the lines
+ *  on the globe itself. Rank ≤ 3 when zoomed in; rank ≤ 2 (the Nile, the
+ *  Niger, the Murray–Darling's trunk) at the resting framing. Built lazily per
+ *  rank and cached. */
+export function getMajorRiverFeatureCollection(maxRank = 3): GeoJSON.FeatureCollection {
+  const cached = cachedMajorRiverFC.get(maxRank);
+  if (cached) return cached;
   const features = getRiversHiRes().features.filter((f) => {
     const rank = (f.properties as { scalerank?: number } | undefined)?.scalerank;
-    return typeof rank === 'number' && rank <= 3;
+    return typeof rank === 'number' && rank <= maxRank;
   });
-  cachedMajorRiverFC = { type: 'FeatureCollection', features };
-  return cachedMajorRiverFC;
+  const fc: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features };
+  cachedMajorRiverFC.set(maxRank, fc);
+  return fc;
+}
+
+/** The lakes filled on the ground (`LAKE_FILL_MIN_AREA`). Lazy and cached, so
+ *  the 50m lake topology decodes on the first settled frame, not at launch. */
+export function getLakeFillFeatureCollection(): GeoJSON.FeatureCollection {
+  if (cachedLakeFill) return cachedLakeFill;
+  const features = getLakesHiRes().features.filter((f) => {
+    try {
+      return geoArea(f) >= LAKE_FILL_MIN_AREA;
+    } catch {
+      return false;
+    }
+  });
+  cachedLakeFill = { type: 'FeatureCollection', features };
+  return cachedLakeFill;
 }
 
 /** Precomputed sea labels with unit vectors. The (54 × 4 trig ops) precompute

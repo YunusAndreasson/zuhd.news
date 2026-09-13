@@ -88,3 +88,18 @@ export function thermalScale(frp: number): number {
   const t = Math.max(0, Math.min(1, Math.log10(Math.max(1, frp)) / 4));
   return 0.7 + 0.6 * t;
 }
+
+/**
+ * A conflict mark's size by the event's best fatality estimate, on a log
+ * scale, 0.8–1.4 of the glow: the web map sizes its conflict squares the same
+ * way. The app drew every event at one size, so a clash with one death and a
+ * massacre with a hundred were the same mark. Log because the counts run from
+ * zero to hundreds, and a linear scale would draw every mark but the worst at
+ * the minimum. Unknown counts draw at the minimum, never as a guess.
+ */
+export function conflictScale(fatalities: number | null | undefined): number {
+  const n =
+    typeof fatalities === 'number' && Number.isFinite(fatalities) ? Math.max(0, fatalities) : 0;
+  const t = Math.min(1, Math.log10(1 + n) / 2);
+  return 0.8 + 0.6 * t;
+}

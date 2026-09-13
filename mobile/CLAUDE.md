@@ -235,6 +235,25 @@ whole time; nothing said so.
     `geoGraticule` call drew only the equator. Day is a lift of the lit
     hemisphere in `daylight` under the land (`day-shade` on the web), because
     darkening a near-black sea never showed where night was.
+  - **A resting globe carries the detail a reader looks for, not only the
+    giants' names.** At the 30°–40° story framings the globe named anchor
+    countries and nothing inside them — Mali and Australia were an outline and
+    a word. Now, at every zoom: each country's capital, a dot and a name
+    (`globe/places.ts`, from the capitals the city lights use — `places-50m`'s
+    `cap` flag also marks Sydney and Hamburg), below neighbours in the packer;
+    the large lakes cut out of the land (`LAKE_FILL_MIN_AREA`, just under Lake
+    Chad; the 110m coast has no inland water); and the rank-3 rivers, because
+    the Niger, the Darling and the Murray are all rank 3. Lakes and resting
+    rivers are **settled-frame work** (`nearSettled`, `RIVERS_REST_CLIP`),
+    culled to the visible cap, so a drag pays nothing for them; they appear
+    when the camera stops, as the full coastline already did. Lake Eyre's two
+    Natural Earth halves are one label now.
+  - **Conflict marks are sized by the dead** (`conflictScale`, log, 0.8–1.4),
+    as the web sizes its squares; every event used to be one size.
+  - **There is a key.** `menu → map key` (`SheetMapKeyPage`) draws every mark
+    from the globe's own glyph paths and `mark*` tokens, with a sentence each,
+    and prints the strait threshold from `CHOKEPOINT_DISRUPTED`. Before it the
+    only way to learn a mark was to tap it.
   - **A gesture starts from `viewLat`/`viewLng`, never from `cameraLat`/`cameraLng`.**
     Those only mean something while a target owns the camera; while the deck
     owns it they keep whatever the last flight left, and a drag that took the
