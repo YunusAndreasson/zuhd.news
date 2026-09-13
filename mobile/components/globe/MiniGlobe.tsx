@@ -382,6 +382,9 @@ const BEACON_R = 5.5;
  *  enough that the beacons still to find stay the loud marks, visible enough to
  *  say where the reader has been. */
 const READ_R = 3.5;
+/** The ring around the selected gauge's place: clear of a strait's glyph and
+ *  its glow, inside the hit radius a finger would use on it. */
+const SELECTED_R = 15;
 const READ_ALPHA = 0.7;
 const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
 /** The web's `sentimentDivergence` bar for the contested ring. */
@@ -629,6 +632,13 @@ interface MiniGlobeProps {
     direction?: 'up' | 'down' | 'flat';
   }[];
   /**
+   * `[lat, lng]` of the gauge whose card is open, ringed on the globe so the
+   * reader can tell which mark a gauge belongs to. A position rather than a
+   * mark id, because a strait's card id and its mark's id are different
+   * strings and a ring should not need a lookup table to find its place.
+   */
+  selectedAt?: readonly [number, number] | null;
+  /**
    * Where the reader is in the river, in stories: `2` is the third story,
    * `2.4` is a finger partway from it to the fourth.
    *
@@ -761,6 +771,9 @@ interface GlobeState {
    *  lines stack below at LINE_HEIGHT spacing. */
   countryLabel: { lines: string[]; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
+  /** The place of the gauge whose card is open, ringed. Null when nothing is
+   *  selected or the place is on the far side. */
+  selected: { x: number; y: number } | null;
   /** Subsolar point — projected position of `[sunLng, sunLat]` (the spot
    *  where the sun sits directly overhead). Null when the subsolar point
    *  is on the far side of the globe. Drives the day-side ocean specular
@@ -1001,6 +1014,7 @@ const EMPTY_GLOBE: GlobeState = {
   dotLabel: null,
   countryLabel: null,
   makkah: null,
+  selected: null,
   subsolar: null,
   hotspotGlows: [],
   chokepoints: [],
@@ -1621,6 +1635,17 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 
   drawAtlasLayer(c, textures.makkah, glowAtlas(MAKKAH_GLOW, f.makkah ? [f.makkah] : []));
 
+  // The gauge whose card is open. Emphasis ink, not the mark's hue: the ring
+  // says "this one", and the mark inside it already says what it is.
+  if (f.selected) {
+    c.drawCircle(
+      f.selected.x,
+      f.selected.y,
+      SELECTED_R,
+      strokePaint(colors.textEmphasis, 0.9, 1.5),
+    );
+  }
+
   // Famine and thermal — the ground a story happens on, so under the stories.
   const famine = f.famineMarks;
   drawAtlasLayer(
@@ -1852,6 +1877,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   gdacsAlerts,
   conflictEvents,
   marketMarks,
+  selectedAt,
   places,
   foundSlugs,
   foundProgress,
@@ -2360,6 +2386,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   chokepointsRef.current = enrichedChokepoints;
   const marketMarksRef = useRef(enrichedMarketMarks);
   marketMarksRef.current = enrichedMarketMarks;
+  // `[lng, lat]`, built once per selection for `geoDistance` and `proj`.
+  const selectedCoords = useMemo<[number, number] | null>(
+    () => (selectedAt ? [selectedAt[1], selectedAt[0]] : null),
+    [selectedAt],
+  );
+  const selectedRef = useRef(selectedCoords);
+  selectedRef.current = selectedCoords;
   // GDACS alerts — precompute per-frame derivations once per snapshot:
   // [lng,lat] tuple and recency alpha (fade events older than 14 days down
   // to ~0.5; the data layer drops anything past 30 days). Greens are
@@ -2799,6 +2832,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < clipRad) {
         const pt = proj(MAKKAH.coords);
         if (pt) makkah = { x: pt[0], y: pt[1] };
+      }
+
+      let selected: { x: number; y: number } | null = null;
+      const selectedLngLat = selectedRef.current;
+      if (selectedLngLat && geoDistance(selectedLngLat, [geoLng, geoLat]) < clipRad) {
+        const pt = proj(selectedLngLat);
+        if (pt) selected = { x: pt[0], y: pt[1] };
       }
 
       // Subsolar point — drives the day-side ocean specular highlight.
@@ -3478,6 +3518,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         dotLabel,
         countryLabel,
         makkah,
+        selected,
         subsolar,
         hotspotGlows,
         chokepoints: chokepointMarks,
@@ -3571,6 +3612,24 @@ export const MiniGlobe = memo(function MiniGlobe({
   useEffect(() => {
     redrawLast();
   }, [colors, light, redrawLast]);
+
+  // A gauge selected or put down while the camera is still has no frame coming
+  // to draw its ring, so project one.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, reads selectedRef
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
+  }, [selectedCoords]);
 
   // A font changes label widths, so the label packer has to run again.
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state

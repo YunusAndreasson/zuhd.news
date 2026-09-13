@@ -471,7 +471,7 @@ function metalsPairCard(
  * rising number means it weakened") goes with it, because there is no longer
  * anything counter-intuitive to explain.
  */
-function currencyMove(ratePct: number): number {
+export function currencyMove(ratePct: number): number {
   const p = ratePct / 100;
   return (1 / (1 + p) - 1) * 100;
 }

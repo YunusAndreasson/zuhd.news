@@ -7,9 +7,11 @@ import {
   View,
 } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { useTheme } from '../../hooks/useTheme';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
+import { Sparkline } from '../Sparkline';
 
 /**
  * The gauges above the earth, swiped sideways from beside `MapHeader`'s mark to
@@ -20,11 +22,12 @@ import { Icon, Pressable, Text } from '../primitives';
  * lived with three fixed slots, "the rail should be swipeable, with markets,
  * straits and currencies all there, the most dramatic change at the left".
  *
- * **Every reading that moved, largest move first.** `buildNowSurfaces` sorts
- * by the unsigned size of each card's delta, so the first slot is the biggest
- * move of the day and a swipe runs down to the quiet ones. A glance at the
- * carets and their colour is the whole read; the number is there for whoever
- * stops.
+ * **Every reading that moved this week, largest move first.** Every slot is
+ * one quantity, the move over the past seven days (`gaugeMove`), so the sort is
+ * a comparison. It used to sort each card's own delta, which put a strait's gap
+ * from its 90-day normal beside an index's four sessions beside a currency's
+ * whole series. A glance at the carets, their colour and the week's line is
+ * the whole read; the number is there for whoever stops.
  *
  * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
  * fit the room between the mark and the listen button — the partial slot at
@@ -34,10 +37,10 @@ import { Icon, Pressable, Text } from '../primitives';
  * when nothing has happened, which is the engagement mechanic `foundation.md`
  * names in the list of things this is not.
  *
- * Each slot carries the reading *and* the move, not one or the other: a
- * strait's story is "−57%" and an index's is its level and "4.8%". The delta's
- * window is dropped — "vs its 90-day normal" does not fit a slot — and it is
- * on the card the slot opens.
+ * Each slot carries the reading, the week's move and the week's line. The
+ * window is printed once, over `all` at the end of the row, rather than in
+ * every slot: it is the same window everywhere, which is the point. The card a
+ * slot opens keeps its own longer window and says which.
  *
  * **`all →` ends the row.** The instruments without a move — the nisab, the
  * contracts, the dates — and the full ranked list live in `InstrumentsSheet`,
@@ -48,20 +51,34 @@ import { Icon, Pressable, Text } from '../primitives';
  * Tapping a slot turns the planet to that mark and opens its card. That is
  * also how a reader learns the globe is addressable at all — the mapping is
  * created by the action, since nothing about a dot on a sphere announces it.
+ * The slot stays marked, and the globe rings the place, for as long as its card
+ * is open, so the reader can see which gauge the ring belongs to.
  */
+
+/** The week's line under each reading. */
+export const SPARK_HEIGHT = 10;
+/** The mark under the slot whose card is open. Reserved on every slot, so
+ *  selecting one does not move the row. */
+const SELECTED_BAR = 2;
+/** What the line and the mark add to a gauge's height, for `MapHeader`, which
+ *  holds the row at a gauge's height before the gauges arrive. */
+export const GAUGE_EXTRA = SPACING.xxs + SPARK_HEIGHT + SPACING.xxs + SELECTED_BAR;
 
 /** Slots visible across the row. Not a whole number, so one is always cut. */
 const VISIBLE_SLOTS = 3.4;
 
-function Slot({
+const Slot = memo(function Slot({
   item,
   width,
+  selected,
   onPress,
 }: {
   item: StripItem;
   width: number;
+  selected: boolean;
   onPress: (item: StripItem) => void;
 }) {
+  const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(item), [item, onPress]);
 
   // Spoken as one sentence. A screen reader landing on separate numbers with
@@ -71,12 +88,10 @@ function Slot({
     item.label,
     item.reading,
     item.readingNote,
-    item.delta && item.delta.direction !== 'flat'
+    item.delta.direction !== 'flat'
       ? `${item.delta.direction} ${item.delta.magnitude}`
-      : item.delta
-        ? 'unchanged'
-        : null,
-    item.delta?.window,
+      : 'unchanged',
+    item.delta.window,
   ]
     .filter(Boolean)
     .join(', ');
@@ -88,6 +103,7 @@ function Slot({
       style={[styles.slot, { minWidth: width }]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
+      accessibilityState={{ selected }}
       accessibilityHint="Turns the globe to this and opens its card"
     >
       {/* One line, never cut. A fixed-width slot either ellipsized the
@@ -111,17 +127,33 @@ function Slot({
         >
           {item.reading}
         </Text>
-        {item.delta ? <DeltaChip delta={item.delta} window={false} scale={1} /> : null}
+        <DeltaChip delta={item.delta} window={false} scale={1} />
       </View>
+      <View style={styles.spark}>
+        <Sparkline
+          points={item.spark}
+          tone={item.delta.valence}
+          width={width}
+          height={SPARK_HEIGHT}
+        />
+      </View>
+      <View
+        style={[
+          styles.selected,
+          { backgroundColor: selected ? colors.textEmphasis : 'transparent' },
+        ]}
+      />
     </Pressable>
   );
-}
+});
 
 export const IndicatorStrip = memo(function IndicatorStrip({
   items,
   onSelect,
   onAll,
   resetKey = 0,
+  selectedId = null,
+  initialViewport,
 }: {
   items: StripItem[];
   onSelect: (item: StripItem) => void;
@@ -129,11 +161,16 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   onAll: () => void;
   /** Changes when the row should scroll back to its first gauge. */
   resetKey?: number;
+  /** The gauge whose card is open. */
+  selectedId?: string | null;
+  /** The room the bar will leave, computed by the bar before layout, so the
+   *  slots are not laid out at a guess and then resized once measured. */
+  initialViewport?: number;
 }) {
-  // Sized from the room the bar actually leaves, which changes when the listen
-  // button comes and goes; the window's width is only the first guess.
+  // Sized from the room the bar actually leaves; `initialViewport` is the
+  // bar's own arithmetic, and the layout pass only corrects it.
   const { width: screenWidth } = useWindowDimensions();
-  const [viewport, setViewport] = useState(screenWidth / 2);
+  const [viewport, setViewport] = useState(initialViewport ?? screenWidth / 2);
   const handleLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
     setViewport((prev) => (prev === next ? prev : next));
@@ -163,11 +200,20 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       overScrollMode="never"
       onLayout={handleLayout}
       contentContainerStyle={styles.row}
-      accessibilityLabel="Markets, straits and currencies, largest move first"
+      accessibilityLabel="Markets, straits and currencies, largest move over seven days first"
     >
       {items.map((item) => (
-        <Slot key={item.id} item={item} width={slotWidth} onPress={onSelect} />
+        <Slot
+          key={item.id}
+          item={item}
+          width={slotWidth}
+          selected={item.id === selectedId}
+          onPress={onSelect}
+        />
       ))}
+      {/* The window, named once where the row ends: every slot measures the
+          same seven days, so printing it per slot would be the same caption ten
+          times over. */}
       <Pressable
         onPress={onAll}
         haptic="none"
@@ -176,10 +222,21 @@ export const IndicatorStrip = memo(function IndicatorStrip({
         accessibilityLabel="All instruments"
         accessibilityHint="Opens every market, strait, currency and contract as a ranked list"
       >
-        <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
-          all
+        <Text
+          variant="labelXsTight"
+          tone="secondary"
+          numberOfLines={1}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+          style={styles.label}
+        >
+          7 days
         </Text>
-        <Icon name="chevron-forward" size="sm" tone="secondary" />
+        <View style={styles.allRow}>
+          <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
+            all
+          </Text>
+          <Icon name="chevron-forward" size="sm" tone="secondary" />
+        </View>
       </Pressable>
     </ScrollView>
   );
@@ -196,16 +253,13 @@ const styles = StyleSheet.create({
   // Equal widths rather than content width: gauges that change size as the
   // day's figures change length are gauges you have to read before you can
   // find the one you wanted.
-  // Bottom-aligned, so the readings share a line whether a label took one
-  // line or two.
-  slot: { justifyContent: 'flex-end' },
+  slot: { justifyContent: 'flex-start' },
   label: { marginBottom: 1 },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
-  all: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    gap: SPACING.xs,
-    paddingVertical: SPACING.xs,
-  },
+  spark: { marginTop: SPACING.xxs },
+  selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
+  // Laid out like a slot (a caption over a line) so "7 days" sits on the
+  // labels' line and "all" on the readings'.
+  all: { justifyContent: 'flex-start' },
+  allRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
 });

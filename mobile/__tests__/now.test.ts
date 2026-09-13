@@ -19,6 +19,12 @@ function move(size: number | undefined, direction: 'up' | 'down' = 'down'): Card
 }
 const DAY = 86_400_000;
 
+const WEEK = ['Sep 4', 'Sep 5', 'Sep 6', 'Sep 7', 'Sep 8', 'Sep 9', 'Sep 10', 'Sep 11'];
+/** A daily series that moved `pct` percent over the week. */
+function week(pct: number, label = 'series') {
+  return { values: [100, 100, 100, 100, 100, 100, 100, 100 + pct], periods: WEEK, label };
+}
+
 function reading(id: string, extra: Partial<ReadingCard> = {}): GraphCard {
   return {
     id,
@@ -26,9 +32,10 @@ function reading(id: string, extra: Partial<ReadingCard> = {}): GraphCard {
     kicker: `${id} desk`,
     title: `${id} title`,
     reading: '100',
+    asOf: '2026-09-11',
     delta: move(1),
     why: `${id} explained`,
-    series: { values: [1, 2], periods: ['p0', 'p1'], label: id },
+    series: week(1, id),
     ...extra,
   };
 }
@@ -116,12 +123,12 @@ describe('buildNowSurfaces — the strip', () => {
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['a', 'b', 'c', 'd', 'e']);
   });
 
-  it('puts the largest move first, whichever way it went', () => {
+  it('puts the largest seven-day move first, whichever way it went', () => {
     const ranked: SwipeCard[] = [
-      reading('gold', { delta: move(0.8, 'up') }),
-      reading('strait-hormuz', { delta: move(57) }),
-      reading('fx-try', { delta: move(2.4, 'up') }),
-      reading('market-signal:bist', { delta: move(4.8) }),
+      reading('gold', { series: week(0.8) }),
+      reading('strait-hormuz', { series: week(-57) }),
+      reading('fx-try', { series: week(2.4) }),
+      reading('market-signal:bist', { series: week(-4.8) }),
     ];
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual([
       'strait-hormuz',
@@ -131,17 +138,30 @@ describe('buildNowSurfaces — the strip', () => {
     ]);
   });
 
+  it("sorts on the week, not on each card's own window", () => {
+    // The strait is 57% off its 90-day normal but flat on the week; the index
+    // moved 3% this week over a four-session streak. They used to sort on the
+    // card's own chip, which put a quarter's condition against a week's move.
+    const ranked: SwipeCard[] = [
+      reading('strait-hormuz', { delta: move(57), series: week(0.5) }),
+      reading('market-signal:bist', { delta: move(4.8), series: week(-3) }),
+    ];
+    const { strip } = base({ ranked });
+    expect(strip.map((s) => s.id)).toEqual(['market-signal:bist', 'strait-hormuz']);
+    expect(strip[1]?.delta.window).toBe('over 7 days');
+    expect(strip[1]?.card.delta?.magnitude).toBe('57%');
+    expect(strip[0]?.spark).toHaveLength(8);
+  });
+
   it('keeps the ranked order between equal moves', () => {
-    const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { delta: move(3) }));
+    const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { series: week(3) }));
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['b', 'a', 'c']);
   });
 
-  it('sorts a move with no percentage after every move with one', () => {
-    const ranked: SwipeCard[] = [
-      reading('points', { delta: move(undefined, 'up') }),
-      reading('flat', { delta: move(0) }),
-    ];
-    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['flat', 'points']);
+  it('leaves out a reading with no seven-day move, such as a monthly series', () => {
+    const monthly = { values: [1, 2], periods: ['Jun 2026', 'Jul 2026'], label: 'wheat' };
+    const ranked: SwipeCard[] = [reading('wheat', { series: monthly }), reading('brent')];
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['brent']);
   });
 
   it('leaves out a reading with no move — there is nothing to glance at', () => {

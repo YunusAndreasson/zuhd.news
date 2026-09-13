@@ -105,13 +105,24 @@ whole time; nothing said so.
   camera track is stories only. They reach the sheet as the masthead line
   (`now · …`, which opens the alert) and as `IndexSheet`'s NOW rows. A contract
   reaches the sheet the one honest way: as the odds on the story it settles.
-- **The strip scrolls sideways and holds every reading that moved, largest
-  move first.** It was three fixed slots, and the reader asked for all the
-  markets, straits and currencies in one swipe, sorted so the most dramatic
-  change sits at the left. `CardDelta.size` is the unsigned percentage the
-  sort reads — set by `deltaFrom` for percent moves, by `straitDelta` and by
-  the market-signal builder — and is absent for a move in points, which sorts
-  last. Contracts (their subject is a question) and dates (no move) never take
+- **The strip scrolls sideways and holds every reading that moved this week,
+  largest move first.** It was three fixed slots, and the reader asked for all
+  the markets, straits and currencies in one swipe, sorted so the most dramatic
+  change sits at the left.
+  - **Every slot is the same seven days** (`gaugeMove`, `lib/cards/week-move.ts`,
+    tested), with the week's line under it (`Sparkline`). The strip used to sort
+    each card's own delta with its window hidden: a strait's gap from its 90-day
+    normal beside an index's four sessions beside a currency's whole series — one
+    sort over three quantities, printed as though they were one. The card keeps
+    its own window and prints it; `InstrumentsSheet` rows read like their gauge.
+  - Calendar days, not observations, read off the period labels (`Sep 7`); a
+    month label is a monthly series, which has no week and stays in the list. A
+    currency's week is the currency's (`currencyMove`), a strait's is its
+    seven-day average against the one before, coloured by `chokepointValence`.
+  - The slot whose card is open is marked and the globe rings its place
+    (`MiniGlobe.selectedAt`, a position, since a strait's card id is not its
+    mark's id). An exchange mark's colour still follows its card's own chip.
+  - Contracts (their subject is a question) and dates (no move) never take
   a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
   row continues. **A subject is one line and is never cut**: a strait prints
   its short form (`stripLabel` — `Hormuz Str.`, the full name is still what a

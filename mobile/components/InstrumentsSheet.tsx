@@ -1,13 +1,16 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { gaugeMove } from '../lib/cards/week-move';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
+import { SPARK_HEIGHT } from './map/IndicatorStrip';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
+import { Sparkline } from './Sparkline';
 
 /**
  * Every instrument, as one ranked list.
@@ -23,9 +26,11 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * data side of the app now that the three desks are gone: if it is an
  * instrument, it is here, in the order `lib/cards/rank.ts` puts it.
  *
- * Rows carry the reading *and* the delta with its window, unlike the strip
- * above the globe — there is no gauge row competing here, so the full chip
- * fits and the information appears in exactly one place on this surface.
+ * Rows read the way the gauges above the globe do: the reading, the move over
+ * the past seven days and the week's line (`gaugeMove`), so a row and its gauge
+ * never print two different numbers for one instrument. An instrument with no
+ * seven-day move (a monthly series, a contract, a date) keeps its card's own
+ * chip, and its window is spoken.
  *
  * **The same row shape as the sheet's list.** Title first, at `FeedRow`'s
  * scale and allowed two lines, then `current · kicker` on one line under it.
@@ -45,16 +50,16 @@ const Row = memo(function Row({
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(card), [card, onPress]);
   const kicker = rowKicker(card);
+  const move = useMemo(() => gaugeMove(card), [card]);
+  const delta = move?.delta ?? card.delta;
 
   const spoken = [
     kicker,
     card.title,
     card.reading,
     card.readingNote,
-    card.delta && card.delta.direction !== 'flat'
-      ? `${card.delta.direction} ${card.delta.magnitude}`
-      : null,
-    card.delta?.window,
+    delta && delta.direction !== 'flat' ? `${delta.direction} ${delta.magnitude}` : null,
+    delta?.window,
   ]
     .filter(Boolean)
     .join(', ');
@@ -89,7 +94,17 @@ const Row = memo(function Row({
         <Text variant="tabularEmphasis" scale={1.2} numberOfLines={1}>
           {card.reading}
         </Text>
-        {card.delta ? <DeltaChip delta={card.delta} window={false} scale={1} /> : null}
+        {delta ? <DeltaChip delta={delta} window={false} scale={1} /> : null}
+        {move ? (
+          <View style={styles.spark}>
+            <Sparkline
+              points={move.points}
+              tone={move.delta.valence}
+              width={SPARK_WIDTH}
+              height={SPARK_HEIGHT}
+            />
+          </View>
+        ) : null}
       </View>
     </Pressable>
   );
@@ -134,4 +149,8 @@ const styles = StyleSheet.create({
   // Right-aligned so a column of readings lines up and the eye can run down
   // the numbers without re-finding the edge on every row.
   figures: { alignItems: 'flex-end' },
+  spark: { marginTop: SPACING.xxs },
 });
+
+/** As wide as a reading with its chip, so a column of lines reads as one scale. */
+const SPARK_WIDTH = 56;

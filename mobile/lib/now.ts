@@ -2,6 +2,7 @@ import type { MarketSignal } from '@shared/market-signals';
 import type { Article, Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
+import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
 
 /**
@@ -68,7 +69,12 @@ export interface StripItem {
   short: string;
   reading: string;
   readingNote?: string;
-  delta?: CardDelta;
+  /** The move over the past seven days (`gaugeMove`), never the card's own
+   *  window: the strip sorts these against each other, so they must be one
+   *  quantity. The card keeps its own delta and prints its own window. */
+  delta: CardDelta;
+  /** The observations the move spans, for the slot's line. */
+  spark: number[];
   coords: LatLng | null;
   card: SwipeCard;
 }
@@ -168,6 +174,7 @@ export function stripLabel(title: string): string {
 
 function toStripItem(
   card: SwipeCard,
+  move: GaugeMove,
   chokepoints: Chokepoint[],
   signals: MarketSignal[],
   countryCentroid?: (iso2: string) => LatLng | null,
@@ -183,7 +190,8 @@ function toStripItem(
     short: stripLabel(card.title),
     reading: card.reading,
     readingNote: card.readingNote,
-    delta: card.delta,
+    delta: move.delta,
+    spark: move.points,
     coords: locateCard(card, chokepoints, signals, countryCentroid),
     card,
   };
@@ -244,15 +252,24 @@ export function buildNowSurfaces({
   // contract also rides the story it settles as an odds chip.
   //
   // A reading with no delta has no up or down to glance at, which is the one
-  // thing the strip is for; it stays in the instruments sheet.
+  // thing the strip is for; it stays in the instruments sheet. Nor does a
+  // reading with no seven-day move — a monthly series, a stalled feed.
   //
-  // Largest move first. `Array.prototype.sort` is stable, so equal moves keep
-  // the ranked order, and a move measured in points (no `size`) sorts last.
-  const strip = ranked
-    .filter((card) => card.kind === 'reading' && card.delta)
-    .map((card, order) => ({ card, order, size: card.delta?.size ?? -1 }))
-    .sort((a, b) => b.size - a.size || a.order - b.order)
-    .map(({ card }) => toStripItem(card, chokepoints, signals, countryCentroid));
+  // Largest seven-day move first. It sorted each card's own delta once, and
+  // those were a strait's gap from its 90-day normal beside an index's four
+  // sessions beside a currency's whole series: one sort over three quantities.
+  // `Array.prototype.sort` is stable, so equal moves keep the ranked order.
+  const strip: StripItem[] = [];
+  const moved: { card: SwipeCard; order: number; move: GaugeMove }[] = [];
+  ranked.forEach((card, order) => {
+    if (card.kind !== 'reading' || !card.delta) return;
+    const move = gaugeMove(card, now);
+    if (move) moved.push({ card, order, move });
+  });
+  moved.sort((a, b) => (b.move.delta.size ?? 0) - (a.move.delta.size ?? 0) || a.order - b.order);
+  for (const { card, move } of moved) {
+    strip.push(toStripItem(card, move, chokepoints, signals, countryCentroid));
+  }
 
   const block = hazardItems(gdacsAlerts, now)
     // Newest first. Ties break on id so a rebuild cannot shuffle the block

@@ -7,7 +7,7 @@ import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import type { StripItem } from '../../lib/now';
 import { IconButton } from '../primitives';
-import { IndicatorStrip } from './IndicatorStrip';
+import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 
 /**
  * The one bar above the earth: the zuhd mark · every gauge that moved.
@@ -96,6 +96,7 @@ export const MapHeader = memo(function MapHeader({
   onAll,
   recede,
   gaugesEnabled,
+  selectedId = null,
 }: {
   /** The mark: back to the newest story, zoom released. */
   onHomePress: () => void;
@@ -108,6 +109,8 @@ export const MapHeader = memo(function MapHeader({
   recede: SharedValue<number>;
   /** False while a story is grown, so a faded gauge cannot be tapped. */
   gaugesEnabled: boolean;
+  /** The gauge whose card is open. */
+  selectedId?: string | null;
 }) {
   const { colors, textVariants } = useTheme();
   const { fontScale, width } = useWindowDimensions();
@@ -126,8 +129,13 @@ export const MapHeader = memo(function MapHeader({
       (textVariants.tabularEmphasis.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.tabular) +
       1 +
       SPACING.xs +
-      SPACING.sm,
+      SPACING.sm +
+      GAUGE_EXTRA,
   );
+  // The room the strip gets: the row runs to the right edge and gives the mark
+  // its padding, width and gap. Handed down so the slots are sized right on
+  // the first layout rather than at a guess corrected by the second.
+  const stripViewport = width - SPACING.articlePadding - MARK_SIZE - SPACING.md;
 
   const gaugesStyle = useAnimatedStyle(() => {
     const p = Math.min(1, Math.max(0, recede.value));
@@ -159,7 +167,14 @@ export const MapHeader = memo(function MapHeader({
         style={[styles.middle, { minHeight: gaugeHeight }, gaugesStyle]}
         pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
       >
-        <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} resetKey={homeKey} />
+        <IndicatorStrip
+          items={items}
+          onSelect={onSelect}
+          onAll={onAll}
+          resetKey={homeKey}
+          selectedId={selectedId}
+          initialViewport={stripViewport}
+        />
       </Animated.View>
     </View>
   );

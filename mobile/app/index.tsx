@@ -384,8 +384,10 @@ export default function HomeScreen() {
           // The exchange, not the ticker: the mark stands for a place, and
           // `Borsa İstanbul` is a place where `BIST 100` is a number.
           label: item.label,
-          // Coloured by which way the index went, as on the web map.
-          direction: item.delta?.direction,
+          // Coloured by the move the server flagged — the card's own chip,
+          // which is why the mark exists — not by the gauge's week, so a mark
+          // and the card it opens cannot point opposite ways.
+          direction: item.card.delta?.direction,
           lat: (item.coords as LatLng)[0],
           lng: (item.coords as LatLng)[1],
         })),
@@ -619,6 +621,10 @@ export default function HomeScreen() {
     [focusStory, injectArticle, pinStory],
   );
 
+  // The gauge whose card is open: its slot is marked and the globe rings its
+  // place until the card closes, so a ring on the planet always has a gauge.
+  const [selectedGauge, setSelectedGauge] = useState<StripItem | null>(null);
+
   const openCard = useCallback((card: SwipeCard) => {
     setActiveCard(card);
     cardSheetRef.current?.present();
@@ -629,6 +635,7 @@ export default function HomeScreen() {
       hapticImpact();
       markHintDone('globe');
       flyTo(item.coords);
+      setSelectedGauge(item);
       openCard(item.card);
     },
     [flyTo, openCard],
@@ -669,9 +676,14 @@ export default function HomeScreen() {
   const handleInstrumentSelect = useCallback(
     (card: SwipeCard) => {
       instrumentsSheetRef.current?.dismiss();
+      // A row is its gauge in a list: the same flight and the same ring, when
+      // the instrument has a place and a week to show.
+      const gauge = strip.find((item) => item.id === card.id) ?? null;
+      if (gauge) flyTo(gauge.coords);
+      setSelectedGauge(gauge);
       openCard(card);
     },
-    [openCard],
+    [flyTo, openCard, strip],
   );
 
   const openOverlay = useCallback((selection: OverlaySelection) => {
@@ -1088,7 +1100,10 @@ export default function HomeScreen() {
   const handleChokepointDismiss = useCallback(() => setActiveChokepoint(null), []);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
-  const handleCardDismiss = useCallback(() => setActiveCard(null), []);
+  const handleCardDismiss = useCallback(() => {
+    setActiveCard(null);
+    setSelectedGauge(null);
+  }, []);
   const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
   const handleIndexDismiss = useCallback(() => setIndexOpen(false), []);
@@ -1371,6 +1386,7 @@ export default function HomeScreen() {
           articles={river}
           heatmapPoints={heatmapPoints}
           chokepoints={chokepoints}
+          selectedAt={selectedGauge?.coords ?? null}
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
@@ -1434,6 +1450,7 @@ export default function HomeScreen() {
           onAll={handleInstrumentsPress}
           recede={sheetProgress}
           gaugesEnabled={sheetDetent !== 'full'}
+          selectedId={selectedGauge?.id ?? null}
         />
       </View>
 
