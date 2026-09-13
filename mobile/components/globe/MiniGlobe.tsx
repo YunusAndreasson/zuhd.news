@@ -623,18 +623,25 @@ interface MiniGlobeProps {
     lng: number;
     direction?: 'up' | 'down' | 'flat';
   }[];
-  scrollY: SharedValue<number>;
-  itemHeight: number;
+  /**
+   * Where the reader is in the river, in stories: `2` is the third story,
+   * `2.4` is a finger partway from it to the fourth.
+   *
+   * It used to be a scroll offset in pixels plus the height of one item, and
+   * the two had to be swapped together whenever a different surface came to
+   * the front — a sheet row and a full-screen page are different distances
+   * through the same river. Every surface now publishes the same unit, so
+   * nothing has to be swapped and nothing can be swapped out of step.
+   */
+  storyProgress: SharedValue<number>;
   /**
    * What the camera flies along, as a flat `[lat, lng, lat, lng, …]` array —
-   * one pair per scrollable row, `null, null` for a row with no place.
+   * one pair per story, `null, null` for a story with no place.
    *
-   * Defaults to the article set, which is what the reader wants: one pair per
-   * page, indexed by `scrollY / itemHeight`. The map screen's sheet has a
-   * different list — a block of instruments above the river — so it supplies
-   * its own track rather than having the globe guess that row *n* is article
-   * *n*. Marks are unaffected: they come from `articleGeo`, which stays the
-   * article set on every surface.
+   * Defaults to the article set. The screen supplies its own track rather
+   * than having the globe guess that story *n* is article *n*. Marks are
+   * unaffected: they come from `articleGeo`, which stays the article set on
+   * every surface.
    */
   cameraTrack?: (number | null)[];
   /**
@@ -1276,8 +1283,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   famineAreas,
   thermalEvents,
   genocideSituations,
-  scrollY,
-  itemHeight,
+  storyProgress,
   cameraTrack,
   cameraOwner,
   cameraLat,
@@ -2865,7 +2871,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   useAnimatedReaction(
     () => ({
-      sy: scrollY.value,
+      sy: storyProgress.value,
       oA: overrideActive.value,
       oG: overrideAngle.value,
       len: coordsSV.value.length,
@@ -2946,7 +2952,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const coords = coordsSV.value;
       const articleCount = len / 2;
-      const rawIndex = Math.max(0, sy / itemHeight);
+      const rawIndex = Math.max(0, sy);
       const lo = Math.min(Math.floor(rawIndex), articleCount - 1);
       const hi = Math.min(lo + 1, articleCount - 1);
       // Clamp: `lo` is capped at the last article but rawIndex is not, so
@@ -3025,7 +3031,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (drives country highlight + label swap).
       if (
         settled === lastReactSettled.value &&
-        Math.abs(sy - lastReactSy.value) < 0.5 &&
+        // In stories, not pixels: 0.002 of a story is well under a point of
+        // any surface's travel.
+        Math.abs(sy - lastReactSy.value) < 0.002 &&
         Math.abs(lng - lastReactLng.value) < 0.01 &&
         Math.abs(lat - lastReactLat.value) < 0.01 &&
         Math.abs(frac - lastReactFrac.value) < 1e-3 &&

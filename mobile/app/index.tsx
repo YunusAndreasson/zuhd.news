@@ -11,7 +11,7 @@ import type {
 } from '@shared/types';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   type LayoutChangeEvent,
   Platform,
@@ -21,15 +21,13 @@ import {
   View,
 } from 'react-native';
 import Animated, {
-  Extrapolation,
-  interpolate,
+  type SharedValue,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type { ArticleListRef } from '../components/ArticleList';
 import {
   BriefingChrome,
   type BriefingChromeRef,
@@ -51,29 +49,29 @@ import {
   type TapResult,
 } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
+import { IndexSheet } from '../components/IndexSheet';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { IndicatorStrip } from '../components/map/IndicatorStrip';
-import { MapFeed } from '../components/map/MapFeed';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { SheetMasthead } from '../components/map/SheetMasthead';
-import { type PreviewSibling, StoryPreview } from '../components/map/StoryPreview';
+import { EndCard, StoryCard } from '../components/map/StoryCard';
+import { StoryDeck } from '../components/map/StoryDeck';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { type OverlaySelection, OverlaySheet } from '../components/OverlaySheet';
 import { Screen } from '../components/primitives';
-import { ReaderLayer } from '../components/reader/ReaderLayer';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import {
-  ANIMATION,
   CATEGORIES,
   categoryMarkColor,
   EASING,
   EDITORIAL,
   SPACING,
+  VARIANT_CAP,
 } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
@@ -89,20 +87,25 @@ import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
-import { articleTime, formatExactTime, formatTimeAgo } from '../lib/article-utils';
+import { formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
+import { computeDeckLayout, grownGlobeTransform } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
+import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
 import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
-import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
+import {
+  getSnapshot as getOnboarding,
+  markHintDone,
+  recordArticleSnap,
+} from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
-import { displayLocation } from '../lib/place-names';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
+import { maybeRequestReview } from '../lib/store-review';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
 
 /**
@@ -118,17 +121,16 @@ import { buildStoryPlaces, foundProgress } from '../lib/story-places';
  * What replaced it:
  *
  *   **the strip**   every mover, largest first, swiped sideways above the earth
- *   **the earth**   one canvas, mounted here, turned to whatever matters most
- *   **the sheet**   the app's only list — what is flashing, then the day
- *   **the reader**  a layer over all of it, not a place you navigate to
+ *   **the earth**   one canvas, mounted here, turned to the story in front
+ *   **the sheet**   one story at a time, swiped sideways; pulled up, it is
+ *                   the whole story, with the earth still above it
  *
- * The globe is owned by this component rather than by the news column, and
- * that is the load-bearing part: the map and the reader are two layers over
- * one canvas, so opening a story is the earth continuing to turn rather than
- * a cut to a second earth.
+ * The first version of this screen put a list of headlines in the sheet and a
+ * full-screen reader over everything. Both were wrong the same way: a list of
+ * three-to-five-word titles gives nobody a reason to open one, and a reader
+ * that covers the map loses the one thing this screen is for. A list-first
+ * front door had already been tried once and abandoned for swipe-first news.
  */
-
-const newsListRef = createRef<ArticleListRef>();
 
 // Give the reader time to arrive at the caught-up boundary and read it before
 // anything asks them for something. The delay used to be measured against the
@@ -143,19 +145,20 @@ const PRIMER_PRESENT_DELAY_MS = 2600;
 // heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
 const HEATMAP_SPLASH_GRACE_MS = 1200;
 
-/** The sheet at rest, as a fraction of the window. Enough for a few stories — the day's shape without covering the
- *  earth it sits under. */
-const SHEET_PEEK_FRACTION = 0.38;
-/** Expanded. Not 1: a strip of globe stays visible so the sheet reads as
- *  sitting over the map rather than having replaced it. */
-const SHEET_FULL_FRACTION = 0.88;
-
-/** How much of the band between the strip and the sheet the disc fills. */
-const GLOBE_FILL = 0.46;
-
 /** Flight time when the camera is sent somewhere — a strip slot, an alert row,
- *  the day's opening view. Long enough to read as travel over a surface. */
+ *  a story's mark. Long enough to read as travel over a surface. */
 const FLY_MS = 700;
+
+/** How close, in degrees, the camera must be to the story in front for a swipe
+ *  to take it over mid-drag rather than fly once the swipe lands. */
+const HANDOFF_DEGREES = 1;
+
+interface FocusOptions {
+  /** A mark was tapped: the camera waits for its burst before it flies. */
+  afterBurst?: boolean;
+  /** Grow the card into the whole story. */
+  grow?: boolean;
+}
 
 export default function HomeScreen() {
   const { colors, textVariants } = useTheme();
@@ -163,7 +166,7 @@ export default function HomeScreen() {
   const reduceMotion = useReducedMotion();
   const { current: currentZoom, step: handleZoomStep } = useZoomCycle();
   const insets = useSafeAreaInsets();
-  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const { width: screenWidth, height: screenHeight, fontScale } = useWindowDimensions();
 
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -177,6 +180,7 @@ export default function HomeScreen() {
   const cardSheetRef = useRef<BottomSheetMethodsRef>(null);
   const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const indexSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
@@ -210,27 +214,25 @@ export default function HomeScreen() {
     available: false,
     resumable: false,
   });
-  const [readerOpen, setReaderOpen] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  /** Where the sheet has settled. The globe only takes touches at peek: when
-   *  the sheet is expanded the earth is a sliver behind it, translated and
-   *  faded, and a tap there would hit-test against geometry that has moved. */
+  /** Where the sheet has settled. The globe only takes touches at peek: grown,
+   *  the earth is drawn scaled into a band and a tap there would hit-test
+   *  against geometry that has moved. */
   const [sheetDetent, setSheetDetent] = useState<MapSheetDetent>('peek');
-  /**
-   * The story open in the sheet, found from its mark on the globe — or null
-   * when the sheet shows the river. The sheet stays two detents: a preview is
-   * what the sheet *holds*, not a third place to leave it.
-   */
-  const [sheetStory, setSheetStory] = useState<string | null>(null);
-  /** Where the river was when a preview replaced it, so closing the preview
-   *  puts the reader back there rather than at the top. */
-  const riverOffsetRef = useRef(0);
+  const sheetDetentRef = useRef<MapSheetDetent>('peek');
+  /** The story in front of the deck. The end card is `storyRows.length`. */
+  const [deckIndex, setDeckIndex] = useState(0);
+  const deckIndexRef = useRef(0);
+  /** The slug in front, so a refresh that inserts stories keeps the reader on
+   *  the story they were reading rather than on whatever moved into its slot.
+   *  Null until the reader has moved the deck: an untouched deck stays on the
+   *  newest story, whichever that is. */
+  const currentSlugRef = useRef<string | null>(null);
+  /** A story asked for before it was in the river — a bookmark that has
+   *  rotated out of the feed is injected, and its row exists a render later. */
+  const pendingFocusRef = useRef<({ slug: string } & FocusOptions) | null>(null);
   const flyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Active article tracking (for share). Kept in a ref — the selected article
-  // only feeds callbacks, never JSX, so state here would re-render the whole
-  // screen on every snap.
-  const activeArticleRef = useRef<RiverArticle | null>(null);
+  const handoffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Sheet payloads
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
@@ -243,41 +245,28 @@ export default function HomeScreen() {
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
   const [activeCard, setActiveCard] = useState<SwipeCard | null>(null);
   const [activeOverlay, setActiveOverlay] = useState<OverlaySelection | null>(null);
-  // The three payload-less sheets need explicit open flags so the hint overlay
-  // can yield the airspace; every other sheet's openness is derived from its
+  // The payload-less sheets need explicit open flags so the hint overlay can
+  // yield the airspace; every other sheet's openness is derived from its
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
   const [instrumentsOpen, setInstrumentsOpen] = useState(false);
+  const [indexOpen, setIndexOpen] = useState(false);
 
   // ---------------------------------------------------------------------
   // The camera
   //
-  // One scroll offset, written by whichever list is in front — the sheet's
-  // when the map is showing, the reader's when it is not. One value rather
-  // than two so the globe's prop identity never changes; `itemHeight` is what
-  // switches, because a sheet row and a full-screen article page are
-  // different distances through the same track.
+  // One position in the river, in stories. The deck writes it under a finger
+  // on the UI thread; a jump writes it directly. `cameraOwner` says whether it
+  // or a target (a drag on the globe, a flight) is moving the earth.
   // ---------------------------------------------------------------------
-  const cameraScrollY = useSharedValue(0);
+  const storyProgress = useSharedValue(0);
   const cameraOwner = useSharedValue(0);
   const cameraLat = useSharedValue(0);
   const cameraLng = useSharedValue(0);
   const sheetProgress = useSharedValue(0);
-  const listOffset = useSharedValue(0);
-  const headerHeight = useSharedValue(0);
-  const readerProgress = useSharedValue(0);
-  /** The story the reader is opening onto. A slug, not an index: a bookmark
-   *  that has rotated out of the feed is injected in the same render the
-   *  reader opens in, so its index does not exist until after that commit. */
-  const pendingReaderSlugRef = useRef<string | null>(null);
-  /** Mirrors `readerOpen` onto the UI thread for the globe's fade. */
-  const readerOpenSV = useSharedValue(0);
-  /** Set the first time the reader moves the camera themselves. The opening
-   *  orientation is a statement the app makes once; after that the camera is
-   *  the reader's and re-aiming it would be the app talking over them. */
+  /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
-  const restingTargetRef = useRef<string | null>(null);
 
   const toastRef = useRef<ToastRef>(null);
 
@@ -288,36 +277,42 @@ export default function HomeScreen() {
   const onTopChromeLayout = useCallback((e: LayoutChangeEvent) => {
     setTopChromeHeight(e.nativeEvent.layout.height);
   }, []);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const onHeaderLayout = useCallback((e: LayoutChangeEvent) => {
+    setHeaderHeight(e.nativeEvent.layout.height);
+  }, []);
+  const stripHeight = Math.max(0, topChromeHeight - headerHeight);
 
-  const sheetPeek = Math.round(screenHeight * SHEET_PEEK_FRACTION);
-  // Expanded, the sheet stops under the gauges rather than at a fixed share of
-  // the window. A fixed 88% ran the sheet's top into the strip's readings on a
-  // 411pt phone, whose top chrome is taller than 12% of the screen.
-  const sheetFull = Math.round(
-    Math.min(screenHeight * SHEET_FULL_FRACTION, screenHeight - topChromeHeight),
+  // The sheet at rest is sized from the card's type, not a fraction of the
+  // window, and the globe takes what is left — see `lib/deck-layout.ts`.
+  const layout = useMemo(
+    () =>
+      computeDeckLayout({
+        width: screenWidth,
+        height: screenHeight,
+        headerHeight,
+        stripHeight,
+        bottomInset: insets.bottom,
+        fontScale,
+        lines: {
+          caption: textVariants.caption.lineHeight ?? 0,
+          labelXs: textVariants.labelXs.lineHeight ?? 0,
+          title: textVariants.title.lineHeight ?? 0,
+          body: textVariants.body.lineHeight ?? 0,
+        },
+        caps: {
+          caption: VARIANT_CAP.caption,
+          labelXs: VARIANT_CAP.labelXs,
+          title: VARIANT_CAP.title,
+          body: VARIANT_CAP.body,
+        },
+      }),
+    [screenWidth, screenHeight, headerHeight, stripHeight, insets.bottom, fontScale, textVariants],
   );
-
-  // The earth sits in the band between the strip and the sheet at rest, and
-  // is sized to the smaller of what the width and that band allow. As a
-  // backdrop it was `0.9 × width` — wider than the screen, deliberately — but
-  // a disc that size on this screen would be three-quarters hidden behind the
-  // list.
-  const globeBand = Math.max(120, screenHeight - sheetPeek - topChromeHeight);
-  const globeRadius = Math.round(Math.min(screenWidth * GLOBE_FILL, globeBand * GLOBE_FILL));
-  const globeCenterY = Math.round(topChromeHeight + globeBand / 2);
-
-  // Row height, computed once from the resolved type rather than measured.
-  // The list lays out with this number and the camera divides by it, so they
-  // have to be one number; a row that grew to fit its title would put the
-  // globe on the wrong story. Titles clamp to two lines instead — the reader
-  // is where long text lives and it has no such constraint.
-  const rowHeight = useMemo(() => {
-    // `Text` rounds a scaled line height, so this does too: the row the list
-    // lays out and the row the camera divides by must agree to the pixel.
-    const titleLine = Math.round(textVariants.rowTitle.lineHeight ?? 21);
-    const metaLine = textVariants.labelXs.lineHeight ?? 13;
-    return Math.round(SPACING.sm * 2 + titleLine * 2 + SPACING.xs + metaLine);
-  }, [textVariants]);
+  const grown = useMemo(() => grownGlobeTransform(layout, screenHeight), [layout, screenHeight]);
+  // The briefing's player floats over the bottom of the sheet while it is up,
+  // so the card's last line still has to scroll clear of it.
+  const cardBottomInset = insets.bottom + (briefingVisible ? SPACING.xxl : 0);
 
   // ---------------------------------------------------------------------
   // Derived content
@@ -395,10 +390,12 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   // Finding the news
   //
-  // Every story on the globe is a light until the reader opens it — from its
-  // mark, its row or a page in the reader — and a found story's mark is no
-  // longer drawn. `lib/found-store.ts` holds the set; `lib/story-places.ts`
-  // groups the river into the places the marks stand for.
+  // Every story on the globe is a light until the reader opens it — by
+  // tapping its mark, or by reading its card grown — and a found story's mark
+  // is no longer drawn. Swiping past a card at rest does not find it: thirty
+  // seconds of swiping would otherwise empty the globe. `lib/found-store.ts`
+  // holds the set; `lib/story-places.ts` groups the river into the places the
+  // marks stand for.
   // ---------------------------------------------------------------------
   const foundSlugs = useFoundSlugs();
   const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
@@ -414,6 +411,7 @@ export default function HomeScreen() {
   useEffect(
     () => () => {
       if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
+      if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
     },
     [],
   );
@@ -421,8 +419,6 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   // Refs for stable callbacks
   // ---------------------------------------------------------------------
-  const sheetStoryRef = useRef(sheetStory);
-  sheetStoryRef.current = sheetStory;
   const groupedRef = useRef(grouped);
   groupedRef.current = grouped;
   const generatedRef = useRef(generated);
@@ -443,13 +439,13 @@ export default function HomeScreen() {
   storyRowsRef.current = storyRows;
   const rankedRef = useRef(rankedInstruments);
   rankedRef.current = rankedInstruments;
-  const readerOpenRef = useRef(readerOpen);
-  readerOpenRef.current = readerOpen;
+  const nowRef = useRef(now);
+  nowRef.current = now;
 
   // ---------------------------------------------------------------------
   // Camera control
   // ---------------------------------------------------------------------
-  /** Send the camera somewhere and hold it there until the reader scrolls.
+  /** Send the camera somewhere and hold it there until the deck takes it back.
    *  The shortest way round: a flight from Tokyo to San Francisco crosses the
    *  Pacific, not Europe and the Atlantic. */
   const flyTo = useCallback(
@@ -470,81 +466,9 @@ export default function HomeScreen() {
     [cameraLat, cameraLng, cameraOwner, reduceMotion],
   );
 
-  /** A finger on the list takes the camera back. Fires from the scroll
-   *  worklet's begin-drag, never from `onScroll`, so a programmatic scroll
-   *  cannot silently reclaim it. */
-  const handleListDragStart = useCallback(() => {
-    cameraClaimedRef.current = true;
-    cameraOwner.value = 0;
-  }, [cameraOwner]);
-
-  // The opening view. The whole planet turns to the loudest thing on it, and
-  // that thing carries a label — which is also the only signifier the globe
-  // has ever had that it is addressable at all.
-  useEffect(() => {
-    if (cameraClaimedRef.current) return;
-    const target = strip.find((item) => item.coords);
-    if (!target?.coords) return;
-    if (restingTargetRef.current === target.id) return;
-    restingTargetRef.current = target.id;
-    flyTo(target.coords);
-  }, [strip, flyTo]);
-
   // ---------------------------------------------------------------------
-  // Navigation
+  // The deck
   // ---------------------------------------------------------------------
-  /**
-   * Open the reader on a story.
-   *
-   * The camera is held on that story's dateline through the whole transition
-   * (`flyTo` sets `cameraOwner = 1`), and that hold is what makes opening
-   * seamless rather than a flicker. Opening switches `itemHeight` from a sheet
-   * row to a full screen while the shared scroll offset still belongs to the
-   * sheet; for as long as the scroll owned the camera there would be a frame
-   * where sheet row three reads as reader page 0.04. Held on a target, the
-   * reaction ignores the offset entirely, and the reader's first real swipe
-   * (`onDragStart`) hands it back.
-   */
-  const openReaderAt = useCallback(
-    (slug: string) => {
-      pendingReaderSlugRef.current = slug;
-      const row = storyRowsRef.current.find((r) => r.slug === slug);
-      // No coordinates: leave the camera where it is rather than hold it on a
-      // stale target. `getCoords` falls back all the way to source HQ, so in
-      // practice every story has a place.
-      if (row?.coords) flyTo(row.coords);
-      if (readerOpenRef.current) {
-        // Already reading, so the open effect will not run again — jump now.
-        // One frame of deferral lets a just-injected bookmark commit first.
-        requestAnimationFrame(() => newsListRef.current?.scrollToSlug(slug));
-        return;
-      }
-      setReaderOpen(true);
-    },
-    [flyTo],
-  );
-
-  const handleSelectArticle = useCallback(
-    (slug: string, category: Category) => {
-      menuSheetRef.current?.dismiss();
-      // `category` is still in the signature because callers (bookmarks,
-      // notification payloads, related-story rows) know it and the feed is
-      // still grouped by it underneath.
-      const actual = CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug));
-      if (!actual) {
-        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
-        if (bookmark) {
-          injectArticle(bookmark.article, category);
-        } else {
-          toastRef.current?.show('Article no longer available');
-          return;
-        }
-      }
-      openReaderAt(slug);
-    },
-    [injectArticle, openReaderAt],
-  );
-
   /**
    * Record a find, and mark the day complete once — with the one success
    * haptic the game has — when it was the last light on the globe.
@@ -562,95 +486,102 @@ export default function HomeScreen() {
     }
   }, []);
 
-  const handleStoryPress = useCallback(
-    (row: StoryRow) => {
-      hapticImpact();
-      findStory(row.slug);
-      openReaderAt(row.slug);
-    },
-    [findStory, openReaderAt],
-  );
-
   /**
-   * Open a story in the sheet — the tap on a light.
+   * Put a story in front of the deck — a tap on its light, a row in the list,
+   * a notification, a related story in another sheet.
    *
-   * The order is the interaction. The store records the find first, so the
-   * next reprojection drops the mark on the same frame the burst starts over
-   * it; the sheet swaps to the preview at once, so the words arrive with the
-   * burst; and the camera waits for the burst to finish before it flies, so
+   * A jump, never an animated swipe: an animated pass from the first story to
+   * the thirtieth would send the camera through twenty-nine datelines. The
+   * camera is held where it is (`cameraOwner = 1`) the instant the position
+   * jumps, then flies. For a tapped light the order is the interaction: the
+   * store records the find first, so the next reprojection drops the mark on
+   * the frame the burst starts over it; the card swaps at once, so the words
+   * arrive with the burst; and the camera waits for the burst to finish, so
    * the colour plays where the mark was instead of being dragged across the
-   * earth. A tap on another light while a preview is open simply does it again.
+   * earth.
    */
-  const openStoryInSheet = useCallback(
-    (slug: string, afterBurst: boolean) => {
-      const row = storyRowsRef.current.find((r) => r.slug === slug);
-      if (!row) return;
-      if (sheetStoryRef.current === null) {
-        // The river's own offset: its scroll handler publishes content offset
-        // minus the header, and nothing else writes it while the map is up.
-        riverOffsetRef.current = Math.max(0, cameraScrollY.value + headerHeight.value);
+  const focusStory = useCallback(
+    (slug: string, options: FocusOptions = {}) => {
+      const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
+      if (index < 0) {
+        pendingFocusRef.current = { slug, ...options };
+        return;
       }
-      findStory(slug);
-      markHintDone('globe');
+      pendingFocusRef.current = null;
+      const row = storyRowsRef.current[index];
+      if (options.afterBurst || options.grow) findStory(slug);
       cameraClaimedRef.current = true;
-      setSheetStory(slug);
       if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
       flyTimerRef.current = null;
-      const coords = row.coords;
-      if (!coords) return;
-      if (afterBurst && !reduceMotion) {
-        flyTimerRef.current = setTimeout(() => flyTo(coords), COLLECT_MS - 120);
-      } else {
-        flyTo(coords);
+      if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
+      handoffTimerRef.current = null;
+
+      const coords = row?.coords ?? null;
+      if (coords) cameraOwner.value = 1;
+      deckIndexRef.current = index;
+      currentSlugRef.current = slug;
+      storyProgress.value = index;
+      setDeckIndex(index);
+
+      if (coords) {
+        if (options.afterBurst && !reduceMotion) {
+          flyTimerRef.current = setTimeout(() => flyTo(coords), COLLECT_MS - 120);
+        } else {
+          flyTo(coords);
+        }
       }
+      if (options.grow) mapSheetRef.current?.expand();
     },
-    [cameraScrollY, findStory, flyTo, headerHeight, reduceMotion],
+    [cameraOwner, findStory, flyTo, reduceMotion, storyProgress],
   );
 
-  const closeStoryPreview = useCallback(() => {
-    if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
-    flyTimerRef.current = null;
-    setSheetStory(null);
-  }, []);
+  // A focus that arrived before its story did.
+  useEffect(() => {
+    const pending = pendingFocusRef.current;
+    if (pending && storyRows.some((r) => r.slug === pending.slug)) {
+      focusStory(pending.slug, pending);
+    }
+  }, [storyRows, focusStory]);
 
-  const handlePreviewRead = useCallback(
-    (slug: string) => {
-      hapticImpact();
-      openReaderAt(slug);
-    },
-    [openReaderAt],
-  );
-
-  const handlePreviewSibling = useCallback(
-    (slug: string) => {
-      openStoryInSheet(slug, false);
-    },
-    [openStoryInSheet],
-  );
-
-  /**
-   * Close the reader onto the map.
-   *
-   * The camera is held on the story that was being read, for the same reason
-   * opening holds it — `itemHeight` is about to switch back while the offset
-   * still belongs to the reader. Setting the target directly rather than
-   * flying: the scroll-driven camera was already resting on that page, so the
-   * globe is already there and there is nothing to animate. The map then shows
-   * where the story you just read is, until a drag on the sheet takes over.
-   */
-  const handleCloseReader = useCallback(() => {
-    const active = activeArticleRef.current;
-    const row = active ? storyRowsRef.current.find((r) => r.slug === active.slug) : undefined;
-    if (row?.coords) {
-      cameraLat.value = row.coords[0];
-      cameraLng.value = row.coords[1];
+  // A refresh can insert stories in front of the one being read, or rotate it
+  // out. Keep the reader on their story; hold the camera on it while the
+  // position shifts so the globe does not slide through the new arrivals.
+  useEffect(() => {
+    const slug = currentSlugRef.current;
+    let index = slug ? storyRows.findIndex((r) => r.slug === slug) : -1;
+    if (index < 0) index = Math.min(deckIndexRef.current, storyRows.length);
+    if (index === deckIndexRef.current) return;
+    const coords = storyRows[index]?.coords;
+    if (coords) {
+      cameraLat.value = coords[0];
+      cameraLng.value = coords[1];
       cameraOwner.value = 1;
     }
-    setReaderOpen(false);
-    // Paging through the reader moved the camera to another story; a preview
-    // left open underneath follows it, so the sheet names where the globe is.
-    if (active && sheetStoryRef.current) setSheetStory(active.slug);
-  }, [cameraLat, cameraLng, cameraOwner]);
+    deckIndexRef.current = index;
+    storyProgress.value = index;
+    setDeckIndex(index);
+  }, [storyRows, cameraLat, cameraLng, cameraOwner, storyProgress]);
+
+  const handleSelectArticle = useCallback(
+    (slug: string, category: Category) => {
+      menuSheetRef.current?.dismiss();
+      // `category` is still in the signature because callers (bookmarks,
+      // notification payloads, related-story rows) know it and the feed is
+      // still grouped by it underneath.
+      const actual = CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug));
+      if (!actual) {
+        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
+        if (bookmark) {
+          injectArticle(bookmark.article, category);
+        } else {
+          toastRef.current?.show('Article no longer available');
+          return;
+        }
+      }
+      focusStory(slug, { grow: true });
+    },
+    [focusStory, injectArticle],
+  );
 
   const openCard = useCallback((card: SwipeCard) => {
     setActiveCard(card);
@@ -679,23 +610,6 @@ export default function HomeScreen() {
     },
     [flyTo],
   );
-
-  // After the reader — or the map — has committed. `MiniGlobe` is a child, so
-  // its effects have already re-registered the camera reaction against the new
-  // `itemHeight` by the time this runs. This parks the shared offset where the
-  // surface now in front really is, so that when a drag hands the camera back
-  // it resumes from there and not from the other surface's offset.
-  useEffect(() => {
-    readerOpenSV.value = readerOpen ? 1 : 0;
-    if (readerOpen) {
-      const slug = pendingReaderSlugRef.current;
-      const index = slug ? storyRowsRef.current.findIndex((r) => r.slug === slug) : -1;
-      cameraScrollY.value = Math.max(0, index) * Math.max(1, screenHeight);
-      if (slug) newsListRef.current?.scrollToSlug(slug);
-    } else {
-      cameraScrollY.value = Math.max(0, listOffset.value - headerHeight.value);
-    }
-  }, [readerOpen, readerOpenSV, cameraScrollY, headerHeight, listOffset, screenHeight]);
 
   const openLink = useOpenLink();
   /** The contract's own card where the deck admitted it; otherwise the market
@@ -730,17 +644,19 @@ export default function HomeScreen() {
   }, []);
 
   // ---------------------------------------------------------------------
-  // Globe taps — unchanged dispatch, one new destination
+  // Globe taps
   // ---------------------------------------------------------------------
   const handleCountryPress = useCallback(
     (result: TapResult) => {
-      hapticImpact();
+      // No haptic here: every caller — the globe's tap layer, an inline
+      // country link, the chooser's row — has already given its own, and a
+      // second one on the same touch read as a double knock.
       // Any path here — globe tap, marker tap, or inline country link — proves
       // the reader found the map layer; the globe hint retires on all of them.
       markHintDone('globe');
       cameraClaimedRef.current = true;
       if (result.storySlug) {
-        openStoryInSheet(result.storySlug, true);
+        focusStory(result.storySlug, { afterBurst: true });
         return;
       }
       if (result.candidates && result.candidates.length > 1) {
@@ -820,7 +736,7 @@ export default function HomeScreen() {
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
-    [handleSelectArticle, openCard, openOverlay, openStoryInSheet],
+    [focusStory, handleSelectArticle, openCard, openOverlay],
   );
 
   // ---------------------------------------------------------------------
@@ -860,24 +776,16 @@ export default function HomeScreen() {
   }, [handleBriefingPress]);
 
   const handleSourcesPress = useCallback((article: Article) => {
-    hapticImpact();
     markHintDone('sources');
     setSheetSources(article.sources);
     setSheetDivergence(article.sentimentDivergence ?? null);
     sourcesSheetRef.current?.present();
   }, []);
 
-  const handleTimeAgoPress = useCallback((article: Article) => {
-    hapticTick();
-    toastRef.current?.show(formatExactTime(articleTime(article)), undefined, 'top');
-  }, []);
-
-  const handleShare = useCallback(() => {
-    const active = activeArticleRef.current;
-    if (!active) return;
+  const handleShare = useCallback((article: RiverArticle) => {
     hapticImpact();
-    const url = `https://zuhd.news/a/${active.slug}`;
-    const title = active.title;
+    const url = `https://zuhd.news/a/${article.slug}`;
+    const title = article.title;
     const content = Platform.select({
       ios: { url, title },
       default: { message: `${title}\n${url}`, title },
@@ -891,14 +799,6 @@ export default function HomeScreen() {
       }),
     ).catch(() => {});
   }, []);
-
-  const handleArticleChange = useCallback(
-    (article: RiverArticle) => {
-      activeArticleRef.current = article;
-      findStory(article.slug);
-    },
-    [findStory],
-  );
 
   const countryAlerts = useMemo<GdacsAlert[]>(() => {
     const name = countrySheet?.countryName;
@@ -967,6 +867,7 @@ export default function HomeScreen() {
     menuOpen ||
     primerOpen ||
     instrumentsOpen ||
+    indexOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
     activeChokepoint !== null ||
@@ -982,14 +883,20 @@ export default function HomeScreen() {
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
     suppressed: sheetOpen || briefingVisible,
-    surface: readerOpen ? 'reader' : 'map',
+    surface: 'map',
   });
 
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
   const primerTriedRef = useRef(false);
+  const caughtUpFiredRef = useRef(false);
 
+  /** The reader has swiped onto the first story they had already seen. Said
+   *  once a session, with the haptic the old reader gave the same boundary. */
   const handleCaughtUp = useCallback(() => {
+    if (caughtUpFiredRef.current) return;
+    caughtUpFiredRef.current = true;
+    hapticNotification();
     if (primerTriedRef.current) return;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
     primerTriedRef.current = true;
@@ -999,6 +906,113 @@ export default function HomeScreen() {
       primerSheetRef.current?.present();
     }, PRIMER_PRESENT_DELAY_MS);
   }, []);
+
+  /**
+   * A finger has started a swipe on the deck.
+   *
+   * If the camera is still on the story in front — the usual case — the swipe
+   * takes it over at once and the earth turns under the finger. If a drag on
+   * the globe or a flight has put it somewhere else, it stays there: taking it
+   * back mid-drag would snap the earth from where the reader left it. The
+   * swipe then flies it once it lands (`handleDeckSettle`).
+   */
+  const handleDeckDragStart = useCallback(() => {
+    cameraClaimedRef.current = true;
+    dismissActiveHint();
+    if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
+    handoffTimerRef.current = null;
+    if (cameraOwner.value !== 1) return;
+    const coords = storyRowsRef.current[deckIndexRef.current]?.coords;
+    if (!coords) return;
+    let dLng = Math.abs(cameraLng.value - coords[1]) % 360;
+    if (dLng > 180) dLng = 360 - dLng;
+    if (Math.abs(cameraLat.value - coords[0]) < HANDOFF_DEGREES && dLng < HANDOFF_DEGREES) {
+      cameraOwner.value = 0;
+    }
+  }, [cameraLat, cameraLng, cameraOwner, dismissActiveHint]);
+
+  const handleDeckSettle = useCallback(
+    (index: number) => {
+      deckIndexRef.current = index;
+      setDeckIndex(index);
+      hapticTick();
+      recordArticleSnap();
+      maybeRequestReview();
+      const row = storyRowsRef.current[index];
+      currentSlugRef.current = row?.slug ?? null;
+      if (row) {
+        if (row.mark === 'earlier') handleCaughtUp();
+        // Reading a story grown is opening it; swiping past one at rest is not.
+        if (sheetDetentRef.current === 'full') findStory(row.slug);
+      }
+      if (cameraOwner.value === 1 && row?.coords) {
+        flyTo(row.coords);
+        // Hand the camera back to the deck once the flight has landed on the
+        // story the deck is on — at that point the two agree and nothing moves.
+        handoffTimerRef.current = setTimeout(
+          () => {
+            handoffTimerRef.current = null;
+            if (deckIndexRef.current === index) cameraOwner.value = 0;
+          },
+          (reduceMotion ? 0 : FLY_MS) + 50,
+        );
+      }
+    },
+    [cameraOwner, findStory, flyTo, handleCaughtUp, reduceMotion],
+  );
+
+  const goToStory = useCallback(
+    (index: number) => {
+      const row = storyRowsRef.current[index];
+      if (row) focusStory(row.slug);
+    },
+    [focusStory],
+  );
+  const handleNextStory = useCallback(() => goToStory(deckIndexRef.current + 1), [goToStory]);
+  const handlePreviousStory = useCallback(() => goToStory(deckIndexRef.current - 1), [goToStory]);
+
+  const expandSheet = useCallback(() => {
+    mapSheetRef.current?.expand();
+  }, []);
+  const collapseSheet = useCallback(() => {
+    mapSheetRef.current?.collapse();
+  }, []);
+
+  const handleDetentChange = useCallback(
+    (detent: MapSheetDetent) => {
+      sheetDetentRef.current = detent;
+      setSheetDetent(detent);
+      if (detent !== 'full') return;
+      dismissActiveHint();
+      const row = storyRowsRef.current[deckIndexRef.current];
+      if (row) findStory(row.slug);
+    },
+    [dismissActiveHint, findStory],
+  );
+
+  const handleIndexPress = useCallback(() => {
+    hapticImpact();
+    setIndexOpen(true);
+    indexSheetRef.current?.present();
+  }, []);
+  const handleIndexSelect = useCallback(
+    (slug: string) => {
+      indexSheetRef.current?.dismiss();
+      focusStory(slug);
+    },
+    [focusStory],
+  );
+  const handleIndexNowPress = useCallback(
+    (item: NowItem) => {
+      indexSheetRef.current?.dismiss();
+      handleNowPress(item);
+    },
+    [handleNowPress],
+  );
+  const handleMastheadAlertPress = useCallback(() => {
+    const item = nowRef.current[0];
+    if (item) handleNowPress(item);
+  }, [handleNowPress]);
 
   const handleMenuToast = useCallback((message: string) => {
     toastRef.current?.show(message, undefined, 'top');
@@ -1015,6 +1029,7 @@ export default function HomeScreen() {
   const handleCardDismiss = useCallback(() => setActiveCard(null), []);
   const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
+  const handleIndexDismiss = useCallback(() => setIndexOpen(false), []);
   const handleSourcesDismiss = useCallback(() => {
     setSheetSources([]);
     setSheetDivergence(null);
@@ -1069,10 +1084,6 @@ export default function HomeScreen() {
     [handleSelectArticle],
   );
 
-  const handleEndReached = useCallback(() => {
-    toastRef.current?.show('Back to top', () => newsListRef.current?.scrollToTop());
-  }, []);
-
   const handleRefresh = useCallback(async () => {
     hapticImpact();
     setRefreshing(true);
@@ -1102,63 +1113,29 @@ export default function HomeScreen() {
     }
   }, [refresh]);
 
-  // The earth recedes as the sheet rises — up a little and quieter — so an
-  // expanded list reads as sitting over the map rather than beside a globe
-  // competing with it. A transform and an opacity, never a reprojection: this
-  // tracks a finger at 60fps and `callReproject` is ~5 ms. Finger-tracked, so
-  // it is exempt from Reduce Motion like the sheet itself. Full strength while
-  // reading: the globe behind the reader's prose is its backdrop.
-  // While a story is open the reader is translucent over the earth — the
-  // backdrop gradient in `ArticleList` is what keeps its prose legible — so the
-  // map's own chrome has to leave, or the strip and the sheet read through the
-  // top of the page.
-  // Android's back collapses an expanded sheet before it leaves the app. The
-  // map is the root screen, so without this the one key a reader reaches for
-  // to get back down to the globe closed zuhd instead.
-  const collapseSheet = useCallback(() => {
-    mapSheetRef.current?.collapse();
-  }, []);
-  useHardwareBack({ enabled: !readerOpen && sheetDetent === 'full', onBack: collapseSheet });
-  // And at peek, back leaves a story preview for the river before the app.
-  useHardwareBack({
-    enabled: !readerOpen && sheetDetent === 'peek' && sheetStory !== null,
-    onBack: closeStoryPreview,
-  });
+  // Android's back puts a grown story down before it leaves the app. The map
+  // is the root screen, so without this the one key a reader reaches for to
+  // get back down to the globe closed zuhd instead.
+  useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  //
-  // One animated style per view. The first version shared a single style
-  // between the header and the sheet's layer, and on the Android emulator only
-  // the header came back when a story closed — the sheet stayed at opacity 0,
-  // present and touchable but invisible.
-  const topChromeStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(readerOpenSV.value === 1 ? 0 : 1, {
-      duration: reduceMotion ? 0 : ANIMATION.normal,
-      easing: EASING.out,
-    }),
-  }));
-  const sheetLayerStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(readerOpenSV.value === 1 ? 0 : 1, {
-      duration: reduceMotion ? 0 : ANIMATION.normal,
-      easing: EASING.out,
-    }),
-  }));
-
+  // The earth steps back as a story grows: the resting disc is scaled into the
+  // band left above the grown sheet. A transform, never a reprojection — this
+  // tracks a finger at 60fps and a projection is tens of milliseconds. It is
+  // finger-tracked, so it is exempt from Reduce Motion like the sheet itself.
   const globeStyle = useAnimatedStyle(() => {
-    const p = readerOpenSV.value === 1 ? 0 : sheetProgress.value;
+    const p = Math.min(1, Math.max(0, sheetProgress.value));
     return {
-      opacity: interpolate(p, [0, 1], [1, 0.4], Extrapolation.CLAMP),
-      transform: [
-        { translateY: interpolate(p, [0, 1], [0, -globeBand * 0.2], Extrapolation.CLAMP) },
-      ],
+      transform: [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }],
     };
   });
 
-  const handleHeaderLayout = useCallback(
-    (e: LayoutChangeEvent) => {
-      headerHeight.value = e.nativeEvent.layout.height;
-    },
-    [headerHeight],
-  );
+  // The strip gets out of the way of a grown story, on its own animated style —
+  // one style shared between two views once left one of them invisible but
+  // still touchable on the Android emulator.
+  const stripStyle = useAnimatedStyle(() => {
+    const p = Math.min(1, Math.max(0, sheetProgress.value));
+    return { opacity: 1 - p, transform: [{ translateY: -stripHeight * p }] };
+  });
 
   // Hold the splash until we have something for *every* visible layer.
   useEffect(() => {
@@ -1173,100 +1150,114 @@ export default function HomeScreen() {
 
   usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
 
-  /** What the sheet's preview shows, or null for the river. */
-  const preview = useMemo(() => {
-    if (!sheetStory) return null;
-    const row = storyRows.find((r) => r.slug === sheetStory);
-    if (!row) return null;
-    const place = places.find((p) => p.slugs.includes(sheetStory));
-    const siblings: PreviewSibling[] = [];
-    for (const slug of place?.slugs ?? []) {
-      if (slug === sheetStory || foundSlugs.has(slug)) continue;
-      const sibling = storyRows.find((r) => r.slug === slug);
-      if (sibling) siblings.push({ slug, title: sibling.title, meta: sibling.meta });
-    }
-    const location = displayLocation(row.article.location) ?? row.article.location;
-    return {
-      row,
-      siblings,
-      meta: location ? `${row.meta} · ${location}` : row.meta,
-      color: categoryMarkColor(row.article.category, colors),
-    };
-  }, [sheetStory, storyRows, places, foundSlugs, colors]);
+  const storyCount = storyRows.length;
+  const frontIndex = Math.min(deckIndex, storyCount);
 
-  // A refresh can rotate the previewed story out of the river.
-  useEffect(() => {
-    if (sheetStory && !preview) setSheetStory(null);
-  }, [sheetStory, preview]);
+  const keyOfDeck = useCallback(
+    (index: number) => storyRows[index]?.slug ?? 'end-of-river',
+    [storyRows],
+  );
+
+  const renderStory = useCallback(
+    (index: number) => {
+      const row = storyRows[index];
+      if (!row) return null;
+      return (
+        <StoryCard
+          row={row}
+          hue={categoryMarkColor(row.article.category, colors)}
+          odds={odds.get(row.slug) ?? null}
+          resolvableEntityIds={resolvableEntityIds}
+          bottomInset={cardBottomInset}
+          onOpen={expandSheet}
+          onNext={handleNextStory}
+          onPrevious={index > 0 ? handlePreviousStory : undefined}
+          onCountryPress={handleCountryPress}
+          onEntityPress={handleEntityPress}
+          onOddsPress={handleOddsPress}
+          onSources={handleSourcesPress}
+          onBookmark={handleArticleBookmark}
+          onShare={handleShare}
+        />
+      );
+    },
+    [
+      cardBottomInset,
+      colors,
+      expandSheet,
+      handleArticleBookmark,
+      handleCountryPress,
+      handleEntityPress,
+      handleNextStory,
+      handleOddsPress,
+      handlePreviousStory,
+      handleShare,
+      handleSourcesPress,
+      odds,
+      resolvableEntityIds,
+      storyRows,
+    ],
+  );
+
+  const renderEnd = useCallback(
+    () =>
+      storyCount === 0 ? (
+        <EmptyState message="no stories yet" hint="New coverage arrives through the day" />
+      ) : (
+        <EndCard bottomInset={cardBottomInset} onAllStories={handleIndexPress} />
+      ),
+    [cardBottomInset, handleIndexPress, storyCount],
+  );
 
   const renderList = useCallback(
     ({
       scrollEnabled,
       onScrollOffset,
+      sheetGesture,
     }: {
       scrollEnabled: boolean;
-      onScrollOffset: typeof listOffset;
-    }) =>
-      preview ? (
-        <StoryPreview
-          slug={preview.row.slug}
-          title={preview.row.title}
-          meta={preview.meta}
-          color={preview.color}
-          sentences={preview.row.article.sentences}
-          siblings={preview.siblings}
-          rowHeight={rowHeight}
-          scrollEnabled={scrollEnabled}
-          onScrollOffset={onScrollOffset}
-          bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
-          onRead={handlePreviewRead}
-          onClose={closeStoryPreview}
-          onSelectSibling={handlePreviewSibling}
-        />
-      ) : (
-        <MapFeed
-          rows={storyRows}
-          now={now}
-          rowHeight={rowHeight}
-          scrollEnabled={scrollEnabled}
-          listOffset={onScrollOffset}
-          cameraScrollY={cameraScrollY}
-          headerHeight={headerHeight}
-          onHeaderLayout={handleHeaderLayout}
-          onDragStart={handleListDragStart}
-          onStoryPress={handleStoryPress}
-          onNowPress={handleNowPress}
-          // The briefing's player floats over the bottom of the sheet while it is
-          // up; the same allowance the reader's pages keep for it, so the last
-          // story can still be scrolled clear of the bar.
-          bottomInset={insets.bottom + (briefingVisible ? SPACING.xxl : 0)}
-          found={foundSlugs}
-          initialOffset={riverOffsetRef.current}
-        />
-      ),
+      onScrollOffset: SharedValue<number>;
+      sheetGesture: Parameters<typeof StoryDeck>[0]['sheetGesture'];
+    }) => (
+      <StoryDeck
+        count={storyCount}
+        index={frontIndex}
+        progress={storyProgress}
+        width={screenWidth}
+        sheetGesture={sheetGesture}
+        scrollEnabled={scrollEnabled}
+        onScrollOffset={onScrollOffset}
+        keyOf={keyOfDeck}
+        renderStory={renderStory}
+        renderEnd={renderEnd}
+        onDragStart={handleDeckDragStart}
+        onSettle={handleDeckSettle}
+      />
+    ),
     [
-      briefingVisible,
-      cameraScrollY,
-      closeStoryPreview,
-      foundSlugs,
-      handlePreviewRead,
-      handlePreviewSibling,
-      preview,
-      handleHeaderLayout,
-      handleListDragStart,
-      handleNowPress,
-      handleStoryPress,
-      headerHeight,
-      insets.bottom,
-      now,
-      rowHeight,
-      storyRows,
+      frontIndex,
+      handleDeckDragStart,
+      handleDeckSettle,
+      keyOfDeck,
+      renderEnd,
+      renderStory,
+      screenWidth,
+      storyCount,
+      storyProgress,
     ],
   );
 
   const masthead = useMemo(
-    () => <SheetMasthead refreshing={refreshing} progress={progress} />,
-    [refreshing, progress],
+    () => (
+      <SheetMasthead
+        refreshing={refreshing}
+        progress={progress}
+        alert={now[0]?.title ?? null}
+        onPress={handleIndexPress}
+        onAlertPress={handleMastheadAlertPress}
+      />
+    ),
+    [refreshing, progress, now, handleIndexPress, handleMastheadAlertPress],
   );
 
   if (loading)
@@ -1299,16 +1290,15 @@ export default function HomeScreen() {
           famineAreas={famineAreas}
           thermalEvents={thermalEvents}
           genocideSituations={genocideSituations}
-          scrollY={cameraScrollY}
-          itemHeight={readerOpen ? Math.max(1, screenHeight) : rowHeight}
+          storyProgress={storyProgress}
           cameraTrack={cameraTrack}
           cameraOwner={cameraOwner}
           cameraLat={cameraLat}
           cameraLng={cameraLng}
           width={screenWidth}
           height={screenHeight}
-          radius={globeRadius}
-          centerY={globeCenterY}
+          radius={layout.radius}
+          centerY={layout.centerY}
           zoomClipOverride={currentZoom.clip}
           tick={tick}
         />
@@ -1324,84 +1314,59 @@ export default function HomeScreen() {
         onTap={handleCountryPress}
         onZoomStep={handleZoomStep}
         onImpact={hapticImpact}
-        enabled={!readerOpen && sheetDetent === 'peek'}
+        enabled={sheetDetent === 'peek'}
+        collapseMode={sheetDetent === 'full'}
+        onCollapse={collapseSheet}
       />
 
-      <Animated.View
-        style={[styles.topChrome, topChromeStyle]}
-        onLayout={onTopChromeLayout}
-        pointerEvents={readerOpen ? 'none' : 'box-none'}
-      >
-        <MapHeader
-          onMenuPress={handleMenuPress}
-          // While the player bar is up it is the control. A second pill
-          // reading "resume · 10 min" over audio that was already playing said
-          // the opposite of what was happening; it returns when the bar hides.
-          briefingAvailable={briefingStatus.available && !briefingVisible}
-          briefingResumable={briefingStatus.resumable}
-          briefingDuration={briefingStatus.duration}
-          onBriefingPress={handleBriefingPress}
-        />
-        <IndicatorStrip items={strip} onSelect={handleStripPress} onAll={handleInstrumentsPress} />
-      </Animated.View>
+      <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
+        <View onLayout={onHeaderLayout}>
+          <MapHeader
+            onMenuPress={handleMenuPress}
+            // While the player bar is up it is the control. A second pill
+            // reading "resume · 10 min" over audio that was already playing
+            // said the opposite of what was happening; it returns when the
+            // bar hides.
+            briefingAvailable={briefingStatus.available && !briefingVisible}
+            briefingResumable={briefingStatus.resumable}
+            briefingDuration={briefingStatus.duration}
+            onBriefingPress={handleBriefingPress}
+          />
+        </View>
+        <Animated.View
+          style={stripStyle}
+          pointerEvents={sheetDetent === 'full' ? 'none' : 'box-none'}
+        >
+          <IndicatorStrip
+            items={strip}
+            onSelect={handleStripPress}
+            onAll={handleInstrumentsPress}
+          />
+        </Animated.View>
+      </View>
 
-      <Animated.View
-        style={[styles.sheetLayer, sheetLayerStyle]}
-        pointerEvents={readerOpen ? 'none' : 'box-none'}
-      >
-        <MapSheet
-          ref={mapSheetRef}
-          peek={sheetPeek}
-          full={sheetFull}
-          progress={sheetProgress}
-          header={masthead}
-          renderList={renderList}
-          onDetentChange={setSheetDetent}
-          // With a preview open, a pull down at rest goes back to the river —
-          // the same gesture a reader uses to put anything in this sheet away.
-          onPullDown={sheetStory ? closeStoryPreview : handleRefresh}
-        />
-      </Animated.View>
-
-      <ReaderLayer
-        visible={readerOpen}
-        articles={river}
-        viewportHeight={screenHeight}
-        lastSeenAt={lastSeenAt}
-        progressSV={readerProgress}
-        scrollY={cameraScrollY}
-        globeRef={globeRef}
-        resolvableEntityIds={resolvableEntityIds}
-        tick={tick}
-        listRef={newsListRef}
-        onClose={handleCloseReader}
-        onRefresh={handleRefresh}
-        onEndReached={handleEndReached}
-        onCaughtUp={handleCaughtUp}
-        onCountryPress={handleCountryPress}
-        onBookmarkPress={handleArticleBookmark}
-        onSourcesPress={handleSourcesPress}
-        onTimeAgoPress={handleTimeAgoPress}
-        onEntityPress={handleEntityPress}
-        onArticleChange={handleArticleChange}
-        onReadingScrollStart={dismissActiveHint}
-        onShare={handleShare}
-        onDragStart={handleListDragStart}
-        oddsBySlug={odds}
-        onOddsPress={handleOddsPress}
+      <MapSheet
+        ref={mapSheetRef}
+        peek={layout.peek}
+        full={layout.full}
+        progress={sheetProgress}
+        header={masthead}
+        renderList={renderList}
+        onDetentChange={handleDetentChange}
+        onPullDown={handleRefresh}
       />
 
-      {/* Over the map a top toast starts under the gauges; "12 new · ~9 min
-          read" landed on the strip's readings. The reader has no strip. */}
-      <Toast ref={toastRef} topOffset={readerOpen ? undefined : topChromeHeight} />
+      {/* A top toast starts under the gauges; "12 new · ~9 min read" landed
+          on the strip's readings. */}
+      <Toast ref={toastRef} topOffset={topChromeHeight} />
 
       <HintOverlay
         hint={activeHint}
         onDismiss={dismissActiveHint}
         bottomInset={insets.bottom}
-        // Over the reader there is nothing at the bottom to clear; over the
-        // map there is the sheet at rest.
-        bottomOffset={readerOpen ? 0 : sheetPeek}
+        // Above whatever height the sheet has settled at, so the pill never
+        // sits on the words it is pointing at.
+        bottomOffset={sheetDetent === 'full' ? layout.full : layout.peek}
       />
 
       <BriefingChrome
@@ -1421,6 +1386,17 @@ export default function HomeScreen() {
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
+      />
+
+      <IndexSheet
+        sheetRef={indexSheetRef}
+        bottomInset={insets.bottom}
+        onDismiss={handleIndexDismiss}
+        rows={storyRows}
+        now={now}
+        found={foundSlugs}
+        onSelect={handleIndexSelect}
+        onNowPress={handleIndexNowPress}
       />
 
       <CardSheet
@@ -1530,6 +1506,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   globeLayer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
-  sheetLayer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   topChrome: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 },
 });

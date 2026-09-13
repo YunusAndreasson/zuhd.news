@@ -75,6 +75,14 @@ interface GlobeGestureLayerProps {
   onZoomStep: (direction: 1 | -1) => void;
   onImpact: () => void;
   enabled?: boolean;
+  /**
+   * The sheet is grown and the globe is drawn scaled into a band above it.
+   * Marks are not where the projection thinks they are, so nothing is
+   * hit-tested and nothing rotates: a tap anywhere on the earth puts the story
+   * back down.
+   */
+  collapseMode?: boolean;
+  onCollapse?: () => void;
 }
 
 export const GlobeGestureLayer = memo(function GlobeGestureLayer({
@@ -88,9 +96,16 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   onZoomStep,
   onImpact,
   enabled = true,
+  collapseMode = false,
+  onCollapse,
 }: GlobeGestureLayerProps) {
+  const turnable = enabled && !collapseMode;
   const handleTap = useCallback(
     (x: number, y: number) => {
+      if (collapseMode) {
+        onCollapse?.();
+        return;
+      }
       const localY = y - canvasTop;
       const result = globeRef.current?.hitTest(x, localY);
       // Nothing under the finger: no pulse. The ring is a confirmation that
@@ -104,24 +119,24 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onImpact();
       onTap(result);
     },
-    [canvasTop, globeRef, onImpact, onTap],
+    [canvasTop, collapseMode, globeRef, onCollapse, onImpact, onTap],
   );
 
   const tapConfig = useMemo(
     () => ({
-      enabled,
+      enabled: enabled || collapseMode,
       onDeactivate: ({ x, y, canceled }: { x: number; y: number; canceled: boolean }) => {
         'worklet';
         if (canceled) return;
         scheduleOnRN(handleTap, x, y);
       },
     }),
-    [enabled, handleTap],
+    [collapseMode, enabled, handleTap],
   );
 
   const panConfig = useMemo(
     () => ({
-      enabled,
+      enabled: turnable,
       // Enough travel that a slightly imprecise tap is still a tap.
       minDist: 6,
       onActivate: () => {
@@ -143,7 +158,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         cameraLat.value = lat > MAX_LAT ? MAX_LAT : lat < -MAX_LAT ? -MAX_LAT : lat;
       },
     }),
-    [cameraLat, cameraLng, cameraOwner, clip, enabled],
+    [cameraLat, cameraLng, cameraOwner, clip, turnable],
   );
 
   // One step per gesture. `armed` reopens on the next pinch, so a long
@@ -151,7 +166,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const armed = useSharedValue(true);
   const pinchConfig = useMemo(
     () => ({
-      enabled,
+      enabled: turnable,
       onActivate: () => {
         'worklet';
         armed.value = true;
@@ -168,7 +183,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         }
       },
     }),
-    [armed, enabled, onZoomStep],
+    [armed, onZoomStep, turnable],
   );
 
   const tap = useTapGesture(tapConfig);

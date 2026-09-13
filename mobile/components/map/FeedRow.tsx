@@ -28,20 +28,18 @@ import { Pressable, Text } from '../primitives';
  * mark colours, and at 11pt on cream several of them are not legible ink.
  * An alert row has no category and no dot.
  *
- * **Every row is exactly `height` tall.** That is not a layout convenience:
- * the globe's camera finds the row under the reader by dividing scroll offset
- * by row height, so the number the list lays out with and the number the
- * camera divides by have to be the same number. Titles clamp to two lines
- * rather than growing — the reader is where long text lives, and it has no
- * such constraint.
+ * **A row takes its natural height unless it is given one.** Rows used to be
+ * a fixed height because the globe's camera divided the list's scroll offset
+ * by it; the camera reads a story index now, so a long headline wraps rather
+ * than clamping. `height` remains for a list that has to be uniform.
  */
 
 /** The category dot's diameter — a beacon at row scale. */
 const DOT = 7;
 
 export interface FeedRowProps {
-  /** Uniform, and shared with the globe camera. See above. */
-  height: number;
+  /** A fixed row height, which also clamps the title to two lines. */
+  height?: number;
   title: string;
   /** `kicker · when` — already assembled, already lowercase. */
   meta: string;
@@ -90,12 +88,12 @@ export const FeedRow = memo(function FeedRow({
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
-      style={[styles.row, { height, borderBottomColor: colors.rule }]}
+      style={[styles.row, height ? { height } : styles.natural, { borderBottomColor: colors.rule }]}
     >
       <Text
         variant="rowTitle"
         tone={found ? 'secondary' : 'default'}
-        numberOfLines={2}
+        numberOfLines={height ? 2 : undefined}
         maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
       >
         {title}
@@ -133,6 +131,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.articlePadding,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  natural: { paddingVertical: SPACING.smPlus },
   meta: {
     flexDirection: 'row',
     alignItems: 'center',

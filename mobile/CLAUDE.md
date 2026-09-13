@@ -65,9 +65,10 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag rotates · pinch steps zoom · tap hit-tests
 MapHeader + IndicatorStrip            briefing, wordmark, menu · every mover, swiped, largest first
-MapSheet                              custom, non-modal, peek/full · news only: Red alerts + river
-ReaderLayer                           ArticleList over the river, presented over the map
-platform sheets                       card · instruments · chokepoint · country · …
+MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
+  SheetMasthead                       found N of M · all → (IndexSheet), or a live Red alert
+  StoryDeck → StoryCard               the river, one story at a time, swiped sideways
+platform sheets                       index · card · instruments · chokepoint · country · …
 ```
 
 It replaced four sections on a horizontal pager, with the globe living as a
@@ -76,34 +77,34 @@ chokepoint traffic was "shipping" — and left the one surface with every story
 and hazard already plotted on it looking like wallpaper. It was tappable the
 whole time; nothing said so.
 
-- **One globe, and the map and the reader share it.** `ArticleList` no longer
-  renders `MiniGlobe`; it receives `globeRef` and publishes into the screen's
-  `cameraScrollY`. Two globes would mean opening a story cuts to a second earth
-  instead of the same one continuing to turn. Both lists index the same camera
-  track (the river), and `itemHeight` is what switches — a sheet row and a
-  full-screen page are different distances along it.
-- **The camera has two owners, and a finger outranks the list.**
-  `MiniGlobe.cameraOwner`: `0` the list's scroll offset, `1` a target —
-  a drag on the globe, a strip or NOW selection, or the opening view. The next
-  *drag* on the list (`onBeginDrag`, never `onScroll`) hands it back. The
-  opening view turns the planet to the day's top instrument once; after the
-  reader moves the camera the app never re-aims it.
-- **Row height is shared with the camera, so rows never grow.** The sheet's
-  camera finds the story under the reader by `scrollY / rowHeight`. `MapFeed`
-  lays out with exactly that number and titles clamp to two lines; the alert
-  block lives in `ListHeaderComponent`, outside the indexed data, and its
-  measured height is subtracted before publishing. A row that grew to fit its
-  title would put the globe on the wrong story.
+- **The camera reads a story index, not pixels.** `MiniGlobe.storyProgress`
+  is a float position in the river — `2.4` is a finger partway from the third
+  story to the fourth — and it indexes `cameraTrack` (`lib/map-feed.ts`), one
+  pair per story. The deck writes it on the UI thread under a finger; a jump
+  writes it directly. It replaced a pixel `scrollY` plus an `itemHeight` that
+  had to be swapped whenever a different surface came forward, and a
+  `listOffset` that nothing ever wrote — which is why closing the old reader
+  parked the camera on story 0.
+- **The camera has two owners, and a finger outranks the deck.**
+  `MiniGlobe.cameraOwner`: `0` `storyProgress`, `1` a target — a drag on the
+  globe, a strip or NOW selection, a jump's flight. A swipe that starts with
+  the camera within a degree of the story in front takes it at once, so the
+  earth turns under the finger; otherwise the camera stays where the reader
+  left it, flies when the swipe lands, and hands back once it has arrived
+  (`handleDeckDragStart` / `handleDeckSettle`). Taking it back mid-drag would
+  snap the earth. **The app opens on the newest story**, not on the top
+  instrument: at rest the card and the globe have to agree.
 - **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
   (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
   instruments a builder marked `lead`; once the strip held every reading that
   moved, what was left there was contracts and dates sitting above the stories
-  as though they were stories, so the block now holds only live Red GDACS
-  alerts — news with no article yet, whose globe mark needs an accessible row.
-  It holds no stories (the river's first row already *is* the lead story) and
-  no conflict events (UCDP publishes months in arrears, and NOW over a March
-  event is a false claim). A contract still reaches the sheet the one honest
-  way: as the odds chip on the story it settles.
+  as though they were stories, so NOW holds only live Red GDACS alerts — news
+  with no article yet, whose globe mark needs an accessible row. It holds no
+  stories and no conflict events (UCDP publishes months in arrears, and NOW
+  over a March event is a false claim). **Alerts never enter the deck**: the
+  camera track is stories only. They reach the sheet as the masthead line
+  (`now · …`, which opens the alert) and as `IndexSheet`'s NOW rows. A contract
+  reaches the sheet the one honest way: as the odds on the story it settles.
 - **The strip scrolls sideways and holds every reading that moved, largest
   move first.** It was three fixed slots, and the reader asked for all the
   markets, straits and currencies in one swipe, sorted so the most dramatic
@@ -116,8 +117,8 @@ whole time; nothing said so.
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
-  rather than arbitrating them: at peek the list does not scroll; the list
-  never bounces; the pan decides ownership once per gesture and holds it.
+  rather than arbitrating them: at peek the card does not scroll; nothing in
+  it bounces; the pan decides ownership once per gesture and holds it.
   Every other sheet stays a platform sheet.
 - **Instruments without a place are one tap away, always.** Brent, gold, the
   ten-year, nisab, FX movers and every contract have no honest location, so
@@ -127,23 +128,26 @@ whole time; nothing said so.
   locations for half the deck.
 - **Predictions are merged into the story they settle, never plotted.**
   `lib/predictions.ts` inverts the `relatedArticles` the narration stage writes
-  onto `poly-*` indicators. A feed row carries a bare `62%`; the reader carries
-  the level, the move in **points**, and `MARKET_CAVEAT`. Odds are never tinted
+  onto `poly-*` indicators. An index row carries a bare `62%`; the grown card
+  carries the level, the move in **points**, and `MARKET_CAVEAT` (`OddsLine`). Odds are never tinted
   favorable/unfavorable — a green likelier war is the app taking a side.
 - **The globe is how the news is found.** Every story is a beacon in its
   category hue at its *place* (`lib/story-places.ts` merges stories within
   5 km, or one dateline within 120 km, as the web does), and tapping one
   finds it: `MiniGlobe.collect` bursts in that hue, `lib/found-store.ts`
-  records the slug, the next reprojection stops drawing the mark, and the
-  sheet swaps its river for `StoryPreview`. The camera flies only after the
-  burst (`COLLECT_MS`) so the colour plays where the mark was.
-  - **The preview is what the sheet holds, not a third detent.** `MapSheet`
-    is still peek/full; `renderList` returns `StoryPreview` or `MapFeed`.
-    Close is the ✕, a pull down at rest, or Android back — a pull at rest
-    only refreshes when the river is showing. `MapFeed` remounts with
-    `initialOffset` so closing a preview does not lose the river's place.
-  - **Found is opening, from anywhere** — the mark, the row, or a page
-    turned to in the reader (`handleArticleChange`). Pruning drops a slug
+  records the slug, the next reprojection stops drawing the mark, and the deck
+  **jumps** to that story (`focusStory`) and stays at peek. The camera flies
+  only after the burst (`COLLECT_MS`) so the colour plays where the mark was.
+  Tapping the same place again gives its next unfound story.
+  - **A jump is never an animated swipe.** From story one to story thirty an
+    animated pass would send the camera through twenty-nine datelines, so the
+    camera is held (`cameraOwner = 1`), the position jumps, and the camera
+    flies. Every entry point — a mark, an index row, a notification, search,
+    saved, a related story in another sheet — goes through `focusStory`, and
+    the ones that mean "read this" pass `grow`.
+  - **Found is opening** — a mark tap, growing a card, or landing on a card
+    while grown. **Swiping past a card at rest does not find it**: thirty
+    seconds of swiping would otherwise empty the globe. Pruning drops a slug
     only when it has left the feed *and* is two weeks old, so a partial
     payload cannot relight the globe.
   - **A story outranks everything but a nearer reference mark.** The hit
@@ -160,8 +164,11 @@ whole time; nothing said so.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
-  strip, the alert block or the instruments sheet; that is the accessible path,
-  and a new mark layer without a row is an accessibility regression.
+  strip, `IndexSheet` or the instruments sheet; that is the accessible path,
+  and a new mark layer without a row is an accessibility regression. The card
+  itself carries `next story` / `previous story` / `read the whole story` as
+  accessibility actions — not the `adjustable` role, which would take over
+  VoiceOver's own reading swipes.
 
 The card doctrine below still holds. The cards render in `CardSheet` rather
 than on deck pages, but `CardView`/`CardFrame` are unchanged, and every rule
@@ -249,9 +256,10 @@ about what a card may say is about the card, not where it is shown.
   both platforms differently — on Android its SwipeRefreshLayout took the
   collapse drag, on iOS `bounces={false}` meant it could never fire — so
   `MapSheet.onPullDown` fires when a drag that began at peek stretches the
-  sheet past `PULL_TRIGGER`, and a single line above the list says
-  `checking for new stories` while it runs — the sheet has no masthead
-  otherwise, having given its date and story count to the news. `useArticles.refresh()` probes
+  sheet past `PULL_TRIGGER`, and the masthead line above the card says
+  `checking for new stories` while it runs. A refresh that inserts stories in
+  front of the one being read keeps the reader on it (anchored by slug, camera
+  held). `useArticles.refresh()` probes
   `/api/meta.json`; a moved `generated` runs `invalidateApiJson`, which marks
   every `useApiJson` snapshot stale at once — trends, chokepoints, analysis,
   market signals — so the strip, the alert block and the marks all refetch from
@@ -260,56 +268,71 @@ about what a card may say is about the card, not where it is shown.
   update can carry `translationY === 0` (observed on every drag on the
   Android emulator), and ownership decided on that zero read as "not pulling
   down", which gave every collapse drag on the expanded sheet to the list.
-- **The reader has no background of its own, so the map's chrome leaves.**
-  `ArticleList` draws the backdrop gradient — clear at the top, opaque under
-  the prose — and that is what lets the same earth keep turning behind a
-  story. An opaque `ReaderLayer` hid the globe while every page turn still
-  paid to reproject it. With the layer translucent, the header, the strip and
-  the sheet fade out and stop taking touches while a story is open, each on
-  its **own** `useAnimatedStyle`: one style shared by the two views brought
-  only the header back when the story closed, and the sheet sat at opacity 0,
-  invisible but touchable. Pages take `topInset` (status bar + the reader's
-  share/close row), which the section rail used to supply by sitting in flow
-  above the pager.
-- **Android's back collapses an expanded sheet before it leaves the app.** The
+- **The sheet holds one story, swiped sideways, and growing it is reading
+  it.** `StoryDeck` → `StoryCard`. At peek the card is its kicker (category,
+  time, place), title, and the hook and why-it-matters sentences — every
+  article's first two blocks, written to be the reason to read on, and what
+  the web map's preview card leads with. Its headline alone ("Drone Boat Kills
+  Drone Boat") gave nobody a reason. Pulled up, the same card is the whole
+  story: all four sentences, `OddsLine`, `sources · save · share` as visible
+  words, live country and entity links — with the globe scaled into a band
+  above it and the strip receded. Nothing mounts or reflows when it grows.
+  - **Peek is computed from type, never a fraction** (`lib/deck-layout.ts`,
+    tested): masthead, kicker, two title lines and five lead lines at the
+    reader's font scale, capped so the globe keeps 34% of the window, floored
+    at kicker + title + one line, and never leaving the globe under 140pt.
+    Grown, the globe keeps 20% (≥140pt). It is computed once per window and
+    font scale, never per card — a sheet whose height followed each story
+    would move the globe's centre, and reproject, on every swipe.
+  - **The grown globe is a transform** (`grownGlobeTransform`), so the gesture
+    layer is tap-to-collapse while grown: marks are not where the projection
+    thinks they are under the scale.
+  - **Nothing clamps.** A long lead runs on under the fold at peek and scrolls
+    when grown. A card that stops being current scrolls back to its top.
+  - **The deck and the sheet never share a drag.** The deck's pan claims at
+    16pt horizontal and fails at 12pt vertical; the sheet's claims at 8pt
+    vertical and fails at 24pt horizontal; neither is `simultaneousWith` the
+    other. A grown card's own scroll runs alongside the sheet's pan (rule 2).
+    The new index is committed when the finger lifts, not in the spring's
+    completion callback — `scheduleOnRN` from an animation callback aborted
+    the app once.
+  - **The deck carries no position.** A `3 / 15` counter was added to the old
+    card decks and removed. Position is the kicker's time-ago, `earlier ·` on
+    the first story already seen (landing there fires `handleCaughtUp`), the
+    next card's 10pt cut edge, and an end card that says the day is finite.
+  - **The masthead line is the door to the whole day.** `found N of M · all →`
+    opens `IndexSheet` — every alert and story as a row at natural height, the
+    list a reader scans the day in, and the accessible path.
+- **There is no full-screen reader, and it is not coming back as the default.**
+  `ReaderLayer`, `ArticleList`, `ArticlePage`, `useVerticalPager` and
+  `lib/pager-settle.ts` were deleted on 2026-09-13. A modal reader for every
+  story was intrusive and cut the reader off from the globe, which is the one
+  thing this screen is for; its nested-scroll guards and second camera scale
+  existed for long-form reading that 350-character stories never need. Before
+  it, a list of headlines was the sheet's front door, and a list-first index
+  had already been tried once (740478ba, a branch) and abandoned for
+  swipe-first news. Considered and rejected at the same time: a story stage
+  under the strip with vertical swipes and the globe below it (it inverted
+  where the thumb is), and a reticle at the globe's centre that picks the
+  nearest story (exploring the globe would swap the card being read).
+- **Android's back puts a grown story down before it leaves the app.** The
   map is the root screen, so without `useHardwareBack` on the full detent the
   key a reader uses to get back down to the globe closed zuhd.
-- **The horizontal axis belongs to going back.** With the rail gone, a
-  sideways swipe in the reader returns to the map (`useSwipeBackGesture`, the
-  same thresholds the multi-page sheets use). `TrendBlock`'s scrubber ate five
-  page swipes in a row before `scrubbable={false}` existed; cards still pass
-  it, because a card's chart must not steal the gesture that dismisses it.
-- **Nothing may steal the reader's vertical axis, and the fix for that once
-  ate the content instead.** A card taller than the page carries an inner
-  `ScrollView`. Handing its leftover overscroll up to the pager parks the list
-  between two pages — the parent moves having never been dragged, so
-  `pagingEnabled`, which only snaps a gesture the list received itself, has
-  nothing to snap, and both cards sit at half opacity. The response was to turn
-  `nestedScrollEnabled` off. On Android that is the default anyway, which meant
-  the parent intercepted *every* vertical drag and the inner scroll never ran
-  at all: a card taller than the page did not scroll, it silently truncated.
-  Four did it at default type — the Kerch strait, the fifteen-currency table,
-  the nisab, wheat-and-rice — each losing its source caption and, on two of
-  them, a whole related-stories section. **A card citing IMF PortWatch never
-  said so.** Three guards now, and all three are load-bearing:
-  - the inner scroll arms only when content is genuinely taller than the page,
-    which means `CardFrame` must add `COLUMN_PAD_V` back — that padding is on
-    the ScrollView's `contentContainerStyle`, *outside* the view whose height
-    `onContentLayout` measures, so the naive comparison is 80pt optimistic and
-    was the truncation's proximate cause;
-  - `nestedScrollEnabled` is **on**, because without it the first guard is moot;
-  - `settleToPage` (`lib/pager-settle.ts`, used by `ArticleList`) corrects the
-    resting offset — and it is armed from the *scroll worklet*, not only from
-    `onScrollEndDrag`. The card decks carried this first; they are gone, the
-    reader still needs it. That matters: the
-    handoff produces neither a drag end nor a momentum end on the parent, so a
-    drag-armed timer can never see it. The worklet hop is throttled to 10/sec
-    and declines while `draggingRef`/`momentumRef` are set, so it never fires
-    under a finger or cuts a fling short.
-
-  The lesson worth keeping: the first two guards make the parked page rare, the
-  third makes it impossible, and removing the second to avoid the first trades
-  a visible layout glitch for silent data loss — which is the worse bug,
+- **A card's chart must not steal a swipe.** `TrendBlock`'s scrubber ate five
+  page swipes in a row before `scrubbable={false}` existed; `CardView` still
+  passes it.
+- **An inner scroll that truncates is worse than one that parks.** `CardFrame`
+  carries an inner `ScrollView` for a card taller than its sheet. With
+  `nestedScrollEnabled` off — once turned off to stop a pager parking between
+  two pages — Android's parent intercepted every vertical drag and the inner
+  scroll never ran: four cards at default type (the Kerch strait, the
+  fifteen-currency table, the nisab, wheat-and-rice) silently lost their
+  source captions, and two a whole related-stories section. **A card citing
+  IMF PortWatch never said so.** Two guards stay load-bearing: the inner
+  scroll arms only when content is genuinely taller (`CardFrame` must add
+  `COLUMN_PAD_V` back — it sits outside the measured view, and the naive
+  comparison was 80pt optimistic), and `nestedScrollEnabled` is **on**.
+  Trading a visible layout glitch for silent data loss is the worse bug,
   because nobody reports it.
 - **`recent` reaches the app through `/api/analysis.json`, and that is a
   second endpoint on purpose.** `build.js` withholds it from `api/trends.json`
@@ -324,8 +347,8 @@ about what a card may say is about the card, not where it is shown.
   specific.** `listen` is the pill at the top left of `MapHeader` — as a
   corner pill over the globe it was sized to stay out of the way and was not
   found, and as the button on the sheet's masthead it made the first row of
-  the news list a control panel. `share` is in the reader's top-right chrome,
-  where it can only mean the page under it (it used to share the last article
+  the news list a control panel. `share` is a word on the grown card, where it
+  can only mean the story it sits under (it used to share the last article
   read from any section). `zoom` is gone from the chrome: pinch on the globe
   steps through `useZoomCycle`'s levels, so readers who cannot pinch get the
   opening zoom only.

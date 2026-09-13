@@ -1,23 +1,25 @@
 import { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SPACING } from '../../constants/theme';
+import { Pressable, StyleSheet } from 'react-native';
+import { PRESSED_STYLE, SPACING } from '../../constants/theme';
 import type { FoundProgress } from '../../lib/story-places';
 import { Text } from '../primitives';
 
 /**
- * Above the sheet's list: how much of today's news the reader has found, or
- * that a pull is checking for more.
+ * One line above the story card, and the door to the whole day.
  *
- * It held the day's date, the story count and the briefing button. The
- * briefing moved to the top left of `MapHeader`, and the date went to give the
- * news the room — the list's own rows carry each story's age.
+ * It says exactly one thing, in this order of precedence:
  *
- * The count came back as progress. Every story on the globe is a light until
- * it is opened, so the line is the game's only scoreboard, and before the
- * first find it is also the only thing saying the lights are stories at all.
- * A pull's "checking" line takes the slot while it runs, because that is the
- * one thing a pull-to-refresh has no other way to say. Both are a live region,
- * so a screen reader hears them without moving focus.
+ *  1. **`checking for new stories`** while a pull is running — the one thing a
+ *     pull-to-refresh has no other way to say.
+ *  2. **`now · …`** while a live Red alert exists. Alerts never enter the deck
+ *     (the camera track is stories only), so this line is where a hazard with
+ *     no article yet reaches the sheet. It opens the alert.
+ *  3. **`found N of M`** otherwise — the game's only scoreboard, and before the
+ *     first find the only thing saying the lights on the globe are stories. It
+ *     opens every story as a list.
+ *
+ * A live region, so a screen reader hears the line change without moving
+ * focus.
  */
 export function progressLine({ found, total }: FoundProgress): string | null {
   if (total <= 0) return null;
@@ -29,26 +31,67 @@ export function progressLine({ found, total }: FoundProgress): string | null {
 export const SheetMasthead = memo(function SheetMasthead({
   refreshing = false,
   progress,
+  alert,
+  onPress,
+  onAlertPress,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
   progress?: FoundProgress;
+  /** The newest live Red alert's title, if any. */
+  alert?: string | null;
+  /** Opens every story as a list. */
+  onPress?: () => void;
+  /** Opens the alert. */
+  onAlertPress?: () => void;
 }) {
-  const line = refreshing ? 'checking for new stories' : progress ? progressLine(progress) : null;
+  const showingAlert = !refreshing && !!alert;
+  const line = refreshing
+    ? 'checking for new stories'
+    : showingAlert
+      ? `now · ${alert}`
+      : progress
+        ? progressLine(progress)
+        : null;
+  const handlePress = refreshing ? undefined : showingAlert ? onAlertPress : onPress;
+
+  if (!line) return null;
   return (
-    <View accessibilityLiveRegion="polite">
-      {line ? (
-        <Text variant="caption" numberOfLines={1} style={styles.line}>
-          {line}
+    <Pressable
+      onPress={handlePress}
+      disabled={!handlePress}
+      accessibilityLiveRegion="polite"
+      accessibilityRole={handlePress ? 'button' : 'text'}
+      accessibilityHint={
+        handlePress ? (showingAlert ? 'Opens the alert' : 'Lists every story') : undefined
+      }
+      hitSlop={SPACING.xs}
+      style={({ pressed }) => [styles.row, pressed && handlePress ? PRESSED_STYLE : null]}
+    >
+      <Text
+        variant="caption"
+        tone={showingAlert ? 'emphasis' : 'secondary'}
+        numberOfLines={1}
+        style={styles.line}
+      >
+        {line}
+      </Text>
+      {handlePress && !showingAlert ? (
+        <Text variant="caption" tone="secondary">
+          all →
         </Text>
       ) : null}
-    </View>
+    </Pressable>
   );
 });
 
 const styles = StyleSheet.create({
-  line: {
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
     paddingHorizontal: SPACING.articlePadding,
     paddingBottom: SPACING.sm,
   },
+  line: { flexShrink: 1 },
 });

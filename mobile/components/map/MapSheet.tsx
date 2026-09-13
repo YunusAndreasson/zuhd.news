@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
+import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   type SharedValue,
   useAnimatedReaction,
@@ -25,7 +25,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
 
 /**
- * The persistent sheet over the globe — the app's only list.
+ * The persistent sheet over the globe — where the news is read.
  *
  * It is hand-built rather than an `@expo/ui` platform sheet, and that is not a
  * preference. Every other sheet in this app is a platform sheet (SwiftUI on
@@ -37,11 +37,11 @@ import { hapticTick } from '../../lib/haptics';
  *
  * ## Two detents, not three
  *
- * Peek and full. A third middle stop is what a map app needs when the sheet
- * is also the reading surface; here the reader is its own full-screen layer,
- * so the sheet only ever answers two questions — *what is happening* and
- * *show me the list* — and a middle stop would be a third place to leave it
- * with nothing that belongs there.
+ * Peek and full, and they are one story at two depths: at peek the story card
+ * — kicker, title, the lead — and at full the same card grown into the whole
+ * story, with the globe still above it. A middle stop would be a third place
+ * to leave a card with nothing that belongs there. There is no full-screen
+ * reader to hand off to; a modal reader was intrusive and lost the earth.
  *
  * ## Gesture ownership
  *
@@ -72,6 +72,8 @@ export interface MapSheetRef {
 
 export type MapSheetDetent = 'peek' | 'full';
 
+type SheetGesture = ReturnType<typeof usePanGesture>;
+
 interface MapSheetProps {
   /** Visible height at rest, in px. */
   peek: number;
@@ -82,17 +84,18 @@ interface MapSheetProps {
   /** Always visible, above the list. */
   header: ReactNode;
   /**
-   * The list, as a single scrollable element — it is handed straight to a
-   * `GestureDetector`, so it must be the scroll view itself and not a wrapper.
-   * `NativeViewGestureHandler` attaches to the view it is given; a `View` in
-   * between and the pan is coordinating with a box that never scrolls.
+   * The content under the header. It owns its own gesture detectors: any
+   * scroll view inside must wrap itself in a native gesture that is
+   * `simultaneousWith: sheetGesture` (rule 2's pairing), must not bounce, and
+   * must write its raw content offset to `onScrollOffset` — that is what the
+   * pan reads to decide whether a downward drag at full is a collapse.
    *
-   * Must carry `flex: 1` (it is the flexible child of the sheet's column) and
-   * `bounces={false}` (rule 2 above).
+   * Must carry `flex: 1`: it is the flexible child of the sheet's column.
    */
   renderList: (props: {
     scrollEnabled: boolean;
     onScrollOffset: SharedValue<number>;
+    sheetGesture: SheetGesture;
   }) => ReactElement;
   onDetentChange?: (detent: MapSheetDetent) => void;
   /**
@@ -282,10 +285,6 @@ export function MapSheet({
   );
 
   const pan = usePanGesture(panConfig);
-  // Wrapping the list's own scroll view lets the pan run beside it rather
-  // than against it. Without this the two race and the loser is whichever
-  // recognised second, which differs by platform.
-  const scroll = useNativeGesture(useMemo(() => ({ simultaneousWith: pan }), [pan]));
 
   useImperativeHandle(
     ref,
@@ -325,7 +324,11 @@ export function MapSheet({
     transform: [{ translateY: offset.value }],
   }));
 
-  const list = renderList({ scrollEnabled: detent === 'full', onScrollOffset: listOffset });
+  const list = renderList({
+    scrollEnabled: detent === 'full',
+    onScrollOffset: listOffset,
+    sheetGesture: pan,
+  });
 
   return (
     <Animated.View
@@ -336,10 +339,10 @@ export function MapSheet({
       ]}
     >
       {/* The pan covers the whole sheet, not just the handle: at peek the
-          list does not scroll, so a drag anywhere on it should raise the
-          sheet rather than do nothing. The nested detector below hands the
-          list its own native handler, and `simultaneousWith` lets the two
-          run together instead of racing. */}
+          card does not scroll, so a drag anywhere on it should raise the
+          sheet rather than do nothing. The content attaches its own native
+          scroll handlers, `simultaneousWith` this pan, so the two run
+          together instead of racing. */}
       <GestureDetector gesture={pan}>
         <View style={styles.fill}>
           {/* A hairline indicator and nothing else. The sheet's own top edge
@@ -348,16 +351,16 @@ export function MapSheet({
           <View
             style={styles.handleWrap}
             accessibilityRole="adjustable"
-            accessibilityLabel="Today"
+            accessibilityLabel="Story"
             accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
-            accessibilityHint="Swipe up for the full list, down to see the globe"
+            accessibilityHint="Swipe up to read the whole story, down to see the globe"
             accessibilityActions={ADJUST_ACTIONS}
             onAccessibilityAction={handleAccessibilityAction}
           >
             <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
           </View>
           {header}
-          <GestureDetector gesture={scroll}>{list}</GestureDetector>
+          {list}
         </View>
       </GestureDetector>
     </Animated.View>

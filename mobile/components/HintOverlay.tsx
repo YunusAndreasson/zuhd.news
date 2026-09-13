@@ -16,13 +16,13 @@ import { Text } from './primitives';
 // One whispered line per undiscoverable interaction. No icon, no arrow, no
 // dome gold — a hint is chrome whispering, not the brand accent speaking.
 //
-// `swipe` used to end "· sideways for sections". There are no sections: a
-// sideways swipe in the reader is now the way back to the map, so the old
-// line would have taught the one gesture that closes the thing it is
-// teaching. A hint that is wrong is worse than no hint, because a reader
-// who follows it and gets a different result stops trusting the next one.
+// `swipe` has been wrong twice: "sideways for sections" outlived the sections,
+// and "swipe up for next" outlived the full-screen reader. Stories are a
+// sideways deck in the sheet now, and pulling a card up is reading it. A hint
+// that is wrong is worse than no hint, because a reader who follows it and
+// gets a different result stops trusting the next one.
 const HINT_COPY: Record<HintId, string> = {
-  swipe: 'swipe up for next · sideways for the map',
+  swipe: 'swipe sideways for the next story · pull up to read',
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
   globe: 'tap a light on the globe to find its story',
