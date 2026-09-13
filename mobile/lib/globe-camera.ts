@@ -182,3 +182,31 @@ export function anchorZoom(
   }
   return { lng, lat };
 }
+
+/**
+ * The farthest the canvas reaches from the globe's centre: the distance to its
+ * farthest corner. Anything the projection places further out is off screen.
+ */
+export function reachFor(cx: number, cy: number, width: number, height: number): number {
+  'worklet';
+  const dx = Math.max(cx, width - cx);
+  const dy = Math.max(cy, height - cy);
+  return Math.hypot(dx, dy);
+}
+
+/**
+ * How far from the camera, in degrees, the ground can be and still land on the
+ * canvas. A point θ from the camera is drawn `scale · sin θ` from the centre,
+ * so this is `asin(reach / scale)` once the planet outgrows the screen, and the
+ * whole hemisphere — the real limb — until then.
+ *
+ * It is what the globe clips to. Zooming used to clip at the zoom's own angle
+ * and stretch that cap across a fixed disc, which drew a patch of the ground
+ * with a horizon painted around it; clipping at what the canvas can show lets
+ * the planet grow past the screen's edges instead.
+ */
+export function viewAngleFor(scale: number, reach: number): number {
+  'worklet';
+  if (!(scale > reach)) return MAX_CLIP;
+  return Math.asin(reach / scale) * RAD2DEG;
+}

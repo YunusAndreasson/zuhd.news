@@ -96,6 +96,13 @@ export const DARK_COLORS = {
   // out at ~AA-large only.
   pillBg: 'rgba(30,30,32,0.88)',
   atmosphere: '#334455',
+  /**
+   * The lit hemisphere's wash on the globe — the web map's `DAYLIGHT`. Night
+   * cannot be shown by darkening a near-black sea (it moves a channel by one or
+   * two values), so the day side is lifted instead: this, at a few percent,
+   * under the land. Never a mark colour; nothing is ever drawn in it at strength.
+   */
+  daylight: '#7f9dc4',
   // Editorial-map water tone — pre-composed `atmosphere` at 0.28 alpha
   // over `bg`. Used by LocationsBlock as an explicit ocean fill so water
   // reads as a distinct surface (deep slate-blue) rather than the absence
@@ -171,6 +178,9 @@ export const LIGHT_COLORS = {
   sheetBg: '#eae6e0',
   pillBg: 'rgba(220,216,210,0.88)',
   atmosphere: '#8899aa',
+  // See DARK_COLORS.daylight. On cream the night veil already reads; the day
+  // side is lifted toward white so the terminator has two sides.
+  daylight: '#ffffff',
   // See DARK_COLORS.water for the rationale. Pre-composed `atmosphere`
   // at 0.28 alpha over `bg` — sits a touch cooler/darker than cream so
   // land (gray) reads as the warmer surface.

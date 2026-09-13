@@ -135,6 +135,14 @@ whole time; nothing said so.
   onto `poly-*` indicators. An index row carries a bare `62%`; the grown card
   carries the level, the move in **points**, and `MARKET_CAVEAT` (`OddsLine`). Odds are never tinted
   favorable/unfavorable — a green likelier war is the app taking a side.
+- **The river is the last 24 hours.** `recentRiver` (`lib/news-order.ts`,
+  tested) cuts the feed to one day on the dateline's own timestamp before
+  anything reads it, so the deck, the globe's lights, the found ring and the
+  index all show the same day. If nothing is inside the day — a stalled
+  pipeline — the window anchors on the newest story instead of emptying the
+  globe. A story a reader asks for by name (a saved story, a notification, a
+  related story) is pinned into the river (`pinStory`) so `focusStory` can
+  still land on it; `tick` re-measures the window while the app stays open.
 - **The globe is how the news is found.** Every story is a beacon in its
   category hue at its *place* (`lib/story-places.ts` merges stories within
   5 km, or one dateline within 120 km, as the web does), and tapping one
@@ -181,6 +189,24 @@ whole time; nothing said so.
   continuously about the fingers (`pinchClip` + `anchorZoom`), and pinching out
   to the story's own framing hands zoom back to it. The arithmetic lives in
   `lib/globe-camera.ts`, pinned against d3 in `__tests__/globe-camera.test.ts`.
+  - **Zooming in grows the planet past the screen; it never magnifies a patch
+    inside the circle.** The zoom is still a clip angle — the ground's scale is
+    `radius / sin(clip)`, so drags, pinches and story framings mean what they
+    did — but the projection clips at `viewAngleFor` (`lib/globe-camera.ts`):
+    everything that reaches the canvas's farthest corner, which is the whole
+    hemisphere until the disc outgrows the screen. It used to clip at the zoom
+    angle and stretch that cap across the resting disc, so at a small country's
+    25° framing the ground barely foreshortened toward an edge the atmosphere
+    painted as the horizon: a flat map in a circle. The rim, ocean and limb
+    glaze are recorded into the ground picture at the projected limb, the stars
+    and moon are clipped outside it, and the found ring follows it off the
+    screen's edge.
+  - **The grid and daylight are the web's, for the web's reasons.** Twelve
+    meridians and five parallels walked at 5° (`GRATICULE_LINES`), under the
+    land — the curvature of the lines is what says sphere; the old
+    `geoGraticule` call drew only the equator. Day is a lift of the lit
+    hemisphere in `daylight` under the land (`day-shade` on the web), because
+    darkening a near-black sea never showed where night was.
   - **A gesture starts from `viewLat`/`viewLng`, never from `cameraLat`/`cameraLng`.**
     Those only mean something while a target owns the camera; while the deck
     owns it they keep whatever the last flight left, and a drag that took the

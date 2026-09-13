@@ -10,6 +10,8 @@ import {
   MIN_CLIP,
   pinchClip,
   projScaleFor,
+  reachFor,
+  viewAngleFor,
 } from '../lib/globe-camera';
 
 const R = 180;
@@ -185,5 +187,29 @@ describe('anchorZoom', () => {
 
   it('declines when the fingers are off the disc', () => {
     expect(anchorZoom(CX + 400, CY, CX + 400, CY, 0, 0, R, R * 1.1, CX, CY)).toBeNull();
+  });
+});
+
+describe('viewAngleFor', () => {
+  it('draws the whole hemisphere while the planet fits the canvas', () => {
+    expect(viewAngleFor(projScaleFor(90, R), 400)).toBe(MAX_CLIP);
+    // A story's tight framing on a tall canvas still shows the real limb.
+    expect(viewAngleFor(projScaleFor(25, R), reachFor(CX, CY, 400, 900))).toBe(MAX_CLIP);
+  });
+
+  it('stops where the ground leaves the farthest corner', () => {
+    const reach = reachFor(CX, CY, 400, 640);
+    const scale = projScaleFor(MIN_CLIP, R);
+    const angle = viewAngleFor(scale, reach);
+    expect(angle).toBeLessThan(MAX_CLIP);
+    // A point that far north of the camera lands exactly `reach` from the centre.
+    const pt = projection(0, 0, scale)([0, angle]);
+    expect(pt).not.toBeNull();
+    if (pt) expect(Math.hypot(pt[0] - CX, pt[1] - CY)).toBeCloseTo(reach, 6);
+  });
+
+  it('measures to the farthest corner, wherever the centre sits', () => {
+    expect(reachFor(100, 100, 400, 500)).toBeCloseTo(Math.hypot(300, 400));
+    expect(reachFor(350, 450, 400, 500)).toBeCloseTo(Math.hypot(350, 450));
   });
 });

@@ -1,6 +1,6 @@
 import type { Article, Category } from '@shared/types';
 import { articleTime } from '../lib/article-utils';
-import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
+import { orderNewsRiver, RIVER_WINDOW_MS, type RiverArticle, recentRiver } from '../lib/news-order';
 
 function makeArticle(overrides: Partial<RiverArticle> = {}): RiverArticle {
   return {
@@ -93,5 +93,38 @@ describe('orderNewsRiver', () => {
 
   it('handles an empty feed', () => {
     expect(orderNewsRiver(emptyGrouped())).toEqual([]);
+  });
+});
+
+describe('recentRiver', () => {
+  const now = Date.parse('2026-09-13T12:00:00Z');
+  const hoursAgo = (h: number) => now - h * 3_600_000;
+  const at = (slug: string, t: number) => makeArticle({ slug, eventAt: t });
+
+  it('keeps the last 24 hours and drops what is older', () => {
+    const river = [at('fresh', hoursAgo(1)), at('edge', hoursAgo(24)), at('stale', hoursAgo(25))];
+    expect(recentRiver(river, now).map((a) => a.slug)).toEqual(['fresh', 'edge']);
+  });
+
+  it('anchors on the newest story when the pipeline has stalled', () => {
+    const river = [
+      at('last', hoursAgo(50)),
+      at('same-day', hoursAgo(70)),
+      at('older', hoursAgo(80)),
+    ];
+    expect(recentRiver(river, now).map((a) => a.slug)).toEqual(['last', 'same-day']);
+  });
+
+  it('keeps a story the reader asked for, however old', () => {
+    const river = [at('fresh', hoursAgo(2)), at('saved', hoursAgo(90))];
+    expect(recentRiver(river, now, new Set(['saved'])).map((a) => a.slug)).toEqual([
+      'fresh',
+      'saved',
+    ]);
+  });
+
+  it('is empty only when the river is', () => {
+    expect(recentRiver([], now)).toEqual([]);
+    expect(RIVER_WINDOW_MS).toBe(86_400_000);
   });
 });

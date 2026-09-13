@@ -17,7 +17,6 @@ import {
   PaintStyle,
   Path,
   Picture,
-  RadialGradient,
   Rect,
   rect,
   type SkCanvas,
@@ -34,6 +33,7 @@ import {
   TileMode,
   useFont,
   useImage,
+  usePathValue,
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
@@ -78,6 +78,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
+import { reachFor, viewAngleFor } from '../../lib/globe-camera';
 import { coverageRanks } from '../../lib/now';
 import {
   type FamineArea,
@@ -701,6 +702,10 @@ interface GlobeState {
   bordersPath: SkPath | null;
   countryPath: SkPath | null;
   countryName: string | null;
+  /** The limb on screen — the projection's scale, which outgrows the resting
+   *  disc (and the canvas) as the globe zooms in. */
+  discRadius: number;
+  dayPath: SkPath | null;
   nightPath: SkPath | null;
   twilightPath: SkPath | null;
   graticulePath: SkPath | null;
@@ -966,6 +971,8 @@ const EMPTY_GLOBE: GlobeState = {
   bordersPath: null,
   countryPath: null,
   countryName: null,
+  discRadius: 0,
+  dayPath: null,
   nightPath: null,
   twilightPath: null,
   graticulePath: null,
@@ -1137,6 +1144,49 @@ function strokePaint(
   return paint;
 }
 
+const RIM_POSITIONS = [0, 0.78, 0.84, 0.93, 1];
+const OCEAN_POSITIONS = [0, 1];
+const GLAZE_POSITIONS = [0, 0.9, 0.97, 0.995, 1];
+let atmosphereCache: {
+  key: string;
+  rim: SkColor[];
+  ocean: SkColor[];
+  glaze: SkColor[];
+} | null = null;
+
+/**
+ * The three atmosphere ramps around and on the planet, per theme: the rim just
+ * outside the limb, the ocean's Fresnel (dimmer at the centre, brighter toward
+ * the rim, so the disc reads as a sphere) and the inner-limb glaze — the slice
+ * of atmosphere refracting light around the curve, brightest just inside the
+ * edge and zero at the silhouette so it meets the rim without a seam. Parsed
+ * once per theme, not per frame.
+ */
+function atmosphereStops(atm: string, light: boolean) {
+  const key = `${atm}${light}`;
+  if (atmosphereCache?.key !== key) {
+    atmosphereCache = {
+      key,
+      rim: [
+        `${atm}00`,
+        `${atm}00`,
+        `${atm}${light ? '55' : '40'}`,
+        `${atm}${light ? '18' : '14'}`,
+        `${atm}00`,
+      ].map(skColor),
+      ocean: [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`].map(skColor),
+      glaze: [
+        `${atm}00`,
+        `${atm}00`,
+        `${atm}${light ? '20' : '18'}`,
+        `${atm}${light ? '38' : '28'}`,
+        `${atm}00`,
+      ].map(skColor),
+    };
+  }
+  return atmosphereCache;
+}
+
 /** A `<Circle dither>` holding a `<RadialGradient>`. */
 function drawGlow(
   canvas: SkCanvas,
@@ -1232,6 +1282,8 @@ interface FrameStyle {
   width: number;
   height: number;
   globeRadius: number;
+  cx: number;
+  cy: number;
   colors: ColorPalette;
   light: boolean;
   fonts: {
@@ -1251,6 +1303,13 @@ interface FramePictures {
   labels: SkPicture;
 }
 
+/** What the canvas reads per projection: the pictures and the limb they were
+ *  drawn to, so the sky behind the planet and the ring around it follow the
+ *  zoom in the same replay. */
+interface FrameOut extends FramePictures {
+  disc: number;
+}
+
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
   const bounds = Skia.XYWHRect(0, 0, s.width, s.height);
@@ -1259,6 +1318,14 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 
   // ── Ground: between the ocean disc and the limb glaze ──────────────────
   let c = frameRecorder.beginRecording(bounds);
+  // The limb the projection drew to. The rim and both discs follow it, so a
+  // zoomed globe keeps its real horizon — or loses it past the screen's edge —
+  // rather than having one painted around a magnified patch. `dither` on each
+  // ramp: over the near-black dark ground they span a few 8-bit steps and band.
+  const disc = f.discRadius > 0 ? f.discRadius : s.globeRadius;
+  const atmosphere = atmosphereStops(colors.atmosphere, light);
+  drawGlow(c, s.cx, s.cy, disc * 1.25, atmosphere.rim, RIM_POSITIONS);
+  drawGlow(c, s.cx, s.cy, disc, atmosphere.ocean, OCEAN_POSITIONS);
 
   // Subsolar specular highlight — additive WHITE at the projected
   // sun-overhead point. Land draws on top, so it only shows on water, which
@@ -1269,7 +1336,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       c,
       f.subsolar.x,
       f.subsolar.y,
-      s.globeRadius * 0.55,
+      disc * 0.55,
       [
         skColor(`${WHITE}${light ? '14' : '24'}`),
         skColor(`${WHITE}${light ? '08' : '10'}`),
@@ -1277,6 +1344,21 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       ],
       [0, 0.45, 1],
     );
+  }
+
+  // Daylight, under the land. Night cannot carry the terminator over water on
+  // its own: darkening a near-black sea moves it a value or two, so day and
+  // night read as a property of the continents and stop at every coastline.
+  // Lifting the lit hemisphere is the web map's answer (`day-shade`), and it
+  // puts the sun's side of the planet on the ocean too.
+  if (f.dayPath) c.drawPath(f.dayPath, fillPaint(colors.daylight, light ? 0.14 : 0.07));
+
+  // The graticule, under the land like the web's: it crosses no country, and a
+  // grid line quiet enough on the sea would vanish on land or shout over it.
+  // 0.8 wide, not 0.5 — a hairline under a device pixel never reaches its own
+  // alpha, which is how the web's grid spent a month not being on screen.
+  if (f.graticulePath) {
+    c.drawPath(f.graticulePath, strokePaint(colors.accent, light ? 0.16 : 0.1, 0.8));
   }
 
   // Land — a faint fill for body plus a crisp coastline for definition. The
@@ -1299,11 +1381,6 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.drawPath(f.bordersPath, strokePaint(colors.accent, 0.3, 0.7, StrokeJoin.Round));
   }
 
-  // Equator + polar circles.
-  if (f.graticulePath) {
-    c.drawPath(f.graticulePath, strokePaint(colors.accent, light ? 0.15 : 0.08, 0.5));
-  }
-
   // Low-sun band, then the night veil and the terminator stroke. Dark mode
   // needs a heavier hand on both: over the near-black ocean, BLACK at the
   // light-mode opacities moved a channel by one or two units and the seam
@@ -1311,7 +1388,12 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   if (f.twilightPath) c.drawPath(f.twilightPath, fillPaint(BLACK, light ? 0.06 : 0.12));
   if (f.nightPath) {
     c.drawPath(f.nightPath, fillPaint(BLACK, light ? 0.15 : 0.2));
-    c.drawPath(f.nightPath, strokePaint(colors.atmosphere, 0.12, 0.7));
+    // The terminator itself: in daylight's tone on dark ground, where the
+    // atmosphere slate was two values off the sea.
+    c.drawPath(
+      f.nightPath,
+      light ? strokePaint(colors.atmosphere, 0.3, 0.7) : strokePaint(colors.daylight, 0.18, 0.7),
+    );
   }
 
   // Night-side city lights, after the veil so it darkens land but not them.
@@ -1325,6 +1407,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   if (f.cityLightsNightPath) {
     c.drawPath(f.cityLightsNightPath, fillPaint(colors.textEmphasis, light ? 0.42 : 0.6));
   }
+
+  drawGlow(c, s.cx, s.cy, disc, atmosphere.glaze, GLAZE_POSITIONS);
   const ground = frameRecorder.finishRecordingAsPicture();
 
   // ── Marks: between the limb glaze and the tap pulse ─────────────────────
@@ -2020,14 +2104,18 @@ export const MiniGlobe = memo(function MiniGlobe({
   // so three separate writes replayed the canvas up to three times per
   // projection: 60 of 64 drag frames flagged a slow UI thread. The derived
   // values below are flushed before that mapper, which then runs once.
-  const framePictures = useSharedValue<FramePictures>({
+  const framePictures = useSharedValue<FrameOut>({
     ground: EMPTY_PICTURE,
     marks: EMPTY_PICTURE,
     labels: EMPTY_PICTURE,
+    disc: globeRadius,
   });
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
+  // Outside the limb, wherever the zoom has put it: the stars and the moon
+  // are behind the planet, and a zoomed globe covers them.
+  const discClip = useDerivedValue(() => Skia.Path.Circle(cx, cy, framePictures.value.disc));
   // Textures bake on the UI thread; they reach here once each, by reaction,
   // rather than being read synchronously on every frame.
   const texturesRef = useRef<GlobeTextures>(NO_TEXTURES);
@@ -2039,6 +2127,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       width,
       height,
       globeRadius,
+      cx,
+      cy,
       colors,
       light,
       fonts: {
@@ -2050,7 +2140,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       },
       textures: texturesRef.current,
     });
-    framePictures.value = pictures;
+    framePictures.value = {
+      ...pictures,
+      disc: frame.discRadius > 0 ? frame.discRadius : globeRadius,
+    };
   };
 
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
@@ -2193,6 +2286,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const icePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const bordersPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const countryPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const dayPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const nightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const twilightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const graticulePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
@@ -2380,8 +2474,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy });
-  layoutRef.current = { globeRadius, cx, cy };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height });
+  layoutRef.current = { globeRadius, cx, cy, width, height };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
 
@@ -2400,7 +2494,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       cameraMoving = false,
     ) => {
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
-      const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
+      const {
+        globeRadius: r,
+        cx: centerX,
+        cy: centerY,
+        width: canvasW,
+        height: canvasH,
+      } = layoutRef.current;
       const geoData = articleGeoRef.current;
 
       // Update which country to highlight when settled article changes.
@@ -2450,14 +2550,23 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (clipOutRef.current) clipOutRef.current.value = clipAngle;
       if (storyClipOutRef.current) storyClipOutRef.current.value = rawClip;
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
-      // Cull cone for labels and ambient markers. d3-geo's `.clipAngle` only
-      // clips path generation, not direct point projection — so without an
-      // explicit cone test, a chokepoint or neighbour label on the visible
-      // hemisphere but beyond the zoom cone projects to coordinates well
-      // outside the disk (projScale = r / sin(clipAngle) blows up as
-      // clipAngle shrinks). Reject everything past clipRad so labels can't
-      // float in the "sky" outside the globe.
-      const clipRad = (clipAngle * Math.PI) / 180;
+      // **Zooming in grows the planet past the screen; it never magnifies a
+      // patch inside a fixed disc.** `clipAngle` is the zoom — the ground's
+      // scale is `r / sin(clipAngle)`, so a drag, a pinch and a story's framing
+      // all keep their meaning — but what is drawn is everything that lands on
+      // the canvas, out to the real limb. The projection used to clip at
+      // `clipAngle` itself and stretch that cap across the resting disc: at a
+      // small country's 25° framing the ground was 9% foreshortened at an edge
+      // the atmosphere painted as the horizon — a flat map with a sphere's
+      // lighting on it.
+      //
+      // `viewAngle` is how far from the camera the ground can be and still reach
+      // the canvas's farthest corner: the whole hemisphere until the disc
+      // outgrows the screen. d3-geo's `.clipAngle` only clips path generation,
+      // not direct point projection, so every point marker below is culled
+      // against it too (`clipRad`).
+      const viewAngle = viewAngleFor(projScale, reachFor(centerX, centerY, canvasW, canvasH));
+      const clipRad = (viewAngle * Math.PI) / 180;
       const clipCos = Math.cos(clipRad);
 
       const proj = projRef.current;
@@ -2465,7 +2574,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // with 110m Natural Earth data, resampled midpoints are invisible.
       // This is the single biggest perf win (~30-40% of projection time).
       proj
-        .clipAngle(clipAngle)
+        .clipAngle(viewAngle)
         .precision(0)
         .rotate([-geoLng, -geoLat, 0])
         .scale(projScale)
@@ -2500,7 +2609,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       landBuilder.reset();
       skiaCtx.setPath(landBuilder);
       pg.context(skiaCtx)(
-        (nearSettled ? landFullCull : landSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+        (nearSettled ? landFullCull : landSimplifiedCull).visible(geoLng, geoLat, viewAngle),
       );
       const landPath = landBuilder.build();
 
@@ -2511,7 +2620,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       iceBuilder.reset();
       skiaCtx.setPath(iceBuilder);
       pg.context(skiaCtx)(
-        (nearSettled ? iceSheetsCull : iceSheetsSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+        (nearSettled ? iceSheetsCull : iceSheetsSimplifiedCull).visible(geoLng, geoLat, viewAngle),
       );
       const icePath = iceBuilder.build();
 
@@ -2570,7 +2679,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         const cull =
           (nearSettled ? null : cachedCountrySimplifiedCullRef.current) ??
           cachedCountryCullRef.current;
-        if (cull) pg.context(skiaCtx)(cull.visible(geoLng, geoLat, clipAngle));
+        if (cull) pg.context(skiaCtx)(cull.visible(geoLng, geoLat, viewAngle));
         countryPath = countryBuilder.build();
       }
 
@@ -2610,7 +2719,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       bordersBuilder.reset();
       skiaCtx.setPath(bordersBuilder);
       pg.context(skiaCtx)(
-        (nearSettled ? bordersFullCull : bordersSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+        (nearSettled ? bordersFullCull : bordersSimplifiedCull).visible(geoLng, geoLat, viewAngle),
       );
       const bordersPath = bordersBuilder.build();
 
@@ -2624,7 +2733,16 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Night shadow
       const [sunLng, sunLat] = getSunPosition();
-      const { night: nightGeo, twilight: twilightGeo } = getNightCircles(sunLng, sunLat);
+      const {
+        day: dayGeo,
+        night: nightGeo,
+        twilight: twilightGeo,
+      } = getNightCircles(sunLng, sunLat);
+      const dayBuilder = dayPathRef.current;
+      dayBuilder.reset();
+      skiaCtx.setPath(dayBuilder);
+      pg.context(skiaCtx)(dayGeo);
+      const dayPath = dayBuilder.build();
       const nightBuilder = nightPathRef.current;
       nightBuilder.reset();
       skiaCtx.setPath(nightBuilder);
@@ -2672,14 +2790,14 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) subsolar = { x: pt[0], y: pt[1] };
       }
 
-      // Equator + polar circles — projected every frame; cost is small
-      // (~650 verts) and the layer is barely visible at α 0.08 anyway.
+      // The graticule and the polar circles — projected every frame; ~1.4k
+      // vertices before the cull, which drops most of them at any zoom.
       const graticuleBuilder = graticulePathRef.current;
       graticuleBuilder.reset();
       skiaCtx.setPath(graticuleBuilder);
-      pg.context(skiaCtx)(graticuleCull.visible(geoLng, geoLat, clipAngle));
-      pg.context(skiaCtx)(arcticCircleCull.visible(geoLng, geoLat, clipAngle));
-      pg.context(skiaCtx)(antarcticCircleCull.visible(geoLng, geoLat, clipAngle));
+      pg.context(skiaCtx)(graticuleCull.visible(geoLng, geoLat, viewAngle));
+      pg.context(skiaCtx)(arcticCircleCull.visible(geoLng, geoLat, viewAngle));
+      pg.context(skiaCtx)(antarcticCircleCull.visible(geoLng, geoLat, viewAngle));
       const graticulePath = graticuleBuilder.build();
 
       // Dot label — the only remaining nearSettled gate. Two reasons:
@@ -3317,6 +3435,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         bordersPath,
         countryPath,
         countryName: cachedCountryRef.current?.properties?.name ?? null,
+        discRadius: projScale,
+        dayPath,
         nightPath,
         twilightPath,
         graticulePath,
@@ -4149,7 +4269,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       const { cx: hitCx, cy: hitCy, globeRadius: hitR } = layoutRef.current;
       const gdx = x - hitCx;
       const gdy = y - hitCy;
-      if (gdx * gdx + gdy * gdy <= hitR * hitR) {
+      const limbR = frameRef.current.discRadius > 0 ? frameRef.current.discRadius : hitR;
+      if (gdx * gdx + gdy * gdy <= limbR * limbR) {
         const coords = projRef.current.invert?.([x, y]);
         if (coords) {
           const [lng, lat] = coords;
@@ -4295,110 +4416,41 @@ export const MiniGlobe = memo(function MiniGlobe({
           withTiming(leftFraction, { duration: ANIMATION.slow, easing: PULSE_EASING }),
         );
   }, [leftFraction, reduceMotion, ringLeft]);
-  const ringPath = useMemo(() => {
-    const r = globeRadius + RING_GAP;
-    return Skia.PathBuilder.Make()
-      .addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360)
-      .build();
-  }, [cx, cy, globeRadius]);
-
-  // Atmospheric rim + ocean-disk gradient stops. Memoized per-theme so the
-  // declarative RadialGradient props stay referentially stable during scroll.
-  const rimColors = useMemo(() => {
-    const atm = colors.atmosphere;
-    return [
-      `${atm}00`,
-      `${atm}00`,
-      `${atm}${light ? '55' : '40'}`,
-      `${atm}${light ? '18' : '14'}`,
-      `${atm}00`,
-    ];
-  }, [colors.atmosphere, light]);
-
-  const oceanColors = useMemo(() => {
-    const atm = colors.atmosphere;
-    // Subtle Fresnel — slightly dimmer at center, brighter toward the rim
-    return [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`];
-  }, [colors.atmosphere, light]);
-
-  // Inner-limb atmospheric glaze. The outer rim renders atmosphere *outside*
-  // the disk; this complementary inner ring catches grazing-angle refraction
-  // along the curved limb so the disk reads as a sphere with volume rather
-  // than a flat circle with a halo. Stops cluster at 92–99% of the radius:
-  // transparent core, brightest just inside the limb, fading to zero at the
-  // edge so it composites cleanly against the outer rim. Single declarative
-  // gradient — no per-frame work.
-  const limbGlazeColors = useMemo(() => {
-    const atm = colors.atmosphere;
-    return [
-      `${atm}00`,
-      `${atm}00`,
-      `${atm}${light ? '20' : '18'}`,
-      `${atm}${light ? '38' : '28'}`,
-      `${atm}00`,
-    ];
-  }, [colors.atmosphere, light]);
+  // The ring follows the limb as the globe zooms, off the screen's edge with
+  // it when the planet outgrows the screen: a ring left at the resting size
+  // would be a reticle drawn across the ground.
+  const ringRadius = useDerivedValue(() => framePictures.value.disc + RING_GAP);
+  const ringPath = usePathValue((builder) => {
+    'worklet';
+    const r = framePictures.value.disc + RING_GAP;
+    builder.addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360);
+  });
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-      {/* Stars — single cached Picture, no per-frame React overhead */}
-      <Picture picture={starsPicture} />
+      {/* Stars and the moon — behind the planet, so clipped to outside its
+          limb, which moves with the zoom (`discClip`). */}
+      <Group clip={discClip} invertClip>
+        <Picture picture={starsPicture} />
+        {moonPos.visible && (
+          <Moon
+            x={moonPos.x}
+            y={moonPos.y}
+            r={moonR}
+            phase={moonPhase}
+            texture={moonTexture}
+            clip={moonClip}
+            accentColor={colors.accent}
+            bgAlpha={bgAlpha}
+          />
+        )}
+      </Group>
 
-      {/* Moon — memoized to skip re-reconciliation during scroll */}
-      {moonPos.visible && (
-        <Moon
-          x={moonPos.x}
-          y={moonPos.y}
-          r={moonR}
-          phase={moonPhase}
-          texture={moonTexture}
-          clip={moonClip}
-          accentColor={colors.accent}
-          bgAlpha={bgAlpha}
-        />
-      )}
-
-      {/* Atmospheric rim — radial gradient ring just outside the globe edge.
-          Single declarative draw, no per-frame cost.
-          `dither` on this and every other low-alpha atmosphere gradient
-          (ocean disk, specular, limb glaze, hotspot halos, chokepoint
-          glow): these ramps span only a few 8-bit steps over the near-
-          black dark-mode bg, which quantizes into visible concentric
-          bands. Dithering distributes the error — GPU-side, free. */}
-      <Circle cx={cx} cy={cy} r={globeRadius * 1.25} dither>
-        <RadialGradient
-          c={vec(cx, cy)}
-          r={globeRadius * 1.25}
-          colors={rimColors}
-          positions={[0, 0.78, 0.84, 0.93, 1]}
-        />
-      </Circle>
-
-      {/* Ocean disk — subtle Fresnel gradient reads as a 3D sphere instead of a flat circle */}
-      <Circle cx={cx} cy={cy} r={globeRadius} dither>
-        <RadialGradient c={vec(cx, cy)} r={globeRadius} colors={oceanColors} positions={[0, 1]} />
-      </Circle>
-
-      {/* Ground — subsolar glint, land, ice, borders, graticule, night and
-          city lights. Recorded per projection; see `recordGlobeFrame`. */}
+      {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
+          daylight, the graticule, land, ice, borders, night, city lights and
+          the inner-limb glaze. Recorded per projection; see
+          `recordGlobeFrame`. */}
       <Picture picture={groundPicture} />
-
-      {/* Inner-limb atmospheric glaze — companion to the outer rim. Reads
-          as the slice of atmosphere refracting light around the curved
-          limb (the "Earthrise" wisp). Stops sit in the last 8% of the
-          radius, brightest just inside the edge, fading to zero at the
-          silhouette so it composites cleanly against the outer-rim halo
-          without a doubled-line seam. Drawn AFTER the night veil so
-          atmosphere reads as a continuous wrap across both hemispheres
-          and BEFORE editorial markers so dots and labels paint on top. */}
-      <Circle cx={cx} cy={cy} r={globeRadius} dither>
-        <RadialGradient
-          c={vec(cx, cy)}
-          r={globeRadius}
-          colors={limbGlazeColors}
-          positions={[0, 0.9, 0.97, 0.995, 1]}
-        />
-      </Circle>
 
       {/* Marks — hotspots, straits, exchanges, hazards, the country
           highlight, rivers, arcs, stories and the settled dot. */}
@@ -4410,7 +4462,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           <Circle
             cx={cx}
             cy={cy}
-            r={globeRadius + RING_GAP}
+            r={ringRadius}
             color={colors.rule}
             style="stroke"
             strokeWidth={RING_WIDTH}

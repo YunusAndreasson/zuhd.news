@@ -98,7 +98,7 @@ import { computeDeckLayout, grownGlobeTransform } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
-import { orderNewsRiver, type RiverArticle } from '../lib/news-order';
+import { orderNewsRiver, type RiverArticle, recentRiver } from '../lib/news-order';
 import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
 import {
   getSnapshot as getOnboarding,
@@ -326,7 +326,17 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   // Derived content
   // ---------------------------------------------------------------------
-  const river = useMemo(() => orderNewsRiver(grouped), [grouped]);
+  // The last day of news, plus any older story a reader asked for by name
+  // (`pinStory`) — see `recentRiver`.
+  const [pinnedSlugs, setPinnedSlugs] = useState<ReadonlySet<string>>(() => new Set());
+  const pinStory = useCallback((slug: string) => {
+    setPinnedSlugs((prev) => (prev.has(slug) ? prev : new Set(prev).add(slug)));
+  }, []);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` re-measures the window as stories age past a day while the app is open
+  const river = useMemo(
+    () => recentRiver(orderNewsRiver(grouped), Date.now(), pinnedSlugs),
+    [grouped, pinnedSlugs, tick],
+  );
 
   const columns = useMemo(
     () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
@@ -523,6 +533,11 @@ export default function HomeScreen() {
       const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
       if (index < 0) {
         pendingFocusRef.current = { slug, ...options };
+        // Older than the day but still in the feed: keep it in the river, and
+        // the pending focus lands once the river includes it.
+        if (CATEGORIES.some((c) => groupedRef.current[c].some((a) => a.slug === slug))) {
+          pinStory(slug);
+        }
         return;
       }
       pendingFocusRef.current = null;
@@ -550,7 +565,7 @@ export default function HomeScreen() {
       }
       if (options.grow) mapSheetRef.current?.expand();
     },
-    [cameraOwner, findStory, flyTo, reduceMotion, storyProgress],
+    [cameraOwner, findStory, flyTo, pinStory, reduceMotion, storyProgress],
   );
 
   // A focus that arrived before its story did.
@@ -590,6 +605,8 @@ export default function HomeScreen() {
       if (!actual) {
         const bookmark = getBookmarks().find((b) => b.article.slug === slug);
         if (bookmark) {
+          // A saved story is usually older than the day's window.
+          pinStory(slug);
           injectArticle(bookmark.article, category);
         } else {
           toastRef.current?.show('Article no longer available');
@@ -598,7 +615,7 @@ export default function HomeScreen() {
       }
       focusStory(slug, { grow: true });
     },
-    [focusStory, injectArticle],
+    [focusStory, injectArticle, pinStory],
   );
 
   const openCard = useCallback((card: SwipeCard) => {
