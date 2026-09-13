@@ -226,6 +226,15 @@ const Chart = memo(function Chart({
 
   const canvasStyle = useMemo(() => ({ width, height }), [width, height]);
 
+  // Every scrub stop as one path, not one <Circle> per point: a 90-day series
+  // mounted ninety Skia nodes, and every card chart scrubs now.
+  const dotsPath = useMemo(() => {
+    if (!showDataDots || points.length === 0) return null;
+    const b = Skia.PathBuilder.Make();
+    for (const p of points) b.addCircle(p.x, p.y, DATA_DOT_R);
+    return b.detach();
+  }, [showDataDots, points]);
+
   return (
     <Canvas style={canvasStyle}>
       {bandPath ? (
@@ -283,17 +292,7 @@ const Chart = memo(function Chart({
         opacity={crosshairOpacity}
         strokeWidth={StyleSheet.hairlineWidth}
       />
-      {showDataDots
-        ? points.map((p, i) => (
-            <Circle
-              key={`tick-${i}`}
-              cx={p.x}
-              cy={p.y}
-              r={DATA_DOT_R}
-              color={colors.textEmphasis}
-            />
-          ))
-        : null}
+      {dotsPath ? <Path path={dotsPath} color={colors.textEmphasis} /> : null}
       {annotations?.map((a, i) => {
         const pt = points[a.atIndex];
         if (!pt) return null;
@@ -318,6 +317,111 @@ const Chart = memo(function Chart({
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_RING_R} color={colors.accent} opacity={0.2} />
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_DOT_R} color={colors.textEmphasis} />
     </Canvas>
+  );
+});
+
+/**
+ * The number over the finger while a chart is scrubbed.
+ *
+ * Its own component so a scrub re-renders only this: the index lives in state
+ * here, and the chart, its axis labels, legend and annotation labels around it
+ * stay as they were. When the index lived on `TrendBlock`, every step along the
+ * line re-rendered the whole block.
+ */
+const ScrubReadout = memo(function ScrubReadout({
+  scrubIdx,
+  points,
+  width,
+  series: normalizedSeries,
+  primaryValues,
+  periods,
+  unit,
+}: {
+  scrubIdx: SharedValue<number>;
+  points: Pt[];
+  width: number;
+  series: TrendSeries[];
+  primaryValues: number[];
+  periods?: string[];
+  unit?: string;
+}) {
+  const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
+
+  // One hop per change, carrying both effects. Two `scheduleOnRN` calls meant
+  // the label and the tick were queued as separate JS tasks and could land on
+  // different frames; bundling them keeps the notch and the readout together.
+  const applyScrub = useCallback((idx: number, haptic: boolean) => {
+    setScrubIdxJs(idx);
+    if (haptic) hapticTick();
+  }, []);
+
+  useAnimatedReaction(
+    () => scrubIdx.value,
+    (current, prev) => {
+      if (current === prev) return;
+      // Tick on grab (prev < 0) as well as on every step between points —
+      // landing on the chart is the moment the scrub becomes real, and going
+      // silent there made the first contact feel unregistered. Release
+      // (current < 0) stays silent: letting go is its own signal.
+      scheduleOnRN(applyScrub, current, current >= 0);
+    },
+  );
+
+  const scrubInfo = (() => {
+    if (scrubIdxJs < 0) return null;
+    const v = primaryValues[scrubIdxJs];
+    if (v === undefined) return null;
+    // The source's precision, the web chart's rule (`shared/chart/series.ts`).
+    const decimals = Math.min(dataDecimals(primaryValues), 4);
+    // Multi-series readout: stack labels in the value field if more than one.
+    const lines =
+      normalizedSeries.length > 1
+        ? normalizedSeries
+            .map((s) => {
+              const sv = s.values[scrubIdxJs];
+              if (sv === undefined) return null;
+              return `${s.label}: ${formatBlockNumber(sv, unit, decimals)}`;
+            })
+            .filter((l): l is string => l !== null)
+            .join('\n')
+        : formatBlockNumber(v, unit, decimals);
+    return {
+      idx: scrubIdxJs,
+      value: lines,
+      period: periods?.[scrubIdxJs] ?? '',
+    };
+  })();
+
+  // Scrub box dimensions scale with series count — single series fits a tight
+  // 96×30 popover, but multi-series stacks one value line per series and
+  // would clip without a taller box. Width also widens slightly so each
+  // "Series: value" line stays on one line.
+  const scrubW = normalizedSeries.length > 1 ? SCRUB_LABEL_W_MULTI : SCRUB_LABEL_W_SINGLE;
+  const scrubH = SCRUB_PERIOD_LINE_H + SCRUB_VALUE_LINE_H * Math.max(1, normalizedSeries.length);
+  const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
+  const scrubLeft = scrubPt ? Math.max(0, Math.min(width - scrubW, scrubPt.x - scrubW / 2)) : 0;
+
+  if (!scrubInfo) return null;
+  return (
+    <View
+      pointerEvents="none"
+      style={[styles.scrubLabel, { left: scrubLeft, width: scrubW, height: scrubH }]}
+    >
+      {/* Scrub readout: regular + sizeSm + oldstyle+tabular nums
+                      + emphasis color. No exact variant — caption (regular +
+                      sizeSm + secondary) + tone="emphasis" + fontVariant. */}
+      <Text
+        variant="caption"
+        tone="emphasis"
+        numberOfLines={normalizedSeries.length}
+        style={styles.scrubValue}
+      >
+        {scrubInfo.value}
+      </Text>
+      <Text variant="labelXs" numberOfLines={1} style={styles.scrubPeriod}>
+        {scrubInfo.period.toUpperCase()}
+      </Text>
+    </View>
   );
 });
 
@@ -479,63 +583,7 @@ export const TrendBlock = memo(function TrendBlock({
   }, [points, reference, referenceY, width, height]);
 
   const scrubIdx = useSharedValue(-1);
-  const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
-
-  // One hop per change, carrying both effects. Two `scheduleOnRN` calls meant
-  // the label and the tick were queued as separate JS tasks and could land on
-  // different frames; bundling them keeps the notch and the readout together.
-  const applyScrub = useCallback((idx: number, haptic: boolean) => {
-    setScrubIdxJs(idx);
-    if (haptic) hapticTick();
-  }, []);
-
-  useAnimatedReaction(
-    () => scrubIdx.value,
-    (current, prev) => {
-      if (current === prev) return;
-      // Tick on grab (prev < 0) as well as on every step between points —
-      // landing on the chart is the moment the scrub becomes real, and going
-      // silent there made the first contact feel unregistered. Release
-      // (current < 0) stays silent: letting go is its own signal.
-      scheduleOnRN(applyScrub, current, current >= 0);
-    },
-  );
-
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
-
-  const scrubInfo = (() => {
-    if (scrubIdxJs < 0) return null;
-    const v = primaryValues[scrubIdxJs];
-    if (v === undefined) return null;
-    // The source's precision, the web chart's rule (`shared/chart/series.ts`).
-    const decimals = Math.min(dataDecimals(primaryValues), 4);
-    // Multi-series readout: stack labels in the value field if more than one.
-    const lines =
-      normalizedSeries.length > 1
-        ? normalizedSeries
-            .map((s) => {
-              const sv = s.values[scrubIdxJs];
-              if (sv === undefined) return null;
-              return `${s.label}: ${formatBlockNumber(sv, unit, decimals)}`;
-            })
-            .filter((l): l is string => l !== null)
-            .join('\n')
-        : formatBlockNumber(v, unit, decimals);
-    return {
-      idx: scrubIdxJs,
-      value: lines,
-      period: periods?.[scrubIdxJs] ?? '',
-    };
-  })();
-
-  // Scrub box dimensions scale with series count — single series fits a tight
-  // 96×30 popover, but multi-series stacks one value line per series and
-  // would clip without a taller box. Width also widens slightly so each
-  // "Series: value" line stays on one line.
-  const scrubW = normalizedSeries.length > 1 ? SCRUB_LABEL_W_MULTI : SCRUB_LABEL_W_SINGLE;
-  const scrubH = SCRUB_PERIOD_LINE_H + SCRUB_VALUE_LINE_H * Math.max(1, normalizedSeries.length);
-  const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
-  const scrubLeft = scrubPt ? Math.max(0, Math.min(width - scrubW, scrubPt.x - scrubW / 2)) : 0;
 
   const panConfig = useMemo<PanGestureConfig>(() => {
     const pointsX = points.map((p) => p.x);
@@ -671,28 +719,15 @@ export const TrendBlock = memo(function TrendBlock({
                   </View>
                 );
               })}
-              {scrubInfo ? (
-                <View
-                  pointerEvents="none"
-                  style={[styles.scrubLabel, { left: scrubLeft, width: scrubW, height: scrubH }]}
-                >
-                  {/* Scrub readout: regular + sizeSm + oldstyle+tabular nums
-                      + emphasis color. No exact variant — caption (regular +
-                      sizeSm + secondary) + tone="emphasis" + fontVariant. */}
-                  <Text
-                    variant="caption"
-                    tone="emphasis"
-                    numberOfLines={normalizedSeries.length}
-                    style={styles.scrubValue}
-                  >
-                    {scrubInfo.value}
-                  </Text>
-                  <Text variant="labelXs" numberOfLines={1} style={styles.scrubPeriod}>
-                    {scrubInfo.period.toUpperCase()}
-                  </Text>
-                </View>
-              ) : null}
-
+              <ScrubReadout
+                scrubIdx={scrubIdx}
+                points={points}
+                width={width}
+                series={normalizedSeries}
+                primaryValues={primaryValues}
+                periods={periods}
+                unit={unit}
+              />
               {/* Both boxes are two `LABEL_ROW_HEIGHT` rows tall, which is
                   what the label needs when its unit wraps ("4,599.4" over
                   "$/oz"). `tabular` leads at 1.55 though — 17pt a line, 34pt

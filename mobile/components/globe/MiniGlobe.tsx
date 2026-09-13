@@ -28,6 +28,7 @@ import {
   type SkPath,
   type SkPathBuilder,
   type SkPicture,
+  type SkShader,
   StrokeCap,
   StrokeJoin,
   TileMode,
@@ -54,7 +55,6 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import { StyleSheet } from 'react-native';
 import {
@@ -194,10 +194,15 @@ function useGlowTexture(spec: GlowSpec, color: string) {
  *  given points. Returns null when there are no points to draw. */
 function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
   if (points.length === 0) return null;
-  return {
-    sprites: points.map(() => spec.srcRect),
-    transforms: points.map((p) => Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center)),
-  };
+  const sprites: ReturnType<typeof rect>[] = [];
+  const transforms: ReturnType<typeof Skia.RSXform>[] = [];
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    if (!p) continue;
+    sprites.push(spec.srcRect);
+    transforms.push(Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center));
+  }
+  return { sprites, transforms };
 }
 
 interface PlaceMark {
@@ -1243,6 +1248,33 @@ function atmosphereStops(atm: string, light: boolean) {
 }
 
 /** A `<Circle dither>` holding a `<RadialGradient>`. */
+/**
+ * Radial gradients by their stops, in unit space (centre 0,0, radius 1).
+ *
+ * A glow used to build a shader per call — every coverage glow, strait glow and
+ * the rim, ocean and glaze on every recorded frame, each a JSI allocation. The
+ * gradient only depends on its colours and positions; where it sits and how big
+ * it is is the canvas transform's job. Keyed on 8-bit channels, which is what
+ * the gradient resolves to on screen anyway, and cleared when it grows past a
+ * frame's worth of variety, so a continuous intensity cannot grow it forever.
+ */
+const glowShaders = new Map<string, SkShader>();
+const GLOW_SHADER_LIMIT = 256;
+function glowShader(colors: SkColor[], positions: number[]): SkShader {
+  let key = '';
+  for (const c of colors) {
+    key += `${Math.round((c[0] ?? 0) * 255)},${Math.round((c[1] ?? 0) * 255)},${Math.round((c[2] ?? 0) * 255)},${Math.round((c[3] ?? 0) * 255)};`;
+  }
+  for (const p of positions) key += `${p},`;
+  let shader = glowShaders.get(key);
+  if (!shader) {
+    if (glowShaders.size >= GLOW_SHADER_LIMIT) glowShaders.clear();
+    shader = Skia.Shader.MakeRadialGradient(vec(0, 0), 1, colors, positions, TileMode.Clamp);
+    glowShaders.set(key, shader);
+  }
+  return shader;
+}
+
 function drawGlow(
   canvas: SkCanvas,
   x: number,
@@ -1251,10 +1283,15 @@ function drawGlow(
   colors: SkColor[],
   positions: number[],
 ) {
+  if (!(r > 0)) return;
   const paint = plainPaint();
   paint.setDither(true);
-  paint.setShader(Skia.Shader.MakeRadialGradient(vec(x, y), r, colors, positions, TileMode.Clamp));
-  canvas.drawCircle(x, y, r, paint);
+  paint.setShader(glowShader(colors, positions));
+  canvas.save();
+  canvas.translate(x, y);
+  canvas.scale(r, r);
+  canvas.drawCircle(0, 0, 1, paint);
+  canvas.restore();
 }
 
 /** A 22 pt glyph path, placed by its box's top-left corner. */
@@ -4164,7 +4201,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   const collectDiscR = useSharedValue(0);
   const collectRingR = useSharedValue(0);
   const collectOpacity = useSharedValue(0);
-  const [collectColor, setCollectColor] = useState<string>(WHITE);
+  // A shared value, not state: a burst starting is a tap on the globe, and a
+  // `setState` there re-rendered the whole globe component on the frame the
+  // burst began.
+  const collectColor = useSharedValue<string>(WHITE);
 
   useImperativeHandle(ref, () => ({
     settle() {
@@ -4190,7 +4230,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
     },
     collect(x: number, y: number, color: string) {
-      setCollectColor(color);
+      collectColor.value = color;
       collectX.value = x;
       collectY.value = y;
       collectOpacity.value = 0.95;

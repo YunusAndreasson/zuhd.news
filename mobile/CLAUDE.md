@@ -607,6 +607,14 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   and framestats files it under the input phase of the next frame — a native
   profile showed the same main-thread CPU before and after, and 35% less JS
   CPU for 1.8× the redraws. Judge UI-thread GPU cost on hardware.
+- **A recorded frame allocates as little as it can, and nothing that moves
+  goes through React.** Glow gradients are cached in unit space by their
+  stops (`glowShader`) and placed by the canvas transform, rather than built
+  per glow per frame; the found burst's colour is a shared value, not state;
+  lakes and resting rivers are settled-frame work. A chart's scrub readout is
+  its own component (`ScrubReadout`), so a step along the line re-renders the
+  number and not the block, and its scrub stops are one path. None of this is
+  measured on hardware yet — judge it there before building on it.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
 - React Compiler is **installed but NOT enabled** — in any build. The only
   switch is `app.json` → `experiments.reactCompiler`, which flows
