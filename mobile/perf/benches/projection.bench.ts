@@ -12,11 +12,11 @@
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
 import { clipAngleForCountry } from '../../components/globe/projection';
 import {
-  bordersMeshMedium,
+  bordersMeshFull,
   countries,
   countryCentroidPoints,
   iceSheets,
-  landMedium,
+  landFull,
 } from '../../components/globe/shared';
 import { bench } from '../bench-utils';
 
@@ -81,10 +81,10 @@ export default bench<Ctx>({
 
     proj.clipAngle(clip).precision(0).rotate([-lng, -lat, 0]).scale(scale).translate([150, 150]);
 
-    // Land silhouette (settled frame uses landMedium per MiniGlobe.tsx:1316).
-    pg(landMedium as never);
-    // Country borders mesh (matches landMedium arcs at rest).
-    pg(bordersMeshMedium as never);
+    // Land silhouette (settled frames use landFull).
+    pg(landFull as never);
+    // Country borders mesh (matches landFull arcs at rest).
+    pg(bordersMeshFull as never);
     // Permanent ice sheets.
     pg(iceSheets);
     // Focused-country highlight — pick the first feature with a matching name.

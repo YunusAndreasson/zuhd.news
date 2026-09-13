@@ -142,7 +142,7 @@ import {
   SOUTH_POLE,
 } from './projection';
 import {
-  bordersMeshMedium,
+  bordersMeshFull,
   bordersMeshSimplified,
   countries,
   countryAreas,
@@ -155,7 +155,7 @@ import {
   createSkiaPathContext,
   iceSheets,
   iceSheetsSimplified,
-  landMedium,
+  landFull,
   landSimplified,
 } from './shared';
 import { getCoords } from './storyDots';
@@ -529,11 +529,11 @@ const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
 // rotates, clips and winding-tests it, which is most of the planet at any
 // zoom tighter than a hemisphere — see `cap-cull.ts` for why the result is
 // exact rather than approximate.
-const landMediumCull = createCapCuller(landMedium);
+const landFullCull = createCapCuller(landFull);
 const landSimplifiedCull = createCapCuller(landSimplified);
 const iceSheetsCull = createCapCuller(iceSheets);
 const iceSheetsSimplifiedCull = createCapCuller(iceSheetsSimplified);
-const bordersMediumCull = createCapCuller(bordersMeshMedium);
+const bordersFullCull = createCapCuller(bordersMeshFull);
 const bordersSimplifiedCull = createCapCuller(bordersMeshSimplified);
 const arcticCircleCull = createCapCuller(ARCTIC_CIRCLE);
 const antarcticCircleCull = createCapCuller(ANTARCTIC_CIRCLE);
@@ -2500,7 +2500,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       landBuilder.reset();
       skiaCtx.setPath(landBuilder);
       pg.context(skiaCtx)(
-        (nearSettled ? landMediumCull : landSimplifiedCull).visible(geoLng, geoLat, clipAngle),
+        (nearSettled ? landFullCull : landSimplifiedCull).visible(geoLng, geoLat, clipAngle),
       );
       const landPath = landBuilder.build();
 
@@ -2602,19 +2602,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Neighbouring country borders — projected every frame so they rotate
-      // with the globe instead of popping at settle. Settled uses medium
-      // (matches landMedium arcs); mid-scroll uses the 0.5-weight simplified
+      // with the globe instead of popping at settle. Settled uses the full mesh
+      // (matches landFull arcs); mid-scroll uses the 0.5-weight simplified
       // mesh (matches landSimplified). ~30% cheaper at rest, ~56% cheaper
       // during scroll vs the original full-topology mesh.
       const bordersBuilder = bordersPathRef.current;
       bordersBuilder.reset();
       skiaCtx.setPath(bordersBuilder);
       pg.context(skiaCtx)(
-        (nearSettled ? bordersMediumCull : bordersSimplifiedCull).visible(
-          geoLng,
-          geoLat,
-          clipAngle,
-        ),
+        (nearSettled ? bordersFullCull : bordersSimplifiedCull).visible(geoLng, geoLat, clipAngle),
       );
       const bordersPath = bordersBuilder.build();
 

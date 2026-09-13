@@ -28,11 +28,11 @@ function small(overrides: Partial<DeckLayoutInput> = {}): DeckLayoutInput {
 describe('computeDeckLayout', () => {
   it('sizes the resting card from its type on a small phone', () => {
     const layout = computeDeckLayout(small());
-    // 16 handle + 27 masthead + 21 kicker + 48 title + 8 + 5×25 lead + 16 + 24 inset
-    expect(layout.peek).toBe(285);
-    expect(layout.band).toBe(227);
-    expect(layout.radius).toBe(104);
-    expect(layout.centerY).toBe(242);
+    // 16 handle + 36 masthead (a 28pt row) + 21 kicker + 48 title + 8 + 5×25 lead + 16 + 24 inset
+    expect(layout.peek).toBe(294);
+    expect(layout.band).toBe(218);
+    expect(layout.radius).toBe(100);
+    expect(layout.centerY).toBe(237);
   });
 
   it('keeps the globe its share of the window when the type grows', () => {
@@ -58,10 +58,10 @@ describe('computeDeckLayout', () => {
       lines: LARGE_LINES,
       caps: CAPS,
     });
-    // 16 + 30 + 23 + 56 + 8 + 5×29 + 16 + 34
-    expect(layout.peek).toBe(328);
-    expect(layout.band).toBe(433);
-    expect(layout.radius).toBe(198);
+    // 16 + 36 + 23 + 56 + 8 + 5×29 + 16 + 34
+    expect(layout.peek).toBe(334);
+    expect(layout.band).toBe(427);
+    expect(layout.radius).toBe(196);
   });
 
   it('grows the story under the bar, leaving the globe a band', () => {

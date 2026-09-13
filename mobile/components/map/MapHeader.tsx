@@ -5,35 +5,32 @@ import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reani
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import type { StripItem } from '../../lib/now';
 import { Icon, IconButton } from '../primitives';
 import { IndicatorStrip } from './IndicatorStrip';
 
 /**
- * The one bar above the earth: listen · every gauge that moved · menu.
+ * The one bar above the earth: the zuhd mark · every gauge that moved, then the
+ * menu.
  *
  * It was two rows — the briefing, a centred `zuhd.news` and the menu, with the
  * gauges on a line of their own under them — and the name took a whole row of
- * globe to say something the menu already says. One row gives that height back
- * to the earth.
+ * globe to say something the mark says in 20 points.
  *
- * **Listen is first**, where a reader's eye starts: a round play button, the
- * only filled control on the bar. It was a word pill in this corner, and before
- * that a corner pill over the globe (not found) and the button on the sheet's
- * masthead (found, but it made the first row of the news list a control panel).
- * Absent rather than disabled when there is no briefing, and while the player
- * is up — a dead control the reader has to press to discover is dead is the
- * failure the old pill's "No briefing available" toast already made once.
+ * **The mark is fixed at the left**, the one thing on the bar that never
+ * changes, and the name the app says once.
  *
- * **The gauges fill the middle** and scroll sideways between the two buttons;
- * the slot cut at the menu's edge is what says the row continues.
+ * **The gauges scroll from beside it to the screen's edge**; the cut slot at the
+ * edge says the row continues.
  *
- * **The menu is last and quietest**: settings and pages, visited rarely.
+ * **The menu rides at the end of the gauges**, after `all ›`: settings and
+ * pages are visited rarely, and a fixed button cost the gauges a slot on every
+ * glance. Before the gauges arrive it sits at the right edge on its own, so it
+ * is never out of reach. While a story is grown it steps aside with the gauges;
+ * putting the story down brings both back.
  *
- * **The mark stands in when there is nothing to read.** Before the gauges load,
- * and while a story is grown and the gauges have stepped aside, the zuhd mark
- * sits where they were — the name said once, in the space nothing else needs.
+ * **Listen is not here.** It is the round button on the sheet's masthead, in
+ * the thumb's reach and in the row that already holds the day's controls.
  */
 
 /** The zuhd mark — `public/logo.svg`, the same three shapes on a 32-unit box. */
@@ -41,8 +38,6 @@ const MARK_PATH = Skia.Path.MakeFromSVGString(
   'M4.5 4.5H12L4.5 16.25Z M19.5 4.5H27.5L12 27.5H4.5Z M27.5 16.25V27.5H20Z',
 );
 const MARK_SIZE = 20;
-/** The play button's diameter: a 14pt glyph with room around it. */
-const LISTEN_SIZE = 32;
 
 const ZuhdMark = memo(function ZuhdMark({ color }: { color: string }) {
   if (!MARK_PATH) return null;
@@ -57,10 +52,6 @@ const ZuhdMark = memo(function ZuhdMark({ color }: { color: string }) {
 
 export const MapHeader = memo(function MapHeader({
   onMenuPress,
-  briefingAvailable,
-  briefingResumable,
-  briefingDuration,
-  onBriefingPress,
   items,
   onSelect,
   onAll,
@@ -68,14 +59,10 @@ export const MapHeader = memo(function MapHeader({
   gaugesEnabled,
 }: {
   onMenuPress: () => void;
-  briefingAvailable: boolean;
-  briefingResumable: boolean;
-  briefingDuration?: number;
-  onBriefingPress: () => void;
   items: StripItem[];
   onSelect: (item: StripItem) => void;
   onAll: () => void;
-  /** 0 at rest, 1 with a story grown: the gauges step aside for the mark. */
+  /** 0 at rest, 1 with a story grown: the gauges step aside. */
   recede: SharedValue<number>;
   /** False while a story is grown, so a faded gauge cannot be tapped. */
   gaugesEnabled: boolean;
@@ -83,7 +70,6 @@ export const MapHeader = memo(function MapHeader({
   const { colors, textVariants } = useTheme();
   const { fontScale } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const minutes = formatAudioDurationMinutes(briefingDuration);
   const hasGauges = items.length > 0;
 
   // The row is as tall as a gauge whether or not the gauges have arrived, so
@@ -100,51 +86,33 @@ export const MapHeader = memo(function MapHeader({
     const p = Math.min(1, Math.max(0, recede.value));
     return { opacity: 1 - p, transform: [{ translateY: -SPACING.sm * p }] };
   });
-  const markStyle = useAnimatedStyle(() => {
-    if (!hasGauges) return { opacity: 1 };
-    return { opacity: Math.min(1, Math.max(0, recede.value)) };
-  }, [hasGauges]);
-  const markSpoken = !hasGauges || !gaugesEnabled;
+
+  const menu = (
+    <IconButton onPress={onMenuPress} accessibilityLabel="Menu">
+      <Icon name="menu" size="md" />
+    </IconButton>
+  );
 
   return (
-    <View style={[styles.row, { paddingTop: insets.top + SPACING.xs }]} pointerEvents="box-none">
-      {briefingAvailable ? (
-        <IconButton
-          onPress={onBriefingPress}
-          haptic="none"
-          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-          accessibilityLabel={`${briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}${minutes ? `, ${minutes}` : ''}`}
-          accessibilityHint={
-            briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-          }
-        >
-          <Icon name="play" size="sm" tone="default" />
-        </IconButton>
-      ) : null}
-
-      <View style={[styles.middle, { minHeight: gaugeHeight }]} pointerEvents="box-none">
-        <Animated.View
-          style={[styles.fill, gaugesStyle]}
-          pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
-        >
-          <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} />
-        </Animated.View>
-        <Animated.View
-          style={[StyleSheet.absoluteFill, styles.center, markStyle]}
-          pointerEvents="none"
-          accessible={markSpoken}
-          accessibilityRole="header"
-          accessibilityLabel="zuhd.news"
-          accessibilityElementsHidden={!markSpoken}
-          importantForAccessibility={markSpoken ? 'yes' : 'no-hide-descendants'}
-        >
-          <ZuhdMark color={colors.textEmphasis} />
-        </Animated.View>
+    <View
+      style={[
+        styles.row,
+        { paddingTop: insets.top + SPACING.xs },
+        // With gauges the scroller reaches the right edge and pads its content.
+        hasGauges ? styles.rightToEdge : null,
+      ]}
+      pointerEvents="box-none"
+    >
+      <View accessible accessibilityRole="header" accessibilityLabel="zuhd.news">
+        <ZuhdMark color={colors.textEmphasis} />
       </View>
-
-      <IconButton onPress={onMenuPress} accessibilityLabel="Menu">
-        <Icon name="menu" size="md" />
-      </IconButton>
+      <Animated.View
+        style={[styles.middle, { minHeight: gaugeHeight }, gaugesStyle]}
+        pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
+      >
+        <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} trailing={menu} />
+      </Animated.View>
+      {hasGauges ? null : menu}
     </View>
   );
 });
@@ -156,21 +124,9 @@ const styles = StyleSheet.create({
     // Mirrors the reader column and the sheet, so every horizontal edge in
     // the app lands on one vertical.
     paddingHorizontal: SPACING.articlePadding,
-    gap: SPACING.smPlus,
+    gap: SPACING.md,
   },
+  rightToEdge: { paddingRight: 0 },
   middle: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  fill: { flex: 1, justifyContent: 'center' },
-  center: { alignItems: 'center', justifyContent: 'center' },
-  // Hairline edge so the control stays defined over whatever the globe puts
-  // behind it — land, coastline, city-glow — where the low-lift `pillBg` fill
-  // alone can disappear. Definition over elevation: no shadow.
-  listen: {
-    width: LISTEN_SIZE,
-    height: LISTEN_SIZE,
-    borderRadius: LISTEN_SIZE / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
-  },
   mark: { width: MARK_SIZE, height: MARK_SIZE },
 });

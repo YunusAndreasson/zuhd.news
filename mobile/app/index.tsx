@@ -1266,6 +1266,13 @@ export default function HomeScreen() {
         alert={now[0]?.title ?? null}
         onPress={handleIndexPress}
         onAlertPress={handleMastheadAlertPress}
+        // While the player bar is up it is the control. A second play button
+        // over audio that was already playing said the opposite of what was
+        // happening; it returns when the bar hides.
+        briefingAvailable={briefingStatus.available && !briefingVisible}
+        briefingResumable={briefingStatus.resumable}
+        briefingDuration={briefingStatus.duration}
+        onBriefingPress={handleBriefingPress}
       />
     ),
     [
@@ -1277,6 +1284,9 @@ export default function HomeScreen() {
       now,
       handleIndexPress,
       handleMastheadAlertPress,
+      briefingStatus,
+      briefingVisible,
+      handleBriefingPress,
     ],
   );
 
@@ -1357,13 +1367,6 @@ export default function HomeScreen() {
       <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
         <MapHeader
           onMenuPress={handleMenuPress}
-          // While the player bar is up it is the control. A second play button
-          // over audio that was already playing said the opposite of what was
-          // happening; it returns when the bar hides.
-          briefingAvailable={briefingStatus.available && !briefingVisible}
-          briefingResumable={briefingStatus.resumable}
-          briefingDuration={briefingStatus.duration}
-          onBriefingPress={handleBriefingPress}
           items={strip}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}

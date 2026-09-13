@@ -38,26 +38,24 @@ export const iceSheets: GeoJSON.FeatureCollection = {
 };
 
 // ── Simplified topology variants ──────────────────────────────────────────
-// Two Visvalingam-Whyatt thresholds share a single `presimplify()` pass
-// (~15ms at module load); each `simplify()` call returns a copy, so the
-// shared presimplified data stays intact across calls.
+// One Visvalingam-Whyatt pass (`presimplify()`, ~15ms at module load):
 //   - weight 0.5 → land 5127→2081, countries 10587→4079. Used during
 //     mid-scroll (!nearSettled). 60% vertex drop, no visible difference at
 //     globe-scroll speed.
-//   - weight 0.15 → land 5127→~3000, roughly the density of the old
-//     `world-110m.json` baseline before 88d0603 swapped to the aligned
-//     `countries-110m.json` source. Used for settled frames as a drop-in
-//     replacement for full-detail `land`: border/silhouette alignment is
-//     preserved (same arcs, just fewer), and settled-frame projection work
-//     recovers the +73% regression from the aligned-source swap.
+//
+// Settled frames draw the full topology below (`landFull`, `bordersMeshFull`).
+// A 0.15-weight middle tier (~3000 land vertices) stood in for it from April
+// 2026, when a settled frame also paid for ~200 haloed label nodes through
+// React; that cost is gone, a settled frame is one redraw, and the middle tier
+// made the resting globe visibly coarse when zoomed out. Headless, land +
+// borders at clip 90: full 2.9 ms p50 / 5386 vertices, middle 2.0 ms / 3526,
+// simplified 1.1 ms / 2224.
 const presimplifiedData = presimplify(countriesData);
 const simplifiedData = simplify(presimplifiedData, 0.5) as unknown as TopoWithObjects;
-const mediumData = simplify(presimplifiedData, 0.15) as unknown as TopoWithObjects;
 const landObjSimp = simplifiedData.objects.land;
 const countriesObjSimp = simplifiedData.objects.countries;
-const landObjMed = mediumData.objects.land;
-const countriesObjMed = mediumData.objects.countries;
-if (!landObjSimp || !countriesObjSimp || !landObjMed || !countriesObjMed) {
+const landObj = countriesData.objects.land;
+if (!landObjSimp || !countriesObjSimp || !landObj) {
   throw new Error('missing simplified topojson objects');
 }
 
@@ -67,14 +65,11 @@ export const landSimplified = feature(simplifiedData, landObjSimp);
  *  with the simplified coastline. ~56% cheaper to project than full
  *  the full-detail mesh; swapped in by MiniGlobe when `!nearSettled`. */
 export const bordersMeshSimplified = mesh(simplifiedData, countriesObjSimp, (a, b) => a !== b);
-/** Mid-tier land for settled frames — denser than `landSimplified` so the
- *  coastline keeps its read at rest, but lighter than the full `land`
- *  mesh. Same arcs as the other two (alignment preserved). */
-export const landMedium = feature(mediumData, landObjMed);
-/** Borders mesh from the 0.15-weight medium topology — settled-frame
- *  companion to `landMedium`. ~30% cheaper than the full-detail mesh while
- *  keeping border arcs aligned with the medium coastline. */
-export const bordersMeshMedium = mesh(mediumData, countriesObjMed, (a, b) => a !== b);
+/** The full 110m coastline, for settled frames. Same arcs as the simplified
+ *  variant, so the silhouette and the borders stay aligned across the swap. */
+export const landFull = feature(countriesData, landObj);
+/** Borders mesh from the full topology — settled-frame companion to `landFull`. */
+export const bordersMeshFull = mesh(countriesData, countriesObj, (a, b) => a !== b);
 const countriesSimplified = feature(
   simplifiedData,
   countriesObjSimp,

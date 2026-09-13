@@ -7,11 +7,11 @@ import {
   getNightCircles,
 } from '../components/globe/projection';
 import {
-  bordersMeshMedium,
+  bordersMeshFull,
   bordersMeshSimplified,
   countries,
   iceSheets,
-  landMedium,
+  landFull,
   landSimplified,
 } from '../components/globe/shared';
 
@@ -42,10 +42,10 @@ const CLIPS = [10, 25, 47, 70, 90];
 
 describe('createCapCuller', () => {
   const layers: [string, GeoPermissibleObjects][] = [
-    ['landMedium', landMedium],
+    ['landFull', landFull],
     ['landSimplified', landSimplified],
     ['iceSheets', iceSheets],
-    ['bordersMeshMedium', bordersMeshMedium],
+    ['bordersMeshFull', bordersMeshFull],
     ['bordersMeshSimplified', bordersMeshSimplified],
     ['every country', countries],
     ['arctic circle', ARCTIC_CIRCLE],
@@ -65,7 +65,7 @@ describe('createCapCuller', () => {
   });
 
   it('drops most of the planet when the view is tight', () => {
-    const culler = createCapCuller(landMedium);
+    const culler = createCapCuller(landFull);
     const view = culler.visible(-0.13, 51.5, 25) as GeoJSON.MultiPolygon;
     expect(culler.partCount).toBe(124);
     // London at 25°: Europe's neighbourhood and the continents whose caps
@@ -97,7 +97,7 @@ describe('createCapCuller', () => {
   });
 
   it('reuses its output between calls', () => {
-    const culler = createCapCuller(bordersMeshMedium);
+    const culler = createCapCuller(bordersMeshFull);
     expect(culler.visible(0, 0, 30)).toBe(culler.visible(120, 40, 30));
   });
 });

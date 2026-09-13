@@ -6,11 +6,11 @@
 
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
 import {
-  bordersMeshMedium,
+  bordersMeshFull,
   countries,
   countryCentroidPoints,
   iceSheets,
-  landMedium,
+  landFull,
   landSimplified,
 } from '../../components/globe/shared';
 import { bench } from '../bench-utils';
@@ -47,12 +47,12 @@ export const a = bench({
 });
 
 export const b = bench({
-  name: 'breakdown.B.land-medium',
+  name: 'breakdown.B.land-full',
   iterations: ITER,
   warmup: WARM,
   setup: mkCtx,
   run: ({ pg }) => {
-    pg(landMedium as never);
+    pg(landFull as never);
   },
 });
 
@@ -72,7 +72,7 @@ export const d = bench({
   warmup: WARM,
   setup: mkCtx,
   run: ({ pg }) => {
-    pg(bordersMeshMedium as never);
+    pg(bordersMeshFull as never);
   },
 });
 

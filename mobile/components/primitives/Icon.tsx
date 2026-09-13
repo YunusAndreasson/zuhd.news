@@ -45,6 +45,7 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
   menu: 'ellipsis',
   'information-circle': 'info.circle.fill',
   'information-circle-outline': 'info.circle',
+  list: 'list.bullet',
   pause: 'pause.fill',
   play: 'play.fill',
   search: 'magnifyingglass',

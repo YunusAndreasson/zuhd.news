@@ -47,6 +47,10 @@ const STORY_BAND_FRACTION = 0.2;
 /** The smallest globe band in any state, in points. */
 export const BAND_MIN = 140;
 
+/** The masthead row's height: the listen button and the list icon sit on it,
+ *  so it is at least this tall whatever the caption's line height. */
+export const MASTHEAD_ROW = 28;
+
 /** Handle row: padding above, the indicator, padding below. */
 const HANDLE = SPACING.sm + LAYOUT.handleHeight + SPACING.xs;
 
@@ -99,7 +103,7 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
 
   const above =
     HANDLE +
-    lineHeight(input, 'caption') +
+    Math.max(lineHeight(input, 'caption'), MASTHEAD_ROW) +
     SPACING.sm +
     lineHeight(input, 'labelXs') +
     SPACING.xs +

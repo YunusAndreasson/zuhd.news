@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, type ReactNode, useCallback, useState } from 'react';
 import {
   type LayoutChangeEvent,
   ScrollView,
@@ -12,7 +12,8 @@ import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
 
 /**
- * The gauges above the earth, swiped sideways between `MapHeader`'s buttons.
+ * The gauges above the earth, swiped sideways from beside `MapHeader`'s mark to
+ * the screen's edge.
  *
  * The brief was "keep the indicators of whether things are going up and down
  * on the markets and straits, but put them at the top" — and then, having
@@ -26,8 +27,8 @@ import { Icon, Pressable, Text } from '../primitives';
  * stops.
  *
  * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
- * fit the room between the bar's buttons — the partial slot at the menu's edge
- * is what says the row continues. No scroll indicator, no arrow, no dots.
+ * fit the room right of the mark — the partial slot at the edge is what says
+ * the row continues. No scroll indicator, no arrow, no dots.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
@@ -120,11 +121,14 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   items,
   onSelect,
   onAll,
+  trailing,
 }: {
   items: StripItem[];
   onSelect: (item: StripItem) => void;
   /** Opens every instrument as one ranked list. */
   onAll: () => void;
+  /** Rides at the very end of the row, after `all` — the bar's menu. */
+  trailing?: ReactNode;
 }) {
   // Sized from the room the bar actually leaves, which changes when the listen
   // button comes and goes; the window's width is only the first guess.
@@ -169,12 +173,15 @@ export const IndicatorStrip = memo(function IndicatorStrip({
         </Text>
         <Icon name="chevron-forward" size="sm" tone="secondary" />
       </Pressable>
+      {trailing ? <View style={styles.trailing}>{trailing}</View> : null}
     </ScrollView>
   );
 });
 
 const styles = StyleSheet.create({
   row: {
+    // The row runs to the screen's right edge; its content stops on the column.
+    paddingRight: SPACING.articlePadding,
     paddingTop: SPACING.xs,
     paddingBottom: SPACING.sm,
     gap: SPACING.md,
@@ -194,4 +201,5 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
     paddingVertical: SPACING.xs,
   },
+  trailing: { alignSelf: 'center' },
 });

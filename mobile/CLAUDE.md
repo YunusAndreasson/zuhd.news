@@ -64,9 +64,9 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
-MapHeader                             one row: listen · every mover, swiped, largest first · menu
+MapHeader                             one row: the Z mark · every mover, swiped, largest first, then menu
 MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
-  SheetMasthead                       3 of 48 · a track that fills · all news › (IndexSheet), or a Red alert
+  SheetMasthead                       listen · a track that fills · list icon (IndexSheet), or a Red alert
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
 platform sheets                       index · card · instruments · chokepoint · country · …
 ```
@@ -148,8 +148,8 @@ whole time; nothing said so.
     (`READ_R`), under the beacons still to find; a tap on it reopens that
     story, but only with no unread light in reach. A globe that emptied as it
     was read hid where the reader had been. Outside the disc a thin ring is
-    what is left to find — `MiniGlobe` reads `foundProgress`, the same count
-    as the masthead, and the arc shrinks back toward twelve o'clock after each
+    what is left to find — `MiniGlobe` reads `foundProgress`, the count the
+    masthead speaks, and the arc shrinks back toward twelve o'clock after each
     burst (instantly under Reduce Motion).
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
@@ -336,14 +336,15 @@ about what a card may say is about the card, not where it is shown.
     completion callback — `scheduleOnRN` from an animation callback aborted
     the app once.
   - **The masthead is where you are, and the door to the whole day.** One
-    row: `3 of 48`, a track whose fill reads the deck's `progress` on the UI
-    thread (so it moves under the finger), `found N` once anything is found,
-    and `all news ›`, which opens `IndexSheet` — every alert and story as a
-    row at natural height, scrolled to the story on the card, whose row says
-    `on the card`. The deck carried no position for a while (a `3 / 15`
-    counter on the old card decks was removed); swiping through a day then
-    felt like an unmarked corridor with no obvious way back to the list, and
-    the reader asked for both.
+    row: the listen button, a track whose fill reads the deck's `progress` on
+    the UI thread (so it moves under the finger), and a list icon; the whole row opens
+    `IndexSheet` — every alert and story as a row at natural height, scrolled
+    to the story on the card, whose row says `on the card`. It briefly read
+    `3 of 48 · 12 found ━━ all news ›`: the position twice, the found count a
+    third time beside the globe's ring, and a label for the door. The track is
+    the status and the icon the signifier; the exact count is in the row's
+    accessibility label and the index. The deck once carried no position at
+    all, and swiping a day felt like an unmarked corridor.
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -391,7 +392,7 @@ about what a card may say is about the card, not where it is shown.
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the round play button that opens `MapHeader`'s row — as a
+  specific.** `listen` is the round play button that leads the sheet's masthead — as a
   corner pill over the globe it was sized to stay out of the way and was not
   found, and as the button on the sheet's masthead it made the first row of
   the news list a control panel. `share` is a word on the grown card, where it

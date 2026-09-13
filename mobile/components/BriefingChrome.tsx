@@ -38,7 +38,7 @@ interface BriefingChromeProps {
  * `onStatusChange` and `elapsed` never leaves this component.
  *
  * The bar it renders is the *playing* state only. The way in is the play
- * button that opens `MapHeader`'s row: as a pill in the corner of the globe it
+ * button that leads the sheet's masthead: as a pill in the corner of the globe it
  * was a control sized to stay out of the way, which is a control nobody finds.
  */
 export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
