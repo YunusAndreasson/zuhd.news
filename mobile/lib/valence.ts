@@ -1,3 +1,5 @@
+import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
+
 /**
  * Which way a number moved, and what that direction does to the person
  * reading it.
@@ -109,9 +111,9 @@ export function riseMeansFor(indicator: { id: string; source?: string }): RiseMe
 }
 
 /** A chokepoint this far below its own 90-day normal is disrupted rather than
- *  quiet. One threshold, because a strait was disrupted at 10% on a card and
- *  at 15% in the sheet that card opens. */
-export const CHOKEPOINT_DISRUPTED = 0.1;
+ *  quiet. Shared with the web map, which drew a 12% fall as quiet while the app
+ *  drew it as a pinch. */
+export { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
 
 /**
  * A strait's distance from its own normal, which is the one asymmetric case

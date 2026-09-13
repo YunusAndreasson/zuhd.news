@@ -606,15 +606,18 @@ export interface Indicator {
  * and an exchange's `recent` already ride their own list payloads, and a second
  * copy is a second thing to drift.
  *
- * The prose alone. The stories it was built from are on `/api/entity/{id}.json`,
- * which is where the surfaces that print them already look; carrying them here
- * would more than double a payload fetched on every app launch for a list no
- * card shows.
+ * The prose and the stories it was grounded in. The stories used to stay on
+ * `/api/entity/{id}.json` because no card printed them — and so the app's odds
+ * line, which is those stories inverted, never rendered. They ride here rather
+ * than on `/api/trends.json`, where they added 24KB to every homepage visit.
  */
 export interface IndicatorAnalysis {
   /** Never empty — the build omits an item rather than shipping a blank, so a
    *  consumer's fallback to `standing` fires on absence. */
   recent: string;
+  /** The articles `recent` was built from, most relevant first. Absent when
+   *  the desk cited none that still exist. */
+  relatedArticles?: RelatedArticleRef[];
 }
 
 /** `/api/analysis.json` — keyed by indicator id. */

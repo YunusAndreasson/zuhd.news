@@ -131,8 +131,11 @@ whole time; nothing said so.
   order. Placing Brent in the North Sea to avoid a list would be inventing
   locations for half the deck.
 - **Predictions are merged into the story they settle, never plotted.**
-  `lib/predictions.ts` inverts the `relatedArticles` the narration stage writes
-  onto `poly-*` indicators. An index row carries a bare `62%`; the grown card
+  `lib/predictions.ts` inverts the stories the narration stage cited for each
+  `poly-*` contract, which the build puts on `/api/analysis.json` — never on
+  `trends.json`, which carries none. For as long as `oddsByStory` read only the
+  snapshot the odds line rendered for nobody, and the tests passed because
+  their fixtures carried a field production never did. An index row carries a bare `62%`; the grown card
   carries the level, the move in **points**, and `MARKET_CAVEAT` (`OddsLine`). Odds are never tinted
   favorable/unfavorable — a green likelier war is the app taking a side.
 - **The river is the last 24 hours.** `recentRiver` (`lib/news-order.ts`,
@@ -446,9 +449,10 @@ about what a card may say is about the card, not where it is shown.
   every homepage visit, and no rail row prints a paragraph. The web gets it
   per-instrument from `/api/entity/{id}.json` on the press that opens a card;
   the app has no such page and no such press — it builds a whole column up
-  front — so it needs every paragraph before it renders anything. 17.2KB, prose
-  only: carrying the citations measured 34.7KB and no card shows them, so they
-  stay on the entity endpoint. A 404 is a supported state, not a loading one.
+  front — so it needs every paragraph before it renders anything. The cited
+  stories ride with it now (`relatedArticles`, ~41KB, 13KB gzipped): the odds
+  line needs them, and joined onto `trends.json` instead they added 24KB to
+  every homepage visit. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
   specific.** `listen` is the round play button beside the list button on the
   sheet's masthead — as a corner pill over the globe it was sized to stay out

@@ -140,8 +140,16 @@ export const isAnalysisSnapshot = (v: unknown): v is AnalysisSnapshot =>
     (isFiniteNumber(v.windowDays) && Number.isInteger(v.windowDays) && v.windowDays >= 0)) &&
   isObject(v.items) &&
   Object.values(v.items).every(
-    (e) => isObject(e) && typeof e.recent === 'string' && e.recent.trim().length > 0,
+    (e) =>
+      isObject(e) &&
+      typeof e.recent === 'string' &&
+      e.recent.trim().length > 0 &&
+      (e.relatedArticles === undefined ||
+        (Array.isArray(e.relatedArticles) && e.relatedArticles.every(isRelatedArticleRef))),
   );
+
+const isRelatedArticleRef = (r: unknown): boolean =>
+  isObject(r) && typeof r.slug === 'string' && typeof r.title === 'string';
 
 const GDACS_EVENT_TYPES: ReadonlySet<string> = new Set(['EQ', 'TC', 'FL', 'VO', 'DR', 'WF']);
 const GDACS_ALERT_LEVELS: ReadonlySet<string> = new Set(['Green', 'Orange', 'Red']);

@@ -1343,7 +1343,14 @@ if (trendsSrc && existsSync(trendsSrc)) {
     }
     const recent = d?.recent?.trim()
     if (!recent) continue
-    items[id] = { recent }
+    // The stories that paragraph was grounded in. The app's odds line under a
+    // story is this list inverted (`oddsByStory`), and a card marks them on its
+    // chart. They ride here rather than on `trends.json`, for the reason
+    // `recent` does: joined there they added 24KB (+35%) to what every homepage
+    // visit downloads for a rail that prints no story. While they were on
+    // neither, the app's odds line never rendered.
+    const related = citedOr(d, [])
+    items[id] = related.length ? { recent, relatedArticles: related } : { recent }
   }
   writeFileSync(
     join(DIST_DIR, 'api', 'analysis.json'),

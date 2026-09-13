@@ -1,4 +1,4 @@
-import type { Indicator, TrendsSnapshot } from '@shared/types';
+import type { Indicator, IndicatorAnalysis, TrendsSnapshot } from '@shared/types';
 
 /**
  * What a prediction market says about a story.
@@ -81,13 +81,19 @@ function weekMove(i: Indicator): string | null {
  * markets both cite an article about the Fed, the one that actually reacted
  * is the one worth printing.
  */
-export function oddsByStory(snapshot: TrendsSnapshot | null): Map<string, StoryOdds> {
+export function oddsByStory(
+  snapshot: TrendsSnapshot | null,
+  /** `/api/analysis.json`, where the build puts the stories each contract was
+   *  grounded in. `trends.json` carries none — the website's rail downloads it
+   *  and prints no story — so without this nothing is ever tied to a story. */
+  analysis?: ReadonlyMap<string, IndicatorAnalysis>,
+): Map<string, StoryOdds> {
   const best = new Map<string, { odds: StoryOdds; weight: number }>();
   if (!snapshot) return new Map();
 
   for (const indicator of snapshot.indicators) {
     if (!isPrediction(indicator)) continue;
-    const related = indicator.relatedArticles;
+    const related = indicator.relatedArticles ?? analysis?.get(indicator.id)?.relatedArticles;
     if (!related || related.length === 0) continue;
     const level = latest(indicator);
     if (level == null) continue;

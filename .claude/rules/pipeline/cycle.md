@@ -368,6 +368,13 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   17.2KB, prose only — carrying `citations` measured 34.7KB, half the file for
   a list no card shows. Three routes, one writer, and nothing duplicated between
   them.
+  - **The citations joined it on 2026-09-13, because something did need them.**
+    The app's odds line under a story is a contract's cited stories inverted,
+    and it read `relatedArticles` off `trends.json` indicators, which the build
+    never put there — so it rendered for nobody while its tests, whose fixtures
+    carried the field, passed. Joined onto `trends.json` they measured +24KB
+    (+35%) on the homepage payload; on `analysis.json` they cost the app alone
+    (~41KB, 13KB gzipped).
 
 ## The grounding validator's quantifier was the bug
 

@@ -84,12 +84,13 @@ describe('chokepointValence', () => {
     expect(chokepointValence(0.9)).toBe('neutral');
   });
 
-  it('has one threshold, because it used to have two', () => {
-    // 10% on the card, 15% in the sheet that card opened, and nothing in
-    // either file said the other existed.
-    expect(CHOKEPOINT_DISRUPTED).toBe(0.1);
+  it("has one threshold, the web map's, because it used to have three", () => {
+    // 10% on the card, 15% in the sheet that card opened, and 15% on the web
+    // map, where a strait 12% down was quiet while the app drew it as a pinch.
+    expect(CHOKEPOINT_DISRUPTED).toBe(0.15);
     expect(chokepointValence(-CHOKEPOINT_DISRUPTED)).toBe('unfavorable');
-    expect(chokepointValence(-0.12)).toBe('unfavorable');
+    expect(chokepointValence(-0.2)).toBe('unfavorable');
+    expect(chokepointValence(-0.12)).toBe('neutral');
     expect(chokepointValence(-0.05)).toBe('neutral');
   });
 });

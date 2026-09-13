@@ -634,9 +634,6 @@ function straitWhy(c: Chokepoint): string | undefined {
   return c.recent?.trim() || (standing !== blurb ? standing : undefined) || blurb || undefined;
 }
 
-/** A strait this far from its own 90-day normal is disrupted rather than
- *  merely quiet. Below it, day-to-day variation in eleven busy waterways would
- *  paint the whole list rose and the colour would stop meaning anything. */
 /** The distance from a strait's own 90-day normal, as a chip. The valence is
  *  one-sided and `chokepointValence` says why; `ChokepointSheet` reads the
  *  same function, so the sheet a strait card opens can no longer call the same
@@ -661,10 +658,13 @@ function totalTrafficDelta(c: Chokepoint): number | null {
   return typeof d === 'number' && Number.isFinite(d) ? d : null;
 }
 
-/** Total traffic is noisier than a strait's selected vessel subtype. A 10–15%
- * weekly deviation is ordinary in the live payload; 30% is where an all-ships
- * chart earns a full screen. */
-const TOTAL_TRAFFIC_DISRUPTED = 0.3;
+/** How far total traffic has to fall below its normal for a strait card to be
+ *  `current` — news rather than reference. Not the disrupted threshold
+ *  (`CHOKEPOINT_DISRUPTED`, 15%, which colours the chip and the globe mark):
+ *  total traffic is noisier than a strait's primary vessel class, a 10–15%
+ *  weekly deviation is ordinary in the live payload, and 30% is where an
+ *  all-ships chart earns its place as news. */
+const STRAIT_CURRENT_FALL = 0.3;
 
 /**
  * How old a strait's observation may be and still be called current.
@@ -808,8 +808,7 @@ function straitCards(
       kind: 'reading' as const,
       // A large fall in an old observation remains important reference, but
       // it is not a current development. The date still appears on every card.
-      lead:
-        d <= -TOTAL_TRAFFIC_DISRUPTED && isCurrentObservation(c.asOf, now, CHOKEPOINT_CURRENT_DAYS),
+      lead: d <= -STRAIT_CURRENT_FALL && isCurrentObservation(c.asOf, now, CHOKEPOINT_CURRENT_DAYS),
       asOf: c.asOf,
       title: c.name,
       reading: last7 == null ? '—' : formatQuantity(last7),

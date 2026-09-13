@@ -98,6 +98,8 @@ import {
   type ThermalEvent,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
+// Shared with the app, which used to call a strait disrupted at 10%.
+import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
 
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
@@ -2290,7 +2292,7 @@ export function mount(
           name: c.name,
           delta,
           mag: Math.min(1, Math.abs(delta) / 0.6),
-          disrupted: Math.abs(delta) > 0.15 ? 1 : 0,
+          disrupted: Math.abs(delta) >= CHOKEPOINT_DISRUPTED ? 1 : 0,
           direction: delta < 0 ? -1 : 1,
         },
         geometry: { type: 'Point' as const, coordinates: [c.lng, c.lat] },

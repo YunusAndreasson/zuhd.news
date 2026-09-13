@@ -37,6 +37,21 @@ describe('oddsByStory', () => {
     expect(odds.get('story-b')?.id).toBe('poly-fed');
   });
 
+  it('finds the stories on the analysis when the snapshot carries none', () => {
+    // The live shape: trends.json has no `relatedArticles` (the web's rail
+    // downloads it and prints no story); the build puts them on analysis.json.
+    // Reading only the snapshot is why the odds line never rendered.
+    const bare = contract('poly-fed', [56, 62], { relatedArticles: undefined });
+    const analysis = new Map([
+      [
+        'poly-fed',
+        { recent: 'Traders moved.', relatedArticles: [{ slug: 'story-c', title: 'C' }] },
+      ],
+    ]);
+    expect(oddsByStory(snapshot([bare])).size).toBe(0);
+    expect(oddsByStory(snapshot([bare]), analysis).get('story-c')?.id).toBe('poly-fed');
+  });
+
   it('ignores everything that is not a prediction market', () => {
     const brent = contract('brent', [60, 68], { source: 'fred' });
     expect(oddsByStory(snapshot([brent])).size).toBe(0);

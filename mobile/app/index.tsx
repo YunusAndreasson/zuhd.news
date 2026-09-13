@@ -392,7 +392,7 @@ export default function HomeScreen() {
     [strip],
   );
 
-  const odds = useMemo(() => oddsByStory(trends), [trends]);
+  const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
   const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
 
   const storyRows = useMemo(
