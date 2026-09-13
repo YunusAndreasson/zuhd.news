@@ -63,6 +63,8 @@ interface ScrubBarProps
   interactive?: boolean;
   /** One segment per item, so a track of stories reads as stories. */
   segments?: number;
+  /** The current item, raised above the track so position does not rely on colour. */
+  activeSegment?: number;
   height: number;
   trackColor: string;
   fillColor: string;
@@ -89,6 +91,7 @@ export const ScrubBar = memo(function ScrubBar({
   fraction,
   interactive = true,
   segments,
+  activeSegment,
   height,
   trackColor,
   fillColor,
@@ -111,6 +114,20 @@ export const ScrubBar = memo(function ScrubBar({
     opacity: shown.value,
     transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
   }));
+  const activeStyle = useAnimatedStyle(() => {
+    const count = segments ?? 0;
+    const gap = count <= MAX_SEGMENTS ? SEGMENT_GAP : 0;
+    const segmentWidth = count > 0 ? (width.value - gap * (count - 1)) / count : 0;
+    const markerWidth = Math.max(height, segmentWidth);
+    const center = (activeSegment ?? 0) * (segmentWidth + gap) + segmentWidth / 2;
+    return {
+      opacity: width.value > 0 ? 1 : 0,
+      width: markerWidth,
+      transform: [
+        { translateX: Math.max(0, Math.min(width.value - markerWidth, center - markerWidth / 2)) },
+      ],
+    };
+  });
 
   const bar = (
     <View style={style} onLayout={scrub.onLayout} {...accessibility}>
@@ -123,6 +140,20 @@ export const ScrubBar = memo(function ScrubBar({
             <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
           </Animated.View>
         </Animated.View>
+        {activeSegment !== undefined && activeSegment >= 0 && activeSegment < (segments ?? 0) ? (
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.activeSegment,
+              {
+                height: height + SPACING.xs,
+                top: -SPACING.xs / 2,
+                backgroundColor: fillColors?.[activeSegment] ?? fillColor,
+              },
+              activeStyle,
+            ]}
+          />
+        ) : null}
         {interactive ? (
           <Animated.View
             pointerEvents="none"
@@ -194,6 +225,7 @@ const styles = StyleSheet.create({
   clip: { overflow: 'hidden' },
   segment: { flex: 1 },
   segmentGap: { marginRight: SEGMENT_GAP },
+  activeSegment: { position: 'absolute', left: 0, borderRadius: RADIUS.handle },
   thumb: {
     position: 'absolute',
     left: 0,

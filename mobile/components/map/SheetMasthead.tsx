@@ -8,13 +8,12 @@ import { useTheme } from '../../hooks/useTheme';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { MASTHEAD_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
-import { Pressable as CountButton, Icon, IconButton, Text } from '../primitives';
+import { Icon, IconButton, Text } from '../primitives';
 import { ScrubBar, ScrubTooltip } from '../ScrubBar';
 
 /**
- * Story position and navigation above the card. The count stays visible at
- * rest and opens all stories; the track previews destinations while scrubbing.
- * The briefing and settings retain separate 40×48pt targets.
+ * Story navigation above the card. The track previews destinations while
+ * scrubbing; briefing and all articles have separate 40×48pt targets at right.
  */
 
 /** Which story a fraction of the track points at: the segment under it. */
@@ -66,7 +65,6 @@ export const SheetMasthead = memo(function SheetMasthead({
   progress,
   alert,
   onPress,
-  onMenuPress,
   onAlertPress,
   onSeek,
   detailAt,
@@ -91,8 +89,6 @@ export const SheetMasthead = memo(function SheetMasthead({
   alert?: string | null;
   /** Opens every story as a list. */
   onPress?: () => void;
-  /** Opens settings and pages beside the story list. */
-  onMenuPress?: () => void;
   /** Opens the alert. */
   onAlertPress?: () => void;
   /** Jump to a story from the track. */
@@ -178,19 +174,6 @@ export const SheetMasthead = memo(function SheetMasthead({
 
   return (
     <View style={styles.row}>
-      <CountButton
-        onPress={onPress ?? (() => {})}
-        haptic="none"
-        disabled={!onPress}
-        accessibilityRole={onPress ? 'button' : 'text'}
-        accessibilityLabel={`${Math.min(count, Math.max(1, index + 1))} of ${count} stories`}
-        accessibilityHint="Show all articles"
-        style={styles.count}
-      >
-        <Text variant="tabular" tone="secondary">
-          {`${Math.min(count, Math.max(1, index + 1))} of ${count}`}
-        </Text>
-      </CountButton>
       {refreshing || showingAlert ? (
         <Pressable
           onPress={showingAlert ? onAlertPress : undefined}
@@ -209,6 +192,7 @@ export const SheetMasthead = memo(function SheetMasthead({
           fraction={fraction}
           interactive={!!onSeek}
           segments={count}
+          activeSegment={index}
           height={TRACK}
           trackColor={colors.rule}
           fillColor={colors.textSecondary}
@@ -251,15 +235,16 @@ export const SheetMasthead = memo(function SheetMasthead({
             </View>
           </IconButton>
         ) : null}
-        {onMenuPress ? (
+        {onPress ? (
           <IconButton
-            onPress={onMenuPress}
+            onPress={onPress}
+            haptic="none"
             hitSlop={0}
             style={styles.action}
-            accessibilityLabel="Settings and pages"
-            accessibilityHint="Opens settings, search, saved stories and information"
+            accessibilityLabel="All articles"
+            accessibilityHint="Opens the list of all articles"
           >
-            <Icon name="settings-outline" size="md" tone="secondary" />
+            <Icon name="list" size="md" tone="default" />
           </IconButton>
         ) : null}
       </View>
@@ -294,13 +279,6 @@ const styles = StyleSheet.create({
   },
   shrink: { flex: 1 },
   status: { flex: 1, minHeight: MASTHEAD_ROW, justifyContent: 'center' },
-  count: {
-    minWidth: MASTHEAD_ROW,
-    minHeight: MASTHEAD_ROW,
-    marginRight: SPACING.xs,
-    flexShrink: 0,
-    justifyContent: 'center',
-  },
   // Hairline edge so the button holds its shape on the sheet without a shadow.
   listen: {
     width: LISTEN_SIZE,

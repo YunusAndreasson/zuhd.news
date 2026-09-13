@@ -51,11 +51,7 @@ import { HintOverlay } from '../components/HintOverlay';
 import { IndexSheet } from '../components/IndexSheet';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
-import {
-  GlobeGestureLayer,
-  ZOOM_EASING,
-  ZOOM_RELEASE_MS,
-} from '../components/map/GlobeGestureLayer';
+import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { SheetMasthead } from '../components/map/SheetMasthead';
@@ -1056,26 +1052,6 @@ export default function HomeScreen() {
     [dismissActiveHint, findStory],
   );
 
-  /**
-   * The mark: back to where the app opens. The sheet comes down to rest, a
-   * pinch's zoom is released to the story's own framing, the gauges scroll to
-   * their start, and the deck jumps to the newest story with the camera flying
-   * to it — a jump, never an animated swipe back through every dateline.
-   */
-  const [homeKey, setHomeKey] = useState(0);
-  const handleHomePress = useCallback(() => {
-    hapticImpact();
-    setHomeKey((k) => k + 1);
-    if (sheetDetentRef.current !== 'peek') mapSheetRef.current?.collapse();
-    if (zoomActive.value > 0) {
-      const duration = reduceMotion ? 0 : ZOOM_RELEASE_MS;
-      zoomActive.value = reduceMotion ? 0 : withTiming(0, { duration, easing: ZOOM_EASING });
-      handleZoomSettle(duration + 50);
-    }
-    const first = storyRowsRef.current[0];
-    if (first) focusStory(first.slug);
-  }, [focusStory, handleZoomSettle, reduceMotion, zoomActive]);
-
   const handleIndexPress = useCallback(() => {
     hapticImpact();
     markHintDone('masthead');
@@ -1381,7 +1357,6 @@ export default function HomeScreen() {
         progress={progress}
         alert={now[0]?.title ?? null}
         onPress={handleIndexPress}
-        onMenuPress={handleMenuPress}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
         detailAt={storyDetailAt}
@@ -1413,7 +1388,6 @@ export default function HomeScreen() {
       progress,
       now,
       handleIndexPress,
-      handleMenuPress,
       handleMastheadAlertPress,
     ],
   );
@@ -1497,8 +1471,7 @@ export default function HomeScreen() {
 
       <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
         <MapHeader
-          onHomePress={handleHomePress}
-          homeKey={homeKey}
+          onMenuPress={handleMenuPress}
           items={strip}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}

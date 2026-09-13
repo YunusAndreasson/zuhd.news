@@ -6,7 +6,6 @@ import type { SwipeCard } from '../lib/cards/rank';
 import { gaugeMove } from '../lib/cards/week-move';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
-import { SPARK_HEIGHT } from './map/IndicatorStrip';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -101,7 +100,7 @@ const Row = memo(function Row({
               points={move.points}
               tone={move.delta.valence}
               width={SPARK_WIDTH}
-              height={SPARK_HEIGHT}
+              height={10}
             />
           </View>
         ) : null}

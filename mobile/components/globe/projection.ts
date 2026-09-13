@@ -7,6 +7,7 @@
 
 import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
 import { geoCircle, geoContains } from 'd3-geo';
+import { getGlobeGeography } from './geography';
 import { countries, countryAreas, countryBboxes } from './shared';
 
 // ── Astronomical / time constants ──────────────────────────────────────────
@@ -303,14 +304,16 @@ export function findCountry(
   if (location) {
     const override = COUNTRY_OVERRIDES[location.toLowerCase()];
     if (override) {
-      const matched = countries.features.find((f) => f.properties?.name === override);
-      // If the override names a feature the 110m topology doesn't carry (e.g. a
-      // city-state with no polygon), fall through to the coordinate nudge loop
+      const matched = getGlobeGeography('overview').countryNamed(override);
+      // If the override names a feature the topology doesn't carry,
+      // fall through to the coordinate nudge loop
       // instead of returning null — returning null here would drop the focal
       // highlight AND suppress the dot/time label for the whole story.
       if (matched) return matched;
     }
   }
+  const exact = getGlobeGeography('overview').countryAt(lng, lat);
+  if (exact) return exact;
   for (const [dlat, dlng] of NUDGES) {
     // Wrap a nudge that crosses the antimeridian (179.95 + 0.1 → -179.95) —
     // bboxes are clamped to [-180, 180], so an unwrapped 180.05 would fail

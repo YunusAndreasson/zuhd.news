@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import {
   type LayoutChangeEvent,
   ScrollView,
@@ -11,11 +11,9 @@ import { useTheme } from '../../hooks/useTheme';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
-import { Sparkline } from '../Sparkline';
 
 /**
- * The gauges above the earth, swiped sideways from beside `MapHeader`'s mark to
- * its listen button.
+ * The gauges above the earth, swiped sideways across `MapHeader`.
  *
  * The brief was "keep the indicators of whether things are going up and down
  * on the markets and straits, but put them at the top" — and then, having
@@ -26,18 +24,18 @@ import { Sparkline } from '../Sparkline';
  * one quantity, the move over the past seven days (`gaugeMove`), so the sort is
  * a comparison. It used to sort each card's own delta, which put a strait's gap
  * from its 90-day normal beside an index's four sessions beside a currency's
- * whole series. A glance at the carets, their colour and the week's line is
+ * whole series. A glance at the carets and their colour is
  * the whole read; the number is there for whoever stops.
  *
  * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
- * fit the room between the mark and the listen button — the partial slot at
+ * fit the room before the Settings button — the partial slot at
  * the edge is what says the row continues. No scroll indicator, no arrow, no dots.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
  * names in the list of things this is not.
  *
- * Each slot carries the reading, the week's move and the week's line. The
+ * Each slot carries the reading and the week's move; graphs live in the bottom sheet. The
  * window is printed once, over `all` at the end of the row, rather than in
  * every slot: it is the same window everywhere, which is the point. The card a
  * slot opens keeps its own longer window and says which.
@@ -55,14 +53,12 @@ import { Sparkline } from '../Sparkline';
  * is open, so the reader can see which gauge the ring belongs to.
  */
 
-/** The week's line under each reading. */
-export const SPARK_HEIGHT = 10;
 /** The mark under the slot whose card is open. Reserved on every slot, so
  *  selecting one does not move the row. */
 const SELECTED_BAR = 2;
-/** What the line and the mark add to a gauge's height, for `MapHeader`, which
+/** What the selection mark adds to a gauge's height, for `MapHeader`, which
  *  holds the row at a gauge's height before the gauges arrive. */
-export const GAUGE_EXTRA = SPACING.xxs + SPARK_HEIGHT + SPACING.xxs + SELECTED_BAR;
+export const GAUGE_EXTRA = SPACING.xxs + SELECTED_BAR;
 
 /** Slots visible across the row. Not a whole number, so one is always cut. */
 const VISIBLE_SLOTS = 3.4;
@@ -129,14 +125,6 @@ const Slot = memo(function Slot({
         </Text>
         <DeltaChip delta={item.delta} window={false} scale={1} />
       </View>
-      <View style={styles.spark}>
-        <Sparkline
-          points={item.spark}
-          tone={item.delta.valence}
-          width={width}
-          height={SPARK_HEIGHT}
-        />
-      </View>
       <View
         style={[
           styles.selected,
@@ -151,7 +139,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   items,
   onSelect,
   onAll,
-  resetKey = 0,
   selectedId = null,
   initialViewport,
 }: {
@@ -159,8 +146,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   onSelect: (item: StripItem) => void;
   /** Opens every instrument as one ranked list. */
   onAll: () => void;
-  /** Changes when the row should scroll back to its first gauge. */
-  resetKey?: number;
   /** The gauge whose card is open. */
   selectedId?: string | null;
   /** The room the bar will leave, computed by the bar before layout, so the
@@ -177,13 +162,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   }, []);
   const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
-  const scrollRef = useRef<ScrollView>(null);
-  const firstReset = useRef(resetKey);
-  useEffect(() => {
-    if (resetKey === firstReset.current) return;
-    scrollRef.current?.scrollTo({ x: 0, animated: true });
-  }, [resetKey]);
-
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
   // starts clean.
@@ -191,7 +169,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
 
   return (
     <ScrollView
-      ref={scrollRef}
       horizontal
       showsHorizontalScrollIndicator={false}
       // A flung row that runs past its end and springs back is the row
@@ -256,7 +233,6 @@ const styles = StyleSheet.create({
   slot: { justifyContent: 'flex-start' },
   label: { marginBottom: 1 },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
-  spark: { marginTop: SPACING.xxs },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
   // Laid out like a slot (a caption over a line) so "7 days" sits on the
   // labels' line and "all" on the readings'.

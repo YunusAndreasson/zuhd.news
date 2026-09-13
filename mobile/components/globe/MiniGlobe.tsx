@@ -40,7 +40,7 @@ import {
 } from '@shopify/react-native-skia';
 import {
   type GeoProjection,
-  geoContains,
+  geoCentroid,
   geoDistance,
   geoInterpolate,
   geoOrthographic,
@@ -114,6 +114,7 @@ import {
   getSeas,
 } from './detail-geo';
 import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
+import { geographyTier, getGlobeGeography } from './geography';
 import {
   FAMINE_FRAME_PATH,
   FAMINE_FRAME_STROKE,
@@ -148,21 +149,12 @@ import {
   SOUTH_POLE,
 } from './projection';
 import {
-  bordersMeshFull,
-  bordersMeshSimplified,
-  countries,
   countryAreas,
-  countryBboxes,
   countryCentroidNames,
   countryCentroidPoints,
   countryCentroids,
   countryCentroidUnits,
-  countrySimplifiedByName,
   createSkiaPathContext,
-  iceSheets,
-  iceSheetsSimplified,
-  landFull,
-  landSimplified,
 } from './shared';
 import { getCoords } from './storyDots';
 
@@ -559,12 +551,6 @@ const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
 // rotates, clips and winding-tests it, which is most of the planet at any
 // zoom tighter than a hemisphere — see `cap-cull.ts` for why the result is
 // exact rather than approximate.
-const landFullCull = createCapCuller(landFull);
-const landSimplifiedCull = createCapCuller(landSimplified);
-const iceSheetsCull = createCapCuller(iceSheets);
-const iceSheetsSimplifiedCull = createCapCuller(iceSheetsSimplified);
-const bordersFullCull = createCapCuller(bordersMeshFull);
-const bordersSimplifiedCull = createCapCuller(bordersMeshSimplified);
 const arcticCircleCull = createCapCuller(ARCTIC_CIRCLE);
 const antarcticCircleCull = createCapCuller(ANTARCTIC_CIRCLE);
 const graticuleCull = createCapCuller(GRATICULE_LINES);
@@ -2388,22 +2374,12 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastOverrideAngleRef = useRef(90);
 
   // Projection + path generator — created eagerly so the first scroll frame is warm
-  const projRef = useRef(geoOrthographic().clipAngle(90).precision(8));
+  const projRef = useRef(geoOrthographic().clipAngle(90).precision(0.25));
   const pgRef = useRef(geoPath(projRef.current));
   const lastSettled = useRef(-1);
   const lastSettledSlug = useRef<string | null>(null);
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
-  // Mid-scroll projection uses a simplified variant of the settled country
-  // (~50% fewer vertices, same topology). Swapped to the full-detail feature
-  // once the scroll settles. Keeping the pair in parallel refs avoids a
-  // per-frame name lookup inside callReproject.
-  const cachedCountrySimplifiedRef = useRef<GeoJSON.Feature | null>(null);
-  // Cullers for the pair above, rebuilt only when the settled country changes:
-  // Russia, Canada and the United States are MultiPolygons whose far-flung
-  // parts are usually off the disc.
-  const cachedCountryCullRef = useRef<CapCuller | null>(null);
-  const cachedCountrySimplifiedCullRef = useRef<CapCuller | null>(null);
   // Spherical centroid of the currently settled country, cached alongside
   // the feature. geoCentroid is O(n vertices) — computing it once per
   // settled-country change (instead of per frame) is what keeps this new
@@ -2654,15 +2630,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastSettledSlug.current = slug;
         cachedCountryRef.current = geo?.country ?? null;
         const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
-        cachedCountrySimplifiedRef.current = settledName
-          ? (countrySimplifiedByName[settledName] ?? null)
-          : null;
-        cachedCountryCullRef.current = cachedCountryRef.current
-          ? createCapCuller(cachedCountryRef.current)
-          : null;
-        cachedCountrySimplifiedCullRef.current = cachedCountrySimplifiedRef.current
-          ? createCapCuller(cachedCountrySimplifiedRef.current)
-          : null;
         // Centroid cached alongside the feature — projected per frame to
         // follow rotation. Reads from the precomputed map (which uses the
         // largest-polygon centroid for MultiPolygon features), keeping the
@@ -2670,7 +2637,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // territories would otherwise drag the geometric centroid into a
         // neighbour (e.g. France → French Guiana drags into Spain).
         cachedCountryCentroidRef.current = settledName
-          ? (countryCentroids[settledName] ?? null)
+          ? (countryCentroids[settledName] ?? (geo?.country ? geoCentroid(geo.country) : null))
           : null;
       }
 
@@ -2718,12 +2685,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       const clipCos = Math.cos(clipRad);
 
       const proj = projRef.current;
-      // precision(0) globally — skip adaptive resampling. At globe scale
-      // with 110m Natural Earth data, resampled midpoints are invisible.
-      // This is the single biggest perf win (~30-40% of projection time).
+      // Resample long geographic edges into smooth projected curves.
       proj
         .clipAngle(viewAngle)
-        .precision(0)
+        .precision(0.25)
         .rotate([-geoLng, -geoLat, 0])
         .scale(projScale)
         .translate([centerX, centerY]);
@@ -2731,12 +2696,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       const pg = pgRef.current;
       pg.projection(proj);
 
-      // Near-settled gate — hoisted up so land/ice/country-highlight can pick
-      // between full-detail and simplified topology per frame. Everything
-      // gated on !nearSettled uses the Visvalingam-simplified variants; at
-      // rest we switch back to the full 110m data. `zoomInFlight` detects
-      // both the overrideActive fade and the override→override angle slide
-      // so the heavy layers stay off the JS thread during zoom animations.
+      // Extra detail layers wait for the camera to approach its resting frame.
+      // Geometry below has a stricter gate so detail is restored only at landing.
       const ARC_WINDOW = 0.25;
       const lastAngle = lastOverrideAngleRef.current;
       lastOverrideAngleRef.current = overrideAngleVal;
@@ -2750,18 +2711,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       const nearSettled =
         !zoomInFlight && !cameraMoving && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
 
-      // Land — reset reuses the PathBuilder's underlying buffer.
-      // Mid-scroll uses the ~2k-vertex simplified topology (vs 5k full); at
-      // rest we switch back to the full coastline so static reading is crisp.
+      // Keep gesture frames light, then restore detail at the actual landing.
+      // Every geographic layer uses the same shared-arc tier.
+      const geography = getGlobeGeography(
+        geographyTier(projScale, !nearSettled || (frac > 0.002 && frac < 0.998)),
+      );
       const landBuilder = landPathRef.current;
       landBuilder.reset();
       skiaCtx.setPath(landBuilder);
-      pg.context(skiaCtx)(
-        (nearSettled ? landFullCull : landSimplifiedCull).visible(geoLng, geoLat, viewAngle),
-      );
+      pg.context(skiaCtx)(geography.land.visible(geoLng, geoLat, viewAngle));
       const landPath = landBuilder.build();
 
-      // Lakes, on settled frames: the 110m coastline has no inland water, so
+      // Lakes, on settled frames: the coastline has no inland water, so
       // Lake Chad and Lake Victoria were land. ~150 polygons of 50m outline is
       // settle-frame work, like the full coastline above, never drag work.
       let lakesPath: GlobeState['lakesPath'] = null;
@@ -2774,15 +2735,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         lakesPath = lakeBuilder.build();
       }
 
-      // Ice sheets — Antarctica + Greenland. Swapped to simplified during
-      // scroll the same way land is. Projecting every frame (not gated) so
-      // the ice layer tracks rotation without flicker.
+      // Ice follows the same coastline at every level of detail.
       const iceBuilder = icePathRef.current;
       iceBuilder.reset();
       skiaCtx.setPath(iceBuilder);
-      pg.context(skiaCtx)(
-        (nearSettled ? iceSheetsCull : iceSheetsSimplifiedCull).visible(geoLng, geoLat, viewAngle),
-      );
+      pg.context(skiaCtx)(geography.ice.visible(geoLng, geoLat, viewAngle));
       const icePath = iceBuilder.build();
 
       // Dot — culled against the zoom cone like every other point marker.
@@ -2827,19 +2784,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Web: a count beside every stack of 3+, and of 2+ once zoomed in.
       const storyCountMin = clipAngle < 60 ? 2 : 3;
 
-      // Country highlight — reuse path object. Large countries (Russia,
-      // Canada, Brazil) can push this past 1k vertices; during mid-scroll
-      // we project the simplified variant if available, otherwise fall
-      // back to the full-detail feature (small countries aren't worth a
-      // simplified copy). On settle, always full-detail.
+      // The highlight shares its exact edges with this frame's coast and borders.
       let countryPath: GlobeState['countryPath'] = null;
       if (cachedCountryRef.current) {
         const countryBuilder = countryPathRef.current;
         countryBuilder.reset();
         skiaCtx.setPath(countryBuilder);
-        const cull =
-          (nearSettled ? null : cachedCountrySimplifiedCullRef.current) ??
-          cachedCountryCullRef.current;
+        const cull = geography.country(cachedCountryRef.current.properties?.name as string);
         if (cull) pg.context(skiaCtx)(cull.visible(geoLng, geoLat, viewAngle));
         countryPath = countryBuilder.build();
       }
@@ -2871,17 +2822,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Neighbouring country borders — projected every frame so they rotate
-      // with the globe instead of popping at settle. Settled uses the full mesh
-      // (matches landFull arcs); mid-scroll uses the 0.5-weight simplified
-      // mesh (matches landSimplified). ~30% cheaper at rest, ~56% cheaper
-      // during scroll vs the original full-topology mesh.
+      // Borders use the same tier as the land, even while the camera moves.
       const bordersBuilder = bordersPathRef.current;
       bordersBuilder.reset();
       skiaCtx.setPath(bordersBuilder);
-      pg.context(skiaCtx)(
-        (nearSettled ? bordersFullCull : bordersSimplifiedCull).visible(geoLng, geoLat, viewAngle),
-      );
+      pg.context(skiaCtx)(geography.borders.visible(geoLng, geoLat, viewAngle));
       const bordersPath = bordersBuilder.build();
 
       // --- Always-on cheap layers: project every frame so they stay present
@@ -4395,18 +4340,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         const coords = projRef.current.invert?.([x, y]);
         if (coords) {
           const [lng, lat] = coords;
-          let feature: GeoJSON.Feature | undefined;
-          for (let i = 0; i < countries.features.length; i++) {
-            const bbox = countryBboxes[i];
-            const feat = countries.features[i];
-            if (!bbox || !feat) continue;
-            const [minLng, minLat, maxLng, maxLat] = bbox;
-            if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
-            if (geoContains(feat, coords)) {
-              feature = feat;
-              break;
-            }
-          }
+          const feature = getGlobeGeography(geographyTier(projRef.current.scale())).countryAt(
+            lng,
+            lat,
+          );
           if (feature) {
             const name = feature.properties?.name ?? '';
             const tz = name ? COUNTRY_TZ[name] : undefined;
