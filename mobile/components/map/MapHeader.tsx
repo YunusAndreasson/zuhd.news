@@ -5,32 +5,32 @@ import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reani
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import type { StripItem } from '../../lib/now';
 import { Icon, IconButton } from '../primitives';
 import { IndicatorStrip } from './IndicatorStrip';
 
 /**
- * The one bar above the earth: the zuhd mark · every gauge that moved, then the
- * menu.
+ * The one bar above the earth: the zuhd mark · every gauge that moved · listen.
  *
- * It was two rows — the briefing, a centred `zuhd.news` and the menu, with the
- * gauges on a line of their own under them — and the name took a whole row of
- * globe to say something the mark says in 20 points.
+ * **The mark is home.** Pressed, it puts the day back where the app opens: the
+ * newest story on the card at rest, the globe's zoom released and the camera
+ * flown to that story, and the gauges scrolled back to their start. A reader
+ * twenty swipes in, pinched into a coastline, has one place to press to start
+ * over — the same place a website's logo has always been.
  *
- * **The mark is fixed at the left**, the one thing on the bar that never
- * changes, and the name the app says once.
+ * **The gauges scroll from beside it** to the listen button, or to the screen's
+ * edge without one; the cut slot says the row continues.
  *
- * **The gauges scroll from beside it to the screen's edge**; the cut slot at the
- * edge says the row continues.
+ * **Listen is fixed at the right**, a round filled button. It sat on the
+ * sheet's masthead for one build, beside the story track, where a play button
+ * next to a progress bar read as that bar's play head — and the briefing's own
+ * player bar has a progress bar of its own. Absent rather than disabled when
+ * there is no briefing, and while the player is up.
  *
- * **The menu rides at the end of the gauges**, after `all ›`: settings and
- * pages are visited rarely, and a fixed button cost the gauges a slot on every
- * glance. Before the gauges arrive it sits at the right edge on its own, so it
- * is never out of reach. While a story is grown it steps aside with the gauges;
- * putting the story down brings both back.
- *
- * **Listen is not here.** It is the round button on the sheet's masthead, in
- * the thumb's reach and in the row that already holds the day's controls.
+ * **The menu is not here.** Settings and pages are opened from the header of
+ * the story list (`IndexSheet`), the sheet a reader already opens for "the
+ * rest of the app".
  */
 
 /** The zuhd mark — `public/logo.svg`, the same three shapes on a 32-unit box. */
@@ -38,6 +38,8 @@ const MARK_PATH = Skia.Path.MakeFromSVGString(
   'M4.5 4.5H12L4.5 16.25Z M19.5 4.5H27.5L12 27.5H4.5Z M27.5 16.25V27.5H20Z',
 );
 const MARK_SIZE = 20;
+/** The listen button's diameter: a 14pt glyph with room around it. */
+const LISTEN_SIZE = 32;
 
 const ZuhdMark = memo(function ZuhdMark({ color }: { color: string }) {
   if (!MARK_PATH) return null;
@@ -51,14 +53,26 @@ const ZuhdMark = memo(function ZuhdMark({ color }: { color: string }) {
 });
 
 export const MapHeader = memo(function MapHeader({
-  onMenuPress,
+  onHomePress,
+  homeKey,
+  briefingAvailable,
+  briefingResumable,
+  briefingDuration,
+  onBriefingPress,
   items,
   onSelect,
   onAll,
   recede,
   gaugesEnabled,
 }: {
-  onMenuPress: () => void;
+  /** The mark: back to the newest story, zoom released. */
+  onHomePress: () => void;
+  /** Changes on every home press, so the gauges scroll back to their start. */
+  homeKey: number;
+  briefingAvailable: boolean;
+  briefingResumable: boolean;
+  briefingDuration?: number;
+  onBriefingPress: () => void;
   items: StripItem[];
   onSelect: (item: StripItem) => void;
   onAll: () => void;
@@ -70,6 +84,7 @@ export const MapHeader = memo(function MapHeader({
   const { colors, textVariants } = useTheme();
   const { fontScale } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const minutes = formatAudioDurationMinutes(briefingDuration);
   const hasGauges = items.length > 0;
 
   // The row is as tall as a gauge whether or not the gauges have arrived, so
@@ -87,32 +102,45 @@ export const MapHeader = memo(function MapHeader({
     return { opacity: 1 - p, transform: [{ translateY: -SPACING.sm * p }] };
   });
 
-  const menu = (
-    <IconButton onPress={onMenuPress} accessibilityLabel="Menu">
-      <Icon name="menu" size="md" />
-    </IconButton>
-  );
-
   return (
     <View
       style={[
         styles.row,
         { paddingTop: insets.top + SPACING.xs },
-        // With gauges the scroller reaches the right edge and pads its content.
-        hasGauges ? styles.rightToEdge : null,
+        // Without a listen button the scroller reaches the right edge and pads
+        // its own content.
+        hasGauges && !briefingAvailable ? styles.rightToEdge : null,
       ]}
       pointerEvents="box-none"
     >
-      <View accessible accessibilityRole="header" accessibilityLabel="zuhd.news">
+      <IconButton
+        onPress={onHomePress}
+        style={styles.home}
+        accessibilityRole="header"
+        accessibilityLabel="zuhd.news"
+        accessibilityHint="Back to the newest story, with the globe's zoom reset"
+      >
         <ZuhdMark color={colors.textEmphasis} />
-      </View>
+      </IconButton>
       <Animated.View
         style={[styles.middle, { minHeight: gaugeHeight }, gaugesStyle]}
         pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
       >
-        <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} trailing={menu} />
+        <IndicatorStrip items={items} onSelect={onSelect} onAll={onAll} resetKey={homeKey} />
       </Animated.View>
-      {hasGauges ? null : menu}
+      {briefingAvailable ? (
+        <IconButton
+          onPress={onBriefingPress}
+          haptic="none"
+          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+          accessibilityLabel={`${briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}${minutes ? `, ${minutes}` : ''}`}
+          accessibilityHint={
+            briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+          }
+        >
+          <Icon name="play" size="sm" tone="default" />
+        </IconButton>
+      ) : null}
     </View>
   );
 });
@@ -128,5 +156,17 @@ const styles = StyleSheet.create({
   },
   rightToEdge: { paddingRight: 0 },
   middle: { flex: 1, minWidth: 0, justifyContent: 'center' },
+  home: { paddingVertical: SPACING.xs },
   mark: { width: MARK_SIZE, height: MARK_SIZE },
+  // Hairline edge so the control stays defined over whatever the globe puts
+  // behind it — land, coastline, city-glow — where the low-lift `pillBg` fill
+  // alone can disappear. Definition over elevation: no shadow.
+  listen: {
+    width: LISTEN_SIZE,
+    height: LISTEN_SIZE,
+    borderRadius: LISTEN_SIZE / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: StyleSheet.hairlineWidth,
+  },
 });

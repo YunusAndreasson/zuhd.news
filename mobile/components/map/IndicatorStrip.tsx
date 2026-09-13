@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   type LayoutChangeEvent,
   ScrollView,
@@ -13,7 +13,7 @@ import { Icon, Pressable, Text } from '../primitives';
 
 /**
  * The gauges above the earth, swiped sideways from beside `MapHeader`'s mark to
- * the screen's edge.
+ * its listen button.
  *
  * The brief was "keep the indicators of whether things are going up and down
  * on the markets and straits, but put them at the top" — and then, having
@@ -27,8 +27,8 @@ import { Icon, Pressable, Text } from '../primitives';
  * stops.
  *
  * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
- * fit the room right of the mark — the partial slot at the edge is what says
- * the row continues. No scroll indicator, no arrow, no dots.
+ * fit the room between the mark and the listen button — the partial slot at
+ * the edge is what says the row continues. No scroll indicator, no arrow, no dots.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
@@ -121,14 +121,14 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   items,
   onSelect,
   onAll,
-  trailing,
+  resetKey = 0,
 }: {
   items: StripItem[];
   onSelect: (item: StripItem) => void;
   /** Opens every instrument as one ranked list. */
   onAll: () => void;
-  /** Rides at the very end of the row, after `all` — the bar's menu. */
-  trailing?: ReactNode;
+  /** Changes when the row should scroll back to its first gauge. */
+  resetKey?: number;
 }) {
   // Sized from the room the bar actually leaves, which changes when the listen
   // button comes and goes; the window's width is only the first guess.
@@ -140,6 +140,13 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   }, []);
   const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
+  const scrollRef = useRef<ScrollView>(null);
+  const firstReset = useRef(resetKey);
+  useEffect(() => {
+    if (resetKey === firstReset.current) return;
+    scrollRef.current?.scrollTo({ x: 0, animated: true });
+  }, [resetKey]);
+
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
   // starts clean.
@@ -147,6 +154,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
 
   return (
     <ScrollView
+      ref={scrollRef}
       horizontal
       showsHorizontalScrollIndicator={false}
       // A flung row that runs past its end and springs back is the row
@@ -173,7 +181,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
         </Text>
         <Icon name="chevron-forward" size="sm" tone="secondary" />
       </Pressable>
-      {trailing ? <View style={styles.trailing}>{trailing}</View> : null}
     </ScrollView>
   );
 });
@@ -201,5 +208,4 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
     paddingVertical: SPACING.xs,
   },
-  trailing: { alignSelf: 'center' },
 });

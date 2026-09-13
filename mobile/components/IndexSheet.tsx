@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { type LayoutChangeEvent, type ScrollView, StyleSheet, View } from 'react-native';
 import { categoryMarkColor, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -18,6 +18,11 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * what a reader reaches for to scan the whole day, or to get to the story the
  * swipe would take twenty cards to reach.
  *
+ * **Its header holds the menu** — settings and pages — at the trailing edge.
+ * The top bar gave that button a fixed slot beside the gauges on every glance;
+ * here it is one tap from the list a reader already opens for the rest of the
+ * day.
+ *
  * It is also the accessible path. The globe is hidden from screen readers, so
  * every live Red alert and every story has a row here.
  *
@@ -36,6 +41,8 @@ interface IndexSheetProps extends BaseSheetProps {
   open: boolean;
   onSelect: (slug: string) => void;
   onNowPress: (item: NowItem) => void;
+  /** Settings and pages, from the sheet's header. */
+  onMenuPress: () => void;
 }
 
 /** The ink step on the row whose story is on the card. */
@@ -113,6 +120,7 @@ export const IndexSheet = memo(function IndexSheet({
   open,
   onSelect,
   onNowPress,
+  onMenuPress,
 }: IndexSheetProps) {
   // Opened twenty stories in, the list used to start at the top, and the
   // reader had to find their place in the day by hand. It opens with the row
@@ -151,8 +159,19 @@ export const IndexSheet = memo(function IndexSheet({
     if (currentSlug) scrollToCurrent();
   }, [currentSlug, open, scrollToCurrent]);
 
+  // Stable, so the memoised sheet does not re-render on every parent render.
+  const menuAction = useMemo(
+    () => ({ icon: 'menu' as const, label: 'Settings and pages', onPress: onMenuPress }),
+    [onMenuPress],
+  );
+
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="today">
+    <SheetLayout
+      sheetRef={sheetRef}
+      onDismiss={onDismiss}
+      handleTitle="today"
+      handleAction={menuAction}
+    >
       <SheetScrollView ref={scrollRef} bottomInset={bottomInset}>
         {now.length > 0 ? (
           <>

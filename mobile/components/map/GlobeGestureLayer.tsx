@@ -73,8 +73,8 @@ import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
  *  is what a MapLibre throw feels like. */
 const FLING_DECELERATION = 0.994;
 /** How long zoom takes to hand back to the story's framing. */
-const ZOOM_RELEASE_MS = 260;
-const ZOOM_EASING = Easing.inOut(Easing.cubic);
+export const ZOOM_RELEASE_MS = 260;
+export const ZOOM_EASING = Easing.inOut(Easing.cubic);
 
 /** Take the camera for a gesture, starting from where it was last drawn. */
 function takeCamera(

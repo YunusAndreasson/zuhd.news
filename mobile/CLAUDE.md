@@ -64,9 +64,9 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
-MapHeader                             one row: the Z mark · every mover, swiped, largest first, then menu
+MapHeader                             one row: Z (home) · every mover, swiped, largest first · listen
 MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
-  SheetMasthead                       listen · a track that fills · list icon (IndexSheet), or a Red alert
+  SheetMasthead                       a segmented story track you scrub · list (IndexSheet), or a Red alert
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
 platform sheets                       index · card · instruments · chokepoint · country · …
 ```
@@ -186,6 +186,12 @@ whole time; nothing said so.
     owns it they keep whatever the last flight left, and a drag that took the
     camera from them snapped the earth back to a story already swiped past.
     `MiniGlobe` publishes where it is drawing the camera, whoever owns it.
+- **The Z mark is home.** It jumps the deck to the newest story (a jump, via
+  `focusStory`), releases a pinch's zoom with the gesture layer's own
+  `ZOOM_RELEASE_MS`/`ZOOM_EASING`, puts a grown story down and scrolls the
+  gauges back to their start (`homeKey`). Settings and pages open from the
+  trailing button in `IndexSheet`'s header (`SheetHandle`'s `action`), not
+  from a fixed slot on the top bar.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
@@ -336,15 +342,20 @@ about what a card may say is about the card, not where it is shown.
     completion callback — `scheduleOnRN` from an animation callback aborted
     the app once.
   - **The masthead is where you are, and the door to the whole day.** One
-    row: the listen button, a track whose fill reads the deck's `progress` on
-    the UI thread (so it moves under the finger), and a list icon; the whole row opens
-    `IndexSheet` — every alert and story as a row at natural height, scrolled
-    to the story on the card, whose row says `on the card`. It briefly read
-    `3 of 48 · 12 found ━━ all news ›`: the position twice, the found count a
-    third time beside the globe's ring, and a label for the door. The track is
-    the status and the icon the signifier; the exact count is in the row's
-    accessibility label and the index. The deck once carried no position at
-    all, and swiping a day felt like an unmarked corridor.
+    row: a segmented track — one segment per story, lit to the one on the
+    card, its fill reading the deck's `progress` on the UI thread — and a list
+    button that opens `IndexSheet`, scrolled to the story on the card. The
+    track is also a scrubber: drag to preview (`12 of 48` over the finger),
+    lift or tap to jump (`goToStory`). Its gesture, detents and tooltip are
+    `hooks/useScrub.ts` + `components/ScrubBar.tsx`, shared with the briefing
+    player's scrubber, so the two cannot drift apart.
+    - It briefly read `3 of 48 · 12 found ━━ all news ›` (the position twice,
+      the found count a third time beside the globe's ring), and for one build
+      led with the listen button — a play button beside a progress bar is that
+      bar's play head, and the player has a progress bar of its own. Nothing
+      that plays sits on this row.
+    - The deck once carried no position at all, and swiping a day felt like an
+      unmarked corridor.
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -392,7 +403,7 @@ about what a card may say is about the card, not where it is shown.
   only: carrying the citations measured 34.7KB and no card shows them, so they
   stay on the entity endpoint. A 404 is a supported state, not a loading one.
 - **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the round play button that leads the sheet's masthead — as a
+  specific.** `listen` is the round play button fixed at the right of `MapHeader` — as a
   corner pill over the globe it was sized to stay out of the way and was not
   found, and as the button on the sheet's masthead it made the first row of
   the news list a control panel. `share` is a word on the grown card, where it

@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LAYOUT, RADIUS, SPACING } from '../constants/theme';
@@ -9,9 +10,17 @@ interface SheetHandleProps {
   title?: ReactNode;
   /** If provided, a back chevron appears on the leading edge, vertically centered with the title. */
   onBack?: () => void;
+  /** One control on the trailing edge, mirroring `onBack`. */
+  action?: SheetHandleAction;
 }
 
-export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHandleProps) {
+export interface SheetHandleAction {
+  icon: ComponentProps<typeof Icon>['name'];
+  label: string;
+  onPress: () => void;
+}
+
+export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: SheetHandleProps) {
   const { colors, typography } = useTheme();
   const a11yLabel = typeof title === 'string' ? `${title} sheet` : 'Sheet handle';
   // Tighten line-height to match glyph height so flex center + absolute center
@@ -25,7 +34,7 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHan
       accessibilityHint="Swipe down to dismiss"
     >
       <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
-      {(title || onBack) && (
+      {(title || onBack || action) && (
         <View style={styles.titleRow}>
           {onBack && (
             <IconButton
@@ -43,6 +52,16 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHan
             </Text>
           ) : (
             title
+          )}
+          {action && (
+            <IconButton
+              onPress={action.onPress}
+              haptic="tick"
+              style={styles.action}
+              accessibilityLabel={action.label}
+            >
+              <Icon name={action.icon} tone="secondary" />
+            </IconButton>
           )}
         </View>
       )}
@@ -71,6 +90,13 @@ const styles = StyleSheet.create({
   back: {
     position: 'absolute',
     left: SPACING.screenPadding,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+  },
+  action: {
+    position: 'absolute',
+    right: SPACING.screenPadding,
     top: 0,
     bottom: 0,
     justifyContent: 'center',

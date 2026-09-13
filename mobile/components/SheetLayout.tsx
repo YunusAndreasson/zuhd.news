@@ -4,7 +4,7 @@ import { memo, useMemo } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { LAYOUT } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { SheetHandle } from './SheetHandle';
+import { SheetHandle, type SheetHandleAction } from './SheetHandle';
 
 /** The three wiring props every bottom sheet receives from the HomeScreen
  *  orchestrator: its modal ref, the safe-area bottom inset for content
@@ -31,6 +31,8 @@ type OmittedModalProps = 'ref' | 'enablePanDownToClose' | 'backgroundStyle' | 'h
 interface SheetLayoutProps extends Omit<BottomSheetProps, OmittedModalProps> {
   sheetRef: React.RefObject<BottomSheetMethodsRef | null>;
   handleTitle?: string;
+  /** A control on the trailing edge of the default handle. */
+  handleAction?: SheetHandleAction;
   /** Replaces the default titled handle. Rendered as the sheet's first child,
    *  not as `handleComponent` — see the note on the render below. */
   handleComponent?: ComponentType | null;
@@ -39,6 +41,7 @@ interface SheetLayoutProps extends Omit<BottomSheetProps, OmittedModalProps> {
 export const SheetLayout = memo(function SheetLayout({
   sheetRef,
   handleTitle,
+  handleAction,
   handleComponent: Handle,
   children,
   enableDynamicSizing = true,
@@ -88,12 +91,12 @@ export const SheetLayout = memo(function SheetLayout({
     >
       {fitToContents ? (
         <View style={capStyle}>
-          {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
+          {Handle ? <Handle /> : <SheetHandle title={handleTitle} action={handleAction} />}
           {children}
         </View>
       ) : (
         <>
-          {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
+          {Handle ? <Handle /> : <SheetHandle title={handleTitle} action={handleAction} />}
           {children}
         </>
       )}

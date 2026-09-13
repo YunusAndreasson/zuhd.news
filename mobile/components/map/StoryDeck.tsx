@@ -63,8 +63,9 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  */
 
 /** How much of the next card shows at the right edge — the sign, beside the
- *  masthead's track, that the row continues. */
-const DECK_CUT = SPACING.smPlus;
+ *  masthead's track, that the row continues. It was 10pt, which read as a
+ *  rendering seam rather than as the edge of another story. */
+const DECK_CUT = SPACING.md;
 /** Perceived duration of a landing, in ms. Critically damped, so a card
  *  arrives without a bounce the globe would have to follow past a dateline. */
 const SETTLE_MS = 380;

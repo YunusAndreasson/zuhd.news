@@ -1,46 +1,31 @@
 import { BlurView } from 'expo-blur';
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
+  type AccessibilityActionEvent,
   ActivityIndicator,
   type LayoutChangeEvent,
   Platform,
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  GestureDetector,
-  type PanGestureConfig,
-  type TapGestureConfig,
-  useCompetingGestures,
-  usePanGesture,
-  useTapGesture,
-} from 'react-native-gesture-handler';
 import Animated, {
   FadeInDown,
   FadeOut,
   LinearTransition,
-  useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, OPACITY, RADIUS, SPACING, withAlpha } from '../constants/theme';
+import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
-import { hapticImpact } from '../lib/haptics';
 import { Icon, IconButton, Text } from './primitives';
+import { ScrubBar, ScrubTooltip } from './ScrubBar';
 
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
 const TOOLTIP_WIDTH = 48;
-// Edge-to-edge progress sits at the pill's bottom — no horizontal inset, so
-// scrub fraction is just `x / barWidth` (no padding to subtract).
-const TRACK_INSET = 0;
-// Scrub thumb that rides the leading edge of the fill while the user is
-// dragging. Sized to read as a "handle" without crowding the 3px track.
-const SCRUB_THUMB = 9;
 // Haptic detents across the full track. The ratchet is *spatial*, not
 // temporal: a fixed number of notches per swipe regardless of how long the
 // briefing is, so a 4-minute and a 20-minute briefing feel identical under
@@ -50,21 +35,12 @@ const SCRUB_THUMB = 9;
 // boundary and the "tick per second" became a continuous buzz.
 const SCRUB_DETENTS = 40;
 
+const SEEK_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
+
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, '0')}`;
-}
-
-/** UI-thread fraction calc shared between pan + tap callbacks. Returns null
- *  when the bar isn't ready. Called from inside other worklets, so avoiding
- *  a scheduleOnRN hop just to compute the new progress fraction. */
-function computeScrubFraction(x: number, barWidth: number, duration: number): number | null {
-  'worklet';
-  if (duration <= 0 || barWidth <= 0) return null;
-  const trackWidth = barWidth - TRACK_INSET * 2;
-  if (trackWidth <= 0) return null;
-  return Math.max(0, Math.min(1, (x - TRACK_INSET) / trackWidth));
 }
 
 interface BriefingBarProps {
@@ -90,13 +66,6 @@ export const BriefingBar = memo(function BriefingBar({
   const preparing = state === 'preparing';
   const playing = state === 'playing';
   const insets = useSafeAreaInsets();
-  const barWidthSV = useSharedValue(0);
-  const onBarLayout = useCallback(
-    (e: LayoutChangeEvent) => {
-      barWidthSV.value = e.nativeEvent.layout.width;
-    },
-    [barWidthSV],
-  );
 
   const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
@@ -114,195 +83,37 @@ export const BriefingBar = memo(function BriefingBar({
       progressSV.value = withTiming(progress, { duration: ANIMATION.long });
     }
   }, [progress, reduceMotion, progressSV]);
-  const progressStyle = useAnimatedStyle(() => ({
-    transform: [{ scaleX: progressSV.value }],
-  }));
 
-  const isScrubbing = useSharedValue(0);
-  const panActive = useSharedValue(0);
-  // Tooltip scale has its own underdamped spring so grab overshoots past 1
-  // before settling — gives the scrub handle a tactile "pop" on contact.
-  const tooltipScale = useSharedValue(0.8);
-  const scrubX = useSharedValue(0);
-  // Mirror `duration` into a SharedValue so the gesture worklet can read it
-  // without bridging to JS every frame to look up the prop.
-  const durationSV = useSharedValue(duration);
-  useEffect(() => {
-    durationSV.value = duration;
-  }, [duration, durationSV]);
-  const [scrubLabel, setScrubLabel] = useState('');
-  const prevLabelRef = useRef('');
-  const pendingSeekSec = useSharedValue(0);
-
-  const beginScrub = useCallback(() => {
+  // The scrub owns `progressSV` while a finger is down (see the effect above);
+  // one latest-value seek is committed when it lifts. `useScrub` holds the
+  // gesture, detents and tooltip for this and for the story track.
+  const handleScrubStart = useCallback(() => {
     scrubbingRef.current = true;
   }, []);
-
-  const endScrub = useCallback(() => {
+  const handleScrubEnd = useCallback(() => {
     scrubbingRef.current = false;
   }, []);
-
-  const updateScrubLabel = useCallback((seconds: number) => {
-    const label = formatTime(Math.round(seconds));
-    if (label !== prevLabelRef.current) {
-      prevLabelRef.current = label;
-      setScrubLabel(label);
-    }
-  }, []);
-
-  // Keep native seeking off the per-frame path. During a pan the UI-thread
-  // fill and tooltip preview immediately; one latest-value seek is committed
-  // when the finger lifts. This removes a flood of competing native seekTo()
-  // calls whose delayed status updates could land out of order.
-  const commitSeek = useCallback(
-    (seconds: number) => {
-      onSeek(seconds);
-      updateScrubLabel(seconds);
+  const handleCommit = useCallback((f: number) => onSeek(f * duration), [onSeek, duration]);
+  const labelFor = useCallback((f: number) => formatTime(Math.round(f * duration)), [duration]);
+  const scrub = useScrub({
+    fraction: progressSV,
+    detents: SCRUB_DETENTS,
+    steps: Math.max(1, Math.round(duration)),
+    labelFor,
+    onCommit: handleCommit,
+    onScrubStart: handleScrubStart,
+    onScrubEnd: handleScrubEnd,
+    tooltipWidth: TOOLTIP_WIDTH,
+    enabled: !preparing,
+  });
+  const handleSeekAction = useCallback(
+    (e: AccessibilityActionEvent) => {
+      const step = Math.max(10, duration * 0.05);
+      if (e.nativeEvent.actionName === 'increment') onSeek(Math.min(elapsed + step, duration));
+      else if (e.nativeEvent.actionName === 'decrement') onSeek(Math.max(elapsed - step, 0));
     },
-    [onSeek, updateScrubLabel],
+    [duration, elapsed, onSeek],
   );
-
-  // Ratchet + commit bookkeeping. Both live on the UI thread so the gesture
-  // worklet can decide whether a frame is worth a haptic or a JS hop without
-  // round-tripping to find out.
-  const lastDetent = useSharedValue(-1);
-  const lastCommitSec = useSharedValue(-1);
-
-  // Advance the visual fill every frame (UI thread, never gated), then fire
-  // the haptic and the JS-side commit only on a real detent / second change.
-  // The three used to run on independent cadences; now the notch the finger
-  // feels, the label it reads, and the audio position all land on the same
-  // frame.
-  const track = useMemo(() => {
-    const fn = (x: number) => {
-      'worklet';
-      const fraction = computeScrubFraction(x, barWidthSV.value, durationSV.value);
-      if (fraction == null) return;
-      progressSV.value = fraction;
-
-      const detent = Math.round(fraction * SCRUB_DETENTS);
-      if (detent !== lastDetent.value) {
-        lastDetent.value = detent;
-        // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
-        // while an AVAudioSession is in playback mode, which is exactly when
-        // this bar is on screen.
-        scheduleOnRN(hapticImpact);
-      }
-
-      const seconds = fraction * durationSV.value;
-      pendingSeekSec.value = seconds;
-      const sec = Math.floor(seconds);
-      if (sec !== lastCommitSec.value) {
-        lastCommitSec.value = sec;
-        scheduleOnRN(updateScrubLabel, seconds);
-      }
-    };
-    return fn;
-  }, [
-    barWidthSV,
-    durationSV,
-    progressSV,
-    pendingSeekSec,
-    lastDetent,
-    lastCommitSec,
-    updateScrubLabel,
-  ]);
-
-  const panConfig = useMemo<PanGestureConfig>(
-    () => ({
-      // Low threshold so the scrub engages as soon as the finger moves —
-      // vertical fail-offset still lets the parent list steal vertical pans.
-      activeOffsetX: [-2, 2],
-      failOffsetY: [-10, 10],
-      onActivate: (e) => {
-        'worklet';
-        panActive.value = 1;
-        scheduleOnRN(beginScrub);
-        isScrubbing.value = withSpring(1, ANIMATION.springSoft);
-        tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
-        scrubX.value = e.x;
-        // Reset both ratchets so grabbing the bar always announces itself with
-        // one notch, then ticks per detent from there.
-        lastDetent.value = -1;
-        lastCommitSec.value = -1;
-        track(e.x);
-      },
-      onUpdate: (e) => {
-        'worklet';
-        scrubX.value = e.x;
-        track(e.x);
-      },
-      onFinalize: () => {
-        'worklet';
-        if (panActive.value) {
-          scheduleOnRN(commitSeek, pendingSeekSec.value);
-          scheduleOnRN(endScrub);
-          panActive.value = 0;
-        }
-        isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
-        tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
-      },
-    }),
-    [
-      track,
-      scrubX,
-      isScrubbing,
-      tooltipScale,
-      panActive,
-      pendingSeekSec,
-      lastDetent,
-      lastCommitSec,
-      beginScrub,
-      commitSeek,
-      endScrub,
-    ],
-  );
-
-  // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
-  // to the new position is feedback enough; the tooltip is reserved for
-  // drag scrubbing where the user needs a preview before committing.
-  const tapConfig = useMemo<TapGestureConfig>(
-    () => ({
-      maxDuration: 400,
-      // v2's `onEnd((e, success) => …)` is now `onDeactivate` plus the
-      // `canceled` flag the end event carries — same moment, same guard.
-      onDeactivate: (e) => {
-        'worklet';
-        if (e.canceled) return;
-        lastDetent.value = -1;
-        lastCommitSec.value = -1;
-        track(e.x);
-        scheduleOnRN(commitSeek, pendingSeekSec.value);
-      },
-    }),
-    [track, pendingSeekSec, lastDetent, lastCommitSec, commitSeek],
-  );
-
-  const panGesture = usePanGesture(panConfig);
-  const tapGesture = useTapGesture(tapConfig);
-  const scrubGesture = useCompetingGestures(panGesture, tapGesture);
-
-  // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
-  // in/out with the scrub gesture.
-  const tooltipStyle = useAnimatedStyle(() => {
-    const w = barWidthSV.value || 1;
-    const clampedX = Math.max(TOOLTIP_WIDTH / 2, Math.min(scrubX.value, w - TOOLTIP_WIDTH / 2));
-    return {
-      opacity: isScrubbing.value,
-      transform: [{ translateX: clampedX - TOOLTIP_WIDTH / 2 }, { scale: tooltipScale.value }],
-    };
-  });
-
-  // Scrub thumb — small dot at the leading edge of the fill, only visible
-  // while the user is actively scrubbing. Translates by `progressSV * width`
-  // so it matches whatever the worklet has set, and centers via -SCRUB/2.
-  const thumbStyle = useAnimatedStyle(() => {
-    const w = barWidthSV.value || 1;
-    return {
-      opacity: isScrubbing.value,
-      transform: [{ translateX: progressSV.value * w - SCRUB_THUMB / 2 }],
-    };
-  });
 
   const dateLabel = useMemo(() => {
     try {
@@ -315,21 +126,6 @@ export const BriefingBar = memo(function BriefingBar({
     }
   }, [date]);
 
-  // One track for both states: preparing shows it, playing lays the scrubber
-  // over it.
-  const progressTrack = (
-    <View
-      style={[
-        styles.progressTrack,
-        { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
-      ]}
-    >
-      <Animated.View
-        style={[styles.progressFill, { backgroundColor: colors.textSecondary }, progressStyle]}
-      />
-    </View>
-  );
-
   return (
     <Animated.View
       entering={FadeInDown.duration(ANIMATION.normal).withInitialValues({
@@ -340,17 +136,10 @@ export const BriefingBar = memo(function BriefingBar({
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"
     >
-      <BarBackground onLayout={onBarLayout} tintColor={colors.pillBg}>
+      <BarBackground tintColor={colors.pillBg}>
         {/* Tooltip lives outside the clipping inner so it can float ABOVE
             the bar without being chopped by the inner's overflow:hidden. */}
-        <Animated.View
-          style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
-          pointerEvents="none"
-        >
-          <Text variant="tabularEmphasis" style={styles.tooltipText}>
-            {scrubLabel}
-          </Text>
-        </Animated.View>
+        <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} />
 
         {/* Inner container clips the edge-to-edge progress strip to the
             pill's bottom-corner curve. The strip is only PROGRESS_HEIGHT
@@ -410,37 +199,24 @@ export const BriefingBar = memo(function BriefingBar({
             </IconButton>
           </View>
 
-          {preparing ? (
-            <View
-              style={styles.progressTouch}
-              accessibilityRole="progressbar"
-              accessibilityLabel={`Preparing briefing, ${formatTime(duration)} total`}
-            >
-              {progressTrack}
-            </View>
-          ) : (
-            <GestureDetector gesture={scrubGesture}>
-              <View
-                style={styles.progressTouch}
-                accessibilityRole="adjustable"
-                accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
-                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-                onAccessibilityAction={(e) => {
-                  const step = Math.max(10, duration * 0.05);
-                  if (e.nativeEvent.actionName === 'increment')
-                    onSeek(Math.min(elapsed + step, duration));
-                  else if (e.nativeEvent.actionName === 'decrement')
-                    onSeek(Math.max(elapsed - step, 0));
-                }}
-              >
-                {progressTrack}
-                <Animated.View
-                  pointerEvents="none"
-                  style={[styles.scrubThumb, { backgroundColor: colors.textEmphasis }, thumbStyle]}
-                />
-              </View>
-            </GestureDetector>
-          )}
+          <ScrubBar
+            scrub={scrub}
+            fraction={progressSV}
+            interactive={!preparing}
+            height={PROGRESS_HEIGHT}
+            trackColor={withAlpha(colors.textEmphasis, OPACITY.soft)}
+            fillColor={colors.textSecondary}
+            thumbColor={colors.textEmphasis}
+            style={styles.progressTouch}
+            accessibilityRole={preparing ? 'progressbar' : 'adjustable'}
+            accessibilityLabel={
+              preparing
+                ? `Preparing briefing, ${formatTime(duration)} total`
+                : `Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`
+            }
+            accessibilityActions={preparing ? undefined : SEEK_ACTIONS}
+            onAccessibilityAction={preparing ? undefined : handleSeekAction}
+          />
         </View>
       </BarBackground>
     </Animated.View>
@@ -458,7 +234,7 @@ const BarBackground = memo(function BarBackground({
   tintColor,
 }: {
   children: React.ReactNode;
-  onLayout: (e: LayoutChangeEvent) => void;
+  onLayout?: (e: LayoutChangeEvent) => void;
   tintColor: string;
 }) {
   if (Platform.OS === 'ios') {
@@ -516,42 +292,5 @@ const styles = StyleSheet.create({
     // at the screen's bottom edge. `lg` (was `md`) widens the thin target so
     // drag-to-scrub is easy to catch without clipping the home-indicator zone.
     paddingTop: SPACING.lg,
-  },
-  progressTrack: {
-    height: PROGRESS_HEIGHT,
-    overflow: 'hidden',
-    // No border-radius needed — `barInner` clips the strip's corners to
-    // the pill's outer curve. A 3px strip can't carry a large radius on
-    // its own anyway (radius caps at half its height).
-  },
-  progressFill: {
-    width: '100%',
-    height: PROGRESS_HEIGHT,
-    transformOrigin: 'left',
-  },
-  scrubThumb: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: SCRUB_THUMB,
-    height: SCRUB_THUMB,
-    borderRadius: SCRUB_THUMB / 2,
-    // Lift the thumb so its center sits on the track baseline rather than
-    // hanging off the pill's bottom edge.
-    marginBottom: -SCRUB_THUMB / 2 + PROGRESS_HEIGHT / 2,
-  },
-  // Floats above the bar card so the finger never covers it.
-  tooltip: {
-    position: 'absolute',
-    bottom: '100%',
-    left: 0,
-    marginBottom: SPACING.sm,
-    width: TOOLTIP_WIDTH,
-    paddingVertical: SPACING.xxs,
-    borderRadius: RADIUS.pill,
-    alignItems: 'center',
-  },
-  tooltipText: {
-    textAlign: 'center',
   },
 });

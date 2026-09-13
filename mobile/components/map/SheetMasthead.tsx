@@ -1,31 +1,29 @@
-import { memo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import { memo, useCallback } from 'react';
+import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
+import { type SharedValue, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
 import { PRESSED_STYLE, SPACING } from '../../constants/theme';
+import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
-import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { MASTHEAD_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
 import { Icon, IconButton, Text } from '../primitives';
+import { ScrubBar, ScrubTooltip } from '../ScrubBar';
 
 /**
- * One row above the story card: listen, how far through the day you are, and
- * the way back to all of it.
+ * One row above the story card: how far through the day you are, and the way
+ * back to all of it.
  *
- * **Listen leads the row** whenever there is a briefing to play and the player
- * is not already up: a round filled button, so it reads as its own control and
- * not as the play head of the track beside it. It moved here from the top bar,
- * where it sat over the globe out of the thumb's reach.
- *
- * After it the row says one thing at a time, in this order of precedence:
+ * It says one thing at a time, in this order of precedence:
  *
  *  1. **`checking for new stories`** while a pull is running — the one thing a
  *     pull-to-refresh has no other way to say.
  *  2. **`now · …`** while a live Red alert exists. Alerts never enter the deck
  *     (the camera track is stories only), so this line is where a hazard with
  *     no article yet reaches the sheet. It opens the alert.
- *  3. **A track and a list icon** otherwise. The whole row opens every story as
- *     a list.
+ *  3. **A segmented track and a list button** otherwise: one segment per story,
+ *     lit up to the one on the card. Drag along it to preview a story's place
+ *     (`12 of 48` floats over the finger) and lift to jump there; tap to jump.
+ *     The list button opens every story as a list.
  *
  * **The track is the status; nothing restates it.** It was `3 of 48 · 12 found
  * ━━━ all news ›` — the position twice (digits and bar), the found count a
@@ -35,10 +33,28 @@ import { Icon, IconButton, Text } from '../primitives';
  * (the row's label) and the index sheet's. The list icon is the signifier that
  * the row opens the list — the one thing the track cannot say.
  *
- * **The track follows the finger.** Its fill reads the deck's own `progress`
- * on the UI thread, so it moves with the swipe rather than jumping when the
- * card lands.
+ * **Nothing that plays sits beside it.** For one build the listen button led
+ * this row, and a play button next to a progress bar is that bar's play head —
+ * while the briefing's own player has a second progress bar. Listen lives in
+ * the top bar.
+ *
+ * **The track follows the finger** twice over: its fill reads the deck's own
+ * `progress` on the UI thread, so it moves with a swipe on the card, and it is
+ * a scrubber in its own right (`useScrub`, the briefing player's gesture), so a
+ * reader forty stories from the start does not have to swipe forty times.
+ *
+ * **Segments, because the unit is a story.** A plain bar maps to nothing the
+ * reader can count; one segment per story makes a swipe light exactly one more,
+ * which is the mapping Norman asks a control to make visible. Past 60 stories a
+ * segment would be no wider than its gap, and the track goes continuous.
  */
+
+/** Which story a fraction of the track points at: the segment under it. */
+function storyAt(fraction: number, count: number): number {
+  return Math.max(0, Math.min(count - 1, Math.ceil(fraction * count) - 1));
+}
+
+const ADJUST_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
 export const SheetMasthead = memo(function SheetMasthead({
   refreshing = false,
   index,
@@ -48,10 +64,7 @@ export const SheetMasthead = memo(function SheetMasthead({
   alert,
   onPress,
   onAlertPress,
-  briefingAvailable = false,
-  briefingResumable = false,
-  briefingDuration,
-  onBriefingPress,
+  onSeek,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
@@ -69,85 +82,102 @@ export const SheetMasthead = memo(function SheetMasthead({
   onPress?: () => void;
   /** Opens the alert. */
   onAlertPress?: () => void;
-  briefingAvailable?: boolean;
-  briefingResumable?: boolean;
-  briefingDuration?: number;
-  onBriefingPress?: () => void;
+  /** Jump to a story from the track. */
+  onSeek?: (index: number) => void;
 }) {
   const { colors } = useTheme();
   const showingAlert = !refreshing && !!alert;
-  const minutes = formatAudioDurationMinutes(briefingDuration);
-  const listen =
-    briefingAvailable && onBriefingPress ? (
-      <IconButton
-        onPress={onBriefingPress}
-        haptic="none"
-        style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-        accessibilityLabel={`${briefingResumable ? 'Resume daily briefing' : 'Daily briefing'}${minutes ? `, ${minutes}` : ''}`}
-        accessibilityHint={
-          briefingResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-        }
-      >
-        <Icon name="play" size="sm" tone="default" />
-      </IconButton>
-    ) : null;
 
-  // One story of 48 shows a 48th of the track; the end card fills it.
-  const fillStyle = useAnimatedStyle(() => {
-    const filled = count > 0 ? (position.value + 1) / count : 0;
-    return { width: `${Math.min(1, Math.max(0, filled)) * 100}%` };
-  }, [count]);
+  // One story of 48 fills a 48th of the track; the end card fills it. The deck
+  // writes this unless a finger is scrubbing the track itself.
+  const fraction = useSharedValue(0);
+  const labelFor = useCallback((f: number) => `${storyAt(f, count) + 1} of ${count}`, [count]);
+  const handleCommit = useCallback((f: number) => onSeek?.(storyAt(f, count)), [onSeek, count]);
+  const scrub = useScrub({
+    fraction,
+    detents: count,
+    steps: count,
+    labelFor,
+    onCommit: handleCommit,
+    tooltipWidth: 64,
+    enabled: count > 0 && !!onSeek,
+  });
+  const holding = scrub.holding;
+  useAnimatedReaction(
+    () => position.value,
+    (p) => {
+      if (holding.value) return;
+      const filled = count > 0 ? (p + 1) / count : 0;
+      fraction.value = Math.min(1, Math.max(0, filled));
+    },
+    [count],
+  );
+  const handleAdjust = useCallback(
+    (e: AccessibilityActionEvent) => {
+      if (!onSeek || count <= 0) return;
+      if (e.nativeEvent.actionName === 'increment') onSeek(Math.min(index + 1, count - 1));
+      else if (e.nativeEvent.actionName === 'decrement') onSeek(Math.max(index - 1, 0));
+    },
+    [onSeek, index, count],
+  );
 
   if (refreshing || showingAlert) {
     const handlePress = showingAlert ? onAlertPress : undefined;
     return (
-      <View style={styles.row}>
-        {listen}
-        <Pressable
-          onPress={handlePress}
-          disabled={!handlePress}
-          accessibilityLiveRegion="polite"
-          accessibilityRole={handlePress ? 'button' : 'text'}
-          accessibilityHint={handlePress ? 'Opens the alert' : undefined}
-          hitSlop={SPACING.xs}
-          style={({ pressed }) => [styles.body, pressed && handlePress ? PRESSED_STYLE : null]}
+      <Pressable
+        onPress={handlePress}
+        disabled={!handlePress}
+        accessibilityLiveRegion="polite"
+        accessibilityRole={handlePress ? 'button' : 'text'}
+        accessibilityHint={handlePress ? 'Opens the alert' : undefined}
+        hitSlop={SPACING.xs}
+        style={({ pressed }) => [styles.row, pressed && handlePress ? PRESSED_STYLE : null]}
+      >
+        <Text
+          variant="caption"
+          tone={showingAlert ? 'emphasis' : 'secondary'}
+          numberOfLines={1}
+          style={styles.shrink}
         >
-          <Text
-            variant="caption"
-            tone={showingAlert ? 'emphasis' : 'secondary'}
-            numberOfLines={1}
-            style={styles.shrink}
-          >
-            {refreshing ? 'checking for new stories' : `now · ${alert}`}
-          </Text>
-        </Pressable>
-      </View>
+          {refreshing ? 'checking for new stories' : `now · ${alert}`}
+        </Text>
+      </Pressable>
     );
   }
-  if (count <= 0) return listen ? <View style={styles.row}>{listen}</View> : null;
+  if (count <= 0) return null;
 
   const found = progress?.found ?? 0;
-  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${found > 0 ? `, ${found} found on the globe` : ''}. All news`;
+  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${found > 0 ? `, ${found} found on the globe` : ''}`;
 
   return (
     <View style={styles.row}>
-      {listen}
-      <Pressable
-        onPress={onPress}
-        disabled={!onPress}
-        accessibilityRole="button"
+      <ScrubBar
+        scrub={scrub}
+        fraction={fraction}
+        interactive={!!onSeek}
+        segments={count}
+        height={TRACK}
+        trackColor={colors.rule}
+        fillColor={colors.textSecondary}
+        thumbColor={colors.textEmphasis}
+        style={styles.scrub}
+        accessibilityRole="adjustable"
         accessibilityLabel={spoken}
-        accessibilityHint="Lists every story"
-        hitSlop={SPACING.sm}
-        style={({ pressed }) => [styles.body, pressed && onPress ? PRESSED_STYLE : null]}
+        accessibilityHint="Drag along it to move through the day's stories"
+        accessibilityActions={ADJUST_ACTIONS}
+        onAccessibilityAction={handleAdjust}
       >
-        <View style={[styles.track, { backgroundColor: colors.rule }]}>
-          <Animated.View
-            style={[styles.fill, { backgroundColor: colors.textSecondary }, fillStyle]}
-          />
-        </View>
-        <Icon name="list" size="md" tone="secondary" />
-      </Pressable>
+        <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} />
+      </ScrubBar>
+      {onPress ? (
+        <IconButton
+          onPress={onPress}
+          accessibilityLabel="All stories"
+          accessibilityHint="Lists every story"
+        >
+          <Icon name="list" size="md" tone="secondary" />
+        </IconButton>
+      ) : null}
     </View>
   );
 });
@@ -162,25 +192,9 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
     paddingHorizontal: SPACING.articlePadding,
     paddingBottom: SPACING.sm,
-  },
-  body: {
-    flex: 1,
-    minHeight: MASTHEAD_ROW,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-  },
-  // Hairline edge so the button stays defined on the sheet and over the globe
-  // alike. Definition over elevation: no shadow.
-  listen: {
-    width: MASTHEAD_ROW,
-    height: MASTHEAD_ROW,
-    borderRadius: MASTHEAD_ROW / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
+    minHeight: MASTHEAD_ROW + SPACING.sm,
   },
   shrink: { flexShrink: 1 },
-  track: { flex: 1, height: TRACK, borderRadius: TRACK / 2, overflow: 'hidden' },
-  fill: { height: TRACK, borderRadius: TRACK / 2 },
+  // The touch area is taller than the 3pt track it holds.
+  scrub: { flex: 1, paddingVertical: SPACING.smPlus, justifyContent: 'center' },
 });
