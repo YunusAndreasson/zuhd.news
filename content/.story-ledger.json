@@ -2,13 +2,534 @@
   "version": 1,
   "stories": [
     {
+      "id": "java-sea-ferry-the-manifest-and-the-count",
+      "label": "Indonesia rescuers search for 140 people from stricken ferry",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-java-sea-ferry-the-manifest-and-the-count"
+      ],
+      "eventUri": "eng-12005719",
+      "summary": "The KM Virgo Transport 8 left Surabaya for Banjarmasin carrying 243 people and lost contact in the Java Sea early Sunday in bad weather; one confirmed dead, about 140 still missing, 103 evacuated per Antara. Lead with the manifest against the rescue count, because the gap is the story and the manifest itself is usually the first thing that turns out to be wrong — Indonesian ferry casualty figures routinely rise when unticketed passengers are counted. Mechanism for the reader: Indonesia is 17,000 islands with no alternative to sea transport for ordinary people, so ferry safety is not a transport question but an access question — overloading, ageing hulls and weather-window pressure are the predictable output of a route that must sail because there is no other way to get to Kalimantan. Report the vessel's age, class, operator and licensed capacity, what the Surabaya port authority cleared it to carry, what BMKG had forecast, and how long it took SAR to reach the position. Then the accountability layer: Indonesia's transport ministry has promised the same reforms after Tanjung Priok, after the Sewol-era audits, after the 2018 Lake Toba sinking — name what was promised and what was done. Who is affected: working-class inter-island passengers and migrant workers, not tourists. Indonesia is an OIC member and Antara News (ID) is in the cluster — use it for the domestic figures rather than resting on DW and US News, since the national agency has the SAR and Basarnas numbers first. NOTE: the feed contained a second cluster for this same event mis-titled 'Altman Says OpenAI Will Not Go Public in 2026' (eng-12005379, Bloomberg) — the Bloomberg URL is genuine ferry reporting and is merged into sources here; the two clusters are one event. Fills the audit's flagged Southeast Asia gap, which had been absent outright.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Java_Sea",
+        "http://en.wikipedia.org/wiki/Banjarmasin",
+        "http://en.wikipedia.org/wiki/Surabaya",
+        "http://en.wikipedia.org/wiki/Ferry",
+        "http://en.wikipedia.org/wiki/South_Kalimantan",
+        "http://en.wikipedia.org/wiki/East_Java",
+        "http://en.wikipedia.org/wiki/Borneo"
+      ]
+    },
+    {
+      "id": "manghopir-the-funeral-held-open",
+      "label": "Protest continues in Karachi as family refuses to bury teen until his killers are arrested",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-manghopir-the-funeral-held-open"
+      ],
+      "eventUri": null,
+      "summary": "Six robbers, two of them in police uniforms, entered Roidad Hussain's house in Manghopir on 8 September and shot his teenage son dead; five days on the family will not bury him until the killers are arrested, and a DIG has confirmed the protest. Lead with the unburied body, because in Islamic practice burial is owed within a day — a family that holds a funeral open for five days is making the only sanction available to people the state will not answer. Mechanism, and this is the systemic point rather than a crime brief: the two police uniforms are the whole case. Karachi's uniform supply is unregulated and open-market, and the uniform works as a weapon precisely because a household opens the door to it — so the question for the Sindh police is not only who fired but who can buy the uniform, and whether any serving officer was involved, which is the allegation the family is actually making. Report the boy's name, what the FIR says and when it was registered, which police station, whether any arrest has followed, and what the DIG and the Edhi Foundation have said. Then the structural why: Manghopir is a peripheral, largely Pashtun and Baloch working-class katchi abadi, the part of Karachi where policing is thinnest and extortion densest, and the class geography of who gets an investigation is the reason this protest exists. Pakistan is an OIC member and Dawn (PK) is the regional outlet doing the original reporting — attribute to it throughout. Do not write this as a crime story; write it as a story about what recourse looks like when there is none.",
+      "conceptUris": []
+    },
+    {
+      "id": "fema-cuts-nullification-by-staffing",
+      "label": "US court blocks Trump administration plan to cut disaster agency workforce",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-fema-cuts-nullification-by-staffing"
+      ],
+      "eventUri": "eng-12005336",
+      "summary": "US District Judge Susan Illston ruled on Friday that DHS acted unlawfully in ordering job cuts at FEMA. Lead with the legal finding, not the politics: a court has held that the executive cannot dismantle a congressionally created agency by staffing decision. Mechanism, and it is the precedent our reader should take: Congress appropriates for an agency and sets its statutory duties, but the executive controls hiring, so a reduction-in-force is the instrument by which an administration can nullify a law it cannot repeal — Illston's ruling tests whether that instrument is reviewable, and she is the same judge who has now blocked this manoeuvre across several agencies. Report what the order actually does (injunction scope, which positions, whether cuts already executed are reversed), the statutory hook she relied on, and what the administration's appeal path is. Then the consequence, which is not abstract: FEMA is the agency that staffs disaster declarations, and hurricane season is running — report current staffing against the pre-cut baseline and against the number of open declarations. Accountability: name the DHS officials who ordered it. This is the 'single court ruling with precedent' case, not a news-cycle item — keep it on the mechanism of nullification-by-staffing, which is a pattern our readers will meet again in their own states. Al Jazeera (QA) is a reader-aligned source and is the only one in the feed cluster; the story is US-domestic so no OIC regional source applies.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Homeland_Security",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/United_States_federal_judge",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/United_States_district_court"
+      ]
+    },
+    {
+      "id": "south-africa-coalitions-88-to-110",
+      "label": "Number of local coalitions to rise steeply after 4 November",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-south-africa-coalitions-88-to-110"
+      ],
+      "eventUri": null,
+      "summary": "Susan Booysen, Wits professor emeritus, projects South Africa's hung municipalities rising from 88 to about 110 at the 4 November local elections. Lead with the two numbers, because a country where a quarter of its municipalities are governed by coalition has quietly changed its constitutional form without amending anything. Mechanism for the reader, and it is the part every horse-race story omits: South African local government uses proportional representation with no threshold and no coalition-formation rules, so a council of fifty can seat a party holding one seat, and that one seat can price a mayoralty — which is why Johannesburg has churned through mayors at a rate that makes budget execution impossible and why refuse, water and electricity delivery degrade fastest in exactly the metros with the most fragmented councils. Coalition instability is not a political inconvenience; it is a service-delivery mechanism with a body count in cholera and water outages. Report the current 88 by province, the ANC's projected share, and what the Municipal Structures Act does and does not say about coalition agreements — there is draft legislation on thresholds, so say where it stands. Then give the reader the comparative frame: this is the same arithmetic that produced Sweden's kingmaker problem, which we reported this morning, arriving in a state with far less fiscal slack to absorb it. Attribute the projection to Booysen and Daily Maverick as a forecast, not a finding. This is a South African analyst on South African politics and the audit's Africa gap is at two articles, both security — this one is governance and economics, which is what the continent has been missing here for three days.",
+      "conceptUris": []
+    },
+    {
+      "id": "npt-article-x-the-inspectors-leave-first",
+      "label": "Iran can easily withdraw from NPT, revise nuclear doctrine",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-npt-article-x-the-inspectors-leave-first"
+      ],
+      "eventUri": null,
+      "summary": "Abbas Goudarzi, spokesman for the Iranian parliament's presiding board, said on Sunday that leaving the Non-Proliferation Treaty is 'a readily attainable step' and that trusting the United States amounts to accepting deception. Lead with the institutional source, not the sentiment: this is the Majlis presiding board, the body that would actually carry a withdrawal bill, speaking during a war — which makes it a legislative signal rather than a talking point, and that distinction is the whole value of the story. Mechanism, and it must be precise because almost no coverage gets it right: NPT Article X permits withdrawal on three months' written notice to the other parties and the Security Council, stating the extraordinary events that jeopardised supreme interests — so withdrawal is legal, quick, and the only state ever to do it is North Korea in 2003. What withdrawal actually removes is IAEA safeguards access, meaning the world's ability to observe Iranian enrichment ends before any weapon exists; the inspectors are the thing that leaves, and that is the concrete cost. Explain also what Iran's current doctrine is — Khamenei's fatwa against nuclear weapons is the stated basis, so 'revising the doctrine' is a religious-legal claim as much as a strategic one, and our reader will want that treated seriously rather than waved at. Report what the Majlis has actually passed or tabled to date, what the IAEA's present access is, and what Araghchi and the foreign ministry say, since parliament and the ministry have diverged on this before. Iran is an OIC member and Mehr (IR) is the domestic agency reporting its own parliament — attribute plainly to Mehr as the source of a named official's statement, do not upgrade a spokesman's remark into state policy, and seek corroboration from IRNA or Tehran Times. Distinct from our 09-12 Trump-claims and 09-13 Hormuz diplomacy pieces: this is the treaty architecture, not the war or the waterway.",
+      "conceptUris": []
+    },
+    {
+      "id": "barkin-ladi-arrests-without-prosecutions",
+      "label": "Soldiers arrest three suspects after 17-year-old was killed in Plateau",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-barkin-ladi-arrests-without-prosecutions"
+      ],
+      "eventUri": null,
+      "summary": "Peter Gyang, 17, was killed at Kafi-Abu village in Barkin Ladi, Plateau State, and troops acting on intelligence arrested three suspects at a nearby settlement on Saturday. Lead with the name and the place, because Barkin Ladi is not a random location — it is the epicentre of the Plateau killings, where hundreds died in 2018 and where attacks have continued through every commission of inquiry since. Mechanism, and it is what makes this a governance story rather than a crime report: soldiers, not police, made the arrests, because Nigeria's Middle Belt has been under a standing military operation for years — Operation Safe Haven — and a state that polices with the army has replaced investigation with occupation. Soldiers can detain; they cannot build a prosecutable case, which is why the conviction record for Plateau killings is close to nothing across a decade of arrests. Report who the three are, whether they have been transferred to police custody or the DSS, and what happened to those arrested after the previous Barkin Ladi attacks — that follow-up is the story. Then the structural why for our reader: the farmer–herder framing exported to the world hides a land-tenure conflict over grazing corridors, indigene-settler citizenship rules that deny some Plateau residents state rights by birth, and a climate signal pushing pastoralists south — name those, and do not let a Muslim-versus-Christian frame stand in for them. Nigeria is an OIC member and Premium Times (NG) is the regional outlet with original reporting; attribute throughout. Second Africa entry against a gap the audit has flagged for three days.",
+      "conceptUris": []
+    },
+    {
+      "id": "three-routes-one-gun-red-sea-oil",
+      "label": "The Outlook Is Getting Grimmer By The Day For Oil Exports From The Red Sea",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-three-routes-one-gun-red-sea-oil"
+      ],
+      "eventUri": null,
+      "summary": "With Iraqi militia drones striking the Saudi East–West pipeline and Ansarallah now holding the positions that command Bab al-Mandab, every route out of Gulf and Red Sea oil is under one of two guns. Write the export map as arithmetic, not as a war narrative. Lead with the count: Saudi crude has exactly three ways to reach a buyer — Hormuz, the East–West pipeline to Yanbu and then Bab al-Mandab, and the Gulf terminals themselves — and this week is the first time all three have been simultaneously contested. Mechanism our reader should keep: a hedge is worth nothing if the failure modes correlate, and correlation is what has just happened, because one adversary coalition can now reach the launch point for each. Report the hard numbers rather than the atmosphere — East–West throughput capacity and current flow, Yanbu loadings, transits through Bab al-Mandab this week against the 2023 baseline, Brent and Dubai, and the war-risk premium as a percentage of hull value on each of the three routings, which is the figure that actually decides whether a charterer sails. Then the part Western defence coverage never carries: the countries that lose first are not the buyers but the importers with no strategic reserve and a dollar-denominated fuel bill — Pakistan, Egypt, Bangladesh, Kenya — where a sustained freight and insurance step-up becomes a currency and subsidy crisis within a quarter. Name them and cost it. This is the third and final entry in the pipeline arc (after 09-12 Ankara and 09-13 Maysan) — it is the consolidated economics, so do not re-tell the launcher seizure or the shutdown. SOURCING: The War Zone is single-source and US defence-trade; the writer must verify the Bab al-Mandab and pipeline claims against Lloyd's List, Reuters, EIA or TankerTrackers, and should seek Arab News (SA), Al Jazeera (QA) or Mehr (IR) for the regional read — the feed offers no OIC-region outlet on this specific analysis, which is a feed-side gap worth auditing given Saudi Arabia, Yemen and Iraq are the subjects.",
+      "conceptUris": []
+    },
+    {
+      "id": "gabrovo-the-magazine-is-the-bottleneck",
+      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck"
+      ],
+      "eventUri": "eng-12004090",
+      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bulgaria",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Sabotage",
+        "http://en.wikipedia.org/wiki/Explosion"
+      ]
+    },
+    {
+      "id": "daachi-the-channel-that-lasts-two-days",
+      "label": "Crafts from 100 Pakistani villages on display under one roof at Karachi Expo Centre",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-daachi-the-channel-that-lasts-two-days"
+      ],
+      "eventUri": null,
+      "summary": "The 25th Daachi Arts and Crafts Exhibition opened at the Karachi Expo Centre with about 200 stalls carrying work from more than 100 villages — Hala and Multan pottery, Sindhi and Balochi embroidery, ralli quilts. Do not write a culture listing; write the market-access problem it exists to solve. Lead with the distance the goods travelled and what that distance normally costs: a Hala potter or a Tharparkar embroiderer sells through middlemen who take the margin because the producer has no route to a buyer, and a two-day fair is a temporary substitute for a distribution channel that the sector does not have the rest of the year. Mechanism for our reader, which is the structural why: Pakistani handicraft is overwhelmingly home-based female labour, unregistered, uncounted in GDP and outside the labour code — so 'informal' here means no contract, no minimum piece rate and no bargaining position, and the reason craft exports stay small is not demand abroad but the absence of aggregation, certification and freight at the producer end. Report the real economics — what an embroiderer is paid per piece against the Expo Centre retail price, Pakistan's annual handicraft export figure and its trend, what TDAP and SMEDA actually fund, and whether any of the 100 villages sell online or through a cooperative. Then the comparison that makes the point land: India's and Morocco's craft-export programmes are built on artisan registries and geographical-indication marks, and Pakistan's are not — say what that costs. Quote artisans by name, especially women, rather than organisers. Pakistan is an OIC member and Dawn (PK) is the regional source. This is the audit's flagged absence of any non-conflict economy story from Asia or Africa — treat it as economics, and the register must be sober, not celebratory.",
+      "conceptUris": []
+    },
+    {
+      "id": "chokepoints-named-by-those-who-hold-them",
+      "label": "Xi by his side, Modi warns against 'weaponisation of tech'",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-chokepoints-named-by-those-who-hold-them"
+      ],
+      "eventUri": "eng-12005886",
+      "summary": "At the New Delhi BRICS summit, with Xi Jinping beside him, Modi asked the bloc to recognise the danger of weaponising 'technology and critical minerals'. Lead with who is standing next to whom, because the sentence is aimed in two directions at once and the staging is the reporting: China holds the chokepoint Modi is describing. Write the supply chain, not the summit — we have covered this summit three times and will not cover it again. Mechanism, concretely: China refines roughly nine-tenths of the world's rare earths and holds near-monopoly positions in gallium, germanium and graphite processing, and export-licensing controls on those inputs are now a routine instrument of Chinese statecraft — while the United States runs the mirror-image instrument in the Entity List and the chip-tooling controls that reach any fab using American equipment anywhere. Both are 'weaponisation', and Modi named neither. That is the story: a summit communiqué against chokepoint coercion signed by the two states that own the chokepoints. Report the actual dependency figures with sources, India's own position (it has export-restricted some minerals and is building a rare-earth magnet scheme), and what the declaration text says as against what it omits. Then the stakes for our reader: Indonesia, Malaysia, Turkey and the Gulf are building semiconductor, EV and battery capacity on inputs they do not control, so a licence regime in Beijing or Washington sets the ceiling on industrial policy in Jakarta and Ankara — that is technological sovereignty stated as an arithmetic, and it is why this belongs in tech rather than diplomacy. Multi-source: NDTV and Rediff (both IN), sentiment divergence 0.35. No OIC-region outlet covered this specific event angle in the feed, though Dawn (PK) carried the separate BRICS restraint declaration — note that as a feed-side gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/BRICS",
+        "http://en.wikipedia.org/wiki/New_Delhi",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Critical_mineral_raw_materials",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Export_restriction",
+        "http://en.wikipedia.org/wiki/Summit_(meeting)"
+      ]
+    },
+    {
+      "id": "benchmark-is-not-the-discipline",
+      "label": "A misalignment of AI in mathematics",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-benchmark-is-not-the-discipline"
+      ],
+      "eventUri": null,
+      "summary": "A statement from working mathematicians arguing that what AI labs are optimising for in mathematics is not what mathematics is for — 1,192 points and 1,168 comments on Hacker News, the highest-attention technical item in today's feed. Lead with the misalignment claim stated precisely: benchmark performance rewards producing a correct answer to a closed problem, while mathematics as a discipline produces understanding, definitions and proofs that other humans can check and build on — so a model that saturates competition benchmarks can be simultaneously superhuman on the metric and useless for the practice. Mechanism our technically literate reader will want, not vibes: explain formalisation and why Lean and mathlib matter here — a machine proof that typechecks is verifiable in a way a natural-language proof from a language model is not, which makes the verification gap the actual bottleneck, and it is why 'AI solved an IMO problem' and 'AI advanced number theory' are different claims. Report what the statement actually says, who signed it and what their standing is, what it asks of funders and labs, and the strongest counter-argument from the other side (Lean-assisted collaborations and the equational-theories projects are real results, and the piece must concede them). Then the structural why, which is why this is a story and not a discourse item: research funding and graduate training follow benchmark narratives, so if the metric is wrong the misallocation lands on the next generation of mathematicians — and on departments in Pakistan, Egypt, Iran and Nigeria that cannot afford to chase a compute-defined frontier and would be better served by the formalisation tooling, which is free. SOURCING: the link is the primary document at mathandai.org, surfaced via Hacker News; treat the document as the source, name its signatories, and do not present its claims as established consensus.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-model-learned-the-hospital",
+      "label": "Beyond full fine-tuning: towards enhanced generalizability in downstream ECG foundation model adaptation",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-the-model-learned-the-hospital"
+      ],
+      "eventUri": null,
+      "summary": "Researchers report that fully fine-tuning an ECG foundation model on a downstream task generalises worse than lighter adaptation methods — the model learns the hospital, not the heart. Lead with that failure mode, because it is the one thing clinicians and engineers both need and neither is told: full fine-tuning on a single site's recordings overwrites the general representation with local artefacts — that site's electrode placement, lead noise, patient mix and device vendor — so the model posts a better score on held-out data from the same hospital and degrades on anyone else's. Mechanism for our reader: parameter-efficient adaptation (LoRA, adapters, linear probing — say which the paper tested) freezes most of the pretrained weights and trains a small number, which structurally limits how much local idiosyncrasy the model can absorb; the constraint is the feature. Report the actual evidence — the datasets and how many sites, in-distribution versus out-of-distribution accuracy for each method, the number of trainable parameters, and whether the gains hold on the arrhythmia classes that are rare and clinically dangerous rather than on aggregate AUC. Then the structural why, which is the reason this belongs in our feed: ECG is the cheapest diagnostic in cardiology and the one most likely to be automated first in health systems with few cardiologists — Pakistan, Egypt, Nigeria, Indonesia — and those systems will deploy models pretrained on North American and European cohorts with local data too scarce for full fine-tuning. A method that adapts well on little data is a health-access fact before it is an ML result; a model that silently learns one hospital is a harm exported. Accepted manuscript with a DOI, not the version of record — say so, and name the authors and institutions.",
+      "conceptUris": []
+    },
+    {
+      "id": "fourteen-days-of-heat-the-window-no-alert-covers",
+      "label": "Effects of heat exposure on self-reported heat strain symptoms among pregnant and postpartum women in South Africa",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-fourteen-days-of-heat-the-window-no-alert-covers"
+      ],
+      "eventUri": null,
+      "summary": "A cohort study in South Africa finds that 14-day average outdoor wet-bulb globe temperature and maximum air temperature are both consistently associated with heat strain symptoms in pregnant and postpartum women, and the associations survive adjustment for covariates. Lead with the fourteen days, because the exposure window is the finding: this is not heatstroke on a record afternoon, it is cumulative load over a fortnight, which means the risk is invisible to every warning system built around single-day thresholds. Mechanism, explained plainly and it is genuinely interesting physiology: pregnancy already runs a raised metabolic rate, expanded plasma volume and a redistributed cardiac output that sends blood to the placenta, so a pregnant woman has less thermoregulatory reserve to spend on skin perfusion and sweating — heat and pregnancy compete for the same circulatory capacity, and the fetus has no independent way to shed heat. Say what the downstream outcomes in the wider literature are (preterm birth, low birthweight, stillbirth) and be careful to mark which this study measured and which it did not. Report the numbers: cohort size, setting, effect estimates per degree, and what WBGT is and why it differs from the temperature on a phone — it folds humidity, radiant heat and wind, which is exactly why it catches what a thermometer misses. Then who is affected and how, concretely: women doing outdoor agricultural or informal work in Limpopo and Mpumalanga, in homes with metal roofs and no cooling, who cannot take a fortnight off — the intervention that follows from a 14-day exposure window is work scheduling and shade, not an emergency alert. This is African science about African women, from a South African cohort, against an audit gap of two Africa articles in three days, both of them security. Name the institutions and the cohort.",
+      "conceptUris": []
+    },
+    {
+      "id": "no-single-biomarker-immunotherapy",
+      "label": "A multimodal murmuration for immunotherapy",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-13T08:07:01.040Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-no-single-biomarker-immunotherapy"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Medicine piece arguing that predicting who benefits from cancer immunotherapy requires many weak signals read together — imaging, pathology, genomics, circulating markers — rather than the single biomarker the field has spent a decade looking for. Lead with the failure that motivates it: PD-L1 expression and tumour mutational burden are the biomarkers in clinical use, and they are poor enough that most patients given a checkpoint inhibitor do not respond while carrying its real toxicity and its very large price. Mechanism, and the metaphor in the title is the argument: a murmuration has no leader — the behaviour is a property of the interactions, and the claim here is that immunotherapy response is likewise a system state, not a molecule, so combining modalities recovers signal that no single assay holds. Explain why that is technically hard rather than merely fashionable: each modality has its own missingness and batch effects, and a multimodal model trained on a few hundred patients will happily learn the scanner. Report what evidence the authors present, whether it is prospective or retrospective, the effect sizes, and the declared conflicts — the corresponding author reports funding from AstraZeneca and Roche and sits on a Roche trial steering committee, which the piece must state, because these are the companies selling the drugs a better biomarker would ration. Then the access point our reader should be given: a multimodal predictor needs an MRI, digitised pathology, a sequencing panel and the informatics to fuse them, so a method that improves patient selection in Barcelona can simultaneously widen the gap for a hospital in Cairo or Lahore where the single cheap assay is all there is — better prediction is not automatically better access. This is a perspective piece, not a trial; label it as argument and attribute throughout.",
+      "conceptUris": []
+    },
+    {
+      "id": "bahrain-empty-chair-hormuz-muscat-talks",
+      "label": "Bahrain won't attend meeting on Hormuz in Oman",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-bahrain-empty-chair-hormuz-muscat-talks"
+      ],
+      "eventUri": "eng-12004803",
+      "summary": "Bahrain has refused to attend Monday's Iran–Gulf meeting in Muscat on the Strait of Hormuz until diplomatic ties with Tehran are restored, and a senior Iranian official says nothing will be signed there anyway. Lead with the empty chair, not the meeting: the Gulf is being asked to negotiate the security of the waterway all of its exports pass through, and one of its members will not sit in the room. Mechanism for the reader: Oman is the only GCC state that has kept channels to Tehran open through every rupture, which is why Muscat and not Riyadh hosts this — mediation is a capability, and it is unevenly distributed across the Gulf. Explain what a Hormuz arrangement would actually have to cover (transit notification, escort rules, insurance war-risk zones, who de-mines) and why none of it works without Bahrain, which hosts the US Fifth Fleet. Report Pezeshkian's line that the region does not need the US as its 'policeman' alongside the fact that Bahrain's refusal is itself a US-aligned position — set the two against each other rather than picking one. Name who is attending and who is not. Bahrain, Iran, Oman, Saudi Arabia and Qatar are all OIC members and the feed carries Dawn (PK), Al Jazeera (QA) and Middle East Eye — regional coverage is present; do not rest the piece on Western wires. Distinct from our 09-12 pipeline and Trump-claims coverage: this is the diplomacy of the waterway, not the war.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Persian_Gulf",
+        "http://en.wikipedia.org/wiki/Bahrain",
+        "http://en.wikipedia.org/wiki/Muscat",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "sweden-democrats-cordon-sanitaire-ends",
+      "label": "Sweden election: Far right eyes power for 1st time",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-sweden-democrats-cordon-sanitaire-ends"
+      ],
+      "eventUri": "eng-12004234",
+      "summary": "Swedes vote today in an election that could put the Sweden Democrats — a party with roots in the 1980s white-nationalist movement — inside government for the first time, after four years of propping up Kristersson's minority coalition from outside. Lead with the threshold being crossed, not the horse race: the question is not whether the far right is popular (it already is, it has been the kingmaker since 2022) but whether the cordon sanitaire that kept it out of ministries finally goes. Mechanism to explain: Sweden's proportional system with a 4% threshold makes coalition arithmetic everything, so a party can set policy for years without holding a portfolio — the Tidö Agreement already gave the SD influence over migration and policing without the responsibility. Report concretely what the SD would control if it enters cabinet, and what its programme says about citizenship revocation, family reunification, and the roughly 800,000 Swedish residents born in Muslim-majority countries who are the explicit subject of that programme. Who is affected: immigrant and Muslim communities in Malmö, Rinkeby and Rosengård, whose status is the campaign's central issue and who are rarely quoted in coverage of it — quote them. Give the results and the seat maths if they are in by writing time; if not, write the stakes and say plainly that counting is under way. Sources diverge sharply in framing (DW 0.30, TRT 0.07) — Al Jazeera and TRT will cover the migration plank that DW treats as background; use both.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sweden",
+        "http://en.wikipedia.org/wiki/Sweden_Democrats",
+        "http://en.wikipedia.org/wiki/Ulf_Kristersson",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Prime_minister",
+        "http://en.wikipedia.org/wiki/Far-right_politics",
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/Centre-left_politics"
+      ]
+    },
+    {
+      "id": "johannesburg-killings-threats-that-preceded-them",
+      "label": "Femi Fani-Kayode Reacts To Murder Of Michael Taiwo, James Nwankwo In SouthAfrica",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-johannesburg-killings-threats-that-preceded-them"
+      ],
+      "eventUri": "eng-12004555",
+      "summary": "Two Nigerians — Bishop Michael Taiwo Fakunle, shot at his Johannesburg home on 4 September after a series of threats, and James Uchechukwu Nwankwo — were killed in South Africa, and a former Nigerian foreign-affairs minister is demanding Abuja respond. Lead with the two named men and the threats that preceded the first killing, because a warning that was ignored is the accountability fact here: the question for the South African Police Service is what was done between the threats and the shooting. Mechanism, and it is the structural why: roughly 800,000 Nigerians and other African migrants live in South Africa inside an economy with the world's highest measured unemployment, where organised movements like Operation Dudula have made migrants the explanation for it — so xenophobic violence there is not random crime, it is a politics with organisations, spokesmen and a body count that has been accumulating since 2008. Report what SAPS has said, whether anyone is charged, what the Nigerian mission in Pretoria has done, and what came of the compensation and repatriation promises after the 2019 and 2021 waves. SOURCING: the feed carries only Nairaland, a Nigerian forum reproducing Fani-Kayode's statement — that is a politician's statement, not established fact. The writer must verify both deaths against South African outlets and Nigerian wires (Premium Times, Vanguard, NAN) before printing, and drop any detail that cannot be confirmed. Nigeria is an OIC member; Nairaland (NG) is the only regional outlet the feed offers on this event and it is a weak one — log that as a feed-side gap. This is the audit's flagged Africa gap: give African actors and victims their names.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/South_Africa",
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/South_African_Police_Service",
+        "http://en.wikipedia.org/wiki/Johannesburg",
+        "http://en.wikipedia.org/wiki/Xenophobia",
+        "http://en.wikipedia.org/wiki/Government_of_South_Africa",
+        "http://en.wikipedia.org/wiki/Murder",
+        "http://en.wikipedia.org/wiki/Cape_Town"
+      ]
+    },
+    {
+      "id": "unn-foi-refusal-the-custodian-is-the-chokepoint",
+      "label": "LP chieftain sues UNN over alleged refusal to release Peter Obi's academic records",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-unn-foi-refusal-the-custodian-is-the-chokepoint"
+      ],
+      "eventUri": "eng-12005520",
+      "summary": "A Labour Party figure has gone to court against the University of Nigeria, Nsukka and its vice-chancellor for refusing a freedom-of-information request for Peter Obi's academic records. Do not write this as a scandal about Obi — write it as a test of whether Nigeria's Freedom of Information Act reaches a public university at all. Lead with the mechanism: the FOI Act of 2011 obliges public institutions to release records within seven days or give reasons, but universities and state bodies have spent a decade arguing they are not covered, and courts have split — so every suit like this is the statute being litigated into existence one respondent at a time. Explain what the applicant asked for, on what date, what UNN answered, and what remedy the court can actually order. Then the structural why for our reader: candidate-credential disputes have decided or shadowed Nigerian elections before (the certificate cases against Tinubu and others), and the reason they fester is that the records custodian, not the candidate, is the chokepoint — an institution that will not answer an FOI request makes verification impossible and rumour cheap. Note the applicant is a former factional LP spokesman, so his motive is political; say so plainly and keep the story on the disclosure duty, not the insinuation. Nigeria is an OIC member and Premium Times (NG) is the regional outlet — original single-source reporting from a credible investigative newsroom; attribute to it throughout. Second of two Africa entries this cycle against a flagged continental gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "terrorism-designation-the-word-is-a-switch",
+      "label": "The Language of Terrorism Since 9/11",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-terrorism-designation-the-word-is-a-switch"
+      ],
+      "eventUri": null,
+      "summary": "Twenty-five years on, the world's media have quietly retreated from the word 'terrorism' while governments have expanded it — and the gap between the two is where a great deal of law now lives. Lead with the asymmetry itself: newsrooms adopted 'militant', 'gunman', 'armed group' precisely because the older word carried a judgement they could not source, while legislatures went the other way and wrote the judgement into statute, where it triggers powers no ordinary criminal charge does. Mechanism, and it is the reason this belongs beside our 09-12 piece on the Alien Terrorist Removal Court: a terrorism designation is an administrative act, made before any adversarial test, that unlocks asset freezes, secret evidence, proscription of membership and removal without an ordinary hearing — so the word is not a description, it is a switch. Report concretely how many entities are on the major designation lists now against 2001, which categories have been added (environmental and animal-rights groups, protest movements, in some states entire diaspora charities), and who reviews a designation once made. Who is affected: Muslim organisations and charities most of all, but increasingly anyone a government finds inconvenient — and the reader should be given the general rule, not only the familiar cases. Treat this as reported argument, not opinion: every claim must come off the New Lines piece and its named sources, attributed to it, with no editorialising added. High reader relevance on the 9/11 anniversary week, which is also today's public-attention signal.",
+      "conceptUris": []
+    },
+    {
+      "id": "maysan-launch-platform-seized-first-physical-evidence",
+      "label": "Iraq seizes drone launch platform used in Saudi oil pipeline attack",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-maysan-launch-platform-seized-first-physical-evidence"
+      ],
+      "eventUri": "eng-12004500",
+      "summary": "Iraqi security forces say they have located and seized the launch platform used to strike Saudi Arabia's East–West pipeline, with Lt Gen Saad Maan announcing it through the state news agency INA. Lead with the object, because a seized platform is the first physical evidence in a story that has so far been entirely claims: it establishes the launch was from Iraqi soil, in Maysan, and it puts Baghdad in possession of something that can be traced. Mechanism and why it matters beyond one strike: the East–West line exists so Saudi crude can reach the Red Sea without passing Hormuz, and drones launched from Iraq defeat that hedge by making both routes vulnerable to one actor — we reported that logic on 09-12 from Ankara's statement; this is the evidence stage, so advance it rather than repeating it. Report what the platform actually is (vehicle-mounted rail, fixed frame, launch tubes — say which), who Iraq names or declines to name, whether any arrests followed, and what the Popular Mobilisation Forces' position is, since the accusation runs toward groups inside the Iraqi state's own security architecture. Then the economics: pipeline throughput before and after, current Brent, and Red Sea and Gulf war-risk premiums. Accountability: a state that seizes the launcher but names no one has answered half the question — say which half. Iraq, Saudi Arabia, Qatar and Turkey are OIC members; the feed carries Al Jazeera (QA) and TRT World (TR), so regional coverage is present. Second entry in the pipeline arc — do not re-tell the shutdown.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Maysan_Governorate",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Pipeline_transport",
+        "http://en.wikipedia.org/wiki/Commander-in-chief",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Iraq"
+      ]
+    },
+    {
+      "id": "hormuz-tanker-strike-the-third-route",
+      "label": "Tanker hit by projectile in Strait of Hormuz -- UKMTO",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-hormuz-tanker-strike-the-third-route"
+      ],
+      "eventUri": null,
+      "summary": "The UK Maritime Trade Operations centre has logged a tanker struck by a projectile inside the Strait of Hormuz — no vessel name, no flag, no casualty figure yet. Lead with the location, because that is the whole story: a hit inside the strait itself, not off Yemen and not at a Saudi terminal, is the third of the three export routes being closed, and roughly a fifth of the world's seaborne oil passes through a channel whose shipping lanes are two miles wide. Mechanism for the reader: the market does not move on barrels lost, it moves on insurance — a UKMTO incident report is the trigger that repricing war-risk cover keys off, and a premium rise of a fraction of a percent of hull value per voyage is what actually decides whether a charterer sails. Report the war-risk rate before and after if it can be obtained, the Brent and Dubai benchmarks, and how many laden tankers transited this week against the normal count. Then the human fact that gets omitted: crews on these ships are overwhelmingly Filipino, Indian, Bangladeshi and Pakistani seafarers who cannot decline the voyage, and they are the people a projectile actually reaches — find out who was aboard. SOURCING DISCIPLINE: the only feed source is TASS, a Russian state agency with an interest in a high oil price, and it is reporting a UKMTO advisory — the writer must pull the UKMTO advisory itself and a shipping wire (Lloyd's List, Reuters, TradeWinds) and print nothing that is not in them; if the advisory cannot be found, drop the story. Iran, Oman and the UAE are OIC states and the feed carries NO regional outlet on this incident — log that as a feed-side gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "openai-ipo-stood-down-the-balance-sheet",
+      "label": "OpenAI's Altman rules out 2026 IPO as AI safety takes priority",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-openai-ipo-stood-down-the-balance-sheet"
+      ],
+      "eventUri": "spa-4339323",
+      "summary": "Sam Altman has ruled out an OpenAI listing this year — a September IPO had been in preparation — telling Fortune that going public now would make it harder to prioritise safety over shareholders. Lead with the reversal and its timing, not the sentiment: a company that was weeks from a filing has stood down, in the same week its rivals' chief executives all called publicly for the race to slow. Mechanism, and this is what our reader should take away: a public company acquires a fiduciary duty to shareholders and a quarterly disclosure cadence, which is exactly the machinery that makes 'we delayed a model' an actionable disappointment — so Altman's stated reason is a real one, and it is also a reason that has always been true and did not stop the preparation. Report what OpenAI's capital position actually is, because that is the alternative explanation the piece must weigh: the compute commitments, the Microsoft arrangement, the private-round valuations, and how long the company can fund training runs without public markets. Note that critics (MoneyControl among them) read the industry-wide slowdown call as cover for an IPO that the market would not have taken at the asked price — give the reader the facts to judge that, not a verdict. Structural why: whether the frontier labs are financed by private capital or public markets decides who can ever see their numbers, and therefore whether any of this is auditable from outside. Distinct from our 09-12 Amodei-slowdown piece: that was the essay, this is the balance sheet. Do not re-argue the slowdown debate.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Technology",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Internet",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/United_States_dollar"
+      ]
+    },
+    {
+      "id": "iphone-upmarket-the-subsidy-nobody-else-gets",
+      "label": "From smartphone to luxury tech: iPhone Duo, iPhone 18 Pro — why Apple may be pushing the iPhone further upmarket",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-iphone-upmarket-the-subsidy-nobody-else-gets"
+      ],
+      "eventUri": "eng-12004816",
+      "summary": "Apple's new line and the carrier promotions around it point one way: the iPhone is being repositioned as luxury hardware, and T-Mobile's 'free' iPhone 18 Pro is the tell. Do not write a launch story — write the financing. Lead with what 'free' actually means: a trade-in plus a two-year bill-credit schedule on the most expensive plan, which is a consumer loan with an early-termination penalty, structured so the phone's real price never appears on a receipt. Mechanism our reader will recognise instantly: Apple's unit sales have been flat for years, so revenue growth has to come from average selling price and services, and the carrier subsidy is the instrument that raises the sticker while hiding it from the buyer. Then the part no Western coverage carries: outside the US and Gulf there is no subsidy — an iPhone 18 Pro in Karachi, Lagos, Cairo or Jakarta is bought outright in cash or on local instalment credit at rates several times a US bill credit, so the same device is one month's salary in one market and a rounding error in another, and Apple's upmarket move quietly widens that gap. Report the actual prices across markets in local currency and as a share of median monthly income, the trade-in and plan conditions, and what the 'iPhone Duo' actually is rather than what the rumour cycle says. Khaleej Times carries the UAE launch and resale timing; use it for the Gulf figures. Avoid gadget-review register entirely.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/IPhone",
+        "http://en.wikipedia.org/wiki/Apple_Inc.",
+        "http://en.wikipedia.org/wiki/Electric_battery",
+        "http://en.wikipedia.org/wiki/IOS",
+        "http://en.wikipedia.org/wiki/Apple_Watch",
+        "http://en.wikipedia.org/wiki/Apple_Pencil",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/AirPods"
+      ]
+    },
+    {
+      "id": "lethal-autonomy-the-link-is-what-breaks-first",
+      "label": "Review: A Vision of a Future Where Machines Fight Wars",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-lethal-autonomy-the-link-is-what-breaks-first"
+      ],
+      "eventUri": null,
+      "summary": "Frank Kendall — until recently the civilian official who ran US Air Force acquisition, and before that the Pentagon's chief weapons buyer — argues in a new book that machines will and should make some decisions to strike people and infrastructure. Lead with who is saying it, not that a book exists: this is the man who signed the cheques arguing that the human-in-the-loop requirement is a luxury the US cannot keep, and that is a procurement position with a budget behind it, not a thought experiment. Mechanism to explain precisely, because the debate is usually conducted in slogans: 'autonomy' in a weapon means the target-recognition and engagement decision happens onboard, and the reason commanders want it is latency and jamming — a datalink to a human operator is the thing an adversary attacks first, so the pressure toward autonomy comes from electronic warfare, not from ideology. That is the same arithmetic as our 09-12 drone-boat piece: when links fail, the machine either decides or is useless. Report what Kendall actually proposes, what he concedes, and what the current US policy (DoD Directive 3000.09) requires — then the accountability question that no autonomy doctrine has answered: when an autonomous system kills the wrong people, who is the defendant. Who is affected: populations under drone and loitering-munition warfare now — Yemen, Gaza, Sudan, the Sahel — where the systems are already deployed and the review procedures are not. Treat the book as the source and attribute to it; do not present Kendall's forecasts as findings.",
+      "conceptUris": []
+    },
+    {
+      "id": "robotics-as-mobilisation-rate",
+      "label": "AI, Robotics and the Coming Economic, Military, and Political Revolutions",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-robotics-as-mobilisation-rate"
+      ],
+      "eventUri": null,
+      "summary": "An argument that China's coupling of AI to physical robotics — not chatbots, but factories, ports and munitions lines — is the transformation that matters, and that it lands on economics, military power and domestic politics at once. Lead with the hinge the piece turns on: a model that only writes text competes with white-collar labour, while a model attached to an actuator competes with the manufacturing base a country's power actually rests on — which is why the interesting number is installed industrial robots per 10,000 workers, and why China's has passed Germany's and Japan's. Report those figures and their sources rather than asserting a trend. Mechanism for our reader, who follows this as a strategic question: robotics compresses the gap between civilian and military production, because the same automated line that makes appliances makes drones and shell casings, so 'industrial capacity' stops being a peacetime statistic and becomes a mobilisation rate — that is the concrete reason Washington and Beijing both now treat factory automation as a defence programme. Then the part the piece should not be allowed to skip: what this means for countries that are neither — Indonesia, Bangladesh, Egypt, Morocco built development strategies on cheap manufacturing labour, and automation at this cost curve removes the rung they were climbing. Follows our 09-12 piece on the $4,000 Chinese quadruped without repeating its cost-curve argument; this is the strategic frame around it. This is analysis, not reporting — attribute every claim to The Diplomat and its named sources, and label forecasts as forecasts.",
+      "conceptUris": []
+    },
+    {
+      "id": "sagar-methanol-the-antidote-is-the-enzyme",
+      "label": "MP hooch tragedy: Wanted accused caught after encounter in Sagar; 19 held so far",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-sagar-methanol-the-antidote-is-the-enzyme"
+      ],
+      "eventUri": "eng-12003972",
+      "summary": "Sixteen people are dead from illicit liquor in Sagar district, Madhya Pradesh; 19 are in custody and a 21-year-old carrying a ₹30,000 bounty was shot in the leg in a police 'encounter'. Lead with the poison, not the manhunt: hooch deaths are methanol deaths, and methanol is not merely a contaminant — it is added deliberately to bulk out ethanol because it is cheap and industrial supply is poorly controlled. Explain the mechanism plainly, because it is what makes these deaths preventable: methanol itself is relatively harmless until the liver's alcohol dehydrogenase converts it to formaldehyde and then formic acid, which blinds and kills over 12 to 24 hours — which is why victims arrive feeling fine and die later, and why the antidote is either fomepizole or, remarkably, ethanol, both of which occupy the same enzyme. A district hospital that knows this and has either drug on the shelf saves most of a cohort; one that does not, loses them. Report how many of the 16 died before reaching hospital, whether any were treated with ethanol or fomepizole, and how many survivors have lost sight. Then the accountability layer: who supplied the methanol and from which industrial channel, since that is the regulated link in the chain, and what Madhya Pradesh's excise department knew about this trade. Finally, treat the 'encounter' with the scepticism it earns — a suspect shot in the leg while in police custody is a standard formula in Indian police accounts, and the piece should say who investigates it. NOTE FOR THE AUDIT: the feed carried no Nature, Quanta, SciDev.Net, STAT or Carbon Brief item this cycle — this is the only science-substrate story available, so the science floor is met at one, not two, on feed supply rather than editorial choice.",
+      "conceptUris": []
+    },
+    {
+      "id": "comment-razaullah-and-pakistan-cricket-s-lost-soul",
+      "label": "COMMENT: Razaullah and Pakistan cricket's lost soul",
+      "firstSeen": "2026-09-13T04:09:49.552Z",
+      "lastCovered": "2026-09-13T04:09:49.552Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-13-comment-razaullah-and-pakistan-cricket-s-lost-soul"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] The rookie all-rounder from Mardan offers a glimpse of the raw, fearless spirit that once made Pakistan cricket great.\n\nEdgbaston 2026. A phoenix rises from the ashes. Remember this. Do not forget it. When the house of Pakistan cricket is burning to a crisp, an unknown man called Razaullah stands ta",
+      "conceptUris": []
+    },
+    {
       "id": "alien-terrorist-court-first-use-evidence-unseen",
       "label": "Afghan woman deported from US in first use of secretive 'alien terrorist' court",
       "firstSeen": "2026-09-12T22:08:50.488Z",
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-alien-terrorist-court-first-use-evidence-unseen"
@@ -33,7 +554,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-brics-declaration-right-of-return-named"
@@ -58,7 +579,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-el-eden-pitrufquen-the-evacuation-that-did-not-happen"
@@ -82,7 +603,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-joint-drills-as-currency-democrats-press-for-escalation"
@@ -98,7 +619,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-drones-from-iraq-the-hedge-that-stopped-being-independent"
@@ -123,7 +644,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-edfu-informal-gold-the-economy-that-brought-its-own-guns"
@@ -139,7 +660,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-crypto-valley-priced-custody-leaves-for-bratislava"
@@ -155,7 +676,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-hayabusa2-laser-ranging-a-distance-not-an-inference"
@@ -171,7 +692,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-atr-inhibition-the-wrong-sensor-was-being-watched"
@@ -187,7 +708,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-usv-kills-usv-a-cost-ratio-inverts"
@@ -203,7 +724,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-text-to-sql-without-an-llm-the-grammar-is-the-guardrail"
@@ -219,7 +740,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-12-dp-sgd-architecture-search-the-cost-of-a-privacy-guarantee"
@@ -235,7 +756,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-ukraine-strikes-miami-g20-meeting-refused"
@@ -260,7 +781,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-argentina-helicopters-the-embargo-that-stopped-holding"
@@ -285,7 +806,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-11-hong-kong-vigil-seven-years-for-remembering"
@@ -310,7 +831,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-muwaffaq-salti-commercial-imagery-as-targeting"
@@ -335,7 +856,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-12-saravan-the-other-war-inside-iran",
@@ -352,7 +873,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-kp-26-districts-the-state-prices-its-own-risk"
@@ -368,7 +889,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-rlusd-dual-issuance-who-owes-the-redemption"
@@ -384,7 +905,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-halal-traceability-the-ledger-cannot-see-the-abattoir"
@@ -400,7 +921,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-common-species-declines-a-count-that-hides-the-loss"
@@ -416,7 +937,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-salivary-gland-failure-a-stressed-cell-not-a-dead-one"
@@ -432,7 +953,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-amodei-slowdown-a-request-with-no-addressee"
@@ -457,7 +978,7 @@
       "lastCovered": "2026-09-12T17:06:07.548Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-12-hospital-ai-adoption-diffusion-follows-the-payer-mix"
@@ -473,7 +994,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-normandy-derailment-rail-fragment-sabotage-probe"
@@ -498,7 +1019,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-reform-uk-72m-two-donors-no-donation-cap"
@@ -521,7 +1042,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-trump-iran-war-end-soon-three-unverified-claims"
@@ -543,7 +1064,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-ecuador-boat-strikes-no-defendant-no-evidence"
@@ -559,7 +1080,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-delhi-declaration-imf-quota-85-percent-veto"
@@ -584,7 +1105,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-revolut-forged-government-request-passport-disclosure"
@@ -600,7 +1121,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-4000-dollar-quadruped-china-robotics-cost-curve"
@@ -616,7 +1137,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-mercury-contraction-thirty-percent-larger-scarp-census"
@@ -632,7 +1153,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-rubin-cosmos-field-wide-fast-against-hubble-benchmark"
@@ -648,7 +1169,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-ansto-antares-microbeam-single-cell-ion-counting"
@@ -664,7 +1185,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-realtime-model-ureteral-orifice-cystoscopy-validation"
@@ -680,7 +1201,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-rucl3-strain-tuning-kitaev-exchange-knob"
@@ -696,7 +1217,7 @@
       "lastCovered": "2026-09-12T12:09:53.214Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-12-hyprspace-baguette-one-slips-hybrid-propulsion-bet"
@@ -712,7 +1233,7 @@
       "lastCovered": "2026-09-12T22:08:50.488Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-12-oracle-restructuring-ai-capex-paid-in-jobs",
@@ -740,7 +1261,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-india-consulate-kota-kinabalu-sabah-act-east"
@@ -765,7 +1286,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-swat-madyan-girl-killed-women-in-the-street"
@@ -781,7 +1302,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-750-million-women-within-50km-of-a-war"
@@ -797,7 +1318,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-borno-air-strikes-the-only-count-is-the-air-forces"
@@ -813,7 +1334,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-uk-settlement-import-ban-the-eus-qmv-arithmetic"
@@ -829,7 +1350,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-shangla-miners-heirs-refuse-400000-rupees"
@@ -845,7 +1366,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-wahed-sedco-makkah-madinah-pilgrimage-as-yield"
@@ -861,7 +1382,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-camizestrant-serena-4-a-pill-that-stays-second-line"
@@ -877,7 +1398,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-copper-uti-resistance-breaking-the-bacterial-pump"
@@ -893,7 +1414,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-openai-millennium-prize-claim-before-the-referee"
@@ -909,7 +1430,7 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-optical-phased-array-lidar-a-fourth-dimension-on-a-chip"
@@ -925,522 +1446,13 @@
       "lastCovered": "2026-09-12T08:10:53.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-12-avio-fd1-methalox-europe-builds-it-alone"
       ],
       "eventUri": null,
       "summary": "Italy's Avio has finished integrating FD1, its liquid-oxygen/methane flight demonstrator, and will fly it from an Italian Ministry of Defence range in Sardinia — disclosed, tellingly, inside its first-half 2026 results. Lead with the propellant and the range owner, because both are the point. Mechanism: methalox is the propellant choice that makes an engine relightable and cheap enough to recover, which is why every credible reusable vehicle since Falcon 9's successors runs on it — Avio is not building a rocket here, it is building the landing-and-relight capability Europe conspicuously does not have. Report what FD1 is meant to demonstrate (hop? propulsive landing? relight?), the target flight date, the funding (ESA Themis, PNRR, Italian MoD), and how it relates to Vega-C and to Avio's new independence from Arianespace on Vega marketing. Structural point for our reader, and the reason this is a tech story rather than a space-hobbyist item: this lands in the same week as our 09-11 FCAS piece on Europe failing to share a fighter. The pattern is identical — the joint programme stalls on work-share and intellectual property, so a single national champion builds the capability alone on a defence ministry's range. Note that ULA's skipped reusability, which we covered on 09-11, is the counter-example: an incumbent that never made this bet. Say plainly what has been demonstrated and what is only scheduled.",
-      "conceptUris": []
-    },
-    {
-      "id": "cia-declassified-briefs-three-years-of-warnings",
-      "label": "Newly released CIA files show Clinton and Bush received repeated alerts before 9/11 attacks",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-cia-declassified-briefs-three-years-of-warnings"
-      ],
-      "eventUri": "spa-4338548",
-      "summary": "The CIA released 71 declassified presidential daily briefing items on the 25th anniversary, showing the agency warned Clinton and then Bush for three years that al-Qaeda intended to strike inside the US. Lead with the count and the earliest dated warning, not the anniversary. Mechanism: a presidential daily brief is the highest-priority intelligence product there is, so the question is not what was known but what a warning without an owner actually triggers — which agency was tasked, and what happened to the tasking. Quote the specific language of two or three briefs and give their dates. Accountability: this is the documentary record two administrations spent 25 years releasing piecemeal, and it lands the same week 9/11 families are pressing Trump on Saudi Arabia (our 09-11 piece — reference it, do not repeat it). Sourcing note: RT is the co-source in the cluster and is not reliable on US intelligence; Al Jazeera's separate report on the same release is merged into sources and should be the writer's spine, with the CIA's own reading-room release verified directly. Public-attention signal: 9/11 hijacker and flight articles were among yesterday's most-read Wikipedia pages.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Central_Intelligence_Agency",
-        "http://en.wikipedia.org/wiki/Al-Qaeda",
-        "http://en.wikipedia.org/wiki/Osama_bin_Laden",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/Bill_Clinton",
-        "http://en.wikipedia.org/wiki/George_W._Bush",
-        "http://en.wikipedia.org/wiki/New_York_City"
-      ]
-    },
-    {
-      "id": "yemen-red-sea-coast-50000-displaced",
-      "label": "Nearly 50,000 Yemeni civilians flee as Houthis advance along Red Sea coast",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-yemen-red-sea-coast-50000-displaced"
-      ],
-      "eventUri": "eng-12001877",
-      "summary": "Nearly 50,000 people have fled the Ansarallah advance along Yemen's Red Sea coast, with whole villages emptied and families trapped near the front with food running out. Lead with the displaced, not the strait. Our four previous Yemen pieces were all about who controls the chokepoint; this is the first that counts the people the chokepoint sits on top of. Mechanism: the coastal plain (Tihama) is where Yemen's food imports land, so displacement and port disruption compound — the same families lose their homes and the route their flour arrives by. Report where the displaced have gone, whether aid agencies can reach the Mokha–Bab al-Mandab corridor, what the UN's figure is against the Guardian's, and what the pre-existing IPC food-insecurity level was. Name who is responsible on each side: Ansarallah for the offensive, and the Saudi-backed factions whose collapse (Drop Site's reporting, merged into sources) left civilians with no covering withdrawal. Yemen is an OIC member; the feed carries no Yemeni or Gulf-Arab outlet on the displacement figure specifically — flag that gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-transit-fees-oman-talks",
-      "label": "Tehran agrees to engage Gulf states over Hormuz future",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-hormuz-transit-fees-oman-talks"
-      ],
-      "eventUri": "eng-12000924",
-      "summary": "Iran will meet Gulf states in Oman on Monday over the future of the Strait of Hormuz, and is weighing a system of service fees for passage. Lead with the fee idea — it is the most consequential sentence in the story and almost nobody has picked it up. Mechanism: a chokepoint closed by risk earns nothing; a chokepoint taxed by agreement turns military leverage into a revenue stream and, crucially, into a status quo the Gulf states have an interest in preserving. That is Tehran converting a war position into an institution. Explain what UNCLOS says about transit passage through an international strait and why a levy would be contested in law. Report who attends in Muscat, Oman's standing as the region's channel, and what Riyadh, Abu Dhabi and Doha have said. Set it against Pezeshkian's warning that Western pressure has pushed Iran into a 'critical' phase and Trump's line that he has no regrets over the war. Iran, Oman, Saudi Arabia, the UAE and Qatar are OIC members; Dawn (PK) is the regional outlet carrying this and should be credited as such. Follows our Hormuz and Bab al-Mandab coverage — this is the diplomatic track, not another chokepoint-control piece.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Arab_states_of_the_Persian_Gulf",
-        "http://en.wikipedia.org/wiki/Gulf_Cooperation_Council",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Salalah"
-      ]
-    },
-    {
-      "id": "north-korea-missiles-drills-signalling-loop",
-      "label": "North Korea Fires Short Ballistic Missiles Toward East Sea",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-north-korea-missiles-drills-signalling-loop"
-      ],
-      "eventUri": "eng-12003424",
-      "summary": "North Korea launched multiple short-range ballistic missiles from Wonsan a day after the US, South Korea and Japan finished joint exercises Pyongyang had condemned. Lead with the sequence — drills, then launch, within 24 hours — because that is the whole mechanism: a signalling loop in which each side's routine act is the other's provocation, and neither can stop without appearing to concede. The under-covered second half is in Washington: House Democrats are pressing Trump to reverse his cutback of the joint drills, while peace groups argue the cutback is the one opening for diplomacy in years (Drop Site, merged into sources). So the party that spent a decade attacking Trump's Korea summitry is now the hawkish one. Report the missile count, range and impact area, what exactly was scaled back in the exercises, Seoul's and Tokyo's responses, and where denuclearisation sits as a stated aim on either side. Fills the East Asia gap; distinct from our Taiwan and BRICS threads.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/North_Korea",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Ballistic_missile",
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Joint_Chiefs_of_Staff",
-        "http://en.wikipedia.org/wiki/Sea_of_Japan",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "saudi-east-west-pipeline-shut-bypass-gone",
-      "label": "Drone attacks shut key Saudi oil pipeline (SATELLITE PHOTOS)",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-saudi-east-west-pipeline-shut-bypass-gone"
-      ],
-      "eventUri": "eng-12001079",
-      "summary": "Riyadh has closed the East-West pipeline after drones launched from Iraq hit it — and Baghdad welcomed the closure. This is the confirmation our 09-11 piece could only call probable, and two facts in it are new: the line is actually shut, and the attackers came from Iraq, not Yemen. Lead with the closure and the Iraqi origin. Mechanism: the East-West line exists precisely to move eastern crude to Yanbu on the Red Sea so exports can bypass Hormuz. With the line shut and Bab al-Mandab under Ansarallah guns, Saudi Arabia's bypass and its exit are both gone at once, leaving Hormuz as the only route — the opposite of what the pipeline was built for. Report the line's capacity in barrels per day, how much of Saudi export volume it carries, how long Aramco says repairs take, and what Brent did. Say who pays: import-dependent Pakistan, Egypt's Suez revenue, East African importers, and diesel buyers first. Name the Iraqi militias if attribution is firm and say plainly what is claimed versus proven. Saudi Arabia, Iraq and Turkey are OIC members; TRT (TR) and Dawn (PK) are the regional outlets in the cluster. Treat RT as the least reliable of the three.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Iraq",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Houthi_movement"
-      ]
-    },
-    {
-      "id": "turkey-growth-cut-inflation-war-premium",
-      "label": "Turkey cuts growth, raises inflation forecast as Gulf war weighs on economy",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-turkey-growth-cut-inflation-war-premium"
-      ],
-      "eventUri": null,
-      "summary": "Ankara has cut its growth forecast and raised its inflation forecast in the medium-term programme, naming the Gulf war as the cause. Lead with the two revised numbers side by side, old and new. Mechanism: Turkey imports nearly all its oil and gas, so a war premium in the barrel price arrives as an import bill, a weaker lira, and then as domestic inflation — the same shock that reaches a Pakistani commuter as a petroleum levy (our 09-11 piece) reaches a Turkish household as the lira's purchasing power. This is the second national budget in two days rewritten by the same war. Report the lira's level, the central bank's policy rate and whether the disinflation path it published is now unreachable, the current-account gap, and what the government says it will cut. Structural point for our reader: a middle-income energy importer has no monetary tool that works against an imported supply shock — it can only decide who absorbs it. Turkey is an OIC member; this comes from a regional outlet (Salaam Gateway, AE), but it is the only source in the feed, so the writer must verify the figures against the Treasury's published Orta Vadeli Program and a TR wire (Anadolu or Daily Sabah).",
-      "conceptUris": []
-    },
-    {
-      "id": "colombia-minerals-deal-security-for-access",
-      "label": "Rubio's LatAm pep rally shows the limits of the Donroe Doctrine",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-colombia-minerals-deal-security-for-access"
-      ],
-      "eventUri": null,
-      "summary": "Rubio's Colombia–Ecuador–Peru tour produced a US–Colombia agreement to identify and finance mining and processing projects within six months — gold, nickel, coltan, platinum, tungsten, rare earths — plus a civil-nuclear framework, terrorist designations on Ecuador's Los Tiguerones, and Peru's entry into the 'Shield of Americas'. Lead with the minerals deal and its six-month clock, not the diplomacy. Mechanism: critical-minerals access is being bought with security assistance and tariff relief, so the price a producer country pays for a trade concession is a say in how its own counter-narcotics war is fought — and Colombia has just deregulated nearly a dozen mining rules. Report which minerals, which concessions, what the 12.5% tariffs cost Colombian flowers and Peruvian agriculture, and China's competing position (Chancay, copper offtake). Fills the audit's Latin America gap. SOURCING DISCIPLINE: Responsible Statecraft is an advocacy outlet and this piece is analysis. The writer must verify every deal, designation and dollar figure against State Department releases and a wire (Reuters/AFP) before using it, and should use InSight Crime (merged into sources) for the Tiguerones and Ecuador/Peru crime facts. Drop any claim that survives only in the Responsible Statecraft telling.",
-      "conceptUris": []
-    },
-    {
-      "id": "cyclospora-outbreak-water-in-the-field",
-      "label": "US declares end to lettuce parasite outbreak that killed 2",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-cyclospora-outbreak-water-in-the-field"
-      ],
-      "eventUri": "eng-11999907",
-      "summary": "The CDC has declared the largest recorded cyclosporiasis outbreak over: more than 12,000 people infected, 570 hospitalised, two dead, traced to lettuce. Lead with the scale — this is the biggest outbreak of this parasite ever recorded anywhere, and most readers have never heard of it. Mechanism to explain plainly: Cyclospora cayetanensis is spread by faecally contaminated water, and its oocysts need days to become infectious after leaving the host, so person-to-person transmission is negligible — which means every one of those 12,000 cases traces back to contaminated water touching a crop in a field. That is why the fix is agricultural and regulatory, not clinical, and why washing does not reliably help. Report the growing region and supplier implicated (Taylor Farms is named in the concept set — verify before printing), what the FDA traceback found, whether the Food Safety Modernization Act produce-water rule was in force and enforced, and why the outbreak ran for months before the source was named. Accountability: name the firm and the regulator, and say what changes for next season. Multi-source including Al Jazeera and SCMP.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lettuce",
-        "http://en.wikipedia.org/wiki/Centers_for_Disease_Control_and_Prevention",
-        "http://en.wikipedia.org/wiki/Food_and_Drug_Administration",
-        "http://en.wikipedia.org/wiki/Mexico",
-        "http://en.wikipedia.org/wiki/Cyclosporiasis",
-        "http://en.wikipedia.org/wiki/Parasitism",
-        "http://en.wikipedia.org/wiki/Taylor_Farms",
-        "http://en.wikipedia.org/wiki/Infection"
-      ]
-    },
-    {
-      "id": "sma-myostatin-drug-the-other-half-of-the-disease",
-      "label": "Scholar Rock wins FDA approval for first drug to target SMA muscle loss",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-sma-myostatin-drug-the-other-half-of-the-disease"
-      ],
-      "eventUri": null,
-      "summary": "The FDA has approved the first therapy that targets muscle loss itself in spinal muscular atrophy, rather than the missing SMN protein that causes it. Lead with what is new biologically: existing SMA drugs (nusinersen, risdiplam, the Zolgensma gene therapy) keep motor neurons alive, but patients who survive on them are left with muscle that never recovers. This drug blocks myostatin activation, releasing the brake on muscle growth — so for the first time the two halves of the disease have separate treatments, given together. Explain the latent-myostatin mechanism in plain language and say honestly what the trial showed: the effect size on motor function, over what period, in which patient group, and whether it was measured on a scale patients feel. Then the part our reader will ask about: price, and whether anyone outside a rich country's insurance system will get it — SMA newborn screening barely exists across South Asia, Africa and much of the Muslim world, so a second drug widens a gap that the first three already opened. Report the list price, the manufacturer's access commitments, and which national systems have reimbursed the existing SMA drugs.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-yemen-missile-misuse-vendor-as-regulator",
-      "label": "Group in Yemen used Claude AI for missile projects, Anthropic says",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-anthropic-yemen-missile-misuse-vendor-as-regulator"
-      ],
-      "eventUri": "eng-12001096",
-      "summary": "Anthropic says it identified a cell in Yemen running three weapons-development programmes through Claude — guided rockets, missiles and navigation work — and banned the accounts when it detected them. Lead with the specific thing the model was asked to do, not the fact of misuse. Mechanism, and it is the whole story: safeguards on a commercial chatbot are enforced by the vendor, after the fact, from usage telemetry — so the control on missile-guidance knowledge is now a US company's abuse-detection team, not an export-control regime. Nothing about ITAR, the MTCR or a sanctions list touched this. Explain what that means for accountability when the actor is a non-state armed group in a country with no enforcement authority to notify. Report what Anthropic's threat-intelligence report actually claims versus what it demonstrates: whether the model provided anything beyond what textbooks and open literature give, and how the detection worked. The War Zone's read (merged into sources) argues this is a preview rather than an anomaly. Yemen is an OIC member; Dawn (PK) is the regional outlet carrying it. Keep the reporting sceptical in both directions — a vendor's self-reported threat report is also marketing for the vendor's safety programme.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Rocket",
-        "http://en.wikipedia.org/wiki/Ballistic_missile",
-        "http://en.wikipedia.org/wiki/Software",
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Missile",
-        "http://en.wikipedia.org/wiki/Navigation"
-      ]
-    },
-    {
-      "id": "ai-mathematics-benchmark-misalignment",
-      "label": "A misalignment of AI in mathematics",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-ai-mathematics-benchmark-misalignment"
-      ],
-      "eventUri": null,
-      "summary": "A statement from working mathematicians argues that what AI labs are optimising for — competition-problem scores, benchmark medals — is misaligned with what mathematics is actually for. 747 points and 749 comments on Hacker News, one of the strongest attention signals in today's feed, and almost no wire coverage. Lead with the specific misalignment the authors name. Mechanism: benchmarks select for problems with short, checkable answers, because that is what a reward signal needs; research mathematics is mostly the opposite — defining the right object, seeing why a proof strategy must fail, building a theory nobody can score. So a model can saturate the benchmark and still be useless at the work, and the benchmark then drives the next model's training. Explain why this is the same failure mode as teaching to the test, and where it is not. Report who signed, what they propose instead (formalisation, Lean, verified libraries?), and what the labs' own mathematicians say. Verify the document and its signatories at the source before attributing — this arrives via Hacker News, not a newsroom. Distinct from our 09-11 AI pieces: the subject is what counts as progress.",
-      "conceptUris": []
-    },
-    {
-      "id": "automattic-wordpress-one-man-governance",
-      "label": "Automattic's Matt Mullenweg Claims He's Back 'In Control'",
-      "firstSeen": "2026-09-12T04:07:23.093Z",
-      "lastCovered": "2026-09-12T04:07:23.093Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-12-automattic-wordpress-one-man-governance"
-      ],
-      "eventUri": null,
-      "summary": "Workers at Automattic — which owns WordPress.com, Tumblr and more — describe years of chaotic leadership, and Mullenweg has now told them he is back 'in control'. Lead with what the workers say, sourced, not with the CEO's claim. The structural reason this matters beyond one company: WordPress runs a huge share of the world's websites, and the open-source project's governance runs through Mullenweg personally as its benevolent dictator while he also runs the company that monetises it. There is no board, no foundation vote and no fork path that keeps the plugin ecosystem, so a single executive's state of mind is load-bearing infrastructure for millions of sites — including newsrooms and small businesses across the Global South that chose WordPress precisely because it was not owned by anyone. Report the attrition and layoff numbers, what the WP Engine litigation has cost and where it stands, who holds what authority over wordpress.org versus WordPress.com, and what a maintainer would have to do to route around him. 404 Media is worker-sourced and original; keep claims attributed to the employees who made them.",
-      "conceptUris": []
-    },
-    {
-      "id": "idc-server-record-memory-squeeze",
-      "label": "Higher prices can't crimp server sales as AI drives demand",
-      "firstSeen": "2026-09-11T17:06:04.926Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-11-idc-server-record-memory-squeeze",
-        "2026-09-11-us-cpi-august-the-war-in-the-price-index"
-      ],
-      "eventUri": "eng-11996786",
-      "summary": "IDC says Q2 was a record for server vendor revenue even as high memory prices hit PC shipments, and AI infrastructure spending is spreading beyond the hyperscalers to corporate and government buyers. Lead with the split: AI servers are eating the memory supply, so the same shortage that inflates server revenue makes consumer laptops dearer. Give the IDC growth figure and the GPU-server share, and name which vendors and countries are gaining as sovereign-AI buyers enter the market.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Stock",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Consumer_price_index",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Wall_Street",
-        "http://en.wikipedia.org/wiki/S&P_500_Index",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "bab-al-mandab-taken-two-chokepoints-one-axis",
-      "label": "Yemen's Houthis take over strait vital to global shipping",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-bab-al-mandab-taken-two-chokepoints-one-axis"
-      ],
-      "eventUri": "eng-11998140",
-      "summary": "The development since our Mokha, coast/pipeline and Taiz pieces: Ansarallah (the Houthis) now control the Bab al-Mandab strait itself, including Perim island. Earlier coverage only said they 'may' have taken it. Lead with the strait, not the pipeline. Chatham House's Farea al-Muslimi says Iran, directly and through allies, now holds both of the region's chokepoints, carrying more than 35% of the global fuel and oil trade. Mechanism: a strait is closed by risk, not by a physical blockade. Guns on Perim, 3km from the shipping lane, change war-risk insurance and routing for every Suez-bound ship. Report the lane widths, daily transits before and now, and the war-risk premium. On why the Saudi-backed forces collapsed, use Drop Site's reporting (https://www.dropsitenews.com/p/ansarallah-houthis-saudi-yemen-red-sea-bab-al-mandab): rival factions with no unified command. Al Jazeera frames the advance as being about more than the Red Sea; The National has the US diplomacy angle. Say who pays: Egypt's Suez revenue, East African importers, and Yemenis on the coast. Selection note: this is the fourth Yemen-war piece in 24 hours, taken only because the strait itself falling is the new event. Its 1,579-article coverage and 350-point Hacker News thread confirm the attention.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "putin-troops-lithuania-two-red-lines-one-day",
-      "label": "Putin Issues Blunt Warning to Europe Over Ukraine Troop Plan: 'This Means War'",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-putin-troops-lithuania-two-red-lines-one-day"
-      ],
-      "eventUri": "spa-4336326",
-      "summary": "Speaking in New Delhi at the BRICS summit, Putin said any deployment of European troops to Ukraine would be 'a war against Russia'. On the same day the Kremlin said it would adjust its nuclear posture if Lithuania hosts nuclear weapons, as the Baltic state is reported to be considering in a constitutional change (RT: https://www.rt.com/russia/645455-peskov-lithuania-nuclear-weapons/; verify with Lithuanian or Western sources). Lead with the two red lines drawn in one day: troops on Ukrainian soil and nuclear weapons on NATO's eastern edge. Mechanism: deterrence by declaration, stated from a Global South stage whose host, India, does not contradict it. Report what the European troop plan actually is (which countries, what mandate, ceasefire-dependent or not) and where Lithuania's debate stands. Include Zelensky's new line the same day that Ukraine 'must engage in peace talks' while demanding stronger US sanctions (Kyiv Independent). Selection note: both outlets in the cluster are Indian, with no European or Russian primary source; the writer should corroborate the quote with Kremlin transcripts. This is the second story in the BRICS-Delhi arc; do not repeat the 09-11 consensus piece.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/BRICS",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Xi_Jinping"
-      ]
-    },
-    {
-      "id": "spain-western-sahara-citizenship-a-colony-admitted",
-      "label": "'A historic day': Spain moves closer to citizenship for Western Saharans",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-spain-western-sahara-citizenship-a-colony-admitted"
-      ],
-      "eventUri": "spa-4336480",
-      "summary": "Spain's parliament has backed citizenship for Western Saharans born in the territory while Madrid ruled it as a colony. Lead with campaigner Mohamed Mohamedna and the vote. Mechanism: Spain handed the territory over in 1975 without completing decolonisation, and the UN still lists Spain as the de jure administering power. Granting citizenship is Madrid admitting, in law, that those born under its rule were its nationals. The tension: in 2022 Madrid endorsed Morocco's autonomy plan. Report the vote margin and which parties opposed (the PP is named), how many Sahrawis could qualify (the Tindouf camps and the diaspora), what stage the bill is at, and how Rabat and the Polisario responded. Accountability: a former coloniser partially paying a debt it walked away from. Morocco is an OIC member; Al Jazeera (QA) is the regional outlet. Do not repeat our 09-10 Algeria–UAE piece.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Morocco",
-        "http://en.wikipedia.org/wiki/Western_Sahara",
-        "http://en.wikipedia.org/wiki/Ceuta",
-        "http://en.wikipedia.org/wiki/Congress_of_Deputies",
-        "http://en.wikipedia.org/wiki/People's_Party_(Spain)",
-        "http://en.wikipedia.org/wiki/Sahrawi_people",
-        "http://en.wikipedia.org/wiki/Rabat"
-      ]
-    },
-    {
-      "id": "9-11-families-saudi-accountability-25-years-deferred",
-      "label": "Some 9/11 Families Use Ceremony to Push Trump on Saudi Arabia",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-9-11-families-saudi-accountability-25-years-deferred"
-      ],
-      "eventUri": "eng-12002171",
-      "summary": "At the 25th-anniversary ceremony, some victims' families called on Trump to hold Saudi Arabia accountable for its alleged role in the attacks: 'For 25 years, administration after administration...'. Lead with that line and who said it. Mechanism: the JASTA civil suit in Manhattan federal court, the declassified FBI files (the 2021 release on Omar al-Bayoumi), and why every administration since has put the Saudi relationship first. That is sharper now that Riyadh is a wartime ally under Houthi fire. Say plainly what has been proven and what is alleged, and give the case's current stage. Kept separate from our Mamdani anniversary piece: that was about a Muslim mayor made the subject, this is about a state's accountability. Saudi Arabia is an OIC member; Al Jazeera (QA) covered the same ceremony and is added as the regional voice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/Aircraft_hijacking",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Anti-Americanism",
-        "http://en.wikipedia.org/wiki/World_Trade_Center_site"
-      ]
-    },
-    {
-      "id": "brics-payment-links-upi-as-the-blocs-plumbing",
-      "label": "Russia Takes Steps to Create a Space Council With BRICS Partners",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-brics-payment-links-upi-as-the-blocs-plumbing"
-      ],
-      "eventUri": "eng-11996904",
-      "summary": "India's commerce minister Piyush Goyal urged BRICS members to link their payment systems and trade in local currencies, putting forward UPI, which now handles over 250 billion transactions. Lead with India offering its own payment rail as the bloc's plumbing. Mechanism: linking domestic instant-payment systems settles trade bilaterally without passing through SWIFT or dollar correspondent banks. That is the practical form of de-dollarisation, as opposed to a common currency India has repeatedly rejected. It matters most for sanctioned members (Russia, Iran). Report which links already exist (UPI with the UAE, Singapore and others; Russia's SPFS and Mir), what the summit text commits to, and the currency-mismatch problem India found holding surplus rupees in Russia. Russia's proposed BRICS space council (Bloomberg) is the secondary item. Third piece in the BRICS-Delhi arc; do not repeat the consensus or trade-deficit pieces.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/BRICS",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Summit_(meeting)",
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/China"
-      ]
-    },
-    {
-      "id": "pakistan-petroleum-levy-a-tax-stacked-on-a-war-price",
-      "label": "'Decisive phase': JI chief announces Islamabad march on Sept 20 against petroleum levy",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-pakistan-petroleum-levy-a-tax-stacked-on-a-war-price"
-      ],
-      "eventUri": "eng-12003091",
-      "summary": "Jamaat-i-Islami chief Hafiz Naeemur Rehman says the party will march on Islamabad on 20 September unless the petroleum levy is withdrawn. Lead with the levy itself, in rupees per litre and as a share of the pump price. Mechanism: the levy is Pakistan's main non-shareable revenue, so it does not go to the provinces, and the IMF programme sets its target. When oil tops $108, a fixed per-litre levy stacks a domestic tax on a war-driven price, and the government cannot cut it without breaching an IMF benchmark. Report the current levy, this fiscal year's collection target, what it raised last year, and the government's reply. Who pays: commuters, farmers on diesel, and transporters, who pass it into food prices. Treat JI as the actor, not the story. The subject is who carries the cost of the oil shock. Dawn (PK) is the regional outlet.",
-      "conceptUris": []
-    },
-    {
-      "id": "denmark-hypoxia-a-sea-fed-by-farms",
-      "label": "In Denmark, the sea can't breathe",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-denmark-hypoxia-a-sea-fed-by-farms"
-      ],
-      "eventUri": null,
-      "summary": "Oxygen depletion in Danish coastal waters has hit record levels and coastal fisheries are disappearing. Lead with the measured area of hypoxic sea floor this year against the historical record. Mechanism: nitrogen runoff from farming feeds algal blooms, the algae die and decompose, and the decomposition uses up the oxygen near the bottom. Warmer water holds less oxygen and stratifies, so less oxygen mixes down from the surface. Both drivers are rising together. Name who is responsible: Denmark's intensive livestock farming and the delayed nitrogen targets in its 'green tripartite' agreement. Report the monitoring agency (Aarhus University/DCE), the fish species lost, and the fishers' livelihoods. This fills a European science gap without heat-record repetition.",
-      "conceptUris": []
-    },
-    {
-      "id": "foraminifera-coiling-flips-a-proxy-that-was-a-lineage",
-      "label": "Why Do These Fossil Shells Flip Their Spirals Every Few Millennia?",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-foraminifera-coiling-flips-a-proxy-that-was-a-lineage"
-      ],
-      "eventUri": null,
-      "summary": "In the fossil record, the foraminifera Globorotalia and its relatives switch between left- and right-coiling shells every few thousand years, and the switches happen across whole oceans. Lead with the pattern. The mechanism researchers now propose: the flips may record an evolutionary process that is rarely observed in the wild, such as cryptic species replacing one another, not a response to temperature. Explain why that matters: paleoclimatologists have used coiling direction as an ocean-temperature proxy, so if coiling tracks lineage instead, parts of the climate record built on it need checking. Name the researchers, the cores and the dating.",
-      "conceptUris": []
-    },
-    {
-      "id": "grass-genome-the-family-that-feeds-us-redated",
-      "label": "New genome study rewrites the early history of grasses, the world's most important plant family",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-grass-genome-the-family-that-feeds-us-redated"
-      ],
-      "eventUri": null,
-      "summary": "An international team including Elizabeth Kellogg (Danforth Center) has produced a chromosome-level genome of an early-diverging grass, which changes the picture of how grasses first evolved. Grasses are the family of wheat, rice, maize, sorghum and millet, which supply most of humanity's calories. Lead with what was revised: the timing or number of the ancient whole-genome duplications, or which traits came first. Mechanism for the reader: genome duplications give plants spare gene copies that can evolve new functions, and knowing where they sit on the tree tells breeders which genes are shared across all cereals. Name the species sequenced, the journal, and what changes for crop-genetics work on drought or heat tolerance. Keep claims to the paper.",
-      "conceptUris": []
-    },
-    {
-      "id": "florida-dmv-breach-one-officers-saved-login",
-      "label": "Florida says motor vehicle data breach tied to credentials stolen from officer's personal device",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-florida-dmv-breach-one-officers-saved-login"
-      ],
-      "eventUri": null,
-      "summary": "Florida's motor-vehicle department confirmed the breach claimed by ShinyHunters. It began with credentials stored on a police officer's personal device. Lead with that entry point: a state database of every driver was opened with one officer's saved login on a phone or home computer. Mechanism: law-enforcement access to DMV records (through systems like DAVID) is granted to thousands of officers as a standing right, so the security of the whole database is only as strong as the least-protected device holding a valid login. Report how many records were exposed and what fields (licence photos, addresses, SSNs?), whether MFA was required, how many agencies hold similar access, and ShinyHunters' pattern of credential-based mass theft (Salesforce, Ticketmaster).",
-      "conceptUris": []
-    },
-    {
-      "id": "fcas-collapse-rafale-f5-europe-cannot-share-a-fighter",
-      "label": "France Accelerates Rafale F5 Upgrade After Collapse Of FCAS Next-Gen Fighter Project",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-fcas-collapse-rafale-f5-europe-cannot-share-a-fighter"
-      ],
-      "eventUri": null,
-      "summary": "The Franco-German-Spanish FCAS sixth-generation fighter programme has collapsed, and France is instead speeding up the Rafale F5 upgrade with drone wingmen to carry its air force into the late 2030s. Lead with the collapse. This is Europe's largest joint defence project, and it failed at the moment Europe says it must rearm without the US. Mechanism: industrial work-share. Dassault and Airbus could not agree on who leads design and owns the intellectual property, and a shared fighter depends on that. Report when and how FCAS ended, what Germany and Spain do now (join the UK-Italy-Japan GCAP?), the F5's new capabilities (the ASN4G nuclear missile, the stealthy combat drone), cost and timeline. Structural point for our reader: the Rafale is a major export to Egypt, Qatar, the UAE, India and Indonesia, and F5 decides what those air forces fly next. TWZ is a specialist outlet; separate programme claims from delivered capability.",
-      "conceptUris": []
-    },
-    {
-      "id": "project-jupiter-renewables-a-gas-plant-matched-on-paper",
-      "label": "Oracle promises 2 GW of renewables to match Stargate data center emissions",
-      "firstSeen": "2026-09-11T22:09:24.782Z",
-      "lastCovered": "2026-09-11T22:09:24.782Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-11-project-jupiter-renewables-a-gas-plant-matched-on-paper"
-      ],
-      "eventUri": null,
-      "summary": "Oracle is promising 2 GW of renewable projects in New Mexico to 'match' the emissions of Project Jupiter, the $165 billion Stargate data centre it is building for OpenAI in Santa Teresa, as local opposition threatens delays. Lead with the accounting: the site itself runs on on-site natural gas and fuel cells, and the renewables are built elsewhere on the grid. Mechanism: annual 'matching' lets a gas-powered campus claim to be clean without cutting a single hour of its own combustion. The pledge is timed to win permits, not required by any rule. Report Jupiter's gas capacity, its air-permit status, water use in the Chihuahuan desert, who opposes it (the border community of Santa Teresa and Sunland Park), and whether the 2 GW is contracted or only promised. Distinct from our 09-11 Michigan town-hall piece: this one is about emissions accounting, not consent.",
       "conceptUris": []
     }
   ]
