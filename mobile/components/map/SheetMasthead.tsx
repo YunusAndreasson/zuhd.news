@@ -2,55 +2,19 @@ import { Canvas, Path, Skia } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
 import { type SharedValue, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
-import { HIT_SLOP, mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
+import { mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { MASTHEAD_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
-import { Icon, IconButton, Text } from '../primitives';
+import { Pressable as CountButton, Icon, IconButton, Text } from '../primitives';
 import { ScrubBar, ScrubTooltip } from '../ScrubBar';
 
 /**
- * One row above the story card: how far through the day you are, and the way
- * back to all of it.
- *
- * It says one thing at a time, in this order of precedence:
- *
- *  1. **`checking for new stories`** while a pull is running — the one thing a
- *     pull-to-refresh has no other way to say.
- *  2. **`now · …`** while a live Red alert exists. Alerts never enter the deck
- *     (the camera track is stories only), so this line is where a hazard with
- *     no article yet reaches the sheet. It opens the alert.
- *  3. **A segmented track, listen and the list** otherwise: one segment per
- *     story, lit up to the one on the card. Drag along it to preview a story's
- *     place (`12 of 48` floats over the finger) and lift to jump there; tap to
- *     jump. Listen plays the day's briefing; the list opens every story.
- *
- * **The track is the status; nothing restates it.** It was `3 of 48 · 12 found
- * ━━━ all news ›` — the position twice (digits and bar), the found count a
- * third time once the globe's ring carried it, and a label naming the door.
- * A bar whose fill moves under the finger already shows where you are and how
- * much is left, without being read; the precise count is a screen reader's
- * (the row's label) and the index sheet's. The list icon is the signifier that
- * the row opens the list — the one thing the track cannot say.
- *
- * **Listen sits with the list, at the far end from the track.** For one build
- * it led this row, right against the start of the track, and a play button
- * touching a progress bar is that bar's play head. Beside the list button it is
- * one of the row's two doors — the day's stories as a list, the day's stories
- * as audio. It left the top bar so the gauges could run to the edge. Absent
- * rather than disabled when there is no briefing, and while the player is up.
- *
- * **The track follows the finger** twice over: its fill reads the deck's own
- * `progress` on the UI thread, so it moves with a swipe on the card, and it is
- * a scrubber in its own right (`useScrub`, the briefing player's gesture), so a
- * reader forty stories from the start does not have to swipe forty times.
- *
- * **Segments, because the unit is a story.** A plain bar maps to nothing the
- * reader can count; one segment per story makes a swipe light exactly one more,
- * which is the mapping Norman asks a control to make visible. Past 60 stories a
- * segment would be no wider than its gap, and the track goes continuous.
+ * Story position and navigation above the card. The count stays visible at
+ * rest and opens all stories; the track previews destinations while scrubbing.
+ * The briefing and settings retain separate 40×48pt targets.
  */
 
 /** Which story a fraction of the track points at: the segment under it. */
@@ -102,6 +66,7 @@ export const SheetMasthead = memo(function SheetMasthead({
   progress,
   alert,
   onPress,
+  onMenuPress,
   onAlertPress,
   onSeek,
   detailAt,
@@ -126,6 +91,8 @@ export const SheetMasthead = memo(function SheetMasthead({
   alert?: string | null;
   /** Opens every story as a list. */
   onPress?: () => void;
+  /** Opens settings and pages beside the story list. */
+  onMenuPress?: () => void;
   /** Opens the alert. */
   onAlertPress?: () => void;
   /** Jump to a story from the track. */
@@ -202,31 +169,6 @@ export const SheetMasthead = memo(function SheetMasthead({
     [onSeek, index, count],
   );
 
-  if (refreshing || showingAlert) {
-    const handlePress = showingAlert ? onAlertPress : undefined;
-    return (
-      <Pressable
-        onPress={handlePress}
-        disabled={!handlePress}
-        accessibilityLiveRegion="polite"
-        accessibilityRole={handlePress ? 'button' : 'text'}
-        accessibilityHint={handlePress ? 'Opens the alert' : undefined}
-        hitSlop={SPACING.xs}
-        style={({ pressed }) => [styles.row, pressed && handlePress ? PRESSED_STYLE : null]}
-      >
-        <Text
-          variant="caption"
-          tone={showingAlert ? 'emphasis' : 'secondary'}
-          numberOfLines={1}
-          style={styles.shrink}
-        >
-          {refreshing ? 'checking for new stories' : `now · ${alert}`}
-        </Text>
-      </Pressable>
-    );
-  }
-  if (count <= 0) return null;
-
   const found = progress?.found ?? 0;
   const heard = listenResumable ? Math.min(1, Math.max(0, listenHeard)) : 0;
   const listenMinutes = formatAudioDurationMinutes(
@@ -236,65 +178,99 @@ export const SheetMasthead = memo(function SheetMasthead({
 
   return (
     <View style={styles.row}>
-      <ScrubBar
-        scrub={scrub}
-        fraction={fraction}
-        interactive={!!onSeek}
-        segments={count}
-        height={TRACK}
-        trackColor={colors.rule}
-        fillColor={colors.textSecondary}
-        trackColors={tints?.ahead}
-        fillColors={tints?.passed}
-        thumbColor={colors.textEmphasis}
-        style={styles.scrub}
-        accessibilityRole="adjustable"
-        accessibilityLabel={spoken}
-        accessibilityHint="Drag along it to move through the day's stories"
-        accessibilityActions={ADJUST_ACTIONS}
-        onAccessibilityAction={handleAdjust}
+      <CountButton
+        onPress={onPress ?? (() => {})}
+        haptic="none"
+        disabled={!onPress}
+        accessibilityRole={onPress ? 'button' : 'text'}
+        accessibilityLabel={`${Math.min(count, Math.max(1, index + 1))} of ${count} stories`}
+        accessibilityHint="Show all articles"
+        style={styles.count}
       >
-        <ScrubTooltip
+        <Text variant="tabular" tone="secondary">
+          {`${Math.min(count, Math.max(1, index + 1))} of ${count}`}
+        </Text>
+      </CountButton>
+      {refreshing || showingAlert ? (
+        <Pressable
+          onPress={showingAlert ? onAlertPress : undefined}
+          disabled={!showingAlert || !onAlertPress}
+          accessibilityLiveRegion="polite"
+          accessibilityRole={showingAlert ? 'button' : 'text'}
+          style={({ pressed }) => [styles.status, pressed && showingAlert ? PRESSED_STYLE : null]}
+        >
+          <Text variant="caption" tone="secondary" numberOfLines={2}>
+            {refreshing ? 'checking for new stories' : `now · ${alert}`}
+          </Text>
+        </Pressable>
+      ) : count > 0 ? (
+        <ScrubBar
           scrub={scrub}
-          backgroundColor={colors.toastBg}
-          stemColor={colors.textSecondary}
-        />
-      </ScrubBar>
-      {listenAvailable && onListenPress ? (
-        <IconButton
-          onPress={onListenPress}
-          haptic="none"
-          style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-          hitSlop={LISTEN_SLOP}
-          accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
-          accessibilityHint={
-            listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-          }
+          fraction={fraction}
+          interactive={!!onSeek}
+          segments={count}
+          height={TRACK}
+          trackColor={colors.rule}
+          fillColor={colors.textSecondary}
+          trackColors={tints?.ahead}
+          fillColors={tints?.passed}
+          thumbColor={colors.textEmphasis}
+          style={styles.scrub}
+          accessibilityRole="adjustable"
+          accessibilityLabel={spoken}
+          accessibilityHint="Drag along it to move through the day's stories"
+          accessibilityActions={ADJUST_ACTIONS}
+          onAccessibilityAction={handleAdjust}
         >
-          {heard > 0 ? <HeardRing heard={heard} color={colors.textSecondary} /> : null}
-          <Icon name="play" size="sm" tone="default" />
-        </IconButton>
-      ) : null}
-      {onPress ? (
-        <IconButton
-          onPress={onPress}
-          hitSlop={LIST_SLOP}
-          style={styles.list}
-          accessibilityLabel="Today's stories"
-          accessibilityHint="Lists every story from today"
-        >
-          <Icon name="list" size="md" tone="secondary" />
-        </IconButton>
-      ) : null}
+          <ScrubTooltip
+            scrub={scrub}
+            backgroundColor={colors.toastBg}
+            stemColor={colors.textSecondary}
+          />
+        </ScrubBar>
+      ) : (
+        <View style={styles.shrink} />
+      )}
+      <View style={styles.actions}>
+        {listenAvailable && onListenPress ? (
+          <IconButton
+            onPress={onListenPress}
+            haptic="none"
+            style={styles.action}
+            hitSlop={0}
+            accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
+            accessibilityHint={
+              listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+            }
+          >
+            <View
+              style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+            >
+              {heard > 0 ? <HeardRing heard={heard} color={colors.textSecondary} /> : null}
+              <Icon name="play" size="sm" tone="default" />
+            </View>
+          </IconButton>
+        ) : null}
+        {onMenuPress ? (
+          <IconButton
+            onPress={onMenuPress}
+            hitSlop={0}
+            style={styles.action}
+            accessibilityLabel="Settings and pages"
+            accessibilityHint="Opens settings, search, saved stories and information"
+          >
+            <Icon name="settings-outline" size="md" tone="secondary" />
+          </IconButton>
+        ) : null}
+      </View>
     </View>
   );
 });
 
 /** The track's thickness: a rule you can see, not a control you can grab. */
 const TRACK = 3;
-/** The listen button's diameter: a 14pt glyph with room around it, as tall as
- *  the row. */
-const LISTEN_SIZE = MASTHEAD_ROW;
+/** The visible listen circle stays compact inside its larger touch target. */
+const LISTEN_SIZE = 28;
 const HEARD_STROKE = 1.5;
 /** Wide enough for `politics · 12h ago` at the tabular size. */
 const DETAIL_TOOLTIP_WIDTH = 116;
@@ -307,24 +283,24 @@ const QUIET_MIX = { dark: 0.45, light: 0.6 } as const;
 /** How far an upcoming segment's hue is mixed toward the sheet: still plainly
  *  its category, and a step brighter than what has been passed. */
 const AHEAD_MIX = { dark: 0.15, light: 0.15 } as const;
-/**
- * The two buttons' touch areas meet between them instead of overlapping. The
- * row's gap is `SPACING.md` and each kept the standard 12pt slop, so a tap in
- * the middle 8pt could land on either; the facing sides give up 4pt each.
- */
-const LISTEN_SLOP = { ...HIT_SLOP, right: SPACING.sm };
-const LIST_SLOP = { ...HIT_SLOP, left: SPACING.sm };
-
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.md,
+    gap: SPACING.xs,
     paddingHorizontal: SPACING.articlePadding,
     paddingBottom: SPACING.sm,
     minHeight: MASTHEAD_ROW + SPACING.sm,
   },
-  shrink: { flexShrink: 1 },
+  shrink: { flex: 1 },
+  status: { flex: 1, minHeight: MASTHEAD_ROW, justifyContent: 'center' },
+  count: {
+    minWidth: MASTHEAD_ROW,
+    minHeight: MASTHEAD_ROW,
+    marginRight: SPACING.xs,
+    flexShrink: 0,
+    justifyContent: 'center',
+  },
   // Hairline edge so the button holds its shape on the sheet without a shadow.
   listen: {
     width: LISTEN_SIZE,
@@ -335,14 +311,14 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
   },
   heard: { position: 'absolute', top: 0, left: 0, width: LISTEN_SIZE, height: LISTEN_SIZE },
-  // As big as the listen button, so with its slop the list's target clears
-  // Android's 48dp; the icon alone gave it 44.
-  list: {
-    width: LISTEN_SIZE,
-    height: LISTEN_SIZE,
+  actions: { flexDirection: 'row', alignItems: 'center' },
+  // Compact horizontal bounds; retain the full-height, non-overlapping targets.
+  action: {
+    width: MASTHEAD_ROW - SPACING.sm,
+    height: MASTHEAD_ROW,
     alignItems: 'center',
     justifyContent: 'center',
   },
   // The touch area is taller than the 3pt track it holds.
-  scrub: { flex: 1, paddingVertical: SPACING.smPlus, justifyContent: 'center' },
+  scrub: { flex: 1, minHeight: MASTHEAD_ROW, justifyContent: 'center' },
 });

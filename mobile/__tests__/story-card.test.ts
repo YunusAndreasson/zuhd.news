@@ -1,4 +1,4 @@
-import { articleKicker, leadOf, restOf } from '../lib/story-card';
+import { articleThreadContext, leadOf, restOf } from '../lib/story-card';
 
 const SENTENCES = [
   'Kyiv — A machine gun, not a missile, made this a first.',
@@ -19,21 +19,18 @@ describe('leadOf / restOf', () => {
   });
 });
 
-describe('articleKicker', () => {
-  it('is the desk alone when there is no thread', () => {
-    expect(articleKicker({ category: 'politics', threadArticleCount: 1, threadDay: 13 })).toBe(
-      'politics',
-    );
+describe('articleThreadContext', () => {
+  it('omits thread context when there is only one report', () => {
+    expect(articleThreadContext({ threadArticleCount: 1, threadDay: 13 })).toBe(null);
   });
 
   it('names the run only when the ledger holds more than one report', () => {
     expect(
-      articleKicker({
-        category: 'economy',
+      articleThreadContext({
         threadArticleCount: 4,
         threadArc: 'ongoing',
         threadDay: 9,
       }),
-    ).toBe('economy · ongoing, day 9 · 4 reports');
+    ).toBe('ongoing, day 9 · 4 reports');
   });
 });

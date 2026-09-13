@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import { type LayoutChangeEvent, type ScrollView, StyleSheet, View } from 'react-native';
 import { categoryMarkColor, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -18,11 +18,6 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * what a reader reaches for to scan the whole day, or to get to the story the
  * swipe would take twenty cards to reach.
  *
- * **Its header holds the menu** — settings and pages — at the trailing edge.
- * The top bar gave that button a fixed slot beside the gauges on every glance;
- * here it is one tap from the list a reader already opens for the rest of the
- * day.
- *
  * It is also the accessible path. The globe is hidden from screen readers, so
  * every live Red alert and every story has a row here.
  *
@@ -34,6 +29,7 @@ interface IndexSheetProps extends BaseSheetProps {
   rows: StoryRow[];
   now: NowItem[];
   found: ReadonlySet<string>;
+  read: ReadonlySet<string>;
   /** The story on the card under the sheet. Marked, so a reader twenty
    *  swipes in can see where they are in the day. */
   currentSlug: string | null;
@@ -41,8 +37,6 @@ interface IndexSheetProps extends BaseSheetProps {
   open: boolean;
   onSelect: (slug: string) => void;
   onNowPress: (item: NowItem) => void;
-  /** Settings and pages, from the sheet's header. */
-  onMenuPress: () => void;
 }
 
 /** The ink step on the row whose story is on the card. */
@@ -51,12 +45,14 @@ const CURRENT_MARK = 'on the card';
 const StoryIndexRow = memo(function StoryIndexRow({
   row,
   found,
+  read,
   current,
   onPress,
   onLayoutRow,
 }: {
   row: StoryRow;
   found: boolean;
+  read: boolean;
   current: boolean;
   onPress: (slug: string) => void;
   onLayoutRow: (slug: string, y: number) => void;
@@ -67,7 +63,7 @@ const StoryIndexRow = memo(function StoryIndexRow({
     (e: LayoutChangeEvent) => onLayoutRow(row.slug, e.nativeEvent.layout.y),
     [onLayoutRow, row.slug],
   );
-  const label = [row.title, current ? CURRENT_MARK : null, found ? 'found' : null]
+  const label = [row.title, current ? CURRENT_MARK : null, read ? 'read' : null]
     .filter(Boolean)
     .join(', ');
   return (
@@ -78,6 +74,7 @@ const StoryIndexRow = memo(function StoryIndexRow({
         mark={current ? CURRENT_MARK : row.mark}
         odds={row.odds}
         found={found}
+        read={read}
         hue={categoryMarkColor(row.article.category, colors)}
         onPress={handlePress}
         accessibilityLabel={label}
@@ -116,11 +113,11 @@ export const IndexSheet = memo(function IndexSheet({
   rows,
   now,
   found,
+  read,
   currentSlug,
   open,
   onSelect,
   onNowPress,
-  onMenuPress,
 }: IndexSheetProps) {
   // Opened twenty stories in, the list used to start at the top, and the
   // reader had to find their place in the day by hand. It opens with the row
@@ -159,23 +156,8 @@ export const IndexSheet = memo(function IndexSheet({
     if (currentSlug) scrollToCurrent();
   }, [currentSlug, open, scrollToCurrent]);
 
-  // Stable, so the memoised sheet does not re-render on every parent render.
-  const menuAction = useMemo(
-    () => ({
-      icon: 'ellipsis-horizontal' as const,
-      label: 'Settings and pages',
-      onPress: onMenuPress,
-    }),
-    [onMenuPress],
-  );
-
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      onDismiss={onDismiss}
-      handleTitle="today"
-      handleAction={menuAction}
-    >
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="today">
       <SheetScrollView ref={scrollRef} bottomInset={bottomInset}>
         {now.length > 0 ? (
           <>
@@ -195,6 +177,7 @@ export const IndexSheet = memo(function IndexSheet({
             key={row.slug}
             row={row}
             found={found.has(row.slug)}
+            read={read.has(row.slug)}
             current={row.slug === currentSlug}
             onPress={onSelect}
             onLayoutRow={handleLayoutRow}

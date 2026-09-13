@@ -1,0 +1,32 @@
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.35
+            toX: 0.3
+            toY: 0.35
+            durationMs: 1000
+            momentum: false
+          delayMs: 700
+        - tool: gesture-swipe
+          args:
+            fromX: 0.3
+            fromY: 0.35
+            toX: 0.7
+            toY: 0.35
+            durationMs: 1000
+            momentum: false
+          delayMs: 700
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.45
+            toX: 0.5
+            toY: 0.25
+            durationMs: 1000
+            momentum: false
+          delayMs: 700
+executionPrerequisite: news.zuhd.app on home globe with all sheets closed, emulator-5554, data loaded

@@ -54,13 +54,10 @@ export interface FeedRowProps {
    * and its "a market, not a forecast" caveat, is in the reader.
    */
   odds?: string | null;
-  /**
-   * The reader has already opened this story — from its globe mark, this row
-   * or the reader. The title drops to secondary ink, the way the web's rail
-   * greys a read story. An ink step and not a badge: the row cannot grow, and
-   * the globe already says it louder by no longer drawing the mark.
-   */
+  /** Opened stories retain a hollow category mark. */
   found?: boolean;
+  /** Read stories use secondary title ink without reducing row opacity. */
+  read?: boolean;
   /** The story's category hue (`categoryMarkColor`). Absent → no dot. */
   hue?: string;
   onPress: () => void;
@@ -75,6 +72,7 @@ export const FeedRow = memo(function FeedRow({
   mark,
   odds,
   found = false,
+  read = false,
   hue,
   onPress,
   accessibilityLabel,
@@ -92,7 +90,7 @@ export const FeedRow = memo(function FeedRow({
     >
       <Text
         variant="rowTitle"
-        tone={found ? 'secondary' : 'default'}
+        tone={read ? 'secondary' : 'default'}
         numberOfLines={height ? 2 : undefined}
         maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
       >

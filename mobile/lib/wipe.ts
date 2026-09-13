@@ -5,6 +5,7 @@ import { feedCache } from './feed-source';
 import { clearFound } from './found-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
+import { clearRead } from './read-store';
 import { resetReviewState } from './store-review';
 
 /**
@@ -38,6 +39,7 @@ export async function eraseLocalData(): Promise<void> {
   // keys afterwards.
   clearBookmarks();
   clearFound();
+  clearRead();
   resetOnboarding();
   resetReviewState();
   resetDataUsage();

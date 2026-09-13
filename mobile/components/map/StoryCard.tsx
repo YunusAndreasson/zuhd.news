@@ -21,9 +21,8 @@ import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
 import { useOpenLink } from '../../lib/open-link';
-import { displayLocation } from '../../lib/place-names';
 import type { StoryOdds } from '../../lib/predictions';
-import { articleKicker, leadOf, restOf } from '../../lib/story-card';
+import { articleThreadContext, leadOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../globe/MiniGlobe';
 import { OddsLine } from '../OddsLine';
 import { Pressable, Text } from '../primitives';
@@ -51,10 +50,9 @@ import { Pressable, Text } from '../primitives';
  * reader they were a tap on blank prose and a long press, taught by hint
  * pills; a card with room for a row of controls does not need a lesson.
  *
- * **The place is printed once, in the kicker.** The dateline prefix is
- * stripped from the first sentence (`renderSentences`' `location`), because
- * the kicker already says it and a grown card's globe is too small to be the
- * only thing naming it.
+ * **The map supplies the place.** The kicker shows category and time only;
+ * the dateline prefix is stripped from the prose. The accessible title still
+ * names the location for readers who cannot use the map.
  */
 
 interface StoryCardProps {
@@ -111,11 +109,10 @@ export const StoryCard = memo(function StoryCard({
   const { article } = row;
 
   const meta = useMemo(() => {
-    const place = displayLocation(article.location) ?? article.location;
-    return [articleKicker(article), formatTimeAgo(articleTime(article)), place]
-      .filter(Boolean)
-      .join(' · ');
+    return [article.category, formatTimeAgo(articleTime(article))].filter(Boolean).join(' · ');
   }, [article]);
+
+  const threadContext = articleThreadContext(article);
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -225,18 +222,13 @@ export const StoryCard = memo(function StoryCard({
       <RNPressable
         onPress={onOpen}
         accessibilityRole="button"
-        accessibilityLabel={`${meta}. ${row.title}`}
+        accessibilityLabel={`${[meta, article.location].filter(Boolean).join(' · ')}. ${row.title}`}
         accessibilityHint="Opens the whole story"
         accessibilityActions={accessibilityActions}
         onAccessibilityAction={handleAccessibilityAction}
       >
         <View style={styles.kicker}>
           <View style={[styles.dot, { backgroundColor: hue }]} />
-          {row.mark ? (
-            <Text variant="labelXs" tone="emphasis" numberOfLines={1}>
-              {`${row.mark} · `}
-            </Text>
-          ) : null}
           <Text variant="labelXs" numberOfLines={1} style={styles.kickerText}>
             {meta}
           </Text>
@@ -269,6 +261,12 @@ export const StoryCard = memo(function StoryCard({
       ) : null}
 
       {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
+
+      {threadContext || row.mark ? (
+        <Text variant="labelXs" tone="secondary" style={styles.threadContext}>
+          {[row.mark, threadContext].filter(Boolean).join(' · ')}
+        </Text>
+      ) : null}
 
       <View style={styles.actions}>
         {sourceCount > 0 ? (
@@ -360,6 +358,7 @@ const styles = StyleSheet.create({
   card: { paddingHorizontal: SPACING.articlePadding },
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
+  threadContext: { marginBottom: SPACING.sm },
   dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
   title: { marginBottom: SPACING.sm },
   actions: {

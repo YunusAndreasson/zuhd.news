@@ -33,13 +33,14 @@ export function restOf<T>(sentences: readonly T[]): T[] {
  * "developing, day 13" would be a claim the data does not support. A thread is
  * worth mentioning when there is a thread.
  */
-export function articleKicker(
-  article: Pick<Article, 'threadArticleCount' | 'threadArc' | 'threadDay'> & { category: string },
-): string {
+/** Secondary thread context belongs beneath the article, away from its title. */
+export function articleThreadContext(
+  article: Pick<Article, 'threadArticleCount' | 'threadArc' | 'threadDay'>,
+): string | null {
   const count = article.threadArticleCount ?? 0;
-  if (count < 2) return article.category;
+  if (count < 2) return null;
   const arc = article.threadArc ?? 'developing';
   const day = article.threadDay;
   const run = day && day > 1 ? `${arc}, day ${day}` : arc;
-  return `${article.category} · ${run} · ${count} reports`;
+  return `${run} · ${count} reports`;
 }

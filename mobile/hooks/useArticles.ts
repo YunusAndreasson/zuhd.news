@@ -8,6 +8,7 @@ import { feedCache, fetchFeed } from '../lib/feed-source';
 import { fetchJson } from '../lib/fetchJson';
 import { flushFound } from '../lib/found-store';
 import { flushOnboarding } from '../lib/onboarding-store';
+import { flushRead } from '../lib/read-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isMetaResponse } from '../lib/validate';
 import { invalidateApiJson } from './useApiJson';
@@ -183,6 +184,7 @@ export function useArticles(): ArticlesState {
     saveLastSeenAt(Date.now());
     flushBookmarks();
     flushFound();
+    flushRead();
     flushOnboarding();
   });
 

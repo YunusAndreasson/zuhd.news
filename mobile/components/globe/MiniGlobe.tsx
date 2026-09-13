@@ -900,7 +900,7 @@ interface GlobeState {
     /** Visual distinction is subtle; `kind` is used mainly for keys. */
     kind: 'lake' | 'river' | 'sea';
   }[];
-  /** Projected major-river linestrings. Drawn as a halo + dark stroke over
+  /** Projected major-river linestrings. Drawn as a soft halo + blue-grey stroke over
    *  land when the globe is zoomed past PLACES_APPEAR_CLIP. Null at default
    *  zoom — no path projection work runs. */
   riversPath: SkPath | null;
@@ -1463,11 +1463,14 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.drawPath(f.landPath, strokePaint(colors.text, light ? 0.5 : 0.3, 0.6, StrokeJoin.Round));
   }
   // Lakes, cut back out of the land: the ground, then the ocean's own tint,
-  // then the same shoreline the coast gets.
+  // then a quiet blue-grey shoreline subordinate to the coast.
   if (f.lakesPath) {
     c.drawPath(f.lakesPath, fillPaint(colors.bg));
     c.drawPath(f.lakesPath, fillPaint(colors.atmosphere, light ? 0.12 : 0.08));
-    c.drawPath(f.lakesPath, strokePaint(colors.text, light ? 0.4 : 0.25, 0.5, StrokeJoin.Round));
+    c.drawPath(
+      f.lakesPath,
+      strokePaint(colors.atmosphere, light ? 0.5 : 0.65, 0.5, StrokeJoin.Round),
+    );
   }
 
   // Permanent ice — Antarctica and Greenland. The one layer whose colour must
@@ -1663,14 +1666,14 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   }
 
   // Major rivers — after the highlight so a river through the focused country
-  // stays visible; a `bg` halo under a `textEmphasis` stroke.
+  // stays visible; a soft ground halo under a muted blue-grey stroke.
   if (f.riversPath) {
     c.drawPath(
       f.riversPath,
       strokePaint(
         colors.bg,
-        (light ? 0.8 : 0.65) * f.riversOpacity,
-        2.5,
+        (light ? 0.35 : 0.25) * f.riversOpacity,
+        2,
         StrokeJoin.Round,
         StrokeCap.Round,
       ),
@@ -1678,9 +1681,9 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.drawPath(
       f.riversPath,
       strokePaint(
-        colors.textEmphasis,
-        (light ? 0.85 : 0.55) * f.riversOpacity,
-        1.2,
+        colors.atmosphere,
+        (light ? 0.75 : 0.85) * f.riversOpacity,
+        1,
         StrokeJoin.Round,
         StrokeCap.Round,
       ),
@@ -3752,41 +3755,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     redrawLast();
   }, [colors, light, redrawLast]);
 
-  // A gauge selected or put down while the camera is still has no frame coming
-  // to draw its ring, so project one.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, reads selectedRef
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [selectedCoords]);
-
-  // A font changes label widths, so the label packer has to run again.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [labelFont, subFont, countryFont, neighborFont, waterFont]);
-
   const receiveTextures = useCallback(
     (
       ghost: SkImage | null,
@@ -4075,8 +4043,11 @@ export const MiniGlobe = memo(function MiniGlobe({
     );
   }, [callReproject, overrideActive, overrideAngle]);
 
-  // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  // All projection inputs are mirrored into refs during render. A commit can
+  // update several at once (fonts, layout and cached layers on startup), so
+  // reproject the complete snapshot once instead of once per changed input.
+  // Keep this after the resume effect, which invalidates the sun caches.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is stable and reads the latest input refs
   useEffect(() => {
     const last = lastReprojRef.current;
     if (last)
@@ -4090,101 +4061,27 @@ export const MiniGlobe = memo(function MiniGlobe({
         overrideActive.value,
         overrideAngle.value,
       );
-  }, [hotspots]);
-
-  // Re-project when the disc moves or resizes. `layoutRef` is written every
-  // render so the *next* projection picks the new geometry up, but nothing
-  // schedules one: the reaction fires on scroll and on the zoom override, and
-  // neither changed. Without this the globe keeps its old radius until the
-  // reader's next scroll — visible on rotation, and on the first frame after
-  // safe-area insets resolve and the map's band changes height.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [globeRadius, cx, cy, width, height, canvasReach]);
-
-  // Re-project when the flagged exchanges change. Same reason as the
-  // chokepoint effect below: the marks arrive from their own fetch, after
-  // the frame that would otherwise have drawn them.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [enrichedMarketMarks]);
-
-  // Re-project when chokepoint data arrives (first API fetch, or a cycle-level refresh)
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [chokepoints]);
-
-  // Re-project when a story is found or the places change: the reaction only
-  // fires on camera movement, and a tap that finds a story moves nothing.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [placeMarks]);
-
-  // Re-project when a hazard layer arrives — each is its own fetch, and lands
-  // after the frame that would otherwise have drawn it.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
-  }, [enrichedFamine, enrichedThermal, enrichedGenocide]);
+  }, [
+    selectedCoords,
+    labelFont,
+    subFont,
+    countryFont,
+    neighborFont,
+    waterFont,
+    hotspots,
+    globeRadius,
+    cx,
+    cy,
+    width,
+    height,
+    canvasReach,
+    enrichedMarketMarks,
+    chokepoints,
+    placeMarks,
+    enrichedFamine,
+    enrichedThermal,
+    enrichedGenocide,
+  ]);
 
   // Tap pulse — radial ring that expands and fades on globe tap
   const pulseX = useSharedValue(0);

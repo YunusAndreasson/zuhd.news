@@ -86,6 +86,7 @@ import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
+import { useReadTracking } from '../hooks/useReadTracking';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
@@ -108,6 +109,7 @@ import {
 } from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
+import { pruneRead, useReadSlugs } from '../lib/read-store';
 import { maybeRequestReview } from '../lib/store-review';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
@@ -421,6 +423,7 @@ export default function HomeScreen() {
   // marks stand for.
   // ---------------------------------------------------------------------
   const foundSlugs = useFoundSlugs();
+  const readSlugs = useReadSlugs();
   const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
   const progress = useMemo(() => foundProgress(storyRows, foundSlugs), [storyRows, foundSlugs]);
 
@@ -429,6 +432,7 @@ export default function HomeScreen() {
   useEffect(() => {
     if (river.length === 0) return;
     pruneFound(new Set(river.map((a) => a.slug)));
+    pruneRead(new Set(river.map((a) => a.slug)));
   }, [river]);
 
   useEffect(
@@ -1072,12 +1076,6 @@ export default function HomeScreen() {
     if (first) focusStory(first.slug);
   }, [focusStory, handleZoomSettle, reduceMotion, zoomActive]);
 
-  /** The story list's own header opens the menu: settings and pages. */
-  const handleIndexMenuPress = useCallback(() => {
-    indexSheetRef.current?.dismiss();
-    handleMenuPress();
-  }, [handleMenuPress]);
-
   const handleIndexPress = useCallback(() => {
     hapticImpact();
     markHintDone('masthead');
@@ -1261,6 +1259,10 @@ export default function HomeScreen() {
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
+  useReadTracking(
+    storyRows[frontIndex]?.slug ?? null,
+    sheetDetent === 'full' && !sheetOpen && !briefingVisible,
+  );
 
   const keyOfDeck = useCallback(
     (index: number) => storyRows[index]?.slug ?? 'end-of-river',
@@ -1379,6 +1381,7 @@ export default function HomeScreen() {
         progress={progress}
         alert={now[0]?.title ?? null}
         onPress={handleIndexPress}
+        onMenuPress={handleMenuPress}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
         detailAt={storyDetailAt}
@@ -1410,6 +1413,7 @@ export default function HomeScreen() {
       progress,
       now,
       handleIndexPress,
+      handleMenuPress,
       handleMastheadAlertPress,
     ],
   );
@@ -1555,6 +1559,7 @@ export default function HomeScreen() {
         rows={storyRows}
         now={now}
         found={foundSlugs}
+        read={readSlugs}
         // Only while open: the slug changes on every swipe, and a closed sheet
         // re-rendered for it on each one. Opening sets both props together, so
         // the sheet still scrolls to the story on the card.
@@ -1562,7 +1567,6 @@ export default function HomeScreen() {
         open={indexOpen}
         onSelect={handleIndexSelect}
         onNowPress={handleIndexNowPress}
-        onMenuPress={handleIndexMenuPress}
       />
 
       <CardSheet

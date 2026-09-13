@@ -1,0 +1,13 @@
+steps:
+  - tool: debugger-reload-metro
+    args:
+      port: 8081
+  - tool: await-ui-element
+    args:
+      selector:
+        text: Today's stories
+      condition: visible
+      timeoutMs: 20000
+    delayMs: 12000
+executionPrerequisite: App connected to Metro 8081 on emulator-5554, same cached
+  feed and settings; reload and wait for settled startup
