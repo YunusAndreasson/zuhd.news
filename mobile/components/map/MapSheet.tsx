@@ -432,7 +432,10 @@ export function MapSheet({
             </View>
             {header}
           </View>
-          {list}
+          {/* The clip is the card's, not the sheet's: the masthead's scrub label
+              floats above the sheet's top edge, clear of the thumb on the track,
+              and a sheet-wide clip cut it off at the edge. */}
+          <View style={styles.clip}>{list}</View>
         </View>
       </GestureDetector>
     </Animated.View>
@@ -450,7 +453,6 @@ const styles = StyleSheet.create({
     // The one edge the globe meets. A hairline, not a shadow: the app has no
     // elevation vocabulary and a drop shadow here would be the first.
     borderTopWidth: StyleSheet.hairlineWidth,
-    overflow: 'hidden',
   },
   handleWrap: { alignItems: 'center', paddingTop: SPACING.sm, paddingBottom: SPACING.xs },
   indicator: {
@@ -459,4 +461,5 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.handle,
   },
   fill: { flex: 1, minHeight: 0 },
+  clip: { flex: 1, minHeight: 0, overflow: 'hidden' },
 });

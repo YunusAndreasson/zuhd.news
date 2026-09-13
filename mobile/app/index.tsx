@@ -89,7 +89,7 @@ import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
-import { formatTimeAgo } from '../lib/article-utils';
+import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
@@ -215,6 +215,7 @@ export default function HomeScreen() {
   const [briefingStatus, setBriefingStatus] = useState<BriefingStatus>({
     available: false,
     resumable: false,
+    heard: 0,
   });
   const [refreshing, setRefreshing] = useState(false);
   /** Where the sheet has settled. The globe only takes touches at peek: grown,
@@ -825,6 +826,7 @@ export default function HomeScreen() {
   }, []);
 
   const handleBriefingPress = useCallback(() => {
+    markHintDone('masthead');
     briefingChromeRef.current?.toggle();
   }, []);
   const handleBriefingUnavailable = useCallback(() => {
@@ -1078,6 +1080,7 @@ export default function HomeScreen() {
 
   const handleIndexPress = useCallback(() => {
     hapticImpact();
+    markHintDone('masthead');
     setIndexOpen(true);
     indexSheetRef.current?.present();
   }, []);
@@ -1263,6 +1266,14 @@ export default function HomeScreen() {
     (index: number) => storyRows[index]?.slug ?? 'end-of-river',
     [storyRows],
   );
+  const storyDetailAt = useCallback((index: number) => {
+    const row = storyRowsRef.current[index];
+    return row ? `${row.article.category} · ${formatTimeAgo(articleTime(row.article))}` : '';
+  }, []);
+  const storyHues = useMemo(
+    () => storyRows.map((row) => categoryMarkColor(row.article.category, colors)),
+    [storyRows, colors],
+  );
 
   const renderStory = useCallback(
     (index: number) => {
@@ -1370,20 +1381,26 @@ export default function HomeScreen() {
         onPress={handleIndexPress}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
+        detailAt={storyDetailAt}
+        hues={storyHues}
         // While the player bar is up it is the control. A second play button
         // over audio that was already playing said the opposite of what was
         // happening; it returns when the bar hides.
         listenAvailable={briefingStatus.available && !briefingVisible}
         listenResumable={briefingStatus.resumable}
         listenDuration={briefingStatus.duration}
+        listenHeard={briefingStatus.heard}
         onListenPress={handleBriefingPress}
       />
     ),
     [
       goToStory,
+      storyDetailAt,
+      storyHues,
       briefingStatus.available,
       briefingStatus.resumable,
       briefingStatus.duration,
+      briefingStatus.heard,
       briefingVisible,
       handleBriefingPress,
       refreshing,

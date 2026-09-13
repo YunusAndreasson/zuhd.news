@@ -3,16 +3,32 @@ import { type StyleProp, StyleSheet, View, type ViewProps, type ViewStyle } from
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { RADIUS, SPACING } from '../constants/theme';
-import type { Scrub } from '../hooks/useScrub';
+import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
 import { Text } from './primitives';
 
 /** The thumb: a handle that reads as one without crowding a 3pt track. */
 const THUMB = 9;
+/**
+ * How far above the touch area a raised tooltip floats: past the pad of a
+ * thumb on the track, which covered the 8pt default almost entirely.
+ */
+const THUMB_CLEARANCE = SPACING.xl;
 /** Past this many, a segment would be no wider than the gap beside it. */
 const MAX_SEGMENTS = 60;
 const SEGMENT_GAP = 2;
 
-function Segments({ count, color, height }: { count?: number; color: string; height: number }) {
+function Segments({
+  count,
+  color,
+  colors,
+  height,
+}: {
+  count?: number;
+  color: string;
+  /** Per segment, overriding `color`; ignored once the track goes continuous. */
+  colors?: readonly string[];
+  height: number;
+}) {
   if (!count || count <= 1 || count > MAX_SEGMENTS) {
     return <View style={[styles.segment, { height, backgroundColor: color }]} />;
   }
@@ -23,7 +39,7 @@ function Segments({ count, color, height }: { count?: number; color: string; hei
         key={`segment-${i}`}
         style={[
           styles.segment,
-          { height, backgroundColor: color },
+          { height, backgroundColor: colors?.[i] ?? color },
           i < count - 1 ? styles.segmentGap : null,
         ]}
       />,
@@ -50,6 +66,10 @@ interface ScrubBarProps
   height: number;
   trackColor: string;
   fillColor: string;
+  /** One colour per segment for what is still ahead, overriding `trackColor`. */
+  trackColors?: readonly string[];
+  /** One colour per segment for what the fill has passed, overriding `fillColor`. */
+  fillColors?: readonly string[];
   thumbColor: string;
   /** The touch area. Vertical padding only: its width is the track's. */
   style?: StyleProp<ViewStyle>;
@@ -72,6 +92,8 @@ export const ScrubBar = memo(function ScrubBar({
   height,
   trackColor,
   fillColor,
+  trackColors,
+  fillColors,
   thumbColor,
   style,
   children,
@@ -94,11 +116,11 @@ export const ScrubBar = memo(function ScrubBar({
     <View style={style} onLayout={scrub.onLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
         <View style={styles.row}>
-          <Segments count={segments} color={trackColor} height={height} />
+          <Segments count={segments} color={trackColor} colors={trackColors} height={height} />
         </View>
         <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
           <Animated.View style={[styles.row, contentStyle]}>
-            <Segments count={segments} color={fillColor} height={height} />
+            <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
           </Animated.View>
         </Animated.View>
         {interactive ? (
@@ -118,23 +140,51 @@ export const ScrubBar = memo(function ScrubBar({
   return interactive ? <GestureDetector gesture={scrub.gesture}>{bar}</GestureDetector> : bar;
 });
 
-/** The label that floats above the finger while it drags. */
+/**
+ * The label that floats above the finger while it drags, with `scrub.detail`
+ * as a quieter second line when the scrub has one.
+ *
+ * `stemColor` raises it clear of the thumb and hangs a hairline from it to the
+ * finger, so where the finger is stays readable while the thumb covers the
+ * track. Only a tooltip drawn inside `ScrubBar` can take it: the stem measures
+ * from the touch area's top edge.
+ */
 export const ScrubTooltip = memo(function ScrubTooltip({
   scrub,
   backgroundColor,
+  stemColor,
 }: {
   scrub: Scrub;
   backgroundColor: string;
+  stemColor?: string;
 }) {
+  const lift = stemColor ? THUMB_CLEARANCE : SPACING.sm;
   return (
-    <Animated.View
-      pointerEvents="none"
-      style={[styles.tooltip, { width: scrub.tooltipWidth, backgroundColor }, scrub.tooltipStyle]}
-    >
-      <Text variant="tabularEmphasis" style={styles.tooltipText}>
-        {scrub.label}
-      </Text>
-    </Animated.View>
+    <>
+      {stemColor ? (
+        <Animated.View
+          pointerEvents="none"
+          style={[styles.stem, { height: lift, backgroundColor: stemColor }, scrub.stemStyle]}
+        />
+      ) : null}
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.tooltip,
+          { width: scrub.tooltipWidth, backgroundColor, marginBottom: lift },
+          scrub.tooltipStyle,
+        ]}
+      >
+        <Text variant="tabularEmphasis" style={styles.tooltipText}>
+          {scrub.label}
+        </Text>
+        {scrub.detail ? (
+          <Text variant="tabular" tone="secondary" style={styles.tooltipText}>
+            {scrub.detail}
+          </Text>
+        ) : null}
+      </Animated.View>
+    </>
   );
 });
 
@@ -155,10 +205,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: '100%',
     left: 0,
-    marginBottom: SPACING.sm,
     paddingVertical: SPACING.xxs,
     borderRadius: RADIUS.pill,
     alignItems: 'center',
   },
   tooltipText: { textAlign: 'center' },
+  stem: { position: 'absolute', bottom: '100%', left: 0, width: STEM_WIDTH },
 });

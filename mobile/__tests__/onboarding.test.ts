@@ -261,11 +261,22 @@ describe('eligibleHint', () => {
     expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
   });
 
+  it('the masthead lesson follows the globe lesson', () => {
+    const s = loadStore();
+    const h = loadHints();
+    s.recordArticleSnap();
+    s.markHintDone('globe');
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('masthead');
+    s.markHintDone('masthead');
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
+  });
+
   it('never teaches sources or bookmark — the grown card prints both as words', () => {
     const s = loadStore();
     const h = loadHints();
     s.recordArticleSnap();
     s.markHintDone('globe');
+    s.markHintDone('masthead');
     s.recordArticleSnap();
     s.recordArticleSnap();
     expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
@@ -285,6 +296,7 @@ describe('eligibleHint', () => {
     expect(h.hintSurface('swipe')).toBe('map');
     expect(h.hintSurface('sources')).toBe('map');
     expect(h.hintSurface('bookmark')).toBe('map');
+    expect(h.hintSurface('masthead')).toBe('map');
   });
 
   it('an exhausted showCount blocks a still-pending hint', () => {
@@ -342,6 +354,39 @@ describe('persistence', () => {
 
     expect(migrated.getSnapshot().snapCount).toBe(1);
     expect(mockKv.get('zuhd_onboarding')).toBe(serialized);
+  });
+
+  it('state saved before the masthead hint existed loads whole, with it dismissed', () => {
+    mockKv.set(
+      'zuhd_onboarding',
+      JSON.stringify({
+        version: 1,
+        seededAt: 1,
+        hints: {
+          swipe: { status: 'done', showCount: 1 },
+          sources: { status: 'pending', showCount: 0 },
+          bookmark: { status: 'pending', showCount: 0 },
+          globe: { status: 'pending', showCount: 2 },
+        },
+        snapCount: 2,
+        primer: { status: 'declined', decidedAt: 5 },
+      }),
+    );
+    const s = loadStore();
+    const state = s.getSnapshot();
+    // Not reseeded: the primer's answer and the reading depth survive.
+    expect(state.primer.status).toBe('declined');
+    expect(state.snapCount).toBe(2);
+    expect(state.hints.globe).toEqual({ status: 'pending', showCount: 2 });
+    expect(state.hints.masthead).toEqual({ status: 'dismissed', showCount: 0 });
+  });
+
+  it('show tips again re-arms the masthead lesson', () => {
+    mockFiles.set(LAST_SEEN_PATH, '1');
+    const s = loadStore();
+    expect(s.getSnapshot().hints.masthead.status).toBe('dismissed');
+    s.resetOnboarding();
+    expect(s.getSnapshot().hints.masthead.status).toBe('pending');
   });
 
   it('markOsPromptSpent writes the legacy key', async () => {

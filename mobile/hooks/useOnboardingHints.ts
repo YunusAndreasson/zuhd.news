@@ -19,6 +19,7 @@ const DWELL_MS: Record<HintId, number> = {
   sources: 2_000,
   bookmark: 2_000,
   globe: 3_000,
+  masthead: 3_000,
 };
 
 /**
@@ -61,6 +62,10 @@ export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId |
   if (ctx.screenReader) return null;
   if (showable(state, 'swipe') && state.snapCount === 0) return 'swipe';
   if (showable(state, 'globe')) return 'globe';
+  // The masthead's two buttons are icons with no words, because words would
+  // take a quarter of the story track on a small phone. They are taught once,
+  // after the gestures nobody can see.
+  if (showable(state, 'masthead')) return 'masthead';
   return null;
 }
 

@@ -13,7 +13,7 @@ import { createDebouncedWrite, createListeners } from './store-plumbing';
 // persist).
 // ---------------------------------------------------------------------------
 
-export type HintId = 'swipe' | 'sources' | 'bookmark' | 'globe';
+export type HintId = 'swipe' | 'sources' | 'bookmark' | 'globe' | 'masthead';
 /** `expired` = shown in MAX_HINT_SHOWS sessions without being acted on — the
  *  reader has voted; silence over nagging. */
 type HintStatus = 'pending' | 'done' | 'dismissed' | 'expired';
@@ -36,7 +36,15 @@ export interface OnboardingState {
   primer: { status: PrimerStatus; decidedAt: number };
 }
 
-export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe'];
+export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe', 'masthead'];
+/**
+ * Hints added after the store shipped. State saved before one existed has no
+ * entry for it, and requiring every id would fail validation and reseed the
+ * whole store — losing the primer's answer and the reading depth. Such state
+ * loads with the new hint dismissed instead: an install that already had
+ * onboarding state is not a new reader. "Show tips again" re-arms it.
+ */
+const ADDED_HINT_IDS: readonly HintId[] = ['masthead'];
 /** A hint shown in this many separate sessions without being acted on expires. */
 export const MAX_HINT_SHOWS = 3;
 /** No onboarding rule distinguishes reading depth beyond the fourth article. */
@@ -61,6 +69,7 @@ function seedHints(status: HintStatus): Record<HintId, HintEntry> {
     sources: { status, showCount: 0 },
     bookmark: { status, showCount: 0 },
     globe: { status, showCount: 0 },
+    masthead: { status, showCount: 0 },
   };
 }
 
@@ -104,8 +113,18 @@ function isOnboardingState(v: unknown): v is OnboardingState {
   if (!hints) return false;
   return HINT_IDS.every((id) => {
     const h = hints[id] as Record<string, unknown> | undefined;
-    return !!h && HINT_STATUSES.includes(h.status as string) && typeof h.showCount === 'number';
+    if (!h) return ADDED_HINT_IDS.includes(id);
+    return HINT_STATUSES.includes(h.status as string) && typeof h.showCount === 'number';
   });
+}
+
+/** Fill in any hint added since this state was saved (`ADDED_HINT_IDS`). */
+function withAddedHints(s: OnboardingState): OnboardingState {
+  let hints = s.hints;
+  for (const id of ADDED_HINT_IDS) {
+    if (!hints[id]) hints = { ...hints, [id]: { status: 'dismissed', showCount: 0 } };
+  }
+  return hints === s.hints ? s : { ...s, hints };
 }
 
 let state: OnboardingState;
@@ -120,7 +139,7 @@ try {
   if (text) {
     const parsed: unknown = JSON.parse(text);
     if (isOnboardingState(parsed)) {
-      state = parsed;
+      state = withAddedHints(parsed);
       if (stored === null) Storage.setItemSync(ONBOARDING_KEY, text);
     } else {
       state = seed(isExistingUser());

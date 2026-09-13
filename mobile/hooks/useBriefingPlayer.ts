@@ -64,6 +64,9 @@ interface BriefingPlayer {
   duration: number;
   date: string;
   resumable: boolean;
+  /** Where a saved position resumes, in seconds, read at launch before any
+   *  playback — `elapsed` stays 0 until the player is restored. */
+  resumeAt: number;
   /** Monotonic signal: increments once for each terminal playback failure. */
   failureCount: number;
   /** False when the feed didn't surface a briefing date — typically because
@@ -118,6 +121,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const [preparing, setPreparing] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [resumable, setResumable] = useState(false);
+  const [resumeAt, setResumeAt] = useState(0);
   const [hasPlayer, setHasPlayer] = useState(false);
   const [failureCount, setFailureCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
@@ -173,7 +177,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         }
         if (cancelled) return;
         const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
-        setResumable(savedDateStr === effectiveDate && Number.isFinite(pos) && pos > 0);
+        const valid = savedDateStr === effectiveDate && Number.isFinite(pos) && pos > 0;
+        setResumable(valid);
+        setResumeAt(valid ? pos : 0);
       })
       .catch(() => {
         if (!cancelled) setResumable(false);
@@ -684,6 +690,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     duration: effectiveDuration,
     date: effectiveDate,
     resumable,
+    resumeAt,
     failureCount,
     available,
     toggle,

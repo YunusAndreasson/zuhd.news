@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { BriefingBar } from './BriefingBar';
 
@@ -12,7 +12,12 @@ export interface BriefingStatus {
   available: boolean;
   resumable: boolean;
   duration?: number;
+  /** Share already heard, 0–1, in fortieths — the play button's arc. */
+  heard: number;
 }
+
+/** Steps the heard share is reported in: a 9° arc step, and never a tick. */
+const HEARD_STEPS = 40;
 
 interface BriefingChromeProps {
   date?: string;
@@ -70,13 +75,29 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
       onVisibilityChange(visible);
     }, [onVisibilityChange, visible]);
 
+    // The heard share follows `elapsed`, which ticks twice a second while
+    // playing — the very field this component exists to keep from reaching
+    // HomeScreen. It is only read while the player is down (the masthead's
+    // button is hidden while it plays), so it holds its last value until then,
+    // and it moves in fortieths.
+    const heardRef = useRef(0);
+    if (player.state !== 'playing' && player.state !== 'preparing') {
+      const at = player.elapsed > 0 ? player.elapsed : player.resumeAt;
+      heardRef.current =
+        player.resumable && player.duration > 0
+          ? Math.round(Math.min(1, at / player.duration) * HEARD_STEPS) / HEARD_STEPS
+          : 0;
+    }
+    const heard = heardRef.current;
+
     useEffect(() => {
       onStatusChange({
         available: player.available,
         resumable: player.resumable,
         duration: player.duration,
+        heard,
       });
-    }, [onStatusChange, player.available, player.resumable, player.duration]);
+    }, [onStatusChange, player.available, player.resumable, player.duration, heard]);
 
     useEffect(() => {
       if (player.failureCount === 0) return;

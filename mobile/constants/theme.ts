@@ -226,6 +226,32 @@ export function withAlpha(hex: string, alpha: number): string {
 }
 
 /**
+ * A solid colour `t` of the way from `a` to `b` (3- or 6-digit hex). A quieter
+ * shade of a hue is an ink step, never an opacity: a translucent mark over the
+ * globe's lights would change colour with whatever passed behind it. Returns
+ * `a` unchanged if either input is not hex.
+ */
+export function mixHex(a: string, b: string, t: number): string {
+  const rgb = (hex: string): [number, number, number] | null => {
+    const m = hex.replace('#', '');
+    const full = m.length === 3 ? `${m[0]}${m[0]}${m[1]}${m[1]}${m[2]}${m[2]}` : m;
+    if (!/^[0-9a-fA-F]{6}$/.test(full)) return null;
+    const n = Number.parseInt(full, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  };
+  const from = rgb(a);
+  const to = rgb(b);
+  if (!from || !to) return a;
+  const k = Math.min(1, Math.max(0, t));
+  let hex = '#';
+  for (let i = 0; i < 3; i++) {
+    const v = Math.round((from[i] as number) + ((to[i] as number) - (from[i] as number)) * k);
+    hex += v.toString(16).padStart(2, '0');
+  }
+  return hex;
+}
+
+/**
  * A story's category → the hue its globe mark is drawn in.
  *
  * One table for the mark and for the dot in the sheet's preview that names

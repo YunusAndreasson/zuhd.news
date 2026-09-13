@@ -161,7 +161,11 @@ export const IndexSheet = memo(function IndexSheet({
 
   // Stable, so the memoised sheet does not re-render on every parent render.
   const menuAction = useMemo(
-    () => ({ icon: 'menu' as const, label: 'Settings and pages', onPress: onMenuPress }),
+    () => ({
+      icon: 'ellipsis-horizontal' as const,
+      label: 'Settings and pages',
+      onPress: onMenuPress,
+    }),
     [onMenuPress],
   );
 

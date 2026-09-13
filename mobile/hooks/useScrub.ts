@@ -20,6 +20,9 @@ import { hapticImpact } from '../lib/haptics';
 
 const noop = () => {};
 
+/** The stem's thickness: a line that reads above a thumb without becoming a bar. */
+export const STEM_WIDTH = 1;
+
 export interface ScrubOptions {
   /** The filled share, 0–1. The scrub writes it on the UI thread while held. */
   fraction: SharedValue<number>;
@@ -30,6 +33,8 @@ export interface ScrubOptions {
   steps: number;
   /** The tooltip's text for a fraction. */
   labelFor: (fraction: number) => string;
+  /** A quieter second line under it — when the story at that fraction ran. */
+  detailFor?: (fraction: number) => string;
   /** The finger lifted, or tapped: go there. */
   onCommit: (fraction: number) => void;
   onScrubStart?: () => void;
@@ -64,6 +69,7 @@ export function useScrub({
   detents,
   steps,
   labelFor,
+  detailFor,
   onCommit,
   onScrubStart,
   onScrubEnd,
@@ -88,15 +94,20 @@ export function useScrub({
   const lastStep = useSharedValue(-1);
 
   const [label, setLabel] = useState('');
+  const [detail, setDetail] = useState('');
   const labelRef = useRef('');
+  const detailRef = useRef('');
   const updateLabel = useCallback(
     (f: number) => {
       const next = labelFor(f);
-      if (next === labelRef.current) return;
+      const nextDetail = detailFor ? detailFor(f) : '';
+      if (next === labelRef.current && nextDetail === detailRef.current) return;
       labelRef.current = next;
+      detailRef.current = nextDetail;
       setLabel(next);
+      setDetail(nextDetail);
     },
-    [labelFor],
+    [labelFor, detailFor],
   );
   const start = onScrubStart ?? noop;
   const end = onScrubEnd ?? noop;
@@ -204,7 +215,28 @@ export function useScrub({
     };
   });
 
-  return { gesture, onLayout, width, shown, holding, tooltipStyle, tooltipWidth, label };
+  // The stem under the tooltip points at the finger itself, unclamped, so the
+  // place it marks stays true at the track's ends where the label cannot follow.
+  const stemStyle = useAnimatedStyle(() => {
+    const w = width.value || 1;
+    return {
+      opacity: shown.value,
+      transform: [{ translateX: Math.max(0, Math.min(fingerX.value, w)) - STEM_WIDTH / 2 }],
+    };
+  });
+
+  return {
+    gesture,
+    onLayout,
+    width,
+    shown,
+    holding,
+    tooltipStyle,
+    stemStyle,
+    tooltipWidth,
+    label,
+    detail,
+  };
 }
 
 export type Scrub = ReturnType<typeof useScrub>;

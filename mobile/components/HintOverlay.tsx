@@ -26,6 +26,7 @@ const HINT_COPY: Record<HintId, string> = {
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
   globe: 'tap a light on the globe to find its story',
+  masthead: "play hears today's briefing · the list holds every story",
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;

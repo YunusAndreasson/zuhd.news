@@ -344,11 +344,11 @@ export const EndCard = memo(function EndCard({
           onPress={onAllStories}
           haptic="tick"
           accessibilityRole="button"
-          accessibilityLabel="All stories"
+          accessibilityLabel="Today's stories"
           hitSlop={SPACING.sm}
         >
           <Text variant="labelSm" tone="secondary">
-            all stories →
+            today's stories →
           </Text>
         </Pressable>
       </View>

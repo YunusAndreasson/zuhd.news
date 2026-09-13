@@ -40,9 +40,10 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
   'chevron-down': 'chevron.down',
   'close-circle': 'xmark.circle.fill',
   'close-sharp': 'xmark',
-  // iOS reads a hamburger as a Material idiom; `ellipsis` is the native
-  // "menu/more" affordance. Android keeps the Ionicons hamburger.
-  menu: 'ellipsis',
+  // "More" is an ellipsis on both platforms. Android used to keep the Ionicons
+  // hamburger for it, and the story list's settings button — reached from a
+  // three-line list icon — was a second three-line icon doing something else.
+  'ellipsis-horizontal': 'ellipsis',
   'information-circle': 'info.circle.fill',
   'information-circle-outline': 'info.circle',
   list: 'list.bullet',
