@@ -1407,8 +1407,43 @@
         "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price"
       ],
       "generatedAt": "2026-09-14T04:37:48.040Z"
+    },
+    "poly-fed-rate-hike-in-2026": {
+      "standingFingerprint": "c902ef9cdeb1597f",
+      "recentFingerprint": "38e60890d82ca135",
+      "standing": "A Polymarket contract paying out if the Federal Reserve raises its policy rate at any meeting during the calendar year. It is a bet, not a forecast: the price is what traders will pay for that outcome, and it reprices on every inflation print and Fed remark.",
+      "recent": "An oil shock did the repricing. Houthi fighters took Yemen's port of Mocha on Sep 10, pushing crude toward $105 and turning an energy spike into an inflation problem the Fed cannot cut through. Goldman Sachs dropped its no-hike call on Sep 13, and a payroll surge earlier in the month had already pulled the contract the same way.",
+      "citations": [
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
+        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice",
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut"
+      ],
+      "generatedAt": "2026-09-14T08:23:49.988Z"
+    },
+    "poly-will-anthropic-ipo-by-october-31-2026-213": {
+      "standingFingerprint": "22175a6d1dce1819",
+      "recentFingerprint": "d00cba798345bb8a",
+      "standing": "A Polymarket contract on whether Anthropic, the AI lab behind the Claude models, completes an initial public offering by a fixed date. It is a bet on the timing of the first public listing by a frontier AI developer.",
+      "recent": "New Jersey asked the Supreme Court to decide whether contracts like this one are federally regulated swaps or state-barred gambling, and the UK regulator began weighing an easing of its own ban on financial prediction markets — both of which bear on where these contracts can legally trade. Nothing in the window touched the listing itself.",
+      "citations": [
+        "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption"
+      ],
+      "generatedAt": "2026-09-14T08:23:59.836Z"
+    },
+    "wiki-ukraine": {
+      "standingFingerprint": "1009c5d886208fd6",
+      "recentFingerprint": "7d1d26eb8ceaa525",
+      "standing": "Daily readership of the English Wikipedia article on Ukraine, a proxy for how much of the world is paying attention to the country at any given moment. It rises with invasions, elections and diplomacy, and falls when a war becomes routine.",
+      "recent": "Russia launched 863 drones at Ukraine in a single night, and one hit a Warsaw-bound passenger train two kilometres from the Polish border — the corridor that is the only civilian exit since Ukrainian airspace closed. Separately, Witkoff and Kushner met Putin for three hours in Moscow on a plan to end the war.",
+      "citations": [
+        "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine",
+        "2026-09-13-kyiv-warsaw-train-the-only-civilian-exit",
+        "2026-09-07-us-envoy-russia-ukraine-three-way-talks-format",
+        "2026-09-12-ukraine-strikes-miami-g20-meeting-refused"
+      ],
+      "generatedAt": "2026-09-14T08:24:09.530Z"
     }
   },
-  "generatedAt": "2026-09-14T04:44:55.842Z",
+  "generatedAt": "2026-09-14T08:24:09.530Z",
   "windowDays": 14
 }
