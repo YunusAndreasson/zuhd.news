@@ -7,28 +7,28 @@ import { DAY_MS } from './time';
 export type RiverArticle = Article & { category: Category };
 
 /** Newest story first, using the same timestamp as the visible dateline.
- * Slug breaks exact ties deterministically; coverage and category never
- * promote an older story above a newer one. */
+ * Slug breaks exact ties deterministically; coverage never changes recency. */
 function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
   const recency = articleTime(b) - articleTime(a);
   if (recency !== 0) return recency;
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
 }
 
-/** Flatten every category into one chronological news column. */
+/** Contiguous category bands for the scrubber, newest first within each band. */
 export function orderNewsRiver(grouped: Record<Category, Article[]>): RiverArticle[] {
   const flat: RiverArticle[] = [];
   for (const category of CATEGORIES) {
-    for (const article of grouped[category] ?? []) flat.push({ ...article, category });
+    const stories = (grouped[category] ?? []).map((article) => ({ ...article, category }));
+    flat.push(...stories.sort(compareNewsRecency));
   }
-  return flat.sort(compareNewsRecency);
+  return flat;
 }
 
 /** How much of the river the app shows: one day of news. */
 export const RIVER_WINDOW_MS = DAY_MS;
 
 /**
- * The last day of the river, newest first.
+ * The last day of the river, preserving its category and time order.
  *
  * The feed carries several days of stories, and swiping, the globe's lights,
  * the found ring and the list all read the same river, so a story from three
@@ -49,7 +49,11 @@ export function recentRiver(
   now: number,
   keep: ReadonlySet<string> = new Set(),
 ): RiverArticle[] {
-  const newest = river[0] ? articleTime(river[0]) : now;
+  // The first category need not contain the newest story in the feed.
+  const newest = river.reduce(
+    (latest, article) => Math.max(latest, articleTime(article)),
+    -Infinity,
+  );
   const anchor = newest >= now - RIVER_WINDOW_MS ? now : newest;
   const from = anchor - RIVER_WINDOW_MS;
   return river.filter((a) => articleTime(a) >= from || keep.has(a.slug));

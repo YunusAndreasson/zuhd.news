@@ -1,0 +1,68 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.9
+      fromY: 0.8
+      toX: 0.1
+      toY: 0.8
+      durationMs: 1500
+      momentum: false
+    delayMs: 2500
+  - tool: await-ui-element
+    args:
+      selector:
+        text: Story 2 of 43
+      condition: visible
+      timeoutMs: 10000
+    delayMs: 1500
+  - tool: gesture-swipe
+    args:
+      fromX: 0.9
+      fromY: 0.8
+      toX: 0.1
+      toY: 0.8
+      durationMs: 1500
+      momentum: false
+    delayMs: 2500
+  - tool: await-ui-element
+    args:
+      selector:
+        text: Story 3 of 43
+      condition: visible
+      timeoutMs: 10000
+    delayMs: 1500
+  - tool: gesture-swipe
+    args:
+      fromX: 0.1
+      fromY: 0.8
+      toX: 0.9
+      toY: 0.8
+      durationMs: 1500
+      momentum: false
+    delayMs: 2500
+  - tool: await-ui-element
+    args:
+      selector:
+        text: Story 2 of 43
+      condition: visible
+      timeoutMs: 10000
+    delayMs: 1500
+  - tool: gesture-swipe
+    args:
+      fromX: 0.1
+      fromY: 0.8
+      toX: 0.9
+      toY: 0.8
+      durationMs: 1500
+      momentum: false
+    delayMs: 2500
+  - tool: await-ui-element
+    args:
+      selector:
+        text: Story 1 of 43
+      condition: visible
+      timeoutMs: 10000
+    delayMs: 1500
+executionPrerequisite: emulator-5556; Metro 8082; first story (Story 1 of 43),
+  collapsed, globe fully loaded. Two forward and two backward swipes with
+  destination checks.

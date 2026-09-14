@@ -57,6 +57,7 @@ import {
 } from 'react';
 import { StyleSheet } from 'react-native';
 import {
+  cancelAnimation,
   Easing,
   type SharedValue,
   useAnimatedReaction,
@@ -64,6 +65,7 @@ import {
   useReducedMotion,
   useSharedValue,
   withDelay,
+  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -79,6 +81,7 @@ import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import { reachFor, swipeClip, viewAngleFor } from '../../lib/globe-camera';
+import { isStorySettled } from '../../lib/globe-settle';
 import { coverageRanks } from '../../lib/now';
 import {
   conflictScale,
@@ -1384,6 +1387,9 @@ interface FramePictures {
  *  drawn to, so the sky behind the planet and the ring around it follow the
  *  zoom in the same replay. */
 interface FrameOut extends FramePictures {
+  activeDot: { x: number; y: number } | null;
+  activeSlug: string | null;
+  activeColor: string;
   disc: number;
 }
 
@@ -2225,10 +2231,58 @@ export const MiniGlobe = memo(function MiniGlobe({
     marks: EMPTY_PICTURE,
     labels: EMPTY_PICTURE,
     disc: globeRadius,
+    activeDot: null,
+    activeSlug: null,
+    activeColor: colors.textEmphasis,
   });
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
+  // A steady core and repeating outward ripple identify the current article. Coordinates come from
+  // the existing projected frame; the pulse never asks JS to reproject land.
+  const activePulse = useSharedValue(1);
+  useAnimatedReaction(
+    () => (framePictures.value.activeDot ? framePictures.value.activeSlug : null),
+    (slug, previous) => {
+      if (slug === previous) return;
+      cancelAnimation(activePulse);
+      activePulse.value = 0;
+      if (slug && !reduceMotion) {
+        activePulse.value = withRepeat(
+          withTiming(1, { duration: 2600, easing: Easing.linear }),
+          -1,
+          false,
+        );
+      }
+    },
+  );
+  useEffect(() => () => cancelAnimation(activePulse), [activePulse]);
+  const activeMarkerColor = useDerivedValue(() => framePictures.value.activeColor);
+  const activeMarkerAlpha = useDerivedValue(() => (framePictures.value.activeDot ? 1 : 0));
+  const activePulseX = useDerivedValue(() => framePictures.value.activeDot?.x ?? 0);
+  const activePulseY = useDerivedValue(() => framePictures.value.activeDot?.y ?? 0);
+  // Counter-scale only the beacon, so it stays legible when the sheet shrinks
+  // the globe. Its geographic position still follows the canvas transform.
+  const beaconScale = useDerivedValue(() => {
+    for (const transform of canvasTransform?.value ?? []) {
+      if ('scale' in transform) return 1 / Math.max(0.25, transform.scale);
+    }
+    return 1;
+  });
+  const activeCoreRadius = useDerivedValue(() => 3.5 * beaconScale.value);
+  const activeRimRadius = useDerivedValue(() => 5.5 * beaconScale.value);
+  const activeStroke = useDerivedValue(() => 1.25 * beaconScale.value);
+  const activePulseRadius = useDerivedValue(
+    () => (reduceMotion ? 12 : 7 + 19 * activePulse.value) * beaconScale.value,
+  );
+  const activePulseAlpha = useDerivedValue(() => {
+    if (!framePictures.value.activeDot) return 0;
+    if (reduceMotion) return 0.3;
+    // Fade in before expanding, then dissolve completely before the loop resets.
+    const p = activePulse.value;
+    return 0.55 * Math.min(1, p / 0.12) * (1 - p) ** 1.5;
+  });
+
   // Outside the limb, wherever the zoom has put it: the stars and the moon
   // are behind the planet, and a zoomed globe covers them.
   const discClip = useDerivedValue(() => Skia.Path.Circle(cx, cy, framePictures.value.disc));
@@ -2258,6 +2312,12 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
     framePictures.value = {
       ...pictures,
+      activeDot: frame.dot,
+      activeSlug: lastSettledSlug.current,
+      activeColor: categoryMarkColor(
+        (articlesRef.current[lastSettled.current] as { category?: string } | undefined)?.category,
+        colors,
+      ),
       disc: frame.discRadius > 0 ? frame.discRadius : globeRadius,
     };
   };
@@ -2696,8 +2756,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       const pg = pgRef.current;
       pg.projection(proj);
 
-      // Extra detail layers wait for the camera to approach its resting frame.
-      // Geometry below has a stricter gate so detail is restored only at landing.
+      // Arc opacity still fades over a quarter story; expensive detail waits
+      // until landing, using the same boundary as reaction invalidation.
       const ARC_WINDOW = 0.25;
       const lastAngle = lastOverrideAngleRef.current;
       lastOverrideAngleRef.current = overrideAngleVal;
@@ -2708,14 +2768,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // hands over the list's last one, which is ~0 at rest. Without
       // `cameraMoving`, every frame of a globe drag was therefore projected at
       // full settled detail — on the emulator, 26 of 26 frames over four drags.
-      const nearSettled =
-        !zoomInFlight && !cameraMoving && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
+      const nearSettled = !zoomInFlight && !cameraMoving && isStorySettled(frac);
 
       // Keep gesture frames light, then restore detail at the actual landing.
       // Every geographic layer uses the same shared-arc tier.
-      const geography = getGlobeGeography(
-        geographyTier(projScale, !nearSettled || (frac > 0.002 && frac < 0.998)),
-      );
+      const geography = getGlobeGeography(geographyTier(projScale, !nearSettled));
       const landBuilder = landPathRef.current;
       landBuilder.reset();
       skiaCtx.setPath(landBuilder);
@@ -3447,11 +3504,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         // zooms in. A generous gap thins crowded continents (Europe is the
         // densest cluster on the globe) at 1×, while 3× framings — where the
         // reader has opted into detail — pack tighter so the atlas fills in.
-        // Linear 2px @ PLACES_FULL_CLIP (10°) → 7px @ PLACES_APPEAR_CLIP (25°),
+        // Linear 2px @ PLACES_FULL_CLIP (10°) → 13px @ PLACES_APPEAR_CLIP (25°),
         // clamped, so big-country 1× clips (up to 70°) also get the wide gap.
         const pad =
           2 +
-          5 *
+          11 *
             Math.min(
               1,
               Math.max(0, (clipAngle - PLACES_FULL_CLIP) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
@@ -3771,9 +3828,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // not a frame drop that can strand the globe between articles.
       if (busy) return;
 
+      const rawStory = Math.max(0, sy);
+      const storyFraction = Math.min(1, rawStory - Math.min(Math.floor(rawStory), len / 2 - 1));
+      // Compare to the last published frame, not the previous reaction tick:
+      // updates while busy must not consume the final detail restoration.
+      const detailChanged =
+        owner === 0 &&
+        (lastReactMoving.value ||
+          isStorySettled(storyFraction) !== isStorySettled(lastReactFrac.value));
       const now = performance.now();
       const justReleased = previous?.busy === true;
-      if (!justReleased && hasFired.value && now - lastTimeRef.value < 32) return;
+      if (!detailChanged && !justReleased && hasFired.value && now - lastTimeRef.value < 32) return;
       hasFired.value = true;
       lastTimeRef.value = now;
 
@@ -3911,6 +3976,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // ticker is still firing. settledIndex change always passes through
       // (drives country highlight + label swap).
       if (
+        !detailChanged &&
         settled === lastReactSettled.value &&
         // In stories, not pixels: 0.002 of a story is well under a point of
         // any surface's travel.
@@ -4521,6 +4587,29 @@ export const MiniGlobe = memo(function MiniGlobe({
         {/* Marks — hotspots, straits, exchanges, hazards, the country
           highlight, rivers, arcs, stories and the settled dot. */}
         <Picture picture={marksPicture} />
+        <Circle
+          cx={activePulseX}
+          cy={activePulseY}
+          r={activeRimRadius}
+          opacity={activeMarkerAlpha}
+          color={colors.bg}
+        />
+        <Circle
+          cx={activePulseX}
+          cy={activePulseY}
+          r={activeCoreRadius}
+          opacity={activeMarkerAlpha}
+          color={activeMarkerColor}
+        />
+        <Circle
+          cx={activePulseX}
+          cy={activePulseY}
+          r={activePulseRadius}
+          opacity={activePulseAlpha}
+          color={activeMarkerColor}
+          style="stroke"
+          strokeWidth={activeStroke}
+        />
 
         {/* Still to find — see `ringLeft`. */}
         {foundTotal > 0 ? (

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { MASTHEAD_ROW } from '../../lib/deck-layout';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
@@ -27,18 +28,16 @@ import { Icon, Pressable, Text } from '../primitives';
  * whole series. A glance at the carets and their colour is
  * the whole read; the number is there for whoever stops.
  *
- * **The fourth slot is cut on purpose.** Slots are sized so three and a bit
- * fit the room before the Settings button — the partial slot at
- * the edge is what says the row continues. No scroll indicator, no arrow, no dots.
+ * Slots grow to fit the full label and percentage without wrapping. A partial
+ * slot at the edge signals that the row continues.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
  * names in the list of things this is not.
  *
- * Each slot carries the reading and the week's move; graphs live in the bottom sheet. The
- * window is printed once, over `all` at the end of the row, rather than in
- * every slot: it is the same window everywhere, which is the point. The card a
- * slot opens keeps its own longer window and says which.
+ * Each slot carries its label and week's percentage move on one line.
+ * Absolute readings and graphs live in the detail sheet. The common window
+ * appears once at the start of the row; accessibility also speaks it per item.
  *
  * **`all →` ends the row.** The instruments without a move — the nisab, the
  * contracts, the dates — and the full ranked list live in `InstrumentsSheet`,
@@ -60,7 +59,7 @@ const SELECTED_BAR = 2;
  *  holds the row at a gauge's height before the gauges arrive. */
 export const GAUGE_EXTRA = SPACING.xxs + SELECTED_BAR;
 
-/** Slots visible across the row. Not a whole number, so one is always cut. */
+/** Minimum slot width rhythm; labels and moves may widen individual slots. */
 const VISIBLE_SLOTS = 3.4;
 
 const Slot = memo(function Slot({
@@ -102,28 +101,15 @@ const Slot = memo(function Slot({
       accessibilityState={{ selected }}
       accessibilityHint="Turns the globe to this and opens its card"
     >
-      {/* One line, never cut. A fixed-width slot either ellipsized the
-          subject ("STRAIT OF HOR…", a number with no subject) or wrapped it,
-          and a wrap made the whole strip two caps lines tall. So the subject
-          takes its conventional short form (`stripLabel`) and a slot is as
-          wide as its longest line, never narrower than the rhythm below. */}
-      <Text
-        variant="labelXsTight"
-        numberOfLines={1}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-        style={styles.label}
-      >
-        {item.short}
-      </Text>
       <View style={styles.value}>
         <Text
-          variant="tabularEmphasis"
+          variant="labelXsTight"
           numberOfLines={1}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         >
-          {item.reading}
+          {item.short}
         </Text>
-        <DeltaChip delta={item.delta} window={false} scale={1} />
+        <DeltaChip delta={item.delta} window={false} scale={1} colorBy="direction" />
       </View>
       <View
         style={[
@@ -179,6 +165,15 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       contentContainerStyle={styles.row}
       accessibilityLabel="Markets, straits and currencies, largest move over seven days first"
     >
+      <Text
+        variant="labelXsTight"
+        tone="secondary"
+        numberOfLines={1}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+        style={styles.timeframe}
+      >
+        7 days
+      </Text>
       {items.map((item) => (
         <Slot
           key={item.id}
@@ -188,9 +183,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
           onPress={onSelect}
         />
       ))}
-      {/* The window, named once where the row ends: every slot measures the
-          same seven days, so printing it per slot would be the same caption ten
-          times over. */}
       <Pressable
         onPress={onAll}
         haptic="none"
@@ -199,15 +191,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
         accessibilityLabel="All instruments"
         accessibilityHint="Opens every market, strait, currency and contract as a ranked list"
       >
-        <Text
-          variant="labelXsTight"
-          tone="secondary"
-          numberOfLines={1}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-          style={styles.label}
-        >
-          7 days
-        </Text>
         <View style={styles.allRow}>
           <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
             all
@@ -223,19 +206,13 @@ const styles = StyleSheet.create({
   row: {
     // The row runs to the screen's right edge; its content stops on the column.
     paddingRight: SPACING.articlePadding,
-    paddingTop: SPACING.xs,
-    paddingBottom: SPACING.sm,
     gap: SPACING.md,
   },
-  // Equal widths rather than content width: gauges that change size as the
-  // day's figures change length are gauges you have to read before you can
-  // find the one you wanted.
-  slot: { justifyContent: 'flex-start' },
-  label: { marginBottom: 1 },
+  slot: { minHeight: MASTHEAD_ROW, justifyContent: 'center' },
+  timeframe: { alignSelf: 'center', marginBottom: GAUGE_EXTRA },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
-  // Laid out like a slot (a caption over a line) so "7 days" sits on the
-  // labels' line and "all" on the readings'.
-  all: { justifyContent: 'flex-start' },
+  // Match the single-line gauges, reserving their selection-bar space.
+  all: { minHeight: MASTHEAD_ROW, justifyContent: 'center', paddingBottom: GAUGE_EXTRA },
   allRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
 });

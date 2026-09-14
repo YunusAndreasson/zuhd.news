@@ -27,9 +27,8 @@ import { EVENT_TYPE_EYEBROW } from './gdacs';
  *
  * Three deliberate absences:
  *
- *   **No story ever enters the block.** The river below it is already strictly
- *   newest-first, so its first row *is* the lead story; promoting that same
- *   story into a block directly above itself is the repetition this module
+ *   **No story ever enters the block.** The river below already contains every story, grouped by category;
+ *   promoting a story into a block above its own deck is the repetition this module
  *   exists to prevent. Stories still get marks on the globe and still drive
  *   the camera — see `coverageRanks`.
  *

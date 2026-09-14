@@ -59,10 +59,10 @@ describe('computeDeckLayout', () => {
       lines: LARGE_LINES,
       caps: CAPS,
     });
-    // 16 + 56 + 23 + 56 + 8 + 5×29 + 16 + 34
-    expect(layout.peek).toBe(354);
-    expect(layout.band).toBe(407);
-    expect(layout.radius).toBe(187);
+    // 16 + 48 + 23 + 56 + 8 + 5×29 + 16 + 34
+    expect(layout.peek).toBe(346);
+    expect(layout.band).toBe(415);
+    expect(layout.radius).toBe(191);
   });
 
   it('grows the story under the bar, leaving the globe a band', () => {
@@ -78,7 +78,7 @@ describe('grownGlobeTransform', () => {
   it('lands the resting centre on the grown centre at the grown radius', () => {
     const layout = computeDeckLayout(small());
     const { scale, translateY } = grownGlobeTransform(layout, 640);
-    expect(scale * layout.radius).toBeCloseTo(layout.storyRadius);
+    expect(scale * layout.radius).toBeCloseTo(0.46 * layout.storyBand);
     // Scaling about the canvas centre, then translating.
     const landed = 320 + scale * (layout.centerY - 320) + translateY;
     expect(landed).toBeCloseTo(layout.storyCenterY);
@@ -90,7 +90,7 @@ describe('grownGlobeTransform', () => {
     // A story 324pt tall: the band under a 128pt bar is 188, not 140.
     const short = grownGlobeTransform(layout, 640, 324);
     expect(short.scale).toBeGreaterThan(tall.scale);
-    expect(short.scale * layout.radius).toBeCloseTo(Math.round(0.46 * 188));
+    expect(short.scale * layout.radius).toBeCloseTo(0.46 * 188);
     const landed = 320 + short.scale * (layout.centerY - 320) + short.translateY;
     expect(landed).toBeCloseTo(128 + 188 / 2);
   });
@@ -98,6 +98,15 @@ describe('grownGlobeTransform', () => {
   it('never draws the grown disc larger than the resting one', () => {
     const layout = computeDeckLayout(small());
     expect(grownGlobeTransform(layout, 640, layout.peek - 200).scale).toBeLessThanOrEqual(1);
+  });
+
+  it('changes smoothly for sub-point sheet height changes', () => {
+    const layout = computeDeckLayout(small());
+    const sizes = [324, 324.1, 324.2].map(
+      (sheetHeight) => grownGlobeTransform(layout, 640, sheetHeight).scale * layout.radius,
+    );
+    expect(sizes[0]! - sizes[1]!).toBeCloseTo(0.046);
+    expect(sizes[1]! - sizes[2]!).toBeCloseTo(0.046);
   });
 });
 

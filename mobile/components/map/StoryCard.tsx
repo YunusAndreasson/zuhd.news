@@ -9,7 +9,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { MAX_FONT_SCALE, PROSE_BREAK_PROPS, SPACING } from '../../constants/theme';
+import { ARTICLE_BREAK_PROPS, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -242,7 +242,7 @@ export const StoryCard = memo(function StoryCard({
           accessibility element of its own: the sentences are read as text. */}
       <RNPressable onPress={onOpen} accessible={false}>
         <RNText
-          {...PROSE_BREAK_PROPS}
+          {...ARTICLE_BREAK_PROPS}
           style={mdStyles.sentence}
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
@@ -252,7 +252,7 @@ export const StoryCard = memo(function StoryCard({
 
       {rest.length > 0 ? (
         <RNText
-          {...PROSE_BREAK_PROPS}
+          {...ARTICLE_BREAK_PROPS}
           style={mdStyles.sentence}
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
@@ -319,13 +319,7 @@ export const StoryCard = memo(function StoryCard({
  * in the same place as the stories is where a reader swiping through them
  * will actually see it.
  */
-export const EndCard = memo(function EndCard({
-  bottomInset,
-  onAllStories,
-}: {
-  bottomInset: number;
-  onAllStories: () => void;
-}) {
+export const EndCard = memo(function EndCard({ bottomInset }: { bottomInset: number }) {
   return (
     <View style={[styles.card, { paddingBottom: bottomInset + SPACING.lg }]}>
       <Text variant="labelXs" tone="emphasis" style={styles.kicker}>
@@ -337,19 +331,6 @@ export const EndCard = memo(function EndCard({
       <Text variant="body" tone="secondary">
         New stories arrive through the day.
       </Text>
-      <View style={styles.actions}>
-        <Pressable
-          onPress={onAllStories}
-          haptic="tick"
-          accessibilityRole="button"
-          accessibilityLabel="Today's stories"
-          hitSlop={SPACING.sm}
-        >
-          <Text variant="labelSm" tone="secondary">
-            today's stories →
-          </Text>
-        </Pressable>
-      </View>
     </View>
   );
 });

@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
 import type { CardDelta } from '../lib/cards/types';
+import { valenceOf } from '../lib/valence';
 import { Icon, Text } from './primitives';
 
 /**
@@ -16,10 +17,9 @@ import { Icon, Text } from './primitives';
  * indistinguishable from the label text beside it, so the reader's first job
  * was deciding whether a chip was coloured at all.
  *
- * Shared rather than copied. It lived inside `CardFrame` until the indicator
- * strip needed the same two channels above the globe, and a strip drawing its
- * own caret is how the app ends up with two answers to "which way is bad" —
- * the exact failure `lib/valence.ts` was created to end.
+ * The compact top strip uses `colorBy="direction"`: up is green, down is red,
+ * flat is neutral. Its arrow and number reinforce the same movement at a glance.
+ * Detail cards use the default consequence coloring.
  *
  * The strip passes `window={false}`: three of these sit side by side in a
  * third of a phone's width each, and "since 22 Jul" does not fit. The window
@@ -29,13 +29,16 @@ export const DeltaChip = memo(function DeltaChip({
   delta,
   window = true,
   scale = 1.15,
+  colorBy = 'valence',
 }: {
   delta: CardDelta;
   /** Print the period the move was measured over. Off where there is no room. */
   window?: boolean;
   scale?: number;
+  /** The compact top bar colors movement; detail cards color its consequence. */
+  colorBy?: 'valence' | 'direction';
 }) {
-  const tone = delta.valence;
+  const tone = colorBy === 'direction' ? valenceOf(delta.direction, 'favorable') : delta.valence;
   return (
     <View style={styles.delta}>
       {delta.direction !== 'flat' ? (

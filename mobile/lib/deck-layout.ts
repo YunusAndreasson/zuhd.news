@@ -104,7 +104,6 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   const above =
     HANDLE +
     Math.max(lineHeight(input, 'caption'), MASTHEAD_ROW) +
-    SPACING.sm +
     lineHeight(input, 'labelXs') +
     SPACING.xs +
     TITLE_LINES * lineHeight(input, 'title') +
@@ -156,7 +155,9 @@ export function grownGlobeTransform(
 ): { scale: number; translateY: number } {
   'worklet';
   const band = Math.max(BAND_MIN, height - layout.header - sheetHeight);
-  const radius = Math.round(GLOBE_FILL * Math.min(layout.width, band));
+  // This height can animate between stories; rounding made the globe's
+  // scale step by whole points even though the sheet moved continuously.
+  const radius = GLOBE_FILL * Math.min(layout.width, band);
   const scale = layout.radius > 0 ? Math.min(1, radius / layout.radius) : 1;
   const mid = height / 2;
   const centerY = layout.header + band / 2;

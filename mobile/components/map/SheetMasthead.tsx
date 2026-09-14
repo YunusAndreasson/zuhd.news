@@ -1,7 +1,13 @@
 import { Canvas, Path, Skia } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
-import { type SharedValue, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
+import {
+  type SharedValue,
+  useAnimatedReaction,
+  useDerivedValue,
+  useSharedValue,
+} from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
@@ -13,11 +19,12 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
 
 /**
  * Story navigation above the card. The track previews destinations while
- * scrubbing; briefing and all articles have separate 40×48pt targets at right.
+ * scrubbing; briefing has a separate 40×48pt target at right.
  */
 
 /** Which story a fraction of the track points at: the segment under it. */
 function storyAt(fraction: number, count: number): number {
+  'worklet';
   return Math.max(0, Math.min(count - 1, Math.ceil(fraction * count) - 1));
 }
 
@@ -64,7 +71,6 @@ export const SheetMasthead = memo(function SheetMasthead({
   position,
   progress,
   alert,
-  onPress,
   onAlertPress,
   onSeek,
   detailAt,
@@ -87,8 +93,6 @@ export const SheetMasthead = memo(function SheetMasthead({
   progress?: FoundProgress;
   /** The newest live Red alert's title, if any. */
   alert?: string | null;
-  /** Opens every story as a list. */
-  onPress?: () => void;
   /** Opens the alert. */
   onAlertPress?: () => void;
   /** Jump to a story from the track. */
@@ -107,11 +111,17 @@ export const SheetMasthead = memo(function SheetMasthead({
   onListenPress?: () => void;
 }) {
   const { colors, resolvedAppearance } = useTheme();
+  const insets = useSafeAreaInsets();
   const showingAlert = !refreshing && !!alert;
 
   // One story of 48 fills a 48th of the track; the end card fills it. The deck
   // writes this unless a finger is scrubbing the track itself.
   const fraction = useSharedValue(0);
+  // Preview the destination's full category hue on the same UI-thread frame
+  // as the thumb moves, without waiting for a committed story or React render.
+  const destinationHue = useDerivedValue(
+    () => hues?.[storyAt(fraction.value, count)] ?? colors.textEmphasis,
+  );
   const labelFor = useCallback((f: number) => `${storyAt(f, count) + 1} of ${count}`, [count]);
   // Where in the day is only half of it; when is the other half, in the words
   // the card's kicker and the index already use.
@@ -125,16 +135,15 @@ export const SheetMasthead = memo(function SheetMasthead({
   // on what is left to read and the track still says how far through the day
   // you are. Upcoming stories sit a touch below full too: at full strength
   // the row was the loudest colour on the sheet after the globe, and it pulled
-  // the eye off the headline. Only the story on the card keeps its full hue —
-  // quiet up to and including it, the reader's own place looked read.
+  // the eye off the headline. The raised current-story marker carries its
+  // full hue separately, so neither track palette changes on every landing.
   const tints = useMemo(() => {
     if (!hues || hues.length !== count) return null;
     const quiet = QUIET_MIX[resolvedAppearance];
     const ahead = AHEAD_MIX[resolvedAppearance];
-    const tint = (mix: number) =>
-      hues.map((hue, i) => (i === index ? hue : mixHex(hue, colors.sheetBg, mix)));
+    const tint = (mix: number) => hues.map((hue) => mixHex(hue, colors.sheetBg, mix));
     return { passed: tint(quiet), ahead: tint(ahead) };
-  }, [hues, count, index, colors.sheetBg, resolvedAppearance]);
+  }, [hues, count, colors.sheetBg, resolvedAppearance]);
   const handleCommit = useCallback((f: number) => onSeek?.(storyAt(f, count)), [onSeek, count]);
   const scrub = useScrub({
     fraction,
@@ -173,7 +182,7 @@ export const SheetMasthead = memo(function SheetMasthead({
   const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${found > 0 ? `, ${found} found on the globe` : ''}`;
 
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, { paddingRight: insets.right }]}>
       {refreshing || showingAlert ? (
         <Pressable
           onPress={showingAlert ? onAlertPress : undefined}
@@ -193,12 +202,13 @@ export const SheetMasthead = memo(function SheetMasthead({
           interactive={!!onSeek}
           segments={count}
           activeSegment={index}
+          activeSegmentColor={hues?.[index]}
           height={TRACK}
           trackColor={colors.rule}
           fillColor={colors.textSecondary}
           trackColors={tints?.ahead}
           fillColors={tints?.passed}
-          thumbColor={colors.textEmphasis}
+          thumbColor={destinationHue}
           style={styles.scrub}
           accessibilityRole="adjustable"
           accessibilityLabel={spoken}
@@ -206,48 +216,30 @@ export const SheetMasthead = memo(function SheetMasthead({
           accessibilityActions={ADJUST_ACTIONS}
           onAccessibilityAction={handleAdjust}
         >
-          <ScrubTooltip
-            scrub={scrub}
-            backgroundColor={colors.toastBg}
-            stemColor={colors.textSecondary}
-          />
+          <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} stemColor={destinationHue} />
         </ScrubBar>
       ) : (
         <View style={styles.shrink} />
       )}
-      <View style={styles.actions}>
-        {listenAvailable && onListenPress ? (
-          <IconButton
-            onPress={onListenPress}
-            haptic="none"
-            style={styles.action}
-            hitSlop={0}
-            accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
-            accessibilityHint={
-              listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-            }
+      {listenAvailable && onListenPress ? (
+        <IconButton
+          onPress={onListenPress}
+          haptic="none"
+          style={styles.action}
+          hitSlop={0}
+          accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
+          accessibilityHint={
+            listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+          }
+        >
+          <View
+            style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
           >
-            <View
-              style={[styles.listen, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-            >
-              {heard > 0 ? <HeardRing heard={heard} color={colors.textSecondary} /> : null}
-              <Icon name="play" size="sm" tone="default" />
-            </View>
-          </IconButton>
-        ) : null}
-        {onPress ? (
-          <IconButton
-            onPress={onPress}
-            haptic="none"
-            hitSlop={0}
-            style={styles.action}
-            accessibilityLabel="All articles"
-            accessibilityHint="Opens the list of all articles"
-          >
-            <Icon name="list" size="md" tone="default" />
-          </IconButton>
-        ) : null}
-      </View>
+            {heard > 0 ? <HeardRing heard={heard} color={colors.textSecondary} /> : null}
+            <Icon name="play" size="sm" tone="default" />
+          </View>
+        </IconButton>
+      ) : null}
     </View>
   );
 });
@@ -273,9 +265,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xs,
-    paddingHorizontal: SPACING.articlePadding,
-    paddingBottom: SPACING.sm,
-    minHeight: MASTHEAD_ROW + SPACING.sm,
+    paddingLeft: SPACING.articlePadding,
+    minHeight: MASTHEAD_ROW,
   },
   shrink: { flex: 1 },
   status: { flex: 1, minHeight: MASTHEAD_ROW, justifyContent: 'center' },
@@ -289,7 +280,6 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
   },
   heard: { position: 'absolute', top: 0, left: 0, width: LISTEN_SIZE, height: LISTEN_SIZE },
-  actions: { flexDirection: 'row', alignItems: 'center' },
   // Compact horizontal bounds; retain the full-height, non-overlapping targets.
   action: {
     width: MASTHEAD_ROW - SPACING.sm,

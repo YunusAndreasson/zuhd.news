@@ -95,13 +95,15 @@ export const MapHeader = memo(function MapHeader({
 
   // The row is as tall as a gauge whether or not the gauges have arrived, so
   // their arrival does not move the globe, whose centre is measured from here.
-  const gaugeHeight = Math.ceil(
-    (textVariants.labelXsTight.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.chrome) +
-      (textVariants.tabularEmphasis.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.tabular) +
-      1 +
-      SPACING.xs +
-      SPACING.sm +
-      GAUGE_EXTRA,
+  const gaugeHeight = Math.max(
+    MASTHEAD_ROW,
+    Math.ceil(
+      Math.max(
+        (textVariants.labelXsTight.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.chrome),
+        (textVariants.tabularEmphasis.lineHeight ?? 0) *
+          Math.min(fontScale, MAX_FONT_SCALE.tabular),
+      ) + GAUGE_EXTRA,
+    ),
   );
   // Reserve a fixed, non-overlapping target beside the scrolling gauges.
   const leftInset = Math.max(SPACING.articlePadding, insets.left);
@@ -125,14 +127,18 @@ export const MapHeader = memo(function MapHeader({
       <Animated.View
         style={[styles.middle, { minHeight: gaugeHeight }, gaugesStyle]}
         pointerEvents={gaugesEnabled ? 'box-none' : 'none'}
+        accessibilityElementsHidden={!gaugesEnabled}
+        importantForAccessibility={gaugesEnabled ? 'auto' : 'no-hide-descendants'}
       >
-        <IndicatorStrip
-          items={items}
-          onSelect={onSelect}
-          onAll={onAll}
-          selectedId={selectedId}
-          initialViewport={stripViewport}
-        />
+        {gaugesEnabled && (
+          <IndicatorStrip
+            items={items}
+            onSelect={onSelect}
+            onAll={onAll}
+            selectedId={selectedId}
+            initialViewport={stripViewport}
+          />
+        )}
       </Animated.View>
       <IconButton
         onPress={onMenuPress}
@@ -156,6 +162,8 @@ const styles = StyleSheet.create({
   settings: {
     width: SETTINGS_WIDTH,
     height: MASTHEAD_ROW,
+    // Optical alignment with the text accounts for the icon font's own ascent.
+    paddingBottom: GAUGE_EXTRA,
     flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',

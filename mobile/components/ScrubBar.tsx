@@ -65,6 +65,8 @@ interface ScrubBarProps
   segments?: number;
   /** The current item, raised above the track so position does not rely on colour. */
   activeSegment?: number;
+  /** Full current-story hue, independent of the stable muted track palettes. */
+  activeSegmentColor?: string;
   height: number;
   trackColor: string;
   fillColor: string;
@@ -72,7 +74,7 @@ interface ScrubBarProps
   trackColors?: readonly string[];
   /** One colour per segment for what the fill has passed, overriding `fillColor`. */
   fillColors?: readonly string[];
-  thumbColor: string;
+  thumbColor: string | SharedValue<string>;
   /** The touch area. Vertical padding only: its width is the track's. */
   style?: StyleProp<ViewStyle>;
   /** Drawn over the touch area — `ScrubTooltip`, usually. */
@@ -92,6 +94,7 @@ export const ScrubBar = memo(function ScrubBar({
   interactive = true,
   segments,
   activeSegment,
+  activeSegmentColor,
   height,
   trackColor,
   fillColor,
@@ -111,6 +114,7 @@ export const ScrubBar = memo(function ScrubBar({
     transform: [{ translateX: (1 - fraction.value) * width.value }],
   }));
   const thumbStyle = useAnimatedStyle(() => ({
+    backgroundColor: typeof thumbColor === 'string' ? thumbColor : thumbColor.value,
     opacity: shown.value,
     transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
   }));
@@ -148,7 +152,7 @@ export const ScrubBar = memo(function ScrubBar({
               {
                 height: height + SPACING.xs,
                 top: -SPACING.xs / 2,
-                backgroundColor: fillColors?.[activeSegment] ?? fillColor,
+                backgroundColor: activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor,
               },
               activeStyle,
             ]}
@@ -157,11 +161,7 @@ export const ScrubBar = memo(function ScrubBar({
         {interactive ? (
           <Animated.View
             pointerEvents="none"
-            style={[
-              styles.thumb,
-              { backgroundColor: thumbColor, top: (height - THUMB) / 2 },
-              thumbStyle,
-            ]}
+            style={[styles.thumb, { top: (height - THUMB) / 2 }, thumbStyle]}
           />
         ) : null}
       </View>
@@ -187,15 +187,18 @@ export const ScrubTooltip = memo(function ScrubTooltip({
 }: {
   scrub: Scrub;
   backgroundColor: string;
-  stemColor?: string;
+  stemColor?: string | SharedValue<string>;
 }) {
   const lift = stemColor ? THUMB_CLEARANCE : SPACING.sm;
+  const stemColorStyle = useAnimatedStyle(() => ({
+    backgroundColor: typeof stemColor === 'string' ? stemColor : stemColor?.value,
+  }));
   return (
     <>
       {stemColor ? (
         <Animated.View
           pointerEvents="none"
-          style={[styles.stem, { height: lift, backgroundColor: stemColor }, scrub.stemStyle]}
+          style={[styles.stem, { height: lift }, stemColorStyle, scrub.stemStyle]}
         />
       ) : null}
       <Animated.View

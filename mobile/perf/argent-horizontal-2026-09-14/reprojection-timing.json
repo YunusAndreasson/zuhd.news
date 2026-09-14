@@ -1,0 +1,61 @@
+{
+  "flow": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Prerequisite: emulator-5556; Metro 8082; first story (Story 1 of 43), collapsed, globe fully loaded. Two forward and two backward swipes with destination checks."
+      },
+      {
+        "type": "text",
+        "text": "Running flow \"perf-horizontal-globe-verified\" on emulator-5556 (8 steps)"
+      },
+      { "type": "text", "text": "[1] ✓ gesture-swipe" },
+      { "type": "text", "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789409719790\n}" },
+      { "type": "text", "text": "[2] ✓ await-ui-element" },
+      { "type": "text", "text": "{\n  \"success\": true,\n  \"elapsed\": 771\n}" },
+      { "type": "text", "text": "[3] ✓ gesture-swipe" },
+      { "type": "text", "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789409726355\n}" },
+      { "type": "text", "text": "[4] ✓ await-ui-element" },
+      { "type": "text", "text": "{\n  \"success\": true,\n  \"elapsed\": 620\n}" },
+      { "type": "text", "text": "[5] ✓ gesture-swipe" },
+      { "type": "text", "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789409732748\n}" },
+      { "type": "text", "text": "[6] ✓ await-ui-element" },
+      { "type": "text", "text": "{\n  \"success\": true,\n  \"elapsed\": 599\n}" },
+      { "type": "text", "text": "[7] ✓ gesture-swipe" },
+      { "type": "text", "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789409739118\n}" },
+      { "type": "text", "text": "[8] ✓ await-ui-element" },
+      { "type": "text", "text": "{\n  \"success\": true,\n  \"elapsed\": 492\n}" },
+      { "type": "text", "text": "PASS — 8 passed, 0 failed, 0 errored, 0 skipped" }
+    ]
+  },
+  "samples": [
+    { "ms": 673.3772650007159, "frac": 0.04218116866217719, "index": 0 },
+    { "ms": 137.03621799964458, "frac": 0.5596507708231608, "index": 1 },
+    { "ms": 154.68645399995148, "frac": 0.6276249567667643, "index": 1 },
+    { "ms": 140.73725300002843, "frac": 0.6418276256985135, "index": 1 },
+    { "ms": 191.43791799992323, "frac": 0.6466869566175673, "index": 1 },
+    { "ms": 129.15107400063425, "frac": 0.6657762511008904, "index": 1 },
+    { "ms": 527.0973309995607, "frac": 0.8968347945053593, "index": 1 },
+    { "ms": 821.1099319998175, "frac": 0, "index": 1 },
+    { "ms": 882.60938099958, "frac": 0.045016819900936644, "index": 1 },
+    { "ms": 148.675077999942, "frac": 0.6819969177246095, "index": 2 },
+    { "ms": 84.59384300000966, "frac": 0.7359736760457356, "index": 2 },
+    { "ms": 444.7081749998033, "frac": 0.7503427187601726, "index": 2 },
+    { "ms": 375.934744999744, "frac": 0.9115855092461636, "index": 2 },
+    { "ms": 744.070782000199, "frac": 0.9999502639644593, "index": 2 },
+    { "ms": 679.6210150001571, "frac": 0, "index": 2 },
+    { "ms": 783.9807890001684, "frac": 0.9553548183706071, "index": 2 },
+    { "ms": 131.0021930001676, "frac": 0.34613894356621655, "index": 1 },
+    { "ms": 110.24992000032216, "frac": 0.2743634541829427, "index": 1 },
+    { "ms": 131.3149930005893, "frac": 0.25944010416666674, "index": 1 },
+    { "ms": 127.20408300030977, "frac": 0.2552517573038737, "index": 1 },
+    { "ms": 755.7636919999495, "frac": 0.1514993008531329, "index": 1 },
+    { "ms": 687.6562540000305, "frac": 0, "index": 1 },
+    { "ms": 824.4353169994429, "frac": 0.9571478936407302, "index": 1 },
+    { "ms": 126.5895650004968, "frac": 0.34539927376641166, "index": 0 },
+    { "ms": 229.2246519997716, "frac": 0.2892270935906305, "index": 0 },
+    { "ms": 119.15954899974167, "frac": 0.27333895365397143, "index": 0 },
+    { "ms": 375.5077139995992, "frac": 0.16227454195923652, "index": 0 },
+    { "ms": 900.3784729996696, "frac": 0.00021897914834714938, "index": 0 }
+  ]
+}

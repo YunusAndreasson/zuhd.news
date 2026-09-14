@@ -57,9 +57,8 @@ export function buildStoryRows({ river, lastSeenAt, odds }: BuildStoryRowsInput)
   return river.map((article, index) => {
     const seen = article.addedAt <= lastSeenAt;
     let mark: string | null = null;
-    // A boundary on the newest story is no boundary: nothing arrived since the
-    // last visit, and `earlier ·` over the card the app opens on read as a
-    // label on the day's lead story rather than as a place in the river.
+    // Suppress a boundary on the opening card: `earlier ·` there reads as
+    // a label on that story rather than as a place the reader has reached.
     if (!boundaryMarked && seen && index === 0) {
       boundaryMarked = true;
     } else if (!boundaryMarked && seen) {

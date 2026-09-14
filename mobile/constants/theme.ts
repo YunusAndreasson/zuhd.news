@@ -332,7 +332,9 @@ export function makeTypography(sizeScale: number = 1) {
     sizeH1: fs(28, sizeScale),
     sizeWordmark: fs(14, sizeScale),
 
-    leadingBody: 1.55,
+    // Compact prose leading keeps the reading column comfortable without
+    // making short articles unnecessarily tall; font size stays unchanged.
+    leadingBody: 1.45,
     leadingHeading: 1.2,
     /** Tight single-line leading for small-caps labels/captions that must not
      *  eat vertical space between adjacent rows. Replaces the ad-hoc `× 1.1`
@@ -510,6 +512,8 @@ export const ANIMATION = {
   spring: { damping: 12, stiffness: 150 },
   /** Snappier spring for gesture starts (scrub tooltips, pull handles). */
   springSoft: { damping: 20, stiffness: 300 },
+  /** News sheet and globe share stops: settle without a rebound. */
+  springSheet: { duration: 350, dampingRatio: 1, overshootClamping: true },
   staggerStep: 40,
   staggerCap: 8,
 } as const;
@@ -785,6 +789,14 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
 export const PROSE_BREAK_PROPS = {
   android_hyphenationFrequency: 'normal',
   lineBreakStrategyIOS: 'standard',
+} as const satisfies Partial<RNTextProps>;
+
+/** Fill the story's reading column with dictionary-based word breaks.
+ * Keep this on body paragraphs: short captions retain conservative breaks. */
+export const ARTICLE_BREAK_PROPS = {
+  ...PROSE_BREAK_PROPS,
+  android_hyphenationFrequency: 'full',
+  textBreakStrategy: 'highQuality',
 } as const satisfies Partial<RNTextProps>;
 
 const HEADING_BREAK_PROPS = {

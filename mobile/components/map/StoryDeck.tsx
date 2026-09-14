@@ -11,7 +11,6 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { SPACING } from '../../constants/theme';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -62,26 +61,8 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * top, so every card arrives showing its kicker.
  */
 
-/**
- * How much of the next story's *text* shows at the right edge — the sign,
- * beside the masthead's track, that the row continues.
- *
- * Measured to the text, not to the slot. It was a 16pt cut of a slot whose
- * text sits 14pt in (`articlePadding`), so the reader saw two points of the
- * next headline — a rendering glitch, not a card — and 10pt before that read
- * as a seam. A peek is either a legible piece of the next story or nothing.
- */
-const DECK_PEEK = SPACING.lg;
-/**
- * How strongly a resting neighbour is drawn. The peek says the row continues;
- * at full ink the next headline competed with the one being read, and the eye
- * went to the edge of the screen. It comes up to full as it is swiped in.
- */
+/** Neighbours fade in as they enter during a horizontal swipe. */
 const PEEK_OPACITY = 0.4;
-/** Between the end of the current card's text and the start of the next one's. */
-const DECK_GAP = SPACING.md;
-/** Where the next slot starts, from the right edge: its peek plus its own padding. */
-const DECK_INSET = DECK_PEEK + SPACING.articlePadding;
 /** Perceived duration of a landing, in ms. Critically damped, so a card
  *  arrives without a bounce the globe would have to follow past a dateline. */
 const SETTLE_MS = 380;
@@ -249,10 +230,11 @@ export const StoryDeck = memo(function StoryDeck({
   onDragStart,
   onSettle,
 }: StoryDeckProps) {
-  const pitch = Math.max(1, width - DECK_INSET);
-  // A slot reaches past the pitch into the next one's left padding, which is
-  // empty, so the current text ends `DECK_GAP` before the next text begins.
-  const slotWidth = Math.max(1, width - DECK_PEEK - DECK_GAP + SPACING.articlePadding);
+  // Use the full reading width at both detents. The scrubber signals more
+  // stories; reserving a neighbour preview narrowed every paragraph, even
+  // when expanded. A fixed width also avoids reflow during vertical drags.
+  const pitch = Math.max(1, width);
+  const slotWidth = pitch;
   /** Where the card was when the pan claimed it, and the finger's translation then. */
   const start = useSharedValue(0);
   const startX = useSharedValue(0);
@@ -278,11 +260,15 @@ export const StoryDeck = memo(function StoryDeck({
         'worklet';
         progress.value = rubberBand(start.value - (e.translationX - startX.value) / pitch, count);
       },
-      onDeactivate: (e: { translationX: number; velocityX: number }) => {
+      onDeactivate: (e: { translationX: number; velocityX: number; canceled: boolean }) => {
         'worklet';
         const position = start.value - (e.translationX - startX.value) / pitch;
-        const velocity = -e.velocityX / pitch;
-        const target = deckTarget(Math.round(start.value), position, velocity, count);
+        const velocity = e.canceled ? 0 : -e.velocityX / pitch;
+        // Cancellation is a rollback, even if the finger crossed a story or
+        // caught a spring on its way to the already committed story.
+        const target = e.canceled
+          ? committed.value
+          : deckTarget(Math.round(start.value), position, velocity, count);
         progress.value = withSpring(target, {
           duration: SETTLE_MS,
           dampingRatio: 1,

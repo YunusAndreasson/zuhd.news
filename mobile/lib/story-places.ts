@@ -1,3 +1,4 @@
+import { articleTime } from './article-utils';
 import type { StoryRow } from './map-feed';
 
 /**
@@ -30,7 +31,7 @@ export interface StoryPlace {
   key: string;
   lat: number;
   lng: number;
-  /** Newest first: the river's own order, which `news-order.ts` guarantees. */
+  /** Newest first, independently of the deck's category order. */
   slugs: string[];
 }
 
@@ -57,6 +58,7 @@ export function buildStoryPlaces(rows: readonly StoryRow[]): StoryPlace[] {
     const name = row.article.location?.trim() || `${lat.toFixed(2)},${lng.toFixed(2)}`;
     located.push({ row, lat, lng, name });
   }
+  located.sort((a, b) => articleTime(b.row.article) - articleTime(a.row.article));
 
   const n = located.length;
   const parent = Array.from({ length: n }, (_, i) => i);
@@ -83,7 +85,7 @@ export function buildStoryPlaces(rows: readonly StoryRow[]): StoryPlace[] {
   }
 
   // The root is always the lowest index, which is the newest story, so groups
-  // come out in river order and each group's members stay newest first.
+  // come out in recency order and each group's members stay newest first.
   const groups = new Map<number, number[]>();
   for (let i = 0; i < n; i++) {
     const r = find(i);

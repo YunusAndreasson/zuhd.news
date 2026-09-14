@@ -11,6 +11,7 @@ import {
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
+  cancelAnimation,
   type SharedValue,
   useAnimatedReaction,
   useAnimatedStyle,
@@ -153,6 +154,7 @@ export function MapSheet({
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const [detent, setDetent] = useState<MapSheetDetent>('peek');
+  const committedDetent = useSharedValue<MapSheetDetent>('peek');
 
   // Travel: `full - peek` px between the two stops. `offset` is how far the
   // sheet is pushed down from its expanded position, so peek is the maximum.
@@ -185,6 +187,7 @@ export function MapSheet({
   openTargetRef.current = openTarget;
   const openAt = useSharedValue(openTarget);
   const dragStart = useSharedValue(travel);
+  const dragStartY = useSharedValue(0);
   const owner = useSharedValue(UNDECIDED);
   const listOffset = useSharedValue(0);
   // Finger travel past peek during a pull, for the refresh trigger.
@@ -243,7 +246,7 @@ export function MapSheet({
     const move = (to: number) =>
       reduceMotion
         ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
-        : withSpring(to, ANIMATION.springSoft);
+        : withSpring(to, ANIMATION.springSheet);
     openAt.value = move(openTarget);
     offset.value = move(openTarget);
   }, [offset, openAt, openTarget, reduceMotion]);
@@ -269,10 +272,13 @@ export function MapSheet({
       offset.value =
         reduceMotion && velocity === 0
           ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(target, { ...ANIMATION.springSoft, velocity });
+          : withSpring(target, { ...ANIMATION.springSheet, velocity });
+      // Publish on the UI thread before the JS callback so a second drag
+      // can be canceled back to this stop while JS is still busy.
+      committedDetent.value = next;
       scheduleOnRN(settle, next);
     },
-    [offset, reduceMotion, settle],
+    [committedDetent, offset, reduceMotion, settle],
   );
 
   // Named, because `scheduleOnRN` must never be handed an inline arrow from a
@@ -289,9 +295,16 @@ export function MapSheet({
       failOffsetX: [-24, 24] as [number, number],
       onBegin: () => {
         'worklet';
-        dragStart.value = offset.value;
         owner.value = UNDECIDED;
         pull.value = 0;
+      },
+      onActivate: (e: { translationY: number }) => {
+        'worklet';
+        // Catch a settling sheet at activation, before the first update.
+        // A tap or a horizontal swipe must leave its animation running.
+        cancelAnimation(offset);
+        dragStart.value = offset.value;
+        dragStartY.value = e.translationY;
       },
       onUpdate: (e: { translationY: number }) => {
         'worklet';
@@ -310,7 +323,7 @@ export function MapSheet({
           owner.value = offset.value > openAt.value + 0.5 || (atTop && pullingDown) ? SHEET : LIST;
         }
         if (owner.value !== SHEET) return;
-        const next = dragStart.value + e.translationY;
+        const next = dragStart.value + e.translationY - dragStartY.value;
         if (next > travel) {
           // Past peek the sheet follows at a fraction of the finger, which is
           // what makes a pull read as a pull rather than as a stuck sheet.
@@ -321,8 +334,20 @@ export function MapSheet({
           offset.value = next < openAt.value ? openAt.value : next;
         }
       },
-      onDeactivate: (e: { velocityY: number }) => {
+      onDeactivate: (e: { velocityY: number; canceled: boolean }) => {
         'worklet';
+        // Activation already stopped the animation, even if no update chose
+        // an owner yet. Always restore it on cancellation, without committing
+        // a detent or turning an interrupted pull into a refresh.
+        if (e.canceled) {
+          owner.value = UNDECIDED;
+          pull.value = 0;
+          const target = committedDetent.value === 'full' ? openAt.value : travel;
+          offset.value = reduceMotion
+            ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
+            : withSpring(target, { ...ANIMATION.springSheet, velocity: 0 });
+          return;
+        }
         if (owner.value !== SHEET) return;
         owner.value = UNDECIDED;
         // Only a pull that began at rest. A collapse from full that overshoots
@@ -349,7 +374,20 @@ export function MapSheet({
         owner.value = UNDECIDED;
       },
     }),
-    [animateTo, dragStart, handlePullDown, listOffset, offset, openAt, owner, pull, travel],
+    [
+      animateTo,
+      committedDetent,
+      reduceMotion,
+      dragStart,
+      dragStartY,
+      handlePullDown,
+      listOffset,
+      offset,
+      openAt,
+      owner,
+      pull,
+      travel,
+    ],
   );
 
   const pan = usePanGesture(panConfig);
@@ -361,17 +399,19 @@ export function MapSheet({
         const to = openTargetRef.current;
         offset.value = reduceMotion
           ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(to, ANIMATION.springSoft);
+          : withSpring(to, ANIMATION.springSheet);
+        committedDetent.value = 'full';
         settle('full');
       },
       collapse: () => {
         offset.value = reduceMotion
           ? withTiming(travel, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(travel, ANIMATION.springSoft);
+          : withSpring(travel, ANIMATION.springSheet);
+        committedDetent.value = 'peek';
         settle('peek');
       },
     }),
-    [offset, reduceMotion, settle, travel],
+    [committedDetent, offset, reduceMotion, settle, travel],
   );
 
   // The detents reachable without a drag. A sheet whose only control is a
@@ -384,9 +424,10 @@ export function MapSheet({
         duration: ANIMATION.fast,
         easing: EASING.out,
       });
+      committedDetent.value = expand ? 'full' : 'peek';
       settle(expand ? 'full' : 'peek');
     },
-    [offset, settle, travel],
+    [committedDetent, offset, settle, travel],
   );
 
   const sheetStyle = useAnimatedStyle(() => ({

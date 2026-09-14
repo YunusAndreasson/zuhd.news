@@ -1,0 +1,80 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Prerequisite: emulator-5556; Metro 8082; first story (Story 1 of 43), collapsed, globe fully loaded. Two forward and two backward swipes with destination checks."
+    },
+    {
+      "type": "text",
+      "text": "Running flow \"perf-horizontal-globe-verified\" on emulator-5556 (8 steps)"
+    },
+    {
+      "type": "text",
+      "text": "[1] ✓ gesture-swipe"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789410177228\n}"
+    },
+    {
+      "type": "text",
+      "text": "[2] ✓ await-ui-element"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"elapsed\": 1109\n}"
+    },
+    {
+      "type": "text",
+      "text": "[3] ✓ gesture-swipe"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789410184092\n}"
+    },
+    {
+      "type": "text",
+      "text": "[4] ✓ await-ui-element"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"elapsed\": 725\n}"
+    },
+    {
+      "type": "text",
+      "text": "[5] ✓ gesture-swipe"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789410190592\n}"
+    },
+    {
+      "type": "text",
+      "text": "[6] ✓ await-ui-element"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"elapsed\": 1057\n}"
+    },
+    {
+      "type": "text",
+      "text": "[7] ✓ gesture-swipe"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"swiped\": true,\n  \"timestampMs\": 1789410197470\n}"
+    },
+    {
+      "type": "text",
+      "text": "[8] ✓ await-ui-element"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"elapsed\": 718\n}"
+    },
+    {
+      "type": "text",
+      "text": "PASS — 8 passed, 0 failed, 0 errored, 0 skipped"
+    }
+  ]
+}

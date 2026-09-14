@@ -48,7 +48,6 @@ import {
   type TapResult,
 } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
-import { IndexSheet } from '../components/IndexSheet';
 import { InstrumentsSheet } from '../components/InstrumentsSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
@@ -105,7 +104,7 @@ import {
 } from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
-import { pruneRead, useReadSlugs } from '../lib/read-store';
+import { pruneRead } from '../lib/read-store';
 import { maybeRequestReview } from '../lib/store-review';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
@@ -180,7 +179,6 @@ export default function HomeScreen() {
   const cardSheetRef = useRef<BottomSheetMethodsRef>(null);
   const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
-  const indexSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
@@ -227,7 +225,7 @@ export default function HomeScreen() {
   /** The slug in front, so a refresh that inserts stories keeps the reader on
    *  the story they were reading rather than on whatever moved into its slot.
    *  Null until the reader has moved the deck: an untouched deck stays on the
-   *  newest story, whichever that is. */
+   *  first story in category order. */
   const currentSlugRef = useRef<string | null>(null);
   /** A story asked for before it was in the river — a bookmark that has
    *  rotated out of the feed is injected, and its row exists a render later. */
@@ -251,7 +249,6 @@ export default function HomeScreen() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
   const [instrumentsOpen, setInstrumentsOpen] = useState(false);
-  const [indexOpen, setIndexOpen] = useState(false);
 
   // ---------------------------------------------------------------------
   // The camera
@@ -419,7 +416,6 @@ export default function HomeScreen() {
   // marks stand for.
   // ---------------------------------------------------------------------
   const foundSlugs = useFoundSlugs();
-  const readSlugs = useReadSlugs();
   const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
   const progress = useMemo(() => foundProgress(storyRows, foundSlugs), [storyRows, foundSlugs]);
 
@@ -930,7 +926,6 @@ export default function HomeScreen() {
     menuOpen ||
     primerOpen ||
     instrumentsOpen ||
-    indexOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
     activeAlert !== null ||
@@ -1052,26 +1047,6 @@ export default function HomeScreen() {
     [dismissActiveHint, findStory],
   );
 
-  const handleIndexPress = useCallback(() => {
-    hapticImpact();
-    markHintDone('masthead');
-    setIndexOpen(true);
-    indexSheetRef.current?.present();
-  }, []);
-  const handleIndexSelect = useCallback(
-    (slug: string) => {
-      indexSheetRef.current?.dismiss();
-      focusStory(slug);
-    },
-    [focusStory],
-  );
-  const handleIndexNowPress = useCallback(
-    (item: NowItem) => {
-      indexSheetRef.current?.dismiss();
-      handleNowPress(item);
-    },
-    [handleNowPress],
-  );
   const handleMastheadAlertPress = useCallback(() => {
     const item = nowRef.current[0];
     if (item) handleNowPress(item);
@@ -1121,7 +1096,6 @@ export default function HomeScreen() {
   );
   const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
   const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
-  const handleIndexDismiss = useCallback(() => setIndexOpen(false), []);
   const handleSourcesDismiss = useCallback(() => {
     setSheetSources([]);
     setSheetDivergence(null);
@@ -1299,9 +1273,9 @@ export default function HomeScreen() {
       storyCount === 0 ? (
         <EmptyState message="no stories yet" hint="New coverage arrives through the day" />
       ) : (
-        <EndCard bottomInset={cardBottomInset} onAllStories={handleIndexPress} />
+        <EndCard bottomInset={cardBottomInset} />
       ),
-    [cardBottomInset, handleIndexPress, storyCount],
+    [cardBottomInset, storyCount],
   );
 
   const renderList = useCallback(
@@ -1356,7 +1330,6 @@ export default function HomeScreen() {
         position={storyProgress}
         progress={progress}
         alert={now[0]?.title ?? null}
-        onPress={handleIndexPress}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
         detailAt={storyDetailAt}
@@ -1387,7 +1360,6 @@ export default function HomeScreen() {
       storyProgress,
       progress,
       now,
-      handleIndexPress,
       handleMastheadAlertPress,
     ],
   );
@@ -1523,23 +1495,6 @@ export default function HomeScreen() {
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
-      />
-
-      <IndexSheet
-        sheetRef={indexSheetRef}
-        bottomInset={insets.bottom}
-        onDismiss={handleIndexDismiss}
-        rows={storyRows}
-        now={now}
-        found={foundSlugs}
-        read={readSlugs}
-        // Only while open: the slug changes on every swipe, and a closed sheet
-        // re-rendered for it on each one. Opening sets both props together, so
-        // the sheet still scrolls to the story on the card.
-        currentSlug={indexOpen ? (storyRows[frontIndex]?.slug ?? null) : null}
-        open={indexOpen}
-        onSelect={handleIndexSelect}
-        onNowPress={handleIndexNowPress}
       />
 
       <CardSheet

@@ -1,0 +1,24 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"duration_ms\": 29893.516,\n  \"sample_count\": 2217,\n  \"fiber_renders_captured\": 720,\n  \"total_react_commits\": 26,\n  \"hot_commit_indices\": [\n    1,\n    6,\n    8,\n    9,\n    15,\n    20,\n    22\n  ],\n  \"any_compiler_optimized\": true,\n  \"fiber_renders_analyzed\": 598,\n  \"selection_note\": \"7 of 26 commits at ≥16ms absolute floor\"\n}"
+        }
+      ]
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"traceFile\": \"/tmp/argent-artifacts/mobile-9b1f98/20260914-155343-14346/emulator-5556/native-profiler-20260914-183030.pftrace\",\n  \"exportedFiles\": {\n    \"pftrace\": \"/tmp/argent-profiler-cwd/native-profiler-20260914-183030.pftrace\"\n  }\n}"
+        }
+      ]
+    }
+  }
+]

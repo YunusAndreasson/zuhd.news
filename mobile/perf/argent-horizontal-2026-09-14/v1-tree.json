@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\"## Call Tree for `lineTo`\\n\\n**Self time:** 1367.23ms (4.2%)\\n\\n### Callees (functions called by this function)\\n\\n| Function | Hits | Location |\\n|---|---|---|\\n| `[Host Function] lineTo` | 34 | [host]:0 |\\n\\n### Callers (functions that call this function)\\n\\n| Function | Hits | Location |\\n|---|---|---|\\n| `point` | 0 | /&platform=android&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable:334898 |\\n\""
+    }
+  ]
+}

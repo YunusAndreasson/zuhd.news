@@ -1,4 +1,5 @@
 import type { Article, Category } from '@shared/types';
+import { CATEGORIES } from '../constants/theme';
 import { articleTime } from '../lib/article-utils';
 import { orderNewsRiver, RIVER_WINDOW_MS, type RiverArticle, recentRiver } from '../lib/news-order';
 
@@ -30,13 +31,13 @@ const emptyGrouped = (): Record<Category, Article[]> => ({
 });
 
 describe('orderNewsRiver', () => {
-  it('puts newer stories first regardless of coverage or category', () => {
+  it('groups categories even when a later category has the newest story', () => {
     const grouped = emptyGrouped();
     grouped.science = [makeArticle({ slug: 'old', eventAt: 1000, eventCoverage: 294 })];
     grouped.tech = [makeArticle({ slug: 'new', eventAt: 3000 })];
     grouped.politics = [makeArticle({ slug: 'middle', eventAt: 2000, eventCoverage: 12 })];
-    expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['new', 'middle', 'old']);
-    expect(orderNewsRiver(grouped)[0]?.category).toBe('tech');
+    expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['middle', 'old', 'new']);
+    expect(orderNewsRiver(grouped).map((a) => a.category)).toEqual(['politics', 'science', 'tech']);
   });
 
   it('keeps consecutive newer stories from the same category ahead of older stories', () => {
@@ -72,7 +73,7 @@ describe('orderNewsRiver', () => {
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['a', 'b']);
   });
 
-  it('keeps all 40 stories in chronological order without mutating the input', () => {
+  it('keeps all 40 stories in category bands with descending times without mutating the input', () => {
     const grouped = emptyGrouped();
     for (const [categoryIndex, category] of (Object.keys(grouped) as Category[]).entries()) {
       grouped[category] = Array.from({ length: 10 }, (_, i) =>
@@ -87,7 +88,13 @@ describe('orderNewsRiver', () => {
     const out = orderNewsRiver(grouped);
     expect(out).toHaveLength(40);
     expect(new Set(out.map((a) => a.slug)).size).toBe(40);
-    expect(out.map(articleTime)).toEqual(Array.from({ length: 40 }, (_, i) => (40 - i) * 1000));
+    expect(out.map((a) => a.category)).toEqual(
+      CATEGORIES.flatMap((category) => Array(10).fill(category)),
+    );
+    for (const category of CATEGORIES) {
+      const times = out.filter((a) => a.category === category).map(articleTime);
+      expect(times).toEqual([...times].sort((a, b) => b - a));
+    }
     expect(JSON.stringify(grouped)).toBe(before);
   });
 
@@ -113,6 +120,24 @@ describe('recentRiver', () => {
       at('older', hoursAgo(80)),
     ];
     expect(recentRiver(river, now).map((a) => a.slug)).toEqual(['last', 'same-day']);
+  });
+
+  it('finds the newest time across category bands without reordering them', () => {
+    const grouped = emptyGrouped();
+    grouped.politics = [at('stale-politics', hoursAgo(40))];
+    grouped.economy = [at('recent-economy', hoursAgo(2))];
+    grouped.tech = [at('fresh-tech', hoursAgo(1))];
+    expect(recentRiver(orderNewsRiver(grouped), now).map((a) => a.slug)).toEqual([
+      'recent-economy',
+      'fresh-tech',
+    ]);
+    grouped.politics = [at('too-old', hoursAgo(80))];
+    grouped.economy = [at('same-day', hoursAgo(70))];
+    grouped.tech = [at('latest', hoursAgo(50))];
+    expect(recentRiver(orderNewsRiver(grouped), now).map((a) => a.slug)).toEqual([
+      'same-day',
+      'latest',
+    ]);
   });
 
   it('keeps a story the reader asked for, however old', () => {

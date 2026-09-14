@@ -31,8 +31,7 @@ import { Sparkline } from './Sparkline';
  * seven-day move (a monthly series, a contract, a date) keeps its card's own
  * chip, and its window is spoken.
  *
- * **The same row shape as the sheet's list.** Title first, at `FeedRow`'s
- * scale and allowed two lines, then `current · kicker` on one line under it.
+ * **Title first**, allowed two lines, then `current · kicker` on one line under it.
  * This list used to print `current` above the title and the kicker below it,
  * which spent a line on every row and cut every contract's question — the
  * one kind of title that is a whole sentence — to "Iran-Oman Hormuz pact…".

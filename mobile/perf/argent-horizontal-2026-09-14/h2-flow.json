@@ -1,0 +1,15 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Prerequisite: pixel emulator-5556; app connected to Metro 8082; first story Top Court Targets Police Bias, collapsed, globe and feed fully loaded. Four swipes finish back on first story."
+    },
+    { "type": "text", "text": "Running flow \"perf-horizontal-globe\" on emulator-5556 (1 steps)" },
+    { "type": "text", "text": "[1] ✓ run-sequence" },
+    {
+      "type": "text",
+      "text": "{\n  \"completed\": 4,\n  \"total\": 4,\n  \"steps\": [\n    {\n      \"tool\": \"gesture-swipe\",\n      \"result\": {\n        \"swiped\": true,\n        \"timestampMs\": 1789409474511\n      }\n    },\n    {\n      \"tool\": \"gesture-swipe\",\n      \"result\": {\n        \"swiped\": true,\n        \"timestampMs\": 1789409477195\n      }\n    },\n    {\n      \"tool\": \"gesture-swipe\",\n      \"result\": {\n        \"swiped\": true,\n        \"timestampMs\": 1789409479846\n      }\n    },\n    {\n      \"tool\": \"gesture-swipe\",\n      \"result\": {\n        \"swiped\": true,\n        \"timestampMs\": 1789409482512\n      }\n    }\n  ]\n}"
+    },
+    { "type": "text", "text": "PASS — 1 passed, 0 failed, 0 errored, 0 skipped" }
+  ]
+}

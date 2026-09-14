@@ -90,6 +90,7 @@ export function useScrub({
   const tooltipScale = useSharedValue(0.8);
   const fingerX = useSharedValue(0);
   const pending = useSharedValue(0);
+  const beforeDrag = useSharedValue(0);
   const lastDetent = useSharedValue(-1);
   const lastStep = useSharedValue(-1);
 
@@ -143,6 +144,7 @@ export function useScrub({
       failOffsetY: [-10, 10],
       onActivate: (e) => {
         'worklet';
+        beforeDrag.value = fraction.value;
         holding.value = 1;
         scheduleOnRN(start);
         shown.value = withSpring(1, ANIMATION.springSoft);
@@ -157,10 +159,11 @@ export function useScrub({
         fingerX.value = e.x;
         track(e.x);
       },
-      onFinalize: () => {
+      onFinalize: (e) => {
         'worklet';
         if (holding.value) {
-          scheduleOnRN(onCommit, pending.value);
+          if (e.canceled) fraction.value = beforeDrag.value;
+          else scheduleOnRN(onCommit, pending.value);
           scheduleOnRN(end);
           holding.value = 0;
         }
@@ -170,6 +173,8 @@ export function useScrub({
     }),
     [
       enabled,
+      beforeDrag,
+      fraction,
       holding,
       start,
       shown,

@@ -1,0 +1,24 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"started_at\": \"2026-09-14T18:27:48.297Z\",\n  \"startedAtEpochMs\": 1789410468297,\n  \"hermes_version\": \"250829098.0.17\",\n  \"detected_architecture\": \"bridgeless\"\n}"
+        }
+      ]
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"recording\",\n  \"pid\": 8137,\n  \"traceFile\": \"/tmp/argent-profiler-cwd/native-profiler-20260914-182748.pftrace\"\n}"
+        }
+      ]
+    }
+  }
+]
