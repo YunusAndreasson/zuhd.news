@@ -1,0 +1,36 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.9
+      fromY: 0.8
+      toX: 0.1
+      toY: 0.8
+      durationMs: 700
+    delayMs: 5000
+  - tool: gesture-swipe
+    args:
+      fromX: 0.9
+      fromY: 0.8
+      toX: 0.1
+      toY: 0.8
+      durationMs: 700
+    delayMs: 5000
+  - tool: gesture-swipe
+    args:
+      fromX: 0.1
+      fromY: 0.8
+      toX: 0.9
+      toY: 0.8
+      durationMs: 700
+    delayMs: 5000
+  - tool: gesture-swipe
+    args:
+      fromX: 0.1
+      fromY: 0.8
+      toX: 0.9
+      toY: 0.8
+      durationMs: 700
+    delayMs: 5000
+executionPrerequisite: emulator-5556; Metro 8082; first story (Story 1 of 43),
+  collapsed, globe fully loaded. Two forward and two backward swipes with
+  destination checks via recorded article changes; native await omitted because the continuous beacon prevents idle discovery.

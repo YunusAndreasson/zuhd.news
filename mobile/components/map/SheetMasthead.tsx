@@ -239,7 +239,10 @@ export const SheetMasthead = memo(function SheetMasthead({
             <Icon name="play" size="sm" tone="default" />
           </View>
         </IconButton>
-      ) : null}
+      ) : (
+        // Keep the track's width stable when the briefing player takes over.
+        <View style={styles.action} pointerEvents="none" accessible={false} />
+      )}
     </View>
   );
 });
@@ -284,6 +287,7 @@ const styles = StyleSheet.create({
   action: {
     width: MASTHEAD_ROW - SPACING.sm,
     height: MASTHEAD_ROW,
+    flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },

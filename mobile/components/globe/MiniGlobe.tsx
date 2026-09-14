@@ -55,12 +55,13 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { StyleSheet } from 'react-native';
-import {
+import { AppState, StyleSheet } from 'react-native';
+import Animated, {
   cancelAnimation,
   Easing,
   type SharedValue,
   useAnimatedReaction,
+  useAnimatedStyle,
   useDerivedValue,
   useReducedMotion,
   useSharedValue,
@@ -1393,6 +1394,12 @@ interface FrameOut extends FramePictures {
   disc: number;
 }
 
+type SettledGeometry = {
+  landPath: SkPath;
+  icePath: SkPath;
+  bordersPath: SkPath;
+  lakesPath: GlobeState['lakesPath'];
+};
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
   // Recorded well past the canvas: a grown story shrinks the drawing, and what
@@ -2238,49 +2245,57 @@ export const MiniGlobe = memo(function MiniGlobe({
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
-  // A steady core and repeating outward ripple identify the current article. Coordinates come from
+  // The category-colored dot itself breathes to identify the current article. Coordinates come from
   // the existing projected frame; the pulse never asks JS to reproject land.
   const activePulse = useSharedValue(1);
+  const beaconForeground = useSharedValue(AppState.currentState === 'active');
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      beaconForeground.value = state === 'active';
+    });
+    return () => subscription.remove();
+  }, [beaconForeground]);
   useAnimatedReaction(
-    () => (framePictures.value.activeDot ? framePictures.value.activeSlug : null),
+    () =>
+      beaconForeground.value && framePictures.value.activeDot
+        ? framePictures.value.activeSlug
+        : null,
     (slug, previous) => {
       if (slug === previous) return;
       cancelAnimation(activePulse);
       activePulse.value = 0;
       if (slug && !reduceMotion) {
         activePulse.value = withRepeat(
-          withTiming(1, { duration: 2600, easing: Easing.linear }),
+          withTiming(1, { duration: 900, easing: Easing.inOut(Easing.sin) }),
           -1,
-          false,
+          true,
         );
       }
     },
   );
   useEffect(() => () => cancelAnimation(activePulse), [activePulse]);
-  const activeMarkerColor = useDerivedValue(() => framePictures.value.activeColor);
-  const activeMarkerAlpha = useDerivedValue(() => (framePictures.value.activeDot ? 1 : 0));
-  const activePulseX = useDerivedValue(() => framePictures.value.activeDot?.x ?? 0);
-  const activePulseY = useDerivedValue(() => framePictures.value.activeDot?.y ?? 0);
-  // Counter-scale only the beacon, so it stays legible when the sheet shrinks
-  // the globe. Its geographic position still follows the canvas transform.
-  const beaconScale = useDerivedValue(() => {
+  // A tiny native overlay animates independently of Skia's globe recorder.
+  // Apply the globe's translate/scale to position only; the dot keeps its
+  // screen size as the article sheet grows. No pulse value enters the Canvas.
+  const beaconStyle = useAnimatedStyle(() => {
+    const dot = framePictures.value.activeDot;
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
     for (const transform of canvasTransform?.value ?? []) {
-      if ('scale' in transform) return 1 / Math.max(0.25, transform.scale);
+      if ('scale' in transform) scale = transform.scale;
+      if ('translateX' in transform) tx += transform.translateX;
+      if ('translateY' in transform) ty += transform.translateY;
     }
-    return 1;
-  });
-  const activeCoreRadius = useDerivedValue(() => 3.5 * beaconScale.value);
-  const activeRimRadius = useDerivedValue(() => 5.5 * beaconScale.value);
-  const activeStroke = useDerivedValue(() => 1.25 * beaconScale.value);
-  const activePulseRadius = useDerivedValue(
-    () => (reduceMotion ? 12 : 7 + 19 * activePulse.value) * beaconScale.value,
-  );
-  const activePulseAlpha = useDerivedValue(() => {
-    if (!framePictures.value.activeDot) return 0;
-    if (reduceMotion) return 0.3;
-    // Fade in before expanding, then dissolve completely before the loop resets.
-    const p = activePulse.value;
-    return 0.55 * Math.min(1, p / 0.12) * (1 - p) ** 1.5;
+    const x = dot ? width / 2 + (dot.x - width / 2) * scale + tx : 0;
+    const y = dot ? height / 2 + (dot.y - height / 2) * scale + ty : 0;
+    const radius = reduceMotion ? 6 : 4.5 + 2.5 * activePulse.value;
+    return {
+      opacity: dot && beaconForeground.value ? 1 : 0,
+      backgroundColor: framePictures.value.activeColor,
+      borderColor: colors.bg,
+      transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (radius + 2) / 9 }],
+    };
   });
 
   // Outside the limb, wherever the zoom has put it: the stars and the moon
@@ -2448,6 +2463,9 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Reusable mutable builders retain their internal buffers between frames;
   // each frame publishes immutable SkPath snapshots for rendering.
+  // Exact settled projections only, bounded to the current and adjacent stories.
+  // SkPath snapshots are immutable; later builder resets cannot alter cached paths.
+  const settledGeometryRef = useRef(new Map<string, SettledGeometry>());
   const landPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const icePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const bordersPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
@@ -2772,32 +2790,49 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Keep gesture frames light, then restore detail at the actual landing.
       // Every geographic layer uses the same shared-arc tier.
-      const geography = getGlobeGeography(geographyTier(projScale, !nearSettled));
-      const landBuilder = landPathRef.current;
-      landBuilder.reset();
-      skiaCtx.setPath(landBuilder);
-      pg.context(skiaCtx)(geography.land.visible(geoLng, geoLat, viewAngle));
-      const landPath = landBuilder.build();
-
-      // Lakes, on settled frames: the coastline has no inland water, so
-      // Lake Chad and Lake Victoria were land. ~150 polygons of 50m outline is
-      // settle-frame work, like the full coastline above, never drag work.
-      let lakesPath: GlobeState['lakesPath'] = null;
-      if (nearSettled) {
-        if (!lakesCuller) lakesCuller = createCapCuller(getLakeFillFeatureCollection());
-        const lakeBuilder = lakesPathRef.current;
-        lakeBuilder.reset();
-        skiaCtx.setPath(lakeBuilder);
-        pg.context(skiaCtx)(lakesCuller.visible(geoLng, geoLat, viewAngle));
-        lakesPath = lakeBuilder.build();
+      const tier = geographyTier(projScale, !nearSettled);
+      const geography = getGlobeGeography(tier);
+      const geometryKey = nearSettled
+        ? [tier, geoLng, geoLat, projScale, viewAngle, centerX, centerY].join('|')
+        : null;
+      const geometryCache = settledGeometryRef.current;
+      const cachedGeometry = geometryKey ? geometryCache.get(geometryKey) : undefined;
+      if (geometryKey) {
+        if (cachedGeometry) {
+          // Refresh recency without expanding the three-entry memory bound.
+          geometryCache.delete(geometryKey);
+          geometryCache.set(geometryKey, cachedGeometry);
+        }
       }
+      let landPath: SkPath;
+      let icePath: SkPath;
+      let lakesPath: GlobeState['lakesPath'] = null;
+      if (cachedGeometry) {
+        ({ landPath, icePath, lakesPath } = cachedGeometry);
+      } else {
+        const landBuilder = landPathRef.current;
+        landBuilder.reset();
+        skiaCtx.setPath(landBuilder);
+        pg.context(skiaCtx)(geography.land.visible(geoLng, geoLat, viewAngle));
+        landPath = landBuilder.build();
 
-      // Ice follows the same coastline at every level of detail.
-      const iceBuilder = icePathRef.current;
-      iceBuilder.reset();
-      skiaCtx.setPath(iceBuilder);
-      pg.context(skiaCtx)(geography.ice.visible(geoLng, geoLat, viewAngle));
-      const icePath = iceBuilder.build();
+        // Inland water is settled detail; motion never enters this cache.
+        if (nearSettled) {
+          if (!lakesCuller) lakesCuller = createCapCuller(getLakeFillFeatureCollection());
+          const lakeBuilder = lakesPathRef.current;
+          lakeBuilder.reset();
+          skiaCtx.setPath(lakeBuilder);
+          pg.context(skiaCtx)(lakesCuller.visible(geoLng, geoLat, viewAngle));
+          lakesPath = lakeBuilder.build();
+        }
+
+        // Ice follows the same coastline at every level of detail.
+        const iceBuilder = icePathRef.current;
+        iceBuilder.reset();
+        skiaCtx.setPath(iceBuilder);
+        pg.context(skiaCtx)(geography.ice.visible(geoLng, geoLat, viewAngle));
+        icePath = iceBuilder.build();
+      }
 
       // Dot — culled against the zoom cone like every other point marker.
       // While the list was the camera's only owner the settled story *was*
@@ -2880,11 +2915,23 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Borders use the same tier as the land, even while the camera moves.
-      const bordersBuilder = bordersPathRef.current;
-      bordersBuilder.reset();
-      skiaCtx.setPath(bordersBuilder);
-      pg.context(skiaCtx)(geography.borders.visible(geoLng, geoLat, viewAngle));
-      const bordersPath = bordersBuilder.build();
+      let bordersPath: SkPath;
+      if (cachedGeometry) {
+        bordersPath = cachedGeometry.bordersPath;
+      } else {
+        const bordersBuilder = bordersPathRef.current;
+        bordersBuilder.reset();
+        skiaCtx.setPath(bordersBuilder);
+        pg.context(skiaCtx)(geography.borders.visible(geoLng, geoLat, viewAngle));
+        bordersPath = bordersBuilder.build();
+        if (geometryKey) {
+          geometryCache.set(geometryKey, { landPath, icePath, bordersPath, lakesPath });
+          if (geometryCache.size > 3) {
+            const oldest = geometryCache.keys().next().value;
+            if (oldest !== undefined) geometryCache.delete(oldest);
+          }
+        }
+      }
 
       // --- Always-on cheap layers: project every frame so they stay present
       // during scroll instead of popping in/out at the nearSettled boundary.
@@ -4558,121 +4605,121 @@ export const MiniGlobe = memo(function MiniGlobe({
   });
 
   return (
-    <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-      <Group transform={canvasTransform} origin={canvasOrigin}>
-        {/* Stars and the moon — behind the planet, so clipped to outside its
+    <>
+      <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
+        <Group transform={canvasTransform} origin={canvasOrigin}>
+          {/* Stars and the moon — behind the planet, so clipped to outside its
           limb, which moves with the zoom (`discClip`). */}
-        <Group clip={discClip} invertClip>
-          <Picture picture={starsPicture} />
-          {moonPos.visible && (
-            <Moon
-              x={moonPos.x}
-              y={moonPos.y}
-              r={moonR}
-              phase={moonPhase}
-              texture={moonTexture}
-              clip={moonClip}
-              accentColor={colors.accent}
-              bgAlpha={bgAlpha}
-            />
-          )}
-        </Group>
+          <Group clip={discClip} invertClip>
+            <Picture picture={starsPicture} />
+            {moonPos.visible && (
+              <Moon
+                x={moonPos.x}
+                y={moonPos.y}
+                r={moonR}
+                phase={moonPhase}
+                texture={moonTexture}
+                clip={moonClip}
+                accentColor={colors.accent}
+                bgAlpha={bgAlpha}
+              />
+            )}
+          </Group>
 
-        {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
+          {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
           daylight, the graticule, land, ice, borders, night, city lights and
           the inner-limb glaze. Recorded per projection; see
           `recordGlobeFrame`. */}
-        <Picture picture={groundPicture} />
+          <Picture picture={groundPicture} />
 
-        {/* Marks — hotspots, straits, exchanges, hazards, the country
+          {/* Marks — hotspots, straits, exchanges, hazards, the country
           highlight, rivers, arcs, stories and the settled dot. */}
-        <Picture picture={marksPicture} />
-        <Circle
-          cx={activePulseX}
-          cy={activePulseY}
-          r={activeRimRadius}
-          opacity={activeMarkerAlpha}
-          color={colors.bg}
-        />
-        <Circle
-          cx={activePulseX}
-          cy={activePulseY}
-          r={activeCoreRadius}
-          opacity={activeMarkerAlpha}
-          color={activeMarkerColor}
-        />
-        <Circle
-          cx={activePulseX}
-          cy={activePulseY}
-          r={activePulseRadius}
-          opacity={activePulseAlpha}
-          color={activeMarkerColor}
-          style="stroke"
-          strokeWidth={activeStroke}
-        />
+          <Picture picture={marksPicture} />
 
-        {/* Still to find — see `ringLeft`. */}
-        {foundTotal > 0 ? (
-          <Group>
-            <Circle
-              cx={cx}
-              cy={cy}
-              r={ringRadius}
-              color={colors.rule}
-              style="stroke"
-              strokeWidth={RING_WIDTH}
-            />
-            <Path
-              path={ringPath}
-              start={0}
-              end={ringLeft}
-              color={colors.textSecondary}
-              style="stroke"
-              strokeWidth={RING_WIDTH}
-              strokeCap="round"
-            />
-          </Group>
-        ) : null}
+          {/* Still to find — see `ringLeft`. */}
+          {foundTotal > 0 ? (
+            <Group>
+              <Circle
+                cx={cx}
+                cy={cy}
+                r={ringRadius}
+                color={colors.rule}
+                style="stroke"
+                strokeWidth={RING_WIDTH}
+              />
+              <Path
+                path={ringPath}
+                start={0}
+                end={ringLeft}
+                color={colors.textSecondary}
+                style="stroke"
+                strokeWidth={RING_WIDTH}
+                strokeCap="round"
+              />
+            </Group>
+          ) : null}
 
-        {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
+          {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
           fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
           glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
           read as generic mobile-UI chrome borrowed from any other app. The
           stroke now belongs to the same drawing family as everything else
           on the canvas, so the gesture confirmation feels diegetic. No
           BlurMask = one less filter pass per tap. */}
-        <Circle
-          cx={pulseX}
-          cy={pulseY}
-          r={pulseR}
-          color={colors.textEmphasis}
-          opacity={pulseOpacity}
-          style="stroke"
-          strokeWidth={1.4}
-        />
-
-        {/* Found burst — see `collect`. */}
-        <Group opacity={collectOpacity}>
-          <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
           <Circle
-            cx={collectX}
-            cy={collectY}
-            r={collectRingR}
-            color={collectColor}
+            cx={pulseX}
+            cy={pulseY}
+            r={pulseR}
+            color={colors.textEmphasis}
+            opacity={pulseOpacity}
             style="stroke"
-            strokeWidth={1.6}
+            strokeWidth={1.4}
           />
-        </Group>
 
-        {/* Labels — water, neighbours, the focused country, the dot label
+          {/* Found burst — see `collect`. */}
+          <Group opacity={collectOpacity}>
+            <Circle
+              cx={collectX}
+              cy={collectY}
+              r={collectDiscR}
+              color={collectColor}
+              opacity={0.5}
+            />
+            <Circle
+              cx={collectX}
+              cy={collectY}
+              r={collectRingR}
+              color={collectColor}
+              style="stroke"
+              strokeWidth={1.6}
+            />
+          </Group>
+
+          {/* Labels — water, neighbours, the focused country, the dot label
           and the poles, above the tap pulse. */}
-        <Picture picture={labelsPicture} />
-      </Group>
-    </Canvas>
+          <Picture picture={labelsPicture} />
+        </Group>
+      </Canvas>
+      <Animated.View
+        pointerEvents="none"
+        accessible={false}
+        importantForAccessibility="no-hide-descendants"
+        style={[styles.beacon, beaconStyle]}
+      />
+    </>
   );
 });
 
 const styles = StyleSheet.create({
+  beacon: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: 2,
+  },
   canvas: {
     position: 'absolute',
     top: 0,

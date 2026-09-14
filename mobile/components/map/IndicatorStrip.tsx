@@ -36,8 +36,8 @@ import { Icon, Pressable, Text } from '../primitives';
  * names in the list of things this is not.
  *
  * Each slot carries its label and week's percentage move on one line.
- * Absolute readings and graphs live in the detail sheet. The common window
- * appears once at the start of the row; accessibility also speaks it per item.
+ * Absolute readings and graphs live in the detail sheet. Accessibility
+ * speaks the common seven-day window per item without taking space in the row.
  *
  * **`all →` ends the row.** The instruments without a move — the nisab, the
  * contracts, the dates — and the full ranked list live in `InstrumentsSheet`,
@@ -165,15 +165,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       contentContainerStyle={styles.row}
       accessibilityLabel="Markets, straits and currencies, largest move over seven days first"
     >
-      <Text
-        variant="labelXsTight"
-        tone="secondary"
-        numberOfLines={1}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-        style={styles.timeframe}
-      >
-        7 days
-      </Text>
       {items.map((item) => (
         <Slot
           key={item.id}
@@ -209,7 +200,6 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
   },
   slot: { minHeight: MASTHEAD_ROW, justifyContent: 'center' },
-  timeframe: { alignSelf: 'center', marginBottom: GAUGE_EXTRA },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
   // Match the single-line gauges, reserving their selection-bar space.
