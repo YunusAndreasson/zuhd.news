@@ -1,38 +1,36 @@
 {
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 of 5 cycles completed, ~12/cycle (52 yesterday)" },
-    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.7, "target": 1.0, "met": true },
-    "categories": { "politics": 26, "economy": 14, "tech": 14, "science": 8 },
-    "multiSource": { "value": 18, "target": 4, "met": true },
+    "articles": { "value": 55, "detail": "5 cycles (4 completed at audit time), avg 9/cycle; 65 yesterday" },
+    "freshness": { "median": 0, "p90": 0.5, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 15, "science": 10, "tech": 10 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 16, "EU": 15, "ME": 13, "AS": 10, "AF": 8, "OC": 0 }
+      "breakdown": { "EU": 18, "AM": 11, "ME": 11, "AS": 10, "AF": 4, "OC": 1 }
     },
-    "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 42,
     "duplicates": 0,
-    "avgCycleDuration": 1296
+    "avgCycleDuration": 1234
   },
-  "experiment": "Skipped — every goal passes with margin, nothing was active or due for evaluation, and no noNewExperimentsUntil gate is set. The queued 2026-05-08-numerical-density item edits scripts/write-prompt.md, which is outside the daily-tuning surface, so it stays queued.",
-  "weakestArea": "Regions is the tightest goal today at 5 against a target of 4, and the missing one is Oceania at zero for a seventh consecutive day. Africa recovered strongly — 8 articles from Abuja, Bakura, Barkin Ladi, Johannesburg, Soweto and Cape Town, with a genuine economy piece (Growthpoint's Waterfront discount) rather than security alone — so the continent is no longer the gap it was yesterday. What replaced it is the Americas: all 16 AM articles are United States or Canada, with no Latin American dateline at all, so the region with the largest count is also the least internally diverse.",
+  "experiment": "Skipped — every goal metric is inside target and no experiment is active. The one queued experiment (2026-05-08-numerical-density) edits scripts/write-prompt.md, which the tuner is not permitted to change, so it stays queued rather than being promoted.",
+  "weakestArea": "Africa is the thinnest region at 4 of 55 articles (7%), down from 8 yesterday, and the whole continent's output came through two outlets (Premium Times Nigeria, OCCRP) plus the Black Axe extradition story. Oceania remains a single article, as it has been for two days. Neither breaks the regions ≥ 4 goal, but African depth is the first thing that would fail if one source went quiet.",
   "watching": [
-    "Trump's Doonbeg trip produced five articles across two categories — Irish whiskey tariffs, refinery strikes halted, Irish unification, AI guardrails, and tying the war's end to the midterms — one trip fanned into five distinct event URIs.",
-    "The Hormuz/Red Sea escalation is now roughly seven articles in a single day (Saudi oil routes, Hormuz tanker projectile, Bahrain boycott, Putin on ship seizures, Iraq's drone launcher, plus the Yemen truce and the 58 Saudi strikes), split across politics and economy.",
-    "Sweden's election published twice in one day — 'Sweden Votes On Far Right' and 'Sweden's Left Bloc Leads' — same country, same vote, separate clusters, which is the same title-layer dedup blind spot flagged yesterday on the Saudi pipeline pair.",
-    "Four separate AI-caution pieces (AI Giants Urge Slowdown, Amodei Urges Pacing AI, Bengio Explains AI Deception, Trump Declines AI Guardrails) landed the same day from different angles; worth confirming this is genuine breadth and not one news peg quadrupled.",
-    "Multi-source held its jump — 18 today after 16 yesterday, up from the ~9 typical earlier in the run — so the lift now looks like a level, not a one-day spike.",
-    "Freshness is measurable on only 19 of 62 articles; the 0.3 median is sound but rests on a narrow base."
+    "Iran nuclear diplomacy is running on two tracks — the IAEA barring Iran's nuclear chief and Russia's objection, alongside the Isfahan air-defence and Khamis Mushait sortie reporting; these will converge.",
+    "Indonesia ferry sinking with 120+ unaccounted for is still an open casualty count and will need a follow-up rather than a one-shot dispatch.",
+    "Ukraine's anti-graft fight turning on the disgraced prosecutor general is an internal-politics thread that usually produces a second cycle within days.",
+    "EPA power-plant emissions rollback plus the 'zero at the smokestack' and Carbon Brief items form a climate-regulation cluster worth keeping coherent across cycles.",
+    "Gulf rate-setting (11.5%) and the two-hundred-basis-point listing story suggest a regional monetary thread developing under the economy floor."
   ],
   "coverageGaps": [
-    "Oceania is at zero for a seventh day — no Australia, New Zealand or Pacific island dateline.",
-    "Latin America is entirely absent: all 16 Americas articles are US or Canadian, with nothing from Brazil, Mexico, the Andes or Central America.",
-    "Central Asia and the Caucasus produced nothing, as they have all week.",
-    "Science is the thinnest category at 8, and two of those (Sagar hooch toll, cancer-pain video scoring) are closer to public-health incident reporting than research coverage, leaving perhaps six genuine science stories.",
-    "East Asia appears almost entirely through Beijing (robotics, cancer-pain study); Japan and Korea are absent outright."
+    "Sub-Saharan Africa outside Nigeria and South Africa — no East African or Sahel dispatch today despite ongoing regional instability.",
+    "Latin America appears only through organised-crime framing (InSight Crime liquid-cocaine, Black Axe); no political or economic story from the region.",
+    "Oceania is a single article for the second consecutive day — Pacific island states and Australian policy are effectively absent.",
+    "Science skews to lab and materials work (polariton OLED, rice blast, tumour membrane); no climate-observation or space-agency reporting since yesterday's European Spaceflight item."
   ],
-  "context": "The experiment slot has been empty since 2026-05-26 and all four goals have now passed on seven consecutive audits — the parametric levers in the tuning surface have nothing left to act on, and the remaining problems are structural. Today adds a second clean instance of the same-event double-publish pattern: the Sweden election pair, following yesterday's Saudi pipeline pair. Both are multi-source clusters with distinct event URIs and near-identical subject matter, which is exactly what the title-overlap layer in scripts/lib/dedup.js cannot catch because it is gated to niche-only sources, and which scripts/validate-articles.js has no duplicate-title gate to catch either. Two occurrences in two days moves this from a curiosity to a pattern; both files sit outside the tuning surface and need an operator decision."
+  "context": "Output dipped from 65 to 55 articles as cycles settled back to ~9 per cycle, while freshness improved sharply (median 0 days, max 0.5) — though only 6 articles carried datable source lag today, so that figure is a small sample. Multi-source count of 13 and sci/tech at 36% both sit comfortably above floor, and source concentration is low (top source 11% of 42 unique outlets), which is why no parameter change is warranted today."
 }
