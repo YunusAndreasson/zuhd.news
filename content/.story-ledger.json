@@ -5,8 +5,8 @@
       "id": "gabrovo-the-magazine-is-the-bottleneck",
       "label": "NATO nation's arms company hit by second ammo depot fire in one month",
       "firstSeen": "2026-09-13T08:07:01.040Z",
-      "lastCovered": "2026-09-14T12:06:48.047Z",
-      "coverageCount": 15,
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 16,
       "category": "economy",
       "importance": 6,
       "arc": "ongoing",
@@ -25,7 +25,8 @@
         "2026-09-14-the-inspector-is-the-one-refused-entry",
         "2026-09-14-the-deadline-is-the-legal-instrument",
         "2026-09-14-the-chokepoint-is-in-the-paperwork",
-        "2026-09-14-the-inlet-is-the-radar-return"
+        "2026-09-14-the-inlet-is-the-radar-return",
+        "2026-09-14-the-constraint-is-the-queue"
       ],
       "eventUri": "eng-12004090",
       "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
@@ -43,13 +44,191 @@
       ]
     },
     {
+      "id": "three-seats-and-neither-bloc-has-a-majority",
+      "label": "Opposition edges ahead in Swedish election",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-three-seats-and-neither-bloc-has-a-majority"
+      ],
+      "eventUri": "eng-12004234",
+      "summary": "The count is now effectively final and it inverted the pre-election story: the centre-left bloc leads 176 to 173 with 95% of ballots counted, and both blocs opened coalition talks Monday. Lead with the three-seat margin — Sweden's 349-seat Riksdag needs 175 for a majority, so neither bloc governs without a partner it has spent the campaign attacking, and the Sweden Democrats' share is the variable that decides whether the right can form anything at all. This continues the arc we opened with the exit-poll piece; the new development is the margin and the arithmetic of who can actually assemble 175. Attribute reporting to The Guardian and Al Jazeera; RT is in the cluster but should not carry a claim on its own.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sweden",
+        "http://en.wikipedia.org/wiki/Sweden_Democrats",
+        "http://en.wikipedia.org/wiki/Ulf_Kristersson",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Far-right_politics",
+        "http://en.wikipedia.org/wiki/Centre-left_politics",
+        "http://en.wikipedia.org/wiki/Social_democracy",
+        "http://en.wikipedia.org/wiki/Prime_minister"
+      ]
+    },
+    {
+      "id": "the-direction-reaches-the-police-station",
+      "label": "SC stresses need for gender-sensitive investigations, court proceedings in domestic violence cases",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-the-direction-reaches-the-police-station"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Supreme Court ruled Monday that protecting women requires not only changed attitudes but a gender-sensitive lens in investigation and adjudication, and directed provincial governments to ensure it. Lead with the instruction to the provinces — this is a precedent that reaches down into police station practice, where domestic-violence complaints are most often lost, rather than a statement of principle. The reader should understand the mechanism: a superior-court direction binds subordinate courts and gives complainants something to cite when an investigating officer declines to register a case. Dawn (PK) is the regional source, correctly carried.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-drill-is-not-a-test",
+      "label": "North Korea Confirms September 12 Missile Launch Was Joint Firepower Drill",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-a-drill-is-not-a-test"
+      ],
+      "eventUri": null,
+      "summary": "Pyongyang's confirmation is the story, not the launch: by classifying the September 12 firing as a joint firepower drill the day after the trilateral Freedom Edge exercise ended, North Korea framed it as a scheduled military exercise rather than a test — a distinction that matters because a drill is harder for Washington to treat as a provocation while Trump is seeking a summit with Kim. Lead with the 24-hour gap between Freedom Edge ending and the launch. This also fills a standing coverage gap: East Asia has appeared almost entirely through Beijing, with Korea and Japan absent for a week.",
+      "conceptUris": []
+    },
+    {
+      "id": "five-percent-is-the-floor-under-everyone",
+      "label": "10-year Treasury yield reaches 5% as all eyes on Fed",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-five-percent-is-the-floor-under-everyone"
+      ],
+      "eventUri": "eng-12001656",
+      "summary": "The US 10-year touched 5% for the first time since October 2023, ahead of a Fed meeting where a hike is widely expected. Lead with what the 10-year actually prices: it is the global risk-free rate, so it sets the floor under emerging-market borrowing costs, mortgage rates and the discount rate on every equity valuation at once — which is why a threshold in Washington shows up as a funding squeeze in Lagos, Karachi and Jakarta. The structural why: yields are rising into an expected hike, meaning the market is pricing inflation the Fed has not yet contained, not merely the policy rate. Connect to today's Nigeria bond-index story — a 200bp yield compression at the same moment the global benchmark rises is a rare divergence worth noting.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Central_bank",
+        "http://en.wikipedia.org/wiki/Federal_Reserve",
+        "http://en.wikipedia.org/wiki/Kevin_Warsh",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Consumer_price_index",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "two-hundred-basis-points-for-a-listing",
+      "label": "Nigeria rejoins J.P. Morgan Global Bond Index after 11 years",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-two-hundred-basis-points-for-a-listing"
+      ],
+      "eventUri": "eng-12009202",
+      "summary": "Nigeria's federal bonds are back in a J.P. Morgan global index for the first time since 2015, with an expected $17.5bn of inflows and yields forecast to fall by up to 200 basis points. Lead with the 200bp — that is the price of index membership, paid by passive funds that must buy whatever the index holds regardless of their view on Nigeria. The structural point for the reader: a single private company's inclusion decision moves the cost of a sovereign's debt more than any domestic policy Abuja announced this year, which is what it means to say index providers are unelected regulators of capital flows. Ask what was required to get back in — the naira float and FX-market reforms that carried real costs for Nigerians — and whether the inflows reach anything beyond the debt market. Premium Times (NG) is the regional source.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-cement-plant-becomes-the-utility",
+      "label": "\"Offensively cheap\": Solar power is looking up",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-the-cement-plant-becomes-the-utility"
+      ],
+      "eventUri": "eng-12006253",
+      "summary": "In Chakwal, north-central Pakistan, Bestway Cement is covering dry land and olive groves with panels — 6.34 MW added this year on top of 26 MW already installed. Lead with a cement company becoming its own utility: this is captive generation, and it happens when grid power is priced above the cost of building your own supply. The structural consequence is a death spiral for the national grid — every large industrial user that self-generates leaves the remaining fixed costs to be recovered from households that cannot afford panels, which is how a cheap technology produces a regressive outcome. Pakistan is the test case because its capacity-payment structure makes grid tariffs rise as demand falls. FEED GAP: no Pakistani outlet covered this energy-economics story in the feed despite Pakistan being the subject; carried by Ars Technica alone — flag for feed-side audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "project-lily-someone-read-it",
+      "label": "Inside 'Project Lily': The Humans Reading Your ChatGPT Chats",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-project-lily-someone-read-it"
+      ],
+      "eventUri": null,
+      "summary": "Leaked internal documents and real user prompts seen by 404 Media show human contractors reading ChatGPT conversations to improve OpenAI's models — including chats containing sensitive personal information. Lead with the name: an internal programme called Project Lily means this is staffed, budgeted and routine, not an incident. The mechanism the reader needs is that reinforcement learning from human feedback structurally requires humans to read the data, so 'your conversations may be used to improve our models' in a privacy policy is not a disclosure about machines. Who is affected: anyone who typed a medical symptom, a legal problem or a confession into a chat box. This is the kind of original documentary reporting no wire will produce.",
+      "conceptUris": []
+    },
+    {
+      "id": "asdfg-is-a-lawful-basis",
+      "label": "Cops Search Thousands of Flock Cameras for Reasons of 'LMAO,' 'IDK,' 'Hehe,' and 'asdfg'",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-asdfg-is-a-lawful-basis"
+      ],
+      "eventUri": null,
+      "summary": "The EFF pulled the audit logs from Flock's licence-plate camera network and found officers justifying searches with 'idiot,' 'WEIRD KID,' 'blah,' 'leave me alone,' and keyboard mashing. Lead with 'asdfg' as a lawful basis. The mechanism is the point: Flock's defence against abuse is that every search requires a stated reason, which makes the free-text reason box the entire accountability system — and it is unvalidated, unreviewed and, on this evidence, treated as a formality by the officers filling it in. Who is affected: every driver whose plate is logged, which in Flock-covered jurisdictions is everyone. The accountability gap is that a private vendor designed the only audit trail and nobody checks it.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-nod-arrives-with-the-sentence",
+      "label": "Brain implant lets people with paralysis speak and gesture at the same time",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-the-nod-arrives-with-the-sentence"
+      ],
+      "eventUri": "eng-12009177",
+      "summary": "A brain-computer interface has decoded speech and gesture simultaneously, letting paralysed users drive an avatar that nods and waves while it talks. Lead with why simultaneity is the hard part: earlier implants decoded one intended action at a time, and the advance here is separating two concurrent motor-intent signals from overlapping cortical activity. The stakes for the affected: nuance in communication — agreement, hesitation, emphasis — is carried by gesture, so a speech-only interface returns words while leaving the person unable to signal what they mean by them. Keep this distinct from the ALS drug-repurposing piece we ran today; the through-line is restoring function, not the same research.",
+      "conceptUris": []
+    },
+    {
+      "id": "too-massive-too-early",
+      "label": "Black Holes or Black Hole Stars? Astronomers Spar Over Webb Telescope's 'Little Red Dots.'",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-14-too-massive-too-early"
+      ],
+      "eventUri": null,
+      "summary": "JWST keeps finding 'little red dots' across the early universe, and the field has split: supermassive black holes that should not have had time to grow that large, or a proposed new object — a black hole star, a body dozens of times wider than our solar system with a black hole inside a vast envelope of gas. Lead with the timing problem, because that is what makes this a real dispute rather than a labelling argument: the standard growth model cannot build these masses in the few hundred million years available, so one of the two explanations requires revising something structural. Explain what observation would settle it. Distinct from the supernova-impostor piece we ran — different objects, different signal.",
+      "conceptUris": []
+    },
+    {
       "id": "khamis-mushait-the-sorties-fly-from-here",
       "label": "Houthis claim large-scale missile, drone attack on King Khalid Air Base in Saudi Arabia",
       "firstSeen": "2026-09-14T12:06:48.047Z",
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-khamis-mushait-the-sorties-fly-from-here"
@@ -74,7 +253,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-cardiff-three-timetables-become-one-argument"
@@ -99,7 +278,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-09-14-the-convention-has-no-court",
@@ -116,7 +295,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
@@ -132,7 +311,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-adoption-nobody-is-counting"
@@ -148,7 +327,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-exam-question-was-already-well-posed"
@@ -164,7 +343,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-14-twenty-years-on-and-no-x-rays"
@@ -180,7 +359,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-sixty-two-of-one-twenty-the-next-threshold-is-higher"
@@ -205,7 +384,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine"
@@ -230,7 +409,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-one-thousand-again-the-bid-is-global"
@@ -246,7 +425,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-more-you-deploy-the-less-you-control"
@@ -271,7 +450,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-market-priced-the-caution"
@@ -287,7 +466,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-ledger-inherits-the-witness"
@@ -303,7 +482,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-zero-at-the-smokestack"
@@ -319,7 +498,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-busiest-day-the-service-ever-had"
@@ -335,7 +514,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-tumour-has-to-build-its-own-membrane"
@@ -345,13 +524,41 @@
       "conceptUris": []
     },
     {
+      "id": "nasdaq-the-cap-table-becomes-the-constraint",
+      "label": "Anthropic said to pick Nasdaq for highly anticipated IPO",
+      "firstSeen": "2026-09-13T22:09:53.008Z",
+      "lastCovered": "2026-09-14T17:04:32.126Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-09-13-nasdaq-the-cap-table-becomes-the-constraint",
+        "2026-09-14-the-warning-came-from-inside-the-cap-table"
+      ],
+      "eventUri": "eng-12005379",
+      "summary": "Anthropic has reportedly chosen Nasdaq for a potentially record-setting IPO, on the same weekend Altman ruled out an OpenAI listing this year. Our 09-13 04:00 piece wrote the OpenAI non-listing as a balance-sheet story; do NOT re-tell it. This is the divergence and what it reveals about how frontier AI is being financed. Lead with the two decisions read together: one lab is going to the public markets while the other says it will not, and both are raising capital at a scale that private markets have never sustained for pre-profit companies — so the question is not which is more confident but which funding structure survives a bad quarter. Mechanism our reader should keep: a listing converts an obligation to a handful of strategic investors into an obligation to quarterly disclosure and a share price, which is simultaneously the strongest available discipline on a company that has argued for its own restraint and the strongest available pressure against it — a publicly traded lab must explain a deliberate slowdown to shareholders who did not sign up for one. Say that plainly and connect it, in one line only, to this cycle's piece on the state declining to regulate: if neither the government nor the cap table constrains the frontier, name what does. Report what is actually established versus reported: Business Insider's sourcing is a single person familiar, so attribute it as such, and give the verifiable numbers — Anthropic's last private valuation and raise, its disclosed revenue run-rate if any, Nasdaq's recent listing wins, and what 'record-setting' would have to clear. Then the reader's stake: the compute these valuations fund is the same compute Global South states cannot access at any price, so a listing prospectus is, read correctly, a public document about a concentration nobody voted for.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/Initial_public_offering",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/AI_safety",
+        "http://en.wikipedia.org/wiki/Nasdaq-100",
+        "http://en.wikipedia.org/wiki/Stock",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
       "id": "soweto-the-taps-are-the-ballot",
       "label": "Zille is targeting the ANC's heartland in Joburg, but voters are doubtful",
       "firstSeen": "2026-09-13T22:09:53.008Z",
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-13-soweto-the-taps-are-the-ballot",
@@ -377,7 +584,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-13-the-domain-was-the-credential",
@@ -402,7 +609,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-13-muscat-postponed-one-sailor-closed-the-channel"
@@ -427,7 +634,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-isfahan-fifty-hours-the-air-defence-still-works"
@@ -452,7 +659,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-tamenglong-a-second-front-and-no-assembly"
@@ -477,7 +684,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-13-seven-hundred-fifty-thousand-the-lever-that-moves-fastest"
@@ -502,7 +709,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-yanbu-the-bypass-and-the-strait-fail-together"
@@ -527,7 +734,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-13-associate-membership-the-infrastructure-still-runs-south"
@@ -552,7 +759,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-exam-rails-as-soft-power-the-leaks-came-with-it"
@@ -568,7 +775,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-polariton-oled-narrowband-without-the-filter"
@@ -584,7 +791,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-ice-is-counted-three-times"
@@ -600,7 +807,7 @@
       "lastCovered": "2026-09-14T04:09:44.412Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-rice-blast-the-fungus-digests-the-defence"
@@ -616,7 +823,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-whoever-wins-ai-the-only-enforcer-declines"
@@ -641,7 +848,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-fifty-eight-sorties-six-governorates-in-a-day"
@@ -657,7 +864,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-swedish-exit-poll-the-experiment-that-finished"
@@ -673,7 +880,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-around-the-midterms-a-war-on-an-electoral-clock"
@@ -697,7 +904,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-one-tariff-line-lifted-at-a-podium"
@@ -716,36 +923,13 @@
       ]
     },
     {
-      "id": "nasdaq-the-cap-table-becomes-the-constraint",
-      "label": "Anthropic said to pick Nasdaq for highly anticipated IPO",
-      "firstSeen": "2026-09-13T22:09:53.008Z",
-      "lastCovered": "2026-09-13T22:09:53.008Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-nasdaq-the-cap-table-becomes-the-constraint"
-      ],
-      "eventUri": "eng-12005379",
-      "summary": "Anthropic has reportedly chosen Nasdaq for a potentially record-setting IPO, on the same weekend Altman ruled out an OpenAI listing this year. Our 09-13 04:00 piece wrote the OpenAI non-listing as a balance-sheet story; do NOT re-tell it. This is the divergence and what it reveals about how frontier AI is being financed. Lead with the two decisions read together: one lab is going to the public markets while the other says it will not, and both are raising capital at a scale that private markets have never sustained for pre-profit companies — so the question is not which is more confident but which funding structure survives a bad quarter. Mechanism our reader should keep: a listing converts an obligation to a handful of strategic investors into an obligation to quarterly disclosure and a share price, which is simultaneously the strongest available discipline on a company that has argued for its own restraint and the strongest available pressure against it — a publicly traded lab must explain a deliberate slowdown to shareholders who did not sign up for one. Say that plainly and connect it, in one line only, to this cycle's piece on the state declining to regulate: if neither the government nor the cap table constrains the frontier, name what does. Report what is actually established versus reported: Business Insider's sourcing is a single person familiar, so attribute it as such, and give the verifiable numbers — Anthropic's last private valuation and raise, its disclosed revenue run-rate if any, Nasdaq's recent listing wins, and what 'record-setting' would have to clear. Then the reader's stake: the compute these valuations fund is the same compute Global South states cannot access at any price, so a listing prospectus is, read correctly, a public document about a concentration nobody voted for.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Sam_Altman",
-        "http://en.wikipedia.org/wiki/Initial_public_offering",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/AI_safety"
-      ]
-    },
-    {
       "id": "clarity-act-who-regulates-by-lawsuit",
       "label": "Is Clarity dead? A vibes-based analysis: State of Crypto",
       "firstSeen": "2026-09-13T22:09:53.008Z",
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-clarity-act-who-regulates-by-lawsuit"
@@ -761,7 +945,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-agents-that-know-they-are-being-tested"
@@ -777,7 +961,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-supernova-impostor-two-explanations-one-signal"
@@ -793,7 +977,7 @@
       "lastCovered": "2026-09-13T22:09:53.008Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-13-mercury-the-crust-had-nowhere-to-go"
@@ -809,7 +993,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-13-benchmark-is-not-the-discipline",
@@ -827,7 +1011,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-diesel-crack-the-invaded-asked-to-protect-the-refinery"
@@ -852,7 +1036,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-damascus-integration-the-monopoly-before-the-citizenship"
@@ -877,7 +1061,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-saxony-anhalt-the-firewall-against-a-landslide"
@@ -902,7 +1086,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-yemen-coast-a-truce-that-froze-a-map"
@@ -918,7 +1102,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-border-poll-one-official-holds-the-trigger"
@@ -943,7 +1127,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-tazapay-buying-the-last-mile-of-the-dollar"
@@ -959,7 +1143,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-pacing-the-frontier-who-the-proposal-binds"
@@ -975,7 +1159,7 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-mammoth-site-a-measurement-replaces-an-inference"
@@ -991,209 +1175,13 @@
       "lastCovered": "2026-09-13T17:11:00.874Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-13-bazrs3-trading-efficiency-for-a-stable-cell"
       ],
       "eventUri": null,
       "summary": "Researchers report device modelling and charge-transport-layer engineering for tin-alloyed BaZrS3, a chalcogenide perovskite solar absorber, aimed at closing the gap between its theoretical promise and its measured efficiency. Lead with what makes this material class worth reporting at all, and state it as a trade the reader can evaluate: the halide perovskites that have dominated solar research for a decade reach very high efficiencies and contain lead and decompose in humidity, while chalcogenide perovskites like BaZrS3 are made of barium, zirconium and sulfur, are chemically stable in air and water, and are nowhere near the efficiency — so the field is trading a decade of performance for durability and non-toxicity, and whether that trade pays is an open question this paper addresses rather than settles. Mechanism our reader will follow: a solar cell is not only its absorber — the electron and hole transport layers on either side must have band edges that line up with the absorber's, or carriers recombine at the interface before they reach a contact, and 'transport layer engineering' means searching that alignment. Say what tin alloying does to the bandgap and why that matters against the Shockley-Queisser optimum. Report the specifics precisely and label them honestly: which layers were tested, what efficiency was obtained, and — critically — whether this is simulation (SCAPS-1D or similar) or fabricated devices, because the difference is enormous and modelling papers are routinely reported as breakthroughs. State the limitations the authors themselves give. Then the structural why: lead-free, humidity-stable, earth-abundant photovoltaics matter most where panels sit in heat and monsoon humidity without a recycling regime behind them — Pakistan, Indonesia, Nigeria, the Gulf — and toxicity is a disposal question those markets will meet first. Accepted manuscript with a permanent DOI, not the version of record; say so.",
-      "conceptUris": []
-    },
-    {
-      "id": "kyiv-warsaw-train-the-only-civilian-exit",
-      "label": "Ukraine Says Passenger Train Headed to Warsaw Is Hit by Drone",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-kyiv-warsaw-train-the-only-civilian-exit"
-      ],
-      "eventUri": "eng-12006102",
-      "summary": "A Kyiv–Warsaw passenger train was struck by a Russian drone within kilometres of the Polish border on Sunday morning. Lead with the distance to the border, not the minister's quote: a civilian service carrying ordinary passengers toward an EU capital was hit in the strip of Ukraine where a miss becomes a NATO Article 4 or Article 5 question, and that geography is the entire consequence. Report the hard facts first — casualties, which service and operator (Ukrzaliznytsia), where exactly the strike occurred, whether the line is suspended, and how many people cross on that route daily. Mechanism our reader should keep: the Kyiv–Warsaw corridor is the principal overland evacuation and return route for Ukrainian civilians, most of them women and children, because Ukrainian airspace has been closed since 2022 — so rail is not transport infrastructure here, it is the only civilian exit, which is what makes it a target with military logic and no military justification. Explain what NATO's response options actually are and what 'knocking on the door' does and does not trigger legally: Poland has invoked Article 4 consultations before over debris and stray missiles, and an Article 4 consultation commits nobody to anything. Accountability: name the Russian defence ministry as the actor, state what Moscow has said, and be precise about what has been independently verified versus what rests on Kyiv's foreign minister. Multi-source — Bloomberg (US), mint (IN) and Ukrainska Pravda (UA); use Pravda for the Ukrainian rail and casualty detail rather than resting on the wires. Distinct from our 09-12 Ukraine coverage of the refused G20 meeting: that was diplomacy, this is the civilian rail line.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Poland",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Warsaw",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Kiev"
-      ]
-    },
-    {
-      "id": "abu-dhabi-tehran-the-channel-that-never-closed",
-      "label": "UAE and Iran discuss easing tensions at BRICS summit",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-abu-dhabi-tehran-the-channel-that-never-closed"
-      ],
-      "eventUri": "rus-2123982",
-      "summary": "Abu Dhabi's Crown Prince Sheikh Khaled bin Mohamed Al Nahyan met President Masoud Pezeshkian on the BRICS sidelines in New Delhi — the first public UAE–Iran meeting since the war began — while Tehran floats a deal to let more ships through Hormuz. Lead with who moved first and why the UAE is the one that could: the Emirates never severed relations with Tehran the way Riyadh and Manama did, because roughly a third of Dubai's re-export trade runs to and through Iran, so the commercial channel survived the political one. That is the mechanism — mediation capacity in the Gulf tracks trade exposure, not diplomacy. Report concretely what Iran is actually offering on Hormuz (which vessels, under what verification, in exchange for what sanctions or insurance relief), what the UAE can deliver that Bahrain and Saudi Arabia cannot, and what Emirati ports and the Fujairah bunkering hub have lost in throughput since the strait was contested. Then the stakes for the reader: a Hormuz arrangement brokered by Gulf states rather than by Washington would be the first Gulf security settlement in fifty years with no American guarantor — say plainly how far this is from that, because a sideline meeting is not a settlement. Set this against our 09-13 04:00 piece on Bahrain's empty chair at the Muscat talks: Bahrain will not sit down, the UAE just did, and the Gulf is not one actor. Do not re-tell the Muscat meeting or the tanker strike. THIRD AND FINAL entry in the Hormuz-diplomacy arc — the arc is now at cap. OIC NOTE: the UAE and Iran are both OIC members and the feed cluster carries only Bloomberg (US), Yahoo Finance (US) and Euronews (FR) — no Gulf or Iranian outlet covered this specific meeting in the feed. The writer must pull The National or Khaleej Times (AE) and IRNA or Mehr (IR) directly; log the absence as a feed-side gap.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Abu_Dhabi",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/BRICS",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Summit_(meeting)"
-      ]
-    },
-    {
-      "id": "bangsamoro-first-parliament-a-movement-converts",
-      "label": "2026 BARMM parliamentary elections under the shadow of resurgent extremism",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-bangsamoro-first-parliament-a-movement-converts"
-      ],
-      "eventUri": "eng-12004228",
-      "summary": "On Monday 14 September, about 2.4 million voters in the Bangsamoro Autonomous Region in Muslim Mindanao elect a regional parliament for the first time. Lead with the first-ness and what it settles: this is the closing act of a peace process that began with the 2014 Bangsamoro agreement, in which the Moro Islamic Liberation Front decommissioned fighters in exchange for self-rule — so the election is the test of whether an armed movement can convert into a government by ballot, which is a question with readers in Aceh, southern Thailand, Kashmir and Sudan. Mechanism for our reader: BARMM runs a parliamentary system, unique in the Philippines, where seats are split between party lists, districts and reserved seats for non-Moro indigenous peoples and settlers — that design was meant to prevent a single clan bloc from capturing the region, and whether it does is the concrete thing to report. Report the actual state of play: which parties are contesting, how many of the interim parliament's seats were MILF-appointed and how many are now elected, the COMELEC security classification of the province-level contests, and what the delay from 2025 was about. Then the structural why, without flinching: Mindanao's politics is clan politics with private armed groups, and the region remains the poorest in the Philippines — a parliament that cannot deliver services hands the argument back to the groups that never disarmed. Who is affected: Moro voters who have waited a generation for a government of their own. SOURCING DISCIPLINE, binding: the feed carries only this Rappler op-ed, which is labelled opinion and carries an AI-generated notice. Treat it as a pointer, not a source — the writer must build the piece from Rappler's and MindaNews's news reporting, COMELEC releases, and the Bangsamoro Organic Law text, and must not reproduce the op-ed's characterisations of 'resurgent extremism' as fact. Fills the audit's flagged Southeast Asia gap, absent outright for days.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bangsamoro",
-        "http://en.wikipedia.org/wiki/Commission_on_Elections_(Philippines)",
-        "http://en.wikipedia.org/wiki/Cotabato_City",
-        "http://en.wikipedia.org/wiki/Philippines",
-        "http://en.wikipedia.org/wiki/General_election",
-        "http://en.wikipedia.org/wiki/Manila",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/Muslims"
-      ]
-    },
-    {
-      "id": "nabatieh-shelling-a-ceasefire-that-grades-itself",
-      "label": "Israeli regime shells southern Lebanon's Nabatieh district",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-nabatieh-shelling-a-ceasefire-that-grades-itself"
-      ],
-      "eventUri": null,
-      "summary": "Israeli artillery struck Zawtar al-Sharqiyah in Lebanon's Nabatieh district on Sunday morning, per the Lebanese National News Agency. Lead with the fact that this is routine, because that is the story our values require us to tell: a ceasefire has formally been in place in southern Lebanon, and shelling has continued through it at a cadence that no longer generates a wire story — continuation of the injustice is the development. Report what can actually be established: the village, the time, what was hit, casualties and their names if the NNA or Lebanese Red Cross have them, and how many strikes have been recorded in the Nabatieh governorate since the ceasefire took effect. Mechanism, and it is the part that explains why this never stops: the ceasefire's terms grant Israel a claimed right to strike what it designates as Hezbollah reconstitution, with no independent verification body and no mechanism by which Lebanon can contest a designation — so a ceasefire that permits unilateral enforcement is an arrangement in which one party grades its own compliance. Say what the monitoring mechanism formally is, who sits on it, and how many Lebanese complaints it has adjudicated. Who is affected: Nabatieh is agricultural and its villages were largely depopulated and are being slowly resettled, so each strike resets a return that families have already paid for once — report how many of the district's residents are back. Name the Israeli military as the actor and give Lebanese civilian casualties the same count, names and weight the piece would give to casualties on the other side. SOURCING DISCIPLINE, binding: Mehr (IR) is Iranian state media reporting on its adversary and is the only feed source. The writer must verify the strike against the Lebanese National News Agency, Al Jazeera, L'Orient Today or Naharnet before printing, must drop any detail those do not carry, and must not import Mehr's editorial register — the word 'regime' does not appear in our copy. Lebanon has been absent from our coverage entirely; this restores it.",
-      "conceptUris": []
-    },
-    {
-      "id": "shehbaz-fuel-relief-who-the-subsidy-reaches",
-      "label": "PM Shehbaz announces 'relief scheme' for bikes, autos, 800cc vehicles",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-shehbaz-fuel-relief-who-the-subsidy-reaches"
-      ],
-      "eventUri": null,
-      "summary": "Shehbaz Sharif has announced a fuel 'relief scheme' for motorcycles, auto-rickshaws and cars up to 800cc, framed as a response to price pressure from the Gulf war. Do not write the announcement — write the fiscal arithmetic and the targeting. Lead with who the scheme actually reaches: a motorcycle and a 70cc-to-800cc vehicle class is, in Pakistan, a genuinely precise instrument for reaching the working and lower-middle class, because that is what they drive — which makes this one of the rare subsidies that is not captured by the top decile, and the piece should say so plainly and then test it. Mechanism our reader needs: Pakistan is inside an IMF programme that constrains untargeted energy subsidies, so the scheme's design determines whether it is permissible — a cross-subsidy funded by a levy on larger engines is a different object from a direct transfer funded by borrowing, and the government has not said which this is. Report the actual numbers: the per-litre petroleum development levy now, the ex-refinery price, what the relief is worth per litre and per month to a rickshaw driver, the estimated fiscal cost, how it is financed, and how it will be delivered — through the fuel card and CNIC-linked system, or at the pump, which decides whether it can be gamed. Then the structural why: Pakistan imports nearly all its crude and prices in dollars, so a Gulf war transmits into the rupee, the import bill and the subsidy line simultaneously, and every previous relief scheme of this kind has been announced, partially delivered and quietly unwound — name the 2022 and 2023 precedents and what became of them. Who is affected: roughly 30 million registered motorcycles and the informal transport economy that runs on them. Pakistan is an OIC member and Dawn (PK) is the regional source; seek the finance ministry and OGRA notifications directly rather than resting on the PM Office statement.",
-      "conceptUris": []
-    },
-    {
-      "id": "shadow-fleet-seizures-the-precedent-travels",
-      "label": "West heard Putin's warning over seizure of merchant vessels -- presidential aide",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-shadow-fleet-seizures-the-precedent-travels"
-      ],
-      "eventUri": null,
-      "summary": "The Kremlin says the West has registered Putin's warning about the seizure of merchant vessels operated by Russian businesses — which he called 'piracy and banditry' — and is proceeding anyway. Write the law of the sea, not the threat. Lead with the legal question the phrase is doing work to obscure: interdicting a commercial tanker on the high seas is lawful only under narrow grounds, and a sanctions regime is not one of them under UNCLOS — which is why European states have been boarding on flag-state consent, insurance-documentation grounds and port-state control rather than by declaring a blockade. Explain that mechanism precisely, because it is the whole story: the 'shadow fleet' is a few hundred ageing tankers under flags of convenience with opaque insurance, and the West's instrument is not force but paperwork — proving a vessel lacks valid P&I cover lets a coastal state act without ever claiming a right to seize cargo. Report how many vessels have actually been detained, by whom, on what stated basis, and what Russia has done in response at sea. Then the part our reader should carry away, and it is not about Russia: every precedent set here is a precedent available at Hormuz and Bab al-Mandab, where Iranian and Yemeni actors are making mirror-image arguments about which ships may pass — the norm being built in the Baltic will be cited in the Gulf within the year. Name the environmental exposure too: uninsured ageing hulls in the Gulf of Finland and the Danish straits are a spill risk borne by states with no part in the dispute. SOURCING DISCIPLINE, binding: TASS is a Russian state agency reporting its own presidential aide and is the only feed source. The writer must establish the underlying seizures from Reuters, Lloyd's List, TradeWinds or the EU and national announcements, attribute Ushakov's and Putin's characterisations to them as claims, and drop anything that exists only in TASS. Distinct from our Hormuz and Red Sea coverage — this is the legal instrument, not the waterway.",
-      "conceptUris": []
-    },
-    {
-      "id": "brics-ai-community-a-second-dependency",
-      "label": "China to host BRICS Forum on Trade in Services in 2027 - Xi",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-brics-ai-community-a-second-dependency"
-      ],
-      "eventUri": "eng-12006019",
-      "summary": "Xi Jinping used the New Delhi BRICS summit to propose a BRICS artificial-intelligence 'community' and an open AI ecosystem, positioning Beijing against Washington on who writes the rules for the technology. Write the governance architecture, not the summit — we have now covered this summit four times and this is the last entry from it. Lead with what an alternative AI governance bloc would actually contain, because that is the test: compute access, model weights, data-localisation rules and export licensing are the four levers, and a 'community' that does not move any of them is a communiqué. Mechanism our reader needs, stated as arithmetic: the countries Xi is addressing — Indonesia, Egypt, Ethiopia, Iran, Brazil, India — cannot train frontier models because the accelerators are made by one company, fabricated by one foundry, and licensed by one government, so 'open ecosystem' in practice means access to Chinese open-weight models and Chinese hardware, which substitutes one dependency for another. Say that plainly rather than treating the offer as either liberation or propaganda. Report what was actually agreed and what the New Delhi Declaration text says on AI, what China has already delivered on this front (open-weight releases, the Global AI Governance Initiative, data-centre finance in the Gulf and Southeast Asia), and where it sits against the UN and OECD processes. Then the stakes: whether a state can build on open weights it did not train and cannot audit is the sovereignty question behind all of this. Multi-source — Bloomberg (US), TASS (RU) and NDTV (IN), sentiment divergence 0.27; note the spread between them and use it, since each is reporting a different audience's version of the same speech. Distinct from our 09-13 piece on Modi and critical-mineral chokepoints: that was the supply chain, this is the rulebook. Do not re-argue the chokepoint case.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/BRICS",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Global_North_and_Global_South",
-        "http://en.wikipedia.org/wiki/President_of_the_People's_Republic_of_China",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "john-deere-self-repair-the-part-is-still-locked",
-      "label": "I fixed a tractor using John Deere's self-repair service. Farmers aren't sold on it.",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-john-deere-self-repair-the-part-is-still-locked"
-      ],
-      "eventUri": null,
-      "summary": "A reporter with no mechanical training reconnected a water-in-fuel sensor on a John Deere tractor using the company's own customer service ADVISOR software — and farmers still say the self-repair offering does not give them what they need. Lead with the gap between the demonstration and the demand, because that gap is the mechanism: Deere's concession lets an owner diagnose and clear a fault, but the parts that matter are gated behind serial-code pairing, where a replacement component must be authorised against the machine's identity before it will run — so the repair is permitted and the part is not. Explain serial-code pairing plainly; our reader will recognise it instantly as the same technique that binds a phone screen or a printer cartridge, arriving on a $500,000 asset that a harvest depends on. Report what the 2023 memorandum of understanding with the American Farm Bureau actually obliged Deere to do, what the FTC action alleges, which US states have passed agricultural right-to-repair laws and what they exempt, and what a dealer callout costs against an owner's own hour. Then the part no US review carries, and it is why this belongs in our feed: the second-hand market for pre-electronic Deere machinery has become a global one, and mechanics in Punjab, the Nile Delta, Ukraine and the Brazilian cerrado maintain these tractors with jailbroken Ukrainian-sourced diagnostic firmware because there is no authorised dealer within a day's drive — a repair monopoly enforced by software is, outside North America, simply a machine that stops. Cost it: what an idle tractor costs a smallholder during a two-week planting window. Ars Technica is a reader-aligned source with hands-on original reporting; attribute the demonstration to it and get the farmers' side from named growers, not trade associations.",
-      "conceptUris": []
-    },
-    {
-      "id": "primordial-helium-a-count-of-what-existed",
-      "label": "Researchers pinpoint key early-universe measurement with record precision",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-primordial-helium-a-count-of-what-existed"
-      ],
-      "eventUri": null,
-      "summary": "An international team including the University of Minnesota has measured the primordial helium abundance — the helium forged in the universe's first five minutes — with unprecedented accuracy. Lead with the five minutes, because the reason this measurement matters is that it is a direct observational check on physics from an epoch nothing else reaches: Big Bang nucleosynthesis converted protons and neutrons into helium-4, deuterium and lithium in a window that closed before the universe was old enough to have a first birthday in any useful sense, and the ratio it left behind is frozen in. Mechanism our technically literate reader will enjoy: the helium fraction depends almost entirely on the neutron-to-proton ratio at freeze-out, which depends on the expansion rate, which depends on how many relativistic particle species were present — so a precise helium number is, concretely, a count of neutrino species and a bound on any light particle nobody has found yet. That is the payoff, and it should be stated as such: a measurement of a gas ratio is a constraint on undiscovered physics. Report how the measurement was made (which metal-poor emission-line galaxies, which telescope, which lines), the value and its error bar against the previous best, and where it sits relative to the Standard Model prediction and to the CMB-derived baryon density — agreement is a result and tension is a bigger one, so say which this is. Name the institutions and the journal, and be honest about what the systematic uncertainties are, since in this measurement they have historically dominated the statistical ones. Avoid 'rewrites our understanding' register entirely; this is precision, not revolution, and the precision is the point.",
-      "conceptUris": []
-    },
-    {
-      "id": "cancer-pain-videos-a-gap-the-feed-fills",
-      "label": "Quality and reliability of cancer pain management information on short-video platforms in China: a cross-sectional content analysis",
-      "firstSeen": "2026-09-13T12:08:08.615Z",
-      "lastCovered": "2026-09-13T12:08:08.615Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-cancer-pain-videos-a-gap-the-feed-fills"
-      ],
-      "eventUri": null,
-      "summary": "A cross-sectional analysis scores the quality and reliability of cancer-pain management videos on Chinese short-video platforms, using established instruments (report which — JAMA benchmark, DISCERN, GQS). Lead with the measured result, not the worry: give the actual scores, what share of videos came from clinicians versus patients versus commercial accounts, and which content type scored worst — because the finding readers can use is the ranking, not the alarm. Mechanism, and this is why the study is not a scold about the internet: cancer pain is undertreated worldwide for a specific structural reason, which is that opioid prescribing is tightly restricted and clinician training in pain management is thin, so patients in pain go looking — the short-video feed is filling a gap left by a health system, and the information quality is downstream of the prescribing regime, not of the platform. Say what China's opioid access actually looks like and how it compares to the global picture, in which a very large majority of the world's morphine is consumed by a small minority of its population. Report the study's design honestly: a content analysis scores presentation quality, it does not measure whether any patient was harmed or helped, and the piece must not overclaim — say what the authors themselves flag as limitations, and note this is an accepted manuscript with a DOI rather than the version of record. Then the structural why for our reader, who is unlikely to live in China: the same dynamic runs on Arabic, Urdu and Bahasa short-video platforms, where palliative care provision is thinner still and engagement algorithms reward confident answers over careful ones — a video that says 'take this' outperforms a clinician saying 'it depends' by construction. Who is affected: people in pain at the end of life, and the families making decisions for them.",
       "conceptUris": []
     }
   ]
