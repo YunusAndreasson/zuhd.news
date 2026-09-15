@@ -2,13 +2,184 @@
   "version": 1,
   "stories": [
     {
+      "id": "the-email-was-signed-oracle-leadership",
+      "label": "'Today is your last working day': What Oracle told employees in early morning termination email",
+      "firstSeen": "2026-09-15T04:06:24.160Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 5,
+      "category": "tech",
+      "importance": 6,
+      "arc": "ongoing",
+      "articles": [
+        "2026-09-15-the-email-was-signed-oracle-leadership",
+        "2026-09-15-the-gift-was-to-the-son-not-the-office",
+        "2026-09-15-the-army-chief-was-in-the-state-that-day",
+        "2026-09-15-the-ledger-was-the-evidence",
+        "2026-09-15-the-mission-that-was-to-find-the-ice"
+      ],
+      "eventUri": "eng-12002461",
+      "summary": "Oracle terminated another round of staff by an email signed 'Oracle Leadership' that arrived before the working day began and told recipients it was their last. Lead with the delivery mechanism, because it is the accountability gap: a termination with no named signatory is a decision no individual has to own, and the pre-dawn timing exists so that access revocation lands before the recipient can reach a colleague. Who is affected and where — Oracle's workforce is heavily Indian, in Bengaluru and Hyderabad as well as on US H-1B status, and for the latter the email starts a 60-day clock on legal residence, which is why an American layoff is an immigration event in India. The structural why our reader should take: these cuts are funding capital expenditure, not responding to weakness — Oracle is spending enormous sums on AI datacentre capacity for its cloud contracts, so the headcount is being converted into GPUs, and that is the trade the industry is making everywhere. Report the number cut, the divisions, the severance terms, and Oracle's capex guidance in the same piece so the reader can see both sides of the transfer.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Donald_Trump_Jr.",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/The_Bahamas",
+        "http://en.wikipedia.org/wiki/ProPublica",
+        "http://en.wikipedia.org/wiki/Russian_oligarch",
+        "http://en.wikipedia.org/wiki/Boxing"
+      ]
+    },
+    {
+      "id": "two-thousand-rupees-is-where-the-fee-becomes-legal",
+      "label": "Rahul Gandhi attacks Centre over UPI charges, alleges 'door opened' for MDR above Rs 2,000",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-two-thousand-rupees-is-where-the-fee-becomes-legal"
+      ],
+      "eventUri": "eng-12009396",
+      "summary": "A finance ministry notification bars any fee on UPI transactions up to Rs 2,000 — and by naming a ceiling, creates the legal room for a Merchant Discount Rate above it. Lead with the threshold, because the exemption is the mechanism: UPI carried free payments for a billion people precisely because no rule permitted a fee, and a rule that forbids fees below Rs 2,000 is the first document that contemplates fees at all. Who is affected: small merchants, for whom a 0.3–0.9% MDR on every larger sale is the difference between accepting digital payment and going back to cash, and who cannot pass it to customers under Indian pricing rules. Who holds power: the Ministry of Finance and NPCI, plus the card networks that have argued for years that a zero-MDR rail is an unfair subsidy — Rahul Gandhi's charge of US pressure is an allegation, so attribute it and do not adopt it. The structural why our reader will recognise: a public payments rail is cheap only while the state keeps choosing to absorb the cost, and that choice is revisable by notification, not legislation.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/Debit_card",
+        "http://en.wikipedia.org/wiki/RuPay",
+        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(India)",
+        "http://en.wikipedia.org/wiki/Unified_Payments_Interface",
+        "http://en.wikipedia.org/wiki/Payment_system",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
+      "id": "the-reshuffle-reached-the-minister-who-ordered-it",
+      "label": "Purbaya Formally Hands Over Finance Minister Post to Suahasil",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-the-reshuffle-reached-the-minister-who-ordered-it"
+      ],
+      "eventUri": "eng-12008012",
+      "summary": "Indonesia's finance minister Purbaya Yudhi Sadewa learned he had been fired during a meeting, by phone, and handed the ministry to Suahasil Nazara on Tuesday — his own explanation is that a rotation of hundreds of ministry officials made him enemies inside the building. Lead with the mid-meeting phone call, then the reshuffle: the reason a bureaucratic personnel rotation can end a minister is that Indonesia's finance ministry is the state's revenue machine, and the officials rotated are the ones who collect and allocate. Who holds power: President Prabowo Subianto, who has now removed two finance ministers in quick succession, and who the rupiah and the bond market are pricing accordingly. The structural why for our reader: the finance ministry is the one institution foreign creditors treat as a proxy for policy continuity in the fourth most populous country, so the cost of the sacking lands in borrowing spreads rather than in politics. Report the market reaction, Suahasil's record, and what happened to the reshuffle order. TEMPO (ID) carries the handover from Jakarta; use it for what Purbaya actually said.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Prabowo_Subianto",
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Finance",
+        "http://en.wikipedia.org/wiki/Government_budget",
+        "http://en.wikipedia.org/wiki/Jakarta",
+        "http://en.wikipedia.org/wiki/Ministry_of_finance",
+        "http://en.wikipedia.org/wiki/Sri_Mulyani"
+      ]
+    },
+    {
+      "id": "the-wingman-takes-tasking-not-orders",
+      "label": "Anduril's YFQ-44A Fury CCA Has Flown Alongside F-35s",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-the-wingman-takes-tasking-not-orders"
+      ],
+      "eventUri": null,
+      "summary": "Anduril's YFQ-44A Fury has already flown alongside F-35s as the company works toward a crewed-uncrewed teaming demonstration. Lead with the fact that the formation flight happened before the demonstration was announced — the programme is further along than the public schedule says, which is the reportable news. The mechanism our reader should understand is autonomy-in-the-loop: a Collaborative Combat Aircraft is not a drone flown by a pilot on the ground, it takes tasking from the cockpit of a manned fighter and executes it independently, which moves the human decision from 'fire this weapon' to 'accept this task'. Who holds power: Anduril, a private company that designs and owns the autonomy stack, so the rules of engagement live in software the buyer does not write. The structural why for our reader: cheap attritable aircraft change who can contest airspace and at what price, and the first users will not all be the United States — export policy for CCAs is undecided and this is the moment to ask about it. Report the confirmed flight details, the programme milestones, and what the Air Force will not say.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-last-mirror-of-the-public-square",
+      "label": "XCancel service is suspended until further notice",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-the-last-mirror-of-the-public-square"
+      ],
+      "eventUri": null,
+      "summary": "XCancel, the most-used surviving Nitter instance and the standard way to read a post on X without an account, suspended service — 593 points and 886 comments on Hacker News, where the argument is the story. Lead with what breaks: every citation of an X post in a news article, a court filing or an academic paper that routed through XCancel is now a dead link, so this is an archive failure, not a convenience failure. The mechanism to teach is that Nitter worked by using X's own guest API, and each tightening of that API killed instances one by one until the remaining ones ran on scarce authenticated tokens — a slow enclosure rather than a ban, which is why there was never a single moment to report. Who is affected: researchers, journalists and readers in countries where X is the de facto public square but an account requires a phone number the state can trace. The structural why our reader will recognise from elsewhere: when the only reader of a public record is the platform hosting it, the record is not public. Report why the operator says it stopped, and what remains.",
+      "conceptUris": []
+    },
+    {
+      "id": "cooling-by-squeezing-a-solid",
+      "label": "Colossal and fully reversible barocaloric effect for sustainable cooling in a pressure-sensitive spin-crossover complex",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-cooling-by-squeezing-a-solid"
+      ],
+      "eventUri": null,
+      "summary": "A pressure-sensitive spin-crossover compound shows a colossal and fully reversible barocaloric effect — cooling driven by squeezing a solid rather than by compressing a gas. Lead with 'fully reversible', because irreversibility is what has killed every previous barocaloric candidate: the material cools once, then does not return to its starting state, so it cannot cycle, and a refrigerator is nothing but a cycle. The mechanism to explain plainly: the molecule's electrons switch spin state under pressure, absorbing heat, and release it when the pressure lifts. Who this is for: the roughly one billion people with no access to cooling, mostly in the hottest and poorest countries, where the constraint is not only electricity but that vapour-compression needs refrigerant gases — HFCs the Kigali Amendment is phasing out and which leak as greenhouse agents thousands of times worse than CO2. Report the actual numbers — entropy change, the pressure required, the operating temperature window and cycle count — and be honest about distance to a device: pressures achievable in a lab are not pressures achievable in a household unit, and the paper should say which this is.",
+      "conceptUris": []
+    },
+    {
+      "id": "gabrovo-the-magazine-is-the-bottleneck",
+      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 20,
+      "category": "economy",
+      "importance": 5,
+      "arc": "ongoing",
+      "articles": [
+        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
+        "2026-09-13-zamfara-imams-the-ransom-is-the-business",
+        "2026-09-13-pmla-the-process-is-the-sentence",
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
+        "2026-09-13-waterfront-discount-the-yield-is-the-valuation",
+        "2026-09-13-star-1-hot-fire-the-test-stand-is-the-bottleneck",
+        "2026-09-13-five-mission-centers-the-org-chart-is-the-policy",
+        "2026-09-14-twenty-one-states-by-2029-the-concurrent-list-is-the-route",
+        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
+        "2026-09-12-the-oracle-problem-the-ledger-was-never-the-gap",
+        "2026-09-14-reserved-the-permission-is-the-ruling",
+        "2026-09-14-the-inspector-is-the-one-refused-entry",
+        "2026-09-14-the-deadline-is-the-legal-instrument",
+        "2026-09-14-the-chokepoint-is-in-the-paperwork",
+        "2026-09-14-the-inlet-is-the-radar-return",
+        "2026-09-14-the-constraint-is-the-queue",
+        "2026-09-15-the-tariff-is-levied-on-the-buyer-not-the-seller",
+        "2026-09-15-east-west-pipeline-the-bypass-is-the-casualty",
+        "2026-09-15-the-export-control-is-on-the-person",
+        "2026-09-15-the-smallest-fish-is-the-whole-fishery"
+      ],
+      "eventUri": "eng-12004090",
+      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bulgaria",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Sabotage",
+        "http://en.wikipedia.org/wiki/Explosion",
+        "http://en.wikipedia.org/wiki/Harish_Rawat",
+        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
+        "http://en.wikipedia.org/wiki/Indian_National_Congress"
+      ]
+    },
+    {
       "id": "a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho",
       "label": "'A sick conspiracy': Trump dismisses AI danger warnings as a hoax",
       "firstSeen": "2026-09-15T04:06:24.160Z",
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho"
@@ -33,7 +204,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-treaty-only-banned-the-other-kind"
@@ -58,7 +229,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-fifty-four-sorties-and-eighty-thousand-moved"
@@ -74,7 +245,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-thirteen-scholarships-and-no-exit"
@@ -90,7 +261,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-cargo-did-not-arrive-so-the-coal-did"
@@ -115,7 +286,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-one-hundred-fourteen-pages-and-a-de-minimis-line"
@@ -125,29 +296,13 @@
       "conceptUris": []
     },
     {
-      "id": "the-email-was-signed-oracle-leadership",
-      "label": "'Today is your last working day': What Oracle told employees in early morning termination email",
-      "firstSeen": "2026-09-15T04:06:24.160Z",
-      "lastCovered": "2026-09-15T04:06:24.160Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-the-email-was-signed-oracle-leadership"
-      ],
-      "eventUri": "eng-12002461",
-      "summary": "Oracle terminated another round of staff by an email signed 'Oracle Leadership' that arrived before the working day began and told recipients it was their last. Lead with the delivery mechanism, because it is the accountability gap: a termination with no named signatory is a decision no individual has to own, and the pre-dawn timing exists so that access revocation lands before the recipient can reach a colleague. Who is affected and where — Oracle's workforce is heavily Indian, in Bengaluru and Hyderabad as well as on US H-1B status, and for the latter the email starts a 60-day clock on legal residence, which is why an American layoff is an immigration event in India. The structural why our reader should take: these cuts are funding capital expenditure, not responding to weakness — Oracle is spending enormous sums on AI datacentre capacity for its cloud contracts, so the headcount is being converted into GPUs, and that is the trade the industry is making everywhere. Report the number cut, the divisions, the severance terms, and Oracle's capex guidance in the same piece so the reader can see both sides of the transfer.",
-      "conceptUris": []
-    },
-    {
       "id": "three-hundred-seventy-years-and-a-language-prior",
       "label": "Fable 5.1 Solves the Cyphral Distich, a 370-year-old cipher",
       "firstSeen": "2026-09-15T04:06:24.160Z",
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-three-hundred-seventy-years-and-a-language-prior"
@@ -163,7 +318,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-billion-phones-decide-where-the-query-goes"
@@ -182,56 +337,13 @@
       ]
     },
     {
-      "id": "gabrovo-the-magazine-is-the-bottleneck",
-      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
-      "firstSeen": "2026-09-13T08:07:01.040Z",
-      "lastCovered": "2026-09-15T04:06:24.160Z",
-      "coverageCount": 17,
-      "category": "economy",
-      "importance": 5,
-      "arc": "ongoing",
-      "articles": [
-        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
-        "2026-09-13-zamfara-imams-the-ransom-is-the-business",
-        "2026-09-13-pmla-the-process-is-the-sentence",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
-        "2026-09-13-waterfront-discount-the-yield-is-the-valuation",
-        "2026-09-13-star-1-hot-fire-the-test-stand-is-the-bottleneck",
-        "2026-09-13-five-mission-centers-the-org-chart-is-the-policy",
-        "2026-09-14-twenty-one-states-by-2029-the-concurrent-list-is-the-route",
-        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
-        "2026-09-12-the-oracle-problem-the-ledger-was-never-the-gap",
-        "2026-09-14-reserved-the-permission-is-the-ruling",
-        "2026-09-14-the-inspector-is-the-one-refused-entry",
-        "2026-09-14-the-deadline-is-the-legal-instrument",
-        "2026-09-14-the-chokepoint-is-in-the-paperwork",
-        "2026-09-14-the-inlet-is-the-radar-return",
-        "2026-09-14-the-constraint-is-the-queue",
-        "2026-09-15-the-tariff-is-levied-on-the-buyer-not-the-seller"
-      ],
-      "eventUri": "eng-12004090",
-      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bulgaria",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Sabotage",
-        "http://en.wikipedia.org/wiki/Explosion",
-        "http://en.wikipedia.org/wiki/Harish_Rawat",
-        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress"
-      ]
-    },
-    {
       "id": "a-drill-is-not-a-test",
       "label": "North Korea Confirms September 12 Missile Launch Was Joint Firepower Drill",
       "firstSeen": "2026-09-14T17:04:32.126Z",
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-09-14-a-drill-is-not-a-test",
@@ -248,7 +360,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting"
@@ -273,7 +385,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-zelensky-s-disgraced-prosecutor-general-turns-on-anti-graft"
@@ -298,7 +410,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-finland-shelters-under-french-nuclear-umbrella-amid-russian"
@@ -323,7 +435,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-duration-of-status-ends-injunction-covers-only-postdocs"
@@ -339,7 +451,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-hiding-in-plain-sight-the-liquid-cocaine-boom-explained"
@@ -355,7 +467,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-epa-to-roll-back-power-plant-emission-rules"
@@ -380,7 +492,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-rs114-in-tax-rides-on-every-litre"
@@ -396,7 +508,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-founder-s-cost-cutting-obsession-drove-unitree-lead-in-cheap"
@@ -412,7 +524,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-more-than-120-unaccounted-for-after-ferry-sinks-in-indonesia"
@@ -437,7 +549,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-a-chain-is-one-cell-that-never-let-go"
@@ -453,7 +565,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-new-york-seizes-12-celebrity-deepfake-websites"
@@ -469,7 +581,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-members-of-black-axe-cybercriminal-group-extradited-from-sou"
@@ -485,7 +597,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-14-ai-agents-flood-the-internet-with-slop-infused-spam"
@@ -501,7 +613,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-three-seats-and-neither-bloc-has-a-majority"
@@ -526,7 +638,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-direction-reaches-the-police-station"
@@ -542,7 +654,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-five-percent-is-the-floor-under-everyone"
@@ -567,7 +679,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-two-hundred-basis-points-for-a-listing"
@@ -583,7 +695,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-cement-plant-becomes-the-utility"
@@ -599,7 +711,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-project-lily-someone-read-it"
@@ -615,7 +727,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-asdfg-is-a-lawful-basis"
@@ -631,7 +743,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-nod-arrives-with-the-sentence"
@@ -647,7 +759,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-too-massive-too-early"
@@ -657,13 +769,40 @@
       "conceptUris": []
     },
     {
+      "id": "the-ice-is-counted-three-times",
+      "label": "No cities on the moon—there isn't enough water, scientists say",
+      "firstSeen": "2026-09-14T04:09:44.412Z",
+      "lastCovered": "2026-09-15T08:08:01.994Z",
+      "coverageCount": 3,
+      "category": "science",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-09-14-the-ice-is-counted-three-times",
+        "2026-09-15-the-missing-outnumber-the-counted-four-to-one",
+        "2026-09-15-the-inspector-general-counted-the-interceptors"
+      ],
+      "eventUri": null,
+      "summary": "The lunar 'moon rush' — bases, then villages, then heavy industry — rests on water ice in permanently shadowed polar craters, and researchers now argue there is nowhere near enough of it to support that sequence. Lead with the resource arithmetic, not the disappointment: water is simultaneously the drinking supply, the radiation shield and the rocket propellant feedstock, so a single scarce deposit is being counted three times over in every settlement plan. The structural consequence is legal as much as technical — if the usable ice is confined to a few craters, the Artemis Accords' 'safety zones' become a mechanism for whoever lands first to enclose the only resource that matters.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia"
+      ]
+    },
+    {
       "id": "khamis-mushait-the-sorties-fly-from-here",
       "label": "Houthis claim large-scale missile, drone attack on King Khalid Air Base in Saudi Arabia",
       "firstSeen": "2026-09-14T12:06:48.047Z",
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-khamis-mushait-the-sorties-fly-from-here"
@@ -688,7 +827,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-cardiff-three-timetables-become-one-argument"
@@ -713,7 +852,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-14-the-convention-has-no-court",
@@ -730,7 +869,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
@@ -746,7 +885,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-adoption-nobody-is-counting"
@@ -762,7 +901,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-exam-question-was-already-well-posed"
@@ -778,7 +917,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-twenty-years-on-and-no-x-rays"
@@ -794,7 +933,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-13-soweto-the-taps-are-the-ballot",
@@ -817,30 +956,13 @@
       ]
     },
     {
-      "id": "the-ice-is-counted-three-times",
-      "label": "No cities on the moon—there isn't enough water, scientists say",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-15T04:06:24.160Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-09-14-the-ice-is-counted-three-times",
-        "2026-09-15-the-missing-outnumber-the-counted-four-to-one"
-      ],
-      "eventUri": null,
-      "summary": "The lunar 'moon rush' — bases, then villages, then heavy industry — rests on water ice in permanently shadowed polar craters, and researchers now argue there is nowhere near enough of it to support that sequence. Lead with the resource arithmetic, not the disappointment: water is simultaneously the drinking supply, the radiation shield and the rocket propellant feedstock, so a single scarce deposit is being counted three times over in every settlement plan. The structural consequence is legal as much as technical — if the usable ice is confined to a few craters, the Artemis Accords' 'safety zones' become a mechanism for whoever lands first to enclose the only resource that matters.",
-      "conceptUris": []
-    },
-    {
       "id": "sixty-two-of-one-twenty-the-next-threshold-is-higher",
       "label": "Kosovo approves new government after months of political deadlock",
       "firstSeen": "2026-09-14T08:08:26.882Z",
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-sixty-two-of-one-twenty-the-next-threshold-is-higher"
@@ -865,7 +987,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine"
@@ -890,7 +1012,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-one-thousand-again-the-bid-is-global"
@@ -906,7 +1028,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-more-you-deploy-the-less-you-control"
@@ -931,7 +1053,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-market-priced-the-caution"
@@ -947,7 +1069,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-ledger-inherits-the-witness"
@@ -963,7 +1085,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-zero-at-the-smokestack"
@@ -979,7 +1101,7 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-busiest-day-the-service-ever-had"
@@ -995,264 +1117,13 @@
       "lastCovered": "2026-09-14T08:08:26.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-tumour-has-to-build-its-own-membrane"
       ],
       "eventUri": null,
       "summary": "Glioblastoma is the most lethal primary brain tumour there is — median survival around fifteen months, effectively unchanged since 2005 — and this work identifies an enzyme, HAT1, that sustains tumour growth by driving ALDH2 and remodelling the cell's membrane lipids. Lead with why lipids rather than the usual DNA-damage story: a dividing cell must physically manufacture new membrane, so lipid synthesis is a hard requirement of proliferation and not a side effect, which makes it a distinct and under-attacked point of failure. Explain the chain for a technical reader — HAT1 is an acetyltransferase, acetylation switches ALDH2's activity, and ALDH2 governs aldehyde clearance and feeds lipid remodelling — and be precise about what was actually shown: cell lines, mouse models, or patient tissue, with the effect sizes, because 'regulates proliferation' in a dish is a long way from a drug. State the honest distance to a therapy and what would have to be true, including the blood-brain barrier, which is the reason glioblastoma has outlived so many promising targets. The stake for our reader, who should not be handed false hope: glioblastoma kills at the same rate in Cairo, Karachi and Boston, but temozolomide and the imaging that guides surgery do not reach the first two equally, so a new target matters less than whether the existing standard of care is available at all — name that gap. Name the authors, institutions and journal, and note this is an accepted manuscript published ahead of the final version of record.",
-      "conceptUris": []
-    },
-    {
-      "id": "nasdaq-the-cap-table-becomes-the-constraint",
-      "label": "Anthropic said to pick Nasdaq for highly anticipated IPO",
-      "firstSeen": "2026-09-13T22:09:53.008Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-13-nasdaq-the-cap-table-becomes-the-constraint",
-        "2026-09-14-the-warning-came-from-inside-the-cap-table"
-      ],
-      "eventUri": "eng-12005379",
-      "summary": "Anthropic has reportedly chosen Nasdaq for a potentially record-setting IPO, on the same weekend Altman ruled out an OpenAI listing this year. Our 09-13 04:00 piece wrote the OpenAI non-listing as a balance-sheet story; do NOT re-tell it. This is the divergence and what it reveals about how frontier AI is being financed. Lead with the two decisions read together: one lab is going to the public markets while the other says it will not, and both are raising capital at a scale that private markets have never sustained for pre-profit companies — so the question is not which is more confident but which funding structure survives a bad quarter. Mechanism our reader should keep: a listing converts an obligation to a handful of strategic investors into an obligation to quarterly disclosure and a share price, which is simultaneously the strongest available discipline on a company that has argued for its own restraint and the strongest available pressure against it — a publicly traded lab must explain a deliberate slowdown to shareholders who did not sign up for one. Say that plainly and connect it, in one line only, to this cycle's piece on the state declining to regulate: if neither the government nor the cap table constrains the frontier, name what does. Report what is actually established versus reported: Business Insider's sourcing is a single person familiar, so attribute it as such, and give the verifiable numbers — Anthropic's last private valuation and raise, its disclosed revenue run-rate if any, Nasdaq's recent listing wins, and what 'record-setting' would have to clear. Then the reader's stake: the compute these valuations fund is the same compute Global South states cannot access at any price, so a listing prospectus is, read correctly, a public document about a concentration nobody voted for.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Sam_Altman",
-        "http://en.wikipedia.org/wiki/Initial_public_offering",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/AI_safety",
-        "http://en.wikipedia.org/wiki/Nasdaq-100",
-        "http://en.wikipedia.org/wiki/Stock",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "the-domain-was-the-credential",
-      "label": "Revolut handed sensitive customer data to scammers - media",
-      "firstSeen": "2026-09-13T22:09:53.008Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-13-the-domain-was-the-credential",
-        "2026-09-14-delisted-the-grade-was-the-tariff"
-      ],
-      "eventUri": "eng-12004373",
-      "summary": "Revolut reportedly disclosed customers' passports, driving licences and account data to fraudsters who sent requests from what appeared to be a legitimate government agency email domain. Lead with the authentication failure, because it is precise and universal: the bank treated the sender's domain as the credential, and a domain is not a credential — it is a string that can be spoofed, or belong to a compromised or dormant government mailbox, and there is no cryptographic step anywhere in the standard law-enforcement data-request workflow that would have caught it. Explain the emergency data request mechanism plainly, since our reader will not know it exists: banks and platforms are legally obliged to answer police and agency requests, often fast and without a court order, and that obligation creates a permanent unauthenticated channel into every customer record a company holds — which is why the same technique has been used against social platforms and telcos for years. Report what is actually established: how many customers, what data, which agency domain, over what period, what Revolut has said, and whether the FCA or ICO is investigating. Then the consequence our reader should weigh, and it is not about one bank: Revolut is a passporting digital bank with a large migrant and remittance customer base, so the people whose identity documents leaked are disproportionately those for whom a leaked passport is a visa, asylum or safety problem rather than an inconvenience — name that. And say what an individual can actually do, which is very little, because the document cannot be reissued as easily as a card number. SOURCING DISCIPLINE, binding: RT is the sole feed source, is Russian state media, and is itself citing unnamed 'media' — the writer must locate and attribute the original outlet's reporting, confirm the incident against Revolut, the FCA or the ICO, drop every detail that exists only in RT, and drop the story entirely if no non-RT source carries it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Revolut",
-        "http://en.wikipedia.org/wiki/Email",
-        "http://en.wikipedia.org/wiki/Passport",
-        "http://en.wikipedia.org/wiki/Fintech",
-        "http://en.wikipedia.org/wiki/Government_agency",
-        "http://en.wikipedia.org/wiki/Driver's_license",
-        "http://en.wikipedia.org/wiki/Authentication"
-      ]
-    },
-    {
-      "id": "muscat-postponed-one-sailor-closed-the-channel",
-      "label": "Tehran and Muscat delay talks, citing regional consensus need",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-muscat-postponed-one-sailor-closed-the-channel"
-      ],
-      "eventUri": "eng-12005864",
-      "summary": "The Oman track between Iran and the Gulf Arab states was postponed hours after a projectile killed one crew member on an Iranian commercial cargo vessel off Qeshm Island. Lead with the sequence, not the diplomacy: a single dead merchant sailor closed the only negotiating channel that was still open. The mechanism to highlight is that the talks were shelved at the request of unnamed 'regional countries' — meaning the Gulf states, not Tehran, pulled the brake, which tells the reader who currently controls the pace of de-escalation. Follow-on to our Abu Dhabi-Tehran channel coverage; the channel that never closed has now closed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Qeshm_Island",
-        "http://en.wikipedia.org/wiki/Strait",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Governor"
-      ]
-    },
-    {
-      "id": "isfahan-fifty-hours-the-air-defence-still-works",
-      "label": "US aviator shot down over Iran recalls 'free-falling' in first interview",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-isfahan-fifty-hours-the-air-defence-still-works"
-      ],
-      "eventUri": "eng-12007313",
-      "summary": "The verifiable news buried inside a survival narrative: Iranian air defences downed a US F-15E Strike Eagle over Isfahan, and the crew spent roughly 50 hours on the ground inside Iran before recovery. Lead with the capability fact — a front-line US strike aircraft was destroyed by the air-defence network the campaign was meant to have suppressed — not with the parachute. Hold the dignity line: the interview counts one American colonel's hours in detail while the Iranians killed in the same strike sorties remain uncounted, and the article should say so plainly rather than reproduce the asymmetry.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Bravo_(American_TV_network)",
-        "http://en.wikipedia.org/wiki/United_States_Air_Force",
-        "http://en.wikipedia.org/wiki/Parachute",
-        "http://en.wikipedia.org/wiki/McDonnell_Douglas_F-15E_Strike_Eagle",
-        "http://en.wikipedia.org/wiki/60_Minutes",
-        "http://en.wikipedia.org/wiki/Call_sign",
-        "http://en.wikipedia.org/wiki/CBS"
-      ]
-    },
-    {
-      "id": "tamenglong-a-second-front-and-no-assembly",
-      "label": "Parents Shot Dead, Efforts On To Save Manipur Child With Bullet Injury",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-tamenglong-a-second-front-and-no-assembly"
-      ],
-      "eventUri": "eng-12006145",
-      "summary": "Four Kuki villagers killed in 24 hours in Tamenglong district, including a couple shot dead in front of their child, who is now being treated for a bullet wound. Lead with the child. The structural point: Manipur's conflict has been framed for three years as Meitei-versus-Kuki, but these killings are attributed to Naga armed groups NSCN(IM) and ZUF(K) — a second front that means the Kuki are now exposed on two sides while the state remains under central rule with no elected assembly to answer for it. Name the actors and note that arrests, not just allegations, are the accountability test.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Manipur",
-        "http://en.wikipedia.org/wiki/Tamenglong_district",
-        "http://en.wikipedia.org/wiki/Kuki_people",
-        "http://en.wikipedia.org/wiki/Imphal",
-        "http://en.wikipedia.org/wiki/Jiribam",
-        "http://en.wikipedia.org/wiki/Naga_people",
-        "http://en.wikipedia.org/wiki/National_Socialist_Council_of_Nagaland",
-        "http://en.wikipedia.org/wiki/Gangte_language"
-      ]
-    },
-    {
-      "id": "seven-hundred-fifty-thousand-the-lever-that-moves-fastest",
-      "label": "Australia's Far-Right Leader Vows to Cut Migrants by 750,000",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-seven-hundred-fifty-thousand-the-lever-that-moves-fastest"
-      ],
-      "eventUri": "eng-12007081",
-      "summary": "One Nation would cut 750,000 temporary migrants over three years, targeting international students and their dependents first. Lead with who actually pays: the students are overwhelmingly from South and Southeast Asia — India, China, Nepal, Pakistan, Indonesia — and education is Australia's fourth-largest export, so the policy proposes to shrink an export industry to relieve a housing shortage it did not cause. The mechanism to explain is the substitution being sold to voters: visa numbers are the one lever a federal government can pull quickly, while housing supply is the lever it cannot, so migrants absorb the blame for a construction deficit. Australia's first appearance in our coverage in a week.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pauline_Hanson's_One_Nation",
-        "http://en.wikipedia.org/wiki/Human_migration",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Travel_visa",
-        "http://en.wikipedia.org/wiki/Pauline_Hanson",
-        "http://en.wikipedia.org/wiki/Immigration",
-        "http://en.wikipedia.org/wiki/Australian_Labor_Party",
-        "http://en.wikipedia.org/wiki/International_student"
-      ]
-    },
-    {
-      "id": "yanbu-the-bypass-and-the-strait-fail-together",
-      "label": "Four percent of global oil supply at risk due to Saudi pipeline outage",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-yanbu-the-bypass-and-the-strait-fail-together"
-      ],
-      "eventUri": "eng-12006480",
-      "summary": "New and specific since our earlier pipeline coverage: Saudi buyers and traders now say the kingdom runs out of export stock within days unless the East-West line to Yanbu restarts, putting up to 4% of world supply at risk. Lead with the days-not-weeks clock and the 4% figure. The mechanism: Yanbu exists precisely so Saudi crude can bypass Hormuz, so an outage there removes the hedge at the same moment the strait itself is being contested — the redundancy and the primary route are failing together, which is why this is a supply story rather than a maintenance story. Who bears it: net-importing economies in South Asia and Africa that buy at the margin.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/Yanbu",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "associate-membership-the-infrastructure-still-runs-south",
-      "label": "How Carney plans to sell Canada to the world's biggest investors",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-13-associate-membership-the-infrastructure-still-runs-south"
-      ],
-      "eventUri": "eng-12005827",
-      "summary": "Eighteen months after declaring the Canada-US relationship 'over', Carney is pitching Canada to global capital and pushing for associate membership of the European Union. Lead with the associate-membership ask — no G7 economy has ever sought it, and it is the concrete measure of how far the tariff war has pushed Ottawa. The mechanism a strategic reader wants: a country whose trade, pipelines, rail and defence procurement were all built to run north-south is trying to re-point them east across an ocean, and physical infrastructure changes direction far more slowly than policy does. That gap is where the plan either works or doesn't.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Canada",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Mark_Carney",
-        "http://en.wikipedia.org/wiki/The_Wall_Street_Journal",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Ottawa",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Canada",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "exam-rails-as-soft-power-the-leaks-came-with-it",
-      "label": "NTA aims to export Indian exam system as global \"digital public good\": DG Abhishek Singh",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-exam-rails-as-soft-power-the-leaks-came-with-it"
-      ],
-      "eventUri": "eng-12006614",
-      "summary": "India wants to export its national examination platform to other countries, BRICS members first, as a 'digital public good' — the same playbook that carried Aadhaar and UPI abroad. Lead with the pattern, not the announcement: India has found that giving away state-built digital infrastructure buys durable influence more cheaply than aid or arms, because the recipient's identity, payments and now credentialing systems end up running on Indian-designed rails. The counter-fact the reader needs: the NTA is the same agency whose exam leaks forced the cancellation of NEET-UG papers, so the product being offered as a public good has an unresolved integrity record at home.",
-      "conceptUris": []
-    },
-    {
-      "id": "polariton-oled-narrowband-without-the-filter",
-      "label": "Narrowband, angle-stable, and highly efficient polariton organic light emitting diodes employing thermally activated delayed fluorescence",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-polariton-oled-narrowband-without-the-filter"
-      ],
-      "eventUri": null,
-      "summary": "A working display-grade OLED that gets its colour purity from strong light-matter coupling rather than from filters or optical cavities, by stacking a strong-coupling layer onto a green TADF emitter. Lead with angle stability, because that is the practical payoff: conventional narrowband OLEDs shift hue as you tilt the screen, and this design does not, which matters for every phone and headset panel. The mechanism to explain for a technical reader: the emitter and the optical mode hybridise into a polariton, so the emission linewidth is set by the coupling rather than by throwing away photons in a filter — narrowband and efficient stop being a trade-off.",
-      "conceptUris": []
-    },
-    {
-      "id": "rice-blast-the-fungus-digests-the-defence",
-      "label": "Hos2-mediated KatG1 decrotonylation orchestrates ROS scavenging in rice blast infection",
-      "firstSeen": "2026-09-14T04:09:44.412Z",
-      "lastCovered": "2026-09-14T04:09:44.412Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-rice-blast-the-fungus-digests-the-defence"
-      ],
-      "eventUri": null,
-      "summary": "Rice blast destroys enough rice each year to feed tens of millions, and this work identifies how the fungus survives the plant's first line of defence: an enzyme, Hos2, strips a chemical tag off the catalase KatG1, switching it on so the pathogen can neutralise the reactive-oxygen burst the rice plant fires at it. Lead with the stakes for Asian and West African rice systems, then the mechanism — the fungus is not resisting the attack, it is enzymatically digesting it. Why it matters structurally: a protein-modification switch is a drug-style target, which is a different intervention class from breeding resistant varieties that blast has repeatedly outrun.",
       "conceptUris": []
     }
   ]
