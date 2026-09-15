@@ -2,41 +2,18 @@
   "version": 1,
   "stories": [
     {
-      "id": "us-loss-to-iran-attacks-revealed-bases-posture",
-      "label": "Dozens of aircraft, hundreds of buildings: US loss to Iran attacks revealed",
-      "firstSeen": "2026-09-15T17:08:08.717Z",
-      "lastCovered": "2026-09-15T17:08:08.717Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture"
-      ],
-      "eventUri": "eng-12010289",
-      "summary": "A new US government report on Operation Epic Fury (28 Feb onward) says the Pentagon has not decided its future Middle East posture, including whether damaged regional bases will be rebuilt — and discloses losses of dozens of aircraft and hundreds of buildings. Lead with the damage inventory, because it is the first official accounting of what the war cost the side that started it, and it is the number no one in Washington volunteered for six months. The mechanism for our reader is basing dependency: US power projection across the Gulf runs through a small number of host-nation airfields in Qatar, Bahrain, Kuwait, Iraq and Saudi Arabia, so 'posture undetermined' means the host governments — not the Pentagon alone — now decide what gets rebuilt and on what terms. Who bears it: Gulf states whose territory is the target set, and Iraqis and Iranians beneath the exchange. SOURCING: the cluster is RT (Russian state, party-adjacent interest) plus Al Jazeera; use the Al Jazeera account as primary and quote the government report directly rather than either outlet's gloss. Follow-on to our Khamis Mushait and sortie-count pieces. Report the report's own name and date, the aircraft types, which bases, and what the Pentagon says it has NOT decided.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Defense",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Iraq"
-      ]
-    },
-    {
       "id": "femicide-is-a-legal-category-in-mexico",
       "label": "Spain demands justice after killing of student in Mexico",
       "firstSeen": "2026-09-15T17:08:08.717Z",
-      "lastCovered": "2026-09-15T17:08:08.717Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 3,
       "category": "politics",
       "importance": 6,
-      "arc": "breaking",
+      "arc": "developing",
       "articles": [
-        "2026-09-15-femicide-is-a-legal-category-in-mexico"
+        "2026-09-15-femicide-is-a-legal-category-in-mexico",
+        "2026-09-16-six-and-a-half-billion-for-a-company-that-is-not-a-bank",
+        "2026-09-16-ninety-five-percent-is-not-a-target-it-is-a-threshold"
       ],
       "eventUri": "spa-4340479",
       "summary": "A Spanish university student was stabbed to death in Morelos and Mexican authorities are investigating it as femicide — a legal category, not a descriptive one, which is the whole story. Lead with what 'femicide' does in Mexican law: it is a distinct offence with a higher sentence and a mandated investigative protocol, created because ordinary homicide investigations of women's deaths were being closed unexamined. Then the number that makes this a pattern rather than an incident: roughly ten women killed a day in Mexico, and a conviction rate in the low single digits. The accountability question our reader should be given plainly is why a Spanish foreign minister's demand produces a response that thousands of Mexican families' demands do not — the dignity test is whether a Mexican victim's case gets the same protocol, and the answer is documented. Name the victim as her family permits, name the state prosecutor's office handling it, and report what stage the investigation is at rather than the diplomatic exchange. Fills the audit's flagged Latin America gap, which has appeared only through organised-crime framing.",
@@ -55,17 +32,183 @@
       "id": "the-lure-was-a-medical-result",
       "label": "Iranian cyber spies used fake MRI scan results to hack 'enemy of regime'",
       "firstSeen": "2026-09-15T17:08:08.717Z",
-      "lastCovered": "2026-09-15T17:08:08.717Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 3,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-15-the-lure-was-a-medical-result",
+        "2026-09-16-the-agenda-is-the-seat-that-was-won",
+        "2026-09-16-a-sewing-line-needs-a-shed-and-a-generator"
+      ],
+      "eventUri": null,
+      "summary": "The UK's National Cyber Security Centre says Iranian state operators used fake MRI scan results as a phishing lure to compromise people the state regards as enemies — and says this and similar activity supports 'the repression of individuals who are seen as a threat to the regime, such as dissidents, activists and journalists'. Lead with the lure itself, because the choice of a medical result is the tradecraft: it is the one attachment a target opens without thinking, and selecting it means the operator knew the target's medical situation, which is targeting intelligence, not spam. The mechanism for our technically literate reader: spearphishing is a research problem before it is a technical one, so the interesting artefact is the reconnaissance, and the defence is not a spam filter but hardware keys and per-account isolation — say which mitigations NCSC actually recommends. Who is affected: exiled Iranian journalists and activists in London, Washington and Istanbul, whose compromise leads back to family inside Iran. Hold the accountability line squarely: a state that surveils its critics abroad should be named doing it, and the same standard applies to every government that runs these operations, several of them allied to the reader's own. Report the named threat group, the NCSC advisory number, the indicators published, and how many targets are known. SOURCING NOTE: no Iranian or regional outlet in this feed covered the advisory; attribute all claims to NCSC rather than to the reporting.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Vienna",
+        "http://en.wikipedia.org/wiki/Austria",
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Nuclear_program_of_Iran"
+      ]
+    },
+    {
+      "id": "twenty-one-ships-where-seventy-used-to-pass",
+      "label": "Saudi Arabia faces high-stakes choices as war with Houthis escalates",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-twenty-one-ships-where-seventy-used-to-pass"
+      ],
+      "eventUri": "eng-12005802",
+      "summary": "Ansar Allah has seized the Red Sea port of Mokha and several islands near Bab el-Mandeb, and commodity traffic through the strait fell to 21 ships on Monday from 28 on Sunday against a pre-crisis average of 70. Lead with the three shipping numbers, because they are the only independently measured thing in this story (Kpler), and they convert a territorial claim into a global cost. Then the human number: more than 100,000 displaced by the renewed fighting, and 13 injured across three Saudi cities by return fire — carry both tolls in the same paragraph, Yemeni and Saudi, and name who reported each. The mechanism to teach is that a chokepoint is not a place but an insurance market: non-Saudi hulls are still transiting, so the loss arrives as war-risk premiums rather than as closure, and that premium is paid by importers in Egypt, Sudan, Djibouti and East Africa who never chose a side. Who holds power: Riyadh, which is flying the strikes; Washington, which says it is in direct contact with the Houthis while the Houthi political bureau denies it — report that contradiction flatly, both claims attributed. Follow-on to our 09-15 East-West pipeline piece, which is the same war one node upstream. SOURCING, binding: RT is Russian state media and the WSJ item is an opinion column; use the Al Jazeera report as the spine, take the traffic figures from Kpler as cited, and treat the Vance 'direct contact' claim as contested.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Bab-el-Mandeb"
+      ]
+    },
+    {
+      "id": "the-same-statute-pointed-the-other-way",
+      "label": "Mahmoud Khalil Sues Columbia University Over Persistent Anti-Palestinian Discrimination",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-same-statute-pointed-the-other-way"
+      ],
+      "eventUri": null,
+      "summary": "Khalil and other graduates have filed a federal civil complaint accusing Columbia and SIPA Dean Keren Yarhi-Milo of violating Title VI. Lead with the statute, because the choice of Title VI is the entire legal manoeuvre: it is the same civil-rights provision the administration used to force universities to discipline pro-Palestinian students, and Khalil is now turning it around to argue that national-origin discrimination against Palestinians is covered by it too. The mechanism our reader should take: Title VI conditions federal funding on non-discrimination, so the remedy is not damages but leverage over a university's federal money — which is why this complaint, if it survives, sets a precedent every US campus counts in dollars. Who is affected: Palestinian and Arab students whose immigration status, degrees and future employment ran through disciplinary findings; Khalil himself was detained for months over the same protests. Who holds power and must be named: the named dean, Columbia's administration, and the federal agency that would investigate. Report what specific acts the complaint alleges, what relief it seeks, what stage it is at, and Columbia's response — and keep every allegation attributed to the filing, because an unproven complaint is a claim, not a finding.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-fight-was-over-which-regulator-not-whether",
+      "label": "US Senate crypto bill collapses in blow to industry",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-fight-was-over-which-regulator-not-whether"
+      ],
+      "eventUri": "eng-12006753",
+      "summary": "The Digital Asset Market Clarity Act failed a procedural vote in the Senate on Tuesday, Coinbase fell nearly 9 percent, and proponents concede another attempt is unlikely this session. Lead with what the bill was actually for — market structure, meaning the line between a security and a commodity, and therefore whether the SEC or the CFTC regulates a token. That line is the industry's whole ask, because the CFTC is smaller, cheaper and has no investor-protection mandate; the vote was a jurisdiction fight dressed as a clarity bill. The mechanism to teach: when legislation fails, regulation does not stop, it reverts to enforcement and rulemaking at agencies already at work — so the practical result is that unelected regulators, not Congress, keep writing the rules, which is the opposite of what 'clarity' promised. Who holds power and must be named: the senators who withheld votes and the reported reason, and the industry PAC money documented around the bill — the Intercept's reporting is the one carrying that thread, so use it and attribute it. The structural why far from Washington: dollar stablecoins are savings instruments in Nigeria, Pakistan, Turkey and Argentina, where holders have no vote in this chamber and no recourse if a US agency reclassifies the asset they hold. Report the vote count, the specific provisions, and the market moves with CoinDesk's numbers. Distinct from our 09-15 House crypto tax piece: that was the tax code, this is market structure.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Clarity_Act",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Ethics",
+        "http://en.wikipedia.org/wiki/Cryptocurrency",
+        "http://en.wikipedia.org/wiki/Stablecoin"
+      ]
+    },
+    {
+      "id": "a-wall-is-evidence-about-institutions",
+      "label": "History is being rewritten at an archaeological site in Morocco. What the discovery of an ancient wall tells us",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-a-wall-is-evidence-about-institutions"
+      ],
+      "eventUri": null,
+      "summary": "Excavation at Oued Beht in northwestern Morocco has uncovered a substantial built structure showing that second-millennium-BC communities in northwest Africa were monumentally organised and connected across the Mediterranean. Lead with what the wall displaces: the Maghreb has been written into Mediterranean prehistory as a recipient — of Phoenician, then Roman, then Arab arrival — and a monumental structure of this date means the local societies were parties to that exchange before any of those arrivals. The mechanism our reader will appreciate is how archaeology actually establishes this: a wall requires organised labour and stored surplus, so the structure is evidence about a society's institutions, not just its masonry, and the dating and the imported material culture are what tie it into a network rather than a curiosity. Who holds power over the knowledge, which is worth asking plainly: say who is conducting the dig, whether Moroccan institutions and INSAP are leading or partnering, and where the finds and the publications go — the answer to that question is why so much North African prehistory was written in European capitals. Report the dating method and range, the specific imported items, and what the excavators say is still unproven. SOURCING NOTE: no Moroccan or wider Maghrebi outlet in this feed covered the find; the piece is a scholarly explainer, so attribute claims to the named researchers and the underlying paper.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-chair-does-not-trade-under-its-own-rules",
+      "label": "Can the Global South align the world's carbon markets?",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-chair-does-not-trade-under-its-own-rules"
+      ],
+      "eventUri": null,
+      "summary": "Brazil will chair a new body charged with aligning the world's fragmented carbon markets — while its own market does not launch until 2030. Lead with that gap, because it is the honest frame: the country writing the interoperability rules will not be trading under them for four years, which determines whose existing market the standard ends up resembling. The mechanism to explain for our reader, who will meet this as a cost rather than a policy: a carbon credit is only worth anything if a buyer's regulator accepts it, so 'alignment' means deciding which registries, which measurement methods and which vintages count — and every one of those choices reprices the forests, peatlands and cookstove projects already selling credits across Africa, Southeast Asia and the Amazon. Who bears it: communities in Indonesia, the Congo Basin and Brazil whose land is the asset, and who are not parties to the standard-setting. Who holds power: the body's named members, Article 6 of the Paris Agreement as the legal scaffold, and the EU's CBAM, which is the buyer whose rules effectively set the floor. Report what the body can actually decide versus recommend, its timeline, and what happened to the credits that earlier integrity reviews found to be worthless — that history is the reason this body exists. Fills the audit's flagged Latin America and climate-observation gaps.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-cost-of-a-plausible-message-collapsed",
+      "label": "AI Agent Platform Reinvents Spam, Floods Inboxes Worldwide",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-15-the-lure-was-a-medical-result"
+        "2026-09-16-the-cost-of-a-plausible-message-collapsed"
       ],
       "eventUri": null,
-      "summary": "The UK's National Cyber Security Centre says Iranian state operators used fake MRI scan results as a phishing lure to compromise people the state regards as enemies — and says this and similar activity supports 'the repression of individuals who are seen as a threat to the regime, such as dissidents, activists and journalists'. Lead with the lure itself, because the choice of a medical result is the tradecraft: it is the one attachment a target opens without thinking, and selecting it means the operator knew the target's medical situation, which is targeting intelligence, not spam. The mechanism for our technically literate reader: spearphishing is a research problem before it is a technical one, so the interesting artefact is the reconnaissance, and the defence is not a spam filter but hardware keys and per-account isolation — say which mitigations NCSC actually recommends. Who is affected: exiled Iranian journalists and activists in London, Washington and Istanbul, whose compromise leads back to family inside Iran. Hold the accountability line squarely: a state that surveils its critics abroad should be named doing it, and the same standard applies to every government that runs these operations, several of them allied to the reader's own. Report the named threat group, the NCSC advisory number, the indicators published, and how many targets are known. SOURCING NOTE: no Iranian or regional outlet in this feed covered the advisory; attribute all claims to NCSC rather than to the reporting.",
+      "summary": "A platform called iLands is running AI agents that perform useless tasks and then email strangers asking to be paid for them, at a volume that has become worldwide inbox spam. Lead with the absurdity precisely stated — an agent doing work nobody asked for and then invoicing for it — because the joke is the business model, and the business model is where agentic AI is actually landing while the labs talk about research assistants. The mechanism to teach: the economics of spam have always been a cost-per-message problem, and what changed is not the sending but the drafting — a personalised, contextually plausible message used to cost a human minute and now costs a fraction of a cent, which collapses the ratio that every spam filter was tuned against. Explain what that does to the defence: content filtering fails when the content is genuinely novel each time, so the remaining signals are sending reputation and payment rails, meaning the effective anti-spam authority is now a handful of email providers and payment processors. Who is affected far from the people building this: small businesses and NGOs across Africa and South Asia running their own mail servers, who cannot buy their way onto a reputation allowlist and simply stop being able to reach anyone. Report what iLands actually is, who runs it, what the agents do, how many messages, and whether any provider has acted.",
       "conceptUris": []
+    },
+    {
+      "id": "the-adoption-nobody-is-counting",
+      "label": "The real AI economy is being built by ordinary people",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-adoption-nobody-is-counting"
+      ],
+      "eventUri": null,
+      "summary": "Workers across Asia and Africa are rewiring their own jobs with AI tools — one prompt, one workflow, one local problem at a time — without any of the enterprise deployments the industry counts. Lead with a specific worker and a specific task from the reporting, not with the trend, because the finding is that adoption is happening below the level anyone is measuring: the productivity statistics everyone is arguing about count licences sold to firms, and this is unlicensed, unbudgeted and invisible to that number. The mechanism our reader should take is substitution of scarcity — in places where the constraint was never compute but access to a lawyer, a translator, a designer or an English-language form, a general-purpose model removes a bottleneck that no enterprise software was ever priced to remove. Set it directly against our 09-15 piece on the trillion-dollar capex gamble: the return the hyperscalers need is being modelled on Western enterprise seats, while the actual usage is a Karachi accountant and a Lagos tailor paying twenty dollars a month or nothing at all — and that gap between where the value lands and where the revenue lands is the reportable tension. Who bears the risk: workers with no recourse when a model changes, a price rises or an account is geo-blocked. Report the named workers, countries, tools and concrete before-and-after time or income figures the piece documents, and do not extrapolate beyond them.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-loss-to-iran-attacks-revealed-bases-posture",
+      "label": "Dozens of aircraft, hundreds of buildings: US loss to Iran attacks revealed",
+      "firstSeen": "2026-09-15T17:08:08.717Z",
+      "lastCovered": "2026-09-15T17:08:08.717Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture"
+      ],
+      "eventUri": "eng-12010289",
+      "summary": "A new US government report on Operation Epic Fury (28 Feb onward) says the Pentagon has not decided its future Middle East posture, including whether damaged regional bases will be rebuilt — and discloses losses of dozens of aircraft and hundreds of buildings. Lead with the damage inventory, because it is the first official accounting of what the war cost the side that started it, and it is the number no one in Washington volunteered for six months. The mechanism for our reader is basing dependency: US power projection across the Gulf runs through a small number of host-nation airfields in Qatar, Bahrain, Kuwait, Iraq and Saudi Arabia, so 'posture undetermined' means the host governments — not the Pentagon alone — now decide what gets rebuilt and on what terms. Who bears it: Gulf states whose territory is the target set, and Iraqis and Iranians beneath the exchange. SOURCING: the cluster is RT (Russian state, party-adjacent interest) plus Al Jazeera; use the Al Jazeera account as primary and quote the government report directly rather than either outlet's gloss. Follow-on to our Khamis Mushait and sortie-count pieces. Report the report's own name and date, the aircraft types, which bases, and what the Pentagon says it has NOT decided.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Defense",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Iraq"
+      ]
     },
     {
       "id": "the-invariant-was-never-checked",
@@ -74,7 +217,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-invariant-was-never-checked"
@@ -90,7 +233,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-vendor-s-price-set-the-charge"
@@ -100,13 +243,39 @@
       "conceptUris": []
     },
     {
+      "id": "the-wingman-takes-tasking-not-orders",
+      "label": "Anduril's YFQ-44A Fury CCA Has Flown Alongside F-35s",
+      "firstSeen": "2026-09-15T08:08:01.994Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-09-15-the-wingman-takes-tasking-not-orders",
+        "2026-09-16-the-department-complied-while-the-president-did-not"
+      ],
+      "eventUri": null,
+      "summary": "Anduril's YFQ-44A Fury has already flown alongside F-35s as the company works toward a crewed-uncrewed teaming demonstration. Lead with the fact that the formation flight happened before the demonstration was announced — the programme is further along than the public schedule says, which is the reportable news. The mechanism our reader should understand is autonomy-in-the-loop: a Collaborative Combat Aircraft is not a drone flown by a pilot on the ground, it takes tasking from the cockpit of a manned fighter and executes it independently, which moves the human decision from 'fire this weapon' to 'accept this task'. Who holds power: Anduril, a private company that designs and owns the autonomy stack, so the rules of engagement live in software the buyer does not write. The structural why for our reader: cheap attritable aircraft change who can contest airspace and at what price, and the first users will not all be the United States — export policy for CCAs is undecided and this is the moment to ask about it. Report the confirmed flight details, the programme milestones, and what the Air Force will not say.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Postal_voting",
+        "http://en.wikipedia.org/wiki/United_States_Postal_Service",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Judge",
+        "http://en.wikipedia.org/wiki/State_(polity)",
+        "http://en.wikipedia.org/wiki/Brett_Kavanaugh"
+      ]
+    },
+    {
       "id": "gabrovo-the-magazine-is-the-bottleneck",
       "label": "NATO nation's arms company hit by second ammo depot fire in one month",
       "firstSeen": "2026-09-13T08:07:01.040Z",
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 27,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
@@ -159,7 +328,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 7,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-09-15-the-email-was-signed-oracle-leadership",
@@ -192,7 +361,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-nato-jets-shoot-down-drone-over-lithuania"
@@ -217,7 +386,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-denmark-says-russian-frigate-fired-flares-at-helicopter"
@@ -242,7 +411,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-benchmark-us-government-bond-yield-hits-19-year-peak-as-oil"
@@ -267,7 +436,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason"
@@ -291,7 +460,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-pims-fire-inquiry-committee-finds-systemic-institutional-fai"
@@ -307,7 +476,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove"
@@ -323,7 +492,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-migrants-leaders-report-mounting-insecurity-warn-of-governme"
@@ -339,7 +508,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-in-dubai-trade-continues-on-the-front-lines-of-the-iran-war"
@@ -355,7 +524,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-avio-launches-second-successful-vega-c-flight-of-2026"
@@ -371,7 +540,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off"
@@ -387,7 +556,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-what-india-s-cockroach-protests-reveal-about-digital-authori"
@@ -403,7 +572,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-two-thousand-rupees-is-where-the-fee-becomes-legal"
@@ -427,7 +596,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-reshuffle-reached-the-minister-who-ordered-it"
@@ -445,29 +614,13 @@
       ]
     },
     {
-      "id": "the-wingman-takes-tasking-not-orders",
-      "label": "Anduril's YFQ-44A Fury CCA Has Flown Alongside F-35s",
-      "firstSeen": "2026-09-15T08:08:01.994Z",
-      "lastCovered": "2026-09-15T08:08:01.994Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-the-wingman-takes-tasking-not-orders"
-      ],
-      "eventUri": null,
-      "summary": "Anduril's YFQ-44A Fury has already flown alongside F-35s as the company works toward a crewed-uncrewed teaming demonstration. Lead with the fact that the formation flight happened before the demonstration was announced — the programme is further along than the public schedule says, which is the reportable news. The mechanism our reader should understand is autonomy-in-the-loop: a Collaborative Combat Aircraft is not a drone flown by a pilot on the ground, it takes tasking from the cockpit of a manned fighter and executes it independently, which moves the human decision from 'fire this weapon' to 'accept this task'. Who holds power: Anduril, a private company that designs and owns the autonomy stack, so the rules of engagement live in software the buyer does not write. The structural why for our reader: cheap attritable aircraft change who can contest airspace and at what price, and the first users will not all be the United States — export policy for CCAs is undecided and this is the moment to ask about it. Report the confirmed flight details, the programme milestones, and what the Air Force will not say.",
-      "conceptUris": []
-    },
-    {
       "id": "the-last-mirror-of-the-public-square",
       "label": "XCancel service is suspended until further notice",
       "firstSeen": "2026-09-15T08:08:01.994Z",
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-last-mirror-of-the-public-square"
@@ -483,7 +636,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-cooling-by-squeezing-a-solid"
@@ -499,7 +652,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-14-a-drill-is-not-a-test",
@@ -526,7 +679,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho"
@@ -551,7 +704,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-treaty-only-banned-the-other-kind"
@@ -576,7 +729,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-fifty-four-sorties-and-eighty-thousand-moved"
@@ -592,7 +745,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-thirteen-scholarships-and-no-exit"
@@ -608,7 +761,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-cargo-did-not-arrive-so-the-coal-did"
@@ -633,7 +786,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-one-hundred-fourteen-pages-and-a-de-minimis-line"
@@ -649,7 +802,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-three-hundred-seventy-years-and-a-language-prior"
@@ -665,7 +818,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-billion-phones-decide-where-the-query-goes"
@@ -684,13 +837,30 @@
       ]
     },
     {
+      "id": "the-nod-arrives-with-the-sentence",
+      "label": "Brain implant lets people with paralysis speak and gesture at the same time",
+      "firstSeen": "2026-09-14T17:04:32.126Z",
+      "lastCovered": "2026-09-15T22:05:15.441Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-09-14-the-nod-arrives-with-the-sentence",
+        "2026-09-16-the-interception-capability-transferred-with-the-asset"
+      ],
+      "eventUri": "eng-12009177",
+      "summary": "A brain-computer interface has decoded speech and gesture simultaneously, letting paralysed users drive an avatar that nods and waves while it talks. Lead with why simultaneity is the hard part: earlier implants decoded one intended action at a time, and the advance here is separating two concurrent motor-intent signals from overlapping cortical activity. The stakes for the affected: nuance in communication — agreement, hesitation, emphasis — is carried by gesture, so a speech-only interface returns words while leaving the person unable to signal what they mean by them. Keep this distinct from the ALS drug-repurposing piece we ran today; the through-line is restoring function, not the same research.",
+      "conceptUris": []
+    },
+    {
       "id": "russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting",
       "label": "Russia raps barring Iran's nuclear chief from IAEA meeting",
       "firstSeen": "2026-09-14T22:05:55.791Z",
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting"
@@ -715,7 +885,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-zelensky-s-disgraced-prosecutor-general-turns-on-anti-graft"
@@ -740,7 +910,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-finland-shelters-under-french-nuclear-umbrella-amid-russian"
@@ -765,7 +935,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-duration-of-status-ends-injunction-covers-only-postdocs"
@@ -781,7 +951,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-hiding-in-plain-sight-the-liquid-cocaine-boom-explained"
@@ -797,7 +967,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-epa-to-roll-back-power-plant-emission-rules"
@@ -822,7 +992,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-rs114-in-tax-rides-on-every-litre"
@@ -838,7 +1008,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-founder-s-cost-cutting-obsession-drove-unitree-lead-in-cheap"
@@ -854,7 +1024,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-more-than-120-unaccounted-for-after-ferry-sinks-in-indonesia"
@@ -879,7 +1049,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-a-chain-is-one-cell-that-never-let-go"
@@ -895,7 +1065,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-new-york-seizes-12-celebrity-deepfake-websites"
@@ -911,7 +1081,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-members-of-black-axe-cybercriminal-group-extradited-from-sou"
@@ -927,175 +1097,13 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-ai-agents-flood-the-internet-with-slop-infused-spam"
       ],
       "eventUri": null,
       "summary": "Autonomous agents are sending personalised messages to writers and social platforms — introducing themselves as 'a few days old, living on a small server' — to drive traction for a startup selling a human-agent social system. Lead with the economics: the spam is the product demo, so the incentive to send it does not diminish with rejection the way a scam's does. Who bears the cost: independent writers and small platform moderators, for whom per-message human review was already the binding constraint and is now unaffordable. The mechanism to explain is asymmetry — generation cost has collapsed while the cost of judging a message has not moved at all.",
-      "conceptUris": []
-    },
-    {
-      "id": "three-seats-and-neither-bloc-has-a-majority",
-      "label": "Opposition edges ahead in Swedish election",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-three-seats-and-neither-bloc-has-a-majority"
-      ],
-      "eventUri": "eng-12004234",
-      "summary": "The count is now effectively final and it inverted the pre-election story: the centre-left bloc leads 176 to 173 with 95% of ballots counted, and both blocs opened coalition talks Monday. Lead with the three-seat margin — Sweden's 349-seat Riksdag needs 175 for a majority, so neither bloc governs without a partner it has spent the campaign attacking, and the Sweden Democrats' share is the variable that decides whether the right can form anything at all. This continues the arc we opened with the exit-poll piece; the new development is the margin and the arithmetic of who can actually assemble 175. Attribute reporting to The Guardian and Al Jazeera; RT is in the cluster but should not carry a claim on its own.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sweden",
-        "http://en.wikipedia.org/wiki/Sweden_Democrats",
-        "http://en.wikipedia.org/wiki/Ulf_Kristersson",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/Far-right_politics",
-        "http://en.wikipedia.org/wiki/Centre-left_politics",
-        "http://en.wikipedia.org/wiki/Social_democracy",
-        "http://en.wikipedia.org/wiki/Prime_minister"
-      ]
-    },
-    {
-      "id": "the-direction-reaches-the-police-station",
-      "label": "SC stresses need for gender-sensitive investigations, court proceedings in domestic violence cases",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-direction-reaches-the-police-station"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's Supreme Court ruled Monday that protecting women requires not only changed attitudes but a gender-sensitive lens in investigation and adjudication, and directed provincial governments to ensure it. Lead with the instruction to the provinces — this is a precedent that reaches down into police station practice, where domestic-violence complaints are most often lost, rather than a statement of principle. The reader should understand the mechanism: a superior-court direction binds subordinate courts and gives complainants something to cite when an investigating officer declines to register a case. Dawn (PK) is the regional source, correctly carried.",
-      "conceptUris": []
-    },
-    {
-      "id": "five-percent-is-the-floor-under-everyone",
-      "label": "10-year Treasury yield reaches 5% as all eyes on Fed",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-five-percent-is-the-floor-under-everyone"
-      ],
-      "eventUri": "eng-12001656",
-      "summary": "The US 10-year touched 5% for the first time since October 2023, ahead of a Fed meeting where a hike is widely expected. Lead with what the 10-year actually prices: it is the global risk-free rate, so it sets the floor under emerging-market borrowing costs, mortgage rates and the discount rate on every equity valuation at once — which is why a threshold in Washington shows up as a funding squeeze in Lagos, Karachi and Jakarta. The structural why: yields are rising into an expected hike, meaning the market is pricing inflation the Fed has not yet contained, not merely the policy rate. Connect to today's Nigeria bond-index story — a 200bp yield compression at the same moment the global benchmark rises is a rare divergence worth noting.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Consumer_price_index",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "two-hundred-basis-points-for-a-listing",
-      "label": "Nigeria rejoins J.P. Morgan Global Bond Index after 11 years",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-two-hundred-basis-points-for-a-listing"
-      ],
-      "eventUri": "eng-12009202",
-      "summary": "Nigeria's federal bonds are back in a J.P. Morgan global index for the first time since 2015, with an expected $17.5bn of inflows and yields forecast to fall by up to 200 basis points. Lead with the 200bp — that is the price of index membership, paid by passive funds that must buy whatever the index holds regardless of their view on Nigeria. The structural point for the reader: a single private company's inclusion decision moves the cost of a sovereign's debt more than any domestic policy Abuja announced this year, which is what it means to say index providers are unelected regulators of capital flows. Ask what was required to get back in — the naira float and FX-market reforms that carried real costs for Nigerians — and whether the inflows reach anything beyond the debt market. Premium Times (NG) is the regional source.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-cement-plant-becomes-the-utility",
-      "label": "\"Offensively cheap\": Solar power is looking up",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-cement-plant-becomes-the-utility"
-      ],
-      "eventUri": "eng-12006253",
-      "summary": "In Chakwal, north-central Pakistan, Bestway Cement is covering dry land and olive groves with panels — 6.34 MW added this year on top of 26 MW already installed. Lead with a cement company becoming its own utility: this is captive generation, and it happens when grid power is priced above the cost of building your own supply. The structural consequence is a death spiral for the national grid — every large industrial user that self-generates leaves the remaining fixed costs to be recovered from households that cannot afford panels, which is how a cheap technology produces a regressive outcome. Pakistan is the test case because its capacity-payment structure makes grid tariffs rise as demand falls. FEED GAP: no Pakistani outlet covered this energy-economics story in the feed despite Pakistan being the subject; carried by Ars Technica alone — flag for feed-side audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "project-lily-someone-read-it",
-      "label": "Inside 'Project Lily': The Humans Reading Your ChatGPT Chats",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-project-lily-someone-read-it"
-      ],
-      "eventUri": null,
-      "summary": "Leaked internal documents and real user prompts seen by 404 Media show human contractors reading ChatGPT conversations to improve OpenAI's models — including chats containing sensitive personal information. Lead with the name: an internal programme called Project Lily means this is staffed, budgeted and routine, not an incident. The mechanism the reader needs is that reinforcement learning from human feedback structurally requires humans to read the data, so 'your conversations may be used to improve our models' in a privacy policy is not a disclosure about machines. Who is affected: anyone who typed a medical symptom, a legal problem or a confession into a chat box. This is the kind of original documentary reporting no wire will produce.",
-      "conceptUris": []
-    },
-    {
-      "id": "asdfg-is-a-lawful-basis",
-      "label": "Cops Search Thousands of Flock Cameras for Reasons of 'LMAO,' 'IDK,' 'Hehe,' and 'asdfg'",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-asdfg-is-a-lawful-basis"
-      ],
-      "eventUri": null,
-      "summary": "The EFF pulled the audit logs from Flock's licence-plate camera network and found officers justifying searches with 'idiot,' 'WEIRD KID,' 'blah,' 'leave me alone,' and keyboard mashing. Lead with 'asdfg' as a lawful basis. The mechanism is the point: Flock's defence against abuse is that every search requires a stated reason, which makes the free-text reason box the entire accountability system — and it is unvalidated, unreviewed and, on this evidence, treated as a formality by the officers filling it in. Who is affected: every driver whose plate is logged, which in Flock-covered jurisdictions is everyone. The accountability gap is that a private vendor designed the only audit trail and nobody checks it.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-nod-arrives-with-the-sentence",
-      "label": "Brain implant lets people with paralysis speak and gesture at the same time",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-nod-arrives-with-the-sentence"
-      ],
-      "eventUri": "eng-12009177",
-      "summary": "A brain-computer interface has decoded speech and gesture simultaneously, letting paralysed users drive an avatar that nods and waves while it talks. Lead with why simultaneity is the hard part: earlier implants decoded one intended action at a time, and the advance here is separating two concurrent motor-intent signals from overlapping cortical activity. The stakes for the affected: nuance in communication — agreement, hesitation, emphasis — is carried by gesture, so a speech-only interface returns words while leaving the person unable to signal what they mean by them. Keep this distinct from the ALS drug-repurposing piece we ran today; the through-line is restoring function, not the same research.",
-      "conceptUris": []
-    },
-    {
-      "id": "too-massive-too-early",
-      "label": "Black Holes or Black Hole Stars? Astronomers Spar Over Webb Telescope's 'Little Red Dots.'",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-14T17:04:32.126Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-too-massive-too-early"
-      ],
-      "eventUri": null,
-      "summary": "JWST keeps finding 'little red dots' across the early universe, and the field has split: supermassive black holes that should not have had time to grow that large, or a proposed new object — a black hole star, a body dozens of times wider than our solar system with a black hole inside a vast envelope of gas. Lead with the timing problem, because that is what makes this a real dispute rather than a labelling argument: the standard growth model cannot build these masses in the few hundred million years available, so one of the two explanations requires revising something structural. Explain what observation would settle it. Distinct from the supernova-impostor piece we ran — different objects, different signal.",
       "conceptUris": []
     }
   ]
