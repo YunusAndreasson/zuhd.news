@@ -85,6 +85,21 @@ jest.mock('react-native-reanimated', () => {
       return output[output.length - 1];
     },
     Extrapolation: { CLAMP: 'clamp', EXTEND: 'extend', IDENTITY: 'identity' },
+    interpolateColor: (value, input, output) => {
+      // Good enough for tests that don't assert on the resulting color: pick
+      // the nearer breakpoint's color rather than actually lerping in RGB, so
+      // a non-hex or undefined theme color (some test `useTheme` mocks return
+      // `{ colors: {} }`) can't throw trying to parse it.
+      if (input.length < 2) return output[0];
+      if (value <= input[0]) return output[0];
+      if (value >= input[input.length - 1]) return output[output.length - 1];
+      for (let i = 0; i < input.length - 1; i++) {
+        if (value >= input[i] && value <= input[i + 1]) {
+          return value - input[i] < input[i + 1] - value ? output[i] : output[i + 1];
+        }
+      }
+      return output[output.length - 1];
+    },
     Easing: {
       linear: (v) => v,
       ease: (v) => v,

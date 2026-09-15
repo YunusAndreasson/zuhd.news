@@ -633,17 +633,25 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
     when `globalThis.__RUNTIME_KIND === 1`, and keeps those props out of its
     dependency list.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
-- React Compiler is **installed but NOT enabled** — in any build. The only
-  switch is `app.json` → `experiments.reactCompiler`, which flows
+- React Compiler has been **enabled app-wide since 2026-07-24**
+  (`app.json` → `experiments.reactCompiler: true`, commit `9227e99b`) — flows
   CLI → Metro `customTransformOptions.reactCompiler` → babel caller
-  `supportsReactCompiler` → `babel-preset-expo`. That key is absent, so the
-  plugin is dropped (`babel-preset-expo/build/configs/expo.js:135`). The
-  `'react-compiler'` option in `babel.config.js` only *configures* or
-  *disables* (`=== false`); it can never enable.
-  Consequence: the ~320 manual `memo`/`useMemo`/`useCallback` sites are
-  load-bearing today, not redundant — do not strip them on the assumption the
-  compiler covers them. To actually turn it on, add
-  `"reactCompiler": true` to `app.json` experiments, and add a `'use no memo'`
-  directive to `components/globe/MiniGlobe.tsx` first: it relies on
-  intentionally-stale `useCallback(..., [])` closures (three `biome-ignore`
-  comments mark them) that the compiler would otherwise rewrite.
+  `supportsReactCompiler` → `babel-preset-expo`. Verify live status with
+  `react-profiler-analyze`: compiled components show a `Forget(...)` wrapper
+  name in the render cascade (`react-profiler-stop`'s own
+  `any_compiler_optimized` flag is unreliable — it reflects only the fibers a
+  given capture happened to touch, not whole-app status).
+  Consequence: for a component the compiler actually compiles, new manual
+  `memo`/`useMemo`/`useCallback` for perf is usually redundant — check
+  `Forget(...)` before adding any. But **not every component compiles**: a
+  function with a ref write during render, a `try/finally`, or other
+  compiler-unsupported shapes silently bails out of the whole function, and
+  existing manual memoization there is still load-bearing (`app/index.tsx`
+  writes several refs directly in the render body — `sheetOpenRef`,
+  `notificationsOnRef`, and others — which was the *documented* reason it
+  bailed out when the compiler was enabled; unconfirmed whether that's still
+  true today). `components/globe/MiniGlobe.tsx` carries a `'use no memo'`
+  directive at the top of the file for the same class of reason: it relies on
+  several deliberately-stale `useCallback(..., [])` closures in its
+  reprojection hot path (`callReproject` etc., `biome-ignore`-marked) that the
+  compiler is documented to rewrite given the chance.

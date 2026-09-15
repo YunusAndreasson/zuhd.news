@@ -1,3 +1,12 @@
+'use no memo';
+// React Compiler is enabled app-wide (app.json experiments.reactCompiler) with
+// no other opt-out for this file. This component's reprojection hot path
+// depends on several `useCallback(..., [])` closures that are DELIBERATELY
+// stale (see the `biome-ignore lint/correctness/useExhaustiveDependencies`
+// comments below, e.g. `callReproject`) — they read the latest state through
+// refs on purpose, for perf, not by oversight. The compiler's job is to
+// rewrite exactly that pattern, so it must not run on this file.
+
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
@@ -329,6 +338,10 @@ export const COLLECT_MS = 420;
 const RING_GAP = 6;
 const RING_WIDTH = 2;
 const COLLECT_REDUCED_MS = 150;
+/** The active-story dot's breathe: reps of one 900ms leg (up or down), so 6
+ *  is 3 full cycles. Bounded so the app stops rendering once it settles —
+ *  see the comment beside `activePulse`. */
+const ACTIVE_PULSE_REPS = 6;
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -2247,6 +2260,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
   // The category-colored dot itself breathes to identify the current article. Coordinates come from
   // the existing projected frame; the pulse never asks JS to reproject land.
+  //
+  // The breathe is bounded (see ACTIVE_PULSE_REPS below), not `withRepeat(..., -1, ...)`. An
+  // infinite repeat keeps this `useAnimatedStyle` re-evaluating — and the app rendering a frame —
+  // for as long as any story is on screen, i.e. always. Measured: `dumpsys gfxinfo` showed 144
+  // frames / 10s, 100% janky, with the app fully untouched at rest, which violates "at rest the
+  // app renders zero frames" below. A handful of cycles still draws the eye to a newly active
+  // story; it does not need to keep doing that forever.
   const activePulse = useSharedValue(1);
   const beaconForeground = useSharedValue(AppState.currentState === 'active');
   useEffect(() => {
@@ -2265,9 +2285,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       cancelAnimation(activePulse);
       activePulse.value = 0;
       if (slug && !reduceMotion) {
+        // 3 full breathe cycles (up + down), then hold still at rest.
         activePulse.value = withRepeat(
           withTiming(1, { duration: 900, easing: Easing.inOut(Easing.sin) }),
-          -1,
+          ACTIVE_PULSE_REPS,
           true,
         );
       }

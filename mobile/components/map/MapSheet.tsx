@@ -12,6 +12,7 @@ import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
+  interpolateColor,
   type SharedValue,
   useAnimatedReaction,
   useAnimatedStyle,
@@ -192,6 +193,17 @@ export function MapSheet({
   const listOffset = useSharedValue(0);
   // Finger travel past peek during a pull, for the refresh trigger.
   const pull = useSharedValue(0);
+
+  // A tick right when the pull crosses the trigger — while still held, not
+  // only on release — so the finger learns "that's enough" before it lifts.
+  // The reaction's own `previous` argument gives the edge for free; no extra
+  // shared value needed to avoid repeating it every frame past the trigger.
+  useAnimatedReaction(
+    () => pull.value >= PULL_TRIGGER,
+    (ready, wasReady) => {
+      if (ready && !wasReady) scheduleOnRN(hapticTick);
+    },
+  );
 
   // Published for the globe, which translates and fades as the sheet rises.
   // A reaction, not `useDerivedValue`: this writes to a value the screen owns,
@@ -434,6 +446,23 @@ export function MapSheet({
     transform: [{ translateY: offset.value }],
   }));
 
+  // The handle stretches and inks in as a pull nears the refresh trigger —
+  // the only feedback a pull previously had was the masthead's text, after
+  // the gesture had already committed. At rest (`pull` 0) this must draw
+  // exactly the static hairline it replaces: `p` is 0 and every term below
+  // resolves to the same width/color the plain View used to have. `scaleX`,
+  // not `width`, so a pull frame is a transform (UI-thread compositing) and
+  // never a layout property, which would re-flow the handle's row every
+  // frame of the gesture for no visible difference (`handleWrap` centers it,
+  // so scaling from the middle reads identically to widening it).
+  const pullIndicatorStyle = useAnimatedStyle(() => {
+    const p = Math.min(1, pull.value / PULL_TRIGGER);
+    return {
+      transform: [{ scaleX: 1 + p * 0.5 }],
+      backgroundColor: interpolateColor(p, [0, 1], [colors.rule, colors.textEmphasis]),
+    };
+  });
+
   const list = renderList({
     scrollEnabled: detent === 'full',
     onScrollOffset: listOffset,
@@ -469,7 +498,7 @@ export function MapSheet({
               accessibilityActions={ADJUST_ACTIONS}
               onAccessibilityAction={handleAccessibilityAction}
             >
-              <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
+              <Animated.View style={[styles.indicator, pullIndicatorStyle]} />
             </View>
             {header}
           </View>

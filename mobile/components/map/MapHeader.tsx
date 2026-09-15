@@ -28,9 +28,15 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 const SETTINGS_WIDTH = MASTHEAD_ROW - SPACING.sm;
 /** How far below the row the shade runs out. */
 const SHADE_FADE = SPACING.xl;
-/** The shade's strength at the top edge and at the bottom of the row. */
+/** The shade's strength at the top edge and at the bottom of the row.
+ *  `textSecondary` (#999) is 6.7:1 on flat `bg`, but the row sits over live
+ *  globe content, not `bg` — a city-light cluster or a saturated story mark
+ *  under the old 0.62 composited down to as low as 2.7:1, under WCAG AA's
+ *  4.5:1 body floor `DESIGN.md` claims for the palette. 0.82 keeps the worst
+ *  measured case (a bright city-light cluster) at ~4.7:1 while staying
+ *  visibly weaker than `SHADE_TOP`, so the fade direction still reads. */
 const SHADE_TOP = 0.88;
-const SHADE_ROW = 0.62;
+const SHADE_ROW = 0.82;
 
 /** The screen's ground, fading out below the bar. */
 const Shade = memo(function Shade({
@@ -130,15 +136,19 @@ export const MapHeader = memo(function MapHeader({
         accessibilityElementsHidden={!gaugesEnabled}
         importantForAccessibility={gaugesEnabled ? 'auto' : 'no-hide-descendants'}
       >
-        {gaugesEnabled && (
-          <IndicatorStrip
-            items={items}
-            onSelect={onSelect}
-            onAll={onAll}
-            selectedId={selectedId}
-            initialViewport={stripViewport}
-          />
-        )}
+        {/* Always mounted: `pointerEvents`/accessibility above already hide it
+            while a story is grown. A conditional unmount here rebuilt all ~28
+            components (23 gauges' Pressable/DeltaChip/Sparkline) from scratch
+            on every single collapse back to the map — measured at ~493ms
+            dev / ~165ms production, paid on one of the app's most frequent
+            interactions. */}
+        <IndicatorStrip
+          items={items}
+          onSelect={onSelect}
+          onAll={onAll}
+          selectedId={selectedId}
+          initialViewport={stripViewport}
+        />
       </Animated.View>
       <IconButton
         onPress={onMenuPress}
