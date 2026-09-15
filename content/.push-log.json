@@ -1,63 +1,5 @@
 [
   {
-    "timestamp": "2026-08-26T08:23:27.152Z",
-    "candidateCount": 5,
-    "candidates": [
-      {
-        "slug": "2026-08-26-nvidia-banker-to-the-ai-boom-circular-financing",
-        "title": "Nvidia Bankrolls Its Buyers",
-        "category": "economy",
-        "eventCoverage": 98,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-26-huawei-hp-wifi-patents-the-royalty-runs-the-other-way",
-        "title": "Huawei Collects HP's Royalties",
-        "category": "tech",
-        "eventCoverage": 21,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-26-gates-xi-ai-thresholds-a-private-channel",
-        "title": "Gates Seeks Xi AI Talks",
-        "category": "politics",
-        "eventCoverage": 20,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-26-in-kind-creation-the-key-becomes-a-share",
-        "title": "BlackRock Lowers Bitcoin Swap Threshold",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-25-charges-dropped-against-person-who-clapped-at-a-city-data-ce",
-        "title": "Charges Dropped Over Clapping",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-26-nvidia-banker-to-the-ai-boom-circular-financing",
-      "title": "Nvidia Bankrolls Its Buyers",
-      "category": "economy",
-      "body": "Nvidia backstops $230 billion in customer lease",
-      "eventCoverage": 98,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Nvidia backs $230 billion in customer lease obligations, filings show",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-08-26T12:25:54.325Z",
     "candidateCount": 6,
     "candidates": [
@@ -9808,6 +9750,57 @@
       "pushed": 1,
       "skipped": 0,
       "tokens": 9
+    }
+  },
+  {
+    "timestamp": "2026-09-15T22:18:42.942Z",
+    "candidateCount": 4,
+    "candidates": [
+      {
+        "slug": "2026-09-16-twenty-one-ships-where-seventy-used-to-pass",
+        "title": "Houthi Advance Threatens Oil Route",
+        "category": "politics",
+        "eventCoverage": 629,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-the-fight-was-over-which-regulator-not-whether",
+        "title": "Crypto Bill Fails In Senate",
+        "category": "economy",
+        "eventCoverage": 369,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-the-same-statute-pointed-the-other-way",
+        "title": "Khalil Sues Columbia University",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-the-chair-does-not-trade-under-its-own-rules",
+        "title": "Brazil To Align Carbon Markets",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-16-twenty-one-ships-where-seventy-used-to-pass",
+      "title": "Houthi Advance Threatens Oil Route",
+      "category": "politics",
+      "body": "Brent crude jumped 3% to $109 a",
+      "eventCoverage": 629,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Houthi fighters seize Yemen's Mocha port, Brent crude jumps 3%",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
     }
   }
 ]
