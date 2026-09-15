@@ -1,36 +1,37 @@
 {
-  "date": "2026-09-14",
+  "date": "2026-09-15",
   "metrics": {
-    "articles": { "value": 55, "detail": "5 cycles (4 completed at audit time), avg 9/cycle; 65 yesterday" },
-    "freshness": { "median": 0, "p90": 0.5, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 15, "science": 10, "tech": 10 },
+    "articles": { "value": 49, "detail": "5 cycles, all completed, avg 10/cycle; 56 yesterday" },
+    "freshness": { "median": 0.4, "p90": 1.1, "max": 1.1, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 12, "tech": 11, "science": 7 },
     "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 18, "AM": 11, "ME": 11, "AS": 10, "AF": 4, "OC": 1 }
+      "breakdown": { "AM": 22, "AS": 9, "ME": 8, "EU": 6, "AF": 4, "OC": 0 }
     },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 42,
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 1234
+    "avgCycleDuration": 1258
   },
-  "experiment": "Skipped — every goal metric is inside target and no experiment is active. The one queued experiment (2026-05-08-numerical-density) edits scripts/write-prompt.md, which the tuner is not permitted to change, so it stays queued rather than being promoted.",
-  "weakestArea": "Africa is the thinnest region at 4 of 55 articles (7%), down from 8 yesterday, and the whole continent's output came through two outlets (Premium Times Nigeria, OCCRP) plus the Black Axe extradition story. Oceania remains a single article, as it has been for two days. Neither breaks the regions ≥ 4 goal, but African depth is the first thing that would fail if one source went quiet.",
+  "experiment": "Skipped — all four goal metrics sit inside target, no experiment is active, and no pause gate is set. The one queued experiment (2026-05-08-numerical-density) edits scripts/write-prompt.md, which the tuner may not touch, so it stays queued.",
+  "weakestArea": "Regional breadth is the metric closest to its floor: 5 regions against a target of 4, with Oceania absent entirely (down from 1 yesterday) and Africa at 4 of 49. The Americas took 22 of 49 regional tags — 45%, roughly double yesterday's 20% — because the US supplied a Supreme Court ruling, a Pentagon munitions story, an orbital-weapons confirmation, a Treasury yield record and a crypto bill all in one day. Science is the thinnest category at 7, and only three of those (FLEX launch, elastocaloric cooling, the fly-connectome Doom run) are laboratory or space science; the rest are disaster and public-health dispatches filed under the science floor.",
   "watching": [
-    "Iran nuclear diplomacy is running on two tracks — the IAEA barring Iran's nuclear chief and Russia's objection, alongside the Isfahan air-defence and Khamis Mushait sortie reporting; these will converge.",
-    "Indonesia ferry sinking with 120+ unaccounted for is still an open casualty count and will need a follow-up rather than a one-shot dispatch.",
-    "Ukraine's anti-graft fight turning on the disgraced prosecutor general is an internal-politics thread that usually produces a second cycle within days.",
-    "EPA power-plant emissions rollback plus the 'zero at the smokestack' and Carbon Brief items form a climate-regulation cluster worth keeping coherent across cycles.",
-    "Gulf rate-setting (11.5%) and the two-hundred-basis-point listing story suggest a regional monetary thread developing under the economy floor."
+    "The Supreme Court mail-ballot ruling produced a same-day follow-up on Justice Department compliance and is likely to generate a third cycle as the midterm calendar tightens.",
+    "Iran is running on several threads at once — the atomic agency seat, the US disclosure of war losses, the fake-MRI spearphishing lure, and Dubai's trade channel — which will need deliberate separation to avoid four articles on one posture.",
+    "Sudan has three live strands today (US ruling out the generals, refugee deportations, South Africa's silent expulsion) and remains the densest African story cluster.",
+    "The Houthi advance toward an oil route pairs with the Saudi bypass line going dark; together they form an energy-chokepoint thread rather than two separate security items.",
+    "Pentagon munitions shortfall plus the orbital-weapons confirmation suggests a US force-posture disclosure sequence worth tracking as one arc."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa outside Nigeria and South Africa — no East African or Sahel dispatch today despite ongoing regional instability.",
-    "Latin America appears only through organised-crime framing (InSight Crime liquid-cocaine, Black Axe); no political or economic story from the region.",
-    "Oceania is a single article for the second consecutive day — Pacific island states and Australian policy are effectively absent.",
-    "Science skews to lab and materials work (polariton OLED, rice blast, tumour membrane); no climate-observation or space-agency reporting since yesterday's European Spaceflight item."
+    "Oceania produced nothing at all today — no Pacific island, Australian or New Zealand dispatch for the first time this week.",
+    "Latin America appears only via the Maduro fixer plea and Brazil's carbon-market alignment; no domestic political or economic reporting from the region.",
+    "Europe fell to 6 articles and is carried almost entirely by the NATO drone shootdown and the Russian frigate incident — no EU policy, economy or domestic politics.",
+    "Science coverage has no climate-observation or earth-systems reporting; the category's quality sources today were European Spaceflight and Nature only.",
+    "East Africa and the Sahel remain uncovered outside the Sudan cluster, repeating yesterday's gap."
   ],
-  "context": "Output dipped from 65 to 55 articles as cycles settled back to ~9 per cycle, while freshness improved sharply (median 0 days, max 0.5) — though only 6 articles carried datable source lag today, so that figure is a small sample. Multi-source count of 13 and sci/tech at 36% both sit comfortably above floor, and source concentration is low (top source 11% of 42 unique outlets), which is why no parameter change is warranted today."
+  "context": "Output settled at 49 articles over five completed cycles with freshness comfortably inside target (median 0.4 days, max 1.1) and source concentration low — Dawn at 12% of 45 unique outlets. Two politics articles shipped under near-identical headlines, 'Court Blocks Mail-Ballot Rule' (03:33) and 'Court Blocks Mail Ballot Rules' (21:58); they are genuinely different stories with no overlapping sources — the ruling, then the Justice Department's compliance statement — but the second title describes the first story's news, so the homepage reads as a duplicate. This is the known title-layer dedup gap: layer 5 only gates niche-only stories, so two multi-source dispatches on one event pass through under the same headline. Neither the fix (scripts/lib/dedup.js) nor the second-title framing (write-prompt.md) is a tunable parameter, so this is surfaced to the operator rather than acted on."
 }
