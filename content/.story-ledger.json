@@ -2,13 +2,272 @@
   "version": 1,
   "stories": [
     {
+      "id": "nato-jets-shoot-down-drone-over-lithuania",
+      "label": "NATO jets shoot down drone over Lithuania",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-nato-jets-shoot-down-drone-over-lithuania"
+      ],
+      "eventUri": "deu-2174560",
+      "summary": "NATO fighters destroyed an unidentified drone that crossed into Lithuania from Belarus — lead with the fact that this is a kinetic engagement, not an interception report: an alliance aircraft fired on an object over alliance territory, and that is the threshold Article 5 language has always circled without touching. The mechanism to teach is attribution latency — an unmarked airframe entering from Belarus leaves NATO deciding whether to respond before it can say whose it was, and every such decision lowers the bar for the next one. Who holds power and who does not: Vilnius does not own the jets that defended it, so the decision to fire sat with an alliance air-policing rotation, not with Lithuania. Note the source spread — this cluster is carried by Indian, Thai, Korean and Indonesian outlets rather than European ones, and sentimentDivergence of 0.30 shows Bangkok and Jakarta reading it as routine where Seoul reads it as escalation. Report what the Lithuanian defence ministry and NATO Air Command actually confirmed about the drone's origin, and say plainly what has not been established.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lithuania",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/NATO",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Airspace",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Belarus"
+      ]
+    },
+    {
+      "id": "denmark-says-russian-frigate-fired-flares-at-helicopter",
+      "label": "Denmark says Russian frigate fired flares at helicopter",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-denmark-says-russian-frigate-fired-flares-at-helicopter"
+      ],
+      "eventUri": "eng-12011073",
+      "summary": "A Russian frigate fired flares at a Danish Fennec helicopter near Gedser; Moscow says the Danish aircraft was making dangerous manoeuvres near its warship. Lead with the fact that both governments agree the encounter happened and disagree only about who provoked it — that is the actual condition of the Baltic now, and it is why this belongs beside the Lithuanian shoot-down rather than instead of it. The mechanism our reader should take away is that there is no longer a functioning deconfliction channel in the Baltic: incidents at sea used to be handled by the INCSEA protocol between navies, and what replaced it is two foreign ministries issuing statements. Carry both accounts in the same paragraph and attribute each — Reuters has the Russian claim, the Danish armed forces statement has the other, and Ukrainska Pravda's framing is a third party with an interest. Report what a flare actually does to a helicopter, because the answer determines whether this was a warning or a hazard.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Denmark",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Helicopter",
+        "http://en.wikipedia.org/wiki/Frigate",
+        "http://en.wikipedia.org/wiki/Baltic_Sea",
+        "http://en.wikipedia.org/wiki/Rocket",
+        "http://en.wikipedia.org/wiki/International_waters",
+        "http://en.wikipedia.org/wiki/Warship"
+      ]
+    },
+    {
+      "id": "benchmark-us-government-bond-yield-hits-19-year-peak-as-oil",
+      "label": "Benchmark US government bond yield hits 19-year peak as oil prices surge",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-benchmark-us-government-bond-yield-hits-19-year-peak-as-oil"
+      ],
+      "eventUri": "eng-12009038",
+      "summary": "The 10-year US Treasury yield touched 5.02 percent on Tuesday, a level last seen before the 2008 crisis, as traders priced a Fed hike against surging oil. Lead with 5.02 and what the 10-year actually is: the price of the safest dollar asset on earth, and therefore the floor under every other borrowing cost in the world. The mechanism for our reader is transmission, not Washington — Pakistan, Egypt, Nigeria and Kenya borrow in dollars, and a 19-year high in the benchmark reprices their debt service without a single decision being taken in any of those capitals. Pair it with our Rs114-a-litre piece and the LNG-substitution piece: the same Gulf war is arriving in Asian households as coal smoke, at Pakistani pumps as tax pass-through, and in African budgets as interest. Report the actual yield move, the Fed meeting date, the crude benchmark and level, and the spread on at least one emerging-market sovereign so the consequence is a number and not an adjective. Note sentimentDivergence of 0.34 — Hindustan Times reads the same print as opportunity, Al Jazeera as strain.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Bond_(finance)",
+        "http://en.wikipedia.org/wiki/Federal_Reserve",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Government_debt",
+        "http://en.wikipedia.org/wiki/Stock"
+      ]
+    },
+    {
+      "id": "jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason",
+      "label": "JD-U softens stand on UCC, says 'will not oppose for no reason'",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason"
+      ],
+      "eventUri": "eng-12007876",
+      "summary": "Bihar's ruling JD-U — for two decades the NDA partner that could be counted on to block a Uniform Civil Code — now says it will 'examine' the bill and will not oppose it 'for no reason'. Lead with the arithmetic, because the softening is the mechanism: a UCC replaces the personal-law systems under which Indian Muslims, and also Christians, Parsis and several tribal communities, conduct marriage, divorce and inheritance, and it has never passed because coalition partners with Muslim voters refused. JD-U's position is the vote that was holding the door. Who is affected: roughly 200 million Indian Muslims, for whom this is not a cultural argument but a change to who adjudicates a marriage. Who holds power and must be named: Amit Shah and the home ministry driving the bill, Samrat Choudhary and Vijay Kumar Sinha in Patna. Report what JD-U's stated conditions actually are, which other NDA partners have not moved, and what the Uttarakhand state UCC — already in force — has done in practice, since that is the only evidence available rather than speculation. Attribute; do not editorialise.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amit_Shah",
+        "http://en.wikipedia.org/wiki/Uniform_Civil_Code",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/Minister_of_Home_Affairs_(India)",
+        "http://en.wikipedia.org/wiki/National_Democratic_Alliance",
+        "http://en.wikipedia.org/wiki/Janata_Dal_(United)",
+        "http://en.wikipedia.org/wiki/Bihar"
+      ]
+    },
+    {
+      "id": "pims-fire-inquiry-committee-finds-systemic-institutional-fai",
+      "label": "Pims fire: Inquiry committee finds 'systemic, institutional failure' behind tragedy",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-pims-fire-inquiry-committee-finds-systemic-institutional-fai"
+      ],
+      "eventUri": null,
+      "summary": "The inquiry into the August 26 fire in a nursery ward at Islamabad's Pakistan Institute of Medical Sciences has returned a finding of 'systemic and institutional failure', with electrical failure the most likely cause. Lead with the phrase itself, because 'systemic failure' is the form an accountability gap takes on paper: it names no person, and a finding that names no person ends no career. The mechanism our reader should be given is specific — a nursery ward is the one place in a hospital where the patients cannot be carried out quickly, so fire separation, alarm and evacuation standards exist precisely for it, and the committee's job was to say which of those were absent and who signed them off. Who is affected: the infants who died and their families, still waiting on a finding that produces a consequence. Report the death toll by name where the families permit it, the specific failures the committee listed, whether any official has been suspended or charged, and what the committee recommended for the other federal hospitals operating under the same maintenance regime.",
+      "conceptUris": []
+    },
+    {
+      "id": "lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove",
+      "label": "Lesotho's biggest foreign investment deal under scrutiny over minister's stake in potential partner",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove"
+      ],
+      "eventUri": null,
+      "summary": "Lesotho signed a $6.2-billion deal with US-based Convalt Energy for a hydropower plant and an AI data centre — the largest foreign investment in its history, roughly comparable to the entire economy — and a minister holds a stake in a potential partner to the project. Lead with the ratio of the deal to Lesotho's GDP, then the conflict of interest, because the second is only dangerous at the scale of the first: in a country this size there is no arm's-length counterparty, and that is the structural problem rather than one minister's shareholding. The mechanism our reader will recognise is the new shape of extraction — an AI data centre sited where the water and the hydraulic head are, exporting compute rather than minerals, with the electricity and the watershed as the thing actually consumed. Who bears the risk: Basotho water users and ratepayers, on a 'Kobong Project' feasibility study they have not seen. Report the named minister and the stake, Convalt Energy's track record and financing, what the feasibility study concluded, and who is the intended buyer of the power and the compute.",
+      "conceptUris": []
+    },
+    {
+      "id": "migrants-leaders-report-mounting-insecurity-warn-of-governme",
+      "label": "Migrants leaders report mounting insecurity, warn of government complicity with anti-migrant movement",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-migrants-leaders-report-mounting-insecurity-warn-of-governme"
+      ],
+      "eventUri": null,
+      "summary": "129,000 Zimbabweans have left South Africa since a vigilante movement set a 30 June deadline for undocumented migrants to go, and migrant leaders say the state is not merely failing to stop the campaign but moving with it. Lead with 129,000 and the word 'voluntarily', because the contradiction is the story: a departure is not voluntary when a private movement sets the deadline and the police do not contest it, and calling it self-deportation lets the state record a mass expulsion as a statistic rather than a policy. Who is affected and must be named as people, not a category: Zimbabwean, Mozambican and Malawian workers, many with children in South African schools. Who holds power: the home affairs department, the SAPS commanders in the affected provinces, and the movement's own named organisers. The structural why for our reader: outsourcing enforcement to a street movement gives a government the outcome of a deportation programme with none of the legal exposure, which is a mechanism now visible in several countries at once. Report the figure's provenance — it comes from Zimbabwe's state-owned Chronicle — and what South African officials say about their role.",
+      "conceptUris": []
+    },
+    {
+      "id": "in-dubai-trade-continues-on-the-front-lines-of-the-iran-war",
+      "label": "In Dubai, Trade Continues on the Front Lines of the Iran War",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-in-dubai-trade-continues-on-the-front-lines-of-the-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "Six months into the war, the UAE has publicly vowed to end all trade with Iran — and Iranian fruit and vegetables still arrive in Gulf markets daily. Lead with the produce, because it is the cheapest possible proof of a general rule: a trade ban is a statement about cargo manifests, not about boats, and the Gulf's economies were built on a dhow traffic across 200km of water that predates both states. The mechanism to explain is transshipment and the small-vessel exemption — how a ban is administered at a port, what a re-export declaration does, and why enforcement stops where the container stops being a container. Who is affected: Iranian farmers for whom the Gulf is the only hard-currency market left, Emirati wholesalers and the Iranian diaspora traders in Dubai who hold both risks at once. The structural why for our reader: sanctions and embargoes are graded by how much a neighbour is willing to lose, and the UAE's answer is visible every morning in a vegetable market. SOURCING NOTE: this is single-source ground reportage from New Lines; no Gulf or Iranian regional outlet in this feed covered it, so attribute observations to the reporter and do not generalise volumes beyond what the piece documents.",
+      "conceptUris": []
+    },
+    {
+      "id": "avio-launches-second-successful-vega-c-flight-of-2026",
+      "label": "Avio Launches Second Successful Vega C Flight of 2026",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-avio-launches-second-successful-vega-c-flight-of-2026"
+      ],
+      "eventUri": null,
+      "summary": "A Vega-C lifted off from Kourou at 01:21 UTC on 15 September and deployed two Earth-observation payloads: Sentinel-3C, and ESA's FLEX. Skip the rocket and lead with FLEX, because it is the first mission ever built to measure chlorophyll fluorescence from orbit — the faint light plants re-emit while photosynthesising, which means it measures whether vegetation is actually working rather than merely how green it looks. That distinction is the whole point for our reader: existing satellites see a drought-stressed field as green right up until the harvest fails, and FLEX is designed to see the stress weeks earlier, which is a food-security instrument for the Sahel, South Asia and the Horn as much as a climate one. Who holds power: ESA and the European Commission own the data policy, so say plainly whether the products will be open like the rest of Copernicus and who can use them. Report the orbit, the revisit time, when science data begins, and what Sentinel-3C replaces. Fills the audit's flagged gap — no climate-observation or space-agency reporting since the last European Spaceflight item.",
+      "conceptUris": []
+    },
+    {
+      "id": "what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off",
+      "label": "What must happen for AI's trillion-dollar gamble to pay off",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off"
+      ],
+      "eventUri": null,
+      "summary": "The hyperscalers will spend more than a trillion dollars on data centres next year, and the question a Wharton finance professor asked is the one to lead with: what productivity gain would the economy have to deliver for that to be a rational number rather than a bubble? Lead with the arithmetic, not the vibe — a trillion in annual capex needs a return measurable in national accounts, and the reader deserves the figure the models actually require. The mechanism to teach is depreciation schedules: GPUs are being booked over five or six years while the hardware cycle is closer to three, so a large share of reported hyperscaler profit is an accounting choice about how fast the chips die, and that choice is disclosed in filings anyone can read. Follow-on to our Oracle piece, where the same capex was funded by cutting staff. Who bears it far from Silicon Valley: the electricity, water and land are being bought in Ireland, Malaysia, the Gulf and now Lesotho, so a write-down in California leaves a stranded substation somewhere with less power to spare. Report the named companies' capex guidance, the depreciation assumptions, and who is financing the debt.",
+      "conceptUris": []
+    },
+    {
+      "id": "what-india-s-cockroach-protests-reveal-about-digital-authori",
+      "label": "What India's 'Cockroach' protests reveal about digital authoritarianism",
+      "firstSeen": "2026-09-15T12:05:14.470Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-15-what-india-s-cockroach-protests-reveal-about-digital-authori"
+      ],
+      "eventUri": null,
+      "summary": "India's 'Cockroach' protests are being policed less by batons than by cameras, and the argument to lead with is the one the piece makes plainly: democratic freedom depends not only on not being beaten, but on being able to assemble without assuming your presence is permanently recorded. The mechanism our technically literate reader will want spelled out is the stack — facial recognition systems deployed at protest sites, CCTV feeds matched against state ID databases, and telecom tower dumps that place a phone at a location after the fact, each lawful on its own and jointly amounting to a register of who attended. Who holds power: the state police forces procuring these systems and the vendors selling them, who should be named. The structural why: this is the exportable model, already sold across South and Southeast Asia, so the Indian case is a preview rather than a local story. Report which specific systems were used and on what legal authority, what the protesters were protesting, and what documented consequences attendees have faced — and keep speculation out of a piece whose whole subject is surveillance.",
+      "conceptUris": []
+    },
+    {
+      "id": "gabrovo-the-magazine-is-the-bottleneck",
+      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
+      "firstSeen": "2026-09-13T08:07:01.040Z",
+      "lastCovered": "2026-09-15T12:05:14.470Z",
+      "coverageCount": 22,
+      "category": "economy",
+      "importance": 5,
+      "arc": "ongoing",
+      "articles": [
+        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
+        "2026-09-13-zamfara-imams-the-ransom-is-the-business",
+        "2026-09-13-pmla-the-process-is-the-sentence",
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
+        "2026-09-13-waterfront-discount-the-yield-is-the-valuation",
+        "2026-09-13-star-1-hot-fire-the-test-stand-is-the-bottleneck",
+        "2026-09-13-five-mission-centers-the-org-chart-is-the-policy",
+        "2026-09-14-twenty-one-states-by-2029-the-concurrent-list-is-the-route",
+        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
+        "2026-09-12-the-oracle-problem-the-ledger-was-never-the-gap",
+        "2026-09-14-reserved-the-permission-is-the-ruling",
+        "2026-09-14-the-inspector-is-the-one-refused-entry",
+        "2026-09-14-the-deadline-is-the-legal-instrument",
+        "2026-09-14-the-chokepoint-is-in-the-paperwork",
+        "2026-09-14-the-inlet-is-the-radar-return",
+        "2026-09-14-the-constraint-is-the-queue",
+        "2026-09-15-the-tariff-is-levied-on-the-buyer-not-the-seller",
+        "2026-09-15-east-west-pipeline-the-bypass-is-the-casualty",
+        "2026-09-15-the-export-control-is-on-the-person",
+        "2026-09-15-the-smallest-fish-is-the-whole-fishery",
+        "2026-09-14-ebola-outbreak-is-drc-s-worst-where-is-the-vaccine",
+        "2026-09-15-where-in-the-world-is-the-iphone-cheapest"
+      ],
+      "eventUri": "eng-12004090",
+      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bulgaria",
+        "http://en.wikipedia.org/wiki/Ammunition",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Sabotage",
+        "http://en.wikipedia.org/wiki/Explosion",
+        "http://en.wikipedia.org/wiki/Harish_Rawat",
+        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
+        "http://en.wikipedia.org/wiki/Indian_National_Congress"
+      ]
+    },
+    {
       "id": "the-email-was-signed-oracle-leadership",
       "label": "'Today is your last working day': What Oracle told employees in early morning termination email",
       "firstSeen": "2026-09-15T04:06:24.160Z",
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "ongoing",
       "articles": [
         "2026-09-15-the-email-was-signed-oracle-leadership",
@@ -37,7 +296,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-two-thousand-rupees-is-where-the-fee-becomes-legal"
@@ -61,7 +320,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-reshuffle-reached-the-minister-who-ordered-it"
@@ -85,7 +344,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-wingman-takes-tasking-not-orders"
@@ -101,7 +360,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-last-mirror-of-the-public-square"
@@ -117,7 +376,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-cooling-by-squeezing-a-solid"
@@ -127,59 +386,13 @@
       "conceptUris": []
     },
     {
-      "id": "gabrovo-the-magazine-is-the-bottleneck",
-      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
-      "firstSeen": "2026-09-13T08:07:01.040Z",
-      "lastCovered": "2026-09-15T08:08:01.994Z",
-      "coverageCount": 20,
-      "category": "economy",
-      "importance": 5,
-      "arc": "ongoing",
-      "articles": [
-        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
-        "2026-09-13-zamfara-imams-the-ransom-is-the-business",
-        "2026-09-13-pmla-the-process-is-the-sentence",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
-        "2026-09-13-waterfront-discount-the-yield-is-the-valuation",
-        "2026-09-13-star-1-hot-fire-the-test-stand-is-the-bottleneck",
-        "2026-09-13-five-mission-centers-the-org-chart-is-the-policy",
-        "2026-09-14-twenty-one-states-by-2029-the-concurrent-list-is-the-route",
-        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
-        "2026-09-12-the-oracle-problem-the-ledger-was-never-the-gap",
-        "2026-09-14-reserved-the-permission-is-the-ruling",
-        "2026-09-14-the-inspector-is-the-one-refused-entry",
-        "2026-09-14-the-deadline-is-the-legal-instrument",
-        "2026-09-14-the-chokepoint-is-in-the-paperwork",
-        "2026-09-14-the-inlet-is-the-radar-return",
-        "2026-09-14-the-constraint-is-the-queue",
-        "2026-09-15-the-tariff-is-levied-on-the-buyer-not-the-seller",
-        "2026-09-15-east-west-pipeline-the-bypass-is-the-casualty",
-        "2026-09-15-the-export-control-is-on-the-person",
-        "2026-09-15-the-smallest-fish-is-the-whole-fishery"
-      ],
-      "eventUri": "eng-12004090",
-      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bulgaria",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Sabotage",
-        "http://en.wikipedia.org/wiki/Explosion",
-        "http://en.wikipedia.org/wiki/Harish_Rawat",
-        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress"
-      ]
-    },
-    {
       "id": "a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho",
       "label": "'A sick conspiracy': Trump dismisses AI danger warnings as a hoax",
       "firstSeen": "2026-09-15T04:06:24.160Z",
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho"
@@ -204,7 +417,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-treaty-only-banned-the-other-kind"
@@ -229,7 +442,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-fifty-four-sorties-and-eighty-thousand-moved"
@@ -245,7 +458,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-thirteen-scholarships-and-no-exit"
@@ -261,7 +474,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-cargo-did-not-arrive-so-the-coal-did"
@@ -286,7 +499,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-one-hundred-fourteen-pages-and-a-de-minimis-line"
@@ -302,7 +515,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-three-hundred-seventy-years-and-a-language-prior"
@@ -318,7 +531,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-billion-phones-decide-where-the-query-goes"
@@ -343,7 +556,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-14-a-drill-is-not-a-test",
@@ -360,7 +573,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting"
@@ -385,7 +598,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-zelensky-s-disgraced-prosecutor-general-turns-on-anti-graft"
@@ -410,7 +623,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-finland-shelters-under-french-nuclear-umbrella-amid-russian"
@@ -435,7 +648,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-duration-of-status-ends-injunction-covers-only-postdocs"
@@ -451,7 +664,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-hiding-in-plain-sight-the-liquid-cocaine-boom-explained"
@@ -467,7 +680,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-epa-to-roll-back-power-plant-emission-rules"
@@ -492,7 +705,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-rs114-in-tax-rides-on-every-litre"
@@ -508,7 +721,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-founder-s-cost-cutting-obsession-drove-unitree-lead-in-cheap"
@@ -524,7 +737,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-more-than-120-unaccounted-for-after-ferry-sinks-in-indonesia"
@@ -549,7 +762,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-a-chain-is-one-cell-that-never-let-go"
@@ -565,7 +778,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-new-york-seizes-12-celebrity-deepfake-websites"
@@ -581,7 +794,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-members-of-black-axe-cybercriminal-group-extradited-from-sou"
@@ -597,7 +810,7 @@
       "lastCovered": "2026-09-14T22:05:55.791Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-14-ai-agents-flood-the-internet-with-slop-infused-spam"
@@ -613,7 +826,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-three-seats-and-neither-bloc-has-a-majority"
@@ -638,7 +851,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-direction-reaches-the-police-station"
@@ -654,7 +867,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-five-percent-is-the-floor-under-everyone"
@@ -679,7 +892,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-two-hundred-basis-points-for-a-listing"
@@ -695,7 +908,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-cement-plant-becomes-the-utility"
@@ -711,7 +924,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-project-lily-someone-read-it"
@@ -727,7 +940,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-asdfg-is-a-lawful-basis"
@@ -743,7 +956,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-nod-arrives-with-the-sentence"
@@ -759,7 +972,7 @@
       "lastCovered": "2026-09-14T17:04:32.126Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-14-too-massive-too-early"
@@ -775,7 +988,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-14-the-ice-is-counted-three-times",
@@ -802,7 +1015,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-khamis-mushait-the-sorties-fly-from-here"
@@ -827,7 +1040,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-cardiff-three-timetables-become-one-argument"
@@ -852,7 +1065,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-14-the-convention-has-no-court",
@@ -869,7 +1082,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
@@ -885,7 +1098,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-adoption-nobody-is-counting"
@@ -901,7 +1114,7 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-the-exam-question-was-already-well-posed"
@@ -917,213 +1130,13 @@
       "lastCovered": "2026-09-14T12:06:48.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-14-twenty-years-on-and-no-x-rays"
       ],
       "eventUri": null,
       "summary": "A radio transient in the Milky Way has stayed switched on for more than twenty years while emitting no detectable X-rays — a combination that fits none of the known classes of galactic radio source. Lead with the absence, because the missing X-rays are the evidence, not a gap in it: every standard explanation for sustained radio emission from a compact object — accreting binary, magnetar, pulsar wind nebula — predicts an X-ray counterpart, so a deep non-detection rules out the entire menu at once. Explain for a technical reader why duration is the second problem: transients are named for being brief, and the physical processes that produce them exhaust their energy reservoir, so twenty years of activity means something is resupplying energy on a timescale nothing in the catalogue does. Report the observational specifics — which surveys and instruments, the flux, the X-ray upper limit and which telescope set it, the source's position and distance estimate, and what the arXiv preprint's authors propose as the rare progenitor event. Be explicit that this is a preprint posted 21 August and not yet peer-reviewed, and say what observation would distinguish between the competing explanations, because 'we don't know yet' is only useful to a reader if it comes with the test. Connect in a line to our 09-13 supernova-impostor piece — the same epistemic shape, one signal and two explanations — without retelling it.",
-      "conceptUris": []
-    },
-    {
-      "id": "soweto-the-taps-are-the-ballot",
-      "label": "Zille is targeting the ANC's heartland in Joburg, but voters are doubtful",
-      "firstSeen": "2026-09-13T22:09:53.008Z",
-      "lastCovered": "2026-09-15T04:06:24.160Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-13-soweto-the-taps-are-the-ballot",
-        "2026-09-14-the-first-ballot-after-the-street",
-        "2026-09-15-the-injunction-holds-until-the-ballots-are-counted"
-      ],
-      "eventUri": null,
-      "summary": "Helen Zille is campaigning in Soweto — 1.2 million people and an ANC stronghold since there was an ANC — ahead of South Africa's 4 November local elections, and the ground reporting finds DA posters in shack windows alongside voters who do not believe the party. Lead with the specific voter, not the strategy: a 67-year-old in Protea South with a DA poster in his window is the whole electoral question in one frame, and the piece should open there rather than on party positioning. Mechanism our reader should keep, and it connects to our 09-13 coalitions piece without repeating it (that one was the count rising from 88 to 110): South African local government is where service delivery actually lives — water, refuse, electricity reticulation, billing — so a metro election is not a referendum on national ideology but on whether the taps run, and the ANC's vulnerability in Johannesburg is a municipal-failure story that national politics is arriving to harvest. Report the concrete municipal facts: Joburg's water outages and infrastructure backlog, the debt owed to Eskom and Rand Water, how many mayors the city has had this term, and what the DA's Cape Town record is that Zille is implicitly selling. Then the structural why: a governing party that loses its townships loses the one constituency whose loyalty was moral rather than transactional, and what replaces it is coalition arithmetic among parties none of which can govern alone — which is the condition South African local government is entering at scale. Who is affected: Soweto residents who have had the vote for thirty-two years and intermittent water for several. Daily Maverick is doing named-resident ground reporting; use its voices and get the municipal numbers from the city and Auditor-General directly. Fills the audit's flagged Africa gap, which has been two security articles for a third day.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rajasthan",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Municipal_governance_in_India",
-        "http://en.wikipedia.org/wiki/Ward_(electoral_subdivision)",
-        "http://en.wikipedia.org/wiki/Municipal_corporation",
-        "http://en.wikipedia.org/wiki/Jaipur",
-        "http://en.wikipedia.org/wiki/Municipal_council",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "sixty-two-of-one-twenty-the-next-threshold-is-higher",
-      "label": "Kosovo approves new government after months of political deadlock",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-sixty-two-of-one-twenty-the-next-threshold-is-higher"
-      ],
-      "eventUri": "eng-12006570",
-      "summary": "Kurti's government cleared the 120-seat assembly with 62 votes after three months of paralysis — the barest possible majority, which is the story. Lead with the arithmetic: 62 of 120 means every bill and the coming presidential vote depends on members who can withdraw at any time, so the deadlock has been converted rather than ended. Explain the mechanism a strategic reader will want: Kosovo's constitution requires a two-thirds quorum to elect a president, a threshold no bloc holds, which is why the constitutional showdown is the next crisis and not a hypothetical. Who is affected: a population of 1.8 million with the lowest incomes in Europe, where a caretaker state could not pass a budget or move on EU-imposed measures for a quarter of a year, and the Serb-majority north where any governing programme lands hardest. Note that Kosovo is a Muslim-majority European state whose statehood remains unrecognised by five EU members, which is the structural reason its domestic politics keep running into external vetoes. Two sources, QA and IT, sentiment divergence 0.31 — Al Jazeera writes the deadlock, ANSA writes the government's formation, and the spread is the story's two readings.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kosovo",
-        "http://en.wikipedia.org/wiki/Albin_Kurti",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/Democratic_League_of_Kosovo",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/Democratic_Party_of_Kosovo",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/Pristina"
-      ]
-    },
-    {
-      "id": "eight-hundred-sixty-three-and-three-hundred-ninety-nine",
-      "label": "Ukraine drone strikes kill four as Russia attacks close to Poland border",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine"
-      ],
-      "eventUri": "eng-12006367",
-      "summary": "One night, counted from both ends: 863 Russian drones launched at Ukraine, 399 Ukrainian drones claimed intercepted over Russian regions, four civilians killed and more than 20 wounded in Ukraine, five injured including a child in Sochi. Lead with the two counts side by side and hold the dignity line the coverage never does — each capital reports only the drones aimed at it, and a reader who sees one set of numbers is reading half a night. The mechanism to teach: at these volumes the war has become an attrition contest in cheap airframes against expensive interceptors, so the binding constraint is no longer who can launch but who can afford to shoot down, which is why both sides now strike energy and refining rather than front lines. Report the strike near the Polish border precisely — distance, what was hit, and whether NATO air policing responded — because that proximity is the only mechanism by which this becomes an Article 4 question rather than a bilateral one. Connect in a line, not a retelling, to our 09-13 pieces on the Kyiv-Warsaw rail exit and on Washington asking Kyiv to spare Russian refineries: the same civilians are the ones being asked to absorb both. SOURCING DISCIPLINE, binding: the Ukrainian General Staff and the Russian Defence Ministry are each reporting their own war, TASS is Russian state media, and every figure here is a belligerent's claim — attribute each number to the ministry that issued it, seek independent confirmation of casualties from the UN human rights monitoring mission or local emergency services, and do not present either total as verified.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Kyiv",
-        "http://en.wikipedia.org/wiki/Moscow"
-      ]
-    },
-    {
-      "id": "one-thousand-again-the-bid-is-global",
-      "label": "European gas price tops $1,000 first time since Dec 2022",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-one-thousand-again-the-bid-is-global"
-      ],
-      "eventUri": null,
-      "summary": "October TTF futures touched about $1,004 per thousand cubic metres on Monday — the first four-figure European gas price since December 2022. Lead with the date it matches, because that is the whole meaning of the number: Europe last paid this in the first winter after the pipelines closed, and it is paying it again heading into a winter with storage, LNG contracts and a demand-destroyed industrial base that were all supposed to have solved the problem. The mechanism to explain: Europe replaced pipeline gas with seaborne LNG, which means it now competes at every cargo with Japanese, Korean, Pakistani and Bangladeshi buyers, so the TTF price is not a European price at all — it is the global clearing price, and whoever bids least gets nothing. Say plainly who that is: Pakistan and Bangladesh have been outbid out of the spot market before and answered with load-shedding in textile mills, so a European number on a London screen is measured in unlit factories in Faisalabad and Chattogram. Report the drivers precisely — storage levels against the five-year range, Norwegian and US supply outages, weather forecasts, and what share of the move is the Gulf escalation already running through our Hormuz and Yanbu coverage. SOURCING DISCIPLINE, binding: TASS is a Russian state agency and Russia is an interested party in a high European gas price. The price itself is ICE exchange data and must be verified directly against ICE or Reuters; any interpretation offered by TASS should be dropped rather than attributed.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-more-you-deploy-the-less-you-control",
-      "label": "AI and its main promoters are not enterprise-ready, says Gartner",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-more-you-deploy-the-less-you-control"
-      ],
-      "eventUri": "eng-12007308",
-      "summary": "Gartner told its IT Symposium in Australia that the more AI an organisation deploys, the harder it becomes to control and the worse the return — and that the vendors selling it are not enterprise-ready either. Lead with the inversion, because it is counter-intuitive and specific: every other enterprise technology gets cheaper and more governable with scale, and Gartner is saying this one does the opposite. Extract the actual mechanism rather than the quote — non-determinism means each new agent multiplies the surface that has to be tested, permissions inherited by agents are not visible in existing identity systems, and the cost is per-token rather than per-seat, so usage growth is a cost curve rather than an amortisation. Give the figures Gartner put on stage: the proportion of pilots not reaching production, the forecast dates, and the specific vendor failures named. Why our reader should care beyond the boardroom: the buyers being warned here have CIOs, procurement teams and analyst subscriptions, and the governments in Pakistan, Nigeria, Egypt and Indonesia now being sold the same agents for tax collection, benefits and border processing have none of those — so a warning aimed at the best-resourced buyers is a description of what will happen to the least-resourced ones, without the retreat option. Note the Australian venue: this is the first Oceania dateline in our coverage in a week. Deliberately distinct from this cycle's AI-markets piece — that one is the share price, this one is the deployment reality, and neither should re-argue the pacing debate.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Gartner",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Workflow",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Transparency_(behavior)"
-      ]
-    },
-    {
-      "id": "the-market-priced-the-caution",
-      "label": "AI-linked stocks fall after tech bosses call for slowdown in 'reckless' development",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-market-priced-the-caution"
-      ],
-      "eventUri": "eng-12004828",
-      "summary": "AI-linked shares fell across Asian markets on Monday after the heads of Anthropic, OpenAI and SpaceX backed a call to slow 'reckless' development. This is the market's answer to the question our 09-13 pieces left open, and it must not re-argue whether a pause is enforceable. Lead with the price move as evidence: the same executives who argue publicly for restraint are the ones whose restraint the market has just repriced as a loss, so caution has an immediate, measurable cost and acceleration does not — that asymmetry, not any individual's sincerity, is the reason voluntary slowdowns historically fail. Report what actually moved and by how much: the named Asian suppliers and their percentage falls, Nasdaq futures, and whether the move was concentrated in the semiconductor and power-equipment chain rather than in the labs themselves, because who gets sold tells you what investors think a slowdown would actually stop. Give the second-order chain our reader lives in: AI capex is now a large share of the demand for Korean and Taiwanese memory and logic, Japanese equipment, and Gulf and Southeast Asian datacentre construction — so a sentiment shift in San Francisco arrives as an order-book revision in Hsinchu, Icheon and Johor within days. Deliberately distinct from this cycle's Gartner piece, which is the deployment reality rather than the share price.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-ledger-inherits-the-witness",
-      "label": "Blockchain and halal meat traceability: Why technology hasn't closed the trust gap",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-ledger-inherits-the-witness"
-      ],
-      "eventUri": null,
-      "summary": "Halal meat has been one of blockchain's most-cited pilot use cases for a decade, and the trust gap it was supposed to close is still open. Lead with the reason, because it is the single most transferable lesson in applied cryptography and almost nobody states it plainly: a distributed ledger guarantees that a record was not altered after it was written, and guarantees nothing whatsoever about whether the record was true when written. Every halal claim originates in a physical act at a slaughterhouse observed by a human being, so the ledger inherits that human's honesty and adds only tamper-evidence — the oracle problem, arriving in a meat plant. Report the concrete landscape our reader will want: which certifiers and exporters (Brazil, Australia, India, Malaysia) actually ran these systems, what they cost, what happened to them, and where JAKIM, MUI, ESMA and the OIC's SMIIC standards conflict with each other, because mutual recognition between certifiers is a governance problem no technology addresses. The stakes: the global halal food trade is worth well over a trillion dollars, Muslim-majority importers depend overwhelmingly on non-Muslim-majority exporters for meat, and the buyer has no way to verify the claim at the point of consumption. Say what would actually close the gap — audit frequency, unannounced inspection, and a single recognised standard — and note that none of them is a software problem. Connect in one line only to our 09-12 oracle-problem piece; do not retell it.",
-      "conceptUris": []
-    },
-    {
-      "id": "zero-at-the-smokestack",
-      "label": "Japan's biomass energy boom threatens further deforestation in Indonesia",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-zero-at-the-smokestack"
-      ],
-      "eventUri": null,
-      "summary": "New satellite analysis from environmental NGOs finds Indonesia's wood pellet and chip production surging, driving a fresh wave of deforestation across biodiversity hotspots and Indigenous land — to feed Japanese power stations counting the result as renewable. Lead with the accounting rule, because it is the entire mechanism and it is an artefact of policy rather than physics: under international greenhouse-gas rules, burning biomass is booked as zero emissions at the smokestack on the assumption that the carbon is recaptured by regrowth, and the emissions from clearing the forest are booked against the country that did the clearing. So Japan's subsidy buys a clean number in Tokyo and a cleared hillside in Kalimantan or Sulawesi, and both ledgers are internally correct. Report the satellite evidence specifically — which NGOs, what imagery and period, hectares lost, which concessions and companies, and Japan's FIT/FIP subsidy volumes and import tonnages — and give the regrowth arithmetic honestly: the carbon debt from burning a tree takes decades to repay even where replanting happens, which is longer than every emissions target the subsidy exists to meet. Who bears it: Indigenous communities whose land tenure is weakest exactly where concessions are cheapest. Indonesia is an OIC member and the feed carries no Indonesian outlet on this — a feed-side gap; pull Jakarta Post and Mongabay Indonesia, and seek a response from Japan's METI and the named pellet producers.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-busiest-day-the-service-ever-had",
-      "label": "Revealed: England's June 2026 heatwave sparked record demand for ambulances",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-busiest-day-the-service-ever-had"
-      ],
-      "eventUri": null,
-      "summary": "Every ambulance service in England recorded some of its busiest days ever during June's record heatwave, according to data Carbon Brief obtained directly — temperatures above 37C and only the second 'red' extreme-heat warning ever issued. Lead with the fact that this is original data rather than a study: the health cost of a heatwave is normally estimated months later from excess-death modelling, and this is the first hard operational measurement of the same event, which makes it a measurement replacing an inference. Explain the physiology plainly, because it is why the curve is not linear: thermoregulation fails abruptly rather than gradually, and the people it fails in are the elderly, the cardiac, the renal and outdoor workers — so a few degrees past a threshold converts into a step change in 999 calls, not a proportional one. Then the part that matters far beyond England, and where our reader lives: England is a temperate country with a national ambulance service, real-time call data and a formal heat alert system, and it was still overwhelmed — Karachi, Basra, Lagos and Jacobabad routinely exceed these temperatures with none of that infrastructure, and their heat mortality is invisible for the same reason it was invisible here until someone filed for the data. Report the numbers: call volumes against the same days in prior years, which trusts, response-time degradation, and how the figures were obtained. Follow-on to our 09-13 piece on the heat window no alert covers — this is the operational cost of that window, not a retelling of it.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-tumour-has-to-build-its-own-membrane",
-      "label": "HAT1 regulates glioblastoma cell proliferation and membrane lipid remodeling through ALDH2",
-      "firstSeen": "2026-09-14T08:08:26.882Z",
-      "lastCovered": "2026-09-14T08:08:26.882Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-the-tumour-has-to-build-its-own-membrane"
-      ],
-      "eventUri": null,
-      "summary": "Glioblastoma is the most lethal primary brain tumour there is — median survival around fifteen months, effectively unchanged since 2005 — and this work identifies an enzyme, HAT1, that sustains tumour growth by driving ALDH2 and remodelling the cell's membrane lipids. Lead with why lipids rather than the usual DNA-damage story: a dividing cell must physically manufacture new membrane, so lipid synthesis is a hard requirement of proliferation and not a side effect, which makes it a distinct and under-attacked point of failure. Explain the chain for a technical reader — HAT1 is an acetyltransferase, acetylation switches ALDH2's activity, and ALDH2 governs aldehyde clearance and feeds lipid remodelling — and be precise about what was actually shown: cell lines, mouse models, or patient tissue, with the effect sizes, because 'regulates proliferation' in a dish is a long way from a drug. State the honest distance to a therapy and what would have to be true, including the blood-brain barrier, which is the reason glioblastoma has outlived so many promising targets. The stake for our reader, who should not be handed false hope: glioblastoma kills at the same rate in Cairo, Karachi and Boston, but temozolomide and the imaging that guides surgery do not reach the first two equally, so a new target matters less than whether the existing standard of care is available at all — name that gap. Name the authors, institutions and journal, and note this is an accepted manuscript published ahead of the final version of record.",
       "conceptUris": []
     }
   ]
