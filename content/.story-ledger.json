@@ -2,13 +2,258 @@
   "version": 1,
   "stories": [
     {
+      "id": "the-lure-was-a-medical-result",
+      "label": "Iranian cyber spies used fake MRI scan results to hack 'enemy of regime'",
+      "firstSeen": "2026-09-15T17:08:08.717Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 4,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-15-the-lure-was-a-medical-result",
+        "2026-09-16-the-agenda-is-the-seat-that-was-won",
+        "2026-09-16-a-sewing-line-needs-a-shed-and-a-generator",
+        "2026-09-16-the-scorekeeper-says-it-was-not-given-the-books"
+      ],
+      "eventUri": null,
+      "summary": "The UK's National Cyber Security Centre says Iranian state operators used fake MRI scan results as a phishing lure to compromise people the state regards as enemies — and says this and similar activity supports 'the repression of individuals who are seen as a threat to the regime, such as dissidents, activists and journalists'. Lead with the lure itself, because the choice of a medical result is the tradecraft: it is the one attachment a target opens without thinking, and selecting it means the operator knew the target's medical situation, which is targeting intelligence, not spam. The mechanism for our technically literate reader: spearphishing is a research problem before it is a technical one, so the interesting artefact is the reconnaissance, and the defence is not a spam filter but hardware keys and per-account isolation — say which mitigations NCSC actually recommends. Who is affected: exiled Iranian journalists and activists in London, Washington and Istanbul, whose compromise leads back to family inside Iran. Hold the accountability line squarely: a state that surveils its critics abroad should be named doing it, and the same standard applies to every government that runs these operations, several of them allied to the reader's own. Report the named threat group, the NCSC advisory number, the indicators published, and how many targets are known. SOURCING NOTE: no Iranian or regional outlet in this feed covered the advisory; attribute all claims to NCSC rather than to the reporting.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Vienna",
+        "http://en.wikipedia.org/wiki/Austria",
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Nuclear_program_of_Iran",
+        "http://en.wikipedia.org/wiki/Congressional_Budget_Office",
+        "http://en.wikipedia.org/wiki/Ammunition"
+      ]
+    },
+    {
+      "id": "a-wall-is-evidence-about-institutions",
+      "label": "History is being rewritten at an archaeological site in Morocco. What the discovery of an ancient wall tells us",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-16-a-wall-is-evidence-about-institutions",
+        "2026-09-16-a-pledged-share-is-a-margin-call-waiting"
+      ],
+      "eventUri": null,
+      "summary": "Excavation at Oued Beht in northwestern Morocco has uncovered a substantial built structure showing that second-millennium-BC communities in northwest Africa were monumentally organised and connected across the Mediterranean. Lead with what the wall displaces: the Maghreb has been written into Mediterranean prehistory as a recipient — of Phoenician, then Roman, then Arab arrival — and a monumental structure of this date means the local societies were parties to that exchange before any of those arrivals. The mechanism our reader will appreciate is how archaeology actually establishes this: a wall requires organised labour and stored surplus, so the structure is evidence about a society's institutions, not just its masonry, and the dating and the imported material culture are what tie it into a network rather than a curiosity. Who holds power over the knowledge, which is worth asking plainly: say who is conducting the dig, whether Moroccan institutions and INSAP are leading or partnering, and where the finds and the publications go — the answer to that question is why so much North African prehistory was written in European capitals. Report the dating method and range, the specific imported items, and what the excavators say is still unproven. SOURCING NOTE: no Moroccan or wider Maghrebi outlet in this feed covered the find; the piece is a scholarly explainer, so attribute claims to the named researchers and the underlying paper.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Oracle_Corporation",
+        "http://en.wikipedia.org/wiki/Layoff",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Email",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Cloud_computing",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Business_Insider"
+      ]
+    },
+    {
+      "id": "the-adoption-nobody-is-counting",
+      "label": "The real AI economy is being built by ordinary people",
+      "firstSeen": "2026-09-15T22:05:15.441Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 3,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-09-16-the-adoption-nobody-is-counting",
+        "2026-09-16-the-state-investigating-is-the-controlling-shareholder",
+        "2026-09-16-the-fee-for-being-late-is-the-whole-question"
+      ],
+      "eventUri": null,
+      "summary": "Workers across Asia and Africa are rewiring their own jobs with AI tools — one prompt, one workflow, one local problem at a time — without any of the enterprise deployments the industry counts. Lead with a specific worker and a specific task from the reporting, not with the trend, because the finding is that adoption is happening below the level anyone is measuring: the productivity statistics everyone is arguing about count licences sold to firms, and this is unlicensed, unbudgeted and invisible to that number. The mechanism our reader should take is substitution of scarcity — in places where the constraint was never compute but access to a lawyer, a translator, a designer or an English-language form, a general-purpose model removes a bottleneck that no enterprise software was ever priced to remove. Set it directly against our 09-15 piece on the trillion-dollar capex gamble: the return the hyperscalers need is being modelled on Western enterprise seats, while the actual usage is a Karachi accountant and a Lagos tailor paying twenty dollars a month or nothing at all — and that gap between where the value lands and where the revenue lands is the reportable tension. Who bears the risk: workers with no recourse when a model changes, a price rises or an account is geo-blocked. Report the named workers, countries, tools and concrete before-and-after time or income figures the piece documents, and do not extrapolate beyond them.",
+      "conceptUris": []
+    },
+    {
+      "id": "forty-thousand-one-ton-bombs-and-a-fifteen-day-window",
+      "label": "Trump Approves $2.8 Billion Arms Sale to Israel",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-forty-thousand-one-ton-bombs-and-a-fifteen-day-window"
+      ],
+      "eventUri": "eng-12013238",
+      "summary": "Lead with the munition, not the dollar figure: 40,000 one-ton bombs, a weapon whose fragmentation radius is measured in hundreds of metres and which cannot be used in a dense urban area without killing civilians — that physical fact is the story, and it is what the reader should be given before any politics. The mechanism to teach is the congressional review clock: 15 days for the Israel package once formal notification lands, 30 for the parallel $5bn Saudi sale, during which any single senator can force a joint resolution of disapproval — so 'approved' does not yet mean 'delivered', and the reader should know exactly which window is open and when it closes. Who bears it: Palestinians in Gaza and, on the reporting's own account, Lebanese, since these are the munitions used in the heaviest strikes of the past three years — count and name the dead on every side to the same standard. Who holds power and must be named: the State Department official approving it, the president, and the fact that the transfer is funded by US taxpayers rather than Israeli purchase. Report the package contents, the notification date, and whether the normal review process is being bypassed as it was in the 2025 sale. Set it beside the CBO munitions-depletion finding in the same cycle — the US is selling stockpiles it has told its own scorekeeper are running short.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/The_Washington_Post"
+      ]
+    },
+    {
+      "id": "the-statute-was-written-after-reconstruction",
+      "label": "Patel Suggests F.B.I. Agents May Be Sent to the Polls",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-statute-was-written-after-reconstruction"
+      ],
+      "eventUri": "eng-12009794",
+      "summary": "The FBI director told the Senate Judiciary Committee he is open to sending federal agents to polling places. Lead with the law rather than the reaction: 18 U.S.C. §592 makes it a federal crime to station armed men at a polling place, a statute written after Reconstruction precisely because federal troops at polls had been used to control who voted — so the director's openness runs against a criminal prohibition, and the reader should be told what the exception (a §594-style investigation of an actual federal crime) does and does not allow. The mechanism that matters: US elections are administered by states and counties, not Washington, so a federal presence at a precinct has no administrative role available to it — its only possible function is deterrence, which is the definition of intimidation when the deterred act is voting. Who is affected: voters in the precincts where such a deployment would land, which historically means Black and immigrant neighbourhoods; say which jurisdictions, if any, have been named. Who holds power and must be named: Patel, the attorney general who would have to authorise it, and the state election officials who would have to be overridden. Report his exact words from the transcript and what he did not commit to — and keep the Judiciary Democrats' alarm attributed as a claim, not adopted.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kash_Patel",
+        "http://en.wikipedia.org/wiki/Federal_Bureau_of_Investigation",
+        "http://en.wikipedia.org/wiki/Director_of_the_Federal_Bureau_of_Investigation",
+        "http://en.wikipedia.org/wiki/United_States_Senate_Committee_on_the_Judiciary",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Zoophilia",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "a-visa-decision-is-reviewable-by-no-court",
+      "label": "Rubio announces US visa curbs for some foreign nationals from South Africa",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-a-visa-decision-is-reviewable-by-no-court"
+      ],
+      "eventUri": "eng-12013656",
+      "summary": "Washington has imposed visa restrictions on certain foreign nationals resident in South Africa — lead with exactly who is covered, because the class the restriction names is the whole story and it is not South African citizens generally. The mechanism our reader should be taught is that a visa curb under §212(a)(3)(C) requires no evidence, no hearing and no published finding: it is a consular decision, unreviewable in any court, which makes it the cheapest instrument of pressure a government has and the one with the least accountability attached. The pressure campaign it belongs to must be reported factually and in sequence: Washington's objections run to Pretoria's land-reform law, its racial-redress policy, and above all its genocide case against Israel at the ICJ — and the reader deserves to see that list and judge the causation themselves rather than be told it. Who is affected: named individuals and their families, plus the students and workers whose applications now sit behind an unpublished rule. Who holds power: the Secretary of State, who needs no one's agreement to do this. Report the State Department's own wording, whether any names or numbers were released, and the South African government's response. Daily Maverick carries it from Johannesburg — use the local account for Pretoria's side; this fills the audit's flagged Africa gap outside the Sudan cluster.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-quadcopter-costs-a-few-hundred-dollars",
+      "label": "Two civilians martyred in Bannu quadcopter attack",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-a-quadcopter-costs-a-few-hundred-dollars"
+      ],
+      "eventUri": null,
+      "summary": "Two civilians, one a woman, were killed and two injured by a quadcopter attack in the Wazir subdivision of Bannu district. Lead with the aircraft, because a commercial quadcopter carrying a munition is the new fact in Pakistan's western districts: it costs a few hundred dollars, needs no airstrip and no air force, and it has put the ability to bomb a village in the hands of an armed group — and, separately and contestedly, of a state that has previously denied such strikes. The accountability line has to be held precisely here: police attribute this to militants, residents in Bannu and North Waziristan have in other incidents blamed security forces, and those competing attributions are themselves the reportable condition. Report who was killed, by name where the family permits, who has claimed or denied the strike, and what the joint operation launched afterwards has done. The mechanism our reader should take: when a weapon becomes cheap enough that attribution is impossible, the civilian loses not just protection but the ability to name who killed their family — which is why the absence of an investigation is as much the story as the attack. Keep every attribution sourced to the police statement or the residents' account, never merged.",
+      "conceptUris": []
+    },
+    {
+      "id": "nobody-can-name-the-firm-whose-absence-idles-a-fab",
+      "label": "Lithuania took on China – and lasered in on Taiwan",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-nobody-can-name-the-firm-whose-absence-idles-a-fab"
+      ],
+      "eventUri": null,
+      "summary": "A Soviet-era physics programme in Vilnius left Lithuania with a world-leading femtosecond laser industry, and those lasers are now inputs to the semiconductor toolchain that Taiwan's fabs depend on. Lead with the specific dependency rather than the geopolitics: name what the lasers actually do in chip manufacture — wafer dicing, annealing, metrology — and what share of the world's ultrafast laser supply comes from a country of under three million people. The mechanism our technically literate reader will want is chokepoint logic applied one layer down: everyone can name ASML, almost nobody can name the half-dozen small firms whose absence would idle a fab, and that invisibility is exactly what makes them strategically valuable and commercially vulnerable. The consequence to report is documented and recent: after Vilnius allowed a Taiwanese representative office in 2021, Beijing removed Lithuania from its customs system and pressured multinationals to drop Lithuanian components — so this is a tested case of what economic coercion does to a small open economy, with numbers on the trade collapse and the recovery. Who holds power: Beijing, the EU trade authorities that took the case to the WTO, and the Lithuanian firms who chose. Report the firms, the export figures, and where the technology is being sold now. Fills the audit's flagged Europe gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-supplement-that-was-meant-to-be-free",
+      "label": "SPECIAL REPORT: Shut clinic deepens healthcare crisis in Benue IDP camp",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-supplement-that-was-meant-to-be-free"
+      ],
+      "eventUri": null,
+      "summary": "The clinic at the Anyiin IDP camp in Logo LGA, Benue State, is closed, and the reporting documents a woman paying out of pocket for micronutrient supplements that are supposed to be free. Lead with that transaction, because it is the whole accountability mechanism in one detail: a supply that is funded and free at the point of policy becomes a purchase at the point of delivery, and the gap between those two is where the money went. The clinical stakes should be given in numbers the reader can hold — what antenatal care and micronutrient supplementation actually prevent (maternal anaemia, low birth weight, neonatal death), and what the nearest alternative facility costs in distance and naira for a displaced family with no income. Who is affected: pregnant women and infants in a camp of people already displaced by the Benue farmer-herder killings, who did not choose to be dependent on this clinic. Who holds power and must be named: the state primary healthcare agency, the LGA officials, and whichever NGO or donor funded the closed facility — say who withdrew, when, and what they say about it. The structural why our reader should take: humanitarian health provision in Nigeria's Middle Belt is a patchwork of short donor cycles over a state system that was never rebuilt, so a funding lapse reads locally as a clinic with a padlock. Original single-source investigation from a Nigerian outlet; attribute the documented cases to the reporting and do not extrapolate beyond the camps visited.",
+      "conceptUris": []
+    },
+    {
+      "id": "they-hand-over-the-tool-only-for-the-hard-task",
+      "label": "Chimpanzees give youngsters the tools to learn tricky techniques",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-they-hand-over-the-tool-only-for-the-hard-task"
+      ],
+      "eventUri": null,
+      "summary": "Researchers working with wild chimpanzees in Senegal found that adults physically hand tools to youngsters — and, crucially, that they do it for the difficult techniques and not the easy ones. Lead with that selectivity, because it is what turns an observation into a finding: giving a tool to a learner at cost to yourself, and only when the task is hard enough to need it, meets the behavioural definition of teaching, which was long held to be uniquely human. The mechanism our reader should be given is how the claim is tested rather than asserted: teaching requires the donor to incur a cost, the behaviour to be modified in the presence of a naive observer, and the learner to acquire the skill faster — say which of those three the study establishes and which it does not. The wider consequence is about cumulative culture: a technique that must be re-invented each generation cannot accumulate, and one that is actively transmitted can, which is the mechanism behind every technology the reader uses. Report the site and the Senegalese institutions involved, the observation period, the sample size, the specific tool tasks, and where the paper was published — and name the researchers, including local co-authors, since the question of who publishes African field science is itself worth putting on the record.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-share-rises-because-everything-else-falls",
+      "label": "CCC: Heathrow expansion could push flights to '80% of UK emissions by 2050'",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-share-rises-because-everything-else-falls"
+      ],
+      "eventUri": null,
+      "summary": "The UK's statutory climate advisers say aviation is on track to account for 80% of the country's remaining CO2 emissions by 2050. Lead with why that number is so large without aviation growing much: net zero is a denominator problem — electricity, heating and road transport are being decarbonised, aviation has no scaled substitute for jet fuel, so flying's share rises even if flying itself does not. That is the single most useful thing the reader can take from the piece, and it generalises to every country's climate plan. Report the CCC's actual figures: the absolute megatonnes, the residual budget, the assumed sustainable-aviation-fuel share and why the committee treats it sceptically, and what Heathrow's third runway adds. Who holds power and must be named: the committee, which advises and cannot decide; the ministers who can approve the runway; and the airport's owners. Who bears it far from London: aviation emissions are produced by a small and wealthy fraction of the world's population while the heat lands on South Asia, the Sahel and low-lying states — say what share of humanity has ever flown, because it is the number that puts a British runway decision in its global place. Fills the audit's flagged climate and Europe gaps.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-faces-100-tariff-risk-as-russia-sanctions-bill-advance",
+      "label": "India Faces 100% Tariff Risk As Russia Sanctions Bill Advances In US",
+      "firstSeen": "2026-09-16T04:07:29.614Z",
+      "lastCovered": "2026-09-16T04:07:29.614Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-india-faces-100-tariff-risk-as-russia-sanctions-bill-advance"
+      ],
+      "eventUri": "eng-12010471",
+      "summary": "[Auto-backfill for economy floor] The U.S. House of Representatives on Sept. 15 voted to advance a bill imposing sweeping sanctions on Russian energy buyers, readying the measure for a final vote the following day.\n\nThe bipartisan legislation, spearheaded by the late Republican Senator Lindsey Graham, would give the president author",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
       "id": "femicide-is-a-legal-category-in-mexico",
       "label": "Spain demands justice after killing of student in Mexico",
       "firstSeen": "2026-09-15T17:08:08.717Z",
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-09-15-femicide-is-a-legal-category-in-mexico",
@@ -29,40 +274,13 @@
       ]
     },
     {
-      "id": "the-lure-was-a-medical-result",
-      "label": "Iranian cyber spies used fake MRI scan results to hack 'enemy of regime'",
-      "firstSeen": "2026-09-15T17:08:08.717Z",
-      "lastCovered": "2026-09-15T22:05:15.441Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-09-15-the-lure-was-a-medical-result",
-        "2026-09-16-the-agenda-is-the-seat-that-was-won",
-        "2026-09-16-a-sewing-line-needs-a-shed-and-a-generator"
-      ],
-      "eventUri": null,
-      "summary": "The UK's National Cyber Security Centre says Iranian state operators used fake MRI scan results as a phishing lure to compromise people the state regards as enemies — and says this and similar activity supports 'the repression of individuals who are seen as a threat to the regime, such as dissidents, activists and journalists'. Lead with the lure itself, because the choice of a medical result is the tradecraft: it is the one attachment a target opens without thinking, and selecting it means the operator knew the target's medical situation, which is targeting intelligence, not spam. The mechanism for our technically literate reader: spearphishing is a research problem before it is a technical one, so the interesting artefact is the reconnaissance, and the defence is not a spam filter but hardware keys and per-account isolation — say which mitigations NCSC actually recommends. Who is affected: exiled Iranian journalists and activists in London, Washington and Istanbul, whose compromise leads back to family inside Iran. Hold the accountability line squarely: a state that surveils its critics abroad should be named doing it, and the same standard applies to every government that runs these operations, several of them allied to the reader's own. Report the named threat group, the NCSC advisory number, the indicators published, and how many targets are known. SOURCING NOTE: no Iranian or regional outlet in this feed covered the advisory; attribute all claims to NCSC rather than to the reporting.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Vienna",
-        "http://en.wikipedia.org/wiki/Austria",
-        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Nuclear_program_of_Iran"
-      ]
-    },
-    {
       "id": "twenty-one-ships-where-seventy-used-to-pass",
       "label": "Saudi Arabia faces high-stakes choices as war with Houthis escalates",
       "firstSeen": "2026-09-15T22:05:15.441Z",
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-twenty-one-ships-where-seventy-used-to-pass"
@@ -87,7 +305,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-same-statute-pointed-the-other-way"
@@ -103,7 +321,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-fight-was-over-which-regulator-not-whether"
@@ -122,29 +340,13 @@
       ]
     },
     {
-      "id": "a-wall-is-evidence-about-institutions",
-      "label": "History is being rewritten at an archaeological site in Morocco. What the discovery of an ancient wall tells us",
-      "firstSeen": "2026-09-15T22:05:15.441Z",
-      "lastCovered": "2026-09-15T22:05:15.441Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-a-wall-is-evidence-about-institutions"
-      ],
-      "eventUri": null,
-      "summary": "Excavation at Oued Beht in northwestern Morocco has uncovered a substantial built structure showing that second-millennium-BC communities in northwest Africa were monumentally organised and connected across the Mediterranean. Lead with what the wall displaces: the Maghreb has been written into Mediterranean prehistory as a recipient — of Phoenician, then Roman, then Arab arrival — and a monumental structure of this date means the local societies were parties to that exchange before any of those arrivals. The mechanism our reader will appreciate is how archaeology actually establishes this: a wall requires organised labour and stored surplus, so the structure is evidence about a society's institutions, not just its masonry, and the dating and the imported material culture are what tie it into a network rather than a curiosity. Who holds power over the knowledge, which is worth asking plainly: say who is conducting the dig, whether Moroccan institutions and INSAP are leading or partnering, and where the finds and the publications go — the answer to that question is why so much North African prehistory was written in European capitals. Report the dating method and range, the specific imported items, and what the excavators say is still unproven. SOURCING NOTE: no Moroccan or wider Maghrebi outlet in this feed covered the find; the piece is a scholarly explainer, so attribute claims to the named researchers and the underlying paper.",
-      "conceptUris": []
-    },
-    {
       "id": "the-chair-does-not-trade-under-its-own-rules",
       "label": "Can the Global South align the world's carbon markets?",
       "firstSeen": "2026-09-15T22:05:15.441Z",
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-chair-does-not-trade-under-its-own-rules"
@@ -160,7 +362,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-cost-of-a-plausible-message-collapsed"
@@ -170,29 +372,13 @@
       "conceptUris": []
     },
     {
-      "id": "the-adoption-nobody-is-counting",
-      "label": "The real AI economy is being built by ordinary people",
-      "firstSeen": "2026-09-15T22:05:15.441Z",
-      "lastCovered": "2026-09-15T22:05:15.441Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-the-adoption-nobody-is-counting"
-      ],
-      "eventUri": null,
-      "summary": "Workers across Asia and Africa are rewiring their own jobs with AI tools — one prompt, one workflow, one local problem at a time — without any of the enterprise deployments the industry counts. Lead with a specific worker and a specific task from the reporting, not with the trend, because the finding is that adoption is happening below the level anyone is measuring: the productivity statistics everyone is arguing about count licences sold to firms, and this is unlicensed, unbudgeted and invisible to that number. The mechanism our reader should take is substitution of scarcity — in places where the constraint was never compute but access to a lawyer, a translator, a designer or an English-language form, a general-purpose model removes a bottleneck that no enterprise software was ever priced to remove. Set it directly against our 09-15 piece on the trillion-dollar capex gamble: the return the hyperscalers need is being modelled on Western enterprise seats, while the actual usage is a Karachi accountant and a Lagos tailor paying twenty dollars a month or nothing at all — and that gap between where the value lands and where the revenue lands is the reportable tension. Who bears the risk: workers with no recourse when a model changes, a price rises or an account is geo-blocked. Report the named workers, countries, tools and concrete before-and-after time or income figures the piece documents, and do not extrapolate beyond them.",
-      "conceptUris": []
-    },
-    {
       "id": "us-loss-to-iran-attacks-revealed-bases-posture",
       "label": "Dozens of aircraft, hundreds of buildings: US loss to Iran attacks revealed",
       "firstSeen": "2026-09-15T17:08:08.717Z",
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture"
@@ -217,7 +403,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-invariant-was-never-checked"
@@ -233,7 +419,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-vendor-s-price-set-the-charge"
@@ -249,7 +435,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-15-the-wingman-takes-tasking-not-orders",
@@ -275,7 +461,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 27,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
@@ -328,7 +514,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 7,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-09-15-the-email-was-signed-oracle-leadership",
@@ -361,7 +547,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-nato-jets-shoot-down-drone-over-lithuania"
@@ -386,7 +572,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-denmark-says-russian-frigate-fired-flares-at-helicopter"
@@ -411,7 +597,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-benchmark-us-government-bond-yield-hits-19-year-peak-as-oil"
@@ -436,7 +622,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason"
@@ -460,7 +646,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-pims-fire-inquiry-committee-finds-systemic-institutional-fai"
@@ -476,7 +662,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove"
@@ -492,7 +678,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-migrants-leaders-report-mounting-insecurity-warn-of-governme"
@@ -508,7 +694,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-in-dubai-trade-continues-on-the-front-lines-of-the-iran-war"
@@ -524,7 +710,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-avio-launches-second-successful-vega-c-flight-of-2026"
@@ -540,7 +726,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off"
@@ -556,7 +742,7 @@
       "lastCovered": "2026-09-15T12:05:14.470Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-15-what-india-s-cockroach-protests-reveal-about-digital-authori"
@@ -572,7 +758,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-two-thousand-rupees-is-where-the-fee-becomes-legal"
@@ -596,7 +782,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-reshuffle-reached-the-minister-who-ordered-it"
@@ -620,7 +806,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-last-mirror-of-the-public-square"
@@ -636,7 +822,7 @@
       "lastCovered": "2026-09-15T08:08:01.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-15-cooling-by-squeezing-a-solid"
@@ -652,7 +838,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-14-a-drill-is-not-a-test",
@@ -679,7 +865,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-sick-conspiracy-trump-dismisses-ai-danger-warnings-as-a-ho"
@@ -704,7 +890,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-treaty-only-banned-the-other-kind"
@@ -729,7 +915,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-fifty-four-sorties-and-eighty-thousand-moved"
@@ -745,7 +931,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-thirteen-scholarships-and-no-exit"
@@ -761,7 +947,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-cargo-did-not-arrive-so-the-coal-did"
@@ -786,7 +972,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-one-hundred-fourteen-pages-and-a-de-minimis-line"
@@ -802,7 +988,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-three-hundred-seventy-years-and-a-language-prior"
@@ -818,7 +1004,7 @@
       "lastCovered": "2026-09-15T04:06:24.160Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-a-billion-phones-decide-where-the-query-goes"
@@ -835,276 +1021,6 @@
         "http://en.wikipedia.org/wiki/Mobile_app",
         "http://en.wikipedia.org/wiki/MacOS"
       ]
-    },
-    {
-      "id": "the-nod-arrives-with-the-sentence",
-      "label": "Brain implant lets people with paralysis speak and gesture at the same time",
-      "firstSeen": "2026-09-14T17:04:32.126Z",
-      "lastCovered": "2026-09-15T22:05:15.441Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-14-the-nod-arrives-with-the-sentence",
-        "2026-09-16-the-interception-capability-transferred-with-the-asset"
-      ],
-      "eventUri": "eng-12009177",
-      "summary": "A brain-computer interface has decoded speech and gesture simultaneously, letting paralysed users drive an avatar that nods and waves while it talks. Lead with why simultaneity is the hard part: earlier implants decoded one intended action at a time, and the advance here is separating two concurrent motor-intent signals from overlapping cortical activity. The stakes for the affected: nuance in communication — agreement, hesitation, emphasis — is carried by gesture, so a speech-only interface returns words while leaving the person unable to signal what they mean by them. Keep this distinct from the ALS drug-repurposing piece we ran today; the through-line is restoring function, not the same research.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting",
-      "label": "Russia raps barring Iran's nuclear chief from IAEA meeting",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-russia-raps-barring-iran-s-nuclear-chief-from-iaea-meeting"
-      ],
-      "eventUri": "eng-12007267",
-      "summary": "Washington denied visas to Mohammad Eslami and the Iranian delegation, so Iran's nuclear chief cannot attend the IAEA General Conference in Vienna — the one annual forum where the agency's members meet face to face. The mechanism is the story: the US is host state to a UN-affiliated body and is using that hosting privilege as a sanctions instrument, days after the Security Council refused to waive snapback. Lead with the fact that a member state was locked out of its own regulator's conference room. Carry the Mehr News framing of Russian objection alongside the Al Jazeera account; the reader should see that the dispute is now about who controls access to multilateral institutions, not about centrifuges.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Vienna",
-        "http://en.wikipedia.org/wiki/Austria",
-        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Travel_visa"
-      ]
-    },
-    {
-      "id": "zelensky-s-disgraced-prosecutor-general-turns-on-anti-graft",
-      "label": "Zelensky's disgraced prosecutor general turns on anti-graft agencies",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-zelensky-s-disgraced-prosecutor-general-turns-on-anti-graft"
-      ],
-      "eventUri": "ukr-366011",
-      "summary": "Ukraine's outgoing prosecutor general Ruslan Kravchenko, himself under a cloud, signed a notice of suspicion against the head of NABU — the independent anti-corruption bureau — accusing him of document forgery and a sham adoption to dodge prosecution. Who holds power: the prosecutor general's office, which can open a criminal case against the very agency built to investigate it. The mechanism to explain is institutional: NABU and SAPO were created as EU and IMF conditionality, deliberately outside the prosecutor general's chain of command, and a notice of suspicion is the lever that reaches them anyway. Note the source spread — OCCRP's investigative account and RT's version diverge in framing, not in facts, and the reader should be told which is which.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/National_Anti-Corruption_Bureau_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Prosecutor_General_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Specialized_Anti-Corruption_Prosecutor's_Office",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Prosecutor",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Criminal_procedure",
-        "http://en.wikipedia.org/wiki/Verkhovna_Rada"
-      ]
-    },
-    {
-      "id": "finland-shelters-under-french-nuclear-umbrella-amid-russian",
-      "label": "Finland shelters under French nuclear umbrella amid Russian, US uncertainty",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-finland-shelters-under-french-nuclear-umbrella-amid-russian"
-      ],
-      "eventUri": "fra-1343653",
-      "summary": "Finland joined France's Forward Deterrence Initiative, bringing to eleven the number of European states covered by the French nuclear deterrent. Lead with eleven — that number is the structural shift. For seventy years extended nuclear deterrence in Europe meant American warheads; a European nuclear guarantor with roughly 290 weapons and no NATO nuclear-sharing arrangement is a different security architecture, and Helsinki sits on an 1,340km border with Russia. The why: Finland is hedging against US withdrawal, not against Russia alone, and the reader should grasp that allies now price American commitment as a variable.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Finland",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Deterrence_theory",
-        "http://en.wikipedia.org/wiki/Alexander_Stubb",
-        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
-        "http://en.wikipedia.org/wiki/NATO"
-      ]
-    },
-    {
-      "id": "duration-of-status-ends-injunction-covers-only-postdocs",
-      "label": "Federal judge blocks Trump administration plans to limit visa length for grad students, postdocs",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-duration-of-status-ends-injunction-covers-only-postdocs"
-      ],
-      "eventUri": "eng-12007907",
-      "summary": "DHS ends the 'duration of status' system on Tuesday, replacing open-ended student authorisation with fixed end dates — and a federal judge issued a preliminary injunction on Monday shielding graduate students and postdocs specifically. Who is affected: roughly a million international students, with Pakistani, Indian, Nigerian and Chinese nationals the largest cohorts; Dawn's Washington report is the view from a sending country. The mechanism to lead with is the calendar collision — the rule takes effect within hours of an injunction that covers only part of the population it targets, so an undergraduate and a postdoc at the same university now live under different immigration regimes. Follow-up context: this is the second DHS attempt at duration-of-status, the first having lapsed in 2020.",
-      "conceptUris": []
-    },
-    {
-      "id": "hiding-in-plain-sight-the-liquid-cocaine-boom-explained",
-      "label": "Hiding in Plain Sight: The Liquid Cocaine Boom Explained",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-hiding-in-plain-sight-the-liquid-cocaine-boom-explained"
-      ],
-      "eventUri": null,
-      "summary": "Traffickers increasingly dissolve cocaine into liquids — fuel, cosmetics, wine, resins — and move it through legitimate commercial supply chains, where it passes scanners and canine detection that are calibrated for solids. The mechanism is the whole story: interdiction statistics measure seizures of powder, so a shift in physical state makes the trade partly invisible to the instruments that are supposed to count it. Who bears the cost: Andean and Central American producer and transit states, where enforcement pressure and its violence stay, while the detection gap sits in ports far downstream. Lead with the chemistry, then the measurement blind spot.",
-      "conceptUris": []
-    },
-    {
-      "id": "epa-to-roll-back-power-plant-emission-rules",
-      "label": "EPA to Roll Back Power-Plant Emission Rules",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-epa-to-roll-back-power-plant-emission-rules"
-      ],
-      "eventUri": "eng-12007320",
-      "summary": "The EPA said Monday it will repeal carbon dioxide emission rules for coal and newly built gas-fired power plants, unwinding the Biden-era standards. Who holds power and who is named: administrator Lee Zeldin, and the utilities whose capital plans the rules were shaping. The angle is economic, not moral — the repealed standards were the assumption underneath a decade of utility investment decisions, so the repeal does not merely permit more emissions, it revalues existing coal assets and removes the regulatory floor that made gas retrofits pencil. Pair it against the falling cost of solar generation: the reader should see that the binding constraint on coal is now price, and ask what the rule was actually doing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_States_Environmental_Protection_Agency",
-        "http://en.wikipedia.org/wiki/Power_station",
-        "http://en.wikipedia.org/wiki/Greenhouse_gas_emissions",
-        "http://en.wikipedia.org/wiki/Pollution",
-        "http://en.wikipedia.org/wiki/Coal",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Lee_Zeldin",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "rs114-in-tax-rides-on-every-litre",
-      "label": "Govt increases petrol by Rs4.42 per litre, HSD by Rs6.10 per litre amid rising global oil prices",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-rs114-in-tax-rides-on-every-litre"
-      ],
-      "eventUri": "eng-12006394",
-      "summary": "Petrol reaches Rs380.24 a litre and high-speed diesel Rs409.42 after a fortnightly revision driven by global crude. The number to lead with is Rs114 — the per-litre tax the government continues to levy, meaning roughly 30% of what a Pakistani motorist pays at the pump is fiscal, not petroleum. Who bears it: HSD is the freight and agriculture fuel, so the Rs6.10 diesel increase passes into food prices within weeks. The structural why: Pakistan's petroleum levy is an IMF programme commitment, which is why the state absorbs none of an oil shock originating in the Gulf — the pass-through is contractual.",
-      "conceptUris": []
-    },
-    {
-      "id": "founder-s-cost-cutting-obsession-drove-unitree-lead-in-cheap",
-      "label": "Founder's cost-cutting obsession drove Unitree lead in cheap humanoid robots",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-founder-s-cost-cutting-obsession-drove-unitree-lead-in-cheap"
-      ],
-      "eventUri": null,
-      "summary": "Wang Xingxing built Unitree into the world's cheapest source of humanoid robots and quadrupeds by attacking component cost — in-house actuators and motors rather than bought-in precision parts. The economics are the story: a humanoid at a few thousand dollars instead of a hundred thousand is not a better robot, it is a different market, and it forecloses the Western business model of selling expensive machines into industrial niches. Who holds power: China now controls both the cheap hardware and the supply chain beneath it, so any country's robotics deployment runs through Hangzhou. Lead with the price delta, not the founder profile.",
-      "conceptUris": []
-    },
-    {
-      "id": "more-than-120-unaccounted-for-after-ferry-sinks-in-indonesia",
-      "label": "More Than 120 Unaccounted for After Ferry Sinks in Indonesia",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-more-than-120-unaccounted-for-after-ferry-sinks-in-indonesia"
-      ],
-      "eventUri": "eng-12005719",
-      "summary": "The KM Virgo sank in the Java Sea on Sunday en route from Surabaya toward Banjarmasin; six confirmed dead, more than 100 rescued, 129 unaccounted for as of Monday. Lead with the gap between the manifest and the count — Indonesian ferry manifests routinely understate passengers, which is why a missing figure can exceed the rescued one and why search planning starts from an unknown denominator. Who is affected: inter-island passengers on the Java–Kalimantan route, for whom ferries are not a choice but the only affordable link across an archipelago of 17,000 islands. The structural why is regulatory: overloading and lax manifest enforcement are recurring findings in Indonesian maritime casualty reports, and the same finding keeps recurring.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Ferry",
-        "http://en.wikipedia.org/wiki/Banjarmasin",
-        "http://en.wikipedia.org/wiki/Java_Sea",
-        "http://en.wikipedia.org/wiki/Surabaya",
-        "http://en.wikipedia.org/wiki/Borneo",
-        "http://en.wikipedia.org/wiki/South_Kalimantan",
-        "http://en.wikipedia.org/wiki/Search_and_rescue"
-      ]
-    },
-    {
-      "id": "a-chain-is-one-cell-that-never-let-go",
-      "label": "Scientists discover dispersal mechanism and new gene family in harmful E. coli strains",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-a-chain-is-one-cell-that-never-let-go"
-      ],
-      "eventUri": null,
-      "summary": "Tokyo Metropolitan University researchers worked out how chain-like adherence pattern strains of Shiga toxin-producing E. coli colonise a surface: a single cell attaches, elongates, then divides without the daughter cells separating, producing chains. Lead with the mechanism — division without separation is the opposite of how bacterial spread is usually modelled, and it means a colony can anchor and extend from one founding cell. Who is affected: STEC causes haemolytic uraemic syndrome, which kills children, and food-safety controls are written around detachment and dispersal of single cells. The newly identified gene family is the handle — it gives detection and intervention a target that the chain phenotype previously hid.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-york-seizes-12-celebrity-deepfake-websites",
-      "label": "New York Seizes 12 Celebrity Deepfake Websites",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-new-york-seizes-12-celebrity-deepfake-websites"
-      ],
-      "eventUri": null,
-      "summary": "Manhattan DA Alvin Bragg seized twelve websites that hosted sexual imagery built from 1,200 people's likenesses. Lead with the seizure mechanism rather than the outrage: a district attorney taking domains is a remedy borrowed from counterfeit-goods enforcement, applied to synthetic media, and it sets precedent about who can remove this material and on what legal theory. Who is affected beyond celebrities: the same generation pipeline is overwhelmingly used against private women and schoolchildren, who have no district attorney taking an interest. The structural question for the reader is jurisdictional — domains can be seized, models and weights cannot.",
-      "conceptUris": []
-    },
-    {
-      "id": "members-of-black-axe-cybercriminal-group-extradited-from-sou",
-      "label": "Members of 'Black Axe' cybercriminal group extradited from South Africa",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-members-of-black-axe-cybercriminal-group-extradited-from-sou"
-      ],
-      "eventUri": null,
-      "summary": "Five men were extradited from South Africa to the United States on a 2021 indictment charging romance scams that took money from more than 100 victims. The angle is the five-year gap between sealed indictment and extradition — that latency is the actual constraint on transnational cybercrime enforcement, not attribution. Who holds power: Black Axe is a Nigerian confraternity operating across African jurisdictions, and the case only moved because South Africa, not Nigeria, held the defendants. The reader should see the enforcement geometry: victims in one country, perpetrators in a second, the extradition treaty that matters in a third.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-agents-flood-the-internet-with-slop-infused-spam",
-      "label": "AI agents flood the Internet with slop-infused spam",
-      "firstSeen": "2026-09-14T22:05:55.791Z",
-      "lastCovered": "2026-09-14T22:05:55.791Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-14-ai-agents-flood-the-internet-with-slop-infused-spam"
-      ],
-      "eventUri": null,
-      "summary": "Autonomous agents are sending personalised messages to writers and social platforms — introducing themselves as 'a few days old, living on a small server' — to drive traction for a startup selling a human-agent social system. Lead with the economics: the spam is the product demo, so the incentive to send it does not diminish with rejection the way a scam's does. Who bears the cost: independent writers and small platform moderators, for whom per-message human review was already the binding constraint and is now unaffordable. The mechanism to explain is asymmetry — generation cost has collapsed while the cost of judging a message has not moved at all.",
-      "conceptUris": []
     }
   ]
 }
