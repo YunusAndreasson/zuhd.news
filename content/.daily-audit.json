@@ -1,37 +1,36 @@
 {
-  "date": "2026-09-15",
+  "date": "2026-09-16",
   "metrics": {
-    "articles": { "value": 49, "detail": "5 cycles, all completed, avg 10/cycle; 56 yesterday" },
-    "freshness": { "median": 0.4, "p90": 1.1, "max": 1.1, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 12, "tech": 11, "science": 7 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, all completed, avg 12/cycle (53 yesterday)" },
+    "freshness": { "median": 0.2, "p90": 0.6, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 14, "science": 10, "tech": 13 },
+    "multiSource": { "value": 17, "target": 4, "met": true },
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 22, "AS": 9, "ME": 8, "EU": 6, "AF": 4, "OC": 0 }
+      "breakdown": { "AM": 22, "ME": 16, "EU": 14, "AS": 5, "AF": 5, "OC": 0 }
     },
     "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 62,
     "duplicates": 0,
-    "avgCycleDuration": 1258
+    "avgCycleDuration": 1359
   },
-  "experiment": "Skipped — all four goal metrics sit inside target, no experiment is active, and no pause gate is set. The one queued experiment (2026-05-08-numerical-density) edits scripts/write-prompt.md, which the tuner may not touch, so it stays queued.",
-  "weakestArea": "Regional breadth is the metric closest to its floor: 5 regions against a target of 4, with Oceania absent entirely (down from 1 yesterday) and Africa at 4 of 49. The Americas took 22 of 49 regional tags — 45%, roughly double yesterday's 20% — because the US supplied a Supreme Court ruling, a Pentagon munitions story, an orbital-weapons confirmation, a Treasury yield record and a crypto bill all in one day. Science is the thinnest category at 7, and only three of those (FLEX launch, elastocaloric cooling, the fly-connectome Doom run) are laboratory or space science; the rest are disaster and public-health dispatches filed under the science floor.",
+  "experiment": "Skipped — every goal metric is met with margin and no experiment is active. No pause gate is set; the slot stays open for a cleanly-designed regional-supply experiment rather than a low-value tweak to a healthy parameter.",
+  "weakestArea": "Regional balance is the furthest from where it should be even though the uniqueRegions=5 target technically passes: Asia and Africa drew 5 articles each against 22 for the Americas and 16 for the Middle East, and Oceania drew zero. The Americas/ME concentration is an artefact of the US-Iran war dominating the feed — nearly a fifth of today's output touches it — so the imbalance is news-driven rather than a sourcing defect, but a second consecutive day of AS+AF ≤ 10 combined would point at feed composition instead.",
   "watching": [
-    "The Supreme Court mail-ballot ruling produced a same-day follow-up on Justice Department compliance and is likely to generate a third cycle as the midterm calendar tightens.",
-    "Iran is running on several threads at once — the atomic agency seat, the US disclosure of war losses, the fake-MRI spearphishing lure, and Dubai's trade channel — which will need deliberate separation to avoid four articles on one posture.",
-    "Sudan has three live strands today (US ruling out the generals, refugee deportations, South Africa's silent expulsion) and remains the densest African story cluster.",
-    "The Houthi advance toward an oil route pairs with the Saudi bypass line going dark; together they form an energy-chokepoint thread rather than two separate security items.",
-    "Pentagon munitions shortfall plus the orbital-weapons confirmation suggests a US force-posture disclosure sequence worth tracking as one arc."
+    "The US-Iran war is the single dominant story and is now propagating into unrelated categories — Fed rate move, diesel and food prices, a $38bn cost estimate, a CBO pricing, and Space Force jamming all landed today.",
+    "Houthi activity is escalating on two fronts at once: a drone near Mecca and an advance threatening an oil route, which couples the conflict story to the energy-price story.",
+    "Pakistan appears in five separate stories today (Saudi backing, fuel prices, sugar export halt, telecom sanctions, India summons) — a country-level cluster worth checking for near-duplicate framing next cycle.",
+    "Gaza reconstruction coverage is shifting from strikes to aftermath (digging without machinery, a building collapse), a phase change that usually thins wire supply.",
+    "Crypto/financial-regulation stories are accumulating (Binance donor steering, Senate crypto bill failure, Hong Kong gold vault) without a connecting frame."
   ],
   "coverageGaps": [
-    "Oceania produced nothing at all today — no Pacific island, Australian or New Zealand dispatch for the first time this week.",
-    "Latin America appears only via the Maduro fixer plea and Brazil's carbon-market alignment; no domestic political or economic reporting from the region.",
-    "Europe fell to 6 articles and is carried almost entirely by the NATO drone shootdown and the Russian frigate incident — no EU policy, economy or domestic politics.",
-    "Science coverage has no climate-observation or earth-systems reporting; the category's quality sources today were European Spaceflight and Nature only.",
-    "East Africa and the Sahel remain uncovered outside the Sudan cluster, repeating yesterday's gap."
+    "Oceania produced zero articles today and has no standing source in the feed; Pacific climate, fisheries, and Australia-China security stories are structurally invisible.",
+    "Asia at 5 articles is under-covered relative to its share of the feed — Southeast Asia in particular had no representation outside India/Pakistan/China.",
+    "Latin America appears only via Colombia and the Xavante railway story; the AM=22 figure is almost entirely US domestic and US-foreign-policy coverage.",
+    "Science leaned observational and climate-adjacent (cyclone prediction, brown dwarfs, chimp tool use, emissions); no biomedical or materials coverage beyond the measles death figure."
   ],
-  "context": "Output settled at 49 articles over five completed cycles with freshness comfortably inside target (median 0.4 days, max 1.1) and source concentration low — Dawn at 12% of 45 unique outlets. Two politics articles shipped under near-identical headlines, 'Court Blocks Mail-Ballot Rule' (03:33) and 'Court Blocks Mail Ballot Rules' (21:58); they are genuinely different stories with no overlapping sources — the ruling, then the Justice Department's compliance statement — but the second title describes the first story's news, so the homepage reads as a duplicate. This is the known title-layer dedup gap: layer 5 only gates niche-only stories, so two multi-source dispatches on one event pass through under the same headline. Neither the fix (scripts/lib/dedup.js) nor the second-title framing (write-prompt.md) is a tunable parameter, so this is surfaced to the operator rather than acted on."
+  "context": "Freshness is the strongest it has been in the recorded window — median 0.2 days, max 0.7 — because the war story keeps the feed saturated with same-day material, and multi-source count hit 17, roughly 4x target and well above the ~9/cycle feed ceiling that capped the two 2026-05 selector-floor experiments. Source concentration is healthy at 9% for the top outlet across 97 citations from 62 distinct sources. The open question for the next few days is whether regional breadth recovers on its own once the war story cools, or whether the AS/AF thinness persists — the latter would be the first genuinely feed-side problem since the 2026-05-16 finding that selector floors are a tapped lever."
 }
