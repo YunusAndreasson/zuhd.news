@@ -1,35 +1,5 @@
 [
   {
-    "timestamp": "2026-08-27T08:25:23.608Z",
-    "candidateCount": 3,
-    "candidates": [
-      {
-        "slug": "2026-08-27-rangeland-returns-the-benefit-is-a-loss-avoided",
-        "title": "Rangeland Restoration Returns Sixfold",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-27-beaufort-gyre-the-storm-sets-the-timescale",
-        "title": "Storms Drive Arctic Freshwater",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-27-biochemometrics-the-regression-replaces-the-isolation",
-        "title": "Regression Finds Cancer Compound",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 3 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-27T12:25:49.412Z",
     "candidateCount": 9,
     "candidates": [
@@ -9895,6 +9865,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "House rejects Iran war powers resolution 220-204, seven Republicans defect",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
+    }
+  },
+  {
+    "timestamp": "2026-09-16T22:20:25.522Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-16-a-parking-spot-that-sees-every-orbit-cislunar-weapons",
+        "title": "US Preps Moon Combat",
+        "category": "politics",
+        "eventCoverage": 1061,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-what-practically-means-pakistan-saudi-yemen-commitment",
+        "title": "Pakistan Vows Saudi Backing",
+        "category": "politics",
+        "eventCoverage": 916,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
+        "title": "Fed Raises Rates Amid War",
+        "category": "economy",
+        "eventCoverage": 916,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-twenty-five-thousand-dollars-and-a-stranger-outsourced-assassination",
+        "title": "Russia Outsourced Assassination Plot",
+        "category": "politics",
+        "eventCoverage": 221,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-the-ledger-ranked-the-victims-revolut-breach",
+        "title": "Hackers Rank Revolut Victims",
+        "category": "tech",
+        "eventCoverage": 221,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-a-logic-fab-cannot-make-memory-sk-hynix-intel-ohio",
+        "title": "SK Hynix Eyes Ohio Fab",
+        "category": "tech",
+        "eventCoverage": 159,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-they-are-asking-for-it-in-writing-warraq-island-tenure",
+        "title": "Warraq Residents Demand Guarantees",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-a-subsidy-financed-by-the-dealer-pakistan-fuel-relief",
+        "title": "Pakistan Fuel Prices Rise Again",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-zero-tariffs-on-a-market-you-cannot-reach-china-africa",
+        "title": "China Tariff Offer Falls Short",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-a-bill-that-misses-the-term-dies-frontier-act-2027",
+        "title": "US AI Bill Waits Until 2027",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-intensity-is-the-forecast-that-kills-ai-cyclone-model",
+        "title": "AI Model Predicts Cyclones",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-a-market-that-only-works-if-the-stack-reports-itself",
+        "title": "Gujarat Pollution Market Eyes Rio",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
+      "title": "Fed Raises Rates Amid War",
+      "category": "economy",
+      "body": "The vote was 12-0, and the cause is a closed",
+      "eventCoverage": 916,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Fed raises rates 12-0 as war shuts key oil strait",
     "response": {
       "pushed": 1,
       "skipped": 0,
