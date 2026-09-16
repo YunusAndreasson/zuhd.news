@@ -1488,8 +1488,68 @@
         "2026-09-11-california-ai-toy-ban-regulating-the-design-not-the-speech"
       ],
       "generatedAt": "2026-09-16T12:28:54.912Z"
+    },
+    "poly-fed-rate-hike-by-september-2026-meeting": {
+      "standingFingerprint": "f9e7683c9f1105f7",
+      "recentFingerprint": "7fa7632e65ff4678",
+      "standing": "A Polymarket contract on whether the Federal Reserve raises its policy rate at or before the September 2026 meeting. It prices what traders will pay for a hike, and the dollar, Treasury yields and every asset benchmarked against them sit downstream of the answer.",
+      "recent": "Houthi forces captured the Yemeni port of Mocha, pushing oil to $105 and turning a rate cut into a plausible hike; a payroll surge then added to the case. Goldman Sachs abandoned its no-hike call on Friday, and the 10-year Treasury yield reached 5%, its highest since 2007, as the Fed's meeting opened.",
+      "citations": [
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
+        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice",
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut"
+      ],
+      "generatedAt": "2026-09-16T17:28:00.176Z"
+    },
+    "poly-saudi-oil-pipeline-east-west-restarts-by-septemb": {
+      "standingFingerprint": "6d1166f9ae5a77f4",
+      "recentFingerprint": "d4ec1863b34f4fcb",
+      "standing": "A Polymarket contract paying out on whether Saudi Arabia's East-West crude line is pumping by the deadline in the contract's title. That line is the only route moving Gulf crude to the Red Sea without passing through Hormuz.",
+      "recent": "Drones launched from Iraq — investigators traced the site to Tayeb Island in Maysan — shut the East-West line. Traders say Yanbu export stocks run out within days, and Brent jumped 3% to $109 as Houthis seized Yemen's Red Sea coast and Saudi jets flew 54 sorties in a day.",
+      "citations": [
+        "2026-09-15-east-west-pipeline-the-bypass-is-the-casualty",
+        "2026-09-12-drones-from-iraq-the-hedge-that-stopped-being-independent",
+        "2026-09-14-yanbu-the-bypass-and-the-strait-fail-together",
+        "2026-09-13-maysan-launch-platform-seized-first-physical-evidence",
+        "2026-09-15-fifty-four-sorties-and-eighty-thousand-moved"
+      ],
+      "generatedAt": "2026-09-16T17:28:25.503Z"
+    },
+    "poly-will-jd-vance-win-the-2028-republican-presidenti": {
+      "standingFingerprint": "d87cf284995c09a7",
+      "recentFingerprint": "a54bee8e9a32afa7",
+      "standing": "A Polymarket contract that pays out if J.D. Vance becomes the Republican presidential nominee in 2028. Its price is what traders will pay for that outcome, and it moves on primary-field news years before any vote is cast.",
+      "recent": "Nothing in the past fortnight bears on the Republican field. The prediction-market news that did land concerned the venue rather than the contract: New Jersey asked the Supreme Court to rule on whether these markets are regulated as swaps or as gambling.",
+      "citations": [
+        "2026-09-06-prediction-markets-scotus-swaps-or-gambling-preemption"
+      ],
+      "generatedAt": "2026-09-16T17:28:41.481Z"
+    },
+    "xmr": {
+      "standingFingerprint": "71d953c868d3281c",
+      "recentFingerprint": "9f3c838a1186440a",
+      "standing": "A cryptocurrency whose ledger hides sender, receiver and amount by default, unlike Bitcoin's public chain. That opacity makes it a favoured settlement asset for extortion and darknet trade, and a recurring target of exchange delistings.",
+      "recent": "The fortnight's only related thread was VantaCore, a group that has hit at least seven Russian companies with custom ransomware — extortion of the kind usually settled in this currency. None of it accounts for what the price did.",
+      "citations": [
+        "2026-09-02-vantacore-ransom-note-without-a-ransom"
+      ],
+      "generatedAt": "2026-09-16T17:28:56.391Z"
+    },
+    "stocks:AMZN": {
+      "standingFingerprint": "f424672df22087c5",
+      "recentFingerprint": "cb1678adb46ca3b7",
+      "standing": "Shares in the Seattle retailer that runs the world's largest online store, its biggest cloud computing business in AWS, and a freight network of its own. Its cloud arm earns most of the profit, so the stock trades on enterprise computing more than on shopping.",
+      "recent": "Two operational failures landed in the window. A contracted 767 freighter overran the runway at Miami on Sep 6, killing five people on the ground, and NTSB data showed the pilots released the brakes four seconds late; Amazon suspended the carrier eight days later. AWS then admitted it could not restore customer data lost when strikes destroyed all three Bahrain availability zones.",
+      "citations": [
+        "2026-09-16-eleven-nines-does-not-model-a-missile-aws-permanent-loss",
+        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
+        "2026-09-10-miami-767-overrun-the-seconds-after-touchdown",
+        "2026-09-07-ntsb-amazon-767-miami-overrun-contract-carrier",
+        "2026-09-06-miami-767-freighter-overrun-runway-safety-area"
+      ],
+      "generatedAt": "2026-09-16T17:29:07.440Z"
     }
   },
-  "generatedAt": "2026-09-16T12:28:54.913Z",
+  "generatedAt": "2026-09-16T17:29:07.440Z",
   "windowDays": 14
 }
