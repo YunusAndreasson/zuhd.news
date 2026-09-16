@@ -2,13 +2,269 @@
   "version": 1,
   "stories": [
     {
+      "id": "third-war-powers-vote-seven-republicans-no-veto-proof-margin",
+      "label": "US House votes to end Iran war, 7 Republicans join in favour",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-third-war-powers-vote-seven-republicans-no-veto-proof-margin"
+      ],
+      "eventUri": "eng-12014071",
+      "summary": "Lead with the count and the repetition: 220-204, the THIRD time this summer the House has passed a war powers resolution to halt the Iran war, with 7 Republicans crossing. The mechanism our reader needs is why passage changes nothing: a war powers resolution is a concurrent measure that must also clear the Senate and then survive a presidential veto, so a House majority is a recorded position, not a legal brake — explain exactly what would have to happen next for it to bind, and report whether the Senate has scheduled anything. The number that actually matters is the trend in Republican defections across the three votes: say what it was in each, because a rising count is the only leading indicator of a veto-proof coalition. Who is affected: Iranians under the bombardment, and the Gulf populations hosting the bases. Who holds power: the Speaker who must transmit it, the Senate, and a president who has governed the war on Article II authority alone. DISTINCT ARC — this is the chamber vote, not the Massie impeachment articles we ran on 09-16; do not restate the eight articles, and reference that piece only as context. OIC sourcing satisfied: Al Jazeera (Qatar) is the regional account and carries the roll call.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Seth_Moulton"
+      ]
+    },
+    {
+      "id": "beijing-brokers-with-oil-not-guarantees-islamabad-mou",
+      "label": "China urges US, Iran to 'stay rational', return to Islamabad deal",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-beijing-brokers-with-oil-not-guarantees-islamabad-mou"
+      ],
+      "eventUri": "eng-12011385",
+      "summary": "China is positioning itself as the broker of a war the United States is fighting, days before Xi meets Trump in Washington. Lead with the specific ask — a return to the Islamabad Memorandum of Understanding — and then report what that document actually contained and who signed it, because most readers will not know and the terms are the story. The mechanism to teach: Beijing's leverage here is commercial, not military. It is the largest buyer of Iranian crude and the guarantor of the Saudi-Iran normalisation it brokered in 2023, so its mediation instrument is purchase commitments and infrastructure, which binds differently from a security guarantee and is why Washington cannot simply dismiss it. Report Iran's foreign minister's visit to Beijing and what Tehran said it wanted, separately and attributed. Who is affected: Iranians, and the Gulf states whose airspace and ports are the war's transit. Who holds power: Xi, Wang Yi, Trump, and Pakistan as the deal's venue and guarantor — say what Islamabad's continuing role is. DISTINCT ARC: this is the diplomatic layer, not the congressional vote or the cost accounting we ran this cycle and yesterday; no war-cost or base-damage figures. OIC sourcing satisfied: TRT World (Turkey) and Al Jazeera (Qatar) are both in the cluster.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Wang_Yi_(politician)",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Tehran"
+      ]
+    },
+    {
+      "id": "guilt-by-location-mali-drone-strikes-osint-verification",
+      "label": "“A Recurring Pattern”: Civilians Paying the Price in Mali’s Drone Campaign",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-guilt-by-location-mali-drone-strikes-osint-verification"
+      ],
+      "eventUri": null,
+      "summary": "A joint Bellingcat and Jeune Afrique investigation documents Malian military drone strikes repeatedly hitting civilian areas — lead with the named dead and the named places, because OSINT's whole value is that it converts a denied strike into a dated, geolocated, countable event. The mechanism to teach a technically literate reader, and it is the investigation's own phrase: 'guilt by location' — armed drones with limited sensor resolution operating over a territory the state classifies as hostile turn presence in a place into the targeting criterion, so a market, a wedding or a herd becomes a legitimate signature. Explain how the verification actually works: satellite imagery timestamps, shadow analysis, social-media video geolocation and crater signatures, and what each can and cannot establish — that method section is what our reader cannot get elsewhere. Report who supplies and who flies: Mali's Turkish- and Chinese-sourced armed drones, and the role of Russia's Africa Corps, with the Malian junta's response or the fact that it was sought and refused. Who bears it: Fulani and other rural communities in central and northern Mali who have no route to any court. Fills the audit's repeated Sahel and West Africa gap. OIC SOURCING: Mali is an OIC member; Jeune Afrique is the co-investigating francophone African outlet and should be credited as such — no Malian outlet appears in today's feed, which is a feed-side gap worth auditing.",
+      "conceptUris": []
+    },
+    {
+      "id": "forty-percent-on-diesel-and-a-new-kind-of-protest-in-idlib",
+      "label": "Syria’s Fuel Price Protests Test the Limits of Post-Assad Dissent",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-forty-percent-on-diesel-and-a-new-kind-of-protest-in-idlib"
+      ],
+      "eventUri": null,
+      "summary": "Syria raised diesel prices 40% overnight and Idlib went into the street — lead with the number and the place, then the detail that makes it more than a protest story: the protesters say they support the state anyway. That combination is the mechanism. Diesel in northwest Syria is not a motoring cost; it is bread (bakery ovens), water (well pumps), and electricity (neighbourhood generators), so a 40% diesel move is a 40% shock to the whole household basket, which is why fuel is the price that produces protests everywhere and why every subsidy-removal programme in the region starts here. The structural why: the post-Assad government inherited a subsidy system it cannot fund and a currency it does not control, so it is doing what the IMF-era playbook prescribes — and discovering that a state with no legitimacy surplus pays for the adjustment in the street. The genuinely new thing to report, and the reason this is not a generic austerity piece: Syrians are working out in public what dissent means when the thing you are protesting is no longer a dictatorship, and the government's response to these protests is the first real data on that. Report what was actually raised, from what to what, who set the price, and what the security forces did. Who holds power and must be named: the ministry that set the price, the transitional government, and whoever supplies the fuel. OIC SOURCING GAP: Syria is an OIC member and no Syrian or regional outlet in today's feed covers the protests — attribute the ground reporting to New Lines' named correspondents and note the gap for feed-side audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "attacked-then-arrested-masafer-yatta-firing-zone-journalist",
+      "label": "Palestinian-American Journalist Naqaa Hamed Detained by Israeli Forces After Settlers Targeted Her",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-attacked-then-arrested-masafer-yatta-firing-zone-journalist"
+      ],
+      "eventUri": null,
+      "summary": "A journalist was attacked by settlers and then arrested by the soldiers who arrived — lead with that sequence, in that order, because the sequence is the finding: the same authority that did not stop the attack detained the person documenting it. Name her, name the settlement, name Masafer Yatta, and give her US citizenship as a fact with consequences — report what the State Department has said or declined to say, because an American citizen detained by a government receiving American weapons is an accountability question with a named address. The mechanism to teach: Masafer Yatta is administered as a military firing zone, a designation that makes ordinary presence a trespass and converts residency into a prosecutable offence for roughly a thousand Palestinians, so journalism there is documenting an expulsion that is legally structured rather than an incident. Report her charge, the military court that will hear it, the conviction rate of that court, and how long detention without charge can run. Who holds power: the military commander who signs the firing-zone order, the settlers acting with documented impunity, and the two governments. Report the Israeli authorities' account, or that it was sought. Do not merge with the Gaza collapse arc — this is the West Bank, and it is the fourth or later distinct strand, not a continuation. OIC SOURCING GAP: no Palestinian or regional outlet in today's feed carries it; Drop Site is the originating investigative account.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-vault-you-control-hong-kong-gold-clearing-and-reserve-risk",
+      "label": "Hong Kong to Accelerate Push for International Gold Trading Hub",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-a-vault-you-control-hong-kong-gold-clearing-and-reserve-risk"
+      ],
+      "eventUri": "eng-12014476",
+      "summary": "Hong Kong's chief executive says the city will build an international gold trading market and may raise the Exchange Fund's own gold reserves — lead with the second half, because a monetary authority adding gold to a currency-board reserve is a different act from opening a bourse. The mechanism to teach: gold's appeal to central banks outside the Western system is not the return, it is the settlement property — bullion held in your own vault cannot be frozen by a foreign payments decision, which is the lesson every reserve manager drew from the 2022 Russian asset freeze and, more recently, from watching Belarusian funds unfreeze at an envoy's word. So the number to report is where the metal is stored and cleared, not the trading volume. Then the structural why for our reader: London and Zurich price and vault most of the world's gold, so an Asian clearing and storage hub is an attempt to move the vault, and its success depends on whether third-country buyers — Gulf sovereign funds, Central Asian and Southeast Asian central banks — actually redomicile their holdings. Report Hong Kong's existing gold infrastructure, the tonnage it currently vaults against London's, and what regulatory change is actually being proposed versus announced. Who holds power: John Lee, the Hong Kong Monetary Authority, and Beijing, whose five-year plan this slots into — say plainly which parts are Hong Kong's decision and which are not. Single-source (Caixin) but it is the business record of the announcement; attribute to Lee's remarks directly.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hong_Kong",
+        "http://en.wikipedia.org/wiki/John_Lee_Ka-chiu",
+        "http://en.wikipedia.org/wiki/First_five-year_plan",
+        "http://en.wikipedia.org/wiki/Five-year_plans_of_China",
+        "http://en.wikipedia.org/wiki/Chief_Executive_of_Hong_Kong",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Mainland_China",
+        "http://en.wikipedia.org/wiki/Northern_Metropolis"
+      ]
+    },
+    {
+      "id": "which-exchange-they-avoid-is-the-compliance-ranking",
+      "label": "Hamas told its potential donors to avoid Binance for funding and use rivals including Bybit and OKX",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-which-exchange-they-avoid-is-the-compliance-ranking"
+      ],
+      "eventUri": null,
+      "summary": "Read this as evidence about enforcement, not about Hamas: the Qassam Brigades steering donors AWAY from Binance and toward Bybit, OKX and USDT on Tron is a public admission of which compliance regimes actually work. Lead with that inversion, because it is the mechanism and almost nobody reports it this way — a designated group's operational routing guidance is the most honest available ranking of exchange KYC and freeze capability, and it says Binance's post-settlement monitoring bites while its rivals' does not. Then the technical half our reader will follow precisely: Tether's USDT is centrally issuable and centrally freezable, and Tether has frozen designated addresses before, so choosing TRC-20 USDT trades one seizure risk (an exchange account) for another (an issuer blacklist) — explain why a group would make that trade, which is speed, liquidity and low fees on Tron versus the slower chance of an issuer action. Report what Binance, Bybit, OKX and Tether say, or that they were asked and did not answer, and what the US Treasury and Israeli NBCTF designations already cover. Who holds power: the exchanges, Tether, and the two or three governments whose designation lists the entire industry mirrors. Be precise and non-sensational: state what the source documents are, how they were obtained, and what remains unverified. Do not reproduce addresses or anything operational.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-child-protection-rule-is-an-age-verification-mandate",
+      "label": "EU Commission: No Social Media for Children Under 13",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-a-child-protection-rule-is-an-age-verification-mandate"
+      ],
+      "eventUri": "spa-4342868",
+      "summary": "Lead with the two thresholds in the leaked draft — a hard floor at 13 and a parental-consent requirement up to 15 — and then the question the coverage keeps skipping: enforcement requires knowing every user's age, so a child-protection rule is in practice an age-verification mandate on the whole population. That is the mechanism to teach, and our reader will grasp the trade immediately: the three ways to verify age are document upload (a database of identity documents at every platform), government eID (the state learns which services you use), or on-device age estimation (biometric inference on a face), and each buys safety with a different privacy cost. Say which one the draft actually contemplates, and whether the EU's own age-verification blueprint and eIDAS wallet are the intended rail. The second half is scope: safety-by-design obligations reach AI chatbots and video games, which means the legal category 'risky online service' is being widened well past social media — report the draft's actual definition, because that definition is what will be litigated. Who holds power: the Commission that proposes on Thursday, the Parliament and Council that will amend it for two years, and the platforms that will build whatever passes and then export it. Who is affected beyond Europe: everyone, because the Brussels effect means the verification stack shipped for the EU becomes the global default — and in states with no data-protection regulator, an identity-linked account is a very different object. Note the document is a leak obtained by Euronews and the published text may differ.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/European_Parliament",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/President_of_the_European_Commission",
+        "http://en.wikipedia.org/wiki/Strasbourg",
+        "http://en.wikipedia.org/wiki/Canada"
+      ]
+    },
+    {
+      "id": "eleven-nines-does-not-model-a-missile-aws-permanent-loss",
+      "label": "Iran strikes on Amazon data centers caused permanent loss of customer data",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-eleven-nines-does-not-model-a-missile-aws-permanent-loss"
+      ],
+      "eventUri": "eng-12011935",
+      "summary": "Half a year on, AWS has admitted it could not restore some customer data hosted in Bahrain and the UAE — lead with the word 'permanent', because for a hyperscaler that word is close to unprecedented in writing and it demolishes an assumption every architect in our readership has been taught to hold. The mechanism to teach precisely, and this is the piece: cloud durability numbers (the famous eleven nines) are computed against independent disk and facility failures within a region, and availability zones are engineered to be independent for power, flood and fire — not for a military strike that lands on more than one of them in the same campaign. Correlated, adversarial destruction is outside the failure model the SLA is priced on. So the practical lesson is concrete: in-region multi-AZ replication is not a backup, cross-region replication is opt-in and costs money, and 'the cloud' has a physical address in a war zone. Report exactly which services and which regions lost data, what AWS's credit or liability actually is under its customer agreement (almost certainly service credits, not damages), and which customers have said what — Gulf banks, government services and startups built on me-south-1 and me-central-1. The structural why for our reader: Gulf states courted hyperscaler regions as sovereignty infrastructure, and sovereignty was exactly what was lost. Who holds power: Amazon, which wrote the terms, and the states that chose the sites. OIC SOURCING GAP: Bahrain and the UAE are OIC members and no Gulf outlet in today's feed covers the disclosure — worth a feed-side audit. This is the infrastructure layer of the Iran war, deliberately separate from the congressional and diplomatic pieces this cycle; no war-cost figures.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-scientific-commons-has-no-security-budget",
+      "label": "International Meteor Organization says cyberattack dealt ‘critical blow’ to website",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-the-scientific-commons-has-no-security-budget"
+      ],
+      "eventUri": null,
+      "summary": "A volunteer scientific body that collects meteor observations from across the world has been knocked offline for weeks — lead not with the attack but with what stops when the site stops: the IMO's visual and video meteor databases are a continuous observational record stretching back decades, contributed by amateurs on every continent and used by professional researchers and by spacecraft operators assessing meteoroid risk. The mechanism to teach, and it generalises far past meteors: an enormous share of the world's long-baseline scientific data sits on volunteer-run infrastructure with no security budget, no dedicated staff and often no funded backup — the same is true of herbarium catalogues, seismic networks, bird counts and language archives. A dataset's scientific value scales with the length of its unbroken record, which is exactly the property a few weeks of downtime and a possible data-integrity question destroys disproportionately. Report what was actually compromised versus merely taken offline, whether observation submissions are being lost during the outage, whether backups exist and from when, and what the organisation says it will cost to rebuild. Who holds power here is an uncomfortable answer worth stating: nobody — there is no agency that funds or defends scientific commons of this kind, and that absence is the story. Avoid speculating about attribution beyond what the IMO states.",
+      "conceptUris": []
+    },
+    {
+      "id": "emissions-fell-because-fuel-got-unaffordable-not-cleaner",
+      "label": "Analysis: Global fossil-fuel emissions set to fall in 2026 amid Hormuz crisis",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-emissions-fell-because-fuel-got-unaffordable-not-cleaner"
+      ],
+      "eventUri": null,
+      "summary": "Global fossil-fuel CO2 is on track to fall about 0.5% this year — lead with that number and then immediately with why it is not good news, because that inversion is the whole article. Emissions are falling because a war closed a strait and priced fuel out of reach, not because anything was decarbonised, and the distinction is measurable: a price-induced fall reverses the moment supply returns, whereas a capital-stock fall (a retired coal plant, an electrified vehicle fleet) does not. Teach the reader how to tell them apart in the data — Carbon Brief's method decomposes the change by fuel, by sector and by region, so report which of the fall is oil versus coal versus gas, and note the perverse detail to look for: expensive gas usually means MORE coal burned, so a headline fall can hide a carbon-intensity rise. The distributional half, which belongs to us specifically: the countries cutting emissions hardest here are the ones that cannot afford the fuel — South Asian and African importers rationing diesel and cutting generation hours — so this year's 'progress' is energy poverty measured in tonnes, and it will be counted in the same ledger as genuine mitigation at the next COP. Report the baseline, the uncertainty range, and what Carbon Brief says would have happened without the crisis. Fills the audit's flagged gap: science has had no climate or earth-systems reporting this week. Attribute the figures to Carbon Brief's named analysts and the underlying energy datasets (IEA, Ember, Global Carbon Project) they draw on.",
+      "conceptUris": []
+    },
+    {
+      "id": "if-comb-jellies-came-first-neurons-evolved-twice",
+      "label": "Ctenophores Aren’t Just Beautiful. They’re Biological Wonders.",
+      "firstSeen": "2026-09-16T17:10:19.193Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-if-comb-jellies-came-first-neurons-evolved-twice"
+      ],
+      "eventUri": null,
+      "summary": "Comb jellies may have branched off before sponges, which would make them the sister group to all other animals — lead with that claim and with why it is contested, because the dispute is more instructive than either answer. The mechanism to teach: if ctenophores are the earliest branch, then either the nervous system evolved once and sponges lost it, or it evolved twice independently, and the second option would mean neurons are a solution biology can reach more than once — a genuinely large claim about how constrained evolution is. Explain how phylogeneticists actually adjudicate this: gene-tree conflict, long-branch attraction, and the choice of outgroup, so the reader sees that the answer depends on modelling assumptions and not only on data. Then the concrete biology, which is the pleasure of the piece: their nerve net is fused into a continuous mesh rather than wired through synapses in the usual way, they use a different set of neurotransmitters, their bioluminescence chemistry is its own invention, and they regenerate. Give the numbers — species count, the genome studies and their dates, which labs. Name the researchers on each side and say plainly what is unresolved; report a live dispute as a dispute. This is laboratory biology, filling the audit's finding that science this week was carried entirely by disaster and public-health dispatches. No speculation beyond what the researchers claim.",
+      "conceptUris": []
+    },
+    {
+      "id": "labs-concede-ai-danger-and-reject-the-remedy",
+      "label": "Meta chief pushes back against calls to slow AI development",
+      "firstSeen": "2026-09-16T08:09:50.206Z",
+      "lastCovered": "2026-09-16T17:10:19.193Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-09-16-labs-concede-ai-danger-and-reject-the-remedy",
+        "2026-09-16-the-price-moves-before-the-barrel-does-diesel-and-the-food-bill"
+      ],
+      "eventUri": "eng-12013886",
+      "summary": "Two of the largest AI firms conceded the risk and rejected the remedy in the same week — lead with that pairing: OpenAI's chief says the world is 'right to be afraid' but should trust the firms, and Meta's says market incentives, legal liability and independent evaluations are sufficient without slowing development. Take those three proposed substitutes seriously and test each one on the page, because that is the whole article and nobody else will do it: market incentives reward capability, not caution, and have no mechanism for harms to non-customers; legal liability requires a plaintiff, a court and a causal chain, and no jurisdiction has yet established one for model output; independent evaluation is the strongest of the three, so report who actually performs it, whether they get pre-deployment weights access, and whether any of them can compel anything. The reader should leave knowing exactly which of the three is a real constraint and which are assurances. Set it against the same week's third data point, and this is why the story is now: the European Commission president says she will invite frontier labs to talks on AI risk — an invitation, not a rulemaking — while in Washington the midterm politics has produced Bernie Sanders and Steve Bannon on one stage over AI, meaning the binding constraint may arrive from voters rather than regulators. Who bears the risk and holds no seat: users in Asia and Africa where these models are already substituting for absent professional services, and where no regulator is being invited to anything. Report the exact quotes and the venues. SOURCING: the underlying reporting is the BBC's, carried here via Yahoo News and OnlineKhabar — trace it to the BBC original and attribute to the executives' own words, not to the aggregators.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Petroleum"
+      ]
+    },
+    {
       "id": "gaza-collapse-hundred-missing-hand-tools",
       "label": "20 dead, dozens missing after war-damaged building falls in Gaza",
       "firstSeen": "2026-09-16T12:08:13.312Z",
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-gaza-collapse-hundred-missing-hand-tools"
@@ -33,7 +289,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-india-pakistan-navy-collision-no-incidents-at-sea-pact"
@@ -58,7 +314,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-belarus-frozen-assets-prisoner-trade-no-published-terms"
@@ -83,7 +339,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-somaliland-recognition-berbera-au-border-precedent"
@@ -99,7 +355,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-colombia-total-peace-armed-groups-doubled"
@@ -115,7 +371,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-india-upi-mdr-end-of-free-public-payments-rail"
@@ -138,7 +394,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-cbo-iran-war-cost-inflation-half-point-floor"
@@ -154,7 +410,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-pta-halts-onic-esim-state-regulator-state-operator"
@@ -170,7 +426,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-flock-firmware-leak-plate-reader-reads-more"
@@ -186,7 +442,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-meta-glasses-swana-no-regulator-to-complain-to"
@@ -202,7 +458,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-global-south-us-chips-chinese-weights-both-sides"
@@ -218,7 +474,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-16-us-measles-deaths-elimination-status-95-percent"
@@ -234,7 +490,7 @@
       "lastCovered": "2026-09-16T12:08:13.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-15-open-cosmos-300m-earth-observation-as-a-service"
@@ -250,7 +506,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-war-damaged-gaza-building-collapse-kills-twelve"
@@ -275,7 +531,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-first-houthi-drone-toward-mecca-since-2017"
@@ -300,7 +556,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-privileged-impeachment-articles-hegseth-war-powers"
@@ -325,7 +581,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-uk-charity-register-funds-west-bank-settlements"
@@ -341,7 +597,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-all-tools-eu-china-trade-deficit-von-der-leyen"
@@ -366,7 +622,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-kenya-court-cancels-vodacom-safaricom-stake-sale"
@@ -382,7 +638,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-pac-blocks-sugar-export-pakistan-price-cycle"
@@ -398,7 +654,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-tabby-gulf-bnpl-valuation-late-fee-question"
@@ -414,7 +670,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-space-force-electronic-warfare-iran-jamming-spillover"
@@ -430,7 +686,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-section-219-us-funded-iron-beam-arrow"
@@ -440,38 +696,13 @@
       "conceptUris": []
     },
     {
-      "id": "labs-concede-ai-danger-and-reject-the-remedy",
-      "label": "Meta chief pushes back against calls to slow AI development",
-      "firstSeen": "2026-09-16T08:09:50.206Z",
-      "lastCovered": "2026-09-16T08:09:50.206Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-labs-concede-ai-danger-and-reject-the-remedy"
-      ],
-      "eventUri": "eng-12013886",
-      "summary": "Two of the largest AI firms conceded the risk and rejected the remedy in the same week — lead with that pairing: OpenAI's chief says the world is 'right to be afraid' but should trust the firms, and Meta's says market incentives, legal liability and independent evaluations are sufficient without slowing development. Take those three proposed substitutes seriously and test each one on the page, because that is the whole article and nobody else will do it: market incentives reward capability, not caution, and have no mechanism for harms to non-customers; legal liability requires a plaintiff, a court and a causal chain, and no jurisdiction has yet established one for model output; independent evaluation is the strongest of the three, so report who actually performs it, whether they get pre-deployment weights access, and whether any of them can compel anything. The reader should leave knowing exactly which of the three is a real constraint and which are assurances. Set it against the same week's third data point, and this is why the story is now: the European Commission president says she will invite frontier labs to talks on AI risk — an invitation, not a rulemaking — while in Washington the midterm politics has produced Bernie Sanders and Steve Bannon on one stage over AI, meaning the binding constraint may arrive from voters rather than regulators. Who bears the risk and holds no seat: users in Asia and Africa where these models are already substituting for absent professional services, and where no regulator is being invited to anything. Report the exact quotes and the venues. SOURCING: the underlying reporting is the BBC's, carried here via Yahoo News and OnlineKhabar — trace it to the BBC original and attribute to the executives' own words, not to the aggregators.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Sam_Altman",
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Nvidia"
-      ]
-    },
-    {
       "id": "little-red-dots-black-hole-stars-webb-dispute",
       "label": "Black Holes or Black Hole Stars? Astronomers Spar Over Webb Telescope's 'Little Red Dots.'",
       "firstSeen": "2026-09-16T08:09:50.206Z",
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-little-red-dots-black-hole-stars-webb-dispute"
@@ -487,7 +718,7 @@
       "lastCovered": "2026-09-16T08:09:50.206Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-16-simp-0136-two-processes-brown-dwarf-weather"
@@ -503,7 +734,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 4,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-15-the-lure-was-a-medical-result",
@@ -533,7 +764,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-16-a-wall-is-evidence-about-institutions",
@@ -559,7 +790,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-16-the-adoption-nobody-is-counting",
@@ -577,7 +808,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-forty-thousand-one-ton-bombs-and-a-fifteen-day-window"
@@ -602,7 +833,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-statute-was-written-after-reconstruction"
@@ -627,7 +858,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-visa-decision-is-reviewable-by-no-court"
@@ -643,7 +874,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-quadcopter-costs-a-few-hundred-dollars"
@@ -659,7 +890,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-nobody-can-name-the-firm-whose-absence-idles-a-fab"
@@ -675,7 +906,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-supplement-that-was-meant-to-be-free"
@@ -691,7 +922,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-they-hand-over-the-tool-only-for-the-hard-task"
@@ -707,7 +938,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-share-rises-because-everything-else-falls"
@@ -723,7 +954,7 @@
       "lastCovered": "2026-09-16T04:07:29.614Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-16-india-faces-100-tariff-risk-as-russia-sanctions-bill-advance"
@@ -748,7 +979,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-09-15-femicide-is-a-legal-category-in-mexico",
@@ -775,7 +1006,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-twenty-one-ships-where-seventy-used-to-pass"
@@ -800,7 +1031,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-same-statute-pointed-the-other-way"
@@ -816,7 +1047,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-fight-was-over-which-regulator-not-whether"
@@ -841,7 +1072,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-chair-does-not-trade-under-its-own-rules"
@@ -857,7 +1088,7 @@
       "lastCovered": "2026-09-15T22:05:15.441Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-cost-of-a-plausible-message-collapsed"
@@ -873,7 +1104,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture"
@@ -898,7 +1129,7 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-invariant-was-never-checked"
@@ -914,336 +1145,13 @@
       "lastCovered": "2026-09-15T17:08:08.717Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-15-the-vendor-s-price-set-the-charge"
       ],
       "eventUri": null,
       "summary": "Three felonies became two second-degree misdemeanours once prosecutors conceded that the automated licence-plate reader the defendant destroyed was a 3D-printed decoy worth almost nothing. Lead with the collapse in the charge, because the mechanism is a valuation: criminal-damage statutes grade the offence by the replacement cost of the property, so the severity of a charge for interfering with surveillance hardware is set by a number the surveillance vendor supplies. That is the precedent worth reporting — a private company's asset valuation was, until it was contested, doing the work of deciding whether a man faced felony time. The structural why for our reader: Flock Safety's plate readers are deployed across thousands of US jurisdictions under contracts that municipalities rarely read, and the same procure-first model is being exported — Gulf states, Pakistan and Indian cities are buying comparable systems now, which is why an American county docket is a preview. Connect to our India 'Cockroach' protests piece on the surveillance stack. Report the county and the named prosecutor, the original and reduced charges, what the state's own filing said about value, and Flock's response — and keep the defendant's alleged motive attributed rather than assumed.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-wingman-takes-tasking-not-orders",
-      "label": "Anduril's YFQ-44A Fury CCA Has Flown Alongside F-35s",
-      "firstSeen": "2026-09-15T08:08:01.994Z",
-      "lastCovered": "2026-09-15T22:05:15.441Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-15-the-wingman-takes-tasking-not-orders",
-        "2026-09-16-the-department-complied-while-the-president-did-not"
-      ],
-      "eventUri": null,
-      "summary": "Anduril's YFQ-44A Fury has already flown alongside F-35s as the company works toward a crewed-uncrewed teaming demonstration. Lead with the fact that the formation flight happened before the demonstration was announced — the programme is further along than the public schedule says, which is the reportable news. The mechanism our reader should understand is autonomy-in-the-loop: a Collaborative Combat Aircraft is not a drone flown by a pilot on the ground, it takes tasking from the cockpit of a manned fighter and executes it independently, which moves the human decision from 'fire this weapon' to 'accept this task'. Who holds power: Anduril, a private company that designs and owns the autonomy stack, so the rules of engagement live in software the buyer does not write. The structural why for our reader: cheap attritable aircraft change who can contest airspace and at what price, and the first users will not all be the United States — export policy for CCAs is undecided and this is the moment to ask about it. Report the confirmed flight details, the programme milestones, and what the Air Force will not say.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Postal_voting",
-        "http://en.wikipedia.org/wiki/United_States_Postal_Service",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Judge",
-        "http://en.wikipedia.org/wiki/State_(polity)",
-        "http://en.wikipedia.org/wiki/Brett_Kavanaugh"
-      ]
-    },
-    {
-      "id": "gabrovo-the-magazine-is-the-bottleneck",
-      "label": "NATO nation's arms company hit by second ammo depot fire in one month",
-      "firstSeen": "2026-09-13T08:07:01.040Z",
-      "lastCovered": "2026-09-15T17:08:08.717Z",
-      "coverageCount": 27,
-      "category": "economy",
-      "importance": 1,
-      "arc": "ongoing",
-      "articles": [
-        "2026-09-13-gabrovo-the-magazine-is-the-bottleneck",
-        "2026-09-13-zamfara-imams-the-ransom-is-the-business",
-        "2026-09-13-pmla-the-process-is-the-sentence",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
-        "2026-09-13-waterfront-discount-the-yield-is-the-valuation",
-        "2026-09-13-star-1-hot-fire-the-test-stand-is-the-bottleneck",
-        "2026-09-13-five-mission-centers-the-org-chart-is-the-policy",
-        "2026-09-14-twenty-one-states-by-2029-the-concurrent-list-is-the-route",
-        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
-        "2026-09-12-the-oracle-problem-the-ledger-was-never-the-gap",
-        "2026-09-14-reserved-the-permission-is-the-ruling",
-        "2026-09-14-the-inspector-is-the-one-refused-entry",
-        "2026-09-14-the-deadline-is-the-legal-instrument",
-        "2026-09-14-the-chokepoint-is-in-the-paperwork",
-        "2026-09-14-the-inlet-is-the-radar-return",
-        "2026-09-14-the-constraint-is-the-queue",
-        "2026-09-15-the-tariff-is-levied-on-the-buyer-not-the-seller",
-        "2026-09-15-east-west-pipeline-the-bypass-is-the-casualty",
-        "2026-09-15-the-export-control-is-on-the-person",
-        "2026-09-15-the-smallest-fish-is-the-whole-fishery",
-        "2026-09-14-ebola-outbreak-is-drc-s-worst-where-is-the-vaccine",
-        "2026-09-15-where-in-the-world-is-the-iphone-cheapest",
-        "2026-09-15-the-layoff-was-the-first-step-toward-the-deportation",
-        "2026-09-15-the-merchant-pays-the-fee-not-the-borrower",
-        "2026-09-15-the-subsidy-is-funded-by-the-levy-on-the-same-litre",
-        "2026-09-15-the-wiring-diagram-is-not-the-operating-state",
-        "2026-09-15-the-rain-is-the-part-the-model-has-to-guess"
-      ],
-      "eventUri": "eng-12004090",
-      "summary": "A major fire broke out late Friday at an ammunition store run by the Bulgarian arms maker EMCO in Gabrovo province — the second such fire at the company in a month. Write the industrial base, not the sabotage rumour. Lead with the concentration: Bulgaria is one of a very small number of NATO states that still makes Soviet-calibre ammunition at scale, which is precisely what Ukraine's inherited weapons fire, so a single Bulgarian company sits in a supply chain no amount of Western money can reroute quickly. Mechanism our reader will recognise from other sectors: Europe's shell shortage was never a money problem, it was nitrocellulose, presses, certification and magazine space, and those are physical assets measured in years — which is why losing storage at one firm twice in a month is a capacity event rather than an incident. Report what EMCO actually produces, its export licences and volumes, what burned (finished rounds, propellant, or empty magazine space — they are entirely different losses), casualties, and what the Bulgarian interior ministry and prosecutors have said about cause. Then the accountability question with a real history behind it: Bulgarian arms depots have burned before, and the 2011–2020 GRU-linked blasts at Emilian Gebrev's facilities were eventually charged as sabotage — so a sabotage hypothesis is legitimate to report, and it is also exactly what an unverified claim looks like. SOURCING DISCIPLINE, and this is binding: RT is a Russian state outlet with a direct interest in the narrative that Western ammunition supply is burning, and it is the only source in the feed cluster despite eventCoverage of 123. The writer must confirm the fire, the location and the second-incident claim against Bulgarian outlets (BTA, bTV, Dnevnik), Reuters or AFP before printing anything, attribute the sabotage allegation to whoever actually made it, and drop the story entirely if only RT carries it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bulgaria",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Sabotage",
-        "http://en.wikipedia.org/wiki/Explosion",
-        "http://en.wikipedia.org/wiki/Harish_Rawat",
-        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress"
-      ]
-    },
-    {
-      "id": "the-email-was-signed-oracle-leadership",
-      "label": "'Today is your last working day': What Oracle told employees in early morning termination email",
-      "firstSeen": "2026-09-15T04:06:24.160Z",
-      "lastCovered": "2026-09-15T17:08:08.717Z",
-      "coverageCount": 7,
-      "category": "tech",
-      "importance": 1,
-      "arc": "ongoing",
-      "articles": [
-        "2026-09-15-the-email-was-signed-oracle-leadership",
-        "2026-09-15-the-gift-was-to-the-son-not-the-office",
-        "2026-09-15-the-army-chief-was-in-the-state-that-day",
-        "2026-09-15-the-ledger-was-the-evidence",
-        "2026-09-15-the-mission-that-was-to-find-the-ice",
-        "2026-09-15-the-announcement-was-made-on-the-backer-s-territory",
-        "2026-09-15-the-money-was-skimmed-from-the-ration"
-      ],
-      "eventUri": "eng-12002461",
-      "summary": "Oracle terminated another round of staff by an email signed 'Oracle Leadership' that arrived before the working day began and told recipients it was their last. Lead with the delivery mechanism, because it is the accountability gap: a termination with no named signatory is a decision no individual has to own, and the pre-dawn timing exists so that access revocation lands before the recipient can reach a colleague. Who is affected and where — Oracle's workforce is heavily Indian, in Bengaluru and Hyderabad as well as on US H-1B status, and for the latter the email starts a 60-day clock on legal residence, which is why an American layoff is an immigration event in India. The structural why our reader should take: these cuts are funding capital expenditure, not responding to weakness — Oracle is spending enormous sums on AI datacentre capacity for its cloud contracts, so the headcount is being converted into GPUs, and that is the trade the industry is making everywhere. Report the number cut, the divisions, the severance terms, and Oracle's capex guidance in the same piece so the reader can see both sides of the transfer.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Donald_Trump_Jr.",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/The_Bahamas",
-        "http://en.wikipedia.org/wiki/ProPublica",
-        "http://en.wikipedia.org/wiki/Russian_oligarch",
-        "http://en.wikipedia.org/wiki/Boxing",
-        "http://en.wikipedia.org/wiki/Alex_Saab",
-        "http://en.wikipedia.org/wiki/Money_laundering"
-      ]
-    },
-    {
-      "id": "nato-jets-shoot-down-drone-over-lithuania",
-      "label": "NATO jets shoot down drone over Lithuania",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-nato-jets-shoot-down-drone-over-lithuania"
-      ],
-      "eventUri": "deu-2174560",
-      "summary": "NATO fighters destroyed an unidentified drone that crossed into Lithuania from Belarus — lead with the fact that this is a kinetic engagement, not an interception report: an alliance aircraft fired on an object over alliance territory, and that is the threshold Article 5 language has always circled without touching. The mechanism to teach is attribution latency — an unmarked airframe entering from Belarus leaves NATO deciding whether to respond before it can say whose it was, and every such decision lowers the bar for the next one. Who holds power and who does not: Vilnius does not own the jets that defended it, so the decision to fire sat with an alliance air-policing rotation, not with Lithuania. Note the source spread — this cluster is carried by Indian, Thai, Korean and Indonesian outlets rather than European ones, and sentimentDivergence of 0.30 shows Bangkok and Jakarta reading it as routine where Seoul reads it as escalation. Report what the Lithuanian defence ministry and NATO Air Command actually confirmed about the drone's origin, and say plainly what has not been established.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lithuania",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Fighter_aircraft",
-        "http://en.wikipedia.org/wiki/Airspace",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Belarus"
-      ]
-    },
-    {
-      "id": "denmark-says-russian-frigate-fired-flares-at-helicopter",
-      "label": "Denmark says Russian frigate fired flares at helicopter",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-denmark-says-russian-frigate-fired-flares-at-helicopter"
-      ],
-      "eventUri": "eng-12011073",
-      "summary": "A Russian frigate fired flares at a Danish Fennec helicopter near Gedser; Moscow says the Danish aircraft was making dangerous manoeuvres near its warship. Lead with the fact that both governments agree the encounter happened and disagree only about who provoked it — that is the actual condition of the Baltic now, and it is why this belongs beside the Lithuanian shoot-down rather than instead of it. The mechanism our reader should take away is that there is no longer a functioning deconfliction channel in the Baltic: incidents at sea used to be handled by the INCSEA protocol between navies, and what replaced it is two foreign ministries issuing statements. Carry both accounts in the same paragraph and attribute each — Reuters has the Russian claim, the Danish armed forces statement has the other, and Ukrainska Pravda's framing is a third party with an interest. Report what a flare actually does to a helicopter, because the answer determines whether this was a warning or a hazard.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Denmark",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Helicopter",
-        "http://en.wikipedia.org/wiki/Frigate",
-        "http://en.wikipedia.org/wiki/Baltic_Sea",
-        "http://en.wikipedia.org/wiki/Rocket",
-        "http://en.wikipedia.org/wiki/International_waters",
-        "http://en.wikipedia.org/wiki/Warship"
-      ]
-    },
-    {
-      "id": "benchmark-us-government-bond-yield-hits-19-year-peak-as-oil",
-      "label": "Benchmark US government bond yield hits 19-year peak as oil prices surge",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-benchmark-us-government-bond-yield-hits-19-year-peak-as-oil"
-      ],
-      "eventUri": "eng-12009038",
-      "summary": "The 10-year US Treasury yield touched 5.02 percent on Tuesday, a level last seen before the 2008 crisis, as traders priced a Fed hike against surging oil. Lead with 5.02 and what the 10-year actually is: the price of the safest dollar asset on earth, and therefore the floor under every other borrowing cost in the world. The mechanism for our reader is transmission, not Washington — Pakistan, Egypt, Nigeria and Kenya borrow in dollars, and a 19-year high in the benchmark reprices their debt service without a single decision being taken in any of those capitals. Pair it with our Rs114-a-litre piece and the LNG-substitution piece: the same Gulf war is arriving in Asian households as coal smoke, at Pakistani pumps as tax pass-through, and in African budgets as interest. Report the actual yield move, the Fed meeting date, the crude benchmark and level, and the spread on at least one emerging-market sovereign so the consequence is a number and not an adjective. Note sentimentDivergence of 0.34 — Hindustan Times reads the same print as opportunity, Al Jazeera as strain.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Bond_(finance)",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Government_debt",
-        "http://en.wikipedia.org/wiki/Stock"
-      ]
-    },
-    {
-      "id": "jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason",
-      "label": "JD-U softens stand on UCC, says 'will not oppose for no reason'",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-jd-u-softens-stand-on-ucc-says-will-not-oppose-for-no-reason"
-      ],
-      "eventUri": "eng-12007876",
-      "summary": "Bihar's ruling JD-U — for two decades the NDA partner that could be counted on to block a Uniform Civil Code — now says it will 'examine' the bill and will not oppose it 'for no reason'. Lead with the arithmetic, because the softening is the mechanism: a UCC replaces the personal-law systems under which Indian Muslims, and also Christians, Parsis and several tribal communities, conduct marriage, divorce and inheritance, and it has never passed because coalition partners with Muslim voters refused. JD-U's position is the vote that was holding the door. Who is affected: roughly 200 million Indian Muslims, for whom this is not a cultural argument but a change to who adjudicates a marriage. Who holds power and must be named: Amit Shah and the home ministry driving the bill, Samrat Choudhary and Vijay Kumar Sinha in Patna. Report what JD-U's stated conditions actually are, which other NDA partners have not moved, and what the Uttarakhand state UCC — already in force — has done in practice, since that is the only evidence available rather than speculation. Attribute; do not editorialise.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Amit_Shah",
-        "http://en.wikipedia.org/wiki/Uniform_Civil_Code",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Minister_of_Home_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/National_Democratic_Alliance",
-        "http://en.wikipedia.org/wiki/Janata_Dal_(United)",
-        "http://en.wikipedia.org/wiki/Bihar"
-      ]
-    },
-    {
-      "id": "pims-fire-inquiry-committee-finds-systemic-institutional-fai",
-      "label": "Pims fire: Inquiry committee finds 'systemic, institutional failure' behind tragedy",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-pims-fire-inquiry-committee-finds-systemic-institutional-fai"
-      ],
-      "eventUri": null,
-      "summary": "The inquiry into the August 26 fire in a nursery ward at Islamabad's Pakistan Institute of Medical Sciences has returned a finding of 'systemic and institutional failure', with electrical failure the most likely cause. Lead with the phrase itself, because 'systemic failure' is the form an accountability gap takes on paper: it names no person, and a finding that names no person ends no career. The mechanism our reader should be given is specific — a nursery ward is the one place in a hospital where the patients cannot be carried out quickly, so fire separation, alarm and evacuation standards exist precisely for it, and the committee's job was to say which of those were absent and who signed them off. Who is affected: the infants who died and their families, still waiting on a finding that produces a consequence. Report the death toll by name where the families permit it, the specific failures the committee listed, whether any official has been suspended or charged, and what the committee recommended for the other federal hospitals operating under the same maintenance regime.",
-      "conceptUris": []
-    },
-    {
-      "id": "lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove",
-      "label": "Lesotho's biggest foreign investment deal under scrutiny over minister's stake in potential partner",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-lesotho-s-biggest-foreign-investment-deal-under-scrutiny-ove"
-      ],
-      "eventUri": null,
-      "summary": "Lesotho signed a $6.2-billion deal with US-based Convalt Energy for a hydropower plant and an AI data centre — the largest foreign investment in its history, roughly comparable to the entire economy — and a minister holds a stake in a potential partner to the project. Lead with the ratio of the deal to Lesotho's GDP, then the conflict of interest, because the second is only dangerous at the scale of the first: in a country this size there is no arm's-length counterparty, and that is the structural problem rather than one minister's shareholding. The mechanism our reader will recognise is the new shape of extraction — an AI data centre sited where the water and the hydraulic head are, exporting compute rather than minerals, with the electricity and the watershed as the thing actually consumed. Who bears the risk: Basotho water users and ratepayers, on a 'Kobong Project' feasibility study they have not seen. Report the named minister and the stake, Convalt Energy's track record and financing, what the feasibility study concluded, and who is the intended buyer of the power and the compute.",
-      "conceptUris": []
-    },
-    {
-      "id": "migrants-leaders-report-mounting-insecurity-warn-of-governme",
-      "label": "Migrants leaders report mounting insecurity, warn of government complicity with anti-migrant movement",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-migrants-leaders-report-mounting-insecurity-warn-of-governme"
-      ],
-      "eventUri": null,
-      "summary": "129,000 Zimbabweans have left South Africa since a vigilante movement set a 30 June deadline for undocumented migrants to go, and migrant leaders say the state is not merely failing to stop the campaign but moving with it. Lead with 129,000 and the word 'voluntarily', because the contradiction is the story: a departure is not voluntary when a private movement sets the deadline and the police do not contest it, and calling it self-deportation lets the state record a mass expulsion as a statistic rather than a policy. Who is affected and must be named as people, not a category: Zimbabwean, Mozambican and Malawian workers, many with children in South African schools. Who holds power: the home affairs department, the SAPS commanders in the affected provinces, and the movement's own named organisers. The structural why for our reader: outsourcing enforcement to a street movement gives a government the outcome of a deportation programme with none of the legal exposure, which is a mechanism now visible in several countries at once. Report the figure's provenance — it comes from Zimbabwe's state-owned Chronicle — and what South African officials say about their role.",
-      "conceptUris": []
-    },
-    {
-      "id": "in-dubai-trade-continues-on-the-front-lines-of-the-iran-war",
-      "label": "In Dubai, Trade Continues on the Front Lines of the Iran War",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-in-dubai-trade-continues-on-the-front-lines-of-the-iran-war"
-      ],
-      "eventUri": null,
-      "summary": "Six months into the war, the UAE has publicly vowed to end all trade with Iran — and Iranian fruit and vegetables still arrive in Gulf markets daily. Lead with the produce, because it is the cheapest possible proof of a general rule: a trade ban is a statement about cargo manifests, not about boats, and the Gulf's economies were built on a dhow traffic across 200km of water that predates both states. The mechanism to explain is transshipment and the small-vessel exemption — how a ban is administered at a port, what a re-export declaration does, and why enforcement stops where the container stops being a container. Who is affected: Iranian farmers for whom the Gulf is the only hard-currency market left, Emirati wholesalers and the Iranian diaspora traders in Dubai who hold both risks at once. The structural why for our reader: sanctions and embargoes are graded by how much a neighbour is willing to lose, and the UAE's answer is visible every morning in a vegetable market. SOURCING NOTE: this is single-source ground reportage from New Lines; no Gulf or Iranian regional outlet in this feed covered it, so attribute observations to the reporter and do not generalise volumes beyond what the piece documents.",
-      "conceptUris": []
-    },
-    {
-      "id": "avio-launches-second-successful-vega-c-flight-of-2026",
-      "label": "Avio Launches Second Successful Vega C Flight of 2026",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-avio-launches-second-successful-vega-c-flight-of-2026"
-      ],
-      "eventUri": null,
-      "summary": "A Vega-C lifted off from Kourou at 01:21 UTC on 15 September and deployed two Earth-observation payloads: Sentinel-3C, and ESA's FLEX. Skip the rocket and lead with FLEX, because it is the first mission ever built to measure chlorophyll fluorescence from orbit — the faint light plants re-emit while photosynthesising, which means it measures whether vegetation is actually working rather than merely how green it looks. That distinction is the whole point for our reader: existing satellites see a drought-stressed field as green right up until the harvest fails, and FLEX is designed to see the stress weeks earlier, which is a food-security instrument for the Sahel, South Asia and the Horn as much as a climate one. Who holds power: ESA and the European Commission own the data policy, so say plainly whether the products will be open like the rest of Copernicus and who can use them. Report the orbit, the revisit time, when science data begins, and what Sentinel-3C replaces. Fills the audit's flagged gap — no climate-observation or space-agency reporting since the last European Spaceflight item.",
-      "conceptUris": []
-    },
-    {
-      "id": "what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off",
-      "label": "What must happen for AI's trillion-dollar gamble to pay off",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-what-must-happen-for-ai-s-trillion-dollar-gamble-to-pay-off"
-      ],
-      "eventUri": null,
-      "summary": "The hyperscalers will spend more than a trillion dollars on data centres next year, and the question a Wharton finance professor asked is the one to lead with: what productivity gain would the economy have to deliver for that to be a rational number rather than a bubble? Lead with the arithmetic, not the vibe — a trillion in annual capex needs a return measurable in national accounts, and the reader deserves the figure the models actually require. The mechanism to teach is depreciation schedules: GPUs are being booked over five or six years while the hardware cycle is closer to three, so a large share of reported hyperscaler profit is an accounting choice about how fast the chips die, and that choice is disclosed in filings anyone can read. Follow-on to our Oracle piece, where the same capex was funded by cutting staff. Who bears it far from Silicon Valley: the electricity, water and land are being bought in Ireland, Malaysia, the Gulf and now Lesotho, so a write-down in California leaves a stranded substation somewhere with less power to spare. Report the named companies' capex guidance, the depreciation assumptions, and who is financing the debt.",
-      "conceptUris": []
-    },
-    {
-      "id": "what-india-s-cockroach-protests-reveal-about-digital-authori",
-      "label": "What India's 'Cockroach' protests reveal about digital authoritarianism",
-      "firstSeen": "2026-09-15T12:05:14.470Z",
-      "lastCovered": "2026-09-15T12:05:14.470Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-what-india-s-cockroach-protests-reveal-about-digital-authori"
-      ],
-      "eventUri": null,
-      "summary": "India's 'Cockroach' protests are being policed less by batons than by cameras, and the argument to lead with is the one the piece makes plainly: democratic freedom depends not only on not being beaten, but on being able to assemble without assuming your presence is permanently recorded. The mechanism our technically literate reader will want spelled out is the stack — facial recognition systems deployed at protest sites, CCTV feeds matched against state ID databases, and telecom tower dumps that place a phone at a location after the fact, each lawful on its own and jointly amounting to a register of who attended. Who holds power: the state police forces procuring these systems and the vendors selling them, who should be named. The structural why: this is the exportable model, already sold across South and Southeast Asia, so the Indian case is a preview rather than a local story. Report which specific systems were used and on what legal authority, what the protesters were protesting, and what documented consequences attendees have faced — and keep speculation out of a piece whose whole subject is surveillance.",
       "conceptUris": []
     }
   ]
