@@ -1548,8 +1548,31 @@
         "2026-09-06-miami-767-freighter-overrun-runway-safety-area"
       ],
       "generatedAt": "2026-09-16T17:29:07.440Z"
+    },
+    "poly-will-no-fed-rate-cuts-happen-in-2026": {
+      "standingFingerprint": "60b4669b65022bca",
+      "recentFingerprint": "5fd862d47b8956b4",
+      "standing": "A Polymarket contract on whether the Federal Reserve leaves its policy rate unchanged or higher through the whole of 2026. Traders price it in cents on the dollar, so the number is what a bet on no easing costs, not a forecast.",
+      "recent": "The question effectively settled when the FOMC raised rates a quarter point on a 12-0 vote, tightening into a supply shock rather than looking through it. The move had been building since Houthi forces captured Yemen's port of Mocha, pushing oil toward $105, and Goldman Sachs abandoned its no-hike call days before the meeting.",
+      "citations": [
+        "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
+        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice",
+        "2026-09-03-oil-shock-forces-a-hike-not-a-cut"
+      ],
+      "generatedAt": "2026-09-16T22:21:36.638Z"
+    },
+    "stocks:INTC": {
+      "standingFingerprint": "502f8bfabae67502",
+      "recentFingerprint": "d09ddf55b931c5c6",
+      "standing": "The US chipmaker behind the x86 processors in most of the world's PCs and servers, and one of the few chip designers that still owns and runs its own fabrication plants rather than renting capacity from someone else.",
+      "recent": "The fortnight's coverage of Intel concerns its Ohio site, where SK Hynix is weighing a fab of its own — memory, a business Intel itself left in the 1980s and whose production has little in common with the logic lines Intel runs. None of it accounts for the share price.",
+      "citations": [
+        "2026-09-16-a-logic-fab-cannot-make-memory-sk-hynix-intel-ohio"
+      ],
+      "generatedAt": "2026-09-16T22:21:50.729Z"
     }
   },
-  "generatedAt": "2026-09-16T17:29:07.440Z",
+  "generatedAt": "2026-09-16T22:21:50.729Z",
   "windowDays": 14
 }
