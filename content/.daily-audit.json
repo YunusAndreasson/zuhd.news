@@ -1,36 +1,36 @@
 {
-  "date": "2026-09-16",
+  "date": "2026-09-17",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, all completed, avg 12/cycle (53 yesterday)" },
-    "freshness": { "median": 0.2, "p90": 0.6, "max": 0.7, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 14, "science": 10, "tech": 13 },
-    "multiSource": { "value": 17, "target": 4, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, all completed, avg 12/cycle (64 yesterday)" },
+    "freshness": { "median": 0, "p90": 0.8, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 15, "science": 12, "tech": 14 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 22, "ME": 16, "EU": 14, "AS": 5, "AF": 5, "OC": 0 }
+      "breakdown": { "AM": 21, "EU": 15, "ME": 12, "AF": 7, "AS": 6, "OC": 1 }
     },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 62,
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1359
+    "avgCycleDuration": 1427
   },
-  "experiment": "Skipped — every goal metric is met with margin and no experiment is active. No pause gate is set; the slot stays open for a cleanly-designed regional-supply experiment rather than a low-value tweak to a healthy parameter.",
-  "weakestArea": "Regional balance is the furthest from where it should be even though the uniqueRegions=5 target technically passes: Asia and Africa drew 5 articles each against 22 for the Americas and 16 for the Middle East, and Oceania drew zero. The Americas/ME concentration is an artefact of the US-Iran war dominating the feed — nearly a fifth of today's output touches it — so the imbalance is news-driven rather than a sourcing defect, but a second consecutive day of AS+AF ≤ 10 combined would point at feed composition instead.",
+  "experiment": "Skipped — every goal metric is met with margin, no experiment is active, and no pause gate is set. Yesterday's flagged regional thinness partly self-corrected (AF 5 → 7, OC 0 → 1, uniqueRegions 5 → 6) without intervention, which is the argument for leaving the slot open rather than tuning a healthy parameter.",
+  "weakestArea": "Source breadth is the only metric moving the wrong way: unique sources fell 63 → 44 and multi-source articles 19 → 12 on flat output, so citations per article slipped 1.61 → 1.47. Both remain far above target (12 vs 4), so this is a one-day contraction rather than a breach — but it lands the day after a 62-source day, and two more days at this level would mean the feed's source pool, not the selector, has narrowed.",
   "watching": [
-    "The US-Iran war is the single dominant story and is now propagating into unrelated categories — Fed rate move, diesel and food prices, a $38bn cost estimate, a CBO pricing, and Space Force jamming all landed today.",
-    "Houthi activity is escalating on two fronts at once: a drone near Mecca and an advance threatening an oil route, which couples the conflict story to the energy-price story.",
-    "Pakistan appears in five separate stories today (Saudi backing, fuel prices, sugar export halt, telecom sanctions, India summons) — a country-level cluster worth checking for near-duplicate framing next cycle.",
-    "Gaza reconstruction coverage is shifting from strikes to aftermath (digging without machinery, a building collapse), a phase change that usually thins wire supply.",
-    "Crypto/financial-regulation stories are accumulating (Binance donor steering, Senate crypto bill failure, Hong Kong gold vault) without a connecting frame."
+    "Pakistan is again the largest single-country cluster (7 stories: Bahria Town, fuel subsidy, chokepoint fuel risk, Iran-panel abstention, self-defense reservation, rights-lawyer bail), a repeat of yesterday's five-story cluster and worth a near-duplicate framing check.",
+    "The Hormuz/Red Sea chokepoint story has split into three separately-sourced threads — traffic collapse at Hormuz, Houthis sparing US ships, Pakistani fuel exposure — which is genuine multi-angle coverage rather than recap, but is one event underneath.",
+    "Sudan produced four stories in one day (pound record low, gold mine collapse, Guterres accountability call, Radio Dabanga reporting), the strongest African signal in the recorded window.",
+    "Crypto/financial-enforcement coverage keeps accumulating without a frame: FCA raids, memecoins on Circle's chain, SEC 24-hour trading, Cameroon instant payments.",
+    "Science datelines cluster hard on London (8 of 12) because journal-embargo coverage carries the publisher's city, not the research site — the region tally reads this as EU."
   ],
   "coverageGaps": [
-    "Oceania produced zero articles today and has no standing source in the feed; Pacific climate, fisheries, and Australia-China security stories are structurally invisible.",
-    "Asia at 5 articles is under-covered relative to its share of the feed — Southeast Asia in particular had no representation outside India/Pakistan/China.",
-    "Latin America appears only via Colombia and the Xavante railway story; the AM=22 figure is almost entirely US domestic and US-foreign-policy coverage.",
-    "Science leaned observational and climate-adjacent (cyclone prediction, brown dwarfs, chimp tool use, emissions); no biomedical or materials coverage beyond the measles death figure."
+    "Latin America is effectively absent: AM=21 is almost entirely US, with Mexico City the sole non-US dateline in the hemisphere.",
+    "Oceania recovered only to a single article (Australia student visas); Pacific climate, fisheries and regional security remain structurally invisible.",
+    "Southeast Asia appears only through Malaysia-Myanmar; Indonesia surfaces only as an object of the Eurasian bloc story, not as a reporting origin.",
+    "Tech skews heavily to San Francisco and Washington (10 of 14); non-Western tech reporting appears only via Johannesburg and Mexico City."
   ],
-  "context": "Freshness is the strongest it has been in the recorded window — median 0.2 days, max 0.7 — because the war story keeps the feed saturated with same-day material, and multi-source count hit 17, roughly 4x target and well above the ~9/cycle feed ceiling that capped the two 2026-05 selector-floor experiments. Source concentration is healthy at 9% for the top outlet across 97 citations from 62 distinct sources. The open question for the next few days is whether regional breadth recovers on its own once the war story cools, or whether the AS/AF thinness persists — the latter would be the first genuinely feed-side problem since the 2026-05-16 finding that selector floors are a tapped lever."
+  "context": "Freshness is at its recorded best — median 0 days, p90 0.8, max 1.2 — and sci-tech share hit 42%, the highest in the window, with science at 12 and tech at 14 against floors of 2 and 3. Top-outlet share is 8% across 91 citations. Cycle duration rose to 1427s from 1359s, driven by the selector (332s avg) rather than the editor (99s), which stays well clear of its timeout. No experiment has been active since 2026-05-26; the standing finding from the two 2026-05 selector-floor experiments is that multi-source rate is capped by feed supply, so the next worthwhile experiment is an upstream feed-composition one (regional outlet inclusion, or a Latin America gap-country addition to GAP_COUNTRIES) rather than another selector lever."
 }
