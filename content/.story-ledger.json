@@ -2,13 +2,264 @@
   "version": 1,
   "stories": [
     {
+      "id": "un-mission-says-us-committed-war-crimes-in-iran",
+      "label": "UN mission says US committed war crimes in Iran",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-un-mission-says-us-committed-war-crimes-in-iran"
+      ],
+      "eventUri": "eng-12018318",
+      "summary": "Lead with the legal standard, not the adjective: a commission appointed by the Human Rights Council found 'reasonable grounds to believe' the United States committed war crimes in indiscriminate attacks on an Iranian school and a residential area — and the same report makes findings against Iranian forces, which must be reported to the same standard and at the same length. Teach the mechanism our reader cannot get elsewhere: 'reasonable grounds to believe' is the evidentiary threshold for a fact-finding body, deliberately lower than a criminal court's, so what this report produces is a preserved record, not a verdict — explain what indiscriminate attack means in law (a strike that does not distinguish between military objectives and civilians, or whose expected civilian harm is excessive against the anticipated advantage), because that definition is what the finding turns on. Report the incidents named, including Minab, with dates, places and the numbers of dead where the commission gives them, and the US and Iranian responses or that they were sought. Then the accountability gap, reported plainly: the US is not an ICC state party and the Security Council route to referral is closed by its own veto, so name precisely what can follow — universal-jurisdiction prosecutions, state-party referrals, arms-transfer obligations on third countries — and what almost certainly will not. Who is affected and must be named: the schoolchildren and residents killed. Who holds power: the commission, which can only document; the Council, which can only receive. SELECTION NOTE: the feed supplied seven multi-source clusters this cycle and only two were usable, both politics — so the economy multi-source floor is unmet. Rejected multi-source candidates: the Fed rate rise (we covered the underlying hike on 09-16 as the supply-shock/tightening piece), the Los Angeles news-helicopter crash (local accident, no systemic content), the ICC-Duterte item (a daily video wrap, not a story), King Charles on AI (a royal intervention with no mechanism), and the Houthi fighter-jet claim (too close to the 09-16 Mecca drone and 09-17 US-Houthi channel pieces). Also skipped under the sourcing-discipline rule: Declassified UK's report that at least 80 Yemeni civilians were killed with alleged British complicity — a serious claim with no corroborating source anywhere in today's feed; flag for feed-side audit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/War_crime",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
+        "http://en.wikipedia.org/wiki/United_Nations_Human_Rights_Council",
+        "http://en.wikipedia.org/wiki/Human_rights",
+        "http://en.wikipedia.org/wiki/Minab_County"
+      ]
+    },
+    {
+      "id": "age-limits-for-social-media-outlined-by-european-union",
+      "label": "Age Limits for Social Media Outlined by European Union",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-16-age-limits-for-social-media-outlined-by-european-union"
+      ],
+      "eventUri": "eng-12010792",
+      "summary": "The EU proposes barring under-15s from TikTok, Instagram and their peers across 27 states — lead not with the age but with the unanswered question the age creates: to enforce a minimum age you must verify the age of every user, not just the children, so a child-protection rule is also, mechanically, an identity rule for 450 million adults. Teach that trade-off precisely, because our reader will meet it in every jurisdiction: the options are document upload, bank or telecom attestation, face-estimation models, or a government eID with a zero-knowledge 'over 15' token — and only the last avoids handing a platform a permanent identity record. Report what the Commission's text actually specifies, whether verification is mandated or left to platforms, what the penalties are, and the path ahead, which is the part most coverage omits: this is a proposal that must pass the Parliament and the Council, so report the timeline and who opposes it. Report the evidence base honestly — what the research does and does not establish about adolescent social media harm — and Australia's under-16 ban as the live precedent with whatever enforcement data exists. The structural why for our reader: the EU is again writing a rule the rest of the world will inherit through compliance engineering, as it did with GDPR, so say plainly what it will cost users outside Europe, including those in countries with no data-protection authority to appeal to. Who holds power: the Commission, the platforms who will build the verification layer, and the member states. Who is affected and not consulted: teenagers, and every adult who will now prove their age to read. Distinct from the 09-17 Canada 'associate member' piece, which came from the same von der Leyen speech — carry no enlargement or trade material.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Canada",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/President_of_the_European_Commission",
+        "http://en.wikipedia.org/wiki/Mark_Carney",
+        "http://en.wikipedia.org/wiki/Strasbourg",
+        "http://en.wikipedia.org/wiki/European_Parliament"
+      ]
+    },
+    {
+      "id": "pakistan-abstains-in-un-vote-on-iran-sanctions-panel",
+      "label": "Pakistan abstains in UN vote on Iran sanctions panel",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-pakistan-abstains-in-un-vote-on-iran-sanctions-panel"
+      ],
+      "eventUri": null,
+      "summary": "A US-sponsored resolution to extend the mandate of the Panel of Experts serving the Security Council's Iran sanctions committee was rejected by Chinese and Russian vetoes, and Pakistan abstained — lead with what dies when a panel of experts lapses, because that is the mechanism and it is invisible in the headline. These panels are the only standing investigative capacity the Council has: a handful of specialists who trace interdicted cargoes, shell companies and end-user certificates and publish the findings that member states then cite. Kill the mandate and the sanctions regime remains on paper while the instrument that documented breaches stops existing — so report exactly what this panel's last reports found, how many staff it had, and what happens to work in progress. Then report the vote itself with precision: the sponsor, the tally, who vetoed and on what stated grounds, and Pakistan's explanation of its abstention in its own words. The structural why for our reader: Pakistan sits on the Council as an elected member, borders Iran, and is simultaneously deepening its Saudi defence commitments while the US-Iran war continues — so an abstention is a positioning decision with a price on both sides, and it should be reported as a choice with reasons, not as fence-sitting. Note the precedent our reader will recognise: the DPRK panel of experts was ended by a Russian veto in 2024 and monitoring shifted to an ad-hoc group of states, which is the likeliest successor here — report whether anything similar is proposed. Who holds power: the five permanent members, whose veto can dissolve the Council's own eyes. Who is affected: Iranians under a sanctions regime that now has no independent auditor, in either direction. Distinct from the 09-17 Pakistan self-defence-doctrine piece — this is Council procedure and the sanctions machinery, carry no Afghanistan or Article 51 material. OIC sourcing satisfied: Dawn is the Pakistani account.",
+      "conceptUris": []
+    },
+    {
+      "id": "un-chief-calls-for-accountability-for-states-fuelling-sudan",
+      "label": "UN chief calls for accountability for states fuelling Sudan's war",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-un-chief-calls-for-accountability-for-states-fuelling-sudan"
+      ],
+      "eventUri": "eng-12017723",
+      "summary": "Guterres said foreign countries are helping to fuel Sudan's war and called for accountability — lead with the fact that he did not name them, because the naming is the whole test. Teach the mechanism our reader needs: an arms embargo exists over Darfur and nowhere else in Sudan, it binds states rather than individuals, and it is monitored by a panel whose reports are published and then not acted on — so 'accountability' here has no forum, and the article should say which body could act (the Council, the ICC's existing Darfur referral, national export-control regulators) and why none has. Report what the panel of experts and open-source investigators have documented about drone and weapons supply routes into Sudan, with dates and origins, attributing each claim to its source, and report the denials of the states implicated in those findings to the same standard. Then the humanitarian arithmetic Guterres was describing: displaced totals, the famine classifications by area, and what proportion of the UN's Sudan appeal is funded — because a funding percentage is the most honest measure of how seriously the rest of the world takes this. Who bears it and must be centred: Sudanese civilians in El Fasher and Kordofan, named places with numbers. Who holds power: the army and the Rapid Support Forces, the external states supplying both, and a Secretary-General whose only instrument is a press conference before the General Assembly opens. Fills the audit's flagged Africa gap. OIC sourcing satisfied: Radio Dabanga is the Sudanese account.",
+      "conceptUris": []
+    },
+    {
+      "id": "bab-al-mandab-chokepoint-what-complete-closure-would-mean-fo",
+      "label": "Bab al-Mandab chokepoint: What complete closure would mean for Pakistan",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-bab-al-mandab-chokepoint-what-complete-closure-would-mean-fo"
+      ],
+      "eventUri": null,
+      "summary": "The current blockade of Bab al-Mandab applies only to Saudi-linked ships — lead with that selectivity, because a partial closure is a pricing decision and the article's job is to show how a decision taken in Sanaa arrives on a factory floor in Karachi. Teach the transmission chain explicitly, step by step: Pakistan takes roughly a third of its crude from Red Sea loading ports, a diverted cargo goes around the Cape and adds weeks of voyage and charter cost, war-risk premiums are charged per voyage on hull and cargo, and the landed price feeds the fortnightly fuel-price notification, which feeds transport, which feeds food. Give the reader the numbers at each link — Pakistan's daily import volume, the share routed through the strait, the freight and insurance differential, and the rupee cost of a dollar-denominated barrel against reserves measured in weeks of import cover. That last figure is the one that decides whether this is expensive or existential, so lead the second half with it. Then the structural why: Pakistan is a fuel-importing economy with an IMF programme and administered fuel prices, which means a chokepoint shock cannot be absorbed at the pump without either a subsidy the fiscal framework forbids or an inflation the Bar Council was condemning in the same news cycle — so say plainly who ends up paying, which is households and small manufacturers. Who holds power: the Houthi leadership setting which flags pass, the underwriters pricing the risk, and the finance ministry choosing between the deficit and the pump. Distinct from the 09-17 Hormuz transit-count piece — that was measurement, this is the import bill of one country; carry no AIS or ship-tracking material. OIC sourcing satisfied: Dawn is the Pakistani account.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-s-finance-minister-pins-pound-s-fall-on-growing-demand",
+      "label": "Sudan's Finance Minister pins Pound's fall on growing demand for US Dollars",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-sudan-s-finance-minister-pins-pound-s-fall-on-growing-demand"
+      ],
+      "eventUri": null,
+      "summary": "Sudan's finance minister explains the pound's collapse as demand for dollars outrunning supply because imports exceed exports — lead by taking that explanation seriously and then showing what it leaves out, because the omission is the story. Teach the mechanism our reader can use anywhere: a currency falls when the country must buy more foreign exchange than it earns, and in a war economy three things do that at once — export capacity is physically destroyed or captured, the central bank prints to pay soldiers and salaries it has no revenue for, and gold, the one export that still functions, leaves informally so its dollars never reach the official market. So report the numbers that separate those causes: the official rate against the parallel rate and the spread between them, reserves, the monetary base, and declared versus estimated gold exports. The spread is the single most informative figure, because it measures how little the official rate means. Then the consequence, which is the article's centre of gravity: almost all of Sudan's food, fuel and medicine is imported and priced off the parallel rate, so a depreciation is a direct cut to what a household can eat — report the price of a staple basket now against a year ago, and what humanitarian agencies say it has done to their purchasing power. Who bears it: Sudanese families paying war-financed inflation, on top of everything else. Who holds power: the central bank, the ministry, and the armed actors whose payrolls are the deficit. Do not repeat the 09-17 West Kordofan mine-collapse material — reference gold only as an export line. Fills the audit's flagged Africa gap. OIC sourcing satisfied: Radio Dabanga is the Sudanese account.",
+      "conceptUris": []
+    },
+    {
+      "id": "fca-steps-up-crypto-enforcement-with-raids-on-illegal-london",
+      "label": "FCA steps up crypto enforcement with raids on illegal London P2P trading sites",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-fca-steps-up-crypto-enforcement-with-raids-on-illegal-london"
+      ],
+      "eventUri": "eng-12018558",
+      "summary": "Britain's financial regulator ran multi-agency raids on three unregistered peer-to-peer crypto trading locations in London — lead with the word 'locations', because the surprise is physical: this is not an app being delisted, it is premises, cash and people, and that tells the reader what the actual rail looks like. Teach the mechanism: a P2P cash-for-crypto desk is the on-ramp that no exchange KYC ever sees — a customer hands over banknotes and receives coins to a self-custody address, so the transaction is on-chain and fully visible while the person on one side of it is not, which is exactly the inversion that makes chain analysis alone useless. Explain who uses these desks and be precise rather than insinuating: remittance senders priced out of formal corridors, sanctioned-trade settlement, and proceeds of acquisitive crime, in proportions nobody can state confidently — say so. Report the specifics: which agencies took part, what was seized, whether anyone was arrested or charged, how many firms sit on the FCA's registered list against how many have been refused, and what the penalty for unregistered cryptoasset business actually is. Then the structural why, which is the timing: the UK's full regulatory regime for cryptoassets is close to implementation, so enforcement before a deadline is a signalling instrument aimed at the firms that intend to apply — report what the FCA says it is signalling. The global consequence our reader will want named: informal corridors exist because formal ones are expensive and de-risked, so closing the desk without cheapening the corridor moves the same flow somewhere less visible. Who holds power: the FCA and HMRC. Who is affected: the migrant sender using the only rail that priced their remittance in single digits.",
+      "conceptUris": []
+    },
+    {
+      "id": "u-s-sec-begins-prepping-for-around-the-clock-trading-that-cr",
+      "label": "U.S. SEC begins prepping for around-the-clock trading that crypto treats as the norm",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-u-s-sec-begins-prepping-for-around-the-clock-trading-that-cr"
+      ],
+      "eventUri": "eng-12019170",
+      "summary": "The SEC has begun working out how American equity markets would run 24 hours a day, seven days a week — lead with what closes when a market never closes, because the overnight gap is not idle time, it is infrastructure. Teach the mechanism precisely: the hours between sessions are when clearing and settlement run, when corporate actions and dividends are processed, when reference prices are struck, and when a closing auction concentrates the liquidity that produces the single price everything else is marked against — so a market that never shuts must rebuild each of those functions, and the hardest is the closing price, because index funds, derivatives settlement and every mutual fund's daily NAV depend on one existing. Report what the commissioners actually said and what the agency is studying, who is pushing for it — the exchanges and retail brokers with overseas customers — and what the clearing house has said it can support, because the DTCC's operating hours are the real constraint, not the exchanges'. Then the part our reader should weigh: the case for extended hours is explicitly about investors in Asia, Africa and the Gulf who currently trade US equities in their own night, so this is a genuine access argument, not just a crypto-inflected one — but liquidity at 3am is thin, spreads widen, and a thin market is where a retail order gets the worst price. Say both plainly. Who holds power: the SEC, the exchanges, and the clearing infrastructure. Who is affected: overseas retail investors who gain access on worse terms, and the people who would have to staff the night desks.",
+      "conceptUris": []
+    },
+    {
+      "id": "climate-change-glacier-loss-and-dry-rivers-threaten-water-se",
+      "label": "Climate change: Glacier loss and dry rivers threaten water security",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-climate-change-glacier-loss-and-dry-rivers-threaten-water-se"
+      ],
+      "eventUri": "eng-12017692",
+      "summary": "The WMO reports that 2025 was among the driest years for the world's rivers in more than three decades, with glaciers still retreating and freshwater reserves still falling — lead with the compound finding rather than any single number, because the three measures failing together is what makes this different from a drought report. Teach the mechanism our reader will not get from the headline: a glacier is a buffer, not a source, and a retreating one temporarily releases more water than it stores, so downstream flow rises before it falls — which means the Indus, Ganges, Amu Darya and Yellow River basins are in the phase where the loss looks like abundance. Name the point where that reverses, as far as the science allows, and be honest about the uncertainty. Report the report's actual figures: how much ice mass was lost, how many basins were below normal discharge, what happened to groundwater storage in the GRACE-type satellite record, and the period of the baseline being compared against. Explain what these instruments can and cannot measure, because 'freshwater reserves declining' is a satellite gravity inference, not a dipstick. Then the consequence and who carries it: the basins at greatest risk are in South and Central Asia, the Andes and East Africa, and the people most exposed are irrigation farmers with no storage and cities with no alternative supply — report what the WMO says about population exposure, with numbers. Who holds power: the upstream states that build the dams and the downstream ones that have no treaty with them. Deliberately broader than the 09-16 Nepal glacier piece, which was a single-hazard attribution — this is the global water budget; carry no GLOF or single-lake material.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Meteorological_Organization",
+        "http://en.wikipedia.org/wiki/Glacier",
+        "http://en.wikipedia.org/wiki/Groundwater",
+        "http://en.wikipedia.org/wiki/Water_cycle",
+        "http://en.wikipedia.org/wiki/River",
+        "http://en.wikipedia.org/wiki/Drought",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Water"
+      ]
+    },
+    {
+      "id": "ambient-real-time-digitization-and-datafication-of-glass-sli",
+      "label": "Ambient, real-time digitization and datafication of glass slide microscopy towards AI-at-the-microscope",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-ambient-real-time-digitization-and-datafication-of-glass-sli"
+      ],
+      "eventUri": null,
+      "summary": "Digital pathology normally means a whole-slide scanner costing as much as a car, producing gigabyte images that a hospital must then store — this work instead captures and digitises what the pathologist is already looking at, in real time, at the eyepiece of an ordinary microscope. Lead with that inversion, because the cost structure is the finding, not the accuracy. Teach the mechanism: a slide scanner digitises the entire specimen at high magnification before anyone looks at it, which is why it is slow, expensive and storage-hungry; capturing the live field of view instead means you only ever digitise what is actually examined, so the hardware becomes a camera and a compute box bolted to an existing instrument. Report what the system consists of, its latency, what tasks the model performed and how well, the cohort and slide counts, and crucially what the comparison baseline was — a model that matches a scanner-based pipeline at a fraction of the cost is a very different claim from one that matches a pathologist. Note this is an accepted manuscript ahead of the version of record, and attribute the named authors and institutions. Then the reason this belongs in our pages: the global shortage of pathologists is not evenly distributed — many countries have a single-digit number per million people, and a diagnosis that cannot be made is a cancer that is treated late or not at all, so a method that upgrades the microscopes already sitting in district hospitals reaches a population that scanners never will. Report whether the authors tested it anywhere outside a well-resourced centre, because that is the difference between a global-health claim and a global-health aspiration. Who holds power: the vendors, the regulators who must approve a diagnostic device, and the institutions that will own the resulting image data. Fills the audit's flagged absence of biomedical coverage.",
+      "conceptUris": []
+    },
+    {
+      "id": "pressure-as-a-design-tool-for-thermoelectricity-in-bi2te3-na",
+      "label": "Pressure as a design tool for thermoelectricity in Bi2Te3 - Nature Reviews Materials",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-pressure-as-a-design-tool-for-thermoelectricity-in-bi2te3-na"
+      ],
+      "eventUri": null,
+      "summary": "High pressure makes bismuth telluride a better thermoelectric, and the gain has always vanished the moment the pressure came off — the reported advance is a high-pressure, high-temperature synthesis that keeps it. Lead with that retention, because 'improvement that survives the release of the condition that caused it' is the entire point and it is what separates a laboratory curiosity from a manufacturable material. Teach the mechanism for a technically literate reader who is not a materials scientist: a thermoelectric converts a temperature difference directly into voltage with no moving parts, its quality is captured by a figure of merit that rewards electrical conductivity while punishing thermal conductivity, and those two normally rise together — which is why the field advances by finding ways to scatter heat-carrying phonons without scattering electrons. Explain that pressure works by distorting the lattice and band structure, and that the trick here is locking in a metastable distorted state at ambient conditions. Report the actual numbers: the figure of merit achieved, at what temperature, against the commercial baseline, and the synthesis conditions in gigapascals and degrees — then the question that decides whether any of it matters, which is whether a diamond-anvil-scale process can be scaled to parts, and at what cost per watt. Be plain that this is a commentary on a Communications Materials paper, not a product. Why our reader should care: bismuth telluride is the material in every Peltier cooler and radioisotope generator, tellurium is scarce and its supply is concentrated, and waste heat is the largest untapped energy stream in every industrial economy — so report what fraction of industrial heat is low-grade enough for this to address. Fills the audit's flagged absence of materials-science coverage.",
+      "conceptUris": []
+    },
+    {
+      "id": "i-hijacked-a-real-artist-s-spotify-with-ai-music-it-was-dist",
+      "label": "I Hijacked a Real Artist's Spotify with AI Music. It Was Disturbingly Easy",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-i-hijacked-a-real-artist-s-spotify-with-ai-music-it-was-dist"
+      ],
+      "eventUri": null,
+      "summary": "A reporter uploaded AI-generated tracks to a real musician's Spotify page and the platform accepted them — lead with the fact that this was a demonstration performed with permission, then with why it worked, because the mechanism is an identifier problem and not an AI problem. Teach it precisely: an artist page is keyed to an identifier that distributors assert when they deliver a release, so a new distributor claiming an existing artist ID can attach anything to that page, and the platform's trust sits with the distributor rather than with the musician — which means the person whose name is on the page has no credential proving they are them. That is the loophole, and it predates generative audio; what changed is that filling a catalogue with plausible tracks now costs nothing. Report exactly what the reporter did, what checks existed at each step, how long the tracks stayed up, what Spotify and the distributor said, and what recourse an affected artist actually has, with the documented cases of this happening to working musicians without consent. Then the money, which is the accountability half: streaming royalties pay from a shared pool, so fraudulent uploads under a real artist's name divert the real artist's royalties and, at scale, every other artist's share of the pool — report the platform's stated policy on artificial streaming and what it has actually recovered. The structural why for our reader: platforms that scaled by making distribution frictionless cannot now add identity verification without excluding the independent musicians the openness was for — so report what the proposed fixes are and who they would lock out. Who holds power: Spotify and the distributors. Who bears it: the musician who has to prove they are themselves.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-s-famoussparrow-hackers-target-latin-america-with-new",
+      "label": "China's FamousSparrow hackers target Latin America with new backdoor",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-china-s-famoussparrow-hackers-target-latin-america-with-new"
+      ],
+      "eventUri": null,
+      "summary": "A China-linked espionage group is inside government agencies across Latin America using a new backdoor researchers call SparroWocky — lead with the targets rather than the malware, because the interesting question is why ministries in Latin America are worth a bespoke implant. Teach the mechanism at the level our reader wants: a backdoor is the persistence layer, not the break-in, so report what the initial access vector was — almost always an unpatched internet-facing server or a stolen credential — and what the implant does once resident, which is typically survive reboots, beacon out over a protocol that looks like normal traffic, and let operators load further tools on demand. Explain how attribution is actually made, because 'China-linked' is an inference from code reuse, infrastructure overlap and operating hours, not a confession — say who made the assessment, with what confidence, and what would falsify it. Report which countries and which kinds of agency were hit, for how long they were compromised before detection, and whether the affected governments have confirmed or commented. Then the structural why, which is the part most coverage omits: Latin American states are simultaneously deepening trade and infrastructure ties with Beijing and running the ministries that negotiate those deals on under-resourced networks, so the espionage and the partnership are the same relationship seen from two sides — report what national cyber-agency capacity actually exists in the affected countries, with budget or staffing figures if available. Who holds power: the operators, and the Western security vendors who decide which intrusions get named. Who is affected: citizens whose immigration, tax and foreign-ministry records sit in those systems. Fills the audit's flagged Latin America gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "university-rescinds-job-offer-to-activist-who-allegedly-wipe",
+      "label": "University Rescinds Job Offer to Activist Who Allegedly Wiped Phone Before DHS Could Search It",
+      "firstSeen": "2026-09-17T17:08:01.190Z",
+      "lastCovered": "2026-09-17T17:08:01.190Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-17-university-rescinds-job-offer-to-activist-who-allegedly-wipe"
+      ],
+      "eventUri": null,
+      "summary": "Samuel Tunick allegedly wiped his GrapheneOS phone before Customs and Border Protection could search it; Georgia State University has now rescinded his job offer — lead with the second event, because the legal case is still open and the employment consequence has already landed, and that sequence is the mechanism this story exposes. Teach the border-search doctrine plainly, because our reader travels: at a US port of entry the ordinary warrant requirement is treated as not applying, so officers may inspect a device without suspicion, and the contested questions are how far a 'forensic' search needs any justification at all and whether a citizen can be compelled to unlock. Report exactly what Tunick is alleged to have done, under what statute he is charged if he is, what his lawyers argue, and what the government's position is — and say clearly what remains allegation. Then the part that generalises: a remote wipe or a device reset is a feature every modern phone ships with and every security guide recommends, so the question the case raises is when using a standard privacy feature becomes obstruction — and the answer will set the practical limit on what travellers, journalists and researchers can safely do at a border. Report what GSU said and whether the withdrawal followed any finding. The structural why for our reader: this is a punishment delivered by an employer before any court has ruled, which is the pattern by which contested legal theories acquire real-world force without ever being tested. Who holds power: CBP, the prosecutors, and a university that acted on a charge. Who is affected: every person who crosses a border with their life on a device — disproportionately, those already selected for secondary inspection.",
+      "conceptUris": []
+    },
+    {
       "id": "spare-our-ships-not-theirs-us-houthi-oman-channel",
       "label": "Trump refuses to bomb Houthis: secret Oman talks offer to spare US, Israel ships — but not Saudi Arabia",
       "firstSeen": "2026-09-17T12:08:02.072Z",
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-spare-our-ships-not-theirs-us-houthi-oman-channel"
@@ -33,7 +284,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-sanction-that-taxes-the-buyer-russia-secondary-tariffs"
@@ -58,7 +309,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-one-invitation-cancels-a-bloc-position-anwar-min-aung-hlaing"
@@ -74,7 +325,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-charge-does-the-punishing-mazari-hazir-bail"
@@ -90,7 +341,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-delay-was-doing-the-checking-central-africa-instant-payments"
@@ -106,7 +357,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-zero-tariff-you-cannot-settle-eaeu-indonesia"
@@ -122,7 +373,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-cold-start-was-the-strategy-circle-arc-launch"
@@ -147,7 +398,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-canopy-stayed-the-carbon-left-congo-basin-biomass"
@@ -163,7 +414,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-other-kind-of-emissions-decline-india-power-sector"
@@ -179,7 +430,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-score-that-predicts-a-committee-frailty-transplant-waitlist"
@@ -195,7 +446,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-jumping-a-queue-that-is-literal-south-africa-data-centres"
@@ -211,7 +462,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-friendliest-case-for-the-hardest-argument-combat-ai"
@@ -227,7 +478,7 @@
       "lastCovered": "2026-09-17T12:08:02.072Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-repair-that-reveals-the-constraint-kc-135-battle-damage"
@@ -243,7 +494,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-category-that-does-not-exist-canada-eu-association"
@@ -268,7 +519,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-model-that-industrialises-a-refusal-west-bank-demolitions"
@@ -293,7 +544,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-dependants-ban-filters-by-life-stage-australia-visas"
@@ -318,7 +569,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-doctrine-pakistan-once-rejected-unsc-self-defence"
@@ -334,7 +585,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-membership-is-the-crime-kazakhstan-activist-sentences"
@@ -350,7 +601,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-shaft-that-funds-the-war-west-kordofan-gold-collapse"
@@ -375,7 +626,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-transponder-the-master-can-switch-off-hormuz-transits"
@@ -391,7 +642,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-right-without-a-document-ecowas-biometric-card"
@@ -407,7 +658,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-trade-deal-moved-a-clinical-threshold-enhertu-nice"
@@ -423,7 +674,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-expensive-part-got-cheap-agent-spam"
@@ -439,7 +690,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-authority-without-the-key-agent-payment-standard"
@@ -455,7 +706,7 @@
       "lastCovered": "2026-09-17T08:08:38.971Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-supplier-became-the-competitor-spacex-captive-capacity"
@@ -471,7 +722,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-an-embassy-is-harder-to-close-israel-morocco-upgrade"
@@ -496,7 +747,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-the-host-state-is-also-a-party-pa-visa-bans"
@@ -512,7 +763,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-defence-that-needs-the-evidence-admitted-ulm-five-elbit"
@@ -528,7 +779,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-canal-changes-which-provinces-can-export-pinglu"
@@ -553,7 +804,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-creditor-walked-out-a-debtor-petrosa-settlement"
@@ -569,7 +820,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-cancelled-layout-strands-the-title-bahria-town-cda"
@@ -585,7 +836,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-likely-is-the-strongest-honest-claim-nepal-glacier"
@@ -601,7 +852,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-a-register-the-vendor-defines-openai-misalignment-reports"
@@ -626,7 +877,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-internal-validation-is-the-upper-bound-icu-deterioration-model"
@@ -642,7 +893,7 @@
       "lastCovered": "2026-09-17T04:07:05.706Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-17-deleting-the-cockpit-from-a-certified-airframe-skycourier-ux"
@@ -658,7 +909,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-parking-spot-that-sees-every-orbit-cislunar-weapons"
@@ -683,7 +934,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-twenty-five-thousand-dollars-and-a-stranger-outsourced-assassination"
@@ -708,7 +959,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-what-practically-means-pakistan-saudi-yemen-commitment"
@@ -724,7 +975,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-they-are-asking-for-it-in-writing-warraq-island-tenure"
@@ -740,7 +991,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice"
@@ -767,7 +1018,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-subsidy-financed-by-the-dealer-pakistan-fuel-relief"
@@ -783,7 +1034,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-zero-tariffs-on-a-market-you-cannot-reach-china-africa"
@@ -799,7 +1050,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-logic-fab-cannot-make-memory-sk-hynix-intel-ohio"
@@ -824,7 +1075,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-bill-that-misses-the-term-dies-frontier-act-2027"
@@ -840,7 +1091,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-ledger-ranked-the-victims-revolut-breach"
@@ -856,7 +1107,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-intensity-is-the-forecast-that-kills-ai-cyclone-model"
@@ -872,7 +1123,7 @@
       "lastCovered": "2026-09-16T22:05:55.033Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-market-that-only-works-if-the-stack-reports-itself"
@@ -888,7 +1139,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-third-war-powers-vote-seven-republicans-no-veto-proof-margin"
@@ -913,7 +1164,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-beijing-brokers-with-oil-not-guarantees-islamabad-mou"
@@ -938,7 +1189,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-guilt-by-location-mali-drone-strikes-osint-verification"
@@ -954,7 +1205,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-forty-percent-on-diesel-and-a-new-kind-of-protest-in-idlib"
@@ -970,7 +1221,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-attacked-then-arrested-masafer-yatta-firing-zone-journalist"
@@ -986,7 +1237,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-vault-you-control-hong-kong-gold-clearing-and-reserve-risk"
@@ -1011,7 +1262,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-which-exchange-they-avoid-is-the-compliance-ranking"
@@ -1027,7 +1278,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-a-child-protection-rule-is-an-age-verification-mandate"
@@ -1052,7 +1303,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-eleven-nines-does-not-model-a-missile-aws-permanent-loss"
@@ -1068,7 +1319,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-the-scientific-commons-has-no-security-budget"
@@ -1084,7 +1335,7 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-emissions-fell-because-fuel-got-unaffordable-not-cleaner"
@@ -1100,333 +1351,13 @@
       "lastCovered": "2026-09-16T17:10:19.193Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-16-if-comb-jellies-came-first-neurons-evolved-twice"
       ],
       "eventUri": null,
       "summary": "Comb jellies may have branched off before sponges, which would make them the sister group to all other animals — lead with that claim and with why it is contested, because the dispute is more instructive than either answer. The mechanism to teach: if ctenophores are the earliest branch, then either the nervous system evolved once and sponges lost it, or it evolved twice independently, and the second option would mean neurons are a solution biology can reach more than once — a genuinely large claim about how constrained evolution is. Explain how phylogeneticists actually adjudicate this: gene-tree conflict, long-branch attraction, and the choice of outgroup, so the reader sees that the answer depends on modelling assumptions and not only on data. Then the concrete biology, which is the pleasure of the piece: their nerve net is fused into a continuous mesh rather than wired through synapses in the usual way, they use a different set of neurotransmitters, their bioluminescence chemistry is its own invention, and they regenerate. Give the numbers — species count, the genome studies and their dates, which labs. Name the researchers on each side and say plainly what is unresolved; report a live dispute as a dispute. This is laboratory biology, filling the audit's finding that science this week was carried entirely by disaster and public-health dispatches. No speculation beyond what the researchers claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-wall-is-evidence-about-institutions",
-      "label": "History is being rewritten at an archaeological site in Morocco. What the discovery of an ancient wall tells us",
-      "firstSeen": "2026-09-15T22:05:15.441Z",
-      "lastCovered": "2026-09-17T08:08:38.971Z",
-      "coverageCount": 4,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-16-a-wall-is-evidence-about-institutions",
-        "2026-09-16-a-pledged-share-is-a-margin-call-waiting",
-        "2026-09-17-a-manned-jet-is-a-different-loss-yemen-air-war",
-        "2026-09-17-a-nerve-squeezed-is-not-a-nerve-destroyed-orbital-decompression"
-      ],
-      "eventUri": null,
-      "summary": "Excavation at Oued Beht in northwestern Morocco has uncovered a substantial built structure showing that second-millennium-BC communities in northwest Africa were monumentally organised and connected across the Mediterranean. Lead with what the wall displaces: the Maghreb has been written into Mediterranean prehistory as a recipient — of Phoenician, then Roman, then Arab arrival — and a monumental structure of this date means the local societies were parties to that exchange before any of those arrivals. The mechanism our reader will appreciate is how archaeology actually establishes this: a wall requires organised labour and stored surplus, so the structure is evidence about a society's institutions, not just its masonry, and the dating and the imported material culture are what tie it into a network rather than a curiosity. Who holds power over the knowledge, which is worth asking plainly: say who is conducting the dig, whether Moroccan institutions and INSAP are leading or partnering, and where the finds and the publications go — the answer to that question is why so much North African prehistory was written in European capitals. Report the dating method and range, the specific imported items, and what the excavators say is still unproven. SOURCING NOTE: no Moroccan or wider Maghrebi outlet in this feed covered the find; the piece is a scholarly explainer, so attribute claims to the named researchers and the underlying paper.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Oracle_Corporation",
-        "http://en.wikipedia.org/wiki/Layoff",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Email",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Cloud_computing",
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Business_Insider",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Yemen"
-      ]
-    },
-    {
-      "id": "the-adoption-nobody-is-counting",
-      "label": "The real AI economy is being built by ordinary people",
-      "firstSeen": "2026-09-15T22:05:15.441Z",
-      "lastCovered": "2026-09-17T04:07:05.706Z",
-      "coverageCount": 5,
-      "category": "tech",
-      "importance": 1,
-      "arc": "ongoing",
-      "articles": [
-        "2026-09-16-the-adoption-nobody-is-counting",
-        "2026-09-16-the-state-investigating-is-the-controlling-shareholder",
-        "2026-09-16-the-fee-for-being-late-is-the-whole-question",
-        "2026-09-16-the-route-is-straight-because-straight-is-cheap-xavante-railway",
-        "2026-09-17-the-light-is-the-program-azopolymer-microactuators"
-      ],
-      "eventUri": null,
-      "summary": "Workers across Asia and Africa are rewiring their own jobs with AI tools — one prompt, one workflow, one local problem at a time — without any of the enterprise deployments the industry counts. Lead with a specific worker and a specific task from the reporting, not with the trend, because the finding is that adoption is happening below the level anyone is measuring: the productivity statistics everyone is arguing about count licences sold to firms, and this is unlicensed, unbudgeted and invisible to that number. The mechanism our reader should take is substitution of scarcity — in places where the constraint was never compute but access to a lawyer, a translator, a designer or an English-language form, a general-purpose model removes a bottleneck that no enterprise software was ever priced to remove. Set it directly against our 09-15 piece on the trillion-dollar capex gamble: the return the hyperscalers need is being modelled on Western enterprise seats, while the actual usage is a Karachi accountant and a Lagos tailor paying twenty dollars a month or nothing at all — and that gap between where the value lands and where the revenue lands is the reportable tension. Who bears the risk: workers with no recourse when a model changes, a price rises or an account is geo-blocked. Report the named workers, countries, tools and concrete before-and-after time or income figures the piece documents, and do not extrapolate beyond them.",
-      "conceptUris": []
-    },
-    {
-      "id": "labs-concede-ai-danger-and-reject-the-remedy",
-      "label": "Meta chief pushes back against calls to slow AI development",
-      "firstSeen": "2026-09-16T08:09:50.206Z",
-      "lastCovered": "2026-09-16T17:10:19.193Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-16-labs-concede-ai-danger-and-reject-the-remedy",
-        "2026-09-16-the-price-moves-before-the-barrel-does-diesel-and-the-food-bill"
-      ],
-      "eventUri": "eng-12013886",
-      "summary": "Two of the largest AI firms conceded the risk and rejected the remedy in the same week — lead with that pairing: OpenAI's chief says the world is 'right to be afraid' but should trust the firms, and Meta's says market incentives, legal liability and independent evaluations are sufficient without slowing development. Take those three proposed substitutes seriously and test each one on the page, because that is the whole article and nobody else will do it: market incentives reward capability, not caution, and have no mechanism for harms to non-customers; legal liability requires a plaintiff, a court and a causal chain, and no jurisdiction has yet established one for model output; independent evaluation is the strongest of the three, so report who actually performs it, whether they get pre-deployment weights access, and whether any of them can compel anything. The reader should leave knowing exactly which of the three is a real constraint and which are assurances. Set it against the same week's third data point, and this is why the story is now: the European Commission president says she will invite frontier labs to talks on AI risk — an invitation, not a rulemaking — while in Washington the midterm politics has produced Bernie Sanders and Steve Bannon on one stage over AI, meaning the binding constraint may arrive from voters rather than regulators. Who bears the risk and holds no seat: users in Asia and Africa where these models are already substituting for absent professional services, and where no regulator is being invited to anything. Report the exact quotes and the venues. SOURCING: the underlying reporting is the BBC's, carried here via Yahoo News and OnlineKhabar — trace it to the BBC original and attribute to the executives' own words, not to the aggregators.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Sam_Altman",
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Nvidia",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "gaza-collapse-hundred-missing-hand-tools",
-      "label": "20 dead, dozens missing after war-damaged building falls in Gaza",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-gaza-collapse-hundred-missing-hand-tools"
-      ],
-      "eventUri": "eng-12014597",
-      "summary": "SECOND-DAY STORY — do NOT re-report the collapse. Our 08:22 cycle ran this at 12 dead. Lead with what changed: the toll is now at least 20 including at least 5 children, and roughly 100 people are still missing or feared trapped under the rubble. The mechanism to teach is the rescue, not the fall: civil defence is digging with hand tools because heavy lifting equipment, fuel and cutting gear are among the categories the blockade restricts, so the missing-count is a function of excavation capacity rather than of the collapse. Report how many hours since dawn, what equipment is on site, and what municipal or UN engineers say about how many other bombed-but-standing buildings hold displaced families — that number is the forward-looking lead. Name the dead where names exist; name who controls what enters Gaza. Keep the Katz/forcible-transfer material out — it already ran this morning. OIC sourcing satisfied: The New Arab and Al-Manar (Lebanon) are the regional accounts; use them for the ground reporting.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gaza_City",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Civil_defense",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Hamas",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Palestine_(region)"
-      ]
-    },
-    {
-      "id": "india-pakistan-navy-collision-no-incidents-at-sea-pact",
-      "label": "India summons Pakistani diplomat after incident in Arabian Sea",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-india-pakistan-navy-collision-no-incidents-at-sea-pact"
-      ],
-      "eventUri": "eng-12014570",
-      "summary": "Two nuclear-armed navies put steel on steel in international waters and the response was a summons, not a shot. Lead with the collision itself — which ships, where, how much damage, any casualties — then the detail that carries the stakes: it happened in international waters, meaning neither side can claim a territorial violation, so the dispute is over manoeuvre and intent, which is exactly the category of incident that has no agreed de-escalation channel between Delhi and Islamabad. The mechanism to teach the reader: India and Pakistan have no equivalent of the US-China or US-Russia incidents-at-sea agreements, so there is no hotline procedure for a naval near-miss; the escalation ladder starts at the diplomatic summons and has nothing below it. Report both capitals' accounts separately and to the same standard, and say plainly which claims are unverified. Who is affected: shipping and fishing traffic through the Arabian Sea approaches to Karachi and Gujarat. OIC SOURCING NOTE: Pakistan is the OIC-member party and no Pakistani outlet (Dawn, Geo, Express Tribune) covers this event in today's feed — Al Jazeera (Qatar) is the only regional voice available; flag the Pakistani account as sought from Indian-sourced reporting only.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Indian_Navy",
-        "http://en.wikipedia.org/wiki/Ministry_of_External_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/Arabian_Sea",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Chargé_d'affaires",
-        "http://en.wikipedia.org/wiki/International_waters"
-      ]
-    },
-    {
-      "id": "belarus-frozen-assets-prisoner-trade-no-published-terms",
-      "label": "Trump envoy vows to help unfreeze assets of close Russia ally -- RT Russia & Former Soviet Union",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-belarus-frozen-assets-prisoner-trade-no-published-terms"
-      ],
-      "eventUri": "eng-12011072",
-      "summary": "A US presidential envoy stood in Minsk and promised to work American banks into releasing tens of millions of frozen Belarusian dollars — on the same day UN experts reported that Belarus uses its justice system to imprison Lukashenko's opponents. Lead with those two facts adjacent, dated and attributed, because the sentiment spread across this cluster is the widest in today's feed (0.61) and that spread is itself the story: RT reports a diplomatic win, AP reports a prisoner-release trade, Al Jazeera reports the UN finding. The mechanism to teach: sanctions relief is not a treaty and needs no vote — an envoy's assurance plus Treasury licensing can unfreeze funds, so the price of releasing political prisoners is being set bilaterally and off the record, with no published terms and nothing binding either side afterwards. Who is affected and must be named: the political prisoners still held, and those released and what they were convicted of. Who holds power: John Coale, Lukashenko, the Treasury office that writes the licence, and Citibank. State plainly which claims come only from Russian state media.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Belarus",
-        "http://en.wikipedia.org/wiki/Alexander_Lukashenko",
-        "http://en.wikipedia.org/wiki/Minsk",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Political_prisoner",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Citibank"
-      ]
-    },
-    {
-      "id": "somaliland-recognition-berbera-au-border-precedent",
-      "label": "Somaliland's Uphill Struggle for Recognition in Washington",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-somaliland-recognition-berbera-au-border-precedent"
-      ],
-      "eventUri": null,
-      "summary": "Israel became the first state to recognise Somaliland last December; this week President Abdullahi takes his case to the Trump administration. Lead with the precedent problem, because that is the mechanism: the African Union's founding principle is the inviolability of colonial-era borders, so recognising a territory that seceded from Somalia in 1991 would set a precedent every separatist movement on the continent — and every state facing one — will read immediately. Report what Somaliland is actually offering Washington: Berbera port and its airstrip on the Gulf of Aden, opposite Yemen and adjacent to the Bab el-Mandeb approaches our Red Sea coverage has been tracking, plus a counterweight to the Chinese base at Djibouti. Then report the cost: recognition would be bought from a US administration mid-war in Yemen, which prices Somaliland as basing real estate rather than as a claim on self-determination. Who holds power and must be named: Abdullahi, the Republican lawmakers backing the file, Mogadishu, and the AU. Fills the audit's flagged Horn of Africa and East Africa gaps. OIC SOURCING GAP: no Somali, Gulf or regional outlet in today's feed covers this — worth auditing feed-side.",
-      "conceptUris": []
-    },
-    {
-      "id": "colombia-total-peace-armed-groups-doubled",
-      "label": "The InSight Take: Colombia's Total Peace: What Went Wrong and What Comes Next?",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-colombia-total-peace-armed-groups-doubled"
-      ],
-      "eventUri": null,
-      "summary": "Colombia's armed groups nearly DOUBLED in size during Gustavo Petro's Total Peace plan — lead with that number, because it inverts the entire premise of negotiated demobilisation. The mechanism to teach, and it generalises far beyond Colombia: opening simultaneous talks with every armed group without a credible military or judicial alternative turned negotiation status into a recruiting asset — groups that sat at the table got de facto territorial tolerance, which let them tax, recruit and expand while formally at peace. Then the forward half: President Abelardo de la Espriella's militarised turn, and why the historical record says a hard-line reversal produces the same body count without the territory. Who bears the cost and must be named by place: rural communities in Catatumbo, Cauca and the Pacific coast living under whichever group holds the ground. Who holds power: Petro, de la Espriella, the group leaderships, and the US, whose counternarcotics money follows the militarised policy. Report it as reporting, not as commentary — attribute the analysis to InSight Crime's editors by name. Fills the audit's flagged Latin America gap: the region produced no domestic political reporting yesterday.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-upi-mdr-end-of-free-public-payments-rail",
-      "label": "0.4% UPI MDR: Traders Say They'll Promote Cash. Will Festive Sales Take A Hit?",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-india-upi-mdr-end-of-free-public-payments-rail"
-      ],
-      "eventUri": "eng-12013909",
-      "summary": "India is ending zero-cost digital payments on the world's largest real-time payments rail. Lead with the number and the threshold: a 0.4% Merchant Discount Rate on UPI merchant transactions above Rs 2,000, with a top finance ministry official saying there is 'no question of rollback'. The mechanism our reader needs: UPI's entire adoption story — billions of transactions a month, and small traders who never accepted cards — was built on MDR being zero, subsidised by the state as public digital infrastructure. Reintroducing a fee converts a public rail into a priced one, and the traders' response (Khan Market Association's Sanjiv Mehra says they will actively promote cash) is the test of whether adoption was habit or price. Report what 0.4% actually costs a shopkeeper on a Rs 5,000 sale, what the same sale costs on a credit card, and who collects the fee. The structural why: every country building a public payments rail — Brazil's Pix, Nigeria's NIP, the Gulf's instant systems — is watching whether India can charge for one without losing it. Timing matters: this lands ahead of the festive season, India's peak retail quarter. Name the ministry, the NPCI, and the banks.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/National_Payments_Corporation_of_India",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Mobile_payment",
-        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(India)"
-      ]
-    },
-    {
-      "id": "cbo-iran-war-cost-inflation-half-point-floor",
-      "label": "Trump's govt makes 'treasonous' claim of weapons shortages",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-cbo-iran-war-cost-inflation-half-point-floor"
-      ],
-      "eventUri": null,
-      "summary": "SOURCING, BINDING: this is an advocacy outlet, but the story is two US government documents — a Congressional Budget Office analysis released Tuesday and a Department of Defense Inspector General report released Monday. Source every figure to those reports directly, quote the reports rather than the outlet, and do not adopt its framing. The economic lead: CBO puts direct DoD cost of the Iran war at $38 billion and projects the 2027 US inflation rate a full half-point higher than pre-war, almost entirely through global energy prices — because petroleum is an input to shipping, and shipping is an input to nearly every price. Moody's chief economist Mark Zandi puts the consumer cost at $115 billion, about $860 per household; pump prices are up more than 40%. The mechanism to teach: CBO states its estimate is incomplete because DoD did not answer its requests for information, so the published figure is a floor, not an estimate — base damage alone may exceed $200 billion. The accountability half: the IG report is the first confirmation from inside DoD of 'strategic inventory shortfalls', after Hegseth called the shortage 'a manufactured story' and Trump called those reporting it treasonous. Follows our munitions-shortfall and 40,000-bombs pieces — advance them with the CBO arithmetic, do not repeat the arms-sale numbers. OIC SOURCING GAP: the IG report names damaged US bases in Kuwait, Bahrain, Qatar, UAE, Saudi Arabia, Iraq, Oman and Jordan and no Gulf outlet in today's feed covers it.",
-      "conceptUris": []
-    },
-    {
-      "id": "pta-halts-onic-esim-state-regulator-state-operator",
-      "label": "PTA orders PTML to suspend new ONIC SIM, eSIM issuance and subscriptions",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-pta-halts-onic-esim-state-regulator-state-operator"
-      ],
-      "eventUri": "eng-12011770",
-      "summary": "Pakistan's telecom regulator has ordered a state-owned operator to stop selling its own product. Lead with the scope of the halt — no new ONIC SIMs or eSIMs, no new activations, no new subscriptions, no marketing — and then the question that makes it a story: PTA and PTML are both arms of the same state, so this is a regulator sanctioning a government-owned company, which is the rarer and more informative direction of enforcement. Report exactly what PTA says the violation was and under which licence condition, because that determines whether existing ONIC subscribers lose service or merely lose support. Who is affected and should be counted: current ONIC users, and the eSIM buyers who have no physical card to port. The structural why for our reader: ONIC was PTML's digital-first brand, the state incumbent's attempt to compete with private operators on app-based onboarding — and app-based onboarding is exactly where SIM-registration and biometric-verification rules bite hardest in Pakistan. Name the PTA officials issuing the order, PTML/Ufone's management, and the ministry that owns them. OIC sourcing satisfied: Dawn is the Pakistani regional account.",
-      "conceptUris": []
-    },
-    {
-      "id": "flock-firmware-leak-plate-reader-reads-more",
-      "label": "Hackers Stole Flock's Camera Software, Revealing How the Company Tracks Cars and People",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-flock-firmware-leak-plate-reader-reads-more"
-      ],
-      "eventUri": null,
-      "summary": "The surveillance company's own firmware is now the evidence against it. Lead with what the extracted software actually reveals about capability versus marketing: Flock has long described its automatic licence plate readers as reading plates, and the code is the artefact that shows what else is computed — vehicle make, colour, damage, bumper stickers, and, per the reporting, people. That distinction is the whole accountability gap: every US city council that approved these cameras approved a plate reader, and the procurement contract is written against the marketing claim, not the binary. The mechanism to teach a technically literate reader: what firmware extraction from a physical camera tells you that a vendor audit cannot, and why 'fingerprinting' a vehicle without reading its plate defeats the legal theory that plate data is public-road information. Who holds power and must be named: Flock, and the police departments and municipalities running its network. Who is affected: everyone driving past one, with no notice and no opt-out. Report what Flock says in response, or that it was asked and did not answer. Do not glamourise the hackers or reproduce anything operational from the leak.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-glasses-swana-no-regulator-to-complain-to",
-      "label": "Why Meta Glasses are a Privacy Disaster in the SWANA Region",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-meta-glasses-swana-no-regulator-to-complain-to"
-      ],
-      "eventUri": null,
-      "summary": "The same product carries a different risk depending on which state can subpoena the footage. Lead with the asymmetry, not the gadget: camera glasses that are a social-etiquette problem in Europe — where GDPR gives a bystander a deletion right and a regulator to complain to — are a physical-safety problem across SWANA, where most states have no enforceable data-protection law, no independent regulator, and a documented record of prosecuting speech captured in private settings. The mechanism our reader will use: the capture is passive and unannounced, the processing is remote and in Meta's jurisdiction, and the resulting record is discoverable by whichever authority can compel Meta or seize the wearer's phone — so the threat model is not Meta, it is the local security service plus a device Meta built. Report which SWANA countries actually have data-protection statutes and which of those have a functioning regulator. Who is affected: journalists, organisers, refugees and domestic workers, whose presence in a café is itself sensitive. Who holds power: Meta, and the ministries that request the data. SMEX is the Beirut-based regional digital-rights organisation — attribute its analysis by name, and report Meta's stated on-device and recording-indicator safeguards alongside the critique.",
-      "conceptUris": []
-    },
-    {
-      "id": "global-south-us-chips-chinese-weights-both-sides",
-      "label": "Playing both sides of the U.S.-China AI \"Cold War\"",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-global-south-us-chips-chinese-weights-both-sides"
-      ],
-      "eventUri": null,
-      "summary": "The countries Washington and Beijing assume must choose are refusing to. Lead with the specific split the reporting documents — US chips underneath, Chinese open-weight models on top — because that is the mechanism and it is elegant: Nvidia silicon is a capital purchase with export controls attached, while a Chinese open-weight model is a free download with no licence to revoke, so a ministry in Jakarta, Riyadh, Nairobi or São Paulo can buy American hardware for sovereignty reasons and run Chinese weights for cost reasons in the same rack. Name the countries and the actual deployments; give the price gap between a frontier API call and self-hosted open weights, because that number is why this is happening. The structural why for our reader: export controls bind at the hardware layer, where a chip can be counted at a border, and do not bind at the model layer, where weights are a file — so the US controls what the Global South computes on and China increasingly supplies what it computes with. Who holds power: Nvidia, the Chinese labs publishing weights, the US Commerce Department. Who is affected: states that will be dependent on someone either way and are choosing to be dependent on both.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-measles-deaths-elimination-status-95-percent",
-      "label": "U.S. reaches highest number of measles deaths in decades",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-16-us-measles-deaths-elimination-status-95-percent"
-      ],
-      "eventUri": null,
-      "summary": "Lead with the count and the comparison: the number of US measles deaths this year, and the last year it was that high — the gap between those two dates is the story, because the United States declared measles eliminated in 2000 and elimination is a status that can be lost. The mechanism to teach precisely, since it is arithmetic our reader will recognise: measles has a basic reproduction number around 12-18, the highest of any common human pathogen, which is why herd immunity requires roughly 95% two-dose coverage — a threshold with no margin. Drop two points nationally and nothing happens; drop ten points in one county and you get an outbreak, because vaccination coverage clusters geographically. So report county-level coverage, not the national average, and report the case fatality rate against the death count so the reader can see how large the underlying outbreak must be. Who is affected and must be counted: the dead, nearly all unvaccinated, disproportionately children under five. Who holds power: the CDC, the state health departments, and whoever set the federal vaccine-guidance policy this year. Attribute every figure to CDC or state health-department data with its date.",
-      "conceptUris": []
-    },
-    {
-      "id": "open-cosmos-300m-earth-observation-as-a-service",
-      "label": "Open Cosmos Raises €300 Million as Investors Back Europe's Space Push",
-      "firstSeen": "2026-09-16T12:08:13.312Z",
-      "lastCovered": "2026-09-16T12:08:13.312Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-15-open-cosmos-300m-earth-observation-as-a-service"
-      ],
-      "eventUri": null,
-      "summary": "€300 million into a satellite manufacturer is a bet that Earth observation is becoming infrastructure rather than science. Lead with the number and what it buys — manufacturing capacity and faster deployment of Earth-observation and communications constellations — then the mechanism that makes it interesting to a reader outside Europe: Open Cosmos's model is building and operating constellations for other people's governments, so a country that could never fund a national space programme can buy sovereign imaging capacity as a service. Report which national customers it already has, because that list is the real map of who is acquiring their own eyes. The structural why: Earth observation is the layer underneath crop forecasting, flood and drought warning, deforestation monitoring and conflict verification — capabilities currently supplied to most of the world by a handful of US and European operators, on their terms and their release schedules. Say what a €300m round means against ESA's and the EU's own budgets, and whether this is private capital substituting for public programmes or riding them. Name the investors and what they expect back. Fills the audit's flagged Europe and earth-systems gaps.",
       "conceptUris": []
     }
   ]
