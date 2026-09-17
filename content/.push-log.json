@@ -1,56 +1,5 @@
 [
   {
-    "timestamp": "2026-08-28T08:29:08.872Z",
-    "candidateCount": 6,
-    "candidates": [
-      {
-        "slug": "2026-08-28-the-alliance-of-former-enemies-nobody-has-to-agree-afterwards",
-        "title": "Amhara Fighters Join Tigray",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-no-additional-protocol-silence-is-the-approval",
-        "title": "Saudi Nuclear Deal Skips Safeguard",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-rs5-million-each-the-payment-arrives-before-the-cause",
-        "title": "Pims Fire Payout Announced",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-the-second-gradient-the-mountain-runs-out-of-oxygen",
-        "title": "Thin Air Traps Climbing Insects",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-bunchy-top-the-constraint-was-distribution-not-knowledge",
-        "title": "Journalists Help Curb Banana Virus",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-human-in-the-loop-the-audience-cannot-evaluate-it",
-        "title": "Cocomelon Studio Tries AI",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 6 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-28T12:24:06.506Z",
     "candidateCount": 6,
     "candidates": [
@@ -10133,6 +10082,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "UN says US strike on school killed 157 in Iran, finds war crimes",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
+    }
+  },
+  {
+    "timestamp": "2026-09-17T22:19:04.199Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-09-16-upi-the-small-fee-raising-big-questions-for-india-s-payments",
+        "title": "India Ends Free UPI",
+        "category": "economy",
+        "eventCoverage": 831,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-trump-touts-major-progress-on-plans-for-new-us-base-in-polan",
+        "title": "Trump Announces Poland Base",
+        "category": "politics",
+        "eventCoverage": 162,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-us-to-allow-iran-delegation-to-attend-un-meetings-in-new-yor",
+        "title": "US Admits Iran Delegation",
+        "category": "politics",
+        "eventCoverage": 149,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-eu-disburses-3-7-billion-for-ukraine-missiles-and-drones",
+        "title": "EU Funds Ukraine Weapons",
+        "category": "economy",
+        "eventCoverage": 129,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-farming-permit-gridlock-at-lake-nasser-nubian-right-of-return",
+        "title": "Nubians Renew Return Demand",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-syria-hands-down-sentences-in-2025-coastal-massacres-trial",
+        "title": "Syria Sentences Massacre Defendant",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-hajj-2027-saudi-arabia-rejects-nigeria-bid-for-more-slots",
+        "title": "Saudi Rejects Nigeria Hajj Bid",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-pm-s-fuel-subsidy-scheme-faces-first-day-hurdles-at-petrol-p",
+        "title": "Pakistan Fuel Subsidy Stalls",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-fda-approves-a-new-gene-therapy-for-sanfilippo-syndrome",
+        "title": "FDA Approves Sanfilippo Therapy",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-why-global-wind-energy-may-stay-steady-as-storm-tracks-shift",
+        "title": "Global Wind Power Holds Steady",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-ai-text-watermarking-can-make-models-more-vulnerable-to-adve",
+        "title": "Watermarking Weakens AI Safety",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-republican-bill-would-order-isps-dns-providers-and-vpns-to-b",
+        "title": "Bill Targets DNS Resolvers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-flock-city-pd-fake-police-department-searched-real-cameras",
+        "title": "Flock's Fake Police Searches",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-16-upi-the-small-fee-raising-big-questions-for-india-s-payments",
+      "title": "India Ends Free UPI",
+      "category": "economy",
+      "body": "UPI's zero-fee decade ends Oct. 15 in",
+      "eventCoverage": 831,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "India ends decade of free UPI payments, imposes merchant fee Oct. 15",
     "response": {
       "pushed": 1,
       "skipped": 0,
