@@ -1,42 +1,5 @@
 [
   {
-    "timestamp": "2026-08-28T04:23:31.461Z",
-    "candidateCount": 4,
-    "candidates": [
-      {
-        "slug": "2026-08-28-supply-chain-risk-the-listing-met-a-court",
-        "title": "Court Voids Anthropic Ban",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-five-point-three-the-war-arrives-as-a-yield",
-        "title": "Treasury Yields Hit 5.3%",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-the-coding-agent-the-skill-floor-collapsed",
-        "title": "AI Tool Aids Hackers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-a-few-pixels-detection-is-not-rescue",
-        "title": "Drone AI Spots Swimmers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 4 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-28T08:29:08.872Z",
     "candidateCount": 6,
     "candidates": [
@@ -10049,6 +10012,127 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Congress passes 100% tariff on Russian oil buyers",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
+    }
+  },
+  {
+    "timestamp": "2026-09-17T17:24:09.037Z",
+    "candidateCount": 14,
+    "candidates": [
+      {
+        "slug": "2026-09-16-age-limits-for-social-media-outlined-by-european-union",
+        "title": "EU Restricts Child Social Media",
+        "category": "politics",
+        "eventCoverage": 796,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-un-mission-says-us-committed-war-crimes-in-iran",
+        "title": "UN Cites US War Crimes",
+        "category": "politics",
+        "eventCoverage": 223,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-climate-change-glacier-loss-and-dry-rivers-threaten-water-se",
+        "title": "Rivers Post Driest Year",
+        "category": "science",
+        "eventCoverage": 166,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-pakistan-abstains-in-un-vote-on-iran-sanctions-panel",
+        "title": "Pakistan Abstains On Iran Panel",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-un-chief-calls-for-accountability-for-states-fuelling-sudan",
+        "title": "Guterres Urges Sudan Accountability",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-bab-al-mandab-chokepoint-what-complete-closure-would-mean-fo",
+        "title": "Chokepoint Risk Threatens Pakistan Fuel",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-sudan-s-finance-minister-pins-pound-s-fall-on-growing-demand",
+        "title": "Sudan Pound Hits Record Low",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-fca-steps-up-crypto-enforcement-with-raids-on-illegal-london",
+        "title": "FCA Raids Crypto Trading Sites",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-u-s-sec-begins-prepping-for-around-the-clock-trading-that-cr",
+        "title": "SEC Weighs 24-Hour Trading",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-ambient-real-time-digitization-and-datafication-of-glass-sli",
+        "title": "Microscope Camera Enables AI Pathology",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-pressure-as-a-design-tool-for-thermoelectricity-in-bi2te3-na",
+        "title": "Pressure Locks In Thermoelectric Gains",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-i-hijacked-a-real-artist-s-spotify-with-ai-music-it-was-dist",
+        "title": "AI Music Hijacks Spotify Page",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-china-s-famoussparrow-hackers-target-latin-america-with-new",
+        "title": "Chinese Hackers Breach Governments",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-university-rescinds-job-offer-to-activist-who-allegedly-wipe",
+        "title": "University Rescinds Activist's Job Offer",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-17-un-mission-says-us-committed-war-crimes-in-iran",
+      "title": "UN Cites US War Crimes",
+      "category": "politics",
+      "body": "A [US](country:US) strike killed 157 at a",
+      "eventCoverage": 223,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "UN says US strike on school killed 157 in Iran, finds war crimes",
     "response": {
       "pushed": 1,
       "skipped": 0,
