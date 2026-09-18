@@ -1,70 +1,5 @@
 [
   {
-    "timestamp": "2026-08-28T17:24:17.718Z",
-    "candidateCount": 6,
-    "candidates": [
-      {
-        "slug": "2026-08-28-fifty-three-billion-the-deal-was-priced-off-the-long-bond",
-        "title": "PayPal Takeover Talks Collapse",
-        "category": "economy",
-        "eventCoverage": 110,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-the-tunnel-team-the-missing-are-underground",
-        "title": "India Sends Tunnel Rescuers",
-        "category": "science",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-ten-months-the-instrument-changed-not-the-tempo",
-        "title": "Israeli Drone Strike Kills Three",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-no-oath-no-membership-the-seat-was-never-vacant",
-        "title": "ECP Reverses Senate Vacancy",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-the-bidder-that-walked-knew-the-asset",
-        "title": "K-Electric Exits Fesco Bid",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-dual-band-four-element-mimo-antenna-array-for-5g-millimeter",
-        "title": "Antenna Design Curbs 5G Interference",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-28-the-tunnel-team-the-missing-are-underground",
-      "title": "India Sends Tunnel Rescuers",
-      "category": "science",
-      "body": "About 100 people may be trapped",
-      "eventCoverage": 78,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India sends tunnel rescue team as 100 trapped in Nepal floods",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-08-28T22:24:36.318Z",
     "candidateCount": 13,
     "candidates": [
@@ -10259,6 +10194,127 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "State Department approves $24 billion F-35 sale to Saudi Arabia",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
+    }
+  },
+  {
+    "timestamp": "2026-09-18T08:29:00.699Z",
+    "candidateCount": 14,
+    "candidates": [
+      {
+        "slug": "2026-09-18-trump-weighs-renewed-major-attacks-on-iran",
+        "title": "Trump Weighs New Iran Strikes",
+        "category": "politics",
+        "eventCoverage": 196,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-kremlin-seizes-nestle-russia-business",
+        "title": "Kremlin Seizes Nestlé Business",
+        "category": "economy",
+        "eventCoverage": 120,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-stagflation-brent-100-bond-yields-squeeze",
+        "title": "Oil, Yields Squeeze Economies",
+        "category": "economy",
+        "eventCoverage": 103,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-italy-warships-bab-al-mandeb-without-eu",
+        "title": "Italy Breaks From EU Escorts",
+        "category": "economy",
+        "eventCoverage": 102,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-37-die-in-nscdc-custody-after-nigeria-mining-sweep",
+        "title": "37 Die in Nigeria Custody",
+        "category": "politics",
+        "eventCoverage": 77,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-najib-house-arrest-1mdb-12-million-fine",
+        "title": "Najib Wins House Arrest",
+        "category": "economy",
+        "eventCoverage": 64,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-us-drops-venezuela-from-drug-blacklist-colombia-next",
+        "title": "US Drops Venezuela Drug Label",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-corporate-bitcoin-treasuries-underwater-demand-stalls",
+        "title": "Corporate Bitcoin Buying Stalls",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-early-heat-waves-wheat-yields-priming-effect",
+        "title": "Early Heat Toughens Wheat",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-ctenophores-and-the-second-origin-of-nervous-systems",
+        "title": "Comb Jellies Rewrite Animal Tree",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-eu-kids-act-minimum-age-15-social-media",
+        "title": "EU Sets Minors Age Floor",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-openai-astra-for-law-liability-shift",
+        "title": "OpenAI Launches Legal Tool",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-solana-faster-blocks-same-capacity-shorter-epochs",
+        "title": "Solana Speeds Blocks, Not Capacity",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-endurosat-european-newspace-passes-one-billion-month",
+        "title": "European Space Startups Pass €1B",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-18-37-die-in-nscdc-custody-after-nigeria-mining-sweep",
+      "title": "37 Die in Nigeria Custody",
+      "category": "politics",
+      "body": "37 mining suspects died in one cell.",
+      "eventCoverage": 77,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "37 mining suspects die in one overcrowded Nigeria jail cell",
     "response": {
       "pushed": 1,
       "skipped": 0,
