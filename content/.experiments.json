@@ -5,7 +5,7 @@
       "id": "2026-09-18-gap-countries-latam-pacific",
       "startDate": "2026-09-18",
       "evaluateAfter": "2026-09-22",
-      "prNumber": null,
+      "prNumber": 27,
       "hypothesis": "Every goal metric is met, but regional breadth is the one measure moving the wrong way and it has been flagged in three consecutive audits. Today 24 of 59 datelines are US (41% of output) and the AM region tally of 29 is ~83% US; uniqueRegions fell 6 to 5 and Oceania was zero. GAP_COUNTRIES is the feed's only lever that targets source *location* rather than source *name*, and it currently carries no Oceania entry, no Mexico, and reaches Latin America through Brazil and Colombia alone. Adding Mexico, Argentina, Philippines and Australia to the Q3 gap query should raise uniqueRegions back to 6 sustained and cut the US share of AM datelines, because the query already returns 100 articles sorted by sourceImportance and these four locations have wire-grade outlets that currently cannot enter the pool at all. Token-neutral: Q3 is one call with one sourceLocationUri array regardless of its length, so per-cycle NewsAPI token use is unchanged.",
       "parameter": "GAP_COUNTRIES source-location list",
       "file": "scripts/fetch-news-api.js",

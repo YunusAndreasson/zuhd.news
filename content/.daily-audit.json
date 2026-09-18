@@ -1,36 +1,36 @@
 {
-  "date": "2026-09-17",
+  "date": "2026-09-18",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, all completed, avg 12/cycle (64 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.8, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 15, "science": 12, "tech": 14 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
+    "articles": { "value": 59, "detail": "5 cycles, all completed, avg 11.8/cycle (62 yesterday)" },
+    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 16, "science": 12, "tech": 12 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 21, "EU": 15, "ME": 12, "AF": 7, "AS": 6, "OC": 1 }
+      "breakdown": { "AM": 29, "AS": 9, "ME": 9, "EU": 8, "AF": 4, "OC": 0 }
     },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 1427
+    "avgCycleDuration": 1589
   },
-  "experiment": "Skipped — every goal metric is met with margin, no experiment is active, and no pause gate is set. Yesterday's flagged regional thinness partly self-corrected (AF 5 → 7, OC 0 → 1, uniqueRegions 5 → 6) without intervention, which is the argument for leaving the slot open rather than tuning a healthy parameter.",
-  "weakestArea": "Source breadth is the only metric moving the wrong way: unique sources fell 63 → 44 and multi-source articles 19 → 12 on flat output, so citations per article slipped 1.61 → 1.47. Both remain far above target (12 vs 4), so this is a one-day contraction rather than a breach — but it lands the day after a 62-source day, and two more days at this level would mean the feed's source pool, not the selector, has narrowed.",
+  "experiment": "Proposed 2026-09-18-gap-countries-latam-pacific (PR #27, evaluate 2026-09-22): adds Mexico, Argentina, Philippines and Australia to GAP_COUNTRIES in fetch-news-api.js. Every goal metric is met, so this is not a breach repair — it acts on the one measure moving the wrong way for a third consecutive audit, using the only lever that targets source location rather than source name. Token-neutral: Q3 passes the whole list in one call, so array length does not change per-cycle NewsAPI spend.",
+  "weakestArea": "Regional concentration, and it is worse than the region tally admits. uniqueRegions fell 6 to 5 with Oceania at zero, but the real figure is in the datelines: 24 of 59 articles are US-datelined (41% of output), so the AM count of 29 is ~83% one country. Latin America contributed three articles (Guayaquil, Santa Elena, Roseaux) and Africa fell 7 to 4. The metric passes because its floor is 4 regions — a threshold that cannot distinguish genuine global spread from a US-plus-four-token-regions day.",
   "watching": [
-    "Pakistan is again the largest single-country cluster (7 stories: Bahria Town, fuel subsidy, chokepoint fuel risk, Iran-panel abstention, self-defense reservation, rights-lawyer bail), a repeat of yesterday's five-story cluster and worth a near-duplicate framing check.",
-    "The Hormuz/Red Sea chokepoint story has split into three separately-sourced threads — traffic collapse at Hormuz, Houthis sparing US ships, Pakistani fuel exposure — which is genuine multi-angle coverage rather than recap, but is one event underneath.",
-    "Sudan produced four stories in one day (pound record low, gold mine collapse, Guterres accountability call, Radio Dabanga reporting), the strongest African signal in the recorded window.",
-    "Crypto/financial-enforcement coverage keeps accumulating without a frame: FCA raids, memecoins on Circle's chain, SEC 24-hour trading, Cameroon instant payments.",
-    "Science datelines cluster hard on London (8 of 12) because journal-embargo coverage carries the publisher's city, not the research site — the region tally reads this as EU."
+    "Washington and New York alone supply 17 of 59 datelines, the tightest two-city concentration in the recorded window, and San Francisco adds three more on the tech side.",
+    "Africa halved from 7 to 4 with Khartoum, Minna, Ogere and Lome the only datelines — Sudan's four-story run noted yesterday did not repeat.",
+    "Korea produced two separate Seoul stories plus a Mount Mantap item, an unusually dense Korean-peninsula signal worth checking for a shared underlying event.",
+    "Nuuk appears again, and the region ladder reads Greenland as AM — a small but recurring distortion of the Americas count that is geography, not sourcing.",
+    "CoinDesk at 5 and Bloomberg at 5 are the joint-second outlets behind Al Jazeera's 8, keeping the crypto/financial-enforcement thread accumulating without an editorial frame for a third day."
   ],
   "coverageGaps": [
-    "Latin America is effectively absent: AM=21 is almost entirely US, with Mexico City the sole non-US dateline in the hemisphere.",
-    "Oceania recovered only to a single article (Australia student visas); Pacific climate, fisheries and regional security remain structurally invisible.",
-    "Southeast Asia appears only through Malaysia-Myanmar; Indonesia surfaces only as an object of the Eurasian bloc story, not as a reporting origin.",
-    "Tech skews heavily to San Francisco and Washington (10 of 14); non-Western tech reporting appears only via Johannesburg and Mexico City."
+    "Oceania is entirely absent today after a single article yesterday; Pacific climate, fisheries and regional security remain structurally invisible.",
+    "Latin America produced three articles and Mexico produced none, despite being the largest non-US economy in the hemisphere and absent from GAP_COUNTRIES until today.",
+    "Southeast Asia appears only through Jakarta, Banten and Kuala Lumpur; the Philippines and Vietnam have no reporting origin in the feed.",
+    "Africa's four stories are all West African or Sudanese — no East African, Horn, or Maghreb dateline despite Kenya, Somalia, Morocco and Algeria all sitting in GAP_COUNTRIES."
   ],
-  "context": "Freshness is at its recorded best — median 0 days, p90 0.8, max 1.2 — and sci-tech share hit 42%, the highest in the window, with science at 12 and tech at 14 against floors of 2 and 3. Top-outlet share is 8% across 91 citations. Cycle duration rose to 1427s from 1359s, driven by the selector (332s avg) rather than the editor (99s), which stays well clear of its timeout. No experiment has been active since 2026-05-26; the standing finding from the two 2026-05 selector-floor experiments is that multi-source rate is capped by feed supply, so the next worthwhile experiment is an upstream feed-composition one (regional outlet inclusion, or a Latin America gap-country addition to GAP_COUNTRIES) rather than another selector lever."
+  "context": "Output held at 59 across 5 completed cycles with freshness near its best (median 0.2, max 1.3), zero duplicates, 45 unique sources and top-outlet share at 14% — every stated goal is met with margin, and sci-tech at 41% is the second-highest in the window. Cycle duration rose again to 1589s from 1427s, driven by the writer (412s avg) rather than the editor (185s), which stays far clear of its 1800s timeout. The standing finding from the two 2026-05 selector-floor experiments is that multi-source rate is capped by feed supply, not selector behaviour, which is why today's experiment targets the upstream feed instead; its most likely failure mode is displacement, since Q3 returns a fixed 100 articles by sourceImportance and Australian and Mexican outlets outrank Somali and Nigerian ones on that sort — hence the explicit Africa and OIC-coverage guardrails."
 }
