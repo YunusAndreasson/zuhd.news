@@ -3,6 +3,7 @@ import type { SkPathBuilder } from '@shopify/react-native-skia';
 import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
+import countryMetrics from '../../assets/geo/country-metrics.json';
 import type { ConicSink } from './sphere-circles';
 
 interface TopoWithObjects extends Topology {
@@ -47,14 +48,6 @@ export const countryBboxes: [number, number, number, number][] = countries.featu
   return [minLng, minLat, maxLng, maxLat] as [number, number, number, number];
 });
 
-// Precomputed spherical areas (steradians) per country.
-// Used to scale country highlight opacity so small nations are more visible.
-export const countryAreas: Record<string, number> = {};
-for (const f of countries.features) {
-  const name = f.properties?.name;
-  if (name) countryAreas[name] = geoArea(f);
-}
-
 /** Centroid intended for label placement. Plain `geoCentroid` averages
  *  across every part of a MultiPolygon, so a country with far-flung
  *  territories (France's French Guiana, Norway's Svalbard, USA's Alaska
@@ -66,7 +59,7 @@ for (const f of countries.features) {
  *  the largest polygon by spherical area keeps the label on the country's
  *  primary landmass where readers expect it. Singular-polygon features
  *  fall through to plain `geoCentroid`. */
-function countryLabelCentroid(f: GeoJSON.Feature): [number, number] {
+export function countryLabelCentroid(f: GeoJSON.Feature): [number, number] {
   const g = f.geometry;
   if (g?.type !== 'MultiPolygon' || g.coordinates.length <= 1) {
     return geoCentroid(f) as [number, number];
@@ -85,14 +78,28 @@ function countryLabelCentroid(f: GeoJSON.Feature): [number, number] {
   return geoCentroid({ type: 'Polygon', coordinates: bestPoly }) as [number, number];
 }
 
-// Precomputed centroids (lng, lat) per country, optimised for label
-// placement via `countryLabelCentroid` (see comment above). One-time cost
-// at module load; the per-frame projection of ~20–40 visible labels stays
-// below a millisecond.
+// Spherical area (steradians) and label centroid (lng, lat) per country. The
+// area scales the country highlight so small nations stay visible; the
+// centroid is `countryLabelCentroid`'s. Both are baked by
+// `scripts/generate-country-metrics.mjs` — computed here at module load they
+// were a `geoArea` over every ring of every country, plus one per part of
+// each multi-part country, on the JS thread before the globe's first frame.
+// A country the file does not carry is computed as before, and
+// `__tests__/country-metrics.test.ts` holds the file to the computation.
+const BAKED_METRICS = countryMetrics as unknown as Record<string, [number, number, number]>;
+export const countryAreas: Record<string, number> = {};
 export const countryCentroids: Record<string, [number, number]> = {};
 for (const f of countries.features) {
   const name = f.properties?.name;
-  if (name) countryCentroids[name] = countryLabelCentroid(f);
+  if (!name) continue;
+  const baked = BAKED_METRICS[name];
+  if (baked) {
+    countryAreas[name] = baked[0];
+    countryCentroids[name] = [baked[1], baked[2]];
+  } else {
+    countryAreas[name] = geoArea(f);
+    countryCentroids[name] = countryLabelCentroid(f);
+  }
 }
 
 // Cartesian unit vector form of each centroid. Lets the per-frame hemisphere

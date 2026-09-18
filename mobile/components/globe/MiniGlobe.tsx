@@ -47,7 +47,7 @@ import {
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
-import { geoCentroid, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
+import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -104,7 +104,6 @@ import {
   unfoundSlugs,
 } from '../../lib/story-places';
 import { chokepointValence } from '../../lib/valence';
-import { type CapCuller, createCapCuller } from './cap-cull';
 import {
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
@@ -120,6 +119,7 @@ import {
 } from './detail-geo';
 import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
 import { geographyTier, getGlobeGeography } from './geography';
+import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
   FAMINE_FRAME_PATH,
   FAMINE_FRAME_STROKE,
@@ -413,8 +413,25 @@ const CAPITAL_TEXT_DX = 4;
 
 /** Built on the first frame that needs them, so the 50m river and lake
  *  topologies decode on the first settled frame rather than at launch. */
-let riversCuller: CapCuller | null = null;
-let lakesCuller: CapCuller | null = null;
+let riversLayer: OrthoLayer | null = null;
+let lakesLayer: OrthoLayer | null = null;
+/**
+ * The 50m rivers and lakes are settled detail, and decoding them — two
+ * topologies, then a layer each — was on the first settled frame's own path:
+ * the globe stayed blank until the Niger was ready. They are decoded on the
+ * tick after the first settled frame is on screen, which then redraws with
+ * them; the frame before draws without, as a moving frame always has.
+ */
+let detailGeoWarming = false;
+function warmDetailGeo(then: () => void) {
+  if (detailGeoWarming) return;
+  detailGeoWarming = true;
+  setTimeout(() => {
+    riversLayer = createOrthoLayer(getMajorRiverFeatureCollection());
+    lakesLayer = createOrthoLayer(getLakeFillFeatureCollection());
+    then();
+  }, 0);
+}
 const READ_ALPHA = 0.7;
 const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
 /** The web's `sentimentDivergence` bar for the contested ring. */
@@ -1140,6 +1157,16 @@ const frameRecorder = Skia.PictureRecorder();
  *  recorded, so one mutable paint serves the whole frame. */
 const framePaint = Skia.Paint();
 const BASE_PAINT = Skia.Paint();
+// Read once, called through `.call`: a property read on a Skia host object is
+// a JSI call that costs more than the call it fetches (`shared.ts`), and a
+// frame sets up some fifty paints of four to six calls each.
+const paintAssign = framePaint.assign;
+const paintSetColor = framePaint.setColor;
+const paintSetAlphaf = framePaint.setAlphaf;
+const paintSetStyle = framePaint.setStyle;
+const paintSetStrokeWidth = framePaint.setStrokeWidth;
+const paintSetStrokeJoin = framePaint.setStrokeJoin;
+const paintSetStrokeCap = framePaint.setStrokeCap;
 BASE_PAINT.setAntiAlias(true);
 const SOURCE_ARC_DASH = Skia.PathEffect.MakeDash([6, 3], 0);
 const QIBLA_DASH = Skia.PathEffect.MakeDash([4, 2], 0);
@@ -1169,7 +1196,7 @@ function tint(color: string, alpha: number): SkColor {
 }
 
 function plainPaint(): SkPaint {
-  framePaint.assign(BASE_PAINT);
+  paintAssign.call(framePaint, BASE_PAINT);
   return framePaint;
 }
 
@@ -1177,8 +1204,8 @@ function plainPaint(): SkPaint {
 function fillPaint(color: string, opacity = 1): SkPaint {
   const c = skColor(color);
   const paint = plainPaint();
-  paint.setColor(c);
-  paint.setAlphaf((c[3] ?? 1) * opacity);
+  paintSetColor.call(paint, c);
+  paintSetAlphaf.call(paint, (c[3] ?? 1) * opacity);
   return paint;
 }
 
@@ -1190,10 +1217,10 @@ function strokePaint(
   cap?: StrokeCap,
 ): SkPaint {
   const paint = fillPaint(color, opacity);
-  paint.setStyle(PaintStyle.Stroke);
-  paint.setStrokeWidth(width);
-  if (join !== undefined) paint.setStrokeJoin(join);
-  if (cap !== undefined) paint.setStrokeCap(cap);
+  paintSetStyle.call(paint, PaintStyle.Stroke);
+  paintSetStrokeWidth.call(paint, width);
+  if (join !== undefined) paintSetStrokeJoin.call(paint, join);
+  if (cap !== undefined) paintSetStrokeCap.call(paint, cap);
   return paint;
 }
 
@@ -2504,8 +2531,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastOverrideAngleRef = useRef(90);
 
   // Projection + path generator — created eagerly so the first scroll frame is warm
-  const projRef = useRef(geoOrthographic().clipAngle(90).precision(0.25));
-  const pgRef = useRef(geoPath(projRef.current));
+  // Kept for `hitTest`'s `invert`; every path is drawn by `ortho-stream.ts`
+  // from the same camera, without d3's per-vertex trigonometry.
+  const projRef = useRef(geoOrthographic().clipAngle(90));
   const lastSettled = useRef(-1);
   const lastSettledSlug = useRef<string | null>(null);
 
@@ -2724,6 +2752,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
+  // The settled redraw the rivers and lakes ask for once decoded
+  // (`warmDetailGeo`): `finalizeReproject`, read at the time it fires.
+  const detailRedrawRef = useRef<() => void>(() => {});
 
   const callReproject = useCallback(
     (
@@ -2830,7 +2861,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // full settled detail — on the emulator, 26 of 26 frames over four drags.
       const nearSettled = !zoomInFlight && !cameraMoving && isStorySettled(frac);
 
-      const proj = projRef.current;
+      projRef.current.rotate([-geoLng, -geoLat, 0]).scale(projScale).translate([centerX, centerY]);
       // At rest, long geographic edges are resampled into projected curves.
       // Moving at a story's framing they are not: resampling there added ~30
       // points to ~2,300 of land and borders and cost 27% of their time,
@@ -2839,17 +2870,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // 355, on under 1% of points; the resting frame puts the curves back.
       // The stray grows with scale (3 px at 720), so past
       // `MOTION_RESAMPLE_SCALE` a moving frame keeps resampling.
-      proj
-        .clipAngle(viewAngle)
-        .precision(nearSettled || projScale > MOTION_RESAMPLE_SCALE ? 0.25 : 0)
-        .rotate([-geoLng, -geoLat, 0])
-        .scale(projScale)
-        .translate([centerX, centerY]);
-      const pg = pgRef.current;
-      pg.projection(proj);
-      // The same camera, for the circles drawn in closed form and every point
-      // mark: `seen` culls a unit vector against the view cone and, when it is
-      // in view, leaves its screen position in `SCREEN_POINT`.
+      const precision = nearSettled || projScale > MOTION_RESAMPLE_SCALE ? 0.25 : 0;
+      // The camera, for every path (`ortho-stream.ts`), the circles drawn in
+      // closed form and every point mark: `seen` culls a unit vector against
+      // the view cone and, when it is in view, leaves its screen position in
+      // `SCREEN_POINT`.
       const view = orthoView(geoLng, geoLat, projScale, centerX, centerY);
       const seen = (u: readonly [number, number, number]) =>
         screenPoint(view, u[0], u[1], u[2], clipCos);
@@ -2879,25 +2904,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         const landBuilder = landPathRef.current;
         landBuilder.reset();
         skiaCtx.setPath(landBuilder);
-        pg.context(skiaCtx)(geography.land.visible(geoLng, geoLat, viewAngle));
+        geography.land.draw(view, viewAngle, precision, skiaCtx);
         landPath = landBuilder.build();
-
-        // Inland water is settled detail; motion never enters this cache.
-        if (nearSettled) {
-          if (!lakesCuller) lakesCuller = createCapCuller(getLakeFillFeatureCollection());
-          const lakeBuilder = lakesPathRef.current;
-          lakeBuilder.reset();
-          skiaCtx.setPath(lakeBuilder);
-          pg.context(skiaCtx)(lakesCuller.visible(geoLng, geoLat, viewAngle));
-          lakesPath = lakeBuilder.build();
-        }
 
         // Ice follows the same coastline at every level of detail.
         const iceBuilder = icePathRef.current;
         iceBuilder.reset();
         skiaCtx.setPath(iceBuilder);
-        pg.context(skiaCtx)(geography.ice.visible(geoLng, geoLat, viewAngle));
+        geography.ice.draw(view, viewAngle, precision, skiaCtx);
         icePath = iceBuilder.build();
+      }
+      // Inland water is settled detail; motion never enters this cache. Until
+      // the lakes are decoded (`warmDetailGeo`) a settled frame draws without
+      // them and the redraw fills the cached entry in.
+      if (nearSettled && lakesPath === null) {
+        if (lakesLayer) {
+          const lakeBuilder = lakesPathRef.current;
+          lakeBuilder.reset();
+          skiaCtx.setPath(lakeBuilder);
+          lakesLayer.draw(view, viewAngle, precision, skiaCtx);
+          lakesPath = lakeBuilder.build();
+          if (cachedGeometry) cachedGeometry.lakesPath = lakesPath;
+        } else {
+          warmDetailGeo(() => detailRedrawRef.current());
+        }
       }
 
       // Dot — culled against the zoom cone like every other point marker.
@@ -2943,8 +2973,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         const countryBuilder = countryPathRef.current;
         countryBuilder.reset();
         skiaCtx.setPath(countryBuilder);
-        const cull = geography.country(cachedCountryRef.current.properties?.name as string);
-        if (cull) pg.context(skiaCtx)(cull.visible(geoLng, geoLat, viewAngle));
+        const layer = geography.country(cachedCountryRef.current.properties?.name as string);
+        if (layer) layer.draw(view, viewAngle, precision, skiaCtx);
         countryPath = countryBuilder.build();
       }
 
@@ -2979,7 +3009,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         const bordersBuilder = bordersPathRef.current;
         bordersBuilder.reset();
         skiaCtx.setPath(bordersBuilder);
-        pg.context(skiaCtx)(geography.borders.visible(geoLng, geoLat, viewAngle));
+        geography.borders.draw(view, viewAngle, precision, skiaCtx);
         bordersPath = bordersBuilder.build();
         if (geometryKey) {
           geometryCache.set(geometryKey, { landPath, icePath, bordersPath, lakesPath });
@@ -3451,18 +3481,22 @@ export const MiniGlobe = memo(function MiniGlobe({
         const settledEntry = geometryKey ? geometryCache.get(geometryKey) : undefined;
         if (settledEntry?.riversPath) {
           riversPath = settledEntry.riversPath;
-        } else {
-          if (!riversCuller) riversCuller = createCapCuller(getMajorRiverFeatureCollection());
+        } else if (riversLayer) {
           const riverBuilder = riversPathRef.current;
           riverBuilder.reset();
           skiaCtx.setPath(riverBuilder);
-          pg.context(skiaCtx)(riversCuller.visible(geoLng, geoLat, viewAngle));
+          riversLayer.draw(view, viewAngle, precision, skiaCtx);
           riversPath = riverBuilder.build();
           if (settledEntry) settledEntry.riversPath = riversPath;
+        } else {
+          // Not decoded yet: this frame goes without, the redraw brings them.
+          warmDetailGeo(() => detailRedrawRef.current());
         }
-        const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
-        const ramp = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
-        riversOpacity = nearSettled ? Math.max(RIVERS_REST_OPACITY, ramp) : ramp;
+        if (riversPath) {
+          const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
+          const ramp = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
+          riversOpacity = nearSettled ? Math.max(RIVERS_REST_OPACITY, ramp) : ramp;
+        }
       }
 
       // Label collision — dot label (location · time) versus country name
@@ -3761,7 +3795,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, []);
 
   // First frame: project the opening story before the reaction's first tick,
-  // so the earth is never drawn empty.
+  // so the earth is never drawn empty. At the motion tier: the resting tier
+  // is several times the geometry and, with the rivers and lakes, was all on
+  // the path to the first pixel — the globe stayed blank for seconds at a
+  // loaded emulator's pace. The passive effect below, and the reaction's first
+  // tick, settle it once this frame is on screen.
   // biome-ignore lint/correctness/useExhaustiveDependencies: mount only — callReproject is stable and reads refs
   useLayoutEffect(() => {
     if (lastReprojRef.current) return;
@@ -3778,6 +3816,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       0,
       overrideActive.value,
       overrideAngle.value,
+      true,
     );
   }, []);
 
@@ -4083,6 +4122,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       overrideAngle.value,
     );
   }, [callReproject, overrideActive, overrideAngle]);
+  detailRedrawRef.current = finalizeReproject;
 
   // All projection inputs are mirrored into refs during render. A commit can
   // update several at once (fonts, layout and cached layers on startup), so

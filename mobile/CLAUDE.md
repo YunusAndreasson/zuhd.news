@@ -241,14 +241,36 @@ whole time; nothing said so.
     day, night and twilight caps are ellipse arcs on screen, one `conicTo` per
     quarter: ~90 path calls a frame where d3 streamed ~1,300 points, and 60×
     cheaper on the emulator — they were a quarter of a moving frame. Anything
-    that is a circle on the sphere belongs there; coastlines and borders stay
-    with d3.
+    that is a circle on the sphere belongs there; coastlines and borders are
+    `ortho-stream.ts`'s, below.
   - **Never read a Skia method per vertex.** `createSkiaPathContext` holds each
     builder's `moveTo`/`lineTo`/`conicTo` and calls them through `.call`: a
     property read on a Skia host object is a JSI call that copies the name and
     searches two maps, and cost more than the `lineTo` it fetched (1.8 µs
-    against 0.53 µs per call). d3 streams ~4k points a moving frame and ~30k a
-    settled one.
+    against 0.53 µs per call). A frame streams ~4k points moving and ~30k
+    settled; the paint setters in `fillPaint`/`strokePaint` are held the same
+    way.
+  - **No path on the globe goes through d3 any more** (`ortho-stream.ts`).
+    Land, borders, ice, the highlight, rivers and lakes were 86% of a moving
+    frame and the whole of a swipe landing's stall, because d3 rotates, clips
+    and projects every vertex with six to ten trigonometric calls and an array
+    allocation between stages. A layer's unit vectors are computed once when
+    its tier decodes (`geography.ts`); a frame is a 3×3 rotation, one compare
+    against the clip's cosine and two multiply-adds per vertex, with d3's
+    horizon cut, limb stitching (`clipRejoin`), whole-view fill and resampling
+    ported in cartesian form. `__tests__/ortho-stream.test.ts` holds every
+    layer to d3's own path commands within 1e-6 px across cameras, clips and
+    precisions, so a regression is a wrong number rather than a wrong
+    coastline; 5.5× in node (`perf/benches/ortho-stream.bench.ts`), more on
+    Hermes, where a trig-free floor measured 13.5×. `projRef` survives only
+    for `hitTest`'s `invert`. A ring wound the other way — which d3 reads as
+    the rest of the sphere — is never cap-culled, and containment (a polygon
+    holding the whole view) is a parity count from one `geoContains` per
+    polygon, taken once.
+  - **The first frame is the motion tier, and the rivers and lakes decode on
+    the tick after the first settled frame** (`warmDetailGeo`). The resting
+    tier plus two 50m topologies used to sit between launch and the first
+    pixel; a frame drawn without them is what every moving frame already is.
   - **A resting globe carries the detail a reader looks for, not only the
     giants' names.** At the 30°–40° story framings the globe named anchor
     countries and nothing inside them — Mali and Australia were an outline and

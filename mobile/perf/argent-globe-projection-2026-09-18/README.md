@@ -107,3 +107,33 @@ compare shares, not totals): land 124 ms (68%), borders 32 (18%), recording 20
 - Repeated hot reloads left the Skia views without a GL context (a black screen
   with the React tree mounted and `EGLConsumer is not attached` in logcat). A
   cold start restored it; it was not the code.
+
+## Follow-up, same day: the projection is no longer d3's
+
+Items 1, 2 (partly) and 4 above are done; measured in node, not on the
+emulator, because the emulator was not available to this session.
+
+- **`components/globe/ortho-stream.ts`** replaces d3 for every path on the
+  globe: unit vectors per vertex at tier decode, a 3×3 rotation, one compare
+  and two multiply-adds per vertex a frame, with d3's clip, `clipRejoin`,
+  whole-view fill and `resample` ported in cartesian form and pinned command
+  for command against d3 (`__tests__/ortho-stream.test.ts`: the 110m
+  fixtures, the motion and overview tiers, four countries, rings around the
+  poles, a ring wider than a hemisphere, edges dipping through a small clip,
+  precisions 0 and 0.25, 22 cameras). Node, land + borders at a 40° framing
+  (`perf/benches/ortho-stream.bench.ts`): **1.81 → 0.33 ms moving (5.5×),
+  2.05 → 0.44 ms settled (4.7×)**. Resampling costs the streamer 35% where
+  it cost d3 27% of a much larger number; a moving frame still skips it below
+  `MOTION_RESAMPLE_SCALE`, to be re-measured on hardware.
+- **Startup**: the mount frame is drawn at the motion tier; the passive effect
+  and the reaction's first tick settle it. The 50m rivers and lakes decode in
+  a `setTimeout(0)` after the first settled frame and redraw it
+  (`warmDetailGeo`); a settled frame drawn before that goes without them and
+  the cached entry is filled in on the redraw.
+- **Country areas and label centroids are baked**
+  (`assets/geo/country-metrics.json`, `scripts/generate-country-metrics.mjs`,
+  held to the computation by `__tests__/country-metrics.test.ts`).
+- **Paint setters are held** like the path builders' methods.
+
+Still open: the recording's canvas method reads (item 3), and every number
+here on hardware.
