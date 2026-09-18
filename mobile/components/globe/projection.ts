@@ -6,51 +6,11 @@
  */
 
 import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
-import { geoCircle, geoContains } from 'd3-geo';
+import { geoContains } from 'd3-geo';
 import { getGlobeGeography } from './geography';
 import { countries, countryAreas, countryBboxes } from './shared';
 
 // ── Astronomical / time constants ──────────────────────────────────────────
-
-export const NORTH_POLE: [number, number] = [0, 90];
-export const SOUTH_POLE: [number, number] = [0, -90];
-export const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
-export const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
-/** Degrees between graticule lines, between the points each is walked in,
- *  and where the meridians stop — the web map's `_map/graticule.ts`. */
-const GRATICULE_STEP = 30;
-const GRATICULE_WALK = 5;
-const GRATICULE_CAP = 85;
-
-/**
- * The grid under the land: twelve meridians and five parallels, the web map's.
- *
- * **The curvature of the lines is what says the earth is a sphere.** Meridians
- * converging toward a pole and parallels bowing away from the equator read as a
- * globe at any tone on any ground. This used to be `geoGraticule()` with a
- * 360° minor step, which leaves only the equator, one meridian and two polar
- * stubs — no curve anywhere to read — and the globe looked like a flat map in
- * a circle.
- *
- * Walked at 5° so a line stays smooth where the globe compresses it hardest,
- * at the limb (`precision(0)` means d3 resamples nothing). Meridians stop at
- * 85°: twelve lines meeting at the pole draw a star there.
- */
-export const GRATICULE_LINES: GeoJSON.MultiLineString = (() => {
-  const lines: [number, number][][] = [];
-  for (let lng = -180; lng < 180; lng += GRATICULE_STEP) {
-    const line: [number, number][] = [];
-    for (let lat = -GRATICULE_CAP; lat <= GRATICULE_CAP; lat += GRATICULE_WALK)
-      line.push([lng, lat]);
-    lines.push(line);
-  }
-  for (let lat = -90 + GRATICULE_STEP; lat <= 90 - GRATICULE_STEP; lat += GRATICULE_STEP) {
-    const line: [number, number][] = [];
-    for (let lng = -180; lng <= 180; lng += GRATICULE_WALK) line.push([lng, lat]);
-    lines.push(line);
-  }
-  return { type: 'MultiLineString', coordinates: lines };
-})();
 
 /** Exponential decay λ for story-pin opacity — Math.LN2 / 18h = 18-hour half-life. */
 export const DECAY_LAMBDA = Math.LN2 / 18;
@@ -203,41 +163,6 @@ export function getSunPosition(): [number, number] {
   const hourAngle = ((d.getUTCHours() + d.getUTCMinutes() / 60) / 24) * 360 - 180;
   cachedSunPos = [-hourAngle, declination];
   return cachedSunPos;
-}
-
-// ── Night shadow ───────────────────────────────────────────────────────────
-
-const nightCircleGen = geoCircle();
-let nightCircles: {
-  sunLng: number;
-  sunLat: number;
-  day: GeoJSON.Polygon;
-  night: GeoJSON.Polygon;
-  twilight: GeoJSON.Polygon;
-} | null = null;
-
-/**
- * The night hemisphere and the low-sun band around it, centred on the
- * antisolar point. Regenerated only when the sun has moved — which, through
- * `getSunPosition`'s cache, is once a minute — rather than every frame:
- * generating a circle is trigonometry per vertex, and the frame loop was
- * paying for it thirty times a second to get the same two polygons back.
- */
-export function getNightCircles(
-  sunLng: number,
-  sunLat: number,
-): { day: GeoJSON.Polygon; night: GeoJSON.Polygon; twilight: GeoJSON.Polygon } {
-  if (!nightCircles || nightCircles.sunLng !== sunLng || nightCircles.sunLat !== sunLat) {
-    const center: [number, number] = [sunLng + 180, -sunLat];
-    nightCircles = {
-      sunLng,
-      sunLat,
-      day: nightCircleGen.center([sunLng, sunLat]).radius(90)(),
-      night: nightCircleGen.center(center).radius(90)(),
-      twilight: nightCircleGen.center(center).radius(96)(),
-    };
-  }
-  return nightCircles;
 }
 
 // ── Local time formatting ──────────────────────────────────────────────────

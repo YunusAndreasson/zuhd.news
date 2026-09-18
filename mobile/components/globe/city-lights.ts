@@ -7,13 +7,10 @@
  * could come later from `ne_50m_populated_places_simple` if the visual
  * sparsity ever reads as artificial.
  *
- * Two flat typed arrays are baked at module load:
- *   • `CITY_LIGHT_COORDS`  — Float64 [lng, lat, lng, lat, …] for proj()
- *   • `CITY_LIGHT_UNITS`   — Float32 [x, y, z, x, y, z, …] cartesian on the
- *     unit sphere, used both for camera-hemisphere culling (dot vs camera
- *     axis) and sun-overhead scoring (dot vs sun axis). Precomputing means
- *     the per-frame loop is two dot products per city plus an optional
- *     proj() call — no trig.
+ * One flat typed array is baked at module load: `CITY_LIGHT_UNITS`, Float32
+ * [x, y, z, x, y, z, …] cartesian on the unit sphere, used for sun-overhead
+ * scoring (dot vs sun axis) and, through `screenPoint`, for the camera's
+ * cone and the projection. The per-frame loop is dot products — no trig.
  *
  * The rendering side buckets each visible city into a deep-night vs civil-
  * twilight tier using the sun-overhead dot product:
@@ -40,17 +37,12 @@ const DEG2RAD = Math.PI / 180;
 /** Number of city-light points. */
 export const CITY_LIGHT_COUNT = entries.length;
 
-/** Flat [lng, lat, lng, lat, …]. Indexed as `i*2`, `i*2+1`. */
-export const CITY_LIGHT_COORDS = new Float64Array(CITY_LIGHT_COUNT * 2);
-
 /** Flat unit-sphere cartesian [x, y, z, x, y, z, …]. Indexed as `i*3 .. +2`. */
 export const CITY_LIGHT_UNITS = new Float32Array(CITY_LIGHT_COUNT * 3);
 
 for (let i = 0; i < CITY_LIGHT_COUNT; i++) {
   const e = entries[i];
   if (!e) continue;
-  CITY_LIGHT_COORDS[i * 2] = e.lng;
-  CITY_LIGHT_COORDS[i * 2 + 1] = e.lat;
   const latR = e.lat * DEG2RAD;
   const lngR = e.lng * DEG2RAD;
   const cosLat = Math.cos(latR);

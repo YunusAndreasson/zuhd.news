@@ -230,11 +230,25 @@ whole time; nothing said so.
     projection reaches `grownReach` so the ground the shrink uncovers exists,
     and pictures record past the canvas.
   - **The grid and daylight are the web's, for the web's reasons.** Twelve
-    meridians and five parallels walked at 5° (`GRATICULE_LINES`), under the
-    land — the curvature of the lines is what says sphere; the old
-    `geoGraticule` call drew only the equator. Day is a lift of the lit
-    hemisphere in `daylight` under the land (`day-shade` on the web), because
-    darkening a near-black sea never showed where night was.
+    meridians and five parallels (`graticuleLines`), under the land — the
+    curvature of the lines is what says sphere; the old `geoGraticule` call
+    drew only the equator. Day is a lift of the lit hemisphere in `daylight`
+    under the land (`day-shade` on the web), because darkening a near-black
+    sea never showed where night was.
+  - **Circles on the sphere are drawn in closed form, not through d3**
+    (`components/globe/sphere-circles.ts`, pinned against d3 in
+    `__tests__/sphere-circles.test.ts`). The grid, the polar circles and the
+    day, night and twilight caps are ellipse arcs on screen, one `conicTo` per
+    quarter: ~90 path calls a frame where d3 streamed ~1,300 points, and 60×
+    cheaper on the emulator — they were a quarter of a moving frame. Anything
+    that is a circle on the sphere belongs there; coastlines and borders stay
+    with d3.
+  - **Never read a Skia method per vertex.** `createSkiaPathContext` holds each
+    builder's `moveTo`/`lineTo`/`conicTo` and calls them through `.call`: a
+    property read on a Skia host object is a JSI call that copies the name and
+    searches two maps, and cost more than the `lineTo` it fetched (1.8 µs
+    against 0.53 µs per call). d3 streams ~4k points a moving frame and ~30k a
+    settled one.
   - **A resting globe carries the detail a reader looks for, not only the
     giants' names.** At the 30°–40° story framings the globe named anchor
     countries and nothing inside them — Mali and Australia were an outline and

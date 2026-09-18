@@ -47,14 +47,7 @@ import {
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
-import {
-  type GeoProjection,
-  geoCentroid,
-  geoDistance,
-  geoInterpolate,
-  geoOrthographic,
-  geoPath,
-} from 'd3-geo';
+import { geoCentroid, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -113,7 +106,6 @@ import {
 import { chokepointValence } from '../../lib/valence';
 import { type CapCuller, createCapCuller } from './cap-cull';
 import {
-  CITY_LIGHT_COORDS,
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
   CITY_LIGHT_RADIUS,
@@ -140,35 +132,38 @@ import { CAPITALS } from './places';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
-  ANTARCTIC_CIRCLE,
-  ARCTIC_CIRCLE,
   clipAngleForCountry,
   DECAY_LAMBDA,
   findCountry,
   formatLocalTime,
-  GRATICULE_LINES,
   getMoonPhase,
-  getNightCircles,
   getSunPosition,
   invalidateSunCaches,
   isNear,
   MAKKAH,
-  NORTH_POLE,
   PLACES_APPEAR_CLIP,
   PLACES_FULL_CLIP,
   RIVERS_APPEAR_CLIP,
   RIVERS_REST_CLIP,
   RIVERS_REST_OPACITY,
-  SOUTH_POLE,
 } from './projection';
 import {
   countryAreas,
   countryCentroidNames,
-  countryCentroidPoints,
   countryCentroids,
   countryCentroidUnits,
   createSkiaPathContext,
+  type SkiaGeoContext,
 } from './shared';
+import {
+  capFill,
+  graticuleLines,
+  type OrthoView,
+  orthoView,
+  SCREEN_POINT,
+  screenPoint,
+  unit,
+} from './sphere-circles';
 import { getCoords } from './storyDots';
 
 interface GlowLayer {
@@ -212,7 +207,8 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
 interface PlaceMark {
   /** Every story here is found: a quiet ring, not a beacon. */
   read: boolean;
-  coords: [number, number];
+  /** The place, as a unit vector for `screenPoint`. */
+  unit: readonly [number, number, number];
   slug: string;
   color: string;
   rgb: readonly [number, number, number];
@@ -563,14 +559,14 @@ const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
   wrapCountryLabel(displayCountryName(name) ?? name),
 );
 
-// Bounding-cap cullers for every path the frame loop projects, built once at
-// module load. A part wholly outside the view cone is dropped before d3-geo
-// rotates, clips and winding-tests it, which is most of the planet at any
-// zoom tighter than a hemisphere — see `cap-cull.ts` for why the result is
-// exact rather than approximate.
-const arcticCircleCull = createCapCuller(ARCTIC_CIRCLE);
-const antarcticCircleCull = createCapCuller(ANTARCTIC_CIRCLE);
-const graticuleCull = createCapCuller(GRATICULE_LINES);
+/** The low-sun band's reach from the antisolar point: the sun within 6° of
+ *  the horizon. */
+const TWILIGHT_RADIUS = 96;
+/** The projection scale past which a moving frame still resamples its edges —
+ *  see `callReproject`. A phone's disc is ~190 pt, so every story framing
+ *  (30°–40°) and the swipes between them fall under it; a pinch past ~28°
+ *  does not. */
+const MOTION_RESAMPLE_SCALE = 400;
 
 export interface TapResult {
   countryName: string;
@@ -738,6 +734,7 @@ interface MiniGlobeProps {
 interface Hotspot {
   lat: number;
   lng: number;
+  unit: readonly [number, number, number];
   intensity: number; // 0–1 log-normalized
   recency: number; // 0–1, 1 = just now, decays with age
   labels: string[];
@@ -913,9 +910,8 @@ interface GlobeState {
   /** Night-side city pinpricks, deep-night tier (sun depressed past civil
    *  twilight). Painted brightest. Null when no cities qualify on the
    *  visible hemisphere — first paint and globe-noon framings are common
-   *  cases. The ~190-entry input loop is two dot products per entry plus
-   *  an optional proj() — fits comfortably alongside the existing GDACS /
-   *  conflict / hotspot loops. */
+   *  cases. The ~190-entry input loop is dot products, no trig — see
+   *  `collectCityLights`. */
   cityLightsNightPath: SkPath | null;
   /** Civil-twilight tier — same path family, painted at half opacity. The
    *  two-tier render gives the terminator a soft lighting-up gradient
@@ -1075,45 +1071,40 @@ const EMPTY_GLOBE: GlobeState = {
  *  soft lighting-up gradient instead of a hard on/off seam. Mutates the
  *  paths (does not rewind) — caller is responsible for rewind/Make. */
 function collectCityLights(
-  proj: (point: [number, number]) => [number, number] | null,
+  view: OrthoView,
+  clipCos: number,
   sunUnitX: number,
   sunUnitY: number,
   sunUnitZ: number,
-  camUnitX: number,
-  camUnitY: number,
-  camUnitZ: number,
-  clipCos: number,
   nightPath: SkPathBuilder,
   twilightPath: SkPathBuilder,
   collectTwilight: boolean,
 ): { hasNight: boolean; hasTwilight: boolean } {
   let hasNight = false;
   let hasTwilight = false;
-  const tmp: [number, number] = [0, 0];
+  // Read once, not per light: see `createSkiaPathContext`. Each method is
+  // bound to the builder it was read from.
+  const addNight = nightPath.addCircle;
+  const addTwilight = twilightPath.addCircle;
   for (let i = 0; i < CITY_LIGHT_COUNT; i++) {
     const i3 = i * 3;
     const ux = CITY_LIGHT_UNITS[i3] as number;
     const uy = CITY_LIGHT_UNITS[i3 + 1] as number;
     const uz = CITY_LIGHT_UNITS[i3 + 2] as number;
-    // Hemisphere + clip-cone cull (precomputed cartesian dot, no trig).
-    if (ux * camUnitX + uy * camUnitY + uz * camUnitZ <= clipCos) continue;
     // Sun-overhead dot: > 0 = day side, ≤ 0 = night side.
     const sunDot = ux * sunUnitX + uy * sunUnitY + uz * sunUnitZ;
     if (sunDot > 0) continue;
     // Tier is known from sunDot before projecting, so the zoom-gated
-    // twilight tier skips its proj() entirely at 1× ambient.
+    // twilight tier skips its projection entirely at 1× ambient.
     const isDeepNight = sunDot < CITY_LIGHT_DEEP_NIGHT_DOT;
     if (!isDeepNight && !collectTwilight) continue;
-    const i2 = i * 2;
-    tmp[0] = CITY_LIGHT_COORDS[i2] as number;
-    tmp[1] = CITY_LIGHT_COORDS[i2 + 1] as number;
-    const pt = proj(tmp);
-    if (!pt) continue;
+    // Clip-cone cull and projection, no trig.
+    if (!screenPoint(view, ux, uy, uz, clipCos)) continue;
     if (isDeepNight) {
-      nightPath.addCircle(pt[0], pt[1], CITY_LIGHT_RADIUS);
+      addNight.call(nightPath, SCREEN_POINT[0], SCREEN_POINT[1], CITY_LIGHT_RADIUS);
       hasNight = true;
     } else {
-      twilightPath.addCircle(pt[0], pt[1], CITY_LIGHT_RADIUS);
+      addTwilight.call(twilightPath, SCREEN_POINT[0], SCREEN_POINT[1], CITY_LIGHT_RADIUS);
       hasTwilight = true;
     }
   }
@@ -1412,6 +1403,11 @@ type SettledGeometry = {
   icePath: SkPath;
   bordersPath: SkPath;
   lakesPath: GlobeState['lakesPath'];
+  /** Filled by the first frame at this camera that draws rivers; `undefined`
+   *  until then. They were the one settled layer left out, and at ~9k
+   *  vertices the heaviest: 80–400 ms of every same-camera redraw on the
+   *  emulator — a font arriving, a story found, a gauge opened. */
+  riversPath?: SkPath;
 };
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
@@ -1938,38 +1934,73 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 }
 
 /**
- * Trace the great circle from `from` to `to` into `builder` in `steps`
- * segments, lifting the pen wherever the arc leaves the camera's cone or a
- * point will not project.
+ * Trace the great circle from `from` to `to` (unit vectors) into the path
+ * `ctx` targets, in `steps` segments, lifting the pen wherever the arc leaves
+ * the camera's cone.
  *
  * The cull is per point, not per endpoint: a source's headquarters is routinely
  * outside the zoom cone while the story-side stretch of its arc is visible. And
  * point projection ignores `.clipAngle`, so an unculled point would draw the arc
  * into the sky, or fold a far-side stretch back mirrored across the disk.
+ *
+ * The points are d3's `geoInterpolate` — a slerp — computed on the unit
+ * vectors, and placed by `screenPoint`, without the trigonometry per step.
  */
 function traceGreatCircle(
-  builder: SkPathBuilder,
-  from: [number, number],
-  to: [number, number],
+  ctx: SkiaGeoContext,
+  from: readonly [number, number, number],
+  to: readonly [number, number, number],
   steps: number,
-  camera: [number, number],
-  clipRad: number,
-  proj: GeoProjection,
+  view: OrthoView,
+  clipCos: number,
 ): void {
-  const interp = geoInterpolate(from, to);
+  const d = from[0] * to[0] + from[1] * to[1] + from[2] * to[2];
+  const omega = Math.acos(d > 1 ? 1 : d < -1 ? -1 : d);
+  const sinO = Math.sin(omega);
   let started = false;
   for (let i = 0; i <= steps; i++) {
-    const ll = interp(i / steps);
-    const p = geoDistance(ll, camera) < clipRad ? proj(ll) : null;
-    if (!p) {
+    const t = i / steps;
+    let a = 1 - t;
+    let b = t;
+    if (sinO > 1e-9) {
+      a = Math.sin(a * omega) / sinO;
+      b = Math.sin(b * omega) / sinO;
+    }
+    if (
+      !screenPoint(
+        view,
+        a * from[0] + b * to[0],
+        a * from[1] + b * to[1],
+        a * from[2] + b * to[2],
+        clipCos,
+      )
+    ) {
       started = false;
       continue;
     }
     if (!started) {
-      builder.moveTo(p[0], p[1]);
+      ctx.moveTo(SCREEN_POINT[0], SCREEN_POINT[1]);
       started = true;
-    } else builder.lineTo(p[0], p[1]);
+    } else ctx.lineTo(SCREEN_POINT[0], SCREEN_POINT[1]);
   }
+}
+
+/** A source this close to its story (0.05 rad) draws no arc. */
+const SAME_PLACE_COS = Math.cos(0.05);
+/** Units for the fixed points the frame loop projects. */
+const NORTH_POLE_UNIT = unit(0, 90);
+const SOUTH_POLE_UNIT = unit(0, -90);
+const MAKKAH_UNIT = unit(MAKKAH.coords[0], MAKKAH.coords[1]);
+/** A source's headquarters as a unit vector, by name; built on first use. */
+const sourceUnits = new Map<string, readonly [number, number, number] | null>();
+function sourceUnit(name: string): readonly [number, number, number] | null {
+  let u = sourceUnits.get(name);
+  if (u === undefined) {
+    const c = SOURCE_COORDS[name];
+    u = c ? unit(c[1], c[0]) : null; // SOURCE_COORDS is [lat, lng]
+    sourceUnits.set(name, u);
+  }
+  return u;
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
@@ -2156,6 +2187,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       return {
         lat: coords[0],
         lng: coords[1],
+        unit: unit(coords[1], coords[0]),
         country,
         countryName,
         location: a.location,
@@ -2190,7 +2222,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         const color = categoryMarkColor(category, colors);
         marks.push({
           read: true,
-          coords: [place.lng, place.lat],
+          unit: unit(place.lng, place.lat),
           slug: newest,
           color,
           rgb: hexRgb(color),
@@ -2221,7 +2253,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const color = categoryMarkColor(category, colors);
       marks.push({
         read: false,
-        coords: [place.lng, place.lat],
+        unit: unit(place.lng, place.lat),
         slug,
         color,
         rgb: hexRgb(color),
@@ -2397,6 +2429,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       return sorted.map((z) => ({
         lat: z.lat,
         lng: z.lng,
+        unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
         recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
         labels: [],
@@ -2439,6 +2472,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       return {
         lat: z.lat,
         lng: z.lng,
+        unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
         recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
         labels: [...z.labels],
@@ -2480,7 +2514,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // the feature. geoCentroid is O(n vertices) — computing it once per
   // settled-country change (instead of per frame) is what keeps this new
   // label layer effectively free inside callReproject.
-  const cachedCountryCentroidRef = useRef<[number, number] | null>(null);
+  const cachedCountryCentroidRef = useRef<readonly [number, number, number] | null>(null);
 
   // Reusable mutable builders retain their internal buffers between frames;
   // each frame publishes immutable SkPath snapshots for rendering.
@@ -2512,20 +2546,18 @@ export const MiniGlobe = memo(function MiniGlobe({
   articleGeoRef.current = articleGeo;
   const hotspotsRef = useRef(hotspots);
   hotspotsRef.current = hotspots;
-  // Precompute the per-frame derivations once per snapshot: uppercase label,
-  // [lng,lat] tuple (reused inside geoDistance + proj), and absolute delta
-  // of the primary vessel class (drives intensity + disrupted flag).
-  // Same shape as the chokepoint enrichment below: a `[lng, lat]` tuple built
-  // once per snapshot rather than per frame, because `geoDistance` and `proj`
-  // both want one and building it inside the loop allocates forty times a
-  // second for no reason.
+  // Precompute the per-frame derivations once per snapshot: the label, the
+  // place as a unit vector (all `screenPoint` needs to cull and place a mark),
+  // and the absolute delta of the primary vessel class (drives intensity and
+  // the disrupted flag). Built once per snapshot rather than per frame, like
+  // every mark source below.
   const enrichedMarketMarks = useMemo(
     () =>
       (marketMarks ?? []).map((m) => ({
         id: m.id,
         label: m.label,
         direction: m.direction,
-        coords: [m.lng, m.lat] as [number, number],
+        unit: unit(m.lng, m.lat),
       })),
     [marketMarks],
   );
@@ -2540,7 +2572,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // mixed case; uppercase reads as alarm even at baseline, fighting
         // the "ambient reference geography" intent.
         label: cp.name,
-        coords: [cp.lng, cp.lat] as [number, number],
+        unit: unit(cp.lng, cp.lat),
         // Signed, because direction decides meaning here and magnitude only
         // decides brightness.
         delta: cp.delta7vs90[cp.primaryField] ?? 0,
@@ -2552,9 +2584,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   chokepointsRef.current = enrichedChokepoints;
   const marketMarksRef = useRef(enrichedMarketMarks);
   marketMarksRef.current = enrichedMarketMarks;
-  // `[lng, lat]`, built once per selection for `geoDistance` and `proj`.
-  const selectedCoords = useMemo<[number, number] | null>(
-    () => (selectedAt ? [selectedAt[1], selectedAt[0]] : null),
+  // A unit vector, built once per selection for `screenPoint`.
+  const selectedCoords = useMemo<readonly [number, number, number] | null>(
+    () => (selectedAt ? unit(selectedAt[1], selectedAt[0]) : null),
     [selectedAt],
   );
   const selectedRef = useRef(selectedCoords);
@@ -2609,7 +2641,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       eventid: a.eventid,
       eventtype: a.eventtype,
       alertlevel: a.alertlevel,
-      coords: [a.lng, a.lat] as [number, number],
+      unit: unit(a.lng, a.lat),
       recencyAlpha: Math.max(0.5, 1 - alertAgeDays(a) / 14),
     }));
   }, [gdacsAlerts, _tick]);
@@ -2633,7 +2665,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
     return events.map((e) => ({
       id: e.id,
-      coords: [e.lng, e.lat] as [number, number],
+      unit: unit(e.lng, e.lat),
       recencyAlpha: Math.max(0.4, 1 - eventAgeDays(e, latestMs) / 14),
       scale: conflictScale(e.fatalities),
     }));
@@ -2649,7 +2681,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           const blocks = famineBlocks(a.phase);
           return {
             id: a.id,
-            coords: [a.lng, a.lat] as [number, number],
+            unit: unit(a.lng, a.lat),
             blocks,
             alpha: famineAlpha(a.ageMonths),
             // Web: the gravest phase draws larger, and on top.
@@ -2665,7 +2697,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     () =>
       (thermalEvents ?? []).map((e) => ({
         id: e.id,
-        coords: [e.lng, e.lat] as [number, number],
+        unit: unit(e.lng, e.lat),
         alpha: thermalAlpha(e.confidence),
         scale: thermalScale(e.frp),
       })),
@@ -2677,7 +2709,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     () =>
       (genocideSituations ?? []).map((g) => ({
         id: g.id,
-        coords: [g.lng, g.lat] as [number, number],
+        unit: unit(g.lng, g.lat),
         label: g.name.toUpperCase(),
       })),
     [genocideSituations],
@@ -2735,9 +2767,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         // focused-country label on the primary landmass even when overseas
         // territories would otherwise drag the geometric centroid into a
         // neighbour (e.g. France → French Guiana drags into Spain).
-        cachedCountryCentroidRef.current = settledName
+        const centroid = settledName
           ? (countryCentroids[settledName] ?? (geo?.country ? geoCentroid(geo.country) : null))
           : null;
+        cachedCountryCentroidRef.current = centroid ? unit(centroid[0], centroid[1]) : null;
       }
 
       // Adaptive zoom — each story's own framing at rest, and between two of
@@ -2783,18 +2816,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       const clipRad = (viewAngle * Math.PI) / 180;
       const clipCos = Math.cos(clipRad);
 
-      const proj = projRef.current;
-      // Resample long geographic edges into smooth projected curves.
-      proj
-        .clipAngle(viewAngle)
-        .precision(0.25)
-        .rotate([-geoLng, -geoLat, 0])
-        .scale(projScale)
-        .translate([centerX, centerY]);
-
-      const pg = pgRef.current;
-      pg.projection(proj);
-
       // Arc opacity still fades over a quarter story; expensive detail waits
       // until landing, using the same boundary as reaction invalidation.
       const ARC_WINDOW = 0.25;
@@ -2808,6 +2829,30 @@ export const MiniGlobe = memo(function MiniGlobe({
       // `cameraMoving`, every frame of a globe drag was therefore projected at
       // full settled detail — on the emulator, 26 of 26 frames over four drags.
       const nearSettled = !zoomInFlight && !cameraMoving && isStorySettled(frac);
+
+      const proj = projRef.current;
+      // At rest, long geographic edges are resampled into projected curves.
+      // Moving at a story's framing they are not: resampling there added ~30
+      // points to ~2,300 of land and borders and cost 27% of their time,
+      // because d3 tests the midpoint of every edge to find those few. Left
+      // straight, an edge strays by at most ~1 px at scale 230 and ~1.5 px at
+      // 355, on under 1% of points; the resting frame puts the curves back.
+      // The stray grows with scale (3 px at 720), so past
+      // `MOTION_RESAMPLE_SCALE` a moving frame keeps resampling.
+      proj
+        .clipAngle(viewAngle)
+        .precision(nearSettled || projScale > MOTION_RESAMPLE_SCALE ? 0.25 : 0)
+        .rotate([-geoLng, -geoLat, 0])
+        .scale(projScale)
+        .translate([centerX, centerY]);
+      const pg = pgRef.current;
+      pg.projection(proj);
+      // The same camera, for the circles drawn in closed form and every point
+      // mark: `seen` culls a unit vector against the view cone and, when it is
+      // in view, leaves its screen position in `SCREEN_POINT`.
+      const view = orthoView(geoLng, geoLat, projScale, centerX, centerY);
+      const seen = (u: readonly [number, number, number]) =>
+        screenPoint(view, u[0], u[1], u[2], clipCos);
 
       // Keep gesture frames light, then restore detail at the actual landing.
       // Every geographic layer uses the same shared-arc tier.
@@ -2862,10 +2907,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // direct projection ignores `.clipAngle` (see clipRad above): the dot
       // and its "London · 20:17" label floated in the sky beside the globe.
       let dot: { x: number; y: number } | null = null;
-      if (geo && geoDistance([geo.lng, geo.lat], [geoLng, geoLat]) < clipRad) {
-        const pt = proj([geo.lng, geo.lat]);
-        if (pt) dot = { x: pt[0], y: pt[1] };
-      }
+      if (geo && seen(geo.unit)) dot = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
 
       // Story marks — one per place with a story the reader has not found.
       // Everything but position was decided in `placeMarks`; this culls against
@@ -2873,11 +2915,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       // clipRad above) and projects.
       const storyMarks: GlobeState['storyMarks'] = [];
       const readMarks: GlobeState['readMarks'] = [];
-      const storyCamera: [number, number] = [geoLng, geoLat];
       for (const m of placeMarksRef.current) {
-        if (geoDistance(m.coords, storyCamera) >= clipRad) continue;
-        const pt = proj(m.coords);
-        if (!pt) continue;
+        if (!seen(m.unit)) continue;
+        const pt = SCREEN_POINT;
         if (m.read) {
           readMarks.push({ x: pt[0], y: pt[1], slug: m.slug, color: m.color });
           continue;
@@ -2913,9 +2953,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // ignores `.clipAngle` (it never returns null for a clipped point), so
       // without the cone test a centroid far from the camera — e.g. Russia's
       // centroid while the story sits in Vladivostok at zoom clip 18° — would
-      // project past the disk and float in the sky. One geoDistance + one
-      // projection op per frame; the centroid itself is pre-computed on
-      // settled-country change.
+      // project past the disk and float in the sky. One `seen` per frame; the
+      // centroid's unit vector is computed on settled-country change.
       // Default offset: 14px below the centroid so the label sits under
       // the highlight. Overridden further below if it would collide with
       // the dot label (location · time).
@@ -2923,16 +2962,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       const COUNTRY_LABEL_OFFSET = 14;
       const centroid = cachedCountryCentroidRef.current;
       const countryName = cachedCountryRef.current?.properties?.name as string | undefined;
-      if (centroid && countryName && geoDistance(centroid, [geoLng, geoLat]) < clipRad) {
-        const pt = proj(centroid);
-        if (pt) {
-          const display = displayCountryName(countryName) ?? countryName;
-          countryLabel = {
-            lines: wrapCountryLabel(display),
-            x: pt[0],
-            y: pt[1] + COUNTRY_LABEL_OFFSET,
-          };
-        }
+      if (centroid && countryName && seen(centroid)) {
+        const display = displayCountryName(countryName) ?? countryName;
+        countryLabel = {
+          lines: wrapCountryLabel(display),
+          x: SCREEN_POINT[0],
+          y: SCREEN_POINT[1] + COUNTRY_LABEL_OFFSET,
+        };
       }
 
       // Borders use the same tier as the land, even while the camera moves.
@@ -2962,58 +2998,44 @@ export const MiniGlobe = memo(function MiniGlobe({
       // central window of a fast swipe, but the perceived "things vanishing
       // as I swipe" cost more in UX than the few-ms savings bought back.
 
-      // Night shadow
+      // Day, night and the low-sun band: the sunlit hemisphere, the dark one,
+      // and the 96° cap around the antisolar point. Caps on the sphere, drawn
+      // in closed form (`sphere-circles.ts`).
       const [sunLng, sunLat] = getSunPosition();
-      const {
-        day: dayGeo,
-        night: nightGeo,
-        twilight: twilightGeo,
-      } = getNightCircles(sunLng, sunLat);
+      const antiLng = sunLng + 180;
       const dayBuilder = dayPathRef.current;
       dayBuilder.reset();
       skiaCtx.setPath(dayBuilder);
-      pg.context(skiaCtx)(dayGeo);
+      capFill(skiaCtx, view, sunLng, sunLat, 90);
       const dayPath = dayBuilder.build();
       const nightBuilder = nightPathRef.current;
       nightBuilder.reset();
       skiaCtx.setPath(nightBuilder);
-      pg.context(skiaCtx)(nightGeo);
+      capFill(skiaCtx, view, antiLng, -sunLat, 90);
       const nightPath = nightBuilder.build();
-
-      // Low-sun band
       const twilightBuilder = twilightPathRef.current;
       twilightBuilder.reset();
       skiaCtx.setPath(twilightBuilder);
-      pg.context(skiaCtx)(twilightGeo);
+      capFill(skiaCtx, view, antiLng, -sunLat, TWILIGHT_RADIUS);
       const twilightPath = twilightBuilder.build();
 
       // Poles — culled against the clip cone like every other point marker:
-      // proj() never nulls a far-side point, it mirrors it back inside the
+      // a projection never nulls a far-side point, it mirrors it back inside the
       // disk (a camera at 30°N would paint the south-pole cross at the screen
       // position of front-side 60°S).
       let northPole: GlobeState['northPole'] = null;
       let southPole: GlobeState['southPole'] = null;
-      if (geoDistance(NORTH_POLE, [geoLng, geoLat]) < clipRad) {
-        const npp = proj(NORTH_POLE);
-        if (npp) northPole = { x: npp[0], y: npp[1] };
-      }
-      if (geoDistance(SOUTH_POLE, [geoLng, geoLat]) < clipRad) {
-        const spp = proj(SOUTH_POLE);
-        if (spp) southPole = { x: spp[0], y: spp[1] };
-      }
+      if (seen(NORTH_POLE_UNIT)) northPole = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
+      if (seen(SOUTH_POLE_UNIT)) southPole = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
 
       // Makkah
       let makkah: { x: number; y: number } | null = null;
-      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < clipRad) {
-        const pt = proj(MAKKAH.coords);
-        if (pt) makkah = { x: pt[0], y: pt[1] };
-      }
+      if (seen(MAKKAH_UNIT)) makkah = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
 
       let selected: { x: number; y: number } | null = null;
-      const selectedLngLat = selectedRef.current;
-      if (selectedLngLat && geoDistance(selectedLngLat, [geoLng, geoLat]) < clipRad) {
-        const pt = proj(selectedLngLat);
-        if (pt) selected = { x: pt[0], y: pt[1] };
+      const selectedUnit = selectedRef.current;
+      if (selectedUnit && seen(selectedUnit)) {
+        selected = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
       }
 
       // Subsolar point — drives the day-side ocean specular highlight.
@@ -3023,19 +3045,16 @@ export const MiniGlobe = memo(function MiniGlobe({
       // projection doesn't clip, so a sun between clipRad and 90° away
       // would center the specular blob outside the disk near the limb.
       let subsolar: { x: number; y: number } | null = null;
-      if (geoDistance([sunLng, sunLat], [geoLng, geoLat]) < clipRad) {
-        const pt = proj([sunLng, sunLat]);
-        if (pt) subsolar = { x: pt[0], y: pt[1] };
-      }
+      const sunUnit = unit(sunLng, sunLat);
+      if (seen(sunUnit)) subsolar = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
 
-      // The graticule and the polar circles — projected every frame; ~1.4k
-      // vertices before the cull, which drops most of them at any zoom.
+      // The graticule and the polar circles, in closed form: ~90 path calls
+      // where d3 streamed ~1,300 points through rotation, clipping and
+      // resampling.
       const graticuleBuilder = graticulePathRef.current;
       graticuleBuilder.reset();
       skiaCtx.setPath(graticuleBuilder);
-      pg.context(skiaCtx)(graticuleCull.visible(geoLng, geoLat, viewAngle));
-      pg.context(skiaCtx)(arcticCircleCull.visible(geoLng, geoLat, viewAngle));
-      pg.context(skiaCtx)(antarcticCircleCull.visible(geoLng, geoLat, viewAngle));
+      graticuleLines(skiaCtx, view);
       const graticulePath = graticuleBuilder.build();
 
       // Dot label — the only remaining nearSettled gate. Two reasons:
@@ -3093,15 +3112,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
-          traceGreatCircle(
-            qiblaBuilder,
-            storyPt,
-            MAKKAH.coords,
-            16,
-            [geoLng, geoLat],
-            clipRad,
-            proj,
-          );
+          skiaCtx.setPath(qiblaBuilder);
+          traceGreatCircle(skiaCtx, geo.unit, MAKKAH_UNIT, 16, view, clipCos);
           hasQibla = true;
         }
       }
@@ -3111,24 +3123,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       sourceArcsBuilder.reset();
       let hasSourceArcs = false;
       if (geo) {
-        const storyPt: [number, number] = [geo.lng, geo.lat];
         const article = articlesRef.current[settledIndex];
         if (article?.sources) {
+          skiaCtx.setPath(sourceArcsBuilder);
           for (const src of article.sources) {
-            const srcCoords = SOURCE_COORDS[src.name];
-            if (!srcCoords) continue;
-            const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
-            // Skip if source is at the same location as the story
-            if (geoDistance(srcPt, storyPt) < 0.05) continue;
-            traceGreatCircle(
-              sourceArcsBuilder,
-              srcPt,
-              storyPt,
-              10,
-              [geoLng, geoLat],
-              clipRad,
-              proj,
-            );
+            const srcUnit = sourceUnit(src.name);
+            if (!srcUnit) continue;
+            // Skip if source is at the same location as the story (0.05 rad).
+            const along =
+              srcUnit[0] * geo.unit[0] + srcUnit[1] * geo.unit[1] + srcUnit[2] * geo.unit[2];
+            if (along > SAME_PLACE_COS) continue;
+            traceGreatCircle(skiaCtx, srcUnit, geo.unit, 10, view, clipCos);
             hasSourceArcs = true;
           }
         }
@@ -3139,45 +3144,22 @@ export const MiniGlobe = memo(function MiniGlobe({
       // boundary. ≤12 point projections per frame, negligible cost.
       const hotspotGlows: GlobeState['hotspotGlows'] = [];
       for (const zone of hotspotsRef.current) {
-        const zoneCoords: [number, number] = [zone.lng, zone.lat];
-        if (geoDistance(zoneCoords, [geoLng, geoLat]) < clipRad) {
-          const pt = proj(zoneCoords);
-          if (pt)
-            hotspotGlows.push({
-              x: pt[0],
-              y: pt[1],
-              lat: zone.lat,
-              lng: zone.lng,
-              intensity: zone.intensity,
-              recency: zone.recency,
-              labels: zone.labels,
-              countryName: zone.countryName,
-            });
-        }
+        if (!seen(zone.unit)) continue;
+        hotspotGlows.push({
+          x: SCREEN_POINT[0],
+          y: SCREEN_POINT[1],
+          lat: zone.lat,
+          lng: zone.lng,
+          intensity: zone.intensity,
+          recency: zone.recency,
+          labels: zone.labels,
+          countryName: zone.countryName,
+        });
       }
 
-      // Camera unit vector — precomputed once per frame so hemisphere culls
-      // on static point sets (neighbour centroids, etc.) can use a dot
-      // product instead of d3-geo's haversine. Standard lng/lat → Cartesian
-      // with Z pointing through the north pole; dot > 0 ⇔ visible hemisphere.
-      const DEG2RAD = Math.PI / 180;
-      const camLatR = geoLat * DEG2RAD;
-      const camLngR = geoLng * DEG2RAD;
-      const camCosLat = Math.cos(camLatR);
-      const camUnitX = camCosLat * Math.cos(camLngR);
-      const camUnitY = camCosLat * Math.sin(camLngR);
-      const camUnitZ = Math.sin(camLatR);
-
-      // Sun unit vector — computed alongside the camera vector so the city-
-      // light pass below can score sun-overhead-ness with a dot product.
-      // Cached sun position only changes once per minute, but the unit
-      // vector is cheap and avoids a dependency on cache hits.
-      const sunLatR = sunLat * DEG2RAD;
-      const sunLngR = sunLng * DEG2RAD;
-      const sunCosLat = Math.cos(sunLatR);
-      const sunUnitX = sunCosLat * Math.cos(sunLngR);
-      const sunUnitY = sunCosLat * Math.sin(sunLngR);
-      const sunUnitZ = Math.sin(sunLatR);
+      // The sun as a unit vector, so the city-light pass below scores how far
+      // each city is past dusk with a dot product.
+      const [sunUnitX, sunUnitY, sunUnitZ] = sunUnit;
 
       // Zoom-band label ramp (0 at PLACES_APPEAR_CLIP=25° → 1 at
       // PLACES_FULL_CLIP=10°). Hoisted above the marker loops so the
@@ -3192,27 +3174,23 @@ export const MiniGlobe = memo(function MiniGlobe({
           )
         : 0;
 
-      // City lights — refresh both tier paths. Two dot products + one
-      // optional proj() per entry × ~190 entries; the dot products handle
-      // the hemisphere/clip cull and the day-side cull before any
-      // projection runs, so worst case is the visible-night-hemisphere
-      // count of proj() calls (typically 50–80). The dim civil-twilight tier
-      // is zoom-gated — held back at 1× ambient (labelOpacity 0) so the
-      // terminator-edge speckle doesn't clutter the resting view, and faded
-      // in via `cityTwilightOpacity` past 25°. Deep-night dots always show.
+      // City lights — refresh both tier paths. At most two dot products and a
+      // projection per entry × ~190 entries, none of it trigonometry; the
+      // day-side cull runs first, so only the night side is projected. The
+      // dim civil-twilight tier is zoom-gated — held back at 1× ambient
+      // (labelOpacity 0) so the terminator-edge speckle doesn't clutter the
+      // resting view, and faded in via `cityTwilightOpacity` past 25°.
+      // Deep-night dots always show.
       const cityNightBuilder = cityLightsNightPathRef.current;
       cityNightBuilder.reset();
       const cityTwilightBuilder = cityLightsTwilightPathRef.current;
       cityTwilightBuilder.reset();
       const cityRes = collectCityLights(
-        (p) => proj(p),
+        view,
+        clipCos,
         sunUnitX,
         sunUnitY,
         sunUnitZ,
-        camUnitX,
-        camUnitY,
-        camUnitZ,
-        clipCos,
         cityNightBuilder,
         cityTwilightBuilder,
         labelOpacity > 0,
@@ -3222,11 +3200,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (≤11) and the markers are geographic reference, not cosmetic detail,
       // so they shouldn't blink out during a fast scroll.
       const chokepointMarks: GlobeState['chokepoints'] = [];
-      const cameraCoords: [number, number] = [geoLng, geoLat];
       for (const cp of chokepointsRef.current) {
-        if (geoDistance(cp.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(cp.coords);
-        if (!pt) continue;
+        if (!seen(cp.unit)) continue;
+        const pt = SCREEN_POINT;
         chokepointMarks.push({
           x: pt[0],
           y: pt[1],
@@ -3245,9 +3221,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // reader looks for what the strip just promised.
       const marketProjected: GlobeState['marketMarks'] = [];
       for (const m of marketMarksRef.current) {
-        if (geoDistance(m.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(m.coords);
-        if (!pt) continue;
+        if (!seen(m.unit)) continue;
+        const pt = SCREEN_POINT;
         marketProjected.push({
           x: pt[0],
           y: pt[1],
@@ -3267,9 +3242,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (const a of gdacsAlertsRef.current) {
         const isGreen = a.alertlevel === 'Green';
         if (isGreen && labelOpacity <= 0) continue;
-        if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(a.coords);
-        if (!pt) continue;
+        if (!seen(a.unit)) continue;
+        const pt = SCREEN_POINT;
         gdacsMarks.push({
           x: pt[0],
           y: pt[1],
@@ -3286,9 +3260,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // needs: position + recencyAlpha for the per-instance fade.
       const conflictMarks: GlobeState['conflictMarks'] = [];
       for (const e of conflictEventsRef.current) {
-        if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(e.coords);
-        if (!pt) continue;
+        if (!seen(e.unit)) continue;
+        const pt = SCREEN_POINT;
         conflictMarks.push({
           x: pt[0],
           y: pt[1],
@@ -3311,9 +3284,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (let i = famineSrc.length - 1; i >= 0; i--) {
         const a = famineSrc[i];
         if (!a) continue;
-        if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(a.coords);
-        if (!pt) continue;
+        if (!seen(a.unit)) continue;
+        const pt = SCREEN_POINT;
         let crowded = false;
         for (const kept of famineMarks) {
           if (
@@ -3338,16 +3310,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       famineMarks.reverse();
       const thermalMarks: GlobeState['thermalMarks'] = [];
       for (const e of thermalRef.current) {
-        if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(e.coords);
-        if (!pt) continue;
+        if (!seen(e.unit)) continue;
+        const pt = SCREEN_POINT;
         thermalMarks.push({ x: pt[0], y: pt[1], id: e.id, alpha: e.alpha, scale: e.scale });
       }
       const genocideMarks: GlobeState['genocideMarks'] = [];
       for (const g of genocideRef.current) {
-        if (geoDistance(g.coords, cameraCoords) >= clipRad) continue;
-        const pt = proj(g.coords);
-        if (!pt) continue;
+        if (!seen(g.unit)) continue;
+        const pt = SCREEN_POINT;
         genocideMarks.push({ x: pt[0], y: pt[1], id: g.id, label: g.label });
       }
 
@@ -3372,13 +3342,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       // loops (the green-disaster gate shares them) and reused here.
       const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
 
-      // Country centroids — hemisphere cull uses a precomputed cartesian
-      // dot product against the camera axis (~900 trig ops saved per
-      // frame vs. geoDistance haversine). Two passes so anchors win
+      // Country centroids — culled and placed from precomputed unit vectors
+      // (`seen`), with no trigonometry per country. Two passes so anchors win
       // collisions in the greedy packer below: pass 1 collects anchors
       // (always), pass 2 collects non-anchors (only when zoomed past
       // PLACES_APPEAR_CLIP). Iteration is over the parallel arrays
-      // (names/points/units) populated in shared.ts. Projects every
+      // (names/units) populated in shared.ts. Projects every
       // frame — the gate that used to hide labels mid-swipe was
       // perceptually worse than the cost it saved (anchors visibly
       // popped out and back in during slow scrolls).
@@ -3394,13 +3363,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         const isAnchor =
           (countryAreas[name] ?? 0) >= ANCHOR_COUNTRY_AREA || ANCHOR_NAMES_EXTRA.has(name);
         if (!placesActive && !isAnchor) continue;
-        const unit = countryCentroidUnits[i];
-        if (!unit) continue;
-        if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
-        const coords = countryCentroidPoints[i];
-        if (!coords) continue;
-        const pt = proj(coords);
-        if (!pt) continue;
+        const centroidUnit = countryCentroidUnits[i];
+        if (!centroidUnit || !seen(centroidUnit)) continue;
+        const pt = SCREEN_POINT;
         // Precomputed display-name wrap (1–2 lines) — long names stack like
         // the focused country label instead of running as one wide line
         // whose AABB evicts every neighbour it crosses in the packer.
@@ -3425,11 +3390,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // country's name wins over its capital's where they collide.
       const capitalLabels: GlobeState['capitalLabels'] = [];
       for (const capital of CAPITALS) {
-        const u = capital.unit;
-        if (u[0] * camUnitX + u[1] * camUnitY + u[2] * camUnitZ <= clipCos) continue;
-        const pt = proj(capital.coords);
-        if (!pt) continue;
-        capitalLabels.push({ name: capital.name, x: pt[0], y: pt[1] });
+        if (!seen(capital.unit)) continue;
+        capitalLabels.push({ name: capital.name, x: SCREEN_POINT[0], y: SCREEN_POINT[1] });
       }
 
       if (placesActive) {
@@ -3440,10 +3402,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
         for (const lake of getLakeLabels()) {
           if (lake.area < LAKE_MIN_AREA) continue;
-          const lu = lake.unit;
-          if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= clipCos) continue;
-          const pt = proj(lake.coords);
-          if (!pt) continue;
+          if (!seen(lake.unit)) continue;
+          const pt = SCREEN_POINT;
           waterLabels.push({
             name: lake.name,
             x: pt[0],
@@ -3455,10 +3415,8 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         // Rivers — rank ≤ 3 filter already applied at precompute time.
         for (const river of getRiverLabels()) {
-          const ru = river.unit;
-          if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= clipCos) continue;
-          const pt = proj(river.coords);
-          if (!pt) continue;
+          if (!seen(river.unit)) continue;
+          const pt = SCREEN_POINT;
           waterLabels.push({
             name: river.name,
             x: pt[0],
@@ -3470,10 +3428,8 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
         for (const sea of getSeas()) {
-          const su = sea.unit;
-          if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= clipCos) continue;
-          const pt = proj([sea.lng, sea.lat]);
-          if (!pt) continue;
+          if (!seen(sea.unit)) continue;
+          const pt = SCREEN_POINT;
           waterLabels.push({
             name: sea.name,
             x: pt[0],
@@ -3492,12 +3448,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       // and a reader looking at Mali or Australia saw none of them.
       const riversZoomed = clipAngle < RIVERS_APPEAR_CLIP;
       if (riversZoomed || (nearSettled && clipAngle <= RIVERS_REST_CLIP)) {
-        if (!riversCuller) riversCuller = createCapCuller(getMajorRiverFeatureCollection());
-        const riverBuilder = riversPathRef.current;
-        riverBuilder.reset();
-        skiaCtx.setPath(riverBuilder);
-        pg.context(skiaCtx)(riversCuller.visible(geoLng, geoLat, viewAngle));
-        riversPath = riverBuilder.build();
+        const settledEntry = geometryKey ? geometryCache.get(geometryKey) : undefined;
+        if (settledEntry?.riversPath) {
+          riversPath = settledEntry.riversPath;
+        } else {
+          if (!riversCuller) riversCuller = createCapCuller(getMajorRiverFeatureCollection());
+          const riverBuilder = riversPathRef.current;
+          riverBuilder.reset();
+          skiaCtx.setPath(riverBuilder);
+          pg.context(skiaCtx)(riversCuller.visible(geoLng, geoLat, viewAngle));
+          riversPath = riverBuilder.build();
+          if (settledEntry) settledEntry.riversPath = riversPath;
+        }
         const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
         const ramp = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
         riversOpacity = nearSettled ? Math.max(RIVERS_REST_OPACITY, ramp) : ramp;

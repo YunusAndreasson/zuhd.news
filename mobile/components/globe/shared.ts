@@ -1,21 +1,18 @@
 import countriesTopo from '@shared/data/countries-110m.json';
 import type { SkPathBuilder } from '@shopify/react-native-skia';
 import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
-import { feature, mesh } from 'topojson-client';
-import { presimplify, simplify } from 'topojson-simplify';
+import { feature } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
+import type { ConicSink } from './sphere-circles';
 
 interface TopoWithObjects extends Topology {
   objects: Record<string, GeometryCollection>;
 }
 
-// IMPORTANT: land and countries share the SAME topology. Earlier versions
-// loaded `land` from a separate `world-110m.json` (a more aggressively
-// simplified union) and `countries` from `countries-110m.json` — the two
-// used different arc sets, so the country polygons didn't perfectly align
-// with the land silhouette at zoom. Taking both from the single
-// `countries-110m.json` topology guarantees coastline + country borders
-// reference the same arcs, so they overlap exactly.
+// The 110m countries: point-in-country lookup, areas and label centroids.
+// The globe draws its land, borders and highlight from the tiers in
+// `geography.ts`; the 110m land and border meshes that used to be built here
+// at module load are test and bench fixtures now (`perf/fixtures`).
 const countriesData = countriesTopo as unknown as TopoWithObjects;
 
 const countriesObj = countriesData.objects.countries;
@@ -25,70 +22,6 @@ export const countries = feature(
   countriesData,
   countriesObj,
 ) as unknown as GeoJSON.FeatureCollection;
-
-// Permanent land-based ice sheets — Antarctica (~98% ice year-round) and
-// Greenland (~80%). Rendered as a white fill over the land silhouette so
-// the globe reads climatologically correct without a second basemap.
-export const iceSheets: GeoJSON.FeatureCollection = {
-  type: 'FeatureCollection',
-  features: countries.features.filter((f) => {
-    const n = f.properties?.name;
-    return n === 'Antarctica' || n === 'Greenland';
-  }),
-};
-
-// ── Simplified topology variants ──────────────────────────────────────────
-// One Visvalingam-Whyatt pass (`presimplify()`, ~15ms at module load):
-//   - weight 0.5 → land 5127→2081, countries 10587→4079. Used during
-//     mid-scroll (!nearSettled). 60% vertex drop, no visible difference at
-//     globe-scroll speed.
-//
-// Settled frames draw the full topology below (`landFull`, `bordersMeshFull`).
-// A 0.15-weight middle tier (~3000 land vertices) stood in for it from April
-// 2026, when a settled frame also paid for ~200 haloed label nodes through
-// React; that cost is gone, a settled frame is one redraw, and the middle tier
-// made the resting globe visibly coarse when zoomed out. Headless, land +
-// borders at clip 90: full 2.9 ms p50 / 5386 vertices, middle 2.0 ms / 3526,
-// simplified 1.1 ms / 2224.
-const presimplifiedData = presimplify(countriesData);
-const simplifiedData = simplify(presimplifiedData, 0.5) as unknown as TopoWithObjects;
-const landObjSimp = simplifiedData.objects.land;
-const countriesObjSimp = simplifiedData.objects.countries;
-const landObj = countriesData.objects.land;
-if (!landObjSimp || !countriesObjSimp || !landObj) {
-  throw new Error('missing simplified topojson objects');
-}
-
-export const landSimplified = feature(simplifiedData, landObjSimp);
-/** Borders mesh from the same 0.5-weight simplified topology as
- *  `landSimplified`. Same arcs guarantee mid-scroll borders align exactly
- *  with the simplified coastline. ~56% cheaper to project than full
- *  the full-detail mesh; swapped in by MiniGlobe when `!nearSettled`. */
-export const bordersMeshSimplified = mesh(simplifiedData, countriesObjSimp, (a, b) => a !== b);
-/** The full 110m coastline, for settled frames. Same arcs as the simplified
- *  variant, so the silhouette and the borders stay aligned across the swap. */
-export const landFull = feature(countriesData, landObj);
-/** Borders mesh from the full topology — settled-frame companion to `landFull`. */
-export const bordersMeshFull = mesh(countriesData, countriesObj, (a, b) => a !== b);
-const countriesSimplified = feature(
-  simplifiedData,
-  countriesObjSimp,
-) as unknown as GeoJSON.FeatureCollection;
-export const iceSheetsSimplified: GeoJSON.FeatureCollection = {
-  type: 'FeatureCollection',
-  features: countriesSimplified.features.filter((f) => {
-    const n = f.properties?.name;
-    return n === 'Antarctica' || n === 'Greenland';
-  }),
-};
-/** Name → simplified country feature lookup — used for the country-highlight
- *  path during mid-scroll. Parallel to `cachedCountryRef` (full-detail),
- *  so settle flips to full detail and scroll flips back to simplified. */
-export const countrySimplifiedByName: Record<string, GeoJSON.Feature> = {};
-for (const f of countriesSimplified.features) {
-  const name = f.properties?.name;
-  if (name) countrySimplifiedByName[name] = f;
-}
 
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
@@ -197,23 +130,53 @@ const RAD2DEG = 180 / Math.PI;
 
 /** Skia path target bridged into d3-geo's `.context()` API. Extends GeoContext
  * so `pg.context(ctx)` accepts it without a cast; `setPath` retargets writes
- * to a different Skia path between draw calls. */
-export interface SkiaGeoContext extends GeoContext {
+ * to a different Skia path between draw calls. It is also the `ConicSink` the
+ * closed-form circles in `sphere-circles.ts` draw through. */
+export interface SkiaGeoContext extends GeoContext, ConicSink {
   setPath(p: SkPathBuilder): void;
 }
 
+type PathStep = (this: SkPathBuilder, x: number, y: number) => SkPathBuilder;
+type PathConic = (
+  this: SkPathBuilder,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  w: number,
+) => SkPathBuilder;
+
+/**
+ * Reading a method off a Skia object is itself a JSI call: the host object
+ * copies the property name to UTF-8 and searches two maps for it before the
+ * call it returns has run. It cost more than the call — 1.8 µs per `lineTo`
+ * against 0.53 µs with the function held (20k calls, Hermes, emulator) — and
+ * d3 streams one `lineTo` per projected point, ~4k a moving frame and ~30k a
+ * settled one. So each builder's methods are read once, when it becomes the
+ * target. They are bound to their builder natively but read `this` for their
+ * return value, which is why they are invoked through `.call`.
+ */
 export function createSkiaPathContext(): SkiaGeoContext {
   let _path: SkPathBuilder | null = null;
+  let _moveTo: PathStep | null = null;
+  let _lineTo: PathStep | null = null;
+  let _conicTo: PathConic | null = null;
   return {
     setPath(p: SkPathBuilder) {
       _path = p;
+      _moveTo = p.moveTo;
+      _lineTo = p.lineTo;
+      _conicTo = p.conicTo;
     },
     beginPath() {},
     moveTo(x: number, y: number) {
-      _path?.moveTo(x, y);
+      if (_path) _moveTo?.call(_path, x, y);
     },
     lineTo(x: number, y: number) {
-      _path?.lineTo(x, y);
+      if (_path) _lineTo?.call(_path, x, y);
+    },
+    conicTo(x1: number, y1: number, x2: number, y2: number, w: number) {
+      if (_path) _conicTo?.call(_path, x1, y1, x2, y2, w);
     },
     arc(x: number, y: number, r: number, startAngle: number, endAngle: number) {
       _path?.addArc(
@@ -223,6 +186,9 @@ export function createSkiaPathContext(): SkiaGeoContext {
       );
     },
     closePath() {
+      _path?.close();
+    },
+    close() {
       _path?.close();
     },
   };

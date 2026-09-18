@@ -5,15 +5,9 @@
  */
 
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
-import {
-  bordersMeshFull,
-  countries,
-  countryCentroidPoints,
-  iceSheets,
-  landFull,
-  landSimplified,
-} from '../../components/globe/shared';
+import { countries, countryCentroidPoints } from '../../components/globe/shared';
 import { bench } from '../bench-utils';
+import { bordersMeshFull, iceSheets, landFull, landSimplified } from '../fixtures/globe-geometry';
 
 const noop: GeoContext = {
   beginPath() {},

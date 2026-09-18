@@ -1,19 +1,16 @@
 import { type GeoPermissibleObjects, geoOrthographic, geoPath } from 'd3-geo';
 import { createCapCuller } from '../components/globe/cap-cull';
+import { countries } from '../components/globe/shared';
 import {
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
-  GRATICULE_LINES,
-  getNightCircles,
-} from '../components/globe/projection';
-import {
   bordersMeshFull,
   bordersMeshSimplified,
-  countries,
+  GRATICULE_LINES,
   iceSheets,
   landFull,
   landSimplified,
-} from '../components/globe/shared';
+} from '../perf/fixtures/globe-geometry';
 
 /** Every path command d3 emits, in order — the culled stream must match it exactly. */
 function commands(object: GeoPermissibleObjects, lng: number, lat: number, clip: number) {
@@ -99,16 +96,5 @@ describe('createCapCuller', () => {
   it('reuses its output between calls', () => {
     const culler = createCapCuller(bordersMeshFull);
     expect(culler.visible(0, 0, 30)).toBe(culler.visible(120, 40, 30));
-  });
-});
-
-describe('getNightCircles', () => {
-  it('returns the same polygons until the sun moves', () => {
-    const a = getNightCircles(12, 4);
-    expect(getNightCircles(12, 4)).toBe(a);
-    const b = getNightCircles(12.25, 4);
-    expect(b).not.toBe(a);
-    expect(b.night.coordinates[0]?.length).toBeGreaterThan(10);
-    expect(b.twilight.coordinates[0]?.[0]).not.toEqual(b.night.coordinates[0]?.[0]);
   });
 });

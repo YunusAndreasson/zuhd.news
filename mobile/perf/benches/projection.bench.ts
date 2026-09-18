@@ -11,14 +11,9 @@
 
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
 import { clipAngleForCountry } from '../../components/globe/projection';
-import {
-  bordersMeshFull,
-  countries,
-  countryCentroidPoints,
-  iceSheets,
-  landFull,
-} from '../../components/globe/shared';
+import { countries, countryCentroidPoints } from '../../components/globe/shared';
 import { bench } from '../bench-utils';
+import { bordersMeshFull, iceSheets, landFull } from '../fixtures/globe-geometry';
 
 interface Ctx {
   proj: ReturnType<typeof geoOrthographic>;
