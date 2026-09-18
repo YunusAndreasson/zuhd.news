@@ -1,56 +1,5 @@
 [
   {
-    "timestamp": "2026-08-28T12:24:06.506Z",
-    "candidateCount": 6,
-    "candidates": [
-      {
-        "slug": "2026-08-28-gpu-collateral-the-asset-depreciates-faster-than-the-loan",
-        "title": "Bullish Backs GPU Debt",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-the-right-of-way-eminent-domain-by-licence",
-        "title": "Pakistan Pulls Telecom Bill",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-economic-outcast-the-third-country-bank-decides",
-        "title": "Iran Denounces US Sanctions",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-when-the-paper-cannot-decide-appearance-does",
-        "title": "Appearance Decides Who's Foreign",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-susceptibility-mapping-the-map-is-a-permit",
-        "title": "Scientists Map Kashmir Landslides",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-28-making-models-disagree-the-benchmark-stopped-measuring",
-        "title": "Neuroscience Needs Disagreement",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 6 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-28T17:24:17.718Z",
     "candidateCount": 6,
     "candidates": [
@@ -10196,6 +10145,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "India ends decade of free UPI payments, imposes merchant fee Oct. 15",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 8
+    }
+  },
+  {
+    "timestamp": "2026-09-18T04:28:15.449Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-09-17-f-35-sale-to-saudi-arabia-approved-by-state-department",
+        "title": "US Clears Saudi F-35 Sale",
+        "category": "economy",
+        "eventCoverage": 178,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-first-new-cat-species-described-in-a-century-bolivia",
+        "title": "Scientists Confirm New Cat Species",
+        "category": "science",
+        "eventCoverage": 157,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-polish-pm-warns-of-russian-strikes-on-ukraine-s-allies",
+        "title": "Tusk Warns Of Russian Strikes",
+        "category": "politics",
+        "eventCoverage": 149,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-modi-pitches-india-as-trusted-global-chip-hub",
+        "title": "Modi Pitches India Chip Hub",
+        "category": "economy",
+        "eventCoverage": 112,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-ice-has-no-confirmed-director-as-nomination-is-withdrawn",
+        "title": "White House Pulls Immigration Nominee",
+        "category": "politics",
+        "eventCoverage": 94,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-lula-raises-welfare-benefits-15-percent-before-election",
+        "title": "Lula Boosts Welfare Before Vote",
+        "category": "economy",
+        "eventCoverage": 51,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-ecuador-detains-jose-serrano-after-us-deportation",
+        "title": "Ecuador Jails Deported Ex-Minister",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
+        "title": "Bank Of Japan Hikes Rates",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-the-eye-as-a-canary-oculomics-for-psychiatry",
+        "title": "Retinal Scans Meet Psychiatry",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-18-indonesia-ends-search-for-journalists-lost-at-anak-krakatau",
+        "title": "Indonesia Ends Volcano Search",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-doom-loop-openai-microsoft-on-llms-and-the-web",
+        "title": "Microsoft Calls AI 'Theft'",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-16-nvidia-brings-native-gpu-kernel-programming-to-rust",
+        "title": "Nvidia Brings Rust To CUDA",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-17-china-ai-grid-forecasting-what-southeast-asia-can-learn",
+        "title": "China Tests AI Grid Forecasting",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-17-f-35-sale-to-saudi-arabia-approved-by-state-department",
+      "title": "US Clears Saudi F-35 Sale",
+      "category": "economy",
+      "body": "A $24bn Saudi jet deal risks [Israel](country:IL)'s",
+      "eventCoverage": 178,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "State Department approves $24 billion F-35 sale to Saudi Arabia",
     "response": {
       "pushed": 1,
       "skipped": 0,
