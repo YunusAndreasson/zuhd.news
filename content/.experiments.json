@@ -1,6 +1,51 @@
 {
   "version": 1,
-  "activeExperiments": [],
+  "activeExperiments": [
+    {
+      "id": "2026-09-18-gap-countries-latam-pacific",
+      "startDate": "2026-09-18",
+      "evaluateAfter": "2026-09-22",
+      "prNumber": null,
+      "hypothesis": "Every goal metric is met, but regional breadth is the one measure moving the wrong way and it has been flagged in three consecutive audits. Today 24 of 59 datelines are US (41% of output) and the AM region tally of 29 is ~83% US; uniqueRegions fell 6 to 5 and Oceania was zero. GAP_COUNTRIES is the feed's only lever that targets source *location* rather than source *name*, and it currently carries no Oceania entry, no Mexico, and reaches Latin America through Brazil and Colombia alone. Adding Mexico, Argentina, Philippines and Australia to the Q3 gap query should raise uniqueRegions back to 6 sustained and cut the US share of AM datelines, because the query already returns 100 articles sorted by sourceImportance and these four locations have wire-grade outlets that currently cannot enter the pool at all. Token-neutral: Q3 is one call with one sourceLocationUri array regardless of its length, so per-cycle NewsAPI token use is unchanged.",
+      "parameter": "GAP_COUNTRIES source-location list",
+      "file": "scripts/fetch-news-api.js",
+      "oldValue": "24 locations; no Oceania, Latin America via Brazil + Colombia only, SE Asia via Indonesia + Malaysia only",
+      "newValue": "28 locations; + Mexico, Argentina, Philippines, Australia",
+      "targetMetric": "diversity.today.uniqueRegions (primary); US share of AM-region datelines (secondary)",
+      "targetDirection": "increase",
+      "baseline": {
+        "uniqueRegions": 5,
+        "uniqueRegionsPrior3Days": [6, 6, 5],
+        "regions": { "AM": 29, "AS": 9, "ME": 9, "EU": 8, "AF": 4, "OC": 0 },
+        "usDatelines": 24,
+        "totalArticles": 59,
+        "usSharePct": 41,
+        "usShareOfAmPct": 83,
+        "latamDatelines": 3,
+        "oceaniaDatelines": 0,
+        "diagnosticScript": "grep '^location:' content/articles/YYYY-MM-DD*.md | sort | uniq -c; /tmp/zuhd-metrics.json diversity.today.regions"
+      },
+      "target": {
+        "uniqueRegions": 6,
+        "usShareOfAmPct": 70,
+        "oceaniaDatelinesPerDay": 1,
+        "stretchUsShareOfAmPct": 60,
+        "stretchLatamDatelinesPerDay": 5
+      },
+      "guardrails": {
+        "africaFloor": "AF region count must not drop below 4/day. The Q3 query returns a fixed 100 articles sorted by sourceImportance, so four new locations dilute the pool by roughly 17% — Australian and Mexican outlets outrank Somali and Nigerian ones on that sort, and crowding out the existing gap coverage would trade one blind spot for another. This is the single most likely failure mode.",
+        "muslimWorldCoverage": "ME + the OIC-country datelines (Pakistan, Egypt, Sudan, Morocco, Indonesia, Malaysia) must not drop >20% vs the 9 ME + 8 OIC observed today. GAP_COUNTRIES exists primarily to carry these; displacement here is a revert.",
+        "freshness": "freshness median must stay <= 1.0 days (today 0.2). Regional outlets can publish later into the window.",
+        "multiSource": "daily multi-source count must stay >= 4 (today 13).",
+        "sciTechRatio": "sci+tech share must stay >= 25% (today 41%).",
+        "throughput": "articles/cycle must not drop below 9 (today ~11.8).",
+        "topSourceShare": "top-outlet share must stay < 20% (today 13.6%).",
+        "tokenCost": "per-cycle NewsAPI token use must remain unchanged — Q3 is one call whatever the array length. Any observed increase is a revert and a bug."
+      },
+      "rollbackPlan": "Delete the four added entries from GAP_COUNTRIES in scripts/fetch-news-api.js (they are a single commented block) and commit as 'Revert experiment: 2026-09-18-gap-countries-latam-pacific'. No other file or cache key is involved.",
+      "concurrentExperimentInteraction": "None active. No pause gate set. Last experiment closed 2026-05-26."
+    }
+  ],
   "activeExperiment": null,
   "history": [
     {
