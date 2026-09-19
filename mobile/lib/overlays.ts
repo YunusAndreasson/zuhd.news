@@ -74,19 +74,43 @@ export function famineBlocks(phase: number): 0 | 1 | 2 | 3 {
   return Math.max(0, Math.min(3, Math.round(phase) - 2)) as 0 | 1 | 2 | 3;
 }
 
+/** The famine column's box, in points, for Phase 3 and for Phase 5. */
+const FAMINE_BOX_MIN = 10;
+export const FAMINE_BOX_MAX = 14;
+
+/**
+ * A famine column's box, in points, by how many blocks it fills: the web's
+ * 10–14px (`famine-marks` once zoomed to a region), gravest largest.
+ *
+ * It was the app's 22pt glyph family at 0.8–1.1, 18–24pt: wider than a story
+ * beacon, so over Sudan the columns covered the stories they are the ground
+ * of. The web goes smaller still at world zoom so a pile reads as texture; the
+ * globe culls overlapping columns instead (`FAMINE_COLLIDE_*`), so it keeps the
+ * size at which each of the three blocks can still be read.
+ */
+export function famineBox(blocks: number): number {
+  const t = Math.max(0, Math.min(2, blocks - 1)) / 2;
+  return FAMINE_BOX_MIN + (FAMINE_BOX_MAX - FAMINE_BOX_MIN) * t;
+}
+
 /** Web: opacity by the cluster's best confidence. */
 export function thermalAlpha(confidence: ThermalEvent['confidence']): number {
   return confidence === 'high' ? 0.95 : confidence === 'nominal' ? 0.8 : 0.5;
 }
 
 /**
- * Size by radiative power on a log scale, 0.7–1.3 of the glyph. Log because
- * FRP spans four orders of magnitude between a field burn and a refinery, and
- * a linear scale would draw every mark but one at the minimum.
+ * A thermal anomaly's box, in points, by radiative power: the web's
+ * `thermal-marks`, about 7 at the floor and 18 at 5,000 MW. Log because FRP
+ * spans four orders of magnitude between a field burn and a refinery, and a
+ * linear scale would draw every mark but one at the minimum; capped at 5,000
+ * because past it a fire is already the largest thing on the map.
+ *
+ * It was the app's 22pt glyph family at 0.7–1.3 (15–29pt) — the same gap the
+ * famine column had (`famineBox`), which the user flagged as too large.
  */
-export function thermalScale(frp: number): number {
-  const t = Math.max(0, Math.min(1, Math.log10(Math.max(1, frp)) / 4));
-  return 0.7 + 0.6 * t;
+export function thermalBox(frp: number): number {
+  const mag = Math.min(1, Math.log1p(Math.max(0, frp)) / Math.log(5000));
+  return 16 * (0.42 + 0.68 * mag);
 }
 
 /**

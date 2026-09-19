@@ -2,8 +2,9 @@ import {
   conflictScale,
   famineAlpha,
   famineBlocks,
+  famineBox,
   thermalAlpha,
-  thermalScale,
+  thermalBox,
 } from '../lib/overlays';
 import { isFamineSnapshot, isGenocideSnapshot, isThermalSnapshot } from '../lib/validate';
 
@@ -104,10 +105,17 @@ describe('overlay encodings', () => {
     expect(famineBlocks(1)).toBe(0);
   });
 
-  it('sizes thermal marks on a log scale and fades them by confidence', () => {
-    expect(thermalScale(1)).toBeCloseTo(0.7);
-    expect(thermalScale(10_000)).toBeCloseTo(1.3);
-    expect(thermalScale(100)).toBeGreaterThan(thermalScale(10));
+  it("draws a famine column at the web's 10–14pt, never the glyph family's 22", () => {
+    expect([famineBox(1), famineBox(2), famineBox(3)]).toEqual([10, 12, 14]);
+    // An unreadable phase is an empty frame at the smallest size.
+    expect(famineBox(0)).toBe(10);
+  });
+
+  it("sizes thermal marks at the web's 7–18pt on a log scale and fades them by confidence", () => {
+    expect(thermalBox(0)).toBeCloseTo(6.72);
+    expect(thermalBox(5000)).toBeCloseTo(17.6);
+    expect(thermalBox(50_000)).toBeCloseTo(17.6);
+    expect(thermalBox(100)).toBeGreaterThan(thermalBox(10));
     expect([thermalAlpha('high'), thermalAlpha('nominal'), thermalAlpha('low')]).toEqual([
       0.95, 0.8, 0.5,
     ]);

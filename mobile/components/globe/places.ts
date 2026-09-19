@@ -1,7 +1,7 @@
 /**
  * Country capitals, labelled on the globe at every zoom.
  *
- * At the resting framing (30°–40°) the globe named only the giant "anchor"
+ * At the resting framing (then 30°–40°) the globe named only the giant "anchor"
  * countries, and a reader looking at Mali or Australia saw a coastline and a
  * country name with nothing inside it. The web map sets city dots and names
  * from its detail zoom. The app puts in the one tier that reads at a planet's

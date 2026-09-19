@@ -165,6 +165,10 @@ whole time; nothing said so.
   **jumps** to that story (`focusStory`) and stays at peek. The camera flies
   only after the burst (`COLLECT_MS`) so the colour plays where the mark was.
   Tapping the same place again gives its next unfound story.
+  - **The current story's dot holds still, and its place is named large.** It
+    breathed for three cycles on every landing until 2026-09-19, when the user
+    asked for the animation to go and the location label (`DOT_LABEL_PT`, 16pt,
+    was 14) to be larger instead: the name says which place is being read.
   - **A found place is dimmed, never erased.** Once every story at a place is
     found its beacon becomes a hollow ring in the newest story's hue
     (`READ_R`), under the beacons still to find; a tap on it reopens that
@@ -219,10 +223,16 @@ whole time; nothing said so.
     (`lib/globe-camera.ts`, tested) zooms out in proportion to the camera's
     travel between two stories — up to `SWIPE_OUT_MAX` (1.25×), never past the
     whole planet, flat at both ends — and lands on the next story's framing.
-    Framings span 30°–40° (`clipAngleForArea`). Subtle is the point, and it has
-    been overdone twice: at 25°–70° the planet swelled and shrank 2.2× between a
-    small country and a large one once zoom grew the globe, and 25°–45° with a
-    1.7× plain-sine rise still read as the map jumping on every swipe.
+    Framings span 18°–24° (`clipAngleForArea`). The *spread* is what must stay
+    subtle, and it has been overdone twice: at 25°–70° the planet swelled and
+    shrank 2.2× between a small country and a large one once zoom grew the
+    globe, and 25°–45° with a 1.7× plain-sine rise still read as the map
+    jumping on every swipe. The *level* moved on 2026-09-19: at 30°–40° a
+    Sudan story framed Russia to South Africa, and the user asked to be taken
+    closer to each place. 18°–24° keeps the 1.3× spread about 1.6× closer,
+    near what the web's `flyToStory` shows across a phone's width. The rivers
+    and the neighbour labels are keyed to it (`RIVERS_APPEAR_CLIP` sits under
+    the tightest framing, so a swipe never projects the rivers).
   - **The grown globe's transform is applied inside the canvas**
     (`MiniGlobe.canvasTransform`), not to its view. A view transform scales
     pixels, so a zoomed globe wider than the screen was cut at the canvas's
@@ -272,7 +282,7 @@ whole time; nothing said so.
     tier plus two 50m topologies used to sit between launch and the first
     pixel; a frame drawn without them is what every moving frame already is.
   - **A resting globe carries the detail a reader looks for, not only the
-    giants' names.** At the 30°–40° story framings the globe named anchor
+    giants' names.** At the story framings (then 30°–40°) the globe named anchor
     countries and nothing inside them — Mali and Australia were an outline and
     a word. Now, at every zoom: each country's capital, a dot and a name
     (`globe/places.ts`, from the capitals the city lights use — `places-50m`'s
