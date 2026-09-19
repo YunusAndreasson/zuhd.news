@@ -49,12 +49,17 @@ function labelsFor(date: string | undefined): [day: string, month: string] | nul
   return [`${month} ${d.getUTCDate()}`, `${month} ${d.getUTCFullYear()}`];
 }
 
+/** Between two story numbers that share a label: `1 · 2`. */
+export const CITED_JOIN = ' · ';
+
 /**
  * The cited stories that fall on the chart, as numbered marks. The number is
  * the story's place in the card's "in the news" list, so a dot on the line and
  * a row under the analysis say which is which without a legend. Stories are
  * taken in the order the desk ranked them, the first `MAX_CITED` only, and a
- * story whose day is outside the series is listed but not marked.
+ * story whose day is outside the series is listed but not marked. Two stories
+ * on one day share its dot, `1 · 2`; the second used to be dropped, so a
+ * listed story with a day on the chart had no mark.
  */
 export function citedAnnotations(
   series: CardSeries,
@@ -62,15 +67,45 @@ export function citedAnnotations(
 ): TrendAnnotation[] | undefined {
   if (!cited || cited.length === 0 || series.multi) return undefined;
   const out: TrendAnnotation[] = [];
-  const taken = new Set<number>();
   for (let n = 0; n < Math.min(MAX_CITED, cited.length); n++) {
     const labels = labelsFor(cited[n]?.date);
     if (!labels) continue;
     let i = series.periods.lastIndexOf(labels[0]);
     if (i < 0) i = series.periods.lastIndexOf(labels[1]);
-    if (i < 0 || i >= series.values.length || taken.has(i)) continue;
-    taken.add(i);
-    out.push({ atIndex: i, label: String(n + 1) });
+    if (i < 0 || i >= series.values.length) continue;
+    const shared = out.find((mark) => mark.atIndex === i);
+    if (shared) shared.label += `${CITED_JOIN}${n + 1}`;
+    else out.push({ atIndex: i, label: String(n + 1) });
   }
   return out.length > 0 ? out : undefined;
+}
+
+/**
+ * The labels over a chart's cited marks, one per crowd. Marks on neighbouring
+ * days printed their numbers edge to edge — a `3` on Sep 14 beside a `1` on
+ * Sep 15 read as 31 — so marks whose labels would come within `gap` of each
+ * other share one, their numbers in the order the marks sit on the line and
+ * centred over them. Every mark keeps its own dot and leader.
+ *
+ * `charWidth` is one label character's width, for sizing a label before it
+ * has been laid out.
+ */
+export function citedLabels(
+  marks: readonly { x: number; label: string }[],
+  charWidth: number,
+  gap: number,
+): { x: number; label: string }[] {
+  const sorted = [...marks].sort((a, b) => a.x - b.x);
+  const crowds: { x0: number; x1: number; label: string }[] = [];
+  for (const mark of sorted) {
+    const last = crowds[crowds.length - 1];
+    const reach = last ? ((last.label.length + mark.label.length) * charWidth) / 2 + gap : 0;
+    if (last && mark.x - (last.x0 + last.x1) / 2 < reach) {
+      last.label += `${CITED_JOIN}${mark.label}`;
+      last.x1 = mark.x;
+    } else {
+      crowds.push({ x0: mark.x, x1: mark.x, label: mark.label });
+    }
+  }
+  return crowds.map((crowd) => ({ x: (crowd.x0 + crowd.x1) / 2, label: crowd.label }));
 }

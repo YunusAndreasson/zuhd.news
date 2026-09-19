@@ -1,4 +1,4 @@
-import { citedAnnotations, MAX_CITED, windowReference } from '../lib/cards/card-chart';
+import { citedAnnotations, citedLabels, MAX_CITED, windowReference } from '../lib/cards/card-chart';
 import type { CardDelta, CardSeries } from '../lib/cards/types';
 
 const series = (extra: Partial<CardSeries> = {}): CardSeries => ({
@@ -75,5 +75,50 @@ describe('citedAnnotations', () => {
   it('returns nothing when no story falls on the chart', () => {
     expect(citedAnnotations(series(), [story('old', '2026-01-01T00:00:00Z')])).toBeUndefined();
     expect(citedAnnotations(series(), undefined)).toBeUndefined();
+  });
+
+  it('marks two stories on one day with one dot that names both', () => {
+    const marks = citedAnnotations(series(), [
+      story('a', '2026-07-26T08:00:00Z'),
+      story('b', '2026-07-26T20:00:00Z'),
+      story('c', '2026-07-25T12:00:00Z'),
+    ]);
+    expect(marks).toEqual([
+      { atIndex: 3, label: '1 · 2' },
+      { atIndex: 2, label: '3' },
+    ]);
+  });
+});
+
+describe('citedLabels', () => {
+  // The Brent card on 2026-09-19: story 3 on Sep 14, stories 1 and 2 on Sep 15,
+  // one day apart at the end of a 90-day line. Its labels read "31".
+  it('joins labels that would touch, in the order the marks sit on the line', () => {
+    expect(
+      citedLabels(
+        [
+          { x: 300, label: '1 · 2' },
+          { x: 296, label: '3' },
+        ],
+        7.5,
+        6,
+      ),
+    ).toEqual([{ x: 298, label: '3 · 1 · 2' }]);
+  });
+
+  it('leaves labels with room between them apart', () => {
+    expect(
+      citedLabels(
+        [
+          { x: 40, label: '2' },
+          { x: 300, label: '1' },
+        ],
+        7.5,
+        6,
+      ),
+    ).toEqual([
+      { x: 40, label: '2' },
+      { x: 300, label: '1' },
+    ]);
   });
 });

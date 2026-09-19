@@ -1,7 +1,11 @@
-import { geoOrthographic } from 'd3-geo';
+import { geoDistance, geoInterpolate, geoOrthographic } from 'd3-geo';
 import {
   anchorZoom,
+  arcDegrees,
   dragDelta,
+  FLIGHT_MAX_MS,
+  FLIGHT_MIN_MS,
+  flightDuration,
   flingVelocity,
   invertOrthographic,
   MAX_CLIP,
@@ -13,7 +17,9 @@ import {
   reachFor,
   SWIPE_OUT_MAX,
   SWIPE_OUT_TRAVEL,
+  slerpLatLng,
   swipeClip,
+  takeCamera,
   viewAngleFor,
 } from '../lib/globe-camera';
 
@@ -249,5 +255,74 @@ describe('swipeClip', () => {
 
   it('never zooms out past the whole planet', () => {
     expect(swipeClip(70, 70, 0.5, 180)).toBe(MAX_CLIP);
+  });
+});
+
+// The deck and every flight share one great-circle path. d3 works in
+// `[lng, lat]`; the camera in `[lat, lng]`.
+const PLACES: [string, number, number, number, number][] = [
+  ['Khartoum → Tokyo', 15.5, 32.5, 35.7, 139.7],
+  ['Tokyo → San Francisco, over the Pacific', 35.7, 139.7, 37.8, -122.4],
+  ['Oslo → Wellington, nearly antipodal', 59.9, 10.8, -41.3, 174.8],
+  ['Kyiv → Kharkiv', 50.45, 30.52, 49.99, 36.23],
+  ['one city, a street apart', 51.5, -0.12, 51.5001, -0.1201],
+];
+
+describe('slerpLatLng', () => {
+  it.each(PLACES)('follows d3 geoInterpolate — %s', (_, lat0, lng0, lat1, lng1) => {
+    const d3 = geoInterpolate([lng0, lat0], [lng1, lat1]);
+    for (const t of [0, 0.1, 0.25, 0.5, 0.75, 0.9, 1]) {
+      const [lat, lng] = slerpLatLng(lat0, lng0, lat1, lng1, t);
+      const [dLng, dLat] = d3(t);
+      expect(lat).toBeCloseTo(dLat, 6);
+      // Longitudes compare round the dateline.
+      expect(((lng - dLng + 540) % 360) - 180).toBeCloseTo(0, 6);
+    }
+  });
+
+  it('crosses the Pacific rather than going the long way round', () => {
+    const [, lng] = slerpLatLng(35.7, 139.7, 37.8, -122.4, 0.5);
+    expect(Math.abs(lng)).toBeGreaterThan(150);
+  });
+});
+
+describe('arcDegrees', () => {
+  it.each(PLACES)('matches d3 geoDistance — %s', (_, lat0, lng0, lat1, lng1) => {
+    const expected = (geoDistance([lng0, lat0], [lng1, lat1]) * 180) / Math.PI;
+    expect(arcDegrees(lat0, lng0, lat1, lng1)).toBeCloseTo(expected, 6);
+  });
+});
+
+describe('flightDuration', () => {
+  it('runs from a brisk hop to a long crossing, and no further', () => {
+    expect(flightDuration(0)).toBe(FLIGHT_MIN_MS);
+    expect(flightDuration(180)).toBe(FLIGHT_MAX_MS);
+    expect(flightDuration(400)).toBe(FLIGHT_MAX_MS);
+    let last = 0;
+    for (const deg of [0, 5, 20, 45, 90, 135, 180]) {
+      const ms = flightDuration(deg);
+      expect(ms).toBeGreaterThanOrEqual(last);
+      last = ms;
+    }
+  });
+});
+
+describe('takeCamera', () => {
+  const v = (value: number) => ({ value });
+
+  it('starts from where the globe last drew the camera', () => {
+    const owner = v(0);
+    const lat = v(-5);
+    const lng = v(170);
+    takeCamera(owner, lat, lng, v(12), v(34));
+    expect([owner.value, lat.value, lng.value]).toEqual([1, 12, 34]);
+  });
+
+  it('leaves a camera a target already holds exactly where it is', () => {
+    const owner = v(1);
+    const lat = v(-5);
+    const lng = v(170);
+    takeCamera(owner, lat, lng, v(12), v(34));
+    expect([owner.value, lat.value, lng.value]).toEqual([1, -5, 170]);
   });
 });

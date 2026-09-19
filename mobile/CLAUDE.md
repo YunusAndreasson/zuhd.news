@@ -90,10 +90,13 @@ whole time; nothing said so.
   globe, a strip or NOW selection, a jump's flight. A swipe that starts with
   the camera within a degree of the story in front takes it at once, so the
   earth turns under the finger; otherwise the camera stays where the reader
-  left it, flies when the swipe lands, and hands back once it has arrived
-  (`handleDeckDragStart` / `handleDeckSettle`). Taking it back mid-drag would
-  snap the earth. **The app opens on the newest story**, not on the top
-  instrument: at rest the card and the globe have to agree.
+  left it, flies when the swipe lands, and hands back on the landing frame
+  (`useCameraFlight`: `claimForDeck`, a worklet the deck's pan calls, and
+  `toStoryIfHeld`). Taking it back mid-drag would snap the earth. The
+  decision is made on the UI thread: a JS read of the camera blocks until
+  the UI thread answers. **The app opens on the first story in category
+  order** (the deck's index 0), not on the top instrument: at rest the card
+  and the globe have to agree.
 - **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
   (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
   instruments a builder marked `lead`; once the strip held every reading that
@@ -122,6 +125,12 @@ whole time; nothing said so.
   - The slot whose card is open is marked and the globe rings its place
     (`MiniGlobe.selectedAt`, a position, since a strait's card id is not its
     mark's id). An exchange mark's colour still follows its card's own chip.
+  - **The row is gesture handler's `ScrollView`.** The globe's pan lies under
+    the whole header, and gesture handler finds a touch's handlers by walking
+    the views under the finger; a plain `ScrollView` has none, so a drag that
+    began between two slots, or on the blank end of one, turned the earth and
+    left the row where it was. Anything that scrolls over the globe needs the
+    same.
   - Contracts (their subject is a question) and dates (no move) never take
   a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
   row continues. **A subject is one line and is never cut**: a strait prints
@@ -180,9 +189,21 @@ whole time; nothing said so.
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
     camera is held (`cameraOwner = 1`), the position jumps, and the camera
-    flies. Every entry point — a mark, an index row, a notification, search,
+    flies. Every entry point — a mark, the scrubber, a notification, search,
     saved, a related story in another sheet — goes through `focusStory`, and
     the ones that mean "read this" pass `grow`.
+  - **A flight travels the way a swipe does** (`hooks/useCameraFlight.ts`,
+    2026-09-19). It tweened latitude and longitude apart at the zoom it
+    started with, so a far story whipped past at close range; and because
+    `MiniGlobe` refreshes framing and the settled index only while the deck
+    owns the camera, the framing, the country highlight and the place label
+    stayed on the *previous* story until the next swipe. Now one `flightT`
+    drives the great circle (`slerpLatLng`, shared with the deck) and the
+    swipe's rise (`swipeClip`, through the pinch's zoom override), lasts by
+    distance (`flightDuration`), and a story flight lands on the story's own
+    framing (`MiniGlobeRef.framingFor`) and hands the camera back to the deck
+    on that frame. A gauge or alert flight keeps the camera and returns to
+    the zoom it left. A finger on the globe cancels a flight.
   - **Found is opening** — a mark tap, growing a card, or landing on a card
     while grown. **Swiping past a card at rest does not find it**: thirty
     seconds of swiping would otherwise empty the globe. Pruning drops a slug
@@ -305,15 +326,13 @@ whole time; nothing said so.
     owns it they keep whatever the last flight left, and a drag that took the
     camera from them snapped the earth back to a story already swiped past.
     `MiniGlobe` publishes where it is drawing the camera, whoever owns it.
-- **The Z mark is home.** It jumps the deck to the newest story (a jump, via
-  `focusStory`), releases a pinch's zoom with the gesture layer's own
-  `ZOOM_RELEASE_MS`/`ZOOM_EASING`, puts a grown story down and scrolls the
-  gauges back to their start (`homeKey`). Search, saved, settings, the map
-  key and the pages open from the menu (three lines) at the top right: the
-  one control out of thumb reach, on purpose — it is opened a few times a
+- **The menu is the one control at the top.** Search, saved, settings, the
+  map key and the pages open from the menu (three lines) at the top right:
+  the one control out of thumb reach, on purpose — it is opened a few times a
   week, and the top corner is where both platforms put a destination that
   rare. It was a cog until 2026-09-19; a cog promises only settings, and
   the top left, where a hamburger usually goes, is where the gauges start.
+  (A `Z` home mark sat top left until 548457c8 removed it.)
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
@@ -518,13 +537,12 @@ about what a card may say is about the card, not where it is shown.
     the user's request. The short resting card, the category-banded track and
     `›` are the way through the day. Recover it from git rather than
     rewriting it, if it is ever asked for again.
-  - **The next story peeks by 24pt of its text** (`DECK_PEEK`), not by a
-    slot edge. The deck used to cut 16pt of a slot whose text sits 14pt in, so
-    two points of the next headline showed — a glitch, not an affordance. The
-    current card's column is narrower by the peek and a 16pt gap. A resting
-    neighbour is drawn at `PEEK_OPACITY` (0.4) so the next headline does not
-    pull the eye off the one being read, and fades out entirely as a story is
-    grown (`peekFade`); either way it comes up to full as it is swiped in.
+  - **Stories use the full reading width; the next one does not peek.** A
+    24pt peek (`DECK_PEEK`) narrowed every paragraph, grown or not, and was
+    removed for the full width (`StoryDeck`: slots are one screen apart). The
+    track in the dock says there are more. A neighbour swiped in starts at
+    `PEEK_OPACITY` (0.4) and comes up to full as it arrives; while a story is
+    grown it fades out entirely (`peekFade`).
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -553,7 +571,8 @@ about what a card may say is about the card, not where it is shown.
   read. `CardTrend` (`lib/cards/card-chart.ts`, tested) also draws the value the
   chip's window opened on (`since Jul 24`) as a dashed rule, and the stories the
   desk cited (`card.cited`, from `/api/analysis.json` or the strait's ranked
-  list) as numbered dots that match the `in the news` rows under the analysis. A
+  list) as numbered dots that match the `in the news` rows under the analysis (dots on neighbouring days share one
+  label, `3 · 1 · 2`; printed apart, a `3` beside a `1` read as 31). A
   readout prints the source's precision (`dataDecimals`, the web chart's rule),
   not one decimal. `EntitySheet` uses the same chip grammar (`indicatorMove`)
   instead of a one-step `vs prev`.
@@ -713,7 +732,13 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
     that mounts while its inputs animate returns a style computed from props
     when `globalThis.__RUNTIME_KIND === 1`, and keeps those props out of its
     dependency list.
-- Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
+- **Reduce Motion is Reanimated's by default** (`ReduceMotion.System` on every
+  animation and layout builder: it jumps to the end). Don't add
+  `useReducedMotion()` branches for Reanimated animations; spread `KEEP_MOTION`
+  into the few that must not snap (a spring released from a finger, the tap
+  ring's fade). Every spring states its `mass` or `duration`/`dampingRatio` —
+  Reanimated 4 defaults a missing mass to 4 (`DESIGN.md` §Motion). Check battery
+  saver before changing timings.
 - React Compiler has been **enabled app-wide since 2026-07-24**
   (`app.json` → `experiments.reactCompiler: true`, commit `9227e99b`) — flows
   CLI → Metro `customTransformOptions.reactCompiler` → babel caller

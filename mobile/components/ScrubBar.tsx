@@ -79,6 +79,7 @@ interface ScrubBarProps
     | 'accessibilityRole'
     | 'accessibilityLabel'
     | 'accessibilityHint'
+    | 'accessibilityValue'
     | 'accessibilityActions'
     | 'onAccessibilityAction'
   > {
@@ -146,18 +147,32 @@ export const ScrubBar = memo(function ScrubBar({
     },
     [onLayout],
   );
-  const clipStyle = useAnimatedStyle(() => ({
-    opacity: width.value > 0 ? 1 : 0,
-    transform: [{ translateX: (fraction.value - 1) * width.value }],
-  }));
-  const contentStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: (1 - fraction.value) * width.value }],
-  }));
-  const thumbStyle = useAnimatedStyle(() => ({
-    backgroundColor: typeof thumbColor === 'string' ? thumbColor : thumbColor.value,
-    opacity: shown.value,
-    transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
-  }));
+  // Each updater runs once on the JS thread when the bar mounts, and the dock
+  // remounts it whenever its status line gives way — possibly mid-landing,
+  // while the deck's spring is writing `fraction` on the UI thread. A JS read
+  // of a value the UI thread has changed blocks until the UI thread answers
+  // (the stall `StoryDeck`'s `DeckSlot` documents). So the first style is the
+  // one an unmeasured bar has anyway — no fill, no thumb — and the UI mapper,
+  // which runs straight after, draws the real one.
+  const clipStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      opacity: width.value > 0 ? 1 : 0,
+      transform: [{ translateX: (fraction.value - 1) * width.value }],
+    };
+  });
+  const contentStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return {};
+    return { transform: [{ translateX: (1 - fraction.value) * width.value }] };
+  });
+  const thumbStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      backgroundColor: typeof thumbColor === 'string' ? thumbColor : thumbColor.value,
+      opacity: shown.value,
+      transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
+    };
+  });
   const active =
     activeSegment !== undefined &&
     activeSegment >= 0 &&

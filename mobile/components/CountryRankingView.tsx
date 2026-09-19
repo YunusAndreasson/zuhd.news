@@ -7,7 +7,7 @@ import {
 } from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
-import { FLAG, SPACING } from '../constants/theme';
+import { FLAG, HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
@@ -116,7 +116,7 @@ export const CountryRankingView = memo(function CountryRankingView({
                 (meta.sourceUrl ? (
                   <Pressable
                     onPress={openSource}
-                    haptic="tick"
+                    hitSlop={HIT_SLOP}
                     accessibilityRole="link"
                     accessibilityLabel={`Source: ${meta.source}`}
                   >

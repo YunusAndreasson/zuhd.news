@@ -119,7 +119,6 @@ function MoreRow({
   };
   return (
     <Pressable
-      haptic="tick"
       onPress={onPress}
       style={[styles.moreRow, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
@@ -166,7 +165,6 @@ const HazardRow = memo(function HazardRow({ hazard }: { hazard: CountryHazard })
   const { colors } = useTheme();
   return (
     <Pressable
-      haptic="tick"
       onPress={hazard.onPress}
       style={[styles.alertChip, { borderColor: colors.rule }]}
       accessibilityRole="button"
@@ -202,7 +200,6 @@ function AlertChip({
   const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
   return (
     <Pressable
-      haptic="tick"
       onPress={handlePress}
       style={[styles.alertChip, { borderColor: colors.rule }]}
       accessibilityRole="button"
@@ -261,7 +258,6 @@ export const CountrySheet = memo(function CountrySheet({
 }: CountrySheetProps) {
   const { resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
@@ -357,27 +353,15 @@ export const CountrySheet = memo(function CountrySheet({
     onDismiss();
   }, [onDismiss]);
 
-  const handleSheetChange = useCallback((index: number) => {
-    setIsOpen(index >= 0);
-  }, []);
-
-  // Android hardware back + left-edge swipe: pop the ranking sub-page first,
-  // dismiss the sheet only at the root. Shared with MenuSheet so every
-  // multi-page sheet honors back identically (DESIGN §Sheets).
+  // A left-edge swipe pops the ranking sub-page. Shared with MenuSheet so
+  // every multi-page sheet goes back identically (DESIGN §Sheets).
   const swipeBack = useSheetBackNavigation({
-    isOpen,
     canGoBack: activeRanking !== null,
     onBack: onBackToCountry,
-    sheetRef,
   });
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      handleComponent={CountryHandle}
-      onDismiss={handleDismiss}
-      onChange={handleSheetChange}
-    >
+    <SheetLayout sheetRef={sheetRef} handleComponent={CountryHandle} onDismiss={handleDismiss}>
       {activeRanking ? (
         <GestureDetector gesture={swipeBack}>
           <View style={styles.rankingWrap}>
@@ -427,7 +411,7 @@ export const CountrySheet = memo(function CountrySheet({
           )}
           {hazards && hazards.length > 0 && (
             <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
-              <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+              <Text variant="labelSm" tone="secondary" style={styles.alertsHeading}>
                 on the map
               </Text>
               {hazards.map((h) => (

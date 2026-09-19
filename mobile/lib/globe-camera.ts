@@ -253,3 +253,97 @@ export function swipeClip(
   if (logScale <= 0) return MAX_CLIP;
   return Math.asin(Math.exp(-logScale)) * RAD2DEG;
 }
+
+/**
+ * A point partway along the great circle between two places, `[lat, lng]`.
+ *
+ * The globe turns along the surface of the sphere, the way a finger tracing a
+ * route on a real globe would; interpolating latitude and longitude apart cuts
+ * a rhumb line and swings wide near the poles. The deck and every flight use
+ * this one path, pinned against d3's `geoInterpolate`. Points closer than a
+ * few kilometres fall back to a straight step, where a slerp's `sin(ω)`
+ * denominator vanishes.
+ */
+export function slerpLatLng(
+  lat0: number,
+  lng0: number,
+  lat1: number,
+  lng1: number,
+  t: number,
+): [number, number] {
+  'worklet';
+  const p0 = lat0 * DEG2RAD;
+  const l0 = lng0 * DEG2RAD;
+  const p1 = lat1 * DEG2RAD;
+  const l1 = lng1 * DEG2RAD;
+  const c0 = Math.cos(p0);
+  const c1 = Math.cos(p1);
+  const x0 = c0 * Math.cos(l0);
+  const y0 = c0 * Math.sin(l0);
+  const z0 = Math.sin(p0);
+  const x1 = c1 * Math.cos(l1);
+  const y1 = c1 * Math.sin(l1);
+  const z1 = Math.sin(p1);
+  const dot = x0 * x1 + y0 * y1 + z0 * z1;
+  const omega = Math.acos(dot > 1 ? 1 : dot < -1 ? -1 : dot);
+  if (omega > 0.001) {
+    const sinO = Math.sin(omega);
+    const a = Math.sin((1 - t) * omega) / sinO;
+    const b = Math.sin(t * omega) / sinO;
+    const rx = a * x0 + b * x1;
+    const ry = a * y0 + b * y1;
+    const rz = a * z0 + b * z1;
+    return [Math.asin(rz > 1 ? 1 : rz < -1 ? -1 : rz) * RAD2DEG, Math.atan2(ry, rx) * RAD2DEG];
+  }
+  let dLng = lng1 - lng0;
+  if (dLng > 180) dLng -= 360;
+  if (dLng < -180) dLng += 360;
+  return [lat0 + (lat1 - lat0) * t, lng0 + dLng * t];
+}
+
+/** The angle between two places at the earth's centre, in degrees. */
+export function arcDegrees(lat0: number, lng0: number, lat1: number, lng1: number): number {
+  'worklet';
+  const p0 = lat0 * DEG2RAD;
+  const p1 = lat1 * DEG2RAD;
+  const dLng = (lng1 - lng0) * DEG2RAD;
+  const cos = Math.sin(p0) * Math.sin(p1) + Math.cos(p0) * Math.cos(p1) * Math.cos(dLng);
+  return Math.acos(cos > 1 ? 1 : cos < -1 ? -1 : cos) * RAD2DEG;
+}
+
+/** A flight between neighbours, and one to the far side of the planet. */
+export const FLIGHT_MIN_MS = 450;
+export const FLIGHT_MAX_MS = 1000;
+
+/**
+ * How long a flight takes for the distance it covers. A fixed 700 ms crawled
+ * between two cities in one country and whipped the planet half round for a
+ * story on the other side of it. The square root keeps a short hop brisk and
+ * a long one from dragging; the rise that goes with it is `swipeClip`'s.
+ */
+export function flightDuration(travelDeg: number): number {
+  'worklet';
+  const f = travelDeg <= 0 ? 0 : travelDeg >= 180 ? 1 : travelDeg / 180;
+  return Math.round(FLIGHT_MIN_MS + (FLIGHT_MAX_MS - FLIGHT_MIN_MS) * Math.sqrt(f));
+}
+
+/**
+ * Take the camera for a gesture or a flight, starting from where the globe
+ * last drew it. `cameraLat`/`cameraLng` only mean something while a target
+ * owns the camera; while the deck owns it they keep whatever the last flight
+ * left, and starting from them snapped the earth back to a story already
+ * swiped past. `viewLat`/`viewLng` are where the globe is, whoever moved it.
+ */
+export function takeCamera(
+  owner: { value: number },
+  lat: { value: number },
+  lng: { value: number },
+  viewLat: { value: number },
+  viewLng: { value: number },
+): void {
+  'worklet';
+  if (owner.value === 1) return;
+  lat.value = viewLat.value;
+  lng.value = viewLng.value;
+  owner.value = 1;
+}

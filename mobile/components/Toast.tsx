@@ -1,17 +1,10 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import Animated, {
-  FadeIn,
-  FadeInDown,
-  FadeInUp,
-  FadeOut,
-  FadeOutDown,
-  FadeOutUp,
-  useReducedMotion,
-} from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ANIMATION, EASING, HIT_SLOP, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { announce } from '../lib/announce';
 import { Text } from './primitives';
 
 type ToastPosition = 'top' | 'bottom';
@@ -32,19 +25,16 @@ const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
 const TOAST_VISIBLE_PASSIVE_MS = 2000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
 
-function getEntering(pos: ToastPosition, reduceMotion: boolean) {
-  if (reduceMotion) return FadeIn.duration(0);
+// Reanimated drops both to their end state under Reduce Motion by itself.
+function getEntering(pos: ToastPosition) {
   const base = pos === 'top' ? FadeInDown : FadeInUp;
   return base
     .duration(ANIMATION.normal)
     .easing(EASING.out)
-    .withInitialValues({
-      transform: [{ translateY: pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET }],
-    });
+    .withInitialValues({ translateY: pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET });
 }
 
-function getExiting(pos: ToastPosition, reduceMotion: boolean) {
-  if (reduceMotion) return FadeOut.duration(0);
+function getExiting(pos: ToastPosition) {
   const base = pos === 'top' ? FadeOutUp : FadeOutDown;
   return base.duration(ANIMATION.normal).easing(EASING.in);
 }
@@ -71,7 +61,6 @@ export const Toast = memo(function Toast({
   const [visible, setVisible] = useState(false);
   const onPressRef = useRef<(() => void) | undefined>(undefined);
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     return () => {
@@ -95,6 +84,7 @@ export const Toast = memo(function Toast({
       setPos(position);
       setVisible(true);
       onPressRef.current = onPress;
+      announce(msg, { liveRegion: true });
 
       const visibleMs =
         durationMs ?? (onPress ? TOAST_VISIBLE_ACTIONABLE_MS : TOAST_VISIBLE_PASSIVE_MS);
@@ -119,8 +109,8 @@ export const Toast = memo(function Toast({
       // Remount the view when position flips so the entering animation
       // runs from the correct off-screen origin (top vs. bottom).
       key={pos}
-      entering={getEntering(pos, reduceMotion)}
-      exiting={getExiting(pos, reduceMotion)}
+      entering={getEntering(pos)}
+      exiting={getExiting(pos)}
       style={[styles.container, positionStyle]}
       // `box-none`: the full-width container is only a positioning frame — it
       // must not intercept touches in its horizontal band (it overlaps the

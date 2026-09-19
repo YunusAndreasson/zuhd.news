@@ -1,7 +1,8 @@
 import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bottom-sheet';
 import type { ComponentType } from 'react';
 import { memo, useMemo } from 'react';
-import { useWindowDimensions, View } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { LAYOUT } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { SheetHandle, type SheetHandleAction } from './SheetHandle';
@@ -68,7 +69,7 @@ export const SheetLayout = memo(function SheetLayout({
   // it. Capping those at 70% would leave dead space inside an 85% sheet.
   const fitToContents = enableDynamicSizing && !(rest.snapPoints && rest.snapPoints.length > 0);
   const capStyle = useMemo(
-    () => ({ maxHeight: Math.round(height * LAYOUT.sheetMaxFraction) }),
+    () => [styles.fitted, { maxHeight: Math.round(height * LAYOUT.sheetMaxFraction) }],
     [height],
   );
   // `handleComponent` is deliberately pinned to `null` and our handle rendered
@@ -80,6 +81,16 @@ export const SheetLayout = memo(function SheetLayout({
   // keeps `SheetHandle`'s own indicator as the one the user drags — so the
   // sheet looks exactly as it did, with the platform indicator suppressed
   // rather than stacked on top of ours.
+  //
+  // The content sits in its own `GestureHandlerRootView`. On Android a
+  // platform sheet is a dialog window, and `@expo/ui` hosts the React content
+  // under a view that is a React `RootView`; gesture handler stops looking for
+  // its root at any `RootView`, exactly as it does for RN's own `Modal`. With
+  // no root inside, every gesture in a sheet — the menu's swipe back, Saved's
+  // swipe to remove, a chart's scrub — was never recognised on Android. On
+  // iOS the extra root is inert. It takes the flex rule `SheetScrollView`
+  // documents: shrink-to-fit when the sheet is content-sized, fill when the
+  // sheet has fixed stops.
   return (
     <BottomSheetModal
       ref={sheetRef}
@@ -89,17 +100,17 @@ export const SheetLayout = memo(function SheetLayout({
       handleComponent={null}
       {...rest}
     >
-      {fitToContents ? (
-        <View style={capStyle}>
-          {Handle ? <Handle /> : <SheetHandle title={handleTitle} action={handleAction} />}
-          {children}
-        </View>
-      ) : (
-        <>
-          {Handle ? <Handle /> : <SheetHandle title={handleTitle} action={handleAction} />}
-          {children}
-        </>
-      )}
+      <GestureHandlerRootView style={fitToContents ? capStyle : styles.fill}>
+        {Handle ? <Handle /> : <SheetHandle title={handleTitle} action={handleAction} />}
+        {children}
+      </GestureHandlerRootView>
     </BottomSheetModal>
   );
+});
+
+const styles = StyleSheet.create({
+  // Content-sized: the natural height, capped. `flex: 1` would measure the
+  // content as zero and collapse the sheet.
+  fitted: { flexShrink: 1 },
+  fill: { flex: 1 },
 });

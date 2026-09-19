@@ -2,7 +2,7 @@ import type { Article } from '@shared/types';
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { ANIMATION, SPACING } from '../constants/theme';
+import { ANIMATION, HIT_SLOP, SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
 import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
 import { Pressable, Text } from './primitives';
@@ -217,6 +217,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
         </Text>
         <Pressable
           onPress={() => setProvidersOpen((v) => !v)}
+          hitSlop={HIT_SLOP}
           style={styles.discloseToggle}
           accessibilityRole="button"
           accessibilityLabel={providersOpen ? 'Hide data providers' : 'View data providers'}

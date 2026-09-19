@@ -59,17 +59,16 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   }, [onDismiss]);
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="briefings">
+    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="two briefings a day">
       <SheetScrollView bottomInset={bottomInset}>
-        <Text variant="label">two briefings a day</Text>
-        <Text variant="body" style={styles.body}>
+        <Text variant="body">
           A morning and an evening briefing — the day’s stories, said once. Breaking news only when
           it matters.
         </Text>
         <View style={styles.actions}>
           <Pressable
             onPress={handleEnable}
-            haptic="impact"
+            hitSlop={HIT_SLOP}
             style={[
               styles.enablePill,
               { backgroundColor: colors.pillBg, borderColor: colors.rule },
@@ -101,9 +100,6 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
 });
 
 const styles = StyleSheet.create({
-  body: {
-    marginTop: SPACING.sm,
-  },
   actions: {
     flexDirection: 'row',
     alignItems: 'center',

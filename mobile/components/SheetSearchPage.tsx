@@ -106,15 +106,15 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           ref={inputRef}
           value={query}
           onChangeText={setQuery}
-          placeholder="search articles…"
+          placeholder="search stories…"
           placeholderTextColor={colors.textSecondary}
           // Default caret is iOS system blue — the one off-brand pixel in a
           // monochrome-plus-gold app. Tint it to the single brand accent.
           selectionColor={colors.dome}
           style={[styles.input, textVariants.body]}
           accessibilityRole="search"
-          accessibilityLabel="Search articles"
-          accessibilityHint="Filter articles by title, topic, or location"
+          accessibilityLabel="Search stories"
+          accessibilityHint="Filter stories by title, topic, or location"
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"
@@ -142,23 +142,21 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
 
       {deferredQuery.length === 0 ? (
         <View style={styles.emptyFill}>
-          <EmptyState message="search all coverage" hint="By title, topic, or location" />
+          <EmptyState message="search every story" hint="By title, topic, or location" />
         </View>
       ) : results.length === 0 ? (
         <View style={styles.emptyFill}>
-          <EmptyState message="no articles found" hint="Try a different term" />
+          <EmptyState message="no stories found" hint="Try a different term" />
         </View>
       ) : (
         <BottomSheetFlatList
           data={results}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
-          // `flex: 1` is load-bearing under native sheets. The sheet gives its
-          // content a bounded column; a list with no flex would measure to its
-          // own content height, overflow the sheet and stop scrolling at the
-          // fold. gorhom used to supply this from inside its scrollable HOC —
-          // `BottomSheetFlatList` is now a plain RN `FlatList`, so it doesn't.
-          // The `emptyFill` siblings below already assume the same bounded box.
+          // Its flex is load-bearing under native sheets, and it is
+          // `flexShrink`, not `flex` — see `styles.list`. gorhom used to supply
+          // one from inside its scrollable HOC; `BottomSheetFlatList` is a
+          // plain RN `FlatList` now, so it has to be set here.
           style={styles.list}
           contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
           indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
@@ -167,7 +165,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           ListHeaderComponent={
             results.length > 0 ? (
               <Text variant="labelXs" style={styles.resultCount}>
-                {results.length} article{results.length === 1 ? '' : 's'}
+                {results.length} {results.length === 1 ? 'story' : 'stories'}
               </Text>
             ) : null
           }

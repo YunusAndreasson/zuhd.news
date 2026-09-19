@@ -207,7 +207,7 @@ function buildRow(
       key: `article-${result.countryName}-${index}`,
       result,
       primary: result.location ?? country,
-      secondary: result.location ? country : 'current article',
+      secondary: result.location ? country : 'current story',
       kind: 'article',
     };
   }
@@ -412,7 +412,6 @@ function CandidateRow({
   return (
     <Animated.View entering={staggerEnter(index, ANIMATION.fast)}>
       <Pressable
-        haptic="tick"
         onPress={handlePress}
         style={[styles.row, { borderBottomColor: colors.rule }]}
         accessibilityRole="button"

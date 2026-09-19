@@ -50,7 +50,7 @@ export function DemographyCard({ data }: DemographyCardProps) {
         startYear={startYear}
         endYear={endYear}
         comparison={{ values: comparisonValues, label: 'world' }}
-        thresholds={[{ value: 2.1, label: 'replace', tone: 'warn' }]}
+        thresholds={[{ value: 2.1, label: 'replacement', tone: 'warn' }]}
         formatY={(n) => `${n.toFixed(1)}×`}
         accessibilityLabel={`Fertility rate ${headline} children per woman. ${subtitle} Replacement is 2.1. Comparison line shows world median.`}
       />

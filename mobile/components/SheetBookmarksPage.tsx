@@ -1,5 +1,5 @@
 import type { Category } from '@shared/types';
-import { useCallback, useRef, useSyncExternalStore } from 'react';
+import { useCallback, useMemo, useRef, useSyncExternalStore } from 'react';
 import Animated from 'react-native-reanimated';
 import { articleTime } from '../lib/article-utils';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
@@ -26,8 +26,16 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
     }
   }, []);
 
+  // The swipe's twin for screen readers, which cannot draw it.
+  const removeAction = useMemo(
+    () => ({ label: 'Remove from saved', onAction: handleRemove }),
+    [handleRemove],
+  );
+
   if (bookmarks.length === 0) {
-    return <EmptyState message="nothing saved" hint="Long-press any article to save it" />;
+    return (
+      <EmptyState message="nothing saved" hint="Tap save at the end of a story to keep it here" />
+    );
   }
 
   return (
@@ -42,6 +50,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
               category={b.category}
               location={b.article.location}
               onPress={onSelectArticle}
+              secondaryAction={removeAction}
             />
           </SwipeableRow>
         </Animated.View>

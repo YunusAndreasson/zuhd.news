@@ -78,7 +78,7 @@ const ENTRIES: readonly KeyEntry[] = [
   {
     label: 'story',
     meaning:
-      "A place in the news, in its category's colour: politics, economy, science, tech. Larger where more outlets covered it, fainter as it ages.",
+      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger where more outlets covered it, fainter as it ages.',
     draw: (colors) => (
       <>
         <Circle cx={C} cy={C} r={6.7} color={colors.bg} />
@@ -87,8 +87,10 @@ const ENTRIES: readonly KeyEntry[] = [
     ),
   },
   {
-    label: 'read',
-    meaning: 'A place whose stories you have all opened. Tap it to read the newest again.',
+    // `found`, the word the dock and the all-found toast use for it; `read` is
+    // a different thing the app also tracks (15 seconds with a story open).
+    label: 'found',
+    meaning: 'A place whose stories you have all found. Tap it to open the newest again.',
     draw: (colors) => (
       <Circle
         cx={C}

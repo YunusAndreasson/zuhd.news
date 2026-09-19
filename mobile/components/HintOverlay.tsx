@@ -1,12 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import Animated, {
-  FadeIn,
-  FadeInUp,
-  FadeOut,
-  FadeOutDown,
-  useReducedMotion,
-} from 'react-native-reanimated';
+import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { ANIMATION, EASING, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
@@ -23,8 +17,11 @@ import { Text } from './primitives';
 // a reader who follows it and gets a different result stops trusting the next.
 const HINT_COPY: Record<HintId, string> = {
   swipe: 'swipe or tap › for the next story · tap to read',
-  sources: 'tap the story for its sources',
-  bookmark: 'press and hold to save a story',
+  // Never shown (`eligibleHint`): the open card prints `sources · save` as
+  // words, and a visible control needs no pill. Persisted ids, so they stay —
+  // with copy that is at least true, should either come back.
+  sources: 'open a story for its sources',
+  bookmark: 'open a story and tap save to keep it',
   globe: 'tap a light on the globe to find its story',
   // The id predates the dock; it is a persisted key, so it keeps its name.
   masthead: '⌃ opens the story · ▶ plays the briefing',
@@ -59,7 +56,6 @@ export const HintOverlay = memo(function HintOverlay({
   bottomOffset = 0,
 }: HintOverlayProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
 
   const handlePress = useCallback(() => {
     hapticTick();
@@ -68,14 +64,11 @@ export const HintOverlay = memo(function HintOverlay({
 
   if (!hint) return null;
 
-  const entering = reduceMotion
-    ? FadeIn.duration(0)
-    : FadeInUp.duration(ANIMATION.normal)
-        .easing(EASING.out)
-        .withInitialValues({ transform: [{ translateY: HINT_SLIDE_OFFSET }] });
-  const exiting = reduceMotion
-    ? FadeOut.duration(0)
-    : FadeOutDown.duration(ANIMATION.normal).easing(EASING.in);
+  // Reanimated drops both to their end state under Reduce Motion by itself.
+  const entering = FadeInUp.duration(ANIMATION.normal)
+    .easing(EASING.out)
+    .withInitialValues({ translateY: HINT_SLIDE_OFFSET });
+  const exiting = FadeOutDown.duration(ANIMATION.normal).easing(EASING.in);
 
   return (
     <View
@@ -110,8 +103,11 @@ export const HintOverlay = memo(function HintOverlay({
           accessibilityLabel={HINT_COPY[hint]}
           accessibilityHint="Dismisses this tip"
         >
+          {/* One instruction a line. Run on, the pill wrapped wherever the
+              width ran out — `… for the next story ·` over `tap to read`,
+              the separator left hanging. */}
           <Text variant="labelSm" tone="inverse" style={styles.copy}>
-            {HINT_COPY[hint]}
+            {HINT_COPY[hint].replaceAll(' · ', '\n')}
           </Text>
         </Pressable>
       </Animated.View>

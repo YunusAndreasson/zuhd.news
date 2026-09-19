@@ -5,7 +5,7 @@ import {
   StyleSheet,
   type TextStyle,
 } from 'react-native';
-import { Easing } from 'react-native-reanimated';
+import { Easing, ReduceMotion } from 'react-native-reanimated';
 import { ANDROID_TEXT_BASE } from './platform';
 
 // ---------------------------------------------------------------------------
@@ -95,6 +95,10 @@ export const DARK_COLORS = {
   // drop alpha below 0.88 — over the dome hotspot the contrast still bottoms
   // out at ~AA-large only.
   pillBg: 'rgba(30,30,32,0.88)',
+  /** The briefing player bar on Android: `pillBg` as it looks over the sheet,
+   *  but solid. The bar rests on the story card, and `pillBg`'s 12% let the
+   *  card's lines show through its label. iOS blurs instead. */
+  playerBg: '#1d1d1f',
   atmosphere: '#334455',
   /**
    * The lit hemisphere's wash on the globe — the web map's `DAYLIGHT`. Night
@@ -166,6 +170,8 @@ export const LIGHT_COLORS = {
   dome: '#7a5e1a',
   sheetBg: '#eae6e0',
   pillBg: 'rgba(220,216,210,0.88)',
+  /** See DARK_COLORS.playerBg: `pillBg` over `sheetBg`, solid. */
+  playerBg: '#dedad4',
   atmosphere: '#8899aa',
   // See DARK_COLORS.daylight. On cream the night veil already reads; the day
   // side is lifted toward white so the terminator has two sides.
@@ -367,10 +373,9 @@ export const SPACING = {
   xl: 32,
   xxl: 48,
   screenPadding: 18,
-  /** Tighter horizontal padding for the article reader and the section
-   *  header above it. Widens the text column a few pixels relative to
-   *  `screenPadding`; `SectionBar` mirrors this so its labels align with
-   *  the article body. */
+  /** The reading column's inset: the story card, the dock, the gauges and
+   *  the cards. A few pixels wider a column than `screenPadding`, which the
+   *  platform sheets keep. */
   articlePadding: 14,
 } as const;
 
@@ -483,46 +488,61 @@ export const EDITORIAL = {
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];
 
-/**
- * The horizontal axis.
- *
- * Four sections: the story river followed by three focused graph desks.
- * The data destinations are deliberately specific: market prices,
- * chokepoint traffic and probability outlooks. Each contains only a real time
- * series with current pipeline analysis; static reference material does not
- * earn a primary tab.
- *
- * `SectionBar` keeps its scroll view for large Dynamic Type and draws a rule
- * after `news`, which is a river where the other three are card decks.
- * Swipe is still the navigation; the rail is where you are.
- *
- * The four categories used to live on this axis too. They are a vertical
- * ordering inside `news` now — see `lib/news-order.ts` for why lanes were the
- * wrong shape once the axis was needed for something else.
- */
 /** How long the app must be backgrounded before a foreground resume triggers a refresh */
 export const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
 
+/**
+ * Motion tokens.
+ *
+ * **Every spring states its mass, or is written as `duration`/`dampingRatio`.**
+ * Reanimated 4 merges a config over `GentleSpringConfig`, whose mass is 4, so a
+ * spring given only `damping` and `stiffness` quietly became a quarter as stiff
+ * as it was tuned: `spring` below settled in ~2.6 s at ζ≈0.25 instead of ~0.65 s,
+ * and `springSoft` wobbled the scrub tooltip. The masses here are the ones each
+ * spring was tuned against. `__tests__/motion-tokens.test.ts` holds the rule.
+ *
+ * **Reduce Motion is the library's job, except where it must not be.** Every
+ * Reanimated animation defaults to `ReduceMotion.System`: with the setting on it
+ * jumps to its end, so a discrete animation needs no `useReducedMotion()` branch
+ * of its own. The exception is motion that carries a finger on — a thrown sheet,
+ * a released swipe — which snapping reads as broken, not accessible (DESIGN.md
+ * §Accessibility) — and the fade that replaces movement under the setting.
+ * Spread `KEEP_MOTION` into those, and only those.
+ */
 export const ANIMATION = {
   fast: 150,
   normal: 250,
   slow: 400,
   /** Playback-tracking / long continuous tweens (e.g. progress fills). */
   long: 1000,
-  spring: { damping: 12, stiffness: 150 },
+  spring: { damping: 12, stiffness: 150, mass: 1 },
   /** Snappier spring for gesture starts (scrub tooltips, pull handles). */
-  springSoft: { damping: 20, stiffness: 300 },
-  /** News sheet and globe share stops: settle without a rebound. */
-  springSheet: { duration: 350, dampingRatio: 1, overshootClamping: true },
+  springSoft: { damping: 20, stiffness: 300, mass: 1 },
+  /** A scrub tooltip popping up under the finger: a little overshoot says "here". */
+  springPop: { damping: 8, stiffness: 260, mass: 0.7 },
+  /** Release of a press: underdamped, so a tap pops back rather than snapping. */
+  springPress: { damping: 10, stiffness: 280, mass: 0.6 },
+  /** The story sheet and the story deck landing on a stop: critically damped,
+   *  so neither the sheet nor the globe that follows the deck ever rebounds past it. */
+  springSettle: { duration: 350, dampingRatio: 1, overshootClamping: true },
+  /** How long zoom takes to hand back to the story's framing after a pinch. */
+  zoomRelease: 260,
   staggerStep: 40,
   staggerCap: 8,
 } as const;
+
+/** Spread into an animation that Reduce Motion must not snap: one that carries
+ *  a finger's motion on (a thrown sheet, a released swipe), or the cross-fade
+ *  that stands in for movement under it (the globe's tap ring). Nothing else. */
+export const KEEP_MOTION = { reduceMotion: ReduceMotion.Never } as const;
 
 /** Reusable Reanimated easing curves. Compose with ANIMATION durations in withTiming. */
 export const EASING = {
   in: Easing.in(Easing.ease),
   out: Easing.out(Easing.ease),
   inOut: Easing.inOut(Easing.ease),
+  /** Every camera move — a flight, a zoom handed back — so the globe has one gait. */
+  camera: Easing.inOut(Easing.cubic),
 } as const;
 
 /**
@@ -561,7 +581,7 @@ export const PRESSED_STYLE = {
  *  fontVariant — call sites should never assemble these by hand. */
 export function makeTextVariants(colors: ColorPalette, font: FontSet, typography: Typography) {
   return {
-    /** Hero headline — ArticlePage title */
+    /** Hero headline — an event sheet's focal number (`SheetHero`) */
     display: {
       ...font.bold,
       ...ANDROID_TEXT_BASE,

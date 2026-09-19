@@ -12,7 +12,7 @@ import {
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { ARTICLE_BREAK_PROPS, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { ARTICLE_BREAK_PROPS, HIT_SLOP, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -20,7 +20,7 @@ import {
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
 import { ACTIONS_ROW } from '../../lib/deck-layout';
-import { hapticTick } from '../../lib/haptics';
+import { hapticImpact } from '../../lib/haptics';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
@@ -72,7 +72,7 @@ interface StoryCardProps {
   /** The story's category hue — the colour its beacon was drawn in. */
   hue: string;
   odds: StoryOdds | null;
-  /** Indicator ids an entity sheet can actually open; see `ArticlePage`. */
+  /** Indicator ids an entity sheet can actually open. */
   resolvableEntityIds?: ReadonlySet<string>;
   /** The sheet has settled open: the rest of the story takes touches. */
   open: boolean;
@@ -202,9 +202,8 @@ export const StoryCard = memo(function StoryCard({
     [colors, font, typography],
   );
 
-  // Only the mentions that lead somewhere — the same filter `ArticlePage`
-  // applies, for the same reason: an accent-coloured word that opens nothing
-  // teaches the reader that accent-coloured words lie.
+  // Only the mentions that lead somewhere: an accent-coloured word that opens
+  // nothing teaches the reader that accent-coloured words lie.
   const tappableEntities = useMemo(() => {
     const all = article.entities;
     if (!all?.length || !resolvableEntityIds) return undefined;
@@ -219,7 +218,7 @@ export const StoryCard = memo(function StoryCard({
         const cc = url.slice(COUNTRY_URL_SCHEME.length).toUpperCase();
         const countryName = displayNameFromCode(cc);
         if (!countryName) return;
-        hapticTick();
+        hapticImpact();
         onCountryPress({
           countryName,
           location: null,
@@ -406,10 +405,9 @@ const StoryActions = memo(function StoryActions({
       {sourceCount > 0 ? (
         <Pressable
           onPress={handleSources}
-          haptic="tick"
           accessibilityRole="button"
           accessibilityLabel={`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-          hitSlop={SPACING.sm}
+          hitSlop={HIT_SLOP}
         >
           <Text variant="labelSm" tone="secondary">
             {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
@@ -420,13 +418,20 @@ const StoryActions = memo(function StoryActions({
         onPress={handleBookmark}
         haptic="none"
         accessibilityRole="button"
-        accessibilityLabel={saved ? 'Saved. Remove from bookmarks' : 'Save this story'}
+        accessibilityLabel={saved ? 'Saved. Remove from saved stories' : 'Save this story'}
         accessibilityState={{ selected: saved }}
-        hitSlop={SPACING.sm}
+        hitSlop={HIT_SLOP}
       >
-        <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'}>
-          {saved ? 'saved' : 'save'}
-        </Text>
+        {/* Held at the longer word's width, so `share` stays put when the
+            word changes under the finger. */}
+        <View>
+          <Text variant="labelSm" style={styles.reserve} importantForAccessibility="no">
+            saved
+          </Text>
+          <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'} style={styles.word}>
+            {saved ? 'saved' : 'save'}
+          </Text>
+        </View>
       </Pressable>
       <Pressable
         onPress={handleShare}
@@ -434,7 +439,7 @@ const StoryActions = memo(function StoryActions({
         accessibilityRole="button"
         accessibilityLabel="Share this story"
         accessibilityHint="Opens the system share sheet"
-        hitSlop={SPACING.sm}
+        hitSlop={HIT_SLOP}
       >
         <Text variant="labelSm" tone="secondary">
           share
@@ -459,7 +464,7 @@ export const EndCard = memo(function EndCard() {
         caught up
       </Text>
       <Text variant="title" style={styles.title}>
-        That is today's news.
+        That is today’s news.
       </Text>
       <Text variant="body" tone="secondary">
         New stories arrive through the day.
@@ -482,4 +487,6 @@ const styles = StyleSheet.create({
     gap: SPACING.lg,
     height: ACTIONS_ROW,
   },
+  reserve: { opacity: 0 },
+  word: { position: 'absolute', top: 0, left: 0 },
 });

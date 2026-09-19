@@ -1,6 +1,6 @@
 import type { Category } from '@shared/types';
-import { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { memo, useCallback, useMemo } from 'react';
+import { type AccessibilityActionEvent, StyleSheet, View } from 'react-native';
 import { categoryMarkColor, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
@@ -16,8 +16,10 @@ interface ArticleRowProps {
   category: Category;
   location: string | null;
   onPress: (slug: string, category: Category) => void;
-  onLongPress?: (slug: string) => void;
-  delayLongPress?: number;
+  /** A second thing the row can do, reached by a gesture the row's owner
+   *  draws (Saved's swipe-to-remove). Offered to screen readers as an
+   *  accessibility action, which is the only way they can reach it. */
+  secondaryAction?: { label: string; onAction: (slug: string) => void };
 }
 
 export const ArticleRow = memo(function ArticleRow({
@@ -27,8 +29,7 @@ export const ArticleRow = memo(function ArticleRow({
   category,
   location,
   onPress,
-  onLongPress,
-  delayLongPress = 400,
+  secondaryAction,
 }: ArticleRowProps) {
   const { colors } = useTheme();
 
@@ -36,17 +37,24 @@ export const ArticleRow = memo(function ArticleRow({
     onPress(slug, category);
   }, [slug, category, onPress]);
 
-  const handleLongPress = useCallback(() => {
-    onLongPress?.(slug);
-  }, [slug, onLongPress]);
+  const actions = useMemo(
+    () => (secondaryAction ? [{ name: 'secondary', label: secondaryAction.label }] : undefined),
+    [secondaryAction],
+  );
+  const handleAction = useCallback(
+    (e: AccessibilityActionEvent) => {
+      if (e.nativeEvent.actionName === 'secondary') secondaryAction?.onAction(slug);
+    },
+    [secondaryAction, slug],
+  );
 
   return (
     <Pressable
       onPress={handlePress}
-      onLongPress={onLongPress ? handleLongPress : undefined}
-      delayLongPress={delayLongPress}
       accessibilityRole="button"
       accessibilityLabel={title}
+      accessibilityActions={actions}
+      onAccessibilityAction={actions ? handleAction : undefined}
     >
       <Box paddingY="screenPadding" rule="bottom">
         {/* `rowTitle`, like the sheet's river: a list of headlines is one

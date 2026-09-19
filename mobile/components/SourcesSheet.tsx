@@ -54,20 +54,29 @@ export const SourcesSheet = memo(function SourcesSheet({
     setExpandedSource(sources.length === 1 ? 0 : null);
   }, [sources]);
 
+  // The count is the sheet's title, in the handle where every other sheet's
+  // title is; it used to be a heading in the body under an empty handle.
+  const title =
+    sources.length === 0
+      ? undefined
+      : sources.length === 1
+        ? 'source'
+        : `${sources.length} sources`;
+
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss}>
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={title}>
       <SheetScrollView bottomInset={bottomInset}>
         {sources.length > 0 && (
           <>
-            <Text variant="labelSm">
-              {sources.length === 1 ? 'source' : `${sources.length} sources`}
-            </Text>
             {/* Explainer — anchors "tone" so the pill labels read as framing
              *  analysis, not a verdict. One line, italic, then a breath.
              *  Uses the sectionHeading font family at an xs size so it visually
              *  reads as smaller than a normal italic body line. */}
             <Text variant="sectionHeading" scale={0.85} style={styles.explainer}>
-              {divergenceNote(divergence, sources.length) ?? 'How each outlet framed this story.'}
+              {divergenceNote(divergence, sources.length) ??
+                (sources.length === 1
+                  ? 'How the outlet framed this story.'
+                  : 'How each outlet framed this story.')}
             </Text>
             {sources.map((s, i) => (
               <Animated.View key={s.name} entering={staggerEnter(i)}>
@@ -88,7 +97,6 @@ export const SourcesSheet = memo(function SourcesSheet({
 
 const styles = StyleSheet.create({
   explainer: {
-    marginTop: SPACING.xxs,
     marginBottom: SPACING.md,
   },
 });

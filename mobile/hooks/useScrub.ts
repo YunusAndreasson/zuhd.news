@@ -148,7 +148,7 @@ export function useScrub({
         holding.value = 1;
         scheduleOnRN(start);
         shown.value = withSpring(1, ANIMATION.springSoft);
-        tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
+        tooltipScale.value = withSpring(1, ANIMATION.springPop);
         fingerX.value = e.x;
         lastDetent.value = -1;
         lastStep.value = -1;

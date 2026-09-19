@@ -42,7 +42,13 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 /** Keep the full touch target while letting it meet the safe right edge. */
 const MENU_WIDTH = CONTROL_ROW - SPACING.sm;
 /** How far below the row the shade runs out. */
-const SHADE_FADE = SPACING.xl;
+const SHADE_FADE = SPACING.xxl;
+/** The fade's steps, as fractions of the way down it, and how much of the
+ *  row's strength is left at each: smoothstep, so the fade leaves the row and
+ *  meets the globe with no slope at either end. It was a straight ramp over
+ *  32pt, and its two ends — where the slope jumps — read as two lines across
+ *  the light globe. Over 48pt its steepest point is the old ramp's slope. */
+const SHADE_EASE = [0, 0.25, 0.5, 0.75, 1].map((t) => [t, 1 - t * t * (3 - 2 * t)] as const);
 /** The shade's strength at the top edge and at the bottom of the row.
  *  `textSecondary` (#999) is 6.7:1 on flat `bg`, but the row sits over live
  *  globe content, not `bg` — a city-light cluster or a saturated story mark
@@ -67,9 +73,12 @@ const Shade = memo(function Shade({
   const colors = useMemo(() => {
     const c = Skia.Color(color);
     const at = (alpha: number) => Float32Array.of(c[0] ?? 0, c[1] ?? 0, c[2] ?? 0, alpha);
-    return [at(SHADE_TOP), at(SHADE_ROW), at(0)];
+    return [at(SHADE_TOP), ...SHADE_EASE.map(([, left]) => at(SHADE_ROW * left))];
   }, [color]);
-  const positions = useMemo(() => [0, rowHeight / height, 1], [rowHeight, height]);
+  const positions = useMemo(() => {
+    const row = rowHeight / height;
+    return [0, ...SHADE_EASE.map(([t]) => row + (1 - row) * t)];
+  }, [rowHeight, height]);
   if (width <= 0 || rowHeight <= 0) return null;
   return (
     <Canvas style={[styles.shade, { width, height }]} pointerEvents="none">
@@ -160,6 +169,8 @@ export const MapHeader = memo(function MapHeader({
       </View>
       <IconButton
         onPress={onMenuPress}
+        // The screen's handler gives the impact, as it does for every gauge.
+        haptic="none"
         hitSlop={0}
         style={styles.menu}
         accessibilityLabel="Menu"

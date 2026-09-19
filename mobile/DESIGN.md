@@ -29,12 +29,12 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Variants          | `makeTextVariants` → 15 roles                   | The `<Text variant>` catalog (see below)      |
 | Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
 | Variant breaking  | `VARIANT_TEXT_PROPS`, `PROSE_BREAK_PROPS`       | Per-role line-breaking + iOS Dynamic Type ramp props, auto-applied by `<Text>`: prose hyphenates (Android) and uses iOS `standard` breaking; display/title use `balanced`/`push-out` widow control. Article sentences in `lib/markdown.tsx` get the body set via `PROSE_BREAK_PROPS`. |
-| Spacing           | `SPACING` (xxs → xxl + `smPlus`, `screenPadding`, `articlePadding`) | Four-pt-ish scale. `articlePadding` (14) is the reader column inset — `CategoryBar` mirrors it so tabs align with the article body. |
+| Spacing           | `SPACING` (xxs → xxl + `smPlus`, `screenPadding`, `articlePadding`) | Four-pt-ish scale. `articlePadding` (14) is the reading column's inset — the story card, the dock, the gauges and the cards; platform sheets keep `screenPadding` (18). |
 | Gap tokens        | `GAP` (none, tight, row, item, section)         | Named Stack gap tiers derived from SPACING    |
 | Radii             | `RADIUS` (handle, pill, floating)               | Three semantic tiers, intent-named            |
 | Icons             | `ICON` (sm=14, md=20, lg=26)                    | Three-tier. Anything else is a mistake.       |
 | Flag emoji        | `FLAG` (row=18, inline=22, display=32)          | Pictogram sizing — flags aren't type          |
-| Animation         | `ANIMATION`, `EASING`                           | Durations, spring configs, Reanimated easings |
+| Animation         | `ANIMATION`, `EASING`, `KEEP_MOTION`            | Durations, spring configs, Reanimated easings — see §Motion |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
 | Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |
 | Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`, `inverse` — text on a `colors.text`-filled surface) |
@@ -108,7 +108,7 @@ Eight primitives. Composition over configuration.
 
 ### Don't use if…
 
-- `Pressable` — if you need a static-feedback element (no spring), use raw RN `Pressable` + `PRESSED_STYLE`. `Toast` dismiss and the `CategoryBar` row are references. BottomActionBar pills use the spring primitive — small chrome still deserves motion.
+- `Pressable` — if you need a static-feedback element (no spring), use raw RN `Pressable` + `PRESSED_STYLE`. `Toast` dismiss, the hint pill and the search field's clear button are the references. Anything in a reading surface — the card's `sources · save · share`, the odds line, a row — uses the spring primitive: small chrome still deserves motion, and two press styles side by side read as two kinds of control.
 - `Stack` vs `Box` — Stack = flex container with gap. Box = decorative wrapper (background/radius/rule). If you need both, nest them.
 
 ### Not shipped (add when needed)
@@ -121,7 +121,7 @@ Each variant is a complete typographic decision. Pick the closest match; if none
 
 | Variant           | Size    | Weight/Style | Color             | Use for                                           |
 |-------------------|---------|--------------|-------------------|---------------------------------------------------|
-| `display`         | sizeH1  | bold         | text              | Article hero title                                |
+| `display`         | sizeH1  | bold         | text              | An event sheet's focal number (`SheetHero`)       |
 | `title`           | sizeLg  | semiBold     | text              | An opened story's title in a sheet, block titles  |
 | `rowTitle`        | ~16pt   | semiBold     | text              | Headlines in a list — river, search, saved, instruments; a category dot in the story's globe hue sits before the meta line |
 | `lead`            | sizeLg  | regular      | accent            | Subtitle under a display; About-page opener      |
@@ -141,6 +141,11 @@ Each variant is a complete typographic decision. Pick the closest match; if none
 
 Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VARIANT_CAP` auto-apply — override only for a documented reason.
 
+**Typesetting that happens for you, and what it asks of copy.**
+- A spaced dash never starts a line: `Text` turns the space before an em or en dash into a no-break space, and `smartTypography` does the same for story text, run by run. About printed "— zuhd:" at the head of a line before it.
+- Story text gets its quotes and apostrophes from `smartTypography`, which reads each run with the character before it: text straight after a link or emphasis is not the start of a line, so `[China](country:CN)'s` is `China’s`, not `China‘s`.
+- UI copy is typed as it should print — `today’s`, `“caught up”` — because it does not pass through `smartTypography`. A straight `'` in a visible string is a bug; in an accessibility label it does not matter.
+
 ## Patterns
 
 ### Sheets
@@ -152,13 +157,17 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   - **The content-sized ceiling moved into `SheetLayout`.** gorhom's `maxDynamicContentSize` prop is gone, but the cap it provided is not optional: `fitToContents` measures the RN content's *natural* height, so a long page grew past the window and pushed its own handle, title and back chevron off the top of the screen — About and privacy rendered as prose running under the status bar with no way back. `SheetLayout` applies `LAYOUT.sheetMaxFraction` itself, and only in content-sized mode; a fixed-snap sheet is already handed a bounded column and capping it would leave dead space inside an 85% sheet.
   - **There is no backdrop opacity to set** — `OPACITY.backdrop` is gone with it — and no `BottomSheetModalProvider` in `app/_layout.tsx`, because a platform sheet presents itself rather than rendering into a JS portal.
 - Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through. Note the scroll views are plain React Native ones under the new library: a native sheet coordinates scrolling itself, so none of gorhom's gesture-arbitration wrappers are needed.
-- **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** The re-exported RN `ScrollView`/`FlatList` do not receive it from a wrapper. A sheet with explicit `snapPoints` gives its content a bounded column, so `flex: 1` is right — that's what `SheetSearchPage`'s list and `CountrySheet`'s `rankingWrap` use. A content-sized sheet gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
+- **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** The re-exported RN `ScrollView`/`FlatList` do not receive it from a wrapper. A sheet with explicit `snapPoints` (`CardSheet`) gives its content a bounded column, so `flex: 1` is right there. A content-sized sheet — every other one, including the search page's list and `CountrySheet`'s `rankingWrap`, which use `flexShrink: 1` — gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
 - Prose sheet pages (About, privacy, contact) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy. External links go through `SheetLink` (`SheetContent.tsx`), which owns the underline + `bodyEmphasis` treatment so a link on About and a link on privacy cannot drift apart.
 - Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
 - Nav rows and info rows in `MenuSheet` are the same control (padding, chevron, pushes a page) and share `label`. Don't size the secondary group down — the divider carries the hierarchy, and shrinking it drops the tap target under 44pt.
 - Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
-- Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
+- Swipe-back is wired in `MenuSheet` and `CountrySheet` through `useSheetBackNavigation` — use it for a multi-page sheet. **Android's back key closes the sheet from any page**, and that is the platform's rule, not a gap: a platform sheet on Android is a dialog window that never forwards back, and `@expo/ui` binds its dismiss-on-back to `enablePanDownToClose`. A `BackHandler` inside a sheet can never fire.
+- **A sheet's title lives in its handle** (`handleTitle`), never as a heading in the body, and `SheetHandle` draws it lowercase — small caps set a capital at full height, so a title arriving in data case (a GDACS event name) read as another tier. `SheetHero` does the same for its eyebrow. Section labels inside a sheet are `labelSm`.
+- **Gestures inside a sheet need the root `SheetLayout` gives them.** On Android `@expo/ui` hosts sheet content under a React `RootView`, where gesture handler stops looking for its root, so `SheetLayout` wraps every sheet's content in its own `GestureHandlerRootView`. Without it the menu's swipe-back, Saved's swipe-to-remove and a chart's scrub were never recognised on Android.
+- **A two-stop sheet lifts before its content scrolls.** A Material sheet at its first stop lays its content out at the full stop and shows the top of it, and a React Native `ScrollView` offers its drags to no one unless `nestedScrollEnabled` is set: `CardSheet` at half height scrolled inside itself to an end that was off the screen, and the cited stories and the source under a card's analysis could not be reached. `SheetScrollView` sets it, and `@expo/ui` relays the drag to the sheet.
+- **One platform sheet at a time.** Going from one sheet to another — a country from a disaster, a card from the instruments list — goes through `handOffSheet` in `app/index.tsx`, which presents the next sheet from the first one's `onDismiss`. Presented while SwiftUI is still dismissing, iOS rejects it; presented over an open sheet, it stacks two modals.
 
 ### Cards (`components/cards/`) — opened in `CardSheet`
 
@@ -321,6 +330,20 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - **Notification primer** (`components/NotificationPrimerSheet.tsx`): the OS permission dialog is never fired cold. The one-time primer sheet (presented at the first "caught up" moment, session 2+) is the only ask path; the MenuSheet toggle is the durable control. Any new permission ask must follow this soft-primer shape.
 - **Replay**: settings has a "show tips again" row → `resetOnboarding()` (re-arms hints + reading depth; never re-arms the primer).
 
+## Motion
+
+Tokens in `constants/theme.ts` (`ANIMATION`, `EASING`, `KEEP_MOTION`); the rules they enforce, each learned from a bug:
+
+- **Every spring states its physics** — a mass, or a `duration` and `dampingRatio`. Reanimated 4 fills a missing mass with 4, which quietly made `ANIMATION.spring` a 2.6-second wobble. `__tests__/motion-tokens.test.ts` holds the rule.
+- **Reduce Motion is the library's job.** Every Reanimated animation and layout builder defaults to `ReduceMotion.System` and jumps to its end with the setting on, so a discrete animation needs no `useReducedMotion()` branch of its own — the branches that did exist made "a shorter timing" that ran instantly anyway. Keep a JS-side check only for what Reanimated cannot see: a timer, an RN `scrollTo({ animated })`, an initial value.
+- **`KEEP_MOTION` is for what must not snap, and nothing else**: a spring released from a finger (the sheet, the deck's landing) and the cross-fade that stands in for movement under the setting (the globe's tap ring, which otherwise was never seen).
+- **One landing.** The sheet and the deck settle with the same critically damped `springSettle`; camera moves share `EASING.camera`.
+- **The camera has one way of travelling.** A swipe, a tapped mark, a scrub, a gauge and a notification all move the globe along the great circle (`slerpLatLng`), rising in proportion to the distance and coming down close (`swipeClip`). A flight (`hooks/useCameraFlight.ts`) lasts by distance (`flightDuration`) and a flight to a story lands on that story's framing and hands the camera back to the deck on the same frame, so the country highlight and the place's label arrive with the landing.
+
+## Haptics
+
+Three tiers, chosen by meaning (`lib/haptics.ts`): **tick** — movement within a surface (a story landing, a sheet settling, a page of cards, a scrub step, an option picked, back a page); **impact** — a press that opens something (a sheet, a story, a card, a link, share, play; the `Pressable` default, and scrub detents, because iOS silences selection feedback while audio plays); **notification** — state committed (saved, removed, undone, erased, every story found), with `hapticError` for what could not be done. A press whose handler gives its own haptic passes `haptic="none"`, so one touch is never two knocks.
+
 ## Anti-patterns (don't)
 
 - Inline hex codes (`#141414`, `#e8e8e8`) — always via `useTheme().colors` or `tone`.
@@ -337,7 +360,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 The "no native chrome" rule has four specific, intentional carve-outs:
 
 - **Icons on iOS resolve to SF Symbols.** `components/primitives/Icon.tsx` switches on `Platform.OS`: iOS renders the matching SF Symbol via `expo-symbols` (sharper optical sizing, automatic tinting, system feel); Android renders Ionicons. The public `<Icon name="..." size="sm|md|lg" tone="..." />` API stays unified — call sites pass an Ionicons name and the mapping table in `Icon.tsx` resolves to SF Symbol on iOS. An Ionicons name not in the mapping table silently falls back to Ionicons on both platforms — no missing-glyph placeholder.
-- **BriefingBar uses iOS frosted glass.** The floating audio chrome on the dock uses `BlurView` (`tint="systemThinMaterial"`) on iOS so the bar reads as a native floating surface. Android keeps a solid `pillBg` fill because Android's BlurView implementations are uneven. This is the only sheet-or-bar surface allowed to blur — editorial sheets stay typography-first.
+- **BriefingBar uses iOS frosted glass.** The floating audio chrome on the dock uses `BlurView` (`tint="systemThinMaterial"`) on iOS so the bar reads as a native floating surface. Android keeps a solid `playerBg` fill (`pillBg` over the sheet, composited — `pillBg` itself is 88% and let the story card's lines show through the bar) because Android's BlurView implementations are uneven. This is the only sheet-or-bar surface allowed to blur — editorial sheets stay typography-first.
 - **The top bar sits on a shade.** `MapHeader` floats over the globe, and caps gauge labels over a lit coastline were hard to read. Behind it, one vertical gradient of `bg` — strongest under the status bar, still holding under the row, gone `SPACING.xl` below it — so the earth runs up into the bar instead of stopping at an edge. It is a legibility scrim, the web map's HUD answer, not decoration.
 - **The resting story is veiled below its hook.** `StoryCard`'s `Veil`: two body lines of gradient from half the sheet's ground to all of it, then solid ground, attached to the rest of the story (never to a place on screen, so it cannot lie over the hook). It is the one place text is quieted by opacity, and only because that text is not meant to be read at rest: the card rests on the hook so the day is a choice rather than a queue, and the fade is the sign that opening it reveals more. Nothing else gets a gradient.
 
@@ -350,8 +373,10 @@ Every interactive element must have:
 - `accessibilityState` — `selected`, `expanded`, `disabled` when applicable.
 - `hitSlop` — use `HIT_SLOP` default. `IconButton` applies it automatically.
 - Dynamic Type — `VARIANT_CAP` auto-applies; override via `maxFontSizeMultiplier` only with reason.
-- Reduce Motion — *discrete* animations must gate on `useReducedMotion()`. Look at `Toast`, `BriefingBar`, `QuizBlock`, `LocationsBlock`, `MiniGlobe` (tap pulse) and `GlobeGestureLayer` (a released drag's glide) for references. See also the memory note on battery saver.
-  - **Exempt: motion that tracks direct manipulation.** The `CategoryBar` tab indicator follows `pagerOffset` under the user's finger, the story deck follows a sideways swipe, and the globe scales with the sheet as a story grows. Reduce Motion targets discrete, decorative, or unexpected motion; snapping a finger-tracked indicator reads as broken, not accessible. Gate the transition, not the tracking.
+- Reduce Motion — see §Motion. Reanimated snaps every discrete animation by itself; what needs care is the motion that must *not* snap. See also the memory note on battery saver.
+  - **Exempt: motion that tracks direct manipulation.** The story deck follows a sideways swipe, the sheet follows a drag, and the globe scales with the sheet as a story grows — and their release springs (`KEEP_MOTION`) carry the finger on. Reduce Motion targets discrete, decorative, or unexpected motion; snapping a finger-tracked element reads as broken, not accessible. Gate the transition, not the tracking.
+- Announcements — `accessibilityLiveRegion` is Android-only. Anything that changes with no focus on it (a toast, the dock's status line, a story swapped in by an accessibility action) goes through `announce()` (`lib/announce.ts`).
+- `adjustable` controls carry their position as `accessibilityValue`, not in the label, so VoiceOver reads the new value after each adjustment.
   - Prefer a cross-fade to removing feedback entirely — `MiniGlobe.showPulse` still draws its ring under Reduce Motion, just at final radius without the expansion.
 - WCAG AA contrast — the dark and light palettes meet 4.5:1 body / 3:1 large at normal text weights.
 

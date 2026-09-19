@@ -15,11 +15,11 @@ import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
-  useReducedMotion,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -81,9 +81,6 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /** Neighbours fade in as they enter during a horizontal swipe. */
 const PEEK_OPACITY = 0.4;
-/** Perceived duration of a landing, in ms. Critically damped, so a card
- *  arrives without a bounce the globe would have to follow past a dateline. */
-const SETTLE_MS = 380;
 
 type SheetGesture = ReturnType<typeof usePanGesture>;
 
@@ -115,6 +112,10 @@ interface StoryDeckProps {
   renderEnd: () => ReactNode;
   /** A finger has started a swipe. Must be a stable, named callback. */
   onDragStart: () => void;
+  /** A worklet, run on the UI thread as the pan claims a swipe, before
+   *  `onDragStart` reaches JS: whatever must be decided on the frame the card
+   *  starts to move (whether the camera follows the finger). */
+  onClaim?: () => void;
   /** The swipe ended on a different story. Must be a stable, named callback. */
   onSettle: (index: number) => void;
   ref?: Ref<StoryDeckRef>;
@@ -234,10 +235,10 @@ export const StoryDeck = memo(function StoryDeck({
   renderStory,
   renderEnd,
   onDragStart,
+  onClaim,
   onSettle,
   ref,
 }: StoryDeckProps) {
-  const reduceMotion = useReducedMotion();
   // Use the full reading width at both detents. The scrubber signals more
   // stories; reserving a neighbour preview narrowed every paragraph, even
   // when expanded. A fixed width also avoids reflow during vertical drags.
@@ -265,16 +266,15 @@ export const StoryDeck = memo(function StoryDeck({
         if (target === stepTarget.current) return;
         stepTarget.current = target;
         onDragStart();
-        // A tap is not a finger carrying the card, so under Reduce Motion it
-        // lands at once; a swipe keeps its spring because it tracks a hand.
-        progress.value = reduceMotion
-          ? target
-          : withSpring(target, { duration: SETTLE_MS, dampingRatio: 1, overshootClamping: true });
+        // A tap is not a finger carrying the card, so it takes the plain
+        // landing, which Reanimated snaps under Reduce Motion; a released
+        // swipe keeps its spring (`KEEP_MOTION`) because it continues a hand.
+        progress.value = withSpring(target, ANIMATION.springSettle);
         committed.value = target;
         onSettle(target);
       },
     }),
-    [committed, count, onDragStart, onSettle, progress, reduceMotion],
+    [committed, count, onDragStart, onSettle, progress],
   );
 
   const panConfig = useMemo(
@@ -287,6 +287,7 @@ export const StoryDeck = memo(function StoryDeck({
         cancelAnimation(progress);
         start.value = progress.value;
         startX.value = e.translationX;
+        if (onClaim) onClaim();
         scheduleOnRN(onDragStart);
       },
       onUpdate: (e: { translationX: number }) => {
@@ -302,11 +303,12 @@ export const StoryDeck = memo(function StoryDeck({
         const target = e.canceled
           ? committed.value
           : deckTarget(Math.round(start.value), position, velocity, count);
+        // Critically damped, so a card arrives without a bounce the globe
+        // would have to follow past a dateline.
         progress.value = withSpring(target, {
-          duration: SETTLE_MS,
-          dampingRatio: 1,
+          ...ANIMATION.springSettle,
+          ...KEEP_MOTION,
           velocity,
-          overshootClamping: true,
         });
         if (target !== committed.value) {
           committed.value = target;
@@ -314,7 +316,7 @@ export const StoryDeck = memo(function StoryDeck({
         }
       },
     }),
-    [committed, count, onDragStart, onSettle, pitch, progress, start, startX],
+    [committed, count, onClaim, onDragStart, onSettle, pitch, progress, start, startX],
   );
   const pan = usePanGesture(panConfig);
 

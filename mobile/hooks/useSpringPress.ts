@@ -1,46 +1,37 @@
 import { useCallback } from 'react';
 import type { PressableProps } from 'react-native';
-import {
-  useAnimatedStyle,
-  useReducedMotion,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { ANIMATION, OPACITY, PRESS_SCALE } from '../constants/theme';
-
-// Crisp drop on press-in, underdamped spring on release so taps "pop"
-// instead of snapping back instantly.
-const RELEASE_SPRING = { damping: 10, stiffness: 280, mass: 0.6 } as const;
 
 type PressHandler = NonNullable<PressableProps['onPressIn']>;
 
 /**
- * Shared press animation for `HapticPressable` and `HapticButton`.
- * Returns animated style + onPressIn/Out handlers that chain caller-supplied
- * handlers. Honours Reduce Motion by snapping to final state.
+ * Shared press animation for the `Pressable` primitive (and `IconButton` through
+ * it): a crisp drop on press-in, an underdamped spring on release so a tap pops
+ * back instead of snapping. Returns the animated style plus onPressIn/Out
+ * handlers that chain the caller's. Under Reduce Motion Reanimated snaps both
+ * to their end state on its own (`ReduceMotion.System`, the default).
  */
 export function useSpringPress(
   onPressIn?: PressableProps['onPressIn'],
   onPressOut?: PressableProps['onPressOut'],
 ) {
   const pressed = useSharedValue(0);
-  const reduceMotion = useReducedMotion();
 
   const handlePressIn = useCallback<PressHandler>(
     (e) => {
-      pressed.value = reduceMotion ? 1 : withTiming(1, { duration: ANIMATION.fast });
+      pressed.value = withTiming(1, { duration: ANIMATION.fast });
       onPressIn?.(e);
     },
-    [pressed, reduceMotion, onPressIn],
+    [pressed, onPressIn],
   );
 
   const handlePressOut = useCallback<PressHandler>(
     (e) => {
-      pressed.value = reduceMotion ? 0 : withSpring(0, RELEASE_SPRING);
+      pressed.value = withSpring(0, ANIMATION.springPress);
       onPressOut?.(e);
     },
-    [pressed, reduceMotion, onPressOut],
+    [pressed, onPressOut],
   );
 
   const animatedStyle = useAnimatedStyle(() => ({

@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { ANIMATION, EASING, HIT_SLOP, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
 import { hapticTick } from '../../lib/haptics';
@@ -166,6 +166,8 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
 
 const DOT = 4;
 const DOT_GAP = 6;
+/** Taller, never wider: sideways slop would overlap the next dot's target. */
+const DOT_SLOP = { top: HIT_SLOP.top, bottom: HIT_SLOP.bottom, left: 0, right: 0 };
 
 function DotIndicator({
   count,
@@ -194,7 +196,10 @@ function DotIndicator({
           accessibilityLabel={`View card ${i + 1} of ${count}`}
           accessibilityState={{ selected: i === active }}
           // Padding (not hitSlop) supplies the touch area + inter-dot spacing,
-          // so adjacent dots' targets stay distinct rather than overlapping.
+          // so adjacent dots' targets stay distinct rather than overlapping;
+          // vertical slop, which cannot overlap a neighbour, makes it tall
+          // enough for a finger.
+          hitSlop={DOT_SLOP}
           style={styles.dotHit}
         >
           <Dot on={i === active} dim={colors.textSecondary} accent={colors.textEmphasis} />

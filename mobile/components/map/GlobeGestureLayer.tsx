@@ -9,14 +9,13 @@ import {
 } from 'react-native-gesture-handler';
 import {
   cancelAnimation,
-  Easing,
   type SharedValue,
   useSharedValue,
   withDecay,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { WHITE } from '../../constants/theme';
+import { ANIMATION, EASING, WHITE } from '../../constants/theme';
 import {
   anchorZoom,
   dragDelta,
@@ -24,6 +23,7 @@ import {
   MAX_LAT,
   pinchClip,
   projScaleFor,
+  takeCamera,
 } from '../../lib/globe-camera';
 import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
 
@@ -72,24 +72,6 @@ import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
  *  0.998 default coasts for seconds; this settles in about half of one, which
  *  is what a MapLibre throw feels like. */
 const FLING_DECELERATION = 0.994;
-/** How long zoom takes to hand back to the story's framing. */
-export const ZOOM_RELEASE_MS = 260;
-export const ZOOM_EASING = Easing.inOut(Easing.cubic);
-
-/** Take the camera for a gesture, starting from where it was last drawn. */
-function takeCamera(
-  owner: SharedValue<number>,
-  lat: SharedValue<number>,
-  lng: SharedValue<number>,
-  viewLat: SharedValue<number>,
-  viewLng: SharedValue<number>,
-) {
-  'worklet';
-  if (owner.value === 1) return;
-  lat.value = viewLat.value;
-  lng.value = viewLng.value;
-  owner.value = 1;
-}
 
 interface GlobeGestureLayerProps {
   globeRef: React.RefObject<MiniGlobeRef | null>;
@@ -104,6 +86,8 @@ interface GlobeGestureLayerProps {
   /** `MiniGlobe`'s zoom override: 0 follows the story, 1 holds `zoomAngle`. */
   zoomActive: SharedValue<number>;
   zoomAngle: SharedValue<number>;
+  /** A camera flight's progress (`useCameraFlight`): a finger stops it. */
+  flightT: SharedValue<number>;
   /** The clip in effect at the last projection, in degrees. */
   clip: SharedValue<number>;
   /** The clip the story in front would take on its own. */
@@ -138,6 +122,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   viewLng,
   zoomActive,
   zoomAngle,
+  flightT,
   clip,
   storyClip,
   radius,
@@ -190,7 +175,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
     () => ({
       enabled: turnable,
       // Enough travel that a slightly imprecise tap is still a tap.
-      minDist: 6,
+      minDistance: 6,
       // One finger. Competing gestures go to whichever activates first, and a
       // pan with no pointer cap took every two-finger touch before the pinch
       // could — observed on the emulator: a pinch logged `pan activate` and
@@ -200,6 +185,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onBegin: () => {
         'worklet';
         // A finger on the earth stops a glide or a flight, as it does on the web.
+        cancelAnimation(flightT);
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
       },
@@ -240,7 +226,18 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         });
       },
     }),
-    [cameraLat, cameraLng, cameraOwner, clip, radius, reduceMotion, turnable, viewLat, viewLng],
+    [
+      cameraLat,
+      cameraLng,
+      cameraOwner,
+      clip,
+      flightT,
+      radius,
+      reduceMotion,
+      turnable,
+      viewLat,
+      viewLng,
+    ],
   );
 
   // The focus the last pinch update held, so the next one can keep that ground
@@ -252,6 +249,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       enabled: turnable,
       onActivate: ({ focalX, focalY }: { focalX: number; focalY: number }) => {
         'worklet';
+        cancelAnimation(flightT);
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
         cancelAnimation(zoomActive);
@@ -308,8 +306,15 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         'worklet';
         // Pinched back out to the story's own framing: give zoom back to it.
         const release = zoomAngle.value >= storyClip.value - 0.5;
-        const duration = reduceMotion ? 0 : ZOOM_RELEASE_MS;
-        if (release) zoomActive.value = withTiming(0, { duration, easing: ZOOM_EASING });
+        // Reanimated snaps the hand-back itself under Reduce Motion; the
+        // redraw timer below has to be told.
+        const duration = reduceMotion ? 0 : ANIMATION.zoomRelease;
+        if (release) {
+          zoomActive.value = withTiming(0, {
+            duration: ANIMATION.zoomRelease,
+            easing: EASING.camera,
+          });
+        }
         // A JS timer, never an animation callback: `scheduleOnRN` from a
         // completion worklet aborts the app (worklets 0.10).
         scheduleOnRN(onZoomSettle, release ? duration + 50 : 0);
@@ -323,6 +328,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       centerX,
       centerY,
       clip,
+      flightT,
       focusX,
       focusY,
       onZoomSettle,

@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useReducedMotion } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import {
   type AppearanceMode,
   baseFontSize,
@@ -19,6 +19,7 @@ import {
   FONT_SYSTEM,
   type FontFamily,
   type FontSize,
+  HIT_SLOP,
   type Preferences,
   RADIUS,
   SPACING,
@@ -31,7 +32,7 @@ import {
   getSnapshot as getDataUsage,
   subscribe as subscribeDataUsage,
 } from '../lib/data-usage';
-import { hapticTick } from '../lib/haptics';
+import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
 import { resetOnboarding } from '../lib/onboarding-store';
 import { staggerEnter } from '../lib/stagger';
 import { eraseLocalData } from '../lib/wipe';
@@ -77,14 +78,14 @@ const INFO_PAGES = {
       },
       {
         heading: 'data used',
-        body: "A day's news is about 15 KB — text and numbers, compressed. There are no images to load. Audio briefings are the exception: about 3 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it.",
+        body: 'A day’s news is about 15 KB — text and numbers, compressed. There are no images to load. Audio briefings are the exception: about 3 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it.',
       },
       {
         // Fragments, not a sentence. Six things joined by commas read as a
         // legal inventory; the same six as separate statements read as an
         // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Bookmarks. Where the "caught up" line falls. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many articles you have read. Your display settings. A cached copy of the latest articles, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
+        body: 'Saved stories. Where the “caught up” line falls. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it
@@ -412,8 +413,14 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
     setBusy(true);
     setArmed(false);
     eraseLocalData()
-      .then(() => onDone('Erased'))
-      .catch(() => onDone('Could not erase'))
+      .then(() => {
+        hapticNotification();
+        onDone('Erased');
+      })
+      .catch(() => {
+        hapticError();
+        onDone('Could not erase');
+      })
       .finally(() => setBusy(false));
   }, [armed, busy, onDone]);
 
@@ -423,12 +430,13 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
         erase local data
       </Text>
       <Text selectable variant="body">
-        Removes your bookmarks, reading position, cached articles, and reading count. Display
+        Removes your saved stories, reading position, cached stories, and reading count. Display
         settings and your notification choice stay.
       </Text>
       <Pressable
         onPress={handlePress}
         haptic="none"
+        hitSlop={HIT_SLOP}
         style={[styles.erasePill, { borderColor: colors.rule }]}
         accessibilityRole="button"
         accessibilityLabel={armed ? 'Confirm erase local data' : 'Erase local data'}
@@ -498,8 +506,6 @@ export const MenuSheet = memo(function MenuSheet({
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
   const [canRate, setCanRate] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
   const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
 
   const navPush = useCallback(
@@ -529,28 +535,13 @@ export const MenuSheet = memo(function MenuSheet({
 
   const handleDismiss = useCallback(() => {
     nav.reset();
-    setIsOpen(false);
     onDismiss();
   }, [onDismiss, nav.reset]);
 
-  const handleSheetChange = useCallback((index: number) => {
-    setIsOpen(index >= 0);
-  }, []);
-
-  const swipeBack = useSheetBackNavigation({
-    isOpen,
-    canGoBack: nav.depth > 0,
-    onBack: navPop,
-    sheetRef,
-  });
+  const swipeBack = useSheetBackNavigation({ canGoBack: nav.depth > 0, onBack: navPop });
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      handleComponent={Handle}
-      onDismiss={handleDismiss}
-      onChange={handleSheetChange}
-    >
+    <SheetLayout sheetRef={sheetRef} handleComponent={Handle} onDismiss={handleDismiss}>
       {nav.current === 'search' ? (
         <SheetSearchPage
           grouped={grouped}
@@ -586,10 +577,10 @@ export const MenuSheet = memo(function MenuSheet({
           <NavRow
             first
             label="search"
-            hint="Search all articles by title, topic, or location"
+            hint="Search every story by title, topic, or location"
             onPress={() => navPush('search')}
           />
-          <NavRow label="saved" hint="Your bookmarked articles" onPress={() => navPush('saved')} />
+          <NavRow label="saved" hint="Stories you have saved" onPress={() => navPush('saved')} />
           <NavRow
             label="settings"
             hint="Appearance, text size, haptics, notifications"
@@ -603,7 +594,7 @@ export const MenuSheet = memo(function MenuSheet({
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-          <View style={styles.infoLinks}>
+          <View>
             <ActionLink first label="about" onPress={() => navPush('about')} />
             <ActionLink label="privacy" onPress={() => navPush('privacy')} />
             <ActionLink label="contact" onPress={() => navPush('contact')} />
@@ -627,7 +618,7 @@ export const MenuSheet = memo(function MenuSheet({
         <>
           {SETTINGS.map((s, i) => {
             const currentValue = s.get(preferences);
-            const entering = reduceMotion ? undefined : staggerEnter(i);
+            const entering = staggerEnter(i);
             const row = s.toggle ? (
               <ToggleRow
                 first={i === 0}
@@ -668,22 +659,22 @@ export const MenuSheet = memo(function MenuSheet({
           {/* A number the reader can watch, rather than a claim they have to
               accept. This is the app's central promise made checkable — see
               lib/data-usage.ts for what it counts and why it counts high. */}
-          <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length)}>
+          <Animated.View entering={staggerEnter(SETTINGS.length)}>
             <ReadoutRow
               label="data used"
               value={formatBytes(dataUsed)}
-              hint="Articles fetched since you opened the app"
+              hint="Stories and data fetched since you opened the app"
             />
           </Animated.View>
-          <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length + 1)}>
+          <Animated.View entering={staggerEnter(SETTINGS.length + 1)}>
             <NavRow
               label="show tips again"
-              hint="Shows the reading hints again"
+              hint="Shows the reading tips again"
               onPress={() => {
                 resetOnboarding();
-                // "hints", not "tips" — every other surface (HintId, HINT_COPY,
-                // the row above) calls them hints. One name per thing.
-                onToast?.('Hints will reappear as you read');
+                // "tips" — the reader's word, and this row's. The code calls
+                // them hints (HintId, HINT_COPY); no screen does.
+                onToast?.('Tips will reappear as you read');
                 sheetRef.current?.dismiss();
               }}
             />
@@ -756,7 +747,6 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     marginVertical: SPACING.sm,
   },
-  infoLinks: {},
   inlineOptionRow: {
     paddingVertical: SPACING.smPlus,
   },

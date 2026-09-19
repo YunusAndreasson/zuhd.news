@@ -41,11 +41,11 @@ export const ConflictSheet = memo(function ConflictSheet({
 
   // Focal tint: fatalities > 0 reads in the unfavorable tone (the "people
   // killed" framing earns the same visual weight as a Red GDACS alert);
-  // a 0-fatality unrest event keeps the default text color so a peaceful
-  // protest doesn't read as a casualty event. This is the only place
-  // colour shifts based on event semantics — the globe glyph itself stays
-  // monochrome per the "color carries meaning only" rule.
-  const tint = severityTint(colors, { fatalities: event?.fatalities }, colors.textEmphasis);
+  // a 0-fatality unrest event keeps the display variant's own colour, as a
+  // lower-tier disaster does, so a peaceful protest doesn't read as a
+  // casualty event. It used to fall back to `textEmphasis`, so the two event
+  // sheets' quiet tiers were two different inks.
+  const tint = severityTint(colors, { fatalities: event?.fatalities }, undefined);
   const hero = useMemo(() => (event ? parseConflictHero(event) : null), [event]);
   const flag = useMemo(() => {
     if (!event) return null;
@@ -136,7 +136,7 @@ export const ConflictSheet = memo(function ConflictSheet({
             <SheetSourceFooter
               entering={enter()}
               source={displayConflictSource(event.source)}
-              linkLabel="Source →"
+              linkLabel="source →"
               linkAccessibilityLabel="Open the source"
               onLinkPress={event.sourceUrl ? handleSourcePress : undefined}
             />

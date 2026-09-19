@@ -1,11 +1,6 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import {
-  type LayoutChangeEvent,
-  ScrollView,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
@@ -45,6 +40,14 @@ import { Icon, Pressable, Text } from '../primitives';
  * and the end of a row that is sorted from loudest to quietest is where a
  * reader who wants more has already arrived. It used to sit under the NOW
  * block in the news sheet, which is for news.
+ *
+ * **The row is Gesture Handler's `ScrollView`, not React Native's.** The
+ * globe's pan sits under the whole header, and Gesture Handler finds the
+ * handlers for a touch by walking the views under the finger: a plain
+ * `ScrollView` has none, so a drag that began between two slots, or on the
+ * blank end of one, was never the row's — the row stayed put and the earth
+ * turned. The wrapper puts a native handler on the row itself, which ends
+ * that walk at the row (2026-09-19).
  *
  * Tapping a slot turns the planet to that mark and opens its card. That is
  * also how a reader learns the globe is addressable at all — the mapping is

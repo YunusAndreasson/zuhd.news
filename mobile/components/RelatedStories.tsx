@@ -34,7 +34,7 @@ export function RelatedStories({ articles, onArticlePress, entering }: RelatedSt
   if (articles.length === 0) return null;
   return (
     <Animated.View entering={entering} style={styles.section}>
-      <Text variant="labelXs" style={styles.heading}>
+      <Text variant="labelSm" style={styles.heading}>
         related stories
       </Text>
       {articles.map((a) => (

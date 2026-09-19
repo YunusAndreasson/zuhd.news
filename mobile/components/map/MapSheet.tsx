@@ -15,13 +15,11 @@ import Animated, {
   type SharedValue,
   useAnimatedReaction,
   useAnimatedStyle,
-  useReducedMotion,
   useSharedValue,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION, EASING, LAYOUT, RADIUS, SPACING } from '../../constants/theme';
+import { ANIMATION, KEEP_MOTION, LAYOUT, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
 
@@ -61,8 +59,7 @@ import { hapticTick } from '../../lib/haptics';
  *     sheet is therefore a sheet drag, with nothing to arbitrate.
  *  2. **The list never bounces.** With `bounces={false}`, a list already at
  *     the top that is pulled down does nothing — so the pan can take that drag
- *     simultaneously without the content rubber-banding under it. This is the
- *     same reason `SectionBar`'s rail sets it.
+ *     simultaneously without the content rubber-banding under it.
  *  3. **The pan decides once per gesture, on its first directed update, and holds.**
  *     A drag that starts as the list's stays the list's to the release. Half a
  *     swipe moving the sheet and half scrolling the list is the failure mode
@@ -145,7 +142,6 @@ export function MapSheet({
   ref,
 }: MapSheetProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
   const [detent, setDetent] = useState<MapSheetDetent>('peek');
   const committedDetent = useSharedValue<MapSheetDetent>('peek');
 
@@ -224,21 +220,19 @@ export function MapSheet({
   const animateTo = useCallback(
     (target: number, velocity: number, next: MapSheetDetent) => {
       'worklet';
-      // The spring is the continuation of a direct manipulation, so it keeps
-      // its physics under Reduce Motion — snapping a finger-thrown sheet to
-      // its stop reads as broken, not accessible. Only a *programmatic* move
-      // (a tap, a return from the reader) shortens, and that comes in with
-      // velocity 0.
-      offset.value =
-        reduceMotion && velocity === 0
-          ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(target, { ...ANIMATION.springSheet, velocity });
+      // Only ever called as a finger lets go, so the spring is the
+      // continuation of a direct manipulation and keeps its physics under
+      // Reduce Motion (`KEEP_MOTION`) — snapping a thrown sheet to its stop reads
+      // as broken, not accessible. A programmatic move (the dock's button, an
+      // accessibility action) is a plain `springSettle`, which Reanimated
+      // itself snaps when Reduce Motion is on.
+      offset.value = withSpring(target, { ...ANIMATION.springSettle, ...KEEP_MOTION, velocity });
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
       committedDetent.value = next;
       scheduleOnRN(settle, next);
     },
-    [committedDetent, offset, reduceMotion, settle],
+    [committedDetent, offset, settle],
   );
 
   // Named, because `scheduleOnRN` must never be handed an inline arrow from a
@@ -303,9 +297,7 @@ export function MapSheet({
           owner.value = UNDECIDED;
           pull.value = 0;
           const target = committedDetent.value === 'full' ? 0 : travel;
-          offset.value = reduceMotion
-            ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
-            : withSpring(target, { ...ANIMATION.springSheet, velocity: 0 });
+          offset.value = withSpring(target, { ...ANIMATION.springSettle, velocity: 0 });
           return;
         }
         if (owner.value !== SHEET) return;
@@ -333,7 +325,6 @@ export function MapSheet({
     [
       animateTo,
       committedDetent,
-      reduceMotion,
       dragStart,
       dragStartY,
       handlePullDown,
@@ -351,33 +342,27 @@ export function MapSheet({
     ref,
     () => ({
       expand: () => {
-        offset.value = reduceMotion
-          ? withTiming(0, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(0, ANIMATION.springSheet);
+        offset.value = withSpring(0, ANIMATION.springSettle);
         committedDetent.value = 'full';
         settle('full');
       },
       collapse: () => {
-        offset.value = reduceMotion
-          ? withTiming(travel, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(travel, ANIMATION.springSheet);
+        offset.value = withSpring(travel, ANIMATION.springSettle);
         committedDetent.value = 'peek';
         settle('peek');
       },
     }),
-    [committedDetent, offset, reduceMotion, settle, travel],
+    [committedDetent, offset, settle, travel],
   );
 
   // The detents reachable without a drag. A sheet whose only control is a
   // gesture is a sheet a switch-control or voice-control user cannot move,
-  // and this one is the app's whole list.
+  // and this one is the app's whole list. The same spring as the dock's
+  // button: one control, whichever way it is reached.
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
       const expand = event.nativeEvent.actionName === 'increment';
-      offset.value = withTiming(expand ? 0 : travel, {
-        duration: ANIMATION.fast,
-        easing: EASING.out,
-      });
+      offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSettle);
       committedDetent.value = expand ? 'full' : 'peek';
       settle(expand ? 'full' : 'peek');
     },

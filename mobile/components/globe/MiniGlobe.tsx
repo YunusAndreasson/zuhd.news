@@ -75,13 +75,14 @@ import {
   BLACK,
   type ColorPalette,
   categoryMarkColor,
+  KEEP_MOTION,
   WHITE,
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
-import { reachFor, swipeClip, viewAngleFor } from '../../lib/globe-camera';
+import { reachFor, slerpLatLng, swipeClip, viewAngleFor } from '../../lib/globe-camera';
 import { isStorySettled } from '../../lib/globe-settle';
 import { coverageRanks } from '../../lib/now';
 import {
@@ -334,6 +335,10 @@ const ACTIVE_DOT_R = 6;
  *  the globe, and since the dot stopped breathing, what says which place is
  *  being read. It was 14pt. */
 const DOT_LABEL_PT = 16;
+/** How far right of the dot's centre the location starts: the dot's radius,
+ *  its 2pt ring and 4pt of air. It was 6, inside the ring, so the dot sat on
+ *  the first letter and the time tucked under the dot. */
+const DOT_LABEL_DX = ACTIVE_DOT_R + 2 + 4;
 /** Its ascent above the baseline, and its width per character before the font
  *  has loaded, for the collision boxes. */
 const DOT_LABEL_ASCENT = 14;
@@ -579,8 +584,8 @@ function measureLines(lines: string[], font: SkFont | null, fallbackChar: number
 type LabelBox = { x0: number; y0: number; x1: number; y1: number };
 
 /** The location and local time beside the current story's dot, both rows:
- *  the name's baseline 4 below the dot and 6 right of it, the time's at
- *  `DOT_SUB_DY`. Widths fall back to a count of characters until the fonts
+ *  the name's baseline 4 below the dot and `DOT_LABEL_DX` right of it, the
+ *  time's at `DOT_SUB_DY`. Widths fall back to a count of characters until the fonts
  *  load. */
 function dotLabelBox(
   dl: { text: string; sub?: string; x: number; y: number },
@@ -590,8 +595,8 @@ function dotLabelBox(
   const dw = label ? textWidth(label, dl.text) : dl.text.length * DOT_LABEL_CHAR_W;
   const sw = dl.sub ? (sub ? textWidth(sub, dl.sub) : dl.sub.length * 5) : 0;
   return {
-    x0: dl.x + 6,
-    x1: dl.x + 6 + Math.max(dw, sw),
+    x0: dl.x + DOT_LABEL_DX,
+    x1: dl.x + DOT_LABEL_DX + Math.max(dw, sw),
     y0: dl.y + 4 - DOT_LABEL_ASCENT,
     y1: dl.y + (dl.sub ? DOT_SUB_DY : 4) + 4,
   };
@@ -689,6 +694,9 @@ export interface MiniGlobeRef {
   /** Redraw the last camera at full detail — after a pinch, whose frames drew
    *  the in-motion tier and which no later camera movement will replace. */
   settle: () => void;
+  /** The clip a story rests at, in degrees — what the deck frames it with, so
+   *  a flight to it can land exactly there. */
+  framingFor: (index: number) => number;
 }
 
 interface MiniGlobeProps {
@@ -1858,11 +1866,15 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       strokePaint(colors.markContested, 0.85 * m.alpha, 1.2),
     );
   }
-  // How many stories are still to find at a place.
+  // How many stories are still to find at a place — except the place being
+  // read, whose name is printed large beside the dot: its count fell in the
+  // gap between the dot and the name, `●²Washington`, a footnote mark.
   const sub = fonts.sub;
+  const dot = f.dot;
   if (sub) {
     for (const m of f.storyMarks) {
       if (m.count < f.storyCountMin) continue;
+      if (dot && Math.hypot(m.x - dot.x, m.y - dot.y) < ACTIVE_DOT_R + 2) continue;
       drawHaloText(
         c,
         String(m.count),
@@ -1986,7 +1998,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     drawHaloText(
       c,
       dl.text,
-      dl.x + 6,
+      dl.x + DOT_LABEL_DX,
       dl.y + 4,
       fonts.label,
       colors.textEmphasis,
@@ -1998,7 +2010,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       drawHaloText(
         c,
         dl.sub,
-        dl.x + 6,
+        dl.x + DOT_LABEL_DX,
         dl.y + DOT_SUB_DY,
         sub,
         colors.textEmphasis,
@@ -2380,8 +2392,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   // The current story's dot holds still. It breathed for three cycles each time
   // a story landed, and the user asked for it to go (2026-09-19): the location
   // label beside it is larger instead, and says which place is being read.
-  // A tiny native overlay, positioned from the globe's translate/scale only,
-  // so the dot keeps its screen size as the article sheet grows.
+  // A tiny native overlay, placed and sized from the globe's translate and
+  // scale. It kept its screen size while the globe shrank into the open
+  // story's band, and the label beside it — drawn in the scaled picture —
+  // slid under it: the band read `●yiv`. It shrinks with its label now.
   const beaconStyle = useAnimatedStyle(() => {
     const dot = framePictures.value.activeDot;
     let scale = 1;
@@ -2398,7 +2412,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       opacity: dot ? 1 : 0,
       backgroundColor: framePictures.value.activeColor,
       borderColor: colors.bg,
-      transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (ACTIVE_DOT_R + 2) / 9 }],
+      transform: [
+        { translateX: x - 9 },
+        { translateY: y - 9 },
+        { scale: ((ACTIVE_DOT_R + 2) / 9) * scale },
+      ],
     };
   });
 
@@ -3994,48 +4012,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       let lng: number;
 
       if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
-        // Great-circle interpolation (slerp) — the globe rotates along the
-        // surface of the sphere between story locations, like tracing a path
-        // on a physical globe. Linear lat/lng would cut through the interior.
-        const DEG2RAD = Math.PI / 180;
-        const RAD2DEG = 180 / Math.PI;
-        const lat0 = loLat * DEG2RAD;
-        const lng0 = loLng * DEG2RAD;
-        const lat1 = hiLat * DEG2RAD;
-        const lng1 = hiLng * DEG2RAD;
-
-        // Convert to unit-sphere cartesian
-        const cosLat0 = Math.cos(lat0);
-        const cosLat1 = Math.cos(lat1);
-        const x0 = cosLat0 * Math.cos(lng0);
-        const y0 = cosLat0 * Math.sin(lng0);
-        const z0 = Math.sin(lat0);
-        const x1 = cosLat1 * Math.cos(lng1);
-        const y1 = cosLat1 * Math.sin(lng1);
-        const z1 = Math.sin(lat1);
-
-        // Angular distance between the two points
-        const dot = x0 * x1 + y0 * y1 + z0 * z1;
-        const omega = Math.acos(Math.min(1, Math.max(-1, dot)));
-
-        if (omega > 0.001) {
-          // Slerp — spherical linear interpolation
-          const sinO = Math.sin(omega);
-          const a = Math.sin((1 - frac) * omega) / sinO;
-          const b = Math.sin(frac * omega) / sinO;
-          const rx = a * x0 + b * x1;
-          const ry = a * y0 + b * y1;
-          const rz = a * z0 + b * z1;
-          lat = Math.asin(Math.min(1, Math.max(-1, rz))) * RAD2DEG;
-          lng = Math.atan2(ry, rx) * RAD2DEG;
-        } else {
-          // Points nearly coincident — fall back to linear
-          lat = loLat + (hiLat - loLat) * frac;
-          let dLng = hiLng - loLng;
-          if (dLng > 180) dLng -= 360;
-          if (dLng < -180) dLng += 360;
-          lng = loLng + dLng * frac;
-        }
+        // Great-circle interpolation — the globe rotates along the surface of
+        // the sphere between story locations, like tracing a path on a
+        // physical globe. The flights use the same path (`slerpLatLng`).
+        const point = slerpLatLng(loLat, loLng, hiLat, hiLng, frac);
+        lat = point[0];
+        lng = point[1];
       } else if (loLat != null && loLng != null) {
         lat = loLat;
         lng = loLng;
@@ -4194,6 +4176,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   const collectColor = useSharedValue<string>(WHITE);
 
   useImperativeHandle(ref, () => ({
+    framingFor(index: number) {
+      return clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
+    },
     settle() {
       // Called from a JS timer after a pinch — never from an animation
       // completion worklet, where `scheduleOnRN` aborts the app (worklets 0.10).
@@ -4210,11 +4195,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // tap registered on a pointerEvents:none canvas — but draw it at its
       // final radius and cross-fade it out instead of expanding it. Fading
       // is the sanctioned substitute for scaling motion.
+      // The fade is `KEEP_MOTION`: Reanimated would otherwise snap it to 0
+      // under Reduce Motion too, and the ring would never be seen at all.
       pulseR.value = reduceMotion ? 34 : 5;
       if (!reduceMotion) {
-        pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
+        pulseR.value = withTiming(34, { duration: ANIMATION.slow, easing: PULSE_EASING });
       }
-      pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
+      pulseOpacity.value = withTiming(0, {
+        duration: ANIMATION.slow,
+        easing: PULSE_EASING,
+        ...KEEP_MOTION,
+      });
     },
     collect(x: number, y: number, color: string) {
       collectColor.value = color;
@@ -4229,6 +4220,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         collectOpacity.value = withTiming(0, {
           duration: COLLECT_REDUCED_MS,
           easing: PULSE_EASING,
+          ...KEEP_MOTION,
         });
         return;
       }

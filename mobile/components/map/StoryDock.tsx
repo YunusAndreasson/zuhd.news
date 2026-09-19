@@ -1,5 +1,5 @@
 import { Canvas, Path, Skia } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
@@ -12,6 +12,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
+import { announce } from '../../lib/announce';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
@@ -38,8 +39,8 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  *
  * There is no list of every story: one was tried (`IndexSheet`, twice) and
  * the reader did not want it — the track and the swipe are the way through.
- * Settings stays at the top right of the map: it is opened a few times ever,
- * and thumb reach is for what is used every session.
+ * The menu stays at the top right of the map: it is opened a few times a
+ * week, and thumb reach is for what is used every session.
  */
 
 /** Which story a fraction of the track points at: the segment under it. */
@@ -145,6 +146,11 @@ export const StoryDock = memo(function StoryDock({
   const { colors, resolvedAppearance } = useTheme();
   const insets = useSafeAreaInsets();
   const showingAlert = !refreshing && !!alert;
+  const status = refreshing ? 'checking for new stories' : showingAlert ? `now · ${alert}` : null;
+  // The status line is a live region, which only Android speaks.
+  useEffect(() => {
+    if (status) announce(status, { liveRegion: true });
+  }, [status]);
 
   // One story of 48 fills a 48th of the track; the end card fills it. The deck
   // writes this unless a finger is scrubbing the track itself.
@@ -237,7 +243,7 @@ export const StoryDock = memo(function StoryDock({
         },
       ]}
     >
-      {refreshing || showingAlert ? (
+      {status ? (
         <Pressable
           onPress={showingAlert ? onAlertPress : undefined}
           disabled={!showingAlert || !onAlertPress}
@@ -246,7 +252,7 @@ export const StoryDock = memo(function StoryDock({
           style={({ pressed }) => [styles.status, pressed && showingAlert ? PRESSED_STYLE : null]}
         >
           <Text variant="caption" tone="secondary" numberOfLines={2}>
-            {refreshing ? 'checking for new stories' : `now · ${alert}`}
+            {status}
           </Text>
         </Pressable>
       ) : count > 0 ? (
@@ -265,7 +271,10 @@ export const StoryDock = memo(function StoryDock({
           thumbColor={destinationHue}
           style={styles.scrub}
           accessibilityRole="adjustable"
-          accessibilityLabel={spoken}
+          // Where you are is the value, not the name, so VoiceOver reads the
+          // new position after each adjustment.
+          accessibilityLabel="Today's stories"
+          accessibilityValue={{ min: 1, max: count, now: Math.min(index + 1, count), text: spoken }}
           accessibilityHint="Drag along it to move through the day's stories"
           accessibilityActions={ADJUST_ACTIONS}
           onAccessibilityAction={handleAdjust}

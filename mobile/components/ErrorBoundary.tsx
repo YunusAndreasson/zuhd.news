@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<Props, State> {
           accessibilityRole="button"
           accessibilityLabel="Try again"
         >
-          <Text style={styles.retry}>Try again</Text>
+          <Text style={styles.retry}>try again</Text>
         </Pressable>
       </View>
     );

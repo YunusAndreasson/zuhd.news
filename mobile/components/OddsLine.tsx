@@ -1,9 +1,9 @@
 import { memo, useCallback } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { StyleSheet, View } from 'react-native';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { MARKET_CAVEAT, type StoryOdds } from '../lib/predictions';
-import { Text } from './primitives';
+import { Pressable, Text } from './primitives';
 
 /**
  * What the market thinks about this story, under its headline.
@@ -34,18 +34,8 @@ export const OddsLine = memo(function OddsLine({
   const spoken = [`Traders price this at ${odds.level}`, odds.move, MARKET_CAVEAT]
     .filter(Boolean)
     .join(', ');
-  return (
-    <Pressable
-      onPress={onPress ? handlePress : undefined}
-      style={({ pressed }) => [
-        styles.odds,
-        { borderColor: colors.rule },
-        pressed && onPress ? PRESSED_STYLE : null,
-      ]}
-      accessibilityRole={onPress ? 'button' : 'text'}
-      accessibilityLabel={spoken}
-      accessibilityHint={onPress ? "Opens the market's chart" : undefined}
-    >
+  const body = (
+    <>
       <Text variant="labelXs" tone="secondary">
         traders price this at
       </Text>
@@ -62,7 +52,31 @@ export const OddsLine = memo(function OddsLine({
       <Text variant="labelXs" tone="secondary">
         {MARKET_CAVEAT}
       </Text>
+    </>
+  );
+  // The press primitive, like the `sources · save · share` words under it: it
+  // used a static pressed style while they sprang. The screen's handler gives
+  // the haptic.
+  return onPress ? (
+    <Pressable
+      onPress={handlePress}
+      haptic="none"
+      style={[styles.odds, { borderColor: colors.rule }]}
+      accessibilityRole="button"
+      accessibilityLabel={spoken}
+      accessibilityHint="Opens the market's chart"
+    >
+      {body}
     </Pressable>
+  ) : (
+    <View
+      style={[styles.odds, { borderColor: colors.rule }]}
+      accessible
+      accessibilityRole="text"
+      accessibilityLabel={spoken}
+    >
+      {body}
+    </View>
   );
 });
 

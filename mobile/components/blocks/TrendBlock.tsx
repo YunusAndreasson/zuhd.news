@@ -29,6 +29,8 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { citedLabels } from '../../lib/cards/card-chart';
+import { clearLabelSpot } from '../../lib/chart-label';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
@@ -58,6 +60,8 @@ const LABEL_ROW_HEIGHT = 14;
 /** Width of one `labelXs` caps character with its tracking, for sizing the
  *  reference label before it has been laid out. */
 const REFERENCE_LABEL_CHAR_WIDTH = 7.5;
+/** The clear space kept between two cited-story labels. */
+const ANNOTATION_LABEL_GAP = SPACING.sm;
 /** How far along the line each candidate position for the label moves. */
 const REFERENCE_LABEL_STEP = 8;
 const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
@@ -545,6 +549,18 @@ export const TrendBlock = memo(function TrendBlock({
     };
   }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference]);
 
+  // One label per crowd of cited marks (`citedLabels`): neighbouring days'
+  // numbers printed edge to edge read as one number.
+  const annotationLabels = useMemo(() => {
+    if (!annotations?.length) return [];
+    const marks: { x: number; label: string }[] = [];
+    for (const a of annotations) {
+      const pt = points[a.atIndex];
+      if (pt) marks.push({ x: pt.x, label: a.label });
+    }
+    return citedLabels(marks, REFERENCE_LABEL_CHAR_WIDTH, ANNOTATION_LABEL_GAP);
+  }, [annotations, points]);
+
   // Where the reference label sits on its line: the first stretch, from the
   // left, that the series leaves clear for a label-wide band — above the line
   // by preference, below it otherwise. Pinned to the left end, "NORMAL 10.2"
@@ -553,33 +569,21 @@ export const TrendBlock = memo(function TrendBlock({
   const referenceLabelPos = useMemo(() => {
     if (referenceY == null || !reference) return { left: CHART_LEFT_PAD, top: 0 };
     const text = `${reference.label} ${formatBlockNumber(reference.value)}`;
-    const labelWidth = text.length * REFERENCE_LABEL_CHAR_WIDTH;
-    const aboveTop = referenceY - LABEL_ROW_HEIGHT;
-    const belowBottom = referenceY + LABEL_ROW_HEIGHT;
-    // Segments, not points: a steep daily descent steps clean over a 14pt
-    // band between two readings, which is how the first version of this
-    // missed the Hormuz curve it was written for.
-    const clearOf = (x0: number, x1: number, bandTop: number, bandBottom: number) => {
-      for (let i = 1; i < points.length; i += 1) {
-        const a = points[i - 1];
-        const b = points[i];
-        if (!a || !b || b.x < x0 || a.x > x1) continue;
-        if (Math.max(a.y, b.y) >= bandTop && Math.min(a.y, b.y) <= bandBottom) return false;
-      }
-      return true;
+    const aboveTop = Math.max(0, referenceY - LABEL_ROW_HEIGHT);
+    const spot = clearLabelSpot({
+      lines: [points],
+      ruleY: referenceY,
+      labelWidth: text.length * REFERENCE_LABEL_CHAR_WIDTH,
+      labelHeight: LABEL_ROW_HEIGHT,
+      minLeft: CHART_LEFT_PAD,
+      maxRight: width - CHART_RIGHT_PAD,
+      step: REFERENCE_LABEL_STEP,
+    });
+    if (!spot) return { left: CHART_LEFT_PAD, top: aboveTop };
+    return {
+      left: spot.left,
+      top: spot.above ? aboveTop : Math.min(referenceY + 2, height - LABEL_ROW_HEIGHT),
     };
-    const lastLeft = Math.max(CHART_LEFT_PAD, width - CHART_RIGHT_PAD - labelWidth);
-    for (let left = CHART_LEFT_PAD; left <= lastLeft; left += REFERENCE_LABEL_STEP) {
-      if (clearOf(left, left + labelWidth, aboveTop, referenceY)) {
-        return { left, top: Math.max(0, aboveTop) };
-      }
-    }
-    for (let left = CHART_LEFT_PAD; left <= lastLeft; left += REFERENCE_LABEL_STEP) {
-      if (clearOf(left, left + labelWidth, referenceY, belowBottom)) {
-        return { left, top: Math.min(referenceY + 2, height - LABEL_ROW_HEIGHT) };
-      }
-    }
-    return { left: CHART_LEFT_PAD, top: Math.max(0, aboveTop) };
   }, [points, reference, referenceY, width, height]);
 
   const scrubIdx = useSharedValue(-1);
@@ -694,14 +698,12 @@ export const TrendBlock = memo(function TrendBlock({
                 // exposing any interaction or information the line lacks.
                 showDataDots={scrubbable}
               />
-              {annotations?.map((a, i) => {
-                const pt = points[a.atIndex];
-                if (!pt) return null;
+              {annotationLabels.map((a) => {
                 const LABEL_W = 72;
-                const leftClamped = Math.max(0, Math.min(width - LABEL_W, pt.x - LABEL_W / 2));
+                const leftClamped = Math.max(0, Math.min(width - LABEL_W, a.x - LABEL_W / 2));
                 return (
                   <View
-                    key={`ann-label-${i}`}
+                    key={`ann-label-${a.label}`}
                     pointerEvents="none"
                     style={[
                       styles.annotationLabelWrap,
