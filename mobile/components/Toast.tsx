@@ -52,12 +52,17 @@ function getExiting(pos: ToastPosition, reduceMotion: boolean) {
 export const Toast = memo(function Toast({
   ref,
   topOffset,
+  bottomOffset,
 }: {
   ref?: React.Ref<ToastRef>;
   /** Where a top toast may start, measured from the top of the window.
    *  Defaults to the safe area. A screen with chrome along the top passes its
    *  height, so a toast cannot land on the controls it is reporting on. */
   topOffset?: number;
+  /** Where a bottom toast may end, measured up from the bottom of the window.
+   *  Defaults to the safe area; the map passes its dock, so "Saved" does not
+   *  land on the buttons a thumb is about to press. */
+  bottomOffset?: number;
 }) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
@@ -105,7 +110,7 @@ export const Toast = memo(function Toast({
   const positionStyle =
     pos === 'top'
       ? { top: (topOffset ?? insets.top) + SPACING.xl }
-      : { bottom: insets.bottom + SPACING.xl };
+      : { bottom: (bottomOffset ?? insets.bottom) + SPACING.xl };
 
   if (!visible) return null;
 

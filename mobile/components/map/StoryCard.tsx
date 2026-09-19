@@ -1,14 +1,17 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
+import { Canvas, LinearGradient, Rect, Skia, vec } from '@shopify/react-native-skia';
 import { memo, type ReactNode, useCallback, useMemo, useSyncExternalStore } from 'react';
 import {
   type AccessibilityActionEvent,
   Pressable as RNPressable,
   Text as RNText,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from 'react-native';
+import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { ARTICLE_BREAK_PROPS, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
@@ -16,39 +19,48 @@ import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
+import { ACTIONS_ROW } from '../../lib/deck-layout';
 import { hapticTick } from '../../lib/haptics';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
 import { useOpenLink } from '../../lib/open-link';
 import type { StoryOdds } from '../../lib/predictions';
-import { articleThreadContext, leadOf, restOf } from '../../lib/story-card';
+import { articleThreadContext, hookOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../globe/MiniGlobe';
 import { OddsLine } from '../OddsLine';
 import { Pressable, Text } from '../primitives';
 
 /**
- * One story, as the sheet holds it — at rest and grown, the same element.
+ * One story, as the sheet holds it — at rest and open, the same element.
  *
- * **At rest it answers "why should I open this".** The headline alone did
- * not: they are three to five words and often a riddle ("Drone Boat Kills
- * Drone Boat"). The first two sentences are written to be the reason — the
- * hook and why it matters — so the card leads with them, and they are what the
- * web map's preview card leads with too.
+ * **At rest it answers "why should I open this", in one line or two.** The
+ * headline alone did not: they are three to five words and often a riddle
+ * ("Drone Boat Kills Drone Boat"). The hook is written to be the reason, so
+ * the card leads with it. It rested on the hook and the why-it-matters
+ * sentence until 2026-09-19 — half the article — and a reader swiping forty
+ * stories ended up reading each one to get past it.
  *
- * **Grown, it is the whole story, and nothing has to load or reflow.** The
- * context and what's-next sentences, the market's odds, and the story's
- * sources, save and share are already rendered under the fold. Pulling the
- * sheet up only reveals them. There is no second reading surface to open and
- * no earth to lose: the globe stays above the card, turned to the dateline.
+ * **Open, it is the whole story, and nothing has to load or reflow.** The
+ * other three sentences, the market's odds and the thread line are laid out
+ * under the hook all along. At rest a `Veil` of the sheet's own ground lies
+ * over them: the first line shows through at half strength and the second
+ * fades to nothing, which says "there is more" without handing the reader a
+ * second sentence to read — the whole point of resting on the hook. The veil
+ * lifts as the sheet rises (`progress`) and a tap on it opens the story. The
+ * rest takes no touches and is hidden from screen readers until the sheet has
+ * settled open, so a veiled country link can never be tapped. There is no
+ * second reading surface to open and no earth to lose: the globe stays above
+ * the card, turned to the dateline.
  *
- * **Nothing clamps.** A third title line or a long lead pushes the rest down
- * under the fold at rest and scrolls when grown — the card never ends a
- * sentence with an ellipsis.
+ * **Nothing clamps.** A third title line or a long hook pushes the rest down
+ * and scrolls when open — the card never ends a sentence with an ellipsis.
  *
- * **Sources, save and share are words you can see.** In the full-screen
- * reader they were a tap on blank prose and a long press, taught by hint
- * pills; a card with room for a row of controls does not need a lesson.
+ * **Sources, save and share are words you can see**, at the end of the story.
+ * For a day they were pinned above the dock so they never moved, which put
+ * the open card's spare space between the last sentence and the buttons — a
+ * hole in the middle of the card. After the text, the spare space is where a
+ * story ends.
  *
  * **The map supplies the place.** The kicker shows category and time only;
  * the dateline prefix is stripped from the prose. The accessible title still
@@ -62,7 +74,13 @@ interface StoryCardProps {
   odds: StoryOdds | null;
   /** Indicator ids an entity sheet can actually open; see `ArticlePage`. */
   resolvableEntityIds?: ReadonlySet<string>;
-  bottomInset: number;
+  /** The sheet has settled open: the rest of the story takes touches. */
+  open: boolean;
+  /** The sheet's rise, 0 at rest and 1 open; the veil lifts with it. */
+  progress: SharedValue<number>;
+  /** False only for `StoryMeasure`, which needs the card's size and nothing
+   *  drawn over it. */
+  veil?: boolean;
   /** Grow the card into the whole story. */
   onOpen: () => void;
   /** Accessibility actions: the sideways swipe, for those who cannot swipe. */
@@ -77,6 +95,68 @@ interface StoryCardProps {
 }
 
 const DOT = 7;
+
+/** Body lines the veil takes to go from half strength to nothing. */
+const VEIL_LINES = 2;
+/** How much of the sheet's ground lies over the veil's first line. */
+const VEIL_TOP = 0.5;
+
+/**
+ * The fade over the rest of a resting story: `VEIL_LINES` of gradient from
+ * `VEIL_TOP` of the sheet's ground to all of it, then solid ground to the
+ * bottom. It is attached to the rest of the story, not to a place on the
+ * screen, so it can never lie over the hook; a hook long enough to fill the
+ * card simply leaves the veil below the dock.
+ *
+ * A gradient, and a carve-out (`DESIGN.md`, native chrome): text that is
+ * meant to be read is quiet by an ink step, never by opacity. This text is
+ * not meant to be read at rest — it is the edge of what opening reveals.
+ */
+const Veil = memo(function Veil({
+  progress,
+  open,
+  lineHeight,
+  color,
+  onOpen,
+}: {
+  progress: SharedValue<number>;
+  open: boolean;
+  lineHeight: number;
+  color: string;
+  onOpen: () => void;
+}) {
+  const { width } = useWindowDimensions();
+  const height = Math.round(lineHeight * VEIL_LINES);
+  const colors = useMemo(() => {
+    const c = Skia.Color(color);
+    const at = (alpha: number) => Float32Array.of(c[0] ?? 0, c[1] ?? 0, c[2] ?? 0, alpha);
+    return [at(VEIL_TOP), at(1)];
+  }, [color]);
+  // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
+  // lands, and a JS read of a value the UI thread is writing waits for it. Lifted by the time the sheet is half open, so the rest reads as
+  // it rises rather than arriving at the stop.
+  const style = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
+    return { opacity: 1 - Math.min(1, Math.max(0, progress.value / 0.5)) };
+  }, [progress]);
+  return (
+    <Animated.View
+      style={[StyleSheet.absoluteFill, style]}
+      pointerEvents={open ? 'none' : 'auto'}
+      importantForAccessibility="no-hide-descendants"
+      accessibilityElementsHidden
+    >
+      <RNPressable style={styles.fill} onPress={onOpen} accessible={false}>
+        <Canvas style={{ height }} pointerEvents="none">
+          <Rect x={0} y={0} width={width} height={height}>
+            <LinearGradient start={vec(0, 0)} end={vec(0, height)} colors={colors} />
+          </Rect>
+        </Canvas>
+        <View style={[styles.fill, { backgroundColor: color }]} />
+      </RNPressable>
+    </Animated.View>
+  );
+});
 
 /** Sentences as spans of one paragraph, a space between each. A nested `Text`
  *  keeps its typography and its links but drops its block margins. */
@@ -94,7 +174,9 @@ export const StoryCard = memo(function StoryCard({
   hue,
   odds,
   resolvableEntityIds,
-  bottomInset,
+  open,
+  progress,
+  veil = true,
   onOpen,
   onNext,
   onPrevious,
@@ -106,6 +188,7 @@ export const StoryCard = memo(function StoryCard({
   onShare,
 }: StoryCardProps) {
   const { colors, font, typography } = useTheme();
+  const { fontScale } = useWindowDimensions();
   const { article } = row;
 
   const meta = useMemo(() => {
@@ -152,7 +235,7 @@ export const StoryCard = memo(function StoryCard({
 
   // One pass over all four sentences, then split: entity mentions are tagged
   // on their first occurrence across the whole body, and two passes would tag
-  // a name once in the lead and again in the rest.
+  // a name once in the hook and again in the rest.
   const sentences = useMemo(
     () =>
       renderSentences(
@@ -178,12 +261,10 @@ export const StoryCard = memo(function StoryCard({
       onEntityPress,
     ],
   );
-  // Each half is one paragraph, not a block per sentence. Four one-sentence
-  // blocks spent a paragraph gap after every sentence and left a short hook —
-  // "This court sat unused for 30 years." — alone on a line with the rest of
-  // it blank, which at rest was a line of lead the card had been sized to show
-  // and did not. Run on, the same words take a line or two fewer.
-  const lead = interleave(leadOf(sentences));
+  // The hook is its own paragraph and the other three run on as one, not a
+  // block per sentence: four one-sentence blocks spent a paragraph gap after
+  // every sentence. Run on, the same words take a line or two fewer.
+  const hook = interleave(hookOf(sentences));
   const rest = interleave(restOf(sentences));
 
   const accessibilityActions = useMemo(
@@ -204,6 +285,109 @@ export const StoryCard = memo(function StoryCard({
     [onNext, onOpen, onPrevious],
   );
 
+  // The ink step that says where the reader is in the day rides on the kicker,
+  // which is always visible; below the hook it would be hidden at rest, and
+  // landing on `earlier` is the caught-up moment.
+  const kicker = row.mark ? `${row.mark} · ${meta}` : meta;
+
+  return (
+    <View style={styles.card}>
+      <RNPressable
+        onPress={onOpen}
+        accessibilityRole="button"
+        accessibilityLabel={`${[kicker, article.location].filter(Boolean).join(' · ')}. ${row.title}`}
+        accessibilityHint="Opens the whole story"
+        accessibilityActions={accessibilityActions}
+        onAccessibilityAction={handleAccessibilityAction}
+      >
+        <View style={styles.kicker}>
+          <View style={[styles.dot, { backgroundColor: hue }]} />
+          <Text variant="labelXs" numberOfLines={1} style={styles.kickerText}>
+            {row.mark ? (
+              <Text variant="labelXs" tone="emphasis">
+                {`${row.mark} · `}
+              </Text>
+            ) : null}
+            {meta}
+          </Text>
+        </View>
+        <Text variant="title" maxFontSizeMultiplier={MAX_FONT_SCALE.heading} style={styles.title}>
+          {row.title}
+        </Text>
+      </RNPressable>
+
+      {/* The hook is a large, obvious target for "tell me more" — but not an
+          accessibility element of its own: the sentence is read as text. */}
+      <RNPressable onPress={onOpen} accessible={false}>
+        <RNText
+          {...ARTICLE_BREAK_PROPS}
+          style={mdStyles.sentence}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        >
+          {hook}
+        </RNText>
+      </RNPressable>
+
+      <View>
+        <View
+          pointerEvents={open ? 'auto' : 'none'}
+          accessibilityElementsHidden={!open}
+          importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
+        >
+          {rest.length > 0 ? (
+            <RNText
+              {...ARTICLE_BREAK_PROPS}
+              style={mdStyles.sentence}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+            >
+              {rest}
+            </RNText>
+          ) : null}
+
+          {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
+
+          {threadContext ? (
+            <Text variant="labelXs" tone="secondary" style={styles.threadContext}>
+              {threadContext}
+            </Text>
+          ) : null}
+
+          <StoryActions
+            article={article}
+            onSources={onSources}
+            onBookmark={onBookmark}
+            onShare={onShare}
+          />
+        </View>
+        {veil ? (
+          <Veil
+            progress={progress}
+            open={open}
+            lineHeight={
+              (mdStyles.sentence.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.body)
+            }
+            color={colors.sheetBg}
+            onOpen={onOpen}
+          />
+        ) : null}
+      </View>
+    </View>
+  );
+});
+
+/** Sources, save and share, as words, at the end of the story. Under the
+ *  veil at rest, like the rest of it. */
+const StoryActions = memo(function StoryActions({
+  article,
+  onSources,
+  onBookmark,
+  onShare,
+}: {
+  article: RiverArticle;
+  onSources: (article: Article) => void;
+  onBookmark: (article: RiverArticle) => void;
+  onShare: (article: RiverArticle) => void;
+}) {
   const handleSources = useCallback(() => onSources(article), [article, onSources]);
   const handleBookmark = useCallback(() => onBookmark(article), [article, onBookmark]);
   const handleShare = useCallback(() => onShare(article), [article, onShare]);
@@ -218,95 +402,44 @@ export const StoryCard = memo(function StoryCard({
   );
 
   return (
-    <View style={[styles.card, { paddingBottom: bottomInset + SPACING.lg }]}>
-      <RNPressable
-        onPress={onOpen}
-        accessibilityRole="button"
-        accessibilityLabel={`${[meta, article.location].filter(Boolean).join(' · ')}. ${row.title}`}
-        accessibilityHint="Opens the whole story"
-        accessibilityActions={accessibilityActions}
-        onAccessibilityAction={handleAccessibilityAction}
-      >
-        <View style={styles.kicker}>
-          <View style={[styles.dot, { backgroundColor: hue }]} />
-          <Text variant="labelXs" numberOfLines={1} style={styles.kickerText}>
-            {meta}
-          </Text>
-        </View>
-        <Text variant="title" maxFontSizeMultiplier={MAX_FONT_SCALE.heading} style={styles.title}>
-          {row.title}
-        </Text>
-      </RNPressable>
-
-      {/* The lead is a large, obvious target for "tell me more" — but not an
-          accessibility element of its own: the sentences are read as text. */}
-      <RNPressable onPress={onOpen} accessible={false}>
-        <RNText
-          {...ARTICLE_BREAK_PROPS}
-          style={mdStyles.sentence}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
-          {lead}
-        </RNText>
-      </RNPressable>
-
-      {rest.length > 0 ? (
-        <RNText
-          {...ARTICLE_BREAK_PROPS}
-          style={mdStyles.sentence}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
-          {rest}
-        </RNText>
-      ) : null}
-
-      {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
-
-      {threadContext || row.mark ? (
-        <Text variant="labelXs" tone="secondary" style={styles.threadContext}>
-          {[row.mark, threadContext].filter(Boolean).join(' · ')}
-        </Text>
-      ) : null}
-
-      <View style={styles.actions}>
-        {sourceCount > 0 ? (
-          <Pressable
-            onPress={handleSources}
-            haptic="tick"
-            accessibilityRole="button"
-            accessibilityLabel={`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-            hitSlop={SPACING.sm}
-          >
-            <Text variant="labelSm" tone="secondary">
-              {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-            </Text>
-          </Pressable>
-        ) : null}
+    <View style={styles.actions}>
+      {sourceCount > 0 ? (
         <Pressable
-          onPress={handleBookmark}
-          haptic="none"
+          onPress={handleSources}
+          haptic="tick"
           accessibilityRole="button"
-          accessibilityLabel={saved ? 'Saved. Remove from bookmarks' : 'Save this story'}
-          accessibilityState={{ selected: saved }}
-          hitSlop={SPACING.sm}
-        >
-          <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'}>
-            {saved ? 'saved' : 'save'}
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={handleShare}
-          haptic="none"
-          accessibilityRole="button"
-          accessibilityLabel="Share this story"
-          accessibilityHint="Opens the system share sheet"
+          accessibilityLabel={`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
           hitSlop={SPACING.sm}
         >
           <Text variant="labelSm" tone="secondary">
-            share
+            {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
           </Text>
         </Pressable>
-      </View>
+      ) : null}
+      <Pressable
+        onPress={handleBookmark}
+        haptic="none"
+        accessibilityRole="button"
+        accessibilityLabel={saved ? 'Saved. Remove from bookmarks' : 'Save this story'}
+        accessibilityState={{ selected: saved }}
+        hitSlop={SPACING.sm}
+      >
+        <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'}>
+          {saved ? 'saved' : 'save'}
+        </Text>
+      </Pressable>
+      <Pressable
+        onPress={handleShare}
+        haptic="none"
+        accessibilityRole="button"
+        accessibilityLabel="Share this story"
+        accessibilityHint="Opens the system share sheet"
+        hitSlop={SPACING.sm}
+      >
+        <Text variant="labelSm" tone="secondary">
+          share
+        </Text>
+      </Pressable>
     </View>
   );
 });
@@ -319,9 +452,9 @@ export const StoryCard = memo(function StoryCard({
  * in the same place as the stories is where a reader swiping through them
  * will actually see it.
  */
-export const EndCard = memo(function EndCard({ bottomInset }: { bottomInset: number }) {
+export const EndCard = memo(function EndCard() {
   return (
-    <View style={[styles.card, { paddingBottom: bottomInset + SPACING.lg }]}>
+    <View style={styles.card}>
       <Text variant="labelXs" tone="emphasis" style={styles.kicker}>
         caught up
       </Text>
@@ -336,7 +469,8 @@ export const EndCard = memo(function EndCard({ bottomInset }: { bottomInset: num
 });
 
 const styles = StyleSheet.create({
-  card: { paddingHorizontal: SPACING.articlePadding },
+  fill: { flex: 1 },
+  card: { paddingHorizontal: SPACING.articlePadding, paddingBottom: SPACING.md },
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
   threadContext: { marginBottom: SPACING.sm },
@@ -346,6 +480,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.lg,
-    marginTop: SPACING.sm,
+    height: ACTIONS_ROW,
   },
 });

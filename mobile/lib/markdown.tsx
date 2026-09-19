@@ -184,6 +184,14 @@ function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Seg
   return out;
 }
 
+/** The first sentence without its "Location — " prefix: the card's kicker and
+ *  the globe already say where. */
+function withoutDateline(sentence: string, location?: string | null): string {
+  if (!location) return sentence;
+  const prefix = `${location} \u2014 `;
+  return sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
+}
+
 export interface MarkdownStyles {
   sentence: TextStyle;
   bold: TextStyle;
@@ -424,13 +432,7 @@ export function renderSentences(
 
   return sentences.map((sentence, i) => {
     if (i === 0) {
-      // Strip "Location — " prefix from first sentence if present
-      let rest = sentence;
-      if (location) {
-        const prefix = `${location} \u2014 `;
-        if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
-      }
-      const baseSegments = parseInline(rest);
+      const baseSegments = parseInline(withoutDateline(sentence, location));
       const segmentsForRender = entities?.length
         ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
         : baseSegments;

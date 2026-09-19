@@ -47,6 +47,9 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
   'information-circle': 'info.circle.fill',
   'information-circle-outline': 'info.circle',
   list: 'list.bullet',
+  // The top-right menu: search, saved, settings, the map key and the pages.
+  // The only three-line icon in the app since the story list went.
+  menu: 'line.3.horizontal',
   pause: 'pause.fill',
   play: 'play.fill',
   search: 'magnifyingglass',

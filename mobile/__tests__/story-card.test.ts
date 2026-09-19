@@ -1,4 +1,4 @@
-import { articleThreadContext, leadOf, restOf } from '../lib/story-card';
+import { articleThreadContext, hookOf, restOf } from '../lib/story-card';
 
 const SENTENCES = [
   'Kyiv — A machine gun, not a missile, made this a first.',
@@ -7,15 +7,15 @@ const SENTENCES = [
   'Russia has not confirmed the loss.',
 ];
 
-describe('leadOf / restOf', () => {
-  it('splits the hook and why-it-matters from the rest', () => {
-    expect(leadOf(SENTENCES)).toEqual(SENTENCES.slice(0, 2));
-    expect(restOf(SENTENCES)).toEqual(SENTENCES.slice(2));
+describe('hookOf / restOf', () => {
+  it('rests a card on the hook alone', () => {
+    expect(hookOf(SENTENCES)).toEqual(SENTENCES.slice(0, 1));
+    expect(restOf(SENTENCES)).toEqual(SENTENCES.slice(1));
   });
 
   it('loses nothing on a short story', () => {
     const short = SENTENCES.slice(0, 1);
-    expect([...leadOf(short), ...restOf(short)]).toEqual(short);
+    expect([...hookOf(short), ...restOf(short)]).toEqual(short);
   });
 });
 

@@ -321,3 +321,28 @@ export function coverageRanks(
   }
   return ranks;
 }
+
+/**
+ * The gauges an open story is tied to: those whose desk analysis cites it
+ * (`card.cited`, from `/api/analysis.json` or the strait's own list), and
+ * those it names as an entity. An FX mover's card id carries a `-mover`
+ * suffix on the indicator it names.
+ */
+export function linkedGaugeIds(
+  items: readonly StripItem[],
+  article: Pick<Article, 'slug' | 'entities'> | null | undefined,
+): ReadonlySet<string> {
+  const linked = new Set<string>();
+  if (!article) return linked;
+  const named = new Set<string>();
+  for (const entity of article.entities ?? []) {
+    named.add(entity.indicatorId);
+    named.add(`${entity.indicatorId}-mover`);
+  }
+  for (const item of items) {
+    if (named.has(item.id) || item.card.cited?.some((ref) => ref.slug === article.slug)) {
+      linked.add(item.id);
+    }
+  }
+  return linked;
+}

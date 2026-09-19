@@ -53,9 +53,10 @@ import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
-import { SheetMasthead } from '../components/map/SheetMasthead';
 import { EndCard, StoryCard } from '../components/map/StoryCard';
-import { StoryDeck } from '../components/map/StoryDeck';
+import { StoryDeck, type StoryDeckRef } from '../components/map/StoryDeck';
+import { StoryDock } from '../components/map/StoryDock';
+import { StoryMeasure } from '../components/map/StoryMeasure';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { type OverlaySelection, OverlaySheet } from '../components/OverlaySheet';
 import { Screen } from '../components/primitives';
@@ -68,7 +69,6 @@ import {
   categoryMarkColor,
   EASING,
   EDITORIAL,
-  SPACING,
   VARIANT_CAP,
 } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -90,13 +90,24 @@ import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bo
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
-import { computeDeckLayout, grownGlobeTransform, grownReach } from '../lib/deck-layout';
+import {
+  computeDeckLayout,
+  grownGlobeTransform,
+  grownReach,
+  openStoryHeight,
+} from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { orderNewsRiver, type RiverArticle, recentRiver } from '../lib/news-order';
-import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
+import {
+  buildNowSurfaces,
+  type LatLng,
+  linkedGaugeIds,
+  type NowItem,
+  type StripItem,
+} from '../lib/now';
 import {
   getSnapshot as getOnboarding,
   markHintDone,
@@ -150,6 +161,9 @@ const HEATMAP_SPLASH_GRACE_MS = 1200;
  *  a story's mark. Long enough to read as travel over a surface. */
 const FLY_MS = 700;
 
+/** The handlers a measured card is given: it is never shown or touched. */
+const noop = () => {};
+
 /** How close, in degrees, the camera must be to the story in front for a swipe
  *  to take it over mid-drag rather than fly once the swipe lands. */
 const HANDOFF_DEGREES = 1;
@@ -180,6 +194,7 @@ export default function HomeScreen() {
   const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
+  const deckRef = useRef<StoryDeckRef>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
 
@@ -285,8 +300,16 @@ export default function HomeScreen() {
     setTopChromeHeight(e.nativeEvent.layout.height);
   }, []);
 
-  // The sheet at rest is sized from the card's type, not a fraction of the
-  // window, and the globe takes what is left — see `lib/deck-layout.ts`.
+  // The card height the open sheet is sized for, from today's cards measured
+  // off screen (`StoryMeasure` → `openStoryHeight`), and which set of cards
+  // it was measured for. The last height stands until a
+  // new measurement finishes, so a refresh does not drop the open story to
+  // the estimate and back.
+  const [measuredStory, setMeasuredStory] = useState<{ key: string; height: number } | null>(null);
+
+  // The sheet at rest and open is sized from the card's type, not a fraction
+  // of the window or the story in front, and the globe takes what is left —
+  // see `lib/deck-layout.ts`.
   const layout = useMemo(
     () =>
       computeDeckLayout({
@@ -307,15 +330,22 @@ export default function HomeScreen() {
           title: VARIANT_CAP.title,
           body: VARIANT_CAP.body,
         },
+        storyContent: measuredStory?.height,
       }),
-    [screenWidth, screenHeight, topChromeHeight, insets.bottom, fontScale, textVariants],
+    [
+      screenWidth,
+      screenHeight,
+      topChromeHeight,
+      insets.bottom,
+      fontScale,
+      textVariants,
+      measuredStory?.height,
+    ],
   );
-  /** Where the grown sheet stops — the story's own height, capped at
-   *  `layout.full`. Written by `MapSheet`; read by the globe's transform. */
-  const sheetExpanded = useSharedValue(layout.full);
-  // The briefing's player floats over the bottom of the sheet while it is up,
-  // so the card's last line still has to scroll clear of it.
-  const cardBottomInset = insets.bottom + (briefingVisible ? SPACING.xxl : 0);
+  // The briefing's player sits on the dock while it is up, so the cards end
+  // above both — the pinned sources/save/share row included.
+  const [playerHeight, setPlayerHeight] = useState(0);
+  const deckBottomInset = layout.dock + (briefingVisible ? playerHeight : 0);
 
   // ---------------------------------------------------------------------
   // Derived content
@@ -1025,14 +1055,22 @@ export default function HomeScreen() {
     },
     [focusStory],
   );
-  const handleNextStory = useCallback(() => goToStory(deckIndexRef.current + 1), [goToStory]);
-  const handlePreviousStory = useCallback(() => goToStory(deckIndexRef.current - 1), [goToStory]);
+  // The dock's `›` and the card's accessibility actions slide the deck one
+  // story, exactly as a swipe would; `goToStory` is a jump, for the scrubber.
+  const handleNextStory = useCallback(() => deckRef.current?.step(1), []);
+  const handlePreviousStory = useCallback(() => deckRef.current?.step(-1), []);
 
   const expandSheet = useCallback(() => {
     mapSheetRef.current?.expand();
   }, []);
   const collapseSheet = useCallback(() => {
     mapSheetRef.current?.collapse();
+  }, []);
+  // The dock's open/close button. It reads the settled detent from a ref, so
+  // a tap mid-drag still does what the arrow was pointing at when it landed.
+  const toggleSheet = useCallback(() => {
+    if (sheetDetentRef.current === 'full') mapSheetRef.current?.collapse();
+    else mapSheetRef.current?.expand();
   }, []);
 
   const handleDetentChange = useCallback(
@@ -1189,7 +1227,7 @@ export default function HomeScreen() {
   // and the projection already reaches the ground it uncovers (`grownReach`).
   const globeTransform = useDerivedValue<Transforms3d>(() => {
     const p = Math.min(1, Math.max(0, sheetProgress.value));
-    const grown = grownGlobeTransform(layout, screenHeight, sheetExpanded.value);
+    const grown = grownGlobeTransform(layout, screenHeight);
     return [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }];
   });
   const globeReach = useMemo(() => grownReach(layout, screenHeight), [layout, screenHeight]);
@@ -1209,6 +1247,11 @@ export default function HomeScreen() {
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
+  const storyOpen = sheetDetent === 'full';
+  // The gauges an open story is tied to, marked in its hue on the bar.
+  const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
+  const linkedGauges = useMemo(() => linkedGaugeIds(strip, openArticle), [strip, openArticle]);
+  const linkedHue = openArticle ? categoryMarkColor(openArticle.category, colors) : undefined;
   useReadTracking(
     storyRows[frontIndex]?.slug ?? null,
     sheetDetent === 'full' && !sheetOpen && !briefingVisible,
@@ -1237,7 +1280,8 @@ export default function HomeScreen() {
           hue={categoryMarkColor(row.article.category, colors)}
           odds={odds.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
-          bottomInset={cardBottomInset}
+          open={storyOpen}
+          progress={sheetProgress}
           onOpen={expandSheet}
           onNext={handleNextStory}
           onPrevious={index > 0 ? handlePreviousStory : undefined}
@@ -1251,7 +1295,6 @@ export default function HomeScreen() {
       );
     },
     [
-      cardBottomInset,
       colors,
       expandSheet,
       handleArticleBookmark,
@@ -1264,8 +1307,55 @@ export default function HomeScreen() {
       handleSourcesPress,
       odds,
       resolvableEntityIds,
+      sheetProgress,
+      storyOpen,
       storyRows,
     ],
+  );
+
+  // What the measurement is of: the day's cards, which of them carry odds (a
+  // line of their own), the width and the type size. A string, because the
+  // river is rebuilt every minute with the same stories in it.
+  const measureKey = useMemo(
+    () =>
+      [
+        screenWidth,
+        fontScale,
+        ...storyRows.map((r) => (odds.has(r.slug) ? `${r.slug}*` : r.slug)),
+      ].join('|'),
+    [screenWidth, fontScale, storyRows, odds],
+  );
+  const renderMeasureCard = useCallback(
+    (index: number) => {
+      const row = storyRows[index];
+      if (!row) return null;
+      return (
+        <StoryCard
+          row={row}
+          hue={categoryMarkColor(row.article.category, colors)}
+          odds={odds.get(row.slug) ?? null}
+          resolvableEntityIds={resolvableEntityIds}
+          open={false}
+          progress={sheetProgress}
+          veil={false}
+          onOpen={noop}
+          onCountryPress={noop}
+          onEntityPress={noop}
+          onOddsPress={noop}
+          onSources={noop}
+          onBookmark={noop}
+          onShare={noop}
+        />
+      );
+    },
+    [colors, odds, resolvableEntityIds, sheetProgress, storyRows],
+  );
+  const handleStoryMeasured = useCallback(
+    (heights: number[]) => {
+      const height = openStoryHeight(heights);
+      if (height !== undefined) setMeasuredStory({ key: measureKey, height });
+    },
+    [measureKey],
   );
 
   const renderEnd = useCallback(
@@ -1273,9 +1363,9 @@ export default function HomeScreen() {
       storyCount === 0 ? (
         <EmptyState message="no stories yet" hint="New coverage arrives through the day" />
       ) : (
-        <EndCard bottomInset={cardBottomInset} />
+        <EndCard />
       ),
-    [cardBottomInset, storyCount],
+    [storyCount],
   );
 
   const renderList = useCallback(
@@ -1283,14 +1373,13 @@ export default function HomeScreen() {
       scrollEnabled,
       onScrollOffset,
       sheetGesture,
-      onContentHeight,
     }: {
       scrollEnabled: boolean;
       onScrollOffset: SharedValue<number>;
       sheetGesture: Parameters<typeof StoryDeck>[0]['sheetGesture'];
-      onContentHeight: (height: number) => void;
     }) => (
       <StoryDeck
+        ref={deckRef}
         count={storyCount}
         peekFade={sheetProgress}
         index={frontIndex}
@@ -1299,7 +1388,7 @@ export default function HomeScreen() {
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
         onScrollOffset={onScrollOffset}
-        onContentHeight={onContentHeight}
+        bottomInset={deckBottomInset}
         keyOf={keyOfDeck}
         renderStory={renderStory}
         renderEnd={renderEnd}
@@ -1308,6 +1397,7 @@ export default function HomeScreen() {
       />
     ),
     [
+      deckBottomInset,
       frontIndex,
       handleDeckDragStart,
       handleDeckSettle,
@@ -1321,9 +1411,9 @@ export default function HomeScreen() {
     ],
   );
 
-  const masthead = useMemo(
+  const dock = useMemo(
     () => (
-      <SheetMasthead
+      <StoryDock
         refreshing={refreshing}
         index={frontIndex}
         count={storyCount}
@@ -1342,10 +1432,18 @@ export default function HomeScreen() {
         listenDuration={briefingStatus.duration}
         listenHeard={briefingStatus.heard}
         onListenPress={handleBriefingPress}
+        onNext={handleNextStory}
+        storyOpen={storyOpen}
+        sheetProgress={sheetProgress}
+        onToggleStory={toggleSheet}
       />
     ),
     [
       goToStory,
+      sheetProgress,
+      storyOpen,
+      toggleSheet,
+      handleNextStory,
       storyDetailAt,
       storyHues,
       briefingStatus.available,
@@ -1447,9 +1545,9 @@ export default function HomeScreen() {
           items={strip}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}
-          recede={sheetProgress}
-          gaugesEnabled={sheetDetent !== 'full'}
           selectedId={selectedGauge?.id ?? null}
+          linkedIds={linkedGauges}
+          linkedColor={linkedHue}
         />
       </View>
 
@@ -1457,17 +1555,28 @@ export default function HomeScreen() {
         ref={mapSheetRef}
         peek={layout.peek}
         full={layout.full}
-        expandedHeight={sheetExpanded}
         progress={sheetProgress}
-        header={masthead}
         renderList={renderList}
         onDetentChange={handleDetentChange}
         onPullDown={handleRefresh}
       />
 
+      {/* Pinned to the screen, not the sheet: the same place at rest and open. */}
+      {dock}
+
+      {storyCount > 0 && measuredStory?.key !== measureKey ? (
+        <StoryMeasure
+          key={measureKey}
+          count={storyCount}
+          width={screenWidth}
+          renderCard={renderMeasureCard}
+          onMeasured={handleStoryMeasured}
+        />
+      ) : null}
+
       {/* A top toast starts under the gauges; "12 new · ~9 min read" landed
-          on the strip's readings. */}
-      <Toast ref={toastRef} topOffset={topChromeHeight} />
+          on the strip's readings. A bottom one ends above the dock. */}
+      <Toast ref={toastRef} topOffset={topChromeHeight} bottomOffset={layout.dock} />
 
       <HintOverlay
         hint={activeHint}
@@ -1486,6 +1595,8 @@ export default function HomeScreen() {
         onPlaybackError={handleBriefingPlaybackError}
         onVisibilityChange={setBriefingVisible}
         onStatusChange={setBriefingStatus}
+        bottomOffset={layout.dock}
+        onHeightChange={setPlayerHeight}
       />
 
       <MenuSheet

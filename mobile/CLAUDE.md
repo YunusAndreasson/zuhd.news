@@ -65,10 +65,10 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
 MapHeader                             one row on a shade: Z (home) · every mover, swiped, largest first
-MapSheet                              custom, non-modal · peek = a story card · full = that story, grown
-  SheetMasthead                       a segmented story track you scrub · listen · list (IndexSheet), or a Red alert
+MapSheet                              custom, non-modal · peek = title + hook · full = the whole story, one height for all
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
-platform sheets                       index · card · instruments · chokepoint · country · …
+StoryDock                             pinned to the screen's foot: story track · ▶ listen · ⌃ open/close · › next
+platform sheets                       menu · card · instruments · country · …
 ```
 
 It replaced four sections on a horizontal pager, with the globe living as a
@@ -102,8 +102,8 @@ whole time; nothing said so.
   with no article yet, whose globe mark needs an accessible row. It holds no
   stories and no conflict events (UCDP publishes months in arrears, and NOW
   over a March event is a false claim). **Alerts never enter the deck**: the
-  camera track is stories only. They reach the sheet as the masthead line
-  (`now · …`, which opens the alert) and as `IndexSheet`'s NOW rows. A contract
+  camera track is stories only. They reach the reader as the dock's line in
+  place of the story track (`now · …`, which opens the alert). A contract
   reaches the sheet the one honest way: as the odds on the story it settles.
 - **The strip scrolls sideways and holds every reading that moved this week,
   largest move first.** It was three fixed slots, and the reader asked for all
@@ -171,7 +171,7 @@ whole time; nothing said so.
     story, but only with no unread light in reach. A globe that emptied as it
     was read hid where the reader had been. Outside the disc a thin ring is
     what is left to find — `MiniGlobe` reads `foundProgress`, the count the
-    masthead speaks, and the arc shrinks back toward twelve o'clock after each
+    dock's story track speaks, and the arc shrinks back toward twelve o'clock after each
     burst (instantly under Reduce Motion).
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
@@ -298,13 +298,16 @@ whole time; nothing said so.
 - **The Z mark is home.** It jumps the deck to the newest story (a jump, via
   `focusStory`), releases a pinch's zoom with the gesture layer's own
   `ZOOM_RELEASE_MS`/`ZOOM_EASING`, puts a grown story down and scrolls the
-  gauges back to their start (`homeKey`). Settings and pages open from the
-  trailing button in `IndexSheet`'s header (`SheetHandle`'s `action`), not
-  from a fixed slot on the top bar.
+  gauges back to their start (`homeKey`). Search, saved, settings, the map
+  key and the pages open from the menu (three lines) at the top right: the
+  one control out of thumb reach, on purpose — it is opened a few times a
+  week, and the top corner is where both platforms put a destination that
+  rare. It was a cog until 2026-09-19; a cog promises only settings, and
+  the top left, where a hamburger usually goes, is where the gauges start.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
-  strip, `IndexSheet` or the instruments sheet; that is the accessible path,
+  strip, the story cards or the instruments sheet; that is the accessible path,
   and a new mark layer without a row is an accessibility regression. The card
   itself carries `next story` / `previous story` / `read the whole story` as
   accessibility actions — not the `adjustable` role, which would take over
@@ -402,7 +405,7 @@ about what a card may say is about the card, not where it is shown.
   both platforms differently — on Android its SwipeRefreshLayout took the
   collapse drag, on iOS `bounces={false}` meant it could never fire — so
   `MapSheet.onPullDown` fires when a drag that began at peek stretches the
-  sheet past `PULL_TRIGGER`, and the masthead line above the card says
+  sheet past `PULL_TRIGGER`, and the dock's track gives way to
   `checking for new stories` while it runs. A refresh that inserts stories in
   front of the one being read keeps the reader on it (anchored by slug, camera
   held). `useArticles.refresh()` probes
@@ -416,30 +419,45 @@ about what a card may say is about the card, not where it is shown.
   down", which gave every collapse drag on the expanded sheet to the list.
 - **The sheet holds one story, swiped sideways, and growing it is reading
   it.** `StoryDeck` → `StoryCard`. At peek the card is its kicker (category,
-  time, place), title, and the hook and why-it-matters sentences — every
-  article's first two blocks, written to be the reason to read on, and what
-  the web map's preview card leads with. Its headline alone ("Drone Boat Kills
-  Drone Boat") gave nobody a reason. Pulled up, the same card is the whole
-  story: all four sentences, `OddsLine`, `sources · save · share` as visible
-  words, live country and entity links — with the globe scaled into a band
-  above it and the strip receded. Nothing mounts or reflows when it grows.
+  time), title and **hook** — the first sentence only, written to be the
+  reason to read on. Its headline alone ("Drone Boat Kills Drone Boat") gave
+  nobody a reason; the hook plus why-it-matters, which the card carried until
+  2026-09-19, was half of every article, and readers felt they had to read
+  every story to get past it. Pulled up or tapped, the same card is the whole
+  story: all four sentences, `OddsLine`, live country and entity links, and
+  `sources · save · share` as words after the text — with the globe scaled
+  into a band above it and the strip still in place (it used to recede;
+  it never covered the story, so hiding it only took the markets away). Nothing mounts or reflows when
+  it grows: sentences 2–4 are laid out all along under a `Veil` — the
+  sheet's ground over them, the first line at half strength fading to
+  nothing by the second, which the user preferred to blank space as the sign
+  that the card opens. It lifts with the sheet's `progress` (computing its
+  first style from `open`, because the card mounts as a swipe lands), a tap
+  on it opens the story, and the rest takes no touches and is hidden from
+  screen readers until the sheet settles open.
   - **Peek is computed from type, never a fraction** (`lib/deck-layout.ts`,
-    tested): masthead, kicker, two title lines and five lead lines at the
+    tested): kicker, two title lines, three hook lines and the dock at the
     reader's font scale, capped so the globe keeps 34% of the window, floored
     at kicker + title + one line, and never leaving the globe under 140pt.
     It is computed once per window and font scale, never per card — a resting
     sheet whose height followed each story would move the globe's centre, and
     reproject, on every swipe.
-  - **Grown, the sheet stops at the story's own height** (`MapSheet`
-    `contentHeight`), capped so the globe keeps 20% (≥140pt). A fixed full
-    stop left a third of the screen blank under a four-sentence story while
-    the earth sat in a 140pt band. This one *may* follow each card, because
-    the grown globe is a transform: `grownGlobeTransform` reads the height the
-    sheet actually stopped at on the UI thread, and never draws the disc
-    larger than at rest.
-  - **The lead and the rest are each one paragraph.** A block per sentence
-    spent a paragraph gap after every sentence and stranded a short hook on a
-    line of its own. `renderSentences(…, runs)` returns inline runs for it.
+  - **Open, the sheet is one height for every story** (`layout.full`), sized
+    from today's cards as rendered: `StoryMeasure` lays every card out off
+    screen once per river, width and type size, and `openStoryHeight` takes
+    the height three in four of them fit inside whole (the tallest quarter
+    scroll a line or two). Until then a type estimate for the longest possible
+    story stands in, and the globe always keeps 20% (≥140pt). It used to stop
+    at each story's own height (`contentHeight`), and a swipe while reading
+    re-sprang the sheet *and* rescaled the globe — the text jumped by three or
+    four lines on every story, which the user asked to have gone. Do not
+    bring the per-story stop back. Sized for the longest story it left four
+    or five blank lines under a typical one, which the user also flagged; the
+    spare space now sits after `sources · save · share`, at the end of the
+    story, rather than between the text and buttons pinned to the dock.
+  - **The hook and the rest are each one paragraph.** A block per sentence
+    spent a paragraph gap after every sentence. `renderSentences(…, runs)`
+    returns inline runs for it.
   - **Body text carries no `letterSpacing`.** On Android a paragraph with any
     tracking measures a line taller than it draws, and `textAlignVertical:
     'center'` split that phantom line into blank space above and below it —
@@ -447,7 +465,7 @@ about what a card may say is about the card, not where it is shown.
   - **The grown globe is a transform** (`grownGlobeTransform`), so the gesture
     layer is tap-to-collapse while grown: marks are not where the projection
     thinks they are under the scale.
-  - **Nothing clamps.** A long lead runs on under the fold at peek and scrolls
+  - **Nothing clamps.** A long hook runs on under the dock at peek and scrolls
     when grown. A card that stops being current scrolls back to its top.
   - **The deck and the sheet never share a drag.** The deck's pan claims at
     16pt horizontal and fails at 12pt vertical; the sheet's claims at 8pt
@@ -456,23 +474,40 @@ about what a card may say is about the card, not where it is shown.
     The new index is committed when the finger lifts, not in the spring's
     completion callback — `scheduleOnRN` from an animation callback aborted
     the app once.
-  - **The masthead is where you are, and the door to the whole day.** One
-    row: a segmented track — one segment per story, lit to the one on the
-    card, its fill reading the deck's `progress` on the UI thread — and a list
-    button that opens `IndexSheet`, scrolled to the story on the card. The
-    track is also a scrubber: drag to preview (`12 of 48` over the finger),
-    lift or tap to jump (`goToStory`). Its gesture, detents and tooltip are
+  - **The dock is where you are, and every way through the day, under the
+    thumb.** `StoryDock`, pinned to the screen's foot and not to the sheet,
+    so it does not move between rest and open: `[track] (▶) (⌃) (›)`. The
+    track is a segmented bar — one segment per story, lit to the one on the
+    card, its fill reading the deck's `progress` on the UI thread — and a
+    scrubber: drag to preview (`12 of 48` over the finger), lift or tap to
+    jump (`goToStory`). Its gesture, detents and tooltip are
     `hooks/useScrub.ts` + `components/ScrubBar.tsx`, shared with the briefing
-    player's scrubber, so the two cannot drift apart.
+    player's scrubber, so the two cannot drift apart. `▶` is the briefing, `⌃` opens and closes the story (its chevron rotates
+    with the sheet's `progress`; the tap reads the settled detent), and `›`
+    is `StoryDeck.step(1)`: the same `onDragStart`,
+    spring and `onSettle` as a released swipe, so the camera hand-off is the
+    swipe's, and a second tap before React catches up goes one further.
+    - The three buttons are the same 40pt circle, 8pt apart, 16pt off the
+      track (`BUTTON`, `BUTTON_GAP`, `TRACK_GAP`). They were three different
+      treatments until the user asked for consistency; spacing is what groups
+      them (proximity), and `›` is marked by emphasis ink rather than size.
+    - It was the sheet's masthead until 2026-09-19 — on top of the card, so
+      mid-screen at rest and near the top with a story open, out of reach of
+      the thumb holding the phone. The user asked for the app to be driven
+      from the bottom-right corner.
     - It briefly read `3 of 48 · 12 found ━━ all news ›` (the position twice,
       the found count a third time beside the globe's ring), and for one build
       led with the listen button against the start of the track — a play
-      button touching a progress bar is that bar's play head. Listen now sits
-      beside the list button at the row's far end, one of its two doors (the
-      day as a list, the day as audio), which gave the top bar's gauges its
-      slot.
+      button touching a progress bar is that bar's play head. At the far end
+      of the track it reads as its own control.
     - The deck once carried no position at all, and swiping a day felt like an
       unmarked corridor.
+  - **There is no list of every story.** `IndexSheet` was deleted on
+    2026-09-14, restored on 2026-09-19 as a headlines list (title + hook,
+    by category) behind a `≡` in the dock, and removed again the same day at
+    the user's request. The short resting card, the category-banded track and
+    `›` are the way through the day. Recover it from git rather than
+    rewriting it, if it is ever asked for again.
   - **The next story peeks by 24pt of its text** (`DECK_PEEK`), not by a
     slot edge. The deck used to cut 16pt of a slot whose text sits 14pt in, so
     two points of the next headline showed — a glitch, not an affordance. The
@@ -533,14 +568,14 @@ about what a card may say is about the card, not where it is shown.
   stories ride with it now (`relatedArticles`, ~41KB, 13KB gzipped): the odds
   line needs them, and joined onto `trends.json` instead they added 24KB to
   every homepage visit. A 404 is a supported state, not a loading one.
-- **There is no bottom bar, and each of its three pills went somewhere
-  specific.** `listen` is the round play button beside the list button on the
-  sheet's masthead — as a corner pill over the globe it was sized to stay out
-  of the way and was not found, it spent a few builds at the right of
-  `MapHeader`, and at the start of the masthead's track it read as that
-  track's play head. `share` is a word on the grown card, where it
-  can only mean the story it sits under (it used to share the last article
-  read from any section). `zoom` is gone from the chrome: pinch on the globe
+- **The old bottom bar's three pills each went somewhere specific.**
+  `listen` is the round play button in the dock — as a corner pill over the
+  globe it was sized to stay out of the way and was not found, it spent a few
+  builds at the right of `MapHeader`, and at the start of the masthead's
+  track it read as that track's play head. While the player bar is up it sits
+  on the dock, and the dock's `▶` hides. `share` is a word on the open card,
+  where it can only mean the story it sits under (it used to share the last
+  article read from any section). `zoom` is gone from the chrome: pinch on the globe
   zooms continuously, so readers who cannot pinch get the opening zoom only.
 
 - **The graph and pipeline analysis stay visible.** The reading, chart, the

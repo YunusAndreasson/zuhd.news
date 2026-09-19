@@ -51,6 +51,10 @@ interface BriefingBarProps {
   onToggle: () => void;
   onSeek: (seconds: number) => void;
   onDismiss: () => void;
+  /** Sits on whatever is pinned under it (the dock), which then carries the
+   *  safe-area inset. Absent, the bar sits on the screen's edge itself. */
+  bottomOffset?: number;
+  onHeightChange?: (height: number) => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
@@ -61,6 +65,8 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
   onDismiss,
+  bottomOffset,
+  onHeightChange,
 }: BriefingBarProps) {
   const { colors } = useTheme();
   const preparing = state === 'preparing';
@@ -115,6 +121,13 @@ export const BriefingBar = memo(function BriefingBar({
     [duration, elapsed, onSeek],
   );
 
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => onHeightChange?.(Math.ceil(e.nativeEvent.layout.height)),
+    [onHeightChange],
+  );
+  // Gone is zero: a card leaving room for a bar that has closed is a gap.
+  useEffect(() => () => onHeightChange?.(0), [onHeightChange]);
+
   const dateLabel = useMemo(() => {
     try {
       return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
@@ -133,7 +146,13 @@ export const BriefingBar = memo(function BriefingBar({
       })}
       exiting={FadeOut.duration(ANIMATION.fast)}
       layout={LinearTransition.duration(ANIMATION.normal)}
-      style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
+      style={[
+        styles.wrapper,
+        bottomOffset === undefined
+          ? { paddingBottom: Math.max(insets.bottom, SPACING.sm) }
+          : { bottom: bottomOffset, paddingBottom: SPACING.sm },
+      ]}
+      onLayout={handleLayout}
       pointerEvents="box-none"
     >
       <BarBackground tintColor={colors.pillBg}>

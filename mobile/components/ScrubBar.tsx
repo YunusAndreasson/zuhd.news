@@ -1,5 +1,12 @@
-import { memo, type ReactNode } from 'react';
-import { type StyleProp, StyleSheet, View, type ViewProps, type ViewStyle } from 'react-native';
+import { memo, type ReactNode, useCallback, useState } from 'react';
+import {
+  type LayoutChangeEvent,
+  type StyleProp,
+  StyleSheet,
+  View,
+  type ViewProps,
+  type ViewStyle,
+} from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { RADIUS, SPACING } from '../constants/theme';
@@ -16,6 +23,24 @@ const THUMB_CLEARANCE = SPACING.xl;
 /** Past this many, a segment would be no wider than the gap beside it. */
 const MAX_SEGMENTS = 60;
 const SEGMENT_GAP = 2;
+
+/**
+ * Where the current item's raised segment sits on a track `trackWidth` wide:
+ * over its own segment, at least as wide as the track is tall, and never past
+ * either end.
+ */
+function activeSegmentFrame(
+  trackWidth: number,
+  count: number,
+  index: number,
+  height: number,
+): { left: number; width: number } {
+  const gap = count <= MAX_SEGMENTS ? SEGMENT_GAP : 0;
+  const segmentWidth = count > 0 ? (trackWidth - gap * (count - 1)) / count : 0;
+  const width = Math.max(height, segmentWidth);
+  const center = index * (segmentWidth + gap) + segmentWidth / 2;
+  return { left: Math.max(0, Math.min(trackWidth - width, center - width / 2)), width };
+}
 
 function Segments({
   count,
@@ -105,7 +130,22 @@ export const ScrubBar = memo(function ScrubBar({
   children,
   ...accessibility
 }: ScrubBarProps) {
-  const { width, shown } = scrub;
+  const { width, shown, onLayout } = scrub;
+  // The raised segment moves when the current item changes, which React
+  // knows, so React places it, from a copy of the track's width. It was an
+  // animated style reading `activeSegment`, and once, after a cold start, it
+  // stayed on the first story while the card and the track's own label said
+  // the sixth, until the next step moved it. Why the updater missed that
+  // change was never pinned down; the segment never animates, so there was
+  // nothing to gain from letting it.
+  const [trackWidth, setTrackWidth] = useState(0);
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      onLayout(e);
+      setTrackWidth(e.nativeEvent.layout.width);
+    },
+    [onLayout],
+  );
   const clipStyle = useAnimatedStyle(() => ({
     opacity: width.value > 0 ? 1 : 0,
     transform: [{ translateX: (fraction.value - 1) * width.value }],
@@ -118,23 +158,16 @@ export const ScrubBar = memo(function ScrubBar({
     opacity: shown.value,
     transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
   }));
-  const activeStyle = useAnimatedStyle(() => {
-    const count = segments ?? 0;
-    const gap = count <= MAX_SEGMENTS ? SEGMENT_GAP : 0;
-    const segmentWidth = count > 0 ? (width.value - gap * (count - 1)) / count : 0;
-    const markerWidth = Math.max(height, segmentWidth);
-    const center = (activeSegment ?? 0) * (segmentWidth + gap) + segmentWidth / 2;
-    return {
-      opacity: width.value > 0 ? 1 : 0,
-      width: markerWidth,
-      transform: [
-        { translateX: Math.max(0, Math.min(width.value - markerWidth, center - markerWidth / 2)) },
-      ],
-    };
-  });
+  const active =
+    activeSegment !== undefined &&
+    activeSegment >= 0 &&
+    activeSegment < (segments ?? 0) &&
+    trackWidth > 0
+      ? activeSegmentFrame(trackWidth, segments ?? 0, activeSegment, height)
+      : null;
 
   const bar = (
-    <View style={style} onLayout={scrub.onLayout} {...accessibility}>
+    <View style={style} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
         <View style={styles.row}>
           <Segments count={segments} color={trackColor} colors={trackColors} height={height} />
@@ -144,17 +177,18 @@ export const ScrubBar = memo(function ScrubBar({
             <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
           </Animated.View>
         </Animated.View>
-        {activeSegment !== undefined && activeSegment >= 0 && activeSegment < (segments ?? 0) ? (
-          <Animated.View
+        {active && activeSegment !== undefined ? (
+          <View
             pointerEvents="none"
             style={[
               styles.activeSegment,
               {
+                width: active.width,
                 height: height + SPACING.xs,
                 top: -SPACING.xs / 2,
+                transform: [{ translateX: active.left }],
                 backgroundColor: activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor,
               },
-              activeStyle,
             ]}
           />
         ) : null}

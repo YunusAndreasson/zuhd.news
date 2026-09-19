@@ -7,9 +7,11 @@ import {
   buildNowSurfaces,
   coverageRanks,
   HAZARD_MAX_AGE_DAYS,
+  linkedGaugeIds,
   NOW_LIMIT,
   rowKicker,
   stripLabel,
+  type StripItem,
 } from '../lib/now';
 
 const NOW = Date.parse('2026-09-12T09:00:00Z');
@@ -370,5 +372,32 @@ describe('buildNowSurfaces — what a slot and a row may say', () => {
 
   it('names a strait row by its kind rather than calling it an instrument', () => {
     expect(rowKicker(reading('strait-kerch', { kicker: undefined }))).toBe('shipping');
+  });
+});
+
+describe('linkedGaugeIds', () => {
+  const gauge = (id: string, cited: string[] = []) =>
+    ({ id, card: { cited: cited.map((slug) => ({ slug, title: slug })) } }) as unknown as StripItem;
+  const items = [
+    gauge('strait-hormuz', ['iran-talks']),
+    gauge('brent'),
+    gauge('fx-try-mover'),
+    gauge('gold', ['other-story']),
+  ];
+
+  it('marks the gauges whose analysis cites the story, and the ones it names', () => {
+    const linked = linkedGaugeIds(items, {
+      slug: 'iran-talks',
+      entities: [
+        { mention: 'Brent', indicatorId: 'brent', kind: 'commodity' },
+        { mention: 'lira', indicatorId: 'fx-try', kind: 'currency' },
+      ],
+    } as never);
+    expect([...linked].sort()).toEqual(['brent', 'fx-try-mover', 'strait-hormuz']);
+  });
+
+  it('marks nothing without an open story, or for a story tied to nothing', () => {
+    expect(linkedGaugeIds(items, null).size).toBe(0);
+    expect(linkedGaugeIds(items, { slug: 'quiet', entities: [] } as never).size).toBe(0);
   });
 });

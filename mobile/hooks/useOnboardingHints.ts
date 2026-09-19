@@ -62,9 +62,9 @@ export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId |
   if (ctx.screenReader) return null;
   if (showable(state, 'swipe') && state.snapCount === 0) return 'swipe';
   if (showable(state, 'globe')) return 'globe';
-  // The masthead's two buttons are icons with no words, because words would
-  // take a quarter of the story track on a small phone. They are taught once,
-  // after the gestures nobody can see.
+  // The dock's buttons are icons with no words, because words would take the
+  // story track on a small phone. They are taught once, after the gestures
+  // nobody can see.
   if (showable(state, 'masthead')) return 'masthead';
   return null;
 }

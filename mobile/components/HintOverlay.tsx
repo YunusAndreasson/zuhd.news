@@ -18,15 +18,16 @@ import { Text } from './primitives';
 //
 // `swipe` has been wrong twice: "sideways for sections" outlived the sections,
 // and "swipe up for next" outlived the full-screen reader. Stories are a
-// sideways deck in the sheet now, and pulling a card up is reading it. A hint
-// that is wrong is worse than no hint, because a reader who follows it and
-// gets a different result stops trusting the next one.
+// sideways deck in the sheet now, with the dock's › doing the same thing, and
+// tapping a card opens it. A hint that is wrong is worse than no hint, because
+// a reader who follows it and gets a different result stops trusting the next.
 const HINT_COPY: Record<HintId, string> = {
-  swipe: 'swipe sideways for the next story · pull up to read',
+  swipe: 'swipe or tap › for the next story · tap to read',
   sources: 'tap the story for its sources',
   bookmark: 'press and hold to save a story',
   globe: 'tap a light on the globe to find its story',
-  masthead: "drag the colors to browse · play hears today's briefing",
+  // The id predates the dock; it is a persisted key, so it keeps its name.
+  masthead: '⌃ opens the story · ▶ plays the briefing',
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;
