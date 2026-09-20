@@ -46,6 +46,7 @@ import {
   type MiniGlobeRef,
   type TapResult,
 } from '../components/globe/MiniGlobe';
+import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
 import { MarketBrowserSheet } from '../components/MarketBrowserSheet';
 import { MenuSheet } from '../components/MenuSheet';
@@ -99,6 +100,7 @@ import {
 } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
+import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
@@ -295,6 +297,7 @@ export default function HomeScreen() {
     flightT,
     setFront: setCameraFront,
     claimForDeck,
+    cancelFlight,
     hold: holdCamera,
     toStory: flyToStory,
     toStoryIfHeld: flyToStoryIfHeld,
@@ -1098,6 +1101,8 @@ export default function HomeScreen() {
 
   const handleDeckSettle = useCallback(
     (index: number) => {
+      const leavingIndex = deckIndexRef.current;
+      const leaving = storyRowsRef.current[leavingIndex]?.coords ?? null;
       deckIndexRef.current = index;
       setDeckIndex(index);
       hapticTick();
@@ -1115,11 +1120,31 @@ export default function HomeScreen() {
         // Reading a story grown is opening it; swiping past one at rest is not.
         if (sheetDetentRef.current === 'full') findStory(row.slug);
       }
-      // The earth was left somewhere else (a drag, a gauge): fly it to the
-      // story the swipe landed on. The landing hands the camera back.
-      if (row?.coords) flyToStoryIfHeld(row.coords, index, framingFor(index));
+      if (row?.coords) {
+        const framing = framingFor(index);
+        const travel = leaving
+          ? arcDegrees(leaving[0], leaving[1], row.coords[0], row.coords[1])
+          : 0;
+        const crossing = flyCurve(
+          framingFor(leavingIndex) || framing || FRAMING_WIDEST,
+          framing || FRAMING_WIDEST,
+          travel,
+        );
+        if (flyMs(crossing) > DECK_SETTLE_MS) {
+          // Longer than the card's own landing: the camera leaves the deck
+          // here, at the lift, and flies the rest from wherever the finger got
+          // it to, at the pace the distance asks for. The landing hands it
+          // back.
+          flyToStory(row.coords, index, framing);
+        } else {
+          // The earth was left somewhere else (a drag, a gauge): fly it to the
+          // story the swipe landed on. Otherwise the spring is already
+          // carrying it and this is a no-op.
+          flyToStoryIfHeld(row.coords, index, framing);
+        }
+      }
     },
-    [findStory, flyToStoryIfHeld, framingFor, handleCaughtUp],
+    [findStory, flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp],
   );
 
   const goToStory = useCallback(
@@ -1626,6 +1651,7 @@ export default function HomeScreen() {
         zoomActive={zoomActive}
         zoomAngle={zoomAngle}
         flightT={flightT}
+        cancelFlight={cancelFlight}
         clip={globeClip}
         storyClip={storyClip}
         radius={layout.radius}

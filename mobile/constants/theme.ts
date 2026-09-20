@@ -541,8 +541,15 @@ export const EASING = {
   in: Easing.in(Easing.ease),
   out: Easing.out(Easing.ease),
   inOut: Easing.inOut(Easing.ease),
-  /** Every camera move — a flight, a zoom handed back — so the globe has one gait. */
-  camera: Easing.inOut(Easing.cubic),
+  /**
+   * Every camera move — a flight, a zoom handed back — so the globe has one
+   * gait, and it is the web map's gait: MapLibre's own `defaultEasing`, the
+   * curve every `flyTo` on the site is eased with. `inOut(cubic)` is symmetric,
+   * so a crossing crawled out of the gate, rushed the middle and crawled in
+   * again; this leaves late and settles long, which is what a camera with
+   * somewhere to be does.
+   */
+  camera: Easing.bezier(0.25, 0.1, 0.25, 1),
 } as const;
 
 /**

@@ -2,7 +2,15 @@ import { act, renderHook } from '@testing-library/react';
 import * as Reanimated from 'react-native-reanimated';
 import type { SharedValue } from 'react-native-reanimated';
 import { useCameraFlight } from '../hooks/useCameraFlight';
-import { arcDegrees, slerpLatLng, swipeClip } from '../lib/globe-camera';
+import {
+  arcDegrees,
+  DECK_SETTLE_MS,
+  flyCurve,
+  flyMs,
+  flyPosition,
+  flySpanClip,
+  slerpLatLng,
+} from '../lib/globe-camera';
 
 // The shared jest mock runs no reactions and has no animation functions. Here
 // the reaction is captured so each frame of a flight can be driven by hand, and
@@ -54,15 +62,69 @@ it('flies to a story along the great circle, rising on the way', () => {
   expect(inputs.cameraOwner.value).toBe(1);
   expect(inputs.zoomActive.value).toBe(1);
   play(0.5);
-  const [lat, lng] = slerpLatLng(10, 20, 40, 120, 0.5);
+  const curve = flyCurve(20, 24, arcDegrees(10, 20, 40, 120));
+  // Halfway through the flight is not halfway along the arc: the crossing
+  // covers its ground while it is highest (`flyPosition`).
+  const [lat, lng] = slerpLatLng(10, 20, 40, 120, flyPosition(curve, 0.5));
   expect(inputs.cameraLat.value).toBeCloseTo(lat, 9);
   expect(inputs.cameraLng.value).toBeCloseTo(lng, 9);
   // A long crossing zooms out past both framings mid-flight.
   expect(inputs.zoomAngle.value).toBeGreaterThan(24);
-  expect(inputs.zoomAngle.value).toBeCloseTo(
-    swipeClip(20, 24, 0.5, arcDegrees(10, 20, 40, 120)),
-    9,
-  );
+  expect(inputs.zoomAngle.value).toBeCloseTo(flySpanClip(curve, 0.5), 9);
+});
+
+it('lets go of the flight’s zoom when a finger lands on the earth', () => {
+  const { inputs, flight } = setup({ clip: 20, progress: 3 });
+  act(() => flight.toStory([40, 120], 3, 24));
+  play(0.5);
+  // Mid-crossing: the override is the flight’s and is well above both
+  // framings. Stopping the tween alone used to leave it there until the next
+  // pinch or settle, stranding the globe zoomed out.
+  expect(inputs.zoomActive.value).toBe(1);
+  act(() => flight.cancelFlight());
+  expect(inputs.zoomActive.value).toBe(0);
+  // The camera stays where the finger took it over.
+  expect(inputs.cameraOwner.value).toBe(1);
+});
+
+it('keeps a pinch’s own zoom when a finger stops a place flight', () => {
+  const { inputs, flight } = setup({ zoomed: true, clip: 12 });
+  act(() => flight.toPlace([-30, 60]));
+  play(0.4);
+  act(() => flight.cancelFlight());
+  expect(inputs.zoomActive.value).toBe(1);
+});
+
+it('hands a landed swipe to a flight only where that would not hurry it', () => {
+  // `handleDeckSettle` compares the crossing's own duration against the deck
+  // spring's rather than against an arc, and this is why: a flight's duration
+  // rises with the distance and never falls back, so once a crossing is long
+  // enough to fly, every longer one is too. One arc could not promise that —
+  // the same distance flies at different speeds from an 18° framing and a 24°
+  // one — and a hand-off that *shortened* a crossing would be the opposite of
+  // the point.
+  const framings: [number, number][] = [
+    [18, 18],
+    [21, 21],
+    [24, 24],
+    [18, 24],
+    [24, 18],
+  ];
+  for (const [from, to] of framings) {
+    let flying = false;
+    let last = 0;
+    for (let travel = 2; travel <= 180; travel += 2) {
+      const ms = flyMs(flyCurve(from, to, travel));
+      expect(ms).toBeGreaterThanOrEqual(last);
+      last = ms;
+      if (ms > DECK_SETTLE_MS) flying = true;
+      // Never back under the bar once over it.
+      else expect(flying).toBe(false);
+    }
+    // A neighbouring city rides the card; the far side of the planet flies.
+    expect(flyMs(flyCurve(from, to, 3))).toBeLessThanOrEqual(DECK_SETTLE_MS);
+    expect(flyMs(flyCurve(from, to, 120))).toBeGreaterThan(DECK_SETTLE_MS);
+  }
 });
 
 it('lands on the story framing and hands the camera back on the same frame', () => {

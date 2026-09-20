@@ -271,17 +271,22 @@ export function findCountry(
  *  to a large one swelled and shrank the whole globe by 2.2× — a wobble with
  *  no meaning. 25°–45° still spanned 1.7× and read as the map jumping on
  *  every swipe; the framings now span 1.3×, and the travel between two
- *  stories is carried by the swipe's own gentle zoom-out (`swipeClip`) instead
- *  of by the difference in their sizes.
+ *  stories is carried by the crossing's own zoom-out (`flyCurve`) instead of
+ *  by the difference in their sizes.
  *
  *  Keep that spread when changing the level. At 30°–40° a story in Sudan
  *  framed everything from Russia to South Africa, and the user asked to be
  *  taken closer to each place (2026-09-19); 18°–24° is about 1.6× closer, near
  *  what the web's `flyToStory` zoom of 2.5 shows across a phone's width. */
+/** The framing a story with no country of its own rests at, and the widest any
+ *  story rests at. The UI thread falls back to it when a camera track runs
+ *  longer than the article set behind it. */
+export const FRAMING_WIDEST = 24;
+
 function clipAngleForArea(area: number): number {
   if (area < 0.002) return 18;
   if (area < 0.03) return 18 + ((area - 0.002) / (0.03 - 0.002)) * 6;
-  return 24;
+  return FRAMING_WIDEST;
 }
 
 /** Clip angle for a named country (lookup `countryAreas`, fall back to 1 sr). */

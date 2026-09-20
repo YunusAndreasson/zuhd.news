@@ -201,6 +201,25 @@ whole time; nothing said so.
     what is left to find — `MiniGlobe` reads `foundProgress`, the count the
     dock's story track speaks, and the arc shrinks back toward twelve o'clock after each
     burst (instantly under Reduce Motion).
+  - **A long swipe stops riding the card and flies.** The deck's landing
+    spring is `duration: 350` — perceptual, so ~525 ms of real settling
+    (`DECK_SETTLE_MS`) — and it carried the camera whatever the distance, so a
+    quarter of the planet crossed in the same half second as a neighbouring
+    city. That is the *common* case: consecutive stories are ordered by
+    category and can be anywhere on earth. `handleDeckSettle` now compares the
+    crossing's own `flyMs` against that spring and hands the camera to
+    `flyToStory` when the flight would be longer — at the finger's lift, from
+    wherever the finger got it to. The card still snaps in 350 ms; the earth
+    takes the time the distance asks for and lands on the story's framing.
+    **Compare the durations, never an arc**: the same distance flies at
+    different speeds from an 18° framing and a 24° one, so only the comparison
+    guarantees the hand-off can lengthen a crossing and never hurry one
+    (`__tests__/camera-flight.test.ts`). Under the bar nothing changes and the
+    earth stays welded to the card, which is what makes a short swipe direct.
+    Swiping again mid-flight leaves the camera more than a degree from the
+    story in front, so `claimForDeck` declines and the globe holds still
+    through that swipe before flying again at its settle — self-correcting,
+    and already how a camera left elsewhere behaves.
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
     camera is held (`cameraOwner = 1`), the position jumps, and the camera
@@ -214,11 +233,14 @@ whole time; nothing said so.
     owns the camera, the framing, the country highlight and the place label
     stayed on the *previous* story until the next swipe. Now one `flightT`
     drives the great circle (`slerpLatLng`, shared with the deck) and the
-    swipe's rise (`swipeClip`, through the pinch's zoom override), lasts by
-    distance (`flightDuration`), and a story flight lands on the story's own
+    swipe's rise (`flyCurve`, through the pinch's zoom override), lasts as long
+    as the crossing asks (`flyMs`), and a story flight lands on the story's own
     framing (`MiniGlobeRef.framingFor`) and hands the camera back to the deck
     on that frame. A gauge or alert flight keeps the camera and returns to
-    the zoom it left. A finger on the globe cancels a flight.
+    the zoom it left. A finger on the globe cancels a flight — through
+    `cancelFlight`, never by stopping `flightT` alone: the zoom override is
+    the flight's, and a touch at the top of a long crossing used to strand the
+    globe zoomed out until the next pinch or settle.
   - **Found is opening** — a mark tap, growing a card, or landing on a card
     while grown. **Swiping past a card at rest does not find it**: thirty
     seconds of swiping would otherwise empty the globe. Pruning drops a slug
@@ -255,15 +277,34 @@ whole time; nothing said so.
     glaze are recorded into the ground picture at the projected limb, the stars
     and moon are clipped outside it, and the found ring follows it off the
     screen's edge.
-  - **A swipe rises, crosses and comes down close.** `swipeClip`
-    (`lib/globe-camera.ts`, tested) zooms out in proportion to the camera's
-    travel between two stories — up to `SWIPE_OUT_MAX` (1.25×), never past the
-    whole planet, flat at both ends — and lands on the next story's framing.
+  - **A swipe rises, crosses and comes down close — on van Wijk's path.**
+    `flyCurve` (`lib/globe-camera.ts`, tested) is van Wijk & Nuij's *Smooth and
+    efficient zooming and panning* (2003), the path MapLibre's `flyTo` flies,
+    so the app's globe and the site's map bend a crossing alike — the web's
+    `flyToStory` passes `curve: 1.35` and so does this (`FLY_RHO`). One ρ sets
+    the rise and the pacing together, which is the point: the ground crosses
+    the screen at a constant speed. **`flyPosition` is why it works and is easy
+    to drop** — the camera's place along the arc is the curve's answer, not the
+    raw fraction, because the crossing covers most of its ground while it is
+    highest. Take that out and the rise is decoration.
+    It replaced two laws nothing coupled: a rise linear in travel to the
+    ceiling (`ln(1.25) · travel/90 · sin²(πt)` — an 8° hop rose 2% and a 40° hop
+    10%, so most swipes had no zoom at all) and a duration that was a square
+    root of the same travel.
+    `SWIPE_OUT_MAX` (1.25×) still holds, and is held by **bisecting ρ down until
+    the path just touches it** — still a true van Wijk path, only a flatter one.
+    MapLibre bounds ρ by `√(2·wMax/u1)` instead, which at a story's framings
+    still lands near 1.6×, so it is not enough on a globe. `SPAN_PER_CLIP` (3)
+    is the one calibration in it: how many ground degrees the screen shows per
+    degree of clip, which is all the paper needs to know how many screenfuls a
+    journey is.
     Framings span 18°–24° (`clipAngleForArea`). The *spread* is what must stay
     subtle, and it has been overdone twice: at 25°–70° the planet swelled and
     shrank 2.2× between a small country and a large one once zoom grew the
     globe, and 25°–45° with a 1.7× plain-sine rise still read as the map
-    jumping on every swipe. The *level* moved on 2026-09-19: at 30°–40° a
+    jumping on every swipe. Neither is an argument against the *curve*: both
+    were about how far apart two resting framings sit, and the second about a
+    rise that was not flat at its ends. The *level* moved on 2026-09-19: at 30°–40° a
     Sudan story framed Russia to South Africa, and the user asked to be taken
     closer to each place. 18°–24° keeps the 1.3× spread about 1.6× closer,
     near what the web's `flyToStory` shows across a phone's width. The rivers

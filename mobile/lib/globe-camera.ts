@@ -211,47 +211,203 @@ export function viewAngleFor(scale: number, reach: number): number {
   return Math.asin(reach / scale) * RAD2DEG;
 }
 
-/** The most a swipe zooms out on its way between two stories, as a factor of
- *  the globe's scale. Never past the whole planet. */
+/** A flight between neighbours, and one to the far side of the planet. */
+export const FLIGHT_MIN_MS = 450;
+export const FLIGHT_MAX_MS = 1000;
+/**
+ * How long the deck's landing spring really takes to settle.
+ *
+ * Reanimated's `duration` is *perceptual*: `withSpring` documents the actual
+ * settling as 1.5× it, so `ANIMATION.springSettle`'s 350 ms is about 525 ms of
+ * travel. `__tests__/motion-tokens.test.ts` holds the two together.
+ *
+ * It is the bar a landed swipe is measured against. The spring carried the
+ * camera whatever the distance, so a quarter of the planet crossed in the same
+ * half second as a neighbouring city — and that is the *common* case, because
+ * consecutive stories are ordered by category and can be anywhere on earth. A
+ * card is text and wants to snap; the earth is a place and wants the time the
+ * distance asks for. Where the crossing's own `flyMs` is longer than this, the
+ * camera leaves the deck at the finger's lift and flies the rest itself: the
+ * same curve, the same landing on the story's framing. Where it is shorter,
+ * nothing changes and the earth stays welded to the card, which is what makes
+ * a short swipe feel direct. Comparing the two durations rather than picking
+ * an arc is what guarantees the hand-off only ever *lengthens* a crossing —
+ * one arc could not, because the same distance flies at different speeds from
+ * an 18° framing and a 24° one.
+ */
+export const DECK_SETTLE_MS = Math.round(350 * 1.5);
+
+/** The most a camera move zooms out on its way between two places, as a factor
+ *  of the wider of the two framings. Never past the whole planet. */
 export const SWIPE_OUT_MAX = 1.25;
-/** Camera travel, in degrees, that earns the whole zoom-out. A swipe between
- *  two stories in one region barely leaves the ground. */
-export const SWIPE_OUT_TRAVEL = 90;
+/**
+ * Ground degrees across the screen, per degree of clip.
+ *
+ * The projection draws a point θ from the camera at `scale · sin θ`, so the
+ * ground the screen's width covers is `2 · asin(halfWidth / scale)`. Over the
+ * framings a story ever rests at that is very nearly three times the clip angle
+ * on every phone the app ships to: 3.02 at 18°, 3.04 at 21° and 3.11 at 26° on
+ * a 393×852 screen; 2.94 to 3.01 on a 360×800 one.
+ *
+ * `flyCurve` needs it for one ratio only — how many screenfuls of ground a
+ * journey is — so it is a calibration constant, not a projection, and the
+ * exact figure lives in `viewAngleFor`. `__tests__/globe-camera.test.ts` holds
+ * the approximation against it across the band.
+ */
+export const SPAN_PER_CLIP = 3;
+/**
+ * Van Wijk's ρ: how far a crossing bows out of its way. 1.35 is the web map's
+ * own `flyTo({ curve: 1.35 })` (`public/islands/situation-map.ts`), so the app
+ * and the site bend a crossing by the same amount.
+ */
+export const FLY_RHO = 1.35;
+/**
+ * Van Wijk's V, in screenfuls of ground per second. Set so a 90° crossing still
+ * takes the 839 ms the square-root law it replaced took: that one figure was
+ * tuned, the rest of the curve was not, and now follows from it.
+ */
+const FLY_SPEED = 1.6125;
+/** Below this a journey is no journey: `b` would divide by zero. */
+const FLY_DEGENERATE_U = 2e-6;
+/** Halvings that fit a path under `SWIPE_OUT_MAX`. 24 puts ρ within 1e-7, and
+ *  it runs once per crossing, not once per frame. */
+const RHO_FIT_STEPS = 24;
 
 /**
- * The clip partway through a swipe from one story's framing to the next.
+ * A camera crossing, worked out once: how far out it rises, how far along it is
+ * at a given moment, and how long it should take.
  *
- * **Out, across, in** — the shape of a map's `flyTo`: the camera rises in
- * proportion to how far it is going, the planet turns under it, and it comes
- * down close over the story it lands on. Interpolated in log scale, because
- * zoom is perceived as a ratio. The rise is `sin²`, not `sin`: flat at both
- * ends, so the planet does not start moving the instant a finger does, and a
- * card settling onto its story does not bounce the zoom on the way in. At 1.7×
- * with a plain sine it read as the map jumping on every swipe.
+ * **Out, across, in** — the shape of a map's `flyTo`, and now literally that
+ * shape: van Wijk & Nuij's *Smooth and efficient zooming and panning* (2003),
+ * the path MapLibre's `flyTo` flies. One ρ sets the rise and the pacing
+ * together, and the ground crosses the screen at a constant speed — which is
+ * the whole point of the paper and the whole point here.
  *
- * It replaced a smoothstep between the two framings, which — once zooming grew
- * the planet itself instead of the ground inside a fixed disc — made the whole
- * globe swell and shrink by two times between a small country and a large one,
- * with no relation to where the camera was going.
+ * It replaced two laws that could not be reconciled because nothing coupled
+ * them: a rise linear in travel to a hard ceiling (`ln(1.25) · travel/90 ·
+ * sin²(πt)`, which gave an 8° hop 2% and a 40° hop 10%, so most swipes had no
+ * zoom at all) and a duration that was a square root of the same travel. At
+ * ~500 ms a long crossing rushed the ground past at close range whatever the
+ * rise did.
+ *
+ * Spans are kept in **clip degrees**, so `flySpanClip` reads straight off `w`
+ * and both ends of a crossing are exact; the journey is converted into the same
+ * units by `SPAN_PER_CLIP`. `u1 === 0` marks the degenerate path — two stories
+ * in one place — where the position never moves and the span is a plain
+ * exponential between the two framings.
  */
-export function swipeClip(
-  fromClip: number,
-  toClip: number,
-  frac: number,
-  travelDeg: number,
-): number {
+export type FlyCurve = {
+  r0: number;
+  rho: number;
+  /** Path length in van Wijk's `s`; the duration is this over a speed. */
+  S: number;
+  w0: number;
+  w1: number;
+  u1: number;
+};
+
+/** Van Wijk's `r(i)` — the zoom-out factor at one end of the path. */
+function flyR(w0: number, w1: number, u1: number, rho: number, descent: boolean): number {
   'worklet';
-  const t = frac <= 0 ? 0 : frac >= 1 ? 1 : frac;
-  const eased = t * t * (3 - 2 * t);
-  const from = Math.log(1 / Math.sin(fromClip * DEG2RAD));
-  const to = Math.log(1 / Math.sin(toClip * DEG2RAD));
-  const reach =
-    travelDeg <= 0 ? 0 : travelDeg >= SWIPE_OUT_TRAVEL ? 1 : travelDeg / SWIPE_OUT_TRAVEL;
-  const bump = Math.sin(Math.PI * t);
-  const out = Math.log(SWIPE_OUT_MAX) * reach * bump * bump;
-  const logScale = from + (to - from) * eased - out;
-  if (logScale <= 0) return MAX_CLIP;
-  return Math.asin(Math.exp(-logScale)) * RAD2DEG;
+  const rho2 = rho * rho;
+  const b =
+    (w1 * w1 - w0 * w0 + (descent ? -1 : 1) * rho2 * rho2 * u1 * u1) /
+    (2 * (descent ? w1 : w0) * rho2 * u1);
+  return Math.log(Math.sqrt(b * b + 1) - b);
+}
+
+/** The span at path distance `s`, in clip degrees. */
+function flySpanAt(c: FlyCurve, s: number): number {
+  'worklet';
+  if (c.u1 === 0) return c.w0 * Math.exp((c.w1 < c.w0 ? -1 : 1) * c.rho * s);
+  return (c.w0 * Math.cosh(c.r0)) / Math.cosh(c.r0 + c.rho * s);
+}
+
+function flyBuild(w0: number, w1: number, u1: number, rho: number): FlyCurve {
+  'worklet';
+  const r0 = flyR(w0, w1, u1, rho, false);
+  const r1 = flyR(w0, w1, u1, rho, true);
+  return { r0, rho, S: (r1 - r0) / rho, w0, w1, u1 };
+}
+
+/** How far out of its way a path bows, as a factor of the wider framing. The
+ *  top of the arc is where `r0 + ρs` reaches zero, if that falls inside it. */
+export function flyPeak(c: FlyCurve): number {
+  'worklet';
+  const top = -c.r0 / c.rho;
+  const s = top < 0 ? 0 : top > c.S ? c.S : top;
+  return flySpanAt(c, s) / (c.w0 > c.w1 ? c.w0 : c.w1);
+}
+
+/**
+ * The crossing from one framing to another over a given arc.
+ *
+ * Uncapped, the paper's path is steep: two stories 90° apart at a 21° framing
+ * bow out to 1.61×, which is the swell that was tried and rejected twice. The
+ * ceiling is held by **bisecting ρ down until the path just touches it** —
+ * still a true van Wijk path, only a flatter one. MapLibre bounds ρ instead by
+ * `√(2·wMax/u1)`, which at these framings still lands near 1.6×, so it is not
+ * enough on a globe.
+ */
+export function flyCurve(fromClip: number, toClip: number, travelDeg: number): FlyCurve {
+  'worklet';
+  const u1 = travelDeg > 0 ? travelDeg / SPAN_PER_CLIP : 0;
+  if (u1 < FLY_DEGENERATE_U) {
+    return {
+      r0: 0,
+      rho: FLY_RHO,
+      S: Math.abs(Math.log(toClip / fromClip)) / FLY_RHO,
+      w0: fromClip,
+      w1: toClip,
+      u1: 0,
+    };
+  }
+  const full = flyBuild(fromClip, toClip, u1, FLY_RHO);
+  if (flyPeak(full) <= SWIPE_OUT_MAX) return full;
+  let lo = 1e-4;
+  let hi = FLY_RHO;
+  for (let i = 0; i < RHO_FIT_STEPS; i += 1) {
+    const mid = (lo + hi) / 2;
+    if (flyPeak(flyBuild(fromClip, toClip, u1, mid)) > SWIPE_OUT_MAX) hi = mid;
+    else lo = mid;
+  }
+  return flyBuild(fromClip, toClip, u1, lo);
+}
+
+/** The clip angle partway through a crossing. `t` is 0 at the place left and 1
+ *  at the one landed on, and both ends come back exact. */
+export function flySpanClip(c: FlyCurve, t: number): number {
+  'worklet';
+  const k = t <= 0 ? 0 : t >= 1 ? 1 : t;
+  const clip = flySpanAt(c, k * c.S);
+  return clip >= MAX_CLIP ? MAX_CLIP : clip;
+}
+
+/**
+ * How far along the great circle a crossing has got at `t`, from 0 to 1.
+ *
+ * Not `t` itself: the path covers most of its ground while it is furthest out,
+ * which is exactly what holds the ground to one speed across the screen. Feed
+ * it to `slerpLatLng` in place of the raw fraction.
+ */
+export function flyPosition(c: FlyCurve, t: number): number {
+  'worklet';
+  const k = t <= 0 ? 0 : t >= 1 ? 1 : t;
+  if (c.u1 === 0) return k;
+  const s = k * c.S;
+  const u =
+    (c.w0 * (Math.cosh(c.r0) * Math.tanh(c.r0 + c.rho * s) - Math.sinh(c.r0))) /
+    (c.rho * c.rho) /
+    c.u1;
+  return u <= 0 ? 0 : u >= 1 ? 1 : u;
+}
+
+/** How long a flight along this crossing takes: its own length over a speed,
+ *  held between a brisk hop and the far side of the planet. */
+export function flyMs(c: FlyCurve): number {
+  'worklet';
+  const ms = (1000 * c.S) / FLY_SPEED;
+  return Math.round(ms < FLIGHT_MIN_MS ? FLIGHT_MIN_MS : ms > FLIGHT_MAX_MS ? FLIGHT_MAX_MS : ms);
 }
 
 /**
@@ -309,22 +465,6 @@ export function arcDegrees(lat0: number, lng0: number, lat1: number, lng1: numbe
   const dLng = (lng1 - lng0) * DEG2RAD;
   const cos = Math.sin(p0) * Math.sin(p1) + Math.cos(p0) * Math.cos(p1) * Math.cos(dLng);
   return Math.acos(cos > 1 ? 1 : cos < -1 ? -1 : cos) * RAD2DEG;
-}
-
-/** A flight between neighbours, and one to the far side of the planet. */
-export const FLIGHT_MIN_MS = 450;
-export const FLIGHT_MAX_MS = 1000;
-
-/**
- * How long a flight takes for the distance it covers. A fixed 700 ms crawled
- * between two cities in one country and whipped the planet half round for a
- * story on the other side of it. The square root keeps a short hop brisk and
- * a long one from dragging; the rise that goes with it is `swipeClip`'s.
- */
-export function flightDuration(travelDeg: number): number {
-  'worklet';
-  const f = travelDeg <= 0 ? 0 : travelDeg >= 180 ? 1 : travelDeg / 180;
-  return Math.round(FLIGHT_MIN_MS + (FLIGHT_MAX_MS - FLIGHT_MIN_MS) * Math.sqrt(f));
 }
 
 /**

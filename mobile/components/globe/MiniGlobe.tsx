@@ -85,7 +85,16 @@ import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
-import { reachFor, slerpLatLng, swipeClip, viewAngleFor } from '../../lib/globe-camera';
+import {
+  arcDegrees,
+  type FlyCurve,
+  flyCurve,
+  flyPosition,
+  flySpanClip,
+  reachFor,
+  slerpLatLng,
+  viewAngleFor,
+} from '../../lib/globe-camera';
 import { isStorySettled } from '../../lib/globe-settle';
 import {
   layoutMarketClusters,
@@ -143,6 +152,7 @@ import {
   ANCHOR_NAMES_EXTRA,
   clipAngleForCountry,
   DECAY_LAMBDA,
+  FRAMING_WIDEST,
   findCountry,
   formatLocalTime,
   getMoonPhase,
@@ -877,7 +887,7 @@ interface GlobeState {
   famineMarks: { x: number; y: number; id: string; blocks: number; alpha: number; scale: number }[];
   thermalMarks: { x: number; y: number; id: string; alpha: number; scale: number }[];
   genocideMarks: { x: number; y: number; id: string; label: string }[];
-  dotLabel: { text: string; sub?: string; x: number; y: number } | null;
+  dotLabel: { text: string; sub?: string; x: number; y: number; opacity: number } | null;
   /** Country name anchored near the highlighted country's centroid. Rendered
    *  at every zoom level (including fully zoomed-out) so the reader always
    *  has geographic context for the article. `lines` is normally length 1,
@@ -1811,12 +1821,16 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
   );
 
-  // Country highlight — soft glow, then the crisp focal outline.
-  if (f.countryPath) {
-    const glow = fillPaint(colors.text, countryHighlightOpacity(f.countryName));
+  // Country highlight — soft glow, then the crisp focal outline, both on the
+  // arc fade. The polygon it draws is the settled story's, and that flips at
+  // frac=0.5: without the fade the highlight jumped from one country to
+  // another mid-swipe, which is the exact problem the arcs were given the fade
+  // for. It dissolves through zero, so a second country is never projected.
+  if (f.countryPath && f.arcOpacity > 0) {
+    const glow = fillPaint(colors.text, countryHighlightOpacity(f.countryName) * f.arcOpacity);
     glow.setMaskFilter(HIGHLIGHT_BLUR);
     c.drawPath(f.countryPath, glow);
-    c.drawPath(f.countryPath, strokePaint(colors.text, 0.5, 1, StrokeJoin.Round));
+    c.drawPath(f.countryPath, strokePaint(colors.text, 0.5 * f.arcOpacity, 1, StrokeJoin.Round));
   }
 
   // Major rivers — after the highlight so a river through the focused country
@@ -2035,8 +2049,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         country,
         colors.textEmphasis,
         colors.bg,
-        light ? 0.85 : 0.8,
-        haloOpacitySoft,
+        (light ? 0.85 : 0.8) * f.arcOpacity,
+        haloOpacitySoft * f.arcOpacity,
       );
     }
   }
@@ -2053,8 +2067,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       fonts.label,
       colors.textEmphasis,
       colors.bg,
-      0.95,
-      haloOpacity,
+      0.95 * dl.opacity,
+      haloOpacity * dl.opacity,
     );
     if (dl.sub && sub) {
       drawHaloText(
@@ -2065,8 +2079,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         sub,
         colors.textEmphasis,
         colors.bg,
-        light ? 0.7 : 0.75,
-        haloOpacitySoft,
+        (light ? 0.7 : 0.75) * dl.opacity,
+        haloOpacitySoft * dl.opacity,
       );
     }
   }
@@ -2608,6 +2622,27 @@ export const MiniGlobe = memo(function MiniGlobe({
     coordsSV.value = cameraTrack ?? articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
   }, [articleGeo, cameraTrack, coordsSV]);
 
+  // The clip each story rests at, published for the UI thread. Placing the
+  // camera through `flyPosition` needs the crossing's own curve, and the
+  // framings only exist on this side — `clipAngleForCountry` is a JS lookup.
+  // `framingsVer` is what tells a cached curve that the river changed under it.
+  const framingsSV = useSharedValue<number[]>([]);
+  const framingsVer = useSharedValue(0);
+  useEffect(() => {
+    framingsSV.value = articleGeo.map((g) => clipAngleForCountry(g?.countryName ?? null));
+    framingsVer.value += 1;
+  }, [articleGeo, framingsSV, framingsVer]);
+
+  // One crossing's curve, kept between frames on each thread. It depends only
+  // on the two framings and the arc between them, so it is rebuilt when the
+  // deck crosses a story boundary — not 30 times a second, which would fit ρ
+  // by bisection and allocate two dozen objects for an answer that never
+  // changed.
+  const deckCurve = useSharedValue<FlyCurve | null>(null);
+  const deckCurveLo = useSharedValue(-1);
+  const deckCurveHi = useSharedValue(-1);
+  const deckCurveVer = useSharedValue(-1);
+
   // Zoom control — two shared values that together describe the effective
   // clip angle each frame:
   //   clip = rawClip + (overrideAngle - rawClip) * overrideActive
@@ -2621,6 +2656,14 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Last overrideAngleVal seen by callReproject — compared frame-over-frame
   // to decide whether an override→override slide is in flight.
   const lastOverrideAngleRef = useRef(90);
+  // The crossing whose curve `callReproject` is currently drawing, so the fit
+  // runs once per story pair rather than once per frame.
+  const flyCurveRef = useRef<{
+    from: number;
+    to: number;
+    travel: number;
+    curve: FlyCurve;
+  } | null>(null);
 
   // Projection + path generator — created eagerly so the first scroll frame is warm
   // Kept for `hitTest`'s `invert`; every path is drawn by `ortho-stream.ts`
@@ -2900,8 +2943,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Adaptive zoom — each story's own framing at rest, and between two of
-      // them the swipe rises in proportion to how far the camera travels and
-      // comes down close over the next (`swipeClip`).
+      // them van Wijk's path: out of its way by as much as the crossing is
+      // long, and down close over the next (`flyCurve`).
       const loCountry = geoData[loIndex]?.countryName ?? null;
       const hiCountry = geoData[hiIndex]?.countryName ?? null;
       const loClip = clipAngleForCountry(loCountry);
@@ -2912,7 +2955,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         loGeo && hiGeo && loIndex !== hiIndex
           ? (geoDistance([loGeo.lng, loGeo.lat], [hiGeo.lng, hiGeo.lat]) * 180) / Math.PI
           : 0;
-      const rawClip = swipeClip(loClip, hiClip, frac, travelDeg);
+      const held = flyCurveRef.current;
+      const curve =
+        held && held.from === loClip && held.to === hiClip && held.travel === travelDeg
+          ? held.curve
+          : flyCurve(loClip, hiClip, travelDeg);
+      if (curve !== held?.curve) {
+        flyCurveRef.current = { from: loClip, to: hiClip, travel: travelDeg, curve };
+      }
+      const rawClip = flySpanClip(curve, frac);
       // Blend the scroll-driven clip with the user override. Each withTiming
       // call supplying these values is already eased, so no extra shaping.
       const clipAngle = rawClip + (overrideAngleVal - rawClip) * overrideActiveVal;
@@ -3182,15 +3233,37 @@ export const MiniGlobe = memo(function MiniGlobe({
       graticuleLines(skiaCtx, view);
       const graticulePath = graticuleBuilder.build();
 
-      // Dot label — the only remaining nearSettled gate. Two reasons:
-      //   1. Intl.formatLocalTime is the single most expensive call in this
-      //      hot path (full Intl.DateTimeFormat construction + format).
-      //   2. settledIndex flips at frac=0.5, so mid-rotation the label
-      //      would change cities ("Bamako · 12:34" → "Lima · 06:34") —
-      //      more confusing than absent. The label appearing once you've
-      //      committed to an article is correct UX.
+      // Everything anchored to `settledIndex` fades on the same smoothstep,
+      // because they all have the same problem: `settledIndex` flips at
+      // frac=0.5, so mid-swipe they would snap to a new story's origin. Fading
+      // to nothing across the central band hides the jump — the arcs have
+      // always been drawn this way, and the country highlight, the country's
+      // name and the place label now are too. It is a dissolve through zero,
+      // never an overlap, so no second country is ever projected. At rest
+      // `frac` is exactly 0 or 1 and this is exactly 1: nothing changes where
+      // the reader stops. Skia skips 0-alpha draws on the GPU side, so the
+      // wasted projection cost is JS-thread only and small.
+      let arcOpacity: number;
+      if (frac < ARC_WINDOW) {
+        const t = frac / ARC_WINDOW; // 0→1 as we scroll away
+        arcOpacity = 1 - t * t * (3 - 2 * t); // smoothstep fade-out
+      } else if (frac > 1 - ARC_WINDOW) {
+        const t = (frac - (1 - ARC_WINDOW)) / ARC_WINDOW; // 0→1 as we approach
+        arcOpacity = t * t * (3 - 2 * t); // smoothstep fade-in
+      } else {
+        arcOpacity = 0;
+      }
+
+      // Dot label — the place being read, and the most prominent text on the
+      // globe. It used to be gated on `nearSettled`, so it appeared and
+      // vanished on a single frame; it rides the fade above instead. The
+      // settled index flips at frac=0.5, outside both windows, so the label is
+      // unambiguously the story left near 0 and the one landed on near 1 — it
+      // never changes cities while it is legible. `formatLocalTime` caches per
+      // zone for 30 s, so the Intl construction this gate used to hold back
+      // happens once a swipe at most, not once a frame.
       let dotLabel: GlobeState['dotLabel'] = null;
-      if (nearSettled) {
+      if (arcOpacity > 0) {
         const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
         if (dot && settledCountry) {
           const article = articlesRef.current[settledIndex];
@@ -3208,27 +3281,9 @@ export const MiniGlobe = memo(function MiniGlobe({
             const tz =
               CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
             if (tz) sub = formatLocalTime(tz) ?? undefined;
-            dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
+            dotLabel = { text: loc, sub, x: dot.x, y: dot.y, opacity: arcOpacity };
           }
         }
-      }
-
-      // Qibla + source arcs — paths projected every frame (cheap: ≤57 point
-      // projections), but rendered with a smoothstep opacity fade. The fade
-      // is load-bearing UX, not perf: arcs anchor to settledIndex, which
-      // flips at frac=0.5, so without the fade they'd visibly snap to a
-      // new origin mid-swipe. Fading to 0 across the central swipe band
-      // hides the jump. Skia skips 0-alpha draws on the GPU side, so the
-      // wasted projection cost is JS-thread only and small.
-      let arcOpacity: number;
-      if (frac < ARC_WINDOW) {
-        const t = frac / ARC_WINDOW; // 0→1 as we scroll away
-        arcOpacity = 1 - t * t * (3 - 2 * t); // smoothstep fade-out
-      } else if (frac > 1 - ARC_WINDOW) {
-        const t = (frac - (1 - ARC_WINDOW)) / ARC_WINDOW; // 0→1 as we approach
-        arcOpacity = t * t * (3 - 2 * t); // smoothstep fade-in
-      } else {
-        arcOpacity = 0;
       }
 
       const qiblaBuilder = qiblaPathRef.current;
@@ -4102,7 +4157,32 @@ export const MiniGlobe = memo(function MiniGlobe({
         // Great-circle interpolation — the globe rotates along the surface of
         // the sphere between story locations, like tracing a path on a
         // physical globe. The flights use the same path (`slerpLatLng`).
-        const point = slerpLatLng(loLat, loLng, hiLat, hiLng, frac);
+        //
+        // How far along it at `frac` is the curve's answer, not `frac` itself:
+        // the crossing covers most of its ground while it is furthest out, and
+        // that is what keeps the ground moving across the screen at one speed
+        // instead of rushing past at close range.
+        if (
+          deckCurveLo.value !== lo ||
+          deckCurveHi.value !== hi ||
+          deckCurveVer.value !== framingsVer.value
+        ) {
+          const framings = framingsSV.value;
+          const fromClip = framings[lo] ?? FRAMING_WIDEST;
+          const toClip = framings[hi] ?? fromClip;
+          deckCurve.value = flyCurve(fromClip, toClip, arcDegrees(loLat, loLng, hiLat, hiLng));
+          deckCurveLo.value = lo;
+          deckCurveHi.value = hi;
+          deckCurveVer.value = framingsVer.value;
+        }
+        const held = deckCurve.value;
+        const point = slerpLatLng(
+          loLat,
+          loLng,
+          hiLat,
+          hiLng,
+          held ? flyPosition(held, frac) : frac,
+        );
         lat = point[0];
         lng = point[1];
       } else if (loLat != null && loLng != null) {

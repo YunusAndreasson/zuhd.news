@@ -109,6 +109,9 @@ jest.mock('react-native-reanimated', () => {
       in: (fn) => fn,
       out: (fn) => fn,
       inOut: (fn) => fn,
+      // The real one returns a factory the timing animation calls; nothing
+      // under test reads the curve, only that a token has one.
+      bezier: () => ({ factory: () => (v) => v }),
     },
     SharedValue: {},
   };

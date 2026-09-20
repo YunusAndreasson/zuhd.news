@@ -5,8 +5,13 @@ import {
   dragDelta,
   FLIGHT_MAX_MS,
   FLIGHT_MIN_MS,
-  flightDuration,
   flingVelocity,
+  FLY_RHO,
+  flyCurve,
+  flyMs,
+  flyPeak,
+  flyPosition,
+  flySpanClip,
   invertOrthographic,
   MAX_CLIP,
   MAX_FLING_PX_S,
@@ -14,11 +19,11 @@ import {
   MIN_CLIP,
   pinchClip,
   projScaleFor,
+  projScaleFor as projScale,
   reachFor,
-  SWIPE_OUT_MAX,
-  SWIPE_OUT_TRAVEL,
   slerpLatLng,
-  swipeClip,
+  SPAN_PER_CLIP,
+  SWIPE_OUT_MAX,
   takeCamera,
   viewAngleFor,
 } from '../lib/globe-camera';
@@ -223,38 +228,146 @@ describe('viewAngleFor', () => {
   });
 });
 
-describe('swipeClip', () => {
-  const scale = (clip: number) => 1 / Math.sin((clip * Math.PI) / 180);
+describe('flyCurve', () => {
+  const rise = (from: number, to: number, travel: number) => flyPeak(flyCurve(from, to, travel));
 
   it('lands exactly on each framing', () => {
-    expect(swipeClip(25, 45, 0, 80)).toBeCloseTo(25, 6);
-    expect(swipeClip(25, 45, 1, 80)).toBeCloseTo(45, 6);
+    const c = flyCurve(25, 45, 80);
+    expect(flySpanClip(c, 0)).toBeCloseTo(25, 6);
+    expect(flySpanClip(c, 1)).toBeCloseTo(45, 6);
   });
 
   it('does not leave the ground between two stories in one place', () => {
-    const mid = swipeClip(25, 45, 0.5, 0);
+    const c = flyCurve(25, 45, 0);
+    const mid = flySpanClip(c, 0.5);
     expect(mid).toBeGreaterThan(25);
     expect(mid).toBeLessThan(45);
+    // Nowhere to travel, so the position never moves off the one place.
+    expect(flyPosition(c, 0.5)).toBe(0.5);
   });
 
-  it('rises over a long crossing, in proportion to the travel', () => {
-    const near = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL / 4);
-    const far = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL);
-    expect(near).toBeGreaterThan(30);
+  it('rises further the longer the crossing', () => {
+    const hop = rise(21, 21, 10);
+    const near = rise(21, 21, 25);
+    const far = rise(21, 21, 60);
+    expect(hop).toBeGreaterThan(1);
+    expect(near).toBeGreaterThan(hop);
     expect(far).toBeGreaterThan(near);
-    expect(scale(30) / scale(far)).toBeCloseTo(SWIPE_OUT_MAX, 6);
-    // Further than the whole rise earns nothing more.
-    expect(swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL * 2)).toBeCloseTo(far, 6);
   });
 
-  it('is flat at both ends, so the zoom does not jump when a swipe starts or lands', () => {
-    const start = swipeClip(30, 30, 0.02, SWIPE_OUT_TRAVEL);
-    const middle = swipeClip(30, 30, 0.5, SWIPE_OUT_TRAVEL);
-    expect(start - 30).toBeLessThan((middle - 30) * 0.01);
+  it('gives a mid-range hop a rise a reader can see', () => {
+    // The law this replaced was linear in travel to a 90° saturation, so a
+    // 40° crossing — most of them — rose 10% and read as no zoom at all.
+    expect(rise(21, 21, 40)).toBeGreaterThan(1.14);
+  });
+
+  it('holds the ceiling exactly once the uncapped path would pass it', () => {
+    for (const travel of [60, 90, 120, 180]) {
+      expect(rise(21, 21, travel)).toBeCloseTo(SWIPE_OUT_MAX, 6);
+      // Held by bending ρ down, never by clipping the top off the curve.
+      expect(flyCurve(21, 21, travel).rho).toBeLessThan(FLY_RHO);
+    }
+    // Under the ceiling the path is the paper's own.
+    expect(flyCurve(21, 21, 20).rho).toBe(FLY_RHO);
   });
 
   it('never zooms out past the whole planet', () => {
-    expect(swipeClip(70, 70, 0.5, 180)).toBe(MAX_CLIP);
+    expect(flySpanClip(flyCurve(80, 80, 180), 0.5)).toBe(MAX_CLIP);
+  });
+
+  it('covers the ground while it is furthest out', () => {
+    // The point of the curve: the middle half of a long crossing, where the
+    // camera is highest, carries more than half the distance — which is what
+    // holds the ground to one speed across the screen. A linear pass would
+    // carry exactly half.
+    const c = flyCurve(21, 21, 90);
+    const middle = flyPosition(c, 0.75) - flyPosition(c, 0.25);
+    expect(middle).toBeGreaterThan(0.5);
+  });
+
+  it('is monotone along the arc and exact at both ends', () => {
+    const c = flyCurve(18, 24, 70);
+    expect(flyPosition(c, 0)).toBeCloseTo(0, 9);
+    expect(flyPosition(c, 1)).toBeCloseTo(1, 9);
+    let last = -1;
+    for (let t = 0; t <= 1.0001; t += 0.05) {
+      const at = flyPosition(c, t);
+      expect(at).toBeGreaterThanOrEqual(last);
+      last = at;
+    }
+  });
+
+  // An independent transcription of van Wijk & Nuij (2003) — the formulation
+  // MapLibre's `flyTo` flies — so a typo in the port is a failing number
+  // rather than a globe that swings oddly and nobody reports.
+  it.each([
+    [21, 21, 20],
+    [18, 24, 40],
+    [24, 18, 55],
+    [19, 22, 8],
+  ])('matches the paper for %p° → %p° over %p°', (from, to, travelDeg) => {
+    const c = flyCurve(from, to, travelDeg);
+    const rho = c.rho;
+    const u1 = travelDeg / SPAN_PER_CLIP;
+    const r = (i: 0 | 1) => {
+      const b =
+        (to * to - from * from + (i ? -1 : 1) * rho ** 4 * u1 * u1) /
+        (2 * (i ? to : from) * rho * rho * u1);
+      return Math.log(Math.sqrt(b * b + 1) - b);
+    };
+    const r0 = r(0);
+    const S = (r(1) - r0) / rho;
+    expect(c.S).toBeCloseTo(S, 9);
+    for (const t of [0, 0.2, 0.5, 0.8, 1]) {
+      const s = t * S;
+      const w = (from * Math.cosh(r0)) / Math.cosh(r0 + rho * s);
+      const u =
+        (from * (Math.cosh(r0) * Math.tanh(r0 + rho * s) - Math.sinh(r0))) / (rho * rho) / u1;
+      expect(flySpanClip(c, t)).toBeCloseTo(w, 9);
+      expect(flyPosition(c, t)).toBeCloseTo(u, 9);
+    }
+  });
+
+  it('measures a journey in screenfuls of ground', () => {
+    // `SPAN_PER_CLIP` stands in for the exact span the projection shows, which
+    // is what `viewAngleFor` computes. Over the framings a story rests at, on
+    // the screens the app ships to, the approximation is within a few percent.
+    const screens: [number, number][] = [
+      [393, 852],
+      [360, 800],
+      [430, 932],
+    ];
+    for (const [width, height] of screens) {
+      const radius = Math.round(0.46 * Math.min(width, Math.round(0.34 * height)));
+      for (const clip of [18, 21, 24, 26]) {
+        const exact = 2 * viewAngleFor(projScale(clip, radius), width / 2);
+        expect(exact / clip).toBeCloseTo(SPAN_PER_CLIP, 0.6);
+      }
+    }
+  });
+});
+
+describe('flyMs', () => {
+  const ms = (travel: number) => flyMs(flyCurve(21, 21, travel));
+
+  it('runs from a brisk hop to a long crossing, and no further', () => {
+    expect(ms(0)).toBe(FLIGHT_MIN_MS);
+    expect(ms(180)).toBe(FLIGHT_MAX_MS);
+    expect(ms(400)).toBe(FLIGHT_MAX_MS);
+    let last = 0;
+    for (const deg of [0, 5, 20, 45, 90, 135, 180]) {
+      const each = ms(deg);
+      expect(each).toBeGreaterThanOrEqual(last);
+      last = each;
+    }
+  });
+
+  it('keeps the one pacing that was tuned by hand', () => {
+    // The square-root law it replaced gave a 90° crossing 839 ms; `FLY_SPEED`
+    // is set so the curve still does, and everything either side of it now
+    // follows from the same arithmetic as the rise.
+    expect(ms(90)).toBeGreaterThan(800);
+    expect(ms(90)).toBeLessThan(880);
   });
 });
 
@@ -290,20 +403,6 @@ describe('arcDegrees', () => {
   it.each(PLACES)('matches d3 geoDistance — %s', (_, lat0, lng0, lat1, lng1) => {
     const expected = (geoDistance([lng0, lat0], [lng1, lat1]) * 180) / Math.PI;
     expect(arcDegrees(lat0, lng0, lat1, lng1)).toBeCloseTo(expected, 6);
-  });
-});
-
-describe('flightDuration', () => {
-  it('runs from a brisk hop to a long crossing, and no further', () => {
-    expect(flightDuration(0)).toBe(FLIGHT_MIN_MS);
-    expect(flightDuration(180)).toBe(FLIGHT_MAX_MS);
-    expect(flightDuration(400)).toBe(FLIGHT_MAX_MS);
-    let last = 0;
-    for (const deg of [0, 5, 20, 45, 90, 135, 180]) {
-      const ms = flightDuration(deg);
-      expect(ms).toBeGreaterThanOrEqual(last);
-      last = ms;
-    }
   });
 });
 

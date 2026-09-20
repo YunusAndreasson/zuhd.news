@@ -94,6 +94,9 @@ interface GlobeGestureLayerProps {
   zoomAngle: SharedValue<number>;
   /** A camera flight's progress (`useCameraFlight`): a finger stops it. */
   flightT: SharedValue<number>;
+  /** Stop a flight *and* let go of the zoom it was holding
+   *  (`useCameraFlight.cancelFlight`). */
+  cancelFlight: () => void;
   /** The clip in effect at the last projection, in degrees. */
   clip: SharedValue<number>;
   /** The clip the story in front would take on its own. */
@@ -133,6 +136,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   zoomActive,
   zoomAngle,
   flightT,
+  cancelFlight,
   clip,
   storyClip,
   radius,
@@ -207,8 +211,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       maxPointers: 1,
       onBegin: () => {
         'worklet';
-        // A finger on the earth stops a glide or a flight, as it does on the web.
-        cancelAnimation(flightT);
+        // A finger on the earth stops a glide or a flight, as it does on the
+        // web. Stopping the flight's tween is not enough on its own: the zoom
+        // override is the flight's, and a touch at the top of a long crossing
+        // left the globe stranded at the height the curve had risen to until
+        // the next pinch or settle. `cancelFlight` eases it back down.
+        cancelFlight();
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
       },
@@ -253,8 +261,8 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       cameraLat,
       cameraLng,
       cameraOwner,
+      cancelFlight,
       clip,
-      flightT,
       radius,
       reduceMotion,
       turnable,

@@ -7,12 +7,15 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnUI } from 'react-native-worklets';
-import { EASING } from '../constants/theme';
+import { ANIMATION, EASING } from '../constants/theme';
 import {
   arcDegrees,
-  flightDuration,
+  type FlyCurve,
+  flyCurve,
+  flyMs,
+  flyPosition,
+  flySpanClip,
   slerpLatLng,
-  swipeClip,
   takeCamera,
 } from '../lib/globe-camera';
 import type { LatLng } from '../lib/now';
@@ -22,8 +25,8 @@ import type { LatLng } from '../lib/now';
  * an alert — the way a swipe sends it.
  *
  * A swipe between two stories turns the globe along the great circle between
- * them, rising in proportion to the distance and coming down close over the
- * next (`swipeClip`). A jump used to do neither: it tweened latitude and
+ * them, rising out of its way and coming down close over the next — van Wijk's
+ * path, `flyCurve`. A jump used to do neither: it tweened latitude and
  * longitude separately at the zoom it started with, so a story on the far
  * side of the planet whipped past at close range. And while a flight held the
  * camera the globe kept the *previous* story's framing and highlight — they
@@ -31,15 +34,16 @@ import type { LatLng } from '../lib/now';
  * story when the camera was handed back, or, after a jump, not until the
  * reader next swiped.
  *
- * A flight here is one progress value, `flightT`, eased 0 → 1 over a time set
- * by the distance (`flightDuration`). A reaction on the UI thread turns it into
+ * A flight here is one progress value, `flightT`, eased 0 → 1 over a time the
+ * crossing sets for itself (`flyMs`). A reaction on the UI thread turns it into
  * a point on the great circle and a clip through the zoom override the pinch
- * already uses — out, across and down, the swipe's shape. A flight to a story
- * lands on that story's own framing and, on the same frame, releases the
- * override and hands the camera back to the deck, which is then drawing
- * exactly what the flight ended on: nothing moves, and the highlight and the
- * place's label arrive with the landing. A flight to a place that is not a
- * story keeps the camera there and returns to the zoom it left at.
+ * already uses — out, across and down, the swipe's shape, because a swipe and
+ * a flight now read the same curve. A flight to a story lands on that story's
+ * own framing and, on the same frame, releases the override and hands the
+ * camera back to the deck, which is then drawing exactly what the flight ended
+ * on: nothing moves, and the highlight and the place's label arrive with the
+ * landing. A flight to a place that is not a story keeps the camera there and
+ * returns to the zoom it left at.
  *
  * Everything that reads the camera to start a flight runs on the UI thread
  * (`scheduleOnUI`): a JS read of a value the UI thread keeps changing blocks
@@ -51,9 +55,8 @@ interface FlightPlan {
   fromLng: number;
   toLat: number;
   toLng: number;
-  fromClip: number;
-  toClip: number;
-  travel: number;
+  /** The rise and the pacing, worked out once when the flight starts. */
+  curve: FlyCurve;
   /** A story's index to hand the camera back at, or -1 for a place. */
   story: number;
   /** A pinch zoom was in effect when a place flight began: keep it. */
@@ -87,6 +90,14 @@ export interface CameraFlight {
    * lands (`toStoryIfHeld`). Decided on the UI thread, where the camera is.
    */
   claimForDeck: () => void;
+  /**
+   * A worklet for a finger landing on the globe. Stopping `flightT` is not
+   * enough on its own: the zoom override is the flight's, and left where the
+   * curve had risen to it strands the globe zoomed out until the next pinch or
+   * settle. This eases it back to the framing underneath, as a pinch release
+   * does.
+   */
+  cancelFlight: () => void;
   /** Hold the camera where it is drawn, before the deck jumps under it. */
   hold: () => void;
   /** Fly to story `index`, land on its framing, and hand the camera back. */
@@ -140,15 +151,16 @@ export function useCameraFlight({
       const fromLat = cameraLat.value;
       const fromLng = cameraLng.value;
       const fromClip = clip.value;
-      const travel = arcDegrees(fromLat, fromLng, lat, lng);
+      // A story flight lands on the story's own framing; a gauge or an alert
+      // has none, so it comes back down to the zoom it left at.
+      const toClip = story >= 0 && framing > 0 ? framing : fromClip;
+      const curve = flyCurve(fromClip, toClip, arcDegrees(fromLat, fromLng, lat, lng));
       plan.value = {
         fromLat,
         fromLng,
         toLat: lat,
         toLng: lng,
-        fromClip,
-        toClip: story >= 0 && framing > 0 ? framing : fromClip,
-        travel,
+        curve,
         story,
         wasZoomed: zoomActive.value > 0.5,
       };
@@ -159,7 +171,7 @@ export function useCameraFlight({
       flightT.value = 0;
       // Reanimated snaps this to its end under Reduce Motion: the camera is
       // placed at once, and the landing below still runs.
-      flightT.value = withTiming(1, { duration: flightDuration(travel), easing: EASING.camera });
+      flightT.value = withTiming(1, { duration: flyMs(curve), easing: EASING.camera });
     },
     [
       cameraLat,
@@ -181,10 +193,13 @@ export function useCameraFlight({
       if (previous === null || t === previous) return;
       const p = plan.value;
       if (!p) return;
-      const point = slerpLatLng(p.fromLat, p.fromLng, p.toLat, p.toLng, t);
+      // `flyPosition`, not `t`: the path covers most of its ground while it is
+      // furthest out, which is what holds the ground to one speed on screen.
+      const at = flyPosition(p.curve, t);
+      const point = slerpLatLng(p.fromLat, p.fromLng, p.toLat, p.toLng, at);
       cameraLat.value = point[0];
       cameraLng.value = point[1];
-      zoomAngle.value = swipeClip(p.fromClip, p.toClip, t, p.travel);
+      zoomAngle.value = flySpanClip(p.curve, t);
       if (t < 1) return;
       plan.value = null;
       if (p.story >= 0) {
@@ -219,6 +234,22 @@ export function useCameraFlight({
     cameraOwner.value = 0;
   }, [cameraLat, cameraLng, cameraOwner, flightT, frontLat, frontLng, plan, zoomActive]);
 
+  const cancelFlight = useCallback(() => {
+    'worklet';
+    cancelAnimation(flightT);
+    const p = plan.value;
+    if (!p) return;
+    plan.value = null;
+    // A pinch's own zoom on a place flight is the reader's and stays; every
+    // other override belonged to the flight and goes back to the framing.
+    if (p.story >= 0 || !p.wasZoomed) {
+      zoomActive.value = withTiming(0, {
+        duration: ANIMATION.zoomRelease,
+        easing: EASING.camera,
+      });
+    }
+  }, [flightT, plan, zoomActive]);
+
   const setFront = useCallback(
     (coords: LatLng | null) => {
       frontLat.value = coords ? coords[0] : Number.NaN;
@@ -243,5 +274,14 @@ export function useCameraFlight({
     [startUI],
   );
 
-  return { flightT, setFront, claimForDeck, hold, toStory, toStoryIfHeld, toPlace };
+  return {
+    flightT,
+    setFront,
+    claimForDeck,
+    cancelFlight,
+    hold,
+    toStory,
+    toStoryIfHeld,
+    toPlace,
+  };
 }

@@ -66,6 +66,7 @@ function setup(progress = 0, collapseMode = false) {
     zoomActive: shared(0),
     zoomAngle: shared(90),
     flightT: shared(0),
+    cancelFlight: jest.fn(),
     clip: shared(90),
     storyClip: shared(90),
     radius: 150,
