@@ -1,11 +1,20 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
+import {
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { CONTROL_ROW } from '../../lib/deck-layout';
+import { hapticTick } from '../../lib/haptics';
 import type { StripItem } from '../../lib/now';
+import { nearestOffsetIndex, sameOffsets, stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
 
@@ -26,6 +35,19 @@ import { Icon, Pressable, Text } from '../primitives';
  *
  * Slots grow to fit the full label and percentage without wrapping. A partial
  * slot at the edge signals that the row continues.
+ *
+ * **A swipe lands on a slot, never between two.** The row is sized for 3.4
+ * slots across, so a clean boundary at both edges is impossible — four tenths
+ * of a slot always falls somewhere. It falls at the right, where the partial
+ * slot is the sign the row continues; the left edge is the one that is
+ * guaranteed, and every rest position is a slot's own left edge, exactly where
+ * the first slot sits at rest. The row used to stop wherever the finger left
+ * it, so a fling routinely settled with the leftmost label cut mid-word
+ * against the inset, which reads as broken rather than as a row with more in
+ * it. The landings are measured rather than a pitch, because a longer name
+ * widens its slot (`lib/strip-snap.ts`); the end of the row is the one landing
+ * that is not a slot start, since the last slots begin past the furthest the
+ * row can scroll and `all →` still has to be reachable.
  *
  * **Still no marquee.** The row moves when a finger moves it. A ticker moves
  * when nothing has happened, which is the engagement mechanic `foundation.md`
@@ -180,9 +202,77 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   const reduceMotion = useReducedMotion();
   const scrollRef = useRef<ScrollView>(null);
   const slotX = useRef(new Map<string, number>());
+  // A slot placing itself is not news, so the offsets live in a ref — but the
+  // recompute has to know they arrived. The row's own layout and its content's
+  // size are both events on views *above* the slots, so either can reach JS
+  // first and find nothing measured; this counts the slots that moved instead.
+  // React batches a whole layout pass into one render, so twenty-odd slots
+  // reporting together cost one.
+  const [placements, setPlacements] = useState(0);
   const handlePlaced = useCallback((id: string, x: number) => {
+    if (slotX.current.get(id) === x) return;
     slotX.current.set(id, x);
+    setPlacements((n) => n + 1);
   }, []);
+
+  // Where the row may come to rest. Each slot reports its own left edge as it
+  // lays out, into a ref, because a slot placing itself is not news; what turns
+  // those into reachable offsets is the content's width, and that arrives in
+  // the same layout pass, so it is what the recompute hangs on.
+  const [content, setContent] = useState(0);
+  const [offsets, setOffsets] = useState<number[]>([]);
+  const handleContentSize = useCallback((w: number) => {
+    const next = Math.round(w);
+    setContent((prev) => (prev === next ? prev : next));
+  }, []);
+  // The offset the row is resting on, and whether the row put itself there.
+  const settled = useRef(0);
+  const programmatic = useRef(false);
+  // The last geometry the row scrolled itself against. A ref, not the state
+  // above, so moving to a linked gauge does not have to re-run every time a
+  // slot re-measures.
+  const geometry = useRef<{ offsets: number[]; max: number }>({ offsets: [], max: 0 });
+  const lastViewport = useRef(viewport);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: placements is an explicit invalidation — the slots' offsets are read from a ref
+  useEffect(() => {
+    const starts: number[] = [];
+    for (const item of items) {
+      const x = slotX.current.get(item.id);
+      if (x !== undefined) starts.push(x);
+    }
+    const next = stripSnapOffsets(starts, content, viewport);
+    // A fresh array every layout would re-push the whole list to the native
+    // side for nothing.
+    setOffsets((prev) => (sameOffsets(prev, next) ? prev : next));
+    geometry.current = { offsets: next, max: Math.max(0, content - viewport) };
+    // A rotation or a change of type size moves every landing, and the row was
+    // resting on one of them. Put it back on the same slot rather than leaving
+    // it cut between two — the offsets are only fresh here.
+    if (lastViewport.current !== viewport) {
+      lastViewport.current = viewport;
+      const target = next[Math.min(settled.current, next.length - 1)] ?? 0;
+      settled.current = nearestOffsetIndex(next, target);
+      scrollRef.current?.scrollTo({ x: target, animated: false });
+    }
+  }, [items, content, viewport, placements]);
+
+  // A tick says the row moved on. A scroll the row made itself records where it
+  // landed and stays quiet: the press that caused it has already knocked once.
+  const handleSettle = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      // Cleared first: a row short enough to need no landings still ends the
+      // scroll it was sent on, and a flag left set would silence a real one.
+      const quiet = programmatic.current;
+      programmatic.current = false;
+      if (offsets.length === 0) return;
+      const index = nearestOffsetIndex(offsets, e.nativeEvent.contentOffset.x);
+      if (index === settled.current) return;
+      settled.current = index;
+      if (!quiet) hapticTick();
+    },
+    [offsets],
+  );
+
   // The first linked gauge, in the row's own order. A story tied to nothing
   // on the row leaves the row where the reader left it.
   const firstLinked = linkedIds?.size ? items.find((item) => linkedIds.has(item.id))?.id : null;
@@ -190,7 +280,16 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     if (!firstLinked) return;
     const x = slotX.current.get(firstLinked);
     if (x === undefined) return;
-    scrollRef.current?.scrollTo({ x: Math.max(0, x - SPACING.md), animated: !reduceMotion });
+    // The slot's own left edge, which is a landing — it used to stop one gap
+    // short of it, so a gauge brought into view sat 16pt in while the first
+    // slot at rest sat flush. One vocabulary of rest positions now.
+    const { offsets: known, max } = geometry.current;
+    const target = Math.max(0, max > 0 ? Math.min(Math.round(x), max) : Math.round(x));
+    settled.current = nearestOffsetIndex(known, target);
+    // Only an animated scroll ends in a momentum event there is a tick to keep
+    // quiet.
+    programmatic.current = !reduceMotion;
+    scrollRef.current?.scrollTo({ x: target, animated: !reduceMotion });
   }, [firstLinked, reduceMotion]);
 
   // Nothing to show is not a reason to draw an empty band over the globe. On
@@ -204,9 +303,17 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       horizontal
       showsHorizontalScrollIndicator={false}
       // A flung row that runs past its end and springs back is the row
-      // performing; it stops where the finger leaves it.
+      // performing; it stops at the end and never past it.
       bounces={false}
       overScrollMode="never"
+      // Where it stops in between: the nearest slot's own left edge. The
+      // deceleration rate is left at the platform's own — a flick should carry
+      // as far through a row of twenty-odd gauges as it does today, and only
+      // the landing is decided here. `pagingEnabled` would be wrong for the
+      // same reason: it pages by the viewport, which is 3.4 slots wide.
+      snapToOffsets={offsets.length > 0 ? offsets : undefined}
+      onContentSizeChange={handleContentSize}
+      onMomentumScrollEnd={handleSettle}
       onLayout={handleLayout}
       contentContainerStyle={styles.row}
       accessibilityLabel="Markets, straits and currencies, largest move over seven days first"

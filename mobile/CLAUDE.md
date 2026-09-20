@@ -131,6 +131,21 @@ whole time; nothing said so.
     began between two slots, or on the blank end of one, turned the earth and
     left the row where it was. Anything that scrolls over the globe needs the
     same.
+  - **A swipe lands on a slot, never between two** (`lib/strip-snap.ts`,
+    tested). The row rests with a whole slot flush at the left inset, exactly
+    where the first slot sits at rest, and it settles with a tick. It used to
+    stop wherever the finger left it, so a fling routinely rested with the
+    leftmost label cut mid-word — a row that looked broken rather than one
+    with more in it. At 3.4 slots across a clean boundary at *both* edges is
+    impossible, and the four tenths belong at the right, where the cut slot is
+    the sign the row continues. The landings are the slots' own measured left
+    edges (`snapToOffsets`, not `snapToInterval` — a longer name widens its
+    slot, so there is no pitch), collected from the `onLayout` each slot
+    already fires; the one landing that is not a slot start is the end of the
+    row, because the last slots begin past the furthest it can scroll and
+    `all →` still has to be reachable. The deceleration rate is left at the
+    platform's own: a flick should carry as far through twenty-odd gauges as
+    it did, and only the landing is decided.
   - Contracts (their subject is a question) and dates (no move) never take
   a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
   row continues. **A subject is one line and is never cut**: a strait prints
