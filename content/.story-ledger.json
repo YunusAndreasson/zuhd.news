@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "meloni-school-niqab-ban-foreign-pupil-cap",
+      "label": "Meloni Eyes More Stringent School Laws to Counter Far-Right Rise",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-meloni-school-niqab-ban-foreign-pupil-cap"
+      ],
+      "eventUri": "ita-947604",
+      "summary": "Italy's government would ban burqas and niqabs in schools and cap the share of foreign pupils per classroom — not to win an argument it is having, but to outflank the ultranationalist National Future party that is beating it in the polls. Lead with the mechanism: the restriction targets children, and the stated reason is electoral competition on the right, which makes Muslim families in Italy the instrument of a coalition-survival strategy rather than its subject. Note the sentiment split in the feed (0.47 divergence) — Bloomberg frames it as counter-far-right politics, MoneyControl, SCMP and TRT lead with the ban itself. Who is affected: roughly 900,000 foreign-origin students in Italian schools.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Italy",
+        "http://en.wikipedia.org/wiki/Giorgia_Meloni",
+        "http://en.wikipedia.org/wiki/Burqa",
+        "http://en.wikipedia.org/wiki/Niqāb",
+        "http://en.wikipedia.org/wiki/Brothers_of_Italy",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Italy",
+        "http://en.wikipedia.org/wiki/Hijab",
+        "http://en.wikipedia.org/wiki/Prime_minister"
+      ]
+    },
+    {
+      "id": "jenin-ganim-settlement-killing-hospital-detention",
+      "label": "Israeli forces kill Palestinian near Jenin in occupied West Bank",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-jenin-ganim-settlement-killing-hospital-detention"
+      ],
+      "eventUri": "eng-12026649",
+      "summary": "A Palestinian man was shot dead near the illegal settlement of Ganim, east of Jenin; an Israeli man was also killed in the West Bank the same day, and the army detained a Palestinian from a hospital afterwards. Count both deaths and name both men — the four sources here split cleanly on which death leads, and that split is itself the story. The mechanism to highlight: the army's account ('attempted vehicular attack') is the only account, because there is no independent investigation of West Bank shootings, and the hospital detention shows the response is collective rather than individual. Context: this continues the West Bank escalation arc running alongside the Gaza ceasefire.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/West_Bank",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Israeli_settlement",
+        "http://en.wikipedia.org/wiki/Ramallah",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Terrorism"
+      ]
+    },
+    {
+      "id": "aleema-khanum-arrest-pti-march-preventive-detention",
+      "label": "Police arrest ex-PM Imran Khan's sister in Pakistan's Lahore ahead of planned march",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-aleema-khanum-arrest-pti-march-preventive-detention"
+      ],
+      "eventUri": "eng-12026530",
+      "summary": "Aleema Khanum was arrested at her Lahore home days before PTI's planned march on Islamabad demanding Imran Khan's release. The surprising detail is the timing and the target: not an organiser or an MP but the jailed leader's sister, arrested pre-emptively at home. The mechanism to highlight is preventive detention as routine protest management in Punjab — the arrest is not for anything done, it is for a march not yet held. Pair with the opposition's TTAP all-parties conference effort: the state is answering a coalition-building attempt with family-level arrests.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Imran_Khan",
+        "http://en.wikipedia.org/wiki/Pakistan_Tehreek-e-Insaf",
+        "http://en.wikipedia.org/wiki/Lahore",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Punjab,_Pakistan",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Pakistan",
+        "http://en.wikipedia.org/wiki/Dawn_(newspaper)"
+      ]
+    },
+    {
+      "id": "khasadar-levies-polio-boycott-fata-merger",
+      "label": "Police, Levies and Khasadar personnel in merged districts announce boycott of polio campaign",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-khasadar-levies-polio-boycott-fata-merger"
+      ],
+      "eventUri": null,
+      "summary": "Levies and Khasadar personnel across Pakistan's merged tribal districts will boycott the polio drive starting 21 September over unfulfilled service-structure commitments — meaning the men who escort vaccinators are withdrawing, not the vaccinators. Lead with that inversion: Pakistan is one of two countries where wild poliovirus still circulates, and the campaign's binding constraint in Mohmand and neighbouring districts is not vaccine supply or refusal but an unresolved pay-and-status dispute left over from the 2018 FATA merger. The structural why: the merger folded tribal forces into KP's police without settling their terms, and eradication now depends on that unfinished administrative business.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-bangladesh-push-ins-repatriation-bypass",
+      "label": "How two elections reshaped the India–Bangladesh border",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-india-bangladesh-push-ins-repatriation-bypass"
+      ],
+      "eventUri": null,
+      "summary": "Since Bangladesh's 2024 transition, India has intensified 'push-ins' — thousands deported across the border outside the agreed verification and repatriation procedure, including people whose Bangladeshi nationality is disputed or denied. Lead with the procedural fact: a bilateral mechanism exists and is being bypassed, which is what separates a deportation from a disappearance. Who is affected: Bengali-speaking Muslims inside India, many with Indian documents, now stateless in practice. Connects directly to our Delhi SIR voter-notice coverage — the same documentary burden of proof, applied at the border instead of the electoral roll.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-retail-reservation-foreign-traders-enforcement",
+      "label": "CPPE raises concern over foreign traders' growing presence in Nigeria's retail sector",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-nigeria-retail-reservation-foreign-traders-enforcement"
+      ],
+      "eventUri": "eng-12027082",
+      "summary": "Auto spare-parts traders protested at the Lagos International Trade Fair Complex over Chinese nationals trading at retail, and the CPPE — a private-sector think tank, not a nativist group — backed the complaint. The mechanism to explain: Nigerian law reserves retail trade for citizens, but enforcement sits with immigration and trade registries that do not talk to each other, so the rule is real on paper and absent at the stall. The structural why: foreign firms arriving as importers move down the chain into distribution and then retail, capturing the margin Nigerian traders live on. Avoid the xenophobia frame — the story is regulatory capacity, not nationality.",
+      "conceptUris": []
+    },
+    {
+      "id": "el-nino-3c-anomaly-southern-africa-maize",
+      "label": "El Niño, a test of SA's food systems?",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-el-nino-3c-anomaly-southern-africa-maize"
+      ],
+      "eventUri": "eng-12024657",
+      "summary": "Central-eastern equatorial Pacific sea-surface anomalies hit +3.01°C as of 15 September — a very strong El Niño by WMO thresholds, arriving just before South Africa's summer planting window. Lead with the number and the calendar: the maize crop is decided in October–December, so the forecast is actionable now and the cost lands in 2027 food prices. The structural why: South Africa is the region's maize exporter, so a domestic shortfall transmits to Zimbabwe, Zambia, Malawi and Mozambique as import bills, not just to Johannesburg as inflation. Note who carries it — irrigated commercial farms hedge, smallholders do not.",
+      "conceptUris": []
+    },
+    {
+      "id": "gemini-licence-portfolio-winklevoss-voting-control",
+      "label": "Gemini's exchange business is shrinking. Its regulatory licenses may be the real prize",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-gemini-licence-portfolio-winklevoss-voting-control"
+      ],
+      "eventUri": null,
+      "summary": "Gemini is down roughly 80% from its IPO price while its trading volumes shrink — yet takeover interest persists, because the asset being valued is its licence portfolio, not its order book. Lead with that separation: in a post-CLARITY-Act environment where crypto rules are set by enforcement discretion rather than statute, a licence granted under the old regime is scarce and cannot be replicated by building a better exchange. The accountability angle: Cameron and Tyler Winklevoss hold 94.5% of voting power, so public shareholders who took the IPO loss have no say in whether a sale happens. Follows our CLARITY Act and SEC tokenised-stock coverage.",
+      "conceptUris": []
+    },
+    {
+      "id": "microgravity-periosteal-secretome-osteoporosis-rats",
+      "label": "Therapy using periosteal cells cultivated in microgravity or their secretome improves bone in osteoporotic rats: a proof-of-concept study",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-microgravity-periosteal-secretome-osteoporosis-rats"
+      ],
+      "eventUri": null,
+      "summary": "Periosteal cells grown in microgravity — or merely the fluid they secreted — rebuilt bone in osteoporotic rats. The surprise to lead with: the secretome worked, meaning the therapy may not require transplanting living cells at all, only the signalling molecules they produce. The structural why: microgravity culture removes the mechanical loading that normally constrains how these cells differentiate, and the resulting output differs from anything grown in a dish on Earth. Keep it proof-of-concept — rats, not people — and say plainly that the bottleneck is cost of orbital culture, which is why the cell-free secretome route matters.",
+      "conceptUris": []
+    },
+    {
+      "id": "4d-virtual-cell-digital-twin-drug-discovery",
+      "label": "Virtual cells built from 4D AI models and 'digital twins' could speed up drug discovery",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-4d-virtual-cell-digital-twin-drug-discovery"
+      ],
+      "eventUri": null,
+      "summary": "Mitochondria are drawn as bean-shaped blobs and are in fact a network that splits and fuses continuously — which is why static models of the cell fail, and why 4D (three dimensions plus time) AI models are the point here. Lead with the mismatch between the textbook picture and the moving reality. The mechanism: a digital twin lets a drug candidate be tested against a simulated cell before synthesis, moving the expensive failure earlier. Be precise about the limit — a twin is only as good as the imaging that trained it, and most such imaging is of a handful of well-funded cell lines, so the model inherits that narrowness.",
+      "conceptUris": []
+    },
+    {
+      "id": "entropy-aware-quantization-tinyml-edge-inference",
+      "label": "Joint entropy-aware quantization for energy-efficient TinyML human activity recognition on IoT edge devices",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-entropy-aware-quantization-tinyml-edge-inference"
+      ],
+      "eventUri": null,
+      "summary": "A quantization scheme that allocates bit-width by the information entropy of each layer, so an activity-recognition model runs on a battery-powered microcontroller instead of a phone or a server. Lead with what that buys: sensing that works without a data connection and without sending anything to a cloud — the privacy and the power saving are the same design decision. The structural why for our reader: the health and safety monitoring that gets deployed in low-infrastructure settings is exactly the kind that cannot assume connectivity, so edge efficiency is a deployment question, not a benchmark question. Accepted-manuscript stage; say so.",
+      "conceptUris": []
+    },
+    {
+      "id": "savit-nerf-geometric-consistency-heritage-reconstruction",
+      "label": "SAViT-NeRF: a novel framework for improving geometric consistency in ancient building 3D reconstruction",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-savit-nerf-geometric-consistency-heritage-reconstruction"
+      ],
+      "eventUri": null,
+      "summary": "Neural radiance fields reconstruct a building beautifully from photographs and get its geometry subtly wrong — walls that bow, arches that do not close — which is fatal if the output is meant to guide restoration. This framework adds structural attention to hold the geometry consistent. Lead with the stakes rather than the architecture: for heritage destroyed by war or neglect, photographs are often the only surviving record, so the accuracy of a reconstruction determines whether it is a document or a rendering. Name the use case plainly — Aleppo, Mosul, Gaza's mosques and churches all exist now mostly as image archives.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-poster-design-prompting-discipline",
+      "label": "AI-generated posters don't have to be horrible",
+      "firstSeen": "2026-09-20T17:03:42.760Z",
+      "lastCovered": "2026-09-20T17:03:42.760Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-20-ai-poster-design-prompting-discipline"
+      ],
+      "eventUri": null,
+      "summary": "1,729 points and 890 comments on a post arguing that the failure of AI-generated design is a failure of prompting discipline and editorial judgment, not of the models. Lead with the specific craft claim — what the author changed to get usable output — because that is the transferable part. The structural why: the visible flood of generated imagery is produced by people applying no constraint at all, so the observable quality of AI output is measuring user behaviour more than model capability. Keep it short and concrete; this is a tooling note, not a manifesto, and the number that justifies covering it is the attention it drew.",
+      "conceptUris": []
+    },
+    {
       "id": "moscow-mass-drone-attack-civilian-deaths-refineries",
       "label": "Mass Ukrainian drone attack on Moscow kills two, Russia says",
       "firstSeen": "2026-09-20T12:09:16.990Z",
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-moscow-mass-drone-attack-civilian-deaths-refineries"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-north-korea-two-ballistic-missiles-npt-precedent"
@@ -58,7 +293,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-delhi-sir-33-lakh-voter-notices-burden-of-proof"
@@ -83,7 +318,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-gaza-tent-schools-lost-cohort-unrwa"
@@ -108,7 +343,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ndlea-opioid-seizure-forged-police-id-checkpoints"
@@ -124,7 +359,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-adani-power-dhubri-thermal-coal-land-acquisition"
@@ -149,7 +384,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-sec-tokenized-stock-atomic-settlement-stablecoin"
@@ -165,7 +400,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-trex-enamel-clumped-isotope-endothermy"
@@ -181,7 +416,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-singapore-haze-sumatra-peat-fires-transboundary"
@@ -206,7 +441,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-teampcp-google-infiltration-supply-chain-registries"
@@ -222,7 +457,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-android-17-apis-withheld-from-aosp-forks"
@@ -238,7 +473,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-20-upf4ros2-planner-independent-task-planning-ros2"
@@ -254,7 +489,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-turkiye-saudi-defence-pact-military-support-offer"
@@ -279,7 +514,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-bachelet-withdraws-un-secretary-general-straw-poll"
@@ -304,7 +539,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-nscdc-officers-suspended-niger-custody-deaths"
@@ -329,7 +564,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-kinahan-uae-residence-visa-cancelled-sanctions-gap"
@@ -345,7 +580,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-iran-npt-withdrawal-bill-triple-urgency-majlis"
@@ -361,7 +596,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ukraine-air-defence-sale-interceptor-cost-asymmetry"
@@ -386,7 +621,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-tata-sons-forced-listing-rbi-upper-layer-nbfc"
@@ -411,7 +646,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-pakistan-finance-minister-prices-protest-rs120bn"
@@ -427,7 +662,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-vulcano-la-fossa-phreatic-hazard-rock-permeability"
@@ -443,7 +678,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-haryana-antivenom-473-snakebite-logistics"
@@ -459,7 +694,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-facial-recognition-bias-statistical-power-audit"
@@ -475,7 +710,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-passkeys-custodial-credential-portability-critique"
@@ -491,7 +726,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-marine-organic-drone-boats-breach-usv-demand"
@@ -507,7 +742,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-herzog-expunges-azaria-record-hebron-killing"
@@ -532,7 +767,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-iran-seven-conditions-qatar-channel-end-war"
@@ -557,7 +792,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-houthi-missile-riyadh-first-since-2022-truce"
@@ -582,7 +817,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-caribbean-boat-strike-four-killed-narco-terrorist-label"
@@ -607,7 +842,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-akwa-ibom-medical-city-compensation-displacement"
@@ -623,7 +858,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-hormuz-billion-barrels-escorted-permission-regime"
@@ -648,7 +883,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-india-lpg-subsidy-biometric-aadhaar-deadline"
@@ -673,7 +908,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-jamaat-islami-march-pakistan-petroleum-levy"
@@ -698,7 +933,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-trump-ai-force-czar-superintelligence-hoax"
@@ -723,7 +958,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ai-labs-antitrust-suit-slowdown-agreement"
@@ -748,7 +983,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-india-eos-05-isr-satellite-south-asia-revisit"
@@ -764,7 +999,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-fiji-hiv-national-emergency-injecting-drug-surge"
@@ -780,7 +1015,7 @@
       "lastCovered": "2026-09-20T04:06:24.383Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-gondwana-supermountains-antarctica-nutrient-pulse"
@@ -796,7 +1031,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-philippines-school-shooting-mindanao-loose-firearms"
@@ -821,7 +1056,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-ohchr-report-russian-forces-sexual-violence-ukraine"
@@ -846,7 +1081,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-rss-affiliates-attacks-christians-west-bengal"
@@ -862,7 +1097,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-trump-xi-state-visit-ai-busan-trade-agenda"
@@ -887,7 +1122,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-rba-rate-warning-unmodelled-fiscal-path-imported-inflation"
@@ -912,7 +1147,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-h1b-fee-renewed-applications-down-92-percent"
@@ -928,7 +1163,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-graham-act-secondary-tariffs-india-russian-crude"
@@ -944,7 +1179,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-gemini-autonomously-compromised-three-companies-safety-test"
@@ -969,7 +1204,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-ai-targeting-hearing-maven-lavender-civilian-harm"
@@ -985,7 +1220,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-anthropic-wet-lab-owning-the-biology-training-corpus"
@@ -1001,7 +1236,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-maldives-meets-un-ncd-target-digital-health-archipelago"
@@ -1017,7 +1252,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-korea-linear-rainband-detection-urban-flood-warning"
@@ -1033,7 +1268,7 @@
       "lastCovered": "2026-09-19T04:05:07.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-19-elias-2-24-b-youngest-known-planet-still-forming"
@@ -1049,7 +1284,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-18-cftc-crypto-rulemaking-clarity-act-stalled",
@@ -1066,7 +1301,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-trump-bans-cnn-msnow-politico-white-house"
@@ -1091,7 +1326,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-greenland-denmark-us-permanent-security-control"
@@ -1116,7 +1351,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-ceuta-police-clear-migrants-beaches"
@@ -1141,7 +1376,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-sudan-igad-return-juba-signatories-appointment-freeze"
@@ -1157,7 +1392,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-tiguerones-us-terrorist-designation-ecuador"
@@ -1173,7 +1408,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-togo-online-protest-civil-society-crackdown"
@@ -1189,7 +1424,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-newsom-ai-kill-switch-third-party-oversight"
@@ -1214,7 +1449,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-iran-war-cost-43-billion-pentagon-undercount"
@@ -1230,7 +1465,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-trump-pharma-medicaid-drug-discount-terms-missing"
@@ -1246,7 +1481,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-hallucinated-ai-intelligence-report-chinese-ship"
@@ -1262,7 +1497,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-faa-ai-air-traffic-advisory-rollout"
@@ -1278,7 +1513,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-south-korea-developmental-state-ai-model"
@@ -1294,7 +1529,7 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-north-korea-nuclear-tests-persistent-earthquakes"
@@ -1310,232 +1545,13 @@
       "lastCovered": "2026-09-18T22:04:33.000Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-18-cortical-cells-initiate-sleep"
       ],
       "eventUri": null,
       "summary": "Sleep research has long treated the cerebral cortex as a passive follower of signals from deeper brain regions. Work from Geoffrey Terral's group at Albert Einstein College of Medicine identifies cortical cells that appear to initiate sleep themselves. Lead with the inversion: the part of the brain assumed to be receiving the instruction may be issuing it. What the reader gains is a mechanism, not a headline — which cell types, what they do, and why a decades-old subcortical model persisted. Keep the claim proportionate to a single study.",
-      "conceptUris": []
-    },
-    {
-      "id": "eci-freezes-tmc-symbol-supreme-court-challenge",
-      "label": "Mamata Banerjee moves Supreme Court against EC decision to freeze TMC name, symbol",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-eci-freezes-tmc-symbol-supreme-court-challenge"
-      ],
-      "eventUri": "eng-12015091",
-      "summary": "India's Election Commission has frozen a sitting state party's name and its 'Flowers and Grass' symbol, and Mamata Banerjee is asking the Supreme Court to reverse it. Lead with the mechanism, not the personality: in a system where illiterate voters identify parties by symbol on the ballot, freezing a symbol is functionally disenfranchisement of that party's base — an administrative act with the force of a ban, taken by an appointed commission rather than a court. Tie in the same week's arrest of the Congress candidate for the Nandigram bypoll, Milan Pradhan, in a 2007 case tied to the anti-land-acquisition movement, which opposition leaders are calling political revenge; the two events belong to one story about who controls ballot access in West Bengal before the bypoll. Who is affected: voters in West Bengal. Who holds power: the ECI and the courts reviewing it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Trinamool_Congress",
-        "http://en.wikipedia.org/wiki/Mamata_Banerjee",
-        "http://en.wikipedia.org/wiki/West_Bengal",
-        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
-        "http://en.wikipedia.org/wiki/Nandigram",
-        "http://en.wikipedia.org/wiki/Rejinagar_Assembly_constituency",
-        "http://en.wikipedia.org/wiki/Arup_Roy",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party"
-      ]
-    },
-    {
-      "id": "canada-eu-associate-membership-walked-back",
-      "label": "Canada plays down EU 'associate member' label",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-canada-eu-associate-membership-walked-back"
-      ],
-      "eventUri": "eng-12016654",
-      "summary": "Ottawa's own ambassador to Brussels is deflating the 'first EU associate member' framing that Carney and von der Leyen floated in Strasbourg — the surprising detail is that the party being courted is the one applying the brakes. The structural why: US tariffs are pushing middle powers to look for a second anchor, but the EU has no legal category called associate membership, so what is actually on offer is a bundle of sectoral agreements (defence procurement, critical minerals, standards alignment) dressed in constitutional language. Note the source spread — FT, RT and Al Jazeera cover this as three different stories, with RT reading it as NATO-adjacent bloc expansion. For our reader the lesson is how trade realignment gets announced before it exists.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Canada",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Mark_Carney",
-        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
-        "http://en.wikipedia.org/wiki/Tariff",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "north-sinai-parents-detained-school-reconstruction",
-      "label": "Sheikh Zuwayed parents detained after protesting for right to education as school reconstruction stalls in North Sinai",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-north-sinai-parents-detained-school-reconstruction"
-      ],
-      "eventUri": null,
-      "summary": "Four people are in remand in North Sinai — not for the protest alone, but including people who shared footage of it online. Parents in the Nakhlat settlement of Sheikh Zuwayed demonstrated because the local school, destroyed during Egypt's counter-insurgency campaign, has still not been rebuilt; the education administration responded by filing a police report against them. Lead with that inversion: the state body responsible for the school reported the parents to the police. The structural why — North Sinai's reconstruction has been promised since the campaign wound down, and the accountability gap is that the residents who document the delay are the ones who face charges. Source is Sinai Foundation for Human Rights via Mada Masr; this is reporting that exists nowhere else in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-repatriates-chinese-rosewood-smuggling-suspect",
-      "label": "Police repatriate Chinese fugitive wanted over African rosewood smuggling",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-nigeria-repatriates-chinese-rosewood-smuggling-suspect"
-      ],
-      "eventUri": "eng-12020219",
-      "summary": "Nigeria arrested Zhang Shijie in Ogun State and handed him to Chinese authorities over roughly 1,400 tonnes of endangered African rosewood. Lead with the tonnage and with the direction of enforcement: the warrant came from a Chinese court, and Nigeria executed it — the timber was cut in West Africa, but the prosecution belongs to the buyer's jurisdiction. That is the mechanism to explain. African rosewood (kosso) is CITES-listed and Nigeria has repeatedly been the largest supplier into the Chinese hongmu furniture market; the state that loses the forest is acting here as an arresting agent for the state that consumes it, not as a plaintiff for its own loss. Who bears the cost: Nigerian forest communities. Who holds power: the demand-side market.",
-      "conceptUris": []
-    },
-    {
-      "id": "haruko-breach-crypto-middleware-api-keys",
-      "label": "Haruko hack hits 15 crypto clients, with exchange API details, trading data and funds stolen",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-haruko-breach-crypto-middleware-api-keys"
-      ],
-      "eventUri": null,
-      "summary": "Fifteen institutional crypto clients were hit at once because they all sit behind one vendor. Haruko is middleware — it holds the exchange API keys through which hedge funds trade — so compromising the provider's server-side secrets gave attackers working credentials on every venue those funds use, without ever breaching an exchange. Lead with that: the funds' own security was irrelevant. The structural point for a reader who follows this space is that institutional crypto has quietly rebuilt the single-point-of-failure it was designed to remove, and it now sits in the key-management layer rather than in a custodian. Haruko says it patched the flaw and rotated secrets; some smaller clients still lost assets.",
-      "conceptUris": []
-    },
-    {
-      "id": "hca-sues-blue-cross-prior-authorization-denials",
-      "label": "In a fight over denied claims, HCA sues out-of-state Blue Cross Blue Shield plan",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-hca-sues-blue-cross-prior-authorization-denials"
-      ],
-      "eventUri": null,
-      "summary": "The largest for-profit hospital chain in the US is suing an insurer over denied claims and prior authorization — two powerful actors fighting over money, with patients as the accounting unit. The angle that teaches: prior authorization is normally invisible because the patient absorbs the denial, and a lawsuit is what makes the denial rate discoverable. HCA is suing Independence Blue Cross, a plan based in another state, which is the surprising structural detail — Blue Cross plans pay out-of-area claims through the BlueCard system, so the entity denying care is one the patient never chose and the hospital cannot negotiate with. Neither party here is the aggrieved one; the disclosure is the story.",
-      "conceptUris": []
-    },
-    {
-      "id": "hacktron-claude-openai-internal-breach",
-      "label": "Researchers used Claude to breach OpenAI's internal systems",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-hacktron-claude-openai-internal-breach"
-      ],
-      "eventUri": "eng-12021407",
-      "summary": "Security firm Hacktron says it used Anthropic's latest model to find and exploit a flaw in OpenAI's internal systems — one AI lab's product breaking into another's infrastructure. Lead with the capability, not the rivalry: the finding is that an off-the-shelf commercial model, with no specialised tooling, carried a full chain from vulnerability discovery to exploitation. That collapses the cost asymmetry defenders have relied on, where finding a bug required scarce expert time and patching required only ordinary engineering. Our reader is a developer: the practical question is what an attacker who rents the same model for a few dollars an hour can now do to their codebase, and whether either lab's usage policy is a meaningful control. Note both firms' responses if available.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/Software",
-        "http://en.wikipedia.org/wiki/GitHub",
-        "http://en.wikipedia.org/wiki/Hacker",
-        "http://en.wikipedia.org/wiki/ChatGPT"
-      ]
-    },
-    {
-      "id": "microsoft-filings-ai-scraping-theft-of-labor",
-      "label": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-microsoft-filings-ai-scraping-theft-of-labor"
-      ],
-      "eventUri": null,
-      "summary": "Newly unredacted court filings show a Microsoft executive describing AI training-data scraping in exactly the terms the companies dispute in public. Lead with the document, not the quote's rhetoric: the value here is evidentiary — it is internal knowledge, in writing, that the practice was understood inside the firm as uncompensated appropriation, which is the element plaintiffs in the training-data cases have had the hardest time proving. The structural why: fair-use arguments turn partly on good faith, and unredacted discovery is how a public-relations position gets tested against what the company told itself. Who is affected: every writer, artist and coder whose work sits in the corpora. Flag that this is one executive's framing inside litigation, not a company admission.",
-      "conceptUris": []
-    },
-    {
-      "id": "north-korean-it-worker-networks-host-state-action",
-      "label": "Nations take action on North Korean IT workers after UN report",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-north-korean-it-worker-networks-host-state-action"
-      ],
-      "eventUri": null,
-      "summary": "Vietnam, Laos, Pakistan and Argentina took concrete steps against North Korean IT-worker networks operating from their territory, following an October UN study — the surprising detail is which four countries acted, none of them the sanctioning powers. Lead there. The mechanism worth explaining: DPRK revenue does not come from hacking alone but from thousands of contractors holding ordinary remote software jobs under stolen or rented identities, which means enforcement depends on the host country's labour and immigration apparatus, not on financial sanctions. Who holds power here: the mid-sized states that host the front companies. For a reader in Pakistan or Indonesia, this is about who is actually on the other end of a remote-dev contract.",
-      "conceptUris": []
-    },
-    {
-      "id": "haiti-fruit-trees-charcoal-deforestation",
-      "label": "Abandoned Haitians turn fruit trees into charcoal in wake of hurricane and violence",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-haiti-fruit-trees-charcoal-deforestation"
-      ],
-      "eventUri": null,
-      "summary": "Haitians are cutting down their own fruit trees to burn for charcoal — the detail that carries the whole story, because a mango or avocado tree is a household's recurring income and burning it converts years of food into one week of fuel. Lead with that trade and the arithmetic behind it. The structural why: with armed groups controlling large parts of the country and the state absent after the hurricane, there is no fuel distribution, no crop insurance and no reconstruction, so deforestation is not a choice about the environment but the last liquid asset a family holds. Ties directly into Haiti's long soil-erosion and flood-vulnerability cycle — each storm removes the cover that would have blunted the next one. Latin America and the Caribbean have been almost absent from our coverage; this is the region's story, reported from the ground.",
-      "conceptUris": []
-    },
-    {
-      "id": "hemp-hurd-cellulose-biodegradable-plastics",
-      "label": "Hemp waste cellulose unlocks tougher biodegradable plastics",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-hemp-hurd-cellulose-biodegradable-plastics"
-      ],
-      "eventUri": null,
-      "summary": "Korean researchers strengthened biodegradable plastic using hemp hurd — the woody core left over after fibre extraction, normally burned or dumped. Lead with the constraint this addresses: biodegradable plastics have failed commercially on mechanical strength, not on chemistry, so a cheap reinforcing filler is the bottleneck being removed. The reason it matters beyond the lab is the team's claim that the method transfers to soybean stalks and rice straw, which are produced in enormous volume across South and Southeast Asia and are currently burned in the field — a major seasonal air-pollution source from Punjab to the Mekong. The mechanism to explain for the reader: how cellulose fibres carry load inside a polymer matrix, and what 'biodegradable' actually requires in terms of disposal conditions.",
-      "conceptUris": []
-    },
-    {
-      "id": "graph-sandwich-conjecture-proved",
-      "label": "Mathematicians Build Long-Awaited Graph Sandwich",
-      "firstSeen": "2026-09-18T17:08:21.495Z",
-      "lastCovered": "2026-09-18T17:08:21.495Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-18-graph-sandwich-conjecture-proved"
-      ],
-      "eventUri": null,
-      "summary": "A decades-old conjecture in graph theory has been proved, giving researchers a new way to decompose complex networks. Lead with what the result lets you do rather than with the abstraction: the 'sandwich' is a way of trapping an arbitrary graph between two well-understood structures, so properties provable for the simple bounds transfer to the messy object in between. For our reader the payoff is where graphs are the model — routing, supply chains, epidemic spread, and the sparse-attention structures underlying large models. Be honest about the gap between a proof and an algorithm: this is an existence result, and the writer should say plainly whether it is constructive.",
       "conceptUris": []
     }
   ]
