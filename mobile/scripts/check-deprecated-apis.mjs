@@ -58,6 +58,38 @@ function isDeprecatedUse(node) {
   return hasDeprecatedSignature;
 }
 
+// A JSX attribute or an option-object key resolves, through
+// `getSymbolAtLocation`, to the *local* attribute or property it declares — not
+// to the prop or option it fills — so a deprecated prop (`<Canvas onLayout>`)
+// or config key (`interruptionModeAndroid`) passed the check above in silence.
+// Those are looked up on the type the value is being written into instead.
+function deprecatedMemberOf(type, name) {
+  if (!type) return null;
+  const parts = type.isUnion() ? type.types : [type];
+  for (const part of parts) {
+    const property = checker.getPropertyOfType(checker.getApparentType(part), name);
+    const deprecated = property ? deprecatedTag(property) : null;
+    if (deprecated) return deprecated;
+  }
+  return null;
+}
+
+function writtenMember(node) {
+  if (ts.isJsxAttribute(node) && ts.isIdentifier(node.name)) {
+    return { nameNode: node.name, type: checker.getContextualType(node.parent) };
+  }
+  const isMember =
+    (ts.isPropertyAssignment(node) ||
+      ts.isShorthandPropertyAssignment(node) ||
+      ts.isMethodDeclaration(node)) &&
+    ts.isObjectLiteralExpression(node.parent) &&
+    (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name));
+  if (isMember) {
+    return { nameNode: node.name, type: checker.getContextualType(node.parent) };
+  }
+  return null;
+}
+
 for (const sourceFile of program.getSourceFiles()) {
   if (
     sourceFile.isDeclarationFile ||
@@ -66,24 +98,31 @@ for (const sourceFile of program.getSourceFiles()) {
     continue;
   }
 
+  const record = (node, deprecated) => {
+    const start = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
+    const relative = path.relative(projectRoot, sourceFile.fileName);
+    const key = `${relative}:${start.line + 1}:${start.character + 1}:${deprecated.symbol}`;
+    findings.set(key, {
+      file: relative,
+      line: start.line + 1,
+      column: start.character + 1,
+      ...deprecated,
+    });
+  };
+
   const visit = (node) => {
+    const member = writtenMember(node);
+    if (member) {
+      const deprecated = deprecatedMemberOf(member.type, member.nameNode.text);
+      if (deprecated) record(member.nameNode, deprecated);
+    }
     // Checking only identifier references avoids reporting an entire property
     // access twice while still resolving imported functions, members, types,
     // and enum values through TypeScript's real module graph.
     if (ts.isIdentifier(node)) {
       const symbol = checker.getSymbolAtLocation(node);
       const deprecated = symbol ? deprecatedTag(symbol) : null;
-      if (deprecated && isDeprecatedUse(node)) {
-        const start = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
-        const relative = path.relative(projectRoot, sourceFile.fileName);
-        const key = `${relative}:${start.line + 1}:${start.character + 1}:${deprecated.symbol}`;
-        findings.set(key, {
-          file: relative,
-          line: start.line + 1,
-          column: start.character + 1,
-          ...deprecated,
-        });
-      }
+      if (deprecated && isDeprecatedUse(node)) record(node, deprecated);
     }
     ts.forEachChild(node, visit);
   };

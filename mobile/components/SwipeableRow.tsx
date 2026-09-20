@@ -15,7 +15,7 @@ import Animated, {
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
+import { hapticTick } from '../lib/haptics';
 import { Text } from './primitives';
 
 const ACTION_WIDTH = 72;
@@ -38,14 +38,17 @@ export const SwipeableRow = memo(function SwipeableRow({
   const ratchetStartFired = useSharedValue(false);
   const ratchetThresholdFired = useSharedValue(false);
 
+  // No haptic of its own: the action is a committed change of state, and
+  // its owner gives the notification for that (a second buzz here read as a
+  // double knock).
   const fireAction = useCallback(() => {
-    hapticImpact();
     onSwipeAction();
   }, [onSwipeAction]);
 
   const panConfig = useMemo<PanGestureConfig>(
     () => ({
-      activeOffsetX: [-12, 999],
+      // Leftward only: a single negative value sets the start bound alone.
+      activeOffsetX: -12,
       failOffsetY: [-10, 10],
       onActivate: () => {
         'worklet';
@@ -71,14 +74,16 @@ export const SwipeableRow = memo(function SwipeableRow({
           ratchetThresholdFired.value = false;
         }
       },
-      onDeactivate: () => {
+      onDeactivate: (e) => {
         'worklet';
         // Latch the released offset before starting the spring: once
         // `withSpring` is assigned, reading `.value` yields the in-flight
         // animated value, not where the finger let go.
         const released = translateX.value;
         translateX.value = withSpring(0, ANIMATION.spring);
-        if (released < SWIPE_THRESHOLD) {
+        // A cancelled swipe (a sheet dragged away, a system gesture) also
+        // deactivates, and must only spring back — it deleted the row once.
+        if (!e.canceled && released < SWIPE_THRESHOLD) {
           scheduleOnRN(fireAction);
         }
       },

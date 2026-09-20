@@ -22,18 +22,20 @@ export interface SheetHandleAction {
 
 export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: SheetHandleProps) {
   const { colors, typography } = useTheme();
-  const a11yLabel = typeof title === 'string' ? `${title} sheet` : 'Sheet handle';
   // Tighten line-height to match glyph height so flex center + absolute center
   // align against the same reference (no 1–2px optical drift from line-leading).
   const tightTitle = { lineHeight: typography.sizeBase };
+  // The title is the sheet's heading, and nothing else here is an element of
+  // its own. The row used to claim `adjustable` with no actions — a control
+  // that promised to move and could not — and the indicator is a picture of a
+  // drag the platform's own dismiss gesture already provides.
   return (
-    <View
-      style={styles.container}
-      accessibilityRole="adjustable"
-      accessibilityLabel={a11yLabel}
-      accessibilityHint="Swipe down to dismiss"
-    >
-      <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
+    <View style={styles.container}>
+      <View
+        style={[styles.indicator, { backgroundColor: colors.rule }]}
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+      />
       {(title || onBack || action) && (
         <View style={styles.titleRow}>
           {onBack && (
@@ -47,8 +49,17 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
             </IconButton>
           )}
           {typeof title === 'string' ? (
-            <Text variant="label" style={tightTitle}>
-              {title}
+            // Lowercase on screen, as it was written in the spoken label: small
+            // caps draw a capital at full height, so a title that arrives in
+            // data case — a GDACS event name, "Attack on civilians" — read as a
+            // different tier from every lowercase title beside it.
+            <Text
+              variant="label"
+              style={tightTitle}
+              accessibilityRole="header"
+              accessibilityLabel={title}
+            >
+              {title.toLocaleLowerCase()}
             </Text>
           ) : (
             title

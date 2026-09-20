@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import Animated, {
+  Easing,
   FadeInDown,
   FadeOut,
   LinearTransition,
@@ -17,7 +18,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, OPACITY, RADIUS, SPACING, withAlpha } from '../constants/theme';
+import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
 import { Icon, IconButton, Text } from './primitives';
@@ -51,6 +52,10 @@ interface BriefingBarProps {
   onToggle: () => void;
   onSeek: (seconds: number) => void;
   onDismiss: () => void;
+  /** Sits on whatever is pinned under it (the dock), which then carries the
+   *  safe-area inset. Absent, the bar sits on the screen's edge itself. */
+  bottomOffset?: number;
+  onHeightChange?: (height: number) => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
@@ -61,6 +66,8 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
   onDismiss,
+  bottomOffset,
+  onHeightChange,
 }: BriefingBarProps) {
   const { colors } = useTheme();
   const preparing = state === 'preparing';
@@ -79,8 +86,10 @@ export const BriefingBar = memo(function BriefingBar({
     if (reduceMotion) {
       progressSV.value = progress;
     } else {
-      // Slow fill for smooth playback tracking (matches the elapsed-update cadence)
-      progressSV.value = withTiming(progress, { duration: ANIMATION.long });
+      // Slow fill for smooth playback tracking (matches the elapsed-update
+      // cadence). Linear: an eased tween restarted on every status tick
+      // accelerates and brakes once a second, so the fill pulsed.
+      progressSV.value = withTiming(progress, { duration: ANIMATION.long, easing: Easing.linear });
     }
   }, [progress, reduceMotion, progressSV]);
 
@@ -115,6 +124,13 @@ export const BriefingBar = memo(function BriefingBar({
     [duration, elapsed, onSeek],
   );
 
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => onHeightChange?.(Math.ceil(e.nativeEvent.layout.height)),
+    [onHeightChange],
+  );
+  // Gone is zero: a card leaving room for a bar that has closed is a gap.
+  useEffect(() => () => onHeightChange?.(0), [onHeightChange]);
+
   const dateLabel = useMemo(() => {
     try {
       return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
@@ -128,15 +144,21 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={FadeInDown.duration(ANIMATION.normal).withInitialValues({
-        transform: [{ translateY: 12 }],
-      })}
+      entering={FadeInDown.duration(ANIMATION.normal)
+        .easing(EASING.out)
+        .withInitialValues({ translateY: SPACING.md })}
       exiting={FadeOut.duration(ANIMATION.fast)}
       layout={LinearTransition.duration(ANIMATION.normal)}
-      style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
+      style={[
+        styles.wrapper,
+        bottomOffset === undefined
+          ? { paddingBottom: Math.max(insets.bottom, SPACING.sm) }
+          : { bottom: bottomOffset, paddingBottom: SPACING.sm },
+      ]}
+      onLayout={handleLayout}
       pointerEvents="box-none"
     >
-      <BarBackground tintColor={colors.pillBg}>
+      <BarBackground tintColor={colors.playerBg}>
         {/* Tooltip lives outside the clipping inner so it can float ABOVE
             the bar without being chopped by the inner's overflow:hidden. */}
         <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} />
@@ -180,8 +202,11 @@ export const BriefingBar = memo(function BriefingBar({
                 accessibilityLabel="Preparing briefing"
               />
             ) : (
+              // `haptic="none"`: the player's `toggle` gives the one impact,
+              // for this button and for the dock's ▶ alike.
               <IconButton
                 onPress={onToggle}
+                haptic="none"
                 accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
               >
                 <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
@@ -193,6 +218,7 @@ export const BriefingBar = memo(function BriefingBar({
                 size step down made the X read meaningfully smaller. */}
             <IconButton
               onPress={onDismiss}
+              haptic="none"
               accessibilityLabel={preparing ? 'Cancel briefing loading' : 'Hide briefing player'}
             >
               <Icon name="close-sharp" tone="secondary" size="lg" />
@@ -204,16 +230,23 @@ export const BriefingBar = memo(function BriefingBar({
             fraction={progressSV}
             interactive={!preparing}
             height={PROGRESS_HEIGHT}
-            trackColor={withAlpha(colors.textEmphasis, OPACITY.soft)}
+            // The dock's recipe: one scrubber, one track, wherever it is.
+            trackColor={colors.rule}
             fillColor={colors.textSecondary}
             thumbColor={colors.textEmphasis}
             style={styles.progressTouch}
             accessibilityRole={preparing ? 'progressbar' : 'adjustable'}
-            accessibilityLabel={
-              preparing
-                ? `Preparing briefing, ${formatTime(duration)} total`
-                : `Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`
-            }
+            // The position is the value, not part of the name, so VoiceOver
+            // reads the new one after each adjustment.
+            accessibilityLabel={preparing ? 'Preparing briefing' : 'Briefing progress'}
+            accessibilityValue={{
+              min: 0,
+              max: Math.max(0, Math.round(duration)),
+              now: Math.min(Math.round(elapsed), Math.max(0, Math.round(duration))),
+              text: preparing
+                ? `${formatTime(duration)} total`
+                : `${formatTime(elapsed)} of ${formatTime(duration)}`,
+            }}
             accessibilityActions={preparing ? undefined : SEEK_ACTIONS}
             onAccessibilityAction={preparing ? undefined : handleSeekAction}
           />
@@ -224,8 +257,10 @@ export const BriefingBar = memo(function BriefingBar({
 });
 
 /** iOS uses a frosted-glass background so the chrome floats over the article
- *  reader; Android falls back to a solid `pillBg` fill because Android's
- *  BlurView implementation is uneven across vendors. Both wrap the bar's
+ *  reader; Android falls back to a solid `playerBg` fill because Android's
+ *  BlurView implementation is uneven across vendors. Solid, not `pillBg`:
+ *  the bar rests on the story card, and through `pillBg`'s 12% the card's
+ *  lines showed behind `briefing · Sep 19`. Both wrap the bar's
  *  rounded-rect with the same border radius and clip overflow so the inner
  *  edge-to-edge progress strip follows the corner curve. */
 const BarBackground = memo(function BarBackground({

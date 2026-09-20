@@ -6,6 +6,7 @@ import type { SwipeCard } from '../lib/cards/rank';
 import { gaugeMove } from '../lib/cards/week-move';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
+import { EmptyState } from './EmptyState';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -123,6 +124,10 @@ export const InstrumentsSheet = memo(function InstrumentsSheet({
   return (
     <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="instruments">
       <SheetScrollView bottomInset={bottomInset}>
+        {/* A titled sheet with nothing under it read as broken: say why. */}
+        {cards.length === 0 ? (
+          <EmptyState message="nothing to show yet" hint="Markets and straits load with the news" />
+        ) : null}
         {cards.map((card) => (
           <Row key={card.id} card={card} onPress={onSelect} />
         ))}

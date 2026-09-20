@@ -19,7 +19,7 @@ export interface MarkdownProps {
   selectable?: boolean;
   /** Custom link handler — typically used to intercept the `country:XX`
    *  scheme and dispatch through CountrySheet rather than the OS
-   *  browser (see ArticlePage). Defaults to `useOpenLink()`, which
+   *  browser (see `StoryCard`). Defaults to `useOpenLink()`, which
    *  routes everything through `Linking.openURL`. */
   openLink?: LinkOpener;
   style?: TextStyle;
@@ -32,7 +32,7 @@ export interface MarkdownProps {
  *  contain markdown — server-composed fields like `entry.body`,
  *  `alert.narrative`, and similar LLM-emitted prose. The naked-Text
  *  shape was the bug class behind the asterisk leak fixed 2026-05-03
- *  in ContextSheet + DisasterSheet; using this primitive makes the
+ *  in DisasterSheet (and a context sheet since deleted); using this primitive makes the
  *  same mistake structurally hard to commit. */
 export const Markdown = memo(function Markdown({
   children,

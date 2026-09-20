@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../../constants/theme';
-import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../primitives';
 
 interface CardShellProps {
@@ -9,8 +8,6 @@ interface CardShellProps {
   eyebrow: string;
   /** Big headline number — "+0.9°C", "67%", "$1,478". */
   headline: string;
-  /** Tone for the headline. Defaults to emphasis. */
-  headlineTone?: 'emphasis' | 'dome' | 'unfavorable' | 'favorable';
   /** One-line interpretation under the headline (caption tone). */
   subtitle: string;
   /** Footer note — source attribution, baseline period, etc. Rendered very small
@@ -20,22 +17,14 @@ interface CardShellProps {
   children?: ReactNode;
 }
 
-export function CardShell({
-  eyebrow,
-  headline,
-  headlineTone = 'emphasis',
-  subtitle,
-  source,
-  children,
-}: CardShellProps) {
-  const { colors } = useTheme();
+export function CardShell({ eyebrow, headline, subtitle, source, children }: CardShellProps) {
   return (
     // Card padding mirrors the metric-row horizontal inset
     // (SPACING.screenPadding) so the eyebrow / headline / chart x-edges align
     // perfectly with the labels and values in the table beneath. The card
     // surface itself is borderless — proximity within does the grouping work,
     // and the carousel's bottom hairline bridges into the metric list below.
-    <View style={[styles.card, { borderColor: colors.rule }]}>
+    <View style={styles.card}>
       <Text variant="labelXs" tone="secondary" numberOfLines={1}>
         {eyebrow}
       </Text>
@@ -44,13 +33,14 @@ export function CardShell({
        *  focal point, but not so large it competes with the page title.
        *  Display (28pt) was a dashboard treatment; this reads as a single
        *  reading column. */}
-      <Text variant="title" tone={headlineTone} numberOfLines={1} style={styles.headline}>
+      <Text variant="title" tone="emphasis" numberOfLines={1} style={styles.headline}>
         {headline}
       </Text>
       <Text variant="caption" numberOfLines={2} style={styles.subtitle}>
         {subtitle}
       </Text>
-      <View style={styles.chartSlot}>{children}</View>
+      {/* The chart breathes between the subtitle and the source line. */}
+      <View>{children}</View>
       {/* Spacer absorbs any leftover vertical room so the source line
        *  stays glued to the bottom of the page — closes the gap between
        *  the chart attribution and the dot indicator below the carousel. */}
@@ -88,9 +78,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: SPACING.md,
-  },
-  chartSlot: {
-    // Chart breathes between the subtitle and the source attribution.
   },
   spacer: {
     // flex:1 spacer eats any remaining vertical space so source stays

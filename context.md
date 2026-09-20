@@ -142,7 +142,7 @@ Key tools: `ayah_translation` (clean single-verse text + Arabic), `ayah_tafsir` 
 
 ### Article format
 
-Articles are single-paragraph Smart Brevity: YAML frontmatter + one body paragraph (~3-4 sentences). Frontmatter includes `title`, `date`, `category`, `location`, `lat/lng`, `sources[]`, `eventCoverage`, `concepts[]`.
+Articles are Smart Brevity: YAML frontmatter + four one-sentence blocks (hook, why it matters, mechanism, what's next), plus an optional fifth carrying a counterpoint or a quotation. Frontmatter includes `title`, `date`, `category`, `location`, `lat/lng`, `sources[]`, `eventCoverage`, `concepts[]`.
 
 ```yaml
 # Current (labels only — URIs discarded)

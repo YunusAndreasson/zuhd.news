@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
-import { FLAG, RADIUS, SPACING } from '../constants/theme';
+import { FLAG, HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';
 
@@ -32,8 +32,8 @@ export function FlagChip({ name, flag, borderColor, onPress }: FlagChipProps) {
   }
   return (
     <Pressable
-      haptic="tick"
       onPress={handlePress}
+      hitSlop={HIT_SLOP}
       style={[styles.flagChip, { borderColor }]}
       accessibilityRole="button"
       accessibilityLabel={`Open ${display}`}

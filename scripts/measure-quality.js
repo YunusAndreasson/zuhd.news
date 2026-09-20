@@ -8,6 +8,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { splitBlocks } from './lib/blocks.js'
 
 const ARTICLES_DIR = 'content/articles'
 const TREND_PATH = 'content/.quality-trend.json'
@@ -52,14 +53,24 @@ const PASSIVE_RE = /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/
 // ── Metric 1: character & word length ───────────────────────
 const charLengths = articles.map(a => a.body.length)
 // Visible length matches the editor rule: link markup ([Iran](country:IR)) doesn't
-// count against the budget. 360 is the soft target (informational, kept on the raw
-// basis for trend continuity); 440 is the hard ceiling (actionable). Raised from
-// 350/400 and the 40-55 word window below raised to 48-60 when the body grew a
-// fourth block (why it matters) — see write-prompt.md/check-prompt.md.
+// count against the budget. 480 is the soft target (informational, kept on the raw
+// basis for trend continuity); 560 is the hard ceiling (actionable). The metric
+// KEYS still say 350/400: they are an append-only series the dashboard plots by
+// key, so they are named for the thresholds they were born with, not the ones
+// they carry. Read `schema` for what a number means.
+//   schema 1: 350 / 400, three blocks, 40-55 words
+//   schema 2: 360 / 440, four blocks, 48-60 words
+//   schema 3: 480 / 560, four blocks plus an optional counterpoint-or-quote,
+//             52-75 words — see write-prompt.md <rhythm>.
 const visibleText = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 const visibleLen = s => visibleText(s).length
 const visibleLengths = articles.map(a => visibleLen(a.body))
 const wordCounts = articles.map(a => a.body.split(/\s+/).filter(Boolean).length)
+// Block count: how often the optional counterpoint-or-quote block is earned. Not
+// a target — a four-block article is a complete article — but a rate near 0 means
+// the writer stopped reaching for it, and a rate near 100 means it is being
+// filled rather than earned.
+const blockCounts = articles.map(a => splitBlocks(a.body).filter(b => b.length > 5).length)
 
 // ── Metric 2: title-echo rate ──────────────────────────────
 // Hook shares ≥50% of the title's meaningful words.
@@ -165,7 +176,11 @@ const avg = arr => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.
 // (2026-08-30): acronymViolations moved from the raw body to the visible prose,
 // which drops it ~365 → ~92 by excluding `[Iran](country:IR)` link targets.
 // Snapshots without `schema` are schema 1 and are not comparable on that metric.
-const SCHEMA = 2
+// Schema 3 (2026-09-20): the length budget rose to 480/560 and the body gained
+// an optional 5th block, so charOver350Pct, charOver400Pct and wordInRangePct all
+// changed definition in the same cycle. A step across that boundary is a
+// redefinition, not a quality move.
+const SCHEMA = 3
 
 const snapshot = {
   week: new Date().toISOString().slice(0, 10),
@@ -174,10 +189,17 @@ const snapshot = {
   articleCount: articles.length,
   metrics: {
     charLengthAvg: avg(charLengths),
-    charOver350Pct: pct(charLengths.filter(c => c > 360).length, articles.length),
-    charOver400Pct: pct(visibleLengths.filter(c => c > 440).length, articles.length),
+    charOver350Pct: pct(charLengths.filter(c => c > 480).length, articles.length),
+    charOver400Pct: pct(visibleLengths.filter(c => c > 560).length, articles.length),
     wordCountAvg: avg(wordCounts),
-    wordInRangePct: pct(wordCounts.filter(w => w >= 48 && w <= 60).length, articles.length),
+    // One window across both shapes: four blocks run 52-66 words and five run
+    // 62-75, and which shape an article takes is the writer's call on the
+    // sources, not a quality signal. A single 52-75 band measures what it is
+    // for — a body that overshot or came up empty — without reading a legitimate
+    // four-block article as out of range.
+    wordInRangePct: pct(wordCounts.filter(w => w >= 52 && w <= 75).length, articles.length),
+    blockCountAvg: +(blockCounts.reduce((a, b) => a + b, 0) / (blockCounts.length || 1)).toFixed(2),
+    fiveBlockRatePct: pct(blockCounts.filter(b => b >= 5).length, articles.length),
     titleEchoRatePct: pct(echoHits, articles.length),
     passiveHookRatePct: pct(passiveHookHits, articles.length),
     passiveBodyRatePct: pct(passiveBodyHits, articles.length),
@@ -210,7 +232,8 @@ writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
 // ── Summary to stdout ─────────────────────────────────────
 const m = snapshot.metrics
 console.log(`Quality metrics: ${articles.length} articles in last ${WINDOW_DAYS}d`)
-console.log(`  length: charAvg=${m.charLengthAvg} over350=${m.charOver350Pct}% over400=${m.charOver400Pct}%  wordAvg=${m.wordCountAvg} inRange=${m.wordInRangePct}%`)
+console.log(`  length: charAvg=${m.charLengthAvg} over480=${m.charOver350Pct}% over560=${m.charOver400Pct}%  wordAvg=${m.wordCountAvg} inRange=${m.wordInRangePct}%`)
+console.log(`  shape:  blockAvg=${m.blockCountAvg} fiveBlock=${m.fiveBlockRatePct}%`)
 console.log(`  style:  titleEcho=${m.titleEchoRatePct}% passiveHook=${m.passiveHookRatePct}% passiveBody=${m.passiveBodyRatePct}% semicolon=${m.semicolonRatePct}% hedge=${m.hedgeRatePct}%`)
 console.log(`  rules:  causal=${m.causalClaimHits} pressEra=${m.pressEraHits} acronymViol=${m.acronymViolations} countryNull=${m.countryNullCount}`)
 console.log(`  source: top3Share=${m.topOutletSharePct}% multiSrc=${m.multiSourceRatePct}%`)

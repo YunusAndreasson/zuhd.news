@@ -22,7 +22,9 @@ operator/dev detail in `DEV.md`.
 ## Decisions
 
 - Single-family sans-serif typography, no images unless informational
-- Smart Brevity format: lead, why it matters, details, what's next, sources
+- Smart Brevity format: lead, why it matters, mechanism, what's next, sources — plus
+  an optional counterpoint-or-quote block between the mechanism and the last
+  (Axios's "Yes, but" / "What they're saying"). Budgets live in `scripts/write-prompt.md`
 - English first, global hard news only. Categories: politics, economy, science, tech
 - No CMS, no database, no framework — content is files + a node SSG (`scripts/build.js`)
 - Content: markdown + YAML frontmatter in `content/articles/`, built to `dist/`

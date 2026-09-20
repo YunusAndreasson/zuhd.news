@@ -2,7 +2,7 @@ import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { topojsonNameFromCode } from '@shared/countries/iso';
 import type { Category } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -11,7 +11,8 @@ import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { makeStaggerEnter } from '../lib/stagger';
-import { Icon, Pressable, Text } from './primitives';
+import { ArticleRow } from './ArticleRow';
+import { Text } from './primitives';
 import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
@@ -62,39 +63,6 @@ function flagFor(name: string | undefined): { name: string; flag: string }[] {
   const data = COUNTRY_DATA[name];
   return data?.flag ? [{ name, flag: data.flag }] : [];
 }
-
-const RelatedRow = memo(function RelatedRow({
-  article,
-  onPress,
-}: {
-  article: RiverArticle;
-  onPress: (slug: string, category: Category) => void;
-}) {
-  const { colors } = useTheme();
-  const handlePress = useCallback(
-    () => onPress(article.slug, article.category),
-    [article.category, article.slug, onPress],
-  );
-  return (
-    <Pressable
-      haptic="tick"
-      onPress={handlePress}
-      style={[styles.relatedRow, { borderBottomColor: colors.rule }]}
-      accessibilityRole="button"
-      accessibilityLabel={article.title}
-    >
-      <View style={styles.relatedText}>
-        <Text variant="bodyEmphasis" numberOfLines={2}>
-          {article.title}
-        </Text>
-        <Text variant="labelXs" tone="secondary" numberOfLines={1}>
-          {`${article.category} · ${formatTimeAgo(articleTime(article))}`}
-        </Text>
-      </View>
-      <Icon name="chevron-forward" size="sm" tone="secondary" />
-    </Pressable>
-  );
-});
 
 export const OverlaySheet = memo(function OverlaySheet({
   sheetRef,
@@ -200,11 +168,20 @@ export const OverlaySheet = memo(function OverlaySheet({
             </Animated.View>
             {related.length > 0 && (
               <Animated.View entering={enter()} style={styles.block}>
-                <Text variant="labelXs" tone="secondary" style={styles.heading}>
+                <Text variant="labelSm" tone="secondary" style={styles.heading}>
                   {related.length === 1 ? 'in the news' : `${related.length} stories`}
                 </Text>
+                {/* The river's own row: a story looks the same in every list. */}
                 {related.map((a) => (
-                  <RelatedRow key={a.slug} article={a} onPress={onArticlePress} />
+                  <ArticleRow
+                    key={a.slug}
+                    slug={a.slug}
+                    title={a.title}
+                    time={articleTime(a)}
+                    category={a.category}
+                    location={a.location}
+                    onPress={onArticlePress}
+                  />
                 ))}
               </Animated.View>
             )}
@@ -250,7 +227,7 @@ export const OverlaySheet = memo(function OverlaySheet({
             <SheetSourceFooter
               entering={enter()}
               source={overlay.situation.body}
-              linkLabel="Finding →"
+              linkLabel="finding →"
               linkAccessibilityLabel="Open the finding"
               onLinkPress={genocideUrl ? handleSourcePress : undefined}
             />
@@ -265,12 +242,4 @@ const styles = StyleSheet.create({
   block: { marginTop: SPACING.md },
   meta: { marginTop: SPACING.sm },
   heading: { marginBottom: SPACING.xs },
-  relatedRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-    paddingVertical: SPACING.smPlus,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  relatedText: { flex: 1, gap: SPACING.xxs },
 });

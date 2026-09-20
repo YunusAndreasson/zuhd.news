@@ -5,7 +5,7 @@ import { ANIMATION, staggerDelay } from '../constants/theme';
  *  `FadeInDown.duration(...).delay(staggerDelay(index))` recipe that was
  *  copy-pasted across every sheet so the entrance curve + capped stagger live
  *  in one place. Use in map bodies where the loop index is already available
- *  (SourcesSheet, ContextSheet, MenuSheet, CountrySheet, SheetInfoPage…). */
+ *  (SourcesSheet, MenuSheet, CountrySheet, SheetInfoPage…). */
 export function staggerEnter(index: number, duration: number = ANIMATION.normal) {
   return FadeInDown.duration(duration).delay(staggerDelay(index));
 }

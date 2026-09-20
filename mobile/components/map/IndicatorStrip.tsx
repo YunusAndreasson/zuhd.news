@@ -1,14 +1,10 @@
-import { memo, useCallback, useState } from 'react';
-import {
-  type LayoutChangeEvent,
-  ScrollView,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { MASTHEAD_ROW } from '../../lib/deck-layout';
+import { CONTROL_ROW } from '../../lib/deck-layout';
 import type { StripItem } from '../../lib/now';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
@@ -45,11 +41,25 @@ import { Icon, Pressable, Text } from '../primitives';
  * reader who wants more has already arrived. It used to sit under the NOW
  * block in the news sheet, which is for news.
  *
+ * **The row is Gesture Handler's `ScrollView`, not React Native's.** The
+ * globe's pan sits under the whole header, and Gesture Handler finds the
+ * handlers for a touch by walking the views under the finger: a plain
+ * `ScrollView` has none, so a drag that began between two slots, or on the
+ * blank end of one, was never the row's — the row stayed put and the earth
+ * turned. The wrapper puts a native handler on the row itself, which ends
+ * that walk at the row (2026-09-19).
+ *
  * Tapping a slot turns the planet to that mark and opens its card. That is
  * also how a reader learns the globe is addressable at all — the mapping is
  * created by the action, since nothing about a dot on a sphere announces it.
  * The slot stays marked, and the globe rings the place, for as long as its card
  * is open, so the reader can see which gauge the ring belongs to.
+ *
+ * **An open story marks the gauges it is tied to** — those whose desk
+ * analysis cites it, or that it names (`linkedGaugeIds`) — with the same bar
+ * in the story's category hue, and the row scrolls the first of them into
+ * view. The order does not change: a row sorted by the size of the move is a
+ * comparison, and pulling a slot forward for a story would break it.
  */
 
 /** The mark under the slot whose card is open. Reserved on every slot, so
@@ -66,15 +76,24 @@ const Slot = memo(function Slot({
   item,
   width,
   selected,
+  linkedColor,
   onPress,
+  onPlaced,
 }: {
   item: StripItem;
   width: number;
   selected: boolean;
+  /** The open story's hue, when this gauge is tied to it. */
+  linkedColor?: string;
   onPress: (item: StripItem) => void;
+  onPlaced: (id: string, x: number) => void;
 }) {
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress(item), [item, onPress]);
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => onPlaced(item.id, e.nativeEvent.layout.x),
+    [item.id, onPlaced],
+  );
 
   // Spoken as one sentence. A screen reader landing on separate numbers with
   // no subject is the strip's version of the globe's lottery-country problem,
@@ -87,6 +106,7 @@ const Slot = memo(function Slot({
       ? `${item.delta.direction} ${item.delta.magnitude}`
       : 'unchanged',
     item.delta.window,
+    linkedColor ? 'in the open story' : null,
   ]
     .filter(Boolean)
     .join(', ');
@@ -96,6 +116,7 @@ const Slot = memo(function Slot({
       onPress={handlePress}
       haptic="none"
       style={[styles.slot, { minWidth: width }]}
+      onLayout={handleLayout}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityState={{ selected }}
@@ -114,7 +135,9 @@ const Slot = memo(function Slot({
       <View
         style={[
           styles.selected,
-          { backgroundColor: selected ? colors.textEmphasis : 'transparent' },
+          {
+            backgroundColor: selected ? colors.textEmphasis : (linkedColor ?? 'transparent'),
+          },
         ]}
       />
     </Pressable>
@@ -126,6 +149,8 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   onSelect,
   onAll,
   selectedId = null,
+  linkedIds,
+  linkedColor,
   initialViewport,
 }: {
   items: StripItem[];
@@ -134,6 +159,10 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   onAll: () => void;
   /** The gauge whose card is open. */
   selectedId?: string | null;
+  /** Gauges tied to the open story: marked in `linkedColor`, the first
+   *  scrolled into view. */
+  linkedIds?: ReadonlySet<string>;
+  linkedColor?: string;
   /** The room the bar will leave, computed by the bar before layout, so the
    *  slots are not laid out at a guess and then resized once measured. */
   initialViewport?: number;
@@ -148,6 +177,22 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   }, []);
   const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
+  const reduceMotion = useReducedMotion();
+  const scrollRef = useRef<ScrollView>(null);
+  const slotX = useRef(new Map<string, number>());
+  const handlePlaced = useCallback((id: string, x: number) => {
+    slotX.current.set(id, x);
+  }, []);
+  // The first linked gauge, in the row's own order. A story tied to nothing
+  // on the row leaves the row where the reader left it.
+  const firstLinked = linkedIds?.size ? items.find((item) => linkedIds.has(item.id))?.id : null;
+  useEffect(() => {
+    if (!firstLinked) return;
+    const x = slotX.current.get(firstLinked);
+    if (x === undefined) return;
+    scrollRef.current?.scrollTo({ x: Math.max(0, x - SPACING.md), animated: !reduceMotion });
+  }, [firstLinked, reduceMotion]);
+
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
   // starts clean.
@@ -155,6 +200,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
 
   return (
     <ScrollView
+      ref={scrollRef}
       horizontal
       showsHorizontalScrollIndicator={false}
       // A flung row that runs past its end and springs back is the row
@@ -171,7 +217,9 @@ export const IndicatorStrip = memo(function IndicatorStrip({
           item={item}
           width={slotWidth}
           selected={item.id === selectedId}
+          linkedColor={linkedIds?.has(item.id) ? linkedColor : undefined}
           onPress={onSelect}
+          onPlaced={handlePlaced}
         />
       ))}
       <Pressable
@@ -199,10 +247,10 @@ const styles = StyleSheet.create({
     paddingRight: SPACING.articlePadding,
     gap: SPACING.md,
   },
-  slot: { minHeight: MASTHEAD_ROW, justifyContent: 'center' },
+  slot: { minHeight: CONTROL_ROW, justifyContent: 'center' },
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
   // Match the single-line gauges, reserving their selection-bar space.
-  all: { minHeight: MASTHEAD_ROW, justifyContent: 'center', paddingBottom: GAUGE_EXTRA },
+  all: { minHeight: CONTROL_ROW, justifyContent: 'center', paddingBottom: GAUGE_EXTRA },
   allRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
 });

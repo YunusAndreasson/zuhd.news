@@ -25,7 +25,6 @@ import {
   useDerivedValue,
   useReducedMotion,
   useSharedValue,
-  withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -48,14 +47,15 @@ import {
   type TapResult,
 } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
-import { InstrumentsSheet } from '../components/InstrumentsSheet';
+import { MarketBrowserSheet } from '../components/MarketBrowserSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
-import { SheetMasthead } from '../components/map/SheetMasthead';
 import { EndCard, StoryCard } from '../components/map/StoryCard';
-import { StoryDeck } from '../components/map/StoryDeck';
+import { StoryDeck, type StoryDeckRef } from '../components/map/StoryDeck';
+import { StoryDock } from '../components/map/StoryDock';
+import { StoryMeasure } from '../components/map/StoryMeasure';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { type OverlaySelection, OverlaySheet } from '../components/OverlaySheet';
 import { Screen } from '../components/primitives';
@@ -66,18 +66,18 @@ import {
   API_BASE,
   CATEGORIES,
   categoryMarkColor,
-  EASING,
   EDITORIAL,
-  SPACING,
   VARIANT_CAP,
 } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import { useArticles } from '../hooks/useArticles';
+import { useCameraFlight } from '../hooks/useCameraFlight';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useMarketSignals } from '../hooks/useMarketSignals';
+import { useMarkets } from '../hooks/useMarkets';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
@@ -85,18 +85,31 @@ import { useReadTracking } from '../hooks/useReadTracking';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
+import { announce } from '../lib/announce';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
-import { computeDeckLayout, grownGlobeTransform, grownReach } from '../lib/deck-layout';
+import {
+  computeDeckLayout,
+  grownGlobeTransform,
+  grownReach,
+  openStoryHeight,
+} from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
-import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
+import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver } from '../lib/news-order';
-import { buildNowSurfaces, type LatLng, type NowItem, type StripItem } from '../lib/now';
+import {
+  buildNowSurfaces,
+  type LatLng,
+  linkedGaugeIds,
+  type NowItem,
+  type StripItem,
+} from '../lib/now';
 import {
   getSnapshot as getOnboarding,
   markHintDone,
@@ -146,13 +159,12 @@ const PRIMER_PRESENT_DELAY_MS = 2600;
 // heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
 const HEATMAP_SPLASH_GRACE_MS = 1200;
 
-/** Flight time when the camera is sent somewhere — a strip slot, an alert row,
- *  a story's mark. Long enough to read as travel over a surface. */
-const FLY_MS = 700;
+/** The handlers a measured card is given: it is never shown or touched. */
+const noop = () => {};
 
-/** How close, in degrees, the camera must be to the story in front for a swipe
- *  to take it over mid-drag rather than fly once the swipe lands. */
-const HANDOFF_DEGREES = 1;
+/** Longest a sheet hand-off waits for the first sheet's dismissal before
+ *  presenting the next anyway — past a platform sheet's own close transition. */
+const SHEET_HANDOFF_FLOOR_MS = 700;
 
 interface FocusOptions {
   /** A mark was tapped: the camera waits for its burst before it flies. */
@@ -162,7 +174,7 @@ interface FocusOptions {
 }
 
 export default function HomeScreen() {
-  const { colors, textVariants } = useTheme();
+  const { colors, font, typography, textVariants } = useTheme();
   const { preferences } = usePreferences();
   const reduceMotion = useReducedMotion();
   const insets = useSafeAreaInsets();
@@ -180,6 +192,7 @@ export default function HomeScreen() {
   const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
+  const deckRef = useRef<StoryDeckRef>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
 
@@ -205,6 +218,8 @@ export default function HomeScreen() {
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
+  const marketsSnapshot = useMarkets();
+  const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
   const network = useNetworkState();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
@@ -231,7 +246,6 @@ export default function HomeScreen() {
    *  rotated out of the feed is injected, and its row exists a render later. */
   const pendingFocusRef = useRef<({ slug: string } & FocusOptions) | null>(null);
   const flyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const handoffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Sheet payloads
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
@@ -271,11 +285,73 @@ export default function HomeScreen() {
   const globeClip = useSharedValue(90);
   const storyClip = useSharedValue(90);
   const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const primerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetProgress = useSharedValue(0);
   /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
+  /** Flights: a jump travels the way a swipe does, and lands handing the
+   *  camera back to the deck (`hooks/useCameraFlight.ts`). */
+  const {
+    flightT,
+    setFront: setCameraFront,
+    claimForDeck,
+    hold: holdCamera,
+    toStory: flyToStory,
+    toStoryIfHeld: flyToStoryIfHeld,
+    toPlace: flyToPlace,
+  } = useCameraFlight({
+    cameraOwner,
+    cameraLat,
+    cameraLng,
+    viewLat,
+    viewLng,
+    zoomActive,
+    zoomAngle,
+    clip: globeClip,
+    storyProgress,
+  });
 
   const toastRef = useRef<ToastRef>(null);
+
+  // ---------------------------------------------------------------------
+  // One platform sheet at a time
+  // ---------------------------------------------------------------------
+  /**
+   * Move from one platform sheet to the next — a country from a disaster, a
+   * card from the instruments list — only once the first has gone.
+   *
+   * These were a `dismiss()` and a `present()` in the same tick, or a second
+   * sheet presented over an open one. `@expo/ui` fires a sheet's close
+   * callback after SwiftUI has finished dismissing it precisely so another
+   * can be presented then; presented during the transition, UIKit rejects it.
+   * So the next sheet waits for the first sheet's `onDismiss`, which runs
+   * `runSheetHandOff`. The timer is a floor under that: a sheet that was not
+   * actually up sends no dismissal, and the tap must still land.
+   */
+  const pendingSheetRef = useRef<(() => void) | null>(null);
+  const handOffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const runSheetHandOff = useCallback(() => {
+    if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
+    handOffTimerRef.current = null;
+    const next = pendingSheetRef.current;
+    pendingSheetRef.current = null;
+    next?.();
+  }, []);
+  const handOffSheet = useCallback(
+    (from: React.RefObject<BottomSheetMethodsRef | null>, next: () => void) => {
+      pendingSheetRef.current = next;
+      if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
+      handOffTimerRef.current = setTimeout(runSheetHandOff, SHEET_HANDOFF_FLOOR_MS);
+      from.current?.dismiss();
+    },
+    [runSheetHandOff],
+  );
+  useEffect(
+    () => () => {
+      if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
+    },
+    [],
+  );
 
   // ---------------------------------------------------------------------
   // Layout
@@ -285,8 +361,16 @@ export default function HomeScreen() {
     setTopChromeHeight(e.nativeEvent.layout.height);
   }, []);
 
-  // The sheet at rest is sized from the card's type, not a fraction of the
-  // window, and the globe takes what is left — see `lib/deck-layout.ts`.
+  // The card height the open sheet is sized for, from today's cards measured
+  // off screen (`StoryMeasure` → `openStoryHeight`), and which set of cards
+  // it was measured for. The last height stands until a
+  // new measurement finishes, so a refresh does not drop the open story to
+  // the estimate and back.
+  const [measuredStory, setMeasuredStory] = useState<{ key: string; height: number } | null>(null);
+
+  // The sheet at rest and open is sized from the card's type, not a fraction
+  // of the window or the story in front, and the globe takes what is left —
+  // see `lib/deck-layout.ts`.
   const layout = useMemo(
     () =>
       computeDeckLayout({
@@ -307,15 +391,22 @@ export default function HomeScreen() {
           title: VARIANT_CAP.title,
           body: VARIANT_CAP.body,
         },
+        storyContent: measuredStory?.height,
       }),
-    [screenWidth, screenHeight, topChromeHeight, insets.bottom, fontScale, textVariants],
+    [
+      screenWidth,
+      screenHeight,
+      topChromeHeight,
+      insets.bottom,
+      fontScale,
+      textVariants,
+      measuredStory?.height,
+    ],
   );
-  /** Where the grown sheet stops — the story's own height, capped at
-   *  `layout.full`. Written by `MapSheet`; read by the globe's transform. */
-  const sheetExpanded = useSharedValue(layout.full);
-  // The briefing's player floats over the bottom of the sheet while it is up,
-  // so the card's last line still has to scroll clear of it.
-  const cardBottomInset = insets.bottom + (briefingVisible ? SPACING.xxl : 0);
+  // The briefing's player sits on the dock while it is up, so the cards end
+  // above both — the pinned sources/save/share row included.
+  const [playerHeight, setPlayerHeight] = useState(0);
+  const deckBottomInset = layout.dock + (briefingVisible ? playerHeight : 0);
 
   // ---------------------------------------------------------------------
   // Derived content
@@ -341,8 +432,11 @@ export default function HomeScreen() {
    *  rank each pool against itself, which could only ever compare a strait
    *  with other straits. */
   const rankedInstruments = useMemo(
-    () => buildRankedInstruments(columns, marketSignals, river),
-    [columns, marketSignals, river],
+    () => [
+      ...buildRankedInstruments(columns, marketSignals, river),
+      ...exchanges.map(exchangeCard),
+    ],
+    [columns, marketSignals, river, exchanges],
   );
 
   const { strip, now } = useMemo(
@@ -354,40 +448,44 @@ export default function HomeScreen() {
         // does. Placement reads the raw payload, where the exchange's
         // coordinates are.
         signals: rawSignals,
+        exchanges,
         gdacsAlerts,
       }),
-    [rankedInstruments, chokepoints, rawSignals, gdacsAlerts],
+    [rankedInstruments, chokepoints, rawSignals, gdacsAlerts, exchanges],
   );
 
-  /**
-   * The exchanges the globe draws.
-   *
-   * Only the flagged ones, and only where a place is honest: `buildNowSurfaces`
-   * has already run the placement ladder, so this is a filter rather than a
-   * second resolution. Thirty static exchange dots would be noise — a mark is
-   * here because its index did something, which is the same rule every card
-   * in the app is admitted under.
-   */
   const stripRef = useRef(strip);
   stripRef.current = strip;
-
+  const mapMarkets = useMemo(
+    () =>
+      exchanges.map((exchange) => {
+        const card = exchangeCard(exchange);
+        return {
+          id: card.id,
+          label: exchange.indexName,
+          short: exchange.indexName,
+          reading: card.reading,
+          delta: exchangeDelta(exchange),
+          stale: exchangeIsStale(exchange),
+          spark: card.series?.values ?? [],
+          coords: [exchange.lat, exchange.lng] as LatLng,
+          card,
+        };
+      }),
+    [exchanges],
+  );
+  const mapMarketsRef = useRef(mapMarkets);
+  mapMarketsRef.current = mapMarkets;
   const marketMarks = useMemo(
     () =>
-      strip
-        .filter((item) => item.id.startsWith('market-signal:') && item.coords)
-        .map((item) => ({
-          id: item.id,
-          // The exchange, not the ticker: the mark stands for a place, and
-          // `Borsa İstanbul` is a place where `BIST 100` is a number.
-          label: item.label,
-          // Coloured by the move the server flagged — the card's own chip,
-          // which is why the mark exists — not by the gauge's week, so a mark
-          // and the card it opens cannot point opposite ways.
-          direction: item.card.delta?.direction,
-          lat: (item.coords as LatLng)[0],
-          lng: (item.coords as LatLng)[1],
-        })),
-    [strip],
+      mapMarkets.map((item) => ({
+        id: item.id,
+        label: `${item.label} ${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.magnitude}${item.stale ? '*' : ''}`,
+        direction: item.delta.direction,
+        lat: item.coords[0],
+        lng: item.coords[1],
+      })),
+    [mapMarkets],
   );
 
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
@@ -430,7 +528,8 @@ export default function HomeScreen() {
   useEffect(
     () => () => {
       if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
-      if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
+      if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
+      if (primerTimerRef.current) clearTimeout(primerTimerRef.current);
     },
     [],
   );
@@ -466,26 +565,22 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   // Camera control
   // ---------------------------------------------------------------------
-  /** Send the camera somewhere and hold it there until the deck takes it back.
-   *  The shortest way round: a flight from Tokyo to San Francisco crosses the
-   *  Pacific, not Europe and the Atlantic. */
+  /** Send the camera to a place that is not a story — a gauge, an alert —
+   *  and hold it there until the deck takes it back. */
   const flyTo = useCallback(
     (coords: LatLng | null) => {
-      if (!coords) return;
-      const [lat, lng] = coords;
-      let delta = lng - cameraLng.value;
-      if (delta > 180) delta -= 360;
-      if (delta < -180) delta += 360;
-      const duration = reduceMotion ? 0 : FLY_MS;
-      cameraOwner.value = 1;
-      cameraLat.value = withTiming(lat, { duration, easing: EASING.inOut });
-      cameraLng.value = withTiming(cameraLng.value + delta, {
-        duration,
-        easing: EASING.inOut,
-      });
+      if (coords) flyToPlace(coords);
     },
-    [cameraLat, cameraLng, cameraOwner, reduceMotion],
+    [flyToPlace],
   );
+
+  /** The clip story `index` rests at, for a flight to land on. */
+  const framingFor = useCallback((index: number) => globeRef.current?.framingFor(index) ?? 0, []);
+
+  // The story in front, for a swipe to decide whether the camera is still on it.
+  useEffect(() => {
+    setCameraFront(storyRows[deckIndex]?.coords ?? null);
+  }, [deckIndex, setCameraFront, storyRows]);
 
   /** A pinch has ended: redraw at full detail once any hand-back has eased. */
   const handleZoomSettle = useCallback((delayMs: number) => {
@@ -548,26 +643,30 @@ export default function HomeScreen() {
       cameraClaimedRef.current = true;
       if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
       flyTimerRef.current = null;
-      if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
-      handoffTimerRef.current = null;
 
       const coords = row?.coords ?? null;
-      if (coords) cameraOwner.value = 1;
+      // Held before the deck jumps, so the jump cannot drag the camera
+      // through every dateline between; the flight hands it back on landing.
+      if (coords) holdCamera();
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
       storyProgress.value = index;
       setDeckIndex(index);
 
       if (coords) {
+        const framing = framingFor(index);
         if (options.afterBurst && !reduceMotion) {
-          flyTimerRef.current = setTimeout(() => flyTo(coords), COLLECT_MS - 120);
+          flyTimerRef.current = setTimeout(
+            () => flyToStory(coords, index, framing),
+            COLLECT_MS - 120,
+          );
         } else {
-          flyTo(coords);
+          flyToStory(coords, index, framing);
         }
       }
       if (options.grow) mapSheetRef.current?.expand();
     },
-    [cameraOwner, findStory, flyTo, pinStory, reduceMotion, storyProgress],
+    [findStory, flyToStory, framingFor, holdCamera, pinStory, reduceMotion, storyProgress],
   );
 
   // A focus that arrived before its story did.
@@ -580,7 +679,9 @@ export default function HomeScreen() {
 
   // A refresh can insert stories in front of the one being read, or rotate it
   // out. Keep the reader on their story; hold the camera on it while the
-  // position shifts so the globe does not slide through the new arrivals.
+  // position shifts so the globe does not slide through the new arrivals, then
+  // hand it back on the story's own framing — the indices the globe framed by
+  // have moved under it.
   useEffect(() => {
     const slug = currentSlugRef.current;
     let index = slug ? storyRows.findIndex((r) => r.slug === slug) : -1;
@@ -595,7 +696,8 @@ export default function HomeScreen() {
     deckIndexRef.current = index;
     storyProgress.value = index;
     setDeckIndex(index);
-  }, [storyRows, cameraLat, cameraLng, cameraOwner, storyProgress]);
+    if (coords) flyToStory(coords, index, framingFor(index));
+  }, [storyRows, cameraLat, cameraLng, cameraOwner, flyToStory, framingFor, storyProgress]);
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
@@ -611,7 +713,7 @@ export default function HomeScreen() {
           pinStory(slug);
           injectArticle(bookmark.article, category);
         } else {
-          toastRef.current?.show('Article no longer available');
+          toastRef.current?.show('That story is no longer available');
           return;
         }
       }
@@ -658,7 +760,7 @@ export default function HomeScreen() {
    *  itself — a price is only worth printing if the reader can check it. */
   const handleOddsPress = useCallback(
     (value: StoryOdds) => {
-      hapticTick();
+      hapticImpact();
       const card = rankedRef.current.find((c) => c.id === value.id);
       if (card) openCard(card);
       else if (value.marketUrl) openLink(value.marketUrl);
@@ -674,15 +776,17 @@ export default function HomeScreen() {
 
   const handleInstrumentSelect = useCallback(
     (card: SwipeCard) => {
-      instrumentsSheetRef.current?.dismiss();
       // A row is its gauge in a list: the same flight and the same ring, when
       // the instrument has a place and a week to show.
-      const gauge = strip.find((item) => item.id === card.id) ?? null;
+      const gauge =
+        mapMarkets.find((item) => item.id === card.id) ??
+        strip.find((item) => item.id === card.id) ??
+        null;
       if (gauge) flyTo(gauge.coords);
       setSelectedGauge(gauge);
-      openCard(card);
+      handOffSheet(instrumentsSheetRef, () => openCard(card));
     },
-    [flyTo, openCard, strip],
+    [flyTo, handOffSheet, openCard, strip, mapMarkets],
   );
 
   const openOverlay = useCallback((selection: OverlaySelection) => {
@@ -744,7 +848,11 @@ export default function HomeScreen() {
       }
       if (result.marketSignalId) {
         const card = rankedRef.current.find((c) => c.id === result.marketSignalId);
-        if (card) openCard(card);
+        if (card) {
+          const gauge = mapMarketsRef.current.find((item) => item.id === card.id) ?? null;
+          setSelectedGauge(gauge);
+          openCard(card);
+        }
         return;
       }
       if (result.chokepointId) {
@@ -806,11 +914,11 @@ export default function HomeScreen() {
     markHintDone('bookmark');
     hapticNotification();
     if (added) {
-      toastRef.current?.show('Saved to bookmarks');
+      toastRef.current?.show('Saved');
     } else {
       toastRef.current?.show('Removed — tap to undo', () => {
         toggleBookmark(article, category);
-        hapticTick();
+        hapticNotification();
       });
     }
   }, []);
@@ -826,12 +934,16 @@ export default function HomeScreen() {
     briefingChromeRef.current?.toggle();
   }, []);
   const handleBriefingUnavailable = useCallback(() => {
-    hapticTick();
-    toastRef.current?.show('No briefing available', undefined, 'top');
+    hapticError();
+    toastRef.current?.show('No briefing today yet', undefined, 'top');
   }, []);
   const handleBriefingPlaybackError = useCallback(() => {
-    hapticTick();
-    toastRef.current?.show('Couldn’t play briefing — tap to retry', handleBriefingPress, 'top');
+    hapticError();
+    toastRef.current?.show(
+      'Could not play the briefing — tap to try again',
+      handleBriefingPress,
+      'top',
+    );
   }, [handleBriefingPress]);
 
   const handleSourcesPress = useCallback((article: Article) => {
@@ -882,7 +994,8 @@ export default function HomeScreen() {
         key: `genocide-${situation.id}`,
         title: `Genocide · ${situation.name}`,
         detail: 'as determined by the UN',
-        onPress: () => openOverlay({ kind: 'genocide', situation }),
+        onPress: () =>
+          handOffSheet(countrySheetRef, () => openOverlay({ kind: 'genocide', situation })),
       });
     }
     const areas = famineAreas.filter((a) => a.iso2 && topojsonNameFromCode(a.iso2) === name);
@@ -893,16 +1006,21 @@ export default function HomeScreen() {
         key: `famine-${area.id}`,
         title: area.area,
         detail: `${area.phaseName.toLowerCase()} · IPC phase ${area.phase}`,
-        onPress: () => openOverlay({ kind: 'famine', area }),
+        onPress: () => handOffSheet(countrySheetRef, () => openOverlay({ kind: 'famine', area })),
       });
     }
     return rows;
-  }, [countrySheet?.countryName, famineAreas, genocideSituations, openOverlay]);
+  }, [countrySheet?.countryName, famineAreas, genocideSituations, handOffSheet, openOverlay]);
 
-  const handleCountryAlertPress = useCallback((alert: GdacsAlert) => {
-    setActiveAlert(alert);
-    disasterSheetRef.current?.present();
-  }, []);
+  const handleCountryAlertPress = useCallback(
+    (alert: GdacsAlert) => {
+      handOffSheet(countrySheetRef, () => {
+        setActiveAlert(alert);
+        disasterSheetRef.current?.present();
+      });
+    },
+    [handOffSheet],
+  );
 
   const openCountry = useCallback(
     (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
@@ -915,7 +1033,7 @@ export default function HomeScreen() {
   const handleEntityPress = useCallback(
     (entity: Entity) => {
       if (!indicatorsById.get(entity.indicatorId)) return;
-      hapticTick();
+      hapticImpact();
       setActiveEntity(entity);
       entitySheetRef.current?.present();
     },
@@ -939,7 +1057,9 @@ export default function HomeScreen() {
 
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
-    suppressed: sheetOpen || briefingVisible,
+    // Not on the end card either: every lesson there points at a next story
+    // or a story to open, and the end card has neither.
+    suppressed: sheetOpen || briefingVisible || deckIndex >= storyRows.length,
     surface: 'map',
   });
 
@@ -957,7 +1077,8 @@ export default function HomeScreen() {
     if (primerTriedRef.current) return;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
     primerTriedRef.current = true;
-    setTimeout(() => {
+    primerTimerRef.current = setTimeout(() => {
+      primerTimerRef.current = null;
       if (sheetOpenRef.current) return;
       setPrimerOpen(true);
       primerSheetRef.current?.present();
@@ -965,34 +1086,26 @@ export default function HomeScreen() {
   }, []);
 
   /**
-   * A finger has started a swipe on the deck.
-   *
-   * If the camera is still on the story in front — the usual case — the swipe
-   * takes it over at once and the earth turns under the finger. If a drag on
-   * the globe or a flight has put it somewhere else, it stays there: taking it
-   * back mid-drag would snap the earth from where the reader left it. The
-   * swipe then flies it once it lands (`handleDeckSettle`).
+   * A finger has started a swipe on the deck. Whether the camera follows it is
+   * decided on the UI thread as the pan claims it (`claimForDeck`); this is
+   * the JS half. It used to read the camera from here, and a JS read of a
+   * value the UI thread is writing blocks until the UI thread answers.
    */
   const handleDeckDragStart = useCallback(() => {
     cameraClaimedRef.current = true;
     dismissActiveHint();
-    if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
-    handoffTimerRef.current = null;
-    if (cameraOwner.value !== 1) return;
-    const coords = storyRowsRef.current[deckIndexRef.current]?.coords;
-    if (!coords) return;
-    let dLng = Math.abs(cameraLng.value - coords[1]) % 360;
-    if (dLng > 180) dLng = 360 - dLng;
-    if (Math.abs(cameraLat.value - coords[0]) < HANDOFF_DEGREES && dLng < HANDOFF_DEGREES) {
-      cameraOwner.value = 0;
-    }
-  }, [cameraLat, cameraLng, cameraOwner, dismissActiveHint]);
+  }, [dismissActiveHint]);
 
   const handleDeckSettle = useCallback(
     (index: number) => {
       deckIndexRef.current = index;
       setDeckIndex(index);
       hapticTick();
+      // A screen reader moves the deck through the card's next/previous
+      // actions or the dock's `›`, and the card that replaces the one it was
+      // reading has no focus to announce itself.
+      const title = storyRowsRef.current[index]?.title;
+      if (title) announce(title);
       recordArticleSnap();
       maybeRequestReview();
       const row = storyRowsRef.current[index];
@@ -1002,20 +1115,11 @@ export default function HomeScreen() {
         // Reading a story grown is opening it; swiping past one at rest is not.
         if (sheetDetentRef.current === 'full') findStory(row.slug);
       }
-      if (cameraOwner.value === 1 && row?.coords) {
-        flyTo(row.coords);
-        // Hand the camera back to the deck once the flight has landed on the
-        // story the deck is on — at that point the two agree and nothing moves.
-        handoffTimerRef.current = setTimeout(
-          () => {
-            handoffTimerRef.current = null;
-            if (deckIndexRef.current === index) cameraOwner.value = 0;
-          },
-          (reduceMotion ? 0 : FLY_MS) + 50,
-        );
-      }
+      // The earth was left somewhere else (a drag, a gauge): fly it to the
+      // story the swipe landed on. The landing hands the camera back.
+      if (row?.coords) flyToStoryIfHeld(row.coords, index, framingFor(index));
     },
-    [cameraOwner, findStory, flyTo, handleCaughtUp, reduceMotion],
+    [findStory, flyToStoryIfHeld, framingFor, handleCaughtUp],
   );
 
   const goToStory = useCallback(
@@ -1025,14 +1129,22 @@ export default function HomeScreen() {
     },
     [focusStory],
   );
-  const handleNextStory = useCallback(() => goToStory(deckIndexRef.current + 1), [goToStory]);
-  const handlePreviousStory = useCallback(() => goToStory(deckIndexRef.current - 1), [goToStory]);
+  // The dock's `›` and the card's accessibility actions slide the deck one
+  // story, exactly as a swipe would; `goToStory` is a jump, for the scrubber.
+  const handleNextStory = useCallback(() => deckRef.current?.step(1), []);
+  const handlePreviousStory = useCallback(() => deckRef.current?.step(-1), []);
 
   const expandSheet = useCallback(() => {
     mapSheetRef.current?.expand();
   }, []);
   const collapseSheet = useCallback(() => {
     mapSheetRef.current?.collapse();
+  }, []);
+  // The dock's open/close button. It reads the settled detent from a ref, so
+  // a tap mid-drag still does what the arrow was pointing at when it landed.
+  const toggleSheet = useCallback(() => {
+    if (sheetDetentRef.current === 'full') mapSheetRef.current?.collapse();
+    else mapSheetRef.current?.expand();
   }, []);
 
   const handleDetentChange = useCallback(
@@ -1057,10 +1169,22 @@ export default function HomeScreen() {
   }, []);
 
   const handleMenuDismiss = useCallback(() => setMenuOpen(false), []);
-  const handleCountryDismiss = useCallback(() => setCountrySheet(null), []);
-  const handleDisasterDismiss = useCallback(() => setActiveAlert(null), []);
-  const handleConflictDismiss = useCallback(() => setActiveConflict(null), []);
-  const handleChooserDismiss = useCallback(() => setChooserCandidates([]), []);
+  const handleCountryDismiss = useCallback(() => {
+    setCountrySheet(null);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
+  const handleDisasterDismiss = useCallback(() => {
+    setActiveAlert(null);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
+  const handleConflictDismiss = useCallback(() => {
+    setActiveConflict(null);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
+  const handleChooserDismiss = useCallback(() => {
+    setChooserCandidates([]);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
   const handleCardDismiss = useCallback(() => {
@@ -1094,32 +1218,30 @@ export default function HomeScreen() {
     },
     [focusStory, handleSelectArticle, injectArticle, pinStory],
   );
-  const handleOverlayDismiss = useCallback(() => setActiveOverlay(null), []);
-  const handleInstrumentsDismiss = useCallback(() => setInstrumentsOpen(false), []);
+  const handleOverlayDismiss = useCallback(() => {
+    setActiveOverlay(null);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
+  const handleInstrumentsDismiss = useCallback(() => {
+    setInstrumentsOpen(false);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
   const handleSourcesDismiss = useCallback(() => {
     setSheetSources([]);
     setSheetDivergence(null);
   }, []);
   const handleDisasterCountryPress = useCallback(
-    (countryName: string) => {
-      disasterSheetRef.current?.dismiss();
-      openCountry(countryName);
-    },
-    [openCountry],
+    (countryName: string) => handOffSheet(disasterSheetRef, () => openCountry(countryName)),
+    [handOffSheet, openCountry],
   );
   const handleConflictCountryPress = useCallback(
-    (countryName: string) => {
-      conflictSheetRef.current?.dismiss();
-      openCountry(countryName);
-    },
-    [openCountry],
+    (countryName: string) => handOffSheet(conflictSheetRef, () => openCountry(countryName)),
+    [handOffSheet, openCountry],
   );
   const handleChooserSelect = useCallback(
-    (candidate: TapResult) => {
-      disambiguationSheetRef.current?.dismiss();
-      handleCountryPress(candidate);
-    },
-    [handleCountryPress],
+    (candidate: TapResult) =>
+      handOffSheet(disambiguationSheetRef, () => handleCountryPress(candidate)),
+    [handOffSheet, handleCountryPress],
   );
   const handleOverlayArticlePress = useCallback(
     (slug: string, category: Category) => {
@@ -1129,11 +1251,8 @@ export default function HomeScreen() {
     [handleSelectArticle],
   );
   const handleOverlayCountryPress = useCallback(
-    (countryName: string) => {
-      overlaySheetRef.current?.dismiss();
-      openCountry(countryName);
-    },
-    [openCountry],
+    (countryName: string) => handOffSheet(overlaySheetRef, () => openCountry(countryName)),
+    [handOffSheet, openCountry],
   );
   const handleEntityArticlePress = useCallback(
     (slug: string, category: Category) => {
@@ -1189,7 +1308,7 @@ export default function HomeScreen() {
   // and the projection already reaches the ground it uncovers (`grownReach`).
   const globeTransform = useDerivedValue<Transforms3d>(() => {
     const p = Math.min(1, Math.max(0, sheetProgress.value));
-    const grown = grownGlobeTransform(layout, screenHeight, sheetExpanded.value);
+    const grown = grownGlobeTransform(layout, screenHeight);
     return [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }];
   });
   const globeReach = useMemo(() => grownReach(layout, screenHeight), [layout, screenHeight]);
@@ -1209,6 +1328,11 @@ export default function HomeScreen() {
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
+  const storyOpen = sheetDetent === 'full';
+  // The gauges an open story is tied to, marked in its hue on the bar.
+  const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
+  const linkedGauges = useMemo(() => linkedGaugeIds(strip, openArticle), [strip, openArticle]);
+  const linkedHue = openArticle ? categoryMarkColor(openArticle.category, colors) : undefined;
   useReadTracking(
     storyRows[frontIndex]?.slug ?? null,
     sheetDetent === 'full' && !sheetOpen && !briefingVisible,
@@ -1237,7 +1361,8 @@ export default function HomeScreen() {
           hue={categoryMarkColor(row.article.category, colors)}
           odds={odds.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
-          bottomInset={cardBottomInset}
+          open={storyOpen}
+          progress={sheetProgress}
           onOpen={expandSheet}
           onNext={handleNextStory}
           onPrevious={index > 0 ? handlePreviousStory : undefined}
@@ -1251,7 +1376,6 @@ export default function HomeScreen() {
       );
     },
     [
-      cardBottomInset,
       colors,
       expandSheet,
       handleArticleBookmark,
@@ -1264,18 +1388,77 @@ export default function HomeScreen() {
       handleSourcesPress,
       odds,
       resolvableEntityIds,
+      sheetProgress,
+      storyOpen,
       storyRows,
     ],
+  );
+
+  // Re-measure when text or its metrics change, including in-app reading
+  // preferences and corrections to an existing story. Exclude timestamps
+  // and appearance so minute ticks and recolouring don't remount every card.
+  const measureKey = useMemo(
+    () =>
+      JSON.stringify([
+        screenWidth,
+        fontScale,
+        font,
+        typography,
+        ...storyRows.map((r) => [
+          r.slug,
+          r.title,
+          r.article.sentences,
+          r.article.location,
+          r.article.entities,
+          r.article.threadArticleCount,
+          r.article.threadArc,
+          r.article.threadDay,
+          odds.has(r.slug),
+        ]),
+      ]),
+    [screenWidth, fontScale, font, typography, storyRows, odds],
+  );
+  const renderMeasureCard = useCallback(
+    (index: number) => {
+      const row = storyRows[index];
+      if (!row) return null;
+      return (
+        <StoryCard
+          row={row}
+          hue={categoryMarkColor(row.article.category, colors)}
+          odds={odds.get(row.slug) ?? null}
+          resolvableEntityIds={resolvableEntityIds}
+          open={false}
+          progress={sheetProgress}
+          veil={false}
+          onOpen={noop}
+          onCountryPress={noop}
+          onEntityPress={noop}
+          onOddsPress={noop}
+          onSources={noop}
+          onBookmark={noop}
+          onShare={noop}
+        />
+      );
+    },
+    [colors, odds, resolvableEntityIds, sheetProgress, storyRows],
+  );
+  const handleStoryMeasured = useCallback(
+    (heights: number[]) => {
+      const height = openStoryHeight(heights);
+      if (height !== undefined) setMeasuredStory({ key: measureKey, height });
+    },
+    [measureKey],
   );
 
   const renderEnd = useCallback(
     () =>
       storyCount === 0 ? (
-        <EmptyState message="no stories yet" hint="New coverage arrives through the day" />
+        <EmptyState message="no stories yet" hint="New stories arrive through the day" />
       ) : (
-        <EndCard bottomInset={cardBottomInset} />
+        <EndCard />
       ),
-    [cardBottomInset, storyCount],
+    [storyCount],
   );
 
   const renderList = useCallback(
@@ -1283,14 +1466,13 @@ export default function HomeScreen() {
       scrollEnabled,
       onScrollOffset,
       sheetGesture,
-      onContentHeight,
     }: {
       scrollEnabled: boolean;
       onScrollOffset: SharedValue<number>;
       sheetGesture: Parameters<typeof StoryDeck>[0]['sheetGesture'];
-      onContentHeight: (height: number) => void;
     }) => (
       <StoryDeck
+        ref={deckRef}
         count={storyCount}
         peekFade={sheetProgress}
         index={frontIndex}
@@ -1299,15 +1481,18 @@ export default function HomeScreen() {
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
         onScrollOffset={onScrollOffset}
-        onContentHeight={onContentHeight}
+        bottomInset={deckBottomInset}
         keyOf={keyOfDeck}
         renderStory={renderStory}
         renderEnd={renderEnd}
         onDragStart={handleDeckDragStart}
+        onClaim={claimForDeck}
         onSettle={handleDeckSettle}
       />
     ),
     [
+      claimForDeck,
+      deckBottomInset,
       frontIndex,
       handleDeckDragStart,
       handleDeckSettle,
@@ -1321,9 +1506,9 @@ export default function HomeScreen() {
     ],
   );
 
-  const masthead = useMemo(
+  const dock = useMemo(
     () => (
-      <SheetMasthead
+      <StoryDock
         refreshing={refreshing}
         index={frontIndex}
         count={storyCount}
@@ -1342,10 +1527,18 @@ export default function HomeScreen() {
         listenDuration={briefingStatus.duration}
         listenHeard={briefingStatus.heard}
         onListenPress={handleBriefingPress}
+        onNext={handleNextStory}
+        storyOpen={storyOpen}
+        sheetProgress={sheetProgress}
+        onToggleStory={toggleSheet}
       />
     ),
     [
       goToStory,
+      sheetProgress,
+      storyOpen,
+      toggleSheet,
+      handleNextStory,
       storyDetailAt,
       storyHues,
       briefingStatus.available,
@@ -1390,6 +1583,7 @@ export default function HomeScreen() {
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
+          marketViewport={{ top: topChromeHeight, bottom: screenHeight - layout.peek }}
           places={places}
           foundSlugs={foundSlugs}
           foundProgress={progress}
@@ -1420,6 +1614,10 @@ export default function HomeScreen() {
       <GlobeGestureLayer
         globeRef={globeRef}
         canvasTop={0}
+        topChromeHeight={topChromeHeight}
+        sheetPeekHeight={layout.peek}
+        sheetFullHeight={layout.full}
+        sheetProgress={sheetProgress}
         cameraOwner={cameraOwner}
         cameraLat={cameraLat}
         cameraLng={cameraLng}
@@ -1427,6 +1625,7 @@ export default function HomeScreen() {
         viewLng={viewLng}
         zoomActive={zoomActive}
         zoomAngle={zoomAngle}
+        flightT={flightT}
         clip={globeClip}
         storyClip={storyClip}
         radius={layout.radius}
@@ -1447,9 +1646,9 @@ export default function HomeScreen() {
           items={strip}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}
-          recede={sheetProgress}
-          gaugesEnabled={sheetDetent !== 'full'}
           selectedId={selectedGauge?.id ?? null}
+          linkedIds={linkedGauges}
+          linkedColor={linkedHue}
         />
       </View>
 
@@ -1457,17 +1656,28 @@ export default function HomeScreen() {
         ref={mapSheetRef}
         peek={layout.peek}
         full={layout.full}
-        expandedHeight={sheetExpanded}
         progress={sheetProgress}
-        header={masthead}
         renderList={renderList}
         onDetentChange={handleDetentChange}
         onPullDown={handleRefresh}
       />
 
+      {/* Pinned to the screen, not the sheet: the same place at rest and open. */}
+      {dock}
+
+      {storyCount > 0 && measuredStory?.key !== measureKey ? (
+        <StoryMeasure
+          key={measureKey}
+          count={storyCount}
+          width={screenWidth}
+          renderCard={renderMeasureCard}
+          onMeasured={handleStoryMeasured}
+        />
+      ) : null}
+
       {/* A top toast starts under the gauges; "12 new · ~9 min read" landed
-          on the strip's readings. */}
-      <Toast ref={toastRef} topOffset={topChromeHeight} />
+          on the strip's readings. A bottom one ends above the dock. */}
+      <Toast ref={toastRef} topOffset={topChromeHeight} bottomOffset={layout.dock} />
 
       <HintOverlay
         hint={activeHint}
@@ -1486,6 +1696,8 @@ export default function HomeScreen() {
         onPlaybackError={handleBriefingPlaybackError}
         onVisibilityChange={setBriefingVisible}
         onStatusChange={setBriefingStatus}
+        bottomOffset={layout.dock}
+        onHeightChange={setPlayerHeight}
       />
 
       <MenuSheet
@@ -1506,10 +1718,11 @@ export default function HomeScreen() {
         onStoryPress={handleCardStoryPress}
       />
 
-      <InstrumentsSheet
+      <MarketBrowserSheet
         sheetRef={instrumentsSheetRef}
         bottomInset={insets.bottom}
-        cards={rankedInstruments}
+        exchanges={exchanges}
+        instruments={rankedInstruments.filter((card) => !card.id.startsWith('mkt:'))}
         onSelect={handleInstrumentSelect}
         onDismiss={handleInstrumentsDismiss}
       />

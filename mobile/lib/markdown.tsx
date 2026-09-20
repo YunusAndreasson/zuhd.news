@@ -3,20 +3,26 @@ import { Fragment, type ReactNode } from 'react';
 import { StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
+  ARTICLE_BREAK_PROPS,
   type ColorPalette,
   type FontSet,
   INLINE_HIT_SLOP,
   MAX_FONT_SCALE,
-  PROSE_BREAK_PROPS,
   type Typography,
 } from '../constants/theme';
 import { openExternal } from './open-link';
 
 /** Article sentences are raw RN `Text` (not the `<Text variant>` primitive),
  *  so the body-role breaking props ride along here: Android dictionary
- *  hyphenation + iOS 'standard' line breaking + the body Dynamic Type ramp —
- *  same treatment the `body` variant gets. */
-const SENTENCE_TEXT_PROPS = { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' } as const;
+ *  hyphenation + the high-quality break strategy + the body Dynamic Type
+ *  ramp. `StoryCard` used to set these on a wrapper it put around the whole
+ *  run; now that every block is its own `Text`, the wrapper is gone and the
+ *  props belong on the block. */
+/** A body paragraph's break behaviour. `ARTICLE_BREAK_PROPS` rather than the
+ *  conservative `PROSE_BREAK_PROPS`, because these are the article's own
+ *  paragraphs and its column is narrow: dictionary word-breaks and the
+ *  high-quality break strategy are what keep a 4-line block from ragging to 5. */
+const SENTENCE_TEXT_PROPS = { ...ARTICLE_BREAK_PROPS, dynamicTypeRamp: 'body' } as const;
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';
@@ -32,9 +38,21 @@ export type LinkOpener = (url: string) => void;
 
 const defaultOpenLink: LinkOpener = openExternal;
 
-export function smartTypography(s: string): string {
+/** The end of a word: what a quote that follows it closes. */
+const WORD_END = /[\p{L}\p{N})\]}\u2019\u201d.,!?%]/u;
+
+/**
+ * `before` is the visible character the run follows on its line — the end of
+ * a link or an emphasis. A quote at the start of a run opens only at a real
+ * boundary: after a word it is an apostrophe or a closing quote. The rules
+ * below read the start of every run as the start of a line, so every
+ * possessive after a country link, `[China](country:CN)'s`, printed
+ * `China‘s`.
+ */
+export function smartTypography(s: string, before = ''): string {
+  const t = WORD_END.test(before) ? s.replace(/^'/, '\u2019').replace(/^"/, '\u201d') : s;
   return (
-    s
+    t
       .replace(/(\s|^)"(\S)/g, '$1\u201c$2') // opening double quote
       .replace(/"/g, '\u201d') // closing double quote
       .replace(/(\s|^)'(\S)/g, '$1\u2018$2') // opening single quote
@@ -49,6 +67,10 @@ export function smartTypography(s: string): string {
       // bleeds past the column at narrow widths. ZWSP is invisible and only
       // acts when the word would otherwise overflow.
       .replace(/([\u2013\u2014])(\S)/g, '$1\u200b$2')
+      // And never before a spaced one: the space before it does not break,
+      // so a line never starts with a dash (the `Text` primitive does the
+      // same for strings that do not pass through here).
+      .replace(/ ([\u2013\u2014])/g, '\u00a0$1')
       .replace(/\b1\/4\b/g, '\u00BC') // ¼
       .replace(/\b1\/2\b/g, '\u00BD') // ½
       .replace(/\b3\/4\b/g, '\u00BE') // ¾
@@ -74,13 +96,15 @@ export function parseInline(line: string): Segment[] {
   const segments: Segment[] = [];
   const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
+  // Each run's typography, in the context of the run before it.
+  const smart = (text: string) => smartTypography(text, segments.at(-1)?.text.slice(-1));
 
   for (const match of line.matchAll(regex)) {
     const idx = match.index ?? 0;
     if (idx > lastIndex) {
       segments.push({
         type: 'text',
-        text: smartTypography(stripStrayEmphasis(line.slice(lastIndex, idx))),
+        text: smart(stripStrayEmphasis(line.slice(lastIndex, idx))),
       });
     }
     if (match[1]) {
@@ -98,34 +122,31 @@ export function parseInline(line: string): Segment[] {
         if (imIdx > bLast)
           segments.push({
             type: 'bold',
-            text: smartTypography(stripStrayEmphasis(boldContent.slice(bLast, imIdx))),
+            text: smart(stripStrayEmphasis(boldContent.slice(bLast, imIdx))),
           });
-        segments.push({ type: 'boldItalic', text: smartTypography(im[1] ?? '') });
+        segments.push({ type: 'boldItalic', text: smart(im[1] ?? '') });
         bLast = imIdx + im[0].length;
       }
       if (!hasNested) {
-        segments.push({ type: 'bold', text: smartTypography(stripStrayEmphasis(boldContent)) });
+        segments.push({ type: 'bold', text: smart(stripStrayEmphasis(boldContent)) });
       } else if (bLast < boldContent.length) {
         segments.push({
           type: 'bold',
-          text: smartTypography(stripStrayEmphasis(boldContent.slice(bLast))),
+          text: smart(stripStrayEmphasis(boldContent.slice(bLast))),
         });
       }
     } else if (match[2])
-      segments.push({ type: 'italic', text: smartTypography(stripStrayEmphasis(match[2])) });
-    else if (match[3])
-      segments.push({ type: 'link', text: smartTypography(match[3]), url: match[4] });
+      segments.push({ type: 'italic', text: smart(stripStrayEmphasis(match[2])) });
+    else if (match[3]) segments.push({ type: 'link', text: smart(match[3]), url: match[4] });
     lastIndex = idx + match[0].length;
   }
   if (lastIndex < line.length) {
     segments.push({
       type: 'text',
-      text: smartTypography(stripStrayEmphasis(line.slice(lastIndex))),
+      text: smart(stripStrayEmphasis(line.slice(lastIndex))),
     });
   }
-  return segments.length
-    ? segments
-    : [{ type: 'text', text: smartTypography(stripStrayEmphasis(line)) }];
+  return segments.length ? segments : [{ type: 'text', text: smart(stripStrayEmphasis(line)) }];
 }
 
 /** Split plain-text segments on any entity mentions, in-place, preserving
@@ -184,6 +205,14 @@ function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Seg
   return out;
 }
 
+/** The first sentence without its "Location — " prefix: the card's kicker and
+ *  the globe already say where. */
+function withoutDateline(sentence: string, location?: string | null): string {
+  if (!location) return sentence;
+  const prefix = `${location} \u2014 `;
+  return sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
+}
+
 export interface MarkdownStyles {
   sentence: TextStyle;
   bold: TextStyle;
@@ -202,8 +231,8 @@ export interface MarkdownStyles {
 
 /** URL scheme for tappable country mentions in article markdown.
  *  Writers emit `[Label](country:XX)` where XX is an ISO-3166 alpha-2 code.
- *  ArticlePage / ContextSheet intercept the scheme in their openLink wrappers
- *  and open `CountrySheet` instead of routing to the OS browser. */
+ *  `StoryCard` intercepts the scheme in its openLink wrapper and opens
+ *  `CountrySheet` instead of routing to the OS browser. */
 export const COUNTRY_URL_SCHEME = 'country:';
 
 export function makeMarkdownStyles(
@@ -368,11 +397,6 @@ export function renderSentences(
    *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
   entities?: Entity[],
   onEntityPress?: EntityPressHandler,
-  /** Return each sentence as inline runs rather than its own block `Text`,
-   *  for a caller that sets several sentences as one paragraph. Nesting the
-   *  block form inside a paragraph put roughly a line of extra leading above
-   *  it on Android: each sentence carried its own `lineHeight` as a span. */
-  runs = false,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -408,29 +432,27 @@ export function renderSentences(
     return used;
   };
 
-  const perSentence = (key: number, segments: Segment[]): ReactNode =>
-    runs ? (
-      <Fragment key={key}>{renderSegments(segments, mdStyles, openLink, onEntityPress)}</Fragment>
-    ) : (
-      <Text
-        key={key}
-        {...SENTENCE_TEXT_PROPS}
-        style={[mdStyles.sentence, sizeStyle]}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-      >
-        {renderSegments(segments, mdStyles, openLink, onEntityPress)}
-      </Text>
-    );
+  /** One block of the article: its own `Text`, carrying `mdStyles.sentence`'s
+   *  `marginBottom`, which is the gap the reader sees between paragraphs.
+   *
+   *  It briefly returned bare inline runs instead, so a caller could set
+   *  several blocks as one paragraph and save the gaps. That merge is what
+   *  `<blank line between blocks>` in `scripts/write-prompt.md` exists to
+   *  prevent, and it is gone: a block is a block on screen. */
+  const perSentence = (key: number, segments: Segment[]): ReactNode => (
+    <Text
+      key={key}
+      {...SENTENCE_TEXT_PROPS}
+      style={[mdStyles.sentence, sizeStyle]}
+      maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+    >
+      {renderSegments(segments, mdStyles, openLink, onEntityPress)}
+    </Text>
+  );
 
   return sentences.map((sentence, i) => {
     if (i === 0) {
-      // Strip "Location — " prefix from first sentence if present
-      let rest = sentence;
-      if (location) {
-        const prefix = `${location} \u2014 `;
-        if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
-      }
-      const baseSegments = parseInline(rest);
+      const baseSegments = parseInline(withoutDateline(sentence, location));
       const segmentsForRender = entities?.length
         ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
         : baseSegments;
@@ -449,7 +471,6 @@ export function renderSentences(
             <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
               {dateline}
             </Text>
-            {runs ? '\n' : null}
             {perSentence(i, segmentsForRender)}
           </Fragment>
         );

@@ -27,6 +27,10 @@ interface BriefingChromeProps {
   onVisibilityChange: (visible: boolean) => void;
   /** Fired when the *slow* fields change, never on an elapsed tick. */
   onStatusChange: (status: BriefingStatus) => void;
+  /** The dock under the bar: the bar sits on it rather than covering it. */
+  bottomOffset?: number;
+  /** The bar's measured height, so the card can leave room above it. */
+  onHeightChange?: (height: number) => void;
 }
 
 /**
@@ -43,12 +47,23 @@ interface BriefingChromeProps {
  * `onStatusChange` and `elapsed` never leaves this component.
  *
  * The bar it renders is the *playing* state only. The way in is the play
- * button that leads the sheet's masthead: as a pill in the corner of the globe it
- * was a control sized to stay out of the way, which is a control nobody finds.
+ * button in the dock: as a pill in the corner of the globe it was a control
+ * sized to stay out of the way, which is a control nobody finds. The bar sits
+ * on the dock, so the next story and the headlines stay under the thumb while
+ * the briefing plays.
  */
 export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
   function BriefingChrome(
-    { date, duration, onUnavailable, onPlaybackError, onVisibilityChange, onStatusChange },
+    {
+      date,
+      duration,
+      onUnavailable,
+      onPlaybackError,
+      onVisibilityChange,
+      onStatusChange,
+      bottomOffset,
+      onHeightChange,
+    },
     ref,
   ) {
     const player = useBriefingPlayer(date, duration);
@@ -116,6 +131,8 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
         onToggle={player.toggle}
         onSeek={player.seek}
         onDismiss={handleDismiss}
+        bottomOffset={bottomOffset}
+        onHeightChange={onHeightChange}
       />
     );
   },

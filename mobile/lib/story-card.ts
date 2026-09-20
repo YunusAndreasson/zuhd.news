@@ -3,25 +3,28 @@ import type { Article } from '@shared/types';
 /**
  * What a story card says, before anything is laid out.
  *
- * Every article is four one-sentence blocks — hook, why it matters, context,
- * what's next (`scripts/write-prompt.md`). The first two are what earns the
- * next ten seconds, and they are what the web map's preview card leads with
- * too: a three-to-five-word headline on its own ("Drone Boat Kills Drone
- * Boat") does not say why anyone should open it. So a card at rest carries
- * the lead and the rest waits under the fold, already rendered, for the card
- * to grow.
+ * Every article is four one-sentence blocks — hook, why it matters, mechanism,
+ * what's next — and, where the reporting earned one, a fifth between the third
+ * and the last: a counterpoint or a named person's words
+ * (`scripts/write-prompt.md` §rhythm). At rest a card carries only the
+ * hook: a three-to-five-word headline on its own ("Drone Boat Kills Drone
+ * Boat") does not say why anyone should open it, and the hook does, in one
+ * line or two. The card used to rest on the hook *and* why it matters — half
+ * of every article — and a reader went through forty of them reading each one
+ * to get past it. The rest waits under the fold, already rendered, for the
+ * card to open.
  */
 
-/** The hook and the why-it-matters sentence. */
-const LEAD_SENTENCES = 2;
+/** The hook. */
+const HOOK_SENTENCES = 1;
 
 /** Generic so a card can split its rendered sentences, not only the strings. */
-export function leadOf<T>(sentences: readonly T[]): T[] {
-  return sentences.slice(0, LEAD_SENTENCES);
+export function hookOf<T>(sentences: readonly T[]): T[] {
+  return sentences.slice(0, HOOK_SENTENCES);
 }
 
 export function restOf<T>(sentences: readonly T[]): T[] {
-  return sentences.slice(LEAD_SENTENCES);
+  return sentences.slice(HOOK_SENTENCES);
 }
 
 /**

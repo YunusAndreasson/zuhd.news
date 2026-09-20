@@ -108,7 +108,9 @@ adopting either side's vocabulary. That is the standard here.
 ## Structural invariants — these are mechanical and are checked
 
 1. **Return exactly as many blocks as you were given.** Do not merge two
-   paragraphs, do not split one. An article given 4 blocks returns 4 strings.
+   paragraphs, do not split one. An article given 4 blocks returns 4 strings,
+   one given 5 returns 5. Articles carry either shape: the 5th block, where it
+   is present, is a counterpoint or a quotation and sits second from last.
 2. **The dateline.** Block 1 opens `Plats — ` where `Plats` is the Swedish
    exonym of the source dateline city. Return that same string as `plats`.
    Use the established Swedish form: Teheran, Kairo, Damaskus, Bagdad, Peking,

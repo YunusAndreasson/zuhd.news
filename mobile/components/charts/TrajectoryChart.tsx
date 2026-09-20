@@ -12,6 +12,7 @@ import {
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { type ChartPoint, clearLabelSpot } from '../../lib/chart-label';
 import { Text } from '../primitives';
 
 // d3 line generator is stateless once configured — build it once at module
@@ -79,6 +80,10 @@ interface TrajectoryChartProps {
 // the metric-row percentile strips below. Thicker strokes start to feel
 // dashboard-y; 1.4 is the sweet spot at 140pt chart height.
 const STROKE = 1.4;
+/** The comparison line, fainter and thinner than the country's; its legend
+ *  sample in the scale strip is drawn to match. */
+const COMPARISON_STROKE = 1;
+const COMPARISON_OPACITY = 0.55;
 const ENDPOINT_R = 2.4;
 const PAD_TOP = 14;
 // Bottom pad must fit the decade tick labels — labelXs is 11pt × 1.2 lh,
@@ -97,6 +102,14 @@ const PAD_LEFT = 4;
 // IS the trajectory, the headline IS the number.
 const PAD_RIGHT = 12;
 const THRESHOLD_LABEL_INDENT = 6;
+const THRESHOLD_LABEL_HEIGHT = 14;
+/** One lowercase `labelXs` character in the regular face, with its tracking,
+ *  for sizing a threshold label before layout. Generous: a label measured
+ *  short is a label a line can cross. */
+const THRESHOLD_LABEL_CHAR_WIDTH = 7.5;
+const THRESHOLD_LABEL_STEP = 8;
+/** Room a threshold label keeps from both lines, for its descenders. */
+const THRESHOLD_LABEL_CLEARANCE = 3;
 // Year tick width = 4 digits at tabular ≈ 28px + 8px breathing room each
 // side. Was 36 — fine at default text scale, but `labelXs` scales up to
 // ×1.4 at max accessibility so "2020" overflowed the box and clipped on
@@ -162,92 +175,116 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 
   const lineColor = accent ?? colors.textEmphasis;
 
-  const { path, comparisonPath, yScale, computedMinY, computedMaxY, endPoint } = useMemo(() => {
-    const cleaned = values.map((v) => (v == null || Number.isNaN(v) ? null : v));
-    const cleanedCmp = (comparison?.values ?? []).map((v) =>
-      v == null || Number.isNaN(v) ? null : v,
-    );
-    const numeric = cleaned.filter((v): v is number => v != null);
-    const numericCmp = cleanedCmp.filter((v): v is number => v != null);
-    const thresholdYs = (thresholds ?? []).map((t) => t.value);
-    // Include the comparison series in the y-extent so both lines stay in
-    // frame — otherwise the comparison can clip when the country's range
-    // is narrow.
-    const all = [...numeric, ...numericCmp, ...thresholdYs];
-    const [eMin, eMax] = extent(all) as [number, number];
-    let lo = minY ?? eMin ?? 0;
-    let hi = maxY ?? eMax ?? 1;
-    if (lo === hi) {
-      lo -= 1;
-      hi += 1;
-    } else {
-      const pad = (hi - lo) * 0.08;
-      if (minY == null) lo -= pad;
-      if (maxY == null) hi += pad;
-    }
-
-    const innerBottom = height - PAD_BOTTOM;
-    const innerRight = (width || 1) - PAD_RIGHT;
-
-    const yScaleFn = scaleLinear().domain([lo, hi]).range([innerBottom, PAD_TOP]);
-    const xFor = (i: number, len: number) =>
-      len <= 1 ? PAD_LEFT : PAD_LEFT + (i / (len - 1)) * (innerRight - PAD_LEFT);
-
-    const buildPath = (vs: (number | null)[]) => {
-      // Fast path: no gaps. Build a single SVG path string and parse it
-      // once — saves the empty builder + addPath() round-trip that the
-      // segmented path requires. Most country series are dense (climate
-      // is annual ERA5, World Bank fills back-years), so the fast path
-      // hits ~95% of the time in practice.
-      if (!vs.includes(null)) {
-        const points = vs.map((v, i) => ({
-          x: xFor(i, vs.length),
-          y: yScaleFn(v as number),
-        }));
-        return (
-          Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ??
-          Skia.PathBuilder.Make().detach()
-        );
+  const { path, comparisonPath, yScale, computedMinY, computedMaxY, endPoint, lines } =
+    useMemo(() => {
+      const cleaned = values.map((v) => (v == null || Number.isNaN(v) ? null : v));
+      const cleanedCmp = (comparison?.values ?? []).map((v) =>
+        v == null || Number.isNaN(v) ? null : v,
+      );
+      const numeric = cleaned.filter((v): v is number => v != null);
+      const numericCmp = cleanedCmp.filter((v): v is number => v != null);
+      const thresholdYs = (thresholds ?? []).map((t) => t.value);
+      // Include the comparison series in the y-extent so both lines stay in
+      // frame — otherwise the comparison can clip when the country's range
+      // is narrow.
+      const all = [...numeric, ...numericCmp, ...thresholdYs];
+      const [eMin, eMax] = extent(all) as [number, number];
+      let lo = minY ?? eMin ?? 0;
+      let hi = maxY ?? eMax ?? 1;
+      if (lo === hi) {
+        lo -= 1;
+        hi += 1;
+      } else {
+        const pad = (hi - lo) * 0.08;
+        if (minY == null) lo -= pad;
+        if (maxY == null) hi += pad;
       }
-      // Gappy data — split into contiguous segments at each null so the
-      // line lifts cleanly across missing years instead of bridging them.
-      const builder = Skia.PathBuilder.Make();
-      let segment: { x: number; y: number }[] = [];
-      const flush = () => {
-        if (segment.length === 0) return;
-        const sub = Skia.Path.MakeFromSVGString(lineGenerator(segment) ?? '');
-        if (sub) builder.addPath(sub);
-        segment = [];
-      };
-      for (let i = 0; i < vs.length; i++) {
-        const v = vs[i];
-        if (v == null) {
-          flush();
-          continue;
+      // A quantity that cannot go below zero does not get an axis that does.
+      // The pad took Russia's GDP per capita, $1.3K in 1999, to a bottom of
+      // −$18, and the scale strip printed `$-18–$17K`.
+      if (minY == null && eMin >= 0 && lo < 0) lo = 0;
+
+      const innerBottom = height - PAD_BOTTOM;
+      const innerRight = (width || 1) - PAD_RIGHT;
+
+      const yScaleFn = scaleLinear().domain([lo, hi]).range([innerBottom, PAD_TOP]);
+      const xFor = (i: number, len: number) =>
+        len <= 1 ? PAD_LEFT : PAD_LEFT + (i / (len - 1)) * (innerRight - PAD_LEFT);
+
+      const buildPath = (vs: (number | null)[]) => {
+        // Fast path: no gaps. Build a single SVG path string and parse it
+        // once — saves the empty builder + addPath() round-trip that the
+        // segmented path requires. Most country series are dense (climate
+        // is annual ERA5, World Bank fills back-years), so the fast path
+        // hits ~95% of the time in practice.
+        if (!vs.includes(null)) {
+          const points = vs.map((v, i) => ({
+            x: xFor(i, vs.length),
+            y: yScaleFn(v as number),
+          }));
+          return (
+            Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ??
+            Skia.PathBuilder.Make().detach()
+          );
         }
-        segment.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
-      }
-      flush();
-      return builder.detach();
-    };
+        // Gappy data — split into contiguous segments at each null so the
+        // line lifts cleanly across missing years instead of bridging them.
+        const builder = Skia.PathBuilder.Make();
+        let segment: { x: number; y: number }[] = [];
+        const flush = () => {
+          if (segment.length === 0) return;
+          const sub = Skia.Path.MakeFromSVGString(lineGenerator(segment) ?? '');
+          if (sub) builder.addPath(sub);
+          segment = [];
+        };
+        for (let i = 0; i < vs.length; i++) {
+          const v = vs[i];
+          if (v == null) {
+            flush();
+            continue;
+          }
+          segment.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
+        }
+        flush();
+        return builder.detach();
+      };
 
-    const lastEndpoint = (vs: (number | null)[]) => {
-      for (let i = vs.length - 1; i >= 0; i--) {
-        const v = vs[i];
-        if (v != null) return { x: xFor(i, vs.length), y: yScaleFn(v) };
-      }
-      return null;
-    };
+      // Both lines as points, split at gaps, for placing threshold labels
+      // clear of them (`clearLabelSpot`).
+      const toLines = (vs: (number | null)[]) => {
+        const lines: ChartPoint[][] = [];
+        let run: ChartPoint[] = [];
+        for (let i = 0; i < vs.length; i++) {
+          const v = vs[i];
+          if (v == null) {
+            if (run.length > 0) lines.push(run);
+            run = [];
+            continue;
+          }
+          run.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
+        }
+        if (run.length > 0) lines.push(run);
+        return lines;
+      };
 
-    return {
-      path: buildPath(cleaned),
-      comparisonPath: cleanedCmp.length > 0 ? buildPath(cleanedCmp) : null,
-      yScale: yScaleFn,
-      computedMinY: lo,
-      computedMaxY: hi,
-      endPoint: lastEndpoint(cleaned),
-    };
-  }, [values, comparison, thresholds, minY, maxY, width, height]);
+      const lastEndpoint = (vs: (number | null)[]) => {
+        for (let i = vs.length - 1; i >= 0; i--) {
+          const v = vs[i];
+          if (v != null) return { x: xFor(i, vs.length), y: yScaleFn(v) };
+        }
+        return null;
+      };
+
+      return {
+        path: buildPath(cleaned),
+        comparisonPath: cleanedCmp.length > 0 ? buildPath(cleanedCmp) : null,
+        yScale: yScaleFn,
+        computedMinY: lo,
+        computedMaxY: hi,
+        endPoint: lastEndpoint(cleaned),
+        lines: [...toLines(cleaned), ...toLines(cleanedCmp)],
+      };
+    }, [values, comparison, thresholds, minY, maxY, width, height]);
 
   const toneColor = (tone: TrajectoryThreshold['tone']): string => {
     switch (tone) {
@@ -265,6 +302,33 @@ export const TrajectoryChart = memo(function TrajectoryChart({
   // and the configured chart height respectively.
   const innerRight = (width || 1) - PAD_RIGHT;
   const innerBottom = height - PAD_BOTTOM;
+
+  // Each threshold's label, on the first stretch of its rule that neither line
+  // crosses — above it by preference. It was pinned at the left end, where
+  // Russia's 1960s fertility ran straight through `replace`. A rule too near
+  // the top for a label above keeps its label below, at the left.
+  const thresholdLabelSpots = useMemo(
+    () =>
+      (thresholds ?? []).map((t) => {
+        const y = yScale(t.value);
+        if (!Number.isFinite(y)) return null;
+        const left = PAD_LEFT + THRESHOLD_LABEL_INDENT;
+        if (y < PAD_TOP + 16) return { left, top: y + 2 };
+        const spot = clearLabelSpot({
+          lines,
+          ruleY: y,
+          labelWidth: t.label.length * THRESHOLD_LABEL_CHAR_WIDTH,
+          labelHeight: THRESHOLD_LABEL_HEIGHT,
+          minLeft: left,
+          maxRight: innerRight,
+          step: THRESHOLD_LABEL_STEP,
+          clearance: THRESHOLD_LABEL_CLEARANCE,
+        });
+        if (!spot) return { left, top: y - THRESHOLD_LABEL_HEIGHT };
+        return { left: spot.left, top: spot.above ? y - THRESHOLD_LABEL_HEIGHT : y + 2 };
+      }),
+    [thresholds, yScale, lines, innerRight],
+  );
 
   // Horizontal graticule: hairlines at GRID_FRACTIONS of inner height,
   // very low opacity so the eye reads it as a hint, not chrome.
@@ -340,11 +404,11 @@ export const TrajectoryChart = memo(function TrajectoryChart({
               <Path
                 path={comparisonPath}
                 style="stroke"
-                strokeWidth={1}
+                strokeWidth={COMPARISON_STROKE}
                 strokeJoin="round"
                 strokeCap="round"
                 color={colors.textSecondary}
-                opacity={0.55}
+                opacity={COMPARISON_OPACITY}
                 start={0}
                 end={progress}
               />
@@ -364,24 +428,15 @@ export const TrajectoryChart = memo(function TrajectoryChart({
             ) : null}
           </Canvas>
 
-          {/* Inline threshold labels: by default float just above each
-           *  dashed line, left-indented over the chart canvas. If a
-           *  threshold lands within ~16px of the chart top (where the "above"
-           *  position would clip), flip the label to sit BELOW the line
-           *  instead. Same horizontal placement either way. */}
+          {/* Inline threshold labels, placed by `thresholdLabelSpots`. */}
           {thresholds?.map((t, i) => {
-            const y = yScale(t.value);
-            if (!Number.isFinite(y)) return null;
-            const flipBelow = y < PAD_TOP + 16;
-            const labelTop = flipBelow ? y + 2 : y - 14;
+            const spot = thresholdLabelSpots[i];
+            if (!spot) return null;
             return (
               <View
                 key={`thresh-label-${i}`}
                 pointerEvents="none"
-                style={[
-                  styles.thresholdLabel,
-                  { left: PAD_LEFT + THRESHOLD_LABEL_INDENT, top: labelTop },
-                ]}
+                style={[styles.thresholdLabel, spot]}
               >
                 <Text
                   variant="labelXs"
@@ -396,21 +451,36 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 
           {/* Scale strip — fixed top-left of the chart canvas. Carries
            *  the y-range ("0–100%", "$5K–$120K") so the reader can place
-           *  the trajectory on a scale, plus the comparison-line legend
-           *  (`┄┄ world median`) when present. Top-left is the only edge
-           *  immune to right-side clipping in a paginated horizontal
-           *  ScrollView. The character `┄` echoes the comparison line's
-           *  dashed-secondary look. */}
+           *  the trajectory on a scale, plus the comparison line's legend
+           *  when there is one. Top-left is the only edge immune to
+           *  right-side clipping in a paginated horizontal ScrollView.
+           *
+           *  The legend's sample is a drawn stroke in the comparison line's
+           *  own colour and weight. It was the character `┄┄`, which said
+           *  "dashed" of a solid line — the dashed lines are the thresholds
+           *  — and which Source Sans does not have, so it came from a
+           *  fallback font. */}
           {formatY || comparison?.label ? (
             <View pointerEvents="none" style={styles.scaleStrip}>
-              <Text variant="labelXs" tone="secondary" numberOfLines={1} style={font.regular}>
-                {[
-                  formatY ? `${formatY(computedMinY)}–${formatY(computedMaxY)}` : null,
-                  comparison?.label ? `┄┄ ${comparison.label}` : null,
-                ]
-                  .filter(Boolean)
-                  .join('  ·  ')}
-              </Text>
+              {formatY ? (
+                <Text variant="labelXs" tone="secondary" numberOfLines={1} style={font.regular}>
+                  {`${formatY(computedMinY)}–${formatY(computedMaxY)}`}
+                  {comparison?.label ? '  ·  ' : ''}
+                </Text>
+              ) : null}
+              {comparison?.label ? (
+                <>
+                  <View
+                    style={[
+                      styles.legendStroke,
+                      { backgroundColor: colors.textSecondary, opacity: COMPARISON_OPACITY },
+                    ]}
+                  />
+                  <Text variant="labelXs" tone="secondary" numberOfLines={1} style={font.regular}>
+                    {comparison.label}
+                  </Text>
+                </>
+              ) : null}
             </View>
           ) : null}
 
@@ -448,7 +518,7 @@ const styles = StyleSheet.create({
   },
   thresholdLabel: {
     position: 'absolute',
-    height: 14,
+    height: THRESHOLD_LABEL_HEIGHT,
     justifyContent: 'center',
   },
   scaleStrip: {
@@ -459,8 +529,16 @@ const styles = StyleSheet.create({
     // half — even if the formatted range gets long, numberOfLines={1}
     // ellipsises rather than overflowing into the trajectory area.
     right: PAD_RIGHT + 6,
-    height: 14,
-    justifyContent: 'center',
+    // No fixed height. It was 14, shorter than a `labelXs` line at any size
+    // but the smallest, and centring the taller line in it pushed the top of
+    // the text above the chart's edge, where it was cut through the capitals.
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  legendStroke: {
+    width: 12,
+    height: COMPARISON_STROKE,
+    marginRight: SPACING.xs,
   },
   yearTick: {
     position: 'absolute',

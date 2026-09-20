@@ -50,13 +50,14 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
     else if (rankLatest[1] <= 15) subtitle = `Holding a top-tier export basket since the 1990s.`;
     else subtitle = `Roughly steady in the rankings since 1995.`;
   } else {
-    subtitle = `Rank within the world's exporters by export basket sophistication.`;
+    subtitle = `Rank within the world’s exporters by export basket sophistication.`;
   }
 
   // ECI value series for the trajectory. Hard-coded y-bounds give every
   // country the same visual scale so users can compare cards across the
-  // carousel; the 0 threshold is the world median (z-score zero) labelled
-  // for readers who don't know ECI is zero-centred.
+  // carousel. The world line is the only reference: a dashed rule at zero
+  // labelled "world median" drew the same thing a second time, on top of it,
+  // and the grey line ran through its label.
   const series = data.eci ?? [];
   const startYear = series[0]?.[0] ?? 1995;
   const endYear = series[series.length - 1]?.[0] ?? new Date().getFullYear();
@@ -77,7 +78,6 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
         comparison={{ values: comparisonValues, label: 'world' }}
         minY={-3}
         maxY={3}
-        thresholds={[{ value: 0, label: 'world median', tone: 'neutral' }]}
         formatY={fmtSigned}
         accessibilityLabel={`Ranked ${headline} in economic complexity. ${subtitle} Comparison line shows world median.`}
       />

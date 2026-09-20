@@ -1,7 +1,7 @@
 import type { RelatedArticleRef } from '@shared/types';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
+import { INLINE_HIT_SLOP, MAX_FONT_SCALE, SPACING, titleFontScale } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { MAX_CITED } from '../../lib/cards/card-chart';
 import type { DeckCard } from '../../lib/cards/types';
@@ -121,14 +121,14 @@ const CitedStories = memo(function CitedStories({
   const { colors } = useTheme();
   return (
     <View style={styles.cited}>
-      <Text variant="labelXs" tone="secondary">
+      <Text variant="labelSm" tone="secondary">
         in the news
       </Text>
       {cited.slice(0, MAX_CITED).map((story, i) => (
         <Pressable
           key={story.slug}
           onPress={() => onPress(story.slug)}
-          accessibilityRole="link"
+          accessibilityRole="button"
           accessibilityLabel={`${story.title}${story.dateFormatted ? `, ${story.dateFormatted}` : ''}`}
           accessibilityHint="Opens the story on the map"
           style={[styles.citedRow, { borderBottomColor: colors.rule }]}
@@ -246,18 +246,22 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
                   caption rows prefixed "Source ·", which read as more
                   supporting copy — a fourth paragraph — rather than as the
                   attribution they are. */}
+        {/* A pressable, not `<Text onPress>`: a bare text press had no
+            feedback and a target one caption line tall. The inline slop keeps
+            stacked links from stealing each other's taps. */}
         {card.sources?.map((source) => (
-          <Text
+          <Pressable
             key={source.url}
-            variant="caption"
-            tone="secondary"
-            numberOfLines={1}
-            accessibilityRole="link"
             onPress={() => openLink(source.url)}
+            hitSlop={INLINE_HIT_SLOP}
+            accessibilityRole="link"
+            accessibilityLabel={source.label}
             style={styles.sourceLink}
           >
-            {source.label}
-          </Text>
+            <Text variant="caption" tone="secondary" numberOfLines={1} style={styles.sourceText}>
+              {source.label}
+            </Text>
+          </Pressable>
         ))}
       </View>
     </View>
@@ -302,5 +306,6 @@ const styles = StyleSheet.create({
   // A fixed column, so the titles align whether the list reaches 3 or not.
   citedNumber: { width: SPACING.md, fontVariant: ['tabular-nums'] },
   citedText: { flex: 1, minWidth: 0 },
-  sourceLink: { marginTop: SPACING.xs, textAlign: 'right' },
+  sourceLink: { marginTop: SPACING.xs, alignSelf: 'flex-end', maxWidth: '100%' },
+  sourceText: { textAlign: 'right' },
 });

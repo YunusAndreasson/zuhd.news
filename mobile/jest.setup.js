@@ -10,6 +10,7 @@ jest.mock('react-native', () => {
     },
     Dimensions: { get: () => ({ width: 375, height: 812 }) },
     Linking: { openURL: jest.fn() },
+    AccessibilityInfo: { announceForAccessibility: jest.fn() },
     Text: 'Text',
     View: 'View',
     Pressable: 'Pressable',
@@ -85,6 +86,7 @@ jest.mock('react-native-reanimated', () => {
       return output[output.length - 1];
     },
     Extrapolation: { CLAMP: 'clamp', EXTEND: 'extend', IDENTITY: 'identity' },
+    ReduceMotion: { System: 'system', Always: 'always', Never: 'never' },
     interpolateColor: (value, input, output) => {
       // Good enough for tests that don't assert on the resulting color: pick
       // the nearer breakpoint's color rather than actually lerping in RGB, so
@@ -117,6 +119,7 @@ jest.mock('react-native-reanimated', () => {
 // ---------------------------------------------------------------------------
 jest.mock('react-native-worklets', () => ({
   scheduleOnRN: (fn, ...args) => fn(...args),
+  scheduleOnUI: (fn, ...args) => fn(...args),
 }));
 
 // ---------------------------------------------------------------------------

@@ -37,18 +37,23 @@ Check first, before any style rules.
 - **Title-echo test:** Does the hook just restate the title with a verb change? ("Microsoft Pause Threatens Carbon Removal" / hook: "Microsoft is pausing carbon removal purchases.") If the hook still holds when the title is hidden, rewrite it around a number, name, or consequence *not* in the title — pull from later sentences if needed.
 - **Why-it-matters test:** Does sentence 2 name a distinct consequence or stake — not the hook's fact restated with an adjective? "The strike is a major escalation" is the hook wearing an adjective, not a why-it-matters sentence. It should answer "so what": who this affects, what it changes, what it puts at risk.
 - **Mechanism test:** Does sentence 3 teach *how* or *why this happened*? If it merely adds facts from the same source, or repeats the why-it-matters sentence, rewrite to explain the structural cause, the constraint, or the precedent.
-- **Stakes test:** Does sentence 4 name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
+- **Counterpoint test:** Where an article has five blocks, does block 4 carry a fact that cuts against the hook, attributed to whoever asserted it — or a named person's verbatim words? Judge it against the three checks in `<structure>`. Where an article has four blocks, do not add a fifth: the writer had the sources and you do not.
+- **Stakes test:** Does the *final* sentence name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
 - **Causal-claim test:** Flag and rewrite any sentence that asserts causation the sources didn't explicitly claim: "X gave Y cover to do Z," "X gains credibility with Y," "the gap widens with every Z," "this addresses the wrong bottleneck." These are editorial theories. Either attribute to a named analyst/researcher in the source or cut. Wire copy reports; it does not interpret.
 - **Floating-number test:** Any load-bearing figure (casualty counts, production volumes, inventory, specific percentages) needs either an inline attribution ("DoD figures," "the central bank said," "according to the study") or verification against the source material. Unattributed specifics that the writer appears to have stated on their own authority must be attributed or cut.
 </editorial>
 
 <structure>
 - Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ) — same list as the body rule. Copy-desk check: commas present where needed ("Apple, Google" not "Apple Google"); singular/plural agreement correct ("Alumnus" for one person, "Alumni" for more); no typos.
-- Body: 4 markdown paragraphs, one sentence each, 48-60 words total. Hook (≤8 words) → Why it matters (≤14 words) → Context (≤20 words) → Future (≤16 words). If out of order, reorder. If 5+ sentences, cut to 4.
+- Body: markdown paragraphs, one sentence each, separated by blank lines. **Four blocks are required; a fifth is optional.** Hook (≤10 words) → Why it matters (≤16 words) → Mechanism (≤22 words) → *optional* counterpoint-or-quote (≤20 words) → Future (≤18 words). If out of order, reorder. If 6+ sentences, cut to 5 — cut the counterpoint-or-quote block first, since it is the one the format marks optional. 52-66 words across four blocks, 62-75 across five.
+- **The optional 4th block is a counterpoint or a quote, never both and never invented.** It is Axios's "Yes, but" or "What they're saying," and it sits between the mechanism and the future. Three checks, in order:
+  - **Fabricated quote.** If block 4 is a direct quotation, the quoted words must appear verbatim in a source body, attributed there to the same named person. A quotation you cannot find in the sources must be cut — rewrite the block as a counterpoint or delete it. This is the one error in this prompt that is a correction rather than an edit.
+  - **False balance.** A counterpoint that reports a denial as the other side of a fact the denier's own institution has confirmed is the false equivalence `<values>` forbids. Delete the block; do not soften it.
+  - **Filler.** A block 4 that paraphrases block 3, quotes an unnamed "Western diplomat," or says analysts are divided, is the slot being filled rather than earned. Delete it. Four blocks is a complete article.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
 - `location` in frontmatter must be **identical** to the dateline text — the part before ` — ` in the first sentence — with **no `, Country` suffix**. If the body opens `Gujranwala — ` then `location` must be `Gujranwala`, not `Gujranwala, Pakistan`; a country suffix breaks the mobile dateline strip. Fix the frontmatter field (not the dateline) when they disagree. Coordinates (`lat`/`lng`) must fall on land inside a country — not in a body of water or ocean.
-- **Length:** Body text (everything after the closing `---`) targets ≤360 characters with a hard ceiling of 440. Do not rewrite a body just because it sits between 360 and 440 — only articles flagged OVER in the `<body-lengths>` block appended below (>440 chars) **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 4 sentences and reads naturally.
+- **Length:** Body text (everything after the closing `---`) targets 400-480 visible characters with a hard ceiling of 560. Do not rewrite a body just because it sits between 480 and 560 — only articles flagged OVER in the `<body-lengths>` block appended below (>560 chars) **must** be rewritten shorter. That block also prints each article's block count, so you can see which articles carry the optional 5th before opening them. On a flagged article, drop the optional counterpoint-or-quote block first if the article has five; that is what it is there for. Otherwise cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a required block. After trimming, verify the result still reads naturally and still has a hook, a why-it-matters, a mechanism and a future.
 </structure>
 
 <clarity>
@@ -101,6 +106,20 @@ FIX: Centers affected people. Specific number. Both sides attributed.
 BEFORE: Three protesters were killed during clashes with security forces in Khartoum.
 AFTER: Sudanese security forces killed 3 protesters in Khartoum.
 FIX: Names the actor. Active voice. No "clashes" for asymmetric violence.
+</example>
+
+<example>
+BEFORE: Tehran — Inspectors were denied access to the Fordow enrichment site.
+"This is a grave breach of the safeguards agreement," an IAEA official said.
+AFTER: Tehran — Inspectors were denied access to the Fordow enrichment site.
+[Iran](country:IR)'s atomic energy body says the visit was rescheduled, not refused, and offered 14 October.
+FIX: The quotation is nowhere in the sources and the speaker is unnamed — a fabricated quote, which is a correction rather than an edit. Replaced with the counterpoint the sources actually carry, attributed. Also expanded IAEA, which is not on the recognised list.
+</example>
+
+<example>
+BEFORE: [five blocks, 604 chars, flagged OVER] … Lagos — … / … / … / Analysts remain divided on the long-term outlook. / …
+AFTER: [four blocks, 441 chars] the same article with the 4th block deleted.
+FIX: Over the 560 ceiling, and the optional counterpoint-or-quote block was filler — "analysts remain divided" is the slot being filled, not earned. Dropping it is the first move on a flagged five-block article; never cut a required block to get under the ceiling.
 </example>
 
 <example>

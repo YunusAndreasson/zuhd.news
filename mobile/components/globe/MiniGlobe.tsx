@@ -1,4 +1,7 @@
-'use no memo';
+import { straitMapChange } from '../../lib/strait-map';
+
+('use no memo');
+
 // React Compiler is enabled app-wide (app.json experiments.reactCompiler) with
 // no other opt-out for this file. This component's reprojection hot path
 // depends on several `useCallback(..., [])` closures that are DELIBERATELY
@@ -57,9 +60,8 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { AppState, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, {
-  cancelAnimation,
   Easing,
   type SharedValue,
   useAnimatedReaction,
@@ -68,7 +70,6 @@ import Animated, {
   useReducedMotion,
   useSharedValue,
   withDelay,
-  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -77,24 +78,32 @@ import {
   BLACK,
   type ColorPalette,
   categoryMarkColor,
+  KEEP_MOTION,
   WHITE,
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
-import { reachFor, swipeClip, viewAngleFor } from '../../lib/globe-camera';
+import { reachFor, slerpLatLng, swipeClip, viewAngleFor } from '../../lib/globe-camera';
 import { isStorySettled } from '../../lib/globe-settle';
+import {
+  layoutMarketClusters,
+  type MarketCluster,
+  type MarketPoint,
+} from '../../lib/market-map-layout';
 import { coverageRanks } from '../../lib/now';
 import {
   conflictScale,
+  FAMINE_BOX_MAX,
   type FamineArea,
   famineAlpha,
   famineBlocks,
+  famineBox,
   type GenocideSituation,
   type ThermalEvent,
   thermalAlpha,
-  thermalScale,
+  thermalBox,
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
@@ -117,7 +126,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import { geographyTier, getGlobeGeography } from './geography';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
@@ -327,6 +336,24 @@ function textWidth(font: SkFont, text: string): number {
 }
 
 const PULSE_EASING = Easing.out(Easing.cubic);
+/** The current story's dot, in points: still, at the size it already drew at
+ *  under Reduce Motion. */
+const ACTIVE_DOT_R = 6;
+/** The location beside the current story's dot — the most important text on
+ *  the globe, and since the dot stopped breathing, what says which place is
+ *  being read. It was 14pt. */
+const DOT_LABEL_PT = 16;
+/** How far right of the dot's centre the location starts: the dot's radius,
+ *  its 2pt ring and 4pt of air. It was 6, inside the ring, so the dot sat on
+ *  the first letter and the time tucked under the dot. */
+const DOT_LABEL_DX = ACTIVE_DOT_R + 2 + 4;
+/** Its ascent above the baseline, and its width per character before the font
+ *  has loaded, for the collision boxes. */
+const DOT_LABEL_ASCENT = 14;
+const DOT_LABEL_CHAR_W = 8;
+/** The local time's baseline below the dot: one line under the location's,
+ *  which sits at +4. */
+const DOT_SUB_DY = 4 + DOT_LABEL_PT;
 /** The found burst's length. The screen waits this long before flying the
  *  camera, so the burst plays where the mark was rather than being dragged. */
 export const COLLECT_MS = 420;
@@ -334,10 +361,6 @@ export const COLLECT_MS = 420;
 const RING_GAP = 6;
 const RING_WIDTH = 2;
 const COLLECT_REDUCED_MS = 150;
-/** The active-story dot's breathe: reps of one 900ms leg (up or down), so 6
- *  is 3 full cycles. Bounded so the app stops rendering once it settles —
- *  see the comment beside `activePulse`. */
-const ACTIVE_PULSE_REPS = 6;
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -397,6 +420,9 @@ const STORY_HALO_LAYERS: GlowLayer[] = [
 ];
 const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
 const BEACON_SIZE = 16;
+// Skia's texture effect depends on size identity; fixed atlases must retain it
+// across renders so theme and type changes do not rebuild unchanged textures.
+const BEACON_TEXTURE_SIZE = { width: BEACON_SIZE, height: BEACON_SIZE };
 const BEACON_CENTER = BEACON_SIZE / 2;
 /** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
 const BEACON_R = 5.5;
@@ -450,15 +476,16 @@ const STRAIT_SURGE_DELTA = 0.15;
 const OVERLAY_RES = 3;
 const OVERLAY_CELL = GLYPH_HALF * 2 * OVERLAY_RES;
 const OVERLAY_CELLS = 5;
+const OVERLAY_TEXTURE_SIZE = { width: OVERLAY_CELL * OVERLAY_CELLS, height: OVERLAY_CELL };
 const THERMAL_CELL = 4;
 const overlayCell = (i: number) => rect(i * OVERLAY_CELL, 0, OVERLAY_CELL, OVERLAY_CELL);
 const FAMINE_SRC = [overlayCell(0), overlayCell(1), overlayCell(2), overlayCell(3)] as const;
 const THERMAL_SRC = overlayCell(THERMAL_CELL);
-/** A famine column's drawn frame is 10 × 14 of its 16-unit box, at up to
- *  1.1× scale — about 15 × 21 pt. Two columns closer than that on both axes
- *  overlap, and the lesser one is not drawn. */
-const FAMINE_COLLIDE_X = 16;
-const FAMINE_COLLIDE_Y = 22;
+/** A famine column's drawn frame is 10 × 14 of its 16-unit box, at most
+ *  `FAMINE_BOX_MAX` — about 9 × 12 pt. Two columns closer than that, plus a
+ *  point, on both axes overlap, and the lesser one is not drawn. */
+const FAMINE_COLLIDE_X = Math.ceil((FAMINE_BOX_MAX * 10) / 16) + 1;
+const FAMINE_COLLIDE_Y = Math.ceil((FAMINE_BOX_MAX * 14) / 16) + 1;
 /** The catch radius every reference mark shares, squared (36 px). */
 const MARK_HIT_PX2 = 1296;
 
@@ -566,6 +593,52 @@ function measureLines(lines: string[], font: SkFont | null, fallbackChar: number
   return w;
 }
 
+type LabelBox = { x0: number; y0: number; x1: number; y1: number };
+
+/** The location and local time beside the current story's dot, both rows:
+ *  the name's baseline 4 below the dot and `DOT_LABEL_DX` right of it, the
+ *  time's at `DOT_SUB_DY`. Widths fall back to a count of characters until the fonts
+ *  load. */
+function dotLabelBox(
+  dl: { text: string; sub?: string; x: number; y: number },
+  label: SkFont | null,
+  sub: SkFont | null,
+): LabelBox {
+  const dw = label ? textWidth(label, dl.text) : dl.text.length * DOT_LABEL_CHAR_W;
+  const sw = dl.sub ? (sub ? textWidth(sub, dl.sub) : dl.sub.length * 5) : 0;
+  return {
+    x0: dl.x + DOT_LABEL_DX,
+    x1: dl.x + DOT_LABEL_DX + Math.max(dw, sw),
+    y0: dl.y + 4 - DOT_LABEL_ASCENT,
+    y1: dl.y + (dl.sub ? DOT_SUB_DY : 4) + 4,
+  };
+}
+
+/** The focused country's name: centred on x, first baseline at y, each further
+ *  line `LABEL_LINE_HEIGHT` below. Ascender ≈ 10 for its 12pt SemiBold. */
+function countryLabelBox(
+  cl: { lines: string[]; x: number; y: number },
+  font: SkFont | null,
+): LabelBox {
+  const w = measureLines(cl.lines, font, 6);
+  return {
+    x0: cl.x - w / 2,
+    x1: cl.x + w / 2,
+    y0: cl.y - 10,
+    y1: cl.y + (cl.lines.length - 1) * LABEL_LINE_HEIGHT + 3,
+  };
+}
+
+function boxesMeet(a: LabelBox, b: LabelBox, gap: number): boolean {
+  return a.x0 - gap < b.x1 && a.x1 + gap > b.x0 && a.y0 - gap < b.y1 && a.y1 + gap > b.y0;
+}
+
+/** Where a strait's or an exchange's name may go, as its baseline below the
+ *  mark: under the 22pt glyph first, then over it. */
+const MARK_LABEL_DY = [20, -14] as const;
+/** The clear space a mark's name keeps from every label placed before it. */
+const MARK_LABEL_GAP = 2;
+
 // Neighbour-label lines, precomputed at module load. Display-name
 // normalization ("United States of America" → "United States") and the
 // 1–2 line wrap (word boundary nearest the middle, same convention as
@@ -580,9 +653,10 @@ const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
  *  the horizon. */
 const TWILIGHT_RADIUS = 96;
 /** The projection scale past which a moving frame still resamples its edges —
- *  see `callReproject`. A phone's disc is ~190 pt, so every story framing
- *  (30°–40°) and the swipes between them fall under it; a pinch past ~28°
- *  does not. */
+ *  see `callReproject`. A phone's disc is ~190 pt, so a pinch past ~28° is
+ *  over it, and so is the end of a swipe landing on a story framing (18°–24°
+ *  since 2026-09-19; they were 30°–40° and stayed under it), where the cap in
+ *  view is smaller and so is the path. */
 const MOTION_RESAMPLE_SCALE = 400;
 
 export interface TapResult {
@@ -632,6 +706,9 @@ export interface MiniGlobeRef {
   /** Redraw the last camera at full detail — after a pinch, whose frames drew
    *  the in-motion tier and which no later camera movement will replace. */
   settle: () => void;
+  /** The clip a story rests at, in degrees — what the deck frames it with, so
+   *  a flight to it can land exactly there. */
+  framingFor: (index: number) => number;
 }
 
 interface MiniGlobeProps {
@@ -657,14 +734,8 @@ interface MiniGlobeProps {
   thermalEvents?: ThermalEvent[];
   /** UN genocide determinations, from `/api/genocide.json`. */
   genocideSituations?: GenocideSituation[];
-  /**
-   * Exchanges behind an index the server flagged as having moved.
-   *
-   * Pre-resolved to coordinates by the screen rather than derived here: the
-   * placement ladder (the signal's own `lat`/`lng`, else its country's
-   * centroid, else no mark) belongs with the ranking that produced the list,
-   * and this component should not have to know what a `MarketSignal` is.
-   */
+  /** Published exchanges, resolved to their actual exchange coordinates. */
+  marketViewport?: { top: number; bottom: number };
   marketMarks?: {
     id: string;
     label: string;
@@ -847,20 +918,16 @@ interface GlobeState {
     id: string;
     label: string;
     intensity: number;
+    direction?: 'up' | 'down' | 'flat';
+    labelX: number;
     disrupted: boolean;
     /** Traffic well above its normal — the web's teal strait. */
     surge: boolean;
+    /** The name's baseline, or null when there was no room for it. */
+    labelY: number | null;
   }[];
-  /** Exchanges with a flagged index move. Projected every frame like
-   *  chokepoints: the set is at most three and it is the thing the opening
-   *  camera is most often pointed at, so it must not blink out mid-scroll. */
-  marketMarks: {
-    x: number;
-    y: number;
-    id: string;
-    label: string;
-    direction?: 'up' | 'down' | 'flat';
-  }[];
+  /** Clustered market targets; their members remain individually reachable. */
+  marketMarks: (MarketCluster & { labelX: number; labelY: number | null })[];
   /** GDACS disaster markers — Orange/Red current events. Projected every
    *  frame like chokepoints (small set, reference signal). `recencyAlpha`
    *  ∈ [0.5, 1] fades events older than ~7 days. */
@@ -1420,7 +1487,6 @@ interface FramePictures {
  *  zoom in the same replay. */
 interface FrameOut extends FramePictures {
   activeDot: { x: number; y: number } | null;
-  activeSlug: string | null;
   activeColor: string;
   disc: number;
 }
@@ -1573,7 +1639,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 
   // Chokepoints — the strait pictogram in the web's three states: slate at
   // rest, gold when traffic is pinched below its normal, teal when it surges.
-  // Always labelled; the label's ink and halo are WCAG-audited (2026-07-04).
+  // Labelled wherever there is room (`MARK_LABEL_DY`); the label's ink and
+  // halo are WCAG-audited (2026-07-04).
   const water = fonts.water;
   for (const cp of f.chokepoints) {
     const glyphColor = cp.disrupted
@@ -1602,16 +1669,38 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       cp.y,
       strokePaint(glyphColor, 0.6 + 0.35 * cp.intensity, 1.0, StrokeJoin.Round, StrokeCap.Round),
     );
-    if (water) {
+    // Compact traffic sign beside the coastline glyph; its touch area stays generous.
+    if (cp.direction) {
+      const x = cp.x + 12;
+      const color =
+        cp.direction === 'down'
+          ? colors.markMarketDown
+          : cp.direction === 'up'
+            ? colors.markMarketUp
+            : colors.textSecondary;
+      c.drawCircle(x, cp.y, 6, fillPaint(colors.bg, 0.98));
+      if (cp.direction === 'flat') c.drawLine(x - 3, cp.y, x + 3, cp.y, strokePaint(color, 1, 1.5));
+      else {
+        const sign = cp.direction === 'down' ? 1 : -1;
+        c.drawLine(x, cp.y - 4, x, cp.y + 4, strokePaint(color, 1, 1.5));
+        c.drawLine(x, cp.y + sign * 4, x - 3, cp.y + sign, strokePaint(color, 1, 1.5));
+        c.drawLine(x, cp.y + sign * 4, x + 3, cp.y + sign, strokePaint(color, 1, 1.5));
+      }
+    }
+    if (fonts.sub && cp.labelY !== null) {
       drawHaloText(
         c,
         cp.label,
-        cp.x - textWidth(water, cp.label) / 2,
-        cp.y + 20,
-        water,
-        cp.disrupted ? colors.markStraitPinch : colors.text,
+        cp.labelX - textWidth(fonts.sub, cp.label) / 2,
+        cp.labelY,
+        fonts.sub,
+        cp.direction === 'down'
+          ? colors.markMarketDown
+          : cp.direction === 'up'
+            ? colors.markMarketUp
+            : colors.textSecondary,
         colors.bg,
-        cp.disrupted ? 0.9 : light ? 0.7 : 0.55,
+        1,
         cp.disrupted
           ? light
             ? LABEL_HALO_OPACITY_LIGHT_STRONG
@@ -1621,37 +1710,67 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     }
   }
 
-  // Exchanges whose index moved — a candle, directionless in shape (the
-  // strip's delta owns direction), always labelled so the earth reads as
-  // addressable.
+  // Separate 48dp targets with a solid backing: the direction reads on land
+  // and sea alike. A cluster names its size instead of pretending to be one index.
+  const marketFont = fonts.sub;
   for (const m of f.marketMarks) {
-    drawGlyph(
-      c,
-      MARKET_PATH,
-      m.x,
-      m.y,
-      strokePaint(
-        m.direction === 'up'
-          ? colors.markMarketUp
-          : m.direction === 'down'
-            ? colors.markMarketDown
-            : colors.markStrait,
-        0.95,
-        1.2,
-        StrokeJoin.Round,
-        StrokeCap.Round,
-      ),
-    );
-    if (water) {
+    const color =
+      m.direction === 'up'
+        ? colors.markMarketUp
+        : m.direction === 'down'
+          ? colors.markMarketDown
+          : colors.text;
+    if (Math.hypot(m.x - m.originX, m.y - m.originY) > 2) {
+      c.drawLine(m.originX, m.originY, m.x, m.y, strokePaint(colors.textSecondary, 0.65, 1));
+      c.drawCircle(m.originX, m.originY, 2, fillPaint(color));
+    }
+    c.drawCircle(m.x, m.y, 13, fillPaint(colors.bg, 0.98));
+    c.drawCircle(m.x, m.y, 13, strokePaint(color, 0.95, 1.5));
+    if (m.ids.length > 1 && marketFont) {
+      const count = String(m.ids.length);
+      drawHaloText(
+        c,
+        count,
+        m.x - textWidth(marketFont, count) / 2,
+        m.y + 4,
+        marketFont,
+        colors.textEmphasis,
+        colors.bg,
+        1,
+        0,
+      );
+      // Both sides of a mixed cluster remain visible without averaging markets.
+      c.drawCircle(
+        m.x - 10,
+        m.y - 10,
+        3,
+        fillPaint(m.rising ? colors.markMarketUp : colors.textSecondary),
+      );
+      c.drawCircle(
+        m.x + 10,
+        m.y - 10,
+        3,
+        fillPaint(m.falling ? colors.markMarketDown : colors.textSecondary),
+      );
+    } else {
+      const sign = m.direction === 'down' ? 1 : -1;
+      if (m.direction === 'flat') c.drawLine(m.x - 7, m.y, m.x + 7, m.y, strokePaint(color, 1, 2));
+      else {
+        c.drawLine(m.x, m.y - 6, m.x, m.y + 6, strokePaint(color, 1, 2));
+        c.drawLine(m.x, m.y + sign * 6, m.x - 4, m.y + sign * 2, strokePaint(color, 1, 2));
+        c.drawLine(m.x, m.y + sign * 6, m.x + 4, m.y + sign * 2, strokePaint(color, 1, 2));
+      }
+    }
+    if (marketFont && m.labelY !== null) {
       drawHaloText(
         c,
         m.label,
-        m.x - textWidth(water, m.label) / 2,
-        m.y + 20,
-        water,
-        colors.text,
+        m.labelX - textWidth(marketFont, m.label) / 2,
+        m.labelY,
+        marketFont,
+        color,
         colors.bg,
-        light ? 0.75 : 0.55,
+        1,
         haloOpacity,
       );
     }
@@ -1797,11 +1916,15 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       strokePaint(colors.markContested, 0.85 * m.alpha, 1.2),
     );
   }
-  // How many stories are still to find at a place.
+  // How many stories are still to find at a place — except the place being
+  // read, whose name is printed large beside the dot: its count fell in the
+  // gap between the dot and the name, `●²Washington`, a footnote mark.
   const sub = fonts.sub;
+  const dot = f.dot;
   if (sub) {
     for (const m of f.storyMarks) {
       if (m.count < f.storyCountMin) continue;
+      if (dot && Math.hypot(m.x - dot.x, m.y - dot.y) < ACTIVE_DOT_R + 2) continue;
       drawHaloText(
         c,
         String(m.count),
@@ -1925,7 +2048,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     drawHaloText(
       c,
       dl.text,
-      dl.x + 6,
+      dl.x + DOT_LABEL_DX,
       dl.y + 4,
       fonts.label,
       colors.textEmphasis,
@@ -1937,8 +2060,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       drawHaloText(
         c,
         dl.sub,
-        dl.x + 6,
-        dl.y + 18,
+        dl.x + DOT_LABEL_DX,
+        dl.y + DOT_SUB_DY,
         sub,
         colors.textEmphasis,
         colors.bg,
@@ -2037,6 +2160,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   gdacsAlerts,
   conflictEvents,
   marketMarks,
+  marketViewport,
   selectedAt,
   places,
   foundSlugs,
@@ -2084,7 +2208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R + 1.2} color={BLACK} />
       <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R} color={WHITE} />
     </Group>,
-    { width: BEACON_SIZE, height: BEACON_SIZE },
+    BEACON_TEXTURE_SIZE,
     [],
   );
   const overlayTexture = useTexture(
@@ -2114,7 +2238,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       </Group>
     </Group>,
-    { width: OVERLAY_CELL * OVERLAY_CELLS, height: OVERLAY_CELL },
+    OVERLAY_TEXTURE_SIZE,
     [],
   );
   const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
@@ -2145,7 +2269,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   //     case. Standard atlas convention for hydrography and named passages.
   //   - subFont (SemiBold 11) stays for the dot-label sub (HH:MM time) since
   //     that line is part of the dot-label editorial marker, not atlas chrome.
-  const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 14);
+  const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), DOT_LABEL_PT);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
   const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
   const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11.5);
@@ -2311,52 +2435,18 @@ export const MiniGlobe = memo(function MiniGlobe({
     labels: EMPTY_PICTURE,
     disc: globeRadius,
     activeDot: null,
-    activeSlug: null,
     activeColor: colors.textEmphasis,
   });
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
-  // The category-colored dot itself breathes to identify the current article. Coordinates come from
-  // the existing projected frame; the pulse never asks JS to reproject land.
-  //
-  // The breathe is bounded (see ACTIVE_PULSE_REPS below), not `withRepeat(..., -1, ...)`. An
-  // infinite repeat keeps this `useAnimatedStyle` re-evaluating — and the app rendering a frame —
-  // for as long as any story is on screen, i.e. always. Measured: `dumpsys gfxinfo` showed 144
-  // frames / 10s, 100% janky, with the app fully untouched at rest, which violates "at rest the
-  // app renders zero frames" below. A handful of cycles still draws the eye to a newly active
-  // story; it does not need to keep doing that forever.
-  const activePulse = useSharedValue(1);
-  const beaconForeground = useSharedValue(AppState.currentState === 'active');
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', (state) => {
-      beaconForeground.value = state === 'active';
-    });
-    return () => subscription.remove();
-  }, [beaconForeground]);
-  useAnimatedReaction(
-    () =>
-      beaconForeground.value && framePictures.value.activeDot
-        ? framePictures.value.activeSlug
-        : null,
-    (slug, previous) => {
-      if (slug === previous) return;
-      cancelAnimation(activePulse);
-      activePulse.value = 0;
-      if (slug && !reduceMotion) {
-        // 3 full breathe cycles (up + down), then hold still at rest.
-        activePulse.value = withRepeat(
-          withTiming(1, { duration: 900, easing: Easing.inOut(Easing.sin) }),
-          ACTIVE_PULSE_REPS,
-          true,
-        );
-      }
-    },
-  );
-  useEffect(() => () => cancelAnimation(activePulse), [activePulse]);
-  // A tiny native overlay animates independently of Skia's globe recorder.
-  // Apply the globe's translate/scale to position only; the dot keeps its
-  // screen size as the article sheet grows. No pulse value enters the Canvas.
+  // The current story's dot holds still. It breathed for three cycles each time
+  // a story landed, and the user asked for it to go (2026-09-19): the location
+  // label beside it is larger instead, and says which place is being read.
+  // A tiny native overlay, placed and sized from the globe's translate and
+  // scale. It kept its screen size while the globe shrank into the open
+  // story's band, and the label beside it — drawn in the scaled picture —
+  // slid under it: the band read `●yiv`. It shrinks with its label now.
   const beaconStyle = useAnimatedStyle(() => {
     const dot = framePictures.value.activeDot;
     let scale = 1;
@@ -2369,12 +2459,15 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
     const x = dot ? width / 2 + (dot.x - width / 2) * scale + tx : 0;
     const y = dot ? height / 2 + (dot.y - height / 2) * scale + ty : 0;
-    const radius = reduceMotion ? 6 : 4.5 + 2.5 * activePulse.value;
     return {
-      opacity: dot && beaconForeground.value ? 1 : 0,
+      opacity: dot ? 1 : 0,
       backgroundColor: framePictures.value.activeColor,
       borderColor: colors.bg,
-      transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (radius + 2) / 9 }],
+      transform: [
+        { translateX: x - 9 },
+        { translateY: y - 9 },
+        { scale: ((ACTIVE_DOT_R + 2) / 9) * scale },
+      ],
     };
   });
 
@@ -2408,7 +2501,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     framePictures.value = {
       ...pictures,
       activeDot: frame.dot,
-      activeSlug: lastSettledSlug.current,
       activeColor: categoryMarkColor(
         (articlesRef.current[lastSettled.current] as { category?: string } | undefined)?.category,
         colors,
@@ -2599,12 +2691,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         // rivers and seas. Atlas convention for hydrography is italic
         // mixed case; uppercase reads as alarm even at baseline, fighting
         // the "ambient reference geography" intent.
-        label: cp.name,
+        label: `${cp.name}${straitMapChange(cp.delta7vs90.n_total) ? ` ${straitMapChange(cp.delta7vs90.n_total)?.label}` : ''}`,
+        direction: straitMapChange(cp.delta7vs90.n_total)?.direction,
         unit: unit(cp.lng, cp.lat),
         // Signed, because direction decides meaning here and magnitude only
         // decides brightness.
-        delta: cp.delta7vs90[cp.primaryField] ?? 0,
-        absDelta: Math.abs(cp.delta7vs90[cp.primaryField] ?? 0),
+        delta: cp.delta7vs90.n_total ?? 0,
+        absDelta: Math.abs(cp.delta7vs90.n_total ?? 0),
       })),
     [chokepoints],
   );
@@ -2712,8 +2805,9 @@ export const MiniGlobe = memo(function MiniGlobe({
             unit: unit(a.lng, a.lat),
             blocks,
             alpha: famineAlpha(a.ageMonths),
-            // Web: the gravest phase draws larger, and on top.
-            scale: 0.8 + 0.1 * blocks,
+            // Web: the gravest phase draws larger, and on top. The sprite is
+            // the glyph family's 22pt box; the column is drawn at the web's.
+            scale: famineBox(blocks) / (GLYPH_HALF * 2),
           };
         })
         .sort((p, q) => p.blocks - q.blocks),
@@ -2727,7 +2821,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         id: e.id,
         unit: unit(e.lng, e.lat),
         alpha: thermalAlpha(e.confidence),
-        scale: thermalScale(e.frp),
+        // The web's size; the sprite is the glyph family's 22pt box.
+        scale: thermalBox(e.frp) / (GLYPH_HALF * 2),
       })),
     [thermalEvents],
   );
@@ -2748,8 +2843,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach });
-  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach, marketViewport });
+  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach, marketViewport };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
   // The settled redraw the rivers and lakes ask for once decoded
@@ -3238,9 +3333,12 @@ export const MiniGlobe = memo(function MiniGlobe({
           y: pt[1],
           id: cp.id,
           label: cp.label,
+          labelX: pt[0],
+          direction: cp.direction,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: chokepointValence(cp.delta) === 'unfavorable',
           surge: cp.delta > STRAIT_SURGE_DELTA,
+          labelY: null,
         });
       }
 
@@ -3249,11 +3347,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // tiny and the opening camera is usually pointed at one of them, so a
       // mark that blinks out mid-scroll is a mark that is not there when the
       // reader looks for what the strip just promised.
-      const marketProjected: GlobeState['marketMarks'] = [];
+      const marketPoints: MarketPoint[] = [];
       for (const m of marketMarksRef.current) {
         if (!seen(m.unit)) continue;
         const pt = SCREEN_POINT;
-        marketProjected.push({
+        marketPoints.push({
           x: pt[0],
           y: pt[1],
           id: m.id,
@@ -3499,6 +3597,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      const marketProjected = layoutMarketClusters(
+        marketPoints,
+        [
+          ...storyMarks,
+          ...chokepointMarks,
+          ...gdacsMarks,
+          ...genocideMarks,
+          ...conflictMarks,
+          ...famineMarks,
+          ...thermalMarks,
+        ],
+        canvasW,
+        canvasH,
+        layoutRef.current.marketViewport?.top,
+        layoutRef.current.marketViewport?.bottom,
+      ).map((mark) => ({ ...mark, labelX: mark.x, labelY: null as number | null }));
+
       // Label collision — dot label (location · time) versus country name
       // label. Small countries where the story dot sits near the polygon
       // centroid (e.g. Islamabad in Pakistan) can stack the two. Compute
@@ -3507,37 +3622,72 @@ export const MiniGlobe = memo(function MiniGlobe({
       // the dot-label block if they overlap. Dot label stays fixed since
       // it anchors to the story location; country label is secondary.
       if (countryLabel && dotLabel) {
-        const lfont = labelFontRef.current;
-        const cfont = countryFontRef.current;
-        const sfont = subFontRef.current;
-        // Text widths — fall back to char-count approximation (6px per char
-        // for countryFont 12pt, 7px for labelFont 14pt, 5px for subFont)
-        // before fonts finish loading. Country label is multi-line (1–2
-        // rows): use the widest row.
-        const cWidth = measureLines(countryLabel.lines, cfont, 6);
-        const dWidth = lfont ? textWidth(lfont, dotLabel.text) : dotLabel.text.length * 7;
-        const sWidth = dotLabel.sub
-          ? sfont
-            ? textWidth(sfont, dotLabel.sub)
-            : dotLabel.sub.length * 5
-          : 0;
-        // Country label AABB — centered on x, first baseline at y, each
-        // additional line stacks LABEL_LINE_HEIGHT below. Ascender ≈ 10 for
-        // 12pt SemiBold (was 12 when this label rendered at 14pt).
-        const cX0 = countryLabel.x - cWidth / 2;
-        const cX1 = cX0 + cWidth;
-        const cY0 = countryLabel.y - 10;
-        const cY1 = countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 3;
-        // Dot label block AABB — dot label at (dot.x + 6, dot.y + 4), sub
-        // offset another 14px down. Covers both rows.
-        const dX0 = dotLabel.x + 6;
-        const dX1 = dX0 + Math.max(dWidth, sWidth);
-        const dY0 = dotLabel.y + 4 - 12;
-        const dY1 = dotLabel.y + (dotLabel.sub ? 18 : 4) + 4;
-        const overlap = !(cX1 < dX0 || cX0 > dX1 || cY1 < dY0 || cY0 > dY1);
-        if (overlap) {
+        const c = countryLabelBox(countryLabel, countryFontRef.current);
+        const d = dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current);
+        if (boxesMeet(c, d, 0)) {
           // Push country label below the dot block with a small gap.
-          countryLabel = { ...countryLabel, y: dY1 + 14 };
+          countryLabel = { ...countryLabel, y: d.y1 + 14 };
+        }
+      }
+
+      // Strait and exchange names. They were drawn whatever sat under them,
+      // and at a story's framing they sat on each other and on the one label
+      // that outranks them: "Bosporus Strait" and "BIST 100" read as
+      // "BosBIST100rait" at Istanbul, and Ceuta's time printed over "Strait of
+      // Gibraltar". The story's location and its country go down first; then
+      // each name tries under its mark and then over it, and with neither free
+      // it is dropped — the mark stays, tappable, and its sheet names it.
+      // Exchange targets first,
+      // then the straits whose traffic has moved, then the rest.
+      const markLabelBoxes: LabelBox[] = [];
+      {
+        const wfont = waterFontRef.current;
+        const taken: LabelBox[] = marketProjected.map((m) => ({
+          x0: m.x - 19,
+          x1: m.x + 19,
+          y0: m.y - 19,
+          y1: m.y + 19,
+        }));
+        if (dotLabel) taken.push(dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current));
+        if (countryLabel) taken.push(countryLabelBox(countryLabel, countryFontRef.current));
+        const place = (x: number, y: number, label: string, font = wfont): number | null => {
+          const tw = font ? textWidth(font, label) : label.length * 5;
+          for (const dy of [32, -24, ...MARK_LABEL_DY]) {
+            const yc = y + dy;
+            const box = { x0: x - tw / 2, x1: x + tw / 2, y0: yc - 10, y1: yc + 3 };
+            let free =
+              box.y0 >= (layoutRef.current.marketViewport?.top ?? 0) &&
+              box.y1 <= (layoutRef.current.marketViewport?.bottom ?? canvasH);
+            for (const t of taken) {
+              if (boxesMeet(box, t, MARK_LABEL_GAP)) {
+                free = false;
+                break;
+              }
+            }
+            if (free) {
+              taken.push(box);
+              markLabelBoxes.push(box);
+              return yc;
+            }
+          }
+          return null;
+        };
+        for (const m of marketProjected) {
+          const font = subFontRef.current;
+          const tw = font ? textWidth(font, m.label) : m.label.length * 5;
+          m.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, m.x));
+          m.labelY = place(m.labelX, m.y, m.label, font);
+        }
+        for (const cp of chokepointMarks) {
+          const font = subFontRef.current;
+          const tw = font ? textWidth(font, cp.label) : cp.label.length * 5;
+          cp.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, cp.x));
+          if (cp.x >= 0 && cp.x <= canvasW && (cp.disrupted || cp.surge))
+            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
+        }
+        for (const cp of chokepointMarks) {
+          if (cp.x >= 0 && cp.x <= canvasW && !cp.disrupted && !cp.surge)
+            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
         }
       }
 
@@ -3578,53 +3728,18 @@ export const MiniGlobe = memo(function MiniGlobe({
               Math.max(0, (clipAngle - PLACES_FULL_CLIP) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
             );
         if (countryLabel) {
-          const w = measureLines(countryLabel.lines, cfont, 6);
-          occupied.push({
-            x0: countryLabel.x - w / 2 - pad,
-            x1: countryLabel.x + w / 2 + pad,
-            y0: countryLabel.y - 10,
-            y1: countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 3,
-          });
+          const c = countryLabelBox(countryLabel, cfont);
+          occupied.push({ ...c, x0: c.x0 - pad, x1: c.x1 + pad });
         }
         if (dotLabel) {
-          const dw = lfont ? textWidth(lfont, dotLabel.text) : dotLabel.text.length * 7;
-          const sw = dotLabel.sub
-            ? sfont
-              ? textWidth(sfont, dotLabel.sub)
-              : dotLabel.sub.length * 5
-            : 0;
-          occupied.push({
-            x0: dotLabel.x + 6 - pad,
-            x1: dotLabel.x + 6 + Math.max(dw, sw) + pad,
-            y0: dotLabel.y + 4 - 12,
-            y1: dotLabel.y + (dotLabel.sub ? 18 : 4) + 4,
-          });
+          const d = dotLabelBox(dotLabel, lfont, sfont);
+          occupied.push({ ...d, x0: d.x0 - pad, x1: d.x1 + pad });
         }
-
-        // Strait and exchange labels are always drawn, so they seed the sweep
-        // the way the country and dot labels do, and a neighbour or water name
-        // that crosses one yields. Unseeded, "Bosporus Strait" printed across
-        // TÜRKIYE and "Bab-el-Mandeb" across ETHIOPIA. The boxes mirror the
-        // render side: centred on the mark, baseline 20 below it.
-        for (const c of chokepointMarks) {
-          const tw = wfont ? textWidth(wfont, c.label) : c.label.length * 5;
-          const yc = c.y + 20;
-          occupied.push({
-            x0: c.x - tw / 2 - pad,
-            x1: c.x + tw / 2 + pad,
-            y0: yc - 10 - pad,
-            y1: yc + 3 + pad,
-          });
-        }
-        for (const m of marketProjected) {
-          const tw = wfont ? textWidth(wfont, m.label) : m.label.length * 5;
-          const yc = m.y + 20;
-          occupied.push({
-            x0: m.x - tw / 2 - pad,
-            x1: m.x + tw / 2 + pad,
-            y0: yc - 10 - pad,
-            y1: yc + 3 + pad,
-          });
+        // The strait and exchange names placed above, so a neighbour or water
+        // name that crosses one yields. Unseeded, "Bosporus Strait" printed
+        // across TÜRKIYE and "Bab-el-Mandeb" across ETHIOPIA.
+        for (const b of markLabelBoxes) {
+          occupied.push({ x0: b.x0 - pad, x1: b.x1 + pad, y0: b.y0 - pad, y1: b.y1 + pad });
         }
 
         const nkept: GlobeState['neighborLabels'] = [];
@@ -3984,48 +4099,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       let lng: number;
 
       if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
-        // Great-circle interpolation (slerp) — the globe rotates along the
-        // surface of the sphere between story locations, like tracing a path
-        // on a physical globe. Linear lat/lng would cut through the interior.
-        const DEG2RAD = Math.PI / 180;
-        const RAD2DEG = 180 / Math.PI;
-        const lat0 = loLat * DEG2RAD;
-        const lng0 = loLng * DEG2RAD;
-        const lat1 = hiLat * DEG2RAD;
-        const lng1 = hiLng * DEG2RAD;
-
-        // Convert to unit-sphere cartesian
-        const cosLat0 = Math.cos(lat0);
-        const cosLat1 = Math.cos(lat1);
-        const x0 = cosLat0 * Math.cos(lng0);
-        const y0 = cosLat0 * Math.sin(lng0);
-        const z0 = Math.sin(lat0);
-        const x1 = cosLat1 * Math.cos(lng1);
-        const y1 = cosLat1 * Math.sin(lng1);
-        const z1 = Math.sin(lat1);
-
-        // Angular distance between the two points
-        const dot = x0 * x1 + y0 * y1 + z0 * z1;
-        const omega = Math.acos(Math.min(1, Math.max(-1, dot)));
-
-        if (omega > 0.001) {
-          // Slerp — spherical linear interpolation
-          const sinO = Math.sin(omega);
-          const a = Math.sin((1 - frac) * omega) / sinO;
-          const b = Math.sin(frac * omega) / sinO;
-          const rx = a * x0 + b * x1;
-          const ry = a * y0 + b * y1;
-          const rz = a * z0 + b * z1;
-          lat = Math.asin(Math.min(1, Math.max(-1, rz))) * RAD2DEG;
-          lng = Math.atan2(ry, rx) * RAD2DEG;
-        } else {
-          // Points nearly coincident — fall back to linear
-          lat = loLat + (hiLat - loLat) * frac;
-          let dLng = hiLng - loLng;
-          if (dLng > 180) dLng -= 360;
-          if (dLng < -180) dLng += 360;
-          lng = loLng + dLng * frac;
-        }
+        // Great-circle interpolation — the globe rotates along the surface of
+        // the sphere between story locations, like tracing a path on a
+        // physical globe. The flights use the same path (`slerpLatLng`).
+        const point = slerpLatLng(loLat, loLng, hiLat, hiLng, frac);
+        lat = point[0];
+        lng = point[1];
       } else if (loLat != null && loLng != null) {
         lat = loLat;
         lng = loLng;
@@ -4184,6 +4263,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   const collectColor = useSharedValue<string>(WHITE);
 
   useImperativeHandle(ref, () => ({
+    framingFor(index: number) {
+      return clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
+    },
     settle() {
       // Called from a JS timer after a pinch — never from an animation
       // completion worklet, where `scheduleOnRN` aborts the app (worklets 0.10).
@@ -4200,11 +4282,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // tap registered on a pointerEvents:none canvas — but draw it at its
       // final radius and cross-fade it out instead of expanding it. Fading
       // is the sanctioned substitute for scaling motion.
+      // The fade is `KEEP_MOTION`: Reanimated would otherwise snap it to 0
+      // under Reduce Motion too, and the ring would never be seen at all.
       pulseR.value = reduceMotion ? 34 : 5;
       if (!reduceMotion) {
-        pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
+        pulseR.value = withTiming(34, { duration: ANIMATION.slow, easing: PULSE_EASING });
       }
-      pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
+      pulseOpacity.value = withTiming(0, {
+        duration: ANIMATION.slow,
+        easing: PULSE_EASING,
+        ...KEEP_MOTION,
+      });
     },
     collect(x: number, y: number, color: string) {
       collectColor.value = color;
@@ -4219,6 +4307,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         collectOpacity.value = withTiming(0, {
           duration: COLLECT_REDUCED_MS,
           easing: PULSE_EASING,
+          ...KEEP_MOTION,
         });
         return;
       }
@@ -4296,7 +4385,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         for (const layer of marks) {
           for (const m of layer) {
             const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-            if (d2 <= MARK_HIT_PX2 && d2 < overlay) overlay = d2;
+            if (d2 <= (layer === frame.marketMarks ? 24 * 24 : MARK_HIT_PX2) && d2 < overlay)
+              overlay = d2;
           }
         }
         if (story.d2 <= overlay) {
@@ -4344,20 +4434,17 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Exchange marks — same 36px tap zone as the other reference markers.
-      // Tiered above GDACS and conflict on purpose: there are at most three
-      // of them, they are the marks the opening camera and the strip point
-      // at, and a reader who taps what the gauge above just named should get
-      // that and not a Green flood alert that happens to share the pixel.
+      // Every member of a numbered market target opens in the chooser.
       for (const m of frame.marketMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            marketSignalId: m.id,
-          });
+        if (isNear(x, y, m.x, m.y, 24 * 24)) {
+          for (const id of m.ids)
+            candidates.push({
+              countryName: '',
+              location: null,
+              localTime: null,
+              data: null,
+              marketSignalId: id,
+            });
         }
       }
 

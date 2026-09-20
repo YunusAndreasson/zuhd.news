@@ -18,9 +18,9 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
 // ── Zoom / clip thresholds ─────────────────────────────────────────────────
 
 /** Non-anchor neighbour labels and water-feature labels fade in from
- *  clip=25°, full opacity at 10°. Set at the natural floor of
- *  `clipAngleForArea` (small countries cap at 25°) so non-anchor labels
- *  appear at the same zoom moment regardless of focused country.
+ *  clip=25°, full opacity at 10°. The story framings (18°–24°,
+ *  `clipAngleForArea`) sit inside the ramp, so a closer framing names more of
+ *  its neighbours, and the wider view a swipe rises through names fewer.
  *  Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) bypass this gate
  *  and render at all zooms — they exist as persistent continental anchors
  *  that orient the reader before the zoom pill is touched. The zoom pill
@@ -105,15 +105,16 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   'Uruguay',
 ]);
 
-/** Heavy rivers-path projection fade range — gated tighter than the cheap
- *  layers so the ~9k-vertex projection only kicks in once the user actually
- *  taps zoom. Keeps small-country 1× stories free of the settle-frame spike
- *  a rivers projection would cause. Visible from 22° → 10°. */
-export const RIVERS_APPEAR_CLIP = 22;
+/** Past this the rivers draw on every frame, easing in toward 10°. Below the
+ *  tightest story framing (18°, `clipAngleForArea`), so a swipe between
+ *  stories never projects the ~9k-vertex set: at the framings themselves the
+ *  rivers are settled-frame work (`RIVERS_REST_CLIP`). */
+export const RIVERS_APPEAR_CLIP = 17;
 
 /**
- * The widest framing that still draws rivers, on settled frames only: the
- * resting story framings top out at 40° (`clipAngleForArea`). Below
+ * The widest framing that still draws rivers, on settled frames only — wider
+ * than any story framing (they top out at 24°, `clipAngleForArea`), so a
+ * reader who pinches out a little keeps them. Below
  * `RIVERS_APPEAR_CLIP` they draw on every frame, as before. Between the two
  * they are drawn once the camera stops, because the rank-3 set is ~9k
  * vertices and a drag must not pay for it, but a reader looking at Mali saw no
@@ -263,19 +264,24 @@ export function findCountry(
 // ── Clip-angle math ────────────────────────────────────────────────────────
 
 /** Clip angle for a country's spherical area — smaller countries get tighter
- *  clip (more zoom). Below 0.002 sr → 30°; above 0.03 sr → 40°; linear between.
+ *  clip (more zoom). Below 0.002 sr → 18°; above 0.03 sr → 24°; linear between.
  *
  *  The cap was 70°, and before that 90°. Once zooming grew the planet itself
  *  rather than the ground inside a fixed disc, a swipe from a small country
  *  to a large one swelled and shrank the whole globe by 2.2× — a wobble with
  *  no meaning. 25°–45° still spanned 1.7× and read as the map jumping on
- *  every swipe; at 30°–40° the framings span 1.3×, and the travel between two
+ *  every swipe; the framings now span 1.3×, and the travel between two
  *  stories is carried by the swipe's own gentle zoom-out (`swipeClip`) instead
- *  of by the difference in their sizes. */
+ *  of by the difference in their sizes.
+ *
+ *  Keep that spread when changing the level. At 30°–40° a story in Sudan
+ *  framed everything from Russia to South Africa, and the user asked to be
+ *  taken closer to each place (2026-09-19); 18°–24° is about 1.6× closer, near
+ *  what the web's `flyToStory` zoom of 2.5 shows across a phone's width. */
 function clipAngleForArea(area: number): number {
-  if (area < 0.002) return 30;
-  if (area < 0.03) return 30 + ((area - 0.002) / (0.03 - 0.002)) * 10;
-  return 40;
+  if (area < 0.002) return 18;
+  if (area < 0.03) return 18 + ((area - 0.002) / (0.03 - 0.002)) * 6;
+  return 24;
 }
 
 /** Clip angle for a named country (lookup `countryAreas`, fall back to 1 sr). */

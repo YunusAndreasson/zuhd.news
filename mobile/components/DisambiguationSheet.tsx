@@ -16,6 +16,7 @@ import {
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
+import { straitMapChange } from '../lib/strait-map';
 import {
   CHOKEPOINT_PATH,
   CONFLICT_FAMILY_LABEL,
@@ -23,7 +24,7 @@ import {
   GLYPH_HALF,
   getConflictGlyphPath,
   getGlyphPath,
-  MARKET_PATH,
+  marketDirectionPath,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import {
@@ -80,6 +81,7 @@ interface DisplayRow {
     | 'genocide';
   /** Famine-only — how many of the column's blocks are filled. */
   blocks?: number;
+  direction?: 'up' | 'down' | 'flat';
   /** GDACS-only — drives the glyph + tint inside the icon canvas. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
@@ -175,7 +177,7 @@ function buildRow(
       key: `chokepoint-${cp.id}`,
       result,
       primary: cp.name,
-      secondary: 'maritime chokepoint',
+      secondary: `all ships · ${straitMapChange(cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${cp.asOf}`,
       kind: 'chokepoint',
     };
   }
@@ -186,8 +188,17 @@ function buildRow(
       key: `market-${card.id}`,
       result,
       primary: card.title,
-      secondary: card.kicker ? card.kicker.toLowerCase() : 'market index',
+      secondary: [
+        card.kicker,
+        card.delta
+          ? `${card.delta.direction === 'up' ? '↑' : card.delta.direction === 'down' ? '↓' : '−'} ${card.delta.magnitude}`
+          : null,
+        card.asOf,
+      ]
+        .filter(Boolean)
+        .join(' · '),
       kind: 'market',
+      direction: card.delta?.direction,
     };
   }
   if (result.isHotspot) {
@@ -207,7 +218,7 @@ function buildRow(
       key: `article-${result.countryName}-${index}`,
       result,
       primary: result.location ?? country,
-      secondary: result.location ? country : 'current article',
+      secondary: result.location ? country : 'current story',
       kind: 'article',
     };
   }
@@ -337,7 +348,19 @@ function RowIcon({ row, tint }: RowIconProps) {
     return <GlyphIcon path={CHOKEPOINT_PATH} color={colors.textSecondary} discOpacity={0.12} />;
   }
   if (row.kind === 'market') {
-    return <GlyphIcon path={MARKET_PATH} color={colors.textSecondary} discOpacity={0.12} />;
+    return (
+      <GlyphIcon
+        path={marketDirectionPath(row.direction ?? 'flat')}
+        color={
+          row.direction === 'up'
+            ? colors.markMarketUp
+            : row.direction === 'down'
+              ? colors.markMarketDown
+              : colors.textSecondary
+        }
+        discOpacity={0.12}
+      />
+    );
   }
   if (row.kind === 'hotspot') {
     // Pulse pattern — three concentric layers read as "density radiating
@@ -412,7 +435,6 @@ function CandidateRow({
   return (
     <Animated.View entering={staggerEnter(index, ANIMATION.fast)}>
       <Pressable
-        haptic="tick"
         onPress={handlePress}
         style={[styles.row, { borderBottomColor: colors.rule }]}
         accessibilityRole="button"
@@ -423,7 +445,7 @@ function CandidateRow({
           <Text variant="bodyEmphasis" numberOfLines={1}>
             {row.primary}
           </Text>
-          <Text variant="labelSm" tone="secondary" numberOfLines={1} style={styles.rowSecondary}>
+          <Text variant="labelSm" tone="secondary" style={styles.rowSecondary}>
             {row.secondary}
           </Text>
         </View>

@@ -7,17 +7,12 @@ import { IS_ANDROID } from '../constants/platform';
 /**
  * Going back, as one gesture and one set of numbers.
  *
- * `useSheetBackNavigation` owned these thresholds so its two multi-page
- * sheets could not drift apart. The reader needs the same gesture — and on
- * the map screen the horizontal axis is free for the first time, because the
- * section rail that used to own it is gone — so the numbers move here rather
- * than being typed a third time.
+ * The multi-page sheets (`useSheetBackNavigation`) share these thresholds so
+ * no two surfaces can drift apart.
  *
- * `failOffsetY` is what keeps this off the vertical axis. The reader is a
- * vertical pager over a prose scroller with three load-bearing nested-scroll
- * guards (`mobile/CLAUDE.md`), and a dismiss gesture that competed with those
- * would be re-opening a bug the app has already paid for twice. A horizontal
- * swipe steals nothing.
+ * `failOffsetY` is what keeps this off the vertical axis: a sheet's content
+ * scrolls vertically, and a back swipe that competed with it would take the
+ * scroll. A horizontal swipe steals nothing.
  */
 
 /** Travel before the pan claims the touch. */
@@ -40,8 +35,11 @@ export function useSwipeBackGesture({ enabled, onBack }: { enabled: boolean; onB
       enabled,
       activeOffsetX: ACTIVE_OFFSET_X,
       failOffsetY: FAIL_OFFSET_Y,
-      onDeactivate: ({ translationX, velocityX }) => {
+      onDeactivate: ({ translationX, velocityX, canceled }) => {
         'worklet';
+        // Deactivation also reports a cancelled gesture; only a released
+        // swipe goes back.
+        if (canceled) return;
         if (translationX > COMMIT_DISTANCE || velocityX > COMMIT_VELOCITY) {
           scheduleOnRN(onBack);
         }

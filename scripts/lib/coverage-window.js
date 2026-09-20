@@ -39,7 +39,7 @@ export const loadArticles = (windowStart) => {
         title: meta.title,
         date: meta.date || f.slice(0, 10),
         location: meta.location || '',
-        // The lead sentence carries the fact; the rest of a 350-character
+        // The lead sentence carries the fact; the rest of a 450-character
         // article is the why-it-matters the model would only paraphrase.
         lead: String(body || '')
           .trim()

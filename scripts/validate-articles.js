@@ -46,6 +46,15 @@ for (const f of files) {
     continue
   }
 
+  // The writer's contract is four blocks, or five when the optional
+  // counterpoint-or-quote block was earned (`scripts/write-prompt.md` §rhythm).
+  // This range is deliberately wider than the contract in BOTH directions,
+  // because the penalty here is not a warning — it is the article not
+  // publishing at all. A three-block draft that lost a paragraph break is still
+  // readable news; quarantining it costs the reader the story to enforce a rule
+  // the editor stage is better placed to fix. The ceiling is the real guard: a
+  // body that split into six or more blocks is a malformed file, not a long
+  // article.
   const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
   const blocks = splitBlocks(body).filter(s => s.length > 5)
   if (blocks.length < 2 || blocks.length > 5) {

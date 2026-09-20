@@ -28,8 +28,13 @@ describe('smartTypography', () => {
   });
 
   it('does not insert ZWSP when dash is followed by whitespace', () => {
-    // `word -- word` (already breakable) stays unchanged after the en dash.
-    expect(smartTypography('word -- word')).toBe('word \u2013 word');
+    // `word -- word` breaks after the dash; the space before it is
+    // no-break, so the dash never starts a line.
+    expect(smartTypography('word -- word')).toBe('word\u00a0\u2013 word');
+  });
+
+  it('keeps a spaced em dash with the word before it', () => {
+    expect(smartTypography('the discipline \u2014 zuhd')).toBe('the discipline\u00a0\u2014 zuhd');
   });
 
   it('converts three dots to ellipsis', () => {
@@ -160,5 +165,29 @@ describe('parseInline', () => {
     const country = parseInline('tap [Japan](country:JP) now');
     expect(country[1]).toEqual({ type: 'link', text: 'Japan', url: 'country:JP' });
     expect(country[1]!.url!.startsWith(COUNTRY_URL_SCHEME)).toBe(true);
+  });
+  // The feed's first cycle of 2026-09-19 printed `China‘s` in a story card:
+  // the text after a link is its own run, and a quote at the start of a run
+  // was read as the start of a line.
+  it('reads a quote straight after a link as an apostrophe', () => {
+    const segs = parseInline("It is [China](country:CN)'s first visit");
+    expect(segs.map((s) => s.text).join('')).toBe('It is China\u2019s first visit');
+  });
+
+  it('closes a quote straight after emphasis, and still opens one after a bracket', () => {
+    expect(parseInline('*"Never"* again').map((s) => s.text)).toEqual([
+      '\u201cNever\u201d',
+      ' again',
+    ]);
+    expect(
+      parseInline('He said *so*" twice')
+        .map((s) => s.text)
+        .join(''),
+    ).toBe('He said so\u201d twice');
+    expect(
+      parseInline('(*"quoted"*)')
+        .map((s) => s.text)
+        .join(''),
+    ).toBe('(\u201cquoted\u201d)');
   });
 });

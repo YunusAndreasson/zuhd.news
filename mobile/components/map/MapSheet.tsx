@@ -1,6 +1,5 @@
 import {
   type ReactElement,
-  type ReactNode,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -8,7 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
@@ -16,13 +15,11 @@ import Animated, {
   type SharedValue,
   useAnimatedReaction,
   useAnimatedStyle,
-  useReducedMotion,
   useSharedValue,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION, EASING, LAYOUT, RADIUS, SPACING } from '../../constants/theme';
+import { ANIMATION, KEEP_MOTION, LAYOUT, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
 
@@ -40,14 +37,18 @@ import { hapticTick } from '../../lib/haptics';
  * ## Two detents, not three
  *
  * Peek and full, and they are one story at two depths: at peek the story card
- * — kicker, title, the lead — and at full the same card grown into the whole
- * story, with the globe still above it. **Full is the story's own height**
- * (`contentHeight`), capped at `full`: a four-sentence story stopped a third
- * of the screen short of a fixed full stop, and that third was blank while
- * the earth above it sat in a 140pt band. A swipe while grown springs the
- * sheet to the next story's height. A middle stop would be a third place
- * to leave a card with nothing that belongs there. There is no full-screen
- * reader to hand off to; a modal reader was intrusive and lost the earth.
+ * — kicker, title, the hook — and at full the same card grown into the whole
+ * story, with the globe still above it. **Full is one height for every story**
+ * (`lib/deck-layout.ts`). It used to be each story's own height, and a swipe
+ * while reading sprang the sheet, the globe and the text to the next story's
+ * height — the text jumped on every story, which is what the reader noticed.
+ * A middle stop would be a third place to leave a card with nothing that
+ * belongs there. There is no full-screen reader to hand off to; a modal
+ * reader was intrusive and lost the earth.
+ *
+ * The dock under it — the story track and its buttons — is not part of this
+ * view. It is pinned to the screen, so it does not move with the sheet, and
+ * the content leaves room for it at the bottom.
  *
  * ## Gesture ownership
  *
@@ -58,8 +59,7 @@ import { hapticTick } from '../../lib/haptics';
  *     sheet is therefore a sheet drag, with nothing to arbitrate.
  *  2. **The list never bounces.** With `bounces={false}`, a list already at
  *     the top that is pulled down does nothing — so the pan can take that drag
- *     simultaneously without the content rubber-banding under it. This is the
- *     same reason `SectionBar`'s rail sets it.
+ *     simultaneously without the content rubber-banding under it.
  *  3. **The pan decides once per gesture, on its first directed update, and holds.**
  *     A drag that starts as the list's stays the list's to the release. Half a
  *     swipe moving the sheet and half scrolling the list is the failure mode
@@ -83,15 +83,10 @@ type SheetGesture = ReturnType<typeof usePanGesture>;
 interface MapSheetProps {
   /** Visible height at rest, in px. */
   peek: number;
-  /** The tallest the sheet expands to, in px. */
+  /** Height with a story open, in px — the same for every story. */
   full: number;
-  /** The height the expanded sheet actually stops at, published for the
-   *  globe's grown transform. Written only from here. */
-  expandedHeight?: SharedValue<number>;
   /** 0 at peek, 1 at full. Read by the globe; written only from here. */
   progress: SharedValue<number>;
-  /** Always visible, above the list. */
-  header: ReactNode;
   /**
    * The content under the header. It owns its own gesture detectors: any
    * scroll view inside must wrap itself in a native gesture that is
@@ -105,10 +100,6 @@ interface MapSheetProps {
     scrollEnabled: boolean;
     onScrollOffset: SharedValue<number>;
     sheetGesture: SheetGesture;
-    /** Report the natural height of the list's current content. The expanded
-     *  sheet stops at it (plus the handle and header), between `peek` and
-     *  `full`. Stable. */
-    onContentHeight: (height: number) => void;
   }) => ReactElement;
   onDetentChange?: (detent: MapSheetDetent) => void;
   /**
@@ -144,49 +135,27 @@ const LIST = 2;
 export function MapSheet({
   peek,
   full,
-  expandedHeight,
   progress,
-  header,
   renderList,
   onDetentChange,
   onPullDown,
   ref,
 }: MapSheetProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
   const [detent, setDetent] = useState<MapSheetDetent>('peek');
   const committedDetent = useSharedValue<MapSheetDetent>('peek');
 
   // Travel: `full - peek` px between the two stops. `offset` is how far the
-  // sheet is pushed down from its expanded position, so peek is the maximum.
+  // sheet is pushed down from its expanded position: 0 open, `travel` at peek.
   const travel = Math.max(1, full - peek);
   const offset = useSharedValue(travel);
-  // The reactions below read these, not the render-time numbers. A reaction
+  // The reaction below reads this, not the render-time number. A reaction
   // closes over what it was created with, and when the window changed size the
   // old one fired on the re-pinned offset with the old travel — a progress of
   // 0.3 at rest, which drew the globe shrunk and shifted up until the sheet
   // was next moved. Nothing re-runs the new reaction until a value it reads
-  // changes, so the values have to be shared.
+  // changes, so the value has to be shared.
   const travelSV = useSharedValue(travel);
-  const fullSV = useSharedValue(full);
-  // Where "expanded" is: 0 when the story needs every point of `full`, more
-  // when it is shorter. Animated alongside `offset` so the two never part.
-  const [chrome, setChrome] = useState(0);
-  // The card's height is this sheet's state, not the screen's: it changes on
-  // every landing, and held by the screen it re-rendered the whole map — globe
-  // props, strip, masthead — a second time per swipe to move one number here.
-  const [contentHeight, setContentHeight] = useState<number | null>(null);
-  const onChromeLayout = useCallback((e: LayoutChangeEvent) => {
-    setChrome(e.nativeEvent.layout.height);
-  }, []);
-  const fit =
-    contentHeight !== null && chrome > 0
-      ? Math.min(full, Math.max(peek, Math.ceil(chrome + contentHeight)))
-      : full;
-  const openTarget = full - fit;
-  const openTargetRef = useRef(openTarget);
-  openTargetRef.current = openTarget;
-  const openAt = useSharedValue(openTarget);
   const dragStart = useSharedValue(travel);
   const dragStartY = useSharedValue(0);
   const owner = useSharedValue(UNDECIDED);
@@ -213,20 +182,10 @@ export function MapSheet({
   useAnimatedReaction(
     // Clamped: a pull stretches the sheet below peek, and the globe's fade
     // must not read that as a negative rise.
-    () => {
-      const span = Math.max(1, travelSV.value - openAt.value);
-      return Math.max(0, Math.min(1, (travelSV.value - offset.value) / span));
-    },
+    () => Math.max(0, Math.min(1, (travelSV.value - offset.value) / travelSV.value)),
     (next) => {
       progress.value = next;
     },
-  );
-  useAnimatedReaction(
-    () => fullSV.value - openAt.value,
-    (next) => {
-      if (expandedHeight) expandedHeight.value = next;
-    },
-    [expandedHeight],
   );
 
   // The last detent the sheet settled on, held in a ref so `settle` can
@@ -244,24 +203,9 @@ export function MapSheet({
   // sliver more or less than peek.
   useEffect(() => {
     travelSV.value = travel;
-    fullSV.value = full;
-    offset.value = detentRef.current === 'full' ? openTargetRef.current : travel;
-  }, [full, fullSV, offset, travel, travelSV]);
+    offset.value = detentRef.current === 'full' ? 0 : travel;
+  }, [offset, travel, travelSV]);
 
-  // A different story, or the same one measured: move the expanded stop. At
-  // rest nothing visible changes; grown, the sheet springs to the new height.
-  useEffect(() => {
-    if (detentRef.current !== 'full') {
-      openAt.value = openTarget;
-      return;
-    }
-    const move = (to: number) =>
-      reduceMotion
-        ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
-        : withSpring(to, ANIMATION.springSheet);
-    openAt.value = move(openTarget);
-    offset.value = move(openTarget);
-  }, [offset, openAt, openTarget, reduceMotion]);
   const settle = useCallback(
     (next: MapSheetDetent) => {
       if (detentRef.current === next) return;
@@ -276,21 +220,19 @@ export function MapSheet({
   const animateTo = useCallback(
     (target: number, velocity: number, next: MapSheetDetent) => {
       'worklet';
-      // The spring is the continuation of a direct manipulation, so it keeps
-      // its physics under Reduce Motion — snapping a finger-thrown sheet to
-      // its stop reads as broken, not accessible. Only a *programmatic* move
-      // (a tap, a return from the reader) shortens, and that comes in with
-      // velocity 0.
-      offset.value =
-        reduceMotion && velocity === 0
-          ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(target, { ...ANIMATION.springSheet, velocity });
+      // Only ever called as a finger lets go, so the spring is the
+      // continuation of a direct manipulation and keeps its physics under
+      // Reduce Motion (`KEEP_MOTION`) — snapping a thrown sheet to its stop reads
+      // as broken, not accessible. A programmatic move (the dock's button, an
+      // accessibility action) is a plain `springSettle`, which Reanimated
+      // itself snaps when Reduce Motion is on.
+      offset.value = withSpring(target, { ...ANIMATION.springSettle, ...KEEP_MOTION, velocity });
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
       committedDetent.value = next;
       scheduleOnRN(settle, next);
     },
-    [committedDetent, offset, reduceMotion, settle],
+    [committedDetent, offset, settle],
   );
 
   // Named, because `scheduleOnRN` must never be handed an inline arrow from a
@@ -332,7 +274,7 @@ export function MapSheet({
           // Not expanded → nothing below can use a vertical drag.
           // Expanded and already at the top and pulling down → the list has
           // nowhere to go, so the sheet takes it.
-          owner.value = offset.value > openAt.value + 0.5 || (atTop && pullingDown) ? SHEET : LIST;
+          owner.value = offset.value > 0.5 || (atTop && pullingDown) ? SHEET : LIST;
         }
         if (owner.value !== SHEET) return;
         const next = dragStart.value + e.translationY - dragStartY.value;
@@ -343,7 +285,7 @@ export function MapSheet({
           offset.value = travel + pull.value * PULL_RESISTANCE;
         } else {
           pull.value = 0;
-          offset.value = next < openAt.value ? openAt.value : next;
+          offset.value = next < 0 ? 0 : next;
         }
       },
       onDeactivate: (e: { velocityY: number; canceled: boolean }) => {
@@ -354,10 +296,8 @@ export function MapSheet({
         if (e.canceled) {
           owner.value = UNDECIDED;
           pull.value = 0;
-          const target = committedDetent.value === 'full' ? openAt.value : travel;
-          offset.value = reduceMotion
-            ? withTiming(target, { duration: ANIMATION.fast, easing: EASING.out })
-            : withSpring(target, { ...ANIMATION.springSheet, velocity: 0 });
+          const target = committedDetent.value === 'full' ? 0 : travel;
+          offset.value = withSpring(target, { ...ANIMATION.springSettle, velocity: 0 });
           return;
         }
         if (owner.value !== SHEET) return;
@@ -374,12 +314,8 @@ export function MapSheet({
         const v = e.velocityY;
         // A throw decides on its own; otherwise the nearer stop wins.
         const expand =
-          v < -FLICK_VELOCITY
-            ? true
-            : v > FLICK_VELOCITY
-              ? false
-              : offset.value < (openAt.value + travel) / 2;
-        animateTo(expand ? openAt.value : travel, v, expand ? 'full' : 'peek');
+          v < -FLICK_VELOCITY ? true : v > FLICK_VELOCITY ? false : offset.value < travel / 2;
+        animateTo(expand ? 0 : travel, v, expand ? 'full' : 'peek');
       },
       onFinalize: () => {
         'worklet';
@@ -389,13 +325,11 @@ export function MapSheet({
     [
       animateTo,
       committedDetent,
-      reduceMotion,
       dragStart,
       dragStartY,
       handlePullDown,
       listOffset,
       offset,
-      openAt,
       owner,
       pull,
       travel,
@@ -408,34 +342,27 @@ export function MapSheet({
     ref,
     () => ({
       expand: () => {
-        const to = openTargetRef.current;
-        offset.value = reduceMotion
-          ? withTiming(to, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(to, ANIMATION.springSheet);
+        offset.value = withSpring(0, ANIMATION.springSettle);
         committedDetent.value = 'full';
         settle('full');
       },
       collapse: () => {
-        offset.value = reduceMotion
-          ? withTiming(travel, { duration: ANIMATION.fast, easing: EASING.out })
-          : withSpring(travel, ANIMATION.springSheet);
+        offset.value = withSpring(travel, ANIMATION.springSettle);
         committedDetent.value = 'peek';
         settle('peek');
       },
     }),
-    [committedDetent, offset, reduceMotion, settle, travel],
+    [committedDetent, offset, settle, travel],
   );
 
   // The detents reachable without a drag. A sheet whose only control is a
   // gesture is a sheet a switch-control or voice-control user cannot move,
-  // and this one is the app's whole list.
+  // and this one is the app's whole list. The same spring as the dock's
+  // button: one control, whichever way it is reached.
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
       const expand = event.nativeEvent.actionName === 'increment';
-      offset.value = withTiming(expand ? openTargetRef.current : travel, {
-        duration: ANIMATION.fast,
-        easing: EASING.out,
-      });
+      offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSettle);
       committedDetent.value = expand ? 'full' : 'peek';
       settle(expand ? 'full' : 'peek');
     },
@@ -467,7 +394,6 @@ export function MapSheet({
     scrollEnabled: detent === 'full',
     onScrollOffset: listOffset,
     sheetGesture: pan,
-    onContentHeight: setContentHeight,
   });
 
   return (
@@ -488,23 +414,17 @@ export function MapSheet({
           {/* A hairline indicator and nothing else. The sheet's own top edge
               already reads as an edge against the globe; a second rule under
               the handle would be the same boundary drawn twice. */}
-          <View onLayout={onChromeLayout}>
-            <View
-              style={styles.handleWrap}
-              accessibilityRole="adjustable"
-              accessibilityLabel="Story"
-              accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
-              accessibilityHint="Swipe up to read the whole story, down to see the globe"
-              accessibilityActions={ADJUST_ACTIONS}
-              onAccessibilityAction={handleAccessibilityAction}
-            >
-              <Animated.View style={[styles.indicator, pullIndicatorStyle]} />
-            </View>
-            {header}
+          <View
+            style={styles.handleWrap}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Story"
+            accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
+            accessibilityHint="Swipe up to read the whole story, down to see the globe"
+            accessibilityActions={ADJUST_ACTIONS}
+            onAccessibilityAction={handleAccessibilityAction}
+          >
+            <Animated.View style={[styles.indicator, pullIndicatorStyle]} />
           </View>
-          {/* The clip is the card's, not the sheet's: the masthead's scrub label
-              floats above the sheet's top edge, clear of the thumb on the track,
-              and a sheet-wide clip cut it off at the edge. */}
           <View style={styles.clip}>{list}</View>
         </View>
       </GestureDetector>

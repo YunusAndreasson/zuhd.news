@@ -1,0 +1,21 @@
+steps:
+  - tap:
+      text: markets
+  - await:
+      visible:
+        text: markets & data
+  - await: { idle: true }
+  - tap:
+      text: other data
+  - await:
+      visible:
+        text: Strait of Hormuz
+  - await: { idle: true }
+  - tap:
+      text: Close sheet
+  - await:
+      hidden:
+        text: markets & data
+  - await: { idle: true }
+executionPrerequisite: Android app open on the globe with all sheets closed and
+  market snapshot loaded.

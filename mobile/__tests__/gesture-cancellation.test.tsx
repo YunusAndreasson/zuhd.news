@@ -3,7 +3,7 @@ import type { PanGestureConfig } from 'react-native-gesture-handler';
 import * as Reanimated from 'react-native-reanimated';
 import type { SharedValue } from 'react-native-reanimated';
 import { MapSheet, type MapSheetRef } from '../components/map/MapSheet';
-import { StoryDeck } from '../components/map/StoryDeck';
+import { StoryDeck, type StoryDeckRef } from '../components/map/StoryDeck';
 import { useScrub } from '../hooks/useScrub';
 
 let mockPan: PanGestureConfig;
@@ -64,6 +64,41 @@ it('rolls a canceled deck swipe back without committing or carrying velocity', (
   expect(onSettle).toHaveBeenCalledTimes(1);
 });
 
+it('steps one story per tap, committing each once, and stops at the end card', () => {
+  const progress = shared(1);
+  const onSettle = jest.fn();
+  const onDragStart = jest.fn();
+  const ref = { current: null as StoryDeckRef | null };
+  render(
+    <StoryDeck
+      ref={ref}
+      count={3}
+      index={1}
+      progress={progress}
+      width={400}
+      sheetGesture={{} as never}
+      scrollEnabled={false}
+      onScrollOffset={shared(0)}
+      keyOf={String}
+      renderStory={() => null}
+      renderEnd={() => null}
+      onDragStart={onDragStart}
+      onSettle={onSettle}
+    />,
+  );
+  // Two taps before React has re-rendered with a new index: one story each.
+  act(() => {
+    ref.current?.step(1);
+    ref.current?.step(1);
+  });
+  expect(onSettle.mock.calls).toEqual([[2], [3]]);
+  expect(onDragStart).toHaveBeenCalledTimes(2);
+  expect(spring).toHaveBeenLastCalledWith(3, expect.objectContaining({ dampingRatio: 1 }));
+  // The end card is the last place: a third tap does nothing.
+  act(() => ref.current?.step(1));
+  expect(onSettle).toHaveBeenCalledTimes(2);
+});
+
 it.each(['peek', 'full'] as const)(
   'restores the committed %s sheet after an interrupted pull',
   (detent) => {
@@ -75,7 +110,6 @@ it.each(['peek', 'full'] as const)(
         peek: 300,
         full: 700,
         progress: shared(0),
-        header: null,
         renderList: () => <div />,
         onPullDown,
         onDetentChange,

@@ -224,7 +224,7 @@ export const matchesAnyTag = (tags, haystack) =>
  * **`concepts` is scanned alongside the body**, and it is the cleaner of the
  * two signals: the selector emits Wikipedia-backed concept labels, so a story
  * whose subject is the Strait of Hormuz carries it as a concept whether or not
- * the 350-character body ever names it. Body-only matching was leaving
+ * the 450-character body ever names it. Body-only matching was leaving
  * article→indicator coverage at 16% of the corpus.
  *
  * Lives in the registry rather than in `extract-entities.js` because

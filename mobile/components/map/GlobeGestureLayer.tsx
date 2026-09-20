@@ -7,16 +7,16 @@ import {
   usePinchGesture,
   useTapGesture,
 } from 'react-native-gesture-handler';
-import {
+import Animated, {
   cancelAnimation,
-  Easing,
   type SharedValue,
+  useAnimatedStyle,
   useSharedValue,
   withDecay,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { WHITE } from '../../constants/theme';
+import { ANIMATION, EASING, WHITE } from '../../constants/theme';
 import {
   anchorZoom,
   dragDelta,
@@ -24,6 +24,7 @@ import {
   MAX_LAT,
   pinchClip,
   projScaleFor,
+  takeCamera,
 } from '../../lib/globe-camera';
 import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
 
@@ -72,29 +73,16 @@ import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
  *  0.998 default coasts for seconds; this settles in about half of one, which
  *  is what a MapLibre throw feels like. */
 const FLING_DECELERATION = 0.994;
-/** How long zoom takes to hand back to the story's framing. */
-export const ZOOM_RELEASE_MS = 260;
-export const ZOOM_EASING = Easing.inOut(Easing.cubic);
-
-/** Take the camera for a gesture, starting from where it was last drawn. */
-function takeCamera(
-  owner: SharedValue<number>,
-  lat: SharedValue<number>,
-  lng: SharedValue<number>,
-  viewLat: SharedValue<number>,
-  viewLng: SharedValue<number>,
-) {
-  'worklet';
-  if (owner.value === 1) return;
-  lat.value = viewLat.value;
-  lng.value = viewLng.value;
-  owner.value = 1;
-}
 
 interface GlobeGestureLayerProps {
   globeRef: React.RefObject<MiniGlobeRef | null>;
   /** Distance from the top of the window to the top of the globe canvas. */
   canvasTop: number;
+  /** The gesture surface starts below the header and ends at the moving sheet. */
+  topChromeHeight: number;
+  sheetPeekHeight: number;
+  sheetFullHeight: number;
+  sheetProgress: SharedValue<number>;
   cameraOwner: SharedValue<number>;
   cameraLat: SharedValue<number>;
   cameraLng: SharedValue<number>;
@@ -104,6 +92,8 @@ interface GlobeGestureLayerProps {
   /** `MiniGlobe`'s zoom override: 0 follows the story, 1 holds `zoomAngle`. */
   zoomActive: SharedValue<number>;
   zoomAngle: SharedValue<number>;
+  /** A camera flight's progress (`useCameraFlight`): a finger stops it. */
+  flightT: SharedValue<number>;
   /** The clip in effect at the last projection, in degrees. */
   clip: SharedValue<number>;
   /** The clip the story in front would take on its own. */
@@ -131,6 +121,10 @@ interface GlobeGestureLayerProps {
 export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   globeRef,
   canvasTop,
+  topChromeHeight,
+  sheetPeekHeight,
+  sheetFullHeight,
+  sheetProgress,
   cameraOwner,
   cameraLat,
   cameraLng,
@@ -138,6 +132,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   viewLng,
   zoomActive,
   zoomAngle,
+  flightT,
   clip,
   storyClip,
   radius,
@@ -152,13 +147,26 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   onCollapse,
 }: GlobeGestureLayerProps) {
   const turnable = enabled && !collapseMode;
+  // Header buttons and the story have their own gesture owners. Restrict the
+  // native hit surface itself so their touches never reach the globe's pan,
+  // pinch or tap recognizers (including the pan's flight-cancelling onBegin).
+  const boundsStyle = useAnimatedStyle(() => {
+    const progress = Math.max(0, Math.min(1, sheetProgress.value));
+    return {
+      top: topChromeHeight,
+      bottom: sheetPeekHeight + (sheetFullHeight - sheetPeekHeight) * progress,
+    };
+  });
+  // RNGH 3 uses display: contents. Its positioned parent below defines
+  // both the recognizer bounds and local coordinates, excluding the header.
+  const canvasOffsetY = topChromeHeight - canvasTop;
   const handleTap = useCallback(
     (x: number, y: number) => {
       if (collapseMode) {
         onCollapse?.();
         return;
       }
-      const localY = y - canvasTop;
+      const localY = y + canvasOffsetY;
       const result = globeRef.current?.hitTest(x, localY);
       // Nothing under the finger: no pulse. The ring is a confirmation that
       // something was found, and drawing it over empty ocean would claim
@@ -171,7 +179,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onImpact();
       onTap(result);
     },
-    [canvasTop, collapseMode, globeRef, onCollapse, onImpact, onTap],
+    [canvasOffsetY, collapseMode, globeRef, onCollapse, onImpact, onTap],
   );
 
   const tapConfig = useMemo(
@@ -190,7 +198,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
     () => ({
       enabled: turnable,
       // Enough travel that a slightly imprecise tap is still a tap.
-      minDist: 6,
+      minDistance: 6,
       // One finger. Competing gestures go to whichever activates first, and a
       // pan with no pointer cap took every two-finger touch before the pinch
       // could — observed on the emulator: a pinch logged `pan activate` and
@@ -200,6 +208,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onBegin: () => {
         'worklet';
         // A finger on the earth stops a glide or a flight, as it does on the web.
+        cancelAnimation(flightT);
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
       },
@@ -240,7 +249,18 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         });
       },
     }),
-    [cameraLat, cameraLng, cameraOwner, clip, radius, reduceMotion, turnable, viewLat, viewLng],
+    [
+      cameraLat,
+      cameraLng,
+      cameraOwner,
+      clip,
+      flightT,
+      radius,
+      reduceMotion,
+      turnable,
+      viewLat,
+      viewLng,
+    ],
   );
 
   // The focus the last pinch update held, so the next one can keep that ground
@@ -252,6 +272,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       enabled: turnable,
       onActivate: ({ focalX, focalY }: { focalX: number; focalY: number }) => {
         'worklet';
+        cancelAnimation(flightT);
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
         cancelAnimation(zoomActive);
@@ -262,7 +283,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         zoomAngle.value = clip.value;
         zoomActive.value = 1;
         focusX.value = focalX;
-        focusY.value = focalY - canvasTop;
+        focusY.value = focalY + canvasOffsetY;
       },
       onUpdate: ({
         scaleChange,
@@ -283,7 +304,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         if (numberOfPointers < 2) return;
         const from = zoomAngle.value;
         const to = pinchClip(from, scaleChange);
-        const y = focalY - canvasTop;
+        const y = focalY + canvasOffsetY;
         const cam = anchorZoom(
           focusX.value,
           focusY.value,
@@ -308,8 +329,15 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         'worklet';
         // Pinched back out to the story's own framing: give zoom back to it.
         const release = zoomAngle.value >= storyClip.value - 0.5;
-        const duration = reduceMotion ? 0 : ZOOM_RELEASE_MS;
-        if (release) zoomActive.value = withTiming(0, { duration, easing: ZOOM_EASING });
+        // Reanimated snaps the hand-back itself under Reduce Motion; the
+        // redraw timer below has to be told.
+        const duration = reduceMotion ? 0 : ANIMATION.zoomRelease;
+        if (release) {
+          zoomActive.value = withTiming(0, {
+            duration: ANIMATION.zoomRelease,
+            easing: EASING.camera,
+          });
+        }
         // A JS timer, never an animation callback: `scheduleOnRN` from a
         // completion worklet aborts the app (worklets 0.10).
         scheduleOnRN(onZoomSettle, release ? duration + 50 : 0);
@@ -319,10 +347,11 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       cameraLat,
       cameraLng,
       cameraOwner,
-      canvasTop,
+      canvasOffsetY,
       centerX,
       centerY,
       clip,
+      flightT,
       focusX,
       focusY,
       onZoomSettle,
@@ -345,22 +374,20 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const gesture = useCompetingGestures(pinch, pan, tap);
 
   return (
-    <GestureDetector gesture={gesture}>
-      {/* Hidden from the accessibility tree, deliberately and for the same
-          reason the reader's tap zone is: VoiceOver activates an element at
-          its geometric centre, which on a globe is a lottery country. Every
-          mark that matters has a row — in the strip, the alert block or the
-          instruments sheet — and those rows are the accessible path. */}
-      <View
-        style={styles.layer}
-        accessible={false}
-        accessibilityElementsHidden
-        importantForAccessibility="no-hide-descendants"
-      />
-    </GestureDetector>
+    <Animated.View
+      style={[styles.layer, boundsStyle]}
+      accessible={false}
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+    >
+      <GestureDetector gesture={gesture}>
+        <View style={styles.surface} collapsable={false} />
+      </GestureDetector>
+    </Animated.View>
   );
 });
 
 const styles = StyleSheet.create({
-  layer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  layer: { position: 'absolute', left: 0, right: 0 },
+  surface: { flex: 1 },
 });

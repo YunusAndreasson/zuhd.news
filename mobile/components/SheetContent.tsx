@@ -26,6 +26,14 @@ type EnteringAnimation = ComponentProps<typeof Animated.View>['entering'];
 // height, where `flex: 1`'s `flexBasis: 0` would measure the content as zero
 // and collapse the sheet. `flexShrink: 1` is correct in both: it shrinks to fit
 // when the box is bounded, and is inert when it isn't.
+//
+// `nestedScrollEnabled` is Android's half of the same bargain. A sheet with two
+// stops (`CardSheet`) lays its content out at the full stop and shows the top
+// half at the first, and an RN `ScrollView` offers its drags to no one unless
+// asked: a card at half height scrolled inside itself until the scroll view's
+// end, which was off the screen, and the analysis stopped at the screen's edge
+// with the cited stories and the source under it out of reach. Offered, the
+// drag lifts the sheet first, as a Material sheet does; `@expo/ui` relays it.
 // ---------------------------------------------------------------------------
 
 type ScrollViewProps = ComponentProps<typeof BottomSheetScrollView>;
@@ -48,6 +56,7 @@ export function SheetScrollView({
   const { sheetStyles } = useTheme();
   return (
     <BottomSheetScrollView
+      nestedScrollEnabled
       style={[styles.scroll, style]}
       contentContainerStyle={[
         sheetStyles.content,
@@ -85,8 +94,11 @@ interface SheetHeroProps {
 export function SheetHero({ entering, eyebrow, focal, tint, secondary }: SheetHeroProps) {
   return (
     <Animated.View entering={entering}>
-      <Text variant="labelXs" tone="secondary" style={styles.eyebrow}>
-        {eyebrow}
+      {/* Lowercase on screen, as every other small-caps label is: the
+          conflict and GDACS eyebrows arrive ALL CAPS from their data, and small
+          caps draw a capital at full height. The spoken label keeps the case. */}
+      <Text variant="labelXs" tone="secondary" style={styles.eyebrow} accessibilityLabel={eyebrow}>
+        {eyebrow.toLocaleLowerCase()}
       </Text>
       <Text
         variant="display"
@@ -135,7 +147,7 @@ interface SheetSourceFooterProps {
   entering?: EnteringAnimation;
   /** Spelled-out source name (no acronyms) — the trust signal. */
   source: string;
-  /** Link affordance label, e.g. "Source →" / "GDACS report →". */
+  /** Link affordance label, lowercase with acronyms kept: "source →", "GDACS report →". */
   linkLabel: string;
   linkAccessibilityLabel: string;
   /** Omit to render the source name alone (unpublished / prototype data). */
@@ -158,7 +170,6 @@ export function SheetSourceFooter({
       </Text>
       {onLinkPress ? (
         <Pressable
-          haptic="tick"
           onPress={onLinkPress}
           accessibilityRole="link"
           accessibilityLabel={linkAccessibilityLabel}

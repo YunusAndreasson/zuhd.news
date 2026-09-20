@@ -1,4 +1,12 @@
-import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  memo,
+  type ReactNode,
+  type Ref,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
@@ -11,6 +19,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -54,6 +63,15 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * slots are positioned by `progress`, not by index, and the window of mounted
  * cards around the new index still contains every card the spring is passing.
  *
+ * ## The next button
+ *
+ * The dock's `›` is `step(1)` on this deck's ref, and it lands exactly as a
+ * swipe released past halfway would: the same `onDragStart` first, so the
+ * camera is handed over the same way, the same spring, the same `onSettle`.
+ * It is not `focusStory` — a jump and a flight are for a story twenty cards
+ * away, and the one beside the card should slide in. A second tap before the
+ * first has landed goes one further, not to the same story again.
+ *
  * ## Three mounted cards
  *
  * The current one and its neighbours. A card's content only ever changes while
@@ -63,11 +81,13 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /** Neighbours fade in as they enter during a horizontal swipe. */
 const PEEK_OPACITY = 0.4;
-/** Perceived duration of a landing, in ms. Critically damped, so a card
- *  arrives without a bounce the globe would have to follow past a dateline. */
-const SETTLE_MS = 380;
 
 type SheetGesture = ReturnType<typeof usePanGesture>;
+
+export interface StoryDeckRef {
+  /** Move the deck `delta` stories, as a completed swipe would. */
+  step: (delta: number) => void;
+}
 
 interface StoryDeckProps {
   /** Stories in the river. The end card sits at index `count`. */
@@ -85,16 +105,20 @@ interface StoryDeckProps {
   scrollEnabled: boolean;
   /** Raw scroll offset of the current card, for the sheet's pan. */
   onScrollOffset: SharedValue<number>;
-  /** The current card's natural height, so a grown sheet can stop at it.
-   *  Reported when it lays out and again whenever a card becomes current. */
-  onContentHeight?: (height: number) => void;
+  /** Room left under the cards for the dock pinned over the sheet's foot. */
+  bottomInset?: number;
   keyOf: (index: number) => string;
   renderStory: (index: number) => ReactNode;
   renderEnd: () => ReactNode;
   /** A finger has started a swipe. Must be a stable, named callback. */
   onDragStart: () => void;
+  /** A worklet, run on the UI thread as the pan claims a swipe, before
+   *  `onDragStart` reaches JS: whatever must be decided on the frame the card
+   *  starts to move (whether the camera follows the finger). */
+  onClaim?: () => void;
   /** The swipe ended on a different story. Must be a stable, named callback. */
   onSettle: (index: number) => void;
+  ref?: Ref<StoryDeckRef>;
 }
 
 const DeckSlot = memo(function DeckSlot({
@@ -108,7 +132,6 @@ const DeckSlot = memo(function DeckSlot({
   sheetGesture,
   scrollEnabled,
   onScrollOffset,
-  onContentHeight,
   children,
 }: {
   position: number;
@@ -122,7 +145,6 @@ const DeckSlot = memo(function DeckSlot({
   sheetGesture: SheetGesture;
   scrollEnabled: boolean;
   onScrollOffset: SharedValue<number>;
-  onContentHeight?: (height: number) => void;
   children: ReactNode;
 }) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -165,20 +187,6 @@ const DeckSlot = memo(function DeckSlot({
     },
   });
 
-  // Cached, because a card's size is only reported when it lays out, and the
-  // neighbour a swipe lands on laid out while it was still off to the side.
-  const contentHeight = useRef<number | null>(null);
-  const handleContentSize = useCallback(
-    (_width: number, height: number) => {
-      contentHeight.current = height;
-      if (current) onContentHeight?.(height);
-    },
-    [current, onContentHeight],
-  );
-  useEffect(() => {
-    if (current && contentHeight.current !== null) onContentHeight?.(contentHeight.current);
-  }, [current, onContentHeight]);
-
   const readable = current && scrollEnabled;
   // A card leaving the front, or a sheet coming down to rest, goes back to its
   // top: at rest the card is its kicker, title and lead, never its middle.
@@ -201,7 +209,6 @@ const DeckSlot = memo(function DeckSlot({
           style={styles.fill}
           scrollEnabled={readable}
           onScroll={scrollHandler}
-          onContentSizeChange={handleContentSize}
           scrollEventThrottle={16}
           bounces={false}
           overScrollMode="never"
@@ -223,12 +230,14 @@ export const StoryDeck = memo(function StoryDeck({
   sheetGesture,
   scrollEnabled,
   onScrollOffset,
-  onContentHeight,
+  bottomInset = 0,
   keyOf,
   renderStory,
   renderEnd,
   onDragStart,
+  onClaim,
   onSettle,
+  ref,
 }: StoryDeckProps) {
   // Use the full reading width at both detents. The scrubber signals more
   // stories; reserving a neighbour preview narrowed every paragraph, even
@@ -240,9 +249,33 @@ export const StoryDeck = memo(function StoryDeck({
   const startX = useSharedValue(0);
   /** The story last handed to `onSettle`, so a caught card is not re-committed. */
   const committed = useSharedValue(index);
+  /** Where the last `step` sent the deck, so a second tap before React has
+   *  caught up goes one further. JS-side on purpose: reading `committed`
+   *  from JS would wait on the UI thread. */
+  const stepTarget = useRef(index);
   useEffect(() => {
     committed.value = index;
+    stepTarget.current = index;
   }, [committed, index]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      step: (delta: number) => {
+        const target = Math.max(0, Math.min(count, stepTarget.current + delta));
+        if (target === stepTarget.current) return;
+        stepTarget.current = target;
+        onDragStart();
+        // A tap is not a finger carrying the card, so it takes the plain
+        // landing, which Reanimated snaps under Reduce Motion; a released
+        // swipe keeps its spring (`KEEP_MOTION`) because it continues a hand.
+        progress.value = withSpring(target, ANIMATION.springSettle);
+        committed.value = target;
+        onSettle(target);
+      },
+    }),
+    [committed, count, onDragStart, onSettle, progress],
+  );
 
   const panConfig = useMemo(
     () => ({
@@ -254,6 +287,7 @@ export const StoryDeck = memo(function StoryDeck({
         cancelAnimation(progress);
         start.value = progress.value;
         startX.value = e.translationX;
+        if (onClaim) onClaim();
         scheduleOnRN(onDragStart);
       },
       onUpdate: (e: { translationX: number }) => {
@@ -269,11 +303,12 @@ export const StoryDeck = memo(function StoryDeck({
         const target = e.canceled
           ? committed.value
           : deckTarget(Math.round(start.value), position, velocity, count);
+        // Critically damped, so a card arrives without a bounce the globe
+        // would have to follow past a dateline.
         progress.value = withSpring(target, {
-          duration: SETTLE_MS,
-          dampingRatio: 1,
+          ...ANIMATION.springSettle,
+          ...KEEP_MOTION,
           velocity,
-          overshootClamping: true,
         });
         if (target !== committed.value) {
           committed.value = target;
@@ -281,7 +316,7 @@ export const StoryDeck = memo(function StoryDeck({
         }
       },
     }),
-    [committed, count, onDragStart, onSettle, pitch, progress, start, startX],
+    [committed, count, onClaim, onDragStart, onSettle, pitch, progress, start, startX],
   );
   const pan = usePanGesture(panConfig);
 
@@ -290,7 +325,7 @@ export const StoryDeck = memo(function StoryDeck({
 
   return (
     <GestureDetector gesture={pan}>
-      <View style={styles.fill}>
+      <View style={[styles.fill, { marginBottom: bottomInset }]}>
         {slots.map((i) => (
           <DeckSlot
             key={keyOf(i)}
@@ -304,7 +339,6 @@ export const StoryDeck = memo(function StoryDeck({
             sheetGesture={sheetGesture}
             scrollEnabled={scrollEnabled}
             onScrollOffset={onScrollOffset}
-            onContentHeight={onContentHeight}
           >
             {i === count ? renderEnd() : renderStory(i)}
           </DeckSlot>

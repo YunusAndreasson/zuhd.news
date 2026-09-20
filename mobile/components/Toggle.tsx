@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import Animated, {
   interpolateColor,
   useAnimatedStyle,
-  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
@@ -34,17 +33,11 @@ const TRAVEL = TRACK_WIDTH - THUMB_SIZE - THUMB_INSET * 2;
  */
 export function Toggle({ value }: { value: boolean }) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
   const progress = useSharedValue(value ? 1 : 0);
 
   useEffect(() => {
-    progress.set(
-      withTiming(value ? 1 : 0, {
-        duration: reduceMotion ? 0 : ANIMATION.fast,
-        easing: EASING.inOut,
-      }),
-    );
-  }, [value, reduceMotion, progress]);
+    progress.set(withTiming(value ? 1 : 0, { duration: ANIMATION.fast, easing: EASING.inOut }));
+  }, [value, progress]);
 
   const trackStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(progress.value, [0, 1], [colors.rule, colors.text]),

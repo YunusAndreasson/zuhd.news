@@ -295,7 +295,7 @@ for (const rel of newFiles) {
   const { meta, body } = parseFrontmatter(raw)
   const slug = basename(filename, '.md')
   const title = typeof meta.title === 'string' ? meta.title : ''
-  // Title and concepts alongside the body. A 350-character article often names
+  // Title and concepts alongside the body. A 450-character article often names
   // its subject only in the headline, and `concepts[]` is the selector's own
   // Wikipedia-backed labelling — both are cleaner signal than the prose.
   const { resolved, pending } = extractEntities(
