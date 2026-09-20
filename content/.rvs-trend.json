@@ -1,22 +1,5 @@
 [
   {
-    "ts": "2026-06-29T04:30:27.987Z",
-    "cycleId": "2026-06-29T04-30",
-    "cycleHour": "04",
-    "rvs": 45.95,
-    "clusters": {
-      "picking": null,
-      "writing": 95.83,
-      "briefing": 0,
-      "sourcing": 20,
-      "coverage": 66.66
-    },
-    "articleCount": 12,
-    "briefCount": 0,
-    "guardrailFailures": [],
-    "degenerate": true
-  },
-  {
     "ts": "2026-06-29T08:21:42.395Z",
     "cycleId": "2026-06-29T08-21",
     "cycleHour": "08",
@@ -6778,6 +6761,26 @@
     "articleCount": 13,
     "briefCount": 0,
     "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-09-20T04:15:33.757Z",
+    "cycleId": "2026-09-20T04-15",
+    "cycleHour": "04",
+    "schema": 2,
+    "rvs": 82.63,
+    "clusters": {
+      "picking": null,
+      "writing": 88.64,
+      "briefing": null,
+      "sourcing": 68.53,
+      "coverage": 88.72
+    },
+    "articleCount": 11,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category science below floor 2 (got 1)"
+    ],
     "degenerate": false
   }
 ]
