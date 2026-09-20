@@ -7,8 +7,13 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { ANIMATION, EASING, HIT_SLOP, SPACING } from '../../constants/theme';
+import Animated, {
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
 import { hapticTick } from '../../lib/haptics';
@@ -60,6 +65,7 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   countryName,
 }: CountryCardsCarouselProps) {
   const { colors } = useTheme();
+  const reduceMotion = useReducedMotion();
   // Measure the wrap's actual rendered width via onLayout instead of
   // computing from window dimensions. The wrap sits inside
   // BottomSheetScrollView's contentContainer (padded by `sheetStyles.content`)
@@ -87,14 +93,14 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   const goToPage = useCallback(
     (i: number) => {
       if (pageWidth <= 0) return;
-      scrollRef.current?.scrollTo({ x: i * pageWidth, animated: true });
+      scrollRef.current?.scrollTo({ x: i * pageWidth, animated: !reduceMotion });
       if (i !== prevActive.current) {
         hapticTick();
         prevActive.current = i;
       }
       setActive(i);
     },
-    [pageWidth],
+    [pageWidth, reduceMotion],
   );
 
   const cards = useMemo(() => {
@@ -107,7 +113,10 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   const onMomentumEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       if (pageWidth <= 0) return;
-      const idx = Math.round(e.nativeEvent.contentOffset.x / pageWidth);
+      const idx = Math.max(
+        0,
+        Math.min(cards.length - 1, Math.round(e.nativeEvent.contentOffset.x / pageWidth)),
+      );
       if (idx !== prevActive.current) {
         // Tick tier matches the homepage category-pager and the existing scrub
         // vocabulary — incidental movement, not a discrete tap.
@@ -116,8 +125,18 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
       }
       setActive(idx);
     },
-    [pageWidth],
+    [pageWidth, cards.length],
   );
+
+  // Native offsets are pixels: when the reading column changes width, retain
+  // the selected card rather than leaving the reader between two pages.
+  const alignPage = useCallback(() => {
+    if (pageWidth <= 0 || cards.length === 0) return;
+    const index = Math.min(prevActive.current, cards.length - 1);
+    prevActive.current = index;
+    setActive(index);
+    scrollRef.current?.scrollTo({ x: index * pageWidth, animated: false });
+  }, [pageWidth, cards.length]);
 
   if (cards.length === 0) return null;
 
@@ -139,6 +158,7 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
           snapToInterval={pageWidth}
           snapToAlignment="start"
           onMomentumScrollEnd={onMomentumEnd}
+          onContentSizeChange={alignPage}
           directionalLockEnabled
           canCancelContentTouches
           // overflow:hidden is the load-bearing fix for "next card peeks
@@ -165,9 +185,6 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
 });
 
 const DOT = 4;
-const DOT_GAP = 6;
-/** Taller, never wider: sideways slop would overlap the next dot's target. */
-const DOT_SLOP = { top: HIT_SLOP.top, bottom: HIT_SLOP.bottom, left: 0, right: 0 };
 
 function DotIndicator({
   count,
@@ -182,9 +199,8 @@ function DotIndicator({
   return (
     <View style={styles.dotRow}>
       {Array.from({ length: count }).map((_, i) => (
-        // Each dot is a tap target (4px visual, padded hit area) so the
-        // indicator doubles as paging controls — the primary navigation when
-        // horizontal swipe is swallowed by the enclosing bottom sheet.
+        // Keep the quiet dot, with a full independent touch target. The old
+        // 12pt targets were too narrow to reliably choose neighbouring cards.
         <Pressable
           key={i}
           onPress={() => onSelect(i)}
@@ -195,11 +211,7 @@ function DotIndicator({
           accessibilityRole="button"
           accessibilityLabel={`View card ${i + 1} of ${count}`}
           accessibilityState={{ selected: i === active }}
-          // Padding (not hitSlop) supplies the touch area + inter-dot spacing,
-          // so adjacent dots' targets stay distinct rather than overlapping;
-          // vertical slop, which cannot overlap a neighbour, makes it tall
-          // enough for a finger.
-          hitSlop={DOT_SLOP}
+          hitSlop={0}
           style={styles.dotHit}
         >
           <Dot on={i === active} dim={colors.textSecondary} accent={colors.textEmphasis} />
@@ -252,16 +264,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    // Outer row padding trimmed by the per-dot vertical padding below so the
-    // total band height matches the prior SPACING.sm top/bottom.
-    paddingVertical: SPACING.xs,
   },
-  // Per-dot touch target: horizontal padding restores the inter-dot gap (was
-  // Dot.marginHorizontal) and widens the tap zone; vertical padding gives a
-  // finger-height target without enlarging the visible dot.
   dotHit: {
-    paddingHorizontal: DOT_GAP / 2 + 1,
-    paddingVertical: SPACING.xs,
+    width: SPACING.xxl,
+    height: SPACING.xxl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dot: {
     width: DOT,

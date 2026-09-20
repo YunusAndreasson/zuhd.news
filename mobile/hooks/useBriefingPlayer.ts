@@ -196,33 +196,44 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   // timeout) and tear down lazily. That removes the 30s wall-clock guess
   // and avoids dropping a perfectly healthy paused player.
   useEffect(() => {
+    let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
       if (state !== 'active') {
         backgroundAt.current = Date.now();
         return;
       }
-      if (!playerRef.current) return;
+      const player = playerRef.current;
+      if (!player) return;
+      const token = toggleTokenRef.current;
+      const isCurrent = () =>
+        !disposed && playerRef.current === player && token === toggleTokenRef.current;
 
       // Save position for any cold-start that might happen next
       try {
-        const pos = playerRef.current.currentTime;
+        const pos = player.currentTime;
         if (pos > 0 && savedDate.current) {
           await Promise.all([
             Storage.setItem(POSITION_KEY, String(Math.floor(pos))),
             Storage.setItem(DATE_KEY, savedDate.current),
           ]);
+          if (!isCurrent()) return;
           setResumable(true);
         }
       } catch {}
 
-      if (playerRef.current.playing) {
+      if (!isCurrent()) return;
+      if (player.playing) {
         try {
           await setIsAudioActiveAsync(true);
         } catch {}
       }
-      setPlaying(playerRef.current.playing);
+      if (!isCurrent()) return;
+      setPlaying(player.playing);
     });
-    return () => sub.remove();
+    return () => {
+      disposed = true;
+      sub.remove();
+    };
   }, []);
 
   // Audio is fetched when the reader presses listen — never before. Once

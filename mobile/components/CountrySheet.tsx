@@ -380,7 +380,7 @@ export const CountrySheet = memo(function CountrySheet({
         >
           {country?.countryName && (
             <Animated.View entering={staggerEnter(0)}>
-              <CountryCardsCarousel countryName={country.countryName} />
+              <CountryCardsCarousel key={country.countryName} countryName={country.countryName} />
             </Animated.View>
           )}
           {country?.data && (

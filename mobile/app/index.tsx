@@ -47,7 +47,7 @@ import {
   type TapResult,
 } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
-import { InstrumentsSheet } from '../components/InstrumentsSheet';
+import { MarketBrowserSheet } from '../components/MarketBrowserSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
@@ -77,6 +77,7 @@ import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useMarketSignals } from '../hooks/useMarketSignals';
+import { useMarkets } from '../hooks/useMarkets';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
@@ -100,6 +101,7 @@ import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
+import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver } from '../lib/news-order';
 import {
   buildNowSurfaces,
@@ -172,7 +174,7 @@ interface FocusOptions {
 }
 
 export default function HomeScreen() {
-  const { colors, textVariants } = useTheme();
+  const { colors, font, typography, textVariants } = useTheme();
   const { preferences } = usePreferences();
   const reduceMotion = useReducedMotion();
   const insets = useSafeAreaInsets();
@@ -216,6 +218,8 @@ export default function HomeScreen() {
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
   const { byId: analysis } = useAnalysis();
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
+  const marketsSnapshot = useMarkets();
+  const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
   const network = useNetworkState();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
@@ -281,6 +285,7 @@ export default function HomeScreen() {
   const globeClip = useSharedValue(90);
   const storyClip = useSharedValue(90);
   const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const primerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetProgress = useSharedValue(0);
   /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
@@ -427,8 +432,11 @@ export default function HomeScreen() {
    *  rank each pool against itself, which could only ever compare a strait
    *  with other straits. */
   const rankedInstruments = useMemo(
-    () => buildRankedInstruments(columns, marketSignals, river),
-    [columns, marketSignals, river],
+    () => [
+      ...buildRankedInstruments(columns, marketSignals, river),
+      ...exchanges.map(exchangeCard),
+    ],
+    [columns, marketSignals, river, exchanges],
   );
 
   const { strip, now } = useMemo(
@@ -440,40 +448,44 @@ export default function HomeScreen() {
         // does. Placement reads the raw payload, where the exchange's
         // coordinates are.
         signals: rawSignals,
+        exchanges,
         gdacsAlerts,
       }),
-    [rankedInstruments, chokepoints, rawSignals, gdacsAlerts],
+    [rankedInstruments, chokepoints, rawSignals, gdacsAlerts, exchanges],
   );
 
-  /**
-   * The exchanges the globe draws.
-   *
-   * Only the flagged ones, and only where a place is honest: `buildNowSurfaces`
-   * has already run the placement ladder, so this is a filter rather than a
-   * second resolution. Thirty static exchange dots would be noise — a mark is
-   * here because its index did something, which is the same rule every card
-   * in the app is admitted under.
-   */
   const stripRef = useRef(strip);
   stripRef.current = strip;
-
+  const mapMarkets = useMemo(
+    () =>
+      exchanges.map((exchange) => {
+        const card = exchangeCard(exchange);
+        return {
+          id: card.id,
+          label: exchange.indexName,
+          short: exchange.indexName,
+          reading: card.reading,
+          delta: exchangeDelta(exchange),
+          stale: exchangeIsStale(exchange),
+          spark: card.series?.values ?? [],
+          coords: [exchange.lat, exchange.lng] as LatLng,
+          card,
+        };
+      }),
+    [exchanges],
+  );
+  const mapMarketsRef = useRef(mapMarkets);
+  mapMarketsRef.current = mapMarkets;
   const marketMarks = useMemo(
     () =>
-      strip
-        .filter((item) => item.id.startsWith('market-signal:') && item.coords)
-        .map((item) => ({
-          id: item.id,
-          // The exchange, not the ticker: the mark stands for a place, and
-          // `Borsa İstanbul` is a place where `BIST 100` is a number.
-          label: item.label,
-          // Coloured by the move the server flagged — the card's own chip,
-          // which is why the mark exists — not by the gauge's week, so a mark
-          // and the card it opens cannot point opposite ways.
-          direction: item.card.delta?.direction,
-          lat: (item.coords as LatLng)[0],
-          lng: (item.coords as LatLng)[1],
-        })),
-    [strip],
+      mapMarkets.map((item) => ({
+        id: item.id,
+        label: `${item.label} ${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.magnitude}${item.stale ? '*' : ''}`,
+        direction: item.delta.direction,
+        lat: item.coords[0],
+        lng: item.coords[1],
+      })),
+    [mapMarkets],
   );
 
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
@@ -516,6 +528,8 @@ export default function HomeScreen() {
   useEffect(
     () => () => {
       if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
+      if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
+      if (primerTimerRef.current) clearTimeout(primerTimerRef.current);
     },
     [],
   );
@@ -764,12 +778,15 @@ export default function HomeScreen() {
     (card: SwipeCard) => {
       // A row is its gauge in a list: the same flight and the same ring, when
       // the instrument has a place and a week to show.
-      const gauge = strip.find((item) => item.id === card.id) ?? null;
+      const gauge =
+        mapMarkets.find((item) => item.id === card.id) ??
+        strip.find((item) => item.id === card.id) ??
+        null;
       if (gauge) flyTo(gauge.coords);
       setSelectedGauge(gauge);
       handOffSheet(instrumentsSheetRef, () => openCard(card));
     },
-    [flyTo, handOffSheet, openCard, strip],
+    [flyTo, handOffSheet, openCard, strip, mapMarkets],
   );
 
   const openOverlay = useCallback((selection: OverlaySelection) => {
@@ -831,7 +848,11 @@ export default function HomeScreen() {
       }
       if (result.marketSignalId) {
         const card = rankedRef.current.find((c) => c.id === result.marketSignalId);
-        if (card) openCard(card);
+        if (card) {
+          const gauge = mapMarketsRef.current.find((item) => item.id === card.id) ?? null;
+          setSelectedGauge(gauge);
+          openCard(card);
+        }
         return;
       }
       if (result.chokepointId) {
@@ -1056,7 +1077,8 @@ export default function HomeScreen() {
     if (primerTriedRef.current) return;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
     primerTriedRef.current = true;
-    setTimeout(() => {
+    primerTimerRef.current = setTimeout(() => {
+      primerTimerRef.current = null;
       if (sheetOpenRef.current) return;
       setPrimerOpen(true);
       primerSheetRef.current?.present();
@@ -1372,17 +1394,29 @@ export default function HomeScreen() {
     ],
   );
 
-  // What the measurement is of: the day's cards, which of them carry odds (a
-  // line of their own), the width and the type size. A string, because the
-  // river is rebuilt every minute with the same stories in it.
+  // Re-measure when text or its metrics change, including in-app reading
+  // preferences and corrections to an existing story. Exclude timestamps
+  // and appearance so minute ticks and recolouring don't remount every card.
   const measureKey = useMemo(
     () =>
-      [
+      JSON.stringify([
         screenWidth,
         fontScale,
-        ...storyRows.map((r) => (odds.has(r.slug) ? `${r.slug}*` : r.slug)),
-      ].join('|'),
-    [screenWidth, fontScale, storyRows, odds],
+        font,
+        typography,
+        ...storyRows.map((r) => [
+          r.slug,
+          r.title,
+          r.article.sentences,
+          r.article.location,
+          r.article.entities,
+          r.article.threadArticleCount,
+          r.article.threadArc,
+          r.article.threadDay,
+          odds.has(r.slug),
+        ]),
+      ]),
+    [screenWidth, fontScale, font, typography, storyRows, odds],
   );
   const renderMeasureCard = useCallback(
     (index: number) => {
@@ -1549,6 +1583,7 @@ export default function HomeScreen() {
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
+          marketViewport={{ top: topChromeHeight, bottom: screenHeight - layout.peek }}
           places={places}
           foundSlugs={foundSlugs}
           foundProgress={progress}
@@ -1579,6 +1614,10 @@ export default function HomeScreen() {
       <GlobeGestureLayer
         globeRef={globeRef}
         canvasTop={0}
+        topChromeHeight={topChromeHeight}
+        sheetPeekHeight={layout.peek}
+        sheetFullHeight={layout.full}
+        sheetProgress={sheetProgress}
         cameraOwner={cameraOwner}
         cameraLat={cameraLat}
         cameraLng={cameraLng}
@@ -1679,10 +1718,11 @@ export default function HomeScreen() {
         onStoryPress={handleCardStoryPress}
       />
 
-      <InstrumentsSheet
+      <MarketBrowserSheet
         sheetRef={instrumentsSheetRef}
         bottomInset={insets.bottom}
-        cards={rankedInstruments}
+        exchanges={exchanges}
+        instruments={rankedInstruments.filter((card) => !card.id.startsWith('mkt:'))}
         onSelect={handleInstrumentSelect}
         onDismiss={handleInstrumentsDismiss}
       />

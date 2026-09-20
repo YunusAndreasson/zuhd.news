@@ -259,3 +259,18 @@ export const CONFLICT_FAMILY_LABEL: Readonly<Record<ConflictEventFamily, string>
   kinetic: 'Kinetic event',
   unrest: 'Civil unrest',
 };
+
+/** Direction glyphs shared by the market chooser and map key. */
+export function marketDirectionPath(direction: 'up' | 'down' | 'flat'): SkPath {
+  const b = Skia.PathBuilder.Make();
+  if (direction === 'flat') return b.moveTo(4, 11).lineTo(18, 11).detach();
+  const tip = direction === 'up' ? 3 : 19;
+  const shoulder = direction === 'up' ? 9 : 13;
+  return b
+    .moveTo(11, 3)
+    .lineTo(11, 19)
+    .moveTo(5, shoulder)
+    .lineTo(11, tip)
+    .lineTo(17, shoulder)
+    .detach();
+}

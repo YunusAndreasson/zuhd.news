@@ -5,7 +5,7 @@ import {
   type MetricKey,
   type RankingEntry,
 } from '@shared/countries/country-ranking';
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
 import { FLAG, HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -33,18 +33,40 @@ export const CountryRankingView = memo(function CountryRankingView({
     [ranking, currentCountryName],
   );
   const listRef = useRef<FlatList<RankingEntry>>(null);
+  const [headerHeight, setHeaderHeight] = useState<number | null>(null);
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const [contentHeight, setContentHeight] = useState(0);
+  const positioned = useRef<string | null>(null);
 
   useEffect(() => {
-    if (currentIndex < 0) return;
-    const offset = Math.max(0, ROW_HEIGHT * currentIndex - ROW_HEIGHT * 2);
-    // Let the sheet transition finish, then position once. Four overlapping
-    // animated retries kept retargeting the same list for nearly a second and
-    // made an otherwise-ready ranking sheet look unsettled.
-    const task = setImmediate(() => {
-      listRef.current?.scrollToOffset({ offset, animated: false });
+    if (currentIndex < 0 || headerHeight === null || viewportHeight <= 0) return;
+    const target = `${metric}:${currentCountryName}:${headerHeight}`;
+    if (positioned.current === target) return;
+    const offset = currentIndex <= 2 ? 0 : headerHeight + ROW_HEIGHT * (currentIndex - 2);
+    // Wait for native content layout too: a scroll sent while its extent is
+    // still zero is silently clamped to the top on Android.
+    if (contentHeight < headerHeight + ROW_HEIGHT * ranking.length) return;
+    // Let the content-size commit reach the native sheet before dispatching
+    // its scroll command; a JS microtask can still precede that native mount.
+    let task = requestAnimationFrame(() => {
+      task = requestAnimationFrame(() => {
+        positioned.current = target;
+        listRef.current?.scrollToOffset({
+          offset: Math.min(offset, Math.max(0, contentHeight - viewportHeight)),
+          animated: false,
+        });
+      });
     });
-    return () => clearImmediate(task);
-  }, [currentIndex]);
+    return () => cancelAnimationFrame(task);
+  }, [
+    currentIndex,
+    headerHeight,
+    viewportHeight,
+    contentHeight,
+    ranking.length,
+    metric,
+    currentCountryName,
+  ]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: RankingEntry; index: number }) => {
@@ -90,13 +112,20 @@ export const CountryRankingView = memo(function CountryRankingView({
   return (
     <BottomSheetFlatList
       ref={listRef as never}
+      style={styles.list}
+      onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
+      onContentSizeChange={(_, height) => setContentHeight(height)}
       data={ranking}
       keyExtractor={(item) => item.name}
       renderItem={renderItem}
-      getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
+      getItemLayout={
+        headerHeight === null
+          ? undefined
+          : (_, index) => ({ length: ROW_HEIGHT, offset: headerHeight + ROW_HEIGHT * index, index })
+      }
       contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
       ListHeaderComponent={
-        <View>
+        <View onLayout={(event) => setHeaderHeight(event.nativeEvent.layout.height)}>
           <View style={styles.header}>
             <Text variant="labelXs">{meta.label}</Text>
             {currentIndex >= 0 && (
@@ -140,6 +169,7 @@ export const CountryRankingView = memo(function CountryRankingView({
 const ROW_HEIGHT = 40;
 
 const styles = StyleSheet.create({
+  list: { flexShrink: 1 },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

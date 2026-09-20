@@ -13,7 +13,7 @@ interface EmptyStateProps {
 
 export const EmptyState = memo(function EmptyState({ message, hint }: EmptyStateProps) {
   return (
-    <Stack fill align="center" justify="center" gap="row" paddingX="xl" style={styles.container}>
+    <Stack align="center" justify="center" gap="row" paddingX="xl" style={styles.container}>
       <Text variant="label" style={styles.text}>
         {message}
       </Text>
@@ -28,10 +28,11 @@ export const EmptyState = memo(function EmptyState({ message, hint }: EmptyState
 
 const styles = StyleSheet.create({
   // Vertical padding gives the state presence even when the parent doesn't
-  // bound its height (e.g. inside a content-sized scroll view); `fill` above
-  // centers it whenever the parent is a flex container (full-screen list,
-  // tall search sheet).
+  // bound its height. Grow into available space without flex:1's zero basis,
+  // which collapses the text inside content-sized native sheets.
   container: {
+    flexGrow: 1,
+    flexShrink: 1,
     paddingVertical: SPACING.xxl,
   },
   text: {

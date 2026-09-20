@@ -6,7 +6,7 @@ import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import type { StripItem } from '../../lib/now';
-import { Icon, IconButton } from '../primitives';
+import { Icon, IconButton, Pressable, Text } from '../primitives';
 import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 
 /**
@@ -136,7 +136,7 @@ export const MapHeader = memo(function MapHeader({
   );
   const leftInset = Math.max(SPACING.articlePadding, insets.left);
   // Reserve a fixed, non-overlapping target beside the scrolling gauges.
-  const stripViewport = width - leftInset - insets.right - MENU_WIDTH - SPACING.xs;
+  const stripViewport = width - leftInset - insets.right - MENU_WIDTH - 76 - SPACING.xs;
 
   return (
     <View
@@ -167,6 +167,22 @@ export const MapHeader = memo(function MapHeader({
           initialViewport={stripViewport}
         />
       </View>
+      <Pressable
+        onPress={onAll}
+        hitSlop={0}
+        accessibilityRole="button"
+        accessibilityLabel="Browse markets and map data"
+        style={{
+          minWidth: 72,
+          minHeight: CONTROL_ROW,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text variant="labelXs" tone="emphasis">
+          markets
+        </Text>
+      </Pressable>
       <IconButton
         onPress={onMenuPress}
         // The screen's handler gives the impact, as it does for every gauge.

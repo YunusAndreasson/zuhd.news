@@ -4,6 +4,7 @@ import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
 import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
+import type { Exchange } from './markets';
 
 /**
  * What the app says is happening, before the reader scrolls.
@@ -100,6 +101,7 @@ export interface NowInputs {
   ranked: SwipeCard[];
   chokepoints: Chokepoint[];
   signals: MarketSignal[];
+  exchanges?: Exchange[];
   gdacsAlerts: GdacsAlert[];
   /** ISO-2 → centroid. Injected rather than imported because it needs globe
    *  topology, and this module is pure enough to test without it. */
@@ -126,7 +128,12 @@ function locateCard(
   chokepoints: Chokepoint[],
   signals: MarketSignal[],
   countryCentroid?: (iso2: string) => LatLng | null,
+  exchanges: Exchange[] = [],
 ): LatLng | null {
+  if (card.id.startsWith('mkt:')) {
+    const e = exchanges.find((e) => `mkt:${e.id}` === card.id);
+    return e ? [e.lat, e.lng] : null;
+  }
   if (card.id.startsWith('strait-')) {
     const id = card.id.slice('strait-'.length);
     const cp = chokepoints.find((c) => c.id === id);
@@ -177,6 +184,7 @@ function toStripItem(
   chokepoints: Chokepoint[],
   signals: MarketSignal[],
   countryCentroid?: (iso2: string) => LatLng | null,
+  exchanges?: Exchange[],
 ): StripItem {
   return {
     id: card.id,
@@ -191,7 +199,7 @@ function toStripItem(
     readingNote: card.readingNote,
     delta: move.delta,
     spark: move.points,
-    coords: locateCard(card, chokepoints, signals, countryCentroid),
+    coords: locateCard(card, chokepoints, signals, countryCentroid, exchanges),
     card,
   };
 }
@@ -239,6 +247,7 @@ export function buildNowSurfaces({
   ranked,
   chokepoints,
   signals,
+  exchanges,
   gdacsAlerts,
   countryCentroid,
   now = Date.now(),
@@ -267,7 +276,7 @@ export function buildNowSurfaces({
   });
   moved.sort((a, b) => (b.move.delta.size ?? 0) - (a.move.delta.size ?? 0) || a.order - b.order);
   for (const { card, move } of moved) {
-    strip.push(toStripItem(card, move, chokepoints, signals, countryCentroid));
+    strip.push(toStripItem(card, move, chokepoints, signals, countryCentroid, exchanges));
   }
 
   const block = hazardItems(gdacsAlerts, now)

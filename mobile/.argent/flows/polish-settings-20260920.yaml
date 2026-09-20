@@ -1,0 +1,24 @@
+steps:
+  - echo: "Settings: switch to light appearance; expect settings controls to remain
+      available."
+  - tap:
+      text: light
+  - await: { visible: { text: appearance } }
+  - await: { idle: true }
+  - echo: Select default text size; expect all settings to remain legible.
+  - tap:
+      text: default
+  - await: { visible: { text: appearance } }
+  - await: { idle: true }
+  - echo: Restore large text.
+  - tap:
+      text: large
+  - await: { visible: { text: appearance } }
+  - await: { idle: true }
+  - echo: Restore dark appearance.
+  - tap:
+      text: dark
+  - await: { visible: { text: appearance } }
+  - await: { idle: true }
+executionPrerequisite: Android app open on Menu > Settings, dark appearance and
+  large text selected. No keyboard or other sheets covering Settings.

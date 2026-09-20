@@ -1,0 +1,5 @@
+executionPrerequisite: Iran country sheet open at the top, GDP ranking row visible, large text. No other sheets or keyboard.
+steps:
+  - tap: { text: { matches: '^gdp$' } }
+  - await: { visible: { text: '$458B' } }
+  - await: { idle: true }

@@ -127,7 +127,7 @@ export const DARK_COLORS = {
   // Globe marks — the web map's palette verbatim (`public/islands/_map/style.ts`),
   // in both themes. The web map is dark-only, and a story, a hazard or a strait
   // should be the same colour on the phone as in the browser; a second light
-  // palette would be two maps that disagree. A story's hue says its category,
+  // palette would be two maps that disagree. Direction signs use theme-adjusted green/red. A story's hue says its category,
   // every other layer's hue says what kind of thing it is.
   markPolitics: '#d2604a',
   markEconomy: '#d0a24a',
@@ -144,8 +144,8 @@ export const DARK_COLORS = {
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
   markStraitSurge: '#5f9ea0',
-  markMarketUp: '#9aab86',
-  markMarketDown: '#c08a6a',
+  markMarketUp: '#88b692',
+  markMarketDown: '#e18b95',
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
@@ -202,11 +202,11 @@ export const LIGHT_COLORS = {
   markFamine: '#a98bc9',
   markConflict: '#c05252',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
-  markStrait: '#8d97a6',
-  markStraitPinch: '#c9a84c',
-  markStraitSurge: '#5f9ea0',
-  markMarketUp: '#9aab86',
-  markMarketDown: '#c08a6a',
+  markStrait: '#596775',
+  markStraitPinch: '#8b681f',
+  markStraitSurge: '#386f70',
+  markMarketUp: '#3c7951',
+  markMarketDown: '#a94352',
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',

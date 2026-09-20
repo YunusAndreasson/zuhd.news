@@ -64,6 +64,9 @@ afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
 it('reports deprecated calls, JSX props and option keys, and nothing current', () => {
   const run = spawnSync(process.execPath, [SCRIPT], { cwd: dir, encoding: 'utf8' });
+  // A launch failure can also return status 1; report it before interpreting
+  // an empty stderr stream as missing deprecation findings.
+  if (run.error) throw run.error;
   expect(run.status).toBe(1);
   const findings = run.stderr
     .split('\n')

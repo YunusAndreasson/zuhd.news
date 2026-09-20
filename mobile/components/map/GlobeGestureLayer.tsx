@@ -7,9 +7,10 @@ import {
   usePinchGesture,
   useTapGesture,
 } from 'react-native-gesture-handler';
-import {
+import Animated, {
   cancelAnimation,
   type SharedValue,
+  useAnimatedStyle,
   useSharedValue,
   withDecay,
   withTiming,
@@ -77,6 +78,11 @@ interface GlobeGestureLayerProps {
   globeRef: React.RefObject<MiniGlobeRef | null>;
   /** Distance from the top of the window to the top of the globe canvas. */
   canvasTop: number;
+  /** The gesture surface starts below the header and ends at the moving sheet. */
+  topChromeHeight: number;
+  sheetPeekHeight: number;
+  sheetFullHeight: number;
+  sheetProgress: SharedValue<number>;
   cameraOwner: SharedValue<number>;
   cameraLat: SharedValue<number>;
   cameraLng: SharedValue<number>;
@@ -115,6 +121,10 @@ interface GlobeGestureLayerProps {
 export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   globeRef,
   canvasTop,
+  topChromeHeight,
+  sheetPeekHeight,
+  sheetFullHeight,
+  sheetProgress,
   cameraOwner,
   cameraLat,
   cameraLng,
@@ -137,13 +147,26 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   onCollapse,
 }: GlobeGestureLayerProps) {
   const turnable = enabled && !collapseMode;
+  // Header buttons and the story have their own gesture owners. Restrict the
+  // native hit surface itself so their touches never reach the globe's pan,
+  // pinch or tap recognizers (including the pan's flight-cancelling onBegin).
+  const boundsStyle = useAnimatedStyle(() => {
+    const progress = Math.max(0, Math.min(1, sheetProgress.value));
+    return {
+      top: topChromeHeight,
+      bottom: sheetPeekHeight + (sheetFullHeight - sheetPeekHeight) * progress,
+    };
+  });
+  // RNGH 3 uses display: contents. Its positioned parent below defines
+  // both the recognizer bounds and local coordinates, excluding the header.
+  const canvasOffsetY = topChromeHeight - canvasTop;
   const handleTap = useCallback(
     (x: number, y: number) => {
       if (collapseMode) {
         onCollapse?.();
         return;
       }
-      const localY = y - canvasTop;
+      const localY = y + canvasOffsetY;
       const result = globeRef.current?.hitTest(x, localY);
       // Nothing under the finger: no pulse. The ring is a confirmation that
       // something was found, and drawing it over empty ocean would claim
@@ -156,7 +179,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onImpact();
       onTap(result);
     },
-    [canvasTop, collapseMode, globeRef, onCollapse, onImpact, onTap],
+    [canvasOffsetY, collapseMode, globeRef, onCollapse, onImpact, onTap],
   );
 
   const tapConfig = useMemo(
@@ -260,7 +283,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         zoomAngle.value = clip.value;
         zoomActive.value = 1;
         focusX.value = focalX;
-        focusY.value = focalY - canvasTop;
+        focusY.value = focalY + canvasOffsetY;
       },
       onUpdate: ({
         scaleChange,
@@ -281,7 +304,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         if (numberOfPointers < 2) return;
         const from = zoomAngle.value;
         const to = pinchClip(from, scaleChange);
-        const y = focalY - canvasTop;
+        const y = focalY + canvasOffsetY;
         const cam = anchorZoom(
           focusX.value,
           focusY.value,
@@ -324,7 +347,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       cameraLat,
       cameraLng,
       cameraOwner,
-      canvasTop,
+      canvasOffsetY,
       centerX,
       centerY,
       clip,
@@ -351,22 +374,20 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const gesture = useCompetingGestures(pinch, pan, tap);
 
   return (
-    <GestureDetector gesture={gesture}>
-      {/* Hidden from the accessibility tree, deliberately and for the same
-          reason the reader's tap zone is: VoiceOver activates an element at
-          its geometric centre, which on a globe is a lottery country. Every
-          mark that matters has a row — in the strip, the alert block or the
-          instruments sheet — and those rows are the accessible path. */}
-      <View
-        style={styles.layer}
-        accessible={false}
-        accessibilityElementsHidden
-        importantForAccessibility="no-hide-descendants"
-      />
-    </GestureDetector>
+    <Animated.View
+      style={[styles.layer, boundsStyle]}
+      accessible={false}
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+    >
+      <GestureDetector gesture={gesture}>
+        <View style={styles.surface} collapsable={false} />
+      </GestureDetector>
+    </Animated.View>
   );
 });
 
 const styles = StyleSheet.create({
-  layer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  layer: { position: 'absolute', left: 0, right: 0 },
+  surface: { flex: 1 },
 });

@@ -12,7 +12,12 @@ import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { type ColorPalette, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './globe/disaster-glyphs';
+import {
+  CHOKEPOINT_PATH,
+  GLYPH_HALF,
+  getGlyphPath,
+  marketDirectionPath,
+} from './globe/disaster-glyphs';
 import {
   FAMINE_FRAME_PATH,
   FAMINE_FRAME_STROKE,
@@ -123,7 +128,8 @@ const ENTRIES: readonly KeyEntry[] = [
   },
   {
     label: 'strait',
-    meaning: 'A shipping strait, with traffic near its own 90-day normal.',
+    meaning:
+      'A shipping strait. The compact green ↑ / red ↓ shows traffic direction: the seven-day average for all ships versus its 90-day normal, not a daily price move.',
     draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStrait} />,
   },
   {
@@ -139,8 +145,10 @@ const ENTRIES: readonly KeyEntry[] = [
   {
     label: 'exchange',
     meaning:
-      'A stock exchange whose index moved enough to note, in green when it rose and rust when it fell.',
-    draw: (colors) => <Glyph path={MARKET_PATH} color={colors.markMarketUp} stroke={1.2} />,
+      'All available exchanges: green ↑ means up, red ↓ means down, and − means unchanged versus the prior close. * marks an older quote. A numbered group opens every nearby exchange; zoom in to separate them.',
+    draw: (colors) => (
+      <Glyph path={marketDirectionPath('up')} color={colors.markMarketUp} stroke={1.2} />
+    ),
   },
   {
     label: 'hazard',

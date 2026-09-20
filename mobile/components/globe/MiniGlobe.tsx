@@ -1,4 +1,7 @@
-'use no memo';
+import { straitMapChange } from '../../lib/strait-map';
+
+('use no memo');
+
 // React Compiler is enabled app-wide (app.json experiments.reactCompiler) with
 // no other opt-out for this file. This component's reprojection hot path
 // depends on several `useCallback(..., [])` closures that are DELIBERATELY
@@ -84,6 +87,11 @@ import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import { reachFor, slerpLatLng, swipeClip, viewAngleFor } from '../../lib/globe-camera';
 import { isStorySettled } from '../../lib/globe-settle';
+import {
+  layoutMarketClusters,
+  type MarketCluster,
+  type MarketPoint,
+} from '../../lib/market-map-layout';
 import { coverageRanks } from '../../lib/now';
 import {
   conflictScale,
@@ -118,7 +126,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath, MARKET_PATH } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import { geographyTier, getGlobeGeography } from './geography';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
@@ -412,6 +420,9 @@ const STORY_HALO_LAYERS: GlowLayer[] = [
 ];
 const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
 const BEACON_SIZE = 16;
+// Skia's texture effect depends on size identity; fixed atlases must retain it
+// across renders so theme and type changes do not rebuild unchanged textures.
+const BEACON_TEXTURE_SIZE = { width: BEACON_SIZE, height: BEACON_SIZE };
 const BEACON_CENTER = BEACON_SIZE / 2;
 /** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
 const BEACON_R = 5.5;
@@ -465,6 +476,7 @@ const STRAIT_SURGE_DELTA = 0.15;
 const OVERLAY_RES = 3;
 const OVERLAY_CELL = GLYPH_HALF * 2 * OVERLAY_RES;
 const OVERLAY_CELLS = 5;
+const OVERLAY_TEXTURE_SIZE = { width: OVERLAY_CELL * OVERLAY_CELLS, height: OVERLAY_CELL };
 const THERMAL_CELL = 4;
 const overlayCell = (i: number) => rect(i * OVERLAY_CELL, 0, OVERLAY_CELL, OVERLAY_CELL);
 const FAMINE_SRC = [overlayCell(0), overlayCell(1), overlayCell(2), overlayCell(3)] as const;
@@ -722,14 +734,8 @@ interface MiniGlobeProps {
   thermalEvents?: ThermalEvent[];
   /** UN genocide determinations, from `/api/genocide.json`. */
   genocideSituations?: GenocideSituation[];
-  /**
-   * Exchanges behind an index the server flagged as having moved.
-   *
-   * Pre-resolved to coordinates by the screen rather than derived here: the
-   * placement ladder (the signal's own `lat`/`lng`, else its country's
-   * centroid, else no mark) belongs with the ranking that produced the list,
-   * and this component should not have to know what a `MarketSignal` is.
-   */
+  /** Published exchanges, resolved to their actual exchange coordinates. */
+  marketViewport?: { top: number; bottom: number };
   marketMarks?: {
     id: string;
     label: string;
@@ -912,24 +918,16 @@ interface GlobeState {
     id: string;
     label: string;
     intensity: number;
+    direction?: 'up' | 'down' | 'flat';
+    labelX: number;
     disrupted: boolean;
     /** Traffic well above its normal — the web's teal strait. */
     surge: boolean;
     /** The name's baseline, or null when there was no room for it. */
     labelY: number | null;
   }[];
-  /** Exchanges with a flagged index move. Projected every frame like
-   *  chokepoints: the set is at most three and it is the thing the opening
-   *  camera is most often pointed at, so it must not blink out mid-scroll. */
-  marketMarks: {
-    x: number;
-    y: number;
-    id: string;
-    label: string;
-    direction?: 'up' | 'down' | 'flat';
-    /** The name's baseline, or null when there was no room for it. */
-    labelY: number | null;
-  }[];
+  /** Clustered market targets; their members remain individually reachable. */
+  marketMarks: (MarketCluster & { labelX: number; labelY: number | null })[];
   /** GDACS disaster markers — Orange/Red current events. Projected every
    *  frame like chokepoints (small set, reference signal). `recencyAlpha`
    *  ∈ [0.5, 1] fades events older than ~7 days. */
@@ -1671,16 +1669,38 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       cp.y,
       strokePaint(glyphColor, 0.6 + 0.35 * cp.intensity, 1.0, StrokeJoin.Round, StrokeCap.Round),
     );
-    if (water && cp.labelY !== null) {
+    // Compact traffic sign beside the coastline glyph; its touch area stays generous.
+    if (cp.direction) {
+      const x = cp.x + 12;
+      const color =
+        cp.direction === 'down'
+          ? colors.markMarketDown
+          : cp.direction === 'up'
+            ? colors.markMarketUp
+            : colors.textSecondary;
+      c.drawCircle(x, cp.y, 6, fillPaint(colors.bg, 0.98));
+      if (cp.direction === 'flat') c.drawLine(x - 3, cp.y, x + 3, cp.y, strokePaint(color, 1, 1.5));
+      else {
+        const sign = cp.direction === 'down' ? 1 : -1;
+        c.drawLine(x, cp.y - 4, x, cp.y + 4, strokePaint(color, 1, 1.5));
+        c.drawLine(x, cp.y + sign * 4, x - 3, cp.y + sign, strokePaint(color, 1, 1.5));
+        c.drawLine(x, cp.y + sign * 4, x + 3, cp.y + sign, strokePaint(color, 1, 1.5));
+      }
+    }
+    if (fonts.sub && cp.labelY !== null) {
       drawHaloText(
         c,
         cp.label,
-        cp.x - textWidth(water, cp.label) / 2,
+        cp.labelX - textWidth(fonts.sub, cp.label) / 2,
         cp.labelY,
-        water,
-        cp.disrupted ? colors.markStraitPinch : colors.text,
+        fonts.sub,
+        cp.direction === 'down'
+          ? colors.markMarketDown
+          : cp.direction === 'up'
+            ? colors.markMarketUp
+            : colors.textSecondary,
         colors.bg,
-        cp.disrupted ? 0.9 : light ? 0.7 : 0.55,
+        1,
         cp.disrupted
           ? light
             ? LABEL_HALO_OPACITY_LIGHT_STRONG
@@ -1690,37 +1710,67 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     }
   }
 
-  // Exchanges whose index moved — a candle, directionless in shape (the
-  // strip's delta owns direction), labelled so the earth reads as
-  // addressable: first among the marks for room, after the story's own.
+  // Separate 48dp targets with a solid backing: the direction reads on land
+  // and sea alike. A cluster names its size instead of pretending to be one index.
+  const marketFont = fonts.sub;
   for (const m of f.marketMarks) {
-    drawGlyph(
-      c,
-      MARKET_PATH,
-      m.x,
-      m.y,
-      strokePaint(
-        m.direction === 'up'
-          ? colors.markMarketUp
-          : m.direction === 'down'
-            ? colors.markMarketDown
-            : colors.markStrait,
-        0.95,
-        1.2,
-        StrokeJoin.Round,
-        StrokeCap.Round,
-      ),
-    );
-    if (water && m.labelY !== null) {
+    const color =
+      m.direction === 'up'
+        ? colors.markMarketUp
+        : m.direction === 'down'
+          ? colors.markMarketDown
+          : colors.text;
+    if (Math.hypot(m.x - m.originX, m.y - m.originY) > 2) {
+      c.drawLine(m.originX, m.originY, m.x, m.y, strokePaint(colors.textSecondary, 0.65, 1));
+      c.drawCircle(m.originX, m.originY, 2, fillPaint(color));
+    }
+    c.drawCircle(m.x, m.y, 13, fillPaint(colors.bg, 0.98));
+    c.drawCircle(m.x, m.y, 13, strokePaint(color, 0.95, 1.5));
+    if (m.ids.length > 1 && marketFont) {
+      const count = String(m.ids.length);
+      drawHaloText(
+        c,
+        count,
+        m.x - textWidth(marketFont, count) / 2,
+        m.y + 4,
+        marketFont,
+        colors.textEmphasis,
+        colors.bg,
+        1,
+        0,
+      );
+      // Both sides of a mixed cluster remain visible without averaging markets.
+      c.drawCircle(
+        m.x - 10,
+        m.y - 10,
+        3,
+        fillPaint(m.rising ? colors.markMarketUp : colors.textSecondary),
+      );
+      c.drawCircle(
+        m.x + 10,
+        m.y - 10,
+        3,
+        fillPaint(m.falling ? colors.markMarketDown : colors.textSecondary),
+      );
+    } else {
+      const sign = m.direction === 'down' ? 1 : -1;
+      if (m.direction === 'flat') c.drawLine(m.x - 7, m.y, m.x + 7, m.y, strokePaint(color, 1, 2));
+      else {
+        c.drawLine(m.x, m.y - 6, m.x, m.y + 6, strokePaint(color, 1, 2));
+        c.drawLine(m.x, m.y + sign * 6, m.x - 4, m.y + sign * 2, strokePaint(color, 1, 2));
+        c.drawLine(m.x, m.y + sign * 6, m.x + 4, m.y + sign * 2, strokePaint(color, 1, 2));
+      }
+    }
+    if (marketFont && m.labelY !== null) {
       drawHaloText(
         c,
         m.label,
-        m.x - textWidth(water, m.label) / 2,
+        m.labelX - textWidth(marketFont, m.label) / 2,
         m.labelY,
-        water,
-        colors.text,
+        marketFont,
+        color,
         colors.bg,
-        light ? 0.75 : 0.55,
+        1,
         haloOpacity,
       );
     }
@@ -2110,6 +2160,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   gdacsAlerts,
   conflictEvents,
   marketMarks,
+  marketViewport,
   selectedAt,
   places,
   foundSlugs,
@@ -2157,7 +2208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R + 1.2} color={BLACK} />
       <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R} color={WHITE} />
     </Group>,
-    { width: BEACON_SIZE, height: BEACON_SIZE },
+    BEACON_TEXTURE_SIZE,
     [],
   );
   const overlayTexture = useTexture(
@@ -2187,7 +2238,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       </Group>
     </Group>,
-    { width: OVERLAY_CELL * OVERLAY_CELLS, height: OVERLAY_CELL },
+    OVERLAY_TEXTURE_SIZE,
     [],
   );
   const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
@@ -2640,12 +2691,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         // rivers and seas. Atlas convention for hydrography is italic
         // mixed case; uppercase reads as alarm even at baseline, fighting
         // the "ambient reference geography" intent.
-        label: cp.name,
+        label: `${cp.name}${straitMapChange(cp.delta7vs90.n_total) ? ` ${straitMapChange(cp.delta7vs90.n_total)?.label}` : ''}`,
+        direction: straitMapChange(cp.delta7vs90.n_total)?.direction,
         unit: unit(cp.lng, cp.lat),
         // Signed, because direction decides meaning here and magnitude only
         // decides brightness.
-        delta: cp.delta7vs90[cp.primaryField] ?? 0,
-        absDelta: Math.abs(cp.delta7vs90[cp.primaryField] ?? 0),
+        delta: cp.delta7vs90.n_total ?? 0,
+        absDelta: Math.abs(cp.delta7vs90.n_total ?? 0),
       })),
     [chokepoints],
   );
@@ -2791,8 +2843,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach });
-  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach, marketViewport });
+  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach, marketViewport };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
   // The settled redraw the rivers and lakes ask for once decoded
@@ -3281,6 +3333,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           y: pt[1],
           id: cp.id,
           label: cp.label,
+          labelX: pt[0],
+          direction: cp.direction,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: chokepointValence(cp.delta) === 'unfavorable',
           surge: cp.delta > STRAIT_SURGE_DELTA,
@@ -3293,17 +3347,16 @@ export const MiniGlobe = memo(function MiniGlobe({
       // tiny and the opening camera is usually pointed at one of them, so a
       // mark that blinks out mid-scroll is a mark that is not there when the
       // reader looks for what the strip just promised.
-      const marketProjected: GlobeState['marketMarks'] = [];
+      const marketPoints: MarketPoint[] = [];
       for (const m of marketMarksRef.current) {
         if (!seen(m.unit)) continue;
         const pt = SCREEN_POINT;
-        marketProjected.push({
+        marketPoints.push({
           x: pt[0],
           y: pt[1],
           id: m.id,
           label: m.label,
           direction: m.direction,
-          labelY: null,
         });
       }
 
@@ -3544,6 +3597,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      const marketProjected = layoutMarketClusters(
+        marketPoints,
+        [
+          ...storyMarks,
+          ...chokepointMarks,
+          ...gdacsMarks,
+          ...genocideMarks,
+          ...conflictMarks,
+          ...famineMarks,
+          ...thermalMarks,
+        ],
+        canvasW,
+        canvasH,
+        layoutRef.current.marketViewport?.top,
+        layoutRef.current.marketViewport?.bottom,
+      ).map((mark) => ({ ...mark, labelX: mark.x, labelY: null as number | null }));
+
       // Label collision — dot label (location · time) versus country name
       // label. Small countries where the story dot sits near the polygon
       // centroid (e.g. Islamabad in Pakistan) can stack the two. Compute
@@ -3567,20 +3637,27 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Gibraltar". The story's location and its country go down first; then
       // each name tries under its mark and then over it, and with neither free
       // it is dropped — the mark stays, tappable, and its sheet names it.
-      // Exchanges first (at most three, and what the strip just promised),
+      // Exchange targets first,
       // then the straits whose traffic has moved, then the rest.
       const markLabelBoxes: LabelBox[] = [];
       {
         const wfont = waterFontRef.current;
-        const taken: LabelBox[] = [];
+        const taken: LabelBox[] = marketProjected.map((m) => ({
+          x0: m.x - 19,
+          x1: m.x + 19,
+          y0: m.y - 19,
+          y1: m.y + 19,
+        }));
         if (dotLabel) taken.push(dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current));
         if (countryLabel) taken.push(countryLabelBox(countryLabel, countryFontRef.current));
-        const place = (x: number, y: number, label: string): number | null => {
-          const tw = wfont ? textWidth(wfont, label) : label.length * 5;
-          for (const dy of MARK_LABEL_DY) {
+        const place = (x: number, y: number, label: string, font = wfont): number | null => {
+          const tw = font ? textWidth(font, label) : label.length * 5;
+          for (const dy of [32, -24, ...MARK_LABEL_DY]) {
             const yc = y + dy;
             const box = { x0: x - tw / 2, x1: x + tw / 2, y0: yc - 10, y1: yc + 3 };
-            let free = true;
+            let free =
+              box.y0 >= (layoutRef.current.marketViewport?.top ?? 0) &&
+              box.y1 <= (layoutRef.current.marketViewport?.bottom ?? canvasH);
             for (const t of taken) {
               if (boxesMeet(box, t, MARK_LABEL_GAP)) {
                 free = false;
@@ -3595,12 +3672,22 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
           return null;
         };
-        for (const m of marketProjected) m.labelY = place(m.x, m.y, m.label);
-        for (const cp of chokepointMarks) {
-          if (cp.disrupted || cp.surge) cp.labelY = place(cp.x, cp.y, cp.label);
+        for (const m of marketProjected) {
+          const font = subFontRef.current;
+          const tw = font ? textWidth(font, m.label) : m.label.length * 5;
+          m.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, m.x));
+          m.labelY = place(m.labelX, m.y, m.label, font);
         }
         for (const cp of chokepointMarks) {
-          if (!cp.disrupted && !cp.surge) cp.labelY = place(cp.x, cp.y, cp.label);
+          const font = subFontRef.current;
+          const tw = font ? textWidth(font, cp.label) : cp.label.length * 5;
+          cp.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, cp.x));
+          if (cp.x >= 0 && cp.x <= canvasW && (cp.disrupted || cp.surge))
+            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
+        }
+        for (const cp of chokepointMarks) {
+          if (cp.x >= 0 && cp.x <= canvasW && !cp.disrupted && !cp.surge)
+            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
         }
       }
 
@@ -4298,7 +4385,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         for (const layer of marks) {
           for (const m of layer) {
             const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-            if (d2 <= MARK_HIT_PX2 && d2 < overlay) overlay = d2;
+            if (d2 <= (layer === frame.marketMarks ? 24 * 24 : MARK_HIT_PX2) && d2 < overlay)
+              overlay = d2;
           }
         }
         if (story.d2 <= overlay) {
@@ -4346,20 +4434,17 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Exchange marks — same 36px tap zone as the other reference markers.
-      // Tiered above GDACS and conflict on purpose: there are at most three
-      // of them, they are the marks the opening camera and the strip point
-      // at, and a reader who taps what the gauge above just named should get
-      // that and not a Green flood alert that happens to share the pixel.
+      // Every member of a numbered market target opens in the chooser.
       for (const m of frame.marketMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            marketSignalId: m.id,
-          });
+        if (isNear(x, y, m.x, m.y, 24 * 24)) {
+          for (const id of m.ids)
+            candidates.push({
+              countryName: '',
+              location: null,
+              localTime: null,
+              data: null,
+              marketSignalId: id,
+            });
         }
       }
 
