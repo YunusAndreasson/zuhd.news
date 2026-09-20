@@ -1,28 +1,5 @@
 [
   {
-    "timestamp": "2026-08-30T04:20:37.929Z",
-    "candidateCount": 2,
-    "candidates": [
-      {
-        "slug": "2026-08-30-pakistan-ev-target-charging-gap-refinery-import-bill",
-        "title": "Pakistan EV Target Stalls",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-30-six-suspects-held-in-khuzdar-murder-case",
-        "title": "Six Arrested Over Khuzdar Murder",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 2 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-08-30T08:23:11.573Z",
     "candidateCount": 13,
     "candidates": [
@@ -10329,6 +10306,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Nigeria suspends 20 officers after 37 detainees die in custody",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 7
+    }
+  },
+  {
+    "timestamp": "2026-09-20T12:18:11.421Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-20-moscow-mass-drone-attack-civilian-deaths-refineries",
+        "title": "Ukraine Drones Hit Moscow",
+        "category": "politics",
+        "eventCoverage": 489,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-north-korea-two-ballistic-missiles-npt-precedent",
+        "title": "North Korea Fires Two Missiles",
+        "category": "politics",
+        "eventCoverage": 174,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-delhi-sir-33-lakh-voter-notices-burden-of-proof",
+        "title": "Delhi Voter Notices Hit Advani",
+        "category": "politics",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-adani-power-dhubri-thermal-coal-land-acquisition",
+        "title": "Adani Breaks Ground Assam",
+        "category": "economy",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-gaza-tent-schools-lost-cohort-unrwa",
+        "title": "Gaza Schools Reopen in Tents",
+        "category": "politics",
+        "eventCoverage": 30,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-singapore-haze-sumatra-peat-fires-transboundary",
+        "title": "Singapore Haze Eases",
+        "category": "science",
+        "eventCoverage": 30,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-ndlea-opioid-seizure-forged-police-id-checkpoints",
+        "title": "Nigeria Seizes N3.4bn Drugs",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-sec-tokenized-stock-atomic-settlement-stablecoin",
+        "title": "SEC Opens Tokenized Stock Path",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-trex-enamel-clumped-isotope-endothermy",
+        "title": "T. Rex Ran Warm",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-teampcp-google-infiltration-supply-chain-registries",
+        "title": "Google Infiltrated TeamPCP Hackers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-android-17-apis-withheld-from-aosp-forks",
+        "title": "GrapheneOS Flags Android 17",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-20-upf4ros2-planner-independent-task-planning-ros2",
+        "title": "UPF4ROS2 Standardises Robot Planning",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-20-moscow-mass-drone-attack-civilian-deaths-refineries",
+      "title": "Ukraine Drones Hit Moscow",
+      "category": "politics",
+      "body": "A 44-year-old woman and an elderly man",
+      "eventCoverage": 489,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Ukrainian drones strike Moscow, kill 2 civilians, Russian officials say",
     "response": {
       "pushed": 1,
       "skipped": 0,
