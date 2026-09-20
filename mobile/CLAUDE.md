@@ -453,11 +453,12 @@ about what a card may say is about the card, not where it is shown.
   nobody a reason; the hook plus why-it-matters, which the card carried until
   2026-09-19, was half of every article, and readers felt they had to read
   every story to get past it. Pulled up or tapped, the same card is the whole
-  story: all four sentences, `OddsLine`, live country and entity links, and
+  story: every sentence, `OddsLine`, live country and entity links, and
   `sources · save · share` as words after the text — with the globe scaled
   into a band above it and the strip still in place (it used to recede;
   it never covered the story, so hiding it only took the markets away). Nothing mounts or reflows when
-  it grows: sentences 2–4 are laid out all along under a `Veil` — the
+  it grows: every sentence after the hook is laid out all along under a
+  `Veil` — the
   sheet's ground over them, the first line at half strength fading to
   nothing by the second, which the user preferred to blank space as the sign
   that the card opens. It lifts with the sheet's `progress` (computing its
@@ -471,12 +472,34 @@ about what a card may say is about the card, not where it is shown.
     It is computed once per window and font scale, never per card — a resting
     sheet whose height followed each story would move the globe's centre, and
     reproject, on every swipe.
+  - **A story is four blocks or five, and the app must not assume four**
+    (`scripts/write-prompt.md` §rhythm). Hook, why it matters, mechanism,
+    what's next — and, where the sources carried one, a counterpoint or a
+    named person's words between the mechanism and the last. The 5th block is
+    optional by design and earned per story, so `article.sentences` is a list
+    whose length varies: `hookOf`/`restOf` slice it, they never index it. The
+    ceiling that sizes the sheet before `StoryMeasure` measures anything
+    (`STORY_LINES`) is keyed to the writer's own character ceiling, so raising
+    one without the other is how the open sheet starts jumping again.
   - **Open, the sheet is one height for every story** (`layout.full`), sized
     from today's cards as rendered: `StoryMeasure` lays every card out off
     screen once per river, width and type size, and `openStoryHeight` takes
-    the height three in four of them fit inside whole (the tallest quarter
-    scroll a line or two). Until then a type estimate for the longest possible
-    story stands in, and the globe always keeps 20% (≥140pt). It used to stop
+    the height three in four of them fit inside whole — but `storyCap` binds
+    first on a real phone, so what the reader gets is the globe's 20% floor
+    and a card that scrolls. Until then a type estimate for the longest
+    possible story stands in.
+
+    **Scrolling an open story is the norm, not the exception, and that is a
+    2026-09-20 decision rather than a discovery.** The article budget rose to
+    480/560 characters and every block went back to being its own paragraph;
+    together those put a typical story about 5 lines past the cap on a
+    393×852 phone, measured. The alternative was a shorter story or a smaller
+    globe, and the user chose the scroll on the grounds that nothing above the
+    prose moves with it — the globe, the dock, the track and its buttons are
+    all outside the scrolling area. Two things follow that were true of an
+    exception and are not true of a norm: `showsVerticalScrollIndicator` is
+    off, so nothing says there is more below, and `sources · save · share`
+    sits at the end of the card, which means below the fold on most stories. It used to stop
     at each story's own height (`contentHeight`), and a swipe while reading
     re-sprang the sheet *and* rescaled the globe — the text jumped by three or
     four lines on every story, which the user asked to have gone. Do not
@@ -484,9 +507,24 @@ about what a card may say is about the card, not where it is shown.
     or five blank lines under a typical one, which the user also flagged; the
     spare space now sits after `sources · save · share`, at the end of the
     story, rather than between the text and buttons pinned to the dock.
-  - **The hook and the rest are each one paragraph.** A block per sentence
-    spent a paragraph gap after every sentence. `renderSentences(…, runs)`
-    returns inline runs for it.
+  - **Every block is its own paragraph, with the gap the reader sees between
+    them.** `mdStyles.sentence`'s `marginBottom` draws it, and
+    `renderSentences` returns one block `Text` per sentence.
+
+    For one day (2026-09-19 to 2026-09-20) the hook was a paragraph and
+    everything after it ran on as a single one, to buy back the vertical the
+    gaps cost. That is the wrong trade and it is not to be made again: the
+    writer's format spends a paragraph of `scripts/write-prompt.md` telling
+    the desk that the blank line between blocks *is* the separation the reader
+    sees, the web reader has emitted one `<p>` per block all along, and the app
+    was the only surface where four deliberate blocks arrived as one wall of
+    prose. Separation is the format, not a decoration on it.
+
+    It costs about 40pt on a typical story — roughly a line and a half — split
+    between the gaps themselves and the part-empty last line every block now
+    keeps. `computeDeckLayout`'s stand-in estimate counts both
+    (`STORY_LINES` per block, `BLOCK_GAP_RATIO` between them); the real
+    heights come from `StoryMeasure` and need no arithmetic.
   - **Body text carries no `letterSpacing`.** On Android a paragraph with any
     tracking measures a line taller than it draws, and `textAlignVertical:
     'center'` split that phantom line into blank space above and below it —
@@ -554,7 +592,7 @@ about what a card may say is about the card, not where it is shown.
   `lib/pager-settle.ts` were deleted on 2026-09-13. A modal reader for every
   story was intrusive and cut the reader off from the globe, which is the one
   thing this screen is for; its nested-scroll guards and second camera scale
-  existed for long-form reading that 350-character stories never need. Before
+  existed for long-form reading that 450-character stories never need. Before
   it, a list of headlines was the sheet's front door, and a list-first index
   had already been tried once (740478ba, a branch) and abandoned for
   swipe-first news. Considered and rejected at the same time: a story stage

@@ -29,14 +29,19 @@ import { LAYOUT, SPACING } from '../constants/theme';
  * `StoryMeasure` renders the day's cards off screen and `openStoryHeight`
  * takes the height three in four of them fit inside whole; until they are
  * measured, `STORY_LINES` estimates the longest story that could arrive —
- * four sentences are at most ~420 characters, and the type scale tracks the
- * window's width, so a line holds about 43 characters on every phone. The
- * sheet used to stop at each story's own height, and reading meant watching
- * the text, the globe and the controls jump by three or four lines on every
- * swipe. Sized for the worst case it left four or five blank lines under a
+ * the writer's hard ceiling is 560 visible characters (`scripts/write-prompt.md`
+ * §format), and the type scale tracks the window's width, so a line holds about
+ * 43 characters on every phone. The sheet used to stop at each story's own
+ * height, and reading meant watching the text, the globe and the controls jump
+ * by three or four lines on every swipe. Sized for the worst case it left four or five blank lines under a
  * typical story; sized for today's tallest, a single long card with a market
- * line held every other story two to four lines short. The tallest quarter
- * scroll their last line or two instead.
+ * line held every other story two to four lines short.
+ *
+ * Since 2026-09-20 the cap binds on a real phone and most open stories scroll:
+ * the writer's budget rose to 480/560 characters and every block draws its own
+ * paragraph again, which is about 5 lines past `storyCap` on a 393×852 window.
+ * That is a chosen trade, not a regression — the globe, dock and controls all
+ * sit outside the scrolling area, so only the prose moves.
  *
  * Both are computed once per window, font preference and system font scale —
  * never per card.
@@ -49,9 +54,32 @@ const HOOK_LINES = 3;
 /** Title lines the card is sized for. Titles never clamp; a third line pushes
  *  the hook down under the dock instead. */
 const TITLE_LINES = 2;
-/** Body lines the open card is sized for: the whole story at ~43 characters a
- *  line, and the paragraph break between the hook and the rest. */
-const STORY_LINES = 11;
+/** Body lines the open card is sized for, at ~43 characters a line.
+ *
+ *  Keyed to the writer's hard ceiling, not to its target: this number is the
+ *  worst case that can arrive before `StoryMeasure` has measured anything, and
+ *  a card that overshoots it on the first frame is a card whose globe band
+ *  jumps once it is measured.
+ *
+ *  **Counted per block, not over the whole body**, because every block is its
+ *  own paragraph and each one's last line is part-empty. At the writer's word
+ *  ceilings (10/16/22/20/18, `scripts/write-prompt.md` §rhythm) a maxed story
+ *  is roughly 64/102/141/128/115 characters, which is 2+3+4+3+3 = 15 lines —
+ *  where the same 560 characters set as one paragraph would take 14. That one
+ *  line is what paragraph separation costs in *text*; `STORY_GAPS` is what it
+ *  costs in *space*. */
+const STORY_LINES = 15;
+/** Blocks the open card is sized for: the four required, plus the optional
+ *  counterpoint-or-quote. */
+const STORY_BLOCKS = 5;
+/** The gap under every block, as a fraction of a body line.
+ *
+ *  `mdStyles.sentence` (`lib/markdown.tsx`) sets `marginBottom: sizeBase × 0.5`
+ *  and its line is `sizeBase × leadingBody`, so the gap is `0.5 / leadingBody`
+ *  of a line and scales with the reader's type without either file knowing the
+ *  other's numbers. `__tests__/deck-layout.test.ts` pins them together — change
+ *  the margin there and this estimate is wrong everywhere until it is updated. */
+const BLOCK_GAP_RATIO = 0.5 / 1.45;
 /** The globe's share of the window at rest, before the card yields. */
 const PEEK_BAND_FRACTION = 0.34;
 /** The globe's share of the window while a story is open. */
@@ -154,13 +182,15 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   const peek = Math.round(Math.min(Math.max(Math.min(content, bandCap), floor), absoluteCap));
   const band = height - topChrome - peek;
 
-  // The whole story, a paragraph break, the odds or thread line, and the
-  // pinned row of words above the dock — measured where it can be.
+  // The whole story — its lines and the gaps between its blocks — then the odds
+  // or thread line and the pinned row of words above the dock. Measured where
+  // it can be; this arm is only the first frame's stand-in.
   const story =
     input.storyContent !== undefined
       ? HANDLE + input.storyContent + dock
       : above +
         STORY_LINES * body +
+        Math.round((STORY_BLOCKS - 1) * BLOCK_GAP_RATIO * body) +
         SPACING.md +
         lineHeight(input, 'caption') +
         SPACING.sm +

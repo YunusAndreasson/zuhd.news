@@ -74,7 +74,7 @@ describe('computeDeckLayout', () => {
 
   it('opens every story to one height, leaving the globe a band under the bar', () => {
     const layout = computeDeckLayout(small());
-    // The longest story wants 523; the 140pt band caps it.
+    // The longest story wants 657; the 140pt band caps it.
     expect(layout.full).toBe(640 - 128 - BAND_MIN);
     expect(layout.storyBand).toBe(BAND_MIN);
     expect(layout.storyRadius).toBe(64);
@@ -82,10 +82,29 @@ describe('computeDeckLayout', () => {
   });
 
   it('stops at the longest story when the window has room to spare', () => {
-    const layout = computeDeckLayout(tall({ height: 1100 }));
-    // 16 + 19 + 4 + 56 + 8 + 11×29 story + 16 + 22 odds + 8 + 40 actions + 82 dock
-    expect(layout.full).toBe(590);
-    expect(layout.storyBand).toBe(1100 - 171 - 590);
+    // 1300, not 1100: once every block draws its own paragraph gap the
+    // estimate outgrew a 1100pt window, where `storyCap` — not the story —
+    // decided the height and this test stopped testing what it says.
+    const layout = computeDeckLayout(tall({ height: 1300 }));
+    // 16 + 19 + 4 + 56 + 8 + 15×29 story + 40 block gaps + 16 + 22 odds
+    // + 8 + 40 actions + 82 dock
+    //
+    // 15 is STORY_LINES: the writer's 560-character ceiling counted per block
+    // at ~43 characters a line. 40 is the four gaps between five blocks, at
+    // `mdStyles.sentence`'s marginBottom. Both move with the writer's budget;
+    // `scripts/lib/article-budget.test.js` is what holds them together.
+    expect(layout.full).toBe(746);
+    expect(layout.storyBand).toBe(1300 - 171 - 746);
+  });
+
+  it('lets the globe band cap the estimate on a real phone', () => {
+    // The stand-in estimate no longer fits a 932pt window — it is the worst
+    // case the writer's ceiling allows, set as five separate paragraphs — so
+    // `storyCap` binds and the globe keeps its 20%. This is the first frame
+    // only: `StoryMeasure` replaces it with the day's measured cards.
+    const layout = computeDeckLayout(tall());
+    expect(layout.full).toBe(932 - 171 - Math.round(0.2 * 932));
+    expect(layout.storyBand).toBe(Math.round(0.2 * 932));
   });
 
   it('opens to the measured card height once there is one, not the estimate', () => {

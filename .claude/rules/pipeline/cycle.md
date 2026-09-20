@@ -345,7 +345,7 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
     one is nearly two years. Windows are now `[3, 12]` for monthly and `[7, 30]`
     for daily, each labelled with its real period, and anything older than 45
     days (monthly) or 12 (daily) is dropped rather than dated — a writer handed
-    a figure will use it, and the caveat is the first thing a 350-character
+    a figure will use it, and the caveat is the first thing a 450-character
     article cuts. Ambiguous mentions are dropped too: guessing `rupee` would put
     a Pakistani level in front of a writer covering Delhi.
   The prompt rule is framed as **permission, not obligation** — a mandate here

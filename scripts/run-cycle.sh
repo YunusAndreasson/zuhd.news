@@ -367,15 +367,21 @@ else
     const lines = fs.readFileSync('/tmp/zuhd-new-articles.txt','utf8').trim().split('\n');
     // Count visible characters only — markdown link markup (e.g. [Iran](country:IR))
     // is invisible to readers, so it should not eat the char budget.
-    // 350 is the soft target; OVER (editor must trim) fires only past the 400 hard ceiling.
+    // 400-480 is the target window; OVER (editor must trim) fires only past the
+    // 560 hard ceiling. These three numbers live in write-prompt.md and
+    // check-prompt.md too — the ceiling here is the one that actually reaches the
+    // editor as data, so a drift between them is silent. It drifted once: this
+    // line said 400 while both prompts said 440, for as long as nobody looked.
+    const CEILING = 560;
     const visible = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '\$1');
     for (const f of lines) {
       try {
         const txt = fs.readFileSync(f,'utf8');
         const body = txt.split('---').slice(2).join('---').trim();
         const len = visible(body).length;
-        const flag = len > 400 ? 'OVER' : 'ok';
-        console.log(flag + ' ' + len + ' chars  ' + f);
+        const blocks = body.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 5).length;
+        const flag = len > CEILING ? 'OVER' : 'ok';
+        console.log(flag + ' ' + len + ' chars  ' + blocks + ' blocks  ' + f);
       } catch {}
     }
   " 2>/dev/null)

@@ -3,20 +3,26 @@ import { Fragment, type ReactNode } from 'react';
 import { StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
+  ARTICLE_BREAK_PROPS,
   type ColorPalette,
   type FontSet,
   INLINE_HIT_SLOP,
   MAX_FONT_SCALE,
-  PROSE_BREAK_PROPS,
   type Typography,
 } from '../constants/theme';
 import { openExternal } from './open-link';
 
 /** Article sentences are raw RN `Text` (not the `<Text variant>` primitive),
  *  so the body-role breaking props ride along here: Android dictionary
- *  hyphenation + iOS 'standard' line breaking + the body Dynamic Type ramp —
- *  same treatment the `body` variant gets. */
-const SENTENCE_TEXT_PROPS = { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' } as const;
+ *  hyphenation + the high-quality break strategy + the body Dynamic Type
+ *  ramp. `StoryCard` used to set these on a wrapper it put around the whole
+ *  run; now that every block is its own `Text`, the wrapper is gone and the
+ *  props belong on the block. */
+/** A body paragraph's break behaviour. `ARTICLE_BREAK_PROPS` rather than the
+ *  conservative `PROSE_BREAK_PROPS`, because these are the article's own
+ *  paragraphs and its column is narrow: dictionary word-breaks and the
+ *  high-quality break strategy are what keep a 4-line block from ragging to 5. */
+const SENTENCE_TEXT_PROPS = { ...ARTICLE_BREAK_PROPS, dynamicTypeRamp: 'body' } as const;
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';
@@ -391,11 +397,6 @@ export function renderSentences(
    *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
   entities?: Entity[],
   onEntityPress?: EntityPressHandler,
-  /** Return each sentence as inline runs rather than its own block `Text`,
-   *  for a caller that sets several sentences as one paragraph. Nesting the
-   *  block form inside a paragraph put roughly a line of extra leading above
-   *  it on Android: each sentence carried its own `lineHeight` as a span. */
-  runs = false,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -431,19 +432,23 @@ export function renderSentences(
     return used;
   };
 
-  const perSentence = (key: number, segments: Segment[]): ReactNode =>
-    runs ? (
-      <Fragment key={key}>{renderSegments(segments, mdStyles, openLink, onEntityPress)}</Fragment>
-    ) : (
-      <Text
-        key={key}
-        {...SENTENCE_TEXT_PROPS}
-        style={[mdStyles.sentence, sizeStyle]}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-      >
-        {renderSegments(segments, mdStyles, openLink, onEntityPress)}
-      </Text>
-    );
+  /** One block of the article: its own `Text`, carrying `mdStyles.sentence`'s
+   *  `marginBottom`, which is the gap the reader sees between paragraphs.
+   *
+   *  It briefly returned bare inline runs instead, so a caller could set
+   *  several blocks as one paragraph and save the gaps. That merge is what
+   *  `<blank line between blocks>` in `scripts/write-prompt.md` exists to
+   *  prevent, and it is gone: a block is a block on screen. */
+  const perSentence = (key: number, segments: Segment[]): ReactNode => (
+    <Text
+      key={key}
+      {...SENTENCE_TEXT_PROPS}
+      style={[mdStyles.sentence, sizeStyle]}
+      maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+    >
+      {renderSegments(segments, mdStyles, openLink, onEntityPress)}
+    </Text>
+  );
 
   return sentences.map((sentence, i) => {
     if (i === 0) {
@@ -466,7 +471,6 @@ export function renderSentences(
             <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
               {dateline}
             </Text>
-            {runs ? '\n' : null}
             {perSentence(i, segmentsForRender)}
           </Fragment>
         );

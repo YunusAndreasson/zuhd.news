@@ -3,8 +3,10 @@ import type { Article } from '@shared/types';
 /**
  * What a story card says, before anything is laid out.
  *
- * Every article is four one-sentence blocks — hook, why it matters, context,
- * what's next (`scripts/write-prompt.md`). At rest a card carries only the
+ * Every article is four one-sentence blocks — hook, why it matters, mechanism,
+ * what's next — and, where the reporting earned one, a fifth between the third
+ * and the last: a counterpoint or a named person's words
+ * (`scripts/write-prompt.md` §rhythm). At rest a card carries only the
  * hook: a three-to-five-word headline on its own ("Drone Boat Kills Drone
  * Boat") does not say why anyone should open it, and the hook does, in one
  * line or two. The card used to rest on the hook *and* why it matters — half

@@ -10,13 +10,60 @@ paths:
   - "scripts/lib/validate-blocks.js"
 ---
 
-# Isnad and corrections
+# The body's shape, the isnad, and corrections
+
+## The body's shape
+
+`scripts/write-prompt.md` §rhythm is the contract; `scripts/check-prompt.md`
+enforces it and `scripts/measure-quality.js` measures the drift. Everything
+downstream — `splitBlocks`, the web `<p>` run, the app's `article.sentences`,
+the Swedish translator, `mapLeads` — is written against a *list* of blocks and
+must stay that way.
+
+- **Four blocks are required, a fifth is optional and earned.** Hook → why it
+  matters → mechanism → *counterpoint or quote* → what's next. The optional
+  block is Axios's "Yes, but" and "What they're saying" collapsed into one
+  slot, and the writer picks which form the sources support. It went in on
+  2026-09-20, when the app's open sheet gained the room for it. **Nothing may
+  assume a length of four**: `hookOf`/`restOf` in the app slice, they do not
+  index, and a validator that hard-codes 4 quarantines every earned fifth
+  block.
+- **A fabricated quote is the one failure here that is a correction, not an
+  edit.** The quoted words must be verbatim in a source `body`, attributed
+  there to the person the article names. The editor stage checks this
+  explicitly because a plausible quotation is indistinguishable from a real one
+  at every later stage — it survives the build, the API, the app and the feed,
+  and the first reader to notice is the person misquoted.
+- **A counterpoint is not balance.** A denial of a fact the denier's own
+  institution has confirmed is the false equivalence `<values>` forbids, and it
+  gets dropped rather than softened. This is the one rule where the block loses
+  to the values; every other rule about the block is about whether it earns its
+  space.
+- **Three numbers move together or not at all**: the target (400-480 visible
+  characters) and ceiling (560) in `write-prompt.md` and `check-prompt.md`, the
+  `CEILING` in the `<body-lengths>` probe inside `run-cycle.sh` — the only one
+  that reaches the editor as *data* — and `STORY_LINES` in
+  `mobile/lib/deck-layout.ts`, which sizes the app's open sheet before it has
+  measured a card. The probe drifted to 400 while both prompts said 440 and
+  nothing caught it, because a too-low ceiling only makes the editor trim
+  articles that were within budget.
+- **The blank line between blocks is load-bearing on every surface.** The web
+  reader emits one `<p>` per block; the app draws one `Text` per block with
+  `mdStyles.sentence`'s `marginBottom` between them. A surface that merges
+  blocks back into one paragraph makes the writer's blank lines mean nothing,
+  and the app did exactly that for a day in September 2026 to save vertical
+  space. If the separation ever needs paying for again, pay in *length*, not by
+  merging.
+- **Link markup is free against the budget.** `[Iran](country:IR)` costs its
+  label, not its target, everywhere the budget is counted. Every counter in the
+  pipeline strips `\[([^\]]+)\]\([^)]+\)` before measuring; one that forgets
+  reads a well-tagged article as 15% over.
+
+## Isnad and corrections
 
 Both implement a sentence the site publishes about itself. A defect here does
 not look like a bug — it looks like the page working while the claim on the
 about page quietly stops being true.
-
-## Isnad and corrections
 
 `scripts/lib/article-chain.js`, pinned by `article-chain.test.js` and the
 corpus test. Both implement a sentence the site publishes about itself, which

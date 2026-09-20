@@ -2,17 +2,16 @@ import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
 import { Canvas, LinearGradient, Rect, Skia, vec } from '@shopify/react-native-skia';
-import { memo, type ReactNode, useCallback, useMemo, useSyncExternalStore } from 'react';
+import { memo, useCallback, useMemo, useSyncExternalStore } from 'react';
 import {
   type AccessibilityActionEvent,
   Pressable as RNPressable,
-  Text as RNText,
   StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { ARTICLE_BREAK_PROPS, HIT_SLOP, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { HIT_SLOP, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -158,17 +157,6 @@ const Veil = memo(function Veil({
   );
 });
 
-/** Sentences as spans of one paragraph, a space between each. A nested `Text`
- *  keeps its typography and its links but drops its block margins. */
-function interleave(nodes: ReactNode[]): ReactNode[] {
-  const out: ReactNode[] = [];
-  for (let i = 0; i < nodes.length; i++) {
-    if (i > 0) out.push(' ');
-    out.push(nodes[i]);
-  }
-  return out;
-}
-
 export const StoryCard = memo(function StoryCard({
   row,
   hue,
@@ -232,9 +220,9 @@ export const StoryCard = memo(function StoryCard({
     [onCountryPress, rawOpenLink],
   );
 
-  // One pass over all four sentences, then split: entity mentions are tagged
-  // on their first occurrence across the whole body, and two passes would tag
-  // a name once in the hook and again in the rest.
+  // One pass over every sentence, then split: entity mentions are tagged on
+  // their first occurrence across the whole body, and two passes would tag a
+  // name once in the hook and again in the rest.
   const sentences = useMemo(
     () =>
       renderSentences(
@@ -248,7 +236,6 @@ export const StoryCard = memo(function StoryCard({
         undefined,
         tappableEntities,
         onEntityPress,
-        true,
       ),
     [
       article.sentences,
@@ -260,11 +247,16 @@ export const StoryCard = memo(function StoryCard({
       onEntityPress,
     ],
   );
-  // The hook is its own paragraph and the other three run on as one, not a
-  // block per sentence: four one-sentence blocks spent a paragraph gap after
-  // every sentence. Run on, the same words take a line or two fewer.
-  const hook = interleave(hookOf(sentences));
-  const rest = interleave(restOf(sentences));
+  // A block per paragraph, with the gap `mdStyles.sentence`'s marginBottom
+  // draws between them. Everything after the hook ran on as ONE paragraph
+  // between 2026-09-19 and 2026-09-20, to buy back the vertical the gaps
+  // cost; what it actually bought was the writer's blank lines meaning
+  // nothing on the surface most readers use. `scripts/write-prompt.md` spends
+  // a paragraph of its format section telling the writer that the blank line
+  // between blocks is what the reader sees as separation, and the web reader
+  // has rendered one `<p>` per block all along. The app was the odd one out.
+  const hook = hookOf(sentences);
+  const rest = restOf(sentences);
 
   const accessibilityActions = useMemo(
     () => [
@@ -318,13 +310,7 @@ export const StoryCard = memo(function StoryCard({
       {/* The hook is a large, obvious target for "tell me more" — but not an
           accessibility element of its own: the sentence is read as text. */}
       <RNPressable onPress={onOpen} accessible={false}>
-        <RNText
-          {...ARTICLE_BREAK_PROPS}
-          style={mdStyles.sentence}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
-          {hook}
-        </RNText>
+        {hook}
       </RNPressable>
 
       <View>
@@ -333,15 +319,7 @@ export const StoryCard = memo(function StoryCard({
           accessibilityElementsHidden={!open}
           importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
         >
-          {rest.length > 0 ? (
-            <RNText
-              {...ARTICLE_BREAK_PROPS}
-              style={mdStyles.sentence}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-            >
-              {rest}
-            </RNText>
-          ) : null}
+          {rest}
 
           {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
 

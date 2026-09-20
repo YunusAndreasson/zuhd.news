@@ -1277,9 +1277,10 @@ async function loadWritingQuality() {
     { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
     { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
     { k: 'charOver350Pct',     l: 'over char cap',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
-    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '48-60' },
+    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '52-75' },
     { k: 'wordInRangePct',     l: 'words in range',   v: m.wordInRangePct,     u: '%',  target: '>75%' },
-    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '300-360' },
+    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '400-480' },
+    { k: 'fiveBlockRatePct',   l: 'counterpoint/quote', v: m.fiveBlockRatePct, u: '%',  target: 'earned' },
   ]
   statsEl.innerHTML = rows.map(r =>
     `<div class="stat"><span class="stat-value">${r.v}${r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
@@ -1319,6 +1320,7 @@ async function loadWritingQuality() {
       { key: 'acronymViolations', label: 'acronym viol.' },
       { key: 'wordCountAvg', label: 'avg word count' },
       { key: 'wordInRangePct', label: 'words in range %' },
+      { key: 'fiveBlockRatePct', label: 'counterpoint/quote %' },
     ]
     trendEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">trend (last ' + wq.history.length + ' weeks)</div>' +
       series.map(s => {

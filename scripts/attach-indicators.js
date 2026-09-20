@@ -92,7 +92,7 @@ const ageDays = (asOf) => {
  * A monthly series is legitimately two months behind its own publication and
  * still current; a daily one two months behind is broken. Beyond this the
  * indicator is dropped rather than dated, because a writer handed a figure will
- * use it and the caveat is the first thing a 350-character article cuts.
+ * use it and the caveat is the first thing a 450-character article cuts.
  */
 const MAX_AGE_DAYS = { monthly: 45, weekly: 30 }
 const STALE_DEFAULT = 12
