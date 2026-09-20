@@ -4,7 +4,8 @@
     {
       "id": "2026-09-18-gap-countries-latam-pacific",
       "startDate": "2026-09-18",
-      "evaluateAfter": "2026-09-22",
+      "evaluateAfter": "2026-09-23",
+      "evaluateAfterExtendedFrom": "2026-09-22",
       "prNumber": 27,
       "hypothesis": "Every goal metric is met, but regional breadth is the one measure moving the wrong way and it has been flagged in three consecutive audits. Today 24 of 59 datelines are US (41% of output) and the AM region tally of 29 is ~83% US; uniqueRegions fell 6 to 5 and Oceania was zero. GAP_COUNTRIES is the feed's only lever that targets source *location* rather than source *name*, and it currently carries no Oceania entry, no Mexico, and reaches Latin America through Brazil and Colombia alone. Adding Mexico, Argentina, Philippines and Australia to the Q3 gap query should raise uniqueRegions back to 6 sustained and cut the US share of AM datelines, because the query already returns 100 articles sorted by sourceImportance and these four locations have wire-grade outlets that currently cannot enter the pool at all. Token-neutral: Q3 is one call with one sourceLocationUri array regardless of its length, so per-cycle NewsAPI token use is unchanged.",
       "parameter": "GAP_COUNTRIES source-location list",
@@ -43,7 +44,26 @@
         "tokenCost": "per-cycle NewsAPI token use must remain unchanged — Q3 is one call whatever the array length. Any observed increase is a revert and a bug."
       },
       "rollbackPlan": "Delete the four added entries from GAP_COUNTRIES in scripts/fetch-news-api.js (they are a single commented block) and commit as 'Revert experiment: 2026-09-18-gap-countries-latam-pacific'. No other file or cache key is involved.",
-      "concurrentExperimentInteraction": "None active. No pause gate set. Last experiment closed 2026-05-26."
+      "concurrentExperimentInteraction": "None active. No pause gate set. Last experiment closed 2026-05-26.",
+      "confounded": {
+        "on": "2026-09-19",
+        "reason": "Claude CLI OAuth session expired mid-day 2026-09-19. Four of five cycles (08:00, 12:03, 17:04, 22:00) aborted at Stage 1 in ~25s with 'Failed to authenticate: OAuth session expired and could not be refreshed', so 2026-09-19 published 13 articles from one cycle instead of the usual ~60 from five. Regional-breadth metrics are per-day counts over published datelines, so a day at 22% of normal volume cannot be compared to the 59-article baseline in either direction. Auth was restored before 2026-09-20 04:00 (all five cycles completed). evaluateAfter extended 2026-09-22 → 2026-09-23 to recover the lost day; 2026-09-19 is excluded from the evaluation window, leaving 09-20, 09-21, 09-22 as the three clean post-change days."
+      },
+      "interimObservations": [
+        {
+          "date": "2026-09-20",
+          "articles": 63,
+          "uniqueRegions": 6,
+          "regions": { "ME": 18, "AM": 16, "EU": 12, "AS": 8, "AF": 7, "OC": 2 },
+          "usDatelines": 14,
+          "usSharePct": 22,
+          "usShareOfAmPct": 88,
+          "oceaniaDatelines": 2,
+          "latamDatelines": 2,
+          "read": "Primary metric hit: uniqueRegions back to 6, and Oceania is non-zero for the first time in the baseline window (Canberra, Suva) — both directly attributable, since Australia had no route into the pool before. US datelines fell 24 → 14 and US share of all output 41% → 22%. The secondary metric usShareOfAmPct went the WRONG way (83 → 88) purely as an artefact of its own denominator: AM total collapsed 29 → 16 because the US decline is larger in absolute terms than the Latin America gain, so a smaller non-US numerator now sits over a much smaller base. Treat usSharePct (of total output) as the real secondary read and usShareOfAmPct as mis-specified. Latin America is the genuine miss: 2 datelines (Santiago, Port-au-Prince) vs a 3 baseline and a 5 stretch — neither Mexico nor Argentina produced a published dateline today, so those two entries have not yet paid for themselves.",
+          "guardrails": "All pass. AF 7 (floor 4) — no crowd-out, which was the flagged most-likely failure mode. ME 18 vs 9 baseline and OIC datelines well up (Lahore 2, Riyadh 2, Tehran 3, Islamabad, Mohmand, Sanaa, Dubai, Ankara, Chapainawabganj) — no displacement. freshness median 0.2 (<=1.0), multiSource 21 (>=4), sciTech 37% (>=25), throughput 12.6/cycle (>=9), topSourceShare 15.9% (<20). Token cost unchanged: cycle logs 09-16 → 09-20 all show articles=4x1, so the Q3 gap call count is identical pre- and post-change; the ~12-17 spread is per-event enrichment, which this experiment does not touch."
+        }
+      ]
     }
   ],
   "activeExperiment": null,

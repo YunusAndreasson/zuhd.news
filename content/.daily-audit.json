@@ -1,36 +1,36 @@
 {
-  "date": "2026-09-18",
+  "date": "2026-09-20",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, all completed, avg 11.8/cycle (62 yesterday)" },
-    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 16, "science": 12, "tech": 12 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 63, "detail": "5 cycles, all completed, avg 12.6/cycle" },
+    "freshness": { "median": 0.2, "p90": 1.2, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 15, "science": 9, "tech": 14 },
+    "multiSource": { "value": 21, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 29, "AS": 9, "ME": 9, "EU": 8, "AF": 4, "OC": 0 }
+      "breakdown": { "ME": 18, "AM": 16, "EU": 12, "AS": 8, "AF": 7, "OC": 2 }
     },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 16, "target": 20, "met": true },
+    "uniqueSources": 62,
     "duplicates": 0,
-    "avgCycleDuration": 1589
+    "avgCycleDuration": 1074
   },
-  "experiment": "Proposed 2026-09-18-gap-countries-latam-pacific (PR #27, evaluate 2026-09-22): adds Mexico, Argentina, Philippines and Australia to GAP_COUNTRIES in fetch-news-api.js. Every goal metric is met, so this is not a breach repair — it acts on the one measure moving the wrong way for a third consecutive audit, using the only lever that targets source location rather than source name. Token-neutral: Q3 passes the whole list in one call, so array length does not change per-cycle NewsAPI spend.",
-  "weakestArea": "Regional concentration, and it is worse than the region tally admits. uniqueRegions fell 6 to 5 with Oceania at zero, but the real figure is in the datelines: 24 of 59 articles are US-datelined (41% of output), so the AM count of 29 is ~83% one country. Latin America contributed three articles (Guayaquil, Santa Elena, Roseaux) and Africa fell 7 to 4. The metric passes because its floor is 4 regions — a threshold that cannot distinguish genuine global spread from a US-plus-four-token-regions day.",
+  "experiment": "No new experiment. 2026-09-18-gap-countries-latam-pacific is still active and now evaluates 2026-09-23 (extended one day, because yesterday's OAuth outage cost four of five cycles and left 2026-09-19 unusable as evaluation data). Interim read is positive on the primary metric — uniqueRegions back to 6, Oceania non-zero for the first time in the window, US share of output 41% to 22% — with every guardrail passing, including the Africa floor that was the flagged failure mode.",
+  "weakestArea": "Latin America, and it is the one place the active experiment has not yet paid off: 2 datelines today (Santiago, Port-au-Prince) against a 3 baseline and a 5 stretch target, with neither Mexico nor Argentina yielding a published dateline despite both being added to GAP_COUNTRIES two days ago. Every goal metric in the brief is comfortably met, so this is a breadth concern rather than a threshold miss. Note also that the experiment's secondary metric, US share of AM-region datelines, went 83% to 88% purely as a denominator artefact — AM total fell 29 to 16 because the US decline outpaced the Latin America gain — so it should be read as mis-specified rather than as a regression.",
   "watching": [
-    "Washington and New York alone supply 17 of 59 datelines, the tightest two-city concentration in the recorded window, and San Francisco adds three more on the tech side.",
-    "Africa halved from 7 to 4 with Khartoum, Minna, Ogere and Lome the only datelines — Sudan's four-story run noted yesterday did not repeat.",
-    "Korea produced two separate Seoul stories plus a Mount Mantap item, an unusually dense Korean-peninsula signal worth checking for a shared underlying event.",
-    "Nuuk appears again, and the region ladder reads Greenland as AM — a small but recurring distortion of the Americas count that is geography, not sourcing.",
-    "CoinDesk at 5 and Bloomberg at 5 are the joint-second outlets behind Al Jazeera's 8, keeping the crypto/financial-enforcement thread accumulating without an editorial frame for a third day."
+    "Iran filed an NPT exit bill and is passing conditions via Qatar in the same day — the escalation and the back-channel are moving together and the next step is likely legislative.",
+    "The Houthis declared a blockade doctrine and put a missile on Riyadh while Turkey offered Saudi Arabia military help; three threads that have been separate are converging on one theatre.",
+    "Rojava's administration dissolved alongside a Qamishli dateline and Iranian pressure in Syria — a governance vacuum story that will need regional sourcing, not wire summary.",
+    "Gemini's stock fell 80% the same day pension funds balked at AI exposure and AI labs were sued over slowdown claims; the AI-financial-risk cluster is now a market story rather than a tech one.",
+    "Fiji declared an HIV emergency — the first substantive Oceania health story the feed has carried, and worth following precisely because the region has been a blind spot."
   ],
   "coverageGaps": [
-    "Oceania is entirely absent today after a single article yesterday; Pacific climate, fisheries and regional security remain structurally invisible.",
-    "Latin America produced three articles and Mexico produced none, despite being the largest non-US economy in the hemisphere and absent from GAP_COUNTRIES until today.",
-    "Southeast Asia appears only through Jakarta, Banten and Kuala Lumpur; the Philippines and Vietnam have no reporting origin in the feed.",
-    "Africa's four stories are all West African or Sudanese — no East African, Horn, or Maghreb dateline despite Kenya, Somalia, Morocco and Algeria all sitting in GAP_COUNTRIES."
+    "Latin America remains thin at 2 datelines despite Mexico and Argentina being added to the gap query two days ago; if 09-21 and 09-22 also return nothing from those two, the entries are inert and the lever is source-location, not source-availability.",
+    "Oceania is present but minimal at 2 datelines (Canberra, Suva); Pacific island coverage still arrives only when a wire-grade Australian outlet carries it.",
+    "AM output is 88% US datelines — the non-US Americas reach the feed almost entirely through US desks, which is the structural version of the Latin America gap above.",
+    "Two recap-layer prefilter matches on 09-19 look like false positives: a Saudi Aramco/midterms roundup slug matched an unrelated Kohat mosque bombing, and a Houthi deterrence piece matched a chokepoint-shipping article. The layer-4 title-overlap rule is catching roundup slugs whose multi-topic headlines overlap anything, which is a different failure from the conflict-cluster aggressiveness already documented."
   ],
-  "context": "Output held at 59 across 5 completed cycles with freshness near its best (median 0.2, max 1.3), zero duplicates, 45 unique sources and top-outlet share at 14% — every stated goal is met with margin, and sci-tech at 41% is the second-highest in the window. Cycle duration rose again to 1589s from 1427s, driven by the writer (412s avg) rather than the editor (185s), which stays far clear of its 1800s timeout. The standing finding from the two 2026-05 selector-floor experiments is that multi-source rate is capped by feed supply, not selector behaviour, which is why today's experiment targets the upstream feed instead; its most likely failure mode is displacement, since Q3 returns a fixed 100 articles by sourceImportance and Australian and Mexican outlets outrank Somali and Nigerian ones on that sort — hence the explicit Africa and OIC-coverage guardrails."
+  "context": "Yesterday is a hole, not a downturn: the Claude CLI OAuth session expired mid-day 2026-09-19 and four of five cycles aborted at Stage 1 in roughly 25 seconds each, so 09-19 published 13 articles from one cycle instead of the usual ~60. Auth was restored before today's 04:00 cycle and all five of today's cycles completed normally, so no action is needed beyond knowing that any day-over-day comparison against 09-19 is meaningless. The recurrence risk is real, though — OAuth tokens in ~/.claude/.credentials.json need periodic interactive re-auth, and the failure mode is silent at the cycle level, costing a full day of output before anyone looks. Token cost is unchanged by the active experiment: cycle logs 09-16 through 09-20 all show articles=4x1, confirming the widened gap-country list is one call whatever its length."
 }
