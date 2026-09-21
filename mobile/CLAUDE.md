@@ -64,10 +64,10 @@ surface is a layer over **one** `MiniGlobe` mounted at its root:
 ```
 MiniGlobe (Skia, pointerEvents none)  ← the only globe in the app
 GlobeGestureLayer                     drag turns and glides · pinch zooms · tap hit-tests
-MapHeader                             one row on a shade: Z (home) · every mover, swiped, largest first
+MapHeader                             one row on a shade: every mover, swiped, largest first · ▶ listen · ≡ menu
 MapSheet                              custom, non-modal · peek = title + hook · full = the whole story, one height for all
   StoryDeck → StoryCard               the river, one story at a time, swiped sideways
-StoryDock                             pinned to the screen's foot: story track · ▶ listen · ⌃ open/close · › next
+StoryDock                             pinned to the screen's foot: story track · ⌃ open/close · › next
 platform sheets                       menu · card · instruments · country · …
 ```
 
@@ -94,9 +94,9 @@ whole time; nothing said so.
   (`useCameraFlight`: `claimForDeck`, a worklet the deck's pan calls, and
   `toStoryIfHeld`). Taking it back mid-drag would snap the earth. The
   decision is made on the UI thread: a JS read of the camera blocks until
-  the UI thread answers. **The app opens on the first story in category
-  order** (the deck's index 0), not on the top instrument: at rest the card
-  and the globe have to agree.
+  the UI thread answers. **The app opens on the newest story** (the deck's
+  index 0), not on the top instrument: at rest the card and the globe have to
+  agree.
 - **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
   (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
   instruments a builder marked `lead`; once the strip held every reading that
@@ -162,7 +162,7 @@ whole time; nothing said so.
 - **Instruments without a place are one tap away, always.** Brent, gold, the
   ten-year, nisab, FX movers and every contract have no honest location, so
   they are not on the globe. `all →` at the end of the strip is never
-  conditional, and `InstrumentsSheet` lists every card in `buildRankedInstruments`
+  conditional, `menu → markets` opens the same browser, and `InstrumentsSheet` lists every card in `buildRankedInstruments`
   order. Placing Brent in the North Sea to avoid a list would be inventing
   locations for half the deck.
 - **Predictions are merged into the story they settle, never plotted.**
@@ -181,6 +181,29 @@ whole time; nothing said so.
   globe. A story a reader asks for by name (a saved story, a notification, a
   related story) is pinned into the river (`pinStory`) so `focusStory` can
   still land on it; `tick` re-measures the window while the app stays open.
+- **The river is in time order, and what arrived says so** (2026-09-21, the
+  user's request). `orderNewsRiver` sorts every story newest first by the
+  dateline's time, whatever its category. It was four category bands, newest
+  first within each, so the track could be scrubbed to a category by colour —
+  and the day's newest stories sat in four places, one at the head of each
+  band, and a reader coming back could not tell whether anything had arrived.
+  - **New is decided by slug, never by `addedAt`** (`lib/fresh-store.ts`,
+    tested). `addedAt` is a file mtime: one value per cycle, reset when a file
+    is rewritten, and the live feed that day carried a story filed the day
+    before reading as published that minute. A story is new when it was not
+    in a feed the reader already had. `fresh` is a snapshot taken as each feed
+    arrives, so a card's `new` does not vanish the instant the reader lands on
+    it; landed stories become known at the next arrival. A skipped new story
+    stays new until the day's window ages it out.
+  - **Three places say it, all in ink.** Every new card's kicker opens with
+    `new ·`, and the first card after them that the reader already had with
+    `earlier ·` (the caught-up moment, unchanged). The track draws a 2pt rule
+    over new stories' segments, so a glance at its left end says whether
+    anything came in. And when new stories the reader has not had sit behind
+    the one in front — a resume or pull put them ahead of where they were
+    reading, or a scrub skipped them — `‹ 3 new` leads the dock and jumps to
+    the newest of them. New stories still *ahead* of the reader are not
+    counted: they will reach them.
 - **The globe is how the news is found.** Every story is a beacon in its
   category hue at its *place* (`lib/story-places.ts` merges stories within
   5 km, or one dateline within 120 km, as the web does), and tapping one
@@ -206,7 +229,7 @@ whole time; nothing said so.
     (`DECK_SETTLE_MS`) — and it carried the camera whatever the distance, so a
     quarter of the planet crossed in the same half second as a neighbouring
     city. That is the *common* case: consecutive stories are ordered by
-    category and can be anywhere on earth. `handleDeckSettle` now compares the
+    time and can be anywhere on earth. `handleDeckSettle` now compares the
     crossing's own `flyMs` against that spring and hands the camera to
     `flyToStory` when the flight would be longer — at the finger's lift, from
     wherever the finger got it to. The card still snaps in 350 ms; the earth
@@ -310,12 +333,6 @@ whole time; nothing said so.
     near what the web's `flyToStory` shows across a phone's width. The rivers
     and the neighbour labels are keyed to it (`RIVERS_APPEAR_CLIP` sits under
     the tightest framing, so a swipe never projects the rivers).
-  - **The grown globe's transform is applied inside the canvas**
-    (`MiniGlobe.canvasTransform`), not to its view. A view transform scales
-    pixels, so a zoomed globe wider than the screen was cut at the canvas's
-    edge and shrunk with the cut — dark bands down both sides of the band. The
-    projection reaches `grownReach` so the ground the shrink uncovers exists,
-    and pictures record past the canvas.
   - **The grid and daylight are the web's, for the web's reasons.** Twelve
     meridians and five parallels (`graticuleLines`), under the land — the
     curvature of the lines is what says sphere; the old `geoGraticule` call
@@ -382,13 +399,23 @@ whole time; nothing said so.
     owns it they keep whatever the last flight left, and a drag that took the
     camera from them snapped the earth back to a story already swiped past.
     `MiniGlobe` publishes where it is drawing the camera, whoever owns it.
-- **The menu is the one control at the top.** Search, saved, settings, the
-  map key and the pages open from the menu (three lines) at the top right:
-  the one control out of thumb reach, on purpose — it is opened a few times a
-  week, and the top corner is where both platforms put a destination that
-  rare. It was a cog until 2026-09-19; a cog promises only settings, and
-  the top left, where a hamburger usually goes, is where the gauges start.
-  (A `Z` home mark sat top left until 548457c8 removed it.)
+- **The menu and the briefing are the controls at the top.** Markets,
+  search, saved, settings, the map key and the pages open from the menu
+  (three lines) at the top right, out of thumb reach on purpose — it is
+  opened a few times a week, and the top corner is where both platforms put
+  a destination that rare. It was a cog until 2026-09-19; a cog promises
+  only settings, and the top left, where a hamburger usually goes, is where
+  the gauges start. (A `Z` home mark sat top left until 548457c8 removed it.)
+  - **`▶` sits beside it and `markets` moved into it (2026-09-21, the user's
+    request).** `markets` was a word between the gauges and the menu; it is
+    the menu's first row now, and opens the browser the strip's `all →`
+    opens. `▶` came up from the dock. Both are bare 20pt glyphs in one
+    `HeaderControl` box — one width, one height, one `GAUGE_EXTRA` nudge, the
+    glyph centred in one square — so they line up exactly by construction;
+    the user asked for exact vertical alignment, and a style on one of them
+    alone is how that breaks. A paused briefing draws its heard arc round
+    `▶` on a rule-ink ring. `▶` hides while the player bar is up and keeps
+    its slot, so the gauges never change width with the player.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
@@ -510,8 +537,8 @@ about what a card may say is about the card, not where it is shown.
   2026-09-19, was half of every article, and readers felt they had to read
   every story to get past it. Pulled up or tapped, the same card is the whole
   story: every sentence, `OddsLine`, live country and entity links, and
-  `sources · save · share` as words after the text — with the globe scaled
-  into a band above it and the strip still in place (it used to recede;
+  `sources · save · share` as words after the text — risen over the globe,
+  which stays where it is, and with the strip still in place (it used to recede;
   it never covered the story, so hiding it only took the markets away). Nothing mounts or reflows when
   it grows: every sentence after the hook is laid out all along under a
   `Veil` — the
@@ -585,9 +612,22 @@ about what a card may say is about the card, not where it is shown.
     tracking measures a line taller than it draws, and `textAlignVertical:
     'center'` split that phantom line into blank space above and below it —
     in every sheet, not only the card.
-  - **The grown globe is a transform** (`grownGlobeTransform`), so the gesture
-    layer is tap-to-collapse while grown: marks are not where the projection
-    thinks they are under the scale.
+  - **A story opens over the globe, and the globe does not move.** Until
+    2026-09-21 the earth stepped back as the sheet rose: the resting disc was
+    scaled into the band left above the open sheet by a transform inside the
+    canvas (`MiniGlobe.canvasTransform` — a view transform scales pixels, and
+    cut a zoomed globe at the canvas's edge), with the projection carried past
+    the screen (`grownReach`) so the shrink had ground to uncover. Every frame
+    of the sheet's travel replayed every picture on the globe on the UI
+    thread; the user found opening a story slow and asked for the sheet to
+    open on top instead. The sheet is opaque, so the globe draws nothing while
+    it moves. What that costs is the story's place: on most phones it sits
+    under the open sheet, and the strip of earth above is the top of the disc.
+    The gesture layer is tap-to-collapse there, so a touch puts the story down
+    rather than turning the earth out from under it. Do not bring the shrink
+    back to show the place. If the place is ever wanted above the sheet, a
+    *view* translate of the globe layer should be a compositor move rather
+    than a replay — unmeasured; check it on hardware first.
   - **Nothing clamps.** A long hook runs on under the dock at peek and scrolls
     when grown. A card that stops being current scrolls back to its top.
   - **The deck and the sheet never share a drag.** The deck's pan claims at
@@ -599,21 +639,23 @@ about what a card may say is about the card, not where it is shown.
     the app once.
   - **The dock is where you are, and every way through the day, under the
     thumb.** `StoryDock`, pinned to the screen's foot and not to the sheet,
-    so it does not move between rest and open: `[track] (▶) (⌃) (›)`. The
+    so it does not move between rest and open: `(‹ 3 new) [track] (⌃) (›)`. The
     track is a segmented bar — one segment per story, lit to the one on the
     card, its fill reading the deck's `progress` on the UI thread — and a
     scrubber: drag to preview (`12 of 48` over the finger), lift or tap to
     jump (`goToStory`). Its gesture, detents and tooltip are
     `hooks/useScrub.ts` + `components/ScrubBar.tsx`, shared with the briefing
-    player's scrubber, so the two cannot drift apart. `▶` is the briefing, `⌃` opens and closes the story (its chevron rotates
+    player's scrubber, so the two cannot drift apart. `⌃` opens and closes the story (its chevron rotates
     with the sheet's `progress`; the tap reads the settled detent), and `›`
     is `StoryDeck.step(1)`: the same `onDragStart`,
     spring and `onSettle` as a released swipe, so the camera hand-off is the
     swipe's, and a second tap before React catches up goes one further.
-    - The three buttons are the same 40pt circle, 8pt apart, 16pt off the
+    - The buttons are the same 40pt circle, 8pt apart, 16pt off the
       track (`BUTTON`, `BUTTON_GAP`, `TRACK_GAP`). They were three different
       treatments until the user asked for consistency; spacing is what groups
       them (proximity), and `›` is marked by emphasis ink rather than size.
+      `▶` was the first of three until 2026-09-21, when it moved to the top
+      bar beside the menu.
     - It was the sheet's masthead until 2026-09-19 — on top of the card, so
       mid-screen at rest and near the top with a story open, out of reach of
       the thumb holding the phone. The user asked for the app to be driven
@@ -628,7 +670,7 @@ about what a card may say is about the card, not where it is shown.
   - **There is no list of every story.** `IndexSheet` was deleted on
     2026-09-14, restored on 2026-09-19 as a headlines list (title + hook,
     by category) behind a `≡` in the dock, and removed again the same day at
-    the user's request. The short resting card, the category-banded track and
+    the user's request. The short resting card, the time-ordered track and
     `›` are the way through the day. Recover it from git rather than
     rewriting it, if it is ever asked for again.
   - **Stories use the full reading width; the next one does not peek.** A
@@ -692,11 +734,12 @@ about what a card may say is about the card, not where it is shown.
   line needs them, and joined onto `trends.json` instead they added 24KB to
   every homepage visit. A 404 is a supported state, not a loading one.
 - **The old bottom bar's three pills each went somewhere specific.**
-  `listen` is the round play button in the dock — as a corner pill over the
+  `listen` is `▶` in the top bar, beside the menu — as a corner pill over the
   globe it was sized to stay out of the way and was not found, it spent a few
-  builds at the right of `MapHeader`, and at the start of the masthead's
-  track it read as that track's play head. While the player bar is up it sits
-  on the dock, and the dock's `▶` hides. `share` is a word on the open card,
+  builds at the right of `MapHeader` before, at the start of the masthead's
+  track it read as that track's play head, and it was a circle in the dock
+  until 2026-09-21, when the user asked for it back at the top. While the
+  player bar is up it sits on the dock, and `▶` hides. `share` is a word on the open card,
   where it can only mean the story it sits under (it used to share the last
   article read from any section). `zoom` is gone from the chrome: pinch on the globe
   zooms continuously, so readers who cannot pinch get the opening zoom only.

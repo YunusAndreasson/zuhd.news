@@ -31,27 +31,27 @@ const emptyGrouped = (): Record<Category, Article[]> => ({
 });
 
 describe('orderNewsRiver', () => {
-  it('groups categories even when a later category has the newest story', () => {
+  it('puts the newest story first whatever its category', () => {
     const grouped = emptyGrouped();
     grouped.science = [makeArticle({ slug: 'old', eventAt: 1000, eventCoverage: 294 })];
     grouped.tech = [makeArticle({ slug: 'new', eventAt: 3000 })];
     grouped.politics = [makeArticle({ slug: 'middle', eventAt: 2000, eventCoverage: 12 })];
-    expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['middle', 'old', 'new']);
-    expect(orderNewsRiver(grouped).map((a) => a.category)).toEqual(['politics', 'science', 'tech']);
+    expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['new', 'middle', 'old']);
+    expect(orderNewsRiver(grouped).map((a) => a.category)).toEqual(['tech', 'politics', 'science']);
   });
 
-  it('keeps consecutive newer stories from the same category ahead of older stories', () => {
+  it('interleaves categories by time rather than banding them', () => {
     const grouped = emptyGrouped();
     grouped.politics = [1000, 4000, 3000, 2000].map((eventAt) =>
       makeArticle({ slug: `p-${eventAt}`, eventAt }),
     );
-    grouped.economy = [makeArticle({ slug: 'older', eventAt: 500, eventCoverage: 999 })];
+    grouped.economy = [makeArticle({ slug: 'e-2500', eventAt: 2500, eventCoverage: 999 })];
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual([
       'p-4000',
       'p-3000',
+      'e-2500',
       'p-2000',
       'p-1000',
-      'older',
     ]);
   });
 
@@ -73,7 +73,7 @@ describe('orderNewsRiver', () => {
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['a', 'b']);
   });
 
-  it('keeps all 40 stories in category bands with descending times without mutating the input', () => {
+  it('keeps all 40 stories in descending time without mutating the input', () => {
     const grouped = emptyGrouped();
     for (const [categoryIndex, category] of (Object.keys(grouped) as Category[]).entries()) {
       grouped[category] = Array.from({ length: 10 }, (_, i) =>
@@ -88,12 +88,14 @@ describe('orderNewsRiver', () => {
     const out = orderNewsRiver(grouped);
     expect(out).toHaveLength(40);
     expect(new Set(out.map((a) => a.slug)).size).toBe(40);
-    expect(out.map((a) => a.category)).toEqual(
-      CATEGORIES.flatMap((category) => Array(10).fill(category)),
-    );
+    const times = out.map(articleTime);
+    expect(times).toEqual([...times].sort((a, b) => b - a));
+    // Each story keeps the category it was filed under, for its kicker.
     for (const category of CATEGORIES) {
-      const times = out.filter((a) => a.category === category).map(articleTime);
-      expect(times).toEqual([...times].sort((a, b) => b - a));
+      expect(out.filter((a) => a.category === category)).toHaveLength(10);
+      expect(
+        out.filter((a) => a.slug.startsWith(`${category}-`)).every((a) => a.category === category),
+      ).toBe(true);
     }
     expect(JSON.stringify(grouped)).toBe(before);
   });
@@ -122,21 +124,21 @@ describe('recentRiver', () => {
     expect(recentRiver(river, now).map((a) => a.slug)).toEqual(['last', 'same-day']);
   });
 
-  it('finds the newest time across category bands without reordering them', () => {
+  it('finds the newest time across categories', () => {
     const grouped = emptyGrouped();
     grouped.politics = [at('stale-politics', hoursAgo(40))];
     grouped.economy = [at('recent-economy', hoursAgo(2))];
     grouped.tech = [at('fresh-tech', hoursAgo(1))];
     expect(recentRiver(orderNewsRiver(grouped), now).map((a) => a.slug)).toEqual([
-      'recent-economy',
       'fresh-tech',
+      'recent-economy',
     ]);
     grouped.politics = [at('too-old', hoursAgo(80))];
     grouped.economy = [at('same-day', hoursAgo(70))];
     grouped.tech = [at('latest', hoursAgo(50))];
     expect(recentRiver(orderNewsRiver(grouped), now).map((a) => a.slug)).toEqual([
-      'same-day',
       'latest',
+      'same-day',
     ]);
   });
 

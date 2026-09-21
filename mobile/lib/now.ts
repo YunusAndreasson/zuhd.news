@@ -28,7 +28,7 @@ import type { Exchange } from './markets';
  *
  * Three deliberate absences:
  *
- *   **No story ever enters the block.** The river below already contains every story, grouped by category;
+ *   **No story ever enters the block.** The river below already contains every story, newest first;
  *   promoting a story into a block above its own deck is the repetition this module
  *   exists to prevent. Stories still get marks on the globe and still drive
  *   the camera — see `coverageRanks`.

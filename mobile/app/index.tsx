@@ -8,7 +8,6 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
-import type { Transforms3d } from '@shopify/react-native-skia';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -20,12 +19,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import {
-  type SharedValue,
-  useDerivedValue,
-  useReducedMotion,
-  useSharedValue,
-} from 'react-native-reanimated';
+import { type SharedValue, useReducedMotion, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   BriefingChrome,
@@ -92,14 +86,10 @@ import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bo
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
-import {
-  computeDeckLayout,
-  grownGlobeTransform,
-  grownReach,
-  openStoryHeight,
-} from '../lib/deck-layout';
+import { computeDeckLayout, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
+import { markLanded, useFreshStories } from '../lib/fresh-store';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
@@ -198,18 +188,8 @@ export default function HomeScreen() {
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
 
-  const {
-    grouped,
-    briefing,
-    loading,
-    error,
-    lastSeenAt,
-    refresh,
-    retry,
-    tick,
-    generated,
-    injectArticle,
-  } = useArticles();
+  const { grouped, briefing, loading, error, refresh, retry, tick, generated, injectArticle } =
+    useArticles();
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
@@ -231,9 +211,8 @@ export default function HomeScreen() {
     heard: 0,
   });
   const [refreshing, setRefreshing] = useState(false);
-  /** Where the sheet has settled. The globe only takes touches at peek: grown,
-   *  the earth is drawn scaled into a band and a tap there would hit-test
-   *  against geometry that has moved. */
+  /** Where the sheet has settled. The globe only turns and hit-tests at peek:
+   *  with a story open, the strip of earth above it puts the story down. */
   const [sheetDetent, setSheetDetent] = useState<MapSheetDetent>('peek');
   const sheetDetentRef = useRef<MapSheetDetent>('peek');
   /** The story in front of the deck. The end card is `storyRows.length`. */
@@ -242,7 +221,7 @@ export default function HomeScreen() {
   /** The slug in front, so a refresh that inserts stories keeps the reader on
    *  the story they were reading rather than on whatever moved into its slot.
    *  Null until the reader has moved the deck: an untouched deck stays on the
-   *  first story in category order. */
+   *  newest story. */
   const currentSlugRef = useRef<string | null>(null);
   /** A story asked for before it was in the river — a bookmark that has
    *  rotated out of the feed is injected, and its row exists a render later. */
@@ -494,9 +473,10 @@ export default function HomeScreen() {
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
   const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
 
+  const { fresh, landed } = useFreshStories();
   const storyRows = useMemo(
-    () => buildStoryRows({ river, lastSeenAt, odds: oddsLabelBySlug }),
-    [river, lastSeenAt, oddsLabelBySlug],
+    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
+    [river, fresh, oddsLabelBySlug],
   );
   const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
 
@@ -931,6 +911,14 @@ export default function HomeScreen() {
     setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
+  // `markets` sat in the bar beside the menu until 2026-09-21; it is the
+  // menu's first row now, and opens the same browser the strip's `all →` does.
+  const handleMenuMarketsPress = useCallback(() => {
+    handOffSheet(menuSheetRef, () => {
+      setInstrumentsOpen(true);
+      instrumentsSheetRef.current?.present();
+    });
+  }, [handOffSheet]);
 
   const handleBriefingPress = useCallback(() => {
     markHintDone('masthead');
@@ -1193,7 +1181,10 @@ export default function HomeScreen() {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
 
-  const handleMenuDismiss = useCallback(() => setMenuOpen(false), []);
+  const handleMenuDismiss = useCallback(() => {
+    setMenuOpen(false);
+    runSheetHandOff();
+  }, [runSheetHandOff]);
   const handleCountryDismiss = useCallback(() => {
     setCountrySheet(null);
     runSheetHandOff();
@@ -1321,23 +1312,6 @@ export default function HomeScreen() {
   // get back down to the globe closed zuhd instead.
   useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  // The earth steps back as a story grows: the resting disc is scaled into the
-  // band left above the grown sheet. A transform, never a reprojection — this
-  // tracks a finger at 60fps and a projection is tens of milliseconds. It is
-  // finger-tracked, so it is exempt from Reduce Motion like the sheet itself.
-  //
-  // **Applied inside the canvas, not to the view.** A view transform scales the
-  // canvas's pixels, and once zooming grew the planet past the screen that cut
-  // a zoomed globe at the canvas's edge and shrank the cut with it: dark bands
-  // down both sides of the grown band. Skia applies this one to the drawing,
-  // and the projection already reaches the ground it uncovers (`grownReach`).
-  const globeTransform = useDerivedValue<Transforms3d>(() => {
-    const p = Math.min(1, Math.max(0, sheetProgress.value));
-    const grown = grownGlobeTransform(layout, screenHeight);
-    return [{ translateY: p * grown.translateY }, { scale: 1 + p * (grown.scale - 1) }];
-  });
-  const globeReach = useMemo(() => grownReach(layout, screenHeight), [layout, screenHeight]);
-
   // Hold the splash until we have something for *every* visible layer.
   useEffect(() => {
     if (loading) return;
@@ -1353,6 +1327,31 @@ export default function HomeScreen() {
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
+  // Whatever story is in front has been had, however it got there — a swipe,
+  // a jump, a mark on the globe, or the deck opening on it.
+  const frontSlug = storyRows[frontIndex]?.slug;
+  useEffect(() => {
+    if (frontSlug) markLanded(frontSlug);
+  }, [frontSlug]);
+  // New stories the reader has not had, between the head of the river and the
+  // story in front: arrivals a refresh put ahead of where they are reading, or
+  // new ones they scrubbed past. The dock offers a jump to the newest of them.
+  // New stories still ahead of the reader are not counted — they will get there.
+  const unreadNew = useMemo(() => {
+    let count = 0;
+    let first = -1;
+    for (let i = 0; i < frontIndex; i++) {
+      const row = storyRows[i];
+      if (!row?.fresh || landed.has(row.slug)) continue;
+      if (first < 0) first = i;
+      count++;
+    }
+    return { count, first };
+  }, [storyRows, frontIndex, landed]);
+  const storyFresh = useMemo(() => storyRows.map((row) => row.fresh), [storyRows]);
+  const handleNewPress = useCallback(() => {
+    if (unreadNew.first >= 0) goToStory(unreadNew.first);
+  }, [goToStory, unreadNew.first]);
   const storyOpen = sheetDetent === 'full';
   // The gauges an open story is tied to, marked in its hue on the bar.
   const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
@@ -1544,14 +1543,9 @@ export default function HomeScreen() {
         onSeek={goToStory}
         detailAt={storyDetailAt}
         hues={storyHues}
-        // While the player bar is up it is the control. A second play button
-        // over audio that was already playing said the opposite of what was
-        // happening; it returns when the bar hides.
-        listenAvailable={briefingStatus.available && !briefingVisible}
-        listenResumable={briefingStatus.resumable}
-        listenDuration={briefingStatus.duration}
-        listenHeard={briefingStatus.heard}
-        onListenPress={handleBriefingPress}
+        fresh={storyFresh}
+        newCount={unreadNew.count}
+        onNewPress={handleNewPress}
         onNext={handleNextStory}
         storyOpen={storyOpen}
         sheetProgress={sheetProgress}
@@ -1566,12 +1560,9 @@ export default function HomeScreen() {
       handleNextStory,
       storyDetailAt,
       storyHues,
-      briefingStatus.available,
-      briefingStatus.resumable,
-      briefingStatus.duration,
-      briefingStatus.heard,
-      briefingVisible,
-      handleBriefingPress,
+      storyFresh,
+      unreadNew.count,
+      handleNewPress,
       refreshing,
       frontIndex,
       storyCount,
@@ -1597,7 +1588,14 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.screen, { backgroundColor: colors.bg }]}>
-      {/* The one earth. Everything below is a layer over it. */}
+      {/* The one earth. Everything below is a layer over it — the open story
+          too: the sheet rises over a globe that stays where it is. It used to
+          step back as the sheet rose, scaled into the band above it by a
+          transform inside the canvas, and that replayed every picture on the
+          globe on the UI thread for each frame the sheet moved, with the
+          projection carried past the screen for the ground the shrink
+          uncovered. Opening a story was slow (2026-09-21); the sheet is
+          opaque, so now the globe draws nothing while it moves. */}
       <View style={styles.globeLayer} pointerEvents="none">
         <MiniGlobe
           ref={globeRef}
@@ -1624,8 +1622,6 @@ export default function HomeScreen() {
           height={screenHeight}
           radius={layout.radius}
           centerY={layout.centerY}
-          canvasTransform={globeTransform}
-          canvasReach={globeReach}
           zoomActive={zoomActive}
           zoomAngle={zoomAngle}
           clipOut={globeClip}
@@ -1675,6 +1671,14 @@ export default function HomeScreen() {
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
           linkedColor={linkedHue}
+          // While the player bar is up it is the control. A second play button
+          // over audio that was already playing said the opposite of what was
+          // happening; it returns when the bar hides.
+          listenAvailable={briefingStatus.available && !briefingVisible}
+          listenResumable={briefingStatus.resumable}
+          listenDuration={briefingStatus.duration}
+          listenHeard={briefingStatus.heard}
+          onListenPress={handleBriefingPress}
         />
       </View>
 
@@ -1732,6 +1736,7 @@ export default function HomeScreen() {
         onDismiss={handleMenuDismiss}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
+        onMarketsPress={handleMenuMarketsPress}
         onToast={handleMenuToast}
       />
 

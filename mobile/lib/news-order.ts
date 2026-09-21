@@ -14,21 +14,30 @@ function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
 }
 
-/** Contiguous category bands for the scrubber, newest first within each band. */
+/**
+ * Every story in one line, newest first, whatever its category.
+ *
+ * The river was four category bands, newest first within each, so the track
+ * could be scrubbed straight to a category by its colour. That put the day's
+ * newest stories in four places, one at the head of each band, and a reader
+ * coming back could not tell whether anything had arrived (2026-09-21, at the
+ * user's request). In time order what arrived since they last looked is at the
+ * head of the river, where the deck opens and the track starts; the category
+ * is still each card's dot and each segment's hue.
+ */
 export function orderNewsRiver(grouped: Record<Category, Article[]>): RiverArticle[] {
   const flat: RiverArticle[] = [];
   for (const category of CATEGORIES) {
-    const stories = (grouped[category] ?? []).map((article) => ({ ...article, category }));
-    flat.push(...stories.sort(compareNewsRecency));
+    for (const article of grouped[category] ?? []) flat.push({ ...article, category });
   }
-  return flat;
+  return flat.sort(compareNewsRecency);
 }
 
 /** How much of the river the app shows: one day of news. */
 export const RIVER_WINDOW_MS = DAY_MS;
 
 /**
- * The last day of the river, preserving its category and time order.
+ * The last day of the river, preserving its order.
  *
  * The feed carries several days of stories, and swiping, the globe's lights,
  * the found ring and the list all read the same river, so a story from three
@@ -49,7 +58,7 @@ export function recentRiver(
   now: number,
   keep: ReadonlySet<string> = new Set(),
 ): RiverArticle[] {
-  // The first category need not contain the newest story in the feed.
+  // Not `river[0]`: a caller may hand in a river in some other order.
   const newest = river.reduce(
     (latest, article) => Math.max(latest, articleTime(article)),
     -Infinity,

@@ -23,6 +23,9 @@ const THUMB_CLEARANCE = SPACING.xl;
 /** Past this many, a segment would be no wider than the gap beside it. */
 const MAX_SEGMENTS = 60;
 const SEGMENT_GAP = 2;
+/** The rule over marked segments: thinner than the track, so it annotates the
+ *  track rather than reading as a second one. */
+const MARK_HEIGHT = 2;
 
 /**
  * Where the current item's raised segment sits on a track `trackWidth` wide:
@@ -73,6 +76,46 @@ function Segments({
   return <>{cells}</>;
 }
 
+/**
+ * A rule over the segments `marks` flags, laid out as the segments are so each
+ * dash sits over its own, and clear of the raised current segment.
+ */
+function Marks({
+  count,
+  marks,
+  color,
+  trackHeight,
+}: {
+  count: number;
+  marks: readonly boolean[];
+  color: string;
+  trackHeight: number;
+}) {
+  if (count <= 0 || marks.length !== count || !marks.includes(true)) return null;
+  const gapped = count > 1 && count <= MAX_SEGMENTS;
+  const cells: ReactNode[] = [];
+  for (let i = 0; i < count; i++) {
+    cells.push(
+      <View
+        key={`mark-${i}`}
+        style={[
+          styles.segment,
+          { height: MARK_HEIGHT, backgroundColor: marks[i] ? color : 'transparent' },
+          gapped && i < count - 1 ? styles.segmentGap : null,
+        ]}
+      />,
+    );
+  }
+  return (
+    <View
+      pointerEvents="none"
+      style={[styles.row, styles.marks, { bottom: trackHeight + SPACING.xs }]}
+    >
+      {cells}
+    </View>
+  );
+}
+
 interface ScrubBarProps
   extends Pick<
     ViewProps,
@@ -100,6 +143,9 @@ interface ScrubBarProps
   trackColors?: readonly string[];
   /** One colour per segment for what the fill has passed, overriding `fillColor`. */
   fillColors?: readonly string[];
+  /** Per segment: draw a rule over it in `markColor` (the dock's new stories). */
+  marks?: readonly boolean[];
+  markColor?: string;
   thumbColor: string | SharedValue<string>;
   /** The touch area. Vertical padding only: its width is the track's. */
   style?: StyleProp<ViewStyle>;
@@ -126,6 +172,8 @@ export const ScrubBar = memo(function ScrubBar({
   fillColor,
   trackColors,
   fillColors,
+  marks,
+  markColor,
   thumbColor,
   style,
   children,
@@ -184,6 +232,9 @@ export const ScrubBar = memo(function ScrubBar({
   const bar = (
     <View style={style} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
+        {marks && markColor ? (
+          <Marks count={segments ?? 0} marks={marks} color={markColor} trackHeight={height} />
+        ) : null}
         <View style={styles.row}>
           <Segments count={segments} color={trackColor} colors={trackColors} height={height} />
         </View>
@@ -277,6 +328,7 @@ const styles = StyleSheet.create({
   clip: { overflow: 'hidden' },
   segment: { flex: 1 },
   segmentGap: { marginRight: SEGMENT_GAP },
+  marks: { position: 'absolute', left: 0 },
   activeSegment: { position: 'absolute', left: 0, borderRadius: RADIUS.handle },
   thumb: {
     position: 'absolute',

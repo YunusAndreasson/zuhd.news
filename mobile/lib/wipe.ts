@@ -3,6 +3,7 @@ import { clearBookmarks } from './bookmark-store';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { clearFound } from './found-store';
+import { clearKnown } from './fresh-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
 import { clearRead } from './read-store';
@@ -25,7 +26,8 @@ import { resetReviewState } from './store-review';
  * device" section. If you add persistent state, add it to both.
  */
 const KEYS = [
-  'zuhd_last_seen', // where the "caught up" line falls
+  'zuhd_last_seen', // when the app was last left; only a pre-`zuhd_known_v1` install reads it
+  'zuhd_known_v1', // which stories were already here, so new ones are marked new
   'zuhd_briefing_pos', // audio playback position
   'zuhd_briefing_date', // which briefing that position belongs to
   'zuhd_review_count', // article snaps since the last rating prompt
@@ -39,6 +41,7 @@ export async function eraseLocalData(): Promise<void> {
   // keys afterwards.
   clearBookmarks();
   clearFound();
+  clearKnown();
   clearRead();
   resetOnboarding();
   resetReviewState();

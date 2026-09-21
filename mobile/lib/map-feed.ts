@@ -28,13 +28,20 @@ export interface StoryRow {
   /**
    * The ink step before the meta line, or null.
    *
-   * `earlier` marks the first story the reader has already seen — the same
-   * boundary the reader draws as a full "caught up" rule. A divider row here
-   * would break the uniform row height the camera depends on, and the ink
+   * `new` marks every story that arrived since the reader last had the feed
+   * (`fresh-store`), and `earlier` the first one after them they already had —
+   * the boundary the reader once drew as a full "caught up" rule. A divider
+   * row would break the uniform row height the camera depends on, and the ink
    * step is the convention the app already uses for exactly this kind of
    * "the app is telling you where you are" line.
+   *
+   * `new` is on every new card, not only the first, since 2026-09-21: the
+   * river is in time order now, and a reader coming back asked to see what
+   * had arrived, not only where it ended.
    */
-  mark: string | null;
+  mark: 'new' | 'earlier' | null;
+  /** Arrived since the reader last had the feed. */
+  fresh: boolean;
   /** Bare percentage from a prediction market tied to this story. */
   odds: string | null;
   coords: LatLng | null;
@@ -42,27 +49,25 @@ export interface StoryRow {
 
 export interface BuildStoryRowsInput {
   river: RiverArticle[];
-  /** Epoch ms of the reader's last visit; stories older than it are `earlier`. */
-  lastSeenAt: number;
+  /** Slugs new to the reader (`fresh-store`). */
+  fresh: ReadonlySet<string>;
   /** slug → bare percentage, from `lib/predictions.ts`. */
   odds?: ReadonlyMap<string, string>;
 }
 
-export function buildStoryRows({ river, lastSeenAt, odds }: BuildStoryRowsInput): StoryRow[] {
-  // The boundary is the first story the reader has already seen. `addedAt`
-  // rather than `articleTime`, matching `ArticleList` — the question is
-  // "was this here last time you looked", not "when did it happen".
-  let boundaryMarked = lastSeenAt <= 0;
+export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): StoryRow[] {
+  // The boundary is the first story the reader already had. By slug, never by
+  // `addedAt`: the question is "was this here last time you looked", and a
+  // rewritten file's mtime says it was published a minute ago.
+  let boundaryMarked = false;
 
   return river.map((article, index) => {
-    const seen = article.addedAt <= lastSeenAt;
-    let mark: string | null = null;
+    const isFresh = fresh.has(article.slug);
+    let mark: StoryRow['mark'] = isFresh ? 'new' : null;
     // Suppress a boundary on the opening card: `earlier ·` there reads as
     // a label on that story rather than as a place the reader has reached.
-    if (!boundaryMarked && seen && index === 0) {
-      boundaryMarked = true;
-    } else if (!boundaryMarked && seen) {
-      mark = 'earlier';
+    if (!isFresh && !boundaryMarked) {
+      if (index > 0) mark = 'earlier';
       boundaryMarked = true;
     }
     const coords = getCoords(article);
@@ -72,6 +77,7 @@ export function buildStoryRows({ river, lastSeenAt, odds }: BuildStoryRowsInput)
       title: article.title,
       meta: `${article.category} · ${formatTimeAgo(articleTime(article))}`,
       mark,
+      fresh: isFresh,
       odds: odds?.get(article.slug) ?? null,
       coords: coords ? [coords[0], coords[1]] : null,
     };

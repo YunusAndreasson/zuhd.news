@@ -1,4 +1,3 @@
-import { Canvas, Path, Skia } from '@shopify/react-native-skia';
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
@@ -13,7 +12,6 @@ import { mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
-import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import type { FoundProgress } from '../../lib/story-places';
 import { Icon, IconButton, Text } from '../primitives';
@@ -23,9 +21,9 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  * The dock: every control a reader moves through the day with, in one row at
  * the foot of the screen, where a thumb already is.
  *
- * `[ story track ] (▶) (⌃) (›)` — the track scrubs the day (its colour bands
- * are the categories), ▶ is the briefing, ⌃ opens the story on the card and
- * closes it again, and › is the next story,
+ * `(‹ 3 new) [ story track ] (⌃) (›)` — the track scrubs the day, newest
+ * story at its left end (each segment is its story's category hue), ⌃ opens
+ * the story on the card and closes it again, and › is the next story,
  * in the corner because it is the control a reader uses forty times a
  * session. Open and close sit beside it because they are the next most
  * common: without them, closing a story meant a pull down the sheet or a tap
@@ -37,10 +35,21 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  * The next button slides the deck exactly as a swipe does (`StoryDeck.step`);
  * the swipe still works, and the button is the one-handed way to do it.
  *
+ * **What arrived is visible from the dock (2026-09-21).** Stories new since
+ * the reader last had the feed carry a rule over their segments, so a glance
+ * at the track's left end says whether anything came in. When new stories sit
+ * between the head of the river and the story in front — a refresh put them
+ * ahead of where the reader was, or a scrub skipped them — `‹ 3 new` leads the
+ * row and jumps to the newest of them. It is a pill in the circles' own
+ * material, not a badge: ink, no colour, no count on the icon, and it goes
+ * when there is nothing left behind the reader to catch up on.
+ *
  * There is no list of every story: one was tried (`IndexSheet`, twice) and
  * the reader did not want it — the track and the swipe are the way through.
  * The menu stays at the top right of the map: it is opened a few times a
- * week, and thumb reach is for what is used every session.
+ * week, and thumb reach is for what is used every session. The briefing's ▶
+ * was the first of this row's circles until 2026-09-21, when the user asked
+ * for it at the top beside the menu (`MapHeader`).
  */
 
 /** Which story a fraction of the track points at: the segment under it. */
@@ -50,40 +59,6 @@ function storyAt(fraction: number, count: number): number {
 }
 
 const ADJUST_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
-
-/**
- * How much of the briefing has been heard, drawn round the play button from
- * twelve o'clock. A fresh briefing, one paused halfway and one finished looked
- * identical; the difference lived only in the screen reader's label. Static:
- * the button only shows while the player is down, so the arc never moves.
- */
-const HeardRing = memo(function HeardRing({ heard, color }: { heard: number; color: string }) {
-  const path = useMemo(() => {
-    const inset = HEARD_STROKE / 2;
-    const d = BUTTON - HEARD_STROKE;
-    return Skia.PathBuilder.Make()
-      .addArc(Skia.XYWHRect(inset, inset, d, d), -90, 360)
-      .build();
-  }, []);
-  return (
-    <Canvas
-      style={styles.heard}
-      pointerEvents="none"
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
-    >
-      <Path
-        path={path}
-        style="stroke"
-        strokeWidth={HEARD_STROKE}
-        strokeCap="round"
-        color={color}
-        start={0}
-        end={heard}
-      />
-    </Canvas>
-  );
-});
 
 export const StoryDock = memo(function StoryDock({
   refreshing = false,
@@ -96,11 +71,9 @@ export const StoryDock = memo(function StoryDock({
   onSeek,
   detailAt,
   hues,
-  listenAvailable = false,
-  listenResumable = false,
-  listenDuration,
-  listenHeard = 0,
-  onListenPress,
+  fresh,
+  newCount = 0,
+  onNewPress,
   onNext,
   storyOpen,
   sheetProgress,
@@ -127,13 +100,12 @@ export const StoryDock = memo(function StoryDock({
   detailAt?: (index: number) => string;
   /** One category hue per story, for the track's segments. */
   hues?: readonly string[];
-  /** Today's briefing exists and its player is not already up. */
-  listenAvailable?: boolean;
-  listenResumable?: boolean;
-  listenDuration?: number;
-  /** Share of a paused briefing already heard, 0–1. */
-  listenHeard?: number;
-  onListenPress?: () => void;
+  /** Per story: arrived since the reader last had the feed. */
+  fresh?: readonly boolean[];
+  /** New stories behind the one in front that the reader has not had. */
+  newCount?: number;
+  /** Jump to the newest of them. */
+  onNewPress?: () => void;
   /** The next story. Disabled on the end card. */
   onNext: () => void;
   /** The sheet has settled open. */
@@ -213,11 +185,8 @@ export const StoryDock = memo(function StoryDock({
   );
 
   const found = progress?.found ?? 0;
-  const heard = listenResumable ? Math.min(1, Math.max(0, listenHeard)) : 0;
-  const listenMinutes = formatAudioDurationMinutes(
-    heard > 0 && listenDuration ? listenDuration * (1 - heard) : listenDuration,
-  );
-  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${found > 0 ? `, ${found} found on the globe` : ''}`;
+  const freshTotal = fresh?.reduce((n, isFresh) => (isFresh ? n + 1 : n), 0) ?? 0;
+  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${found > 0 ? `, ${found} found on the globe` : ''}`;
   const hasNext = index < count;
   // The end card has nothing more to open; an open sheet can always close.
   const canToggle = storyOpen || index < count;
@@ -243,6 +212,24 @@ export const StoryDock = memo(function StoryDock({
         },
       ]}
     >
+      {newCount > 0 && onNewPress ? (
+        <IconButton
+          onPress={onNewPress}
+          hitSlop={0}
+          style={styles.newAction}
+          accessibilityLabel={`${newCount} new ${newCount === 1 ? 'story' : 'stories'}`}
+          accessibilityHint="Goes to the newest story you have not seen"
+        >
+          <View
+            style={[styles.newPill, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+          >
+            <Icon name="chevron-back" size="sm" tone="emphasis" />
+            <Text variant="labelXs" tone="emphasis">
+              {`${newCount} new`}
+            </Text>
+          </View>
+        </IconButton>
+      ) : null}
       {status ? (
         <Pressable
           onPress={showingAlert ? onAlertPress : undefined}
@@ -268,6 +255,8 @@ export const StoryDock = memo(function StoryDock({
           fillColor={colors.textSecondary}
           trackColors={tints?.ahead}
           fillColors={tints?.passed}
+          marks={fresh}
+          markColor={colors.textEmphasis}
           thumbColor={destinationHue}
           style={styles.scrub}
           accessibilityRole="adjustable"
@@ -285,30 +274,6 @@ export const StoryDock = memo(function StoryDock({
         <View style={styles.shrink} />
       )}
       <View style={styles.actions}>
-        {listenAvailable && onListenPress ? (
-          <IconButton
-            onPress={onListenPress}
-            haptic="none"
-            style={styles.action}
-            hitSlop={0}
-            accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
-            accessibilityHint={
-              listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
-            }
-          >
-            <View
-              style={[styles.circle, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
-            >
-              {heard > 0 ? <HeardRing heard={heard} color={colors.textSecondary} /> : null}
-              <View style={styles.playGlyph}>
-                <Icon name="play" size="md" tone="default" />
-              </View>
-            </View>
-          </IconButton>
-        ) : (
-          // Keep the track's width stable when the briefing player takes over.
-          <View style={styles.action} pointerEvents="none" accessible={false} />
-        )}
         <IconButton
           onPress={onToggleStory}
           disabled={!canToggle}
@@ -367,7 +332,8 @@ const TRACK = 3;
  * Every dock button is the same circle. Listen, open/close and next were three
  * treatments for three controls of one kind — a 28pt circle, a bare chevron
  * and a 40pt circle — and the row read as three unrelated marks. `›` is still
- * the one in emphasis ink; the size no longer has to say it.
+ * the one in emphasis ink; the size no longer has to say it. (Listen has since
+ * moved to the top bar.)
  */
 const BUTTON = 40;
 /** Between one circle and the next, and the slack each touch target carries
@@ -378,10 +344,6 @@ const BUTTON_GAP = SPACING.sm;
  *  where you are (the track) and what you can do (the buttons) read as two
  *  groups rather than one row of five things. */
 const TRACK_GAP = SPACING.md;
-/** A play triangle's weight sits left of its box's centre; this puts it in
- *  the middle of its circle to the eye. */
-const PLAY_NUDGE = 1.5;
-const HEARD_STROKE = 1.5;
 /** Wide enough for `politics · 12h ago` at the tabular size. */
 const DETAIL_TOOLTIP_WIDTH = 116;
 /**
@@ -415,8 +377,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,
   },
-  heard: { position: 'absolute', top: 0, left: 0, width: BUTTON, height: BUTTON },
-  playGlyph: { transform: [{ translateX: PLAY_NUDGE }] },
   // The track's edge to the first circle is TRACK_GAP; half a button gap of
   // it is inside the first target.
   actions: { flexDirection: 'row', marginLeft: TRACK_GAP - BUTTON_GAP / 2 },
@@ -427,6 +387,23 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // The same height and material as the circles, sized to its words, and as
+  // far off the track as the circles are on the other side.
+  newAction: {
+    height: CONTROL_ROW,
+    flexShrink: 0,
+    justifyContent: 'center',
+    marginRight: TRACK_GAP,
+  },
+  newPill: {
+    height: BUTTON,
+    borderRadius: BUTTON / 2,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: SPACING.smPlus,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xxs,
   },
   // The touch area is taller than the 3pt track it holds.
   scrub: { flex: 1, minHeight: CONTROL_ROW, justifyContent: 'center' },

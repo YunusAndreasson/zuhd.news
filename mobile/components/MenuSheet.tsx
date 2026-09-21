@@ -85,7 +85,7 @@ const INFO_PAGES = {
         // legal inventory; the same six as separate statements read as an
         // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Saved stories. Where the “caught up” line falls. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
+        body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it
@@ -490,6 +490,8 @@ function ActionLink({
 interface MenuSheetProps extends BaseSheetProps {
   grouped: Record<Category, Article[]>;
   onSelectArticle: (slug: string, category: Category) => void;
+  /** Close the menu and open the markets browser, its own sheet. */
+  onMarketsPress: () => void;
   onToast?: (message: string) => void;
 }
 
@@ -499,6 +501,7 @@ export const MenuSheet = memo(function MenuSheet({
   onDismiss,
   grouped,
   onSelectArticle,
+  onMarketsPress,
   onToast,
 }: MenuSheetProps) {
   const { colors, font } = useTheme();
@@ -574,8 +577,17 @@ export const MenuSheet = memo(function MenuSheet({
             <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
           </Text>
 
+          {/* First, because it was one tap away in the map's top bar until
+              2026-09-21. It leaves the menu for the markets browser rather
+              than pushing a page: that sheet flies the globe and hands off to
+              a card, and there is only ever one platform sheet up. */}
           <NavRow
             first
+            label="markets"
+            hint="Exchanges, prices, straits and currencies"
+            onPress={onMarketsPress}
+          />
+          <NavRow
             label="search"
             hint="Search every story by title, topic, or location"
             onPress={() => navPush('search')}

@@ -112,9 +112,10 @@ interface GlobeGestureLayerProps {
   onImpact: () => void;
   enabled?: boolean;
   /**
-   * The sheet is grown and the globe is drawn scaled into a band above it.
-   * Marks are not where the projection thinks they are, so nothing is
-   * hit-tested and nothing rotates: a tap anywhere on the earth puts the story
+   * A story is open over the globe, and what shows of the earth is the strip
+   * above it — on most phones the story's own place is under the sheet. Nothing
+   * is hit-tested and nothing rotates, so the reader never turns the earth out
+   * from under the story they are reading: a tap anywhere on it puts the story
    * back down.
    */
   collapseMode?: boolean;

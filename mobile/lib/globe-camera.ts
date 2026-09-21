@@ -224,7 +224,7 @@ export const FLIGHT_MAX_MS = 1000;
  * It is the bar a landed swipe is measured against. The spring carried the
  * camera whatever the distance, so a quarter of the planet crossed in the same
  * half second as a neighbouring city — and that is the *common* case, because
- * consecutive stories are ordered by category and can be anywhere on earth. A
+ * consecutive stories are ordered by time and can be anywhere on earth. A
  * card is text and wants to snap; the earth is a place and wants the time the
  * distance asks for. Where the crossing's own `flyMs` is longer than this, the
  * camera leaves the deck at the finger's lift and flies the rest itself: the

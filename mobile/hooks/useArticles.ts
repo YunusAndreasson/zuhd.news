@@ -7,6 +7,7 @@ import { collectNewArticles } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
 import { fetchJson } from '../lib/fetchJson';
 import { flushFound } from '../lib/found-store';
+import { type FeedStory, flushKnown, noteFeed } from '../lib/fresh-store';
 import { flushOnboarding } from '../lib/onboarding-store';
 import { flushRead } from '../lib/read-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
@@ -34,7 +35,6 @@ interface ArticlesState {
   briefing: BriefingInfo | null;
   loading: boolean;
   error: string | null;
-  lastSeenAt: number;
   refresh: () => Promise<Article[]>;
   retry: () => Promise<void>;
   tick: number;
@@ -43,6 +43,14 @@ interface ArticlesState {
 }
 
 const FEED_QUERY_KEY = ['feed'] as const;
+
+function feedStories(feed: FeedResponse): FeedStory[] {
+  const stories: FeedStory[] = [];
+  for (const list of Object.values(feed.categories)) {
+    for (const a of list) stories.push({ slug: a.slug, addedAt: a.addedAt });
+  }
+  return stories;
+}
 
 function slugSet(feed: FeedResponse): Set<string> {
   const all: string[] = [];
@@ -54,7 +62,8 @@ function slugSet(feed: FeedResponse): Set<string> {
 
 export function useArticles(): ArticlesState {
   const queryClient = useQueryClient();
-  const [lastSeenAt, setLastSeenAt] = useState(0);
+  /** Null until read from storage: `noteFeed` waits for it. */
+  const [lastSeenAt, setLastSeenAt] = useState<number | null>(null);
   const prevSlugsRef = useRef<Set<string>>(new Set());
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
@@ -111,6 +120,15 @@ export function useArticles(): ArticlesState {
   useEffect(() => {
     getLastSeenAt().then(setLastSeenAt);
   }, []);
+
+  // Which stories are new to the reader (`fresh-store`). Every feed that
+  // arrives — the cached one at launch, a resume, a pull — is noted once, by
+  // its `generated` stamp. `lastSeenAt` only matters to an install that never
+  // noted a feed, so the first note waits for it.
+  useEffect(() => {
+    if (!query.data || lastSeenAt === null) return;
+    noteFeed(query.data.generated, feedStories(query.data), lastSeenAt);
+  }, [query.data, lastSeenAt]);
 
   // Track foreground returns to refresh time labels. Bumped at most once per
   // minute (formatTimeAgo's finest granularity) so resumes within a minute
@@ -184,6 +202,7 @@ export function useArticles(): ArticlesState {
     saveLastSeenAt(Date.now());
     flushBookmarks();
     flushFound();
+    flushKnown();
     flushRead();
     flushOnboarding();
   });
@@ -239,7 +258,6 @@ export function useArticles(): ArticlesState {
     // as there's *anything* to render.
     loading: query.isPending && !query.data,
     error: query.error ? (query.error.message ?? 'Unknown error') : null,
-    lastSeenAt,
     refresh,
     retry,
     tick,

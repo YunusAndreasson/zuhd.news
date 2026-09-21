@@ -31,7 +31,7 @@ export interface StoryPlace {
   key: string;
   lat: number;
   lng: number;
-  /** Newest first, independently of the deck's category order. */
+  /** Newest first, as the deck is. */
   slugs: string[];
 }
 
