@@ -2,11 +2,11 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "da07b1fc0950640a",
-      "standing": "The UK's monthly consumer price index, compiled by the Office for National Statistics. It is the measure the Bank of England's inflation target is written against, and it feeds index-linked gilts, pensions and a range of regulated prices.",
-      "recent": "This release settles what UK consumer prices did in September, in a single figure published in one go. Nothing on the record yet marks it out from a routine month.",
+      "recentFingerprint": "155c12170a62d286",
+      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. It is the figure the Bank of England's 2% target is judged against, and gilts, sterling and mortgage pricing move with it.",
+      "recent": "The Office for National Statistics publishes the UK's September consumer price reading, which settles how fast prices rose over the month and where UK inflation stood as the summer ended.",
       "citations": [],
-      "generatedAt": "2026-09-17T04:46:20.516Z"
+      "generatedAt": "2026-09-21T04:44:17.393Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -72,11 +72,13 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "da7d17b595f180f7",
-      "standing": "The annual meeting of the leaders of the world's twenty largest economies, hosted by a presidency that rotates each year and sets the agenda. It has no treaty power; its output is a communiqué, and its weight comes from who agrees to sign one.",
-      "recent": "",
-      "citations": [],
-      "generatedAt": "2026-09-19T04:49:32.044Z"
+      "recentFingerprint": "efb0508babdb6819",
+      "standing": "The annual summit of the Group of Twenty: 19 major economies, the EU and the African Union, which together produce most of the world's output. The rotating host sets the agenda, and the communiqué shows where they agree on trade, debt and finance.",
+      "recent": "Zelensky has said he is ready to meet Putin face-to-face at the G20 in Miami, which would bring the war to a US-hosted table while Russian strikes on Odesa continue. It follows a BRICS summit where Xi took centre stage and members pushed for payment mechanisms that side-step the US dollar, a rival club courting the same capitals.",
+      "citations": [
+        "2026-09-12-ukraine-strikes-miami-g20-meeting-refused"
+      ],
+      "generatedAt": "2026-09-21T04:44:35.297Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -115,11 +117,11 @@
     },
     "fred-us-gdp-2026-09-30": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "5529b90faa3162a7",
-      "standing": "The Bureau of Economic Analysis's quarterly estimate of US output, issued in successive passes as more source data arrives. It is the reference point for Federal Reserve policy and for markets priced off American demand.",
-      "recent": "",
+      "recentFingerprint": "9d234a4ad0c9e7fd",
+      "standing": "The Bureau of Economic Analysis's quarterly measure of US output, published as an advance estimate and then revised twice as fuller data arrives. It sets the baseline for Federal Reserve policy, Treasury yields and the dollar.",
+      "recent": "This release settles how fast the US economy grew in a quarter that has already ended, using revised figures built on fuller source data. Nothing in recent reporting sets this reading apart from a routine one. Later arguments about the pace of US growth will start from this number.",
       "citations": [],
-      "generatedAt": "2026-09-20T04:38:24.014Z"
+      "generatedAt": "2026-09-21T04:44:03.999Z"
     },
     "fred-us-pce-2026-09-30": {
       "standingFingerprint": "f7794ed88caf73b9",
@@ -130,6 +132,6 @@
       "generatedAt": "2026-09-20T04:38:40.959Z"
     }
   },
-  "generatedAt": "2026-09-20T04:40:58.974Z",
+  "generatedAt": "2026-09-21T04:44:35.426Z",
   "windowDays": 14
 }
