@@ -16,8 +16,19 @@
       "targetDirection": "increase",
       "baseline": {
         "uniqueRegions": 5,
-        "uniqueRegionsPrior3Days": [6, 6, 5],
-        "regions": { "AM": 29, "AS": 9, "ME": 9, "EU": 8, "AF": 4, "OC": 0 },
+        "uniqueRegionsPrior3Days": [
+          6,
+          6,
+          5
+        ],
+        "regions": {
+          "AM": 29,
+          "AS": 9,
+          "ME": 9,
+          "EU": 8,
+          "AF": 4,
+          "OC": 0
+        },
         "usDatelines": 24,
         "totalArticles": 59,
         "usSharePct": 41,
@@ -54,7 +65,14 @@
           "date": "2026-09-20",
           "articles": 63,
           "uniqueRegions": 6,
-          "regions": { "ME": 18, "AM": 16, "EU": 12, "AS": 8, "AF": 7, "OC": 2 },
+          "regions": {
+            "ME": 18,
+            "AM": 16,
+            "EU": 12,
+            "AS": 8,
+            "AF": 7,
+            "OC": 2
+          },
           "usDatelines": 14,
           "usSharePct": 22,
           "usShareOfAmPct": 88,
@@ -62,6 +80,26 @@
           "latamDatelines": 2,
           "read": "Primary metric hit: uniqueRegions back to 6, and Oceania is non-zero for the first time in the baseline window (Canberra, Suva) — both directly attributable, since Australia had no route into the pool before. US datelines fell 24 → 14 and US share of all output 41% → 22%. The secondary metric usShareOfAmPct went the WRONG way (83 → 88) purely as an artefact of its own denominator: AM total collapsed 29 → 16 because the US decline is larger in absolute terms than the Latin America gain, so a smaller non-US numerator now sits over a much smaller base. Treat usSharePct (of total output) as the real secondary read and usShareOfAmPct as mis-specified. Latin America is the genuine miss: 2 datelines (Santiago, Port-au-Prince) vs a 3 baseline and a 5 stretch — neither Mexico nor Argentina produced a published dateline today, so those two entries have not yet paid for themselves.",
           "guardrails": "All pass. AF 7 (floor 4) — no crowd-out, which was the flagged most-likely failure mode. ME 18 vs 9 baseline and OIC datelines well up (Lahore 2, Riyadh 2, Tehran 3, Islamabad, Mohmand, Sanaa, Dubai, Ankara, Chapainawabganj) — no displacement. freshness median 0.2 (<=1.0), multiSource 21 (>=4), sciTech 37% (>=25), throughput 12.6/cycle (>=9), topSourceShare 15.9% (<20). Token cost unchanged: cycle logs 09-16 → 09-20 all show articles=4x1, so the Q3 gap call count is identical pre- and post-change; the ~12-17 spread is per-event enrichment, which this experiment does not touch."
+        },
+        {
+          "date": "2026-09-21",
+          "articles": 59,
+          "uniqueRegions": 5,
+          "regions": {
+            "ME": 20,
+            "AM": 17,
+            "EU": 13,
+            "AS": 5,
+            "AF": 4,
+            "OC": 0
+          },
+          "usDatelines": 14,
+          "usSharePct": 24,
+          "usShareOfAmPct": 82,
+          "oceaniaDatelines": 0,
+          "latamDatelines": 1,
+          "read": "Regression on the primary metric: uniqueRegions back to 5 with Oceania at zero, so 09-20's six regions is now one of two clean days, not a trend. US share of total output held low (24% vs 41% baseline), so the US-dilution gain is persisting. Latin America is 1 dateline (Kingston, Jamaica — a deep-sea-mining story, not from a Mexico/Argentina outlet); Mexico, Argentina and Philippines have now produced zero published datelines across both clean days. The non-US AM datelines are Canadian (Tumbler Ridge, Saint-Pierre) — not an effect of the added entries.",
+          "guardrails": "All pass but AF sits exactly on its floor of 4 (Entebbe, Ndutu, Port Harcourt + 1) — down from 7 on 09-20; watch on 09-22 because a drop below 4 is the flagged crowd-out failure mode. ME 20 and OIC datelines strong (Islamabad 3, Tehran 3, Turbat, Sindh, Dera Ismail Khan, Riyadh, Cairo 2). freshness median 0.1, multiSource 15, sciTech 31%, throughput 11.8/cycle, topSourceShare 13.6% (Al Jazeera 8/59)."
         }
       ]
     }
