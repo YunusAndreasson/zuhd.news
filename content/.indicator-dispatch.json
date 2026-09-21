@@ -1457,8 +1457,92 @@
         "2026-09-19-gemini-autonomously-compromised-three-companies-safety-test"
       ],
       "generatedAt": "2026-09-21T17:17:42.237Z"
+    },
+    "poly-will-anthropics-valuation-hit-high-3pt0t-by-dece": {
+      "standingFingerprint": "b996e5f5834f3212",
+      "recentFingerprint": "38e25fd3c0c8f687",
+      "standing": "A Polymarket contract that pays out if Anthropic, the developer of the Claude AI models, reaches a $3 trillion valuation by its deadline. Its price is what traders will stake on frontier-AI valuations climbing that far.",
+      "recent": "Nothing in the fortnight's news touched Anthropic's funding or valuation. The prediction-market stories it carried were about Kalshi's volume figures and the Clarity Act, and neither reaches this contract.",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:14:08.907Z"
+    },
+    "poly-will-the-democratic-party-control-the-senate-aft": {
+      "standingFingerprint": "debdee6a050a1b18",
+      "recentFingerprint": "3131f5a2c4e4f59a",
+      "standing": "A Polymarket contract that pays out if Democrats hold a majority of the US Senate after the November 2026 midterms. Senate control decides whether a president's judges, cabinet picks and treaties get confirmed.",
+      "recent": "The only US election news in the window was about how the vote will be run, not about who is winning. The Atlantic wrote that the Supreme Court recognised the danger of Trump's election plan, but nothing names a Senate race, candidate or poll that would explain the shift.",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:14:20.162Z"
+    },
+    "poly-will-nithya-raman-win-the-2026-los-angeles-mayor": {
+      "standingFingerprint": "2f44e1197b97e95e",
+      "recentFingerprint": "94a86aefdee93997",
+      "standing": "A Polymarket contract that pays out if Nithya Raman, a Los Angeles City Council member, wins the city's 2026 mayoral election. Its price is what traders will pay for that outcome, and it runs against the incumbent's own contract.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:14:29.180Z"
+    },
+    "poly-putin-out-before-2027-346": {
+      "standingFingerprint": "1e5cce49c48dd481",
+      "recentFingerprint": "f64977fd005befdb",
+      "standing": "A Polymarket contract that pays out if Vladimir Putin stops being Russia's president before the end of 2026. Its price is what traders will pay for that outcome: a running bet on a leader who has held power since 1999.",
+      "recent": "Russia held its first wartime Duma elections, with 350 drones hitting Moscow as voting opened, and the results showed Putin's party winning. Two days later, a second mass drone attack on the capital killed two people and set fire to a refinery supplying 40% of the city's fuel, but the vote went ahead.",
+      "citations": [
+        "2026-09-18-russia-first-wartime-duma-elections-drone-barrage",
+        "2026-09-20-moscow-mass-drone-attack-civilian-deaths-refineries"
+      ],
+      "generatedAt": "2026-09-21T22:14:44.654Z"
+    },
+    "stocks:VZ": {
+      "standingFingerprint": "f06739edc23790f4",
+      "recentFingerprint": "300e6739eb3b1ada",
+      "standing": "Shares in Verizon, one of the three big US mobile carriers and a major fibre broadband provider. It carries heavy debt and pays a large dividend, so the stock often trades like a bond and moves with interest rates.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:14:55.105Z"
+    },
+    "stocks:META": {
+      "standingFingerprint": "e75a2a450c331df6",
+      "recentFingerprint": "65a428a172a7ea86",
+      "standing": "Shares in the company that owns Facebook, Instagram and WhatsApp, listed on the Nasdaq. Almost all of its revenue comes from advertising, so the price follows ad spending and how much investors will fund its AI spending.",
+      "recent": "Meta launched Muse, an AI agent that can send emails, book travel and work through WhatsApp, and the shares jumped 5% as it was pitched against Google. A week later Zuckerberg distanced Meta from calls for an AI slowdown. Then Amazon blocked Muse from shopping on its platform, the first big fight over which AI agents can buy on a user's behalf.",
+      "citations": [
+        "2026-09-09-meta-muse-agent-access-is-the-product",
+        "2026-09-21-meta-muse-flaw-amazon-blocks-ai-shopping-agent"
+      ],
+      "generatedAt": "2026-09-21T22:15:09.394Z"
+    },
+    "stocks:AMZN": {
+      "standingFingerprint": "f424672df22087c5",
+      "recentFingerprint": "32db5aedfd3ba36d",
+      "standing": "Shares of Amazon, listed on Nasdaq. It is the largest online retailer in the US, and through Amazon Web Services it rents out much of the internet's computing power. That cloud business earns most of its operating profit.",
+      "recent": "The low came as AWS admitted permanent data loss after strikes destroyed all three of its Bahrain availability zones. Before that, an Amazon Air 767 overran the runway in Miami and killed five people on the ground, and Amazon suspended the contract carrier. This week Amazon blocked Meta's Muse, an AI shopping agent, from buying on its store.",
+      "citations": [
+        "2026-09-16-eleven-nines-does-not-model-a-missile-aws-permanent-loss",
+        "2026-09-07-ntsb-amazon-767-miami-overrun-contract-carrier",
+        "2026-09-14-eight-days-the-certificate-is-not-where-the-freight-is",
+        "2026-09-10-miami-767-overrun-the-seconds-after-touchdown",
+        "2026-09-21-meta-muse-flaw-amazon-blocks-ai-shopping-agent"
+      ],
+      "generatedAt": "2026-09-21T22:15:25.201Z"
+    },
+    "stocks:WMT": {
+      "standingFingerprint": "cc8824cba572c943",
+      "recentFingerprint": "e1cf2ff121821159",
+      "standing": "Shares of Walmart, the world's largest retailer by revenue and the biggest private employer in the US. Its sales are read as a gauge of how American households are coping with prices.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:15:36.492Z"
+    },
+    "stocks:2330.TW": {
+      "standingFingerprint": "e41ea945d1240b76",
+      "recentFingerprint": "eb220178e953b5ac",
+      "standing": "Shares of TSMC on the Taiwan Stock Exchange. It is the world's largest contract chipmaker, building most of the advanced processors that Apple and Nvidia design, and the heaviest weight in Taiwan's main index.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-21T22:15:45.784Z"
     }
   },
-  "generatedAt": "2026-09-21T17:17:42.238Z",
+  "generatedAt": "2026-09-21T22:15:45.785Z",
   "windowDays": 14
 }
