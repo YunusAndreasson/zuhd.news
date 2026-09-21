@@ -2,13 +2,300 @@
   "version": 1,
   "stories": [
     {
+      "id": "united-russia-wartime-duma-vote-58-percent",
+      "label": "Putin's United Russia party wins wartime parliamentary elections in Kremlin-controlled vote",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-united-russia-wartime-duma-vote-58-percent"
+      ],
+      "eventUri": "rus-2128023",
+      "summary": "Russia's first Duma election since the full-scale invasion gave United Russia nearly 58% with 90% counted, with virtually no genuine opposition on the ballot. Lead with the number, then the mechanism: candidate filtering, multi-day and online voting, and ballots cast in occupied Ukrainian territory. The point is what a controlled vote buys a wartime Kremlin — a mandate for mobilisation and budget choices — not whether the result was ever in doubt.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-zelensky-new-york-refinery-strike-halt",
+      "label": "Zelensky to meet with Trump in New York this week",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-trump-zelensky-new-york-refinery-strike-halt"
+      ],
+      "eventUri": "rus-2128052",
+      "summary": "Trump and Zelensky will meet in New York during the UN General Assembly, and Meduza (citing Axios) reports that Trump again asked Kyiv to stop striking Russian refineries. That ask is the story: Ukraine's refinery campaign is its main lever on Russian revenue, and Washington wants it shelved while oil prices are already high from the Iran war and Hormuz. Lead with the refinery ask, then set out what Kyiv gives up if it agrees. Follows the 09-20 Moscow drone-attack and refinery coverage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/New_York_City",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly"
+      ]
+    },
+    {
+      "id": "us-security-alerts-gulf-houthi-riyadh-escalation",
+      "label": "US issues security alerts across Middle East -- RT World News",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-us-security-alerts-gulf-houthi-riyadh-escalation"
+      ],
+      "eventUri": "eng-12025889",
+      "summary": "After the Houthi missile on Riyadh, the State Department issued security alerts across the region and Trump left Camp David early. This is Washington acting on the Yemen–Saudi escalation already covered on 09-20. Lead with where the alerts apply and what they tell US citizens and staff to do; embassy drawdowns and shelter orders are the most reliable sign of how Washington rates the risk. Do not repeat the blockade doctrine; build on it. OIC note: Saudi Arabia and Yemen are the affected countries and the feed has no regional outlet on this event (cluster is AOL, Hindustan Times, RT).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Red_Sea"
+      ]
+    },
+    {
+      "id": "trump-arch-arlington-drones-snipers-security-exemption",
+      "label": "Trump says proposed triumphal arch will double as military complex",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-trump-arch-arlington-drones-snipers-security-exemption"
+      ],
+      "eventUri": "eng-12026742",
+      "summary": "Trump says the planned 250-foot arch beside Arlington National Cemetery will house 'large numbers of drones', snipers and stored sniper ammunition. The arch was already the subject of a lawsuit by Vietnam veterans over preservation law. The mechanism is the national-security label: calling a monument military infrastructure is how the administration can bypass review, as it has with other construction. Lead with a drone and sniper post a mile from the Pentagon, overlooking the capital, and ask who it would be aimed at.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Sniper",
+        "http://en.wikipedia.org/wiki/Triumphal_arch",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/National_security",
+        "http://en.wikipedia.org/wiki/Arlington_National_Cemetery",
+        "http://en.wikipedia.org/wiki/White_House"
+      ]
+    },
+    {
+      "id": "ice-agent-shooting-austin-venezuelan-accountability",
+      "label": "One Person Shot During Encounter With ICE in Austin",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-ice-agent-shooting-austin-venezuelan-accountability"
+      ],
+      "eventUri": "eng-12027415",
+      "summary": "An ICE agent shot and wounded a man, reportedly Venezuelan, during an enforcement encounter in Austin on Sunday. The man's lawyer disputes the agency's account (Hindustan Times), and Mayor Kirk Watson has spoken publicly. Lead with the gap between what ICE says happened and what the lawyer and family say, then the accountability mechanism: who investigates a federal agent's shooting in a city that did not ask for the operation, and whether local police can see the evidence.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Austin,_Texas",
+        "http://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
+        "http://en.wikipedia.org/wiki/Texas",
+        "http://en.wikipedia.org/wiki/Kirk_Watson",
+        "http://en.wikipedia.org/wiki/Mayor",
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/Intercity_Express"
+      ]
+    },
+    {
+      "id": "israeli-strike-zibqin-tyre-south-lebanon-ceasefire",
+      "label": "Israeli forces attack towns in Lebanon's Tyre",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-israeli-strike-zibqin-tyre-south-lebanon-ceasefire"
+      ],
+      "eventUri": null,
+      "summary": "Israel carried out an air strike on Zibqin in southern Lebanon's Tyre district, reported through Lebanon's state National News Agency. The strikes continue despite the ceasefire, and that continuation is the development. Lead with the named town and any casualties, attribute plainly (Israeli forces struck it), and state the number of Israeli strikes since the ceasefire, which Lebanon's government and UNIFIL track, against the zero enforcement that has followed. Verify details against NNA; Mehr is Iranian state media, so do not rely on its framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "gandapur-torture-claim-pti-dik-rally-attack",
+      "label": "Gandapur underwent surgery for 'torture' injury, claims brother",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-gandapur-torture-claim-pti-dik-rally-attack"
+      ],
+      "eventUri": null,
+      "summary": "Former KP chief minister Ali Amin Gandapur had neck surgery that his brother attributes to torture in custody. On the same night in Dera Ismail Khan, unidentified men attacked PTI workers preparing a rally and the party cancelled it (Dawn, 2031432). Lead with the torture claim and who has not answered it. The mechanism is attrition by unnamed hands: the state never has to ban the rally when the organisers are beaten first. Continues the 09-20 Aleema Khanum preventive-detention story (PTI crackdown arc).",
+      "conceptUris": []
+    },
+    {
+      "id": "xi-state-visit-washington-bessent-talks-markets",
+      "label": "Xi to Make State Visit to U.S. This Week",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-xi-state-visit-washington-bessent-talks-markets"
+      ],
+      "eventUri": "eng-12026025",
+      "summary": "Beijing confirmed that Xi will make a state visit to the US on 23–25 September, after Sunday's New York talks, which Bessent called 'successful'. Asian stocks rose on the news (AP via AOL). The 09-20 piece covered the talks' agenda of critical minerals and AI export chokepoints; this one is about what a state-visit format commits both sides to. Lead with the dates and the market move, then separate what is reportedly settled (tariff truce, rare-earth licensing) from what is still open (chip controls, Taiwan). Use Caixin/SCMP for Beijing's framing and set it against Washington's.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/President_of_the_People's_Republic_of_China",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence"
+      ]
+    },
+    {
+      "id": "naftogaz-mol-fuel-storage-hungary-winter-strikes",
+      "label": "Ukraine's oil and gas giant to build storage sites in Hungary amid fears of Russian winter strikes",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-naftogaz-mol-fuel-storage-hungary-winter-strikes"
+      ],
+      "eventUri": "rus-2127990",
+      "summary": "Naftogaz signed a memorandum with Hungary's MOL to build storage for Ukraine's oil products in Hungary, outside the reach of Russian missiles. Ukraine is moving its fuel reserves abroad because it cannot defend storage at home through another winter. The surprise is the partner: Orbán's Hungary, Kyiv's most obstructive EU neighbour, which gains fees and leverage over Ukraine's winter supply. Lead with that dependency.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/Naftogaz",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Petroleum_product",
+        "http://en.wikipedia.org/wiki/MOL_(company)",
+        "http://en.wikipedia.org/wiki/Infrastructure",
+        "http://en.wikipedia.org/wiki/Carpathian_Mountains",
+        "http://en.wikipedia.org/wiki/Diversification_(finance)"
+      ]
+    },
+    {
+      "id": "iran-turkmenistan-3bn-trade-overland-hormuz-pivot",
+      "label": "Iran, Turkmenistan targeting $3bn annual trade turnover",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-iran-turkmenistan-3bn-trade-overland-hormuz-pivot"
+      ],
+      "eventUri": null,
+      "summary": "With Hormuz shipping collapsing and its southern ports under wartime pressure, Iran is growing overland energy and transit trade with Turkmenistan and targeting $3bn a year. Lead with the land-route pivot: gas swaps, rail transit and the Caspian corridor are how a blockaded economy looks north. Give the current trade figure next to the target so readers can judge how realistic it is. Mehr is Iranian state media; attribute the figures to Tehran.",
+      "conceptUris": []
+    },
+    {
+      "id": "kalshi-volume-notional-payout-identical-trades",
+      "label": "Kalshi faces 'fake crypto volume' allegations as critic flags identical $5,500 trades",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-kalshi-volume-notional-payout-identical-trades"
+      ],
+      "eventUri": "eng-12025921",
+      "summary": "A critic found runs of identical $5,500 trades in Kalshi's crypto markets. Kalshi's defence is that its headline 'volume' counts maximum potential payout rather than cash traded, and that this is an industry convention. Lead with that definition: prediction-market volume, now quoted as evidence of what the public believes, is a notional number the platforms choose themselves. The mechanism is metric design as marketing, and the accountability gap is that a CFTC-regulated venue can report it that way.",
+      "conceptUris": []
+    },
+    {
+      "id": "multi-reward-grpo-decoupling-gradient-noise-floor",
+      "label": "Decoupling and conditioning reshape influence allocation and the gradient-noise floor in multi-reward GRPO under a finite-sample U-statistic analysis",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-multi-reward-grpo-decoupling-gradient-noise-floor"
+      ],
+      "eventUri": null,
+      "summary": "GRPO is the reinforcement-learning method behind DeepSeek-R1-style reasoning models. When a model is trained on several rewards at once (correctness, format, length), this paper shows how normalising them jointly versus separately decides which reward dominates the gradient, and sets a noise floor that more samples cannot remove. Lead with the practical point: multi-reward training quietly lets one objective crowd out the others unless the rewards are decoupled. Keep the maths out and the mechanism in, for readers who train or fine-tune models.",
+      "conceptUris": []
+    },
+    {
+      "id": "ngorongoro-ten-lions-poisoned-ndutu",
+      "label": "Ten lions found dead in Tanzania's Ngorongoro reserve, poisoning suspected",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-ngorongoro-ten-lions-poisoned-ndutu"
+      ],
+      "eventUri": "eng-12026608",
+      "summary": "Ngorongoro's conservation authority says ten lions were found dead in the Ndutu area of Endulen Ward and preliminary findings point to poisoning. Retaliatory poisoning after livestock losses is the main driver of lion decline in East Africa, and Ngorongoro is also where the Maasai have been pushed off their land in the name of conservation. Lead with ten deaths in one incident in a small, closed population. Then give the mechanism (cheap agricultural pesticides laced into carcasses) and who bears the conflict on each side. Note: Tanzania is not an OIC member.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lion",
+        "http://en.wikipedia.org/wiki/Tanzania",
+        "http://en.wikipedia.org/wiki/Ngorongoro_Conservation_Area",
+        "http://en.wikipedia.org/wiki/World_Heritage_Site",
+        "http://en.wikipedia.org/wiki/Nature_reserve",
+        "http://en.wikipedia.org/wiki/Poison",
+        "http://en.wikipedia.org/wiki/Protected_area",
+        "http://en.wikipedia.org/wiki/Kenya"
+      ]
+    },
+    {
+      "id": "a-shap-interpretable-lightgbm-model-for-reliable-iri-predict",
+      "label": "A SHAP-interpretable LightGBM model for reliable IRI prediction: bridging data-driven analytics and mechanistic insight in urban pavement management",
+      "firstSeen": "2026-09-21T08:10:12.747Z",
+      "lastCovered": "2026-09-21T08:10:12.747Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-21-a-shap-interpretable-lightgbm-model-for-reliable-iri-predict"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] We're sharing this article early to provide faster access to peer-reviewed, accepted research. It is citable and carries a permanent DOI. This version is subject to further edits and will be replaced automatically by the final Version of Record. All legal disclaimers apply.\n\nAccurate prediction of t",
+      "conceptUris": []
+    },
+    {
       "id": "icc-entity-sanctions-grace-period-banking-cutoff",
       "label": "Donald Trump administration prepares sanctions against International Criminal Court - CNBC TV18",
       "firstSeen": "2026-09-21T04:05:50.849Z",
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-icc-entity-sanctions-grace-period-banking-cutoff"
@@ -33,7 +320,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-ben-gvir-al-aqsa-incursion-status-quo-custodianship"
@@ -58,7 +345,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-macron-carney-saint-pierre-eu-associate-canada"
@@ -83,7 +370,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-naqvi-tehran-hormuz-terms-pakistan-mediation"
@@ -108,7 +395,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-turbat-rally-iran-border-closure-disappearances-kech"
@@ -124,7 +411,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-hormuz-twelve-ships-weekend-oil-prices-diplomacy"
@@ -149,7 +436,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-fpi-record-shorts-india-oil-import-exposure"
@@ -174,7 +461,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-pakistan-pvara-us-digital-asset-regulation"
@@ -190,7 +477,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-chatgpt-ad-collector-cross-site-tracking"
@@ -206,7 +493,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-mazu-chinese-ai-weather-pakistan-early-warning"
@@ -222,7 +509,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-hal-htt40-honeywell-engine-dependency"
@@ -238,7 +525,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-deinham-iron-age-iron-bar-hoard-trade"
@@ -254,7 +541,7 @@
       "lastCovered": "2026-09-21T04:05:50.849Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-21-typhoon-dujuan-tokyo-landslide-warnings"
@@ -270,7 +557,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-houthi-blockade-for-blockade-doctrine-saudi-escalation"
@@ -295,7 +582,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-tehran-french-language-centre-sealed-escalation-rung"
@@ -320,7 +607,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-haiti-moise-eighteen-extradited-florida-jurisdiction"
@@ -345,7 +632,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-rojava-dissolution-sdf-damascus-integration-deferred-guarantees"
@@ -361,7 +648,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-joburg-sinkhole-court-order-default-unenforceable-judgment"
@@ -377,7 +664,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-us-china-talks-critical-minerals-ai-export-chokepoints"
@@ -402,7 +689,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-berlin-die-linke-housing-expropriation-article-15-compensation"
@@ -427,7 +714,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ai-hidden-factor-pension-diversification-failure"
@@ -452,7 +739,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-glass-transition-self-limiting-clusters-jamming"
@@ -468,7 +755,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-serum-uric-acid-post-stroke-cognitive-impairment-screening"
@@ -484,7 +771,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-smex-wana-social-media-bans-age-verification-identity-layer"
@@ -500,7 +787,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-shahed-clone-eglin-one-way-attack-drone-proliferation"
@@ -516,7 +803,7 @@
       "lastCovered": "2026-09-20T22:04:50.448Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-20-virtual-power-plant-stackelberg-frequency-market-aggregation"
@@ -532,7 +819,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-meloni-school-niqab-ban-foreign-pupil-cap"
@@ -557,7 +844,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-jenin-ganim-settlement-killing-hospital-detention"
@@ -582,7 +869,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-aleema-khanum-arrest-pti-march-preventive-detention"
@@ -607,7 +894,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-khasadar-levies-polio-boycott-fata-merger"
@@ -623,7 +910,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-india-bangladesh-push-ins-repatriation-bypass"
@@ -639,7 +926,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-nigeria-retail-reservation-foreign-traders-enforcement"
@@ -655,7 +942,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-el-nino-3c-anomaly-southern-africa-maize"
@@ -671,7 +958,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-gemini-licence-portfolio-winklevoss-voting-control"
@@ -687,7 +974,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-microgravity-periosteal-secretome-osteoporosis-rats"
@@ -703,7 +990,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-4d-virtual-cell-digital-twin-drug-discovery"
@@ -719,7 +1006,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-entropy-aware-quantization-tinyml-edge-inference"
@@ -735,7 +1022,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-savit-nerf-geometric-consistency-heritage-reconstruction"
@@ -751,7 +1038,7 @@
       "lastCovered": "2026-09-20T17:03:42.760Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ai-poster-design-prompting-discipline"
@@ -767,7 +1054,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-moscow-mass-drone-attack-civilian-deaths-refineries"
@@ -792,7 +1079,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-north-korea-two-ballistic-missiles-npt-precedent"
@@ -817,7 +1104,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-delhi-sir-33-lakh-voter-notices-burden-of-proof"
@@ -842,7 +1129,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-gaza-tent-schools-lost-cohort-unrwa"
@@ -867,7 +1154,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ndlea-opioid-seizure-forged-police-id-checkpoints"
@@ -883,7 +1170,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-adani-power-dhubri-thermal-coal-land-acquisition"
@@ -908,7 +1195,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-sec-tokenized-stock-atomic-settlement-stablecoin"
@@ -924,7 +1211,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-trex-enamel-clumped-isotope-endothermy"
@@ -940,7 +1227,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-singapore-haze-sumatra-peat-fires-transboundary"
@@ -965,7 +1252,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-teampcp-google-infiltration-supply-chain-registries"
@@ -981,7 +1268,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-android-17-apis-withheld-from-aosp-forks"
@@ -997,7 +1284,7 @@
       "lastCovered": "2026-09-20T12:09:16.990Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-20-upf4ros2-planner-independent-task-planning-ros2"
@@ -1013,7 +1300,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-turkiye-saudi-defence-pact-military-support-offer"
@@ -1038,7 +1325,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-bachelet-withdraws-un-secretary-general-straw-poll"
@@ -1063,7 +1350,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-nscdc-officers-suspended-niger-custody-deaths"
@@ -1088,7 +1375,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-kinahan-uae-residence-visa-cancelled-sanctions-gap"
@@ -1104,7 +1391,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-iran-npt-withdrawal-bill-triple-urgency-majlis"
@@ -1120,7 +1407,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-ukraine-air-defence-sale-interceptor-cost-asymmetry"
@@ -1145,7 +1432,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-tata-sons-forced-listing-rbi-upper-layer-nbfc"
@@ -1170,7 +1457,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-pakistan-finance-minister-prices-protest-rs120bn"
@@ -1186,7 +1473,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-vulcano-la-fossa-phreatic-hazard-rock-permeability"
@@ -1202,7 +1489,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-haryana-antivenom-473-snakebite-logistics"
@@ -1218,7 +1505,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-facial-recognition-bias-statistical-power-audit"
@@ -1234,7 +1521,7 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-passkeys-custodial-credential-portability-critique"
@@ -1250,302 +1537,13 @@
       "lastCovered": "2026-09-20T08:08:41.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-20-marine-organic-drone-boats-breach-usv-demand"
       ],
       "eventUri": null,
       "summary": "A US Marine colonel back from a Middle East combat deployment says his unit needs organic uncrewed surface vessels: 'If the first thing you're putting through the breach isn't a robot, something's wrong.' Lead with that sentence and with who is saying it, because the significance is the direction of travel — this is not a vendor pitch or a think-tank paper but an officer who has just used the capability's absence, asking for it at the unit level rather than the fleet level. The mechanism to teach: 'organic' is the whole request. A drone boat owned by a Marine expeditionary unit is available on that unit's timeline without a theatre-level tasking queue, which changes not what the technology can do but who decides to spend it — and the thing being spent, in an amphibious breach, is otherwise a human life. The structural why our reader should sit with, stated plainly and without either enthusiasm or alarm: the same low-cost USV that spares a Marine is the weapon Ukraine used to push Russia's fleet out of Sevastopol and the Houthis have used against Red Sea shipping, and the cost floor is now low enough that the capability belongs to whoever wants it. Report what systems exist, what the Corps has actually procured, and what the acquisition timeline is versus the request. Note the sourcing: TWZ (US) is the only source, reporting the colonel on the record. SELECTION NOTE for the editorial audit — this was the thinnest feed in the recorded window: only FOUR multi-source clusters exist in total, against a target of 4-5 selected. (1) MULTI-SOURCE FLOORS: politics met (Turkiye/Saudi, Bachelet); ECONOMY NOT MET — for the second consecutive cycle the feed contains zero economy-classified multi-source clusters, and the Ukraine air-defence entry is reclassified from the feed's 'politics' to economy as an arms-procurement story to supply the only multi-source economy pick available. No weak cluster was padded in. The one rejected multi-source cluster is the MEE/RT 'US security alerts across Middle East' item: it is a liveblog entry, carries only two sources one of which is RT, and its substance was already carried inside this morning's Iran-seven-conditions piece. (2) OIC SOURCING GAPS for feed-side audit: the Kinahan story concerns the UAE and carries only Bellingcat (NL) and The Sunday Times — no The National, Khaleej Times or Gulf News copy anywhere in the feed; the Turkiye-Saudi defence-pact cluster carries Dawn (PK) but NO Turkish or Saudi outlet at all (no Anadolu, TRT World, Daily Sabah or Arab News on an event that is principally about those two states and originates in a Turkish foreign minister's statement). The Iran NPT bill is Iranian-sourced (Mehr) by nature. (3) Skipped under the sourcing-discipline rule: three TASS front-line claims (overnight drone counts, the Kiev-region Fire Point warehouse, the Odessa cargo ship), all uncorroborated single state wires; and two Mehr items that are pure official rebuttal (Pezeshkian on multilateralism, an MP calling Bessent's fuel-queue claim a lie). (4) Skipped as re-coverage inside 24 hours: the Caribbean boat strike, which appears in this feed THREE times (Euronews, Mehr, and the eng-12025915 cluster) and was published by us at 04:00 today; also the Inkstick Houthi and Iran-war-cost pieces, both analysis of arcs already covered. (5) FEED QUALITY WARNING: the niche section is badly degraded and mis-categorised — it contains a BBC ferret show, a cricket coaching interview, a Nigerian football transfer record, a Sunday politics liveblog and an India real-estate survey, three of them filed under 'science' or 'tech'. Tech supply was near-empty, which is why two of three tech picks come from a Nature methods paper and a Hacker News blog rather than from reported technology news. (6) Africa: two picks this cycle (Nigeria custodial-deaths follow-up), an improvement on yesterday's zero, but the only other African hard-news items in the feed were a Gauteng school-registration story and a Nigerian film-censorship item.",
-      "conceptUris": []
-    },
-    {
-      "id": "herzog-expunges-azaria-record-hebron-killing",
-      "label": "Israel's president pardons soldier who killed wounded Palestinian in 2016",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-herzog-expunges-azaria-record-hebron-killing"
-      ],
-      "eventUri": "eng-12025564",
-      "summary": "Isaac Herzog shortened the erasure period on Elor Azaria's criminal record, clearing the conviction for shooting Abdel Fattah al-Sharif — a wounded, immobilised Palestinian — in the head in Hebron in March 2016. Name the victim; almost no coverage will. Lead with the completeness of the reversal: Azaria was convicted of manslaughter, served nine months of an 18-month sentence, and now has no record at all. The mechanism to teach, and the reason this is a precedent rather than a clemency story: the Azaria case was the single instance in which Israel's military justice system convicted a soldier for killing a Palestinian on video, and it was held up for a decade as proof the system works. An executive erasure of that one conviction removes the proof and leaves the system's record where it started. Report what the pardon formally does, who lobbied for it, and what the al-Sharif family says. Who holds power: a head of state acting after the courts finished. Who bears it: a family whose one judicial acknowledgement has been administratively withdrawn.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Pardon",
-        "http://en.wikipedia.org/wiki/Isaac_Herzog",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Manslaughter",
-        "http://en.wikipedia.org/wiki/Combat_medic",
-        "http://en.wikipedia.org/wiki/Yom_Kippur",
-        "http://en.wikipedia.org/wiki/Hebron"
-      ]
-    },
-    {
-      "id": "iran-seven-conditions-qatar-channel-end-war",
-      "label": "Iran says conditions to re-engage in talks, end war sent to US via Qatar",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-iran-seven-conditions-qatar-channel-end-war"
-      ],
-      "eventUri": "eng-12025380",
-      "summary": "Iran's Supreme National Security Council has passed a formal set of conditions — reported as seven — to Washington through Qatari mediators to end the war. Lead with the fact that there is now a written text, because that is the change: since the June MoU collapsed the two sides have exchanged strikes, not terms. Report the conditions as precisely as the sourcing allows and attribute each to the official who stated it (Mohsen Rezaee to Al Jazeera), marking clearly what is claimed versus confirmed — no US acknowledgement exists. The mechanism our reader needs: Qatar is not a neutral postbox but a US treaty host with an Iranian gas field in common, and mediation through a party with stakes on both sides is what makes a channel survive a war. Pair with the same day's US State Department alert telling Americans across the Middle East to expect 'unforeseen escalation' and Trump's shortened Camp David trip — a peace text and an escalation warning issued within hours is the actual state of the war. Who bears it: Iranians under blockade and Gulf populations under the flight paths.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Mohsen_Rezaee",
-        "http://en.wikipedia.org/wiki/Supreme_National_Security_Council",
-        "http://en.wikipedia.org/wiki/Al_Jazeera",
-        "http://en.wikipedia.org/wiki/Washington,_D.C."
-      ]
-    },
-    {
-      "id": "houthi-missile-riyadh-first-since-2022-truce",
-      "label": "Saudi Arabia says Houthis tried to attack its capital",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-houthi-missile-riyadh-first-since-2022-truce"
-      ],
-      "eventUri": "eng-12025258",
-      "summary": "A Houthi ballistic missile was fired at Riyadh and intercepted — the first time the Saudi capital has been targeted since the 2022 truce, and the moment the Yemen war formally reopens as a front of the Iran war. Lead with that first: eight years of Houthi missiles at Riyadh stopped in 2022, and this restarts the clock. Build the factual spine on NPR and the Saudi statement; treat Mehr's framing — Yemen's Sanaa foreign ministry calling for international action over Saudi 'crimes' — as a party claim, and report it as one, because the Houthi case rests on the multi-year Saudi air campaign that made Yemen a humanitarian disaster zone and on strikes resuming this year. Both ledgers get counted. The mechanism to teach: the Houthis are a governing authority over roughly two-thirds of Yemen's population, not an Iranian proxy — they took Sanaa against Iranian advice and now build their own weapons — so a ceasefire between Washington and Tehran cannot deliver Bab el-Mandeb, which is precisely the problem for any deal. Tie to the capture of Mokha and Perim Island and the declared blockade on Saudi shipping. Who bears it: Yemeni civilians, and Riyadh residents under an intercept.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Yanbu",
-        "http://en.wikipedia.org/wiki/Saudi_Aramco",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Ballistic_missile"
-      ]
-    },
-    {
-      "id": "caribbean-boat-strike-four-killed-narco-terrorist-label",
-      "label": "US military strikes alleged narco-trafficking vessel in Caribbean, killing 4 'narco-terrorists'",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-caribbean-boat-strike-four-killed-narco-terrorist-label"
-      ],
-      "eventUri": "eng-12025915",
-      "summary": "The US Joint Task Force Western Hemisphere killed four people on a boat in the Caribbean, ten days after a strike that killed three, in a campaign that has now killed a running total the Pentagon itself publishes. Lead with the cumulative count and with what is absent from it: no names, no nationalities, no charges, no evidence released. The mechanism to teach, and the whole story: interdicting a suspected smuggling vessel is a law-enforcement act with a legal architecture — stop, board, seize, prosecute — and it has been replaced by a lethal military strike on the assertion that the dead were 'narco-terrorists'. That word does the work: it converts criminal suspects into combatants, which is the move that removes the requirement to prove anything. Report what the Pentagon released, what it did not, and whether any US or regional court has reviewed a single strike. Who bears it: Caribbean and Venezuelan fishermen and crews, in waters where an ordinary go-fast boat is indistinguishable from the target profile. Note the framing split — Fox carries the Pentagon's language unmarked, TRT marks it as alleged.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Caribbean",
-        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
-        "http://en.wikipedia.org/wiki/Strike_action",
-        "http://en.wikipedia.org/wiki/Western_Hemisphere",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_States_Southern_Command",
-        "http://en.wikipedia.org/wiki/Boat"
-      ]
-    },
-    {
-      "id": "akwa-ibom-medical-city-compensation-displacement",
-      "label": "Akwa Ibom govt silent as compensation disputes swirl around N117.5bn Medical City project",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-akwa-ibom-medical-city-compensation-displacement"
-      ],
-      "eventUri": null,
-      "summary": "A Premium Times investigation found families whose homes were demolished for a N117.5 billion state Medical City rejected the compensation as far below what rebuilding costs — and the Akwa Ibom government will not answer. Lead with one named household and the arithmetic of their specific loss: Nduke Pious standing beside the ruin of a three-bedroom bungalow 500 metres from the construction site. The mechanism to teach, and the reason this is not a local grievance story: compulsory acquisition in Nigeria compensates the assessed value of the structure, not the cost of replacing a home and a livelihood, so a legally correct valuation can still leave a family unable to rebuild — the gap is built into the statute, not into anyone's dishonesty. Report the valuation method used, who conducted it, what the families were offered, and what the state says when asked. The structural why for our reader: prestige health infrastructure in the Global South is routinely financed by displacing the people it is nominally built to serve, and the accounting only ever records the hospital. Africa has been near-absent from our coverage for two consecutive audits; this is original Nigerian reporting that exists nowhere else in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-billion-barrels-escorted-permission-regime",
-      "label": "Strait of Hormuz oil, LNG shipments hit 6-month high as US naval efforts pay off",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-hormuz-billion-barrels-escorted-permission-regime"
-      ],
-      "eventUri": "eng-12024594",
-      "summary": "CENTCOM's Adm. Brad Cooper says US forces have enabled more than one billion barrels of crude to exit the Gulf through Hormuz in recent months, putting flows at a six-month high — while the blockade against Iran continues. Lead with the number and immediately with what it describes: a waterway where cargo now moves because a navy decides which hulls pass, which is not a market clearing but a permission regime. That is the mechanism, and it is the part a barrel price will never show. Teach the consequence our reader can act on: insurance and charter rates, not the spot price, are where a permission regime gets billed, and the cost lands on the Asian importers — India, China, Japan, Korea, Pakistan — who buy the cargoes at the far end. Carry Iran's rejection with equal weight and attribution: Brig. Gen. Abolfazl Shekarchi calls the escort and one-billion-barrel claim fabricated. Neither side's figure is independently verified, and say so. Set it against Brent above $100 since the Saudi East-West pipeline shutdown, and against the Houthi blockade now closing Bab el-Mandeb as the alternative route — both Saudi export corridors constrained at once.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Brad_Cooper",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Liquefied_natural_gas"
-      ]
-    },
-    {
-      "id": "india-lpg-subsidy-biometric-aadhaar-deadline",
-      "label": "No LPG Subsidy If Aadhaar E-KYC Is Not Done From October 1",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-india-lpg-subsidy-biometric-aadhaar-deadline"
-      ],
-      "eventUri": "eng-12025244",
-      "summary": "From 1 October, India's 274 million domestic LPG consumers lose the subsidised refill price unless they complete Biometric Aadhaar Authentication — announced late on a Saturday, eleven days before it binds. Lead with the two numbers together: 27.43 crore households and the deadline, because the gap between them is the story. The mechanism to teach: biometric authentication fails in a predictable and non-random way — worn fingerprints from manual labour, elderly and disabled claimants, patchy connectivity — so a rule that reads as anti-fraud functions as an attrition filter, and the households it sheds are the ones the subsidy exists for. India's own experience with Aadhaar-gated food rations is the precedent, and the writer should say what that precedent showed. Report the exact requirement, how a household complies, what happens to a missed deadline, and what the Petroleum Ministry says the fraud being prevented actually is — an anti-leakage measure that cannot quantify the leakage is asking to be taken on trust. Who bears it: rural and poor households for whom the subsidised cylinder is the alternative to burning biomass indoors. Who holds power: a ministry setting a compliance deadline by press release.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Liquefied_petroleum_gas",
-        "http://en.wikipedia.org/wiki/Aadhaar",
-        "http://en.wikipedia.org/wiki/Authentication",
-        "http://en.wikipedia.org/wiki/Subsidy",
-        "http://en.wikipedia.org/wiki/Mobile_app",
-        "http://en.wikipedia.org/wiki/Biometrics",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Crore"
-      ]
-    },
-    {
-      "id": "jamaat-islami-march-pakistan-petroleum-levy",
-      "label": "'No turning back': Jamaat-i-Islami digs its heels in over Islamabad march",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-jamaat-islami-march-pakistan-petroleum-levy"
-      ],
-      "eventUri": "eng-12021439",
-      "summary": "Jamaat-i-Islami refuses to call off its Islamabad march unless the government abolishes the petroleum levy, with caravans moving on the capital from Karachi, Lahore and beyond from Sunday. Lead with the single demand, because a mass mobilisation with one fiscal ask is unusual and it is what makes this reportable as economics rather than as a protest. The mechanism our reader needs: the petroleum levy is a per-litre charge that sits outside the divisible pool shared with the provinces, so it is the one fuel tax Islamabad keeps in full — which is exactly why an IMF programme demanding revenue without new income tax pushes the government toward it, and why abolishing it is harder than it sounds. Establish the current rate per litre, what it raises annually, and what share of the pump price it is. The structural why: a consumption tax on fuel is regressive by construction and lands hardest on transport and on the households already absorbing power tariffs, so the levy is where externally-negotiated fiscal policy becomes visible on a receipt. Report Hafiz Naeemur Rehman's stated terms, the government's response, and what happened to the last such march. Pair against the FPCCI's 'economic curfew' framing of austerity for the business-side view.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jamaat-e-Islami",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Jamaat-e-Islami_(Pakistan)",
-        "http://en.wikipedia.org/wiki/Lahore",
-        "http://en.wikipedia.org/wiki/Karachi",
-        "http://en.wikipedia.org/wiki/Emir",
-        "http://en.wikipedia.org/wiki/Hafiz_(Quran)"
-      ]
-    },
-    {
-      "id": "trump-ai-force-czar-superintelligence-hoax",
-      "label": "Trump announces creation of 'AI Force' and calls fears of artificial superintelligence a hoax",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-trump-ai-force-czar-superintelligence-hoax"
-      ],
-      "eventUri": "eng-12025497",
-      "summary": "Trump announced a government 'AI Force' and an AI czar, and in the same breath called fears of artificial superintelligence a hoax and said he will not permit the 'destruction' of the industry. Lead with the contradiction rather than the announcement: a state that believes the risk is fictional is standing up a uniformed-sounding force to address it, which means the force is about industrial protection, not safety. The mechanism to establish, and the question the announcement does not answer: what statutory authority creates an 'AI Force', what budget line funds it, and whether the czar is a Senate-confirmed office or a White House adviser — the answers determine whether this survives an administration. The structural why for our reader: the framing is explicitly the race with China, so this is the federal government positioning as the industry's advocate at the exact moment California is imposing third-party audits and a private antitrust suit accuses the same firms of colluding to slow development. Three federal, state and civil levers pointing in three directions in one week is the real picture. Note the framing split across five countries — Al Jazeera and Dawn lead on the 'hoax' line, TASS on the China race. Beware: at this stage the only primary source is Trump's own statement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Truth_Social",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Industrial_Revolution",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Hoax"
-      ]
-    },
-    {
-      "id": "ai-labs-antitrust-suit-slowdown-agreement",
-      "label": "Anthropic, Google, OpenAI, SpaceXAI sued over AI slowdown deal",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-ai-labs-antitrust-suit-slowdown-agreement"
-      ],
-      "eventUri": "eng-12024343",
-      "summary": "A suit filed Friday in the Northern District of California alleges the four leading AI labs illegally agreed to slow the pace of their own development. Lead with how strange the accusation is on its face — antitrust normally punishes firms for racing each other to a harm, and this claims the harm was agreeing not to race. The mechanism to teach, because it is the whole legal question: a horizontal agreement among competitors to restrict output is per se illegal under Sherman Act §1 regardless of motive, so if the labs did coordinate a slowdown, 'we did it for safety' is not a defence that US antitrust law recognises. That is the trap the industry's own safety commitments built. Report who filed, what the alleged agreement is, what evidence is pleaded versus inferred, and what the companies say — a complaint is an allegation and the article must hold that line throughout. The structural why for our reader: every voluntary-coordination safety proposal, from compute thresholds to joint evaluation standards, runs through this same statute, so the case sets the price of self-regulation. Note the same-week contrast with Trump's 'AI Force' and California's audit order — three different authorities reaching for the same industry with incompatible theories of what is wrong with it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Anthropic",
-        "http://en.wikipedia.org/wiki/Lawsuit",
-        "http://en.wikipedia.org/wiki/Elon_Musk",
-        "http://en.wikipedia.org/wiki/Competition_law"
-      ]
-    },
-    {
-      "id": "india-eos-05-isr-satellite-south-asia-revisit",
-      "label": "India's New Eye in the Sky: EOS-05 Satellite and What It Means for South Asia",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-india-eos-05-isr-satellite-south-asia-revisit"
-      ],
-      "eventUri": null,
-      "summary": "EOS-05 is one satellite in a broader Indian build-out of intelligence, surveillance and reconnaissance capability — and the reason it matters is not the spacecraft but the revisit rate. Lead with the capability in plain terms: what EOS-05 can see, through what (all-weather radar versus optical), and how often it passes over the same ground. The mechanism to teach, and the part general coverage always misses: strategic surveillance value is a function of revisit frequency, not resolution — a constellation that photographs a site every ninety minutes changes what an adversary can move unobserved, while one that returns every three days does not. Establish which of those EOS-05 moves India toward. The structural why for our reader: an indigenous ISR constellation removes India's dependence on foreign imagery in a crisis, which is precisely what shortens decision timelines on both sides of the Line of Control — Pakistan's response, and whether it has or is buying an equivalent, is half the story and should be reported as such. Keep the claims proportionate to one launch, and distinguish what ISRO states from what analysts infer. Sourcing note: The Diplomat (US) is the only source in the feed; no Indian or Pakistani outlet carried an EOS-05 capability assessment.",
-      "conceptUris": []
-    },
-    {
-      "id": "fiji-hiv-national-emergency-injecting-drug-surge",
-      "label": "Fiji declares national HIV emergency as one in 60 adults found living with the virus",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-fiji-hiv-national-emergency-injecting-drug-surge"
-      ],
-      "eventUri": "spa-4340464",
-      "summary": "Fiji has declared a national HIV emergency: one in 60 adults is living with the virus, in a country of under a million people. Lead with the prevalence figure and strip the travel-brochure framing out entirely — the source headline calls it a honeymoon destination, and our reader is owed the epidemiology instead. The mechanism to explain, because it is what makes this a warning rather than a Pacific curiosity: the surge is driven by injecting methamphetamine use and needle sharing, which produces a transmission curve unlike the sexual-transmission epidemics most national programmes were designed around — it moves through tight networks fast, concentrates in the young, and outruns testing capacity before prevalence data shows it. That is why a country can go from a low-burden classification to an emergency declaration inside a few years. Report the actual case counts and the trend, what the emergency declaration authorises, what the treatment and testing expansion consists of, and who funds it. The structural why: Fiji sits on a methamphetamine transhipment route into Australia and New Zealand, so the drug economy driving this is regional and the response is one small state's alone. Oceania has been entirely absent from our coverage; this is the region's most consequential story in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "gondwana-supermountains-antarctica-nutrient-pulse",
-      "label": "'Supermountains' Buried Under Antarctica Fueled Explosion of Life, Scientists Discover",
-      "firstSeen": "2026-09-20T04:06:24.383Z",
-      "lastCovered": "2026-09-20T04:06:24.383Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-gondwana-supermountains-antarctica-nutrient-pulse"
-      ],
-      "eventUri": null,
-      "summary": "A colossal mountain range raised by the assembly of Gondwana around 600 million years ago — now buried under Antarctic ice — appears to have set the stage for complex life, and the evidence is a handful of microscopic mineral grains. Lead with the inversion of scale: the claim is about a continent-spanning range and the proof is in crystals. The mechanism to teach, and the genuinely satisfying part: mountains that large erode enormously, and the erosion flushes phosphorus, calcium and other nutrients into the ocean at rates the earlier Earth never saw — so the argument is that geology fertilised the sea, and the sea produced animals. Explain how zircon chemistry records the crustal thickness of a range that no longer exists, because that is the inferential chain the whole finding rests on. Be exact about what is measured versus what is modelled, and keep the causal claim as tentative as the researchers do — 'helped set the stage' is not 'caused'. For our reader, the transferable idea is that the habitability of a planet can turn on a tectonic accident, and that we read vanished continents out of chemistry rather than rock.",
       "conceptUris": []
     }
   ]
