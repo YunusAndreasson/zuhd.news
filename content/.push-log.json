@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-08-31T22:20:05.777Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-08-31-exxon-venezuela-licence-as-instrument",
-        "title": "Exxon Returns To Venezuela",
-        "category": "economy",
-        "eventCoverage": 139,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-modi-putin-bilateral-crude-leverage-unused",
-        "title": "Modi Urges Peace, Buys Crude",
-        "category": "politics",
-        "eventCoverage": 124,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-south-africa-fuel-formula-war-premium-pass-through",
-        "title": "Fuel Price Defies Stronger Rand",
-        "category": "economy",
-        "eventCoverage": 113,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price",
-        "title": "FTC Sues Amazon Over Ads",
-        "category": "economy",
-        "eventCoverage": 91,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-larak-scatterable-mine-claim-unverified-justification",
-        "title": "US Cites Unproven Mine Threat",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-islamic-state-buried-reserves-outside-the-financial-system",
-        "title": "Islamic State Buried Millions",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-droplet-microdischarge-corrosion-coating-inversion",
-        "title": "Raindrops Punch Through Coatings",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-percolation-universality-proof-critical-threshold",
-        "title": "Mathematicians Prove Percolation Universality",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-agent-sandbox-escape-model-registry-supply-chain",
-        "title": "Agents Breach Hugging Face",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-hyperliquid-dprk-flows-visible-and-unstoppable",
-        "title": "Hackers Launder Millions On Hyperliquid",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-08-31-mathematics-ai-proof-verification-boundary",
-        "title": "Mathematicians Split Over AI",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-08-31-amazon-ad-auction-surcharge-unverifiable-clearing-price",
-      "title": "FTC Sues Amazon Over Ads",
-      "category": "economy",
-      "body": "Amazon overcharged advertisers $20 billion, regulators",
-      "eventCoverage": 91,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "FTC sues Amazon, alleges it overcharged advertisers $20 billion",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-01T04:25:18.169Z",
     "candidateCount": 12,
     "candidates": [
@@ -10385,6 +10285,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Google merges Android, ChromeOS into new Googlebook laptops starting at $899",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 7
+    }
+  },
+  {
+    "timestamp": "2026-09-22T08:25:33.300Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-09-22-trump-greenland-denmark-security-deal-sovereignty",
+        "title": "Greenland Deal Keeps Denmark",
+        "category": "politics",
+        "eventCoverage": 640,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-hurricane-polo-category-4-mexico-rapid-intensification",
+        "title": "Polo Explodes To Category 4",
+        "category": "science",
+        "eventCoverage": 359,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-erdogan-unsc-reform-abolish-veto-unga",
+        "title": "Erdogan Calls To Abolish Veto",
+        "category": "politics",
+        "eventCoverage": 96,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-novo-nordisk-patent-cliff-semaglutide-investors",
+        "title": "Novo CEO Admits Over-Promising",
+        "category": "economy",
+        "eventCoverage": 84,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-upi-mdr-gst-npci-small-merchants",
+        "title": "Tax Reaches India's Free Payments",
+        "category": "economy",
+        "eventCoverage": 67,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-21-ethiopia-armed-groups-alliance-abiy-fano-ola",
+        "title": "Ethiopian Rebels Form Alliance",
+        "category": "politics",
+        "eventCoverage": 59,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-alibaba-cloud-20gw-datacenters-in-house-ai-chip",
+        "title": "Alibaba Bets On Its Own Chip",
+        "category": "tech",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-yemen-130000-displaced-iom-red-sea-fighting",
+        "title": "Yemen Displacement Tops 130,000",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-kp-minister-fazal-shakoor-khan-abducted-pti",
+        "title": "Masked Men Seize Pakistani Minister",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-south-africa-r1-trillion-online-betting-regulation",
+        "title": "SA Bets R1-Trillion, Unwatched",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-pulsar-x-ray-tail-orphan-gamma-rays-lhaaso",
+        "title": "X-Ray Tail Finds Cosmic Rays' Source",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-22-coldcard-hack-whitehats-52-bitcoin-recovery-trust",
+        "title": "Whitehats Race Hackers To Keys",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-21-how-ai-chatbots-are-deskilling-human-empathy",
+        "title": "Chatbots Erode Human Empathy",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-22-hurricane-polo-category-4-mexico-rapid-intensification",
+      "title": "Polo Explodes To Category 4",
+      "category": "science",
+      "body": "Polo jumped from tropical storm to 130 mph",
+      "eventCoverage": 359,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Hurricane Polo intensifies to Category 4 off Mexico's Pacific coast",
     "response": {
       "pushed": 1,
       "skipped": 0,
