@@ -1,9 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   cancelAnimation,
   type SharedValue,
   useAnimatedReaction,
   useSharedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnUI } from 'react-native-worklets';
@@ -61,6 +62,8 @@ interface FlightPlan {
   story: number;
   /** A pinch zoom was in effect when a place flight began: keep it. */
   wasZoomed: boolean;
+  /** Which flight this is, so a completion callback lands only its own. */
+  id: number;
 }
 
 export interface CameraFlightInputs {
@@ -79,6 +82,8 @@ export interface CameraFlightInputs {
 export interface CameraFlight {
   /** 0 → 1 while a flight is under way; a finger on the globe cancels it. */
   flightT: SharedValue<number>;
+  /** Captured on the UI thread to reject taps delivered after a newer gesture. */
+  requestEpoch: SharedValue<number>;
   /** Tell the camera which story is in front of the deck (`null`: no place). */
   setFront: (coords: LatLng | null) => void;
   /**
@@ -99,9 +104,17 @@ export interface CameraFlight {
    */
   cancelFlight: () => void;
   /** Hold the camera where it is drawn, before the deck jumps under it. */
-  hold: () => void;
+  hold: (expectedEpoch?: number) => void;
   /** Fly to story `index`, land on its framing, and hand the camera back. */
-  toStory: (coords: LatLng, index: number, framing: number) => void;
+  toStory: (
+    coords: LatLng,
+    index: number,
+    framing: number,
+    delayMs?: number,
+    expectedEpoch?: number,
+  ) => void;
+  /** Remap a refreshed feed without moving a camera the reader is holding. */
+  remapStory: (previousIndex: number, index: number, sameStory: boolean) => void;
   /** As `toStory`, but only if a target is holding the camera: a swipe that
    *  landed while the earth was left somewhere else. */
   toStoryIfHeld: (coords: LatLng, index: number, framing: number) => void;
@@ -129,17 +142,67 @@ export function useCameraFlight({
 }: CameraFlightInputs): CameraFlight {
   const flightT = useSharedValue(1);
   const plan = useSharedValue<FlightPlan | null>(null);
+  const flightId = useSharedValue(0);
+  const pending = useSharedValue<{
+    lat: number;
+    lng: number;
+    story: number;
+    framing: number;
+    epoch: number;
+  } | null>(null);
+  const pendingClock = useSharedValue(0);
+  const requestEpoch = useSharedValue(0);
+  const invalidatePending = useCallback(() => {
+    'worklet';
+    requestEpoch.value += 1;
+    pending.value = null;
+    cancelAnimation(pendingClock);
+  }, [pending, pendingClock, requestEpoch]);
+  useEffect(() => () => scheduleOnUI(invalidatePending), [invalidatePending]);
   const frontLat = useSharedValue(Number.NaN);
   const frontLng = useSharedValue(Number.NaN);
 
-  const holdUI = useCallback(() => {
-    'worklet';
-    takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
-  }, [cameraLat, cameraLng, cameraOwner, viewLat, viewLng]);
+  const holdUI = useCallback(
+    (expectedEpoch?: number) => {
+      'worklet';
+      if (expectedEpoch !== undefined && expectedEpoch !== requestEpoch.value) return;
+      takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
+    },
+    [cameraLat, cameraLng, cameraOwner, requestEpoch, viewLat, viewLng],
+  );
+
+  /** The camera at flight fraction `t`, and the landing once `t` is 1. */
+  const applyFlight = useCallback(
+    (t: number) => {
+      'worklet';
+      const p = plan.value;
+      if (!p) return;
+      // `flyPosition`, not `t`: the path covers most of its ground while it is
+      // furthest out, which is what holds the ground to one speed on screen.
+      const at = flyPosition(p.curve, t);
+      const point = slerpLatLng(p.fromLat, p.fromLng, p.toLat, p.toLng, at);
+      cameraLat.value = point[0];
+      cameraLng.value = point[1];
+      zoomAngle.value = flySpanClip(p.curve, t);
+      if (t < 1) return;
+      plan.value = null;
+      if (p.story >= 0) {
+        // Landed on the story's own framing: the deck now draws exactly this
+        // frame, so the override and the camera go back to it together. A
+        // deck that has moved on in the meantime will fly again when it lands.
+        zoomActive.value = 0;
+        if (Math.abs(storyProgress.value - p.story) < HAND_BACK_SLACK) cameraOwner.value = 0;
+      } else if (!p.wasZoomed) {
+        zoomActive.value = 0;
+      }
+    },
+    [cameraLat, cameraLng, cameraOwner, plan, storyProgress, zoomActive, zoomAngle],
+  );
 
   const startUI = useCallback(
     (lat: number, lng: number, story: number, framing: number, onlyIfHeld: boolean) => {
       'worklet';
+      invalidatePending();
       if (onlyIfHeld && cameraOwner.value !== 1) return;
       takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
       // A glide, a zoom hand-back or the last flight stops where it is.
@@ -163,22 +226,37 @@ export function useCameraFlight({
         curve,
         story,
         wasZoomed: zoomActive.value > 0.5,
+        id: flightId.value + 1,
       };
+      flightId.value += 1;
+      const id = flightId.value;
       // Start the override at the clip already on screen, so taking zoom from
       // the story moves nothing on the first frame.
       zoomAngle.value = fromClip;
       zoomActive.value = 1;
       flightT.value = 0;
-      // Reanimated snaps this to its end under Reduce Motion: the camera is
-      // placed at once, and the landing below still runs.
-      flightT.value = withTiming(1, { duration: flyMs(curve), easing: EASING.camera });
+      // Under Reduce Motion Reanimated finishes this inside the assignment, so
+      // `flightT` is 1 again before the reaction below ever sees the 0 — it
+      // compares 1 with 1 and returns, and the camera stayed held where the
+      // finger left it, with the flight's zoom override on, for every story
+      // after. The completion lands the flight whenever the reaction has not.
+      flightT.value = withTiming(
+        1,
+        { duration: flyMs(curve), easing: EASING.camera },
+        (finished) => {
+          if (finished && plan.value?.id === id) applyFlight(1);
+        },
+      );
     },
     [
+      applyFlight,
       cameraLat,
       cameraLng,
       cameraOwner,
       clip,
+      flightId,
       flightT,
+      invalidatePending,
       plan,
       viewLat,
       viewLng,
@@ -191,31 +269,13 @@ export function useCameraFlight({
     () => flightT.value,
     (t, previous) => {
       if (previous === null || t === previous) return;
-      const p = plan.value;
-      if (!p) return;
-      // `flyPosition`, not `t`: the path covers most of its ground while it is
-      // furthest out, which is what holds the ground to one speed on screen.
-      const at = flyPosition(p.curve, t);
-      const point = slerpLatLng(p.fromLat, p.fromLng, p.toLat, p.toLng, at);
-      cameraLat.value = point[0];
-      cameraLng.value = point[1];
-      zoomAngle.value = flySpanClip(p.curve, t);
-      if (t < 1) return;
-      plan.value = null;
-      if (p.story >= 0) {
-        // Landed on the story's own framing: the deck now draws exactly this
-        // frame, so the override and the camera go back to it together. A
-        // deck that has moved on in the meantime will fly again when it lands.
-        zoomActive.value = 0;
-        if (Math.abs(storyProgress.value - p.story) < HAND_BACK_SLACK) cameraOwner.value = 0;
-      } else if (!p.wasZoomed) {
-        zoomActive.value = 0;
-      }
+      applyFlight(t);
     },
   );
 
   const claimForDeck = useCallback(() => {
     'worklet';
+    invalidatePending();
     if (cameraOwner.value !== 1) return;
     const lat = frontLat.value;
     const lng = frontLng.value;
@@ -223,19 +283,20 @@ export function useCameraFlight({
     let dLng = Math.abs(cameraLng.value - lng) % 360;
     if (dLng > 180) dLng = 360 - dLng;
     if (Math.abs(cameraLat.value - lat) >= HANDOFF_DEGREES || dLng >= HANDOFF_DEGREES) return;
-    // Close enough to be the same frame. A flight still under way is at its
-    // start or its end, where its zoom is the story's own, so it can stop.
-    const p = plan.value;
-    if (p) {
-      cancelAnimation(flightT);
-      plan.value = null;
-      if (p.story >= 0 || !p.wasZoomed) zoomActive.value = 0;
-    }
+    // Over the story, but at a pinch's zoom — the whole planet, say — is not
+    // the story's frame either: taken now, the deck would carry that zoom on
+    // to every story after it. The camera stays, and the swipe flies it down
+    // to the story it lands on (`toStoryIfHeld`), as it does from a drag.
+    // Position alone cannot prove matching framing during a flight: a
+    // same-location return from a pinch changes only zoom. Keep its camera
+    // until it lands, or let the deck's landing retarget it to the next story.
+    if (plan.value || zoomActive.value > 0.5) return;
     cameraOwner.value = 0;
-  }, [cameraLat, cameraLng, cameraOwner, flightT, frontLat, frontLng, plan, zoomActive]);
+  }, [cameraLat, cameraLng, cameraOwner, frontLat, frontLng, invalidatePending, plan, zoomActive]);
 
   const cancelFlight = useCallback(() => {
     'worklet';
+    invalidatePending();
     cancelAnimation(flightT);
     const p = plan.value;
     if (!p) return;
@@ -248,7 +309,7 @@ export function useCameraFlight({
         easing: EASING.camera,
       });
     }
-  }, [flightT, plan, zoomActive]);
+  }, [flightT, invalidatePending, plan, zoomActive]);
 
   const setFront = useCallback(
     (coords: LatLng | null) => {
@@ -258,11 +319,65 @@ export function useCameraFlight({
     [frontLat, frontLng],
   );
 
-  const hold = useCallback(() => scheduleOnUI(holdUI), [holdUI]);
+  const hold = useCallback(
+    (expectedEpoch?: number) => scheduleOnUI(holdUI, expectedEpoch),
+    [holdUI],
+  );
+  const requestStoryUI = useCallback(
+    (
+      lat: number,
+      lng: number,
+      story: number,
+      framing: number,
+      delayMs: number,
+      expectedEpoch?: number,
+    ) => {
+      'worklet';
+      if (expectedEpoch !== undefined && expectedEpoch !== requestEpoch.value) return;
+      if (delayMs <= 0) {
+        startUI(lat, lng, story, framing, false);
+        return;
+      }
+      cancelFlight();
+      holdUI();
+      const epoch = requestEpoch.value;
+      pending.value = { lat, lng, story, framing, epoch };
+      pendingClock.value = 0;
+      // The collection burst waits on the UI thread, where a newer drag,
+      // pinch or deck claim can invalidate it even while JS is blocked.
+      pendingClock.value = withDelay(
+        delayMs,
+        withTiming(1, { duration: 0 }, (finished) => {
+          const next = pending.value;
+          if (!finished || !next || next.epoch !== epoch) return;
+          startUI(next.lat, next.lng, next.story, next.framing, false);
+        }),
+      );
+    },
+    [cancelFlight, holdUI, pending, pendingClock, requestEpoch, startUI],
+  );
   const toStory = useCallback(
-    (coords: LatLng, index: number, framing: number) =>
-      scheduleOnUI(startUI, coords[0], coords[1], index, framing, false),
-    [startUI],
+    (coords: LatLng, index: number, framing: number, delayMs = 0, expectedEpoch?: number) =>
+      scheduleOnUI(requestStoryUI, coords[0], coords[1], index, framing, delayMs, expectedEpoch),
+    [requestStoryUI],
+  );
+  const remapStory = useCallback(
+    (previousIndex: number, index: number, sameStory: boolean) => {
+      scheduleOnUI(() => {
+        'worklet';
+        // A held view and its zoom are independent of the feed's indices.
+        // Retarget only the landing bookkeeping of an existing story flight.
+        if (sameStory) {
+          if (plan.value?.story === previousIndex) plan.value = { ...plan.value, story: index };
+          if (pending.value?.story === previousIndex)
+            pending.value = { ...pending.value, story: index };
+        } else {
+          cancelFlight();
+        }
+        storyProgress.value = index;
+      });
+    },
+    [cancelFlight, pending, plan, storyProgress],
   );
   const toStoryIfHeld = useCallback(
     (coords: LatLng, index: number, framing: number) =>
@@ -276,11 +391,13 @@ export function useCameraFlight({
 
   return {
     flightT,
+    requestEpoch,
     setFront,
     claimForDeck,
     cancelFlight,
     hold,
     toStory,
+    remapStory,
     toStoryIfHeld,
     toPlace,
   };

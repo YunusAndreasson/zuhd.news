@@ -37,6 +37,8 @@ export interface ScrubOptions {
   detailFor?: (fraction: number) => string;
   /** The finger lifted, or tapped: go there. */
   onCommit: (fraction: number) => void;
+  /** Optional worklet: claim input before any JS callback or pending camera action. */
+  onClaim?: () => void;
   onScrubStart?: () => void;
   onScrubEnd?: () => void;
   tooltipWidth?: number;
@@ -71,6 +73,7 @@ export function useScrub({
   labelFor,
   detailFor,
   onCommit,
+  onClaim,
   onScrubStart,
   onScrubEnd,
   tooltipWidth = 48,
@@ -144,6 +147,7 @@ export function useScrub({
       failOffsetY: [-10, 10],
       onActivate: (e) => {
         'worklet';
+        onClaim?.();
         beforeDrag.value = fraction.value;
         holding.value = 1;
         scheduleOnRN(start);
@@ -184,6 +188,7 @@ export function useScrub({
       lastStep,
       track,
       onCommit,
+      onClaim,
       pending,
       end,
     ],
@@ -196,13 +201,14 @@ export function useScrub({
       onDeactivate: (e) => {
         'worklet';
         if (e.canceled) return;
+        onClaim?.();
         lastDetent.value = -1;
         lastStep.value = -1;
         track(e.x);
         scheduleOnRN(onCommit, pending.value);
       },
     }),
-    [enabled, lastDetent, lastStep, track, onCommit, pending],
+    [enabled, lastDetent, lastStep, track, onCommit, onClaim, pending],
   );
 
   const pan = usePanGesture(panConfig);

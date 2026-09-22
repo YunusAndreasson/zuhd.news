@@ -2,9 +2,12 @@ import Storage from 'expo-sqlite/kv-store';
 import { useSyncExternalStore } from 'react';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
 
-/** Read progress is separate from opening a story or finding its globe marker.
- * Persisted locally, bounded to 600 stories, and pruned only after two weeks
- * outside the live feed. Never migrate opened stories into this state. */
+/** Read progress is separate from opening a story or finding its globe marker:
+ * a story is read once it has been in front of the reader for
+ * `READ_DWELL_MS`, at rest or open (`useReadTracking`), and the dock's track
+ * draws it as a hairline. Persisted locally, bounded to 600 stories, and
+ * pruned only after two weeks outside the live feed. Never migrate found
+ * stories into this state. */
 
 const READ_KEY = 'zuhd_read_v1';
 const MAX_READ = 600;

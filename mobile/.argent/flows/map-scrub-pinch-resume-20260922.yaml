@@ -1,0 +1,42 @@
+steps:
+  - echo: Scrub towards the end, immediately pinch during the camera flight, then
+      background. Resume should preserve selected story and leave map gestures
+      usable.
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.15
+            fromY: 0.946
+            toX: 0.92
+            toY: 0.946
+            durationMs: 300
+            momentum: false
+          delayMs: 0
+        - tool: gesture-pinch
+          args:
+            centerX: 0.5
+            centerY: 0.3
+            startDistance: 0.15
+            endDistance: 0.6
+            durationMs: 300
+          delayMs: 0
+        - tool: button
+          args:
+            button: home
+          delayMs: 0
+  - tool: launch-app
+    args:
+      bundleId: news.zuhd.app
+    delayMs: 2000
+  - await:
+      visible: { text: Today's stories }
+      timeout: 5000
+  - await: { idle: true }
+  - await:
+      visible: { text: Menu }
+      timeout: 5000
+executionPrerequisite: Android collapsed map, default text size, no platform
+  sheet; full-width scrubber at bottom (no new-stories button) and map in upper area. Tests camera interruption
+  followed by background/resume; selected story is live-feed dependent.

@@ -26,20 +26,19 @@ export function MarketBrowserSheet({
 }: Props) {
   const { colors } = useTheme();
   const [filter, setFilter] = useState<Filter>('all');
-  const rows = useMemo(
+  // Other readings refresh independently. Reuse the exchange cards (including
+  // their formatted histories) when only that other feed changes.
+  const exchangeRows = useMemo(
     () =>
-      filter === 'other data'
-        ? instruments
-        : [...exchanges]
-            .filter(
-              (e) => filter === 'all' || (filter === 'rising' ? e.changePct > 0 : e.changePct < 0),
-            )
-            .sort(
-              (a, b) => Math.abs(b.changePct) - Math.abs(a.changePct) || a.id.localeCompare(b.id),
-            )
-            .map(exchangeCard),
-    [exchanges, filter, instruments],
+      [...exchanges]
+        .filter(
+          (e) => filter === 'all' || (filter === 'rising' ? e.changePct > 0 : e.changePct < 0),
+        )
+        .sort((a, b) => Math.abs(b.changePct) - Math.abs(a.changePct) || a.id.localeCompare(b.id))
+        .map(exchangeCard),
+    [exchanges, filter],
   );
+  const rows = filter === 'other data' ? instruments : exchangeRows;
   const rise = exchanges.filter((e) => e.changePct > 0).length;
   const fall = exchanges.filter((e) => e.changePct < 0).length;
   const byId = useMemo(() => new Map(exchanges.map((e) => [`mkt:${e.id}`, e])), [exchanges]);

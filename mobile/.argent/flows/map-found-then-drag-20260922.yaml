@@ -1,0 +1,22 @@
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-tap
+          args:
+            x: 0.5642140974032459
+            y: 0.4805085045840267
+          delayMs: 100
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.3
+            toX: 0.8
+            toY: 0.3
+            durationMs: 700
+            momentum: false
+          delayMs: 0
+executionPrerequisite: Android default-size collapsed map centred on Beijing.
+  Alibaba Cloud story beacon or read marker must be present at the discovered position. Raw
+  coordinates intentionally reproduce a 300ms delayed-flight race; live feed
+  dependent.

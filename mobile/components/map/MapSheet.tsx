@@ -46,8 +46,7 @@ import { hapticTick } from '../../lib/haptics';
  * belongs there. There is no full-screen reader to hand off to; a modal
  * reader was intrusive and lost the earth.
  *
- * The dock under it — the story track and its buttons — is not part of this
- * view. It is pinned to the screen, so it does not move with the sheet, and
+ * The dock under it — the story track — is not part of this view. It is pinned to the screen, so it does not move with the sheet, and
  * the content leaves room for it at the bottom.
  *
  * ## Gesture ownership
@@ -223,9 +222,9 @@ export function MapSheet({
       // Only ever called as a finger lets go, so the spring is the
       // continuation of a direct manipulation and keeps its physics under
       // Reduce Motion (`KEEP_MOTION`) — snapping a thrown sheet to its stop reads
-      // as broken, not accessible. A programmatic move (the dock's button, an
-      // accessibility action) is a plain `springSettle`, which Reanimated
-      // itself snaps when Reduce Motion is on.
+      // as broken, not accessible. A programmatic move (a tap on the card or
+      // the globe, an accessibility action) is a plain `springSettle`, which
+      // Reanimated itself snaps when Reduce Motion is on.
       offset.value = withSpring(target, { ...ANIMATION.springSettle, ...KEEP_MOTION, velocity });
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
@@ -357,8 +356,8 @@ export function MapSheet({
 
   // The detents reachable without a drag. A sheet whose only control is a
   // gesture is a sheet a switch-control or voice-control user cannot move,
-  // and this one is the app's whole list. The same spring as the dock's
-  // button: one control, whichever way it is reached.
+  // and this one is the app's whole list. The same spring as a tap on the
+  // card (`expand`): one control, whichever way it is reached.
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
       const expand = event.nativeEvent.actionName === 'increment';

@@ -1,0 +1,88 @@
+steps:
+  - echo: Zoom out then rapidly reverse story swipes to interrupt camera flights.
+      Expect the first story and usable map at the end.
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-pinch
+          args:
+            centerX: 0.5
+            centerY: 0.34
+            startDistance: 0.65
+            endDistance: 0.12
+            durationMs: 500
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.85
+            fromY: 0.78
+            toX: 0.15
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.15
+            fromY: 0.78
+            toX: 0.85
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.85
+            fromY: 0.78
+            toX: 0.15
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.15
+            fromY: 0.78
+            toX: 0.85
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.85
+            fromY: 0.78
+            toX: 0.15
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.15
+            fromY: 0.78
+            toX: 0.85
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.85
+            fromY: 0.78
+            toX: 0.15
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.15
+            fromY: 0.78
+            toX: 0.85
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        text: Today's stories
+      expectedText: Story 1 of
+      timeoutMs: 10000
+executionPrerequisite: Android development app on first collapsed story, default
+  text size, loaded map, no sheet. Canvas gestures are at the discovered upper
+  centre; deck gestures are inside the collapsed card.

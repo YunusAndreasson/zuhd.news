@@ -1,5 +1,36 @@
 import type { ConflictEvent } from '@shared/types';
-import { displayConflictSource, eventAgeDays, parseConflictHero } from '../lib/conflict';
+import {
+  collapseConflictVisuals,
+  conflictChooserDetails,
+  displayConflictSource,
+  eventAgeDays,
+  parseConflictHero,
+} from '../lib/conflict';
+
+describe('conflict visual clustering', () => {
+  it('collapses nearby painted glows while retaining cluster size', () => {
+    const clusters = collapseConflictVisuals([
+      { x: 100, y: 100, recencyAlpha: 0.5, scale: 0.8 },
+      { x: 103, y: 102, recencyAlpha: 0.9, scale: 0.7 },
+      { x: 180, y: 180, recencyAlpha: 1, scale: 1.1 },
+    ]);
+    expect(clusters).toHaveLength(2);
+    expect(clusters[0]).toMatchObject({ count: 2, recencyAlpha: 0.9, scale: 0.8 });
+    expect(clusters[0]?.x).toBeCloseTo(101.5);
+    expect(clusters[0]?.y).toBeCloseTo(101);
+    expect(clusters[1]).toMatchObject({ count: 1, x: 180, y: 180 });
+  });
+
+  it('merges transitive neighbours into one theatre cluster', () => {
+    const clusters = collapseConflictVisuals([
+      { x: 0, y: 0, recencyAlpha: 1, scale: 1 },
+      { x: 10, y: 0, recencyAlpha: 0.8, scale: 0.9 },
+      { x: 20, y: 0, recencyAlpha: 0.7, scale: 0.8 },
+    ]);
+    expect(clusters).toHaveLength(1);
+    expect(clusters[0]?.count).toBe(3);
+  });
+});
 
 // Mirror of gdacs.test.ts — these pin the display-side reductions the
 // ConflictSheet relies on, so a future schema/refactor that breaks them
@@ -20,6 +51,30 @@ const baseEvent: ConflictEvent = {
   notes: '',
   source: '',
 };
+
+describe('conflict chooser descriptions', () => {
+  it('distinguishes otherwise identical casualties and event types by locality and date', () => {
+    const rows = conflictChooserDetails([
+      { ...baseEvent, id: 'a', location: 'Az-Zawayda', country: 'Israel' },
+      { ...baseEvent, id: 'b', location: 'Gaza City', country: 'Israel' },
+    ]);
+    expect(rows.get('a')).toContain('2026-03-31 · Az-Zawayda');
+    expect(rows.get('b')).toContain('Gaza City');
+    expect(rows.get('a')).not.toBe(rows.get('b'));
+  });
+
+  it('distinguishes same-place reports by actors, then report position if necessary', () => {
+    const rows = conflictChooserDetails([
+      { ...baseEvent, id: 'a' },
+      { ...baseEvent, id: 'b' },
+      { ...baseEvent, id: 'c', actor1: 'Group B' },
+    ]);
+    expect(rows.get('a')).toContain('Group A · report 1 of 2');
+    expect(rows.get('b')).toContain('Group A · report 2 of 2');
+    expect(rows.get('c')).toContain('Group B');
+    expect(new Set(rows.values()).size).toBe(3);
+  });
+});
 
 describe('parseConflictHero', () => {
   it('promotes fatalities to the focal when reported', () => {

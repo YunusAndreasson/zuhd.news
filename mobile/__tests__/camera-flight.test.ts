@@ -17,11 +17,19 @@ import {
 // `withTiming` lands at once — the test plays the frames itself.
 type Reaction = (value: number, previous: number | null) => void;
 let reaction: Reaction = () => {};
+let delayedCallbacks: ((finished: boolean) => void)[] = [];
+beforeEach(() => {
+  delayedCallbacks = [];
+});
 Object.assign(Reanimated, {
   useAnimatedReaction: (_prepare: () => number, react: Reaction) => {
     reaction = react;
   },
-  withTiming: (to: number) => to,
+  withTiming: (to: number, _config?: unknown, callback?: (finished: boolean) => void) => {
+    if (callback) delayedCallbacks.push(callback);
+    return to;
+  },
+  withDelay: (_delay: number, value: number) => value,
   cancelAnimation: jest.fn(),
 });
 
@@ -199,4 +207,155 @@ it('lets a swipe take the camera only when it is still on the story in front', (
   act(() => wrapped.flight.setFront([0, -179.9]));
   act(() => wrapped.flight.claimForDeck());
   expect(wrapped.inputs.cameraOwner.value).toBe(0);
+});
+
+it('leaves a pinch’s zoom with the camera, for the landing to fly down from', () => {
+  // Over the story in front, but pinched out to the whole planet: taken by the
+  // deck, that zoom would ride on to every story after it.
+  const pinched = setup({ owner: 1, zoomed: true, clip: 90 });
+  pinched.inputs.cameraLat.value = 40;
+  pinched.inputs.cameraLng.value = 120;
+  act(() => pinched.flight.setFront([40, 120]));
+  act(() => pinched.flight.claimForDeck());
+  expect(pinched.inputs.cameraOwner.value).toBe(1);
+  expect(pinched.inputs.zoomActive.value).toBe(1);
+  // The swipe lands and flies to the story's framing, which lets the zoom go.
+  act(() => pinched.flight.toStoryIfHeld([40, 120], 1, 22));
+  pinched.inputs.storyProgress.value = 1;
+  play(1);
+  expect(pinched.inputs.zoomActive.value).toBe(0);
+  expect(pinched.inputs.zoomAngle.value).toBeCloseTo(22, 9);
+  expect(pinched.inputs.cameraOwner.value).toBe(0);
+});
+
+it('keeps a same-location zoom flight intact when the deck claims a swipe', () => {
+  const { inputs, flight } = setup({ zoomed: true, clip: 90 });
+  act(() => {
+    flight.setFront([10, 20]);
+    flight.toStory([10, 20], 0, 22);
+  });
+  play(0.4);
+  const flyingClip = inputs.zoomAngle.value;
+  expect(flyingClip).toBeGreaterThan(22);
+  expect(inputs.cameraLat.value).toBeCloseTo(10);
+  expect(inputs.cameraLng.value).toBeCloseTo(20);
+
+  act(() => flight.claimForDeck());
+  expect(inputs.zoomActive.value).toBe(1);
+  expect(inputs.cameraOwner.value).toBe(1);
+  expect(inputs.zoomAngle.value).toBe(flyingClip);
+
+  // Claiming does not cancel the flight plan: it can still land normally.
+  act(() => reaction(1, 0.4));
+  expect(inputs.zoomAngle.value).toBeCloseTo(22);
+  expect(inputs.zoomActive.value).toBe(0);
+  expect(inputs.cameraOwner.value).toBe(0);
+});
+
+it('retargets an ongoing zoom flight when the deck lands on another story', () => {
+  const { inputs, flight } = setup({ zoomed: true, clip: 90 });
+  act(() => {
+    flight.setFront([10, 20]);
+    flight.toStory([10, 20], 0, 22);
+  });
+  play(0.4);
+  inputs.clip.value = inputs.zoomAngle.value;
+  act(() => flight.claimForDeck());
+  inputs.storyProgress.value = 1;
+  act(() => flight.toStoryIfHeld([40, 120], 1, 24));
+  play(1);
+  expect(inputs.cameraLat.value).toBeCloseTo(40);
+  expect(inputs.cameraLng.value).toBeCloseTo(120);
+  expect(inputs.zoomAngle.value).toBeCloseTo(24);
+  expect(inputs.zoomActive.value).toBe(0);
+  expect(inputs.cameraOwner.value).toBe(0);
+});
+
+it.each(['cancelFlight', 'claimForDeck'] as const)(
+  'a newer %s invalidates a delayed story flight even if its completion arrives late',
+  (claim) => {
+    const { inputs, flight } = setup({ owner: 1, zoomed: true, clip: 60 });
+    inputs.cameraLat.value = 19.08;
+    inputs.cameraLng.value = 56.2;
+    act(() => flight.toStory([30.27, 120.15], 1, 24, 300));
+    expect(inputs.zoomAngle.value).toBe(60);
+    act(() => flight[claim]());
+    // Deliberately deliver even a successful stale completion: the request
+    // epoch must refuse it independently of cancelAnimation's callback flag.
+    act(() => finishDelay(0));
+    play(1);
+    expect(inputs.cameraLat.value).toBe(19.08);
+    expect(inputs.cameraLng.value).toBe(56.2);
+    expect(inputs.zoomAngle.value).toBe(60);
+  },
+);
+
+it('a newer immediate story or place selection supersedes a delayed marker flight', () => {
+  const { inputs, flight } = setup({ progress: 2 });
+  act(() => flight.toStory([30.27, 120.15], 1, 24, 300));
+  act(() => flight.toStory([38.9, -77.04], 2, 22));
+  act(() => finishDelay(0));
+  play(1);
+  expect(inputs.cameraLat.value).toBeCloseTo(38.9);
+  expect(inputs.cameraLng.value).toBeCloseTo(-77.04);
+  expect(inputs.cameraOwner.value).toBe(0);
+});
+
+it('does not let an old completion start a replacement delayed request early', () => {
+  const { inputs, flight } = setup({ progress: 2 });
+  act(() => flight.toStory([30.27, 120.15], 1, 24, 300));
+  act(() => flight.toStory([38.9, -77.04], 2, 22, 300));
+  act(() => finishDelay(0));
+  expect(inputs.zoomActive.value).toBe(0);
+  act(() => finishDelay(1));
+  play(1);
+  expect(inputs.cameraLat.value).toBeCloseTo(38.9);
+  expect(inputs.cameraOwner.value).toBe(0);
+});
+
+it('remaps a reordered story without changing an explored camera or pinch zoom', () => {
+  const { inputs, flight } = setup({ owner: 1, zoomed: true, clip: 60, progress: 1 });
+  inputs.cameraLat.value = 19.08;
+  inputs.cameraLng.value = 56.2;
+  act(() => flight.remapStory(1, 2, true));
+  expect(inputs.storyProgress.value).toBe(2);
+  expect(inputs.cameraOwner.value).toBe(1);
+  expect(inputs.cameraLat.value).toBe(19.08);
+  expect(inputs.cameraLng.value).toBe(56.2);
+  expect(inputs.zoomActive.value).toBe(1);
+  expect(inputs.zoomAngle.value).toBe(60);
+});
+
+it.each([0, 300])(
+  'remaps the landing of an existing flight across a reorder (delay %i)',
+  (delay) => {
+    const { inputs, flight } = setup({ progress: 1 });
+    act(() => flight.toStory([19.08, 72.88], 1, 24, delay));
+    act(() => flight.remapStory(1, 2, true));
+    if (delay) act(() => finishDelay(0));
+    play(1);
+    expect(inputs.storyProgress.value).toBe(2);
+    expect(inputs.cameraLat.value).toBeCloseTo(19.08);
+    expect(inputs.cameraLng.value).toBeCloseTo(72.88);
+    expect(inputs.cameraOwner.value).toBe(0);
+  },
+);
+
+function finishDelay(index: number) {
+  const callback = delayedCallbacks[index];
+  if (!callback) throw new Error('Missing delayed completion');
+  callback(true);
+}
+
+it('refuses an old tap delivered after a newer UI gesture, before it can hold or schedule a flight', () => {
+  const { inputs, flight } = setup();
+  const tapEpoch = flight.requestEpoch.value;
+  act(() => flight.cancelFlight());
+  act(() => {
+    flight.hold(tapEpoch);
+    flight.toStory([30.27, 120.15], 1, 24, 300, tapEpoch);
+  });
+  expect(inputs.cameraOwner.value).toBe(0);
+  expect(inputs.zoomActive.value).toBe(0);
+  expect(delayedCallbacks).toHaveLength(0);
 });

@@ -27,9 +27,9 @@ interface BriefingChromeProps {
   onVisibilityChange: (visible: boolean) => void;
   /** Fired when the *slow* fields change, never on an elapsed tick. */
   onStatusChange: (status: BriefingStatus) => void;
-  /** The dock under the bar: the bar sits on it rather than covering it. */
-  bottomOffset?: number;
-  /** The bar's measured height, so the card can leave room above it. */
+  /** The top bar's height: the player hangs just under it. */
+  topOffset: number;
+  /** The bar's measured height, so top toasts can start under it. */
   onHeightChange?: (height: number) => void;
 }
 
@@ -46,11 +46,16 @@ interface BriefingChromeProps {
  * most a few times per session, so they are reported upward through
  * `onStatusChange` and `elapsed` never leaves this component.
  *
- * The bar it renders is the *playing* state only. The way in is the play
- * button in the dock: as a pill in the corner of the globe it was a control
- * sized to stay out of the way, which is a control nobody finds. The bar sits
- * on the dock, so the next story and the headlines stay under the thumb while
- * the briefing plays.
+ * The bar it renders is the *playing* state only. The way in is the `▶` in
+ * the map's top bar, and the bar hangs just under that bar, in the `▶`'s
+ * place while it is hidden (2026-09-22, the user's request). It sat on the
+ * dock at the foot of the screen until then — where the `▶` had been when the
+ * dock held it — and once the `▶` moved to the top, pressing it opened a
+ * player at the far end of the screen from the button that started it.
+ * Floating, not part of the top bar's layout: making room for it there would
+ * shrink and re-centre the globe and shorten the open sheet every time it
+ * appeared. It clears an open story without that, because the open sheet
+ * always leaves the globe at least `BAND_MIN` under the top bar.
  */
 export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
   function BriefingChrome(
@@ -61,7 +66,7 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
       onPlaybackError,
       onVisibilityChange,
       onStatusChange,
-      bottomOffset,
+      topOffset,
       onHeightChange,
     },
     ref,
@@ -92,7 +97,7 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
 
     // The heard share follows `elapsed`, which ticks twice a second while
     // playing — the very field this component exists to keep from reaching
-    // HomeScreen. It is only read while the player is down (the masthead's
+    // HomeScreen. It is only read while the player is down (the top bar's
     // button is hidden while it plays), so it holds its last value until then,
     // and it moves in fortieths.
     const heardRef = useRef(0);
@@ -131,7 +136,7 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
         onToggle={player.toggle}
         onSeek={player.seek}
         onDismiss={handleDismiss}
-        bottomOffset={bottomOffset}
+        topOffset={topOffset}
         onHeightChange={onHeightChange}
       />
     );

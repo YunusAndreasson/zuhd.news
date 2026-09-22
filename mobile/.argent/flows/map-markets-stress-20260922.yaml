@@ -1,0 +1,31 @@
+steps:
+  - echo: Open markets from the menu; expect filterable exchange browser.
+  - tap:
+      text: { matches: '^markets$' }
+      role: button
+  - await:
+      visible:
+        text: markets & data
+  - await: { idle: true }
+  - echo: Choose rising exchanges; expect the rising filter selected and positive
+      moves.
+  - tap:
+      text: rising
+  - echo: Switch to falling; inspect negative moves then switch to Other data.
+  - tap:
+      text: falling
+  - tap:
+      text: other data
+  - await:
+      visible:
+        text: Strait of Hormuz
+        role: button
+  - await: { idle: true }
+  - echo: Dismiss the markets browser; expect map controls restored.
+  - tap:
+      text: Close sheet
+  - await:
+      hidden:
+        text: markets & data
+executionPrerequisite: Android app menu open over loaded map, latest markets
+  loaded, tools overlay moved clear of header.

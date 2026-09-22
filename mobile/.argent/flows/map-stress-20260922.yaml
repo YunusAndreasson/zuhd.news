@@ -1,0 +1,41 @@
+steps:
+  - echo: Drag the canvas horizontally and inspect camera settling. Coordinates
+      target the discovered GlobeGestureLayer; canvas marks have no
+      accessibility nodes.
+  - tool: gesture-swipe
+    args:
+      fromX: 0.25
+      fromY: 0.34
+      toX: 0.75
+      toY: 0.34
+      durationMs: 2000
+      momentum: false
+  - await:
+      visible:
+        text: Menu
+  - echo: Zoom out on the canvas; globe should retain its framing after fingers lift.
+  - tool: gesture-pinch
+    args:
+      centerX: 0.5
+      centerY: 0.34
+      startDistance: 0.65
+      endDistance: 0.18
+      durationMs: 1200
+  - await:
+      visible:
+        text: Menu
+  - echo: Zoom back in with the same canvas anchor; inspect that geography and
+      labels recover after the pinch.
+  - tool: gesture-pinch
+    args:
+      centerX: 0.5
+      centerY: 0.34
+      startDistance: 0.18
+      endDistance: 0.65
+      durationMs: 1200
+  - await:
+      visible:
+        text: Menu
+executionPrerequisite: Android development build on the loaded map with story
+  card collapsed, no menus or sheets open. Globe gesture area occupies the upper
+  centre of the screen.

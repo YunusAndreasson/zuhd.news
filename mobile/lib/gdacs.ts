@@ -11,14 +11,22 @@
 // What remains local is `alertAgeDays`, which depends on `./time` and on the
 // app's opacity conventions — the web map ages markers on its own decay curve.
 
+import { parseSeverityHero as parseSharedSeverityHero } from '@shared/gdacs';
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { ageDaysFromIso } from './time';
 
 export {
   displaySourceName,
   EVENT_TYPE_EYEBROW,
-  parseSeverityHero,
 } from '@shared/gdacs';
+
+/** Flood magnitude zero is a provider placeholder, not a measured severity. */
+export function parseSeverityHero(alert: GdacsAlert) {
+  if (alert.eventtype === 'FL' && /^\s*Magnitude\s+0(?:\.0+)?\s*$/i.test(alert.severityText)) {
+    return { focal: `${alert.alertlevel} alert`, secondary: 'Flood severity unavailable' };
+  }
+  return parseSharedSeverityHero(alert);
+}
 
 /** Days since `modifiedDate` — used to fade older markers via the same
  *  recency family hotspots use. Returns 0 for unparsable timestamps so

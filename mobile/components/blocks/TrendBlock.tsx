@@ -756,7 +756,18 @@ export const TrendBlock = memo(function TrendBlock({
                   that hides when it matters is not a label. Clamped so a
                   reference at the very top still prints. */}
               {reference && referenceY != null ? (
-                <View pointerEvents="none" style={[styles.referenceLabelWrap, referenceLabelPos]}>
+                // Backed with the sheet's ground: where no stretch of the rule
+                // is clear (Brent's line crosses its Aug 3 level all the way
+                // along), the least-crossed spot still sits on the line, and
+                // "88.9" printed through it. Over clear space it is invisible.
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.referenceLabelWrap,
+                    referenceLabelPos,
+                    { backgroundColor: colors.sheetBg },
+                  ]}
+                >
                   <Text
                     variant="labelXs"
                     tone="secondary"
@@ -873,6 +884,9 @@ const styles = StyleSheet.create({
     left: CHART_LEFT_PAD,
     height: LABEL_ROW_HEIGHT,
     justifyContent: 'center',
+    // A little ground either side of the backing, without moving the text.
+    paddingHorizontal: 2,
+    marginLeft: -2,
   },
   referenceLabelText: {
     lineHeight: LABEL_ROW_HEIGHT,

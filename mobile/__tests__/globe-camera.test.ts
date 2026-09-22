@@ -17,7 +17,9 @@ import {
   MAX_FLING_PX_S,
   MAX_LAT,
   MIN_CLIP,
+  PINCH_HAND_BACK_SPREAD,
   pinchClip,
+  pinchHandsBack,
   projScaleFor,
   projScaleFor as projScale,
   reachFor,
@@ -115,6 +117,44 @@ describe('pinchClip', () => {
   it('ignores a degenerate scale', () => {
     expect(pinchClip(30, 0)).toBe(30);
     expect(pinchClip(30, Number.NaN)).toBe(30);
+  });
+});
+
+describe('pinchHandsBack', () => {
+  it('holds a pinch out to the whole planet', () => {
+    // The bug: every release at the story's framing or wider handed zoom back,
+    // so the whole disc sprang back to the story as the fingers lifted.
+    for (const story of [18, 21, 24]) {
+      expect(pinchHandsBack(MAX_CLIP, story)).toBe(false);
+      expect(pinchHandsBack(60, story)).toBe(false);
+    }
+  });
+
+  it('gives zoom back to a pinch that ends near the story’s framing', () => {
+    expect(pinchHandsBack(20, 20)).toBe(true);
+    expect(pinchHandsBack(19.6, 20)).toBe(true);
+    expect(pinchHandsBack(22, 20)).toBe(true);
+  });
+
+  it('draws the band on the disc’s scale, not on degrees', () => {
+    for (const story of [18, 24]) {
+      const scale = projScaleFor(story, R);
+      const inside = Math.asin(Math.sin((story * Math.PI) / 180) * 1.14) * (180 / Math.PI);
+      const outside = Math.asin(Math.sin((story * Math.PI) / 180) * 1.16) * (180 / Math.PI);
+      expect(pinchHandsBack(inside, story)).toBe(true);
+      expect(pinchHandsBack(outside, story)).toBe(false);
+      expect(scale / projScaleFor(outside, R)).toBeGreaterThan(PINCH_HAND_BACK_SPREAD);
+    }
+  });
+
+  it('holds a pinch in, as it always has', () => {
+    expect(pinchHandsBack(15, 20)).toBe(false);
+    expect(pinchHandsBack(MIN_CLIP, 20)).toBe(false);
+  });
+
+  it('never hands back to a missing framing', () => {
+    expect(pinchHandsBack(20, 0)).toBe(false);
+    expect(pinchHandsBack(20, Number.NaN)).toBe(false);
   });
 });
 

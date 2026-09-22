@@ -8,6 +8,7 @@ import Animated from 'react-native-reanimated';
 import { FLAG, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useTheme } from '../hooks/useTheme';
+import { parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
@@ -238,7 +239,7 @@ function AlertChip({
         </View>
         {alert.severityText.length > 0 && (
           <Text variant="labelXs" tone="secondary" numberOfLines={1}>
-            {alert.severityText}
+            {alert.eventtype === 'FL' ? parseSeverityHero(alert).focal : alert.severityText}
           </Text>
         )}
       </View>
@@ -361,7 +362,12 @@ export const CountrySheet = memo(function CountrySheet({
   });
 
   return (
-    <SheetLayout sheetRef={sheetRef} handleComponent={CountryHandle} onDismiss={handleDismiss}>
+    <SheetLayout
+      sheetRef={sheetRef}
+      handleComponent={CountryHandle}
+      onDismiss={handleDismiss}
+      onBackPress={hasBack ? onBackToCountry : undefined}
+    >
       {activeRanking ? (
         <GestureDetector gesture={swipeBack}>
           <View style={styles.rankingWrap}>

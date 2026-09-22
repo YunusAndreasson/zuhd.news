@@ -10,14 +10,13 @@ import {
 } from 'react-native';
 import Animated, {
   Easing,
-  FadeInDown,
+  FadeInUp,
   FadeOut,
   LinearTransition,
   useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
@@ -52,9 +51,9 @@ interface BriefingBarProps {
   onToggle: () => void;
   onSeek: (seconds: number) => void;
   onDismiss: () => void;
-  /** Sits on whatever is pinned under it (the dock), which then carries the
-   *  safe-area inset. Absent, the bar sits on the screen's edge itself. */
-  bottomOffset?: number;
+  /** Hangs under whatever is pinned above it — the map's top bar, whose `▶`
+   *  it replaces while it is up. */
+  topOffset: number;
   onHeightChange?: (height: number) => void;
 }
 
@@ -66,13 +65,12 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
   onDismiss,
-  bottomOffset,
+  topOffset,
   onHeightChange,
 }: BriefingBarProps) {
   const { colors } = useTheme();
   const preparing = state === 'preparing';
   const playing = state === 'playing';
-  const insets = useSafeAreaInsets();
 
   const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
@@ -144,24 +142,22 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={FadeInDown.duration(ANIMATION.normal)
+      // Drops from the top bar, where the `▶` that opened it was.
+      entering={FadeInUp.duration(ANIMATION.normal)
         .easing(EASING.out)
-        .withInitialValues({ translateY: SPACING.md })}
+        .withInitialValues({ translateY: -SPACING.md })}
       exiting={FadeOut.duration(ANIMATION.fast)}
       layout={LinearTransition.duration(ANIMATION.normal)}
-      style={[
-        styles.wrapper,
-        bottomOffset === undefined
-          ? { paddingBottom: Math.max(insets.bottom, SPACING.sm) }
-          : { bottom: bottomOffset, paddingBottom: SPACING.sm },
-      ]}
+      style={[styles.wrapper, { top: topOffset }]}
       onLayout={handleLayout}
       pointerEvents="box-none"
     >
       <BarBackground tintColor={colors.playerBg}>
-        {/* Tooltip lives outside the clipping inner so it can float ABOVE
-            the bar without being chopped by the inner's overflow:hidden. */}
-        <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} />
+        {/* Tooltip lives outside the clipping inner so it can float clear of
+            the bar without being chopped by the inner's overflow:hidden —
+            BELOW it, over the globe: the bar hangs under the top bar, and
+            above it the readout covered the gauges. */}
+        <ScrubTooltip scrub={scrub} backgroundColor={colors.toastBg} below />
 
         {/* Inner container clips the edge-to-edge progress strip to the
             pill's bottom-corner curve. The strip is only PROGRESS_HEIGHT
@@ -203,7 +199,7 @@ export const BriefingBar = memo(function BriefingBar({
               />
             ) : (
               // `haptic="none"`: the player's `toggle` gives the one impact,
-              // for this button and for the dock's ▶ alike.
+              // for this button and for the top bar's ▶ alike.
               <IconButton
                 onPress={onToggle}
                 haptic="none"
@@ -256,11 +252,11 @@ export const BriefingBar = memo(function BriefingBar({
   );
 });
 
-/** iOS uses a frosted-glass background so the chrome floats over the article
- *  reader; Android falls back to a solid `playerBg` fill because Android's
- *  BlurView implementation is uneven across vendors. Solid, not `pillBg`:
- *  the bar rests on the story card, and through `pillBg`'s 12% the card's
- *  lines showed behind `briefing · Sep 19`. Both wrap the bar's
+/** iOS uses a frosted-glass background so the chrome floats over the globe;
+ *  Android falls back to a solid `playerBg` fill because Android's BlurView
+ *  implementation is uneven across vendors. Solid, not `pillBg`: through
+ *  `pillBg`'s 12% whatever was under the bar (the story card, when it sat on
+ *  the dock; a lit coastline now) showed behind `briefing · Sep 19`. Both wrap the bar's
  *  rounded-rect with the same border radius and clip overflow so the inner
  *  edge-to-edge progress strip follows the corner curve. */
 const BarBackground = memo(function BarBackground({
@@ -287,12 +283,14 @@ const BarBackground = memo(function BarBackground({
 });
 
 const styles = StyleSheet.create({
+  // Just under the top bar's 48pt row, whose gauge labels sit mid-row, so
+  // the space from the labels down to the bar is about the bar's side margin.
   wrapper: {
     position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
     paddingHorizontal: BAR_MARGIN,
+    paddingTop: SPACING.xs,
   },
   // No overflow:hidden — the scrub tooltip floats above the bar. The
   // progress strip is clipped by `barInner`'s overflow:hidden so it can
@@ -322,10 +320,9 @@ const styles = StyleSheet.create({
   },
   progressTouch: {
     // Vertical hit area above the visible 3px strip. The strip itself is
-    // flush with the bar's bottom edge, so all the touch slack goes above —
-    // which also lifts the grabbable zone clear of the system gesture inset
-    // at the screen's bottom edge. `lg` (was `md`) widens the thin target so
-    // drag-to-scrub is easy to catch without clipping the home-indicator zone.
+    // flush with the bar's bottom edge, so all the touch slack goes above.
+    // `lg` (was `md`) widens the thin target so drag-to-scrub is easy to
+    // catch.
     paddingTop: SPACING.lg,
   },
 });

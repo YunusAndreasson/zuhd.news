@@ -12,11 +12,12 @@ import { Text } from './primitives';
 //
 // `swipe` has been wrong twice: "sideways for sections" outlived the sections,
 // and "swipe up for next" outlived the full-screen reader. Stories are a
-// sideways deck in the sheet now, with the dock's › doing the same thing, and
-// tapping a card opens it. A hint that is wrong is worse than no hint, because
-// a reader who follows it and gets a different result stops trusting the next.
+// sideways deck in the sheet now, and tapping a card opens it; "or tap ›"
+// went with the dock's › (2026-09-22). A hint that is wrong is worse than no
+// hint, because a reader who follows it and gets a different result stops
+// trusting the next.
 const HINT_COPY: Record<HintId, string> = {
-  swipe: 'swipe or tap › for the next story · tap to read',
+  swipe: 'swipe for the next story · tap to read',
   // Never shown (`eligibleHint`): the open card prints `sources · save` as
   // words, and a visible control needs no pill. Persisted ids, so they stay —
   // with copy that is at least true, should either come back.
@@ -24,7 +25,8 @@ const HINT_COPY: Record<HintId, string> = {
   bookmark: 'open a story and tap save to keep it',
   globe: 'tap a light on the globe to find its story',
   // The id predates the dock; it is a persisted key, so it keeps its name.
-  masthead: '⌃ opens the story · ▶ plays the briefing',
+  // It taught the dock's `⌃` too until that went (2026-09-22).
+  masthead: '▶ plays the briefing',
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;

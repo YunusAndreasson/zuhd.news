@@ -89,7 +89,7 @@ import { buildRankedInstruments } from '../lib/cards/sections';
 import { computeDeckLayout, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
-import { markLanded, useFreshStories } from '../lib/fresh-store';
+import { markLanded, useFreshSlugs } from '../lib/fresh-store';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
@@ -159,6 +159,7 @@ const noop = () => {};
 const SHEET_HANDOFF_FLOOR_MS = 700;
 
 interface FocusOptions {
+  cameraEpoch?: number;
   /** A mark was tapped: the camera waits for its burst before it flies. */
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
@@ -226,7 +227,6 @@ export default function HomeScreen() {
   /** A story asked for before it was in the river — a bookmark that has
    *  rotated out of the feed is injected, and its row exists a render later. */
   const pendingFocusRef = useRef<({ slug: string } & FocusOptions) | null>(null);
-  const flyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Sheet payloads
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
@@ -273,12 +273,13 @@ export default function HomeScreen() {
   /** Flights: a jump travels the way a swipe does, and lands handing the
    *  camera back to the deck (`hooks/useCameraFlight.ts`). */
   const {
-    flightT,
     setFront: setCameraFront,
     claimForDeck,
     cancelFlight,
     hold: holdCamera,
     toStory: flyToStory,
+    remapStory,
+    requestEpoch,
     toStoryIfHeld: flyToStoryIfHeld,
     toPlace: flyToPlace,
   } = useCameraFlight({
@@ -385,10 +386,21 @@ export default function HomeScreen() {
       measuredStory?.height,
     ],
   );
-  // The briefing's player sits on the dock while it is up, so the cards end
-  // above both — the pinned sources/save/share row included.
+  // The briefing's player hangs under the top bar while it is up (it sat on
+  // the dock until 2026-09-22), so the cards end above the dock alone, and a
+  // top toast starts under the player.
   const [playerHeight, setPlayerHeight] = useState(0);
-  const deckBottomInset = layout.dock + (briefingVisible ? playerHeight : 0);
+  const topToastOffset = topChromeHeight + (briefingVisible ? playerHeight : 0);
+  // Keyed on its two numbers. Written inline in the JSX, the object was
+  // rebuilt whenever the compiler's cached block around `<MiniGlobe>` was, so
+  // a swipe landing handed the globe a fresh object with the same two numbers
+  // — the only prop that changed — and the memoized globe re-rendered for it
+  // (5–13 ms a landing in a dev build, profiled 2026-09-22).
+  const marketBottom = screenHeight - layout.peek;
+  const marketViewport = useMemo(
+    () => ({ top: topChromeHeight, bottom: marketBottom }),
+    [topChromeHeight, marketBottom],
+  );
 
   // ---------------------------------------------------------------------
   // Derived content
@@ -444,8 +456,10 @@ export default function HomeScreen() {
         const card = exchangeCard(exchange);
         return {
           id: card.id,
-          label: exchange.indexName,
-          short: exchange.indexName,
+          // The card's title, not the raw field: it carries the display name
+          // (`S&P/BMV IPC`, never the famine scale's `IPC`).
+          label: card.title,
+          short: card.title,
           reading: card.reading,
           delta: exchangeDelta(exchange),
           stale: exchangeIsStale(exchange),
@@ -462,7 +476,9 @@ export default function HomeScreen() {
     () =>
       mapMarkets.map((item) => ({
         id: item.id,
-        label: `${item.label} ${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.magnitude}${item.stale ? '*' : ''}`,
+        // Two lines on the globe: the name, then the move under it, larger.
+        label: item.label,
+        move: `${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.magnitude}${item.stale ? '*' : ''}`,
         direction: item.delta.direction,
         lat: item.coords[0],
         lng: item.coords[1],
@@ -473,7 +489,7 @@ export default function HomeScreen() {
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
   const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
 
-  const { fresh, landed } = useFreshStories();
+  const fresh = useFreshSlugs();
   const storyRows = useMemo(
     () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
     [river, fresh, oddsLabelBySlug],
@@ -510,7 +526,6 @@ export default function HomeScreen() {
 
   useEffect(
     () => () => {
-      if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
       if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
       if (primerTimerRef.current) clearTimeout(primerTimerRef.current);
     },
@@ -610,6 +625,7 @@ export default function HomeScreen() {
    */
   const focusStory = useCallback(
     (slug: string, options: FocusOptions = {}) => {
+      if (options.cameraEpoch !== undefined && options.cameraEpoch !== requestEpoch.value) return;
       const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
       if (index < 0) {
         pendingFocusRef.current = { slug, ...options };
@@ -624,13 +640,11 @@ export default function HomeScreen() {
       const row = storyRowsRef.current[index];
       if (options.afterBurst || options.grow) findStory(slug);
       cameraClaimedRef.current = true;
-      if (flyTimerRef.current) clearTimeout(flyTimerRef.current);
-      flyTimerRef.current = null;
 
       const coords = row?.coords ?? null;
       // Held before the deck jumps, so the jump cannot drag the camera
       // through every dateline between; the flight hands it back on landing.
-      if (coords) holdCamera();
+      if (coords) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
       storyProgress.value = index;
@@ -638,18 +652,26 @@ export default function HomeScreen() {
 
       if (coords) {
         const framing = framingFor(index);
-        if (options.afterBurst && !reduceMotion) {
-          flyTimerRef.current = setTimeout(
-            () => flyToStory(coords, index, framing),
-            COLLECT_MS - 120,
-          );
-        } else {
-          flyToStory(coords, index, framing);
-        }
+        flyToStory(
+          coords,
+          index,
+          framing,
+          options.afterBurst && !reduceMotion ? COLLECT_MS - 120 : 0,
+          options.cameraEpoch,
+        );
       }
       if (options.grow) mapSheetRef.current?.expand();
     },
-    [findStory, flyToStory, framingFor, holdCamera, pinStory, reduceMotion, storyProgress],
+    [
+      findStory,
+      flyToStory,
+      framingFor,
+      holdCamera,
+      pinStory,
+      reduceMotion,
+      requestEpoch,
+      storyProgress,
+    ],
   );
 
   // A focus that arrived before its story did.
@@ -660,27 +682,20 @@ export default function HomeScreen() {
     }
   }, [storyRows, focusStory]);
 
-  // A refresh can insert stories in front of the one being read, or rotate it
-  // out. Keep the reader on their story; hold the camera on it while the
-  // position shifts so the globe does not slide through the new arrivals, then
-  // hand it back on the story's own framing — the indices the globe framed by
-  // have moved under it.
+  // Keep the selected slug across feed reordering. Only remap indices: a
+  // refresh is not a camera action, and must preserve the reader's exploration.
   useEffect(() => {
     const slug = currentSlugRef.current;
     let index = slug ? storyRows.findIndex((r) => r.slug === slug) : -1;
+    const sameStory = index >= 0;
     if (index < 0) index = Math.min(deckIndexRef.current, storyRows.length);
-    if (index === deckIndexRef.current) return;
-    const coords = storyRows[index]?.coords;
-    if (coords) {
-      cameraLat.value = coords[0];
-      cameraLng.value = coords[1];
-      cameraOwner.value = 1;
-    }
+    if (index === deckIndexRef.current && (sameStory || !slug)) return;
+    const previousIndex = deckIndexRef.current;
     deckIndexRef.current = index;
-    storyProgress.value = index;
+    currentSlugRef.current = storyRows[index]?.slug ?? null;
+    remapStory(previousIndex, index, sameStory);
     setDeckIndex(index);
-    if (coords) flyToStory(coords, index, framingFor(index));
-  }, [storyRows, cameraLat, cameraLng, cameraOwner, flyToStory, framingFor, storyProgress]);
+  }, [storyRows, remapStory]);
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
@@ -781,7 +796,7 @@ export default function HomeScreen() {
   // Globe taps
   // ---------------------------------------------------------------------
   const handleCountryPress = useCallback(
-    (result: TapResult) => {
+    (result: TapResult, cameraEpoch?: number) => {
       // No haptic here: every caller — the globe's tap layer, an inline
       // country link, the chooser's row — has already given its own, and a
       // second one on the same touch read as a double knock.
@@ -790,7 +805,7 @@ export default function HomeScreen() {
       markHintDone('globe');
       cameraClaimedRef.current = true;
       if (result.storySlug) {
-        focusStory(result.storySlug, { afterBurst: true });
+        focusStory(result.storySlug, { afterBurst: true, cameraEpoch });
         return;
       }
       if (result.candidates && result.candidates.length > 1) {
@@ -1095,8 +1110,8 @@ export default function HomeScreen() {
       setDeckIndex(index);
       hapticTick();
       // A screen reader moves the deck through the card's next/previous
-      // actions or the dock's `›`, and the card that replaces the one it was
-      // reading has no focus to announce itself.
+      // actions, and the card that replaces the one it was reading has no
+      // focus to announce itself.
       const title = storyRowsRef.current[index]?.title;
       if (title) announce(title);
       recordArticleSnap();
@@ -1142,8 +1157,8 @@ export default function HomeScreen() {
     },
     [focusStory],
   );
-  // The dock's `›` and the card's accessibility actions slide the deck one
-  // story, exactly as a swipe would; `goToStory` is a jump, for the scrubber.
+  // The card's accessibility actions slide the deck one story, exactly as a
+  // swipe would; `goToStory` is a jump, for the scrubber.
   const handleNextStory = useCallback(() => deckRef.current?.step(1), []);
   const handlePreviousStory = useCallback(() => deckRef.current?.step(-1), []);
 
@@ -1153,13 +1168,6 @@ export default function HomeScreen() {
   const collapseSheet = useCallback(() => {
     mapSheetRef.current?.collapse();
   }, []);
-  // The dock's open/close button. It reads the settled detent from a ref, so
-  // a tap mid-drag still does what the arrow was pointing at when it landed.
-  const toggleSheet = useCallback(() => {
-    if (sheetDetentRef.current === 'full') mapSheetRef.current?.collapse();
-    else mapSheetRef.current?.expand();
-  }, []);
-
   const handleDetentChange = useCallback(
     (detent: MapSheetDetent) => {
       sheetDetentRef.current = detent;
@@ -1333,43 +1341,33 @@ export default function HomeScreen() {
   useEffect(() => {
     if (frontSlug) markLanded(frontSlug);
   }, [frontSlug]);
-  // New stories the reader has not had, between the head of the river and the
-  // story in front: arrivals a refresh put ahead of where they are reading, or
-  // new ones they scrubbed past. The dock offers a jump to the newest of them.
-  // New stories still ahead of the reader are not counted — they will get there.
-  const unreadNew = useMemo(() => {
-    let count = 0;
-    let first = -1;
-    for (let i = 0; i < frontIndex; i++) {
-      const row = storyRows[i];
-      if (!row?.fresh || landed.has(row.slug)) continue;
-      if (first < 0) first = i;
-      count++;
-    }
-    return { count, first };
-  }, [storyRows, frontIndex, landed]);
   const storyFresh = useMemo(() => storyRows.map((row) => row.fresh), [storyRows]);
-  const handleNewPress = useCallback(() => {
-    if (unreadNew.first >= 0) goToStory(unreadNew.first);
-  }, [goToStory, unreadNew.first]);
+  // Read, and the `‹ n new` pill it decides, live in `StoryDock`: it
+  // subscribes to the read store itself, so a story turning read does not
+  // re-render this screen.
+  const storySlugs = useMemo(() => storyRows.map((row) => row.slug), [storyRows]);
   const storyOpen = sheetDetent === 'full';
   // The gauges an open story is tied to, marked in its hue on the bar.
   const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
   const linkedGauges = useMemo(() => linkedGaugeIds(strip, openArticle), [strip, openArticle]);
   const linkedHue = openArticle ? categoryMarkColor(openArticle.category, colors) : undefined;
-  useReadTracking(
-    storyRows[frontIndex]?.slug ?? null,
-    sheetDetent === 'full' && !sheetOpen && !briefingVisible,
-  );
+  // Read at rest as well as open: the resting card is the title and the
+  // hook, and most of the day is read that way. Only a platform sheet over
+  // the map hides the card.
+  useReadTracking(storyRows[frontIndex]?.slug ?? null, !sheetOpen);
 
   const keyOfDeck = useCallback(
     (index: number) => storyRows[index]?.slug ?? 'end-of-river',
     [storyRows],
   );
-  const storyDetailAt = useCallback((index: number) => {
+  const storyTimeAt = useCallback((index: number) => {
     const row = storyRowsRef.current[index];
-    return row ? `${row.article.category} · ${formatTimeAgo(articleTime(row.article))}` : '';
+    return row ? formatTimeAgo(articleTime(row.article)) : '';
   }, []);
+  const storyCategoryAt = useCallback(
+    (index: number) => storyRowsRef.current[index]?.article.category ?? '',
+    [],
+  );
   const storyHues = useMemo(
     () => storyRows.map((row) => categoryMarkColor(row.article.category, colors)),
     [storyRows, colors],
@@ -1505,7 +1503,7 @@ export default function HomeScreen() {
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
         onScrollOffset={onScrollOffset}
-        bottomInset={deckBottomInset}
+        bottomInset={layout.dock}
         keyOf={keyOfDeck}
         renderStory={renderStory}
         renderEnd={renderEnd}
@@ -1516,7 +1514,7 @@ export default function HomeScreen() {
     ),
     [
       claimForDeck,
-      deckBottomInset,
+      layout.dock,
       frontIndex,
       handleDeckDragStart,
       handleDeckSettle,
@@ -1533,6 +1531,7 @@ export default function HomeScreen() {
   const dock = useMemo(
     () => (
       <StoryDock
+        onClaim={cancelFlight}
         refreshing={refreshing}
         index={frontIndex}
         count={storyCount}
@@ -1541,28 +1540,21 @@ export default function HomeScreen() {
         alert={now[0]?.title ?? null}
         onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
-        detailAt={storyDetailAt}
+        timeAt={storyTimeAt}
+        categoryAt={storyCategoryAt}
         hues={storyHues}
         fresh={storyFresh}
-        newCount={unreadNew.count}
-        onNewPress={handleNewPress}
-        onNext={handleNextStory}
-        storyOpen={storyOpen}
-        sheetProgress={sheetProgress}
-        onToggleStory={toggleSheet}
+        slugs={storySlugs}
       />
     ),
     [
+      cancelFlight,
       goToStory,
-      sheetProgress,
-      storyOpen,
-      toggleSheet,
-      handleNextStory,
-      storyDetailAt,
+      storyTimeAt,
+      storyCategoryAt,
       storyHues,
       storyFresh,
-      unreadNew.count,
-      handleNewPress,
+      storySlugs,
       refreshing,
       frontIndex,
       storyCount,
@@ -1606,7 +1598,7 @@ export default function HomeScreen() {
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
-          marketViewport={{ top: topChromeHeight, bottom: screenHeight - layout.peek }}
+          marketViewport={marketViewport}
           places={places}
           foundSlugs={foundSlugs}
           foundProgress={progress}
@@ -1646,8 +1638,8 @@ export default function HomeScreen() {
         viewLng={viewLng}
         zoomActive={zoomActive}
         zoomAngle={zoomAngle}
-        flightT={flightT}
         cancelFlight={cancelFlight}
+        requestEpoch={requestEpoch}
         clip={globeClip}
         storyClip={storyClip}
         radius={layout.radius}
@@ -1705,9 +1697,10 @@ export default function HomeScreen() {
         />
       ) : null}
 
-      {/* A top toast starts under the gauges; "12 new · ~9 min read" landed
-          on the strip's readings. A bottom one ends above the dock. */}
-      <Toast ref={toastRef} topOffset={topChromeHeight} bottomOffset={layout.dock} />
+      {/* A top toast starts under the gauges, and under the player when it is
+          up; "12 new · ~9 min read" landed on the strip's readings. A bottom
+          one ends above the dock. */}
+      <Toast ref={toastRef} topOffset={topToastOffset} bottomOffset={layout.dock} />
 
       <HintOverlay
         hint={activeHint}
@@ -1726,7 +1719,7 @@ export default function HomeScreen() {
         onPlaybackError={handleBriefingPlaybackError}
         onVisibilityChange={setBriefingVisible}
         onStatusChange={setBriefingStatus}
-        bottomOffset={layout.dock}
+        topOffset={topChromeHeight}
         onHeightChange={setPlayerHeight}
       />
 

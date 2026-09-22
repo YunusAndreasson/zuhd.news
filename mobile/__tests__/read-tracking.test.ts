@@ -21,7 +21,7 @@ beforeEach(() => {
 });
 afterEach(() => jest.useRealTimers());
 
-it('marks only the story that stays expanded for the full dwell', () => {
+it('marks only the story that stays in front for the full dwell', () => {
   const { rerender } = renderHook(({ slug, visible }) => useReadTracking(slug, visible), {
     initialProps: { slug: 'a', visible: false },
   });
@@ -39,7 +39,7 @@ it('cancels when covered or unmounted', () => {
   const { rerender, unmount } = renderHook(({ visible }) => useReadTracking('a', visible), {
     initialProps: { visible: true },
   });
-  act(() => jest.advanceTimersByTime(10_000));
+  act(() => jest.advanceTimersByTime(READ_DWELL_MS - 1));
   rerender({ visible: false });
   act(() => jest.advanceTimersByTime(READ_DWELL_MS));
   rerender({ visible: true });
@@ -50,7 +50,7 @@ it('cancels when covered or unmounted', () => {
 
 it('does not count background time and starts a fresh dwell on return', () => {
   renderHook(() => useReadTracking('a', true));
-  act(() => jest.advanceTimersByTime(10_000));
+  act(() => jest.advanceTimersByTime(READ_DWELL_MS - 1));
   act(() => {
     AppState.currentState = 'background';
     listeners.get('change')?.('background');

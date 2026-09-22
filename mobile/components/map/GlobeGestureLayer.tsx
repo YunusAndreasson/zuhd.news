@@ -23,6 +23,7 @@ import {
   flingVelocity,
   MAX_LAT,
   pinchClip,
+  pinchHandsBack,
   projScaleFor,
   takeCamera,
 } from '../../lib/globe-camera';
@@ -52,7 +53,9 @@ import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
  * - **A pinch zooms continuously, about the fingers.** It writes the clip
  *   override `MiniGlobe` already reads, and turns the camera so the ground under
  *   the fingers stays there (`anchorZoom`), which also makes a two-finger drag
- *   turn the earth. Pinching out to the story's own framing hands zoom back to it.
+ *   turn the earth. A pinch holds where it is left — out to the whole planet
+ *   too — and only one that ends back near the story's own framing hands zoom
+ *   back to it (`pinchHandsBack`).
  *
  * All three feed the same reprojection pipeline the deck does, under the same
  * throttle and latest-only backpressure — see `MiniGlobe`.
@@ -92,11 +95,11 @@ interface GlobeGestureLayerProps {
   /** `MiniGlobe`'s zoom override: 0 follows the story, 1 holds `zoomAngle`. */
   zoomActive: SharedValue<number>;
   zoomAngle: SharedValue<number>;
-  /** A camera flight's progress (`useCameraFlight`): a finger stops it. */
-  flightT: SharedValue<number>;
   /** Stop a flight *and* let go of the zoom it was holding
-   *  (`useCameraFlight.cancelFlight`). */
+   *  (`useCameraFlight.cancelFlight`). A finger — one or two — stops a
+   *  flight through this, never by stopping its tween alone. */
   cancelFlight: () => void;
+  requestEpoch: SharedValue<number>;
   /** The clip in effect at the last projection, in degrees. */
   clip: SharedValue<number>;
   /** The clip the story in front would take on its own. */
@@ -106,7 +109,7 @@ interface GlobeGestureLayerProps {
   centerX: number;
   centerY: number;
   reduceMotion: boolean;
-  onTap: (result: TapResult) => void;
+  onTap: (result: TapResult, epoch?: number) => void;
   /** A pinch has ended; redraw at full detail once `delayMs` has passed. */
   onZoomSettle: (delayMs: number) => void;
   onImpact: () => void;
@@ -136,8 +139,8 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   viewLng,
   zoomActive,
   zoomAngle,
-  flightT,
   cancelFlight,
+  requestEpoch,
   clip,
   storyClip,
   radius,
@@ -162,16 +165,17 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       bottom: sheetPeekHeight + (sheetFullHeight - sheetPeekHeight) * progress,
     };
   });
-  // RNGH 3 uses display: contents. Its positioned parent below defines
-  // both the recognizer bounds and local coordinates, excluding the header.
-  const canvasOffsetY = topChromeHeight - canvasTop;
+
   const handleTap = useCallback(
-    (x: number, y: number) => {
+    (x: number, y: number, epoch: number) => {
+      if (epoch !== requestEpoch.value) return;
       if (collapseMode) {
         onCollapse?.();
         return;
       }
-      const localY = y + canvasOffsetY;
+      // Tap coordinates are window-relative, independent of which native
+      // view RNGH attaches to through its display:contents detector.
+      const localY = y - canvasTop;
       const result = globeRef.current?.hitTest(x, localY);
       // Nothing under the finger: no pulse. The ring is a confirmation that
       // something was found, and drawing it over empty ocean would claim
@@ -182,21 +186,29 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       if (result.storySlug) globeRef.current?.collect(x, localY, result.storyColor ?? WHITE);
       else globeRef.current?.showPulse(x, localY);
       onImpact();
-      onTap(result);
+      onTap(result, epoch);
     },
-    [canvasOffsetY, collapseMode, globeRef, onCollapse, onImpact, onTap],
+    [canvasTop, collapseMode, globeRef, onCollapse, onImpact, onTap, requestEpoch],
   );
 
   const tapConfig = useMemo(
     () => ({
       enabled: enabled || collapseMode,
-      onDeactivate: ({ x, y, canceled }: { x: number; y: number; canceled: boolean }) => {
+      onDeactivate: ({
+        absoluteX,
+        absoluteY,
+        canceled,
+      }: {
+        absoluteX: number;
+        absoluteY: number;
+        canceled: boolean;
+      }) => {
         'worklet';
         if (canceled) return;
-        scheduleOnRN(handleTap, x, y);
+        scheduleOnRN(handleTap, absoluteX, absoluteY, requestEpoch.value);
       },
     }),
-    [collapseMode, enabled, handleTap],
+    [collapseMode, enabled, handleTap, requestEpoch],
   );
 
   const panConfig = useMemo(
@@ -276,12 +288,32 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   // under the fingers wherever they have moved.
   const focusX = useSharedValue(0);
   const focusY = useSharedValue(0);
+  // A V3 detector's native coordinate view can differ from its styled parent.
+  // Touch events expose both spaces, so derive the conversion from the actual
+  // detector rather than adding the header's height to the focal point.
+  const touchOffsetX = useSharedValue(0);
+  const touchOffsetY = useSharedValue(0);
   const pinchConfig = useMemo(
     () => ({
       enabled: turnable,
+      onTouchesDown: ({
+        allTouches,
+      }: {
+        allTouches: { x: number; y: number; absoluteX: number; absoluteY: number }[];
+      }) => {
+        'worklet';
+        const touch = allTouches[0];
+        if (!touch) return;
+        touchOffsetX.value = touch.absoluteX - touch.x;
+        touchOffsetY.value = touch.absoluteY - touch.y;
+      },
       onActivate: ({ focalX, focalY }: { focalX: number; focalY: number }) => {
         'worklet';
-        cancelAnimation(flightT);
+        // Through `cancelFlight`, as the pan does: stopping the tween alone
+        // left the flight's plan standing, so the deck read a flight still
+        // under way. Any zoom release it starts is cancelled just below — the
+        // pinch takes the zoom from what is on screen.
+        cancelFlight();
         cancelAnimation(cameraLat);
         cancelAnimation(cameraLng);
         cancelAnimation(zoomActive);
@@ -291,8 +323,8 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         // from the story — or from a hand-back still easing — moves nothing.
         zoomAngle.value = clip.value;
         zoomActive.value = 1;
-        focusX.value = focalX;
-        focusY.value = focalY + canvasOffsetY;
+        focusX.value = focalX + touchOffsetX.value;
+        focusY.value = focalY + touchOffsetY.value - canvasTop;
       },
       onUpdate: ({
         scaleChange,
@@ -313,11 +345,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         if (numberOfPointers < 2) return;
         const from = zoomAngle.value;
         const to = pinchClip(from, scaleChange);
-        const y = focalY + canvasOffsetY;
+        const x = focalX + touchOffsetX.value;
+        const y = focalY + touchOffsetY.value - canvasTop;
         const cam = anchorZoom(
           focusX.value,
           focusY.value,
-          focalX,
+          x,
           y,
           cameraLng.value,
           cameraLat.value,
@@ -331,13 +364,15 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
           cameraLng.value = cam.lng;
           cameraLat.value = cam.lat;
         }
-        focusX.value = focalX;
+        focusX.value = x;
         focusY.value = y;
       },
       onDeactivate: () => {
         'worklet';
         // Pinched back out to the story's own framing: give zoom back to it.
-        const release = zoomAngle.value >= storyClip.value - 0.5;
+        // Anything further out holds, so the whole planet can be looked at
+        // with the fingers off the glass.
+        const release = pinchHandsBack(zoomAngle.value, storyClip.value);
         // Reanimated snaps the hand-back itself under Reduce Motion; the
         // redraw timer below has to be told.
         const duration = reduceMotion ? 0 : ANIMATION.zoomRelease;
@@ -356,11 +391,13 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       cameraLat,
       cameraLng,
       cameraOwner,
-      canvasOffsetY,
+      canvasTop,
+      touchOffsetX,
+      touchOffsetY,
       centerX,
       centerY,
+      cancelFlight,
       clip,
-      flightT,
       focusX,
       focusY,
       onZoomSettle,

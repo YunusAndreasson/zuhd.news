@@ -42,7 +42,13 @@ export const DeltaChip = memo(function DeltaChip({
   return (
     <View style={styles.delta}>
       {delta.direction !== 'flat' ? (
-        <View style={styles.deltaCaret}>
+        // The caret is an icon-font glyph a screen reader announces as an
+        // empty element; the direction it draws is spoken with the number.
+        <View
+          style={styles.deltaCaret}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
           <Icon name={delta.direction === 'up' ? 'caret-up' : 'caret-down'} size="sm" tone={tone} />
         </View>
       ) : null}
@@ -55,6 +61,9 @@ export const DeltaChip = memo(function DeltaChip({
         tone={tone}
         scale={scale}
         maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+        accessibilityLabel={
+          delta.direction === 'flat' ? delta.magnitude : `${delta.direction} ${delta.magnitude}`
+        }
       >
         {delta.magnitude}
       </Text>

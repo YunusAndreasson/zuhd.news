@@ -93,6 +93,33 @@ export function pinchClip(clip: number, scaleChange: number): number {
   return next < MIN_CLIP ? MIN_CLIP : next > MAX_CLIP ? MAX_CLIP : next;
 }
 
+/** How far past the story's own framing, as a factor on the disc's scale, a
+ *  pinch may end and still be "back out to the story": the overshoot of a
+ *  reader pinching back to where they started. */
+export const PINCH_HAND_BACK_SPREAD = 1.15;
+/** A pinch ending this many degrees inside the story's framing is on it. */
+const PINCH_HAND_BACK_SLACK = 0.5;
+
+/**
+ * Whether a pinch that ends at `zoomClip` gives zoom back to the story in
+ * front, whose own framing is `storyClip`.
+ *
+ * Only a pinch that ends *near* the story's framing does. It was every pinch
+ * that ended at the framing or wider, so pinching out to see the whole planet
+ * sprang back to the story the moment the fingers lifted, and the whole disc
+ * could be seen only while it was being held (2026-09-22). A pinch out past
+ * this band stays where it was left, as a pinch in always has; the story's
+ * framing comes back when the reader moves to a story, which flies there.
+ */
+export function pinchHandsBack(zoomClip: number, storyClip: number): boolean {
+  'worklet';
+  if (!(storyClip > 0)) return false;
+  if (zoomClip < storyClip - PINCH_HAND_BACK_SLACK) return false;
+  // The disc's scale is `1 / sin(clip)`: this is the story's scale over the
+  // pinch's, which grows as the pinch zooms out.
+  return Math.sin(zoomClip * DEG2RAD) <= Math.sin(storyClip * DEG2RAD) * PINCH_HAND_BACK_SPREAD;
+}
+
 /**
  * The `[lng, lat]` under a screen point, or null off the disc. The same answer
  * as `geoOrthographic().rotate([-camLng, -camLat, 0]).invert`, written out so

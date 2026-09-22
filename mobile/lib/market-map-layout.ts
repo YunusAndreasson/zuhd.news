@@ -3,7 +3,11 @@ export interface MarketPoint {
   id: string;
   x: number;
   y: number;
+  /** The index's name — or, for a cluster, how many markets it holds. */
   label: string;
+  /** The move (`↓4.8%`), drawn on its own line under the name. A cluster
+   *  has none: it would be one member's move under several names. */
+  move?: string;
   direction?: 'up' | 'down' | 'flat';
 }
 export interface MarketCluster extends MarketPoint {
@@ -14,6 +18,31 @@ export interface MarketCluster extends MarketPoint {
   falling: number;
 }
 export const MARKET_TARGET = 48;
+export interface MarketLabelBounds {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+}
+
+/** A visible label belongs to its market, even when packing moved it away
+ * from the circle. Keep the circle's radius unchanged for nearby targets. */
+export function marketHitDistanceSquared(
+  mark: { x: number; y: number; labelBounds?: MarketLabelBounds | null },
+  x: number,
+  y: number,
+): number {
+  const b = mark.labelBounds;
+  const d2 = (mark.x - x) ** 2 + (mark.y - y) ** 2;
+  const circle = d2 <= (MARKET_TARGET / 2) ** 2 ? d2 : Number.POSITIVE_INFINITY;
+  if (b && x >= b.x0 && x <= b.x1 && y >= b.y0 && y <= b.y1) {
+    // Rank by the visible label's centre so a nearby story dot remains
+    // selectable where its catch area overlaps the text's bounding box.
+    return Math.min(circle, (x - (b.x0 + b.x1) / 2) ** 2 + (y - (b.y0 + b.y1) / 2) ** 2);
+  }
+  return circle;
+}
+
 const distance2 = (a: { x: number; y: number }, b: { x: number; y: number }) =>
   (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
 export function layoutMarketClusters(
@@ -26,7 +55,11 @@ export function layoutMarketClusters(
 ): MarketCluster[] {
   const sorted = [...points]
     .filter((p) => p.x >= 0 && p.x <= width && p.y >= top && p.y <= bottom)
-    .sort((a, b) => a.id.localeCompare(b.id));
+    // Any fixed order will do — it only keeps clustering stable between
+    // frames. Code-point order, never `localeCompare`: this runs on every
+    // reprojection, and on Android Hermes `localeCompare` goes through ICU —
+    // 174 ms of a 19 s map session, the single largest JS cost in it.
+    .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   const groups: MarketPoint[][] = [];
   for (const point of sorted) {
     const touching = groups.filter((group) =>
@@ -81,6 +114,7 @@ export function layoutMarketClusters(
       nearest.rising += rising;
       nearest.falling += falling;
       nearest.label = `${nearest.ids.length} markets`;
+      nearest.move = undefined;
       nearest.direction = undefined;
       continue;
     }
@@ -97,6 +131,7 @@ export function layoutMarketClusters(
       rising,
       falling,
       label: group.length === 1 ? first.label : `${group.length} markets`,
+      move: group.length === 1 ? first.move : undefined,
       direction: group.length === 1 ? first.direction : undefined,
     });
   }

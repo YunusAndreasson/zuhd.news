@@ -25,7 +25,8 @@ import { DAY_MS } from './time';
  *     the one card it is about. It clears at the next arrival.
  *   - `landed` — fresh stories the reader has had in front of them. They
  *     become known at the next arrival, and on disk when the app backgrounds.
- *     The dock's jump counts the fresh stories that have not landed.
+ *     (The dock's jump counts fresh stories not yet *read* — `read-store` —
+ *     so it agrees with the track.)
  *
  * A fresh story the reader skips stays fresh for as long as it is in the
  * feed: it is new to them, and the day's window ages it out of the river.
@@ -162,6 +163,14 @@ export function getFreshState(): FreshState {
   return state;
 }
 
-export function useFreshStories(): FreshState {
-  return useSyncExternalStore(subscribe, getFreshState, getFreshState);
+const getFresh = (): ReadonlySet<string> => state.fresh;
+
+/**
+ * The fresh set alone. `markLanded` keeps this set and replaces `landed`, so
+ * a reader of `fresh` is not re-rendered by a landing — which, subscribed to
+ * the whole state, re-rendered the map screen a second time after every swipe
+ * onto a new story (profiled 2026-09-22).
+ */
+export function useFreshSlugs(): ReadonlySet<string> {
+  return useSyncExternalStore(subscribe, getFresh, getFresh);
 }

@@ -70,16 +70,23 @@ describe('parseSeverityHero', () => {
     ).toEqual({ focal: '7,559 ha', secondary: 'burn area' });
   });
 
-  it('falls back to raw severityText when no pattern matches', () => {
-    // FL events often publish "Magnitude 0" — nothing parseable, never
-    // silently hide. The eyebrow + raw text is honest about the data.
-    const result = parseSeverityHero({
-      ...baseAlert,
-      eventtype: 'FL',
-      severityText: 'Magnitude 0 ',
-    });
-    expect(result.focal).toContain('Magnitude 0');
-    expect(result.secondary).toBe('');
+  it.each(['Magnitude 0 ', ' magnitude 0.0 '])(
+    'does not present flood placeholder %s as a measurement',
+    (severityText) => {
+      const result = parseSeverityHero({
+        ...baseAlert,
+        eventtype: 'FL',
+        severityText,
+      });
+      expect(result).toEqual({ focal: 'Green alert', secondary: 'Flood severity unavailable' });
+    },
+  );
+
+  it('preserves real flood severity and zero earthquake magnitude', () => {
+    expect(
+      parseSeverityHero({ ...baseAlert, eventtype: 'FL', severityText: 'Severe flooding' }).focal,
+    ).toBe('Severe flooding');
+    expect(parseSeverityHero({ ...baseAlert, severityText: 'Magnitude 0' }).focal).toBe('M 0');
   });
 
   it('returns the eyebrow label when severityText is empty', () => {

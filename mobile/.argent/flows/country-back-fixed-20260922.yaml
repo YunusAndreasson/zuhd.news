@@ -1,0 +1,21 @@
+steps:
+  - tap:
+      text: refugees hosted
+  - await:
+      visible:
+        text: Back
+        role: button
+  - await: { idle: true }
+  - tool: button
+    args:
+      button: back
+  - await:
+      visible:
+        text: economic complexity
+  - await: { idle: true }
+  - assert:
+      hidden:
+        text: Back
+        role: button
+executionPrerequisite: Uganda overview sheet open at initial scroll position on
+  Android, with refugees hosted ranking visible.

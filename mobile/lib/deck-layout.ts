@@ -87,8 +87,8 @@ const STORY_BAND_FRACTION = 0.2;
 /** The smallest globe band in any state, in points. */
 export const BAND_MIN = 140;
 
-/** A row of 48pt touch targets: the gauges and Settings above the earth, and
- *  the story track and its buttons in the dock. */
+/** A row of 48pt touch targets: the gauges and the menu above the earth, and
+ *  the story track in the dock. */
 export const CONTROL_ROW = 48;
 
 /** The open card's row of words — sources, save, share — at its end. */

@@ -102,6 +102,14 @@ export function exchangeDelta(e: Exchange): CardDelta {
 export function exchangeIsStale(e: Exchange, now = Date.now()): boolean {
   return Boolean(e.stale) || now - Date.parse(e.asOf) > 4 * 86_400_000;
 }
+/**
+ * Index names that mean something else on this globe. Mexico's index is
+ * published as `IPC`, which the map key and the famine marks use for the food-
+ * insecurity scale, so "IPC ↑0.62%" over Mexico read as a hunger reading. The
+ * index's own full name removes the clash; the published field stays as it is.
+ */
+const INDEX_DISPLAY_NAMES: Record<string, string> = { IPC: 'S&P/BMV IPC' };
+
 export function exchangeCard(e: Exchange): SwipeCard {
   // A build may append a cached quote under today's date. Never imply an
   // observation newer than the provider's as-of date in the chart or ticker.
@@ -111,7 +119,7 @@ export function exchangeCard(e: Exchange): SwipeCard {
   return {
     id: `mkt:${e.id}`,
     kind: 'reading',
-    title: e.indexName,
+    title: INDEX_DISPLAY_NAMES[e.indexName] ?? e.indexName,
     kicker: `${e.name} · ${e.city}`,
     asOf: e.asOf,
     reading: e.level.toLocaleString('en-US', { maximumFractionDigits: 2 }),

@@ -63,13 +63,15 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * slots are positioned by `progress`, not by index, and the window of mounted
  * cards around the new index still contains every card the spring is passing.
  *
- * ## The next button
+ * ## Stepping without a finger
  *
- * The dock's `›` is `step(1)` on this deck's ref, and it lands exactly as a
- * swipe released past halfway would: the same `onDragStart` first, so the
- * camera is handed over the same way, the same spring, the same `onSettle`.
+ * The card's `next story` / `previous story` accessibility actions are
+ * `step(±1)` on this deck's ref (the dock's `›` was too, until it went on
+ * 2026-09-22), and a step lands exactly as a swipe released past halfway
+ * would: the same `onDragStart` first, so the camera is handed over the same
+ * way, the same spring, the same `onSettle`.
  * It is not `focusStory` — a jump and a flight are for a story twenty cards
- * away, and the one beside the card should slide in. A second tap before the
+ * away, and the one beside the card should slide in. A second step before the
  * first has landed goes one further, not to the same story again.
  *
  * ## Three mounted cards

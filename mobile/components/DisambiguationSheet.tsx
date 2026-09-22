@@ -6,7 +6,7 @@ import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
-import { SUB_EVENT_LABEL } from '../lib/conflict';
+import { conflictChooserDetails, SUB_EVENT_LABEL } from '../lib/conflict';
 import {
   type FamineArea,
   famineBlocks,
@@ -490,6 +490,18 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
         overlays,
       );
       if (row) out.push(row);
+    }
+    const conflictDetails = conflictChooserDetails(
+      out.flatMap((row) => {
+        const event = row.result.conflictEventId
+          ? conflictById.get(row.result.conflictEventId)
+          : null;
+        return event ? [event] : [];
+      }),
+    );
+    for (const row of out) {
+      if (row.result.conflictEventId)
+        row.secondary = conflictDetails.get(row.result.conflictEventId) ?? row.secondary;
     }
     return out;
   }, [

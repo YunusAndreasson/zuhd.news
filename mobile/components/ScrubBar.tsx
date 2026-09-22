@@ -11,6 +11,7 @@ import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { RADIUS, SPACING } from '../constants/theme';
 import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
+import { MAX_SEGMENTS, segmentLayout } from '../lib/scrub-segments';
 import { Text } from './primitives';
 
 /** The thumb: a handle that reads as one without crowding a 3pt track. */
@@ -20,12 +21,10 @@ const THUMB = 9;
  * thumb on the track, which covered the 8pt default almost entirely.
  */
 const THUMB_CLEARANCE = SPACING.xl;
-/** Past this many, a segment would be no wider than the gap beside it. */
-const MAX_SEGMENTS = 60;
 const SEGMENT_GAP = 2;
-/** The rule over marked segments: thinner than the track, so it annotates the
- *  track rather than reading as a second one. */
-const MARK_HEIGHT = 2;
+/** A faded segment's thickness: a hairline, so a story already read differs
+ *  from one still to read by shape, not only by how pale its colour is. */
+const FADED_HEIGHT = 1;
 
 /**
  * Where the current item's raised segment sits on a track `trackWidth` wide:
@@ -49,27 +48,32 @@ function Segments({
   count,
   color,
   colors,
+  faded,
   height,
 }: {
   count?: number;
   color: string;
-  /** Per segment, overriding `color`; ignored once the track goes continuous. */
+  /** Per segment, overriding `color`. */
   colors?: readonly string[];
+  /** Per segment: drawn `FADED_HEIGHT` thick. */
+  faded?: readonly boolean[];
   height: number;
 }) {
-  if (!count || count <= 1 || count > MAX_SEGMENTS) {
+  const { cells: split, gapped } = segmentLayout(
+    count,
+    colors?.length === count || faded?.length === count,
+  );
+  if (!count || !split) {
     return <View style={[styles.segment, { height, backgroundColor: color }]} />;
   }
   const cells: ReactNode[] = [];
   for (let i = 0; i < count; i++) {
     cells.push(
-      <View
+      <Segment
         key={`segment-${i}`}
-        style={[
-          styles.segment,
-          { height, backgroundColor: colors?.[i] ?? color },
-          i < count - 1 ? styles.segmentGap : null,
-        ]}
+        height={faded?.[i] ? Math.min(height, FADED_HEIGHT) : height}
+        color={colors?.[i] ?? color}
+        gap={gapped && i < count - 1}
       />,
     );
   }
@@ -77,44 +81,27 @@ function Segments({
 }
 
 /**
- * A rule over the segments `marks` flags, laid out as the segments are so each
- * dash sits over its own, and clear of the raised current segment.
+ * One cell, memoized on three primitives. A story turning read changes one
+ * cell's height and colour, and the arrays it arrives in are new, so without
+ * this every cell's view re-rendered for it: ~42 of them, 127–141 ms a read
+ * in a dev build on the emulator — more than a swipe landing (profiled
+ * 2026-09-22).
  */
-function Marks({
-  count,
-  marks,
+const Segment = memo(function Segment({
+  height,
   color,
-  trackHeight,
+  gap,
 }: {
-  count: number;
-  marks: readonly boolean[];
+  height: number;
   color: string;
-  trackHeight: number;
+  gap: boolean;
 }) {
-  if (count <= 0 || marks.length !== count || !marks.includes(true)) return null;
-  const gapped = count > 1 && count <= MAX_SEGMENTS;
-  const cells: ReactNode[] = [];
-  for (let i = 0; i < count; i++) {
-    cells.push(
-      <View
-        key={`mark-${i}`}
-        style={[
-          styles.segment,
-          { height: MARK_HEIGHT, backgroundColor: marks[i] ? color : 'transparent' },
-          gapped && i < count - 1 ? styles.segmentGap : null,
-        ]}
-      />,
-    );
-  }
   return (
     <View
-      pointerEvents="none"
-      style={[styles.row, styles.marks, { bottom: trackHeight + SPACING.xs }]}
-    >
-      {cells}
-    </View>
+      style={[styles.segment, { height, backgroundColor: color }, gap ? styles.segmentGap : null]}
+    />
   );
-}
+});
 
 interface ScrubBarProps
   extends Pick<
@@ -138,14 +125,16 @@ interface ScrubBarProps
   activeSegmentColor?: string;
   height: number;
   trackColor: string;
-  fillColor: string;
+  /** The fill up to `fraction`. A track without one — the dock's, whose
+   *  segments say what has been read rather than what is behind the finger —
+   *  shows where it is by the raised segment and, while held, the thumb. */
+  fillColor?: string;
   /** One colour per segment for what is still ahead, overriding `trackColor`. */
   trackColors?: readonly string[];
   /** One colour per segment for what the fill has passed, overriding `fillColor`. */
   fillColors?: readonly string[];
-  /** Per segment: draw a rule over it in `markColor` (the dock's new stories). */
-  marks?: readonly boolean[];
-  markColor?: string;
+  /** Per segment: done with — drawn as a hairline (the dock's read stories). */
+  faded?: readonly boolean[];
   thumbColor: string | SharedValue<string>;
   /** The touch area. Vertical padding only: its width is the track's. */
   style?: StyleProp<ViewStyle>;
@@ -156,9 +145,10 @@ interface ScrubBarProps
 /**
  * The track, its fill and its thumb, under `useScrub`'s gesture.
  *
- * The fill is revealed rather than stretched: a clip slides in from the left
- * while its content slides back by the same distance, so segments keep their
- * shape at every fraction and nothing lays out per frame.
+ * The fill, where there is one, is revealed rather than stretched: a clip
+ * slides in from the left while its content slides back by the same distance,
+ * so segments keep their shape at every fraction and nothing lays out per
+ * frame.
  */
 export const ScrubBar = memo(function ScrubBar({
   scrub,
@@ -172,8 +162,7 @@ export const ScrubBar = memo(function ScrubBar({
   fillColor,
   trackColors,
   fillColors,
-  marks,
-  markColor,
+  faded,
   thumbColor,
   style,
   children,
@@ -232,17 +221,22 @@ export const ScrubBar = memo(function ScrubBar({
   const bar = (
     <View style={style} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
-        {marks && markColor ? (
-          <Marks count={segments ?? 0} marks={marks} color={markColor} trackHeight={height} />
-        ) : null}
-        <View style={styles.row}>
-          <Segments count={segments} color={trackColor} colors={trackColors} height={height} />
+        <View style={[styles.row, { height }]}>
+          <Segments
+            count={segments}
+            color={trackColor}
+            colors={trackColors}
+            faded={faded}
+            height={height}
+          />
         </View>
-        <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
-          <Animated.View style={[styles.row, contentStyle]}>
-            <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
+        {fillColor ? (
+          <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
+            <Animated.View style={[styles.row, contentStyle]}>
+              <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
+            </Animated.View>
           </Animated.View>
-        </Animated.View>
+        ) : null}
         {active && activeSegment !== undefined ? (
           <View
             pointerEvents="none"
@@ -253,7 +247,8 @@ export const ScrubBar = memo(function ScrubBar({
                 height: height + SPACING.xs,
                 top: -SPACING.xs / 2,
                 transform: [{ translateX: active.left }],
-                backgroundColor: activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor,
+                backgroundColor:
+                  activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor,
               },
             ]}
           />
@@ -279,23 +274,33 @@ export const ScrubBar = memo(function ScrubBar({
  * finger, so where the finger is stays readable while the thumb covers the
  * track. Only a tooltip drawn inside `ScrubBar` can take it: the stem measures
  * from the touch area's top edge.
+ *
+ * `below` hangs it under its container instead, for a bar at the top of the
+ * screen, where above is the top bar's gauges. It takes no stem.
  */
 export const ScrubTooltip = memo(function ScrubTooltip({
   scrub,
   backgroundColor,
   stemColor,
+  labelScale,
+  below = false,
 }: {
   scrub: Scrub;
   backgroundColor: string;
   stemColor?: string | SharedValue<string>;
+  below?: boolean;
+  /** Grows the label from the tabular size, for a readout that is the one
+   *  thing the scrub is for — the story track's time. */
+  labelScale?: number;
 }) {
-  const lift = stemColor ? THUMB_CLEARANCE : SPACING.sm;
+  const stem = below ? undefined : stemColor;
+  const lift = stem ? THUMB_CLEARANCE : SPACING.sm;
   const stemColorStyle = useAnimatedStyle(() => ({
-    backgroundColor: typeof stemColor === 'string' ? stemColor : stemColor?.value,
+    backgroundColor: typeof stem === 'string' ? stem : stem?.value,
   }));
   return (
     <>
-      {stemColor ? (
+      {stem ? (
         <Animated.View
           pointerEvents="none"
           style={[styles.stem, { height: lift }, stemColorStyle, scrub.stemStyle]}
@@ -305,11 +310,13 @@ export const ScrubTooltip = memo(function ScrubTooltip({
         pointerEvents="none"
         style={[
           styles.tooltip,
-          { width: scrub.tooltipWidth, backgroundColor, marginBottom: lift },
+          below
+            ? { top: '100%', width: scrub.tooltipWidth, backgroundColor, marginTop: lift }
+            : { bottom: '100%', width: scrub.tooltipWidth, backgroundColor, marginBottom: lift },
           scrub.tooltipStyle,
         ]}
       >
-        <Text variant="tabularEmphasis" style={styles.tooltipText}>
+        <Text variant="tabularEmphasis" scale={labelScale} style={styles.tooltipText}>
           {scrub.label}
         </Text>
         {scrub.detail ? (
@@ -324,11 +331,11 @@ export const ScrubTooltip = memo(function ScrubTooltip({
 
 const styles = StyleSheet.create({
   track: { width: '100%' },
-  row: { flexDirection: 'row', width: '100%' },
+  // Centred, so a faded hairline sits on the track's midline.
+  row: { flexDirection: 'row', alignItems: 'center', width: '100%' },
   clip: { overflow: 'hidden' },
   segment: { flex: 1 },
   segmentGap: { marginRight: SEGMENT_GAP },
-  marks: { position: 'absolute', left: 0 },
   activeSegment: { position: 'absolute', left: 0, borderRadius: RADIUS.handle },
   thumb: {
     position: 'absolute',
@@ -339,7 +346,6 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     position: 'absolute',
-    bottom: '100%',
     left: 0,
     paddingVertical: SPACING.xxs,
     borderRadius: RADIUS.pill,

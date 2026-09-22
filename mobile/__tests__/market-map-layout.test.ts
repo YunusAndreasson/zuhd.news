@@ -62,3 +62,23 @@ test('viewport excludes markers behind chrome and beyond the visible map', () =>
     ).flatMap((m) => m.ids),
   ).toEqual(['shown']);
 });
+test('a lone market keeps its move for the second line; a cluster carries none', () => {
+  const withMove = (id: string, x: number, move: string): MarketPoint => ({
+    ...point(id, x, 100),
+    move,
+  });
+  const apart = layoutMarketClusters(
+    [withMove('a', 100, '↑1.2%'), withMove('b', 300, '↓0.4%')],
+    [],
+    400,
+    700,
+  );
+  expect(apart.map((m) => m.move)).toEqual(['↑1.2%', '↓0.4%']);
+  const together = layoutMarketClusters(
+    [withMove('a', 100, '↑1.2%'), withMove('b', 120, '↓0.4%')],
+    [],
+    400,
+    700,
+  );
+  expect(together[0]?.move).toBeUndefined();
+});

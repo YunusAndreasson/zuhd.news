@@ -1,8 +1,7 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
-import { Canvas, LinearGradient, Rect, Skia, vec } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo, useSyncExternalStore } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import {
   type AccessibilityActionEvent,
   Pressable as RNPressable,
@@ -11,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { HIT_SLOP, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { HIT_SLOP, MAX_FONT_SCALE, SPACING, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -124,13 +123,18 @@ const Veil = memo(function Veil({
   color: string;
   onOpen: () => void;
 }) {
-  const { width } = useWindowDimensions();
   const height = Math.round(lineHeight * VEIL_LINES);
-  const colors = useMemo(() => {
-    const c = Skia.Color(color);
-    const at = (alpha: number) => Float32Array.of(c[0] ?? 0, c[1] ?? 0, c[2] ?? 0, alpha);
-    return [at(VEIL_TOP), at(1)];
-  }, [color]);
+  // A view's own CSS gradient, not a Skia canvas: every card mounts one as a
+  // swipe lands, and each new canvas made Skia redraw on the JS thread and
+  // serialize its tree for the UI thread in that commit (~14 ms, dev build,
+  // profiled 2026-09-22). The native view draws the same two stops.
+  const gradient = useMemo(
+    () => ({
+      height,
+      experimental_backgroundImage: `linear-gradient(to bottom, ${withAlpha(color, VEIL_TOP)}, ${withAlpha(color, 1)})`,
+    }),
+    [height, color],
+  );
   // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
   // lands, and a JS read of a value the UI thread is writing waits for it. Lifted by the time the sheet is half open, so the rest reads as
   // it rises rather than arriving at the stop.
@@ -146,11 +150,7 @@ const Veil = memo(function Veil({
       accessibilityElementsHidden
     >
       <RNPressable style={styles.fill} onPress={onOpen} accessible={false}>
-        <Canvas style={{ height }} pointerEvents="none">
-          <Rect x={0} y={0} width={width} height={height}>
-            <LinearGradient start={vec(0, 0)} end={vec(0, height)} colors={colors} />
-          </Rect>
-        </Canvas>
+        <View style={gradient} pointerEvents="none" />
         <View style={[styles.fill, { backgroundColor: color }]} />
       </RNPressable>
     </Animated.View>
@@ -184,6 +184,22 @@ export const StoryCard = memo(function StoryCard({
   }, [article]);
 
   const threadContext = articleThreadContext(article);
+
+  // `sources · save · share` mount when the JS thread is next idle, not with
+  // the card. A card mounts as a swipe lands — the neighbour coming into the
+  // deck's window, off screen — and the three pressables were 25 ms of that
+  // commit's 103 (dev build, profiled 2026-09-22), in the frames where the
+  // globe resumes reprojecting. Until then the row is an empty box of the
+  // same fixed height (`ACTIONS_ROW`), so nothing moves when they arrive; at
+  // rest they are under the veil and hidden from screen readers anyway, and
+  // opening the card mounts them at once.
+  const [actionsIdle, setActionsIdle] = useState(false);
+  useEffect(() => {
+    if (actionsIdle) return;
+    const id = requestIdleCallback(() => setActionsIdle(true), { timeout: 1000 });
+    return () => cancelIdleCallback(id);
+  }, [actionsIdle]);
+  const showActions = actionsIdle || open;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -329,12 +345,16 @@ export const StoryCard = memo(function StoryCard({
             </Text>
           ) : null}
 
-          <StoryActions
-            article={article}
-            onSources={onSources}
-            onBookmark={onBookmark}
-            onShare={onShare}
-          />
+          {showActions ? (
+            <StoryActions
+              article={article}
+              onSources={onSources}
+              onBookmark={onBookmark}
+              onShare={onShare}
+            />
+          ) : (
+            <View style={styles.actions} />
+          )}
         </View>
         {veil ? (
           <Veil

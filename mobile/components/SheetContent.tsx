@@ -154,8 +154,7 @@ interface SheetSourceFooterProps {
   onLinkPress?: () => void;
 }
 
-/** Baseline-aligned footer: source name on the left, optional tappable report
- *  link on the right, reading as one balanced last row. */
+/** Wrapping source name with reserved space for the optional report link. */
 export function SheetSourceFooter({
   entering,
   source,
@@ -165,7 +164,7 @@ export function SheetSourceFooter({
 }: SheetSourceFooterProps) {
   return (
     <Animated.View entering={entering} style={styles.sourceLine}>
-      <Text variant="caption" tone="secondary">
+      <Text variant="caption" tone="secondary" style={styles.sourceName}>
         {source}
       </Text>
       {onLinkPress ? (
@@ -174,6 +173,7 @@ export function SheetSourceFooter({
           accessibilityRole="link"
           accessibilityLabel={linkAccessibilityLabel}
           hitSlop={HIT_SLOP}
+          style={styles.sourceLink}
         >
           <Text variant="caption" tone="accent">
             {linkLabel}
@@ -244,6 +244,9 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xl,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline',
+    alignItems: 'center',
+    gap: SPACING.md,
   },
+  sourceName: { flex: 1, minWidth: 0 },
+  sourceLink: { flexShrink: 0, maxWidth: '45%', minHeight: 44, justifyContent: 'center' },
 });

@@ -1,0 +1,24 @@
+steps:
+  - echo: Swipe across the visible collapsed story card; camera should fly to the
+      next story.
+  - swipe:
+      from: { x: 0.85, y: 0.78 }
+      to: { x: 0.15, y: 0.78 }
+      duration: 300
+  - await:
+      text:
+        in: { text: Today's stories }
+        contains: Story 2 of
+      timeout: 5000
+  - echo: Swipe the collapsed card back; expect first story position restored.
+  - swipe:
+      from: { x: 0.15, y: 0.78 }
+      to: { x: 0.85, y: 0.78 }
+      duration: 300
+  - await:
+      text:
+        in: { text: Today's stories }
+        contains: Story 1 of
+      timeout: 5000
+executionPrerequisite: Android app loaded on the first collapsed story, no platform
+  sheet open. Default phone text size. Tests story browsing and map controls.

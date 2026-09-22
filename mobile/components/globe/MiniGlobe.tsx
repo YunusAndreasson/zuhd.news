@@ -19,17 +19,12 @@ import {
   BlurStyle,
   Canvas,
   Circle,
-  ColorMatrix,
-  CubicSampling,
   FontEdging,
   FontHinting,
   Group,
-  Image,
-  LinearGradient,
   PaintStyle,
   Path,
   Picture,
-  Rect,
   rect,
   type SkCanvas,
   type SkColor,
@@ -46,7 +41,6 @@ import {
   TileMode,
   type Transforms3d,
   useFont,
-  useImage,
   useTexture,
   vec,
 } from '@shopify/react-native-skia';
@@ -83,7 +77,7 @@ import {
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
-import { eventAgeDays } from '../../lib/conflict';
+import { collapseConflictVisuals, eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import {
   arcDegrees,
@@ -100,6 +94,7 @@ import {
   layoutMarketClusters,
   type MarketCluster,
   type MarketPoint,
+  marketHitDistanceSquared,
 } from '../../lib/market-map-layout';
 import { coverageRanks } from '../../lib/now';
 import {
@@ -155,7 +150,6 @@ import {
   FRAMING_WIDEST,
   findCountry,
   formatLocalTime,
-  getMoonPhase,
   getSunPosition,
   invalidateSunCaches,
   isNear,
@@ -307,12 +301,13 @@ function conflictAtlas(
   marks: { x: number; y: number; recencyAlpha: number; scale: number }[],
   rgb: readonly [number, number, number],
 ) {
-  if (marks.length === 0) return null;
+  const visuals = collapseConflictVisuals(marks);
+  if (visuals.length === 0) return null;
   const sprites: ReturnType<typeof rect>[] = [];
   const transforms: ReturnType<typeof Skia.RSXform>[] = [];
   const colors: Float32Array[] = [];
-  for (let i = 0; i < marks.length; i++) {
-    const m = marks[i];
+  for (let i = 0; i < visuals.length; i++) {
+    const m = visuals[i];
     if (!m) continue;
     // Sized by the death toll (`conflictScale`), about the mark's centre.
     const k = m.scale;
@@ -429,11 +424,6 @@ const STORY_HALO_LAYERS: GlowLayer[] = [
   { r: 6.5, opacity: 0.24, blur: 3 },
 ];
 const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
-const BEACON_SIZE = 16;
-// Skia's texture effect depends on size identity; fixed atlases must retain it
-// across renders so theme and type changes do not rebuild unchanged textures.
-const BEACON_TEXTURE_SIZE = { width: BEACON_SIZE, height: BEACON_SIZE };
-const BEACON_CENTER = BEACON_SIZE / 2;
 /** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
 const BEACON_R = 5.5;
 /** A place whose stories are all found keeps a hollow ring this size: small
@@ -469,7 +459,6 @@ function warmDetailGeo(then: () => void) {
   }, 0);
 }
 const READ_ALPHA = 0.7;
-const BEACON_SRC = rect(0, 0, BEACON_SIZE, BEACON_SIZE);
 /** The web's `sentimentDivergence` bar for the contested ring. */
 const CONTESTED_DIVERGENCE = 0.35;
 /** A story tap's catch radius, squared (32 px). */
@@ -648,6 +637,59 @@ function boxesMeet(a: LabelBox, b: LabelBox, gap: number): boolean {
 const MARK_LABEL_DY = [20, -14] as const;
 /** The clear space a mark's name keeps from every label placed before it. */
 const MARK_LABEL_GAP = 2;
+/**
+ * A market's or a strait's label is two lines (2026-09-22, the user's
+ * request): the name, then the move under it — `Strait of Hormuz` over
+ * `↓57% vs 90d`. It was one line, `Strait of Hormuz ↓57% vs 90d`, 11pt and
+ * tinted end to end, which ran a third of the way across a phone and put the
+ * name in a traffic colour.
+ *
+ * The move is the larger line: it is what changed, and on a data map the
+ * figure carries the weight while the name says what it is. The name is
+ * 11pt in plain ink (a strait's in the water labels' italic, the atlas
+ * convention for a passage); the move is `MARK_VALUE_PT` semibold in its
+ * direction's colour, and a strait's `vs 90d` stays 11pt secondary beside
+ * it, a qualifier rather than a second figure. The story's location, 16pt,
+ * is still the largest text on the globe.
+ */
+const MARK_VALUE_PT = 13;
+/** From the name's baseline to the move's. */
+const MARK_VALUE_DY = 15;
+/** A label's box above and below its first baseline, for collisions. */
+const MARK_LABEL_ASCENT = 10;
+const MARK_LABEL_DESCENT = 3;
+
+/** The words of a mark's label, and the faces they are set in. */
+interface MarkLabelText {
+  name: string;
+  nameFont: SkFont | null;
+  move?: string;
+  /** What the move is measured against (`vs 90d`), set small after it. */
+  basis?: string;
+  valueFont: SkFont | null;
+  basisFont: SkFont | null;
+}
+
+function measureOr(font: SkFont | null, text: string, perChar: number): number {
+  return font ? textWidth(font, text) : text.length * perChar;
+}
+
+/** The move line's width: the figure, then a space and the basis. */
+function moveLineWidth(t: MarkLabelText): number {
+  if (!t.move) return 0;
+  const move = measureOr(t.valueFont, t.move, 6.5);
+  return t.basis ? move + measureOr(t.basisFont, ` ${t.basis}`, 5) : move;
+}
+
+/** The label's width: its longer line. */
+function markLabelWidth(t: MarkLabelText): number {
+  return Math.max(measureOr(t.nameFont, t.name, 5), moveLineWidth(t));
+}
+
+/** How far the label's last line sits below its first baseline. */
+function markLabelDepth(t: MarkLabelText): number {
+  return t.move ? MARK_VALUE_DY : 0;
+}
 
 // Neighbour-label lines, precomputed at module load. Display-name
 // normalization ("United States of America" → "United States") and the
@@ -748,7 +790,10 @@ interface MiniGlobeProps {
   marketViewport?: { top: number; bottom: number };
   marketMarks?: {
     id: string;
+    /** The index's name, the label's first line. */
     label: string;
+    /** Its move (`↓4.8%`), the second. */
+    move?: string;
     lat: number;
     lng: number;
     direction?: 'up' | 'down' | 'flat';
@@ -926,7 +971,12 @@ interface GlobeState {
     x: number;
     y: number;
     id: string;
+    /** The strait's name, the label's first line. */
     label: string;
+    /** Its traffic move (`↓57%`) and what that is against (`vs 90d`), the
+     *  second line. */
+    move?: string;
+    basis?: string;
     intensity: number;
     direction?: 'up' | 'down' | 'flat';
     labelX: number;
@@ -937,7 +987,11 @@ interface GlobeState {
     labelY: number | null;
   }[];
   /** Clustered market targets; their members remain individually reachable. */
-  marketMarks: (MarketCluster & { labelX: number; labelY: number | null })[];
+  marketMarks: (MarketCluster & {
+    labelX: number;
+    labelY: number | null;
+    labelBounds: LabelBox | null;
+  })[];
   /** GDACS disaster markers — Orange/Red current events. Projected every
    *  frame like chokepoints (small set, reference signal). `recencyAlpha`
    *  ∈ [0.5, 1] fades events older than ~7 days. */
@@ -1016,94 +1070,6 @@ interface GlobeState {
    *  resting view; the deep-night tier ignores it and always paints. */
   cityTwilightOpacity: number;
 }
-
-/** Memoized moon — skips React reconciliation during scroll since all props are stable. */
-const Moon = memo(function Moon({
-  x,
-  y,
-  r,
-  phase,
-  texture,
-  clip,
-  accentColor,
-  bgAlpha,
-}: {
-  x: number;
-  y: number;
-  r: number;
-  phase: number;
-  texture: ReturnType<typeof useImage>;
-  clip: SkPath;
-  accentColor: string;
-  bgAlpha: (opacity: number) => string;
-}) {
-  if (!texture) return null;
-  return (
-    <>
-      {/* Halo — tight glow around the moon */}
-      <Circle
-        cx={x + (phase < 0.5 ? r * 0.3 : -r * 0.3)}
-        cy={y}
-        r={r * 1.8}
-        color={accentColor}
-        opacity={0.025}
-      >
-        <BlurMask blur={r * 0.8} style="solid" />
-      </Circle>
-      {/* Limb glow — bright ring right at the disk edge */}
-      <Circle cx={x} cy={y} r={r} color={accentColor} opacity={0.15}>
-        <BlurMask blur={r * 0.25} style="outer" />
-      </Circle>
-      {/* Moon texture — full disk. CubicSampling: <Image>'s default sampler
-          is Nearest+Nearest, which pixelates the moon photo at our small
-          render radius. Cubic gives a smooth downscale at negligible cost
-          for a single static image.
-          ColorMatrix: pure-luminance desaturation (Rec. 709 weights) locks
-          the moon into the monochrome palette so the source PNG's warm cast
-          can never drift against the cool dark-mode atmosphere or fight the
-          accent-tinted halo. Single shader uniform — no per-pixel JS cost,
-          and it's a static image so the filter is baked once at first
-          composite. */}
-      <Group clip={clip}>
-        <BlurMask blur={r * 0.06} style="normal" />
-        <Image
-          image={texture}
-          x={x - r}
-          y={y - r}
-          width={r * 2}
-          height={r * 2}
-          opacity={0.45}
-          sampling={CubicSampling}
-        >
-          <ColorMatrix
-            // prettier-ignore
-            matrix={[
-              0.2126, 0.7152, 0.0722, 0, 0, 0.2126, 0.7152, 0.0722, 0, 0, 0.2126, 0.7152, 0.0722, 0,
-              0, 0, 0, 0, 1, 0,
-            ]}
-          />
-        </Image>
-      </Group>
-      {/* Gradient shadow — gradual terminator falloff */}
-      <Group clip={clip}>
-        <BlurMask blur={r * 0.04} style="normal" />
-        <Rect x={x - r} y={y - r} width={r * 2} height={r * 2}>
-          <LinearGradient
-            start={vec(phase < 0.5 ? x + r : x - r, y)}
-            end={vec(phase < 0.5 ? x - r : x + r, y)}
-            colors={[bgAlpha(0), bgAlpha(0), bgAlpha(0.85), bgAlpha(0.95)]}
-            positions={[
-              0,
-              Math.max(0, Math.abs(Math.cos(phase * 2 * Math.PI)) * 0.5),
-              Math.min(1, 0.5 + Math.abs(Math.cos(phase * 2 * Math.PI)) * 0.35),
-              1,
-            ]}
-          />
-        </Rect>
-      </Group>
-    </>
-  );
-});
 
 /** Country highlight opacity — scaled by area so small nations still read at
  *  globe scale. The soft glow is the body; a crisp outline (drawn separately,
@@ -1426,6 +1392,74 @@ function drawHaloText(
   canvas.drawText(text, x, y, fillPaint(color, opacity), font);
 }
 
+/** The faces a mark's label is set in. */
+type MarkFonts = { sub: SkFont | null; water: SkFont | null; value: SkFont | null };
+
+/** A strait's label: its name in the water labels' italic. */
+function straitLabelText(
+  cp: { label: string; move?: string; basis?: string },
+  f: MarkFonts,
+): MarkLabelText {
+  return {
+    name: cp.label,
+    nameFont: f.water,
+    move: cp.move,
+    basis: cp.basis,
+    valueFont: f.value,
+    basisFont: f.sub,
+  };
+}
+
+/** An exchange's label, or a cluster's count of markets (which has no move). */
+function marketLabelText(m: { label: string; move?: string }, f: MarkFonts): MarkLabelText {
+  return { name: m.label, nameFont: f.sub, move: m.move, valueFont: f.value, basisFont: f.sub };
+}
+
+/**
+ * A market's or a strait's label, centred on `x` with its first baseline at
+ * `y` — the name, then the move a line under it with its basis after it.
+ * Every line carries the same halo, so the block reads as one label.
+ */
+function drawMarkLabel(
+  canvas: SkCanvas,
+  t: MarkLabelText,
+  x: number,
+  y: number,
+  ink: { name: string; move: string; basis: string; halo: string },
+  haloOpacity: number,
+) {
+  if (t.nameFont) {
+    drawHaloText(
+      canvas,
+      t.name,
+      x - textWidth(t.nameFont, t.name) / 2,
+      y,
+      t.nameFont,
+      ink.name,
+      ink.halo,
+      1,
+      haloOpacity,
+    );
+  }
+  if (!t.move || !t.valueFont) return;
+  const lineY = y + MARK_VALUE_DY;
+  const left = x - moveLineWidth(t) / 2;
+  drawHaloText(canvas, t.move, left, lineY, t.valueFont, ink.move, ink.halo, 1, haloOpacity);
+  if (t.basis && t.basisFont) {
+    drawHaloText(
+      canvas,
+      ` ${t.basis}`,
+      left + textWidth(t.valueFont, t.move),
+      lineY,
+      t.basisFont,
+      ink.basis,
+      ink.halo,
+      1,
+      haloOpacity,
+    );
+  }
+}
+
 type AtlasInputs = {
   sprites: ReturnType<typeof rect>[];
   transforms: ReturnType<typeof Skia.RSXform>[];
@@ -1452,7 +1486,6 @@ function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInp
 interface GlobeTextures {
   ghost: SkImage | null;
   storyHalo: SkImage | null;
-  beacon: SkImage | null;
   overlay: SkImage | null;
   dot: SkImage | null;
   makkah: SkImage | null;
@@ -1461,7 +1494,6 @@ interface GlobeTextures {
 const NO_TEXTURES: GlobeTextures = {
   ghost: null,
   storyHalo: null,
-  beacon: null,
   overlay: null,
   dot: null,
   makkah: null,
@@ -1481,6 +1513,8 @@ interface FrameStyle {
     country: SkFont | null;
     neighbor: SkFont | null;
     water: SkFont | null;
+    /** A mark's move, the second line of a market's or strait's label. */
+    value: SkFont | null;
   };
   textures: GlobeTextures;
 }
@@ -1697,20 +1731,23 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         c.drawLine(x, cp.y + sign * 4, x + 3, cp.y + sign, strokePaint(color, 1, 1.5));
       }
     }
-    if (fonts.sub && cp.labelY !== null) {
-      drawHaloText(
+    if (cp.labelY !== null) {
+      drawMarkLabel(
         c,
-        cp.label,
-        cp.labelX - textWidth(fonts.sub, cp.label) / 2,
+        straitLabelText(cp, fonts),
+        cp.labelX,
         cp.labelY,
-        fonts.sub,
-        cp.direction === 'down'
-          ? colors.markMarketDown
-          : cp.direction === 'up'
-            ? colors.markMarketUp
-            : colors.textSecondary,
-        colors.bg,
-        1,
+        {
+          name: colors.text,
+          move:
+            cp.direction === 'down'
+              ? colors.markMarketDown
+              : cp.direction === 'up'
+                ? colors.markMarketUp
+                : colors.textSecondary,
+          basis: colors.textSecondary,
+          halo: colors.bg,
+        },
         cp.disrupted
           ? light
             ? LABEL_HALO_OPACITY_LIGHT_STRONG
@@ -1771,16 +1808,13 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         c.drawLine(m.x, m.y + sign * 6, m.x + 4, m.y + sign * 2, strokePaint(color, 1, 2));
       }
     }
-    if (marketFont && m.labelY !== null) {
-      drawHaloText(
+    if (m.labelY !== null) {
+      drawMarkLabel(
         c,
-        m.label,
-        m.labelX - textWidth(marketFont, m.label) / 2,
+        marketLabelText(m, fonts),
+        m.labelX,
         m.labelY,
-        marketFont,
-        color,
-        colors.bg,
-        1,
+        { name: colors.text, move: color, basis: colors.textSecondary, halo: colors.bg },
         haloOpacity,
       );
     }
@@ -1814,12 +1848,30 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.restore();
   }
 
-  // Conflict events — the ghost glow, one Atlas, recency in the colour channel.
+  // Conflict events — one glow per nearby cluster, recency in the colour
+  // channel. Hit-testing still uses every original event point below.
+  const conflictVisuals = collapseConflictVisuals(f.conflictMarks);
   drawAtlasLayer(
     c,
     textures.ghost,
     conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
   );
+  if (fonts.sub) {
+    for (const m of conflictVisuals) {
+      if (m.count < 3) continue;
+      drawHaloText(
+        c,
+        String(m.count),
+        m.x + 9,
+        m.y - 4,
+        fonts.sub,
+        colors.textEmphasis,
+        colors.bg,
+        0.9,
+        1,
+      );
+    }
+  }
 
   // Country highlight — soft glow, then the crisp focal outline, both on the
   // arc fade. The polygon it draws is the settled story's, and that flips at
@@ -1913,13 +1965,19 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   for (const m of f.readMarks) {
     c.drawCircle(m.x, m.y, READ_R, strokePaint(m.color, READ_ALPHA, 1.2));
   }
-  // Story beacons — halo, then the rimmed disc.
+  // Story beacons — halo, then a category-coloured disc. Keeping the fill in
+  // the frame rather than baking a white centre into an Atlas makes the mark
+  // read as editorial category colour instead of a field of unexplained dots.
   drawAtlasLayer(
     c,
     textures.storyHalo,
     storyAtlas(STORY_HALO.size.width, STORY_HALO.srcRect, f.storyMarks),
   );
-  drawAtlasLayer(c, textures.beacon, storyAtlas(BEACON_SIZE, BEACON_SRC, f.storyMarks));
+  for (const m of f.storyMarks) {
+    const radius = BEACON_R * m.scale;
+    c.drawCircle(m.x, m.y, radius, fillPaint(m.color, m.alpha));
+    c.drawCircle(m.x, m.y, radius, strokePaint(colors.bg, 0.82, 1.25));
+  }
   // The web's ring on a story its sources disagree sharply about.
   for (const m of f.storyMarks) {
     if (!m.contested) continue;
@@ -2202,7 +2260,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
-  const { colors, bgAlpha, resolvedAppearance } = useTheme();
+  const { colors, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
   // Gates the globe's two *discrete* animations (zoom transition, tap pulse
   // expansion) per DESIGN.md's Reduce Motion rule. The scroll-driven rotation
@@ -2217,14 +2275,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   // a hue by almost zero.
   const ghostTexture = useGlowTexture(GHOST_GLOW, WHITE);
   const storyHaloTexture = useGlowTexture(STORY_HALO, WHITE);
-  const beaconTexture = useTexture(
-    <Group>
-      <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R + 1.2} color={BLACK} />
-      <Circle cx={BEACON_CENTER} cy={BEACON_CENTER} r={BEACON_R} color={WHITE} />
-    </Group>,
-    BEACON_TEXTURE_SIZE,
-    [],
-  );
   const overlayTexture = useTexture(
     <Group>
       {FAMINE_SRC.map((_, blocks) => (
@@ -2288,6 +2338,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
   const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11.5);
   const waterFont = useFont(require('../../assets/fonts/SourceSans3-Italic.ttf'), 11);
+  //   - valueFont (SemiBold 13) is a market's or strait's move, the larger
+  //     second line under its 11pt name (`MARK_VALUE_PT`).
+  const valueFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), MARK_VALUE_PT);
   // Dynamic-text rendering polish for every map label. Skia's defaults
   // (integer-snapped positioning, outline hinting, plain anti-alias) are
   // tuned for static UI text. Each frame on the globe nudges every label to
@@ -2302,7 +2355,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // unknown to satisfy the type while shipping the value the C++ side
   // actually wants (a 0/1 numeric flag).
   useEffect(() => {
-    const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont];
+    const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont];
     for (const f of fonts) {
       if (!f) continue;
       f.setSubpixel(1 as unknown as boolean);
@@ -2310,7 +2363,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       f.setHinting(FontHinting.None);
       textWidths.delete(f);
     }
-  }, [labelFont, subFont, countryFont, neighborFont, waterFont]);
+  }, [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont]);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
   // The fonts load asynchronously, so the ref pointer can flip from null to
@@ -2325,6 +2378,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   neighborFontRef.current = neighborFont;
   const waterFontRef = useRef(waterFont);
   waterFontRef.current = waterFont;
+  const valueFontRef = useRef(valueFont);
+  valueFontRef.current = valueFont;
   // Anchor-label ambient floor mirrored into a ref for the same reason as
   // the fonts above: callReproject is a stable `[]`-deps closure and can't
   // see the theme, but the floor is mode-dependent (see the constant pair).
@@ -2485,9 +2540,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     };
   });
 
-  // Outside the limb, wherever the zoom has put it: the stars and the moon
-  // are behind the planet, and a zoomed globe covers them.
-  const discClip = useDerivedValue(() => Skia.Path.Circle(cx, cy, framePictures.value.disc));
   // Textures bake on the UI thread; they reach here once each, by reaction,
   // rather than being read synchronously on every frame.
   const texturesRef = useRef<GlobeTextures>(NO_TEXTURES);
@@ -2509,6 +2561,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         country: countryFont,
         neighbor: neighborFont,
         water: waterFont,
+        value: valueFont,
       },
       textures: texturesRef.current,
     });
@@ -2719,6 +2772,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       (marketMarks ?? []).map((m) => ({
         id: m.id,
         label: m.label,
+        move: m.move,
         direction: m.direction,
         unit: unit(m.lng, m.lat),
       })),
@@ -2727,21 +2781,27 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   const enrichedChokepoints = useMemo(
     () =>
-      (chokepoints ?? []).map((cp) => ({
-        id: cp.id,
-        // Mixed case (not UPPERCASE): chokepoints are passages — straits,
-        // canals, channels — which sit in the hydrography tier alongside
-        // rivers and seas. Atlas convention for hydrography is italic
-        // mixed case; uppercase reads as alarm even at baseline, fighting
-        // the "ambient reference geography" intent.
-        label: `${cp.name}${straitMapChange(cp.delta7vs90.n_total) ? ` ${straitMapChange(cp.delta7vs90.n_total)?.label}` : ''}`,
-        direction: straitMapChange(cp.delta7vs90.n_total)?.direction,
-        unit: unit(cp.lng, cp.lat),
-        // Signed, because direction decides meaning here and magnitude only
-        // decides brightness.
-        delta: cp.delta7vs90.n_total ?? 0,
-        absDelta: Math.abs(cp.delta7vs90.n_total ?? 0),
-      })),
+      (chokepoints ?? []).map((cp) => {
+        const change = straitMapChange(cp.delta7vs90.n_total);
+        return {
+          id: cp.id,
+          // Mixed case (not UPPERCASE): chokepoints are passages — straits,
+          // canals, channels — which sit in the hydrography tier alongside
+          // rivers and seas. Atlas convention for hydrography is italic
+          // mixed case; uppercase reads as alarm even at baseline, fighting
+          // the "ambient reference geography" intent. The move is the
+          // label's second line (`straitLabelText`).
+          label: cp.name,
+          move: change?.value,
+          basis: change?.basis,
+          direction: change?.direction,
+          unit: unit(cp.lng, cp.lat),
+          // Signed, because direction decides meaning here and magnitude only
+          // decides brightness.
+          delta: cp.delta7vs90.n_total ?? 0,
+          absDelta: Math.abs(cp.delta7vs90.n_total ?? 0),
+        };
+      }),
     [chokepoints],
   );
   const chokepointsRef = useRef(enrichedChokepoints);
@@ -3388,6 +3448,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           y: pt[1],
           id: cp.id,
           label: cp.label,
+          move: cp.move,
+          basis: cp.basis,
           labelX: pt[0],
           direction: cp.direction,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
@@ -3411,6 +3473,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           y: pt[1],
           id: m.id,
           label: m.label,
+          move: m.move,
           direction: m.direction,
         });
       }
@@ -3667,7 +3730,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         canvasH,
         layoutRef.current.marketViewport?.top,
         layoutRef.current.marketViewport?.bottom,
-      ).map((mark) => ({ ...mark, labelX: mark.x, labelY: null as number | null }));
+      ).map((mark) => ({
+        ...mark,
+        labelX: mark.x,
+        labelY: null as number | null,
+        labelBounds: null as LabelBox | null,
+      }));
 
       // Label collision — dot label (location · time) versus country name
       // label. Small countries where the story dot sits near the polygon
@@ -3696,7 +3764,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // then the straits whose traffic has moved, then the rest.
       const markLabelBoxes: LabelBox[] = [];
       {
-        const wfont = waterFontRef.current;
+        const markFonts: MarkFonts = {
+          sub: subFontRef.current,
+          water: waterFontRef.current,
+          value: valueFontRef.current,
+        };
         const taken: LabelBox[] = marketProjected.map((m) => ({
           x0: m.x - 19,
           x1: m.x + 19,
@@ -3705,11 +3777,39 @@ export const MiniGlobe = memo(function MiniGlobe({
         }));
         if (dotLabel) taken.push(dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current));
         if (countryLabel) taken.push(countryLabelBox(countryLabel, countryFontRef.current));
-        const place = (x: number, y: number, label: string, font = wfont): number | null => {
-          const tw = font ? textWidth(font, label) : label.length * 5;
+        // A genocide mark and its name are drawn whatever else is there, so a
+        // strait or exchange name has to yield to them: unseeded, "GAZA"
+        // printed across "Strait of Hormuz" on the whole-planet view. The box
+        // follows the draw call — the ring's 9px, the name at x + 13, y + 4.
+        for (const g of genocideMarks) {
+          const tw = subFontRef.current
+            ? textWidth(subFontRef.current, g.label)
+            : g.label.length * 6;
+          taken.push({
+            x0: g.x - 9,
+            x1: g.x + 13 + tw,
+            y0: Math.min(g.y - 9, g.y + 4 - MARK_LABEL_ASCENT),
+            y1: Math.max(g.y + 9, g.y + 4 + MARK_LABEL_DESCENT),
+          });
+        }
+        // Two lines where there is a move: over the mark, the block rises by
+        // its second line, so the line nearest the mark sits where a one-line
+        // label's did.
+        const place = (
+          x: number,
+          y: number,
+          t: MarkLabelText,
+        ): { baseline: number; box: LabelBox } | null => {
+          const tw = markLabelWidth(t);
+          const depth = markLabelDepth(t);
           for (const dy of [32, -24, ...MARK_LABEL_DY]) {
-            const yc = y + dy;
-            const box = { x0: x - tw / 2, x1: x + tw / 2, y0: yc - 10, y1: yc + 3 };
+            const yc = y + dy - (dy < 0 ? depth : 0);
+            const box = {
+              x0: x - tw / 2,
+              x1: x + tw / 2,
+              y0: yc - MARK_LABEL_ASCENT,
+              y1: yc + depth + MARK_LABEL_DESCENT,
+            };
             let free =
               box.y0 >= (layoutRef.current.marketViewport?.top ?? 0) &&
               box.y1 <= (layoutRef.current.marketViewport?.bottom ?? canvasH);
@@ -3722,27 +3822,29 @@ export const MiniGlobe = memo(function MiniGlobe({
             if (free) {
               taken.push(box);
               markLabelBoxes.push(box);
-              return yc;
+              return { baseline: yc, box };
             }
           }
           return null;
         };
         for (const m of marketProjected) {
-          const font = subFontRef.current;
-          const tw = font ? textWidth(font, m.label) : m.label.length * 5;
+          const t = marketLabelText(m, markFonts);
+          const tw = markLabelWidth(t);
           m.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, m.x));
-          m.labelY = place(m.labelX, m.y, m.label, font);
+          const placed = place(m.labelX, m.y, t);
+          m.labelY = placed?.baseline ?? null;
+          m.labelBounds = placed?.box ?? null;
         }
         for (const cp of chokepointMarks) {
-          const font = subFontRef.current;
-          const tw = font ? textWidth(font, cp.label) : cp.label.length * 5;
+          const t = straitLabelText(cp, markFonts);
+          const tw = markLabelWidth(t);
           cp.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, cp.x));
           if (cp.x >= 0 && cp.x <= canvasW && (cp.disrupted || cp.surge))
-            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
+            cp.labelY = place(cp.labelX, cp.y, t)?.baseline ?? null;
         }
         for (const cp of chokepointMarks) {
           if (cp.x >= 0 && cp.x <= canvasW && !cp.disrupted && !cp.surge)
-            cp.labelY = place(cp.labelX, cp.y, cp.label, subFontRef.current);
+            cp.labelY = place(cp.labelX, cp.y, straitLabelText(cp, markFonts))?.baseline ?? null;
         }
       }
 
@@ -4000,12 +4102,11 @@ export const MiniGlobe = memo(function MiniGlobe({
     (
       ghost: SkImage | null,
       storyHalo: SkImage | null,
-      beacon: SkImage | null,
       overlay: SkImage | null,
       dot: SkImage | null,
       makkah: SkImage | null,
     ) => {
-      texturesRef.current = { ghost, storyHalo, beacon, overlay, dot, makkah };
+      texturesRef.current = { ghost, storyHalo, overlay, dot, makkah };
       redrawLast();
     },
     [redrawLast],
@@ -4014,13 +4115,12 @@ export const MiniGlobe = memo(function MiniGlobe({
     () => ({
       ghost: ghostTexture.value,
       storyHalo: storyHaloTexture.value,
-      beacon: beaconTexture.value,
       overlay: overlayTexture.value,
       dot: dotTexture.value,
       makkah: makkahTexture.value,
     }),
     (t) => {
-      scheduleOnRN(receiveTextures, t.ghost, t.storyHalo, t.beacon, t.overlay, t.dot, t.makkah);
+      scheduleOnRN(receiveTextures, t.ghost, t.storyHalo, t.overlay, t.dot, t.makkah);
     },
   );
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
@@ -4036,8 +4136,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastReactOA = useSharedValue(Number.NaN);
   const lastReactOG = useSharedValue(Number.NaN);
   const lastReactSettled = useSharedValue(-1);
-  // The list's last window, held so a finger-owned frame can reuse it rather
-  // than recomputing a row index the finger never touched.
+  // The last published story window, used to detect metadata changes even
+  // while a finger owns the camera position.
   const lastReactLo = useSharedValue(0);
   const lastReactHi = useSharedValue(0);
   // Whether the last frame a finger or a flight published was in motion, so the
@@ -4068,28 +4168,45 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (busy) return;
 
       const rawStory = Math.max(0, sy);
-      const storyFraction = Math.min(1, rawStory - Math.min(Math.floor(rawStory), len / 2 - 1));
+      const articleCount = len / 2;
+      const lo = Math.min(Math.floor(rawStory), articleCount - 1);
+      const hi = Math.min(lo + 1, articleCount - 1);
+      const frac = Math.min(1, rawStory - lo);
+      const settled = Math.min(Math.round(rawStory), articleCount - 1);
+      const selectionChanged = settled !== lastReactSettled.value;
       // Compare to the last published frame, not the previous reaction tick:
       // updates while busy must not consume the final detail restoration.
       const detailChanged =
-        owner === 0 &&
-        (lastReactMoving.value ||
-          isStorySettled(storyFraction) !== isStorySettled(lastReactFrac.value));
+        (owner === 0 && lastReactMoving.value) ||
+        isStorySettled(frac) !== isStorySettled(lastReactFrac.value);
       const now = performance.now();
       const justReleased = previous?.busy === true;
-      if (!detailChanged && !justReleased && hasFired.value && now - lastTimeRef.value < 32) return;
+      if (
+        !selectionChanged &&
+        !detailChanged &&
+        !justReleased &&
+        hasFired.value &&
+        now - lastTimeRef.value < 32
+      )
+        return;
       hasFired.value = true;
       lastTimeRef.value = now;
 
-      // Finger owns the camera: publish where it put us and leave the list's
-      // window alone. The throttle above still applies, so a drag reprojects
-      // at the same ~30fps everything else does — the budget is the budget.
+      // A finger or flight owns position, not story identity. Keep the current
+      // story's pin/highlight even if a pinch cancelled its flight offscreen.
       if (owner === 1) {
+        const cameraMoved =
+          Math.abs(dragLng - lastReactLng.value) >= 0.01 ||
+          Math.abs(dragLat - lastReactLat.value) >= 0.01 ||
+          Math.abs(oA - lastReactOA.value) >= 1e-4 ||
+          Math.abs(oG - lastReactOG.value) >= 0.01;
         const unchanged =
-          Math.abs(dragLng - lastReactLng.value) < 0.01 &&
-          Math.abs(dragLat - lastReactLat.value) < 0.01 &&
-          Math.abs(oA - lastReactOA.value) < 1e-4 &&
-          Math.abs(oG - lastReactOG.value) < 0.01;
+          !cameraMoved &&
+          !selectionChanged &&
+          lo === lastReactLo.value &&
+          hi === lastReactHi.value &&
+          Math.abs(frac - lastReactFrac.value) < 1e-3 &&
+          !detailChanged;
         if (unchanged) {
           // The camera has stopped. The reaction re-runs when the in-flight
           // projection releases `busy`, so this is where a drag or a flight
@@ -4116,7 +4233,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastReactLat.value = dragLat;
         lastReactOA.value = oA;
         lastReactOG.value = oG;
-        lastReactMoving.value = true;
+        lastReactSy.value = sy;
+        lastReactSettled.value = settled;
+        lastReactLo.value = lo;
+        lastReactHi.value = hi;
+        lastReactFrac.value = frac;
+        lastReactMoving.value = cameraMoved || !isStorySettled(frac);
         if (viewLat) viewLat.value = dragLat;
         if (viewLng) viewLng.value = dragLng;
         reprojectBusy.value = true;
@@ -4130,20 +4252,12 @@ export const MiniGlobe = memo(function MiniGlobe({
           lastReactFrac.value,
           oA,
           oG,
-          true,
+          lastReactMoving.value,
         );
         return;
       }
 
       const coords = coordsSV.value;
-      const articleCount = len / 2;
-      const rawIndex = Math.max(0, sy);
-      const lo = Math.min(Math.floor(rawIndex), articleCount - 1);
-      const hi = Math.min(lo + 1, articleCount - 1);
-      // Clamp: `lo` is capped at the last article but rawIndex is not, so
-      // bottom rubber-band overscroll would push frac past 1 — and the
-      // smoothstep fades downstream extrapolate to negative opacity there.
-      const frac = Math.min(1, rawIndex - lo);
 
       const loLat = coords[lo * 2];
       const loLng = coords[lo * 2 + 1];
@@ -4194,8 +4308,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       } else {
         return;
       }
-
-      const settled = Math.min(Math.round(rawIndex), articleCount - 1);
 
       // No-op short-circuit — bail when nothing meaningful changed since the
       // last frame. Skipping when sy is stable handles the steady-state
@@ -4308,6 +4420,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     countryFont,
     neighborFont,
     waterFont,
+    valueFont,
     hotspots,
     globeRadius,
     cx,
@@ -4455,7 +4568,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         let overlay = Number.POSITIVE_INFINITY;
         const marks = [
           frame.chokepoints,
-          frame.marketMarks,
           frame.gdacsMarks,
           frame.conflictMarks,
           frame.famineMarks,
@@ -4465,10 +4577,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         for (const layer of marks) {
           for (const m of layer) {
             const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-            if (d2 <= (layer === frame.marketMarks ? 24 * 24 : MARK_HIT_PX2) && d2 < overlay)
-              overlay = d2;
+            if (d2 <= MARK_HIT_PX2 && d2 < overlay) overlay = d2;
           }
         }
+        for (const m of frame.marketMarks)
+          overlay = Math.min(overlay, marketHitDistanceSquared(m, x, y));
         if (story.d2 <= overlay) {
           return {
             countryName: '',
@@ -4516,7 +4629,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Every member of a numbered market target opens in the chooser.
       for (const m of frame.marketMarks) {
-        if (isNear(x, y, m.x, m.y, 24 * 24)) {
+        if (Number.isFinite(marketHitDistanceSquared(m, x, y))) {
           for (const id of m.ids)
             candidates.push({
               countryName: '',
@@ -4665,102 +4778,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   }));
 
-  // Moon — NASA texture with phase shadow
-  const moonTexture = useImage(require('../../assets/moon.png'));
-  // biome-ignore lint/correctness/useExhaustiveDependencies: _tick forces recalc on app resume
-  const moonPhase = useMemo(() => getMoonPhase(), [_tick]);
-  const moonR = globeRadius * 0.05;
   const canvasOrigin = useMemo(() => vec(width / 2, height / 2), [width, height]);
-
-  // Position moon astronomically: elongation from sun determines sky position.
-  // At new moon (phase=0) it's near the sun → day side → hidden.
-  // At full moon (phase=0.5) it's opposite → night side → prominent.
-  // Moon position: above the globe, offset horizontally by elongation from sun.
-  // Full moon (phase=0.5) centers above; crescents drift toward the sun side.
-  const moonPos = useMemo(() => {
-    // Elongation maps phase to horizontal offset: 0=sun side, 0.5=opposite, 1=sun side
-    const elongation = Math.sin(moonPhase * Math.PI); // 0 at new/full → 1 at quarters
-    const side = moonPhase < 0.5 ? 1 : -1; // waxing=right, waning=left
-    const maxDrift = globeRadius * 0.6;
-    const x = cx + side * elongation * maxDrift;
-    const y = cy - globeRadius - moonR * 4;
-    // Hide near new moon (phase < 0.07 or > 0.93)
-    const visible = moonPhase > 0.07 && moonPhase < 0.93;
-    return { x, y, visible };
-  }, [moonPhase, cx, cy, globeRadius, moonR]);
-
-  const moonClip = useMemo(() => {
-    return Skia.Path.Circle(moonPos.x, moonPos.y, moonR);
-  }, [moonPos.x, moonPos.y, moonR]);
-
-  // Stars — recorded into an immutable Picture so Skia replays a single cached
-  // GPU command instead of re-evaluating dozens of React elements per rerender.
-  // Size distribution (cubed) mimics a real sky: mostly tiny, rare bright stars.
-  // Bright stars get a subtle 4-point glint (long-exposure photography look).
-  const starsPicture = useMemo(() => {
-    const recorder = Skia.PictureRecorder();
-    const canvas = recorder.beginRecording(Skia.XYWHRect(0, 0, width, height));
-
-    // Park–Miller LCG — deterministic positions for a stable night sky
-    let seed = 42;
-    const rand = () => {
-      seed = (seed * 16807) % 2147483647;
-      return seed / 2147483647;
-    };
-
-    // Three tints — mostly neutral (accent), a pinch of cool (atmosphere) and warm (dome).
-    // AA explicit: imperative Skia.Paint() defaults antialias *off* (declarative
-    // primitives default it on). Without it, sub-pixel stars (r=0.2..1.6) render
-    // as aliased blocks instead of soft pinpricks.
-    const neutral = Skia.Paint();
-    neutral.setColor(Skia.Color(colors.accent));
-    neutral.setAntiAlias(true);
-    const cool = Skia.Paint();
-    cool.setColor(Skia.Color(colors.atmosphere));
-    cool.setAntiAlias(true);
-    const warm = Skia.Paint();
-    warm.setColor(Skia.Color(colors.dome));
-    warm.setAntiAlias(true);
-
-    const glint = Skia.Paint();
-    glint.setColor(Skia.Color(colors.accent));
-    glint.setStrokeWidth(0.35);
-    glint.setAntiAlias(true);
-
-    // Exclude a ring slightly larger than the globe so stars don't clash with the rim glow
-    const exclusionR2 = globeRadius * globeRadius * 1.05;
-
-    for (let i = 0; i < 90; i++) {
-      const x = rand() * width;
-      const y = rand() * height;
-      const dx = x - cx;
-      const dy = y - cy;
-      if (dx * dx + dy * dy < exclusionR2) continue;
-
-      // Cubed random: heavily skewed toward small values — most stars pinpricks.
-      const t = rand();
-      const r = 0.2 + t * t * t * 1.6;
-
-      // Color roll: 78% neutral, 12% cool, 10% warm
-      const hue = rand();
-      const paint = hue < 0.12 ? cool : hue < 0.22 ? warm : neutral;
-
-      // Subtle alpha range — stars should be atmospheric dust, not focal points
-      const alpha = 0.07 + t * 0.22;
-      paint.setAlphaf(alpha);
-      canvas.drawCircle(x, y, r, paint);
-
-      // Only the rarest (largest) stars get a very faint cross-glint
-      if (r > 1.45) {
-        glint.setAlphaf(alpha * 0.22);
-        const len = r * 2.4;
-        canvas.drawLine(x - len, y, x + len, y, glint);
-        canvas.drawLine(x, y - len, x, y + len, glint);
-      }
-    }
-
-    return recorder.finishRecordingAsPicture();
-  }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere, colors.dome]);
 
   // What is still to find, as a ring just outside the globe. The track is the
   // day's stories with a place; the arc is what is left, starting at twelve
@@ -4798,24 +4816,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
         <Group transform={canvasTransform} origin={canvasOrigin}>
-          {/* Stars and the moon — behind the planet, so clipped to outside its
-          limb, which moves with the zoom (`discClip`). */}
-          <Group clip={discClip} invertClip>
-            <Picture picture={starsPicture} />
-            {moonPos.visible && (
-              <Moon
-                x={moonPos.x}
-                y={moonPos.y}
-                r={moonR}
-                phase={moonPhase}
-                texture={moonTexture}
-                clip={moonClip}
-                accentColor={colors.accent}
-                bgAlpha={bgAlpha}
-              />
-            )}
-          </Group>
-
           {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
           daylight, the graticule, land, ice, borders, night, city lights and
           the inner-limb glaze. Recorded per projection; see

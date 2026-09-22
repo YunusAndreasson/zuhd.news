@@ -1,0 +1,39 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.34
+      toX: 0.75
+      toY: 0.34
+      durationMs: 500
+      momentum: false
+    delayMs: 300
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.34
+      toX: 0.25
+      toY: 0.34
+      durationMs: 500
+      momentum: false
+    delayMs: 300
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.34
+      toX: 0.35
+      toY: 0.34
+      durationMs: 500
+      momentum: false
+    delayMs: 300
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.34
+      toX: 0.35
+      toY: 0.34
+      durationMs: 500
+      momentum: false
+    delayMs: 300
+executionPrerequisite: zuhd.news map open on Android at the current default map
+  view, with the map gesture surface visible.

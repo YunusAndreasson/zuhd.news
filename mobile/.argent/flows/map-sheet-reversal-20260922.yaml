@@ -1,0 +1,35 @@
+steps:
+  - echo: Expand story, immediately reverse with a downward drag, then swipe
+      horizontally while it collapses. Expect a usable collapsed story deck.
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-tap
+          args:
+            x: 0.5
+            y: 0.755
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.8
+            toX: 0.5
+            toY: 0.9
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.85
+            fromY: 0.78
+            toX: 0.15
+            toY: 0.78
+            durationMs: 250
+          delayMs: 0
+  - await:
+      text:
+        in: { text: Today's stories }
+        contains: Story 2 of
+      timeout: 5000
+executionPrerequisite: Android map on first collapsed story at default text
+  size; no modal. 411 by 914 logical viewport. Raw gestures intentionally cross
+  the moving sheet boundary without idle waits.
