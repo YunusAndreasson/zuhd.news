@@ -35,7 +35,7 @@ fi
 # just-written files with Edit, so Edit must stay in TOOLS_WRITER (missing it stalls the
 # writer on permission prompts — 43 articles lost 07-01→07-03 before this was diagnosed).
 CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-5}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-5}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-5-5}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
@@ -1067,7 +1067,7 @@ if [ "$START_HOUR" = "22" ]; then
     # enough since the metric inputs are deterministic.
     # Timeout 600s (10min): Opus medium runs slower per turn than Sonnet
     # medium; doubling the budget keeps 15 max-turns comfortably in scope.
-    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-5 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-5-5 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
     if [ "$TUNE_EXIT" = "124" ]; then
       echo "Tuning exit: 124 (TIMEOUT — exceeded 600s budget; bump if recurring) — $((SECONDS - T6))s" | tee -a "$LOG_FILE"

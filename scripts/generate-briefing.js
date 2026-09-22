@@ -115,7 +115,7 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5',
+    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5',
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',

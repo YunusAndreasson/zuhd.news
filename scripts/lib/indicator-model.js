@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process'
 import { parseClaudeEnvelopeWithUsage } from './claude-envelope.js'
 
 export function callIndicatorModel(fullPrompt) {
-  const MODEL = process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5'
+  const MODEL = process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5-5'
   const EFFORT = process.env.ZUHD_DISPATCH_EFFORT || 'medium'
   const env = { ...process.env }
   // The child must not inherit the parent session marker — see `cycle.md`.

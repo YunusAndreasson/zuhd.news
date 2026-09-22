@@ -50,7 +50,7 @@ const CACHE_PATH = join(ROOT, 'content', '.events-dispatch.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-events-prompt.md')
 
-const MODEL = process.env.ZUHD_EVENTS_MODEL || 'claude-opus-5'
+const MODEL = process.env.ZUHD_EVENTS_MODEL || 'claude-opus-5-5'
 const EFFORT = process.env.ZUHD_EVENTS_EFFORT || 'medium'
 const CONCURRENCY = 3
 /** Grounding window — same fortnight `narrate-indicators.js` uses. An event
