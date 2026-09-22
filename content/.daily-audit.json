@@ -1,22 +1,22 @@
 {
-  "date": "2026-09-21",
+  "date": "2026-09-22",
   "metrics": {
     "articles": {
-      "value": 59,
-      "detail": "5 cycles, all completed, avg 11.8/cycle"
+      "value": 53,
+      "detail": "5 cycles, all completed, avg 10.6/cycle; 40 from the four Opus 5 cycles, 13 from the first Opus 5.5 cycle at 22:00"
     },
     "freshness": {
       "median": 0.1,
-      "p90": 0.8,
-      "max": 0.9,
+      "p90": 0.4,
+      "max": 0.4,
       "target": 1.0,
       "met": true
     },
     "categories": {
-      "politics": 23,
-      "economy": 18,
-      "science": 7,
-      "tech": 11
+      "politics": 18,
+      "economy": 13,
+      "science": 10,
+      "tech": 12
     },
     "multiSource": {
       "value": 15,
@@ -24,48 +24,48 @@
       "met": true
     },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
       "breakdown": {
-        "ME": 20,
-        "AM": 17,
-        "EU": 13,
-        "AS": 5,
-        "AF": 4,
-        "OC": 0
+        "AM": 19,
+        "AS": 10,
+        "ME": 9,
+        "EU": 9,
+        "AF": 5,
+        "OC": 1
       }
     },
     "sciTech": {
-      "ratio": 31,
+      "ratio": 42,
       "target": 25,
       "met": true
     },
     "topSourceShare": {
-      "source": "Al Jazeera Online",
-      "pct": 14,
+      "source": "Ars Technica",
+      "pct": 11,
       "target": 20,
       "met": true
     },
     "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1122
+    "avgCycleDuration": 1433
   },
-  "experiment": "No new experiment. 2026-09-18-gap-countries-latam-pacific remains active and evaluates 2026-09-23; today is logged as an interim observation only. Today's read is mixed: uniqueRegions fell back to 5 with Oceania at zero, while US share of total output held at 24% (41% baseline).",
-  "weakestArea": "Regional breadth, which the active experiment targets. Oceania returned to zero and Latin America produced one dateline (Kingston). Mexico, Argentina and the Philippines have not produced a published dateline on either clean day since they were added. Africa sits exactly on its guardrail floor of 4, down from 7, so 09-22 decides whether the four added entries are only inert or are also crowding out gap coverage. Science, at 7 against a target of 5, is the thinnest category margin.",
+  "experiment": "No new experiment: the pause gate runs to 2026-09-25 for the Opus 5.5 baseline. 2026-09-18-gap-countries-latam-pacific evaluates tomorrow (2026-09-23). Today is logged as its third and final clean interim day, counting only the Opus 5 cycles, where uniqueRegions was 5, Oceania 0 and AF 3.",
+  "weakestArea": "Regional breadth, which the active experiment targets. Counting only the Opus 5 cycles, uniqueRegions was 5 with Oceania at zero; the full day reaches 6 only because of the excluded Opus 5.5 cycle's Wellington dateline. Over the three clean days the result is 6/5/5 against a 6/6/5 baseline, and the added Mexico, Argentina and Philippines entries have produced no source-attributed datelines. AF was 3 in the Opus 5 window, below its guardrail floor of 4. That points toward a revert tomorrow, although US share of output held at 22-25%, against a 41% baseline, on all three days.",
   "watching": [
-    "Xi's Washington visit comes as US-China truce talks stall; the summit outcome will set tariff and export-control coverage for the week.",
-    "Iran is passing Hormuz terms through intermediaries while Washington issues Gulf security alerts, so the diplomatic and military tracks are still moving together.",
-    "The Houthis seized Mocha, extending ground control along the Red Sea coast next to the Bab el-Mandeb chokepoint.",
-    "Trump is pressing Kyiv on its refinery strikes while a Moscow refinery is halted, which is a direct policy conflict over Ukraine's long-range campaign.",
-    "The US is readying sanctions on the ICC, and Israel is arming Gaza militias as the toll passes 73,900; legal and ground developments on Gaza are both escalating.",
-    "United Russia swept the Duma elections, and Merz's party hit a record poll low; the domestic politics of both European powers are worth tracking."
+    "Iran has offered to reopen Hormuz in talks with Witkoff while Trump threatens to 'annihilate' Iran and the G7 demands Tehran rein in the Houthis, so the diplomatic and coercive tracks are still running together.",
+    "The Pentagon/CBO tally of US aircraft lost in the Iran war and the Saudi pipeline restart pulling oil lower are the economic and military cost signals to follow.",
+    "At UNGA, Macron called Gaza a shame on all and Erdogan called for abolishing the veto, which points to a week of pressure on the Security Council.",
+    "China purged top generals as satellites spotted a new submarine class, making PLA leadership churn and naval build-out a single story.",
+    "Hurricane Polo reached Category 4 off Mexico and Typhoon Dujuan killed five in Japan, so there are two active Pacific tropical systems.",
+    "Tunisia's protests have spread beyond Kasserine, and Brazil's runoff polls show Lula tied with Flávio Bolsonaro."
   ],
   "coverageGaps": [
-    "Oceania is back to zero datelines one day after its first non-zero day; the Australia entry in GAP_COUNTRIES has so far produced output only on 09-20.",
-    "Latin America has 1 dateline (Kingston, Jamaica). Mexico and Argentina have produced nothing across two clean days, so those entries currently look inert.",
-    "Asia fell from 8 to 5 datelines. Outside Pakistan and India the only Asian datelines were Tokyo, Tianjin and Singapore, and the added Philippines entry has not produced one.",
-    "Africa is at its floor of 4 (Entebbe, Ndutu, Port Harcourt), with nothing from the Sahel, the Horn or Sudan today."
+    "Oceania had no datelines in the Opus 5 window; its only dateline today (Wellington) came in the first Opus 5.5 cycle.",
+    "Latin America had 3 datelines (Brasília ×2, Manzanillo), all via non-regional outlets (Phys.org, Daily Maverick, AP). Mexico and Argentina outlets have supplied nothing in three clean days.",
+    "Africa had 3 datelines in the Opus 5 window (Abuja, Johannesburg, and Mocha, a Yemen dateline the bbox classes as AF). Only 2 of those are sub-Saharan, which is thin for a region with active Sudan and Sahel crises.",
+    "US-dateline concentration persists: New York 7 and Washington 6 account for a quarter of all 53 articles."
   ],
-  "context": "All five cycles completed and every goal metric is met. The Africa count was cross-checked against the article datelines. The OAuth outage of 2026-09-19 is resolved: two consecutive full days of five out of five cycles. The experiment's evaluation on 09-23 should weigh usSharePct over usShareOfAmPct (a mis-specified denominator) and treat an AF count below 4 on 09-22 as grounds to revert."
+  "context": "The selector, tune, narrators and briefing moved from Opus 5 to Opus 5.5 with the 22:00 cycle, so from tomorrow the region and category mix reflects a new model, and the pause gate holds new variables until 2026-09-25. Average cycle duration rose to 1433s from 1122s, mostly writer time at 388s, while throughput dipped to 10.6/cycle. It stays above the guardrail of 9 but is worth watching under the new model. Note that regionFromCoords files Mumbai under ME and Mocha under AF, so the per-region counts carry some bbox noise."
 }

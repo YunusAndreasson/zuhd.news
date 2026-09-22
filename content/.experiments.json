@@ -100,6 +100,27 @@
           "latamDatelines": 1,
           "read": "Regression on the primary metric: uniqueRegions back to 5 with Oceania at zero, so 09-20's six regions is now one of two clean days, not a trend. US share of total output held low (24% vs 41% baseline), so the US-dilution gain is persisting. Latin America is 1 dateline (Kingston, Jamaica — a deep-sea-mining story, not from a Mexico/Argentina outlet); Mexico, Argentina and Philippines have now produced zero published datelines across both clean days. The non-US AM datelines are Canadian (Tumbler Ridge, Saint-Pierre) — not an effect of the added entries.",
           "guardrails": "All pass but AF sits exactly on its floor of 4 (Entebbe, Ndutu, Port Harcourt + 1) — down from 7 on 09-20; watch on 09-22 because a drop below 4 is the flagged crowd-out failure mode. ME 20 and OIC datelines strong (Islamabad 3, Tehran 3, Turbat, Sindh, Dera Ismail Khan, Riyadh, Cairo 2). freshness median 0.1, multiSource 15, sciTech 31%, throughput 11.8/cycle, topSourceShare 13.6% (Al Jazeera 8/59)."
+        },
+        {
+          "date": "2026-09-22",
+          "window": "Opus 5 cycles only (04:00-17:00); the 22:00 cycle (13 articles, first on Opus 5.5) is excluded per the confounded note",
+          "articles": 40,
+          "uniqueRegions": 5,
+          "regions": {
+            "AM": 13,
+            "EU": 9,
+            "ME": 8,
+            "AS": 7,
+            "AF": 3,
+            "OC": 0
+          },
+          "usDatelines": 10,
+          "usSharePct": 25,
+          "usShareOfAmPct": 77,
+          "oceaniaDatelines": 0,
+          "latamDatelines": 3,
+          "read": "Primary metric missed again: uniqueRegions 5 with Oceania at zero. The day's only Oceania dateline (Wellington, deep-sea microbes) came in the excluded 22:00 Opus 5.5 cycle; the full-day tally shows 6 regions only because of it. US share of output stayed low at 25% (baseline 41%), the third clean day in the 22-25% range. Latin America had 3 datelines (Brasilia 2, Manzanillo), which matches the baseline of 3, but none came from a Mexican or Argentine outlet: the sources were Phys.org, Daily Maverick and AP/Times Colonist/UrduPoint. Manila also appeared only in the excluded cycle. Across the three clean days, uniqueRegions is 6/5/5 (baseline prior-3 was 6/6/5), and Mexico, Argentina and the Philippines have produced no source-attributed datelines.",
+          "guardrails": "AF is 3 in the Opus 5 window, below the floor of 4. That is 3 in four cycles, about 3.75 prorated, and 5 over the full day including 22:00 (Abuja, Kasserine). It is the second consecutive day at or under the floor, after 7 on 09-20, so crowd-out is not proven but the trend matches the flagged failure mode. ME 8 plus OIC datelines (Karachi, Peshawar, Tehran, Riyadh, Ankara) is about level with the 9 ME baseline. freshness median 0.1 (<=1.0), multiSource 15 (>=4), sciTech 42% (>=25), throughput 10.6/cycle full day (>=9), topSourceShare 11% (Ars Technica 6/53) (<20)."
         }
       ]
     }
