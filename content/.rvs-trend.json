@@ -1,28 +1,5 @@
 [
   {
-    "ts": "2026-07-01T22:13:22.557Z",
-    "cycleId": "2026-07-01T22-13",
-    "cycleHour": "22",
-    "rvs": 45.96,
-    "clusters": {
-      "picking": null,
-      "writing": 75,
-      "briefing": 0,
-      "sourcing": 70,
-      "coverage": 44.5
-    },
-    "articleCount": 1,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "publish count 1 below floor 8",
-      "category politics below floor 3 (got 0)",
-      "category economy below floor 3 (got 1)",
-      "category science below floor 2 (got 0)",
-      "category tech below floor 2 (got 0)"
-    ],
-    "degenerate": true
-  },
-  {
     "ts": "2026-07-02T04:09:16.951Z",
     "cycleId": "2026-07-02T04-09",
     "cycleHour": "04",
@@ -6798,6 +6775,24 @@
       "coverage": 80.53
     },
     "articleCount": 12,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-09-22T22:21:10.527Z",
+    "cycleId": "2026-09-22T22-21",
+    "cycleHour": "22",
+    "schema": 2,
+    "rvs": 57.88,
+    "clusters": {
+      "picking": null,
+      "writing": 48.08,
+      "briefing": null,
+      "sourcing": 44.32,
+      "coverage": 84.5
+    },
+    "articleCount": 13,
     "briefCount": 0,
     "guardrailFailures": [],
     "degenerate": false
