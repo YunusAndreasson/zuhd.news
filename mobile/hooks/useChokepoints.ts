@@ -1,5 +1,5 @@
 import type { Chokepoint } from '@shared/types';
-import { isChokepointSnapshot } from '../lib/validate';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 const EMPTY_CHOKEPOINTS: Chokepoint[] = [];
@@ -9,6 +9,6 @@ const EMPTY_CHOKEPOINTS: Chokepoint[] = [];
  *  failure (network, malformed payload, missing endpoint) leaves the returned
  *  list empty — the globe simply skips the chokepoint layer. */
 export function useChokepoints(): { chokepoints: Chokepoint[] } {
-  const data = useApiJson('/api/chokepoints.json', isChokepointSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.chokepoints);
   return { chokepoints: data?.chokepoints ?? EMPTY_CHOKEPOINTS };
 }

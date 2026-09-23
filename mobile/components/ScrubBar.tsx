@@ -8,7 +8,11 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
-import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, {
+  LinearTransition,
+  type SharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import { RADIUS, SPACING } from '../constants/theme';
 import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
 import { MAX_SEGMENTS, segmentLayout } from '../lib/scrub-segments';
@@ -32,6 +36,16 @@ const MARK_HEIGHT = 9;
 /** A tall cell's height: a story among the most covered, rising from the track the
  *  way a histogram's bar rises from its axis. */
 const TALL_HEIGHT = 8;
+/**
+ * How a keyed track's cells move when the river changes under them: stories
+ * arriving at the head push the rest along, and the clock re-measuring the
+ * day on a return slides every cell a little. Both were a jump — the whole
+ * bar redrawn in its new place the frame the feed landed, which is most of
+ * what made a return look glitchy. Layout-driven, so it runs only when a
+ * cell's place or size changes; Reduce Motion snaps it (`ReduceMotion.System`).
+ */
+const CELL_MOVE = LinearTransition.duration(250);
+
 /** Room for a mark's label, `18h` in 11pt tabular, centred on the mark. */
 export const MARK_LABEL_WIDTH = 28;
 /** Between the track and a mark's label under it. */
@@ -78,6 +92,7 @@ function placedHeight(height: number, faded?: boolean, tall?: boolean): number {
 
 function PlacedSegments({
   cells,
+  keys,
   color,
   colors,
   faded,
@@ -85,12 +100,14 @@ function PlacedSegments({
   height,
 }: {
   cells: readonly PlacedCell[];
+  keys?: readonly string[];
   color: string;
   colors?: readonly string[];
   faded?: readonly boolean[];
   tall?: readonly boolean[];
   height: number;
 }) {
+  const animate = keys?.length === cells.length;
   const out: ReactNode[] = [];
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i];
@@ -98,7 +115,8 @@ function PlacedSegments({
     const h = placedHeight(height, faded?.[i], tall?.[i]);
     out.push(
       <PlacedSegment
-        key={`segment-${i}`}
+        key={(animate && keys?.[i]) || `segment-${i}`}
+        animate={animate}
         left={cell.left}
         width={cell.width}
         height={h}
@@ -114,19 +132,26 @@ function PlacedSegments({
 
 /** One placed cell, memoized on primitives for the reason `Segment` is. */
 const PlacedSegment = memo(function PlacedSegment({
+  animate,
   left,
   width,
   height,
   top,
   color,
 }: {
+  animate: boolean;
   left: number;
   width: number;
   height: number;
   top: number;
   color: string;
 }) {
-  return <View style={[styles.placed, { left, width, height, top, backgroundColor: color }]} />;
+  return (
+    <Animated.View
+      layout={animate ? CELL_MOVE : undefined}
+      style={[styles.placed, { left, width, height, top, backgroundColor: color }]}
+    />
+  );
 });
 
 function Segments({
@@ -225,6 +250,9 @@ interface ScrubBarProps
   /** Per segment, its place along the track in points, replacing the equal
    *  shares. The track between them is a hairline in `trackColor`. */
   cells?: readonly PlacedCell[];
+  /** Per placed cell, what it stands for (a story's slug). Given, a cell is
+   *  that story wherever it moves, and moves there rather than jumping. */
+  cellKeys?: readonly string[];
   /** Ticks across the track, in points, with an optional word under each. */
   marks?: readonly TrackMark[];
   /** The ticks' and their words' ink. */
@@ -260,6 +288,7 @@ export const ScrubBar = memo(function ScrubBar({
   fillColors,
   faded,
   cells,
+  cellKeys,
   tall,
   marks,
   markColor,
@@ -313,6 +342,7 @@ export const ScrubBar = memo(function ScrubBar({
     };
   });
   const placed = cells && cells.length === segments ? cells : null;
+  const movingCells = placed !== null && cellKeys?.length === placed.length;
   // The raised current cell keeps its own story's height: tall if it is.
   const activeHeight =
     placed && activeSegment !== undefined
@@ -363,6 +393,7 @@ export const ScrubBar = memo(function ScrubBar({
             />
             <PlacedSegments
               cells={placed}
+              keys={cellKeys}
               color={trackColor}
               colors={trackColors}
               faded={faded}
@@ -414,15 +445,21 @@ export const ScrubBar = memo(function ScrubBar({
           </Animated.View>
         ) : null}
         {active && activeSegment !== undefined ? (
-          <View
+          <Animated.View
             pointerEvents="none"
+            // Placed by `left` where the cells move, so it moves with its own
+            // cell: by a transform it jumped to the story's new place while
+            // the cell under it was still easing there.
+            layout={movingCells ? CELL_MOVE : undefined}
             style={[
               styles.activeSegment,
               {
                 width: active.width,
                 height: activeHeight + SPACING.xs,
                 top: height - activeHeight - SPACING.xs / 2,
-                transform: [{ translateX: active.left }],
+                ...(movingCells
+                  ? { left: active.left }
+                  : { transform: [{ translateX: active.left }] }),
                 backgroundColor:
                   activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor,
               },

@@ -1,6 +1,6 @@
 import type { IndicatorAnalysis } from '@shared/types';
 import { useMemo } from 'react';
-import { isAnalysisSnapshot } from '../lib/validate';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 const EMPTY: ReadonlyMap<string, IndicatorAnalysis> = new Map();
@@ -21,7 +21,7 @@ const EMPTY: ReadonlyMap<string, IndicatorAnalysis> = new Map();
 export function useAnalysis(): {
   byId: ReadonlyMap<string, IndicatorAnalysis>;
 } {
-  const data = useApiJson('/api/analysis.json', isAnalysisSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.analysis);
 
   const byId = useMemo(() => {
     if (!data) return EMPTY;

@@ -1,5 +1,6 @@
-import { isMarketSignalsSnapshot, type MarketSignal } from '@shared/market-signals';
+import type { MarketSignal } from '@shared/market-signals';
 import { useMemo } from 'react';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { marketSignalCards } from '../lib/cards/market-signals';
 import type { SwipeCard } from '../lib/cards/rank';
 import { useApiJson } from './useApiJson';
@@ -18,7 +19,7 @@ export interface MarketSignals {
 }
 
 export function useMarketSignals(): MarketSignals {
-  const snapshot = useApiJson('/api/market-signals.json', isMarketSignalsSnapshot);
+  const snapshot = useApiJson(API_SNAPSHOTS.marketSignals);
   return useMemo(
     () => ({ cards: marketSignalCards(snapshot), signals: snapshot?.signals ?? [] }),
     [snapshot],

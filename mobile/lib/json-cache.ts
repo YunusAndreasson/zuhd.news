@@ -2,6 +2,9 @@ import { File, Paths } from 'expo-file-system';
 
 export interface JsonCache<T> {
   read: () => Promise<T | null>;
+  /** The same read, blocking. For the one read that has to land before the
+   *  first frame: the feed a launch opens on (`useArticles`). */
+  readSync: () => T | null;
   /** Resolves after the serialized value has been written (or the write fails quietly). */
   write: (data: T) => Promise<void>;
   /** Delete the backing file. Used by the privacy page's erase control, which
@@ -25,6 +28,15 @@ export function createJsonCache<T>(
       try {
         if (!file.exists) return null;
         const parsed: unknown = JSON.parse(await file.text());
+        return validate(parsed) ? parsed : null;
+      } catch {
+        return null;
+      }
+    },
+    readSync: () => {
+      try {
+        if (!file.exists) return null;
+        const parsed: unknown = JSON.parse(file.textSync());
         return validate(parsed) ? parsed : null;
       } catch {
         return null;

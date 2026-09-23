@@ -4,8 +4,7 @@ jest.mock('@tanstack/react-query', () => ({
 }));
 
 import { API_JSON_QUERY_KEY, invalidateApiJson, useApiJson } from '../hooks/useApiJson';
-
-const isAnything = (raw: unknown): raw is { ok: true } => raw !== undefined;
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 
 describe('useApiJson', () => {
   it('does not refetch on focus, and keys every query under the shared prefix', () => {
@@ -13,7 +12,7 @@ describe('useApiJson', () => {
     // snapshots whether or not the site had been rebuilt. The feed's meta
     // probe decides that now, through `invalidateApiJson`, and the prefix is
     // the contract between the two files.
-    useApiJson('/api/trends.json', isAnything);
+    useApiJson(API_SNAPSHOTS.trends);
     const options = mockUseQuery.mock.calls[0]?.[0] as unknown as {
       queryKey: unknown[];
       refetchOnWindowFocus: boolean;

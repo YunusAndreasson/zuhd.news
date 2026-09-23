@@ -1,18 +1,24 @@
 import type { Article, Category, FeedResponse } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
-import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
+import { STALE_THRESHOLD } from '../constants/theme';
+import {
+  type Arrival,
+  applyArrival,
+  FEED_QUERY_KEY,
+  feedSlugs,
+  feedStories,
+  fetchArrival,
+  probeGenerated,
+} from '../lib/arrival';
 import { flushBookmarks } from '../lib/bookmark-store';
 import { collectNewArticles } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
-import { fetchJson } from '../lib/fetchJson';
 import { flushFound } from '../lib/found-store';
-import { type FeedStory, flushKnown, noteFeed } from '../lib/fresh-store';
+import { flushKnown, noteFeed } from '../lib/fresh-store';
 import { flushOnboarding } from '../lib/onboarding-store';
 import { flushRead } from '../lib/read-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-import { isMetaResponse } from '../lib/validate';
-import { invalidateApiJson } from './useApiJson';
 import { useAppResume } from './useAppResume';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -30,6 +36,23 @@ interface BriefingInfo {
   duration?: number;
 }
 
+/**
+ * What a return to the app brought, for the screen to decide where the reader
+ * lands (`resumeLanding`). Handed over *inside* the arrival's flush, so
+ * whatever the screen sets in answer — the deck back at the front, a toast —
+ * renders in the same commit as the stories. As state read by an effect it
+ * was a commit later: the old story sat under the new day's times for a
+ * second before the deck jumped. Also called on a return that brought
+ * nothing, so the screen can still act on the time away.
+ */
+export interface AppReturn {
+  /** How long the app was away; `Infinity` for a launch. */
+  awayMs: number;
+  coldStart: boolean;
+  /** Stories in the feed now that were not in it when the reader left. */
+  added: Article[];
+}
+
 interface ArticlesState {
   grouped: GroupedArticles;
   briefing: BriefingInfo | null;
@@ -42,163 +65,138 @@ interface ArticlesState {
   injectArticle: (article: Article, category: Category) => void;
 }
 
-const FEED_QUERY_KEY = ['feed'] as const;
+/** Bumped at most once a minute (formatTimeAgo's finest granularity), so
+ *  resumes within a minute don't re-render every visible cell. */
+const TICK_GRANULARITY_MS = 60_000;
 
-function feedStories(feed: FeedResponse): FeedStory[] {
-  const stories: FeedStory[] = [];
-  for (const list of Object.values(feed.categories)) {
-    for (const a of list) stories.push({ slug: a.slug, addedAt: a.addedAt });
-  }
-  return stories;
-}
-
-function slugSet(feed: FeedResponse): Set<string> {
-  const all: string[] = [];
-  for (const list of Object.values(feed.categories)) {
-    for (const a of list) all.push(a.slug);
-  }
-  return new Set(all);
-}
-
-export function useArticles(): ArticlesState {
+export function useArticles(
+  /** Where the screen answers a return; read when one happens. */
+  onReturnRef?: { readonly current: ((ret: AppReturn) => void) | null },
+): ArticlesState {
   const queryClient = useQueryClient();
   /** Null until read from storage: `noteFeed` waits for it. */
   const [lastSeenAt, setLastSeenAt] = useState<number | null>(null);
-  const prevSlugsRef = useRef<Set<string>>(new Set());
-  const lastGeneratedRef = useRef<string | null>(null);
+  const lastSeenAtRef = useRef<number | null>(null);
+  lastSeenAtRef.current = lastSeenAt;
   const refreshingRef = useRef(false);
-  const seedDoneRef = useRef(false);
+  /** The feed's slugs when the app last went to the background: what a return
+   *  counts as new against, however the new feed got here — this return's
+   *  arrival, or a background task that applied one while the app was away. */
+  const seenAtBackgroundRef = useRef<Set<string> | null>(null);
 
-  // useQuery handles cache hydration from the persister + the initial network
-  // fetch. The query key is stable; refresh()/retry() drive refetches.
+  // The launch opens on the newest feed the device has — the one on disk,
+  // which every successful fetch writes, the background task's included —
+  // read before the first frame. It used to be seeded after it: the
+  // persister's older copy painted, the disk's newer one replaced it a moment
+  // later, and the network's replaced that, three rivers in the first seconds.
+  // Stamped now, so the persister's restore (always older: the disk copy is
+  // written on every fetch) never overwrites it.
   const query = useQuery({
     queryKey: FEED_QUERY_KEY,
     queryFn: ({ signal }) => fetchFeed({ signal }),
-    // The feed performs a cheap /meta.json probe on focus before deciding
-    // whether the much larger feed payload needs downloading.
+    initialData: () => feedCache.readSync() ?? undefined,
+    initialDataUpdatedAt: Date.now,
+    // Only when there is nothing to show. Once there is, a newer build
+    // reaches the screen as an arrival (below), with everything else it
+    // changed, never as a refetch of the feed alone.
+    refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  // Seed from the on-disk feed written by the last successful fetch (including
-  // the background task, whose whole point this is). The persister's cache is
-  // dropped once it passes PERSIST_MAX_AGE_MS, so without this a launch after
-  // a day offline lands on the error screen even though a perfectly readable
-  // feed is sitting in the cache directory. Stale news beats no news.
-  //
-  // `updatedAt` is derived from the feed's own `generated` stamp rather than
-  // "now", so seeded data reports its true age: it stays instantly stale and
-  // the mount refetch still runs. Only wins if it's actually newer than
-  // whatever the persister restored.
-  useEffect(() => {
-    let cancelled = false;
-    feedCache
-      .read()
-      .then((cached) => {
-        if (cancelled || !cached) return;
-        const cachedAt = Date.parse(cached.generated) || 0;
-        const existing = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
-        if (existing && (Date.parse(existing.generated) || 0) >= cachedAt) return;
-        queryClient.setQueryData(FEED_QUERY_KEY, cached, { updatedAt: cachedAt });
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [queryClient]);
-
-  // Seed prevSlugsRef + lastGeneratedRef on first data arrival (either from
-  // persister hydration or network). Counting first-load slugs as "added"
-  // would inflate the first post-boot refresh.
-  useEffect(() => {
-    if (!query.data || seedDoneRef.current) return;
-    seedDoneRef.current = true;
-    prevSlugsRef.current = slugSet(query.data);
-    lastGeneratedRef.current = query.data.generated;
-  }, [query.data]);
 
   // Load lastSeenAt from storage on mount
   useEffect(() => {
     getLastSeenAt().then(setLastSeenAt);
   }, []);
 
-  // Which stories are new to the reader (`fresh-store`). Every feed that
-  // arrives — the cached one at launch, a resume, a pull — is noted once, by
-  // its `generated` stamp. `lastSeenAt` only matters to an install that never
-  // noted a feed, so the first note waits for it.
+  // Which stories are new to the reader (`fresh-store`). Every feed is noted
+  // once, by its `generated` stamp; an arrival notes its own feed in its
+  // flush, so this catches the launch's feed and a first install's fetch.
+  // `lastSeenAt` only matters to an install that never noted a feed.
   useEffect(() => {
     if (!query.data || lastSeenAt === null) return;
     noteFeed(query.data.generated, feedStories(query.data), lastSeenAt);
   }, [query.data, lastSeenAt]);
 
-  // Track foreground returns to refresh time labels. Bumped at most once per
-  // minute (formatTimeAgo's finest granularity) so resumes within a minute
-  // don't spuriously re-render every visible cell.
   const [tick, setTick] = useState(0);
   const lastTickAtRef = useRef(0);
-  const TICK_GRANULARITY_MS = 60_000;
-
-  // Plain callbacks, not effect events: `refresh` below is an ordinary
-  // callback and React only lets an effect event be called from an effect. Both
-  // read refs for everything that changes, so they are stable as they are.
-  const refetchAndDiff = useCallback(async (): Promise<Article[]> => {
-    const fresh = await queryClient.query({
-      queryKey: FEED_QUERY_KEY,
-      queryFn: ({ signal }) => fetchFeed({ cache: 'no-store', signal }),
-      // Force the network request — refresh() bypasses staleTime.
-      staleTime: 0,
-    });
-    const newSlugs = slugSet(fresh);
-    const previousSlugs = prevSlugsRef.current;
-    const added = collectNewArticles(fresh, previousSlugs);
-    prevSlugsRef.current = newSlugs;
-    lastGeneratedRef.current = fresh.generated;
-    return added;
-  }, [queryClient]);
-
-  const hasNewContent = useCallback(async (): Promise<'changed' | 'unchanged' | 'unknown'> => {
-    if (!lastGeneratedRef.current) return 'changed';
-    try {
-      const meta = await fetchJson(`${API_BASE}/api/meta.json`, isMetaResponse, {
-        cache: 'no-store',
-      });
-      return meta.generated !== lastGeneratedRef.current ? 'changed' : 'unchanged';
-    } catch {
-      // Resume refresh is intentionally quiet when offline, but a manual
-      // refresh must not translate an unreadable probe into "up to date".
-      return 'unknown';
-    }
+  const bumpTick = useCallback(() => {
+    const now = Date.now();
+    if (now - lastTickAtRef.current < TICK_GRANULARITY_MS) return;
+    lastTickAtRef.current = now;
+    setTick((t) => t + 1);
   }, []);
 
-  // Foreground resume: refresh if away > 5 min. Tick is bumped only when
-  // a real minute has elapsed since the last bump, so quick app-switches
-  // don't force a full re-render of every visible cell.
-  const handleResume = useEffectEvent(async () => {
-    const now = Date.now();
-    if (now - lastTickAtRef.current >= TICK_GRANULARITY_MS) {
-      lastTickAtRef.current = now;
-      setTick((t) => t + 1);
-    }
-    if (!refreshingRef.current) {
-      refreshingRef.current = true;
+  /** The build the site is on, when it is not the one on screen; null when
+   *  it is. Throws when the site cannot be reached. */
+  const newerBuild = useCallback(async (): Promise<string | null> => {
+    const current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated;
+    const generated = await probeGenerated();
+    return generated === current ? null : generated;
+  }, [queryClient]);
+
+  // A launch that opened on a cached feed checks for a newer build once,
+  // after the note above has run on the cached one — a first install fetches
+  // through the query instead. The screen puts the reader on the new front.
+  const launchCheckedRef = useRef(false);
+  const hasData = query.data !== undefined;
+  useEffect(() => {
+    if (launchCheckedRef.current || !hasData || lastSeenAt === null) return;
+    launchCheckedRef.current = true;
+    if (query.isFetchedAfterMount) return;
+    refreshingRef.current = true;
+    void (async () => {
       try {
-        const changed = await hasNewContent();
-        if (changed === 'changed') {
-          // The one probe answers for every snapshot: the card payloads are
-          // build outputs too, and this is the only thing that refetches
-          // them on a foreground return. Not awaited — the feed diff should
-          // not wait on 150KB of card data.
-          void invalidateApiJson(queryClient);
-          await refetchAndDiff();
-        }
+        if ((await newerBuild()) === null) return;
+        const arrival = await fetchArrival();
+        applyArrival(queryClient, arrival, {
+          lastSeenAt,
+          alsoInFlush: (added) => {
+            onReturnRef?.current?.({ awayMs: Infinity, coldStart: true, added });
+          },
+        });
       } catch {
-        // silent — existing content is fine
+        // Offline: the cached feed is the news until the next return or pull.
       } finally {
         refreshingRef.current = false;
       }
+    })();
+  }, [hasData, lastSeenAt, newerBuild, onReturnRef, queryClient, query.isFetchedAfterMount]);
+
+  // A return after more than STALE_THRESHOLD: one probe, and one arrival if
+  // the site was rebuilt. The clock's tick and the return's report ride in
+  // the arrival's flush, so the track is re-measured once, with the stories.
+  const handleResume = useEffectEvent(async (awayMs: number) => {
+    if (refreshingRef.current) return;
+    refreshingRef.current = true;
+    const report = (feed: FeedResponse | undefined) => {
+      bumpTick();
+      const seen = seenAtBackgroundRef.current;
+      const added = feed && seen ? collectNewArticles(feed, seen) : [];
+      onReturnRef?.current?.({ awayMs, coldStart: false, added });
+    };
+    try {
+      let arrival: Arrival | null = null;
+      try {
+        if ((await newerBuild()) !== null) arrival = await fetchArrival();
+      } catch {
+        // Quiet when offline: existing content is fine.
+      }
+      if (arrival) {
+        const feed = arrival.feed;
+        applyArrival(queryClient, arrival, {
+          lastSeenAt: lastSeenAtRef.current,
+          alsoInFlush: () => report(feed),
+        });
+      } else {
+        report(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
+      }
+    } finally {
+      refreshingRef.current = false;
     }
   });
 
   const handleBackground = useEffectEvent(() => {
+    seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
     saveLastSeenAt(Date.now());
     flushBookmarks();
     flushFound();
@@ -209,19 +207,25 @@ export function useArticles(): ArticlesState {
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
 
+  /** Pull to refresh: the same arrival, reporting what it added. */
   const refresh = useCallback(async (): Promise<Article[]> => {
     if (refreshingRef.current) return [];
     refreshingRef.current = true;
     try {
-      const changed = await hasNewContent();
-      if (changed === 'unknown') throw new Error('Could not verify feed freshness');
-      if (changed === 'unchanged') return [];
-      void invalidateApiJson(queryClient);
-      return await refetchAndDiff();
+      let generated: string | null;
+      try {
+        generated = await newerBuild();
+      } catch {
+        // A manual refresh must not turn an unreadable probe into "up to date".
+        throw new Error('Could not verify feed freshness');
+      }
+      if (generated === null) return [];
+      const arrival = await fetchArrival();
+      return applyArrival(queryClient, arrival, { lastSeenAt: lastSeenAtRef.current });
     } finally {
       refreshingRef.current = false;
     }
-  }, [queryClient, hasNewContent, refetchAndDiff]);
+  }, [queryClient, newerBuild]);
 
   const retry = useCallback(async () => {
     await query.refetch();
@@ -235,7 +239,6 @@ export function useArticles(): ArticlesState {
         if (!prev) return prev;
         const list = prev.categories[category] ?? [];
         if (list.some((a) => a.slug === article.slug)) return prev;
-        prevSlugsRef.current.add(article.slug);
         return {
           ...prev,
           categories: { ...prev.categories, [category]: [article, ...list] },

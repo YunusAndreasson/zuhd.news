@@ -1,6 +1,6 @@
-import { isMarketsSnapshot } from '../lib/markets';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 export function useMarkets() {
-  return useApiJson('/api/markets.json', isMarketsSnapshot);
+  return useApiJson(API_SNAPSHOTS.markets);
 }

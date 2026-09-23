@@ -1,6 +1,6 @@
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { useMemo } from 'react';
-import { isGdacsSnapshot } from '../lib/validate';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 const EMPTY_ALERTS: GdacsAlert[] = [];
@@ -16,7 +16,7 @@ export function useGdacsAlerts(): {
   alerts: GdacsAlert[];
   details: Record<string, GdacsDetail>;
 } {
-  const data = useApiJson('/api/gdacs.json', isGdacsSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.gdacs);
   return useMemo(
     () => ({
       alerts: data?.alerts ?? EMPTY_ALERTS,

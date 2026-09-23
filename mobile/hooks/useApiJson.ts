@@ -1,18 +1,13 @@
 import { type QueryClient, useQuery } from '@tanstack/react-query';
-import { API_BASE } from '../constants/theme';
-import { fetchJson } from '../lib/fetchJson';
+import { API_JSON_QUERY_KEY, type ApiSnapshot, fetchSnapshot } from '../lib/api-snapshots';
 
-/** The prefix every `useApiJson` query shares, so one invalidation reaches
- *  all of them. `invalidateApiJson` is the only thing that should refetch
- *  these on a foreground return — see below. */
-export const API_JSON_QUERY_KEY = ['fetch-json'] as const;
+export { API_JSON_QUERY_KEY };
 
 /**
  * Mark every API snapshot stale, so each mounted one refetches.
  *
- * Called by the feed's resume path when its `/api/meta.json` probe says the
- * site was rebuilt. Every payload here is a build output, so `generated`
- * moving is the one honest signal that any of them changed.
+ * A return to the app no longer goes through this: an arrival fetches every
+ * snapshot and applies them with the feed in one commit (`useArticles`).
  */
 export function invalidateApiJson(queryClient: QueryClient): Promise<void> {
   return queryClient.invalidateQueries({ queryKey: API_JSON_QUERY_KEY });
@@ -30,17 +25,13 @@ export function invalidateApiJson(queryClient: QueryClient): Promise<void> {
  * five minutes re-downloaded trends, chokepoints and analysis — ~150KB — on
  * an app whose central claim is that it barely uses data, whether or not the
  * site had been rebuilt. The feed already answers that question with a 0.2KB
- * probe on resume; `invalidateApiJson` lets these ride the same answer.
+ * probe on resume, and an arrival carries these with it (`lib/api-snapshots.ts`).
  * Reconnects still refetch: they are rare, and `staleTime` still gates them.
  */
-export function useApiJson<T>(
-  path: `/api/${string}`,
-  validate: (raw: unknown) => raw is T,
-): T | null {
-  const url = `${API_BASE}${path}`;
+export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
   const query = useQuery<T, Error>({
-    queryKey: [...API_JSON_QUERY_KEY, url],
-    queryFn: ({ signal }) => fetchJson<T>(url, validate, { signal }),
+    queryKey: snapshot.queryKey,
+    queryFn: ({ signal }) => fetchSnapshot(snapshot, { signal }),
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     // Persister roundtrip needs a structural-clone-safe payload; queryFn

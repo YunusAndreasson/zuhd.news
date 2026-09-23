@@ -623,10 +623,39 @@ about what a card may say is about the card, not where it is shown.
   `checking for new stories` while it runs. A refresh that inserts stories in
   front of the one being read keeps the reader on it (anchored by slug, camera
   held). `useArticles.refresh()` probes
-  `/api/meta.json`; a moved `generated` runs `invalidateApiJson`, which marks
-  every `useApiJson` snapshot stale at once — trends, chokepoints, analysis,
-  market signals — so the strip, the alert block and the marks all refetch from
-  the one gesture.
+  `/api/meta.json`; a moved `generated` is an arrival (below), so the strip,
+  the alert block and the marks all refresh from the one gesture.
+- **A new build reaches the screen as one arrival, in one commit**
+  (2026-09-23, `lib/arrival.ts`, tested). A return used to land in waves over
+  several seconds: the clock re-measured the track, the feed reordered the
+  river, `noteFeed` re-marked the kickers a commit later, and each snapshot
+  and the heatmap re-rendered the screen as it came in. Now the feed and every
+  snapshot in `API_SNAPSHOTS` (`lib/api-snapshots.ts`, which the hooks read
+  their entries from, so the two cannot drift) are fetched first and applied
+  in one notify flush, with `noteFeed`, the tick and the screen's answer
+  inside it. A resume, a pull, the launch check and the background task all go
+  through it. The launch opens on the disk copy read synchronously
+  (`feedCache.readSync`, always the newest the device has); the feed query
+  never refetches on its own once it has data.
+- **Where a return lands** (`lib/resume-landing.ts`, tested; the user's
+  choice, 2026-09-23). Under an hour away the reader stays on their story and,
+  if stories arrived, a top toast `3 new · tap to see` goes where `‹ 3 new`
+  goes (`unreadNewBehind`, shared). An hour or more, or a launch the reader has
+  not moved in, puts the deck back on the front in the arrival's own commit,
+  camera held, then flies there — decided by an effect a commit later, the old
+  card sat under the new day's times for a second before it jumped. The front
+  story is always anchored by slug (`currentSlugRef`, set whenever a story is
+  in front): it used to be null until the first swipe, so an arrival before one
+  swapped the story at index 0 in place and snapped the globe.
+- **The background task does a return's waiting** (`lib/background-fetch.ts`,
+  every 60 min). It takes the whole arrival, not the feed alone: with the app
+  alive in the background the river reorders while hidden; a headless run
+  restores the persisted cache, applies, and saves it back. A return counts
+  new stories against the feed it left with, so arrivals applied while away
+  still get their toast.
+- **The dock's cells move rather than jump** when the river changes: keyed by
+  slug, with a 250 ms `LinearTransition` (`ScrubBar` `cellKeys`), and the raised
+  cell is placed by `left` so it moves with its own cell.
 - **The sheet's pan waits for a direction before it decides.** Its first
   update can carry `translationY === 0` (observed on every drag on the
   Android emulator), and ownership decided on that zero read as "not pulling

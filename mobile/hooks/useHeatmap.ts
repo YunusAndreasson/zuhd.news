@@ -1,12 +1,10 @@
 import type { HeatmapPoint } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
-import { API_BASE } from '../constants/theme';
-import { fetchJson } from '../lib/fetchJson';
-import { isHeatmapResponse } from '../lib/validate';
+import { API_SNAPSHOTS, fetchSnapshot } from '../lib/api-snapshots';
 
 const EMPTY_POINTS: HeatmapPoint[] = [];
-const HEATMAP_QUERY_KEY = ['heatmap'] as const;
+const HEATMAP = API_SNAPSHOTS.heatmap;
 
 interface HeatmapResult {
   points: HeatmapPoint[];
@@ -21,12 +19,8 @@ interface HeatmapResult {
 export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const queryClient = useQueryClient();
   const query = useQuery({
-    queryKey: HEATMAP_QUERY_KEY,
-    queryFn: ({ signal }) =>
-      fetchJson(`${API_BASE}/api/heatmap.json`, isHeatmapResponse, {
-        timeoutMs: 8000,
-        signal,
-      }),
+    queryKey: HEATMAP.queryKey,
+    queryFn: ({ signal }) => fetchSnapshot(HEATMAP, { signal }),
   });
 
   // Refetch when feed rotates — `generated` tagged on the snapshot lets us
@@ -39,7 +33,7 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
     if (dataGenerated === feedGenerated) return;
     if (lastInvalidatedRef.current === feedGenerated) return;
     lastInvalidatedRef.current = feedGenerated;
-    queryClient.invalidateQueries({ queryKey: HEATMAP_QUERY_KEY });
+    queryClient.invalidateQueries({ queryKey: HEATMAP.queryKey });
   }, [feedGenerated, query.data?.generated, queryClient]);
 
   return {

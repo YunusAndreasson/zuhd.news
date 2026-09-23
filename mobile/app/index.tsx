@@ -70,6 +70,7 @@ import {
   VARIANT_CAP,
 } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
+import type { AppReturn } from '../hooks/useArticles';
 import { useArticles } from '../hooks/useArticles';
 import { useCameraFlight } from '../hooks/useCameraFlight';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -121,7 +122,8 @@ import {
 } from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
-import { pruneRead } from '../lib/read-store';
+import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
+import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
@@ -198,11 +200,13 @@ export default function HomeScreen() {
   const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
   const deckRef = useRef<StoryDeckRef>(null);
+  /** `handleReturn`, below, for `useArticles` to call inside an arrival. */
+  const returnHandlerRef = useRef<((ret: AppReturn) => void) | null>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
 
   const { grouped, briefing, loading, error, refresh, retry, tick, generated, injectArticle } =
-    useArticles();
+    useArticles(returnHandlerRef);
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
@@ -236,6 +240,9 @@ export default function HomeScreen() {
    *  Null until the reader has moved the deck: an untouched deck stays on the
    *  newest story. */
   const currentSlugRef = useRef<string | null>(null);
+  /** The first story the deck showed: a launch whose reader is still on it
+   *  has not started reading (`resumeLanding`). */
+  const launchFrontSlugRef = useRef<string | null>(null);
   /** A story asked for before it was in the river — a bookmark that has
    *  rotated out of the feed is injected, and its row exists a render later. */
   const pendingFocusRef = useRef<({ slug: string } & FocusOptions) | null>(null);
@@ -1386,8 +1393,78 @@ export default function HomeScreen() {
   // a jump, a mark on the globe, or the deck opening on it.
   const frontSlug = storyRows[frontIndex]?.slug;
   useEffect(() => {
-    if (frontSlug) markLanded(frontSlug);
+    if (!frontSlug) return;
+    markLanded(frontSlug);
+    // The anchor a feed arrival keeps the reader on. Only a swipe or a focus
+    // set it, so until the first swipe it was null, and an arrival swapped the
+    // story at index 0 in place — the card changed under the reader and the
+    // globe snapped to the new story's place with no flight.
+    currentSlugRef.current = frontSlug;
+    launchFrontSlugRef.current ??= frontSlug;
   }, [frontSlug]);
+
+  // Where a return lands the reader (`lib/resume-landing.ts`). Called inside
+  // the arrival's flush, so what is set here renders with the stories:
+  // staying needs nothing (the slug anchor above holds the story), a toast
+  // appears with them, and the front is the deck's index 0 in that same
+  // commit, with the camera held where the reader left it — then flown there
+  // once the new front exists (`frontFlightRef`). Decided by an effect a
+  // commit later, the old story sat under the new day's times for a second,
+  // then the card jumped, then the globe followed.
+  const frontFlightRef = useRef(false);
+  const showNewToast = useCallback(
+    (added: number) => {
+      toastRef.current?.show(
+        `${added} new · tap to see`,
+        () => {
+          const rows = storyRowsRef.current;
+          const readSlugs = getReadSlugs();
+          const fresh = rows.map((row) => row.fresh);
+          const read = rows.map((row) => readSlugs.has(row.slug));
+          let { first } = unreadNewBehind(fresh, read, deckIndexRef.current);
+          // All of them ahead of the reader: the first one there instead.
+          if (first < 0) first = rows.findIndex((row, i) => row.fresh && !read[i]);
+          if (first >= 0) goToStory(first);
+        },
+        'top',
+      );
+    },
+    [goToStory],
+  );
+  const handleReturn = useCallback(
+    (ret: AppReturn) => {
+      const added = ret.added.length;
+      const landing = resumeLanding({
+        awayMs: ret.awayMs,
+        coldStart: ret.coldStart,
+        added,
+        readerMoved: currentSlugRef.current !== launchFrontSlugRef.current,
+      });
+      if (landing === 'toast') showNewToast(added);
+      if (landing !== 'front') return;
+      if (sheetDetentRef.current === 'full') collapseSheet();
+      if (deckIndexRef.current === 0 && added === 0) return;
+      // Held first, so the deck's jump cannot drag the camera across the
+      // stories between; no slug, so the anchor keeps index 0.
+      holdCamera();
+      deckIndexRef.current = 0;
+      currentSlugRef.current = null;
+      storyProgress.value = 0;
+      setDeckIndex(0);
+      frontFlightRef.current = true;
+    },
+    [collapseSheet, holdCamera, showNewToast, storyProgress],
+  );
+  useEffect(() => {
+    returnHandlerRef.current = handleReturn;
+  }, [handleReturn]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `deckIndex` too — a long return that brought nothing re-measures the river but might not change it
+  useEffect(() => {
+    if (!frontFlightRef.current) return;
+    frontFlightRef.current = false;
+    const front = storyRows[0];
+    if (front) focusStory(front.slug);
+  }, [storyRows, deckIndex, focusStory]);
   const storyFresh = useMemo(() => storyRows.map((row) => row.fresh), [storyRows]);
   // Read, and the `‹ n new` pill it decides, live in `StoryDock`: it
   // subscribes to the read store itself, so a story turning read does not

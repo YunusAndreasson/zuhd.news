@@ -1,6 +1,6 @@
 import type { Indicator, TrendsSnapshot } from '@shared/types';
 import { useMemo } from 'react';
-import { isTrendsSnapshot } from '../lib/validate';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 const EMPTY_INDICATORS: Indicator[] = [];
@@ -18,7 +18,7 @@ export function useTrendsSnapshot(): {
    *  already being downloaded whole. */
   snapshot: TrendsSnapshot | null;
 } {
-  const data = useApiJson('/api/trends.json', isTrendsSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.trends);
   const indicators = data?.indicators ?? EMPTY_INDICATORS;
 
   const byId = useMemo(() => {

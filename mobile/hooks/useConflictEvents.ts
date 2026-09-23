@@ -1,6 +1,6 @@
 import type { ConflictEvent, ConflictSnapshot } from '@shared/types';
 import { useMemo } from 'react';
-import { isConflictSnapshot } from '../lib/validate';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { useApiJson } from './useApiJson';
 
 const EMPTY_EVENTS: ConflictEvent[] = [];
@@ -37,7 +37,7 @@ export function useConflictEvents(): {
    *  whole week and has to be able to name the window it is summarising. */
   snapshot: ConflictSnapshot | null;
 } {
-  const data = useApiJson('/api/conflict.json', isConflictSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.conflict);
   return useMemo(
     () => ({
       events: data ? filterToLastDay(data.events) : EMPTY_EVENTS,

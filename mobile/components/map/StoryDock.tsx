@@ -13,6 +13,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { useReadSlugs } from '../../lib/read-store';
+import { unreadNewBehind } from '../../lib/resume-landing';
 import type { FoundProgress } from '../../lib/story-places';
 import { labelledMarks, nearestStory, positionAt, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
@@ -141,17 +142,8 @@ export const StoryDock = memo(function StoryDock({
   // so the pill and the hairlines agree: it counted any story merely landed
   // on until 2026-09-22, and a new story swiped past in a second stayed bold
   // on the track while the pill said nothing was left.
-  const unreadNew = useMemo(() => {
-    let newCount = 0;
-    let first = -1;
-    for (let i = 0; i < index; i++) {
-      if (!fresh?.[i] || read?.[i]) continue;
-      if (first < 0) first = i;
-      newCount++;
-    }
-    return { newCount, first };
-  }, [fresh, read, index]);
-  const { newCount } = unreadNew;
+  const unreadNew = useMemo(() => unreadNewBehind(fresh, read, index), [fresh, read, index]);
+  const { count: newCount } = unreadNew;
   const onNewPress = useMemo(
     () =>
       unreadNew.first >= 0 && onSeek
@@ -345,6 +337,7 @@ export const StoryDock = memo(function StoryDock({
           trackColors={tints ?? undefined}
           faded={read}
           cells={day?.cells}
+          cellKeys={slugs}
           tall={tall}
           marks={marks}
           markColor={markInk}

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
-import { isFamineSnapshot, isGenocideSnapshot, isThermalSnapshot } from '../lib/validate';
 import { useApiJson } from './useApiJson';
 
 /**
@@ -15,12 +15,12 @@ const EMPTY_THERMAL: ThermalEvent[] = [];
 const EMPTY_GENOCIDE: GenocideSituation[] = [];
 
 export function useFamineAreas(): FamineArea[] {
-  const data = useApiJson('/api/ipc.json', isFamineSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.famine);
   return data?.areas ?? EMPTY_FAMINE;
 }
 
 export function useThermalEvents(): ThermalEvent[] {
-  const data = useApiJson('/api/firms.json', isThermalSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.thermal);
   return data?.events ?? EMPTY_THERMAL;
 }
 
@@ -30,7 +30,7 @@ export function useThermalEvents(): ThermalEvent[] {
  * UN" and a warning is not that statement — see `shared/genocide.ts`.
  */
 export function useGenocideSituations(): GenocideSituation[] {
-  const data = useApiJson('/api/genocide.json', isGenocideSnapshot);
+  const data = useApiJson(API_SNAPSHOTS.genocide);
   return useMemo(
     () => data?.situations.filter((s) => s.finding === 'determination') ?? EMPTY_GENOCIDE,
     [data],

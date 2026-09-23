@@ -3,7 +3,7 @@ import { AppState } from 'react-native';
 
 /**
  * Runs a callback when the app returns to the foreground after being away
- * for longer than `staleMs` milliseconds.
+ * for longer than `staleMs` milliseconds, with how long it was away.
  * Optionally runs `onBackground` when the app enters the background.
  *
  * "Away" is measured from the moment the app leaves the active state. On iOS
@@ -12,7 +12,11 @@ import { AppState } from 'react-native';
  * `background`, so timing from the last `background` event would count the
  * whole foreground session as time away and fire spuriously.
  */
-export function useAppResume(onResume: () => void, staleMs: number, onBackground?: () => void) {
+export function useAppResume(
+  onResume: (awayMs: number) => void,
+  staleMs: number,
+  onBackground?: () => void,
+) {
   const previousStateRef = useRef(AppState.currentState);
   const awayStartedAtRef = useRef<number | null>(
     AppState.currentState === 'active' ? null : Date.now(),
@@ -23,7 +27,9 @@ export function useAppResume(onResume: () => void, staleMs: number, onBackground
     // Re-arm before firing: consecutive `active` events must not re-fire from
     // the same transition.
     awayStartedAtRef.current = null;
-    if (awayStartedAt !== null && Date.now() - awayStartedAt > staleMs) onResume();
+    if (awayStartedAt === null) return;
+    const awayMs = Date.now() - awayStartedAt;
+    if (awayMs > staleMs) onResume(awayMs);
   });
 
   const handleBackground = useEffectEvent(() => {
