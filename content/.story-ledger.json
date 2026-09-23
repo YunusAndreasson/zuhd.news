@@ -2,13 +2,250 @@
   "version": 1,
   "stories": [
     {
+      "id": "sharaa-unga-golan-israel-withdrawal-syria",
+      "label": "Golan Heights will remain Syrian territory: Al Sharaa",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-sharaa-unga-golan-israel-withdrawal-syria"
+      ],
+      "eventUri": "eng-12034203",
+      "summary": "Syria's post-Assad president used his UNGA speech to demand Israel withdraw from the occupied Golan and from the buffer-zone territory it seized after December 2024, warning its strikes endanger reconstruction. Lead with his account of telling Trump 'why don't you give New Jersey to the Israelis' (mint). Mechanism: the US's 2019 recognition of Israeli sovereignty over the Golan against UNSC Resolution 497, and how continued occupation and strikes cap Syria's recovery. Carry the TRT regional voice.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Syria",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Golan_Heights",
+        "http://en.wikipedia.org/wiki/President_of_Syria",
+        "http://en.wikipedia.org/wiki/Sovereignty",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "ethiopia-seven-group-rebel-alliance-abiy",
+      "label": "Can Ethiopia's seven-group rebel alliance challenge Abiy Ahmed?",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-ethiopia-seven-group-rebel-alliance-abiy"
+      ],
+      "eventUri": "eng-12032619",
+      "summary": "Seven Ethiopian armed groups, including TPLF-linked forces, have formed the Ethiopian Peoples' Forces Alliance for Survival and pledged to remove Abiy Ahmed. Lead with the TPLF official's refusal to deny it amounts to a declaration of war. Mechanism: how the 2022 Pretoria agreement's unfinished business (disarmament, Western Tigray, Eritrea's role) plus Fano's Amhara insurgency created a coalition against Addis. Stakes: 130 million people and the Horn's Red Sea security. Fills the sub-Saharan Africa gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ethiopia",
+        "http://en.wikipedia.org/wiki/Tigray_Region",
+        "http://en.wikipedia.org/wiki/Tigray_People's_Liberation_Front",
+        "http://en.wikipedia.org/wiki/Mekelle",
+        "http://en.wikipedia.org/wiki/Abiy_Ahmed",
+        "http://en.wikipedia.org/wiki/Ethiopian_Airlines",
+        "http://en.wikipedia.org/wiki/Addis_Ababa",
+        "http://en.wikipedia.org/wiki/Tigrayans"
+      ]
+    },
+    {
+      "id": "white-house-press-pool-ban-women-journalists",
+      "label": "Trump's Latest Media Attacks Again Hit Women Journalists",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-white-house-press-pool-ban-women-journalists"
+      ],
+      "eventUri": "eng-12030534",
+      "summary": "The White House has banned three prominent outlets from access and from the travelling press pool. HRW documents that the president's personal insults fall disproportionately on women reporters. Lead with the ban, meaning a state deciding who may question it, and use the gendered pattern as the evidence. Mechanism: the WaPo analysis of why the ban may be on shaky First Amendment ground (the AP v. Budowich precedent), and how pool control lets the executive shape coverage without formal censorship.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/CNN",
+        "http://en.wikipedia.org/wiki/Politico",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/National_Organization_for_Women",
+        "http://en.wikipedia.org/wiki/Journalist",
+        "http://en.wikipedia.org/wiki/Fake_news"
+      ]
+    },
+    {
+      "id": "azerbaijan-pardon-french-prisoner-usmanov-delisting",
+      "label": "Azerbaijan Pardons French Citizen as EU Lifts Sanctions on Russian Billionaire",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-azerbaijan-pardon-french-prisoner-usmanov-delisting"
+      ],
+      "eventUri": "fra-1346818",
+      "summary": "Aliyev pardoned 20 prisoners, including a Frenchman jailed on espionage charges, hours after the EU delisted Alisher Usmanov. This advances the 2026-09-23 Usmanov-delisting story from a new side, so do not re-tell the delisting. Lead with the timing. Mechanism: hostage diplomacy, where foreign nationals held on espionage charges serve as bargaining chips, and what the sequence suggests without asserting an unproven quid pro quo. Note: the feed carries no Azerbaijani or regional outlet on this.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Azerbaijan",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ilham_Aliyev",
+        "http://en.wikipedia.org/wiki/Alisher_Usmanov",
+        "http://en.wikipedia.org/wiki/Espionage",
+        "http://en.wikipedia.org/wiki/Baku",
+        "http://en.wikipedia.org/wiki/Paris"
+      ]
+    },
+    {
+      "id": "pti-long-march-islamabad-kp-afridi-protest-right",
+      "label": "Staging protests a legal and constitutional right, says KP CM ahead of PTI's Sept 27 long march",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-pti-long-march-islamabad-kp-afridi-protest-right"
+      ],
+      "eventUri": null,
+      "summary": "Ahead of PTI's 27 September long march on Islamabad, Khyber Pakhtunkhwa's chief minister says plainclothes personnel have been harassing party workers for days. Lead with a provincial government openly accusing the federal security apparatus. Mechanism: a province run by the opposition party against a centre that jails its leader (Imran Khan), and what a march into a capital that has been sealed before signals for civil liberties in a 240-million-person state.",
+      "conceptUris": []
+    },
+    {
+      "id": "microsoft-10bn-gulf-cloud-ai-resilience",
+      "label": "Microsoft plans $10bn-plus Gulf investment with focus on resilience",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-microsoft-10bn-gulf-cloud-ai-resilience"
+      ],
+      "eventUri": "eng-12036724",
+      "summary": "Microsoft will invest more than $10bn in UAE, Saudi, Qatari and Kuwaiti cloud and AI infrastructure by 2030, and is selling it on 'digital resilience'. Lead with that word, which means war-proofing: Iranian strikes hit AWS Bahrain and US bases this year. Mechanism: hyperscalers now price geopolitical risk into where they build data centres, and Gulf states are buying sovereign compute with oil wealth.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-ima-gas-800m-fid-amni",
+      "label": "Tinubu hails $800m Ima Gas FID as Nigeria unlocks 50-year-old gas resource",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-nigeria-ima-gas-800m-fid-amni"
+      ],
+      "eventUri": "eng-12035291",
+      "summary": "AMNI International has taken an $800m final investment decision on the Ima gas field, discovered about 50 years ago and never developed. Lead with the five decades of idle gas. Mechanism: why Nigeria, which holds Africa's largest gas reserves, flares gas and runs short of power, and how a Gulf-war energy shock with high LNG prices finally makes stranded fields bankable. Ask who captures the value: domestic industry or export.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-fssai-action-amazon-swiggy-zepto-misbranding",
+      "label": "Amazon, Swiggy Among Firms Facing India Food Regulator's Action",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-india-fssai-action-amazon-swiggy-zepto-misbranding"
+      ],
+      "eventUri": "eng-12033208",
+      "summary": "India's FSSAI has opened penal action against Amazon, Flipkart, Swiggy Instamart, BigBasket and Zepto for misbranding and misleading claims. Lead with the regulator going after the platforms rather than the sellers on them. Mechanism: in quick commerce, where 10-minute delivery runs on dark stores, the platform is the de facto retailer, and this action tests whether it carries the retailer's liability. Stakes: India's fast-growing e-grocery market and consumer safety.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Apple_Inc.",
+        "http://en.wikipedia.org/wiki/Apple_Watch",
+        "http://en.wikipedia.org/wiki/Prototype",
+        "http://en.wikipedia.org/wiki/Activity_tracker",
+        "http://en.wikipedia.org/wiki/Physical_fitness",
+        "http://en.wikipedia.org/wiki/Bloomberg_L.P.",
+        "http://en.wikipedia.org/wiki/Smartwatch",
+        "http://en.wikipedia.org/wiki/Tim_Cook"
+      ]
+    },
+    {
+      "id": "springfield-flock-cameras-council-arrest",
+      "label": "Woman Arrested, Dragged Away After Quietly Speaking About Flock at City Council Meeting",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-springfield-flock-cameras-council-arrest"
+      ],
+      "eventUri": null,
+      "summary": "Springfield, Missouri's mayor shut down public comment on the city's Flock licence-plate camera contract, and two residents were arrested for 'disruption'. Lead with the woman dragged out for speaking quietly. Mechanism: Flock's ALPR network shares plate reads across thousands of agencies, contracts are often signed with little public process, and local councils are the only democratic check. This case shows that check being closed.",
+      "conceptUris": []
+    },
+    {
+      "id": "nhtsa-probe-aftermarket-driver-assist-crashes",
+      "label": "Aftermarket driver assist under federal probe following fatal crashes",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-nhtsa-probe-aftermarket-driver-assist-crashes"
+      ],
+      "eventUri": "eng-12036210",
+      "summary": "NHTSA's Office of Defects Investigation is probing aftermarket devices, such as comma.ai's openpilot (George Hotz), that augment cars' built-in driver assistance, after five crashes including fatal ones. Lead with the regulatory gap: the carmaker certified the car, not the add-on. Mechanism: open-source driving software plugs into the CAN bus, and liability becomes unclear when it fails. This is the first federal test of who is responsible.",
+      "conceptUris": []
+    },
+    {
+      "id": "magnetic-field-aging-fruit-flies-study",
+      "label": "An Invisible Force Has a Mysterious Effect on Aging, Scientists Discover in 'Startling' Breakthrough",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-magnetic-field-aging-fruit-flies-study"
+      ],
+      "eventUri": null,
+      "summary": "Fruit flies shielded from Earth's magnetic field aged differently: diseased flies lived longer and healthy flies died sooner. Lead with that split. Mechanism: the proposed magnetoreception or radical-pair pathways by which a geomagnetic field could affect cellular stress. Be precise that this is a fly study, and state what it implies for long-duration spaceflight, which takes crews beyond the magnetosphere.",
+      "conceptUris": []
+    },
+    {
+      "id": "30x30-biodiversity-target-off-track-cop17",
+      "label": "Is the target to protect 30% of Earth still achievable, and still worthwhile?",
+      "firstSeen": "2026-09-23T17:08:58.799Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-23-30x30-biodiversity-target-off-track-cop17"
+      ],
+      "eventUri": null,
+      "summary": "A COP17 progress update shows the world is off track on the 30x30 goal of protecting 30% of land and sea by 2030, and furthest behind in the ocean. Lead with the gap between the current protected share and the target, with four years left. Mechanism: 'paper parks' that are protected in name but not enforced, the high-seas treaty's slow ratification, and who bears the cost, often Indigenous and Global South communities on land designated for protection.",
+      "conceptUris": []
+    },
+    {
       "id": "venezuela-debt-restructuring-energy-deals-new-york",
       "label": "Venezuelan delegation in New York seeks debt and energy deals",
       "firstSeen": "2026-09-23T12:08:08.883Z",
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-venezuela-debt-restructuring-energy-deals-new-york"
@@ -33,7 +270,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-uk-channel-dinghy-knife-activist-anti-migrant-protest"
@@ -58,7 +295,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-oecd-outlook-ai-investment-energy-shock-2027"
@@ -83,7 +320,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-diesel-export-ban-importers-australia-fuel"
@@ -108,7 +345,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-atiku-abubakar-five-international-corruption-cases"
@@ -124,7 +361,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-florida-armed-incursion-cuba-five-dead-investigation"
@@ -140,7 +377,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-israeli-drone-strike-southern-gaza-ceasefire-killings"
@@ -156,7 +393,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-guatemala-sierra-lacandon-organised-crime-deforestation"
@@ -172,7 +409,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-meningitis-outbreak-bacteria-stole-microbiome-genes"
@@ -188,7 +425,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-small-undersea-volcanoes-outsized-tsunamis"
@@ -204,7 +441,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-europe-report-17000-satellites-orbital-collision-risk"
@@ -220,7 +457,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-china-rejects-ai-slowdown-amodei-us-lead"
@@ -245,7 +482,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-gallup-ai-worried-west-paradox-global-survey"
@@ -261,7 +498,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-eu-delists-usmanov-fridman-sanctions"
@@ -286,7 +523,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-india-election-commission-sir-voter-deletions-dissent"
@@ -311,7 +548,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-pakistan-dar-indus-waters-treaty-india-arbitration"
@@ -327,7 +564,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-delcy-rodriguez-venezuela-unga-meeting"
@@ -352,7 +589,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-curtis-probe-trump-jr-foreign-business"
@@ -377,7 +614,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-airtel-money-london-ipo-africa-mobile-money"
@@ -393,7 +630,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-japan-child-nisa-household-savings-investment"
@@ -409,7 +646,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-coinbase-fixed-rate-usdc-bitcoin-loans"
@@ -425,7 +662,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-aspen-lenacapavir-hiv-prevention-south-africa"
@@ -441,7 +678,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-italy-5-billion-lunar-habitat-astronaut-seats"
@@ -457,7 +694,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sea-turtle-nest-california-first-west-coast"
@@ -473,7 +710,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-apple-intelligence-reenabled-without-consent"
@@ -489,7 +726,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-xi-summit-ai-safety-deal"
@@ -505,7 +742,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-xrp-ledger-delegation-amendment-fee-drain-flaw"
@@ -515,13 +752,39 @@
       "conceptUris": []
     },
     {
+      "id": "fbi-employee-data-hack-404-media",
+      "label": "'We Hacked the FBI:' Hackers Say They Have Data on All FBI Employees",
+      "firstSeen": "2026-09-22T22:03:20.506Z",
+      "lastCovered": "2026-09-23T17:08:58.799Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-09-22-fbi-employee-data-hack-404-media",
+        "2026-09-23-fbi-confirms-probe-shinyhunters-employee-data"
+      ],
+      "eventUri": null,
+      "summary": "Hackers claim to hold data on every FBI employee. 404 Media reviewed a sample of 5,000 alleged agents that includes names, home addresses, phone numbers and details on their spouses. Lead with the spouse data, which shows how deep the breach goes. The mechanism to explain is where aggregated personnel data leaks from (contractors, data brokers, or internal systems) and what exposure means for the agents and their families. The irony is that the US lead agency on cybercrime cannot protect its own staff roster. State clearly that the claim is still unverified.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Federal_Bureau_of_Investigation",
+        "http://en.wikipedia.org/wiki/Hacker",
+        "http://en.wikipedia.org/wiki/ShinyHunters",
+        "http://en.wikipedia.org/wiki/Extortion",
+        "http://en.wikipedia.org/wiki/Cybercrime",
+        "http://en.wikipedia.org/wiki/Security_hacker",
+        "http://en.wikipedia.org/wiki/Oracle_Corporation",
+        "http://en.wikipedia.org/wiki/Personal_data"
+      ]
+    },
+    {
       "id": "iran-hormuz-reopen-offer-witkoff-talks",
       "label": "Iran offers to reopen Strait of Hormuz if US eases pressure, after three hours of talks with Witkoff",
       "firstSeen": "2026-09-22T22:03:20.506Z",
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-09-22-iran-hormuz-reopen-offer-witkoff-talks",
@@ -548,7 +811,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-guterres-west-bank-settlements-ethnic-cleansing"
@@ -573,7 +836,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sri-lanka-easter-bombings-verdict-fifteen-guilty"
@@ -598,7 +861,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-latin-america-cartels-terrorist-designation-rio-treaty"
@@ -614,7 +877,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-us-sanctions-iranian-airlines-worldwide-shutdown"
@@ -639,7 +902,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-adb-pakistan-growth-forecast-inflation-gulf-war"
@@ -655,7 +918,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-el-nino-heat-deaths-450000-forecast"
@@ -671,7 +934,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-kaduna-postpartum-haemorrhage-intervention-maternal-deaths"
@@ -687,7 +950,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-rejects-un-ai-oversight-super-intelligence"
@@ -712,7 +975,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nvidia-open-model-uae-sovereign-ai"
@@ -728,7 +991,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-canada-privacy-probe-idscan-breach"
@@ -744,7 +1007,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-xbox-layoffs-halo-moves-to-activision"
@@ -769,7 +1032,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-anthropic-s-claude-opus-5-5-is-faster-cheaper-and-matches-fa"
@@ -794,7 +1057,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-macron-unga-gaza-shame-farewell-speech"
@@ -819,7 +1082,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-tunisia-protests-spread-jobs-dignity-saied"
@@ -835,7 +1098,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-us-aircraft-lost-iran-war-cbo-pentagon-tally"
@@ -851,7 +1114,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-nigerian-officials-271m-us-property-holdings"
@@ -867,7 +1130,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-egypt-ration-cards-cancelled-appeals-unanswered"
@@ -883,7 +1146,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-anthropic-openai-models-price-cuts-ai-price-war"
@@ -899,7 +1162,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-typhoon-dujuan-japan-record-rain-five-dead"
@@ -924,7 +1187,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-schistosoma-brain-infection-philippine-rice-farmer"
@@ -940,7 +1203,7 @@
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-kermadec-trench-microbes-horizontal-gene-transfer"
@@ -950,29 +1213,13 @@
       "conceptUris": []
     },
     {
-      "id": "fbi-employee-data-hack-404-media",
-      "label": "'We Hacked the FBI:' Hackers Say They Have Data on All FBI Employees",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-fbi-employee-data-hack-404-media"
-      ],
-      "eventUri": null,
-      "summary": "Hackers claim to hold data on every FBI employee. 404 Media reviewed a sample of 5,000 alleged agents that includes names, home addresses, phone numbers and details on their spouses. Lead with the spouse data, which shows how deep the breach goes. The mechanism to explain is where aggregated personnel data leaks from (contractors, data brokers, or internal systems) and what exposure means for the agents and their families. The irony is that the US lead agency on cybercrime cannot protect its own staff roster. State clearly that the claim is still unverified.",
-      "conceptUris": []
-    },
-    {
       "id": "iran-s-women-s-kata-team-makes-history-at-2026-asian-games",
       "label": "Iran's women's kata team makes history at 2026 Asian Games",
       "firstSeen": "2026-09-22T22:03:20.506Z",
       "lastCovered": "2026-09-22T22:03:20.506Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-22-iran-s-women-s-kata-team-makes-history-at-2026-asian-games"
@@ -988,7 +1235,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-trump-unga-speech-iran-cuba-walkout"
@@ -1013,7 +1260,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-turkey-turgutlu-school-shooting-11-injured"
@@ -1038,7 +1285,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-trump-russia-lost-control-zelensky-un-meeting"
@@ -1063,7 +1310,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-nigeria-multiple-fx-windows-3-percent-gdp-cbn"
@@ -1079,7 +1326,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-ecb-mica-stablecoin-yield-ban-lending-staking"
@@ -1095,7 +1342,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-germany-car-industry-protests-job-losses"
@@ -1111,7 +1358,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-nepal-loss-and-damage-claim-20m-flood-costs"
@@ -1127,7 +1374,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-us-national-climate-assessment-scientists-replacement"
@@ -1143,7 +1390,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-openai-contractors-fired-using-ai-to-train-ai"
@@ -1159,7 +1406,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-eviltokens-ai-cybercrime-microsoft-takedown-uk-arrests"
@@ -1175,7 +1422,7 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-nottingham-nhs-maternity-records-audit-logs-erased"
@@ -1191,250 +1438,13 @@
       "lastCovered": "2026-09-22T17:05:22.561Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-22-adm-160-mald-decoy-wreckage-iran-air-defenses"
       ],
       "eventUri": null,
       "summary": "Wreckage of a US ADM-160 MALD decoy recovered in Iran shows the US and Israel are still probing Iran's battered air defenses — even as Trump talks of meeting Iranian officials at the UN. Lead with the hardware: a cheap decoy that mimics a strike aircraft to make radars light up and reveal themselves. The tech is the tell: the military track is live beneath the diplomatic one.",
-      "conceptUris": []
-    },
-    {
-      "id": "g7-iran-houthis-yemen-saudi-strikes",
-      "label": "G7 ministers urge Iran to halt support for Houthis in Yemen",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-g7-iran-houthis-yemen-saudi-strikes"
-      ],
-      "eventUri": "eng-12030984",
-      "summary": "G7 foreign ministers, meeting on the UNGA sidelines, demanded Iran stop arming the Houthis and condemned Iranian and militia attacks in Iraq on diplomatic sites, energy infrastructure and US forces. Advances the Houthi Red Sea arc (Mocha seized, Bab el-Mandeb coast offensive, strikes on Saudi Arabia, 130,000 displaced): the mechanism is the Western bloc framing Yemen as an Iranian proxy front while Yemeni civilians bear the displacement. Name who is doing the fighting and who is displaced; note the statement carries no enforcement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Canada"
-      ]
-    },
-    {
-      "id": "jamui-bihar-assault-minors-police-encounter",
-      "label": "Masked attacker in Jamui viral clip shot in leg, 3 more held for circulating video",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-jamui-bihar-assault-minors-police-encounter"
-      ],
-      "eventUri": "eng-12028026",
-      "summary": "Two minor school students in Bihar's Jamui district were stopped on 19 September; the girl was sexually assaulted and her friend beaten on camera. Police then shot a masked suspect 'in the leg' — the signature of Bihar/UP-style 'half-encounter' policing that substitutes extrajudicial force for trials — and arrested three people for sharing the video, while a minister's 'sporadic incidents' remark set off a political row. Lead with the victims, then the accountability question on both sides: the attackers and a police force that punishes before courts do.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bihar",
-        "http://en.wikipedia.org/wiki/Jamui_district",
-        "http://en.wikipedia.org/wiki/Social_media",
-        "http://en.wikipedia.org/wiki/Viral_video",
-        "http://en.wikipedia.org/wiki/First_information_report",
-        "http://en.wikipedia.org/wiki/Yadav",
-        "http://en.wikipedia.org/wiki/Minor_(law)",
-        "http://en.wikipedia.org/wiki/Rahul_Gandhi"
-      ]
-    },
-    {
-      "id": "trump-approval-32-record-low-iran-war-cost-of-living",
-      "label": "Trump's approval rating hits record low amid Iran war, economy fallout",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-trump-approval-32-record-low-iran-war-cost-of-living"
-      ],
-      "eventUri": "eng-12030102",
-      "summary": "Reuters/Ipsos puts Trump at 32%, the lowest of his political career, with Republicans souring on cost of living amid the Iran war. The mechanism: the war's price is arriving at the pump (record diesel) and in grocery bills, and that is eroding the president's own base as he heads into UNGA week and Xi's visit. Lead with 32% and the Republican shift; tie it to fuel prices, not horse-race framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Ipsos",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Cost_of_living",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "bangladeshi-migrants-cambodia-scam-compounds-trafficking",
-      "label": "Technology-facilitated trafficking: How Bangladeshi migrants become victims of recruitment in Cambodia",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-bangladeshi-migrants-cambodia-scam-compounds-trafficking"
-      ],
-      "eventUri": null,
-      "summary": "Thousands of Bangladeshis went to Cambodia for promised jobs and landed in cyber-scam compounds; 98% reportedly never got the work they were promised. Same week, Phnom Penh opened a giant former scam compound to journalists (The Diplomat) — touting anti-scam credentials while it remains unclear whether the prominent figures who enabled and profited from the industry will be investigated. Lead with the 98% figure and the recruitment pipeline; the accountability gap is who built and protected the compounds.",
-      "conceptUris": []
-    },
-    {
-      "id": "oil-below-98-saudi-east-west-pipeline-hormuz",
-      "label": "Oil price falls below $98 as Saudi Arabia signals reopening of East-West pipeline",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-oil-below-98-saudi-east-west-pipeline-hormuz"
-      ],
-      "eventUri": "eng-12026438",
-      "summary": "Brent fell more than 2% to below $98, a two-week low, as Saudi Arabia prepared to restart its East-West pipeline to Yanbu and Iran signalled Hormuz could reopen within seven days if the US lifts its port blockade. The mechanism: the pipeline is the Gulf's only large-scale bypass of Hormuz — and Reuters data show commodity vessels crossing the strait fell to just two on Monday from 10. Lead with the bypass: markets are pricing a Red Sea route while the Houthis contest that same coast.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Brent_Crude"
-      ]
-    },
-    {
-      "id": "us-diesel-record-650-refinery-strikes-crack-spread",
-      "label": "US diesel prices hit record high",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-us-diesel-record-650-refinery-strikes-crack-spread"
-      ],
-      "eventUri": "eng-12026289",
-      "summary": "The US national diesel average topped $6.50 a gallon, an all-time high, even as crude falls. The mechanism is refining, not crude: Ukrainian drone strikes on Russian refineries and Gulf disruption have gutted middle-distillate supply, so the crack spread widens while Brent slides. Lead with the divergence — diesel moves freight and farm machinery, so it is the price that reaches food. Follows the France distillate squeeze story; frame this as the US leg, and cite the Times of India for the Iran/Ukraine supply picture.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Diesel_engine",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Middle_East"
-      ]
-    },
-    {
-      "id": "vietnam-us-reciprocal-trade-deal-to-lam-greer",
-      "label": "Reciprocal Trade Deal With the US Close to Completion, Vietnamese Media Reports",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-vietnam-us-reciprocal-trade-deal-to-lam-greer"
-      ],
-      "eventUri": null,
-      "summary": "Vietnam's top leader To Lam met USTR Jamieson Greer in New York, and Hanoi says a reciprocal trade deal is nearly done. Vietnam is the biggest beneficiary of supply chains leaving China and runs one of the largest surpluses with the US, so the terms — especially any rules on Chinese-origin transshipment — set the template for other Southeast Asian exporters. Frame against Xi's Washington visit this week: Hanoi is locking in its deal before the US-China summit resets the board.",
-      "conceptUris": []
-    },
-    {
-      "id": "jordan-azraq-oasis-groundwater-depletion-farmers",
-      "label": "Water Scarcity in Jordan Is Causing an Agricultural Crisis",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-jordan-azraq-oasis-groundwater-depletion-farmers"
-      ],
-      "eventUri": null,
-      "summary": "In Jordan's Azraq oasis, once a wetland, decades of groundwater pumping (much of it to supply Amman) plus climate change have drawn the aquifer down until farming fails. Jordan is among the most water-scarce countries on earth. The mechanism: an aquifer being mined faster than it recharges, with farmers bearing the cost of urban supply. Lead with the oasis that dried and the farmers leaving.",
-      "conceptUris": []
-    },
-    {
-      "id": "brazil-amazon-deforestation-down-23-percent-fragile",
-      "label": "Brazil has made gains against Amazon deforestation, but lasting protection is a challenge",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-brazil-amazon-deforestation-down-23-percent-fragile"
-      ],
-      "eventUri": null,
-      "summary": "Amazon forest loss fell 23.5% in 2025, helping cut Brazil's national clear-cutting by 21% to the lowest since 2016. The question is durability: the gains rest on enforcement that can be reversed by an election, and Brazil's runoff is tied between Lula and Flávio Bolsonaro. Lead with the numbers, then the mechanism that makes them fragile — policy, not structure, drove the decline.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-mobile-internet-shutdowns-drone-alerts",
-      "label": "Russia's internet shutdowns disrupt warnings about incoming drone attacks",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-russia-mobile-internet-shutdowns-drone-alerts"
-      ],
-      "eventUri": null,
-      "summary": "Moscow throttles mobile internet and cellular service to blind GPS- and cellular-guided Ukrainian drones — and the same shutdowns stop civilians from receiving air-raid alerts. The mechanism is a self-inflicted trade-off: the state's counter-drone tool disables its own early-warning system. Lead with that paradox; tie to Ukraine's long-range refinery campaign (1,600 drones around the Duma vote).",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-isaacman-good-deals-moon-partners-india",
-      "label": "NASA chief: I'm only interested in \"good deals\" from international partners",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nasa-isaacman-good-deals-moon-partners-india"
-      ],
-      "eventUri": null,
-      "summary": "NASA administrator Jared Isaacman says the agency will be selective about international partners as the Moon race shifts from prestige to competition for lunar south pole real estate and resources. The counterpoint: invited to join, India instead invited the world into its own lunar framework (Lowy Interpreter), weighing its say over the rules. Lead with 'good deals' — space cooperation is becoming transactional, and middle powers are building their own blocs.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-next-gen-submarine-bohai-satellite-imagery",
-      "label": "Chinese Next-Generation Submarine Developments Spotted In New Satellite Imagery",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-china-next-gen-submarine-bohai-satellite-imagery"
-      ],
-      "eventUri": null,
-      "summary": "Commercial satellite imagery of Bohai Shipyard shows a next-generation Chinese submarine taking shape with significant new design features. Two days before Xi's White House visit, the OSINT reveals what the summit will not discuss: China's undersea and nuclear build-up (Inkstick notes the arsenal is expanding fast). Lead with what the imagery shows and how open-source satellite analysis now tracks military programmes in near-real time.",
       "conceptUris": []
     }
   ]
