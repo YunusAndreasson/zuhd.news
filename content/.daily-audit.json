@@ -1,25 +1,25 @@
 {
-  "date": "2026-09-22",
+  "date": "2026-09-23",
   "metrics": {
     "articles": {
-      "value": 53,
-      "detail": "5 cycles, all completed, avg 10.6/cycle; 40 from the four Opus 5 cycles, 13 from the first Opus 5.5 cycle at 22:00"
+      "value": 61,
+      "detail": "5 cycles, all completed, avg 12.2/cycle; the first full day on the Opus 5.5 selector"
     },
     "freshness": {
-      "median": 0.1,
-      "p90": 0.4,
-      "max": 0.4,
+      "median": 0.2,
+      "p90": 0.7,
+      "max": 1.6,
       "target": 1.0,
       "met": true
     },
     "categories": {
-      "politics": 18,
+      "politics": 23,
       "economy": 13,
       "science": 10,
-      "tech": 12
+      "tech": 15
     },
     "multiSource": {
-      "value": 15,
+      "value": 14,
       "target": 4,
       "met": true
     },
@@ -28,44 +28,42 @@
       "target": 4,
       "met": true,
       "breakdown": {
-        "AM": 19,
-        "AS": 10,
-        "ME": 9,
-        "EU": 9,
-        "AF": 5,
+        "AM": 28,
+        "ME": 10,
+        "EU": 10,
+        "AF": 6,
+        "AS": 5,
         "OC": 1
       }
     },
     "sciTech": {
-      "ratio": 42,
+      "ratio": 41,
       "target": 25,
       "met": true
     },
     "topSourceShare": {
-      "source": "Ars Technica",
-      "pct": 11,
+      "source": "Al Jazeera Online",
+      "pct": 15,
       "target": 20,
       "met": true
     },
-    "uniqueSources": 47,
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 1433
+    "avgCycleDuration": 1483
   },
-  "experiment": "No new experiment: the pause gate runs to 2026-09-25 for the Opus 5.5 baseline. 2026-09-18-gap-countries-latam-pacific evaluates tomorrow (2026-09-23). Today is logged as its third and final clean interim day, counting only the Opus 5 cycles, where uniqueRegions was 5, Oceania 0 and AF 3.",
-  "weakestArea": "Regional breadth, which the active experiment targets. Counting only the Opus 5 cycles, uniqueRegions was 5 with Oceania at zero; the full day reaches 6 only because of the excluded Opus 5.5 cycle's Wellington dateline. Over the three clean days the result is 6/5/5 against a 6/6/5 baseline, and the added Mexico, Argentina and Philippines entries have produced no source-attributed datelines. AF was 3 in the Opus 5 window, below its guardrail floor of 4. That points toward a revert tomorrow, although US share of output held at 22-25%, against a 41% baseline, on all three days.",
+  "experiment": "Reverted 2026-09-18-gap-countries-latam-pacific. On the three clean Opus 5 days, uniqueRegions was 6/5/5 against a 6/6/5 baseline, and Mexico, Argentina and the Philippines produced no datelines. AF fell 7→4→3, below its guardrail floor. No new experiment: the pause gate holds until 2026-09-25 for the Opus 5.5 baseline.",
+  "weakestArea": "Regional balance within the Americas. AM holds 28 of 61 datelines (46%), about half of them Washington, New York or the Bay Area, driven today by UNGA week. Latin America had 5 datelines and Oceania 1 in the metric (Nuku'alofa, plus Sydney on a US diesel story). That is better than any clean experiment day, but it falls on the new selector model, so it is a first baseline point rather than an effect.",
   "watching": [
-    "Iran has offered to reopen Hormuz in talks with Witkoff while Trump threatens to 'annihilate' Iran and the G7 demands Tehran rein in the Houthis, so the diplomatic and coercive tracks are still running together.",
-    "The Pentagon/CBO tally of US aircraft lost in the Iran war and the Saudi pipeline restart pulling oil lower are the economic and military cost signals to follow.",
-    "At UNGA, Macron called Gaza a shame on all and Erdogan called for abolishing the veto, which points to a week of pressure on the Security Council.",
-    "China purged top generals as satellites spotted a new submarine class, making PLA leadership churn and naval build-out a single story.",
-    "Hurricane Polo reached Category 4 off Mexico and Typhoon Dujuan killed five in Japan, so there are two active Pacific tropical systems.",
-    "Tunisia's protests have spread beyond Kasserine, and Brazil's runoff polls show Lula tied with Flávio Bolsonaro."
+    "Iran is setting terms for talks through Qatar while Washington moves to ground Iran Air, so the coercive and diplomatic tracks are still running together.",
+    "UNGA week brings Guterres's warning of ethnic cleansing, Sharaa's rejection of the Golan annexation, Trump rejecting UN AI oversight, and a G20 invitation to Putin.",
+    "In Venezuela, Trump met Maduro's deputy while Caracas courts its creditors, which may be the start of a restructuring track.",
+    "Seven rebel groups in Ethiopia have aligned against Abiy, and a Tigray (Mekelle) dateline points to renewed northern instability.",
+    "AI model pricing is falling fast: Anthropic cut Opus prices and OpenAI halved Sol and Luna pricing on the same day."
   ],
   "coverageGaps": [
-    "Oceania had no datelines in the Opus 5 window; its only dateline today (Wellington) came in the first Opus 5.5 cycle.",
-    "Latin America had 3 datelines (Brasília ×2, Manzanillo), all via non-regional outlets (Phys.org, Daily Maverick, AP). Mexico and Argentina outlets have supplied nothing in three clean days.",
-    "Africa had 3 datelines in the Opus 5 window (Abuja, Johannesburg, and Mocha, a Yemen dateline the bbox classes as AF). Only 2 of those are sub-Saharan, which is thin for a region with active Sudan and Sahel crises.",
-    "US-dateline concentration persists: New York 7 and Washington 6 account for a quarter of all 53 articles."
+    "Asia has 5 datelines against 10 the day before, with nothing from Japan, Korea or Southeast Asia beyond one Sri Lanka story.",
+    "Politics is 38% of output (23/61), and much of it is New York UNGA speech coverage that clusters on one dateline.",
+    "Science sources are thin on primary journals, with Nature 1 and the rest relayed through regional press."
   ],
-  "context": "The selector, tune, narrators and briefing moved from Opus 5 to Opus 5.5 with the 22:00 cycle, so from tomorrow the region and category mix reflects a new model, and the pause gate holds new variables until 2026-09-25. Average cycle duration rose to 1433s from 1122s, mostly writer time at 388s, while throughput dipped to 10.6/cycle. It stays above the guardrail of 9 but is worth watching under the new model. Note that regionFromCoords files Mumbai under ME and Mocha under AF, so the per-region counts carry some bbox noise."
+  "context": "Today is the first full day with Opus 5.5 selecting, which confounds any regional read. The reverted GAP_COUNTRIES entries take effect from the next cycle, and regional breadth should be re-baselined on 09-24 and 09-25 before any new experiment once the gate lifts. Cycle time rose to 1483s from 1433s yesterday, within normal range."
 }

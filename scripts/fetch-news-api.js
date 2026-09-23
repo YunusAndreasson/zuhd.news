@@ -286,12 +286,6 @@ const GAP_COUNTRIES = [
   'http://en.wikipedia.org/wiki/Yemen',
   'http://en.wikipedia.org/wiki/Somalia',
   'http://en.wikipedia.org/wiki/Afghanistan',
-  // Hemispheres the feed reaches only through US and European desks.
-  // Experiment 2026-09-18-gap-countries-latam-pacific.
-  'http://en.wikipedia.org/wiki/Mexico',      // largest non-US American economy; AM output is ~83% US datelines
-  'http://en.wikipedia.org/wiki/Argentina',   // macro/currency reporting that reaches us only via wire summary
-  'http://en.wikipedia.org/wiki/Philippines', // South China Sea + Mindanao; SE Asia was Indonesia/Malaysia only
-  'http://en.wikipedia.org/wiki/Australia',   // the one Oceania source location with wire-grade Pacific coverage
 ]
 
 // Q1: Event discovery (5 tokens)
