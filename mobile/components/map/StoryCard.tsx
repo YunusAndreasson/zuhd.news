@@ -10,7 +10,13 @@ import {
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { HIT_SLOP, MAX_FONT_SCALE, SPACING, withAlpha } from '../../constants/theme';
+import {
+  categoryTextColor,
+  HIT_SLOP,
+  MAX_FONT_SCALE,
+  SPACING,
+  withAlpha,
+} from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -67,8 +73,6 @@ import { Pressable, Text } from '../primitives';
 
 interface StoryCardProps {
   row: StoryRow;
-  /** The story's category hue — the colour its beacon was drawn in. */
-  hue: string;
   odds: StoryOdds | null;
   /** Indicator ids an entity sheet can actually open. */
   resolvableEntityIds?: ReadonlySet<string>;
@@ -91,8 +95,6 @@ interface StoryCardProps {
   onBookmark: (article: RiverArticle) => void;
   onShare: (article: RiverArticle) => void;
 }
-
-const DOT = 7;
 
 /** Body lines the veil takes to go from half strength to nothing. */
 const VEIL_LINES = 2;
@@ -159,7 +161,6 @@ const Veil = memo(function Veil({
 
 export const StoryCard = memo(function StoryCard({
   row,
-  hue,
   odds,
   resolvableEntityIds,
   open,
@@ -294,8 +295,27 @@ export const StoryCard = memo(function StoryCard({
 
   // The ink step that says where the reader is in the day rides on the kicker,
   // which is always visible; below the hook it would be hidden at rest, and
-  // landing on `earlier` is the caught-up moment.
-  const kicker = row.mark ? `${row.mark} · ${meta}` : meta;
+  // landing on `earlier` is the caught-up moment. It closes the line
+  // (2026-09-23, the user's request): it is on some cards and not others,
+  // and leading, it moved the category word sideways from one card to the
+  // next as the reader swiped. Now the category always starts at the text's
+  // edge.
+  // The category is its own colour, and there is no dot (2026-09-23, the
+  // user's request): the word already said the category, and the dot beside
+  // it said it again in a second channel. Set in `categoryText*`, the
+  // globe's hue where that is readable as 11pt caps and a deeper step of it
+  // on cream, where it is not.
+  //
+  // `884 reports` closes the line on a story over the most-covered bar
+  // (`coverageLabel`), in the ink step `new` uses, and the dock's track draws
+  // that story's cell taller and says the same in its tooltip. Words, not a
+  // shape: a coloured bar beside the kicker was tried for a day (2026-09-23)
+  // and not understood — reach is a word in every news app (Jakob's law).
+  // See `lib/coverage.ts` for why the unit is reports.
+  const categoryInk = categoryTextColor(article.category, colors);
+  const age = formatTimeAgo(articleTime(article));
+  const reach = row.coverage;
+  const kicker = [meta, row.mark, reach].filter(Boolean).join(' · ');
 
   return (
     <View style={styles.card}>
@@ -308,14 +328,20 @@ export const StoryCard = memo(function StoryCard({
         onAccessibilityAction={handleAccessibilityAction}
       >
         <View style={styles.kicker}>
-          <View style={[styles.dot, { backgroundColor: hue }]} />
           <Text variant="labelXs" numberOfLines={1} style={styles.kickerText}>
-            {row.mark ? (
-              <Text variant="labelXs" tone="emphasis">
-                {`${row.mark} · `}
+            {article.category ? (
+              <Text variant="labelXs" style={{ color: categoryInk }}>
+                {article.category}
               </Text>
             ) : null}
-            {meta}
+            {article.category ? ` · ${age}` : age}
+            {[row.mark, reach].map((word) =>
+              word ? (
+                <Text key={word} variant="labelXs" tone="emphasis">
+                  {` · ${word}`}
+                </Text>
+              ) : null,
+            )}
           </Text>
         </View>
         <Text variant="title" maxFontSizeMultiplier={MAX_FONT_SCALE.heading} style={styles.title}>
@@ -477,7 +503,7 @@ const styles = StyleSheet.create({
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
   threadContext: { marginBottom: SPACING.sm },
-  dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
+
   title: { marginBottom: SPACING.sm },
   actions: {
     flexDirection: 'row',

@@ -141,9 +141,17 @@ export function useOnboardingHints(opts: {
   activeHintRef.current = activeHint;
   const snapCountRef = useRef(snapCount);
   snapCountRef.current = snapCount;
+  const armIdRef = useRef(armId);
+  armIdRef.current = armId;
   const dismissActiveHint = useCallback(() => {
-    setPausedAtSnapCount(snapCountRef.current);
     const id = activeHintRef.current;
+    // Pause only when there is a lesson to pause: one on screen or one
+    // counting down. This runs at the start of every swipe, and the snap
+    // count moves on every landing, so an unconditional pause was a new
+    // state value — a whole-screen re-render (~47 ms in a dev build) — on
+    // every swipe of a reader who finished the lessons long ago.
+    if (!id && !armIdRef.current) return;
+    setPausedAtSnapCount(snapCountRef.current);
     if (!id) return;
     dismissHint(id);
     setActiveHint(null);

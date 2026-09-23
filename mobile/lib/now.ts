@@ -51,6 +51,13 @@ import type { Exchange } from './markets';
  *  `MiniGlobe` projects `[lng, lat]`, so a mark layer flips it — once, there. */
 export type LatLng = readonly [number, number];
 
+/** The strip shows the ten largest moves (2026-09-23, the user's request).
+ *  Twenty-odd slots made the row a ticker to be scrolled through rather than
+ *  a glance; the rest are one tap away behind `all →`. `strip` keeps every
+ *  mover, because a gauge opened from the instruments list or a strait on the
+ *  globe still flies and rings its place. */
+export const STRIP_SLOTS = 10;
+
 /** A fourth and fifth row turn the block into a second river. Four is the most
  *  it may claim is happening at once. */
 export const NOW_LIMIT = 4;
@@ -275,8 +282,22 @@ export function buildNowSurfaces({
     if (move) moved.push({ card, order, move });
   });
   moved.sort((a, b) => (b.move.delta.size ?? 0) - (a.move.delta.size ?? 0) || a.order - b.order);
+  // One slot per subject. An index that cleared a pattern score arrives twice
+  // — as its market signal and as its exchange's quote — and the strip printed
+  // `BIST 100 ▼6.3%` in two neighbouring slots with two readings (2026-09-23).
+  // The signal is kept: it carries the desk's analysis, and the exchange keeps
+  // its own row in the markets list and its mark on the globe.
+  const bySubject = new Map<string, number>();
   for (const { card, move } of moved) {
-    strip.push(toStripItem(card, move, chokepoints, signals, countryCentroid, exchanges));
+    const item = toStripItem(card, move, chokepoints, signals, countryCentroid, exchanges);
+    const subject = item.short.toLowerCase();
+    const at = bySubject.get(subject);
+    if (at === undefined) {
+      bySubject.set(subject, strip.length);
+      strip.push(item);
+    } else if (strip[at]?.id.startsWith('mkt:') && card.id.startsWith('market-signal:')) {
+      strip[at] = item;
+    }
   }
 
   const block = hazardItems(gdacsAlerts, now)

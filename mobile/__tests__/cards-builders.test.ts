@@ -893,6 +893,26 @@ describe('scheduled events', () => {
     expect(buildRankedInstruments(columns, [], []).map((c) => c.id)).toEqual([]);
   });
 
+  it('builds one card per event however often the payload repeats it', () => {
+    // The live events block carried `fred-us-gdp-2026-09-30` three times, and
+    // three cards under one id are three rows under one React key.
+    const gdp = {
+      id: 'fred-us-gdp-2026-09-30',
+      title: 'US GDP',
+      institution: 'Bureau of Economic Analysis',
+      kind: 'econ-release' as const,
+      date: '2026-09-04',
+      standing: 'Quarterly US output.',
+    };
+    const columns = build({
+      trends: events(gdp, gdp, gdp),
+      chokepoints: [],
+      articles: [],
+      now: NOW,
+    });
+    expect(columns.scheduled.map((c) => c.id)).toEqual(['event-fred-us-gdp-2026-09-30']);
+  });
+
   it('looks ahead a season, not a year, and keeps the nearest few', () => {
     const far = Array.from({ length: 8 }, (_, i) => ({
       id: `ev-${i}`,

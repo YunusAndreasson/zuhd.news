@@ -1,7 +1,15 @@
 import type { Article, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
 import { articleTime } from '../lib/article-utils';
-import { orderNewsRiver, RIVER_WINDOW_MS, type RiverArticle, recentRiver } from '../lib/news-order';
+import { buildStoryRows } from '../lib/map-feed';
+import {
+  leadWithTopStories,
+  orderNewsRiver,
+  RIVER_WINDOW_MS,
+  type RiverArticle,
+  recentRiver,
+  TOP_STORIES,
+} from '../lib/news-order';
 
 function makeArticle(overrides: Partial<RiverArticle> = {}): RiverArticle {
   return {
@@ -153,5 +161,41 @@ describe('recentRiver', () => {
   it('is empty only when the river is', () => {
     expect(recentRiver([], now)).toEqual([]);
     expect(RIVER_WINDOW_MS).toBe(86_400_000);
+  });
+});
+
+describe('leadWithTopStories', () => {
+  const NOW = 100 * RIVER_WINDOW_MS;
+  const HOUR = RIVER_WINDOW_MS / 24;
+  const at = (slug: string, hoursAgo: number, eventCoverage: number | null = null) =>
+    makeArticle({ slug, eventAt: NOW - hoursAgo * HOUR, eventCoverage });
+
+  it('leads with the most reported, then the rest of the day newest first', () => {
+    const river = [at('a', 1), at('b', 3, 643), at('c', 5), at('d', 11, 884), at('e', 20, 90)];
+    const { river: led, lead } = leadWithTopStories(river, NOW);
+    expect(led.map((a) => a.slug)).toEqual(['d', 'b', 'a', 'c', 'e']);
+    expect(lead).toBe(2);
+  });
+
+  it('leaves a quiet day in plain time order', () => {
+    const river = [at('a', 1, 120), at('b', 3), at('c', 5, 399)];
+    expect(leadWithTopStories(river, NOW)).toEqual({ river, lead: 0 });
+  });
+
+  it('keeps the lead short and to the day', () => {
+    const many = Array.from({ length: 8 }, (_, i) => at(`t${i}`, i + 1, 400 + i));
+    const pinnedOld = at('old', 40, 5000);
+    const { river: led, lead } = leadWithTopStories([...many, pinnedOld], NOW);
+    expect(lead).toBe(TOP_STORIES);
+    expect(led.slice(0, lead).map((a) => a.slug)).not.toContain('old');
+    expect(led).toHaveLength(9);
+  });
+
+  // `earlier` marks where the new stories end in time order; the lead is out
+  // of it, so the boundary is looked for after it.
+  it('draws the caught-up boundary after the lead', () => {
+    const river = [at('top', 11, 884), at('n1', 1), at('n2', 2), at('old', 5)];
+    const rows = buildStoryRows({ river, fresh: new Set(['n1', 'n2']), lead: 1 });
+    expect(rows.map((r) => r.mark)).toEqual([null, 'new', 'new', 'earlier']);
   });
 });

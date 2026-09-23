@@ -82,3 +82,52 @@ test('a lone market keeps its move for the second line; a cluster carries none',
   );
   expect(together[0]?.move).toBeUndefined();
 });
+test("a single market's leader line never crosses the story's label", () => {
+  // A story sits on the city, so the target moves; the first free spot to the
+  // east would draw its leader through a sliver of the place label.
+  const label = { x0: 225, x1: 228, y0: 190, y1: 210 };
+  const [mark] = layoutMarketClusters(
+    [point('a', 200, 200)],
+    [{ x: 200, y: 200 }],
+    400,
+    700,
+    0,
+    700,
+    [label],
+  );
+  expect(mark).toBeDefined();
+  if (!mark) return;
+  expect(mark.x === 248 && mark.y === 200).toBe(false);
+  // Sample the leader: no point of it lies inside the label.
+  for (let t = 0; t <= 1; t += 0.02) {
+    const x = mark.originX + (mark.x - mark.originX) * t;
+    const y = mark.originY + (mark.y - mark.originY) * t;
+    expect(x >= label.x0 && x <= label.x1 && y >= label.y0 && y <= label.y1).toBe(false);
+  }
+});
+test("a target is never set on the story's label", () => {
+  const label = { x0: 150, x1: 260, y0: 180, y1: 215 };
+  const [mark] = layoutMarketClusters([point('a', 200, 200)], [], 400, 700, 0, 700, [label]);
+  expect(mark).toBeDefined();
+  if (!mark) return;
+  const nx = Math.max(label.x0, Math.min(label.x1, mark.x));
+  const ny = Math.max(label.y0, Math.min(label.y1, mark.y));
+  expect(Math.hypot(mark.x - nx, mark.y - ny)).toBeGreaterThanOrEqual(20);
+});
+test('a target stays on the planet, never in the space past its limb', () => {
+  // A market on the limb with a story on it: the free spots outward are space.
+  const disc = { x: 200, y: 200, r: 150 };
+  const [mark] = layoutMarketClusters(
+    [point('a', 345, 200)],
+    [{ x: 345, y: 200 }],
+    400,
+    700,
+    0,
+    700,
+    [],
+    disc,
+  );
+  expect(mark).toBeDefined();
+  if (!mark) return;
+  expect(Math.hypot(mark.x - disc.x, mark.y - disc.y)).toBeLessThanOrEqual(disc.r - 24);
+});

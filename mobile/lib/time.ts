@@ -3,8 +3,11 @@
 // test in jsdom. Single home for the day-in-ms literal that was previously
 // spelled five different ways across the data layer.
 
+/** Milliseconds in one hour. */
+export const HOUR_MS = 3_600_000;
+
 /** Milliseconds in one day. */
-export const DAY_MS = 86_400_000;
+export const DAY_MS = 24 * HOUR_MS;
 
 /**
  * Whole-and-fractional days elapsed since a parseable ISO timestamp. Returns 0

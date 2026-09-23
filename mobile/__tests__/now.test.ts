@@ -155,6 +155,16 @@ describe('buildNowSurfaces — the strip', () => {
     expect(strip[0]?.spark).toHaveLength(8);
   });
 
+  it('gives a subject one slot, keeping the market signal over the exchange quote', () => {
+    // The live strip printed `BIST 100 ▼6.3%` twice, side by side.
+    const ranked: SwipeCard[] = [
+      reading('mkt:bist', { title: 'BIST 100', series: week(-6.3) }),
+      reading('market-signal:bist', { title: 'BIST 100', series: week(-6.3) }),
+      reading('gold', { series: week(1) }),
+    ];
+    expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['market-signal:bist', 'gold']);
+  });
+
   it('keeps the ranked order between equal moves', () => {
     const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { series: week(3) }));
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['b', 'a', 'c']);

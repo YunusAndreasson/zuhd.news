@@ -152,7 +152,7 @@ const Slot = memo(function Slot({
         >
           {item.short}
         </Text>
-        <DeltaChip delta={item.delta} window={false} scale={1} colorBy="direction" />
+        <DeltaChip delta={item.delta} window={false} scale={1} />
       </View>
       <View
         style={[

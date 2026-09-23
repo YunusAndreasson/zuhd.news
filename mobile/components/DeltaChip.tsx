@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
 import type { CardDelta } from '../lib/cards/types';
-import { valenceOf } from '../lib/valence';
 import { Icon, Text } from './primitives';
 
 /**
@@ -17,9 +16,11 @@ import { Icon, Text } from './primitives';
  * indistinguishable from the label text beside it, so the reader's first job
  * was deciding whether a chip was coloured at all.
  *
- * The compact top strip uses `colorBy="direction"`: up is green, down is red,
- * flat is neutral. Its arrow and number reinforce the same movement at a glance.
- * Detail cards use the default consequence coloring.
+ * Every surface colours the consequence, the top strip too (2026-09-23). The
+ * strip used to colour direction — up green, down red — so Brent's ▲23% was
+ * green on the gauge and rose on the card that gauge opens: one reading, two
+ * colours, chosen by where it was printed. The caret already says the
+ * direction; a colour that repeats it adds nothing.
  *
  * The strip passes `window={false}`: three of these sit side by side in a
  * third of a phone's width each, and "since 22 Jul" does not fit. The window
@@ -29,16 +30,13 @@ export const DeltaChip = memo(function DeltaChip({
   delta,
   window = true,
   scale = 1.15,
-  colorBy = 'valence',
 }: {
   delta: CardDelta;
   /** Print the period the move was measured over. Off where there is no room. */
   window?: boolean;
   scale?: number;
-  /** The compact top bar colors movement; detail cards color its consequence. */
-  colorBy?: 'valence' | 'direction';
 }) {
-  const tone = colorBy === 'direction' ? valenceOf(delta.direction, 'favorable') : delta.valence;
+  const tone = delta.valence;
   return (
     <View style={styles.delta}>
       {delta.direction !== 'flat' ? (

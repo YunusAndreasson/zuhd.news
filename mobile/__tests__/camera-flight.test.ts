@@ -35,7 +35,19 @@ Object.assign(Reanimated, {
 
 const shared = (value: number) => ({ value }) as SharedValue<number>;
 
-function setup({ owner = 0, zoomed = false, clip = 20, progress = 0 } = {}) {
+function setup({
+  owner = 0,
+  zoomed = false,
+  clip = 20,
+  progress = 0,
+  rides,
+}: {
+  owner?: number;
+  zoomed?: boolean;
+  clip?: number;
+  progress?: number;
+  rides?: boolean[];
+} = {}) {
   const inputs = {
     cameraOwner: shared(owner),
     cameraLat: shared(0),
@@ -46,6 +58,7 @@ function setup({ owner = 0, zoomed = false, clip = 20, progress = 0 } = {}) {
     zoomAngle: shared(zoomed ? clip : 90),
     clip: shared(clip),
     storyProgress: shared(progress),
+    ridesFinger: rides ? ({ value: rides } as SharedValue<boolean[]>) : undefined,
   };
   const { result } = renderHook(() => useCameraFlight(inputs));
   return { inputs, flight: result.current };
@@ -191,13 +204,13 @@ it('lets a swipe take the camera only when it is still on the story in front', (
   near.inputs.cameraLat.value = 40.3;
   near.inputs.cameraLng.value = 119.6;
   act(() => near.flight.setFront([40, 120]));
-  act(() => near.flight.claimForDeck());
+  act(() => near.flight.claimForDeck(1));
   expect(near.inputs.cameraOwner.value).toBe(0);
 
   const far = setup({ owner: 1 });
   far.inputs.cameraLat.value = 10;
   act(() => far.flight.setFront([40, 120]));
-  act(() => far.flight.claimForDeck());
+  act(() => far.flight.claimForDeck(1));
   expect(far.inputs.cameraOwner.value).toBe(1);
 
   // Across the dateline counts as near.
@@ -205,8 +218,60 @@ it('lets a swipe take the camera only when it is still on the story in front', (
   wrapped.inputs.cameraLat.value = 0;
   wrapped.inputs.cameraLng.value = 179.8;
   act(() => wrapped.flight.setFront([0, -179.9]));
-  act(() => wrapped.flight.claimForDeck());
+  act(() => wrapped.flight.claimForDeck(1));
   expect(wrapped.inputs.cameraOwner.value).toBe(0);
+});
+
+it('holds the earth still under a swipe whose crossing flies rather than rides', () => {
+  // Story 2 → 3 is too far to ride the card's spring; 1 → 2 is near.
+  const rides = [true, true, false, true];
+  const far = setup({ progress: 2, clip: 22, rides });
+  act(() => far.flight.claimForDeck(1));
+  // Held where it is drawn, zoom and all: nothing moves under the finger.
+  expect(far.inputs.cameraOwner.value).toBe(1);
+  expect(far.inputs.cameraLat.value).toBe(10);
+  expect(far.inputs.cameraLng.value).toBe(20);
+  expect(far.inputs.zoomActive.value).toBe(1);
+  expect(far.inputs.zoomAngle.value).toBe(22);
+
+  // Back toward story 1 rides as it always has.
+  const near = setup({ progress: 2, rides });
+  act(() => near.flight.claimForDeck(-1));
+  expect(near.inputs.cameraOwner.value).toBe(0);
+  expect(near.inputs.zoomActive.value).toBe(0);
+
+  // Past either end there is no crossing to judge.
+  const edge = setup({ progress: 0, rides });
+  act(() => edge.flight.claimForDeck(-1));
+  expect(edge.inputs.cameraOwner.value).toBe(0);
+});
+
+it('gives a far swipe’s camera back to the deck when the swipe snaps back', () => {
+  const { inputs, flight } = setup({ progress: 2, clip: 22, rides: [true, true, false] });
+  act(() => flight.claimForDeck(1));
+  expect(inputs.cameraOwner.value).toBe(1);
+  act(() => flight.releaseForDeck());
+  expect(inputs.cameraOwner.value).toBe(0);
+  expect(inputs.zoomActive.value).toBe(0);
+
+  // A camera the reader left elsewhere is theirs: a snap-back does not take it.
+  const dragged = setup({ owner: 1 });
+  act(() => dragged.flight.releaseForDeck());
+  expect(dragged.inputs.cameraOwner.value).toBe(1);
+});
+
+it('flies a far swipe from where it was held once it lands', () => {
+  const { inputs, flight } = setup({ progress: 2, clip: 22, rides: [true, true, false] });
+  act(() => flight.claimForDeck(1));
+  act(() => flight.toStory([40, 120], 3, 24));
+  inputs.storyProgress.value = 3;
+  play(1);
+  expect(inputs.cameraLat.value).toBeCloseTo(40);
+  expect(inputs.cameraLng.value).toBeCloseTo(120);
+  expect(inputs.cameraOwner.value).toBe(0);
+  // Landed: a snap-back afterwards has nothing of its own to release.
+  act(() => flight.releaseForDeck());
+  expect(inputs.cameraOwner.value).toBe(0);
 });
 
 it('leaves a pinch’s zoom with the camera, for the landing to fly down from', () => {
@@ -216,7 +281,7 @@ it('leaves a pinch’s zoom with the camera, for the landing to fly down from', 
   pinched.inputs.cameraLat.value = 40;
   pinched.inputs.cameraLng.value = 120;
   act(() => pinched.flight.setFront([40, 120]));
-  act(() => pinched.flight.claimForDeck());
+  act(() => pinched.flight.claimForDeck(1));
   expect(pinched.inputs.cameraOwner.value).toBe(1);
   expect(pinched.inputs.zoomActive.value).toBe(1);
   // The swipe lands and flies to the story's framing, which lets the zoom go.
@@ -240,7 +305,7 @@ it('keeps a same-location zoom flight intact when the deck claims a swipe', () =
   expect(inputs.cameraLat.value).toBeCloseTo(10);
   expect(inputs.cameraLng.value).toBeCloseTo(20);
 
-  act(() => flight.claimForDeck());
+  act(() => flight.claimForDeck(1));
   expect(inputs.zoomActive.value).toBe(1);
   expect(inputs.cameraOwner.value).toBe(1);
   expect(inputs.zoomAngle.value).toBe(flyingClip);
@@ -260,7 +325,7 @@ it('retargets an ongoing zoom flight when the deck lands on another story', () =
   });
   play(0.4);
   inputs.clip.value = inputs.zoomAngle.value;
-  act(() => flight.claimForDeck());
+  act(() => flight.claimForDeck(1));
   inputs.storyProgress.value = 1;
   act(() => flight.toStoryIfHeld([40, 120], 1, 24));
   play(1);
@@ -279,7 +344,7 @@ it.each(['cancelFlight', 'claimForDeck'] as const)(
     inputs.cameraLng.value = 56.2;
     act(() => flight.toStory([30.27, 120.15], 1, 24, 300));
     expect(inputs.zoomAngle.value).toBe(60);
-    act(() => flight[claim]());
+    act(() => (claim === 'claimForDeck' ? flight.claimForDeck(1) : flight.cancelFlight()));
     // Deliberately deliver even a successful stale completion: the request
     // epoch must refuse it independently of cancelAnimation's callback flag.
     act(() => finishDelay(0));

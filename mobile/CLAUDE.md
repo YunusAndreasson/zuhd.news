@@ -36,7 +36,7 @@ React Native + Expo app for zuhd.news. Voice + philosophy in root `../foundation
 
 ## Dependencies Expo does not manage
 
-`react-native-gesture-handler` is pinned **off** the SDK 57 set (3.1.0 vs the
+`react-native-gesture-handler` is pinned **off** the SDK 57 set (3.3.0 vs the
 prescribed ~2.32.0) and listed in `expo.install.exclude` so `expo install
 --fix` — which `npm run deps:update` runs — cannot drag it back. Both its
 in-tree dependents accept it (`expo-router` peers `*` optional,
@@ -94,9 +94,9 @@ whole time; nothing said so.
   (`useCameraFlight`: `claimForDeck`, a worklet the deck's pan calls, and
   `toStoryIfHeld`). Taking it back mid-drag would snap the earth. The
   decision is made on the UI thread: a JS read of the camera blocks until
-  the UI thread answers. **The app opens on the newest story** (the deck's
-  index 0), not on the top instrument: at rest the card and the globe have to
-  agree.
+  the UI thread answers. **The app opens on the deck's index 0** — the
+  day's most reported story when there is a lead, else the newest — not on
+  the top instrument: at rest the card and the globe have to agree.
 - **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
   (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
   instruments a builder marked `lead`; once the strip held every reading that
@@ -108,10 +108,14 @@ whole time; nothing said so.
   camera track is stories only. They reach the reader as the dock's line in
   place of the story track (`now · …`, which opens the alert). A contract
   reaches the sheet the one honest way: as the odds on the story it settles.
-- **The strip scrolls sideways and holds every reading that moved this week,
-  largest move first.** It was three fixed slots, and the reader asked for all
-  the markets, straits and currencies in one swipe, sorted so the most dramatic
-  change sits at the left.
+- **The strip scrolls sideways and holds the ten readings that moved most this
+  week, largest move first.** It was three fixed slots, and the reader asked for
+  all the markets, straits and currencies in one swipe, sorted so the most
+  dramatic change sits at the left; at twenty-odd slots it became a ticker, and
+  the user asked for ten (2026-09-23, `STRIP_SLOTS`). The rest are behind
+  `all →`. Only the row is cut: `strip` keeps every mover, because a gauge
+  opened from the instruments list or a strait tapped on the globe still looks
+  itself up there to fly and ring its place.
   - **Every slot is the same seven days** (`gaugeMove`, `lib/cards/week-move.ts`,
     tested), with the week's line under it (`Sparkline`). The strip used to sort
     each card's own delta with its window hidden: a strait's gap from its 90-day
@@ -187,6 +191,19 @@ whole time; nothing said so.
   first within each, so the track could be scrubbed to a category by colour —
   and the day's newest stories sat in four places, one at the head of each
   band, and a reader coming back could not tell whether anything had arrived.
+  - **The day's top stories lead it** (2026-09-23, the user's request: top
+    news at the top, as Apple News and Google News open). `leadWithTopStories`
+    (`lib/news-order.ts`, tested) moves up to `TOP_STORIES` (5) stories over
+    the report bar (`isMostCovered`, 400), inside the day, to the front, most
+    reported first; everything else stays newest first behind them. It is a
+    short lead and not a sort on purpose: three in five stories carry no
+    count and could never rise, and a sorted river would send the track's
+    marker all over the day on every swipe. On a quiet day there is no lead
+    and the river is plain time order. The track places each story by its
+    own time whatever its river position (`timeTrackLayout` sorts, then hands
+    back river order), so the first swipes hop to the top stories' times and
+    the rest run through the day; `buildStoryRows` looks for the `earlier`
+    boundary after the lead (`lead`), since the lead is out of time order.
   - **New is decided by slug, never by `addedAt`** (`lib/fresh-store.ts`,
     tested). `addedAt` is a file mtime: one value per cycle, reset when a file
     is rewritten, and the live feed that day carried a story filed the day
@@ -195,9 +212,13 @@ whole time; nothing said so.
     arrives, so a card's `new` does not vanish the instant the reader lands on
     it; landed stories become known at the next arrival. A skipped new story
     stays new until the day's window ages it out.
-  - **Two places say it, both in ink.** Every new card's kicker opens with
-    `new ·`, and the first card after them that the reader already had with
-    `earlier ·` (the caught-up moment, unchanged). The track has no mark for
+  - **Two places say it, both in ink.** Every new card's kicker ends with
+    `· new`, and the first card after them that the reader already had with
+    `· earlier` (the caught-up moment, unchanged). They opened it until
+    2026-09-23: present on some cards and not others, they moved the
+    coloured category word sideways from card to card as the reader swiped,
+    so it now always starts at the text's edge (the user's request).
+    `· 884 reports` follows them for the same reason. The track has no mark for
     new: a 2pt rule over new stories' segments shipped on 2026-09-21 and was
     removed the next day at the user's request — a second row of dashes over
     the colours that added nothing the kicker and the pill did not already
@@ -248,6 +269,32 @@ whole time; nothing said so.
     story in front, so `claimForDeck` declines and the globe holds still
     through that swipe before flying again at its settle — self-correcting,
     and already how a camera left elsewhere behaves.
+  - **A far crossing does not ride the finger either** (2026-09-23).
+    Welded to the card, a Pretoria-to-San-Francisco swipe turned the planet
+    ~40° for a quarter of the screen's width, which read as a glitch. The
+    rule is the lift's own comparison, made once per river on JS
+    (`ridesFinger`): a crossing whose flight outlasts the card's spring holds
+    the camera, zoom and all, as the pan claims the swipe (`claimForDeck`
+    with the swipe's direction), and the landing flies it. A swipe that snaps
+    back gives it straight back (`releaseForDeck`).
+  - **Between projections the globe is warped, not frozen** (2026-09-23,
+    `MiniGlobe` `warp`). A frame is projected on JS at most every 32 ms and
+    later whenever a landing commit holds the thread; recorded on the
+    emulator the globe started 160–340 ms after the card, stepped at ~10 fps
+    and was still turning 300–700 ms after the card stopped. Each published
+    picture carries the camera it was projected from (`FrameOut.cam`); the
+    reaction publishes the live camera every UI frame (`liveCamera`), and the
+    ground, marks, labels and the dot overlay are translated and scaled to
+    it on the UI thread. It fades out when the whole planet is on screen,
+    where a slide would move the planet instead of turning it, and moving
+    frames are projected 20% past the canvas (`MOTION_REACH`) so the slide
+    has ground to bring in. Unmeasured on hardware: it trades JS frames for
+    a UI-thread replay on every frame of motion.
+  - **A flight's last frame is a settled frame.** `angleChanging` counts
+    only while the zoom override is on. A flight lands by dropping the
+    override on the frame its angle takes its last step, and that frame was
+    drawn at the motion tier with nothing after it — the coarse coastline
+    stayed until the next touch after every far swipe, mark tap or jump.
   - **A jump is never an animated swipe.** From story one to story thirty an
     animated pass would send the camera through twenty-nine datelines, so the
     camera is held (`cameraOwner = 1`), the position jumps, and the camera
@@ -412,6 +459,27 @@ whole time; nothing said so.
     culled to the visible cap, so a drag pays nothing for them; they appear
     when the camera stops, as the full coastline already did. Lake Eyre's two
     Natural Earth halves are one label now.
+  - **Zoomed out past 45°, a mark's name is earned by a move**
+    (`MARK_NAMES_PLANET_CLIP`). The whole-planet view printed every cluster's
+    `8 markets` and every quiet strait's name and `vs 90d`; each fit its
+    collision box and together they read as noise. There, a cluster keeps only
+    the count in its glyph and a quiet strait only its mark; disrupted or
+    surging straits and single exchanges keep their labels. Story framings
+    (18°–24°) are unaffected.
+  - **Nothing on the globe prints over anything else** (2026-09-23). Every
+    always-drawn thing reserves its room before a name is placed: the story's
+    place, genocide names (set left of the mark, and held on the screen, when
+    the right would run off it — RAKHINE was cut at the edge), story and
+    conflict counts (a smaller count yields to a larger one 4pt clear, halos
+    included — "5" and "8" at Washington read "58"), and every glyph — a
+    strait and its arrow, a beacon, a hazard. A strait whose traffic moved
+    outranks the counts and glyphs in its way; a quiet one is dropped first.
+    Market targets stay on the planet (a crowded limb pushed "5 markets" into
+    space), a single market's leader line keeps 14pt clear of other marks and
+    never crosses the place label (`LEADER_CLEARANCE`,
+    `lib/market-map-layout.ts`, tested), and a cluster draws no leader at all:
+    its origin is the mean of its members, which is no place, and its line
+    ended on "Paris".
   - **Conflict marks are sized by the dead** (`conflictScale`, log, 0.8–1.4),
     as the web sizes its squares; every event used to be one size.
   - **There is a key.** `menu → map key` (`SheetMapKeyPage`) draws every mark
@@ -659,9 +727,17 @@ about what a card may say is about the card, not where it is shown.
     under the open sheet, and the strip of earth above is the top of the disc.
     The gesture layer is tap-to-collapse there, so a touch puts the story down
     rather than turning the earth out from under it. Do not bring the shrink
-    back to show the place. If the place is ever wanted above the sheet, a
-    *view* translate of the globe layer should be a compositor move rather
-    than a replay — unmeasured; check it on hardware first.
+    back to show the place.
+  - **The globe slides up with the sheet, so the place stays in sight**
+    (2026-09-23, `globeLiftStyle` in `app/index.tsx`). A *view* translate of
+    the globe layer, `storyCenterY − centerY` times the sheet's progress: the
+    story's place, drawn at the resting centre, ends in the middle of the band
+    above the open sheet. The canvas is a `TextureView` on Android, so the
+    compositor moves it and nothing reprojects or replays. On the emulator
+    three open/close cycles measured the same with and without it (131 vs
+    140 frames, p50 48 vs 44–48 ms, p90 81 ms both) — confirm on hardware.
+    Taps there only collapse the story, so hit-testing never sees the offset.
+    Before it, New Delhi sat under the sheet while the band showed Kazakhstan.
   - **Nothing clamps.** A long hook runs on under the dock at peek and scrolls
     when grown. A card that stops being current scrolls back to its top.
   - **The deck and the sheet never share a drag.** The deck's pan claims at
@@ -679,6 +755,39 @@ about what a card may say is about the card, not where it is shown.
     jump (`goToStory`). Its gesture, detents and tooltip are
     `hooks/useScrub.ts` + `components/ScrubBar.tsx`, shared with the briefing
     player's scrubber, so the two cannot drift apart.
+    - **The track is the day, and the most reported stories stand taller**
+      (2026-09-23, the user's request). Now is the left end, a day ago the
+      right; each story sits at the time it ran, with a tick and `6h` / `12h`
+      / `18h` every six hours inside the row's existing 48pt — no added
+      height. `lib/time-track.ts` (tested) gives every story at least 5pt by
+      spreading a cycle's burst about its own time, and places the ticks
+      through the same mapping so a tick never has an older story on its
+      newer side. The finger lands on the nearest story, which can be hours
+      from the finger in a quiet stretch — the tooltip says when it ran.
+    - **The report count is the one claim about reach** (`lib/coverage.ts`,
+      tested). A story whose `eventCoverage` — the news API's event-cluster
+      article count — is 400 or more gets an 8pt cell on the track, `· 884
+      reports` at the end of its kicker in the `new` ink step, and the same
+      words in the scrub tooltip. Only those stories print a count: about
+      three in five carry no figure (RSS origin), and a count on some
+      kickers and not others would make theirs read as zero. The unit is
+      `reports` — articles counted, syndication included — never `outlets`
+      or `sources`, which the data cannot support; and it is the figure when
+      the pipeline picked the story, not a live one. The bar is fixed on
+      purpose: ~90th percentile of the corpus, 0–8 a day, zero on a slow
+      day — a rank within the day would crown something every day. Worked
+      through with the user on 2026-09-23: `widely reported` read as
+      unclear, a coloured bar beside the kicker was not understood (no news
+      app marks reach with a shape — Jakob's law), `trending` promises
+      attention rising now, which the figure does not measure, and `most
+      covered` gave way to the number, which the user asked for as more
+      specific.
+    - **The kicker has no dot; its category word is the colour**
+      (2026-09-23, the user's request): `ECONOMY · 2H AGO · NEW` with
+      `economy` in `categoryText*`. Those are the globe's hues in dark mode
+      (all clear AA as 11pt caps) and a deeper step of each on cream, where
+      the hues fell to 1.9–3.1:1 (`__tests__/palette.test.ts` holds them
+      at AA).
     - **The tooltip says when (2026-09-22, the user's request).** It is the
       story's `5h ago`, at body size (`TIME_SCALE`, tabular, so its fixed
       width holds), over its category in the quiet line. It led with

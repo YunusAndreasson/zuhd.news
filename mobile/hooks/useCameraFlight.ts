@@ -77,6 +77,9 @@ export interface CameraFlightInputs {
   /** The clip in effect at the last projection (`MiniGlobe.clipOut`). */
   clip: SharedValue<number>;
   storyProgress: SharedValue<number>;
+  /** Per story, whether the crossing to the next one rides the finger:
+   *  `deckCrossingRides`, computed on JS once per river. */
+  ridesFinger?: SharedValue<boolean[]>;
 }
 
 export interface CameraFlight {
@@ -93,8 +96,16 @@ export interface CameraFlight {
    * put it somewhere else it stays there: taking it back mid-drag would snap
    * the earth from where the reader left it, and the swipe flies it once it
    * lands (`toStoryIfHeld`). Decided on the UI thread, where the camera is.
+   *
+   * A crossing too long to ride the card's landing spring does not ride the
+   * finger either (`ridesFinger`): the camera is held where it is, zoom and
+   * all, and the swipe's landing flies it. `direction` is the story the
+   * finger is heading for, +1 or −1.
    */
-  claimForDeck: () => void;
+  claimForDeck: (direction: number) => void;
+  /** A worklet for a swipe that snapped back to the story it started on: a
+   *  camera `claimForDeck` held for it goes back to the deck, as it was. */
+  releaseForDeck: () => void;
   /**
    * A worklet for a finger landing on the globe. Stopping `flightT` is not
    * enough on its own: the zoom override is the flight's, and left where the
@@ -139,6 +150,7 @@ export function useCameraFlight({
   zoomAngle,
   clip,
   storyProgress,
+  ridesFinger,
 }: CameraFlightInputs): CameraFlight {
   const flightT = useSharedValue(1);
   const plan = useSharedValue<FlightPlan | null>(null);
@@ -161,6 +173,8 @@ export function useCameraFlight({
   useEffect(() => () => scheduleOnUI(invalidatePending), [invalidatePending]);
   const frontLat = useSharedValue(Number.NaN);
   const frontLng = useSharedValue(Number.NaN);
+  // The camera is held by a far swipe (`claimForDeck`), not by a reader.
+  const deckHeld = useSharedValue(false);
 
   const holdUI = useCallback(
     (expectedEpoch?: number) => {
@@ -204,6 +218,7 @@ export function useCameraFlight({
       'worklet';
       invalidatePending();
       if (onlyIfHeld && cameraOwner.value !== 1) return;
+      deckHeld.value = false;
       takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
       // A glide, a zoom hand-back or the last flight stops where it is.
       cancelAnimation(flightT);
@@ -254,6 +269,7 @@ export function useCameraFlight({
       cameraLng,
       cameraOwner,
       clip,
+      deckHeld,
       flightId,
       flightT,
       invalidatePending,
@@ -273,30 +289,79 @@ export function useCameraFlight({
     },
   );
 
-  const claimForDeck = useCallback(() => {
+  const claimForDeck = useCallback(
+    (direction: number) => {
+      'worklet';
+      invalidatePending();
+      if (cameraOwner.value === 0) {
+        // **A far crossing does not ride the finger.** Consecutive stories are
+        // ordered by time and can be anywhere on earth, and welded to the card a
+        // Pretoria-to-San-Francisco swipe turned the planet 40° for a quarter of
+        // the screen's width: the earth whipped under a small movement and read
+        // as a glitch, not a journey. The rule is the landing's own — a crossing
+        // whose flight outlasts the card's spring flies at the lift — so the
+        // earth holds still under the finger and flies once, when it lifts.
+        const rides = ridesFinger?.value;
+        if (!rides) return;
+        const from = Math.round(storyProgress.value);
+        const pair = direction > 0 ? from : from - 1;
+        if (pair < 0 || pair >= rides.length || rides[pair] !== false) return;
+        // The zoom is held with the place: a held camera still takes its clip
+        // from the deck's position, and the swipe would rise and fall in place.
+        zoomAngle.value = clip.value;
+        zoomActive.value = 1;
+        takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
+        deckHeld.value = true;
+        return;
+      }
+      const lat = frontLat.value;
+      const lng = frontLng.value;
+      if (Number.isNaN(lat) || Number.isNaN(lng)) return;
+      let dLng = Math.abs(cameraLng.value - lng) % 360;
+      if (dLng > 180) dLng = 360 - dLng;
+      if (Math.abs(cameraLat.value - lat) >= HANDOFF_DEGREES || dLng >= HANDOFF_DEGREES) return;
+      // Over the story, but at a pinch's zoom — the whole planet, say — is not
+      // the story's frame either: taken now, the deck would carry that zoom on
+      // to every story after it. The camera stays, and the swipe flies it down
+      // to the story it lands on (`toStoryIfHeld`), as it does from a drag.
+      // Position alone cannot prove matching framing during a flight: a
+      // same-location return from a pinch changes only zoom. Keep its camera
+      // until it lands, or let the deck's landing retarget it to the next story.
+      if (plan.value || zoomActive.value > 0.5) return;
+      cameraOwner.value = 0;
+    },
+    [
+      cameraLat,
+      cameraLng,
+      cameraOwner,
+      clip,
+      deckHeld,
+      frontLat,
+      frontLng,
+      invalidatePending,
+      plan,
+      ridesFinger,
+      storyProgress,
+      viewLat,
+      viewLng,
+      zoomActive,
+      zoomAngle,
+    ],
+  );
+
+  const releaseForDeck = useCallback(() => {
     'worklet';
-    invalidatePending();
-    if (cameraOwner.value !== 1) return;
-    const lat = frontLat.value;
-    const lng = frontLng.value;
-    if (Number.isNaN(lat) || Number.isNaN(lng)) return;
-    let dLng = Math.abs(cameraLng.value - lng) % 360;
-    if (dLng > 180) dLng = 360 - dLng;
-    if (Math.abs(cameraLat.value - lat) >= HANDOFF_DEGREES || dLng >= HANDOFF_DEGREES) return;
-    // Over the story, but at a pinch's zoom — the whole planet, say — is not
-    // the story's frame either: taken now, the deck would carry that zoom on
-    // to every story after it. The camera stays, and the swipe flies it down
-    // to the story it lands on (`toStoryIfHeld`), as it does from a drag.
-    // Position alone cannot prove matching framing during a flight: a
-    // same-location return from a pinch changes only zoom. Keep its camera
-    // until it lands, or let the deck's landing retarget it to the next story.
-    if (plan.value || zoomActive.value > 0.5) return;
+    if (!deckHeld.value) return;
+    deckHeld.value = false;
+    if (plan.value || cameraOwner.value !== 1) return;
+    zoomActive.value = 0;
     cameraOwner.value = 0;
-  }, [cameraLat, cameraLng, cameraOwner, frontLat, frontLng, invalidatePending, plan, zoomActive]);
+  }, [cameraOwner, deckHeld, plan, zoomActive]);
 
   const cancelFlight = useCallback(() => {
     'worklet';
     invalidatePending();
+    deckHeld.value = false;
     cancelAnimation(flightT);
     const p = plan.value;
     if (!p) return;
@@ -309,7 +374,7 @@ export function useCameraFlight({
         easing: EASING.camera,
       });
     }
-  }, [flightT, invalidatePending, plan, zoomActive]);
+  }, [deckHeld, flightT, invalidatePending, plan, zoomActive]);
 
   const setFront = useCallback(
     (coords: LatLng | null) => {
@@ -394,6 +459,7 @@ export function useCameraFlight({
     requestEpoch,
     setFront,
     claimForDeck,
+    releaseForDeck,
     cancelFlight,
     hold,
     toStory,

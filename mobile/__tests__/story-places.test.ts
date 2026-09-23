@@ -23,7 +23,17 @@ function row(
     sentences: [],
     category: 'politics',
   } as RiverArticle;
-  return { slug, article, title: slug, meta: '', mark: null, fresh: false, odds: null, coords };
+  return {
+    slug,
+    article,
+    title: slug,
+    meta: '',
+    coverage: null,
+    mark: null,
+    fresh: false,
+    odds: null,
+    coords,
+  };
 }
 
 describe('buildStoryPlaces', () => {

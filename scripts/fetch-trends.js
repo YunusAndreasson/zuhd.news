@@ -132,7 +132,13 @@ const eventsWindowEnd = new Date(Date.now() + EVENTS_WINDOW_DAYS * 86400_000)
   .toISOString()
   .slice(0, 10)
 const fredEvents = releaseCalendar.map(matchFredRelease).filter(Boolean)
+// One event per id. FRED lists several releases a label's pattern matches on
+// the same day (GDP with its by-state and by-industry tables), and the events
+// block carried `fred-us-gdp-2026-09-30` three times — the app rendered it as
+// duplicate rows under one React key.
+const seenEvents = new Set()
 const events = [...EVENT_CATALOG, ...fredEvents]
+  .filter((e) => !seenEvents.has(e.id) && seenEvents.add(e.id))
   .filter((e) => e.date >= today && e.date <= eventsWindowEnd)
   .sort((a, b) => a.date.localeCompare(b.date))
 if (events.length > 0) {

@@ -83,7 +83,7 @@ const ENTRIES: readonly KeyEntry[] = [
   {
     label: 'story',
     meaning:
-      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger where more outlets covered it, fainter as it ages.',
+      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages.',
     draw: (colors) => (
       <>
         <Circle cx={C} cy={C} r={6.7} color={colors.bg} />
@@ -93,7 +93,7 @@ const ENTRIES: readonly KeyEntry[] = [
   },
   {
     // `found`, the word the dock and the all-found toast use for it; `read` is
-    // a different thing the app also tracks (15 seconds with a story open).
+    // a different thing the app also tracks (two seconds in front, `read-store`).
     label: 'found',
     meaning: 'A place whose stories you have all found. Tap it to open the newest again.',
     draw: (colors) => (
@@ -128,8 +128,11 @@ const ENTRIES: readonly KeyEntry[] = [
   },
   {
     label: 'strait',
+    // The two rows under it say what its colours mean. This one used to say
+    // "red when squeezed, slate otherwise", beside a squeezed mark drawn gold
+    // and a busier one drawn teal.
     meaning:
-      'A shipping strait. The compact green ↑ / red ↓ shows traffic direction: the seven-day average for all ships versus its 90-day normal, not a daily price move.',
+      'A shipping strait. The small arrow is traffic: the seven-day average for all ships against its 90-day normal.',
     draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStrait} />,
   },
   {
@@ -145,7 +148,7 @@ const ENTRIES: readonly KeyEntry[] = [
   {
     label: 'exchange',
     meaning:
-      'All available exchanges: green ↑ means up, red ↓ means down, and − means unchanged versus the prior close. * marks an older quote. A numbered group opens every nearby exchange; zoom in to separate them.',
+      'A stock exchange against its prior close: green ↑ up, red ↓ down, − unchanged. * marks an older quote. A numbered circle is several exchanges close together; tap it for all of them, or zoom in to separate them.',
     draw: (colors) => (
       <Glyph path={marketDirectionPath('up')} color={colors.markMarketUp} stroke={1.2} />
     ),

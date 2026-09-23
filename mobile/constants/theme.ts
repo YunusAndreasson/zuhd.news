@@ -121,9 +121,14 @@ export const DARK_COLORS = {
   // LIGHT_COLORS) to clear AA body on cream. The background fills that shared
   // these hues (`toneFavorable` etc.) went with the last block that drew
   // tone pills.
-  toneFavorableText: '#82a98a',
-  toneUnfavorableText: '#a98080',
-  toneNeutralText: '#8298a9',
+  //
+  // One luminance for all three (8.2–9.0:1 on `bg`, 2026-09-23): a hue that
+  // says good or bad must not also say it more quietly. Rose was 5.5:1 beside
+  // sage's 7.3:1, so a fall read as the weaker figure on every chip and in
+  // the strip, and at 0.18 saturation both read as grey over the globe.
+  toneFavorableText: '#86bf95',
+  toneUnfavorableText: '#e5979b',
+  toneNeutralText: '#93adc4',
   // Globe marks — the web map's palette verbatim (`public/islands/_map/style.ts`),
   // in both themes. The web map is dark-only, and a story, a hazard or a strait
   // should be the same colour on the phone as in the browser; a second light
@@ -134,6 +139,17 @@ export const DARK_COLORS = {
   markScience: '#4fa0a4',
   markTech: '#8b96d4',
   markOther: '#8a8a8a',
+  /**
+   * A category's name set in its colour — the card's kicker, where the word
+   * replaced the dot (2026-09-23). On the dark sheet the globe's own hues
+   * clear AA body as they are (politics, the lowest, at 4.7:1), so the word
+   * and its lights and track cell are one colour exactly.
+   */
+  categoryTextPolitics: '#d2604a',
+  categoryTextEconomy: '#d0a24a',
+  categoryTextScience: '#4fa0a4',
+  categoryTextTech: '#8b96d4',
+  categoryTextOther: '#8a8a8a',
   /** The ring on a story its sources disagree sharply about. */
   markContested: '#e8e2d4',
   markGdacs: '#b8763f',
@@ -144,8 +160,11 @@ export const DARK_COLORS = {
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
   markStraitSurge: '#5f9ea0',
-  markMarketUp: '#88b692',
-  markMarketDown: '#e18b95',
+  /** Up and down on the globe are the strip's up and down: the same two
+   *  inks as `toneFavorableText` / `toneUnfavorableText`, so an arrow on an
+   *  exchange and the move on its gauge are one green and one red. */
+  markMarketUp: '#86bf95',
+  markMarketDown: '#e5979b',
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
@@ -186,15 +205,27 @@ export const LIGHT_COLORS = {
   // Used by `tone="favorable|unfavorable|neutral"` on `<Text>` and by
   // sites that color body/caption text by sentiment (SourceRow,
   // DisambiguationSheet rows, etc.).
-  toneFavorableText: '#3f6b48',
-  toneUnfavorableText: '#884d51',
-  toneNeutralText: '#475f70',
+  // Matched in luminance, as in DARK_COLORS (5.5–5.9:1 on cream).
+  toneFavorableText: '#356b44',
+  toneUnfavorableText: '#9a3f4a',
+  toneNeutralText: '#3f6680',
   // See DARK_COLORS.markPolitics — the same web palette in both themes.
   markPolitics: '#d2604a',
   markEconomy: '#d0a24a',
   markScience: '#4fa0a4',
   markTech: '#8b96d4',
   markOther: '#8a8a8a',
+  /**
+   * See DARK_COLORS.categoryTextPolitics. On cream the globe's hues fall to
+   * 1.9–3.1:1 (economy's orange the worst), so each is its own hue taken
+   * toward black until it sits at ~5.3:1 on `sheetBg`: the same family as
+   * its track cell, a shade deeper, and one weight across the four.
+   */
+  categoryTextPolitics: '#954435',
+  categoryTextEconomy: '#725929',
+  categoryTextScience: '#316366',
+  categoryTextTech: '#535a7f',
+  categoryTextOther: '#5c5c5c',
   /** The ring on a story its sources disagree sharply about. */
   markContested: '#e8e2d4',
   markGdacs: '#b8763f',
@@ -205,8 +236,8 @@ export const LIGHT_COLORS = {
   markStrait: '#596775',
   markStraitPinch: '#8b681f',
   markStraitSurge: '#386f70',
-  markMarketUp: '#3c7951',
-  markMarketDown: '#a94352',
+  markMarketUp: '#356b44',
+  markMarketDown: '#9a3f4a',
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
@@ -264,6 +295,22 @@ export function mixHex(a: string, b: string, t: number): string {
  * it, so the light a reader tapped and the words that open under it cannot
  * disagree about what colour the story is.
  */
+/** A category's name in its colour, readable as text on the sheet. */
+export function categoryTextColor(category: string | undefined, colors: ColorPalette): string {
+  switch (category) {
+    case 'politics':
+      return colors.categoryTextPolitics;
+    case 'economy':
+      return colors.categoryTextEconomy;
+    case 'science':
+      return colors.categoryTextScience;
+    case 'tech':
+      return colors.categoryTextTech;
+    default:
+      return colors.categoryTextOther;
+  }
+}
+
 export function categoryMarkColor(category: string | undefined, colors: ColorPalette): string {
   switch (category) {
     case 'politics':
@@ -723,14 +770,18 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
      *  sits directly over a reading and body leading (1.55) would open a gap
      *  the strip pays for in height. Subjects are one line now (`stripLabel`);
      *  the solid leading was first chosen because a wrapped "STRAIT OF" /
-     *  "HORMUZ" at body leading read as two separate labels. */
+     *  "HORMUZ" at body leading read as two separate labels.
+     *
+     *  In `text` ink, not `labelXs`'s secondary: an 11pt caps line over the
+     *  lit globe fell to ~5:1 in secondary grey behind the shade, and the
+     *  strip read as a grey band with two dim colours in it (2026-09-23). */
     labelXsTight: {
       ...font.smallCaps,
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeXs,
       lineHeight: typography.sizeXs * typography.leadingHeading,
       letterSpacing: typography.trackingCaps,
-      color: colors.textSecondary,
+      color: colors.text,
     } as TextStyle,
     /** Tabular numerals — time readouts, counts, any fixed-width layout */
     tabular: {

@@ -16,8 +16,10 @@
 const DEG2RAD = Math.PI / 180;
 const RAD2DEG = 180 / Math.PI;
 
-/** The tightest clip a pinch reaches — the old closest zoom level. */
-export const MIN_CLIP = 10;
+/** The tightest clip a pinch reaches. It was 10°, the old closest zoom level,
+ *  and the user asked to be able to go a little closer (2026-09-23): 7° is
+ *  1.4× the scale, still inside what the detail coastline holds up to. */
+export const MIN_CLIP = 7;
 /** A hemisphere: an orthographic projection cannot show more. */
 export const MAX_CLIP = 90;
 /** Past this the pole is under the finger and the projection has no up. */

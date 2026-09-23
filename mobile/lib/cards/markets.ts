@@ -1174,6 +1174,9 @@ function eventTier(ev: TrendEvent, days: number): number {
 function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
   return (
     (snapshot.events ?? [])
+      // The published events block has carried one release three times
+      // (`fred-us-gdp-…`, fixed in `fetch-trends.js`); the id is the card's key.
+      .filter((ev, i, all) => all.findIndex((other) => other.id === ev.id) === i)
       .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
       .filter((x): x is { ev: TrendEvent; days: number } => x.days !== null && x.days >= 0)
       .filter(({ days }) => days <= EVENT_HORIZON_DAYS)

@@ -117,7 +117,9 @@ interface StoryDeckProps {
   /** A worklet, run on the UI thread as the pan claims a swipe, before
    *  `onDragStart` reaches JS: whatever must be decided on the frame the card
    *  starts to move (whether the camera follows the finger). */
-  onClaim?: () => void;
+  onClaim?: (direction: number) => void;
+  /** A worklet, run as a swipe snaps back to the story it started on. */
+  onRollback?: () => void;
   /** The swipe ended on a different story. Must be a stable, named callback. */
   onSettle: (index: number) => void;
   ref?: Ref<StoryDeckRef>;
@@ -238,6 +240,7 @@ export const StoryDeck = memo(function StoryDeck({
   renderEnd,
   onDragStart,
   onClaim,
+  onRollback,
   onSettle,
   ref,
 }: StoryDeckProps) {
@@ -289,7 +292,8 @@ export const StoryDeck = memo(function StoryDeck({
         cancelAnimation(progress);
         start.value = progress.value;
         startX.value = e.translationX;
-        if (onClaim) onClaim();
+        // Heading for the next story when the finger moves left.
+        if (onClaim) onClaim(e.translationX < 0 ? 1 : -1);
         scheduleOnRN(onDragStart);
       },
       onUpdate: (e: { translationX: number }) => {
@@ -315,10 +319,12 @@ export const StoryDeck = memo(function StoryDeck({
         if (target !== committed.value) {
           committed.value = target;
           scheduleOnRN(onSettle, target);
+        } else if (onRollback) {
+          onRollback();
         }
       },
     }),
-    [committed, count, onClaim, onDragStart, onSettle, pitch, progress, start, startX],
+    [committed, count, onClaim, onDragStart, onRollback, onSettle, pitch, progress, start, startX],
   );
   const pan = usePanGesture(panConfig);
 

@@ -281,20 +281,23 @@ export function makeMarkdownStyles(
       color: colors.accent,
       textDecorationLine: 'underline',
     },
-    // Country mentions: accent-tinted text, no underline. Shares the
-    // "tappable rich noun" affordance with the entity treatment — readers
-    // learn that any accent-colored word in prose opens a data sheet.
-    // Avoids the platform-underline problem where `textDecorationLine`
-    // sits tight against letter baselines and can't be nudged lower
-    // (RN doesn't expose `text-underline-offset`).
+    // Country and entity mentions: the body's own ink with a quiet underline,
+    // the web's `.country-link` (text colour, a dotted rule in secondary).
+    // They were `accent`, a step *lighter* than the words around them, so a
+    // word you could open read as a faded one (2026-09-23). The underline's
+    // colour and dotting are iOS-only; Android draws a solid rule in the
+    // text's own colour, tight to the baseline.
     countryLink: {
-      color: colors.accent,
+      color: colors.text,
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: colors.textSecondary,
     },
-    // Entity runs get the accent hue without underline — a softer affordance
-    // than a link so that tappable rich nouns don't compete with inline URLs.
-    // The tap target uses RN Text's onPress; readers discover via color.
     entity: {
-      color: colors.accent,
+      color: colors.text,
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: colors.textSecondary,
     },
     // Inline dateline: matches the design system's small-caps tiers
     // (label/labelSm/labelXs) — secondary tone so the temporal frame reads

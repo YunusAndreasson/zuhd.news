@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
 import {
   type SharedValue,
@@ -14,8 +14,9 @@ import { announce } from '../../lib/announce';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { useReadSlugs } from '../../lib/read-store';
 import type { FoundProgress } from '../../lib/story-places';
+import { labelledMarks, nearestStory, positionAt, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
-import { ScrubBar, ScrubTooltip } from '../ScrubBar';
+import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
 
 /**
  * The dock: where the reader is in the day, in one row at the foot of the
@@ -46,7 +47,7 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  * catch up on. The track itself carries no mark for new stories: a dashed
  * rule over their segments was drawn for a day (2026-09-21) and removed at
  * the user's request (2026-09-22) — a second row that said what each card's
- * `new ·` kicker and this pill already say.
+ * `· new` and this pill already say.
  *
  * There is no list of every story: one was tried (`IndexSheet`, twice) and
  * the reader did not want it — the track and the swipe are the way through.
@@ -56,9 +57,13 @@ import { ScrubBar, ScrubTooltip } from '../ScrubBar';
  * for it at the top beside the menu (`MapHeader`).
  */
 
-/** Which story a fraction of the track points at: the segment under it. */
-function storyAt(fraction: number, count: number): number {
+/**
+ * Which story a fraction of the track points at: the nearest one placed at
+ * its time, or the equal segment under it before the track is measured.
+ */
+function storyAt(fraction: number, count: number, centers: readonly number[] | null): number {
   'worklet';
+  if (centers && centers.length === count && count > 0) return nearestStory(centers, fraction);
   return Math.max(0, Math.min(count - 1, Math.ceil(fraction * count) - 1));
 }
 
@@ -76,6 +81,8 @@ export const StoryDock = memo(function StoryDock({
   onClaim,
   timeAt,
   categoryAt,
+  ages,
+  coverage,
   hues,
   fresh,
   slugs,
@@ -103,6 +110,13 @@ export const StoryDock = memo(function StoryDock({
   timeAt: (index: number) => string;
   /** A story's category, the tooltip's quieter second line. */
   categoryAt?: (index: number) => string;
+  /** Per story, how long before the river's day ends it ran, in ms: where it
+   *  sits on the track. Without it the track is one equal cell per story. */
+  ages?: readonly number[];
+  /** Per story: `884 reports` over the most-covered bar, else null. Its
+   *  cell stands taller while unread and the tooltip says it — what the
+   *  card's kicker says, drawn on the day. */
+  coverage?: readonly (string | null)[];
   /** One category hue per story, for the track's segments. */
   hues?: readonly string[];
   /** Per story: arrived since the reader last had the feed — counted for a
@@ -159,10 +173,40 @@ export const StoryDock = memo(function StoryDock({
   // deck writes it unless a finger is scrubbing the track itself. Nothing is
   // filled to it any more — the segments say what has been read.
   const fraction = useSharedValue(0);
+  const tall = useMemo(() => coverage?.map((label) => label !== null), [coverage]);
+  // The track is the day (2026-09-23, the user's request): now at the left
+  // end, a day ago at the right, each story at its time and a mark every six
+  // hours — so "twelve hours back" is a place on it, not a count of cells.
+  // It is laid out in points, once the track is measured.
+  const [trackWidth, setTrackWidth] = useState(0);
+  const day = useMemo(
+    () =>
+      ages && ages.length === count && trackWidth > 0 ? timeTrackLayout(ages, trackWidth) : null,
+    [ages, count, trackWidth],
+  );
+  const centers = useMemo(
+    () => (day ? day.centers.map((c) => c / trackWidth) : null),
+    [day, trackWidth],
+  );
+  const marks = useMemo(
+    () => (day ? labelledMarks(day.marks, MARK_LABEL_MIN_GAP) : undefined),
+    [day],
+  );
+  const stepAt = useMemo(
+    () =>
+      centers
+        ? (f: number) => {
+            'worklet';
+            return storyAt(f, count, centers);
+          }
+        : undefined,
+    [centers, count],
+  );
   // Preview the destination's full category hue on the same UI-thread frame
   // as the thumb moves, without waiting for a committed story or React render.
   const destinationHue = useDerivedValue(
-    () => hues?.[storyAt(fraction.value, count)] ?? colors.textEmphasis,
+    () => hues?.[storyAt(fraction.value, count, centers)] ?? colors.textEmphasis,
+    [hues, count, centers, colors.textEmphasis],
   );
   // The tooltip says when, large, and nothing else loud (2026-09-22, the
   // user's request). It led with `12 of 48` over `politics · 12h ago` in
@@ -170,15 +214,22 @@ export const StoryDock = memo(function StoryDock({
   // order is reading for: the position is on the track under the finger.
   // The words are the card's kicker's, so the tooltip and the card it lands
   // on agree.
-  const labelFor = useCallback((f: number) => timeAt(storyAt(f, count)), [timeAt, count]);
+  const labelFor = useCallback(
+    (f: number) => timeAt(storyAt(f, count, centers)),
+    [timeAt, count, centers],
+  );
   const detailFor = useCallback(
-    (f: number) => (categoryAt ? categoryAt(storyAt(f, count)) : ''),
-    [categoryAt, count],
+    (f: number) => {
+      const i = storyAt(f, count, centers);
+      // The tall cell under the finger says what it is, on a line of its own.
+      return [categoryAt?.(i), coverage?.[i]].filter(Boolean).join('\n');
+    },
+    [categoryAt, count, centers, coverage],
   );
   // Each segment in its story's category hue — the globe's beacons and the
-  // card's dot, so a teal segment is a teal light — a touch below full: at
-  // full strength the row was the loudest colour on the sheet after the
-  // globe, and it pulled the eye off the headline. **A read story fades to a
+  // card's category word, so a teal segment is a teal light — a touch below
+  // full: at full strength the row was the loudest colour on the sheet after
+  // the globe, and it pulled the eye off the headline. **A read story fades to a
   // hairline** (2026-09-22, the user's request): a far quieter step of its
   // hue at a third of the height, so what is left to read is the part of the
   // track with weight, and the difference is a shape as well as a colour.
@@ -194,11 +245,15 @@ export const StoryDock = memo(function StoryDock({
     const faded = tint(READ_MIX[resolvedAppearance]);
     return read?.length === count ? unread.map((c, i) => (read[i] ? (faded[i] ?? c) : c)) : unread;
   }, [hues, count, read, colors.sheetBg, resolvedAppearance]);
-  const handleCommit = useCallback((f: number) => onSeek?.(storyAt(f, count)), [onSeek, count]);
+  const handleCommit = useCallback(
+    (f: number) => onSeek?.(storyAt(f, count, centers)),
+    [onSeek, count, centers],
+  );
   const scrub = useScrub({
     fraction,
     detents: count,
     steps: count,
+    stepAt,
     labelFor,
     detailFor,
     onCommit: handleCommit,
@@ -211,10 +266,10 @@ export const StoryDock = memo(function StoryDock({
     () => position.value,
     (p) => {
       if (holding.value) return;
-      const filled = count > 0 ? (p + 1) / count : 0;
-      fraction.value = Math.min(1, Math.max(0, filled));
+      const at = centers ? positionAt(centers, p) : count > 0 ? (p + 1) / count : 0;
+      fraction.value = Math.min(1, Math.max(0, at));
     },
-    [count],
+    [count, centers],
   );
   const handleAdjust = useCallback(
     (e: AccessibilityActionEvent) => {
@@ -225,10 +280,13 @@ export const StoryDock = memo(function StoryDock({
     [onSeek, index, count],
   );
 
+  // A tick is a ruler's, quieter than the words under it.
+  const markInk = mixHex(colors.textSecondary, colors.sheetBg, 0.45);
   const found = progress?.found ?? 0;
   const freshTotal = fresh?.reduce((n, isFresh) => (isFresh ? n + 1 : n), 0) ?? 0;
   const readTotal = read?.reduce((n, isRead) => (isRead ? n + 1 : n), 0) ?? 0;
-  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${readTotal > 0 ? `, ${readTotal} read` : ''}${found > 0 ? `, ${found} found on the globe` : ''}`;
+  const when = index < count ? timeAt(index) : '';
+  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${when ? `, ${when}` : ''}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${readTotal > 0 ? `, ${readTotal} read` : ''}${found > 0 ? `, ${found} found on the globe` : ''}`;
 
   return (
     <View
@@ -286,6 +344,11 @@ export const StoryDock = memo(function StoryDock({
           trackColor={colors.rule}
           trackColors={tints ?? undefined}
           faded={read}
+          cells={day?.cells}
+          tall={tall}
+          marks={marks}
+          markColor={markInk}
+          onTrackWidth={setTrackWidth}
           thumbColor={destinationHue}
           style={styles.scrub}
           accessibilityRole="adjustable"
@@ -293,7 +356,7 @@ export const StoryDock = memo(function StoryDock({
           // new position after each adjustment.
           accessibilityLabel="Today's stories"
           accessibilityValue={{ min: 1, max: count, now: Math.min(index + 1, count), text: spoken }}
-          accessibilityHint="Drag along it to move through the day's stories"
+          accessibilityHint="Now is at the left and a day ago at the right. Drag along it to move through the day's stories"
           accessibilityActions={ADJUST_ACTIONS}
           onAccessibilityAction={handleAdjust}
         >
@@ -311,6 +374,8 @@ export const StoryDock = memo(function StoryDock({
   );
 });
 
+/** Two marks' words closer than this lose the quarter's: `12h` stays. */
+const MARK_LABEL_MIN_GAP = MARK_LABEL_WIDTH + SPACING.xs;
 /** The track's thickness: a rule you can see, not a control you can grab. */
 const TRACK = 3;
 /** The `‹ 3 new` pill's height, inside its 48pt touch target. It was the
@@ -322,8 +387,9 @@ const TRACK_GAP = SPACING.md;
 /** The tooltip's time at body size: 11pt tabular × 17/11. The tabular
  *  variants do not follow Dynamic Type, so the fixed width below holds. */
 const TIME_SCALE = 17 / 11;
-/** Wide enough for `45m ago` at `TIME_SCALE`, and `economy` under it. */
-const TOOLTIP_WIDTH = 96;
+/** Wide enough for `45m ago` at `TIME_SCALE`, and `1,907 reports` under
+ *  it. */
+const TOOLTIP_WIDTH = 112;
 /** How far an unread segment's hue is mixed toward the sheet: still plainly
  *  its category, a touch under the globe's beacons. */
 const UNREAD_MIX = { dark: 0.15, light: 0.15 } as const;

@@ -31,6 +31,6 @@ describe('articleThreadContext', () => {
         threadArc: 'ongoing',
         threadDay: 9,
       }),
-    ).toBe('ongoing, day 9 · 4 reports');
+    ).toBe('ongoing, day 9 · 4 stories');
   });
 });

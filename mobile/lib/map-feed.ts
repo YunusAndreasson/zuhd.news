@@ -1,5 +1,6 @@
 import { getCoords } from '../components/globe/storyDots';
 import { articleTime, formatTimeAgo } from './article-utils';
+import { coverageLabel } from './coverage';
 import type { RiverArticle } from './news-order';
 import type { LatLng } from './now';
 
@@ -25,6 +26,10 @@ export interface StoryRow {
   title: string;
   /** `politics · 2h ago`. Lowercase; the small-caps face does the rest. */
   meta: string;
+  /** `884 reports` on a story over the most-covered bar (`coverageLabel`),
+   *  else null: the end of the card's kicker, the tooltip over its taller
+   *  cell on the dock's track — one claim in two places. */
+  coverage: string | null;
   /**
    * The ink step before the meta line, or null.
    *
@@ -53,9 +58,12 @@ export interface BuildStoryRowsInput {
   fresh: ReadonlySet<string>;
   /** slug → bare percentage, from `lib/predictions.ts`. */
   odds?: ReadonlyMap<string, string>;
+  /** How many top stories lead the river (`leadWithTopStories`). They are
+   *  not in time order, so the `earlier` boundary is looked for after them. */
+  lead?: number;
 }
 
-export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): StoryRow[] {
+export function buildStoryRows({ river, fresh, odds, lead = 0 }: BuildStoryRowsInput): StoryRow[] {
   // The boundary is the first story the reader already had. By slug, never by
   // `addedAt`: the question is "was this here last time you looked", and a
   // rewritten file's mtime says it was published a minute ago.
@@ -66,8 +74,11 @@ export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): Sto
     let mark: StoryRow['mark'] = isFresh ? 'new' : null;
     // Suppress a boundary on the opening card: `earlier ·` there reads as
     // a label on that story rather than as a place the reader has reached.
-    if (!isFresh && !boundaryMarked) {
-      if (index > 0) mark = 'earlier';
+    // The top stories leading the river are out of time order, so the
+    // boundary is the first story after them that the reader had, and only
+    // when a new one came before it in the time-ordered part.
+    if (index >= lead && !isFresh && !boundaryMarked) {
+      if (index > lead) mark = 'earlier';
       boundaryMarked = true;
     }
     const coords = getCoords(article);
@@ -77,6 +88,7 @@ export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): Sto
       title: article.title,
       meta: `${article.category} · ${formatTimeAgo(articleTime(article))}`,
       mark,
+      coverage: coverageLabel(article),
       fresh: isFresh,
       odds: odds?.get(article.slug) ?? null,
       coords: coords ? [coords[0], coords[1]] : null,

@@ -594,10 +594,75 @@ function measureLines(lines: string[], font: SkFont | null, fallbackChar: number
 
 type LabelBox = { x0: number; y0: number; x1: number; y1: number };
 
+/** From a genocide mark's centre to its name's near edge. */
+const GENOCIDE_LABEL_DX = 13;
+
+/** Where a genocide mark's name starts — see `genocideMarks.labelX`. */
+function genocideLabelX(x: number, tw: number, width: number): number | null {
+  if (x < -9 || x > width + 9) return null;
+  const right = x + GENOCIDE_LABEL_DX;
+  const start = right + tw <= width - 4 ? right : x - GENOCIDE_LABEL_DX - tw;
+  return Math.max(4, Math.min(width - 4 - tw, start));
+}
+
+/** A genocide mark and its always-drawn name. */
+function genocideLabelBox(
+  g: { x: number; y: number; label: string; labelX: number | null },
+  font: SkFont | null,
+): LabelBox {
+  const tw = font ? textWidth(font, g.label) : g.label.length * 6;
+  const lx = g.labelX ?? g.x;
+  return {
+    x0: Math.min(g.x - 9, lx),
+    x1: Math.max(g.x + 9, g.labelX === null ? g.x : lx + tw),
+    y0: Math.min(g.y - 9, g.y + 4 - MARK_LABEL_ASCENT),
+    y1: Math.max(g.y + 9, g.y + 4 + MARK_LABEL_DESCENT),
+  };
+}
+
+/** The clear space between two counts: their halos are ~2.5pt wide, and at a
+ *  1pt gap "5" and "8" still read as "58". */
+const COUNT_GAP = 4;
+
+/** From a conflict glow's centre to its count. */
+const CONFLICT_COUNT_DX = 9;
+
+/** A conflict stack's count, where the draw call sets it. */
+function conflictCountBox(
+  m: { x: number; y: number; count: number },
+  font: SkFont | null,
+): LabelBox {
+  const text = String(m.count);
+  const x0 = m.x + CONFLICT_COUNT_DX;
+  return {
+    x0,
+    x1: x0 + (font ? textWidth(font, text) : text.length * 7),
+    y0: m.y - 4 - MARK_LABEL_ASCENT,
+    y1: m.y - 4 + MARK_LABEL_DESCENT,
+  };
+}
+
+/** A story count, where the draw call sets it: past the beacon's edge, raised. */
+function storyCountBox(
+  m: { x: number; y: number; scale: number; count: number },
+  font: SkFont | null,
+): LabelBox {
+  const text = String(m.count);
+  const x0 = m.x + BEACON_R * m.scale + 3;
+  return {
+    x0,
+    x1: x0 + (font ? textWidth(font, text) : text.length * 7),
+    y0: m.y - 4 - MARK_LABEL_ASCENT,
+    y1: m.y - 4 + MARK_LABEL_DESCENT,
+  };
+}
+
 /** The location and local time beside the current story's dot, both rows:
  *  the name's baseline 4 below the dot and `DOT_LABEL_DX` right of it, the
  *  time's at `DOT_SUB_DY`. Widths fall back to a count of characters until the fonts
- *  load. */
+ *  load. The dot and its ring are part of the box: measured from the label
+ *  alone, a country name centred on the story's place passed as clear and
+ *  printed through the dot — `IT●Y` over Rome (2026-09-23). */
 function dotLabelBox(
   dl: { text: string; sub?: string; x: number; y: number },
   label: SkFont | null,
@@ -605,11 +670,12 @@ function dotLabelBox(
 ): LabelBox {
   const dw = label ? textWidth(label, dl.text) : dl.text.length * DOT_LABEL_CHAR_W;
   const sw = dl.sub ? (sub ? textWidth(sub, dl.sub) : dl.sub.length * 5) : 0;
+  const ring = ACTIVE_DOT_R + 4;
   return {
-    x0: dl.x + DOT_LABEL_DX,
+    x0: dl.x - ring,
     x1: dl.x + DOT_LABEL_DX + Math.max(dw, sw),
-    y0: dl.y + 4 - DOT_LABEL_ASCENT,
-    y1: dl.y + (dl.sub ? DOT_SUB_DY : 4) + 4,
+    y0: Math.min(dl.y + 4 - DOT_LABEL_ASCENT, dl.y - ring),
+    y1: Math.max(dl.y + (dl.sub ? DOT_SUB_DY : 4) + 4, dl.y + ring),
   };
 }
 
@@ -637,6 +703,14 @@ function boxesMeet(a: LabelBox, b: LabelBox, gap: number): boolean {
 const MARK_LABEL_DY = [20, -14] as const;
 /** The clear space a mark's name keeps from every label placed before it. */
 const MARK_LABEL_GAP = 2;
+/**
+ * Past this zoom-out the globe names only the straits whose traffic has moved
+ * and the single exchanges: a cluster's `8 markets` and every quiet strait's
+ * name and `vs 90d` filled the whole-planet view with words that each fit and
+ * together read as noise. The cluster's glyph still prints its count, a quiet
+ * strait keeps its mark, and a tap names either. Story framings are 18°–24°.
+ */
+const MARK_NAMES_PLANET_CLIP = 45;
 /**
  * A market's or a strait's label is two lines (2026-09-22, the user's
  * request): the name, then the move under it — `Strait of Hormuz` over
@@ -924,6 +998,9 @@ interface GlobeState {
     /** Unfound stories at this place. */
     count: number;
     contested: boolean;
+    /** Whether its count is printed: at least `storyCountMin`, and clear of
+     *  a larger count beside it. Decided in the reprojection. */
+    showCount?: boolean;
   }[];
   /** Stack counts show beside places with at least this many unfound stories. */
   storyCountMin: number;
@@ -931,7 +1008,17 @@ interface GlobeState {
   readMarks: { x: number; y: number; slug: string; color: string }[];
   famineMarks: { x: number; y: number; id: string; blocks: number; alpha: number; scale: number }[];
   thermalMarks: { x: number; y: number; id: string; alpha: number; scale: number }[];
-  genocideMarks: { x: number; y: number; id: string; label: string }[];
+  genocideMarks: {
+    x: number;
+    y: number;
+    id: string;
+    label: string;
+    /** Where the name starts, or null when the mark is off the screen. It
+     *  sits right of the mark, left of it when the right would run off the
+     *  screen, and is held on the screen either way: RAKHINE was cut at the
+     *  right edge of the whole-planet view. */
+    labelX: number | null;
+  }[];
   dotLabel: { text: string; sub?: string; x: number; y: number; opacity: number } | null;
   /** Country name anchored near the highlighted country's centroid. Rendered
    *  at every zoom level (including fully zoomed-out) so the reader always
@@ -1017,6 +1104,9 @@ interface GlobeState {
     /** `conflictScale` of the event's fatalities. */
     scale: number;
   }[];
+  /** The conflict counts printed beside their glows: stacks of three or more,
+   *  clear of every story count (which wins). Decided in the reprojection. */
+  conflictCounts: { x: number; y: number; count: number }[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
    *  zoomed past PLACES_APPEAR_CLIP, giving the reader geographic context
@@ -1115,6 +1205,7 @@ const EMPTY_GLOBE: GlobeState = {
   marketMarks: [],
   gdacsMarks: [],
   conflictMarks: [],
+  conflictCounts: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -1533,7 +1624,42 @@ interface FrameOut extends FramePictures {
   activeDot: { x: number; y: number } | null;
   activeColor: string;
   disc: number;
+  /** The camera the pictures were projected from — what the warp measures
+   *  the live camera against. `k` is the projection's scale. */
+  cam: RecordedCamera | null;
 }
+
+interface RecordedCamera {
+  lat: number;
+  lng: number;
+  k: number;
+}
+
+/** The camera this frame, written on the UI thread every frame it moves. */
+interface LiveCamera {
+  lat: number;
+  lng: number;
+  clip: number;
+}
+
+/**
+ * How far past the canvas a moving frame is projected, as a multiple of the
+ * canvas's reach. The warp carries the last picture toward the live camera
+ * between projections, and ground recorded only to the canvas's edge would
+ * leave ocean where land should be along the trailing edge. Settled frames
+ * stay at the canvas: their detail is the expensive part.
+ */
+const MOTION_REACH = 1.2;
+
+/** The warp's strength by the limb's radius over the canvas's reach (see
+ *  `warp`): full from `WARP_FULL_LIMB`, off at `WARP_NO_LIMB`. Every story
+ *  framing, rise included (18°–30° of clip), sits at 0.64–1.04 on a phone,
+ *  where the limb shows at most across the top corners under the header's
+ *  shade; the whole planet on screen sits near 0.3. */
+const WARP_FULL_LIMB = 0.6;
+const WARP_NO_LIMB = 0.4;
+
+const NO_WARP: Transforms3d = [];
 
 type SettledGeometry = {
   landPath: SkPath;
@@ -1713,15 +1839,15 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       cp.y,
       strokePaint(glyphColor, 0.6 + 0.35 * cp.intensity, 1.0, StrokeJoin.Round, StrokeCap.Round),
     );
-    // Compact traffic sign beside the coastline glyph; its touch area stays generous.
+    // Compact traffic sign beside the coastline glyph; its touch area stays
+    // generous. Coloured by what the move means, as on the strait's card
+    // (`chokepointValence`): red only for a disruption, slate otherwise. It
+    // coloured the direction, so Gibraltar's ↓2% was the same alarm red as
+    // Hormuz's ↓62%, and a surge was green where its card said neutral.
+    const moveColor = cp.disrupted ? colors.markMarketDown : colors.toneNeutralText;
     if (cp.direction) {
       const x = cp.x + 12;
-      const color =
-        cp.direction === 'down'
-          ? colors.markMarketDown
-          : cp.direction === 'up'
-            ? colors.markMarketUp
-            : colors.textSecondary;
+      const color = cp.direction === 'flat' ? colors.textSecondary : moveColor;
       c.drawCircle(x, cp.y, 6, fillPaint(colors.bg, 0.98));
       if (cp.direction === 'flat') c.drawLine(x - 3, cp.y, x + 3, cp.y, strokePaint(color, 1, 1.5));
       else {
@@ -1739,12 +1865,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         cp.labelY,
         {
           name: colors.text,
-          move:
-            cp.direction === 'down'
-              ? colors.markMarketDown
-              : cp.direction === 'up'
-                ? colors.markMarketUp
-                : colors.textSecondary,
+          move: cp.direction === 'flat' ? colors.textSecondary : moveColor,
           basis: colors.textSecondary,
           halo: colors.bg,
         },
@@ -1767,7 +1888,10 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         : m.direction === 'down'
           ? colors.markMarketDown
           : colors.text;
-    if (Math.hypot(m.x - m.originX, m.y - m.originY) > 2) {
+    // A leader only for a single market. A cluster's origin is the mean of
+    // its members, which is no place: the line ended on the story's label or
+    // in the sea between cities, and its count and chooser already say where.
+    if (m.ids.length === 1 && Math.hypot(m.x - m.originX, m.y - m.originY) > 2) {
       c.drawLine(m.originX, m.originY, m.x, m.y, strokePaint(colors.textSecondary, 0.65, 1));
       c.drawCircle(m.originX, m.originY, 2, fillPaint(color));
     }
@@ -1850,19 +1974,17 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 
   // Conflict events — one glow per nearby cluster, recency in the colour
   // channel. Hit-testing still uses every original event point below.
-  const conflictVisuals = collapseConflictVisuals(f.conflictMarks);
   drawAtlasLayer(
     c,
     textures.ghost,
     conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
   );
   if (fonts.sub) {
-    for (const m of conflictVisuals) {
-      if (m.count < 3) continue;
+    for (const m of f.conflictCounts) {
       drawHaloText(
         c,
         String(m.count),
-        m.x + 9,
+        m.x + CONFLICT_COUNT_DX,
         m.y - 4,
         fonts.sub,
         colors.textEmphasis,
@@ -1995,7 +2117,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const dot = f.dot;
   if (sub) {
     for (const m of f.storyMarks) {
-      if (m.count < f.storyCountMin) continue;
+      if (!m.showCount) continue;
       if (dot && Math.hypot(m.x - dot.x, m.y - dot.y) < ACTIVE_DOT_R + 2) continue;
       drawHaloText(
         c,
@@ -2016,11 +2138,11 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     c.drawCircle(g.x, g.y, 9, fillPaint(colors.markGenocideCore));
     c.drawCircle(g.x, g.y, 9, strokePaint(colors.markGenocide, 1, 1.6));
     c.drawCircle(g.x, g.y, 3, fillPaint(colors.markGenocide));
-    if (sub) {
+    if (sub && g.labelX !== null) {
       drawHaloText(
         c,
         g.label,
-        g.x + 13,
+        g.labelX,
         g.y + 4,
         sub,
         colors.markGenocide,
@@ -2505,6 +2627,53 @@ export const MiniGlobe = memo(function MiniGlobe({
     disc: globeRadius,
     activeDot: null,
     activeColor: colors.textEmphasis,
+    cam: null,
+  });
+  // The camera the last projection was made from (`callReproject`), and the
+  // one the reaction says the globe is at now.
+  const recordedCamRef = useRef<RecordedCamera | null>(null);
+  const liveCamera = useSharedValue<LiveCamera | null>(null);
+  // **The warp: the earth moves with the finger, not with the JS thread.**
+  // A frame is projected and recorded on JS, at most every 32 ms and later
+  // whenever a swipe's landing commit holds the thread; the card beside it
+  // moves on the UI thread every frame. Recorded on the emulator (2026-09-23)
+  // the globe started 160–340 ms after the card, stepped at ~10 fps under the
+  // finger, froze through the landing, and was still turning 300–700 ms after
+  // the card had stopped. So between projections the last pictures are moved
+  // to the live camera on the UI thread: translated by where the live centre
+  // falls in the recorded projection and scaled by the zoom since. That is
+  // exact at the centre and a close fit elsewhere while the planet is larger
+  // than the screen, where a small turn of an orthographic globe is nearly a
+  // slide; with the whole planet on screen a slide would move the planet
+  // rather than turn it, so the warp fades out there and the globe steps as it
+  // did.
+  const warp = useDerivedValue<Transforms3d>(() => {
+    const cam = framePictures.value.cam;
+    const live = liveCamera.value;
+    if (!cam || !live || !(cam.k > 0)) return NO_WARP;
+    const reach = reachFor(cx, cy, width, height);
+    const strength = Math.min(
+      1,
+      Math.max(0, (cam.k / reach - WARP_NO_LIMB) / (WARP_FULL_LIMB - WARP_NO_LIMB)),
+    );
+    if (strength === 0) return NO_WARP;
+    const rad = Math.PI / 180;
+    const phi0 = cam.lat * rad;
+    const phi = live.lat * rad;
+    const dl = (live.lng - cam.lng) * rad;
+    const cosPhi = Math.cos(phi);
+    // The live centre on the far side of the recorded one: no slide fits.
+    if (Math.sin(phi0) * Math.sin(phi) + Math.cos(phi0) * cosPhi * Math.cos(dl) <= 0.2) {
+      return NO_WARP;
+    }
+    const dx = strength * cam.k * cosPhi * Math.sin(dl);
+    const dy =
+      -strength * cam.k * (Math.cos(phi0) * Math.sin(phi) - Math.sin(phi0) * cosPhi * Math.cos(dl));
+    const kNow = globeRadius / Math.sin(Math.max(1, live.clip) * rad);
+    const s = 1 + (kNow / cam.k - 1) * strength;
+    if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(s - 1) < 1e-4) return NO_WARP;
+    // A point P of the picture lands at s·P + t, with t = c − s·(c + d).
+    return [{ translateX: cx - s * (cx + dx) }, { translateY: cy - s * (cy + dy) }, { scale: s }];
   });
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
@@ -2526,8 +2695,21 @@ export const MiniGlobe = memo(function MiniGlobe({
       if ('translateX' in transform) tx += transform.translateX;
       if ('translateY' in transform) ty += transform.translateY;
     }
-    const x = dot ? width / 2 + (dot.x - width / 2) * scale + tx : 0;
-    const y = dot ? height / 2 + (dot.y - height / 2) * scale + ty : 0;
+    // Carried by the warp first, like the ground under it.
+    let wx = dot ? dot.x : 0;
+    let wy = dot ? dot.y : 0;
+    let ws = 1;
+    for (const transform of warp.value) {
+      if ('scale' in transform) ws = transform.scale;
+      if ('translateX' in transform) wx += transform.translateX;
+      if ('translateY' in transform) wy += transform.translateY;
+    }
+    if (dot) {
+      wx += (ws - 1) * dot.x;
+      wy += (ws - 1) * dot.y;
+    }
+    const x = dot ? width / 2 + (wx - width / 2) * scale + tx : 0;
+    const y = dot ? height / 2 + (wy - height / 2) * scale + ty : 0;
     return {
       opacity: dot ? 1 : 0,
       backgroundColor: framePictures.value.activeColor,
@@ -2573,6 +2755,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         colors,
       ),
       disc: frame.discRadius > 0 ? frame.discRadius : globeRadius,
+      cam: recordedCamRef.current,
     };
   };
 
@@ -3046,12 +3229,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       // outgrows the screen. d3-geo's `.clipAngle` only clips path generation,
       // not direct point projection, so every point marker below is culled
       // against it too (`clipRad`).
-      const viewAngle = viewAngleFor(
-        projScale,
-        Math.max(grownReach, reachFor(centerX, centerY, canvasW, canvasH)),
-      );
-      const clipRad = (viewAngle * Math.PI) / 180;
-      const clipCos = Math.cos(clipRad);
 
       // Arc opacity still fades over a quarter story; expensive detail waits
       // until landing, using the same boundary as reaction invalidation.
@@ -3059,13 +3236,35 @@ export const MiniGlobe = memo(function MiniGlobe({
       const lastAngle = lastOverrideAngleRef.current;
       lastOverrideAngleRef.current = overrideAngleVal;
       const activeMid = overrideActiveVal > 0.001 && overrideActiveVal < 0.999;
-      const angleChanging = Math.abs(overrideAngleVal - lastAngle) > 0.01;
+      // An angle moving under an override that is off moves nothing: the clip
+      // is the story's own. A flight lands by dropping the override on the
+      // same frame its angle takes its last step, and counted as zoom in
+      // flight that last frame was drawn at the motion tier — the coarse
+      // coastline — with no frame after it to restore the detail, since
+      // nothing moves once a flight has landed. Every far swipe, mark tap,
+      // scrub jump and gauge left the map coarse until the next touch
+      // (2026-09-23, logged on the emulator: oA 0, oG 19.37 → 19.23).
+      const angleChanging =
+        overrideActiveVal > 0.001 && Math.abs(overrideAngleVal - lastAngle) > 0.01;
       const zoomInFlight = activeMid || angleChanging;
       // A camera the list does not own has no `frac` of its own: the reaction
       // hands over the list's last one, which is ~0 at rest. Without
       // `cameraMoving`, every frame of a globe drag was therefore projected at
       // full settled detail — on the emulator, 26 of 26 frames over four drags.
       const nearSettled = !zoomInFlight && !cameraMoving && isStorySettled(frac);
+
+      // A moving frame reaches past the canvas (`MOTION_REACH`), so the warp
+      // has ground to carry into view until the next projection lands.
+      const viewAngle = viewAngleFor(
+        projScale,
+        Math.max(
+          grownReach,
+          reachFor(centerX, centerY, canvasW, canvasH) * (nearSettled ? 1 : MOTION_REACH),
+        ),
+      );
+      const clipRad = (viewAngle * Math.PI) / 180;
+      const clipCos = Math.cos(clipRad);
+      recordedCamRef.current = { lat: geoLat, lng: geoLng, k: projScale };
 
       projRef.current.rotate([-geoLng, -geoLat, 0]).scale(projScale).translate([centerX, centerY]);
       // At rest, long geographic edges are resampled into projected curves.
@@ -3172,6 +3371,23 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
       // Web: a count beside every stack of 3+, and of 2+ once zoomed in.
       const storyCountMin = clipAngle < 60 ? 2 : 3;
+      // Counts never print on each other: "5" and "8" at Washington and New
+      // York overlapped into "58" on the whole-planet view. The larger count
+      // is kept; the smaller place keeps its beacon and its tap.
+      // Each count keeps a way to take it down again: a disrupted strait's
+      // name outranks it (see the mark labels below).
+      const countBoxes: LabelBox[] = [];
+      const countHide: (() => void)[] = [];
+      for (const m of [...storyMarks].sort((a, b) => b.count - a.count)) {
+        if (m.count < storyCountMin) continue;
+        const box = storyCountBox(m, subFontRef.current);
+        if (countBoxes.some((b) => boxesMeet(b, box, COUNT_GAP))) continue;
+        m.showCount = true;
+        countBoxes.push(box);
+        countHide.push(() => {
+          m.showCount = false;
+        });
+      }
 
       // The highlight shares its exact edges with this frame's coast and borders.
       let countryPath: GlobeState['countryPath'] = null;
@@ -3516,6 +3732,21 @@ export const MiniGlobe = memo(function MiniGlobe({
           scale: e.scale,
         });
       }
+      // A conflict stack's count is set like a story's, in the same ink, so
+      // the two collided — "5" and "8" at Washington read as "58". A story's
+      // count is kept; the conflict glow still says something happened there.
+      const conflictCounts: (GlobeState['conflictCounts'][number] & { hidden?: boolean })[] = [];
+      for (const v of collapseConflictVisuals(conflictMarks).sort((a, b) => b.count - a.count)) {
+        if (v.count < 3) continue;
+        const box = conflictCountBox(v, subFontRef.current);
+        if (countBoxes.some((b) => boxesMeet(b, box, COUNT_GAP))) continue;
+        const entry = { x: v.x, y: v.y, count: v.count, hidden: false };
+        countBoxes.push(box);
+        countHide.push(() => {
+          entry.hidden = true;
+        });
+        conflictCounts.push(entry);
+      }
 
       // Hazard layers — same cull + project. About a hundred IPC areas, a
       // handful of thermal clusters and two genocide marks: trivial next to
@@ -3564,7 +3795,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (const g of genocideRef.current) {
         if (!seen(g.unit)) continue;
         const pt = SCREEN_POINT;
-        genocideMarks.push({ x: pt[0], y: pt[1], id: g.id, label: g.label });
+        const tw = subFontRef.current ? textWidth(subFontRef.current, g.label) : g.label.length * 6;
+        genocideMarks.push({
+          x: pt[0],
+          y: pt[1],
+          id: g.id,
+          label: g.label,
+          labelX: genocideLabelX(pt[0], tw, canvasW),
+        });
       }
 
       // Country + water-feature labels.
@@ -3730,6 +3968,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         canvasH,
         layoutRef.current.marketViewport?.top,
         layoutRef.current.marketViewport?.bottom,
+        // The story's place is the one label always drawn: a "6 markets"
+        // leader used to end on "Paris".
+        dotLabel ? [dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current)] : [],
+        { x: centerX, y: centerY, r: projScale },
       ).map((mark) => ({
         ...mark,
         labelX: mark.x,
@@ -3781,17 +4023,28 @@ export const MiniGlobe = memo(function MiniGlobe({
         // strait or exchange name has to yield to them: unseeded, "GAZA"
         // printed across "Strait of Hormuz" on the whole-planet view. The box
         // follows the draw call — the ring's 9px, the name at x + 13, y + 4.
-        for (const g of genocideMarks) {
-          const tw = subFontRef.current
-            ? textWidth(subFontRef.current, g.label)
-            : g.label.length * 6;
-          taken.push({
-            x0: g.x - 9,
-            x1: g.x + 13 + tw,
-            y0: Math.min(g.y - 9, g.y + 4 - MARK_LABEL_ASCENT),
-            y1: Math.max(g.y + 9, g.y + 4 + MARK_LABEL_DESCENT),
-          });
+        for (const g of genocideMarks) taken.push(genocideLabelBox(g, subFontRef.current));
+        // Marks, too — a label ran its `vs 90d` across two other straits'
+        // coastlines and arrows around the Black Sea. Circles, one per glyph:
+        // a strait and its traffic arrow, a story beacon, a hazard pictogram.
+        // A label never counts its own mark, which sits where it points.
+        const glyphs: { x: number; y: number; r: number }[] = [];
+        for (const cp of chokepointMarks) {
+          glyphs.push({ x: cp.x, y: cp.y, r: 10 });
+          if (cp.direction) glyphs.push({ x: cp.x + 12, y: cp.y, r: 6 });
         }
+        for (const m of storyMarks) glyphs.push({ x: m.x, y: m.y, r: BEACON_R * m.scale + 1 });
+        for (const g of gdacsMarks) glyphs.push({ x: g.x, y: g.y, r: GLYPH_HALF });
+        const meetsGlyph = (box: LabelBox, selfX: number, selfY: number) =>
+          glyphs.some((g) => {
+            if (Math.abs(g.x - selfX) < 13 && Math.abs(g.y - selfY) < 1) return false;
+            const nx = Math.max(box.x0, Math.min(box.x1, g.x));
+            const ny = Math.max(box.y0, Math.min(box.y1, g.y));
+            return (g.x - nx) ** 2 + (g.y - ny) ** 2 < g.r * g.r;
+          });
+        // Story and conflict counts are avoided too — a "3" at the Gulf
+        // printed over Hormuz's "vs 90d" — but held apart from `taken`, so a
+        // disrupted strait's name can still claim their room (below).
         // Two lines where there is a move: over the mark, the block rises by
         // its second line, so the line nearest the mark sits where a one-line
         // label's did.
@@ -3799,6 +4052,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           x: number,
           y: number,
           t: MarkLabelText,
+          overCounts = false,
+          /** The mark the label names, whose own glyph it may sit beside. */
+          self: { x: number; y: number } = { x, y },
+          overGlyphs = false,
         ): { baseline: number; box: LabelBox } | null => {
           const tw = markLabelWidth(t);
           const depth = markLabelDepth(t);
@@ -3819,7 +4076,15 @@ export const MiniGlobe = memo(function MiniGlobe({
                 break;
               }
             }
+            if (free && !overCounts)
+              free = countBoxes.every((b) => !boxesMeet(box, b, MARK_LABEL_GAP));
+            if (free && !overGlyphs) free = !meetsGlyph(box, self.x, self.y);
             if (free) {
+              if (overCounts) {
+                countBoxes.forEach((b, i) => {
+                  if (boxesMeet(box, b, MARK_LABEL_GAP)) countHide[i]?.();
+                });
+              }
               taken.push(box);
               markLabelBoxes.push(box);
               return { baseline: yc, box };
@@ -3827,11 +4092,17 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
           return null;
         };
+        const planetView = clipAngle > MARK_NAMES_PLANET_CLIP;
         for (const m of marketProjected) {
+          if (planetView && m.ids.length > 1) {
+            m.labelY = null;
+            m.labelBounds = null;
+            continue;
+          }
           const t = marketLabelText(m, markFonts);
           const tw = markLabelWidth(t);
           m.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, m.x));
-          const placed = place(m.labelX, m.y, t);
+          const placed = place(m.labelX, m.y, t, false, m);
           m.labelY = placed?.baseline ?? null;
           m.labelBounds = placed?.box ?? null;
         }
@@ -3839,12 +4110,21 @@ export const MiniGlobe = memo(function MiniGlobe({
           const t = straitLabelText(cp, markFonts);
           const tw = markLabelWidth(t);
           cp.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, cp.x));
+          // A strait whose traffic moved is the headline of its region: with
+          // no free room its name takes a count's, and the count is dropped —
+          // at the whole-planet zoom a "3" beside it left Hormuz unnamed.
           if (cp.x >= 0 && cp.x <= canvasW && (cp.disrupted || cp.surge))
-            cp.labelY = place(cp.labelX, cp.y, t)?.baseline ?? null;
+            cp.labelY =
+              (
+                place(cp.labelX, cp.y, t, false, cp) ??
+                place(cp.labelX, cp.y, t, true, cp) ??
+                place(cp.labelX, cp.y, t, true, cp, true)
+              )?.baseline ?? null;
         }
         for (const cp of chokepointMarks) {
-          if (cp.x >= 0 && cp.x <= canvasW && !cp.disrupted && !cp.surge)
-            cp.labelY = place(cp.labelX, cp.y, straitLabelText(cp, markFonts))?.baseline ?? null;
+          if (!planetView && cp.x >= 0 && cp.x <= canvasW && !cp.disrupted && !cp.surge)
+            cp.labelY =
+              place(cp.labelX, cp.y, straitLabelText(cp, markFonts), false, cp)?.baseline ?? null;
         }
       }
 
@@ -3895,7 +4175,18 @@ export const MiniGlobe = memo(function MiniGlobe({
         // The strait and exchange names placed above, so a neighbour or water
         // name that crosses one yields. Unseeded, "Bosporus Strait" printed
         // across TÜRKIYE and "Bab-el-Mandeb" across ETHIOPIA.
-        for (const b of markLabelBoxes) {
+        // And the always-drawn genocide names and the story counts: unseeded,
+        // SAUDI ARABIA printed across GAZA.
+        // And the market targets: SPAIN printed across the IBEX circle and
+        // SWITZERLAND across SMI's once zoomed past the story framings.
+        for (const m of marketProjected) {
+          occupied.push({ x0: m.x - 15, x1: m.x + 15, y0: m.y - 15, y1: m.y + 15 });
+        }
+        for (const b of [
+          ...markLabelBoxes,
+          ...countBoxes,
+          ...genocideMarks.map((g) => genocideLabelBox(g, sfont)),
+        ]) {
           occupied.push({ x0: b.x0 - pad, x1: b.x1 + pad, y0: b.y0 - pad, y1: b.y1 + pad });
         }
 
@@ -4005,6 +4296,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         marketMarks: marketProjected,
         gdacsMarks,
         conflictMarks,
+        conflictCounts: conflictCounts.filter((c) => !c.hidden),
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
@@ -4161,18 +4453,92 @@ export const MiniGlobe = memo(function MiniGlobe({
     ({ sy, oA, oG, len, busy, owner, dragLat, dragLng }, previous) => {
       if (len === 0) return;
 
-      // Do not update the last-published inputs while busy: once the current
-      // projection finishes, those values are what let the reaction detect
-      // and publish the latest position. This is latest-only backpressure,
-      // not a frame drop that can strand the globe between articles.
-      if (busy) return;
-
       const rawStory = Math.max(0, sy);
       const articleCount = len / 2;
       const lo = Math.min(Math.floor(rawStory), articleCount - 1);
       const hi = Math.min(lo + 1, articleCount - 1);
       const frac = Math.min(1, rawStory - lo);
       const settled = Math.min(Math.round(rawStory), articleCount - 1);
+
+      // Where the deck's camera is this frame: along the great circle between
+      // the two stories either side of the finger, and out of the way by as
+      // much as the crossing is long (`flyCurve`), the same arithmetic the
+      // projection runs on JS.
+      const coords = coordsSV.value;
+      const loLat = coords[lo * 2];
+      const loLng = coords[lo * 2 + 1];
+      const hiLat = coords[hi * 2];
+      const hiLng = coords[hi * 2 + 1];
+      let deckLat: number | null = null;
+      let deckLng: number | null = null;
+      if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
+        // Great-circle interpolation — the globe rotates along the surface of
+        // the sphere between story locations, like tracing a path on a
+        // physical globe. The flights use the same path (`slerpLatLng`).
+        //
+        // How far along it at `frac` is the curve's answer, not `frac` itself:
+        // the crossing covers most of its ground while it is furthest out, and
+        // that is what keeps the ground moving across the screen at one speed
+        // instead of rushing past at close range.
+        if (
+          deckCurveLo.value !== lo ||
+          deckCurveHi.value !== hi ||
+          deckCurveVer.value !== framingsVer.value
+        ) {
+          const framings = framingsSV.value;
+          const fromClip = framings[lo] ?? FRAMING_WIDEST;
+          const toClip = framings[hi] ?? fromClip;
+          deckCurve.value = flyCurve(fromClip, toClip, arcDegrees(loLat, loLng, hiLat, hiLng));
+          deckCurveLo.value = lo;
+          deckCurveHi.value = hi;
+          deckCurveVer.value = framingsVer.value;
+        }
+        const held = deckCurve.value;
+        const point = slerpLatLng(
+          loLat,
+          loLng,
+          hiLat,
+          hiLng,
+          held ? flyPosition(held, frac) : frac,
+        );
+        deckLat = point[0];
+        deckLng = point[1];
+      } else if (loLat != null && loLng != null) {
+        deckLat = loLat;
+        deckLng = loLng;
+      } else if (hiLat != null && hiLng != null) {
+        deckLat = hiLat;
+        deckLng = hiLng;
+      }
+
+      // The camera as it is this frame, for the warp — published on every
+      // frame, busy or throttled, because that is the point of it: the
+      // projection below reaches JS at most every 32 ms and often later, and
+      // the warp carries the last picture to here in between.
+      const liveLat = owner === 1 ? dragLat : deckLat;
+      const liveLng = owner === 1 ? dragLng : deckLng;
+      if (liveLat != null && liveLng != null) {
+        const curve = deckCurveLo.value === lo && deckCurveHi.value === hi ? deckCurve.value : null;
+        const storyClip = curve
+          ? flySpanClip(curve, frac)
+          : (framingsSV.value[lo] ?? FRAMING_WIDEST);
+        const clip = storyClip + (oG - storyClip) * oA;
+        const last = liveCamera.value;
+        if (
+          last === null ||
+          Math.abs(last.lat - liveLat) > 1e-4 ||
+          Math.abs(last.lng - liveLng) > 1e-4 ||
+          Math.abs(last.clip - clip) > 1e-4
+        ) {
+          liveCamera.value = { lat: liveLat, lng: liveLng, clip };
+        }
+      }
+
+      // Do not update the last-published inputs while busy: once the current
+      // projection finishes, those values are what let the reaction detect
+      // and publish the latest position. This is latest-only backpressure,
+      // not a frame drop that can strand the globe between articles.
+      if (busy) return;
       const selectionChanged = settled !== lastReactSettled.value;
       // Compare to the last published frame, not the previous reaction tick:
       // updates while busy must not consume the final detail restoration.
@@ -4257,57 +4623,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         return;
       }
 
-      const coords = coordsSV.value;
-
-      const loLat = coords[lo * 2];
-      const loLng = coords[lo * 2 + 1];
-      const hiLat = coords[hi * 2];
-      const hiLng = coords[hi * 2 + 1];
-
-      let lat: number;
-      let lng: number;
-
-      if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
-        // Great-circle interpolation — the globe rotates along the surface of
-        // the sphere between story locations, like tracing a path on a
-        // physical globe. The flights use the same path (`slerpLatLng`).
-        //
-        // How far along it at `frac` is the curve's answer, not `frac` itself:
-        // the crossing covers most of its ground while it is furthest out, and
-        // that is what keeps the ground moving across the screen at one speed
-        // instead of rushing past at close range.
-        if (
-          deckCurveLo.value !== lo ||
-          deckCurveHi.value !== hi ||
-          deckCurveVer.value !== framingsVer.value
-        ) {
-          const framings = framingsSV.value;
-          const fromClip = framings[lo] ?? FRAMING_WIDEST;
-          const toClip = framings[hi] ?? fromClip;
-          deckCurve.value = flyCurve(fromClip, toClip, arcDegrees(loLat, loLng, hiLat, hiLng));
-          deckCurveLo.value = lo;
-          deckCurveHi.value = hi;
-          deckCurveVer.value = framingsVer.value;
-        }
-        const held = deckCurve.value;
-        const point = slerpLatLng(
-          loLat,
-          loLng,
-          hiLat,
-          hiLng,
-          held ? flyPosition(held, frac) : frac,
-        );
-        lat = point[0];
-        lng = point[1];
-      } else if (loLat != null && loLng != null) {
-        lat = loLat;
-        lng = loLng;
-      } else if (hiLat != null && hiLng != null) {
-        lat = hiLat;
-        lng = hiLng;
-      } else {
-        return;
-      }
+      if (deckLat === null || deckLng === null) return;
+      const lat = deckLat;
+      const lng = deckLng;
 
       // No-op short-circuit — bail when nothing meaningful changed since the
       // last frame. Skipping when sy is stable handles the steady-state
@@ -4820,11 +5138,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           daylight, the graticule, land, ice, borders, night, city lights and
           the inner-limb glaze. Recorded per projection; see
           `recordGlobeFrame`. */}
-          <Picture picture={groundPicture} />
+          <Group transform={warp}>
+            <Picture picture={groundPicture} />
 
-          {/* Marks — hotspots, straits, exchanges, hazards, the country
-          highlight, rivers, arcs, stories and the settled dot. */}
-          <Picture picture={marksPicture} />
+            {/* Marks — hotspots, straits, exchanges, hazards, the country
+            highlight, rivers, arcs, stories and the settled dot. */}
+            <Picture picture={marksPicture} />
+          </Group>
 
           {/* Still to find — see `ringLeft`. */}
           {foundTotal > 0 ? (
@@ -4887,7 +5207,9 @@ export const MiniGlobe = memo(function MiniGlobe({
 
           {/* Labels — water, neighbours, the focused country, the dot label
           and the poles, above the tap pulse. */}
-          <Picture picture={labelsPicture} />
+          <Group transform={warp}>
+            <Picture picture={labelsPicture} />
+          </Group>
         </Group>
       </Canvas>
       <Animated.View

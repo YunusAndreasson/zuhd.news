@@ -31,6 +31,10 @@ export interface ScrubOptions {
   detents: number;
   /** How finely the label changes: seconds of audio, stories in a day. */
   steps: number;
+  /** Worklet: which step a fraction is in, for a track whose steps are not
+   *  evenly spaced — the story track, where each story sits at its time. It
+   *  replaces both `steps` and `detents`: a notch per story crossed. */
+  stepAt?: (fraction: number) => number;
   /** The tooltip's text for a fraction. */
   labelFor: (fraction: number) => string;
   /** A quieter second line under it — when the story at that fraction ran. */
@@ -70,6 +74,7 @@ export function useScrub({
   fraction,
   detents,
   steps,
+  stepAt,
   labelFor,
   detailFor,
   onCommit,
@@ -124,21 +129,21 @@ export function useScrub({
       const f = Math.max(0, Math.min(1, x / w));
       fraction.value = f;
       pending.value = f;
-      const detent = Math.round(f * detents);
+      const step = stepAt ? stepAt(f) : Math.floor(f * steps);
+      const detent = stepAt ? step : Math.round(f * detents);
       if (detent !== lastDetent.value) {
         lastDetent.value = detent;
         // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
         // while an AVAudioSession is in playback mode.
         scheduleOnRN(hapticImpact);
       }
-      const step = Math.floor(f * steps);
       if (step !== lastStep.value) {
         lastStep.value = step;
         scheduleOnRN(updateLabel, f);
       }
     };
     return fn;
-  }, [width, fraction, pending, detents, lastDetent, steps, lastStep, updateLabel]);
+  }, [width, fraction, pending, detents, lastDetent, steps, stepAt, lastStep, updateLabel]);
 
   const panConfig = useMemo<PanGestureConfig>(
     () => ({

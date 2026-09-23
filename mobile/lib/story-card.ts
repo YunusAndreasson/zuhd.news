@@ -45,5 +45,8 @@ export function articleThreadContext(
   const arc = article.threadArc ?? 'developing';
   const day = article.threadDay;
   const run = day && day > 1 ? `${arc}, day ${day}` : arc;
-  return `${run} · ${count} reports`;
+  // `stories`, never `reports`: `884 reports` in the kicker is the wire's
+  // count of articles on the event, and this is how many of ours the thread
+  // holds. One word for two counts read as a contradiction on the same card.
+  return `${run} · ${count} stories`;
 }

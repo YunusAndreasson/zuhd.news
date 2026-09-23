@@ -19,7 +19,12 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { type SharedValue, useReducedMotion, useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  type SharedValue,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   BriefingChrome,
@@ -94,12 +99,19 @@ import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
-import { orderNewsRiver, type RiverArticle, recentRiver } from '../lib/news-order';
+import {
+  leadWithTopStories,
+  orderNewsRiver,
+  type RiverArticle,
+  recentRiver,
+  riverAnchor,
+} from '../lib/news-order';
 import {
   buildNowSurfaces,
   type LatLng,
   linkedGaugeIds,
   type NowItem,
+  STRIP_SLOTS,
   type StripItem,
 } from '../lib/now';
 import {
@@ -270,11 +282,15 @@ export default function HomeScreen() {
   const sheetProgress = useSharedValue(0);
   /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
+  /** Per story, whether the swipe to the next rides the finger — see
+   *  `claimForDeck`. Filled once the globe can say each story's framing. */
+  const ridesFinger = useSharedValue<boolean[]>([]);
   /** Flights: a jump travels the way a swipe does, and lands handing the
    *  camera back to the deck (`hooks/useCameraFlight.ts`). */
   const {
     setFront: setCameraFront,
     claimForDeck,
+    releaseForDeck,
     cancelFlight,
     hold: holdCamera,
     toStory: flyToStory,
@@ -292,6 +308,7 @@ export default function HomeScreen() {
     zoomAngle,
     clip: globeClip,
     storyProgress,
+    ridesFinger,
   });
 
   const toastRef = useRef<ToastRef>(null);
@@ -396,6 +413,16 @@ export default function HomeScreen() {
   // a swipe landing handed the globe a fresh object with the same two numbers
   // — the only prop that changed — and the memoized globe re-rendered for it
   // (5–13 ms a landing in a dev build, profiled 2026-09-22).
+  // An open story's place stays in sight. The sheet covers the resting
+  // centre, where the story's place is drawn, so the globe layer rises with
+  // the sheet until that centre sits in the band left above it. A view
+  // translate — the compositor moves the canvas; nothing reprojects or
+  // replays — which the shrink it replaced could not say (2026-09-21).
+  const globeLift = layout.storyCenterY - layout.centerY;
+  const globeLiftStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: globeLift * Math.min(1, Math.max(0, sheetProgress.value)) }],
+  }));
+
   const marketBottom = screenHeight - layout.peek;
   const marketViewport = useMemo(
     () => ({ top: topChromeHeight, bottom: marketBottom }),
@@ -411,11 +438,13 @@ export default function HomeScreen() {
   const pinStory = useCallback((slug: string) => {
     setPinnedSlugs((prev) => (prev.has(slug) ? prev : new Set(prev).add(slug)));
   }, []);
+  // Then the day's top stories to the front (`leadWithTopStories`): the most
+  // reported first, the rest of the day newest first behind them.
   // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` re-measures the window as stories age past a day while the app is open
-  const river = useMemo(
-    () => recentRiver(orderNewsRiver(grouped), Date.now(), pinnedSlugs),
-    [grouped, pinnedSlugs, tick],
-  );
+  const { river, lead: riverLead } = useMemo(() => {
+    const now = Date.now();
+    return leadWithTopStories(recentRiver(orderNewsRiver(grouped), now, pinnedSlugs), now);
+  }, [grouped, pinnedSlugs, tick]);
 
   const columns = useMemo(
     () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
@@ -448,6 +477,8 @@ export default function HomeScreen() {
     [rankedInstruments, chokepoints, rawSignals, gdacsAlerts, exchanges],
   );
 
+  // What the row shows; `strip` stays whole for the lookups below.
+  const stripSlots = useMemo(() => strip.slice(0, STRIP_SLOTS), [strip]);
   const stripRef = useRef(strip);
   stripRef.current = strip;
   const mapMarkets = useMemo(
@@ -491,8 +522,8 @@ export default function HomeScreen() {
 
   const fresh = useFreshSlugs();
   const storyRows = useMemo(
-    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
-    [river, fresh, oddsLabelBySlug],
+    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug, lead: riverLead }),
+    [river, fresh, oddsLabelBySlug, riverLead],
   );
   const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
 
@@ -574,6 +605,22 @@ export default function HomeScreen() {
 
   /** The clip story `index` rests at, for a flight to land on. */
   const framingFor = useCallback((index: number) => globeRef.current?.framingFor(index) ?? 0, []);
+
+  // Which crossings ride the finger: the same comparison `handleDeckSettle`
+  // makes at the lift, made once per river so the pan can read it on the UI
+  // thread the moment it claims a swipe.
+  useEffect(() => {
+    ridesFinger.value = storyRows.map((row, i) => {
+      const next = storyRows[i + 1];
+      if (!row.coords || !next?.coords) return true;
+      const crossing = flyCurve(
+        framingFor(i) || FRAMING_WIDEST,
+        framingFor(i + 1) || FRAMING_WIDEST,
+        arcDegrees(row.coords[0], row.coords[1], next.coords[0], next.coords[1]),
+      );
+      return flyMs(crossing) <= DECK_SETTLE_MS;
+    });
+  }, [framingFor, ridesFinger, storyRows]);
 
   // The story in front, for a swipe to decide whether the camera is still on it.
   useEffect(() => {
@@ -1349,7 +1396,10 @@ export default function HomeScreen() {
   const storyOpen = sheetDetent === 'full';
   // The gauges an open story is tied to, marked in its hue on the bar.
   const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
-  const linkedGauges = useMemo(() => linkedGaugeIds(strip, openArticle), [strip, openArticle]);
+  const linkedGauges = useMemo(
+    () => linkedGaugeIds(stripSlots, openArticle),
+    [stripSlots, openArticle],
+  );
   const linkedHue = openArticle ? categoryMarkColor(openArticle.category, colors) : undefined;
   // Read at rest as well as open: the resting card is the title and the
   // hook, and most of the day is read that way. Only a platform sheet over
@@ -1372,6 +1422,13 @@ export default function HomeScreen() {
     () => storyRows.map((row) => categoryMarkColor(row.article.category, colors)),
     [storyRows, colors],
   );
+  // Where each story sits on the dock's day: how long before the river's day
+  // ends it ran. Measured when the river is, so it moves with `tick`.
+  const storyAges = useMemo(() => {
+    const end = riverAnchor(river, Date.now());
+    return storyRows.map((row) => end - articleTime(row.article));
+  }, [storyRows, river]);
+  const storyCoverage = useMemo(() => storyRows.map((row) => row.coverage), [storyRows]);
 
   const renderStory = useCallback(
     (index: number) => {
@@ -1380,7 +1437,6 @@ export default function HomeScreen() {
       return (
         <StoryCard
           row={row}
-          hue={categoryMarkColor(row.article.category, colors)}
           odds={odds.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
           open={storyOpen}
@@ -1398,7 +1454,6 @@ export default function HomeScreen() {
       );
     },
     [
-      colors,
       expandSheet,
       handleArticleBookmark,
       handleCountryPress,
@@ -1447,7 +1502,6 @@ export default function HomeScreen() {
       return (
         <StoryCard
           row={row}
-          hue={categoryMarkColor(row.article.category, colors)}
           odds={odds.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
           open={false}
@@ -1463,7 +1517,7 @@ export default function HomeScreen() {
         />
       );
     },
-    [colors, odds, resolvableEntityIds, sheetProgress, storyRows],
+    [odds, resolvableEntityIds, sheetProgress, storyRows],
   );
   const handleStoryMeasured = useCallback(
     (heights: number[]) => {
@@ -1509,11 +1563,13 @@ export default function HomeScreen() {
         renderEnd={renderEnd}
         onDragStart={handleDeckDragStart}
         onClaim={claimForDeck}
+        onRollback={releaseForDeck}
         onSettle={handleDeckSettle}
       />
     ),
     [
       claimForDeck,
+      releaseForDeck,
       layout.dock,
       frontIndex,
       handleDeckDragStart,
@@ -1542,6 +1598,8 @@ export default function HomeScreen() {
         onSeek={goToStory}
         timeAt={storyTimeAt}
         categoryAt={storyCategoryAt}
+        ages={storyAges}
+        coverage={storyCoverage}
         hues={storyHues}
         fresh={storyFresh}
         slugs={storySlugs}
@@ -1552,6 +1610,8 @@ export default function HomeScreen() {
       goToStory,
       storyTimeAt,
       storyCategoryAt,
+      storyAges,
+      storyCoverage,
       storyHues,
       storyFresh,
       storySlugs,
@@ -1581,14 +1641,15 @@ export default function HomeScreen() {
   return (
     <View style={[styles.screen, { backgroundColor: colors.bg }]}>
       {/* The one earth. Everything below is a layer over it — the open story
-          too: the sheet rises over a globe that stays where it is. It used to
+          too: the sheet rises over the globe, which slides up with it
+          (`globeLiftStyle`) and is never redrawn for it. It used to
           step back as the sheet rose, scaled into the band above it by a
           transform inside the canvas, and that replayed every picture on the
           globe on the UI thread for each frame the sheet moved, with the
           projection carried past the screen for the ground the shrink
           uncovered. Opening a story was slow (2026-09-21); the sheet is
           opaque, so now the globe draws nothing while it moves. */}
-      <View style={styles.globeLayer} pointerEvents="none">
+      <Animated.View style={[styles.globeLayer, globeLiftStyle]} pointerEvents="none">
         <MiniGlobe
           ref={globeRef}
           articles={river}
@@ -1622,7 +1683,7 @@ export default function HomeScreen() {
           viewLng={viewLng}
           tick={tick}
         />
-      </View>
+      </Animated.View>
 
       <GlobeGestureLayer
         globeRef={globeRef}
@@ -1657,7 +1718,7 @@ export default function HomeScreen() {
       <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
         <MapHeader
           onMenuPress={handleMenuPress}
-          items={strip}
+          items={stripSlots}
           onSelect={handleStripPress}
           onAll={handleInstrumentsPress}
           selectedId={selectedGauge?.id ?? null}

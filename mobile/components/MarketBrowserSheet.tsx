@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { observationDate } from '../lib/data-freshness';
 import { type Exchange, exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
@@ -49,8 +50,9 @@ export function MarketBrowserSheet({
           {exchanges.length} exchanges · ↑ {rise} rising · ↓ {fall} falling
         </Text>
         <Text variant="caption">
-          Latest quoted session vs prior close. Green ↑ / red ↓ show direction. * on the map means
-          an older quote.
+          Latest quoted session vs prior close. The arrow is the direction; green or red is what it
+          means for people — an index rising is green, oil rising is red. * on the map means an
+          older quote.
         </Text>
         <Text variant="labelXs">Tap an exchange to locate it on the map</Text>
       </View>
@@ -88,9 +90,11 @@ export function MarketBrowserSheet({
         renderItem={({ item }) => {
           const exchange = byId.get(item.id);
           const delta = exchange ? exchangeDelta(exchange) : item.delta;
-          const date = exchange
-            ? `${exchange.asOf}${exchangeIsStale(exchange) ? ' · older quote' : ''}`
-            : item.asOf;
+          // `Sep 21`, as every card and chart prints a day; the raw
+          // `2026-09-21` was the only ISO date a reader saw anywhere.
+          const asOf = exchange?.asOf ?? item.asOf;
+          const day = observationDate(asOf) || asOf;
+          const date = exchange && exchangeIsStale(exchange) ? `${day} · older quote` : day;
           return (
             <Pressable
               onPress={() => onSelect(item)}
@@ -115,9 +119,7 @@ export function MarketBrowserSheet({
               </View>
               <View style={styles.figures}>
                 <Text variant="tabularEmphasis">{item.reading}</Text>
-                {delta ? (
-                  <DeltaChip delta={delta} colorBy="direction" window={false} scale={1} />
-                ) : null}
+                {delta ? <DeltaChip delta={delta} window={false} scale={1} /> : null}
               </View>
             </Pressable>
           );

@@ -26,6 +26,30 @@ const SEGMENT_GAP = 2;
  *  from one still to read by shape, not only by how pale its colour is. */
 const FADED_HEIGHT = 1;
 
+/** An hour mark's height: through the track and a little past it, so it reads
+ *  as a ruler's tick rather than a gap between two cells. */
+const MARK_HEIGHT = 9;
+/** A tall cell's height: a story among the most covered, rising from the track the
+ *  way a histogram's bar rises from its axis. */
+const TALL_HEIGHT = 8;
+/** Room for a mark's label, `18h` in 11pt tabular, centred on the mark. */
+export const MARK_LABEL_WIDTH = 28;
+/** Between the track and a mark's label under it. */
+const MARK_LABEL_GAP = SPACING.xs;
+
+/** A cell placed along the track in points — the story track's, where a story
+ *  sits at its time instead of in an equal share. */
+export interface PlacedCell {
+  left: number;
+  width: number;
+}
+
+/** A tick across the track, with a word under it when there is room for one. */
+export interface TrackMark {
+  at: number;
+  label?: string;
+}
+
 /**
  * Where the current item's raised segment sits on a track `trackWidth` wide:
  * over its own segment, at least as wide as the track is tall, and never past
@@ -43,6 +67,67 @@ function activeSegmentFrame(
   const center = index * (segmentWidth + gap) + segmentWidth / 2;
   return { left: Math.max(0, Math.min(trackWidth - width, center - width / 2)), width };
 }
+
+/** Cells at their own places, over a hairline that is the rest of the track. */
+/** A placed cell's height: a hairline once done with, taller when it stands
+ *  out, the track's own otherwise. */
+function placedHeight(height: number, faded?: boolean, tall?: boolean): number {
+  if (faded) return Math.min(height, FADED_HEIGHT);
+  return tall ? Math.max(height, TALL_HEIGHT) : height;
+}
+
+function PlacedSegments({
+  cells,
+  color,
+  colors,
+  faded,
+  tall,
+  height,
+}: {
+  cells: readonly PlacedCell[];
+  color: string;
+  colors?: readonly string[];
+  faded?: readonly boolean[];
+  tall?: readonly boolean[];
+  height: number;
+}) {
+  const out: ReactNode[] = [];
+  for (let i = 0; i < cells.length; i++) {
+    const cell = cells[i];
+    if (!cell) continue;
+    const h = placedHeight(height, faded?.[i], tall?.[i]);
+    out.push(
+      <PlacedSegment
+        key={`segment-${i}`}
+        left={cell.left}
+        width={cell.width}
+        height={h}
+        // A hairline sits on the midline; a tall cell stands on the track's
+        // foot, so every unread cell shares one baseline.
+        top={h < height ? (height - h) / 2 : height - h}
+        color={colors?.[i] ?? color}
+      />,
+    );
+  }
+  return <>{out}</>;
+}
+
+/** One placed cell, memoized on primitives for the reason `Segment` is. */
+const PlacedSegment = memo(function PlacedSegment({
+  left,
+  width,
+  height,
+  top,
+  color,
+}: {
+  left: number;
+  width: number;
+  height: number;
+  top: number;
+  color: string;
+}) {
+  return <View style={[styles.placed, { left, width, height, top, backgroundColor: color }]} />;
+});
 
 function Segments({
   count,
@@ -135,6 +220,17 @@ interface ScrubBarProps
   fillColors?: readonly string[];
   /** Per segment: done with — drawn as a hairline (the dock's read stories). */
   faded?: readonly boolean[];
+  /** Per placed segment: stands taller than the track (most covered). */
+  tall?: readonly boolean[];
+  /** Per segment, its place along the track in points, replacing the equal
+   *  shares. The track between them is a hairline in `trackColor`. */
+  cells?: readonly PlacedCell[];
+  /** Ticks across the track, in points, with an optional word under each. */
+  marks?: readonly TrackMark[];
+  /** The ticks' and their words' ink. */
+  markColor?: string;
+  /** The track's measured width, for a caller that places its own cells. */
+  onTrackWidth?: (width: number) => void;
   thumbColor: string | SharedValue<string>;
   /** The touch area. Vertical padding only: its width is the track's. */
   style?: StyleProp<ViewStyle>;
@@ -163,6 +259,11 @@ export const ScrubBar = memo(function ScrubBar({
   trackColors,
   fillColors,
   faded,
+  cells,
+  tall,
+  marks,
+  markColor,
+  onTrackWidth,
   thumbColor,
   style,
   children,
@@ -181,8 +282,9 @@ export const ScrubBar = memo(function ScrubBar({
     (e: LayoutChangeEvent) => {
       onLayout(e);
       setTrackWidth(e.nativeEvent.layout.width);
+      onTrackWidth?.(e.nativeEvent.layout.width);
     },
-    [onLayout],
+    [onLayout, onTrackWidth],
   );
   // Each updater runs once on the JS thread when the bar mounts, and the dock
   // remounts it whenever its status line gives way — possibly mid-landing,
@@ -210,26 +312,100 @@ export const ScrubBar = memo(function ScrubBar({
       transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
     };
   });
+  const placed = cells && cells.length === segments ? cells : null;
+  // The raised current cell keeps its own story's height: tall if it is.
+  const activeHeight =
+    placed && activeSegment !== undefined
+      ? placedHeight(height, false, tall?.[activeSegment])
+      : height;
+  const activeCell = placed && activeSegment !== undefined ? placed[activeSegment] : undefined;
   const active =
     activeSegment !== undefined &&
     activeSegment >= 0 &&
     activeSegment < (segments ?? 0) &&
     trackWidth > 0
-      ? activeSegmentFrame(trackWidth, segments ?? 0, activeSegment, height)
+      ? activeCell
+        ? {
+            width: Math.max(height, activeCell.width),
+            left: activeCell.left + activeCell.width / 2 - Math.max(height, activeCell.width) / 2,
+          }
+        : placed
+          ? null
+          : activeSegmentFrame(trackWidth, segments ?? 0, activeSegment, height)
       : null;
 
   const bar = (
     <View style={style} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
-        <View style={[styles.row, { height }]}>
-          <Segments
-            count={segments}
-            color={trackColor}
-            colors={trackColors}
-            faded={faded}
-            height={height}
-          />
-        </View>
+        {marks && markColor
+          ? marks.map((mark) => (
+              <View
+                key={`mark-${mark.at}`}
+                pointerEvents="none"
+                style={[
+                  styles.mark,
+                  {
+                    left: mark.at - 0.5,
+                    top: (height - MARK_HEIGHT) / 2,
+                    backgroundColor: markColor,
+                  },
+                ]}
+              />
+            ))
+          : null}
+        {placed ? (
+          <>
+            <View
+              style={[
+                styles.baseline,
+                { top: (height - StyleSheet.hairlineWidth) / 2, backgroundColor: trackColor },
+              ]}
+            />
+            <PlacedSegments
+              cells={placed}
+              color={trackColor}
+              colors={trackColors}
+              faded={faded}
+              tall={tall}
+              height={height}
+            />
+          </>
+        ) : (
+          <View style={[styles.row, { height }]}>
+            <Segments
+              count={segments}
+              color={trackColor}
+              colors={trackColors}
+              faded={faded}
+              height={height}
+            />
+          </View>
+        )}
+        {marks && markColor && trackWidth > 0
+          ? marks.map((mark) =>
+              mark.label ? (
+                <Text
+                  key={`label-${mark.at}`}
+                  variant="tabular"
+                  tone="secondary"
+                  pointerEvents="none"
+                  numberOfLines={1}
+                  style={[
+                    styles.markLabel,
+                    {
+                      top: height + MARK_LABEL_GAP,
+                      left: Math.max(
+                        0,
+                        Math.min(trackWidth - MARK_LABEL_WIDTH, mark.at - MARK_LABEL_WIDTH / 2),
+                      ),
+                    },
+                  ]}
+                >
+                  {mark.label}
+                </Text>
+              ) : null,
+            )
+          : null}
         {fillColor ? (
           <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
             <Animated.View style={[styles.row, contentStyle]}>
@@ -244,8 +420,8 @@ export const ScrubBar = memo(function ScrubBar({
               styles.activeSegment,
               {
                 width: active.width,
-                height: height + SPACING.xs,
-                top: -SPACING.xs / 2,
+                height: activeHeight + SPACING.xs,
+                top: height - activeHeight - SPACING.xs / 2,
                 transform: [{ translateX: active.left }],
                 backgroundColor:
                   activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor,
@@ -335,6 +511,10 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', width: '100%' },
   clip: { overflow: 'hidden' },
   segment: { flex: 1 },
+  placed: { position: 'absolute' },
+  baseline: { position: 'absolute', left: 0, right: 0, height: StyleSheet.hairlineWidth },
+  mark: { position: 'absolute', width: 1, height: MARK_HEIGHT },
+  markLabel: { position: 'absolute', width: MARK_LABEL_WIDTH, textAlign: 'center' },
   segmentGap: { marginRight: SEGMENT_GAP },
   activeSegment: { position: 'absolute', left: 0, borderRadius: RADIUS.handle },
   thumb: {

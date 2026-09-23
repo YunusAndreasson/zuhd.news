@@ -7,15 +7,6 @@ interface ComplexityCardProps {
   data: ComplexityCardData;
 }
 
-function fmtSigned(n: number): string {
-  // Always sign the ECI value so the reader sees the "+/–" relation to the
-  // world median (zero) without having to scan the chart for the threshold
-  // line. `0.0` keeps a sign-less form for countries sitting on the median.
-  if (n > 0) return `+${n.toFixed(1)}`;
-  if (n < 0) return `−${Math.abs(n).toFixed(1)}`;
-  return '0.0';
-}
-
 export function ComplexityCard({ data }: ComplexityCardProps) {
   const eciLatest = latest(data.eci);
   const rankLatest = latest(data.eciRank);
@@ -78,7 +69,8 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
         comparison={{ values: comparisonValues, label: 'world' }}
         minY={-3}
         maxY={3}
-        formatY={fmtSigned}
+        // No scale strip: it printed `−3.0–+3.0`, the bounds of a unitless
+        // score nobody reads in, over a chart whose headline is the rank.
         accessibilityLabel={`Ranked ${headline} in economic complexity. ${subtitle} Comparison line shows world median.`}
       />
     </CardShell>
