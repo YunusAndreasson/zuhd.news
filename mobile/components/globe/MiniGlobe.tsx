@@ -846,6 +846,9 @@ interface MiniGlobeProps {
    *  Where there is one, the label prints it, so one strait reads one number
    *  on the screen. Key it with `useMemo` (see the inline-props note). */
   straitMoves?: Readonly<Record<string, CardDelta>>;
+  /** Where a story flight will land (`useCameraFlight`), so its last frame
+   *  can be drawn a little early. */
+  landingAt?: SharedValue<{ lat: number; lng: number; story: number } | null>;
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
   /**
@@ -964,6 +967,8 @@ interface Hotspot {
 }
 
 interface GlobeState {
+  /** Projected at rest, at the resting detail tier (`nearSettled`). */
+  settled: boolean;
   landPath: SkPath | null;
   /** The large lakes (`LAKE_FILL_MIN_AREA`), cut out of the land. Settled
    *  frames only; null while the camera moves. */
@@ -1178,6 +1183,7 @@ function countryHighlightOpacity(countryName: string | null): number {
 }
 
 const EMPTY_GLOBE: GlobeState = {
+  settled: false,
   landPath: null,
   lakesPath: null,
   capitalLabels: [],
@@ -1628,6 +1634,10 @@ interface FramePictures {
  *  drawn to, so the sky behind the planet and the ring around it follow the
  *  zoom in the same replay. */
 interface FrameOut extends FramePictures {
+  /** The ground a settling frame replaces, and the camera it was drawn from:
+   *  drawn under the new ground while that fades in (`groundFade`). */
+  prevGround: SkPicture;
+  prevCam: RecordedCamera | null;
   activeDot: { x: number; y: number } | null;
   activeColor: string;
   disc: number;
@@ -1664,9 +1674,42 @@ const MOTION_REACH = 1.2;
  *  where the limb shows at most across the top corners under the header's
  *  shade; the whole planet on screen sits near 0.3. */
 const WARP_FULL_LIMB = 0.6;
+/** How long a landing's detailed ground takes to fade in over the moving
+ *  one: long enough to read as the map sharpening, short enough to be done
+ *  before the eye has moved to the card. */
+const GROUND_FADE_MS = 220;
+/** How close a flight's camera is, in degrees of latitude, longitude and
+ *  clip, before its landing is drawn (`drawLanding`). */
+const LANDING_NEAR_DEG = 0.5;
+/** How close a swipe's spring is to a story, as a share of the crossing,
+ *  before its landing is drawn. */
+const LANDING_NEAR_FRAC = 0.03;
 const WARP_NO_LIMB = 0.4;
 
 const NO_WARP: Transforms3d = [];
+
+/** How many settled cameras keep their geometry: the story in front, the
+ *  two either side of it (`prefetchSettled`), and room for a revisit. */
+const SETTLED_CACHE_SIZE = 5;
+
+/**
+ * A settled camera's key. Rounded far below a pixel (1e-4° is ~0.001 px at a
+ * story's framing), because the deck reaches a story through `slerpLatLng`
+ * and `flyCurve`, whose trig leaves floating-point noise on the story's own
+ * coordinates: an exact key matched only a camera computed the same way
+ * twice, so a prefetch from the story's coordinates could never be found.
+ */
+function settledKey(
+  tier: string,
+  lng: number,
+  lat: number,
+  scale: number,
+  viewAngle: number,
+  cx: number,
+  cy: number,
+): string {
+  return `${tier}|${lng.toFixed(4)}|${lat.toFixed(4)}|${scale.toFixed(2)}|${viewAngle.toFixed(3)}|${cx}|${cy}`;
+}
 
 type SettledGeometry = {
   landPath: SkPath;
@@ -2360,6 +2403,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   heatmapPoints,
   chokepoints,
   straitMoves,
+  landingAt,
   gdacsAlerts,
   conflictEvents,
   marketMarks,
@@ -2631,6 +2675,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   // values below are flushed before that mapper, which then runs once.
   const framePictures = useSharedValue<FrameOut>({
     ground: EMPTY_PICTURE,
+    prevGround: EMPTY_PICTURE,
+    prevCam: null,
     marks: EMPTY_PICTURE,
     labels: EMPTY_PICTURE,
     disc: globeRadius,
@@ -2656,9 +2702,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   // slide; with the whole planet on screen a slide would move the planet
   // rather than turn it, so the warp fades out there and the globe steps as it
   // did.
-  const warp = useDerivedValue<Transforms3d>(() => {
-    const cam = framePictures.value.cam;
-    const live = liveCamera.value;
+  const warpFor = (cam: RecordedCamera | null, live: LiveCamera | null): Transforms3d => {
+    'worklet';
     if (!cam || !live || !(cam.k > 0)) return NO_WARP;
     const reach = reachFor(cx, cy, width, height);
     const strength = Math.min(
@@ -2683,8 +2728,30 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(s - 1) < 1e-4) return NO_WARP;
     // A point P of the picture lands at s·P + t, with t = c − s·(c + d).
     return [{ translateX: cx - s * (cx + dx) }, { translateY: cy - s * (cy + dy) }, { scale: s }];
-  });
+  };
+  const warp = useDerivedValue<Transforms3d>(() =>
+    warpFor(framePictures.value.cam, liveCamera.value),
+  );
+  // The ground a settling frame replaced, carried by its own camera so its
+  // coastline sits under the new one while that fades in over it.
+  const prevWarp = useDerivedValue<Transforms3d>(() =>
+    warpFor(framePictures.value.prevCam, liveCamera.value),
+  );
+
   const groundPicture = useDerivedValue(() => framePictures.value.ground);
+  // **A landing sharpens; it does not snap.** Moving frames are drawn from
+  // the coarse motion tier and a settled one from the resting tier, 2–4× the
+  // points; drawn in one frame, every coastline and border on screen changed
+  // shape the instant a swipe landed — "the map lines change from low res to
+  // high res", which the user called glitchy (2026-09-23). Drawing moving
+  // frames at the resting tier would cost that 2–4× on every frame of motion,
+  // so the settled ground fades in over the last moving one instead
+  // (`GROUND_FADE_MS`). Nothing extra is drawn at rest: the old picture is
+  // only read while the fade runs.
+  const groundFade = useSharedValue(1);
+  const prevGroundPicture = useDerivedValue(() =>
+    groundFade.value < 1 ? framePictures.value.prevGround : EMPTY_PICTURE,
+  );
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
   // The current story's dot holds still. It breathed for three cycles each time
@@ -2737,6 +2804,12 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Assigned every render so a draw always sees the current theme and fonts;
   // `callReproject` is a stable closure and calls through it.
   const drawRef = useRef<(frame: GlobeState) => void>(() => {});
+  // What the canvas was last handed: a settling frame fades in over it.
+  const lastPublishedRef = useRef<{
+    settled: boolean;
+    ground: SkPicture;
+    cam: RecordedCamera | null;
+  }>({ settled: false, ground: EMPTY_PICTURE, cam: null });
   drawRef.current = (frame: GlobeState) => {
     const pictures = recordGlobeFrame(frame, {
       width,
@@ -2756,8 +2829,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       },
       textures: texturesRef.current,
     });
+    const last = lastPublishedRef.current;
+    // Moving → settled: the one frame whose ground changes tier.
+    const sharpen = frame.settled && !last.settled && last.ground !== EMPTY_PICTURE;
+    lastPublishedRef.current = {
+      settled: frame.settled,
+      ground: pictures.ground,
+      cam: recordedCamRef.current,
+    };
     framePictures.value = {
       ...pictures,
+      prevGround: sharpen ? last.ground : EMPTY_PICTURE,
+      prevCam: sharpen ? last.cam : null,
       activeDot: frame.dot,
       activeColor: categoryMarkColor(
         (articlesRef.current[lastSettled.current] as { category?: string } | undefined)?.category,
@@ -2766,6 +2849,16 @@ export const MiniGlobe = memo(function MiniGlobe({
       disc: frame.discRadius > 0 ? frame.discRadius : globeRadius,
       cam: recordedCamRef.current,
     };
+    if (sharpen) {
+      groundFade.value = 0;
+      groundFade.value = withTiming(1, {
+        duration: GROUND_FADE_MS,
+        easing: Easing.out(Easing.quad),
+      });
+    } else if (!frame.settled) {
+      // Moving again: a fade still running would show a ground that is gone.
+      groundFade.value = 1;
+    }
   };
 
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
@@ -2863,8 +2956,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   // surface supplies one; the article set is the default because that is what
   // the reader scrolls.
   const coordsSV = useSharedValue<(number | null)[]>([]);
+  // The same array for JS (`prefetchSettled`): reading the shared value there
+  // would wait on the UI thread.
+  const coordsRef = useRef<(number | null)[]>([]);
   useEffect(() => {
-    coordsSV.value = cameraTrack ?? articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
+    const coords = cameraTrack ?? articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
+    coordsRef.current = coords;
+    coordsSV.value = coords;
   }, [articleGeo, cameraTrack, coordsSV]);
 
   // The clip each story rests at, published for the UI thread. Placing the
@@ -3305,7 +3403,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const tier = geographyTier(projScale, !nearSettled);
       const geography = getGlobeGeography(tier);
       const geometryKey = nearSettled
-        ? [tier, geoLng, geoLat, projScale, viewAngle, centerX, centerY].join('|')
+        ? settledKey(tier, geoLng, geoLat, projScale, viewAngle, centerX, centerY)
         : null;
       const geometryCache = settledGeometryRef.current;
       const cachedGeometry = geometryKey ? geometryCache.get(geometryKey) : undefined;
@@ -3451,7 +3549,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         bordersPath = bordersBuilder.build();
         if (geometryKey) {
           geometryCache.set(geometryKey, { landPath, icePath, bordersPath, lakesPath });
-          if (geometryCache.size > 3) {
+          if (geometryCache.size > SETTLED_CACHE_SIZE) {
             const oldest = geometryCache.keys().next().value;
             if (oldest !== undefined) geometryCache.delete(oldest);
           }
@@ -4279,6 +4377,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       const frame: GlobeState = {
+        settled: nearSettled,
         landPath,
         lakesPath,
         capitalLabels: keptCapitals,
@@ -4328,6 +4427,90 @@ export const MiniGlobe = memo(function MiniGlobe({
     [],
   );
 
+  // **The next landing, computed while the reader reads.** A settled frame
+  // costs ~300 ms on the emulator (dev) when its coastlines, borders, lakes
+  // and rivers are projected and ~20 ms when they come from
+  // `settledGeometryRef`; for those 300 ms the coarse moving frame stayed on
+  // screen after every swipe. The deck says where a swipe can land — the
+  // story either side — and a story's camera is its own coordinates at its
+  // own framing, so once a frame has settled, JS idle time fills the cache for
+  // both neighbours. Only while settled: a prefetch that ran during motion
+  // would hold up the frames the warp is waiting for.
+  const prefetchSettled = useCallback((index: number) => {
+    const {
+      globeRadius: r,
+      cx: centerX,
+      cy: centerY,
+      width: canvasW,
+      height: canvasH,
+    } = layoutRef.current;
+    const grownReach = layoutRef.current.canvasReach;
+    const coords = coordsRef.current;
+    const lat = coords[index * 2];
+    const lng = coords[index * 2 + 1];
+    if (lat == null || lng == null) return;
+    const clip = clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
+    const projScale = r / Math.sin((clip * Math.PI) / 180);
+    const viewAngle = viewAngleFor(
+      projScale,
+      Math.max(grownReach, reachFor(centerX, centerY, canvasW, canvasH)),
+    );
+    const tier = geographyTier(projScale, false);
+    const key = settledKey(tier, lng, lat, projScale, viewAngle, centerX, centerY);
+    const cache = settledGeometryRef.current;
+    if (cache.has(key)) return;
+    const geography = getGlobeGeography(tier);
+    const view = orthoView(lng, lat, projScale, centerX, centerY);
+    const build = (
+      builder: { current: ReturnType<typeof Skia.PathBuilder.Make> },
+      layer: OrthoLayer,
+    ) => {
+      builder.current.reset();
+      skiaCtx.setPath(builder.current);
+      layer.draw(view, viewAngle, 0.25, skiaCtx);
+      return builder.current.build();
+    };
+    const lakes = lakesLayer;
+    const rivers = riversLayer;
+    const entry: SettledGeometry = {
+      landPath: build(landPathRef, geography.land),
+      icePath: build(icePathRef, geography.ice),
+      bordersPath: build(bordersPathRef, geography.borders),
+      lakesPath: lakes ? build(lakesPathRef, lakes) : null,
+    };
+    if (rivers && clip <= RIVERS_REST_CLIP) entry.riversPath = build(riversPathRef, rivers);
+    cache.set(key, entry);
+    while (cache.size > SETTLED_CACHE_SIZE) {
+      const oldest = cache.keys().next().value;
+      if (oldest === undefined) break;
+      cache.delete(oldest);
+    }
+  }, []);
+  const prefetchIdleRef = useRef<number | null>(null);
+  const schedulePrefetch = useCallback(() => {
+    if (prefetchIdleRef.current !== null) cancelIdleCallback(prefetchIdleRef.current);
+    const around = lastSettled.current;
+    // One neighbour per idle slot, the next story first: that is the swipe.
+    const queue = [around + 1, around - 1].filter(
+      (i) => i >= 0 && i < coordsRef.current.length / 2,
+    );
+    const step = () => {
+      prefetchIdleRef.current = null;
+      if (!frameRef.current.settled || lastSettled.current !== around) return;
+      const next = queue.shift();
+      if (next === undefined) return;
+      prefetchSettled(next);
+      if (queue.length > 0) prefetchIdleRef.current = requestIdleCallback(step);
+    };
+    prefetchIdleRef.current = requestIdleCallback(step);
+  }, [prefetchSettled]);
+  useEffect(
+    () => () => {
+      if (prefetchIdleRef.current !== null) cancelIdleCallback(prefetchIdleRef.current);
+    },
+    [],
+  );
+
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call.
   // 16ms overwhelmed the JS thread when each frame also rendered React; re-measure
   // (projection + picture recording) before touching it.
@@ -4366,8 +4549,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       } finally {
         reprojectBusy.value = false;
       }
+      if (frameRef.current.settled) schedulePrefetch();
     },
-    [callReproject, reprojectBusy],
+    [callReproject, reprojectBusy, schedulePrefetch],
   );
 
   /** Replay the last frame with the current style — nothing moved. */
@@ -4452,6 +4636,34 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Whether the last frame a finger or a flight published was in motion, so the
   // frame after the camera stops is redrawn at full detail — once.
   const lastReactMoving = useSharedValue(false);
+  // **Draw where the camera lands, a little before it lands.** A swipe's
+  // spring and a flight's easing both spend their last few hundred ms moving
+  // a few pixels, and a settled frame waited for the exact end
+  // (`isStorySettled`), so the globe sat still at the coarse motion tier for
+  // up to a second before the detail arrived (recorded 2026-09-23). The
+  // destination is known — the story's own camera — so once the camera is
+  // nearly there its settled frame is projected *at the destination*, and the
+  // warp carries that picture over the last few pixels. The landing itself is
+  // then that same frame: the reaction's no-op check finds nothing to do.
+  const landingDrawn = useSharedValue(-1);
+  const drawLanding = (story: number, lat: number, lng: number, oA = 0, oG = 0) => {
+    'worklet';
+    landingDrawn.value = story;
+    lastReactLng.value = lng;
+    lastReactLat.value = lat;
+    lastReactFrac.value = 0;
+    lastReactSy.value = story;
+    lastReactOA.value = oA;
+    lastReactOG.value = oG;
+    lastReactSettled.value = story;
+    lastReactLo.value = story;
+    lastReactHi.value = story;
+    lastReactMoving.value = false;
+    if (viewLat) viewLat.value = lat;
+    if (viewLng) viewLng.value = lng;
+    reprojectBusy.value = true;
+    scheduleOnRN(runScrollReproject, lng, lat, story, story, story, 0, oA, oG, false);
+  };
 
   useAnimatedReaction(
     () => ({
@@ -4578,6 +4790,22 @@ export const MiniGlobe = memo(function MiniGlobe({
       // A finger or flight owns position, not story identity. Keep the current
       // story's pin/highlight even if a pinch cancelled its flight offscreen.
       if (owner === 1) {
+        // A story flight in its last half degree: draw where it lands.
+        const target = landingAt ? landingAt.value : null;
+        const framing = target ? framingsSV.value[target.story] : undefined;
+        if (
+          target &&
+          framing !== undefined &&
+          Math.abs(dragLat - target.lat) < LANDING_NEAR_DEG &&
+          Math.abs(dragLng - target.lng) < LANDING_NEAR_DEG &&
+          Math.abs(oG - framing) < LANDING_NEAR_DEG
+        ) {
+          if (landingDrawn.value === target.story) return;
+          // The override is dropped at the landing; the story's framing is
+          // the clip it lands at.
+          drawLanding(target.story, target.lat, target.lng, 0, oG);
+          return;
+        }
         const cameraMoved =
           Math.abs(dragLng - lastReactLng.value) >= 0.01 ||
           Math.abs(dragLat - lastReactLat.value) >= 0.01 ||
@@ -4622,6 +4850,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastReactHi.value = hi;
         lastReactFrac.value = frac;
         lastReactMoving.value = cameraMoved || !isStorySettled(frac);
+        landingDrawn.value = -1;
         if (viewLat) viewLat.value = dragLat;
         if (viewLng) viewLng.value = dragLng;
         reprojectBusy.value = true;
@@ -4643,6 +4872,26 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (deckLat === null || deckLng === null) return;
       const lat = deckLat;
       const lng = deckLng;
+
+      // A swipe in the last few percent of its spring: draw where it lands.
+      const landing =
+        isStorySettled(frac) || (oA > 0.001 && oA < 0.999)
+          ? -1
+          : frac <= LANDING_NEAR_FRAC
+            ? lo
+            : frac >= 1 - LANDING_NEAR_FRAC
+              ? hi
+              : -1;
+      if (landing >= 0) {
+        if (landingDrawn.value === landing) return;
+        const tLat = coords[landing * 2];
+        const tLng = coords[landing * 2 + 1];
+        if (tLat != null && tLng != null) {
+          drawLanding(landing, tLat, tLng, oA, oG);
+          return;
+        }
+      }
+      landingDrawn.value = -1;
 
       // No-op short-circuit — bail when nothing meaningful changed since the
       // last frame. Skipping when sy is stable handles the steady-state
@@ -5155,8 +5404,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           daylight, the graticule, land, ice, borders, night, city lights and
           the inner-limb glaze. Recorded per projection; see
           `recordGlobeFrame`. */}
+          <Group transform={prevWarp}>
+            <Picture picture={prevGroundPicture} />
+          </Group>
           <Group transform={warp}>
-            <Picture picture={groundPicture} />
+            <Group opacity={groundFade}>
+              <Picture picture={groundPicture} />
+            </Group>
 
             {/* Marks — hotspots, straits, exchanges, hazards, the country
             highlight, rivers, arcs, stories and the settled dot. */}

@@ -303,6 +303,7 @@ export default function HomeScreen() {
     hold: holdCamera,
     toStory: flyToStory,
     remapStory,
+    landingAt,
     requestEpoch,
     toStoryIfHeld: flyToStoryIfHeld,
     toPlace: flyToPlace,
@@ -1789,6 +1790,7 @@ export default function HomeScreen() {
           heatmapPoints={heatmapPoints}
           chokepoints={chokepoints}
           straitMoves={straitMoves}
+          landingAt={landingAt}
           selectedAt={selectedGauge?.coords ?? null}
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}

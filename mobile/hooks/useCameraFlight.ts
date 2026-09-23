@@ -3,6 +3,7 @@ import {
   cancelAnimation,
   type SharedValue,
   useAnimatedReaction,
+  useDerivedValue,
   useSharedValue,
   withDelay,
   withTiming,
@@ -85,6 +86,8 @@ export interface CameraFlightInputs {
 export interface CameraFlight {
   /** 0 → 1 while a flight is under way; a finger on the globe cancels it. */
   flightT: SharedValue<number>;
+  /** Where a story flight will land; null otherwise. */
+  landingAt: SharedValue<{ lat: number; lng: number; story: number } | null>;
   /** Captured on the UI thread to reject taps delivered after a newer gesture. */
   requestEpoch: SharedValue<number>;
   /** Tell the camera which story is in front of the deck (`null`: no place). */
@@ -154,6 +157,13 @@ export function useCameraFlight({
 }: CameraFlightInputs): CameraFlight {
   const flightT = useSharedValue(1);
   const plan = useSharedValue<FlightPlan | null>(null);
+  // Where a story flight will land, for the globe to draw its last frame a
+  // little early (`MiniGlobe` `drawLanding`). A gauge or place flight has no
+  // story framing to land on, so it has none.
+  const landingAt = useDerivedValue(() => {
+    const p = plan.value;
+    return p && p.story >= 0 ? { lat: p.toLat, lng: p.toLng, story: p.story } : null;
+  });
   const flightId = useSharedValue(0);
   const pending = useSharedValue<{
     lat: number;
@@ -456,6 +466,7 @@ export function useCameraFlight({
 
   return {
     flightT,
+    landingAt,
     requestEpoch,
     setFront,
     claimForDeck,

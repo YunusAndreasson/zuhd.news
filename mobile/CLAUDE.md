@@ -290,6 +290,35 @@ whole time; nothing said so.
     frames are projected 20% past the canvas (`MOTION_REACH`) so the slide
     has ground to bring in. Unmeasured on hardware: it trades JS frames for
     a UI-thread replay on every frame of motion.
+  - **A landing sharpens, and it is computed before it happens**
+    (2026-09-23, the user's report: "the map lines change from low res to
+    high res, that looks glitchy"). A moving frame is the coarse motion tier;
+    a settled one costs ~300 ms (emulator, dev) to project at the resting
+    tier, and for all of it the still, coarse frame stayed up after every
+    swipe — then snapped. Three changes, all in `MiniGlobe`:
+    `prefetchSettled` fills the settled cache for the stories either side
+    while JS is idle after a landing, so a landing hits it (~25 ms);
+    `settledKey` rounds the cache key far below a pixel, because the deck's
+    trig leaves noise on a story's coordinates and an exact key never
+    matched a prefetch; `drawLanding` projects the destination's settled frame
+    once a swipe is within 3% of it (a flight within half a degree) and the
+    warp carries it the rest of the way; and the settled ground fades in over
+    the last moving one (`GROUND_FADE_MS`, 220) instead of replacing it. At
+    rest nothing extra is drawn: 0 frames in 5 s, checked with gfxinfo.
+  - **A landing sharpens, and is computed before it happens** (2026-09-23,
+    the user's report: the map lines changing from low res to high res looked
+    glitchy). A moving frame is the coarse motion tier; a settled one cost
+    ~300 ms (emulator, dev) at the resting tier, and for all of it the still,
+    coarse frame stayed up after every swipe — then snapped. In `MiniGlobe`:
+    `prefetchSettled` fills the settled cache for the stories either side
+    while JS is idle after a landing, so a landing hits it (~25 ms);
+    `settledKey` rounds the key far below a pixel, because the deck's trig
+    leaves noise on a story's coordinates and an exact key never matched a
+    prefetch; `drawLanding` projects the destination's settled frame once a
+    swipe is within 3% of it (a flight within half a degree) and the warp
+    carries it the rest of the way; and the settled ground fades in over the
+    last moving one (`GROUND_FADE_MS`) instead of replacing it. At rest
+    nothing extra draws: 0 frames in 5 s (gfxinfo).
   - **A flight's last frame is a settled frame.** `angleChanging` counts
     only while the zoom override is on. A flight lands by dropping the
     override on the frame its angle takes its last step, and that frame was
