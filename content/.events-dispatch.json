@@ -23,15 +23,16 @@
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "a787f0189ac55074",
-      "standing": "The European Central Bank's Governing Council, which meets about every six weeks to set interest rates for the countries using the euro. Its decisions set borrowing costs across the bloc and move the euro against the dollar.",
-      "recent": "The Fed voted 12-0 to raise rates over the oil shock from a closed strait, and two days later the Bank of Japan took its rate to a 31-year high. This meeting settles whether the European Central Bank answers the same supply shock, with Brent near $110, by tightening too, or treats it as a shock that interest rates cannot reach.",
+      "recentFingerprint": "e5be9c4b2e20cb67",
+      "standing": "The European Central Bank's Governing Council sets interest rates for the euro area and meets about every six weeks. Its deposit rate sets the cost of credit across the currency union, and the euro moves with it.",
+      "recent": "The European Central Bank spent September on the banking system's plumbing. It wants MiCA's stablecoin yield ban extended to crypto lending and staking to stop deposits leaking out of banks, and it will hold tokenized securities on its own books. This meeting settles whether Frankfurt holds after the Fed and the Bank of Japan both raised rates.",
       "citations": [
+        "2026-09-22-ecb-mica-stablecoin-yield-ban-lending-staking",
+        "2026-09-21-ecb-reserves-tokenized-securities-pontes",
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-        "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
-        "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
+        "2026-09-18-bank-of-japan-raises-rates-to-31-year-high"
       ],
-      "generatedAt": "2026-09-22T04:50:20.011Z"
+      "generatedAt": "2026-09-23T05:02:12.790Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
@@ -82,11 +83,14 @@
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "727088d2526cdb38",
-      "standing": "The European Central Bank's Governing Council sets interest rates for the euro area about every six weeks. Its decisions set the cost of borrowing in every country that uses the euro, and the currency moves with them.",
-      "recent": "This is the European Central Bank's last scheduled rate decision of the year. It sets the cost of borrowing in euros for the start of the new year, and the December meeting also publishes new staff projections for inflation and growth.",
-      "citations": [],
-      "generatedAt": "2026-09-22T04:50:34.967Z"
+      "recentFingerprint": "e38fdd1a475dff9d",
+      "standing": "The European Central Bank's Governing Council, which meets every six weeks to set interest rates for the whole euro area. Its deposit rate anchors what banks, households and governments pay to borrow, and the euro moves with it.",
+      "recent": "The ECB has spent the weeks before this meeting on the plumbing of bank funding: it wants MiCA's stablecoin yield ban extended to crypto lending and staking, explicitly to stop deposits leaking out of banks, and it will hold blockchain-based bonds on its own books. The rate decision settles the other side of that ledger — what those deposits earn.",
+      "citations": [
+        "2026-09-22-ecb-mica-stablecoin-yield-ban-lending-staking",
+        "2026-09-21-ecb-reserves-tokenized-securities-pontes"
+      ],
+      "generatedAt": "2026-09-23T05:02:28.369Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
@@ -114,19 +118,19 @@
     },
     "fred-us-gdp-2026-09-30": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "f87b469b0844f9b7",
-      "standing": "The Bureau of Economic Analysis's measure of total US output, published quarterly in three successive estimates. It is the broadest read on the world's largest economy, and Treasury yields, the dollar and Fed expectations move with it.",
-      "recent": "The Bureau of Economic Analysis publishes its next reading of US GDP, settling how fast the economy grew over the quarter it covers and how much earlier estimates of that growth are revised.",
+      "recentFingerprint": "9f99e441da5bed65",
+      "standing": "The Bureau of Economic Analysis's quarterly estimate of US output, released in three passes as data fills in. It is the broadest gauge of the world's largest economy, and it feeds into Fed rate decisions and Treasury yields.",
+      "recent": "The Bureau of Economic Analysis publishes its US GDP figures, settling on the official count how fast the economy grew over the quarter they cover.",
       "citations": [],
-      "generatedAt": "2026-09-22T04:49:49.311Z"
+      "generatedAt": "2026-09-23T05:01:42.377Z"
     },
     "fred-us-pce-2026-09-30": {
       "standingFingerprint": "f7794ed88caf73b9",
-      "recentFingerprint": "83a6df7696c21e26",
-      "standing": "The Bureau of Economic Analysis's monthly report on personal consumption expenditures — what Americans earn, what they spend, and what they pay for it. Its price index is the gauge the Federal Reserve targets, and the one policy is written against.",
-      "recent": "The Bureau of Economic Analysis publishes the next reading on 30 September, covering the month just closed. It will settle what households actually paid, how much they spent, and how much they held back.",
+      "recentFingerprint": "052a06837267bbc0",
+      "standing": "The Bureau of Economic Analysis's monthly report on US personal income and spending. Its PCE price index is the Federal Reserve's preferred inflation gauge, so it moves rate expectations, Treasury yields and the dollar.",
+      "recent": "The Bureau of Economic Analysis publishes US PCE with no recent reporting that sets this month apart from a routine one. The release settles the inflation reading that rate-setters weigh most heavily, along with what households earned and spent.",
       "citations": [],
-      "generatedAt": "2026-09-20T04:38:40.959Z"
+      "generatedAt": "2026-09-23T05:01:53.801Z"
     },
     "fred-us-jobs-report-2026-10-02": {
       "standingFingerprint": "76dd59465c94d59d",
@@ -137,6 +141,6 @@
       "generatedAt": "2026-09-22T04:50:00.813Z"
     }
   },
-  "generatedAt": "2026-09-22T04:50:35.052Z",
+  "generatedAt": "2026-09-23T05:02:28.457Z",
   "windowDays": 14
 }
