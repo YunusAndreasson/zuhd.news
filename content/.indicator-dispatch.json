@@ -1796,8 +1796,40 @@
       "recent": "The fortnight's reporting on Russia centred on the EU delisting Alisher Usmanov and Mikhail Fridman to keep its sanctions regime alive; nothing in it concerns a Trump–Putin meeting or accounts for traders shifting their bets.",
       "citations": [],
       "generatedAt": "2026-09-23T12:29:10.444Z"
+    },
+    "poly-will-josh-shapiro-win-the-2028-democratic-presid": {
+      "standingFingerprint": "7bbf6dd38b317765",
+      "recentFingerprint": "f86d959d831d6214",
+      "standing": "A Polymarket contract that pays out if Josh Shapiro, the governor of Pennsylvania, becomes the Democratic nominee for president in 2028. Its price is what traders will pay for that outcome, long before any primary ballot is cast.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-23T17:22:25.268Z"
+    },
+    "stocks:ORCL": {
+      "standingFingerprint": "ae99f4cf8689a57b",
+      "recentFingerprint": "2e38f313c03ddfd9",
+      "standing": "Oracle Corporation is the American maker of database software and business applications. It now also builds cloud data centres for AI workloads, so its shares move on the size of its cloud contracts and on how much it borrows to build.",
+      "recent": "Oracle said it would spend an additional $700 million on job cuts to pay for AI data centres, and the dismissal emails were signed only \"Oracle Leadership.\" Larry Ellison cancelled a planned 50-million-share sale, and filings then showed 346 million of his shares pledged as loan collateral, worth $50 billion.",
+      "citations": [
+        "2026-09-15-the-email-was-signed-oracle-leadership",
+        "2026-09-12-ellison-cancels-10b5-1-a-disclosure-asymmetry",
+        "2026-09-16-a-pledged-share-is-a-margin-call-waiting"
+      ],
+      "generatedAt": "2026-09-23T17:22:38.789Z"
+    },
+    "stocks:MSFT": {
+      "standingFingerprint": "0277ea0a0ba86210",
+      "recentFingerprint": "2611177038aecb36",
+      "standing": "The share price of Microsoft, maker of Windows and Office and owner of the Azure cloud, listed on Nasdaq. It is one of the world's most valuable companies, and investors watch it for what businesses spend on cloud computing and AI.",
+      "recent": "The news about Microsoft in these weeks was about security and AI. A Patch Tuesday release fixed 973 vulnerabilities, and CISA warned that two were being exploited. Court filings quoted a Microsoft executive calling AI scraping \"the largest theft of labor in human history\". None of it accounts for the share price.",
+      "citations": [
+        "2026-09-09-microsoft-973-cve-patch-tuesday-triage-burden",
+        "2026-09-18-microsoft-filings-ai-scraping-theft-of-labor",
+        "2026-09-17-doom-loop-openai-microsoft-on-llms-and-the-web"
+      ],
+      "generatedAt": "2026-09-23T17:22:54.343Z"
     }
   },
-  "generatedAt": "2026-09-23T12:29:10.445Z",
+  "generatedAt": "2026-09-23T17:22:54.343Z",
   "windowDays": 14
 }
