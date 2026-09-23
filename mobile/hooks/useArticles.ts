@@ -147,7 +147,7 @@ export function useArticles(
     void (async () => {
       try {
         if ((await newerBuild()) === null) return;
-        const arrival = await fetchArrival();
+        const arrival = await fetchArrival(queryClient);
         applyArrival(queryClient, arrival, {
           lastSeenAt,
           alsoInFlush: (added) => {
@@ -177,7 +177,7 @@ export function useArticles(
     try {
       let arrival: Arrival | null = null;
       try {
-        if ((await newerBuild()) !== null) arrival = await fetchArrival();
+        if ((await newerBuild()) !== null) arrival = await fetchArrival(queryClient);
       } catch {
         // Quiet when offline: existing content is fine.
       }
@@ -220,7 +220,7 @@ export function useArticles(
         throw new Error('Could not verify feed freshness');
       }
       if (generated === null) return [];
-      const arrival = await fetchArrival();
+      const arrival = await fetchArrival(queryClient);
       return applyArrival(queryClient, arrival, { lastSeenAt: lastSeenAtRef.current });
     } finally {
       refreshingRef.current = false;

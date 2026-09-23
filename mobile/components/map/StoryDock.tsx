@@ -87,6 +87,7 @@ export const StoryDock = memo(function StoryDock({
   hues,
   fresh,
   slugs,
+  ruled = false,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
@@ -125,6 +126,10 @@ export const StoryDock = memo(function StoryDock({
   fresh?: readonly boolean[];
   /** Per story, its slug: what the read store is keyed on. */
   slugs?: readonly string[];
+  /** A story is open, and its text scrolls up under the dock: draw the rule
+   *  it scrolls under. At rest the card's veil already fades the text out
+   *  above the track, and a rule there cut the fading line across. */
+  ruled?: boolean;
 }) {
   const { colors, resolvedAppearance } = useTheme();
   // Read is subscribed here, not on the screen. A story turns read two
@@ -290,7 +295,8 @@ export const StoryDock = memo(function StoryDock({
           paddingRight: Math.max(SPACING.articlePadding, insets.right),
           paddingBottom: insets.bottom,
           backgroundColor: colors.sheetBg,
-          borderColor: colors.rule,
+          // Transparent rather than no border, so the dock keeps its height.
+          borderColor: ruled ? colors.rule : 'transparent',
         },
       ]}
     >

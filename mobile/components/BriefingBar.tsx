@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import Animated, {
   Easing,
-  FadeInUp,
-  FadeOut,
+  FadeInDown,
+  FadeOutUp,
   LinearTransition,
   useReducedMotion,
   useSharedValue,
@@ -142,11 +142,13 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      // Drops from the top bar, where the `▶` that opened it was.
-      entering={FadeInUp.duration(ANIMATION.normal)
+      // Drops from the top bar, where the `▶` that opened it was, and goes
+      // back up into it: a plain fade out was the bottom bar's exit, and at
+      // the top it left the bar vanishing in place rather than returning.
+      entering={FadeInDown.duration(ANIMATION.normal)
         .easing(EASING.out)
         .withInitialValues({ translateY: -SPACING.md })}
-      exiting={FadeOut.duration(ANIMATION.fast)}
+      exiting={FadeOutUp.duration(ANIMATION.fast).easing(EASING.in)}
       layout={LinearTransition.duration(ANIMATION.normal)}
       style={[styles.wrapper, { top: topOffset }]}
       onLayout={handleLayout}
@@ -291,8 +293,13 @@ const styles = StyleSheet.create({
     right: 0,
     paddingHorizontal: BAR_MARGIN,
     paddingTop: SPACING.xs,
+    // Over the top chrome (`zIndex: 10` in `app/index.tsx`): the header's
+    // shade runs `SHADE_FADE` below its row to fade into the globe, and the
+    // bar hangs right there, so under it the player's words and controls sat
+    // behind the fade, washed out to the gauges' ground.
+    zIndex: 11,
   },
-  // No overflow:hidden — the scrub tooltip floats above the bar. The
+  // No overflow:hidden — the scrub tooltip hangs below the bar. The
   // progress strip is clipped by `barInner`'s overflow:hidden so it can
   // run edge-to-edge and follow the pill's bottom-corner curve.
   bar: {
@@ -306,7 +313,10 @@ const styles = StyleSheet.create({
   barInner: {
     borderRadius: RADIUS.floating,
     overflow: 'hidden',
-    paddingTop: SPACING.smPlus,
+    // Balanced against the scrub's touch slack under the row: at `smPlus`
+    // the words sat high in the pill over an empty band — a layout made for
+    // a bar whose bottom edge was the screen's.
+    paddingTop: SPACING.md,
   },
   row: {
     flexDirection: 'row',
@@ -321,8 +331,9 @@ const styles = StyleSheet.create({
   progressTouch: {
     // Vertical hit area above the visible 3px strip. The strip itself is
     // flush with the bar's bottom edge, so all the touch slack goes above.
-    // `lg` (was `md`) widens the thin target so drag-to-scrub is easy to
-    // catch.
-    paddingTop: SPACING.lg,
+    // `lg` (was `md`) widened the thin target so drag-to-scrub is easy to
+    // catch; a step under it now, so the row sits in the middle of the pill
+    // (16pt over the row, 20 + the strip under it) for 4pt of target.
+    paddingTop: SPACING.md + SPACING.xs,
   },
 });

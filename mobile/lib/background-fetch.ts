@@ -44,7 +44,7 @@ async function applyNewBuild(): Promise<boolean> {
   // `fetchFeed` writes through to `feedCache` and resolves only once the
   // write has completed: the OS may suspend the runtime as soon as this task
   // resolves, so nothing here may be left to a later tick.
-  const arrival = await fetchArrival();
+  const arrival = await fetchArrival(queryClient);
   applyArrival(queryClient, arrival, { lastSeenAt: await getLastSeenAt() });
   // The cache holds the data at once; the flush that notes which stories are
   // new runs on the next macrotask, and has to have run before it is saved.

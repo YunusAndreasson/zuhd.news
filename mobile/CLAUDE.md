@@ -637,6 +637,13 @@ about what a card may say is about the card, not where it is shown.
   through it. The launch opens on the disk copy read synchronously
   (`feedCache.readSync`, always the newest the device has); the feed query
   never refetches on its own once it has data.
+  **An unchanged layer costs nothing**: the snapshots are fetched with the
+  `ETag` of the copy the app holds (`fetchJsonIfChanged`, tags kept on disk
+  for the headless run, erased with the cache), and the site answers 304 with
+  no body. Downloading all twelve on every build was ~120KB gzipped — conflict
+  alone is 30KB and changes about monthly — and the hourly background task
+  did it for readers who never opened the app. A tag is sent only while the
+  app still holds that layer's data, or a 304 would leave it empty.
 - **Where a return lands** (`lib/resume-landing.ts`, tested; the user's
   choice, 2026-09-23). Under an hour away the reader stays on their story and,
   if stories arrived, a top toast `3 new · tap to see` goes where `‹ 3 new`
@@ -702,6 +709,14 @@ about what a card may say is about the card, not where it is shown.
     first on a real phone, so what the reader gets is the globe's 20% floor
     and a card that scrolls. Until then a type estimate for the longest
     possible story stands in.
+
+    **Measuring is per card, and only when it can matter** (2026-09-23).
+    Laying out every card off screen was 742ms of a 1,365ms arrival commit
+    (dev build). Each card's height is cached by its text, its extras and the
+    reader's type and width, so an arrival measures only its new cards; and
+    `openHeightNeedsMeasuring` skips it whole when a cheap lower bound from
+    the characters already puts the day over `storyCap` — on a shorter phone,
+    where the cap decides the height anyway.
 
     **Scrolling an open story is the norm, not the exception, and that is a
     2026-09-20 decision rather than a discovery.** The article budget rose to

@@ -196,8 +196,7 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
         SPACING.sm +
         ACTIONS_ROW +
         dock;
-  const storyCap =
-    height - topChrome - Math.max(BAND_MIN, Math.round(STORY_BAND_FRACTION * height));
+  const storyCap = storyCapOf(input);
   const full = Math.round(Math.max(peek, Math.min(story, storyCap)));
   const storyBand = height - topChrome - full;
 
@@ -214,6 +213,63 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
     storyRadius: Math.round(GLOBE_FILL * Math.min(width, storyBand)),
     storyCenterY: Math.round(topChrome + storyBand / 2),
   };
+}
+
+/** The open sheet's ceiling: the window less the bar and the globe's floor. */
+function storyCapOf(input: DeckLayoutInput): number {
+  const { height, chromeHeight } = input;
+  return height - chromeHeight - Math.max(BAND_MIN, Math.round(STORY_BAND_FRACTION * height));
+}
+
+/** Characters a body line is assumed to hold when bounding a story from
+ *  below: more than the ~43 one really holds, so lines are undercounted. */
+const CHARS_PER_LINE_BOUND = 50;
+
+/**
+ * Whether measuring today's cards (`StoryMeasure`) could change the open
+ * sheet's height at all.
+ *
+ * Measuring lays out every card in the river off screen — ~44 of them, 742ms
+ * of a 1,365ms arrival commit in a dev build on the emulator (2026-09-23) —
+ * and it ran at every launch and every new build. On a phone its answer was
+ * nearly always thrown away: since 2026-09-20 a typical story is several
+ * lines past `storyCap`, so `full` is the cap whatever the measurement says.
+ * So bound each card's height from *below*, from its characters — one title
+ * line, lines counted at `CHARS_PER_LINE_BOUND`, link syntax stripped — and
+ * measure only when the bound for the card at `STORY_FIT_SHARE` could still
+ * land under the cap: a tablet, small type, a day of short stories.
+ */
+export function openHeightNeedsMeasuring(
+  input: DeckLayoutInput,
+  stories: readonly (readonly string[])[],
+): boolean {
+  if (stories.length === 0) return false;
+  const body = lineHeight(input, 'body');
+  const perLine = CHARS_PER_LINE_BOUND / Math.min(input.fontScale, input.caps.body);
+  const least =
+    HANDLE +
+    lineHeight(input, 'labelXs') +
+    SPACING.xs +
+    lineHeight(input, 'title') +
+    SPACING.sm +
+    // Always in a measurement: until `sources · save · share` mounts (when JS
+    // is next idle), the card holds an empty box of this same height.
+    ACTIONS_ROW +
+    CONTROL_ROW +
+    input.bottomInset;
+  const bounds = stories.map((sentences) => {
+    let lines = 0;
+    for (const sentence of sentences) {
+      // `[China](country:CN)` prints as `China`.
+      const shown = sentence.replace(/\]\([^)]*\)/g, '').replace(/[[\]*_]/g, '');
+      lines += Math.max(1, Math.ceil(shown.length / perLine));
+    }
+    const gaps = Math.round(Math.max(0, sentences.length - 1) * BLOCK_GAP_RATIO * body);
+    return least + lines * body + gaps;
+  });
+  const sorted = [...bounds].sort((a, b) => a - b);
+  const rank = Math.max(0, Math.ceil(STORY_FIT_SHARE * sorted.length) - 1);
+  return (sorted[rank] ?? 0) < storyCapOf(input);
 }
 
 /**

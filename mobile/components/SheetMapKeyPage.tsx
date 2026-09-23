@@ -132,7 +132,7 @@ const ENTRIES: readonly KeyEntry[] = [
     // "red when squeezed, slate otherwise", beside a squeezed mark drawn gold
     // and a busier one drawn teal.
     meaning:
-      'A shipping strait. The small arrow is traffic: the seven-day average for all ships against its 90-day normal.',
+      'A shipping strait. The arrow and the figure are its traffic over the past seven days, as in the strip; its colour is its traffic against the 90-day normal.',
     draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStrait} />,
   },
   {

@@ -1,7 +1,8 @@
 import { isMarketSignalsSnapshot } from '@shared/market-signals';
 import type { QueryKey } from '@tanstack/react-query';
+import Storage from 'expo-sqlite/kv-store';
 import { API_BASE } from '../constants/theme';
-import { fetchJson } from './fetchJson';
+import { fetchJsonIfChanged } from './fetchJson';
 import { isMarketsSnapshot } from './markets';
 import {
   isAnalysisSnapshot,
@@ -65,14 +66,53 @@ export const API_SNAPSHOTS = {
   },
 } as const;
 
-export function fetchSnapshot<T>(
+/**
+ * Each file's version tag (`ETag`), as of the copy the app last took. Kept on
+ * disk so a headless background run can ask too. A tag is only sent when the
+ * caller still holds that file's data (`has`): a 304 with nothing to keep
+ * would leave the layer empty.
+ */
+const ETAGS_KEY = 'zuhd_snapshot_etags_v1';
+let etags: Record<string, string> = {};
+try {
+  const stored = Storage.getItemSync(ETAGS_KEY);
+  if (stored) {
+    const parsed: unknown = JSON.parse(stored);
+    if (parsed && typeof parsed === 'object') etags = parsed as Record<string, string>;
+  }
+} catch {
+  etags = {};
+}
+
+function rememberEtag(url: string, etag: string | null): void {
+  if (!etag || etags[url] === etag) return;
+  etags = { ...etags, [url]: etag };
+  try {
+    Storage.setItemSync(ETAGS_KEY, JSON.stringify(etags));
+  } catch {}
+}
+
+/** Forget every tag: the privacy page's erase, and a test's reset. */
+export function clearSnapshotEtags(): void {
+  etags = {};
+  try {
+    Storage.removeItemSync(ETAGS_KEY);
+  } catch {}
+}
+
+/** A plain fetch of one snapshot — a query's own load — noting its tag. */
+export async function fetchSnapshot<T>(
   snap: ApiSnapshot<T>,
   opts: { signal?: AbortSignal; cache?: RequestCache } = {},
 ): Promise<T> {
-  return fetchJson<T>(snap.url, snap.validate, {
+  const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
     ...opts,
     ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
   });
+  // Without a tag sent the site cannot answer 304.
+  if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
+  rememberEtag(snap.url, result.etag);
+  return result.data;
 }
 
 export interface FetchedSnapshot {
@@ -81,20 +121,33 @@ export interface FetchedSnapshot {
 }
 
 /**
- * Every snapshot, fetched side by side. One that fails is left out, so the
- * screen keeps what it had for it — as a failed refetch always did.
+ * Every snapshot that changed since the copy the app holds, fetched side by
+ * side. Unchanged ones answer 304 with no body and are left out, as are ones
+ * that fail — either way the screen keeps what it had.
+ *
+ * Every build used to download all twelve, ~120KB gzipped, whether they had
+ * moved or not, and the background task did it hourly for someone who might
+ * not open the app all day.
  */
-export async function fetchAllSnapshots(): Promise<FetchedSnapshot[]> {
+export async function fetchAllSnapshots(
+  has: (queryKey: QueryKey) => boolean,
+): Promise<FetchedSnapshot[]> {
   const all: ApiSnapshot<unknown>[] = Object.values(API_SNAPSHOTS);
   const settled = await Promise.allSettled(
-    all.map((snap) => fetchSnapshot(snap, { cache: 'no-store' })),
+    all.map((snap) =>
+      fetchJsonIfChanged(snap.url, snap.validate, {
+        cache: 'no-store',
+        etag: has(snap.queryKey) ? etags[snap.url] : null,
+        ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
+      }),
+    ),
   );
   const out: FetchedSnapshot[] = [];
   settled.forEach((result, i) => {
     const snap = all[i];
-    if (snap && result.status === 'fulfilled') {
-      out.push({ queryKey: snap.queryKey, data: result.value });
-    }
+    if (!snap || result.status !== 'fulfilled' || !result.value.changed) return;
+    rememberEtag(snap.url, result.value.etag);
+    out.push({ queryKey: snap.queryKey, data: result.value.data });
   });
   return out;
 }

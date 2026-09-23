@@ -708,7 +708,8 @@ function straitFigures(c: Chokepoint): CardFigure[] {
     figures.push({
       label: cls.plural,
       value: `${formatQuantity(v)} a day`,
-      note: formatVsNormal(d),
+      note: formatVsNormal(d, { bare: true }),
+      group: 'ships by type · vs 90-day normal',
     });
   }
   const weather = c.weather;

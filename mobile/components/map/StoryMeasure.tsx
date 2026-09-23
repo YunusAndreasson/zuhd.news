@@ -29,7 +29,7 @@ export const StoryMeasure = memo(function StoryMeasure({
   /** The card exactly as the deck renders it, without anything that draws
    *  over it (the veil) and without handlers. */
   renderCard: (index: number) => ReactNode;
-  /** Every card's height, once every one has laid out. */
+  /** Every card's height, in card order, once every one has laid out. */
   onMeasured: (heights: number[]) => void;
 }) {
   const heights = useRef(new Map<number, number>());
@@ -37,7 +37,9 @@ export const StoryMeasure = memo(function StoryMeasure({
     (index: number, height: number) => {
       heights.current.set(index, height);
       if (heights.current.size < count) return;
-      onMeasured([...heights.current.values()]);
+      // In card order, not layout order: the caller keys each height to its
+      // card.
+      onMeasured(Array.from({ length: count }, (_, i) => heights.current.get(i) ?? 0));
     },
     [count, onMeasured],
   );

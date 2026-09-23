@@ -596,7 +596,12 @@ describe('buildInstrumentCards', () => {
     // The class the strait is watched for, beside the all-ships reading. The
     // pipeline shipped this figure all along; only the globe sheet read it.
     expect(card?.kind === 'reading' ? card.figures : undefined).toEqual([
-      { label: 'tankers', value: '2.4 a day', note: '\u221243% vs its normal' },
+      {
+        label: 'tankers',
+        value: '2.4 a day',
+        note: '\u221243%',
+        group: 'ships by type · vs 90-day normal',
+      },
     ]);
   });
 
@@ -716,7 +721,12 @@ describe('buildInstrumentCards', () => {
     const bab = find(cards, 'strait-bab-el-mandeb');
     // The measurement's own class first, the forecast second.
     expect(bab?.kind === 'reading' ? bab.figures : undefined).toEqual([
-      { label: 'container ships', value: '6.2 a day', note: '\u221244% vs its normal' },
+      {
+        label: 'container ships',
+        value: '6.2 a day',
+        note: '\u221244%',
+        group: 'ships by type · vs 90-day normal',
+      },
       { label: 'Bab el-Mandeb Strait effectively closed by Dec 31?', value: '18%' },
     ]);
     expect(bab?.sourceLabel).toBe('IMF PortWatch \u00b7 Polymarket');

@@ -92,7 +92,8 @@ import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bo
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
-import { computeDeckLayout, openStoryHeight } from '../lib/deck-layout';
+import type { CardDelta } from '../lib/cards/types';
+import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, useFreshSlugs } from '../lib/fresh-store';
@@ -373,42 +374,36 @@ export default function HomeScreen() {
   // it was measured for. The last height stands until a
   // new measurement finishes, so a refresh does not drop the open story to
   // the estimate and back.
-  const [measuredStory, setMeasuredStory] = useState<{ key: string; height: number } | null>(null);
+  const [measuredStory, setMeasuredStory] = useState<{ height: number } | null>(null);
 
   // The sheet at rest and open is sized from the card's type, not a fraction
   // of the window or the story in front, and the globe takes what is left —
   // see `lib/deck-layout.ts`.
-  const layout = useMemo(
-    () =>
-      computeDeckLayout({
-        width: screenWidth,
-        height: screenHeight,
-        chromeHeight: topChromeHeight,
-        bottomInset: insets.bottom,
-        fontScale,
-        lines: {
-          caption: textVariants.caption.lineHeight ?? 0,
-          labelXs: textVariants.labelXs.lineHeight ?? 0,
-          title: textVariants.title.lineHeight ?? 0,
-          body: textVariants.body.lineHeight ?? 0,
-        },
-        caps: {
-          caption: VARIANT_CAP.caption,
-          labelXs: VARIANT_CAP.labelXs,
-          title: VARIANT_CAP.title,
-          body: VARIANT_CAP.body,
-        },
-        storyContent: measuredStory?.height,
-      }),
-    [
-      screenWidth,
-      screenHeight,
-      topChromeHeight,
-      insets.bottom,
+  const deckInput = useMemo(
+    () => ({
+      width: screenWidth,
+      height: screenHeight,
+      chromeHeight: topChromeHeight,
+      bottomInset: insets.bottom,
       fontScale,
-      textVariants,
-      measuredStory?.height,
-    ],
+      lines: {
+        caption: textVariants.caption.lineHeight ?? 0,
+        labelXs: textVariants.labelXs.lineHeight ?? 0,
+        title: textVariants.title.lineHeight ?? 0,
+        body: textVariants.body.lineHeight ?? 0,
+      },
+      caps: {
+        caption: VARIANT_CAP.caption,
+        labelXs: VARIANT_CAP.labelXs,
+        title: VARIANT_CAP.title,
+        body: VARIANT_CAP.body,
+      },
+    }),
+    [screenWidth, screenHeight, topChromeHeight, insets.bottom, fontScale, textVariants],
+  );
+  const layout = useMemo(
+    () => computeDeckLayout({ ...deckInput, storyContent: measuredStory?.height }),
+    [deckInput, measuredStory?.height],
   );
   // The briefing's player hangs under the top bar while it is up (it sat on
   // the dock until 2026-09-22), so the cards end above the dock alone, and a
@@ -486,6 +481,16 @@ export default function HomeScreen() {
 
   // What the row shows; `strip` stays whole for the lookups below.
   const stripSlots = useMemo(() => strip.slice(0, STRIP_SLOTS), [strip]);
+  // Each strait's seven-day move, for its label on the globe (`straitMoves`):
+  // from the whole strip, not the ten slots, so a strait past the tenth still
+  // reads the number its row in the instruments list does.
+  const straitMoves = useMemo(() => {
+    const moves: Record<string, CardDelta> = {};
+    for (const item of strip) {
+      if (item.id.startsWith('strait-')) moves[item.id.slice('strait-'.length)] = item.delta;
+    }
+    return moves;
+  }, [strip]);
   const stripRef = useRef(strip);
   stripRef.current = strip;
   const mapMarkets = useMemo(
@@ -1548,30 +1553,66 @@ export default function HomeScreen() {
     ],
   );
 
-  // Re-measure when text or its metrics change, including in-app reading
-  // preferences and corrections to an existing story. Exclude timestamps
-  // and appearance so minute ticks and recolouring don't remount every card.
-  const measureKey = useMemo(
+  // Only when the measurement could change the open height at all
+  // (`openHeightNeedsMeasuring`): on a shorter phone the cap decides it.
+  const measureNeeded = useMemo(
     () =>
-      JSON.stringify([
-        screenWidth,
-        fontScale,
-        font,
-        typography,
-        ...storyRows.map((r) => [
-          r.slug,
-          r.title,
-          r.article.sentences,
-          r.article.location,
-          r.article.entities,
-          r.article.threadArticleCount,
-          r.article.threadArc,
-          r.article.threadDay,
-          odds.has(r.slug),
-        ]),
-      ]),
-    [screenWidth, fontScale, font, typography, storyRows, odds],
+      openHeightNeedsMeasuring(
+        deckInput,
+        storyRows.map((row) => row.article.sentences),
+      ),
+    [deckInput, storyRows],
   );
+  // Each card's measured height, by everything that can change it: its text
+  // and what hangs off it, and the reader's type and width — never its time
+  // or colours, so minute ticks and recolouring measure nothing. It measured
+  // the whole river whenever any of it changed, ~44 cards laid out off screen
+  // — 742ms of a 1,365ms arrival commit in a dev build (2026-09-23) — for an
+  // arrival that brought three. Now only the cards it has no height for.
+  const cardHeightsRef = useRef(new Map<string, number>());
+  const [cardHeightsVersion, setCardHeightsVersion] = useState(0);
+  const cardKeys = useMemo(
+    () =>
+      !measureNeeded
+        ? []
+        : storyRows.map((r) =>
+            JSON.stringify([
+              screenWidth,
+              fontScale,
+              font,
+              typography,
+              r.slug,
+              r.title,
+              r.article.sentences,
+              r.article.location,
+              r.article.entities,
+              r.article.threadArticleCount,
+              r.article.threadArc,
+              r.article.threadDay,
+              odds.has(r.slug),
+            ]),
+          ),
+    [measureNeeded, screenWidth, fontScale, font, typography, storyRows, odds],
+  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `cardHeightsVersion` is when the ref's map gained heights
+  const unmeasured = useMemo(
+    () => cardKeys.flatMap((key, i) => (cardHeightsRef.current.has(key) ? [] : [i])),
+    [cardKeys, cardHeightsVersion],
+  );
+  // Every card measured: the open height from them. A card still unmeasured
+  // keeps the last height rather than dropping to the estimate and back.
+  useEffect(() => {
+    if (!measureNeeded) {
+      setMeasuredStory(null);
+      return;
+    }
+    if (unmeasured.length > 0 || cardKeys.length === 0) return;
+    const heights = cardKeys.map((key) => cardHeightsRef.current.get(key) ?? 0);
+    const height = openStoryHeight(heights);
+    if (height !== undefined) {
+      setMeasuredStory((prev) => (prev?.height === height ? prev : { height }));
+    }
+  }, [measureNeeded, unmeasured, cardKeys]);
   const renderMeasureCard = useCallback(
     (index: number) => {
       const row = storyRows[index];
@@ -1596,13 +1637,26 @@ export default function HomeScreen() {
     },
     [odds, resolvableEntityIds, sheetProgress, storyRows],
   );
-  const handleStoryMeasured = useCallback(
-    (heights: number[]) => {
-      const height = openStoryHeight(heights);
-      if (height !== undefined) setMeasuredStory({ key: measureKey, height });
-    },
-    [measureKey],
+  const unmeasuredRef = useRef(unmeasured);
+  unmeasuredRef.current = unmeasured;
+  const cardKeysRef = useRef(cardKeys);
+  cardKeysRef.current = cardKeys;
+  const renderUnmeasuredCard = useCallback(
+    (j: number) => renderMeasureCard(unmeasuredRef.current[j] ?? -1),
+    [renderMeasureCard],
   );
+  const handleStoryMeasured = useCallback((heights: number[]) => {
+    const cache = cardHeightsRef.current;
+    heights.forEach((height, j) => {
+      const key = cardKeysRef.current[unmeasuredRef.current[j] ?? -1];
+      if (key) cache.set(key, height);
+    });
+    // Only today's cards: a story that left the river is not coming back
+    // with the same width and type.
+    const live = new Set(cardKeysRef.current);
+    for (const key of cache.keys()) if (!live.has(key)) cache.delete(key);
+    setCardHeightsVersion((v) => v + 1);
+  }, []);
 
   const renderEnd = useCallback(
     () =>
@@ -1680,6 +1734,7 @@ export default function HomeScreen() {
         hues={storyHues}
         fresh={storyFresh}
         slugs={storySlugs}
+        ruled={storyOpen}
       />
     ),
     [
@@ -1692,6 +1747,7 @@ export default function HomeScreen() {
       storyHues,
       storyFresh,
       storySlugs,
+      storyOpen,
       refreshing,
       frontIndex,
       storyCount,
@@ -1732,6 +1788,7 @@ export default function HomeScreen() {
           articles={river}
           heatmapPoints={heatmapPoints}
           chokepoints={chokepoints}
+          straitMoves={straitMoves}
           selectedAt={selectedGauge?.coords ?? null}
           gdacsAlerts={gdacsAlerts}
           conflictEvents={conflictEvents}
@@ -1825,12 +1882,12 @@ export default function HomeScreen() {
       {/* Pinned to the screen, not the sheet: the same place at rest and open. */}
       {dock}
 
-      {storyCount > 0 && measuredStory?.key !== measureKey ? (
+      {unmeasured.length > 0 ? (
         <StoryMeasure
-          key={measureKey}
-          count={storyCount}
+          key={unmeasured.map((i) => cardKeys[i]).join('\n')}
+          count={unmeasured.length}
           width={screenWidth}
-          renderCard={renderMeasureCard}
+          renderCard={renderUnmeasuredCard}
           onMeasured={handleStoryMeasured}
         />
       ) : null}

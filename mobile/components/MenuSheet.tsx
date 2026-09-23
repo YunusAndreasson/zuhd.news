@@ -85,7 +85,7 @@ const INFO_PAGES = {
         // legal inventory; the same six as separate statements read as an
         // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
+        body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice.\n\nNone of it leaves the device. You can erase all of it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it

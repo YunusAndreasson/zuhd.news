@@ -1,4 +1,5 @@
-import { straitMapChange } from '../../lib/strait-map';
+import type { CardDelta } from '../../lib/cards/types';
+import { straitMapChange, straitWeekChange } from '../../lib/strait-map';
 
 ('use no memo');
 
@@ -841,6 +842,10 @@ interface MiniGlobeProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
+  /** Each strait's seven-day move as the strip prints it, by chokepoint id.
+   *  Where there is one, the label prints it, so one strait reads one number
+   *  on the screen. Key it with `useMemo` (see the inline-props note). */
+  straitMoves?: Readonly<Record<string, CardDelta>>;
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
   /**
@@ -1066,6 +1071,8 @@ interface GlobeState {
     basis?: string;
     intensity: number;
     direction?: 'up' | 'down' | 'flat';
+    /** The printed move is a disruption: red, as the strip colours it. */
+    moveAlarm?: boolean;
     labelX: number;
     disrupted: boolean;
     /** Traffic well above its normal — the web's teal strait. */
@@ -1844,7 +1851,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     // (`chokepointValence`): red only for a disruption, slate otherwise. It
     // coloured the direction, so Gibraltar's ↓2% was the same alarm red as
     // Hormuz's ↓62%, and a surge was green where its card said neutral.
-    const moveColor = cp.disrupted ? colors.markMarketDown : colors.toneNeutralText;
+    const moveColor =
+      (cp.moveAlarm ?? cp.disrupted) ? colors.markMarketDown : colors.toneNeutralText;
     if (cp.direction) {
       const x = cp.x + 12;
       const color = cp.direction === 'flat' ? colors.textSecondary : moveColor;
@@ -2351,6 +2359,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
   chokepoints,
+  straitMoves,
   gdacsAlerts,
   conflictEvents,
   marketMarks,
@@ -2965,7 +2974,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   const enrichedChokepoints = useMemo(
     () =>
       (chokepoints ?? []).map((cp) => {
-        const change = straitMapChange(cp.delta7vs90.n_total);
+        // The strip's seven-day move where the strip has one: the label
+        // printed the gap from the 90-day normal while the strip, a few
+        // centimetres up, printed the week, and one strait read ↓62% on the
+        // globe and ▼38% in the strip. The glyph's brightness and outranking
+        // stay on the normal (`delta`, below): that is the strait's state.
+        const week = straitMoves?.[cp.id];
+        const change = week ? straitWeekChange(week) : straitMapChange(cp.delta7vs90.n_total);
         return {
           id: cp.id,
           // Mixed case (not UPPERCASE): chokepoints are passages — straits,
@@ -2978,6 +2993,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           move: change?.value,
           basis: change?.basis,
           direction: change?.direction,
+          moveAlarm: week ? week.valence === 'unfavorable' : undefined,
           unit: unit(cp.lng, cp.lat),
           // Signed, because direction decides meaning here and magnitude only
           // decides brightness.
@@ -2985,7 +3001,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           absDelta: Math.abs(cp.delta7vs90.n_total ?? 0),
         };
       }),
-    [chokepoints],
+    [chokepoints, straitMoves],
   );
   const chokepointsRef = useRef(enrichedChokepoints);
   chokepointsRef.current = enrichedChokepoints;
@@ -3668,6 +3684,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           basis: cp.basis,
           labelX: pt[0],
           direction: cp.direction,
+          moveAlarm: cp.moveAlarm,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: chokepointValence(cp.delta) === 'unfavorable',
           surge: cp.delta > STRAIT_SURGE_DELTA,
@@ -4747,7 +4764,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     height,
     canvasReach,
     enrichedMarketMarks,
-    chokepoints,
+    enrichedChokepoints,
     placeMarks,
     enrichedFamine,
     enrichedThermal,

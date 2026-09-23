@@ -54,11 +54,12 @@ export async function probeGenerated(): Promise<string> {
   return meta.generated;
 }
 
-/** The feed and every snapshot, side by side. Only the feed failing fails it. */
-export async function fetchArrival(): Promise<Arrival> {
+/** The feed and every snapshot that changed, side by side. Only the feed
+ *  failing fails it. */
+export async function fetchArrival(queryClient: QueryClient): Promise<Arrival> {
   const [feed, snapshots] = await Promise.all([
     fetchFeed({ cache: 'no-store' }),
-    fetchAllSnapshots(),
+    fetchAllSnapshots((key) => queryClient.getQueryData(key) !== undefined),
   ]);
   return { feed, snapshots };
 }

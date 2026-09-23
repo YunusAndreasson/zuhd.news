@@ -4,6 +4,7 @@ import {
   type DeckLayoutInput,
   grownGlobeTransform,
   grownReach,
+  openHeightNeedsMeasuring,
   openStoryHeight,
 } from '../lib/deck-layout';
 
@@ -182,5 +183,43 @@ describe('openStoryHeight', () => {
   it('fits the only card whole, and waits for one', () => {
     expect(openStoryHeight([401.5])).toBe(402);
     expect(openStoryHeight([])).toBeUndefined();
+  });
+});
+
+describe('openHeightNeedsMeasuring', () => {
+  // A typical story at the writer's budget: ~480 characters over five blocks.
+  const typical = [
+    'Kyiv — A machine gun, not a missile, sank a Russian drone boat on Monday.',
+    "Until now only a warship's guns could counter a drone boat, which made each one a costly target to defend.",
+    'Ukraine says a Sargan drone boat carried the gun and sank a Russian boat of the same kind near Crimea, a first for either navy in the war.',
+    'Russia has not confirmed the loss, and no independent footage has been released to verify the claim so far.',
+    'Both navies are expected to arm more unmanned boats with guns in the coming months, analysts said.',
+  ];
+  const short = ['A short hook.', 'Why it matters.', 'How.', 'Next.'];
+
+  it('skips the measurement on a phone, where the cap decides the height anyway', () => {
+    // Measuring every card was 742ms of a 1,365ms arrival commit (dev build).
+    const stories = Array.from({ length: 44 }, () => typical);
+    expect(openHeightNeedsMeasuring(tall(), stories)).toBe(false);
+    expect(computeDeckLayout(tall()).full).toBe(
+      computeDeckLayout(tall({ storyContent: 10_000 })).full,
+    );
+  });
+
+  it('measures when a day of short stories could fit under the cap', () => {
+    const stories = Array.from({ length: 44 }, () => short);
+    expect(openHeightNeedsMeasuring(tall(), stories)).toBe(true);
+  });
+
+  it('measures on a tall window, where the cap leaves room for a whole story', () => {
+    const stories = Array.from({ length: 44 }, () => typical);
+    expect(openHeightNeedsMeasuring(tall({ width: 1024, height: 1366 }), stories)).toBe(true);
+  });
+
+  it('counts a link as the words it prints, not its markdown', () => {
+    const linked = typical.map((t) => `[${t}](country:UA)`);
+    const stories = Array.from({ length: 44 }, () => linked);
+    expect(openHeightNeedsMeasuring(tall(), stories)).toBe(false);
+    expect(openHeightNeedsMeasuring(tall(), [])).toBe(false);
   });
 });

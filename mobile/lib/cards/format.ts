@@ -173,10 +173,12 @@ export function formatQuantity(n: number): string {
 }
 
 /** A strait's traffic against its own 90-day normal, as the card and the
- *  sheet it opens both print it. `delta` is a fraction (−0.57 is 57% below). */
-export function formatVsNormal(delta: number): string {
+ *  sheet it opens both print it. `delta` is a fraction (−0.57 is 57% below).
+ *  `bare` drops the basis, for a row under a heading that already names it. */
+export function formatVsNormal(delta: number, { bare = false } = {}): string {
   const signed = formatSignedPct(delta * 100);
-  return signed === 'unchanged' ? 'at its normal' : `${signed} vs its normal`;
+  if (signed === 'unchanged') return 'at its normal';
+  return bare ? signed : `${signed} vs its normal`;
 }
 
 /** US-grouped integer with no unit. For populations and counts. */

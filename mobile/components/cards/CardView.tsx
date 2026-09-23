@@ -61,6 +61,12 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
           key={`${i}-${f.label}`}
           style={styles.figureRow}
         >
+          {/* A group's basis, once, in the chart caption's register. */}
+          {f.group && f.group !== figures[i - 1]?.group ? (
+            <Text variant="labelXs" style={styles.figureGroup}>
+              {f.group}
+            </Text>
+          ) : null}
           <View style={styles.figureMainRow}>
             <Text variant="caption" tone="secondary" style={styles.figureLabel}>
               {f.note ? `${f.label} · ${f.note}` : f.label}
@@ -186,6 +192,7 @@ function renderBody(card: SwipeCard, onPress: () => void) {
 
 const styles = StyleSheet.create({
   figures: { marginBottom: SPACING.md },
+  figureGroup: { marginBottom: SPACING.xs },
   // Tight rows. A figure list is two or three lines of data between the
   // card's opening and its chart, and every point of padding here comes
   // straight off the bottom of part four.

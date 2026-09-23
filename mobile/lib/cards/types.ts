@@ -158,6 +158,10 @@ export interface CardFigure {
   label: string;
   value: string;
   note?: string;
+  /** Rows that share a basis share this, printed once above the first of
+   *  them — a strait's vessel classes, each against its own normal. Printed
+   *  on every row it was "vs its normal" five times in a column. */
+  group?: string;
   /** Optional raw magnitude for proportional rendering; never display-formatted. */
   weight?: number;
 }

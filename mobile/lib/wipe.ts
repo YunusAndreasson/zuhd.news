@@ -1,4 +1,5 @@
 import Storage from 'expo-sqlite/kv-store';
+import { clearSnapshotEtags } from './api-snapshots';
 import { clearBookmarks } from './bookmark-store';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
@@ -47,6 +48,8 @@ export async function eraseLocalData(): Promise<void> {
   resetReviewState();
   resetDataUsage();
   queryClient.clear();
+  // The cache's version tags, with the cache they describe.
+  clearSnapshotEtags();
 
   await Promise.all([feedCache.clear(), ...KEYS.map((k) => Storage.removeItem(k).catch(() => {}))]);
 }

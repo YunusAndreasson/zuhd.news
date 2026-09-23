@@ -1,3 +1,7 @@
+jest.mock('expo-sqlite/kv-store', () => ({
+  __esModule: true,
+  default: { getItemSync: () => null, setItemSync: jest.fn(), removeItemSync: jest.fn() },
+}));
 const mockUseQuery = jest.fn((_options: unknown) => ({ data: null }));
 jest.mock('@tanstack/react-query', () => ({
   useQuery: (options: unknown) => mockUseQuery(options),
