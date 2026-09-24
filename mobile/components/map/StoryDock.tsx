@@ -23,8 +23,9 @@ import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
  * The dock: where the reader is in the day, in one row at the foot of the
  * screen, where a thumb already is.
  *
- * `(‹ 3 new) [ story track ]` — the track scrubs the day, newest story at its
- * left end (each segment is its story's category hue). It is pinned to the
+ * `[ story track ]`, with `‹ 3 new` floating over its left end — the track
+ * scrubs the day, newest story at its left end (each segment is its story's
+ * category hue). It is pinned to the
  * screen, not to the sheet, so it is in the same place whether a story is at
  * rest or open: the row used to sit on top of the sheet, which put it
  * mid-screen at rest and near the top when a story was open — nowhere a thumb
@@ -41,9 +42,9 @@ import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
  *
  * **What arrived is visible from the dock (2026-09-21).** When new stories sit
  * between the head of the river and the story in front — a refresh put them
- * ahead of where the reader was, or a scrub skipped them — `‹ 3 new` leads the
- * row and jumps to the newest of them. It is a pill in the sheet's control
- * material (`pillBg`, a hairline edge), not a badge: ink, no colour, no count
+ * ahead of where the reader was, or a scrub skipped them — `‹ 3 new` floats
+ * over the track's left end and jumps to the newest of them. It is a pill in
+ * the sheet's control material (`playerBg`, a hairline edge), not a badge: ink, no colour, no count
  * on the icon, and it goes when there is nothing left behind the reader to
  * catch up on. The track itself carries no mark for new stories: a dashed
  * rule over their segments was drawn for a day (2026-09-21) and removed at
@@ -83,7 +84,7 @@ export const StoryDock = memo(function StoryDock({
   timeAt,
   categoryAt,
   ages,
-  coverage,
+  mostCovered,
   hues,
   fresh,
   slugs,
@@ -115,10 +116,9 @@ export const StoryDock = memo(function StoryDock({
   /** Per story, how long before the river's day ends it ran, in ms: where it
    *  sits on the track. Without it the track is one equal cell per story. */
   ages?: readonly number[];
-  /** Per story: `884 reports` over the most-covered bar, else null. Its
-   *  cell stands taller while unread and the tooltip says it — what the
-   *  card's kicker says, drawn on the day. */
-  coverage?: readonly (string | null)[];
+  /** Per story: over the most-covered bar — its cell stands taller while
+   *  unread. No count is printed (2026-09-24). */
+  mostCovered?: readonly boolean[];
   /** One category hue per story, for the track's segments. */
   hues?: readonly string[];
   /** Per story: arrived since the reader last had the feed — counted for a
@@ -170,7 +170,6 @@ export const StoryDock = memo(function StoryDock({
   // deck writes it unless a finger is scrubbing the track itself. Nothing is
   // filled to it any more — the segments say what has been read.
   const fraction = useSharedValue(0);
-  const tall = useMemo(() => coverage?.map((label) => label !== null), [coverage]);
   // The track is the day (2026-09-23, the user's request): now at the left
   // end, a day ago at the right, each story at its time and a mark every six
   // hours — so "twelve hours back" is a place on it, not a count of cells.
@@ -185,10 +184,18 @@ export const StoryDock = memo(function StoryDock({
     () => (day ? day.centers.map((c) => c / trackWidth) : null),
     [day, trackWidth],
   );
-  const marks = useMemo(
-    () => (day ? labelledMarks(day.marks, MARK_LABEL_MIN_GAP) : undefined),
-    [day],
-  );
+  // The left end is named: without it `6h` could be six in the morning, and
+  // nothing said which end of the day was now. A mark whose word would crowd
+  // it keeps its tick and gives up its word.
+  const marks = useMemo(() => {
+    if (!day) return undefined;
+    const labelled = labelledMarks(day.marks, MARK_LABEL_MIN_GAP).map((mark) =>
+      mark.label && mark.at - MARK_LABEL_WIDTH / 2 < NOW_LABEL_WIDTH + SPACING.xs
+        ? { at: mark.at }
+        : mark,
+    );
+    return [{ at: 0, label: 'now', bare: true }, ...labelled];
+  }, [day]);
   const stepAt = useMemo(
     () =>
       centers
@@ -218,10 +225,9 @@ export const StoryDock = memo(function StoryDock({
   const detailFor = useCallback(
     (f: number) => {
       const i = storyAt(f, count, centers);
-      // The tall cell under the finger says what it is, on a line of its own.
-      return [categoryAt?.(i), coverage?.[i]].filter(Boolean).join('\n');
+      return categoryAt?.(i) ?? '';
     },
-    [categoryAt, count, centers, coverage],
+    [categoryAt, count, centers],
   );
   // Each segment in its story's category hue — the globe's beacons and the
   // card's category word, so a teal segment is a teal light — a touch below
@@ -243,8 +249,17 @@ export const StoryDock = memo(function StoryDock({
     return read?.length === count ? unread.map((c, i) => (read[i] ? (faded[i] ?? c) : c)) : unread;
   }, [hues, count, read, colors.sheetBg, resolvedAppearance]);
   const handleCommit = useCallback(
-    (f: number) => onSeek?.(storyAt(f, count, centers)),
-    [onSeek, count, centers],
+    (f: number) => {
+      const i = storyAt(f, count, centers);
+      // The playhead to the chosen story's centre, whatever committed it. A
+      // tap never holds the track, so the reaction's drop snap misses it, and
+      // a tap on the story already in front moves no deck: the playhead was
+      // left wherever the finger touched.
+      const at = centers?.[i];
+      if (at !== undefined) fraction.value = at;
+      onSeek?.(i);
+    },
+    [onSeek, count, centers, fraction],
   );
   const scrub = useScrub({
     fraction,
@@ -260,9 +275,16 @@ export const StoryDock = memo(function StoryDock({
   });
   const holding = scrub.holding;
   useAnimatedReaction(
-    () => position.value,
-    (p) => {
-      if (holding.value) return;
+    () => ({ p: position.value, held: holding.value }),
+    ({ p, held }, previous) => {
+      if (held) return;
+      // A drop: straight to the story the finger chose, the one the commit
+      // is taking the deck to. From the deck's position instead, the playhead
+      // went back to the story being left until the commit reached the deck.
+      if (previous?.held && centers && centers.length === count) {
+        fraction.value = centers[nearestStory(centers, fraction.value)] ?? fraction.value;
+        return;
+      }
       const at = centers ? positionAt(centers, p) : count > 0 ? (p + 1) / count : 0;
       fraction.value = Math.min(1, Math.max(0, at));
     },
@@ -285,31 +307,28 @@ export const StoryDock = memo(function StoryDock({
   const when = index < count ? timeAt(index) : '';
   const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${when ? `, ${when}` : ''}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${readTotal > 0 ? `, ${readTotal} read` : ''}${found > 0 ? `, ${found} found on the globe` : ''}`;
 
+  const inset = Math.max(SPACING.articlePadding, insets.left);
   return (
-    <View
-      style={[
-        styles.dock,
-        {
-          // The track runs to the same margin at both ends.
-          paddingLeft: Math.max(SPACING.articlePadding, insets.left),
-          paddingRight: Math.max(SPACING.articlePadding, insets.right),
-          paddingBottom: insets.bottom,
-          backgroundColor: colors.sheetBg,
-          // Transparent rather than no border, so the dock keeps its height.
-          borderColor: ruled ? colors.rule : 'transparent',
-        },
-      ]}
-    >
+    // **The pill floats above the track, never in its row.** In the row it
+    // took its width from the track, so the day was laid out again whenever
+    // it came or went — and it comes exactly when a scrub drops past new
+    // stories: every cell and every `6h` tick moved under the finger that had
+    // just aimed at one (2026-09-24, the user's report). The column is
+    // anchored at the foot, so the pill grows it upward and the track keeps
+    // its width. It sits over the track's left end, where the new stories are,
+    // the way a feed's "new posts" pill floats over the list it jumps.
+    <View style={styles.foot} pointerEvents="box-none">
       {newCount > 0 && onNewPress ? (
         <IconButton
           onPress={onNewPress}
           hitSlop={0}
-          style={styles.newAction}
+          style={[styles.newAction, { marginLeft: inset }]}
           accessibilityLabel={`${newCount} new ${newCount === 1 ? 'story' : 'stories'}`}
           accessibilityHint="Goes to the newest story you have not seen"
         >
+          {/* Solid: it rests on the card's text, which `pillBg` lets through. */}
           <View
-            style={[styles.newPill, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+            style={[styles.newPill, { backgroundColor: colors.playerBg, borderColor: colors.rule }]}
           >
             <Icon name="chevron-back" size="sm" tone="emphasis" />
             <Text variant="labelXs" tone="emphasis">
@@ -318,61 +337,85 @@ export const StoryDock = memo(function StoryDock({
           </View>
         </IconButton>
       ) : null}
-      {status ? (
-        <Pressable
-          onPress={showingAlert ? onAlertPress : undefined}
-          disabled={!showingAlert || !onAlertPress}
-          accessibilityLiveRegion="polite"
-          accessibilityRole={showingAlert ? 'button' : 'text'}
-          style={({ pressed }) => [styles.status, pressed && showingAlert ? PRESSED_STYLE : null]}
-        >
-          <Text variant="caption" tone="secondary" numberOfLines={2}>
-            {status}
-          </Text>
-        </Pressable>
-      ) : count > 0 ? (
-        <ScrubBar
-          scrub={scrub}
-          fraction={fraction}
-          interactive={!!onSeek}
-          segments={count}
-          activeSegment={index}
-          activeSegmentColor={hues?.[index]}
-          height={TRACK}
-          trackColor={colors.rule}
-          trackColors={tints ?? undefined}
-          faded={read}
-          cells={day?.cells}
-          cellKeys={slugs}
-          tall={tall}
-          marks={marks}
-          markColor={markInk}
-          onTrackWidth={setTrackWidth}
-          thumbColor={destinationHue}
-          style={styles.scrub}
-          accessibilityRole="adjustable"
-          // Where you are is the value, not the name, so VoiceOver reads the
-          // new position after each adjustment.
-          accessibilityLabel="Today's stories"
-          accessibilityValue={{ min: 1, max: count, now: Math.min(index + 1, count), text: spoken }}
-          accessibilityHint="Now is at the left and a day ago at the right. Drag along it to move through the day's stories"
-          accessibilityActions={ADJUST_ACTIONS}
-          onAccessibilityAction={handleAdjust}
-        >
-          <ScrubTooltip
+      <View
+        style={[
+          styles.dock,
+          {
+            // The track runs to the same margin at both ends.
+            paddingLeft: inset,
+            paddingRight: Math.max(SPACING.articlePadding, insets.right),
+            paddingBottom: insets.bottom,
+            backgroundColor: colors.sheetBg,
+            // Transparent rather than no border, so the dock keeps its height.
+            borderColor: ruled ? colors.rule : 'transparent',
+          },
+        ]}
+      >
+        {status ? (
+          <Pressable
+            onPress={showingAlert ? onAlertPress : undefined}
+            disabled={!showingAlert || !onAlertPress}
+            accessibilityLiveRegion="polite"
+            accessibilityRole={showingAlert ? 'button' : 'text'}
+            style={({ pressed }) => [styles.status, pressed && showingAlert ? PRESSED_STYLE : null]}
+          >
+            <Text variant="caption" tone="secondary" numberOfLines={2}>
+              {status}
+            </Text>
+          </Pressable>
+        ) : count > 0 ? (
+          <ScrubBar
             scrub={scrub}
-            backgroundColor={colors.toastBg}
-            stemColor={destinationHue}
-            labelScale={TIME_SCALE}
-          />
-        </ScrubBar>
-      ) : (
-        <View style={styles.shrink} />
-      )}
+            fraction={fraction}
+            interactive={!!onSeek}
+            segments={count}
+            activeSegment={index}
+            // The loudest ink on the sheet, not the story's hue: a hue can match
+            // the cells either side, and the reader could not find their place.
+            activeSegmentColor={colors.textEmphasis}
+            height={TRACK}
+            trackColor={colors.rule}
+            trackColors={tints ?? undefined}
+            faded={read}
+            cells={day?.cells}
+            cellKeys={slugs}
+            tall={mostCovered}
+            marks={marks}
+            markColor={markInk}
+            onTrackWidth={setTrackWidth}
+            thumbColor={destinationHue}
+            style={styles.scrub}
+            accessibilityRole="adjustable"
+            // Where you are is the value, not the name, so VoiceOver reads the
+            // new position after each adjustment.
+            accessibilityLabel="Today's stories"
+            accessibilityValue={{
+              min: 1,
+              max: count,
+              now: Math.min(index + 1, count),
+              text: spoken,
+            }}
+            accessibilityHint="Now is at the left and a day ago at the right. Drag along it to move through the day's stories"
+            accessibilityActions={ADJUST_ACTIONS}
+            onAccessibilityAction={handleAdjust}
+          >
+            <ScrubTooltip
+              scrub={scrub}
+              backgroundColor={colors.toastBg}
+              stemColor={destinationHue}
+              labelScale={TIME_SCALE}
+            />
+          </ScrubBar>
+        ) : (
+          <View style={styles.shrink} />
+        )}
+      </View>
     </View>
   );
 });
 
+/** Room for `now` at the track's left end, in the marks' 11pt tabular. */
+const NOW_LABEL_WIDTH = 26;
 /** Two marks' words closer than this lose the quarter's: `12h` stays. */
 const MARK_LABEL_MIN_GAP = MARK_LABEL_WIDTH + SPACING.xs;
 /** The track's thickness: a rule you can see, not a control you can grab. */
@@ -380,14 +423,10 @@ const TRACK = 3;
 /** The `‹ 3 new` pill's height, inside its 48pt touch target. It was the
  *  height of the dock's circles, which went on 2026-09-22. */
 const PILL = 40;
-/** Between the pill and the track, so the jump reads as its own control
- *  rather than the track's first segment. */
-const TRACK_GAP = SPACING.md;
 /** The tooltip's time at body size: 11pt tabular × 17/11. The tabular
  *  variants do not follow Dynamic Type, so the fixed width below holds. */
 const TIME_SCALE = 17 / 11;
-/** Wide enough for `45m ago` at `TIME_SCALE`, and `1,907 reports` under
- *  it. */
+/** Wide enough for `45m ago` at `TIME_SCALE`, and a category under it. */
 const TOOLTIP_WIDTH = 112;
 /** How far an unread segment's hue is mixed toward the sheet: still plainly
  *  its category, a touch under the globe's beacons. */
@@ -400,11 +439,8 @@ const UNREAD_MIX = { dark: 0.15, light: 0.15 } as const;
  */
 const READ_MIX = { dark: 0.7, light: 0.75 } as const;
 const styles = StyleSheet.create({
+  foot: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   dock: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
     flexDirection: 'row',
     alignItems: 'center',
     // A hairline, not a shadow: the text scrolls up out from under it.
@@ -415,9 +451,8 @@ const styles = StyleSheet.create({
   // A full-height target, sized to its words.
   newAction: {
     height: CONTROL_ROW,
-    flexShrink: 0,
+    alignSelf: 'flex-start',
     justifyContent: 'center',
-    marginRight: TRACK_GAP,
   },
   // Hairline edge so the pill holds its shape on the sheet without a shadow.
   newPill: {

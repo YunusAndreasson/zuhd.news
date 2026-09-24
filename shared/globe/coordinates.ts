@@ -357,6 +357,43 @@ export const CITY_TZ: Record<string, string> = {
 };
 
 // IANA timezone per country (capital/primary city). Keyed by TopoJSON country name.
+/**
+ * The zone at a place in a country too wide for one, from its coordinates.
+ *
+ * `COUNTRY_TZ` holds one zone per country, and a dateline missing from
+ * `CITY_TZ` falls back to it: every US city not listed read New York's time,
+ * so Mountain View was three hours fast (2026-09-24, on the globe's place
+ * label), and `sacramento`/`redmond` had been added one at a time for the same
+ * fault. Longitude bands are coarse at the zone lines — Arizona keeps no
+ * daylight saving, the Eastern/Central line wanders — but they are right for
+ * the cities that make the news, where the single zone was wrong for most of
+ * the country. `CITY_TZ` still wins where it has an entry.
+ */
+export function zoneAt(
+  country: string | null | undefined,
+  lat: number | null | undefined,
+  lng: number | null | undefined,
+): string | undefined {
+  if (lat == null || lng == null) return undefined;
+  if (country === 'United States of America') {
+    if (lng < -154 && lat < 23) return 'Pacific/Honolulu';
+    if (lng < -130 && lat > 51) return 'America/Anchorage';
+    if (lng > -86.5) return 'America/New_York';
+    if (lng > -101.5) return 'America/Chicago';
+    if (lng > -114.5) return lat < 37 && lng < -109 ? 'America/Phoenix' : 'America/Denver';
+    return 'America/Los_Angeles';
+  }
+  if (country === 'Canada') {
+    if (lng > -60 && lat > 46.5 && lat < 52) return 'America/St_Johns';
+    if (lng > -64.5) return 'America/Halifax';
+    if (lng > -90) return 'America/Toronto';
+    if (lng > -102) return 'America/Winnipeg';
+    if (lng > -120) return 'America/Edmonton';
+    return 'America/Vancouver';
+  }
+  return undefined;
+}
+
 export const COUNTRY_TZ: Record<string, string> = {
   Afghanistan: 'Asia/Kabul',
   Albania: 'Europe/Tirane',

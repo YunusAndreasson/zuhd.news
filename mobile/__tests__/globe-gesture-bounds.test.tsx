@@ -160,9 +160,13 @@ it.each([0, 100])(
 
 it('keeps the exposed globe available to collapse an open story without hit testing', () => {
   const { globe, props } = setup(1, true);
-  expect(mockPan.enabled).toBe(false);
-  expect(mockPinch.enabled).toBe(false);
-  expect(mockTap.enabled).toBe(true);
+  // `enabled` is a SharedValue: an open and close must flip it without a new
+  // config, which RNGH would push to the native side whole.
+  const on = (enabled: PanGestureConfig['enabled']) =>
+    typeof enabled === 'object' ? enabled.value : enabled;
+  expect(on(mockPan.enabled)).toBe(false);
+  expect(on(mockPinch.enabled)).toBe(false);
+  expect(on(mockTap.enabled)).toBe(true);
   act(() =>
     mockTap.onDeactivate?.(
       event({ x: 400, y: 500, absoluteX: 40, absoluteY: 150, canceled: false }),

@@ -81,6 +81,9 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * top, so every card arrives showing its kicker.
  */
 
+/** How far a finger travels sideways before the deck's pan claims it. */
+const CLAIM_X = 16;
+
 /** Neighbours fade in as they enter during a horizontal swipe. */
 const PEEK_OPACITY = 0.4;
 
@@ -284,14 +287,21 @@ export const StoryDeck = memo(function StoryDeck({
 
   const panConfig = useMemo(
     () => ({
-      activeOffsetX: [-16, 16] as [number, number],
+      activeOffsetX: [-CLAIM_X, CLAIM_X] as [number, number],
       failOffsetY: [-12, 12] as [number, number],
       onActivate: (e: { translationX: number }) => {
         'worklet';
         // Catch a card that is still landing where it is, not where it was going.
         cancelAnimation(progress);
         start.value = progress.value;
-        startX.value = e.translationX;
+        // From the claim's threshold, not from wherever the claim happened.
+        // Measured from touch-down the card jumped the 16 pt the claim waits
+        // for; measured from the claiming event, a swipe whose events arrived
+        // in a burst — the first move already 200 pt out, which a busy UI
+        // thread delivers — kept only its last few points and snapped back:
+        // two quick flicks moved one story (2026-09-24, logged on the
+        // emulator: claimed, then released 5 ms later at −2.4 pt).
+        startX.value = Math.sign(e.translationX) * Math.min(Math.abs(e.translationX), CLAIM_X);
         // Heading for the next story when the finger moves left.
         if (onClaim) onClaim(e.translationX < 0 ? 1 : -1);
         scheduleOnRN(onDragStart);
@@ -306,9 +316,14 @@ export const StoryDeck = memo(function StoryDeck({
         const velocity = e.canceled ? 0 : -e.velocityX / pitch;
         // Cancellation is a rollback, even if the finger crossed a story or
         // caught a spring on its way to the already committed story.
+        // One story from the *committed* story, not from where the finger
+        // caught the card: a second flick that catches the first early in its
+        // landing found the card still nearer the story being left, and its
+        // one-story cap stopped it at the story already committed — two quick
+        // flicks moved one story (2026-09-24, 4 of 4 on the emulator).
         const target = e.canceled
           ? committed.value
-          : deckTarget(Math.round(start.value), position, velocity, count);
+          : deckTarget(committed.value, position, velocity, count);
         // Critically damped, so a card arrives without a bounce the globe
         // would have to follow past a dateline.
         progress.value = withSpring(target, {

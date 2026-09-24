@@ -1,9 +1,18 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
-import { memo, useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import {
   type AccessibilityActionEvent,
+  type GestureResponderEvent,
   Pressable as RNPressable,
   StyleSheet,
   useWindowDimensions,
@@ -30,6 +39,8 @@ import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../l
 import type { RiverArticle } from '../../lib/news-order';
 import { useOpenLink } from '../../lib/open-link';
 import type { StoryOdds } from '../../lib/predictions';
+import { useReadSlugs } from '../../lib/read-store';
+import { unreadNewBehind } from '../../lib/resume-landing';
 import { articleThreadContext, hookOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../globe/MiniGlobe';
 import { OddsLine } from '../OddsLine';
@@ -112,18 +123,52 @@ const VEIL_TOP = 0.5;
  * meant to be read is quiet by an ink step, never by opacity. This text is
  * not meant to be read at rest — it is the edge of what opening reveals.
  */
+/** How far a finger may travel and still have tapped, in points. */
+const TAP_SLOP = 10;
+
+interface TapHandlers {
+  onPressIn: (e: GestureResponderEvent) => void;
+  onPress: (e: GestureResponderEvent) => void;
+}
+
+/**
+ * **A swipe across the card is never a tap on it** (2026-09-24, found
+ * swiping on the emulator: sideways flicks opened the story, then the share
+ * sheet under the next one). The deck's pan should cancel these presses when
+ * it claims a swipe, but a `Pressable` fires on any touch that ends inside it,
+ * and the card is the width of the screen: a swipe the pan claimed late, or
+ * not at all, became a press on whatever was under the finger. So a press
+ * counts only when the finger lifted near where it went down.
+ */
+function useTapOnly(action: () => void): TapHandlers {
+  const start = useRef({ x: 0, y: 0 });
+  const onPressIn = useCallback((e: GestureResponderEvent) => {
+    start.current = { x: e.nativeEvent.pageX, y: e.nativeEvent.pageY };
+  }, []);
+  const onPress = useCallback(
+    (e: GestureResponderEvent) => {
+      const dx = e.nativeEvent.pageX - start.current.x;
+      const dy = e.nativeEvent.pageY - start.current.y;
+      if (dx * dx + dy * dy > TAP_SLOP * TAP_SLOP) return;
+      action();
+    },
+    [action],
+  );
+  return useMemo(() => ({ onPressIn, onPress }), [onPressIn, onPress]);
+}
+
 const Veil = memo(function Veil({
   progress,
   open,
   lineHeight,
   color,
-  onOpen,
+  tap,
 }: {
   progress: SharedValue<number>;
   open: boolean;
   lineHeight: number;
   color: string;
-  onOpen: () => void;
+  tap: TapHandlers;
 }) {
   const height = Math.round(lineHeight * VEIL_LINES);
   // A view's own CSS gradient, not a Skia canvas: every card mounts one as a
@@ -151,7 +196,7 @@ const Veil = memo(function Veil({
       importantForAccessibility="no-hide-descendants"
       accessibilityElementsHidden
     >
-      <RNPressable style={styles.fill} onPress={onOpen} accessible={false}>
+      <RNPressable style={styles.fill} {...tap} accessible={false}>
         <View style={gradient} pointerEvents="none" />
         <View style={[styles.fill, { backgroundColor: color }]} />
       </RNPressable>
@@ -275,6 +320,7 @@ export const StoryCard = memo(function StoryCard({
   const hook = hookOf(sentences);
   const rest = restOf(sentences);
 
+  const openTap = useTapOnly(onOpen);
   const accessibilityActions = useMemo(
     () => [
       { name: 'activate', label: 'Read the whole story' },
@@ -306,21 +352,16 @@ export const StoryCard = memo(function StoryCard({
   // globe's hue where that is readable as 11pt caps and a deeper step of it
   // on cream, where it is not.
   //
-  // `884 reports` closes the line on a story over the most-covered bar
-  // (`coverageLabel`), in the ink step `new` uses, and the dock's track draws
-  // that story's cell taller and says the same in its tooltip. Words, not a
-  // shape: a coloured bar beside the kicker was tried for a day (2026-09-23)
-  // and not understood — reach is a word in every news app (Jakob's law).
-  // See `lib/coverage.ts` for why the unit is reports.
+  // No report count (2026-09-24, the user's request): `· 884 reports` closed
+  // the line for a day. See `lib/coverage.ts`.
   const categoryInk = categoryTextColor(article.category, colors);
   const age = formatTimeAgo(articleTime(article));
-  const reach = row.coverage;
-  const kicker = [meta, row.mark, reach].filter(Boolean).join(' · ');
+  const kicker = [meta, row.mark].filter(Boolean).join(' · ');
 
   return (
     <View style={styles.card}>
       <RNPressable
-        onPress={onOpen}
+        {...openTap}
         accessibilityRole="button"
         accessibilityLabel={`${[kicker, article.location].filter(Boolean).join(' · ')}. ${row.title}`}
         accessibilityHint="Opens the whole story"
@@ -335,13 +376,11 @@ export const StoryCard = memo(function StoryCard({
               </Text>
             ) : null}
             {article.category ? ` · ${age}` : age}
-            {[row.mark, reach].map((word) =>
-              word ? (
-                <Text key={word} variant="labelXs" tone="emphasis">
-                  {` · ${word}`}
-                </Text>
-              ) : null,
-            )}
+            {row.mark ? (
+              <Text variant="labelXs" tone="emphasis">
+                {` · ${row.mark}`}
+              </Text>
+            ) : null}
           </Text>
         </View>
         <Text variant="title" maxFontSizeMultiplier={MAX_FONT_SCALE.heading} style={styles.title}>
@@ -351,7 +390,7 @@ export const StoryCard = memo(function StoryCard({
 
       {/* The hook is a large, obvious target for "tell me more" — but not an
           accessibility element of its own: the sentence is read as text. */}
-      <RNPressable onPress={onOpen} accessible={false}>
+      <RNPressable {...openTap} accessible={false}>
         {hook}
       </RNPressable>
 
@@ -390,7 +429,7 @@ export const StoryCard = memo(function StoryCard({
               (mdStyles.sentence.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.body)
             }
             color={colors.sheetBg}
-            onOpen={onOpen}
+            tap={openTap}
           />
         ) : null}
       </View>
@@ -480,18 +519,36 @@ const StoryActions = memo(function StoryActions({
  * infinite feed should be willing to tell the reader they can stop, and a card
  * in the same place as the stories is where a reader swiping through them
  * will actually see it.
+ *
+ * **It says `caught up` only when it is true** (2026-09-24). A scrub to the
+ * end of the day skips everything between, and the card said `caught up`
+ * beside the dock's `‹ 18 new` — two claims about the same stories that
+ * could not both hold. It counts what the pill counts (`unreadNewBehind`).
  */
-export const EndCard = memo(function EndCard() {
+export const EndCard = memo(function EndCard({
+  fresh,
+  slugs,
+}: {
+  fresh?: readonly boolean[];
+  slugs?: readonly string[];
+}) {
+  const readSlugs = useReadSlugs();
+  const unread = useMemo(() => {
+    const read = slugs?.map((slug) => readSlugs.has(slug));
+    return unreadNewBehind(fresh, read, slugs?.length ?? 0).count;
+  }, [fresh, slugs, readSlugs]);
   return (
     <View style={styles.card}>
       <Text variant="labelXs" tone="emphasis" style={styles.kicker}>
-        caught up
+        {unread > 0 ? 'end of the day' : 'caught up'}
       </Text>
       <Text variant="title" style={styles.title}>
         That is today’s news.
       </Text>
       <Text variant="body" tone="secondary">
-        New stories arrive through the day.
+        {unread > 0
+          ? `${unread} new ${unread === 1 ? 'story is' : 'stories are'} still unread.`
+          : 'New stories arrive through the day.'}
       </Text>
     </View>
   );

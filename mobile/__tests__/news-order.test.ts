@@ -198,4 +198,11 @@ describe('leadWithTopStories', () => {
     const rows = buildStoryRows({ river, fresh: new Set(['n1', 'n2']), lead: 1 });
     expect(rows.map((r) => r.mark)).toEqual([null, 'new', 'new', 'earlier']);
   });
+
+  it('marks nothing new when every story is: there is nothing it is new beside', () => {
+    const river = [at('a', 1), at('b', 2), at('c', 3)];
+    const rows = buildStoryRows({ river, fresh: new Set(['a', 'b', 'c']) });
+    expect(rows.map((r) => r.mark)).toEqual([null, null, null]);
+    expect(rows.some((r) => r.fresh)).toBe(false);
+  });
 });

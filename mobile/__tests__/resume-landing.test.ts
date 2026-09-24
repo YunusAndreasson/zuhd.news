@@ -37,6 +37,14 @@ describe('unreadNewBehind', () => {
     expect(unreadNewBehind(fresh, read, 4)).toEqual({ count: 2, first: 0 });
   });
 
+  it('counts nothing when every story is new: nothing was had to compare with', () => {
+    expect(unreadNewBehind([true, true, true, true], [false, false, false, false], 3)).toEqual({
+      count: 0,
+      first: -1,
+    });
+    expect(unreadNewBehind(undefined, undefined, 3)).toEqual({ count: 0, first: -1 });
+  });
+
   it('ignores new stories still ahead of the reader', () => {
     expect(unreadNewBehind([false, true, true], [false, false, false], 1)).toEqual({
       count: 0,

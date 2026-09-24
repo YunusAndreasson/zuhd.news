@@ -1,3 +1,9 @@
+// `lib/arrival` → `lib/api-snapshots` keeps its ETags in kv-store, which ships
+// ES modules Jest does not transform; the suite failed to load without this.
+jest.mock('expo-sqlite/kv-store', () => ({
+  __esModule: true,
+  default: { getItemSync: jest.fn(() => null), setItemSync: jest.fn(), removeItemSync: jest.fn() },
+}));
 jest.mock('expo-task-manager', () => ({ defineTask: jest.fn() }));
 jest.mock('expo-background-task', () => ({
   BackgroundTaskResult: { Success: 1 },

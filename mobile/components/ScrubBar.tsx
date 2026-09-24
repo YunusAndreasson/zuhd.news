@@ -15,7 +15,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { RADIUS, SPACING } from '../constants/theme';
 import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
-import { MAX_SEGMENTS, segmentLayout } from '../lib/scrub-segments';
+import { segmentLayout } from '../lib/scrub-segments';
 import { Text } from './primitives';
 
 /** The thumb: a handle that reads as one without crowding a 3pt track. */
@@ -36,6 +36,21 @@ const MARK_HEIGHT = 9;
 /** A tall cell's height: a story among the most covered, rising from the track the
  *  way a histogram's bar rises from its axis. */
 const TALL_HEIGHT = 8;
+/**
+ * **Where you are is a playhead, never a taller cell** (2026-09-24, the
+ * user's report: height was confusing, and where they were was hard to find).
+ * The current story used to be its own cell raised a little in its hue —
+ * beside tall cells that rise for the most reported stories, so height meant
+ * two things and the most reported cell out-shouted the reader's own place.
+ * Every scrubber people know marks the position with a playhead, so this one
+ * does: a stem through the track under a head above it, in the loudest ink
+ * on the sheet. The head clears a tall cell, so the two never read as one.
+ */
+const PLAYHEAD_HEAD = 8;
+const PLAYHEAD_STEM = 2;
+/** From the track's midline up to the head's top, and down past the track. */
+const PLAYHEAD_UP = 15;
+const PLAYHEAD_DOWN = 5;
 /**
  * How a keyed track's cells move when the river changes under them: stories
  * arriving at the head push the rest along, and the clock re-measuring the
@@ -62,24 +77,9 @@ export interface PlacedCell {
 export interface TrackMark {
   at: number;
   label?: string;
-}
-
-/**
- * Where the current item's raised segment sits on a track `trackWidth` wide:
- * over its own segment, at least as wide as the track is tall, and never past
- * either end.
- */
-function activeSegmentFrame(
-  trackWidth: number,
-  count: number,
-  index: number,
-  height: number,
-): { left: number; width: number } {
-  const gap = count <= MAX_SEGMENTS ? SEGMENT_GAP : 0;
-  const segmentWidth = count > 0 ? (trackWidth - gap * (count - 1)) / count : 0;
-  const width = Math.max(height, segmentWidth);
-  const center = index * (segmentWidth + gap) + segmentWidth / 2;
-  return { left: Math.max(0, Math.min(trackWidth - width, center - width / 2)), width };
+  /** A word with no tick, set from `at` rather than centred on it: an end of
+   *  the track named (`now`), where a tick would cut the first cell. */
+  bare?: boolean;
 }
 
 /** Cells at their own places, over a hairline that is the rest of the track. */
@@ -229,7 +229,7 @@ interface ScrubBarProps
   interactive?: boolean;
   /** One segment per item, so a track of stories reads as stories. */
   segments?: number;
-  /** The current item, raised above the track so position does not rely on colour. */
+  /** The current item, marked by a playhead so position does not rely on colour. */
   activeSegment?: number;
   /** Full current-story hue, independent of the stable muted track palettes. */
   activeSegmentColor?: string;
@@ -299,13 +299,11 @@ export const ScrubBar = memo(function ScrubBar({
   ...accessibility
 }: ScrubBarProps) {
   const { width, shown, onLayout } = scrub;
-  // The raised segment moves when the current item changes, which React
-  // knows, so React places it, from a copy of the track's width. It was an
-  // animated style reading `activeSegment`, and once, after a cold start, it
-  // stayed on the first story while the card and the track's own label said
-  // the sixth, until the next step moved it. Why the updater missed that
-  // change was never pinned down; the segment never animates, so there was
-  // nothing to gain from letting it.
+  // The track's width for React: the marks' words are placed by it. (The
+  // current-story mark was once an animated style reading `activeSegment`
+  // and stayed on the first story after a cold start while the card said the
+  // sixth. The playhead reads `fraction`, which the owner writes from the
+  // deck's position — not the index — so that updater is not this one.)
   const [trackWidth, setTrackWidth] = useState(0);
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -341,47 +339,50 @@ export const ScrubBar = memo(function ScrubBar({
       transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
     };
   });
+  // **The playhead is what the finger picks up, and there is only one**
+  // (2026-09-24, the user's request). It rides `fraction` on the UI thread:
+  // the finger while a scrub holds the track, the deck's live position
+  // otherwise, so it also glides with a sideways swipe. The first version
+  // parked a second playhead at the committed story, placed by React: on a
+  // drop the finger's one faded out while the parked one faded in at the
+  // story being left — the new index had not reached React yet — and then
+  // slid over. It went back and forth twice on every drop.
+  const playheadStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      opacity: width.value > 0 ? 1 : 0,
+      transform: [{ translateX: fraction.value * width.value - PLAYHEAD_HEAD / 2 }],
+    };
+  });
   const placed = cells && cells.length === segments ? cells : null;
-  const movingCells = placed !== null && cellKeys?.length === placed.length;
-  // The raised current cell keeps its own story's height: tall if it is.
-  const activeHeight =
-    placed && activeSegment !== undefined
-      ? placedHeight(height, false, tall?.[activeSegment])
-      : height;
-  const activeCell = placed && activeSegment !== undefined ? placed[activeSegment] : undefined;
-  const active =
-    activeSegment !== undefined &&
-    activeSegment >= 0 &&
-    activeSegment < (segments ?? 0) &&
-    trackWidth > 0
-      ? activeCell
-        ? {
-            width: Math.max(height, activeCell.width),
-            left: activeCell.left + activeCell.width / 2 - Math.max(height, activeCell.width) / 2,
-          }
-        : placed
-          ? null
-          : activeSegmentFrame(trackWidth, segments ?? 0, activeSegment, height)
+  // `activeSegment === segments` is the end card: the playhead stays on the
+  // track at the last story rather than vanishing, which left the reader with
+  // no place on the day at all.
+  const playhead =
+    activeSegment !== undefined && activeSegment >= 0 && activeSegment <= (segments ?? 0)
+      ? (activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor)
       : null;
 
   const bar = (
     <View style={style} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
         {marks && markColor
-          ? marks.map((mark) => (
-              <View
-                key={`mark-${mark.at}`}
-                pointerEvents="none"
-                style={[
-                  styles.mark,
-                  {
-                    left: mark.at - 0.5,
-                    top: (height - MARK_HEIGHT) / 2,
-                    backgroundColor: markColor,
-                  },
-                ]}
-              />
-            ))
+          ? marks.map((mark) =>
+              mark.bare ? null : (
+                <View
+                  key={`mark-${mark.at}`}
+                  pointerEvents="none"
+                  style={[
+                    styles.mark,
+                    {
+                      left: mark.at - 0.5,
+                      top: (height - MARK_HEIGHT) / 2,
+                      backgroundColor: markColor,
+                    },
+                  ]}
+                />
+              ),
+            )
           : null}
         {placed ? (
           <>
@@ -423,13 +424,15 @@ export const ScrubBar = memo(function ScrubBar({
                   numberOfLines={1}
                   style={[
                     styles.markLabel,
-                    {
-                      top: height + MARK_LABEL_GAP,
-                      left: Math.max(
-                        0,
-                        Math.min(trackWidth - MARK_LABEL_WIDTH, mark.at - MARK_LABEL_WIDTH / 2),
-                      ),
-                    },
+                    mark.bare
+                      ? { top: height + MARK_LABEL_GAP, left: mark.at, textAlign: 'left' }
+                      : {
+                          top: height + MARK_LABEL_GAP,
+                          left: Math.max(
+                            0,
+                            Math.min(trackWidth - MARK_LABEL_WIDTH, mark.at - MARK_LABEL_WIDTH / 2),
+                          ),
+                        },
                   ]}
                 >
                   {mark.label}
@@ -444,29 +447,15 @@ export const ScrubBar = memo(function ScrubBar({
             </Animated.View>
           </Animated.View>
         ) : null}
-        {active && activeSegment !== undefined ? (
+        {playhead ? (
           <Animated.View
             pointerEvents="none"
-            // Placed by `left` where the cells move, so it moves with its own
-            // cell: by a transform it jumped to the story's new place while
-            // the cell under it was still easing there.
-            layout={movingCells ? CELL_MOVE : undefined}
-            style={[
-              styles.activeSegment,
-              {
-                width: active.width,
-                height: activeHeight + SPACING.xs,
-                top: height - activeHeight - SPACING.xs / 2,
-                ...(movingCells
-                  ? { left: active.left }
-                  : { transform: [{ translateX: active.left }] }),
-                backgroundColor:
-                  activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor,
-              },
-            ]}
-          />
-        ) : null}
-        {interactive ? (
+            style={[styles.playhead, { top: height / 2 - PLAYHEAD_UP }, playheadStyle]}
+          >
+            <View style={[styles.playheadStem, { backgroundColor: playhead }]} />
+            <View style={[styles.playheadHead, { backgroundColor: playhead }]} />
+          </Animated.View>
+        ) : interactive ? (
           <Animated.View
             pointerEvents="none"
             style={[styles.thumb, { top: (height - THUMB) / 2 }, thumbStyle]}
@@ -553,7 +542,25 @@ const styles = StyleSheet.create({
   mark: { position: 'absolute', width: 1, height: MARK_HEIGHT },
   markLabel: { position: 'absolute', width: MARK_LABEL_WIDTH, textAlign: 'center' },
   segmentGap: { marginRight: SEGMENT_GAP },
-  activeSegment: { position: 'absolute', left: 0, borderRadius: RADIUS.handle },
+  playhead: {
+    position: 'absolute',
+    left: 0,
+    width: PLAYHEAD_HEAD,
+    height: PLAYHEAD_UP + PLAYHEAD_DOWN,
+    alignItems: 'center',
+  },
+  playheadStem: {
+    position: 'absolute',
+    top: PLAYHEAD_HEAD / 2,
+    bottom: 0,
+    width: PLAYHEAD_STEM,
+    borderRadius: PLAYHEAD_STEM / 2,
+  },
+  playheadHead: {
+    width: PLAYHEAD_HEAD,
+    height: PLAYHEAD_HEAD,
+    borderRadius: PLAYHEAD_HEAD / 2,
+  },
   thumb: {
     position: 'absolute',
     left: 0,

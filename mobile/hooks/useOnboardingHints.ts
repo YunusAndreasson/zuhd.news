@@ -23,6 +23,16 @@ const DWELL_MS: Record<HintId, number> = {
 };
 
 /**
+ * **A hint leaves on its own** (2026-09-24). It used to stay until its gesture
+ * was performed, it was tapped, or a card was swiped — so a reader who
+ * scrubbed the track or only read had `tap a light on the globe` over the
+ * lower globe for minutes, covering the place names there. After this long
+ * on screen it goes for the rest of the session, without counting as
+ * dismissed: a later launch can still teach it, up to `MAX_HINT_SHOWS`.
+ */
+const HINT_VISIBLE_MS = 8_000;
+
+/**
  * Where the reader is, because a lesson only makes sense where its gesture
  * does something.
  *
@@ -58,14 +68,20 @@ function showable(state: OnboardingState, id: HintId): boolean {
  *  layer is hidden from the a11y tree, and the card's swipe has named
  *  accessibility actions (`next story`, `previous story`) that a screen reader
  *  already announces — a pill describing a finger gesture would be noise. */
-export function eligibleHint(state: OnboardingState, ctx: HintContext): HintId | null {
+export function eligibleHint(
+  state: OnboardingState,
+  ctx: HintContext,
+  /** Lessons that already timed out this session (`HINT_VISIBLE_MS`). */
+  rested: ReadonlySet<HintId> = new Set(),
+): HintId | null {
   if (ctx.screenReader) return null;
-  if (showable(state, 'swipe') && state.snapCount === 0) return 'swipe';
-  if (showable(state, 'globe')) return 'globe';
+  const ok = (id: HintId) => showable(state, id) && !rested.has(id);
+  if (ok('swipe') && state.snapCount === 0) return 'swipe';
+  if (ok('globe')) return 'globe';
   // The briefing's ▶ is an icon with no words, because a word would take the
   // gauges' room on a small phone. It is taught once, after the gestures
   // nobody can see.
-  if (showable(state, 'masthead')) return 'masthead';
+  if (ok('masthead')) return 'masthead';
   return null;
 }
 
@@ -114,8 +130,13 @@ export function useOnboardingHints(opts: {
     }
   }, [activeHint, activeStatus, offSurface, suppressed]);
 
+  // Lessons that timed out on screen this session; never persisted.
+  const [rested, setRested] = useState<ReadonlySet<HintId>>(() => new Set());
+
   const eligible =
-    ready && !suppressed && !activeHint ? eligibleHint(state, { screenReader, surface }) : null;
+    ready && !suppressed && !activeHint
+      ? eligibleHint(state, { screenReader, surface }, rested)
+      : null;
   const armId = eligible === 'swipe' && launchedViaPushRef.current ? null : eligible;
 
   // Arm after the dwell. `snapCount` in the deps restarts the countdown on
@@ -143,6 +164,18 @@ export function useOnboardingHints(opts: {
   snapCountRef.current = snapCount;
   const armIdRef = useRef(armId);
   armIdRef.current = armId;
+
+  // Timed out: gone for the session, and the next lesson waits for a swipe,
+  // as it does after a dismissal, rather than taking the pill's place 3 s on.
+  useEffect(() => {
+    if (!activeHint) return;
+    const timer = setTimeout(() => {
+      setRested((prev) => new Set(prev).add(activeHint));
+      setPausedAtSnapCount(snapCountRef.current);
+      setActiveHint(null);
+    }, HINT_VISIBLE_MS);
+    return () => clearTimeout(timer);
+  }, [activeHint]);
   const dismissActiveHint = useCallback(() => {
     const id = activeHintRef.current;
     // Pause only when there is a lesson to pause: one on screen or one

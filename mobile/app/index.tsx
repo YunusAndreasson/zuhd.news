@@ -101,13 +101,7 @@ import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
-import {
-  leadWithTopStories,
-  orderNewsRiver,
-  type RiverArticle,
-  recentRiver,
-  riverAnchor,
-} from '../lib/news-order';
+import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
   buildNowSurfaces,
   type LatLng,
@@ -441,13 +435,18 @@ export default function HomeScreen() {
   const pinStory = useCallback((slug: string) => {
     setPinnedSlugs((prev) => (prev.has(slug) ? prev : new Set(prev).add(slug)));
   }, []);
-  // Then the day's top stories to the front (`leadWithTopStories`): the most
-  // reported first, the rest of the day newest first behind them.
+  // **Plain time order, newest first — no top-stories lead** (2026-09-24, the
+  // user's request). For a day the most reported stories were moved to the
+  // front (`leadWithTopStories`, still in `news-order.ts`), but the track
+  // places every story at its own time, so swiping through them sent the
+  // playhead leaping across the day and back, and the user found the top
+  // stories confusing. Every swipe is one step on the track now; the most
+  // reported stories are its tall cells, a scrub away.
   // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` re-measures the window as stories age past a day while the app is open
-  const { river, lead: riverLead } = useMemo(() => {
-    const now = Date.now();
-    return leadWithTopStories(recentRiver(orderNewsRiver(grouped), now, pinnedSlugs), now);
-  }, [grouped, pinnedSlugs, tick]);
+  const river = useMemo(
+    () => recentRiver(orderNewsRiver(grouped), Date.now(), pinnedSlugs),
+    [grouped, pinnedSlugs, tick],
+  );
 
   const columns = useMemo(
     () => buildInstrumentCards({ trends, chokepoints, analysis, articles: river }),
@@ -535,8 +534,8 @@ export default function HomeScreen() {
 
   const fresh = useFreshSlugs();
   const storyRows = useMemo(
-    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug, lead: riverLead }),
-    [river, fresh, oddsLabelBySlug, riverLead],
+    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
+    [river, fresh, oddsLabelBySlug],
   );
   const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
 
@@ -1511,7 +1510,7 @@ export default function HomeScreen() {
     const end = riverAnchor(river, Date.now());
     return storyRows.map((row) => end - articleTime(row.article));
   }, [storyRows, river]);
-  const storyCoverage = useMemo(() => storyRows.map((row) => row.coverage), [storyRows]);
+  const storyMostCovered = useMemo(() => storyRows.map((row) => row.mostCovered), [storyRows]);
 
   const renderStory = useCallback(
     (index: number) => {
@@ -1522,7 +1521,11 @@ export default function HomeScreen() {
           row={row}
           odds={odds.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
-          open={storyOpen}
+          // Only the card in front is ever open. Handed to all three mounted
+          // cards, every open and close re-rendered the two off-screen
+          // neighbours with it (profiled 2026-09-24); a neighbour swiped in
+          // while reading takes it on landing, which re-renders it anyway.
+          open={storyOpen && index === frontIndex}
           progress={sheetProgress}
           onOpen={expandSheet}
           onNext={handleNextStory}
@@ -1550,6 +1553,7 @@ export default function HomeScreen() {
       resolvableEntityIds,
       sheetProgress,
       storyOpen,
+      frontIndex,
       storyRows,
     ],
   );
@@ -1664,9 +1668,9 @@ export default function HomeScreen() {
       storyCount === 0 ? (
         <EmptyState message="no stories yet" hint="New stories arrive through the day" />
       ) : (
-        <EndCard />
+        <EndCard fresh={storyFresh} slugs={storySlugs} />
       ),
-    [storyCount],
+    [storyCount, storyFresh, storySlugs],
   );
 
   const renderList = useCallback(
@@ -1731,7 +1735,7 @@ export default function HomeScreen() {
         timeAt={storyTimeAt}
         categoryAt={storyCategoryAt}
         ages={storyAges}
-        coverage={storyCoverage}
+        mostCovered={storyMostCovered}
         hues={storyHues}
         fresh={storyFresh}
         slugs={storySlugs}
@@ -1744,7 +1748,7 @@ export default function HomeScreen() {
       storyTimeAt,
       storyCategoryAt,
       storyAges,
-      storyCoverage,
+      storyMostCovered,
       storyHues,
       storyFresh,
       storySlugs,

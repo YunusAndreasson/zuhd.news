@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   GestureDetector,
@@ -155,6 +155,21 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   onCollapse,
 }: GlobeGestureLayerProps) {
   const turnable = enabled && !collapseMode;
+  // **Open and closed reach the gestures as shared values, not config**
+  // (2026-09-24, profiled). Every open and close of the story changes
+  // `enabled`/`collapseMode`, and a config that changes identity is pushed to
+  // the native side whole — three of them, one per gesture:
+  // `setGestureHandlerConfig` was 23 ms of an open's commit on the emulator.
+  // RNGH 3 takes `enabled` as a `SharedValue` and updates it on the UI thread
+  // with no push; the tap reads collapse mode from a ref, on JS, where it runs.
+  const turnableSV = useSharedValue(turnable);
+  const tapEnabledSV = useSharedValue(enabled || collapseMode);
+  const collapseRef = useRef(collapseMode);
+  useEffect(() => {
+    turnableSV.value = turnable;
+    tapEnabledSV.value = enabled || collapseMode;
+    collapseRef.current = collapseMode;
+  }, [turnable, enabled, collapseMode, turnableSV, tapEnabledSV]);
   // Header buttons and the story have their own gesture owners. Restrict the
   // native hit surface itself so their touches never reach the globe's pan,
   // pinch or tap recognizers (including the pan's flight-cancelling onBegin).
@@ -169,7 +184,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const handleTap = useCallback(
     (x: number, y: number, epoch: number) => {
       if (epoch !== requestEpoch.value) return;
-      if (collapseMode) {
+      if (collapseRef.current) {
         onCollapse?.();
         return;
       }
@@ -188,12 +203,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onImpact();
       onTap(result, epoch);
     },
-    [canvasTop, collapseMode, globeRef, onCollapse, onImpact, onTap, requestEpoch],
+    [canvasTop, globeRef, onCollapse, onImpact, onTap, requestEpoch],
   );
 
   const tapConfig = useMemo(
     () => ({
-      enabled: enabled || collapseMode,
+      enabled: tapEnabledSV,
       onDeactivate: ({
         absoluteX,
         absoluteY,
@@ -208,12 +223,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         scheduleOnRN(handleTap, absoluteX, absoluteY, requestEpoch.value);
       },
     }),
-    [collapseMode, enabled, handleTap, requestEpoch],
+    [tapEnabledSV, handleTap, requestEpoch],
   );
 
   const panConfig = useMemo(
     () => ({
-      enabled: turnable,
+      enabled: turnableSV,
       // Enough travel that a slightly imprecise tap is still a tap.
       minDistance: 6,
       // One finger. Competing gestures go to whichever activates first, and a
@@ -278,7 +293,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       clip,
       radius,
       reduceMotion,
-      turnable,
+      turnableSV,
       viewLat,
       viewLng,
     ],
@@ -295,7 +310,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const touchOffsetY = useSharedValue(0);
   const pinchConfig = useMemo(
     () => ({
-      enabled: turnable,
+      enabled: turnableSV,
       onTouchesDown: ({
         allTouches,
       }: {
@@ -404,7 +419,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       radius,
       reduceMotion,
       storyClip,
-      turnable,
+      turnableSV,
       viewLat,
       viewLng,
       zoomActive,

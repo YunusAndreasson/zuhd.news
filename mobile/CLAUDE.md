@@ -95,7 +95,7 @@ whole time; nothing said so.
   `toStoryIfHeld`). Taking it back mid-drag would snap the earth. The
   decision is made on the UI thread: a JS read of the camera blocks until
   the UI thread answers. **The app opens on the deck's index 0** — the
-  day's most reported story when there is a lead, else the newest — not on
+  newest story — not on
   the top instrument: at rest the card and the globe have to agree.
 - **The sheet is for news; the strip is for instruments.** `buildNowSurfaces`
   (`lib/now.ts`) builds both in one pass. The sheet's NOW block used to hold
@@ -191,19 +191,15 @@ whole time; nothing said so.
   first within each, so the track could be scrubbed to a category by colour —
   and the day's newest stories sat in four places, one at the head of each
   band, and a reader coming back could not tell whether anything had arrived.
-  - **The day's top stories lead it** (2026-09-23, the user's request: top
-    news at the top, as Apple News and Google News open). `leadWithTopStories`
-    (`lib/news-order.ts`, tested) moves up to `TOP_STORIES` (5) stories over
-    the report bar (`isMostCovered`, 400), inside the day, to the front, most
-    reported first; everything else stays newest first behind them. It is a
-    short lead and not a sort on purpose: three in five stories carry no
-    count and could never rise, and a sorted river would send the track's
-    marker all over the day on every swipe. On a quiet day there is no lead
-    and the river is plain time order. The track places each story by its
-    own time whatever its river position (`timeTrackLayout` sorts, then hands
-    back river order), so the first swipes hop to the top stories' times and
-    the rest run through the day; `buildStoryRows` looks for the `earlier`
-    boundary after the lead (`lead`), since the lead is out of time order.
+  - **No top-stories lead: the river is plain time order** (2026-09-24,
+    the user's request — "the top stories were confusing"). For a day
+    (09-23) `leadWithTopStories` moved up to five stories over the report
+    bar to the front. The track places every story at its own time, so
+    swiping through them sent the playhead leaping across the day — 16h,
+    20h, then back to now — and only after them did a swipe move one cell.
+    The function and its tests are still in `lib/news-order.ts`, unwired.
+    The most reported stories are the track's tall cells, one scrub away.
+    Do not bring a lead back without solving the track's jump first.
   - **New is decided by slug, never by `addedAt`** (`lib/fresh-store.ts`,
     tested). `addedAt` is a file mtime: one value per cycle, reset when a file
     is rewritten, and the live feed that day carried a story filed the day
@@ -218,18 +214,23 @@ whole time; nothing said so.
     2026-09-23: present on some cards and not others, they moved the
     coloured category word sideways from card to card as the reader swiped,
     so it now always starts at the text's edge (the user's request).
-    `· 884 reports` follows them for the same reason. The track has no mark for
+    The track has no mark for
     new: a 2pt rule over new stories' segments shipped on 2026-09-21 and was
     removed the next day at the user's request — a second row of dashes over
     the colours that added nothing the kicker and the pill did not already
     say. Do not bring it back. And when new stories the reader has not *read* sit
     behind the one in front — a resume or pull put them ahead of where they
-    were reading, or a scrub or a quick swipe skipped them — `‹ 3 new` leads
-    the dock and jumps to the newest of them. New stories still *ahead* of the
+    were reading, or a scrub or a quick swipe skipped them — `‹ 3 new` floats
+    over the track and jumps to the newest of them. New stories still *ahead* of the
     reader are not counted: they will reach them. Read is the track's rule
     (`read-store`, two seconds in front); the pill counted any story merely
     landed on until 2026-09-22, so a new story swiped past in a second stayed
-    bold on the track while the pill said nothing was left.
+    bold on the track while the pill said nothing was left. **When every
+    story in the day is new — a first launch, a day away — none is**
+    (`unreadNewBehind` for the pill, `buildStoryRows` for the kicker and the
+    screen reader's count, 2026-09-24): `‹ 15 new` only counted the stories
+    left of the reader's place and never went away, and `· new` sat on every
+    card.
 - **The globe is how the news is found.** Every story is a beacon in its
   category hue at its *place* (`lib/story-places.ts` merges stories within
   5 km, or one dateline within 120 km, as the web does), and tapping one
@@ -690,8 +691,7 @@ about what a card may say is about the card, not where it is shown.
   new stories against the feed it left with, so arrivals applied while away
   still get their toast.
 - **The dock's cells move rather than jump** when the river changes: keyed by
-  slug, with a 250 ms `LinearTransition` (`ScrubBar` `cellKeys`), and the raised
-  cell is placed by `left` so it moves with its own cell.
+  slug, with a 250 ms `LinearTransition` (`ScrubBar` `cellKeys`).
 - **The sheet's pan waits for a direction before it decides.** Its first
   update can carry `translationY === 0` (observed on every drag on the
   Android emulator), and ownership decided on that zero read as "not pulling
@@ -822,10 +822,25 @@ about what a card may say is about the card, not where it is shown.
     the app once.
   - **The dock is where you are in the day, under the thumb.** `StoryDock`,
     pinned to the screen's foot and not to the sheet, so it does not move
-    between rest and open: `(‹ 3 new) [track]`. The
-    track is a segmented bar — one segment per story, the one on the card
-    raised in its full hue — and a scrubber: drag to preview, lift or tap to
-    jump (`goToStory`). Its gesture, detents and tooltip are
+    between rest and open: `[track]`, with `‹ 3 new` floating over its left
+    end — never in the row, where it took the track's width and re-laid the
+    whole day under a scrub's finger (2026-09-24). The
+    track is a segmented bar — one segment per story — and a scrubber: drag
+    to preview, lift or tap to jump (`goToStory`).
+    - **Where you are is a white playhead, and it is what the finger picks
+      up** (2026-09-24, the user's report: height was confusing and their
+      place hard to find). The story in front used to be its own cell raised
+      in its hue, beside tall cells that rise for the most reported stories,
+      so height meant two things and a teal 400-report cell out-shouted the
+      reader's place. Now a stem-and-head playhead in `textEmphasis` marks
+      it, and height means reports only. It is **one** view riding
+      `fraction` on the UI thread — the finger under a scrub, the deck's
+      position otherwise — and a drop sends it straight to the chosen
+      story's centre. A second, React-placed playhead parked at the committed
+      story made every drop go back and forth twice: it faded in at the story
+      being left before the commit reached React, then slid over.
+    - **The left end says `now`.** Without it `6h` read as a clock time and
+      nothing said which end of the day was now. Its gesture, detents and tooltip are
     `hooks/useScrub.ts` + `components/ScrubBar.tsx`, shared with the briefing
     player's scrubber, so the two cannot drift apart.
     - **The track is the day, and the most reported stories stand taller**
@@ -837,24 +852,18 @@ about what a card may say is about the card, not where it is shown.
       through the same mapping so a tick never has an older story on its
       newer side. The finger lands on the nearest story, which can be hours
       from the finger in a quiet stretch — the tooltip says when it ran.
-    - **The report count is the one claim about reach** (`lib/coverage.ts`,
-      tested). A story whose `eventCoverage` — the news API's event-cluster
-      article count — is 400 or more gets an 8pt cell on the track, `· 884
-      reports` at the end of its kicker in the `new` ink step, and the same
-      words in the scrub tooltip. Only those stories print a count: about
-      three in five carry no figure (RSS origin), and a count on some
-      kickers and not others would make theirs read as zero. The unit is
-      `reports` — articles counted, syndication included — never `outlets`
-      or `sources`, which the data cannot support; and it is the figure when
-      the pipeline picked the story, not a live one. The bar is fixed on
+    - **The most reported stories stand taller, and no count is printed**
+      (`lib/coverage.ts`, tested). A story whose `eventCoverage` — the news
+      API's event-cluster article count — is 400 or more gets an 8pt cell on
+      the track and leads the river (`leadWithTopStories`). For a day
+      (2026-09-23) the kicker and the scrub tooltip also ended in `· 884
+      reports`; the user asked for it gone on 2026-09-24. Before the number
+      came `most covered`, `widely reported` (unclear), a coloured bar (not
+      understood) and `trending` (promises attention rising now, which the
+      figure does not measure). If a count returns: unit `reports`, never
+      `outlets`/`sources`, and only over the bar. The bar is fixed on
       purpose: ~90th percentile of the corpus, 0–8 a day, zero on a slow
-      day — a rank within the day would crown something every day. Worked
-      through with the user on 2026-09-23: `widely reported` read as
-      unclear, a coloured bar beside the kicker was not understood (no news
-      app marks reach with a shape — Jakob's law), `trending` promises
-      attention rising now, which the figure does not measure, and `most
-      covered` gave way to the number, which the user asked for as more
-      specific.
+      day — a rank within the day would crown something every day.
     - **The kicker has no dot; its category word is the colour**
       (2026-09-23, the user's request): `ECONOMY · 2H AGO · NEW` with
       `economy` in `categoryText*`. Those are the globe's hues in dark mode
@@ -919,6 +928,25 @@ about what a card may say is about the card, not where it is shown.
     track in the dock says there are more. A neighbour swiped in starts at
     `PEEK_OPACITY` (0.4) and comes up to full as it arrives; while a story is
     grown it fades out entirely (`peekFade`).
+  - **Quick flicks each count, and a swipe is never a tap** (2026-09-24,
+    found swiping on the emulator). A swipe's one-story cap is measured from
+    the *committed* story, not from where the finger caught the card: a
+    second flick early in the first's landing found the card still nearer the
+    story being left and stopped at the one already committed. The card
+    follows from the claim's 16pt threshold, not from the claiming event, so
+    a swipe whose events arrive in a burst keeps its travel. And the card's
+    three open targets (`useTapOnly` in `StoryCard`) count a press only when
+    the finger lifted within 10pt of where it went down — a full-width
+    `Pressable` fires on any touch that ends inside it, and flicks the pan
+    claimed late opened the story, then the share sheet.
+    Testing note: `adb shell input swipe` reports zero velocity and bursts its
+    events, so it loses swipes a finger would not; use argent's
+    `gesture-swipe`.
+  - **The end card says `caught up` only when it is true.** A scrub to the
+    end skips everything between; with unread new stories behind the reader
+    it reads `end of the day · 18 new stories are still unread` (the pill's
+    count, `unreadNewBehind`), and the playhead stays on the track's last
+    story instead of vanishing.
   - **A swipe lands where the card would come to rest.** `lib/deck-swipe.ts`
     projects the release with a deceleration rate instead of asking two
     questions (28% of the width, or 550 pt/s), capped at one story. The card
@@ -1090,6 +1118,18 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   `sources · save · share` when JS is next idle (`requestIdleCallback`) and
   its veil is a view's own `experimental_backgroundImage` gradient, not a Skia
   canvas — together about 15% off the median landing commit.
+- **Opening and closing the story re-renders only what shows it**
+  (2026-09-24, profiled on the emulator, dev build). Only the card in front
+  takes `open` (`renderStory`: `storyOpen && index === frontIndex`); handed to
+  all three mounted cards, every open and close re-rendered the two off-screen
+  neighbours. And the globe's gestures take `enabled` as a `SharedValue`
+  (`GlobeGestureLayer`): as a boolean in their configs, every open and close
+  changed three config identities and RNGH pushed each to the native side
+  whole (`setGestureHandlerConfig`, 23 ms of one open's commit). Measured:
+  1,645 → 1,258 fibers over the same eight gestures. The commit's wall time
+  sits inside the emulator's run-to-run spread (39–91 ms), so judge it on
+  hardware. Still open: Reanimated's `USE_COMMIT_HOOK_ONLY_FOR_REACT_COMMITS`
+  static flag (native rebuild, so a `runtimeVersion` bump and a store build).
 - **An inline object prop on `<MiniGlobe>` re-renders the globe.** The
   compiler caches it with the whole element, so it is rebuilt whenever that
   block is, and every globe render also makes Skia redraw on the JS thread,

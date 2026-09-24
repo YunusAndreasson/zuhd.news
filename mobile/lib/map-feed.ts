@@ -1,6 +1,6 @@
 import { getCoords } from '../components/globe/storyDots';
 import { articleTime, formatTimeAgo } from './article-utils';
-import { coverageLabel } from './coverage';
+import { isMostCovered } from './coverage';
 import type { RiverArticle } from './news-order';
 import type { LatLng } from './now';
 
@@ -26,10 +26,9 @@ export interface StoryRow {
   title: string;
   /** `politics · 2h ago`. Lowercase; the small-caps face does the rest. */
   meta: string;
-  /** `884 reports` on a story over the most-covered bar (`coverageLabel`),
-   *  else null: the end of the card's kicker, the tooltip over its taller
-   *  cell on the dock's track — one claim in two places. */
-  coverage: string | null;
+  /** Over the most-covered bar (`isMostCovered`): its cell on the dock's
+   *  track stands taller. The count itself is not printed. */
+  mostCovered: boolean;
   /**
    * The ink step before the meta line, or null.
    *
@@ -68,9 +67,15 @@ export function buildStoryRows({ river, fresh, odds, lead = 0 }: BuildStoryRowsI
   // `addedAt`: the question is "was this here last time you looked", and a
   // rewritten file's mtime says it was published a minute ago.
   let boundaryMarked = false;
+  // **When every story is new, none is** (2026-09-24). After a first launch
+  // or a day away the whole river is new, and `· new` on every card — and
+  // "43 new" of 43 to a screen reader — said nothing the day did not. New
+  // means new beside what the reader already had; the dock's pill follows
+  // the same rule (`unreadNewBehind`).
+  const allNew = river.length > 0 && river.every((article) => fresh.has(article.slug));
 
   return river.map((article, index) => {
-    const isFresh = fresh.has(article.slug);
+    const isFresh = !allNew && fresh.has(article.slug);
     let mark: StoryRow['mark'] = isFresh ? 'new' : null;
     // Suppress a boundary on the opening card: `earlier ·` there reads as
     // a label on that story rather than as a place the reader has reached.
@@ -88,7 +93,7 @@ export function buildStoryRows({ river, fresh, odds, lead = 0 }: BuildStoryRowsI
       title: article.title,
       meta: `${article.category} · ${formatTimeAgo(articleTime(article))}`,
       mark,
-      coverage: coverageLabel(article),
+      mostCovered: isMostCovered(article),
       fresh: isFresh,
       odds: odds?.get(article.slug) ?? null,
       coords: coords ? [coords[0], coords[1]] : null,

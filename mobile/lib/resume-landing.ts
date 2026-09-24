@@ -52,6 +52,12 @@ export function resumeLanding({
  * return toast both go there, so the two cannot send the reader to different
  * stories. New stories still ahead of the reader are not counted: they will
  * reach them.
+ *
+ * **When every story is new, none is counted** (2026-09-24). After a day
+ * away, or on a first launch, the whole river is new, and `‹ 15 new` only
+ * counted the stories left of the reader's place on the track — a number
+ * that said nothing the track does not, on a pill that would never go. New
+ * means new beside what the reader already had.
  */
 export function unreadNewBehind(
   fresh: readonly boolean[] | undefined,
@@ -60,6 +66,7 @@ export function unreadNewBehind(
 ): { count: number; first: number } {
   let count = 0;
   let first = -1;
+  if (!fresh?.some((isFresh) => !isFresh)) return { count, first };
   for (let i = 0; i < index; i++) {
     if (!fresh?.[i] || read?.[i]) continue;
     if (first < 0) first = i;

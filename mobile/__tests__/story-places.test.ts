@@ -28,7 +28,7 @@ function row(
     article,
     title: slug,
     meta: '',
-    coverage: null,
+    mostCovered: false,
     mark: null,
     fresh: false,
     odds: null,

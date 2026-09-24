@@ -12,7 +12,7 @@ import { straitMapChange, straitWeekChange } from '../../lib/strait-map';
 // rewrite exactly that pattern, so it must not run on this file.
 
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
-import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
+import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS, zoneAt } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
 import {
   BlendMode,
@@ -20,6 +20,7 @@ import {
   BlurStyle,
   Canvas,
   Circle,
+  createPicture,
   FontEdging,
   FontHinting,
   Group,
@@ -1324,6 +1325,34 @@ function recordEmptyPicture(): SkPicture {
   return frameRecorder.finishRecordingAsPicture();
 }
 const EMPTY_PICTURE = recordEmptyPicture();
+
+/**
+ * The zone at a place: its dateline's city, then its longitude where the
+ * country spans several (`zoneAt`), then the country's one zone. Every local
+ * time on the globe comes through here — the place label, and the time a tap
+ * on the place, a hotspot or a country reports — so a tap cannot print a
+ * different hour from the label beside it. Three of the four read the
+ * country's zone alone until 2026-09-24, so anywhere in the US read New
+ * York's time.
+ */
+function zoneFor(
+  country: string | null | undefined,
+  lat: number | null | undefined,
+  lng: number | null | undefined,
+  city?: string | null,
+): string | undefined {
+  // Strip diacritics so an accented dateline ("Culiacán", "São Paulo")
+  // matches the ASCII-keyed CITY_TZ table.
+  const cityKey = (city ?? '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  return (
+    (cityKey ? CITY_TZ[cityKey] : undefined) ??
+    zoneAt(country, lat, lng) ??
+    (country ? COUNTRY_TZ[country] : undefined)
+  );
+}
 
 /** Theme colours are a small fixed vocabulary; each is parsed once. */
 const parsedColors = new Map<string, SkColor>();
@@ -2738,20 +2767,53 @@ export const MiniGlobe = memo(function MiniGlobe({
     warpFor(framePictures.value.prevCam, liveCamera.value),
   );
 
-  const groundPicture = useDerivedValue(() => framePictures.value.ground);
   // **A landing sharpens; it does not snap.** Moving frames are drawn from
   // the coarse motion tier and a settled one from the resting tier, 2–4× the
   // points; drawn in one frame, every coastline and border on screen changed
   // shape the instant a swipe landed — "the map lines change from low res to
   // high res", which the user called glitchy (2026-09-23). Drawing moving
   // frames at the resting tier would cost that 2–4× on every frame of motion,
-  // so the settled ground fades in over the last moving one instead
+  // so the settled ground crossfades with the last moving one instead
   // (`GROUND_FADE_MS`). Nothing extra is drawn at rest: the old picture is
   // only read while the fade runs.
+  //
+  // **The fade is recorded into the pictures, never a `Group opacity`.**
+  // Skia's `drawPicture` takes no paint, so a group's opacity never reaches a
+  // `Picture`, and every layer of the ground is translucent — ocean, land,
+  // daylight, night. The first version faded the new ground in with a group
+  // opacity over the old one at full strength: the opacity did nothing, both
+  // grounds drew whole for 220 ms, every tint doubled, and each landing
+  // flashed (2026-09-24). Each ground is its own layer at its own alpha, so
+  // their inks never stack, and the layers exist only while the fade runs.
+  // The new one is *added* (`BlendMode.Plus`) onto the old, which sits alone
+  // on the canvas's transparent ground: `(1 − t)·old + t·new`, whole at every
+  // step. Laid over it instead, the two summed to `t + (1 − t)²` wherever
+  // they were solid — 75% at the midpoint, a dim where the flash had been.
   const groundFade = useSharedValue(1);
-  const prevGroundPicture = useDerivedValue(() =>
-    groundFade.value < 1 ? framePictures.value.prevGround : EMPTY_PICTURE,
-  );
+  const fadeLayer = (picture: SkPicture, alpha: number, add = false): SkPicture => {
+    'worklet';
+    return createPicture(
+      (canvas) => {
+        const paint = Skia.Paint();
+        paint.setAlphaf(alpha);
+        if (add) paint.setBlendMode(BlendMode.Plus);
+        canvas.saveLayer(paint);
+        canvas.drawPicture(picture);
+        canvas.restore();
+      },
+      Skia.XYWHRect(-width, -height, 3 * width, 3 * height),
+    );
+  };
+  const groundPicture = useDerivedValue(() => {
+    const t = groundFade.value;
+    const { ground, prevGround } = framePictures.value;
+    return t < 1 && prevGround !== EMPTY_PICTURE ? fadeLayer(ground, t, true) : ground;
+  });
+  const prevGroundPicture = useDerivedValue(() => {
+    const t = groundFade.value;
+    const { prevGround } = framePictures.value;
+    return t < 1 && prevGround !== EMPTY_PICTURE ? fadeLayer(prevGround, 1 - t) : EMPTY_PICTURE;
+  });
   const marksPicture = useDerivedValue(() => framePictures.value.marks);
   const labelsPicture = useDerivedValue(() => framePictures.value.labels);
   // The current story's dot holds still. It breathed for three cycles each time
@@ -3660,16 +3722,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           const loc = displayLocation(article?.location ?? null);
           if (loc) {
             let sub: string | undefined;
-            // Strip diacritics so an accented dateline ("Culiacán", "São Paulo")
-            // matches the ASCII-keyed CITY_TZ table; without this it falls
-            // through to the country zone — wrong for any city in a non-default
-            // zone (e.g. Sinaloa is UTC−7, not Mexico City's UTC−6).
-            const cityKey = (article?.location ?? '')
-              .toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '');
-            const tz =
-              CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
+            const tz = zoneFor(settledCountry, article?.lat, article?.lng, article?.location);
             if (tz) sub = formatLocalTime(tz) ?? undefined;
             dotLabel = { text: loc, sub, x: dot.x, y: dot.y, opacity: arcOpacity };
           }
@@ -5184,7 +5237,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (const z of frame.hotspotGlows) {
         if (isNear(x, y, z.x, z.y, 900)) {
           const name = z.countryName ?? '';
-          const tz = name ? COUNTRY_TZ[name] : undefined;
+          const tz = name ? zoneFor(name, z.lat, z.lng) : undefined;
           candidates.push({
             countryName: name,
             location: null,
@@ -5298,7 +5351,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
         const geoData = articleGeoRef.current[lastSettled.current];
         if (geoData?.countryName) {
-          const tz = COUNTRY_TZ[geoData.countryName];
+          const tz = zoneFor(geoData.countryName, geoData.lat, geoData.lng, geoData.location);
           candidates.push({
             countryName: geoData.countryName,
             location: displayLocation(geoData.location) ?? geoData.location,
@@ -5346,7 +5399,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           );
           if (feature) {
             const name = feature.properties?.name ?? '';
-            const tz = name ? COUNTRY_TZ[name] : undefined;
+            const tz = name ? zoneFor(name, lat, lng) : undefined;
             return {
               countryName: name,
               location: null,
@@ -5408,9 +5461,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             <Picture picture={prevGroundPicture} />
           </Group>
           <Group transform={warp}>
-            <Group opacity={groundFade}>
-              <Picture picture={groundPicture} />
-            </Group>
+            <Picture picture={groundPicture} />
 
             {/* Marks — hotspots, straits, exchanges, hazards, the country
             highlight, rivers, arcs, stories and the settled dot. */}

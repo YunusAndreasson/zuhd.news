@@ -18,16 +18,16 @@ import type { Article } from '@shared/types';
  *   the corpus's 90th percentile (median 111): 0–8 stories a day, usually two
  *   to four, and zero on a day nothing broke through.
  *
- * What the reader sees is the figure itself, `884 reports` (the user asked
- * for the number, 2026-09-23), and only on the stories over the bar:
- * printed everywhere, the three in five with no figure would read as zero.
- * The unit is `reports`, the newsroom word for an article, which is what is
- * counted — one wire story syndicated two hundred times is two hundred of
- * them — never `outlets` or `sources`, which would claim that many
- * newsrooms. It is the count when the pipeline picked the story, not a live
- * one. The words it replaced were `most covered`; before that
- * `widely reported` read as unclear, a coloured bar was not understood, and
- * `trending` promised attention rising now, which nothing here measures.
+ * **The figure is not printed** (2026-09-24, the user's request). For a day
+ * the kicker and the scrub tooltip ended in `884 reports`; before that the
+ * words were `most covered`, `widely reported` read as unclear, a coloured
+ * bar was not understood, and `trending` promised attention rising now,
+ * which nothing here measures. What the bar still does: it leads the river
+ * (`leadWithTopStories`) and stands a story's cell taller on the dock's
+ * track. If a count ever comes back, its unit is `reports` — one wire story
+ * syndicated two hundred times is two hundred of them — never `outlets` or
+ * `sources`, and only over the bar, or the three in five with no figure
+ * read as zero.
  *
  * Figures past `COVERAGE_CEILING` are dropped as the nonsense the corpus
  * occasionally holds (157,957 is not a number of reports); the real maximum
@@ -35,15 +35,6 @@ import type { Article } from '@shared/types';
  */
 export const MOST_COVERED = 400;
 const COVERAGE_CEILING = 20_000;
-
-/** `884 reports`, `1,907 reports`: the kicker's and the tooltip's words
- *  for a most-covered story, or null. Grouped by hand, not `toLocaleString`,
- *  which goes through ICU on Android. */
-export function coverageLabel(article: Pick<Article, 'eventCoverage'>): string | null {
-  if (!isMostCovered(article)) return null;
-  const n = Math.round(article.eventCoverage ?? 0);
-  return `${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} reports`;
-}
 
 export function isMostCovered(article: Pick<Article, 'eventCoverage'>): boolean {
   const c = article.eventCoverage;

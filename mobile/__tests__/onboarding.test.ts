@@ -271,6 +271,15 @@ describe('eligibleHint', () => {
     expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
   });
 
+  it('a lesson that timed out on screen rests for the session, and the next follows', () => {
+    const s = loadStore();
+    const h = loadHints();
+    s.recordArticleSnap();
+    expect(h.eligibleHint(s.getSnapshot(), map, new Set(['globe']))).toBe('masthead');
+    // Not dismissed: a later session, with nothing rested, teaches it again.
+    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+  });
+
   it('never teaches sources or bookmark — the grown card prints both as words', () => {
     const s = loadStore();
     const h = loadHints();
