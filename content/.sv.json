@@ -5469,7 +5469,131 @@
       "fingerprint": "96311880ed26f478",
       "recipe": "c57155146d50",
       "translatedAt": "2026-09-24T08:16:15.814Z"
+    },
+    "2026-09-24-ai-ceos-un-security-council-global-standards": {
+      "titel": "AI-chefer vill ha FN-regler",
+      "plats": "New York",
+      "stycken": [
+        "New York — AI-chefer bad säkerhetsrådet om regler.",
+        "Den [USA](country:US):s teknikrådgivare Michael Kratsios sade vid samma möte att Washington avvisar global styrning av AI.",
+        "OpenAI:s Sam Altman bad om gemensamma standarder för att mäta förmågor, bedöma risker, kontrollera efterlevnad och snabbt rapportera incidenter.",
+        "Besluten om AI-risker »kan inte ligga hos en handfull företag eller huvudstäder«, sade [Pakistan](country:PK)s vice premiärminister Ishaq Dar.",
+        "[Kinas](country:CN) Xi Jinping väntas diskutera huruvida AI ska regleras under ett besök i Washington den här veckan."
+      ],
+      "fingerprint": "ab037d966f66d2b4",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.805Z"
+    },
+    "2026-09-24-ai-discovers-crispr-like-enzyme-system": {
+      "titel": "Claude hittar enzymsystem",
+      "plats": "San Francisco",
+      "stycken": [
+        "San Francisco — Anthropic uppger att Claude har hittat ett CRISPR-liknande enzymsystem.",
+        "Liknande programmerbara system klipper, kopierar och klistrar in DNA, och flera utvecklas som verktyg.",
+        "Det bygger på ett omvänt transkriptas från en jättefag, plus en icke-kodande DNA-uppsättning och ett tillbehörsprotein som tidigare studier missat.",
+        "Anthropic uppger att funktionen är okänd, och fyndet redovisas i en preprint, inte i en granskad vetenskaplig tidskrift.",
+        "Anthropics nya grupp för livsvetenskap planerar laboratorieförsök för att testa vad systemet gör."
+      ],
+      "fingerprint": "3d77433bb39531b1",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.807Z"
+    },
+    "2026-09-24-classical-rsa-break-faster-attack": {
+      "titel": "RSA-förfalskning slår faktorisering",
+      "plats": "San Diego",
+      "stycken": [
+        "San Diego — Att förfalska en RSA-signatur krävde 1 380 kärnår.",
+        "Attacken sänker säkerheten hos 1024-bitars RSA från 2^80 operationer till 2^65 utan att faktorisera nyckeln.",
+        "Den kör en special number field sieve mot ett signeringsorakel, och fungerar därför bara på RSA med blind signatur, det vill säga textbokens-RSA.",
+        "Författarna betonar att RSA med PKCS- eller PSS-utfyllnad, den överväldigande majoriteten, inte är utsatt.",
+        "Privacy Pass, som används av Apple och Cloudflare, är det mest kända målet och kräver 2^43 signaturer från en komprometterad server."
+      ],
+      "fingerprint": "a3cbaecc50f2359d",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.807Z"
+    },
+    "2026-09-24-eu-ev-registrations-63-percent-chinese-brands": {
+      "titel": "Elbilsförsäljningen ökar kraftigt i EU",
+      "plats": "Bryssel",
+      "stycken": [
+        "Bryssel — Elbilar stod för 27,7 procent av försäljningen i EU i augusti.",
+        "Kinesiskägda koncerner ökade med 71 procent och säljer nu var nionde nya bil, medan Volkswagen, BMW och Mercedes-Benz backade med 1,1 procent.",
+        "Bensinen nådde 2,092 euro per liter och dieseln 2,226 euro under veckan från 21 september, kommissionens högsta nivåer sedan 2005.",
+        "EY:s Constantin Gall varnade för att elbilsförsäljningen »kan falla kraftigt om subventionerna upphör«.",
+        "Föreslagna batteriregler med »Made in Europe« kan lägga till omkring 2 100 euro på kostnaden för en elbil."
+      ],
+      "fingerprint": "43eff69adb0e0b63",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.807Z"
+    },
+    "2026-09-24-morocco-election-pam-leads-turnout-falls": {
+      "titel": "Palatsnära parti vinner Marocko",
+      "plats": "Rabat",
+      "stycken": [
+        "Rabat — Valdeltagandet sjönk till 38,02 procent, det lägsta i [Marocko](country:MA) sedan 2007.",
+        "Det palatsnära partiet Äkthet och modernitet vann 97 av 395 mandat, upp från 87.",
+        "Kungen utser premiärministern från det största partiet men behåller försvaret, utrikesfrågorna och den politiska inriktningen.",
+        "Vänsteralliansen anklagar valfusk med fyllda valurnor i Tanger och kräver omval.",
+        "Partiet har uteslutit den avgående premiärministerns Nationella samlingen av oberoende som koalitionspartner."
+      ],
+      "fingerprint": "86361eb6f4d58f07",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.807Z"
+    },
+    "2026-09-24-russia-strikes-ukraine-poland-starlink-sabotage": {
+      "titel": "Ryssland anfaller lantbruk i Charkiv",
+      "plats": "Charkiv",
+      "stycken": [
+        "Charkiv — Ett ryskt anfall dödade 6 lantarbetare som sorterade grönsaker.",
+        "Kievs räddningstjänst räknade 2 döda och 50 skadade civila anläggningar, däribland en förlossningsbyggnad.",
+        "[Rysslands](country:RU) nya jetdrivna drönare flyger snabbare och högre, och [Ukrainas](country:UA) robotar och jaktplan är för dyra för att användas mot dem.",
+        "»Vi behöver ballistiska robotar för att skydda liv«, sade Ukrainas president Volodymyr Zelenskyj.",
+        "[Polen](country:PL) kallar en brand vid en Starlink-station sabotage mot Ukrainas armé, och Kreml har inte kommenterat."
+      ],
+      "fingerprint": "4e27c69742ab2599",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:03.807Z"
+    },
+    "2026-09-24-uk-israel-arms-export-double-lock-no-suspensions": {
+      "titel": "Storbritannien ställer inte in fler licenser",
+      "plats": "London",
+      "stycken": [
+        "London — [Storbritannien](country:GB) har inte ställt in några fler licenser för vapenexport till Israel sedan den 8 september.",
+        "Utrikesminister Ed Miliband lovade en »dubbel spärr« som stoppar export som väsentligt bidrar till ockupationen av Palestina.",
+        "Handelsdepartementet uppgav för parlamentet att relevanta licenser redan hade ställts in på grund av [Israels](country:IL) agerande i Gaza, så inget nytt föll under kriterierna.",
+        "Delar till skolflygplan exporteras fortfarande till Israel, och handelsdepartementet anser att de inte väsentligt bidrar till ockupationen."
+      ],
+      "fingerprint": "6282d6d59e33404f",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:16.589Z"
+    },
+    "2026-09-24-ukraine-north-korean-pows-south-korea": {
+      "titel": "Ukraina skickar krigsfångar till Sydkorea",
+      "plats": "New York",
+      "stycken": [
+        "New York — Ukraina har skickat två nordkoreanska krigsfångar till Sydkorea.",
+        "[Sydkoreas](country:KR) medier rapporterar att båda männen, som togs till fånga i Kursk i januari 2025, ville hoppa av.",
+        "Zelenskyj hade väckt tanken på att byta ut dem mot ukrainska fångar hos [Nordkorea](country:KP), tills människorättsorganisationer varnade för att de skulle straffas.",
+        "Seouls utrikesministerium varken förnekade överföringen eller bekräftade detaljer och hänvisade till männens säkerhet.",
+        "Zelenskyj lämnade inga ytterligare uppgifter, och Seoul hänvisar till skydd av männens familjer som skäl till tystnaden."
+      ],
+      "fingerprint": "95e96b991d8107a8",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:16.589Z"
+    },
+    "2026-09-24-us-measles-worst-outbreak-since-1991": {
+      "titel": "USA:s värsta mässlingsår sedan 1991",
+      "plats": "Atlanta",
+      "stycken": [
+        "Atlanta — Fyra ovaccinerade personer i Pennsylvania har dött i mässling på några veckor.",
+        "[USA](country:US) har sitt värsta mässlingsår sedan 1991.",
+        "Smittskyddsmyndigheten CDC räknar med ett dödsfall, medan hälsominister Robert F. Kennedy Jr. ifrågasätter om mässlingen orsakade de fyra.",
+        "Internationella hälsomyndigheter avgör inom några veckor om USA förlorar sin status som mässlingsfritt land."
+      ],
+      "fingerprint": "7455da11d5905abd",
+      "recipe": "c57155146d50",
+      "translatedAt": "2026-09-24T12:11:16.589Z"
     }
   },
-  "generatedAt": "2026-09-24T08:16:15.823Z"
+  "generatedAt": "2026-09-24T12:11:16.603Z"
 }

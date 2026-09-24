@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "morocco-election-pam-leads-turnout-falls",
+      "label": "Monarchy-aligned PAM leads in Morocco election provisional results",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-morocco-election-pam-leads-turnout-falls"
+      ],
+      "eventUri": "eng-12034248",
+      "summary": "The palace-aligned Authenticity and Modernity Party took 97 of 395 seats, overtaking outgoing PM Aziz Akhannouch's RNI (66) as turnout fell. Lead with the seat count and the turnout drop. The mechanism: Morocco's parties rotate within limits set by the monarchy, which keeps real executive power, so a lower turnout reads as disengagement from a system where votes move coalitions but not policy. Note what happened to the Islamist PJD and who is likely to form the coalition.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Morocco",
+        "http://en.wikipedia.org/wiki/Authenticity_and_Modernity_Party",
+        "http://en.wikipedia.org/wiki/National_Rally_of_Independents",
+        "http://en.wikipedia.org/wiki/Justice_and_Development_Party_(Morocco)",
+        "http://en.wikipedia.org/wiki/Istiqlal_Party",
+        "http://en.wikipedia.org/wiki/Coalition_government",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Ceuta"
+      ]
+    },
+    {
+      "id": "russia-strikes-ukraine-poland-starlink-sabotage",
+      "label": "Russia's attacks on Ukraine kill six after Zelenskyy-Trump talks",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-russia-strikes-ukraine-poland-starlink-sabotage"
+      ],
+      "eventUri": "eng-12035329",
+      "summary": "Russian drone and missile strikes killed six people and hit Kyiv infrastructure hours after Zelenskyy met Trump at the UN. On the same day Poland called a fire at a Starlink ground station 'an act of sabotage' meant to cut internet access. Lead with the six dead, then the pattern: attacks on Ukraine escalate whenever diplomacy moves, and the war's infrastructure front is reaching NATO territory.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/United_Nations"
+      ]
+    },
+    {
+      "id": "ukraine-north-korean-pows-south-korea",
+      "label": "Zelenskyy says Ukraine sent two North Korean POWs to South Korea",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-ukraine-north-korean-pows-south-korea"
+      ],
+      "eventUri": "eng-12037270",
+      "summary": "Ukraine has sent two North Korean soldiers captured in Kursk to South Korea rather than back to Pyongyang, Zelenskyy told the UN. Lead with the precedent: prisoners of war transferred to a third country that treats them as its own citizens. The mechanism is Seoul's constitutional claim over all Koreans. Returning them would likely have meant punishment, and the transfer tests how the Geneva Conventions' repatriation rules deal with a soldier's right to refuse return.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Prisoner_of_war",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly"
+      ]
+    },
+    {
+      "id": "uk-israel-arms-export-double-lock-no-suspensions",
+      "label": "UK sanctions on Israel result in no extra arms export suspensions",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-uk-israel-arms-export-double-lock-no-suspensions"
+      ],
+      "eventUri": null,
+      "summary": "Ed Miliband's 'double lock' on arms exports to Israel has led to no additional licence suspensions, so the flow of weapons is unchanged. Lead with the zero. The mechanism is a policy announced as restraint that leaves the existing licences, including F-35 components routed through the global pool, untouched. Name who holds the licences. The writer should anchor every figure to published UK export-licence data rather than the outlet's framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-drug-certification-venezuela-colombia-bolivia",
+      "label": "The InSight Take: US Drug Certification: Law Enforcement or Politics?",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-us-drug-certification-venezuela-colombia-bolivia"
+      ],
+      "eventUri": null,
+      "summary": "Washington took Venezuela off its drug 'majors' blacklist while Colombia and Bolivia stay on it, the reverse of where the cocaine actually flows. Lead with that inversion. The mechanism: the annual certification decides aid and sanctions, so it works as a political lever rather than a law-enforcement finding. This connects to Trump's meeting with Maduro's deputy and to a more militarized US counternarcotics policy in Latin America.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-ev-registrations-63-percent-chinese-brands",
+      "label": "EU electric car registrations jump 63% as Chinese brands gain ground",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-eu-ev-registrations-63-percent-chinese-brands"
+      ],
+      "eventUri": "deu-2178371",
+      "summary": "EU electric car registrations rose 63% year on year in August as fuel prices hit records after the US war on Iran, and Chinese brands took most of the gain while German carmakers lagged. Lead with the 63%. The mechanism is an oil shock acting as an EV subsidy. Carbon Brief finds UK diesel up 38% since February, which makes an EV up to nine times cheaper per mile to drive. The structural point is that Beijing, not Stuttgart, is capturing Europe's switch.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Electric_car",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Car",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Plug-in_hybrid",
+        "http://en.wikipedia.org/wiki/Gasoline"
+      ]
+    },
+    {
+      "id": "southern-africa-green-steel-namibia-zimbabwe",
+      "label": "Can Southern African nations build greener industry together?",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-southern-africa-green-steel-namibia-zimbabwe"
+      ],
+      "eventUri": null,
+      "summary": "Namibia, South Africa and Zimbabwe have iron ore, renewable power and industrial capacity between them, enough to make green iron and steel at home instead of shipping raw ore abroad. Lead with the value-capture gap between exporting ore and exporting low-carbon steel. The mechanism is green hydrogen plus a regional grid, and the obstacles are finance, transmission and Europe's carbon border tax. Treat the African states as the actors deciding this.",
+      "conceptUris": []
+    },
+    {
+      "id": "vietnam-agricultural-export-traceability",
+      "label": "Beyond the QR code: Vietnam's push for traceable agricultural exports",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-vietnam-agricultural-export-traceability"
+      ],
+      "eventUri": null,
+      "summary": "Vietnam is building traceability systems for its coffee, rice and durian exports, but a QR code on a sack means little unless the data works across borders. Lead with what the exports are worth and which buyers' rules (the EU deforestation regulation, China's customs) are forcing the change. The mechanism: compliance data is becoming a trade barrier, and smallholders carry the cost.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-measles-worst-outbreak-since-1991",
+      "label": "One of the most contagious diseases on the planet is having its worst U.S. outbreak since 1991",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-us-measles-worst-outbreak-since-1991"
+      ],
+      "eventUri": null,
+      "summary": "US measles cases have passed every year since 1991, and there have been deaths. Lead with the case count against the 1991 benchmark. The mechanism is vaccination coverage falling below the roughly 95% herd-immunity threshold, alongside federal health leadership that has sent mixed messages on MMR. A country that declared measles eliminated in 2000 risks losing that status.",
+      "conceptUris": []
+    },
+    {
+      "id": "decentralized-car-t-production-cost-access",
+      "label": "Decentralized CAR-T production: clinical, economic, and regulatory perspectives. Worldwide Network for Blood & Marrow Transplantation (WBMT) special article - Bone Marrow Transplantation",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-decentralized-car-t-production-cost-access"
+      ],
+      "eventUri": null,
+      "summary": "CAR-T cell therapy cures some blood cancers, but centralized manufacturing makes it cost hundreds of thousands of dollars per patient, which puts it out of reach in most of the world. The WBMT's special article in Bone Marrow Transplantation sets out the clinical, economic and regulatory case for making the cells at the hospital. Lead with the price gap, and use the examples from India and Brazil. The mechanism: moving production to the point of care removes the costs of the supply chain.",
+      "conceptUris": []
+    },
+    {
+      "id": "classical-rsa-break-faster-attack",
+      "label": "There's a new way to break RSA that's faster than anything we've seen before",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-classical-rsa-break-faster-attack"
+      ],
+      "eventUri": null,
+      "summary": "New research shows a method on ordinary classical computers that attacks RSA faster than any known approach, so the threat no longer depends on quantum computing arriving. Lead with the speedup and which key sizes and uses (signatures, forgery) it affects. The mechanism is the maths the attack exploits. Consequence: post-quantum migration deadlines set for 2030 and later may already be too late for anyone still relying on RSA.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-ceos-un-security-council-global-standards",
+      "label": "OpenAI, Anthropic bosses push UN for global terms on AI",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-ai-ceos-un-security-council-global-standards"
+      ],
+      "eventUri": "eng-12036793",
+      "summary": "The heads of OpenAI, Anthropic and Hugging Face asked the UN Security Council for common international AI risk-evaluation standards, in the same week Washington rejected UN oversight of AI. Lead with that split: the companies are asking for global rules that their own government refuses. Explain what shared evaluation would mean in practice, and who sets the rules if the UN does not. Dawn's Pakistani perspective gives the Global South view of governance written by the companies that build the models.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_Nations_Security_Council",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "ai-discovers-crispr-like-enzyme-system",
+      "label": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+      "firstSeen": "2026-09-24T12:04:18.422Z",
+      "lastCovered": "2026-09-24T12:04:18.422Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-ai-discovers-crispr-like-enzyme-system"
+      ],
+      "eventUri": null,
+      "summary": "Anthropic says its model identified a previously unknown bacterial enzyme system with CRISPR-like repeats. The AI proposed the discovery and humans verified it. Lead with what was found and how much of the work the model did compared with the lab. Readers should see the caveat: this is a company announcement, so the writer must state what independent or peer-reviewed validation exists. The structural question is whether AI is becoming a discoverer in biology, not just a tool.",
+      "conceptUris": []
+    },
+    {
       "id": "pakistan-airstrikes-afghanistan-drone-sites",
       "label": "Pakistan Strikes Afghanistan, Accuses Kabul of Drone Attacks",
       "firstSeen": "2026-09-24T08:07:59.977Z",
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-pakistan-airstrikes-afghanistan-drone-sites"
@@ -33,7 +286,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-trump-nuclear-test-order-russia-moratorium"
@@ -49,7 +302,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-imran-khan-sisters-preventive-detention-lahore-high-court"
@@ -65,7 +318,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-el-rufai-icpc-detention-kaduna-former-governor"
@@ -81,7 +334,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-global-bond-yields-4-percent-highest-since-2007"
@@ -106,7 +359,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-rubio-jaishankar-sanctions-law-india-energy"
@@ -131,7 +384,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-madrid-eviction-87-year-old-housing-crisis"
@@ -156,7 +409,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-us-stablecoin-dollar-dominance-emerging-markets-imf"
@@ -172,7 +425,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-gambia-central-bank-non-gambian-bank-staff-ecowas"
@@ -188,7 +441,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-cairngorms-aerial-maps-native-woodland-recovery"
@@ -204,7 +457,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-statins-diabetes-drugs-retinal-vein-occlusion-meta-analysis"
@@ -220,7 +473,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-ai-coding-quantum-safe-bitcoin-transaction-cost-66"
@@ -236,7 +489,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-saxavord-launch-rail-scrapped-rfa-esa-funding"
@@ -252,7 +505,7 @@
       "lastCovered": "2026-09-24T08:07:59.977Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-24-schneider-electric-shelly-takeover-smart-home"
@@ -268,7 +521,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-openai-agent-australia-medicare-portal-breach"
@@ -293,7 +546,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-ukraine-iran-sybiha-araghchi-de-escalation-talks"
@@ -318,7 +571,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-board-of-peace-gaza-recovery-plan-2-45bn"
@@ -343,7 +596,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-icc-convicts-seleka-said-crimes-against-humanity"
@@ -368,7 +621,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-turkey-bashiqa-base-handover-iraq"
@@ -393,7 +646,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-south-africa-us-travel-sanctions-pretoria-puzzled"
@@ -409,7 +662,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-pezeshkian-unga-brent-102-india-markets"
@@ -425,7 +678,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-malaysia-mihas-halal-trade-target"
@@ -441,7 +694,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-fbi-remote-operations-unit-exposed-shinyhunters"
@@ -457,7 +710,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-meta-camera-free-ai-glasses-privacy"
@@ -482,7 +735,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-24-biology-quantumlike-math"
@@ -498,7 +751,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-putin-g20-miami-invitation-kremlin-considering"
@@ -523,7 +776,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sheinbaum-lula-leftist-isolation-brazil-vote"
@@ -548,7 +801,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-southern-syria-villagers-israeli-occupation-damascus-absent"
@@ -564,7 +817,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-durban-kwamakhutha-mass-shooting-eleven-killed"
@@ -589,7 +842,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-bolivia-paz-cerimedo-maga-operative-distance"
@@ -605,7 +858,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-eagle-hills-maldives-12-billion-waterfront-gulf-capital"
@@ -621,7 +874,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-china-carbon-market-financial-institutions-trading"
@@ -637,7 +890,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-glp1-contraband-paraguay-brazil-smuggling"
@@ -653,7 +906,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-openai-gpt-6-sol-luna-release"
@@ -669,7 +922,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-ofcom-aylo-pornhub-apple-age-signal-investigation"
@@ -685,7 +938,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-south-africa-digital-public-infrastructure-estonia-model"
@@ -701,7 +954,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-boron-allotrope-million-times-conductive"
@@ -717,7 +970,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-fda-panel-grail-galleri-multi-cancer-blood-test"
@@ -733,7 +986,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sharaa-unga-golan-israel-withdrawal-syria"
@@ -758,7 +1011,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-ethiopia-seven-group-rebel-alliance-abiy"
@@ -783,7 +1036,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-white-house-press-pool-ban-women-journalists"
@@ -808,7 +1061,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-azerbaijan-pardon-french-prisoner-usmanov-delisting"
@@ -833,7 +1086,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-pti-long-march-islamabad-kp-afridi-protest-right"
@@ -849,7 +1102,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-microsoft-10bn-gulf-cloud-ai-resilience"
@@ -865,7 +1118,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nigeria-ima-gas-800m-fid-amni"
@@ -881,7 +1134,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-india-fssai-action-amazon-swiggy-zepto-misbranding"
@@ -906,7 +1159,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-springfield-flock-cameras-council-arrest"
@@ -922,7 +1175,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nhtsa-probe-aftermarket-driver-assist-crashes"
@@ -938,7 +1191,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-magnetic-field-aging-fruit-flies-study"
@@ -954,7 +1207,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-30x30-biodiversity-target-off-track-cop17"
@@ -970,7 +1223,7 @@
       "lastCovered": "2026-09-24T04:02:52.399Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-23-trump-xi-summit-ai-safety-deal",
@@ -996,7 +1249,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-venezuela-debt-restructuring-energy-deals-new-york"
@@ -1021,7 +1274,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-uk-channel-dinghy-knife-activist-anti-migrant-protest"
@@ -1046,7 +1299,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-oecd-outlook-ai-investment-energy-shock-2027"
@@ -1071,7 +1324,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-diesel-export-ban-importers-australia-fuel"
@@ -1096,7 +1349,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-atiku-abubakar-five-international-corruption-cases"
@@ -1112,7 +1365,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-florida-armed-incursion-cuba-five-dead-investigation"
@@ -1128,7 +1381,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-israeli-drone-strike-southern-gaza-ceasefire-killings"
@@ -1144,7 +1397,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-guatemala-sierra-lacandon-organised-crime-deforestation"
@@ -1160,7 +1413,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-meningitis-outbreak-bacteria-stole-microbiome-genes"
@@ -1176,7 +1429,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-small-undersea-volcanoes-outsized-tsunamis"
@@ -1192,7 +1445,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-europe-report-17000-satellites-orbital-collision-risk"
@@ -1208,7 +1461,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-china-rejects-ai-slowdown-amodei-us-lead"
@@ -1233,283 +1486,13 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-gallup-ai-worried-west-paradox-global-survey"
       ],
       "eventUri": null,
       "summary": "A new Gallup global study finds what it calls the 'Paradox of the Worried West': wealthy countries with the most daily AI users are the most pessimistic about AI's effect on the future, while users in lower-income countries are more optimistic. Lead with that inversion. Then explain what drives it, whether that is exposure to job displacement, the concentration of AI benefits, or differences in expectations. Give the country-level figures, especially for Muslim-majority and Global South countries if Gallup reports them.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-nino-heat-deaths-450000-forecast",
-      "label": "El Niño heat could kill half a million people by February | New Scientist",
-      "firstSeen": "2026-09-23T04:12:16.589Z",
-      "lastCovered": "2026-09-24T04:02:52.399Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-09-23-el-nino-heat-deaths-450000-forecast",
-        "2026-09-24-super-el-nino-pakistan-drought-451000-deaths"
-      ],
-      "eventUri": "por-1333638",
-      "summary": "Climate scientists estimate about 450,000 heat deaths worldwide by February from the record El Niño, using mortality from past temperature extremes. Lead with the number and the method. Explain who dies: people without air conditioning, mostly in the tropics and the Global South. The scientists say they are publishing so governments act now, which makes this a forecast that can still be changed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/El_Niño",
-        "http://en.wikipedia.org/wiki/Temperature",
-        "http://en.wikipedia.org/wiki/Drought",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://en.wikipedia.org/wiki/Nigeria",
-        "http://en.wikipedia.org/wiki/Pacific_Ocean"
-      ]
-    },
-    {
-      "id": "eu-delists-usmanov-fridman-sanctions",
-      "label": "Ukraine anger as EU removes Russian oligarchs from sanctions list",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-eu-delists-usmanov-fridman-sanctions"
-      ],
-      "eventUri": "eng-12031434",
-      "summary": "Advances the 2026-09-21 renewal-deadline story: the price of unanimity was delisting Alisher Usmanov and Mikhail Fridman, over a last-minute Zelensky appeal. Lead with the trade — two of the best-known oligarchs walk free so the rest of the regime survives — and explain the mechanism: every six-monthly renewal needs all 27, so one holdout can ransom the list. Note which states pushed (Hungary/Slovakia) and what court rulings on 'insufficient evidence' did to the case.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Alisher_Usmanov",
-        "http://en.wikipedia.org/wiki/Mikhail_Fridman",
-        "http://en.wikipedia.org/wiki/Latvia",
-        "http://en.wikipedia.org/wiki/Luxembourg",
-        "http://en.wikipedia.org/wiki/Ukraine"
-      ]
-    },
-    {
-      "id": "india-election-commission-sir-voter-deletions-dissent",
-      "label": "'One-man autocracy'? How 'illegal' deletions hit 13 crore voters during SIR; EC plays down expose",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-india-election-commission-sir-voter-deletions-dissent"
-      ],
-      "eventUri": "eng-12034561",
-      "summary": "An Indian Express investigation found two of India's three election commissioners objected at least 14 times to decisions in the Special Intensive Revision, the roll purge that touched some 130 million voters. Lead with the scale and the internal dissent the Chief Election Commissioner overrode; the mechanism is a three-member body where the chief can act alone. Ask who is disproportionately struck off — migrants, the poor, and Muslims in border states have been the documented targets of past citizenship-document drives.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/The_Indian_Express",
-        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
-        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
-        "http://en.wikipedia.org/wiki/Electoral_roll",
-        "http://en.wikipedia.org/wiki/Sukhbir_Singh_Badal",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/New_Delhi"
-      ]
-    },
-    {
-      "id": "pakistan-dar-indus-waters-treaty-india-arbitration",
-      "label": "India cannot 'set aside' international obligations when inconvenient, says Dar on New Delhi's unilateral move against IWT",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-pakistan-dar-indus-waters-treaty-india-arbitration"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's foreign minister Ishaq Dar says a court of arbitration has reaffirmed that the Indus Waters Treaty remains in force despite India's unilateral suspension. Lead with the stakes: the Indus system feeds most of Pakistan's irrigated farmland, and upstream control is leverage over 240 million people. Mechanism: the 1960 treaty has no exit clause, and India boycotts the arbitration that just ruled against it — explain what enforcement, if any, exists.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-delcy-rodriguez-venezuela-unga-meeting",
-      "label": "Trump meets Venezuela's Rodriguez in first face-to-face talks since Maduro's capture",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-trump-delcy-rodriguez-venezuela-unga-meeting"
-      ],
-      "eventUri": "eng-12031848",
-      "summary": "Trump sat down with Venezuela's interim leader Delcy Rodríguez at UNGA, their first meeting since US forces seized Maduro — with senior officials alongside, signalling Washington treats her as its interlocutor. Lead with the reversal: Maduro's own vice-president now negotiating with the power that captured him. The mechanism to highlight is oil — who gets licences to the world's largest proven reserves — and what Venezuelans get in return.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Venezuela",
-        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/Nicolás_Maduro",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "curtis-probe-trump-jr-foreign-business",
-      "label": "US Republican calls for probe into Donald Trump Jr's business dealings",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-curtis-probe-trump-jr-foreign-business"
-      ],
-      "eventUri": "eng-12031920",
-      "summary": "Utah Republican Senator John Curtis broke ranks to call for a congressional investigation into Donald Trump Jr's foreign business dealings — a rare intra-party accountability move. Lead with the precedent: Republicans subpoenaed Hunter Biden on the same theory. Name the dealings at issue and explain what a Senate probe can compel.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Donald_Trump_Jr.",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Russian_oligarch",
-        "http://en.wikipedia.org/wiki/Hunter_Biden",
-        "http://en.wikipedia.org/wiki/Subpoena",
-        "http://en.wikipedia.org/wiki/United_States_Senate_Committee_on_the_Judiciary"
-      ]
-    },
-    {
-      "id": "airtel-money-london-ipo-africa-mobile-money",
-      "label": "Airtel Africa's mobile money arm to file for delayed London IPO - AOL",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-airtel-money-london-ipo-africa-mobile-money"
-      ],
-      "eventUri": "eng-12028707",
-      "summary": "Airtel Money, which moves payments for tens of millions across 14 African countries, will file for its long-delayed London IPO. Lead with what it is: a phone-based bank for people formal banks never served, now being priced by City investors. Mechanism: why list in London rather than Lagos or Nairobi, and who captures the value — African users or foreign shareholders. Also a test of London's listing drought.",
-      "conceptUris": []
-    },
-    {
-      "id": "japan-child-nisa-household-savings-investment",
-      "label": "Child NISA: Japan's attempt to redirect Asia's generational wealth",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-japan-child-nisa-household-savings-investment"
-      ],
-      "eventUri": null,
-      "summary": "Japan is extending its tax-free NISA investment accounts to children, trying to move a nation of cash savers — trillions sitting in near-zero-yield deposits — into equities. Lead with the scale of idle household cash and the mechanism: tax exemption as a nudge to shift risk from state pensions onto families. Note what it means for an ageing society and whether it pulls savings abroad.",
-      "conceptUris": []
-    },
-    {
-      "id": "coinbase-fixed-rate-usdc-bitcoin-loans",
-      "label": "Coinbase users can now borrow USDC against bitcoin at a fixed rate",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-coinbase-fixed-rate-usdc-bitcoin-loans"
-      ],
-      "eventUri": "eng-12033362",
-      "summary": "Coinbase now offers fixed-rate USDC loans against bitcoin, alongside a variable-rate book already holding $1.4 billion in loans on nearly $3 billion of collateral. Lead with the number: crypto's biggest US exchange is becoming a bank. Mechanism: fixed rates remove rate surprise but not liquidation risk when bitcoin falls. Link to the ECB/MiCA ban on stablecoin lending covered yesterday — the US and EU are diverging on the same product.",
-      "conceptUris": []
-    },
-    {
-      "id": "aspen-lenacapavir-hiv-prevention-south-africa",
-      "label": "Is Aspen right to abandon lenacapavir for an unproven HIV prevention pill?",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-aspen-lenacapavir-hiv-prevention-south-africa"
-      ],
-      "eventUri": null,
-      "summary": "Aspen, Africa's largest drugmaker, has dropped plans to make generic lenacapavir — the twice-yearly injection that prevented nearly all HIV infections in trials — to bet on an unproven prevention pill. Lead with the stakes in South Africa, which has the world's largest HIV epidemic. Mechanism: Gilead's licensing terms and generic economics decide which African patients get the best tool, and when.",
-      "conceptUris": []
-    },
-    {
-      "id": "italy-5-billion-lunar-habitat-astronaut-seats",
-      "label": "Italy to Spend Over $5 Billion to Send Two Astronauts to the Moon",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-italy-5-billion-lunar-habitat-astronaut-seats"
-      ],
-      "eventUri": null,
-      "summary": "NASA's Isaacman says Italy committed over $5 billion to build a lunar habitat for NASA's Moon Base, buying two seats for Italian astronauts on the surface. Lead with the price per seat. Follow-up to yesterday's Isaacman 'good deals' with partners piece: this is the model in action — allies pay for hardware, the US keeps the programme. Ask what Italy gets beyond flags and footprints.",
-      "conceptUris": []
-    },
-    {
-      "id": "sea-turtle-nest-california-first-west-coast",
-      "label": "Agency says sea turtle eggs laid on California beaches are a first for the US West Coast",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-sea-turtle-nest-california-first-west-coast"
-      ],
-      "eventUri": null,
-      "summary": "A sea turtle laid eggs on a Southern California beach — the first recorded nesting on the US West Coast. Lead with the first. Mechanism: nesting follows sand and water temperature, and this year's super El Niño has pushed warm water north — a visible range shift. Note that turtle sex is set by nest temperature, so warming changes populations, not just where they nest.",
-      "conceptUris": []
-    },
-    {
-      "id": "apple-intelligence-reenabled-without-consent",
-      "label": "I said no and Apple said yes",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-apple-intelligence-reenabled-without-consent"
-      ],
-      "eventUri": null,
-      "summary": "A developer documents Apple re-enabling Apple Intelligence after he explicitly declined it — 818 points and 665 comments on Hacker News. Lead with the consent failure: an OS update that overrides a user's 'no' on an AI feature. Mechanism: default-on settings after updates are how platforms grow AI adoption numbers; connect to GDPR/DMA consent rules and verify what Apple has said.",
-      "conceptUris": []
-    },
-    {
-      "id": "xrp-ledger-delegation-amendment-fee-drain-flaw",
-      "label": "XRP Ledger retries upgrade that lets banks split payment and compliance duties",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-xrp-ledger-delegation-amendment-fee-drain-flaw"
-      ],
-      "eventUri": null,
-      "summary": "The XRP Ledger is re-proposing a permission-delegation amendment after the first version had a flaw that could let attackers drain balances through unauthorised fees. Lead with the bug: delegated permissions without handing over keys is what banks want, and exactly where the attack surface opened. Explain the fix and the validator vote that governs it.",
       "conceptUris": []
     }
   ]
