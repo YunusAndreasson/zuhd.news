@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-09-03T08:25:55.429Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-09-03-el-nino-a-forecast-that-arrives-before-the-money",
-        "title": "El Niño Nears Record Strength",
-        "category": "science",
-        "eventCoverage": 227,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-birthright-the-order-reissued-and-enjoined-again",
-        "title": "Judge Blocks Birthright Order",
-        "category": "politics",
-        "eventCoverage": 202,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-molchanov-an-arbitral-award-with-a-boarding-party",
-        "title": "Norway Seizes Russian Vessel",
-        "category": "politics",
-        "eventCoverage": 171,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-durand-line-a-body-count-with-a-single-source",
-        "title": "ISPR Claims 15 Killed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-one-queue-three-wars-the-munitions-bottleneck",
-        "title": "US Arms Queue Strains Allies",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-dangote-listing-abroad-what-a-shallow-market-costs",
-        "title": "Dangote Cement Turns To London",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-gsp-plus-tariffs-as-the-enforcement-mechanism",
-        "title": "EU Review Finds Mixed Reform",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-seagrass-a-fishery-you-can-reach-on-foot",
-        "title": "Seagrass Sustains Coastal Poor",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-heteroresistance-what-the-standard-test-cannot-see",
-        "title": "The Test That Misses Resistance",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-enshittification-the-investor-audits-the-investment",
-        "title": "Investor Denies Enshittification",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-ai-rules-written-where-the-models-land",
-        "title": "ASEAN Writes AI Rules",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-the-floating-island-verified-from-orbit",
-        "title": "Floating Island Traced By Satellite",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-03-molchanov-an-arbitral-award-with-a-boarding-party",
-      "title": "Norway Seizes Russian Vessel",
-      "category": "politics",
-      "body": "A Hague arbitration award seized Professor",
-      "eventCoverage": 171,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Norway seizes Russian vessel to enforce $4.22 billion Hague award",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-03T12:23:23.293Z",
     "candidateCount": 9,
     "candidates": [
@@ -10294,6 +10187,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russian strike kills 6 farm workers in Kharkiv region",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 7
+    }
+  },
+  {
+    "timestamp": "2026-09-24T17:17:04.262Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-09-24-netanyahu-icc-overflight-greece-italy-france-canada",
+        "title": "Netanyahu Overflies ICC States",
+        "category": "politics",
+        "eventCoverage": 323,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-abbas-unga-nakba-warning-parliamentary-vote",
+        "title": "Abbas Pledges November Vote",
+        "category": "politics",
+        "eventCoverage": 162,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-egypt-omnia-sweidan-obstetric-violence-sentence-upheld",
+        "title": "Court Upholds Sweidan Sentence",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-nuba-christian-muslim-leaders-sudan-war-kordofan",
+        "title": "Nuba Faith Leaders Urge Peace",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-dangote-refinery-nigeria-petrol-imports-nnpc-shut",
+        "title": "Dangote Cuts Nigeria's Imports",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-china-solar-industry-layoffs-overcapacity",
+        "title": "China Solar Layoffs Mount",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-nigeria-methane-gas-flaring-akwa-ibom",
+        "title": "Nigeria Flares More Gas",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-tropical-cyclones-post-landfall-decay-strong-weak",
+        "title": "Cyclone Decay Diverges",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-climate-change-ocean-wellbeing-inequality",
+        "title": "Warming Erodes Ocean Wellbeing",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-google-suncatcher-orbital-data-center-test",
+        "title": "Google Tests Orbital Data Center",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-24-duelbits-crypto-casino-7m-hot-wallet-hack",
+        "title": "Duelbits Hot Wallets Drained",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-24-netanyahu-icc-overflight-greece-italy-france-canada",
+      "title": "Netanyahu Overflies ICC States",
+      "category": "politics",
+      "body": "[Greece](country:GR), [Italy](country:IT), [France](country:FR) and",
+      "eventCoverage": 323,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Canada, France, Italy, Greece let Netanyahu fly over despite ICC warrant",
     "response": {
       "pushed": 1,
       "skipped": 0,
