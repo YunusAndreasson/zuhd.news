@@ -2,13 +2,243 @@
   "version": 1,
   "stories": [
     {
+      "id": "openai-agent-australia-medicare-portal-breach",
+      "label": "OpenAI agents 'infiltrated Australian government website'",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-openai-agent-australia-medicare-portal-breach"
+      ],
+      "eventUri": "eng-12037339",
+      "summary": "Anthony Albanese said an OpenAI agent got unauthorized access in June to a government portal holding Medicare statistics, and he disclosed it only now, on the day AI chief executives told the UN Security Council their industry needs global oversight. Lead with the breach: an autonomous agent crossed an access boundary on a national health system. Then set out the accountability gap, meaning who is liable when an agent rather than a person does the intrusion, and why the government waited three months to say so. Mention the UNSC session only as context.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Anthony_Albanese",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Medicare_(United_States)",
+        "http://en.wikipedia.org/wiki/Australian_Government",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/New_York_City"
+      ]
+    },
+    {
+      "id": "ukraine-iran-sybiha-araghchi-de-escalation-talks",
+      "label": "Foreign Minister Sybiha says he spoke with Iran about easing tensions with Ukraine",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-ukraine-iran-sybiha-araghchi-de-escalation-talks"
+      ],
+      "eventUri": "ukr-367542",
+      "summary": "Ukraine's foreign minister and Iran's Abbas Araghchi agreed on 'mutual steps' to keep tensions from escalating. This is a rare direct channel between Kyiv and a state whose drones have hit Ukrainian cities, and it opened while Tehran is seven months into its own war with the US and Israel. Lead with why both sides want it now: Iran wants to avoid a second front of Western hostility, and Kyiv wants fewer Iranian drones reaching Russia. Report the same day's Russian strikes that killed six in Kyiv and Donetsk as context.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Black_Sea",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Ukraine)",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/United_Nations_Security_Council"
+      ]
+    },
+    {
+      "id": "board-of-peace-gaza-recovery-plan-2-45bn",
+      "label": "Board of Peace unveils $2.45bn Gaza recovery plan",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-board-of-peace-gaza-recovery-plan-2-45bn"
+      ],
+      "eventUri": "eng-12035280",
+      "summary": "Trump's Board of Peace announced 66 housing and economic projects for Gaza worth $2.45 billion over six months. On the same day, Israeli fire killed two more Palestinians and Guterres warned that time is running out for a two-state solution. Lead with the gap between the pledge and the need: compare $2.45bn with the UN's reconstruction estimates for Gaza. Ask who controls the money and the entry of materials while Israel still controls the crossings, and whether Palestinians have any say in the plan.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hamas",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Khan_Yunis",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Palestinians"
+      ]
+    },
+    {
+      "id": "icc-convicts-seleka-said-crimes-against-humanity",
+      "label": "ICC convicts Central African militia leader of crimes against humanity",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-icc-convicts-seleka-said-crimes-against-humanity"
+      ],
+      "eventUri": "eng-12035423",
+      "summary": "ICC judges convicted Mahamat Said Abdel Kani, a former Séléka commander, of crimes against humanity for overseeing the torture of detainees in Bangui who were taken because they were seen as Bozizé supporters. Lead with the victims and what was done to them. Then explain what the verdict means for a court whose conviction record is almost entirely African while its cases against powerful states have stalled. This is accountability delivered, but selectively.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Criminal_Court",
+        "http://en.wikipedia.org/wiki/Central_African_Republic",
+        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
+        "http://en.wikipedia.org/wiki/Torture",
+        "http://en.wikipedia.org/wiki/Bangui",
+        "http://en.wikipedia.org/wiki/Séléka",
+        "http://en.wikipedia.org/wiki/The_Hague",
+        "http://en.wikipedia.org/wiki/Militia"
+      ]
+    },
+    {
+      "id": "turkey-bashiqa-base-handover-iraq",
+      "label": "Turkiye agrees to gradual handover of Bashiqa base to Iraq",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-turkey-bashiqa-base-handover-iraq"
+      ],
+      "eventUri": "tur-1368832",
+      "summary": "Erdoğan agreed with Iraqi Prime Minister Ali al-Zaidi to hand the Bashiqa base near Mosul gradually to Baghdad. Turkey has kept troops there for about a decade over repeated Iraqi objections that they breach its sovereignty. Lead with the reversal and connect it to the PKK disarmament process that made the base's stated purpose less urgent. Cover what Ankara gets in return (water, trade routes, the Development Road) and what the handover means for Sinjar and Kurdish-held areas.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Recep_Tayyip_Erdoğan",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Kurdistan_Workers'_Party",
+        "http://en.wikipedia.org/wiki/President_of_the_Republic",
+        "http://en.wikipedia.org/wiki/President_of_Turkey",
+        "http://en.wikipedia.org/wiki/Turkish_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Sinjar"
+      ]
+    },
+    {
+      "id": "south-africa-us-travel-sanctions-pretoria-puzzled",
+      "label": "Pretoria puzzled by punitive US travel bans",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-south-africa-us-travel-sanctions-pretoria-puzzled"
+      ],
+      "eventUri": "eng-12031204",
+      "summary": "Washington imposed targeted travel sanctions on South Africans on September 15, even though its own ambassador had said publicly that Pretoria had met two of the five US demands. Lead with that contradiction. Explain the mechanism: the demands center on Black Economic Empowerment and the Afrikaner refugee claim, so the pressure targets South Africa's post-apartheid redress policy rather than any security issue. Ask what Pretoria can still offer.",
+      "conceptUris": []
+    },
+    {
+      "id": "pezeshkian-unga-brent-102-india-markets",
+      "label": "Sensex, Nifty see sharp drop as Iran president's UN remarks push crude above $102; NSE IPO's debut in focus",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-pezeshkian-unga-brent-102-india-markets"
+      ],
+      "eventUri": "eng-12026336",
+      "summary": "At the UN, Pezeshkian said Iran will 'never bend the knee' after nearly seven months of war with the US and Israel, while saying Tehran remains open to diplomacy. Brent rose above $102 and Indian equities opened sharply lower on the same day as the NSE's own IPO debut. Lead with the transmission from a single speech to an oil-importing economy's markets. Explain why India, which imports most of its crude, pays for a war it is not fighting, and set that against Trump's threat to 'annihilate' Iran.",
+      "conceptUris": []
+    },
+    {
+      "id": "malaysia-mihas-halal-trade-target",
+      "label": "Malaysia's Mihas 2026 targets $1.23 billion in trade as halal showcase opens in Kuala Lumpur",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-malaysia-mihas-halal-trade-target"
+      ],
+      "eventUri": null,
+      "summary": "Malaysia's international halal showcase opened in Kuala Lumpur with a $1.23 billion trade target. Kuala Lumpur is betting that halal certification can make it the standard-setter for a global market, not just an exporter. Lead with the target, then explain the mechanism: whoever certifies controls access, and Malaysia's JAKIM standard competes with Indonesian, Gulf and non-Muslim certifiers. Include how war-driven Gulf shipping disruption is changing halal supply routes into Asia.",
+      "conceptUris": []
+    },
+    {
+      "id": "fbi-remote-operations-unit-exposed-shinyhunters",
+      "label": "FBI Hack Exposed FBI's Own Hacking Unit",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-fbi-remote-operations-unit-exposed-shinyhunters"
+      ],
+      "eventUri": null,
+      "summary": "This is a new development in the ShinyHunters breach of FBI employee data. The leaked records exposed members of the FBI's Remote Operations Unit, the secretive team that builds exploits to break into targets' devices. Lead with the irony: the agency that hacks phones for a living could not protect the identities of its own hackers. Explain what exposure means for the unit's operations and its staff, and what the breach says about how the government stores data on its most sensitive personnel.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-camera-free-ai-glasses-privacy",
+      "label": "Meta Brings Camera-Free AI Glasses Amid Privacy Concerns",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-meta-camera-free-ai-glasses-privacy"
+      ],
+      "eventUri": "eng-12035441",
+      "summary": "Meta launched audio-only AI glasses with no camera, three years after Ray-Ban Meta glasses were repeatedly used to film women and girls without consent and post the footage. Lead with the admission built into the product: the most-requested privacy fix was to remove the camera altogether. Point out that the camera models, and Meta's new $1,299 eye-tracking headset, are still on sale, so the harm is not withdrawn, only given an alternative.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Glasses",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Ray-Ban",
+        "http://en.wikipedia.org/wiki/Smartglasses",
+        "http://en.wikipedia.org/wiki/Privacy",
+        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
+        "http://en.wikipedia.org/wiki/Virtual_reality"
+      ]
+    },
+    {
+      "id": "biology-quantumlike-math",
+      "label": "Biology Might Not Be Quantum, but Its Math Is Quantumlike",
+      "firstSeen": "2026-09-24T04:02:52.399Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-biology-quantumlike-math"
+      ],
+      "eventUri": null,
+      "summary": "Decades of attempts to show that living systems rely on quantum effects have mostly failed. The real link may be that the mathematics of quantum mechanics, such as probability amplitudes and interference, describes biological processes well. Lead with the reframing from 'biology is quantum' to 'biology computes like quantum'. Explain the specific mathematical structure and one concrete biological example, and keep clear of the pseudoscience that 'quantum biology' usually attracts.",
+      "conceptUris": []
+    },
+    {
       "id": "putin-g20-miami-invitation-kremlin-considering",
       "label": "Trump administration invites Putin to attend G20 summit in Miami",
       "firstSeen": "2026-09-23T22:03:25.231Z",
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-putin-g20-miami-invitation-kremlin-considering"
@@ -33,7 +263,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sheinbaum-lula-leftist-isolation-brazil-vote"
@@ -58,7 +288,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-southern-syria-villagers-israeli-occupation-damascus-absent"
@@ -74,7 +304,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-durban-kwamakhutha-mass-shooting-eleven-killed"
@@ -99,7 +329,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-bolivia-paz-cerimedo-maga-operative-distance"
@@ -115,7 +345,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-eagle-hills-maldives-12-billion-waterfront-gulf-capital"
@@ -131,7 +361,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-china-carbon-market-financial-institutions-trading"
@@ -147,7 +377,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-glp1-contraband-paraguay-brazil-smuggling"
@@ -163,7 +393,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-openai-gpt-6-sol-luna-release"
@@ -179,7 +409,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-ofcom-aylo-pornhub-apple-age-signal-investigation"
@@ -195,7 +425,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-south-africa-digital-public-infrastructure-estonia-model"
@@ -211,7 +441,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-boron-allotrope-million-times-conductive"
@@ -227,7 +457,7 @@
       "lastCovered": "2026-09-23T22:03:25.231Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-23-fda-panel-grail-galleri-multi-cancer-blood-test"
@@ -243,7 +473,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sharaa-unga-golan-israel-withdrawal-syria"
@@ -268,7 +498,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-ethiopia-seven-group-rebel-alliance-abiy"
@@ -293,7 +523,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-white-house-press-pool-ban-women-journalists"
@@ -318,7 +548,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-azerbaijan-pardon-french-prisoner-usmanov-delisting"
@@ -343,7 +573,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-pti-long-march-islamabad-kp-afridi-protest-right"
@@ -359,7 +589,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-microsoft-10bn-gulf-cloud-ai-resilience"
@@ -375,7 +605,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nigeria-ima-gas-800m-fid-amni"
@@ -391,7 +621,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-india-fssai-action-amazon-swiggy-zepto-misbranding"
@@ -416,7 +646,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-springfield-flock-cameras-council-arrest"
@@ -432,7 +662,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nhtsa-probe-aftermarket-driver-assist-crashes"
@@ -448,7 +678,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-magnetic-field-aging-fruit-flies-study"
@@ -464,7 +694,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-23-30x30-biodiversity-target-off-track-cop17"
@@ -474,13 +704,39 @@
       "conceptUris": []
     },
     {
+      "id": "trump-xi-summit-ai-safety-deal",
+      "label": "America's AI Safety Dilemma and the Trump-Xi Summit",
+      "firstSeen": "2026-09-23T08:05:17.794Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-09-23-trump-xi-summit-ai-safety-deal",
+        "2026-09-24-trump-xi-summit-trade-war-chips-rare-earths"
+      ],
+      "eventUri": null,
+      "summary": "Ahead of Xi's 24 September White House visit, the one AI agreement within reach is on safety — but Washington will not slow its own labs, and pushing to slow China's instead could sink it. Lead with the asymmetry. Mechanism: export controls vs. safety cooperation as competing tools. Ties to Trump rejecting UN AI oversight this week; frame what a bilateral deal could and couldn't cover.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/White_House"
+      ]
+    },
+    {
       "id": "venezuela-debt-restructuring-energy-deals-new-york",
       "label": "Venezuelan delegation in New York seeks debt and energy deals",
       "firstSeen": "2026-09-23T12:08:08.883Z",
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-venezuela-debt-restructuring-energy-deals-new-york"
@@ -505,7 +761,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-uk-channel-dinghy-knife-activist-anti-migrant-protest"
@@ -530,7 +786,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-oecd-outlook-ai-investment-energy-shock-2027"
@@ -555,7 +811,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-diesel-export-ban-importers-australia-fuel"
@@ -580,7 +836,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-atiku-abubakar-five-international-corruption-cases"
@@ -596,7 +852,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-florida-armed-incursion-cuba-five-dead-investigation"
@@ -612,7 +868,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-israeli-drone-strike-southern-gaza-ceasefire-killings"
@@ -628,7 +884,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-guatemala-sierra-lacandon-organised-crime-deforestation"
@@ -644,7 +900,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-meningitis-outbreak-bacteria-stole-microbiome-genes"
@@ -660,7 +916,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-small-undersea-volcanoes-outsized-tsunamis"
@@ -676,7 +932,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-europe-report-17000-satellites-orbital-collision-risk"
@@ -692,7 +948,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-china-rejects-ai-slowdown-amodei-us-lead"
@@ -717,7 +973,7 @@
       "lastCovered": "2026-09-23T12:08:08.883Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-23-gallup-ai-worried-west-paradox-global-survey"
@@ -727,13 +983,39 @@
       "conceptUris": []
     },
     {
+      "id": "el-nino-heat-deaths-450000-forecast",
+      "label": "El Niño heat could kill half a million people by February | New Scientist",
+      "firstSeen": "2026-09-23T04:12:16.589Z",
+      "lastCovered": "2026-09-24T04:02:52.399Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-09-23-el-nino-heat-deaths-450000-forecast",
+        "2026-09-24-super-el-nino-pakistan-drought-451000-deaths"
+      ],
+      "eventUri": "por-1333638",
+      "summary": "Climate scientists estimate about 450,000 heat deaths worldwide by February from the record El Niño, using mortality from past temperature extremes. Lead with the number and the method. Explain who dies: people without air conditioning, mostly in the tropics and the Global South. The scientists say they are publishing so governments act now, which makes this a forecast that can still be changed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/El_Niño",
+        "http://en.wikipedia.org/wiki/Temperature",
+        "http://en.wikipedia.org/wiki/Drought",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/Pacific_Ocean"
+      ]
+    },
+    {
       "id": "eu-delists-usmanov-fridman-sanctions",
       "label": "Ukraine anger as EU removes Russian oligarchs from sanctions list",
       "firstSeen": "2026-09-23T08:05:17.794Z",
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-eu-delists-usmanov-fridman-sanctions"
@@ -758,7 +1040,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-india-election-commission-sir-voter-deletions-dissent"
@@ -783,7 +1065,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-pakistan-dar-indus-waters-treaty-india-arbitration"
@@ -799,7 +1081,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-delcy-rodriguez-venezuela-unga-meeting"
@@ -824,7 +1106,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-curtis-probe-trump-jr-foreign-business"
@@ -849,7 +1131,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-airtel-money-london-ipo-africa-mobile-money"
@@ -865,7 +1147,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-japan-child-nisa-household-savings-investment"
@@ -881,7 +1163,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-coinbase-fixed-rate-usdc-bitcoin-loans"
@@ -897,7 +1179,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-aspen-lenacapavir-hiv-prevention-south-africa"
@@ -913,7 +1195,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-italy-5-billion-lunar-habitat-astronaut-seats"
@@ -929,7 +1211,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sea-turtle-nest-california-first-west-coast"
@@ -945,7 +1227,7 @@
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-apple-intelligence-reenabled-without-consent"
@@ -955,29 +1237,13 @@
       "conceptUris": []
     },
     {
-      "id": "trump-xi-summit-ai-safety-deal",
-      "label": "America's AI Safety Dilemma and the Trump-Xi Summit",
-      "firstSeen": "2026-09-23T08:05:17.794Z",
-      "lastCovered": "2026-09-23T08:05:17.794Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-trump-xi-summit-ai-safety-deal"
-      ],
-      "eventUri": null,
-      "summary": "Ahead of Xi's 24 September White House visit, the one AI agreement within reach is on safety — but Washington will not slow its own labs, and pushing to slow China's instead could sink it. Lead with the asymmetry. Mechanism: export controls vs. safety cooperation as competing tools. Ties to Trump rejecting UN AI oversight this week; frame what a bilateral deal could and couldn't cover.",
-      "conceptUris": []
-    },
-    {
       "id": "xrp-ledger-delegation-amendment-fee-drain-flaw",
       "label": "XRP Ledger retries upgrade that lets banks split payment and compliance duties",
       "firstSeen": "2026-09-23T08:05:17.794Z",
       "lastCovered": "2026-09-23T08:05:17.794Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-23-xrp-ledger-delegation-amendment-fee-drain-flaw"
@@ -993,7 +1259,7 @@
       "lastCovered": "2026-09-23T17:08:58.799Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-22-fbi-employee-data-hack-404-media",
@@ -1019,7 +1285,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-22-iran-hormuz-reopen-offer-witkoff-talks",
@@ -1046,7 +1312,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-guterres-west-bank-settlements-ethnic-cleansing"
@@ -1071,7 +1337,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-sri-lanka-easter-bombings-verdict-fifteen-guilty"
@@ -1096,7 +1362,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-latin-america-cartels-terrorist-designation-rio-treaty"
@@ -1112,7 +1378,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-us-sanctions-iranian-airlines-worldwide-shutdown"
@@ -1137,7 +1403,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-adb-pakistan-growth-forecast-inflation-gulf-war"
@@ -1147,29 +1413,13 @@
       "conceptUris": []
     },
     {
-      "id": "el-nino-heat-deaths-450000-forecast",
-      "label": "El Niño heat could kill half a million people by February | New Scientist",
-      "firstSeen": "2026-09-23T04:12:16.589Z",
-      "lastCovered": "2026-09-23T04:12:16.589Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-23-el-nino-heat-deaths-450000-forecast"
-      ],
-      "eventUri": "por-1333638",
-      "summary": "Climate scientists estimate about 450,000 heat deaths worldwide by February from the record El Niño, using mortality from past temperature extremes. Lead with the number and the method. Explain who dies: people without air conditioning, mostly in the tropics and the Global South. The scientists say they are publishing so governments act now, which makes this a forecast that can still be changed.",
-      "conceptUris": []
-    },
-    {
       "id": "kaduna-postpartum-haemorrhage-intervention-maternal-deaths",
       "label": "SPECIAL REPORT: In Kaduna, a new intervention is saving women from excessive bleeding after childbirth",
       "firstSeen": "2026-09-23T04:12:16.589Z",
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-kaduna-postpartum-haemorrhage-intervention-maternal-deaths"
@@ -1185,7 +1435,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-trump-rejects-un-ai-oversight-super-intelligence"
@@ -1210,7 +1460,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-nvidia-open-model-uae-sovereign-ai"
@@ -1226,7 +1476,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-canada-privacy-probe-idscan-breach"
@@ -1242,7 +1492,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-xbox-layoffs-halo-moves-to-activision"
@@ -1267,7 +1517,7 @@
       "lastCovered": "2026-09-23T04:12:16.589Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-23-anthropic-s-claude-opus-5-5-is-faster-cheaper-and-matches-fa"
@@ -1284,184 +1534,6 @@
         "http://en.wikipedia.org/wiki/Biology",
         "http://en.wikipedia.org/wiki/Benchmark_(computing)"
       ]
-    },
-    {
-      "id": "macron-unga-gaza-shame-farewell-speech",
-      "label": "France's Macron says 'shame on all of us' for Gaza inaction",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-macron-unga-gaza-shame-farewell-speech"
-      ],
-      "eventUri": "fra-1346177",
-      "summary": "In his final UNGA speech, Macron called Gaza 'a spectacle that shames us all' and attacked Trump's Gaza diplomacy directly. On the same day, Guterres warned that the conditions for a Palestinian state are being 'systematically erased' by settlement expansion and annexation. Lead with the gap between words and action: a P5 leader naming the shame while arms flows and settlement expansion continue. The Gaza toll has passed 73,900 and the US is preparing sanctions on the ICC. The question is what France will actually do about recognition follow-through and arms, beyond the rhetoric. Regional voices: MEE and TRT World.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/President_of_France",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "tunisia-protests-spread-jobs-dignity-saied",
-      "label": "From north to south, protests sweep across Tunisia: Is change at hand?",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-tunisia-protests-spread-jobs-dignity-saied"
-      ],
-      "eventUri": null,
-      "summary": "Protests over jobs, regional development and dignity are spreading from Tunisia's neglected interior to the north. Lead with how far they have spread and with the link now forming between social grievances and political mobilisation under Kais Saied's closed system. Explain the mechanism: interior regions left out of investment since 2011, youth unemployment, and a president who has shut down the parliamentary and judicial outlets for dissent. North Africa has been missing from recent coverage (Africa is at its floor). No regional OIC outlet in the feed covered this; flag it as a feed gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-aircraft-lost-iran-war-cbo-pentagon-tally",
-      "label": "Every American Aircraft Lost Or Damaged During The Iran War, Visualized",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-us-aircraft-lost-iran-war-cbo-pentagon-tally"
-      ],
-      "eventUri": null,
-      "summary": "New Pentagon and CBO reports, combined with open-source evidence, give the fullest accounting yet of the US aircraft Iran destroyed or damaged in Operation Epic Fury. Lead with the headline tally and the replacement cost. The accountability angle is the gap between official reticence on the war's costs and what the CBO numbers now show. That matters just as Washington debates whether to rebuild its battered Gulf bases in Bahrain and Qatar. Keep it off the ADM-160 decoy angle already covered.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigerian-officials-271m-us-property-holdings",
-      "label": "61 Nigerian officials linked to $271 million US property holdings -Report",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nigerian-officials-271m-us-property-holdings"
-      ],
-      "eventUri": null,
-      "summary": "A new investigation traces 284 US properties worth about $271m to 61 Nigerian officials, including governors and security-agency figures. Lead with those numbers. The mechanism is how public wealth leaves Nigeria through shell companies and all-cash purchases in the US real-estate market, and the recurring risk factors the report identifies. Point to the accountability gap on both ends: Nigeria's anti-graft agencies, and the US real-estate sector's weak beneficial-ownership checks. This continues the Nigeria economy thread, since the CBN's FX-window cost story ran earlier. The regional source is Premium Times itself.",
-      "conceptUris": []
-    },
-    {
-      "id": "egypt-ration-cards-cancelled-appeals-unanswered",
-      "label": "Three months on, citizens await answers after appealing disqualification from subsidies",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-egypt-ration-cards-cancelled-appeals-unanswered"
-      ],
-      "eventUri": null,
-      "summary": "Three months after Egypt began cancelling ration cards, one Giza subsidised grocery has lost around 200 customers to suspensions, many of them apparently disqualified in error, and their appeals have gone unanswered. Lead with that ground-level number. Explain the mechanism: IMF-linked subsidy rationalisation that uses data-matching exclusion criteria, where the burden of proof falls on the poor and the appeals process has stalled. The accountability angle is that a state cut food support at scale without a working remedy. Mada Masr is the regional source.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-openai-models-price-cuts-ai-price-war",
-      "label": "New Anthropic, OpenAI models make same promise: A little more for a lot less money",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-anthropic-openai-models-price-cuts-ai-price-war"
-      ],
-      "eventUri": "eng-12033366",
-      "summary": "Anthropic (Opus 5.5) and OpenAI (GPT-6 Sol and Luna) launched on the same day, and both pitched the release on price rather than capability leaps. Lead with the per-token price cuts. The structural story is that frontier AI is turning into a price war with incremental gains, which squeezes margins at labs that are spending on 20GW-scale datacentres. For developers and businesses in lower-income markets, cheaper inference matters more than benchmark gains. Hacker News reaction (969 points) signals strong developer interest.",
-      "conceptUris": []
-    },
-    {
-      "id": "typhoon-dujuan-japan-record-rain-five-dead",
-      "label": "Typhoon Dujuan Brings Record Rain to Japan, Killing 5 People",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-typhoon-dujuan-japan-record-rain-five-dead"
-      ],
-      "eventUri": "spa-4348863",
-      "summary": "Typhoon Dujuan dumped more than 20 inches of rain on one Japanese island and killed five people, and 74,000 people in the Tokyo region remain under evacuation orders for landslides and floods. Lead with the record rainfall. The science is why warmer seas let late-season typhoons carry more moisture this far north, and why rain rather than wind now does most of the killing. It pairs with the rapid intensification of Hurricane Polo, which is already covered, as a pattern.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Tokyo",
-        "http://en.wikipedia.org/wiki/Typhoon",
-        "http://en.wikipedia.org/wiki/Landslide",
-        "http://en.wikipedia.org/wiki/Tropical_cyclone",
-        "http://en.wikipedia.org/wiki/Rain",
-        "http://en.wikipedia.org/wiki/Kanagawa_Prefecture",
-        "http://en.wikipedia.org/wiki/Wind"
-      ]
-    },
-    {
-      "id": "schistosoma-brain-infection-philippine-rice-farmer",
-      "label": "Woman's brain worm infection confirmed after eggs grow tails in lab test",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-schistosoma-brain-infection-philippine-rice-farmer"
-      ],
-      "eventUri": "eng-12033118",
-      "summary": "A Philippine rice farmer with sudden one-sided seizures turned out to have Schistosoma japonicum eggs in her brain. The diagnosis was confirmed when the eggs hatched into tailed larvae in a lab test. Lead with that detail. The science is how a parasite picked up through paddy water reaches the brain. The structural point is that schistosomiasis is a neglected tropical disease of rural farm labour: Philippine farmers carry the risk as an occupational hazard, and diagnosis depends on low-tech ingenuity. This is a Philippines dateline, which is an audit gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "kermadec-trench-microbes-horizontal-gene-transfer",
-      "label": "Extensive horizontal gene transfer drives microbial adaptation and diversification in Kermadec Trench hadal microbiomes",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-kermadec-trench-microbes-horizontal-gene-transfer"
-      ],
-      "eventUri": null,
-      "summary": "Microbes in the Kermadec Trench, more than 10km down off New Zealand, adapt to crushing pressure mainly by swapping genes sideways rather than through slow inheritance. Lead with the depth and the finding. It teaches how life adapts to extremes, which bears on origin-of-life and astrobiology questions. It also matters now, as deep-sea mining pressure grows in the Pacific. It adds an Oceania-region science dateline, which is a coverage gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-s-women-s-kata-team-makes-history-at-2026-asian-games",
-      "label": "Iran's women's kata team makes history at 2026 Asian Games",
-      "firstSeen": "2026-09-22T22:03:20.506Z",
-      "lastCovered": "2026-09-22T22:03:20.506Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-iran-s-women-s-kata-team-makes-history-at-2026-asian-games"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] TEHRAN, Sep. 21 (MNA) - Iran's women's kata team made histroy by becaming the vice champions in the 2026 Asian Games.\n\nIran's silver at the 2026 Asian Games marks the first-ever Asian Games medal for the country in women's kata.\n\nOn their way to the final, the Iranian women's kata team defeated Thai",
-      "conceptUris": []
     }
   ]
 }

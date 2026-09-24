@@ -1,95 +1,89 @@
 {
-  "timestamp": "2026-09-23T22:11:08.815Z",
+  "timestamp": "2026-09-24T04:11:08.708Z",
   "articles": [
     {
-      "slug": "2026-09-23-putin-g20-miami-invitation-kremlin-considering",
-      "title": "Trump administration invites Putin to attend G20 summit in Miami",
+      "slug": "2026-09-24-trump-xi-summit-trade-war-chips-rare-earths",
+      "title": "As Xi meets Trump, who's winning their trade war?",
+      "category": "economy",
+      "source": "CNBC"
+    },
+    {
+      "slug": "2026-09-24-openai-agent-australia-medicare-portal-breach",
+      "title": "OpenAI agents 'infiltrated Australian government website'",
+      "category": "tech",
+      "source": "TheRegister.com"
+    },
+    {
+      "slug": "2026-09-24-super-el-nino-pakistan-drought-451000-deaths",
+      "title": "Pakistan in uncharted waters as 'super El Nino' multiplies threats",
+      "category": "science",
+      "source": "Dawn"
+    },
+    {
+      "slug": "2026-09-24-ukraine-iran-sybiha-araghchi-de-escalation-talks",
+      "title": "Foreign Minister Sybiha says he spoke with Iran about easing tensions with Ukraine",
+      "category": "politics",
+      "source": "The Kyiv Independent"
+    },
+    {
+      "slug": "2026-09-24-board-of-peace-gaza-recovery-plan-2-45bn",
+      "title": "Board of Peace unveils $2.45bn Gaza recovery plan",
+      "category": "politics",
+      "source": "Dawn"
+    },
+    {
+      "slug": "2026-09-24-icc-convicts-seleka-said-crimes-against-humanity",
+      "title": "ICC convicts Central African militia leader of crimes against humanity",
+      "category": "politics",
+      "source": "Rappler"
+    },
+    {
+      "slug": "2026-09-24-turkey-bashiqa-base-handover-iraq",
+      "title": "Turkiye agrees to gradual handover of Bashiqa base to Iraq",
       "category": "politics",
       "source": "Al Jazeera Online"
     },
     {
-      "slug": "2026-09-23-sheinbaum-lula-leftist-isolation-brazil-vote",
-      "title": "Sheinbaum Boosts Lula Before Vote as Leftist Allies Grow Scarce",
+      "slug": "2026-09-24-south-africa-us-travel-sanctions-pretoria-puzzled",
+      "title": "Pretoria puzzled by punitive US travel bans",
       "category": "politics",
-      "source": "Bloomberg Business"
-    },
-    {
-      "slug": "2026-09-23-southern-syria-villagers-israeli-occupation-damascus-absent",
-      "title": "As Damascus Hangs Back, Syrians Have Been Left to Fend Off Israeli Occupation on Their Own",
-      "category": "politics",
-      "source": "Drop Site News"
-    },
-    {
-      "slug": "2026-09-23-durban-kwamakhutha-mass-shooting-eleven-killed",
-      "title": "At least 11 people killed in South Africa township shooting",
-      "category": "politics",
-      "source": "Al Jazeera Online"
-    },
-    {
-      "slug": "2026-09-23-bolivia-paz-cerimedo-maga-operative-distance",
-      "title": "Why Rodrigo Paz Is Trying to Distance Himself From “MAGA’s Man in Latin America”",
-      "category": "politics",
-      "source": "Drop Site News"
-    },
-    {
-      "slug": "2026-09-23-china-carbon-market-financial-institutions-trading",
-      "title": "What will financial institutions do to China’s carbon market?",
-      "category": "economy",
-      "source": "Dialogue Earth"
-    },
-    {
-      "slug": "2026-09-23-glp1-contraband-paraguay-brazil-smuggling",
-      "title": "Trafficking of Contraband Weight Loss Drugs From Paraguay to Brazil Spikes",
-      "category": "economy",
-      "source": "InSight Crime"
-    },
-    {
-      "slug": "2026-09-23-openai-gpt-6-sol-luna-release",
-      "title": "GPT-6 Sol and Luna",
-      "category": "tech",
-      "source": "Hacker News"
-    },
-    {
-      "slug": "2026-09-23-ofcom-aylo-pornhub-apple-age-signal-investigation",
-      "title": "UK regulator to investigate Pornhub parent company for alleged age verification failings",
-      "category": "tech",
-      "source": "The Record"
-    },
-    {
-      "slug": "2026-09-23-south-africa-digital-public-infrastructure-estonia-model",
-      "title": "SA's new digital public infrastructure looks like it was made in Estonia",
-      "category": "tech",
       "source": "Daily Maverick"
     },
     {
-      "slug": "2026-09-23-boron-allotrope-million-times-conductive",
-      "title": "This weird form of boron is a million times more conductive than chemists expected",
-      "category": "science",
-      "source": "Nature"
+      "slug": "2026-09-24-pezeshkian-unga-brent-102-india-markets",
+      "title": "Sensex, Nifty see sharp drop as Iran president's UN remarks push crude above $102; NSE IPO's debut in focus",
+      "category": "economy",
+      "source": "Hindustan Times"
     },
     {
-      "slug": "2026-09-23-fda-panel-grail-galleri-multi-cancer-blood-test",
-      "title": "FDA advisory panel endorses Grail blood test for cancer, saying benefits outweigh risks",
-      "category": "science",
-      "source": "STAT"
+      "slug": "2026-09-24-fbi-remote-operations-unit-exposed-shinyhunters",
+      "title": "FBI Hack Exposed FBI's Own Hacking Unit",
+      "category": "tech",
+      "source": "404 Media"
+    },
+    {
+      "slug": "2026-09-24-meta-camera-free-ai-glasses-privacy",
+      "title": "Meta Brings Camera-Free AI Glasses Amid Privacy Concerns",
+      "category": "tech",
+      "source": "BBC"
     }
   ],
   "categories": [
-    "politics",
     "economy",
     "tech",
-    "science"
+    "science",
+    "politics"
   ],
   "sources": [
+    "CNBC",
+    "TheRegister.com",
+    "Dawn",
+    "The Kyiv Independent",
+    "Rappler",
     "Al Jazeera Online",
-    "Bloomberg Business",
-    "Drop Site News",
-    "Dialogue Earth",
-    "InSight Crime",
-    "Hacker News",
-    "The Record",
     "Daily Maverick",
-    "Nature",
-    "STAT"
+    "Hindustan Times",
+    "404 Media",
+    "BBC"
   ]
 }
