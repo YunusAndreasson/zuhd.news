@@ -1,25 +1,25 @@
 {
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "metrics": {
     "articles": {
-      "value": 61,
-      "detail": "5 cycles, all completed, avg 12.2/cycle; the first full day on the Opus 5.5 selector"
+      "value": 53,
+      "detail": "5 cycles, all completed, avg ~10.6/cycle (62 yesterday); second full day on the Opus 5.5 selector"
     },
     "freshness": {
-      "median": 0.2,
-      "p90": 0.7,
-      "max": 1.6,
+      "median": 0.1,
+      "p90": 1.5,
+      "max": 1.5,
       "target": 1.0,
       "met": true
     },
     "categories": {
-      "politics": 23,
+      "politics": 20,
       "economy": 13,
-      "science": 10,
-      "tech": 15
+      "science": 7,
+      "tech": 13
     },
     "multiSource": {
-      "value": 14,
+      "value": 15,
       "target": 4,
       "met": true
     },
@@ -28,42 +28,42 @@
       "target": 4,
       "met": true,
       "breakdown": {
-        "AM": 28,
-        "ME": 10,
-        "EU": 10,
-        "AF": 6,
-        "AS": 5,
+        "AM": 19,
+        "EU": 12,
+        "ME": 9,
+        "AF": 8,
+        "AS": 3,
         "OC": 1
       }
     },
     "sciTech": {
-      "ratio": 41,
+      "ratio": 38,
       "target": 25,
       "met": true
     },
     "topSourceShare": {
       "source": "Al Jazeera Online",
-      "pct": 15,
+      "pct": 19,
       "target": 20,
       "met": true
     },
-    "uniqueSources": 46,
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1483
+    "avgCycleDuration": 1064
   },
-  "experiment": "Reverted 2026-09-18-gap-countries-latam-pacific. On the three clean Opus 5 days, uniqueRegions was 6/5/5 against a 6/6/5 baseline, and Mexico, Argentina and the Philippines produced no datelines. AF fell 7→4→3, below its guardrail floor. No new experiment: the pause gate holds until 2026-09-25 for the Opus 5.5 baseline.",
-  "weakestArea": "Regional balance within the Americas. AM holds 28 of 61 datelines (46%), about half of them Washington, New York or the Bay Area, driven today by UNGA week. Latin America had 5 datelines and Oceania 1 in the metric (Nuku'alofa, plus Sydney on a US diesel story). That is better than any clean experiment day, but it falls on the new selector model, so it is a first baseline point rather than an effect.",
+  "experiment": "No active experiments to evaluate. No new experiment: the pause gate (noNewExperimentsUntil 2026-09-25) holds for the Opus 5.5 baseline, and every goal metric is met.",
+  "weakestArea": "Two metrics are close to their limits. Al Jazeera Online has 10 of 53 articles, or 19% against the 20% cap, up from 15% yesterday. Asia fell to 3 datelines, from 5 yesterday and 10 the day before. Both are still within target, and both fall inside the Opus 5.5 baseline window, so they are baseline points rather than signals.",
   "watching": [
-    "Iran is setting terms for talks through Qatar while Washington moves to ground Iran Air, so the coercive and diplomatic tracks are still running together.",
-    "UNGA week brings Guterres's warning of ethnic cleansing, Sharaa's rejection of the Golan annexation, Trump rejecting UN AI oversight, and a G20 invitation to Putin.",
-    "In Venezuela, Trump met Maduro's deputy while Caracas courts its creditors, which may be the start of a restructuring track.",
-    "Seven rebel groups in Ethiopia have aligned against Abiy, and a Tigray (Mekelle) dateline points to renewed northern instability.",
-    "AI model pricing is falling fast: Anthropic cut Opus prices and OpenAI halved Sol and Luna pricing on the same day."
+    "Xi's visit to Washington has produced pledges while India raises concerns over Russian oil, so the US–China–India trade triangle is moving within a single week.",
+    "Tigray forces seizing airports escalates the northern Ethiopian instability flagged yesterday.",
+    "Pakistan's strikes on Khost and the continued detention of Khan's sisters are a security track and a domestic political track running at the same time.",
+    "Global bond yields are surging while oil rattles Indian markets, which is worth watching for spillover into emerging-market currencies.",
+    "Crypto-platform hacks (Bitget $352M, Duelbits) are landing as New York sues Polymarket and the US weighs a stablecoin push, so enforcement and policy are converging."
   ],
   "coverageGaps": [
-    "Asia has 5 datelines against 10 the day before, with nothing from Japan, Korea or Southeast Asia beyond one Sri Lanka story.",
-    "Politics is 38% of output (23/61), and much of it is New York UNGA speech coverage that clusters on one dateline.",
-    "Science sources are thin on primary journals, with Nature 1 and the rest relayed through regional press."
+    "Asia has only 3 datelines, with nothing from Japan, Korea or Southeast Asia outside a Philippine Senate story.",
+    "Science fell to 7, from 10 yesterday. It still meets the floor of 5, but only Nature and STAT are primary science outlets.",
+    "Oceania has a single dateline, which has been the case for three straight days."
   ],
-  "context": "Today is the first full day with Opus 5.5 selecting, which confounds any regional read. The reverted GAP_COUNTRIES entries take effect from the next cycle, and regional breadth should be re-baselined on 09-24 and 09-25 before any new experiment once the gate lifts. Cycle time rose to 1483s from 1433s yesterday, within normal range."
+  "context": "The pause gate lifts on 2026-09-25. Drop the field then and, if Asia stays thin or Al Jazeera's share goes above 20% across 09-23→09-25, take that as the first candidate target. The GAP_COUNTRIES Latin America/Pacific expansion has already failed, so do not retry it. Average cycle time fell to 1064s from 1483s. Freshness was measured on only 7 articles today, so treat the p90 of 1.5 days as noisy."
 }
