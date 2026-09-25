@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
 import { Readability } from '@mozilla/readability'
+import { htmlLeadImage, rssItemImage } from './lib/feed-image.js'
 import { JSDOM } from 'jsdom'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { shouldSkip, recordResult } from './lib/block-cache.js'
@@ -126,6 +127,7 @@ async function fetchArticleBody(url) {
     const ct = res.headers.get('content-type') || ''
     if (!ct.includes('text/html')) return null
     const html = await res.text()
+    const image = htmlLeadImage(html)
     // Readability handles sites without <article>/<main> semantics — 2026-04-19
     // bakeoff showed 76% → 96% extraction rate vs the prior regex approach.
     try {
@@ -133,15 +135,15 @@ async function fetchArticleBody(url) {
       const article = new Readability(dom.window.document).parse()
       if (article?.textContent) {
         const text = article.textContent.replace(/\s+/g, ' ').trim()
-        if (text.length >= 200) { recordResult(url, true); return text.slice(0, 5000) }
+        if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
       }
     } catch { /* fall through to regex extractor */ }
     const block = (html.match(/<article[^>]*>([\s\S]*?)<\/article>/i) ||
                    html.match(/<main[^>]*>([\s\S]*?)<\/main>/i) || [])[1]
-    if (!block) return null
+    if (!block) return image ? { text: null, image } : null
     const text = decodeEntities(stripHtml(block)).replace(/\s+/g, ' ').trim()
-    if (text.length >= 200) { recordResult(url, true); return text.slice(0, 5000) }
-    return null
+    if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
+    return image ? { text: null, image } : null
   } catch { recordResult(url, false); return null }
 }
 
@@ -190,7 +192,7 @@ function normalizeItem(raw, source) {
   const rawContent = extractText(raw['content:encoded'] || raw.content || '')
   const contentText = rawContent ? decodeEntities(stripHtml(rawContent)).trim() : ''
 
-  return { title, description, link, pubDate, category, contentText: contentText || undefined, source: source.name }
+  return { title, description, link, pubDate, category, contentText: contentText || undefined, image: rssItemImage(raw), source: source.name }
 }
 
 function isRelevant(item) {
@@ -291,8 +293,11 @@ async function fetchHackerNews() {
     // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures)
     const toFetch = filtered.slice(0, 5)
     const bodies = await Promise.all(toFetch.map(s => fetchArticleBody(s.url)))
-    for (let i = 0; i < toFetch.length; i++) toFetch[i].bodyText = bodies[i]
-    const fetched = bodies.filter(Boolean).length
+    for (let i = 0; i < toFetch.length; i++) {
+      toFetch[i].bodyText = bodies[i]?.text || null
+      toFetch[i].image = bodies[i]?.image || null
+    }
+    const fetched = bodies.filter(b => b?.text).length
     console.error(`  HN body fetch: ${fetched}/${toFetch.length} articles had extractable content`)
 
     return filtered.map(s => ({
@@ -302,6 +307,7 @@ async function fetchHackerNews() {
       pubDate: new Date(s.time * 1000).toISOString(),
       category: 'tech',
       contentText: s.bodyText || undefined,
+      image: s.image || null,
       source: 'Hacker News',
     }))
   } catch (err) {
@@ -371,7 +377,7 @@ async function main() {
       suggestedSlug: slugify(item.title, pubDate),
       eventUri: null,
       eventCoverage: null,
-      sources: [{ name: item.source, url: item.link, country: SOURCE_COUNTRY[item.source] || null, body: (item.contentText || item.description || '').slice(0, 3000) }],
+      sources: [{ name: item.source, url: item.link, country: SOURCE_COUNTRY[item.source] || null, body: (item.contentText || item.description || '').slice(0, 3000), image: item.image || null }],
       concepts: [],
       location: null,
       sentiment: null,

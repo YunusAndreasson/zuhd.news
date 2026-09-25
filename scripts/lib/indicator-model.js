@@ -1,16 +1,14 @@
-import { spawnSync } from 'node:child_process'
-import { parseClaudeEnvelopeWithUsage } from './claude-envelope.js'
+import { parseClaudeEnvelopeWithUsage, spawnClaude } from './claude-envelope.js'
 
-export function callIndicatorModel(fullPrompt) {
+/**
+ * One Opus call. Async on purpose: the dispatch runs these through a pool of
+ * three, and a synchronous spawn made that pool serial (see `spawnClaude`).
+ */
+export async function callIndicatorModel(fullPrompt) {
   const MODEL = process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5-5'
   const EFFORT = process.env.ZUHD_DISPATCH_EFFORT || 'medium'
-  const env = { ...process.env }
-  // The child must not inherit the parent session marker — see `cycle.md`.
-  delete env.CLAUDECODE
-
   const t0 = Date.now()
-  const result = spawnSync(
-    'claude',
+  const result = await spawnClaude(
     [
       '--model', MODEL,
       '--effort', EFFORT,
@@ -20,11 +18,12 @@ export function callIndicatorModel(fullPrompt) {
       '--exclude-dynamic-system-prompt-sections',
       '-p', fullPrompt,
     ],
-    { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1024 * 1024, env },
+    { timeout: 120_000, maxBuffer: 1024 * 1024 },
   )
   const elapsedMs = Date.now() - t0
 
   if (result.status !== 0) {
+    if (result.error?.code === 'ETIMEDOUT') return { elapsedMs, error: 'claude timed out after 120s' }
     // Both streams: a non-zero `claude` exit often reports on stdout and leaves
     // stderr empty, which read as "exit 1: " and said nothing at all.
     const why =

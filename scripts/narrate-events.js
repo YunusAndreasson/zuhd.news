@@ -37,8 +37,7 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { spawnSync } from 'node:child_process'
-import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
@@ -211,7 +210,7 @@ const recentFingerprint = (bundle) =>
 
 // ── The call ──────────────────────────────────────────────────────────────
 
-const callClaude = (bundle) => {
+const callClaude = async (bundle) => {
   const fullPrompt = `${basePrompt}
 
 ## INPUT (this is the only material \`recent\` may draw from)
@@ -222,12 +221,8 @@ ${JSON.stringify(bundle, null, 2)}
 
 Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations": [...] }\`. No markdown, no fences.`
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-
   const t0 = Date.now()
-  const result = spawnSync(
-    'claude',
+  const result = await spawnClaude(
     [
       '--model', MODEL,
       '--effort', EFFORT,
@@ -237,7 +232,7 @@ Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations":
       '--exclude-dynamic-system-prompt-sections',
       '-p', fullPrompt,
     ],
-    { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1024 * 1024, env },
+    { timeout: 120_000, maxBuffer: 1024 * 1024 },
   )
   const elapsedMs = Date.now() - t0
 
@@ -298,7 +293,7 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     return
   }
 
-  const result = callClaude(bundle)
+  const result = await callClaude(bundle)
   if (result.error) {
     failed++
     console.log(`  ✗ ${item.key}: ${result.error}`)

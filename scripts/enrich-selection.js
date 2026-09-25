@@ -14,6 +14,37 @@ const allStories = [...(feed.multiSourceStories || []), ...(feed.nicheStories ||
 
 const match = createMatcher(allStories)
 
+// URL → the feed's copy of a source, bodies included, from every story.
+const feedSourceByUrl = new Map()
+for (const story of allStories) {
+  for (const src of story.sources || []) {
+    if (src?.url && !feedSourceByUrl.has(src.url)) feedSourceByUrl.set(src.url, src)
+  }
+}
+
+/**
+ * The matched story's sources, **plus** any the selector added.
+ *
+ * This used to be `entry.sources = hit.story.sources`, which threw away every
+ * source the selector merged in — and `select-prompt.md` tells it to merge a
+ * regional outlet into OIC-region stories from elsewhere in the feed. The
+ * added source keeps whatever the feed holds for its URL (body, image); one
+ * the feed has no copy of is dropped, since the writer cannot cite text it
+ * was never given.
+ */
+function unionSources(feedSources, selectorSources, byUrl) {
+  const out = [...feedSources]
+  const seen = new Set(out.map((s) => s.url).filter(Boolean))
+  for (const s of selectorSources || []) {
+    if (!s?.url || seen.has(s.url)) continue
+    const fromFeed = byUrl.get(s.url)
+    if (!fromFeed?.body) continue
+    out.push({ ...s, ...fromFeed })
+    seen.add(s.url)
+  }
+  return out
+}
+
 let enriched = 0
 let missing = 0
 const missingEntries = []
@@ -27,7 +58,11 @@ for (const entry of selection) {
   }
 
   if (hit?.story?.sources) {
-    entry.sources = hit.story.sources
+    const added = unionSources(hit.story.sources, entry.sources, feedSourceByUrl)
+    if (added.length > hit.story.sources.length) {
+      console.error(`  + kept ${added.length - hit.story.sources.length} selector-merged source(s) on "${entry.title}"`)
+    }
+    entry.sources = added
     enriched++
     matchLayers[hit.layer]++
     if (hit.layer === 'keyword') {

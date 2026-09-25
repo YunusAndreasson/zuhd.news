@@ -34,7 +34,7 @@ const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 // only reason the globe's conflict layer was showing a 25-31 March window in
 // late August. The bump is not optional maintenance: this constant IS the
 // dataset's recency, and nothing failed while it rotted — see DATASET_STALE_DAYS.
-const UCDP_VERSION = '26.0.7'
+const UCDP_VERSION = '26.0.8'
 const UCDP_API_URL = `https://ucdpapi.pcr.uu.se/api/gedevents/${UCDP_VERSION}`
 const UCDP_URL = `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${UCDP_VERSION.replace(/\./g, '_')}.csv`
 // The JSON API (a few hundred KB paginated vs the ~50 MB CSV) requires a free
@@ -70,6 +70,8 @@ function cacheFresh() {
     const prior = JSON.parse(readFileSync(OUTPUT_PATH, 'utf8'))
     const generatedMs = Date.parse(prior?.generated)
     if (!Number.isFinite(generatedMs)) return false
+    // A bumped pin must fetch now, not up to six hours later.
+    if (prior?.ucdpVersion !== UCDP_VERSION) return false
     return Date.now() - generatedMs < CACHE_MAX_AGE_MS
   } catch {
     return false
@@ -179,7 +181,7 @@ console.log(
 // than the dataset lagging — which is exactly how a 25-31 March window went
 // unnoticed into late August: the line above printed it every time, correctly,
 // and read as normal. Bump UCDP_VERSION when this fires.
-const DATASET_STALE_DAYS = 120
+const DATASET_STALE_DAYS = 45
 const windowEndMs = Date.parse(windowEnd)
 if (Number.isFinite(windowEndMs)) {
   const lagDays = Math.floor((Date.now() - windowEndMs) / 86400000)
@@ -190,8 +192,25 @@ if (Number.isFinite(windowEndMs)) {
   }
 }
 
+// The next candidate release, asked directly. The lag alarm above is a proxy
+// that fires weeks late (26.0.8 was live while 26.0.7 was pinned and nothing
+// warned); a HEAD on the next file name is the fact itself. One request per
+// real fetch — the 6h snapshot cache means ~4 a day.
+{
+  const [maj, min, patch] = UCDP_VERSION.split('.').map(Number)
+  const next = `${maj}_${min}_${patch + 1}`
+  try {
+    const head = await fetch(`https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${next}.csv`, {
+      method: 'HEAD',
+      signal: AbortSignal.timeout(15_000),
+    })
+    if (head.ok) console.error(`  ⚠ UCDP candidate v${next.replace(/_/g, '.')} is published — bump UCDP_VERSION (pinned ${UCDP_VERSION})`)
+  } catch { /* the probe is advisory; the fetch above already succeeded */ }
+}
+
 const snapshot = {
   generated: new Date().toISOString(),
+  ucdpVersion: UCDP_VERSION,
   windowStart,
   windowEnd,
   events: kept,

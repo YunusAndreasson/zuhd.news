@@ -208,15 +208,16 @@ function writeSourcesToFrontmatter(raw, sources) {
   // Serialize fresh sources block.
   const sourceLines = []
   sourceLines.push('sources:')
+  // Every scalar field the block already had is written back, not a fixed
+  // list: the list was name/url/country/sentiment/angle, so this stage deleted
+  // `image:` from every article it touched — 355 of 413 in the week to
+  // 2026-09-25 lost the publisher image URL scaffold-articles had just added.
   for (const s of sources) {
     sourceLines.push(`  - name: ${JSON.stringify(s.name || '')}`)
-    if (s.url) sourceLines.push(`    url: ${JSON.stringify(s.url)}`)
-    if (typeof s.country === 'string') sourceLines.push(`    country: ${JSON.stringify(s.country)}`)
-    if (typeof s.sentiment === 'number' && Number.isFinite(s.sentiment)) {
-      sourceLines.push(`    sentiment: ${s.sentiment}`)
-    }
-    if (typeof s.angle === 'string' && s.angle.length > 0) {
-      sourceLines.push(`    angle: ${JSON.stringify(s.angle)}`)
+    for (const [key, value] of Object.entries(s)) {
+      if (key === 'name' || !/^[A-Za-z][\w-]*$/.test(key)) continue
+      if (typeof value === 'string' && value.length > 0) sourceLines.push(`    ${key}: ${JSON.stringify(value)}`)
+      else if (typeof value === 'number' && Number.isFinite(value)) sourceLines.push(`    ${key}: ${value}`)
     }
   }
   // Try to preserve roughly the original position: sources is typically near

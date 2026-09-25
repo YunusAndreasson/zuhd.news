@@ -848,6 +848,9 @@ const apiCategories = Object.fromEntries(
           country: s.country || null,
           sentiment: s.sentiment != null ? Number(s.sentiment) : null,
           ...(s.angle ? { angle: s.angle } : {}),
+          // Optional and additive, like `angle`: the publisher's lead-image URL
+          // when the feed or page offered one. Nothing renders it yet.
+          ...(typeof s.image === 'string' && /^https?:\/\//.test(s.image) ? { image: s.image } : {}),
         })),
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c).filter(Boolean),
         eventCoverage: meta.eventCoverage != null ? Number(meta.eventCoverage) : null,
@@ -1885,6 +1888,7 @@ for (const a of sorted) {
         url: x.url || '',
         country: x.country || null,
         sentiment: x.sentiment != null ? Number(x.sentiment) : null,
+        ...(typeof x.image === 'string' && /^https?:\/\//.test(x.image) ? { image: x.image } : {}),
       })),
       /**
        * The indicators this story is about.

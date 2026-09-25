@@ -19,9 +19,8 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { spawnSync } from 'node:child_process'
 import { loadShared } from './build/shared-ts.js'
-import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateGrounding } from './lib/grounding.js'
 
@@ -97,7 +96,7 @@ await runWithConcurrency(candidates, CONCURRENCY, async (alert) => {
     return
   }
 
-  const result = callClaude(bundle)
+  const result = await callClaude(bundle)
   if (result.error) {
     failed++
     console.log(`  ✗ ${id} ${alert.country}: ${result.error}`)
@@ -320,7 +319,7 @@ function hashFingerprint(bundle) {
   return createHash('sha1').update(JSON.stringify(stable)).digest('hex').slice(0, 16)
 }
 
-function callClaude(bundle) {
+async function callClaude(bundle) {
   const fullPrompt = `${basePrompt}
 
 ## INPUT (this is the only material you may draw from)
@@ -332,8 +331,7 @@ ${JSON.stringify(bundle, null, 2)}
 Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
 
   const t0 = Date.now()
-  const result = spawnSync(
-    'claude',
+  const result = await spawnClaude(
     [
       '--model',
       MODEL,
@@ -348,7 +346,7 @@ Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
       '-p',
       fullPrompt,
     ],
-    { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1 * 1024 * 1024 },
+    { timeout: 120_000, maxBuffer: 1 * 1024 * 1024 },
   )
   const elapsedMs = Date.now() - t0
 

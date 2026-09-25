@@ -11,6 +11,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
+import { CATEGORY_FLOORS } from '../lib/dedup.js'
 import { REGION_CODES, regionFromCoords } from '../lib/regions.js'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
 
@@ -161,9 +162,10 @@ function checkGuardrails(articles) {
     }
   }
   if (articles.length < 8) failures.push(`publish count ${articles.length} below floor 8`)
-  // Category floor (matches scripts/lib/dedup.js CATEGORY_FLOORS at v1)
+  // Category floor — the selector's own, imported so the two cannot part again
+  // (this copy said tech 2 while the selector's said 3).
   const catCounts = tally(articles.map((a) => a.category))
-  for (const [cat, floor] of Object.entries({ politics: 3, economy: 3, science: 2, tech: 2 })) {
+  for (const [cat, floor] of Object.entries(CATEGORY_FLOORS)) {
     if ((catCounts[cat] || 0) < floor) failures.push(`category ${cat} below floor ${floor} (got ${catCounts[cat] || 0})`)
   }
   return failures
@@ -182,8 +184,13 @@ function scoreWriting(articles) {
     const wc = a.body.split(/\s+/).filter(Boolean).length
     const hook = hookOf(a.body)
     const flags = {
-      charInRange: len <= 350,
-      wordInRange: wc >= 35 && wc <= 60,
+      // write-prompt.md: 560-char ceiling; 52-66 words over four blocks, 62-75
+      // over five, plus the 1-3 word dateline this count includes. These were
+      // still the pre-2026-09-20 350 / 35-60, so the writing score "fell" from
+      // ~85 to ~44 the day the budget rose — scorer drift, not worse writing.
+      // Pinned against the prompt by lib/article-budget.test.js.
+      charInRange: len <= 560,
+      wordInRange: wc >= 52 && wc <= 78,
       passive: /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/.test(hook),
       hedge: /\b(could\s+reshape|may\s+signal|is\s+poised\s+to|raising\s+questions|significant(ly)?|amid)\b/i.test(a.body),
       pressEra: /\b(at\s+press\s+time|this\s+(morning|afternoon|evening|week))\b/i.test(a.body),

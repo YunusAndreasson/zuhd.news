@@ -12,10 +12,11 @@ Accountability (amānah): if the powerful are framed as protagonist and the affe
 <task>
 1. Check the `<files>` block appended below for this cycle's articles.
 2. If no `<files>` block, find articles via `git diff --name-only content/articles/` and `git ls-files --others --exclude-standard content/articles/`.
-3. Check each article against the rules below.
-4. Rewrite in place if any rule is violated. Preserve `date`, `sources`, `category`, `location`, `lat`, `lng`, `eventCoverage`, and `concepts` in frontmatter.
-5. Leave passing articles unchanged.
-6. List what you changed and why.
+3. Read `/tmp/zuhd-selection.json` once, before any article. It is the writer's input: one entry per story, each with a `sources` array whose `body` fields hold the full source text. Match an article to its entry by a frontmatter `sources[].url`. **This is the only way to check a figure or a quote** — the frontmatter links are not the source text. If the file is missing, say so in your summary and skip the verbatim checks rather than guessing.
+4. Check each article against the rules below.
+5. Rewrite in place if any rule is violated. Preserve `date`, `sources`, `category`, `location`, `lat`, `lng`, `eventCoverage`, and `concepts` in frontmatter.
+6. Leave passing articles unchanged.
+7. List what you changed and why.
 
 Build, commit, and deploy are handled by the cycle script after you finish.
 </task>
@@ -29,7 +30,9 @@ Check first, before any style rules.
 - **Figures:** Do numbers in the body match what sources report? If a source says "approximately 80" and the article says "80," that's acceptable. If a source says "80" and the article says "800," flag it.
 - **Attribution of claims:** Are contested claims qualified? "Israel said" vs. stated as fact. "WHO warned" vs. asserted.
 - **Synthesis fidelity:** If the article combines multiple sources, does the synthesis distort any individual source's meaning?
-- **Dateline accuracy:** Does the location match where the primary action occurred, not where a secondary reaction happened?
+- **Figures and quotes against the source bodies:** every load-bearing number and every direct quotation must appear in a `body` in `/tmp/zuhd-selection.json` for that story. A figure no body contains is fixed to what the body says or cut. Name what you checked in your summary.
+- **Dateline accuracy:** Does the location match where the primary action occurred, not where a secondary reaction happened? For a paper or a company announcement with no event location, the dateline is the lead institution's city, never the publisher's headquarters (a Nature paper is not "London", a CoinDesk story is not "New York").
+- **Dateline presence:** Every body opens `City — `. When you rewrite a hook, keep the dateline in front of it; the validator quarantines an article that has lost it.
 </accuracy>
 
 <editorial>
@@ -51,7 +54,7 @@ Check first, before any style rules.
   - **False balance.** A counterpoint that reports a denial as the other side of a fact the denier's own institution has confirmed is the false equivalence `<values>` forbids. Delete the block; do not soften it.
   - **Filler.** A block 4 that paraphrases block 3, quotes an unnamed "Western diplomat," or says analysts are divided, is the slot being filled rather than earned. Delete it. Four blocks is a complete article.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
-- No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
+- No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. **Exception — keep it, never remove it:** when every source is state media or an advocacy outlet (RT, TASS, Sputnik, RIA Novosti, Xinhua, CGTN, Global Times, China Daily, KCNA, Press TV, IRNA, Mehr, Tasnim, Fars, SANA, TRT World, Anadolu, the Saudi Press Agency, WAM, Responsible Statecraft, Quincy Institute, Declassified UK, Inkstick), the body must name the outlet and what it is ("Russian state news agency TASS reported…"). If such an article states that outlet's claims in the site's own voice, add the attribution. The validator quarantines one that does not name it. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
 - `location` in frontmatter must be **identical** to the dateline text — the part before ` — ` in the first sentence — with **no `, Country` suffix**. If the body opens `Gujranwala — ` then `location` must be `Gujranwala`, not `Gujranwala, Pakistan`; a country suffix breaks the mobile dateline strip. Fix the frontmatter field (not the dateline) when they disagree. Coordinates (`lat`/`lng`) must fall on land inside a country — not in a body of water or ocean.
 - **Length:** Body text (everything after the closing `---`) targets 400-480 visible characters with a hard ceiling of 560. Do not rewrite a body just because it sits between 480 and 560 — only articles flagged OVER in the `<body-lengths>` block appended below (>560 chars) **must** be rewritten shorter. That block also prints each article's block count, so you can see which articles carry the optional 5th before opening them. On a flagged article, drop the optional counterpoint-or-quote block first if the article has five; that is what it is there for. Otherwise cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a required block. After trimming, verify the result still reads naturally and still has a hook, a why-it-matters, a mechanism and a future.
 </structure>

@@ -58,6 +58,54 @@ mkdir -p "$LOG_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H%M)
 LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
+# A cycle that ends without publishing writes content/.cycle-alert.json and a
+# loud ALERT line. On 2026-09-19 four cycles in a row died on an expired Claude
+# OAuth token — "Failed to authenticate", 0 articles, exit 1 — and nothing
+# anywhere said so; the next human look was the next day. The file carries the
+# consecutive count so a single quiet cycle (everything already covered) reads
+# differently from a dead pipeline. Cleared by the first cycle that publishes.
+CYCLE_ALERT="$PROJECT_DIR/content/.cycle-alert.json"
+on_cycle_exit() {
+  local status=$1
+  if [ "${FUNNEL_PUBLISHED:-0}" -gt 0 ] 2>/dev/null; then
+    rm -f "$CYCLE_ALERT"
+    return
+  fi
+  local reason="no articles published"
+  if grep -qiE "Failed to authenticate|OAuth (session|token).*(expired|invalid)|Please run /login" "$LOG_FILE" 2>/dev/null; then
+    reason="claude CLI authentication failed — re-run 'claude' interactively on the server to log in"
+  elif [ "$status" -ne 0 ]; then
+    reason="cycle exited $status before publishing"
+  fi
+  CYCLE_ALERT="$CYCLE_ALERT" ALERT_REASON="$reason" ALERT_LOG="$LOG_FILE" node -e '
+    const fs = require("fs"), p = process.env.CYCLE_ALERT
+    let prev = {}; try { prev = JSON.parse(fs.readFileSync(p, "utf8")) } catch {}
+    const out = { at: new Date().toISOString(), reason: process.env.ALERT_REASON, log: process.env.ALERT_LOG,
+      consecutive: (prev.consecutive || 0) + 1, since: prev.since || new Date().toISOString() }
+    fs.writeFileSync(p, JSON.stringify(out, null, 2) + "\n")
+    console.log(`ALERT: ${out.reason} (${out.consecutive} cycle(s) in a row since ${out.since})`)
+  ' 2>&1 | tee -a "$LOG_FILE"
+}
+
+# Build with a retry on the build lock (see Stage 3b for why). Sets BUILD_EXIT.
+# One copy: the Stage 4 audio rebuild ran a bare `node scripts/build.js` with no
+# retry and no exit check, then deployed whatever dist/ held.
+build_site() {
+  local attempt=1 out
+  while :; do
+    out=$(node scripts/build.js 2>&1)
+    BUILD_EXIT=$?
+    echo "$out" | tee -a "$LOG_FILE"
+    if [ "$BUILD_EXIT" -eq 0 ] || [ "$attempt" -ge 3 ] \
+      || ! echo "$out" | grep -q "Another build is already running"; then
+      break
+    fi
+    echo "Build lock held — retrying in 20s (attempt $attempt/3)" | tee -a "$LOG_FILE"
+    sleep 20
+    attempt=$((attempt + 1))
+  done
+}
+
 # Commit exactly the paths named, leaving anything else a person has staged
 # alone.
 #
@@ -98,6 +146,7 @@ commit_only() {
 }
 
 cleanup() {
+  local exit_status=$?
   echo "" | tee -a "$LOG_FILE"
   # Funnel summary — one glance to see where stories were gained or lost
   echo "=== Funnel ===" | tee -a "$LOG_FILE"
@@ -109,6 +158,7 @@ cleanup() {
   echo "Published: ${FUNNEL_PUBLISHED:-0}" | tee -a "$LOG_FILE"
   echo "" | tee -a "$LOG_FILE"
   echo "Finished: $(date) — total ${SECONDS}s" | tee -a "$LOG_FILE"
+  on_cycle_exit "$exit_status"
   find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
 }
 trap cleanup EXIT
@@ -396,8 +446,12 @@ $ARTICLE_LIST
 <body-lengths>
 $BODY_LENGTHS
 </body-lengths>"
+  # --add-dir /tmp: the editor's first rule is checking figures and quotes
+  # against the sources, and the source text lives only in
+  # /tmp/zuhd-selection.json. Without it the editor said, every cycle, that it
+  # "only saw them as links" — the fabricated-quote check was an honour system.
   run_editor() {
-    timeout 1800 claude $CLAUDE_FLAGS --effort "${ZUHD_EDITOR_EFFORT:-low}" --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+    timeout 1800 claude $CLAUDE_FLAGS --effort "${ZUHD_EDITOR_EFFORT:-low}" --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   }
   run_editor
   EDITOR_EXIT=$?
@@ -571,9 +625,12 @@ $BODY_LENGTHS
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.75: Swedish desk ---" | tee -a "$LOG_FILE"
   T375=$SECONDS
-  timeout 600 node scripts/translate-swedish.js 2>&1 | tee -a "$LOG_FILE" \
-    || echo "WARNING: swedish translation failed (non-fatal — islam.se keeps the previous payload)" | tee -a "$LOG_FILE"
-  echo "Swedish desk exit: $? — $((SECONDS - T375))s" | tee -a "$LOG_FILE"
+  timeout 600 node scripts/translate-swedish.js 2>&1 | tee -a "$LOG_FILE"
+  # PIPESTATUS, not `$?` after an `|| echo` fallback — that printed the
+  # fallback's status, so this line read "exit: 0" on every cycle.
+  SV_EXIT=${PIPESTATUS[0]}
+  [ "$SV_EXIT" -ne 0 ] && echo "WARNING: swedish translation failed (non-fatal — islam.se keeps the previous payload)" | tee -a "$LOG_FILE"
+  echo "Swedish desk exit: $SV_EXIT — $((SECONDS - T375))s" | tee -a "$LOG_FILE"
 
   # Signal selection is before publishing; failure does not block the news.
   timeout 420 node scripts/narrate-indicators.js --market-signals 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: market signals failed" | tee -a "$LOG_FILE"
@@ -585,9 +642,12 @@ $BODY_LENGTHS
   echo "--- Stage 3b: Build & Deploy ---" | tee -a "$LOG_FILE"
 
   # Validate new articles — move malformed ones aside so they don't get deployed
-  node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE"
-  # Count surviving articles (validated = written - .bad files)
-  BAD_COUNT=$(find content/articles -name '*.bad' -newer "$LOG_FILE" 2>/dev/null | wc -l)
+  # Count what the validator quarantined from its own output. This was
+  # `find -name '*.bad' -newer "$LOG_FILE"`, which is always 0: renameSync keeps
+  # the article's mtime and the log is appended to right after, so the funnel
+  # and the commit message counted quarantined articles as published.
+  VALIDATE_OUT=$(node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE")
+  BAD_COUNT=$(printf '%s\n' "$VALIDATE_OUT" | grep -c '^SKIP (' || true)
   FUNNEL_VALIDATED=$((NEW_COUNT - BAD_COUNT))
   [ "$BAD_COUNT" -gt 0 ] && FUNNEL_VALID_NOTE="${BAD_COUNT} removed"
 
@@ -628,25 +688,13 @@ $BODY_LENGTHS
   # costing an entire cycle's publication with no wait or retry (08-09 17:22
   # → 08-10 17:33, 6 of 7 cycles). A dev build finishes in seconds; three
   # tries at 20s apart clears that without meaningfully delaying a stuck cycle.
-  BUILD_ATTEMPT=1
-  while :; do
-    BUILD_OUTPUT=$(node scripts/build.js 2>&1)
-    BUILD_EXIT=$?
-    echo "$BUILD_OUTPUT" | tee -a "$LOG_FILE"
-    if [ "$BUILD_EXIT" -eq 0 ] || [ "$BUILD_ATTEMPT" -ge 3 ] \
-      || ! echo "$BUILD_OUTPUT" | grep -q "Another build is already running"; then
-      break
-    fi
-    echo "Build lock held — retrying in 20s (attempt $BUILD_ATTEMPT/3)" | tee -a "$LOG_FILE"
-    sleep 20
-    BUILD_ATTEMPT=$((BUILD_ATTEMPT + 1))
-  done
+  build_site
   echo "Build exit: $BUILD_EXIT" | tee -a "$LOG_FILE"
 
   if [ "$BUILD_EXIT" -eq 0 ]; then
     # Commit
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
-    commit_only "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" \
+    commit_only "Editorial cycle $CYCLE_TIME: ${FUNNEL_VALIDATED:-$NEW_COUNT} articles" \
       content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
     # --autostash: the working tree always carries uncommitted churn (.analytics.json,
     # .block-cache.json, rotated feed-snapshots) that a plain `pull --rebase` refuses to
@@ -746,7 +794,7 @@ $BODY_LENGTHS
 
         if (selected.length) console.log(JSON.stringify({ articles: selected }));
       ")
-      if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
+      if [ -n "$BREAKING_JSON" ] && [ -n "${PUSH_SECRET:-}" ]; then
         # Craft notification body with Claude — the article lead isn't written for push
         PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
         if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
@@ -865,10 +913,12 @@ fi
 # own. If Stage 4 is skipped or fails, the next cycle's Stage 3b build picks the
 # file up — which is why it commits here rather than waiting.
 #
-# Cached on two fingerprints (identity, and the story behind the move), so a
-# steady day is close to free: measured 98 items / $17.60 cold, 0 calls when
-# nothing changed, 6 items / $1.26 after one cycle of 12 new articles. The
-# timeout covers a cold run (~18 min measured) and is behind `|| echo WARNING`
+# Cached on two fingerprints (identity, and the story behind the move), but the
+# `recent` one moves most days, so in practice nearly every item is re-called:
+# ~105 Opus calls, ~$30. Until 2026-09-25 those ran serially behind `spawnSync`
+# (the pool of three never overlapped) and hit this timeout on six of eight
+# days, discarding everything; now they overlap (~6 items / 35s measured) and
+# the cache checkpoints every 10 items and on SIGTERM. Behind `|| echo WARNING`
 # so it can never hold up a publish.
 HOUR_UTC=$(date -u +%H)
 if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
@@ -940,22 +990,29 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   echo "Briefing exit: $BRIEFING_EXIT" | tee -a "$LOG_FILE"
   if [ "$BRIEFING_EXIT" -eq 0 ]; then
     echo "Rebuilding and redeploying with audio..." | tee -a "$LOG_FILE"
-    node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
+    build_site
+    echo "Audio rebuild exit: $BUILD_EXIT" | tee -a "$LOG_FILE"
     commit_only "Audio briefing $(date -u +%Y-%m-%d)" content/audio/
     git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     # Install any new build deps the pull may have added (fast no-op when
     # unchanged) so the next build.js doesn't crash on a missing module.
     npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
-    npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
-    DEPLOY_EXIT=$?
+    if [ "$BUILD_EXIT" -eq 0 ]; then
+      npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
+      DEPLOY_EXIT=${PIPESTATUS[0]}
+    else
+      echo "WARNING: audio rebuild failed — not deploying; the next cycle's build ships the briefing" | tee -a "$LOG_FILE"
+      DEPLOY_EXIT=1
+    fi
+    echo "Audio deploy exit: $DEPLOY_EXIT" | tee -a "$LOG_FILE"
 
     # Stage 4b: Daily briefing push notification — fires once per day after
     # the audio is live. Body is a Claude-crafted topic line ("Hormuz $106 ·
     # BJP defects · DeepSeek V4 ships") so the reader learns what's in the
     # briefing without needing to open the app first. Idempotent via the
     # /api/push 7-day dedup keyed on the synthetic slug `briefing-${date}`.
-    if [ "$DEPLOY_EXIT" -eq 0 ] && [ -n "$PUSH_SECRET" ]; then
+    if [ "$DEPLOY_EXIT" -eq 0 ] && [ -n "${PUSH_SECRET:-}" ]; then
       BRIEFING_DATE=$(date -u +%Y-%m-%d)
       # Top stories for the topic line — read straight from the ledger so
       # we don't need a second LLM pass to rank. Same filter the briefing

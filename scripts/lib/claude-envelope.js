@@ -1,4 +1,4 @@
-import { spawnSync } from 'node:child_process'
+import { spawn, spawnSync } from 'node:child_process'
 
 // Parse the `claude --output-format json` envelope.
 //
@@ -88,4 +88,63 @@ export function runHaiku(prompt, { timeout, maxBuffer }) {
     ],
     { encoding: 'utf-8', timeout, maxBuffer, env },
   )
+}
+
+/**
+ * `spawnSync`'s result shape — `{ status, stdout, stderr, error }` — from an
+ * asynchronous `claude` child.
+ *
+ * Every narrator ran its calls through `runWithConcurrency(items, 3, …)` and
+ * made them with `spawnSync`, which blocks the event loop for the whole call.
+ * The pool therefore ran one call at a time while its comment said three, and
+ * the 04:00 indicator dispatch — ~120 serial Opus calls at ~12s — hit its
+ * 1500s timeout every day and lost everything. A pool only overlaps what
+ * yields, so a caller inside one must use this.
+ *
+ * `timeout` kills the child (SIGTERM) and resolves with `status: null` and
+ * `error.code === 'ETIMEDOUT'`, as `spawnSync` reports it. Output past
+ * `maxBuffer` kills the child too (`ENOBUFS`). `CLAUDECODE` is always dropped
+ * — the child must not inherit the parent session marker.
+ *
+ * @param {string[]} args
+ * @param {{ timeout?: number, maxBuffer?: number, env?: NodeJS.ProcessEnv, command?: string }} [opts]
+ * @returns {Promise<{ status: number | null, stdout: string, stderr: string, error?: Error & { code?: string } }>}
+ */
+export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude' } = {}) {
+  const childEnv = { ...env }
+  delete childEnv.CLAUDECODE
+  return new Promise((resolve) => {
+    const child = spawn(command, args, { env: childEnv, stdio: ['ignore', 'pipe', 'pipe'] })
+    let stdout = ''
+    let stderr = ''
+    /** @type {(Error & { code?: string }) | undefined} */
+    let error
+    let settled = false
+    const finish = (status) => {
+      if (settled) return
+      settled = true
+      clearTimeout(timer)
+      resolve({ status, stdout, stderr, ...(error ? { error } : {}) })
+    }
+    const kill = (code) => {
+      if (error) return
+      error = Object.assign(new Error(`claude ${code}`), { code })
+      child.kill('SIGTERM')
+    }
+    const timer = setTimeout(() => kill('ETIMEDOUT'), timeout)
+    child.stdout.setEncoding('utf-8')
+    child.stderr.setEncoding('utf-8')
+    child.stdout.on('data', (d) => {
+      stdout += d
+      if (stdout.length > maxBuffer) kill('ENOBUFS')
+    })
+    child.stderr.on('data', (d) => {
+      stderr += d
+    })
+    child.on('error', (err) => {
+      error = err
+      finish(null)
+    })
+    child.on('close', (code) => finish(error ? null : code))
+  })
 }
