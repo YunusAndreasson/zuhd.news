@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
@@ -83,6 +83,15 @@ try {
   mkdirSync(SNAP_DIR, { recursive: true })
   const ts = output.fetchedAt.replace(/:/g, '-').replace(/\..+/, '').replace('T', 'T').slice(0, 16)
   writeFileSync(`${SNAP_DIR}/${ts}.json`, JSON.stringify(slimOutput, null, 2))
+  // Rotation: this directory had none and reached 700 files / 86 MB by
+  // 2026-09-25, five a day. The narrators read a 14-day window
+  // (lib/coverage-window.js); 45 days leaves replay-recap-dedup a backtest
+  // month on top. Older snapshots up to 2026-08-09 remain in git history.
+  const KEEP_DAYS = 45
+  const cutoff = new Date(Date.now() - KEEP_DAYS * 86400000).toISOString().slice(0, 10)
+  for (const f of readdirSync(SNAP_DIR)) {
+    if (f.endsWith('.json') && f.slice(0, 10) < cutoff) unlinkSync(`${SNAP_DIR}/${f}`)
+  }
 } catch (err) {
   console.error(`merged-snapshot write failed: ${err.message}`)
 }

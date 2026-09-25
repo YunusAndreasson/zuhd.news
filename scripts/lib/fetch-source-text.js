@@ -59,6 +59,25 @@ export function stripHtml(html) {
 }
 
 /**
+ * The HTML Readability needs, and nothing JSDOM will choke on.
+ *
+ * JSDOM parses every `<style>` block and inline stylesheet through csstree,
+ * synchronously; a page shipping megabytes of CSS stalled Stage 0 for minutes
+ * (RSS fetch 279-371s on 2026-09-23/24, the log full of "Could not parse CSS
+ * stylesheet"). Readability reads text, so styles and scripts are dropped and
+ * the page is capped before parsing.
+ * @param {string} html
+ */
+export function htmlForReadability(html) {
+  return html
+    .slice(0, 1_500_000)
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
+    .replace(/\sstyle="[^"]*"/gi, '')
+}
+
+/**
  * Fetch one source URL and extract its main text. Returns null on any
  * failure (timeout, network, non-HTML response, tiny extracted text).
  *
@@ -84,7 +103,7 @@ export async function fetchSourceText(url) {
     const html = await res.text()
     let text = ''
     try {
-      const dom = new JSDOM(html, { url })
+      const dom = new JSDOM(htmlForReadability(html), { url })
       const article = new Readability(dom.window.document).parse()
       if (article?.textContent) text = article.textContent.replace(/\s+/g, ' ').trim().slice(0, MAX_TEXT)
     } catch { /* fall through to regex extractor */ }

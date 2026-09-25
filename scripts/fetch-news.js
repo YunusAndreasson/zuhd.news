@@ -7,6 +7,7 @@ import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
 import { Readability } from '@mozilla/readability'
 import { htmlLeadImage, rssItemImage } from './lib/feed-image.js'
+import { htmlForReadability } from './lib/fetch-source-text.js'
 import { JSDOM } from 'jsdom'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { shouldSkip, recordResult } from './lib/block-cache.js'
@@ -131,7 +132,7 @@ async function fetchArticleBody(url) {
     // Readability handles sites without <article>/<main> semantics — 2026-04-19
     // bakeoff showed 76% → 96% extraction rate vs the prior regex approach.
     try {
-      const dom = new JSDOM(html, { url })
+      const dom = new JSDOM(htmlForReadability(html), { url })
       const article = new Readability(dom.window.document).parse()
       if (article?.textContent) {
         const text = article.textContent.replace(/\s+/g, ' ').trim()

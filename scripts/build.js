@@ -1244,8 +1244,9 @@ if (existsSync(iodaSrc)) {
 // Trends snapshot — full indicator catalog with values/periods. Mobile
 // EntitySheet fetches this to render charts for any entity tapped in an
 // article body. Ships the newest snapshot as api/trends.json (single file,
-// current as of this deploy); if mobile wants historical, /trends/
-// per-date JSONs remain queryable via the git repo.
+// current as of this deploy). Per-date snapshots are kept 30 days on the
+// pipeline host only — the cycle has not committed them since 2026-08-09, so
+// git history holds them up to that date and no later.
 //
 // Dated by the snapshot it shipped, not by today: this looked up
 // `content/trends/${today}.json`, which only exists once that day's fetch
