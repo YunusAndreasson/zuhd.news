@@ -529,6 +529,17 @@ whole time; nothing said so.
     story framing now reads as named markets with at most a `2 markets` over
     the Alps. Past `MARK_NAMES_PLANET_CLIP` the old grouping stands. About
     0.1 ms a layout in node against 0.03 before; unmeasured on Hermes.
+  - **The markets are laid out at rest and carried while the globe moves**
+    (`followMarketLayout`, 2026-09-26, the user's report: "flickering so
+    much when other content is stable"). Laid out on every moving frame, a
+    swipe's rise and fall changed every distance between cities and flipped
+    groups, leaders and name slots: a simulated London-to-Istanbul flight
+    moved a market in 19 of 30 frames (8 of 30 before the split, so the
+    grouping flickered too). Now a moving frame keeps each mark's group,
+    its offset from its city and its name slot, and the markets re-arrange
+    once, when the camera settles — 1 frame of 30 in the same flight. A
+    market that comes into view in motion is laid out once, around the held
+    marks, and held with them. Do not lay them out per moving frame again.
   - **Nothing on the globe prints over anything else** (2026-09-23). Every
     always-drawn thing reserves its room before a name is placed: the story's
     place, genocide names (set left of the mark, and held on the screen, when
@@ -564,11 +575,14 @@ whole time; nothing said so.
   - **`▶` sits beside it and `markets` moved into it (2026-09-21, the user's
     request).** `markets` was a word between the gauges and the menu; it is
     the menu's first row now, and opens the browser the strip's `all →`
-    opens. `▶` came up from the dock. Both are bare 20pt glyphs in one
-    `HeaderControl` box — one width, one height, one `GAUGE_EXTRA` nudge, the
-    glyph centred in one square — so they line up exactly by construction;
-    the user asked for exact vertical alignment, and a style on one of them
-    alone is how that breaks. A paused briefing draws its heard arc round
+    opens. `▶` came up from the dock. Both are bare glyphs in one
+    `HeaderControl` — one height, one `GAUGE_EXTRA` nudge, the glyph centred
+    in one square — so they line up exactly by construction; the user asked
+    for exact vertical alignment, and a vertical style on one of them alone
+    is how that breaks. `▶` is the small icon size (14pt against the menu's
+    20pt) in a box 8pt narrower, with the difference given back as touch
+    slop (2026-09-26, the user's report: a filled triangle at 20pt read
+    larger than three thin lines and took the gauges' room). A paused briefing draws its heard arc round
     `▶` on a rule-ink ring. `▶` hides while the player bar is up and keeps
     its slot, so the gauges never change width with the player.
   - **The player hangs under the bar, where `▶` was (2026-09-22, the user's

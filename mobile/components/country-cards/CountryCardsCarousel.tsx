@@ -16,7 +16,7 @@ import Animated, {
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
-import { hapticTick } from '../../lib/haptics';
+import { hapticSwipe, hapticTick } from '../../lib/haptics';
 import { Pressable } from '../primitives';
 import { ComplexityCard } from './ComplexityCard';
 import { DemographyCard } from './DemographyCard';
@@ -118,9 +118,8 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
         Math.min(cards.length - 1, Math.round(e.nativeEvent.contentOffset.x / pageWidth)),
       );
       if (idx !== prevActive.current) {
-        // Tick tier matches the homepage category-pager and the existing scrub
-        // vocabulary — incidental movement, not a discrete tap.
-        hapticTick();
+        // A swipe landing on a page: the swipe tier, as the story deck's.
+        hapticSwipe();
         prevActive.current = idx;
       }
       setActive(idx);

@@ -39,8 +39,9 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
  * the gauges do not widen and narrow with the player.
  *
  * **The two are aligned by construction, not by eye.** Each is a
- * `HeaderControl`: one box, one height, one optical nudge, and its glyph
- * centred in a square of one size. Neither may carry a style of its own that
+ * `HeaderControl`: one height, one optical nudge, and its glyph centred in a
+ * square of one size. Only the width differs — `▶` is the smaller glyph in a
+ * narrower box (`PLAY_WIDTH`), which moves nothing vertically. Neither may carry a style of its own that
  * moves it vertically; the user asked for the pair to line up exactly, and a
  * per-button offset is how two icons drift a point apart.
  *
@@ -58,12 +59,24 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 
 /** Keep the full touch target while letting it meet the safe right edge. */
 const CONTROL_WIDTH = CONTROL_ROW - SPACING.sm;
-/** The square each control's glyph is centred in, and the heard ring's size. */
+/**
+ * `▶`'s box, narrower than the menu's: it gave the gauges 8pt back, and it
+ * takes the difference back as touch slop into the dead gap on either side,
+ * so it is still the menu's 40×48 target (2026-09-26, the user's report that
+ * it took too much room). Its glyph is the small icon size: a filled triangle
+ * at the menu's 20pt read larger than three thin lines beside it.
+ */
+const PLAY_WIDTH = CONTROL_WIDTH - 2 * SPACING.xs;
+const PLAY_SLOP = { top: 0, bottom: 0, left: SPACING.xs, right: SPACING.xs };
+/** The square each control's glyph is centred in — one size for both, so
+ *  their centres share a line whatever size each glyph is. */
 const GLYPH_BOX = 30;
+/** The heard ring round `▶`, sized to the small triangle it circles. */
+const HEARD_BOX = 24;
 const HEARD_STROKE = 1.5;
 /** A play triangle's weight sits left of its box's centre; this puts it in
  *  the middle of its square to the eye. Horizontal only. */
-const PLAY_NUDGE = 1.5;
+const PLAY_NUDGE = 1;
 /** How far below the row the shade runs out. */
 const SHADE_FADE = SPACING.xxl;
 /** The fade's steps, as fractions of the way down it, and how much of the
@@ -135,7 +148,7 @@ const HeardRing = memo(function HeardRing({
 }) {
   const path = useMemo(() => {
     const inset = HEARD_STROKE / 2;
-    const d = GLYPH_BOX - HEARD_STROKE;
+    const d = HEARD_BOX - HEARD_STROKE;
     return Skia.PathBuilder.Make()
       .addArc(Skia.XYWHRect(inset, inset, d, d), -90, 360)
       .build();
@@ -162,14 +175,20 @@ const HeardRing = memo(function HeardRing({
 });
 
 /** One of the bar's two controls. Both go through here so they share every
- *  number that places a glyph vertically. */
+ *  number that places a glyph vertically; `narrow` changes only the width. */
 function HeaderControl({
   children,
+  narrow = false,
   ...button
-}: Omit<IconButtonProps, 'style' | 'hitSlop' | 'haptic'>) {
+}: Omit<IconButtonProps, 'style' | 'hitSlop' | 'haptic'> & { narrow?: boolean }) {
   return (
     // The screen's handlers give their own feedback, as they do for every gauge.
-    <IconButton {...button} haptic="none" hitSlop={0} style={styles.control}>
+    <IconButton
+      {...button}
+      haptic="none"
+      hitSlop={narrow ? PLAY_SLOP : 0}
+      style={[styles.control, narrow && styles.narrow]}
+    >
       <View style={styles.glyph}>{children}</View>
     </IconButton>
   );
@@ -229,7 +248,8 @@ export const MapHeader = memo(function MapHeader({
   );
   const leftInset = Math.max(SPACING.articlePadding, insets.left);
   // The two controls and the row's gap before each.
-  const stripViewport = width - leftInset - insets.right - 2 * (CONTROL_WIDTH + SPACING.xs);
+  const stripViewport =
+    width - leftInset - insets.right - (CONTROL_WIDTH + SPACING.xs) - (PLAY_WIDTH + SPACING.xs);
 
   const heard = listenResumable ? Math.min(1, Math.max(0, listenHeard)) : 0;
   const listenMinutes = formatAudioDurationMinutes(
@@ -267,6 +287,7 @@ export const MapHeader = memo(function MapHeader({
       </View>
       {listenAvailable && onListenPress ? (
         <HeaderControl
+          narrow
           onPress={onListenPress}
           accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
           accessibilityHint={
@@ -277,11 +298,11 @@ export const MapHeader = memo(function MapHeader({
             <HeardRing heard={heard} track={colors.rule} color={colors.textSecondary} />
           ) : null}
           <View style={styles.playNudge}>
-            <Icon name="play" size="md" tone="default" />
+            <Icon name="play" size="sm" tone="default" />
           </View>
         </HeaderControl>
       ) : (
-        <View style={styles.control} pointerEvents="none" accessible={false} />
+        <View style={[styles.control, styles.narrow]} pointerEvents="none" accessible={false} />
       )}
       <HeaderControl
         onPress={onMenuPress}
@@ -310,13 +331,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  narrow: { width: PLAY_WIDTH },
   glyph: {
     width: GLYPH_BOX,
     height: GLYPH_BOX,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  ring: { position: 'absolute', top: 0, left: 0, width: GLYPH_BOX, height: GLYPH_BOX },
+  ring: {
+    position: 'absolute',
+    top: (GLYPH_BOX - HEARD_BOX) / 2,
+    left: (GLYPH_BOX - HEARD_BOX) / 2,
+    width: HEARD_BOX,
+    height: HEARD_BOX,
+  },
   playNudge: { transform: [{ translateX: PLAY_NUDGE }] },
   shade: { position: 'absolute', top: 0, left: 0 },
   middle: { flex: 1, minWidth: 0, justifyContent: 'center' },

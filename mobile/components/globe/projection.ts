@@ -126,7 +126,8 @@ export const RIVERS_REST_OPACITY = 0.5;
 
 // ── Reference locations ────────────────────────────────────────────────────
 
-/** Makkah — qibla direction reference. [lng, lat] for d3-geo. */
+/** Makkah — the gold glow on the globe, and the place a tap on it names.
+ *  [lng, lat] for d3-geo. */
 export const MAKKAH = {
   coords: [39.83, 21.42] as [number, number],
   name: 'Makkah',

@@ -500,10 +500,14 @@ export const RADIUS = {
   floating: 14,
 } as const;
 
-/** Icon pixel sizes. Three tiers — anything else is a mistake.
+/** Icon pixel sizes. Four tiers — anything else is a mistake.
+ *  `xs` is a move chip's caret beside 11pt figures — the strip's gauges, the
+ *  markets list's rows: a filled triangle at `sm` outweighed the number it
+ *  points at (2026-09-26). Nothing else takes it.
  *  `lg` is reserved for primary-action icons in mini-players and similar
  *  surfaces where the play/pause icon needs to read as the focal action. */
 export const ICON = {
+  xs: 11,
   sm: 14,
   md: 20,
   lg: 26,

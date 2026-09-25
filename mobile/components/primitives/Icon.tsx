@@ -11,7 +11,8 @@ type SFSymbolName =
 
 export interface IconProps {
   name: IoniconName;
-  /** Pixel size — `sm` (14), `md` (20), `lg` (26). Anything else is a mistake. */
+  /** Pixel size — `xs` (11, a chip's caret only), `sm` (14), `md` (20), `lg`
+   *  (26). Anything else is a mistake. */
   size?: keyof typeof ICON;
   /** Semantic tone. Ignored if `color` is set. */
   tone?: TextTone;
@@ -60,7 +61,7 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
 };
 
 /**
- * Centralizes the icon-pack choice and the three-tier size system. Never use
+ * Centralizes the icon-pack choice and the four-tier size system. Never use
  * `<Ionicons>` or `<SymbolView>` directly in app code — go through this.
  */
 export const Icon = memo(function Icon({

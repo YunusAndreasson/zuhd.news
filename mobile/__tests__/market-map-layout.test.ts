@@ -1,4 +1,5 @@
 import {
+  followMarketLayout,
   layoutMarketClusters,
   type MarketCluster,
   type MarketLabelRoom,
@@ -239,4 +240,58 @@ test('a crowded region is set apart as far as it fits, and nothing crosses', () 
       if (otherName) expect(meet(name, otherName)).toBe(false);
     }
   }
+});
+
+// While the globe moves the markets keep the layout they had at rest: laid
+// out on every frame, a swipe's rise and fall flipped groups, leaders and
+// name slots, and the markets flickered while the land slid (2026-09-26).
+describe('followMarketLayout', () => {
+  const room = { width: 400, height: 700 };
+  const moved = (points: MarketPoint[], k: number, dx: number, dy: number) =>
+    points.map((p) => ({ ...p, x: 200 + (p.x - 200) * k + dx, y: 300 + (p.y - 300) * k + dy }));
+
+  test('carries each mark with its city through a zooming move, arrangement and all', () => {
+    const points = [
+      point('a', 200, 300),
+      point('b', 230, 290, 'down'),
+      point('c', 120, 420),
+      point('d', 135, 430),
+    ];
+    const rest = layoutMarketClusters(points, [], { ...room, label: names });
+    // A swipe's rise: every distance shrinks by a fifth, and the camera slides.
+    for (const [k, dx, dy] of [
+      [0.9, 10, -5],
+      [0.8, 25, -12],
+      [0.9, 40, -20],
+    ] as const) {
+      const now = moved(points, k, dx, dy);
+      const carried = followMarketLayout(rest, now, room);
+      expect(carried.map((m) => m.ids)).toEqual(rest.map((m) => m.ids));
+      carried.forEach((m, i) => {
+        const was = rest[i];
+        if (!was) return;
+        expect(m.x - m.originX).toBeCloseTo(was.x - was.originX);
+        expect(m.y - m.originY).toBeCloseTo(was.y - was.originY);
+        expect(m.labelDy).toBe(was.labelDy);
+      });
+    }
+  });
+
+  test('drops a market that left the view, and a cluster down to one stands on its city', () => {
+    const rest = layoutMarketClusters([point('a', 100, 100), point('b', 120, 100, 'down')], [], {
+      ...room,
+      split: false,
+    });
+    expect(rest.map((m) => m.ids)).toEqual([['a', 'b']]);
+    const carried = followMarketLayout(rest, [point('a', 100, 100), point('b', -20, 100)], room);
+    expect(carried).toHaveLength(1);
+    expect(carried[0]).toMatchObject({ ids: ['a'], x: 100, y: 100, label: 'a', direction: 'up' });
+    expect(carried[0]?.labelDy).toBeUndefined();
+  });
+
+  test('leaves out a market the held layout never had', () => {
+    const rest = layoutMarketClusters([point('a', 100, 100)], [], room);
+    const carried = followMarketLayout(rest, [point('a', 110, 100), point('new', 300, 300)], room);
+    expect(carried.flatMap((m) => m.ids)).toEqual(['a']);
+  });
 });

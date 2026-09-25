@@ -99,7 +99,7 @@ import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, useFreshSlugs } from '../lib/fresh-store';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
-import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
@@ -1171,7 +1171,7 @@ export default function HomeScreen() {
       const leaving = storyRowsRef.current[leavingIndex]?.coords ?? null;
       deckIndexRef.current = index;
       setDeckIndex(index);
-      hapticTick();
+      hapticSwipe();
       // A screen reader moves the deck through the card's next/previous
       // actions, and the card that replaces the one it was reading has no
       // focus to announce itself.

@@ -46,7 +46,14 @@ export const DeltaChip = memo(function DeltaChip({
           accessibilityElementsHidden
           importantForAccessibility="no-hide-descendants"
         >
-          <Icon name={delta.direction === 'up' ? 'caret-up' : 'caret-down'} size="sm" tone={tone} />
+          <Icon
+            name={delta.direction === 'up' ? 'caret-up' : 'caret-down'}
+            // The caret follows the figure: at the base 11pt (the strip, the
+            // markets list) the 14pt triangle outweighed the number it points
+            // at, as `▶` at 20pt outweighed the menu beside it.
+            size={scale > 1 ? 'sm' : 'xs'}
+            tone={tone}
+          />
         </View>
       ) : null}
       {/* Semibold tabular type makes the move readable *as a number* inside a

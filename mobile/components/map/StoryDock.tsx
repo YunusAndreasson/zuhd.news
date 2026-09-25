@@ -420,9 +420,11 @@ const NOW_LABEL_WIDTH = 26;
 const MARK_LABEL_MIN_GAP = MARK_LABEL_WIDTH + SPACING.xs;
 /** The track's thickness: a rule you can see, not a control you can grab. */
 const TRACK = 3;
-/** The `‹ 3 new` pill's height, inside its 48pt touch target. It was the
- *  height of the dock's circles, which went on 2026-09-22. */
-const PILL = 40;
+/** The `‹ 3 new` pill's height, inside its 48pt touch target: sized to its
+ *  11pt words. It was 40, the height of the dock's circles, and outlived
+ *  them by four days — a capsule twice the height of what it said
+ *  (2026-09-26). */
+const PILL = 28;
 /** The tooltip's time at body size: 11pt tabular × 17/11. The tabular
  *  variants do not follow Dynamic Type, so the fixed width below holds. */
 const TIME_SCALE = 17 / 11;

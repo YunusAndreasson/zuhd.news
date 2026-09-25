@@ -104,8 +104,10 @@ import {
 } from '../../lib/globe-camera';
 import { isStorySettled } from '../../lib/globe-settle';
 import {
+  followMarketLayout,
   layoutMarketClusters,
   type MarketCluster,
+  type MarketLayoutOptions,
   type MarketPoint,
   marketHitDistanceSquared,
   marketTargetBox,
@@ -1041,7 +1043,6 @@ interface GlobeState {
   nightPath: SkPath | null;
   twilightPath: SkPath | null;
   graticulePath: SkPath | null;
-  qiblaPath: SkPath | null;
   sourceArcs: SkPath | null;
   arcOpacity: number;
   northPole: { x: number; y: number } | null;
@@ -1251,7 +1252,6 @@ const EMPTY_GLOBE: GlobeState = {
   nightPath: null,
   twilightPath: null,
   graticulePath: null,
-  qiblaPath: null,
   sourceArcs: null,
   arcOpacity: 1,
   northPole: null,
@@ -1371,7 +1371,6 @@ const paintSetStrokeJoin = framePaint.setStrokeJoin;
 const paintSetStrokeCap = framePaint.setStrokeCap;
 BASE_PAINT.setAntiAlias(true);
 const SOURCE_ARC_DASH = Skia.PathEffect.MakeDash([6, 3], 0);
-const QIBLA_DASH = Skia.PathEffect.MakeDash([4, 2], 0);
 const HIGHLIGHT_BLUR = Skia.MaskFilter.MakeBlur(BlurStyle.Solid, 1, true);
 
 function recordEmptyPicture(): SkPicture {
@@ -2179,24 +2178,13 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     );
   }
 
-  // Source arcs (long-short dash: flow) and the qibla arc (denser, round-capped
-  // dash: direction). Dashing halves the ink, so the qibla carries ~1.7× the
-  // opacity it had as a solid line.
+  // Source arcs (long-short dash: flow). The dashed qibla arc from the story
+  // to Makkah was removed on 2026-09-26 at the user's request: faint enough
+  // to be missed, it was a line nobody read.
   if (f.sourceArcs) {
     const paint = strokePaint(colors.accent, (light ? 0.25 : 0.15) * f.arcOpacity, 0.5);
     paint.setPathEffect(SOURCE_ARC_DASH);
     c.drawPath(f.sourceArcs, paint);
-  }
-  if (f.qiblaPath) {
-    const paint = strokePaint(
-      colors.dome,
-      (light ? 0.34 : 0.2) * f.arcOpacity,
-      1.2,
-      undefined,
-      StrokeCap.Round,
-    );
-    paint.setPathEffect(QIBLA_DASH);
-    c.drawPath(f.qiblaPath, paint);
   }
 
   drawAtlasLayer(c, textures.makkah, glowAtlas(MAKKAH_GLOW, f.makkah ? [f.makkah] : []));
@@ -3168,8 +3156,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   const nightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const twilightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const graticulePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
-  const qiblaPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const sourceArcsRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  /** The market layout the moving globe carries (`followMarketLayout`): laid
+   *  out at rest, and grown by any market that comes into view in motion. */
+  const heldMarketsRef = useRef<MarketCluster[] | null>(null);
   const riversPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const lakesPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   // City-light tier builders — reset each frame, populated by collectCityLights.
@@ -3820,18 +3810,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      const qiblaBuilder = qiblaPathRef.current;
-      qiblaBuilder.reset();
-      let hasQibla = false;
-      if (geo) {
-        const storyPt: [number, number] = [geo.lng, geo.lat];
-        if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
-          skiaCtx.setPath(qiblaBuilder);
-          traceGreatCircle(skiaCtx, geo.unit, MAKKAH_UNIT, 16, view, clipCos);
-          hasQibla = true;
-        }
-      }
-
       // Source arcs — great circle lines from each source's HQ to the article location
       const sourceArcsBuilder = sourceArcsRef.current;
       sourceArcsBuilder.reset();
@@ -4272,41 +4250,66 @@ export const MiniGlobe = memo(function MiniGlobe({
       };
       const planetView = clipAngle > MARK_NAMES_PLANET_CLIP;
 
-      const marketProjected = layoutMarketClusters(
-        marketPoints,
-        [
-          ...storyMarks,
-          ...chokepointMarks,
-          ...gdacsMarks,
-          ...genocideMarks,
-          ...conflictMarks,
-          ...famineMarks,
-          ...thermalMarks,
-        ],
-        {
-          width: canvasW,
-          height: canvasH,
-          top: layoutRef.current.marketViewport?.top,
-          bottom: layoutRef.current.marketViewport?.bottom,
-          // The story's place is the one label always drawn: a "6 markets"
-          // leader used to end on "Paris".
-          boxes: dotLabel ? [dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current)] : [],
-          disc: { x: centerX, y: centerY, r: projScale },
-          // Close markets are set apart only where each keeps its name, in a
-          // slot the packer below would give it.
-          label: {
-            slots: (m, x, y) => {
-              const t = marketLabelText(m, markFonts);
-              const lx = markLabelX(x, t);
-              return MARK_LABEL_SLOTS.map((dy) => ({ dy, box: markLabelAt(lx, y, dy, t).box }));
-            },
-            avoid: [...fixedText, ...countBoxes],
-            glyphs,
-            gap: MARK_LABEL_GAP,
+      const marketObstacles = [
+        ...storyMarks,
+        ...chokepointMarks,
+        ...gdacsMarks,
+        ...genocideMarks,
+        ...conflictMarks,
+        ...famineMarks,
+        ...thermalMarks,
+      ];
+      const marketOptions: MarketLayoutOptions = {
+        width: canvasW,
+        height: canvasH,
+        top: layoutRef.current.marketViewport?.top,
+        bottom: layoutRef.current.marketViewport?.bottom,
+        // The story's place is the one label always drawn: a "6 markets"
+        // leader used to end on "Paris".
+        boxes: dotLabel ? [dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current)] : [],
+        disc: { x: centerX, y: centerY, r: projScale },
+        // Close markets are set apart only where each keeps its name, in a
+        // slot the packer below would give it.
+        label: {
+          slots: (m, x, y) => {
+            const t = marketLabelText(m, markFonts);
+            const lx = markLabelX(x, t);
+            return MARK_LABEL_SLOTS.map((dy) => ({ dy, box: markLabelAt(lx, y, dy, t).box }));
           },
-          split: !planetView,
+          avoid: [...fixedText, ...countBoxes],
+          glyphs,
+          gap: MARK_LABEL_GAP,
         },
-      ).map((mark) => ({
+        split: !planetView,
+      };
+      // Laid out at rest, carried while the globe moves (`followMarketLayout`):
+      // laid out on every moving frame, the markets jumped between groupings,
+      // leaders and name slots while the land and the stories slid. A market
+      // that comes into view in motion is laid out once, around the held
+      // marks, and held with them until the next rest.
+      let marketLayout: MarketCluster[];
+      const heldMarkets = heldMarketsRef.current;
+      if (nearSettled || !heldMarkets) {
+        marketLayout = layoutMarketClusters(marketPoints, marketObstacles, marketOptions);
+        heldMarketsRef.current = marketLayout;
+      } else {
+        marketLayout = followMarketLayout(heldMarkets, marketPoints, marketOptions);
+        const known = new Set<string>();
+        for (const m of heldMarkets) for (const id of m.ids) known.add(id);
+        const fresh = marketPoints.filter((p) => !known.has(p.id));
+        if (fresh.length) {
+          const extra = layoutMarketClusters(
+            fresh,
+            [...marketObstacles, ...marketLayout],
+            marketOptions,
+          );
+          if (extra.length) {
+            marketLayout = [...marketLayout, ...extra];
+            heldMarketsRef.current = [...heldMarkets, ...extra];
+          }
+        }
+      }
+      const marketProjected = marketLayout.map((mark) => ({
         ...mark,
         labelX: mark.x,
         labelY: null as number | null,
@@ -4557,7 +4560,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         nightPath,
         twilightPath,
         graticulePath,
-        qiblaPath: hasQibla ? qiblaBuilder.build() : null,
         sourceArcs: hasSourceArcs ? sourceArcsBuilder.build() : null,
         arcOpacity,
         northPole,

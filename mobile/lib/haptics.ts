@@ -5,10 +5,17 @@ import { IS_ANDROID } from '../constants/platform';
 // Three tiers, chosen by what the event *means*, never by how loud it should
 // feel — used consistently, the tier itself tells the hand what happened.
 //
+//   swipe        → impactAsync(Soft) / Segment_Frequent_Tick
+//                  A sideways swipe landing: a story in the deck, the gauge
+//                  row on a slot, a page of country cards. The softest there
+//                  is (2026-09-26, the user asked for a softer swipe): iOS's
+//                  selection tick is a crisp click, and the soft impact is a
+//                  muted, rounder one. It was `tick` until then.
+//
 //   tick         → selectionAsync / Segment_Frequent_Tick
-//                  Movement within a surface: a story landing in the deck, a
-//                  sheet settling on a stop, a page of cards, a chart's scrub
-//                  step, a toggle or option picked, going back a page.
+//                  Movement within a surface: a sheet settling on a stop, a
+//                  chart's scrub step, a toggle or option picked, going back
+//                  a page.
 //
 //   impact       → impactAsync(Light) / Clock_Tick
 //                  A press that opens something: a sheet, a story, a card, a
@@ -51,6 +58,16 @@ function fire(android: Haptics.AndroidHaptics | null, fallback: () => Promise<vo
 export function hapticTick(): void {
   fire(HAS_FREQUENT_TICK ? Haptics.AndroidHaptics.Segment_Frequent_Tick : null, () =>
     Haptics.selectionAsync(),
+  );
+}
+
+/** A sideways swipe landing — see the tiers above. Android's frequent tick is
+ *  already its softest constant, and a device that cannot make it that soft
+ *  makes none; below API 34 the soft impact stands in, as on iOS. Softer
+ *  still needs an intensity, which `expo-haptics` does not expose. */
+export function hapticSwipe(): void {
+  fire(HAS_FREQUENT_TICK ? Haptics.AndroidHaptics.Segment_Frequent_Tick : null, () =>
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft),
   );
 }
 

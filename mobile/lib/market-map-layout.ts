@@ -210,6 +210,37 @@ function groupDistance2(a: MarketPoint[], b: MarketPoint[]): number {
 
 const byId = (a: MarketPoint, b: MarketPoint) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 
+const meanOf = (group: readonly MarketPoint[]) => ({
+  x: group.reduce((sum, q) => sum + q.x, 0) / group.length,
+  y: group.reduce((sum, q) => sum + q.y, 0) / group.length,
+});
+
+/** A group's mark with its target at `p`: one market by name, or several by
+ *  count, with the room kept for a lone market's name (`labelDy`). */
+function markOf(
+  group: readonly MarketPoint[],
+  p: { x: number; y: number },
+  labelDy?: number,
+): MarketCluster | null {
+  const first = group[0];
+  if (!first) return null;
+  const lone = group.length === 1;
+  const origin = meanOf(group);
+  return {
+    ...first,
+    ...p,
+    originX: origin.x,
+    originY: origin.y,
+    ids: group.map((q) => q.id),
+    rising: group.filter((q) => q.direction === 'up').length,
+    falling: group.filter((q) => q.direction === 'down').length,
+    label: lone ? first.label : `${group.length} markets`,
+    move: lone ? first.move : undefined,
+    direction: lone ? first.direction : undefined,
+    ...(lone && labelDy !== undefined ? { labelDy } : null),
+  };
+}
+
 /**
  * Every market on screen gets a 48pt target of its own, set on its city or
  * joined to it by a leader line. Markets share one — a cluster, `3 markets`
@@ -350,22 +381,9 @@ export function layoutMarketClusters(
     p: { x: number; y: number },
     name: MarketLabelSlot | null,
   ) => {
-    const first = group[0];
-    if (!first) return;
-    const lone = group.length === 1;
-    scene.placed.push({
-      ...first,
-      ...p,
-      originX: group.reduce((sum, q) => sum + q.x, 0) / group.length,
-      originY: group.reduce((sum, q) => sum + q.y, 0) / group.length,
-      ids: group.map((q) => q.id),
-      rising: group.filter((q) => q.direction === 'up').length,
-      falling: group.filter((q) => q.direction === 'down').length,
-      label: lone ? first.label : `${group.length} markets`,
-      move: lone ? first.move : undefined,
-      direction: lone ? first.direction : undefined,
-      ...(name ? { labelDy: name.dy } : null),
-    });
+    const mark = markOf(group, p, name?.dy);
+    if (!mark) return;
+    scene.placed.push(mark);
     if (name) scene.names.push(name.box);
   };
 
@@ -482,4 +500,58 @@ export function layoutMarketClusters(
     else placeGroup(scene, group);
   }
   return scene.placed;
+}
+
+/**
+ * The resting layout, carried by the ground while the globe moves.
+ *
+ * `layoutMarketClusters` decides, per market, whether it stands alone or
+ * shares a target, where its target sits and where its name goes — discrete
+ * choices that a camera move of a few points can flip, and a swipe's rise
+ * and fall changes every distance between cities. Run on every moving frame,
+ * the markets jumped while the land and the stories slid (2026-09-26, the
+ * user's report: "flickering so much when other content is stable"); in a
+ * simulated story-to-story flight a market moved in 19 of 30 frames. So
+ * `MiniGlobe` lays them out when the globe comes to rest, and while it moves
+ * each mark keeps its arrangement — the same group, the same offset from its
+ * city (or from its members' mean), the same name slot — and is laid out
+ * again at the next rest, once, as the globe's detail sharpens on landing.
+ *
+ * A market out of view drops out of its mark; a cluster down to one market
+ * puts it back on its own city. Markets the held layout never had are left
+ * out: `MiniGlobe` lays those out once, around these, and holds them too.
+ */
+export function followMarketLayout(
+  held: readonly MarketCluster[],
+  points: readonly MarketPoint[],
+  options: Pick<MarketLayoutOptions, 'width' | 'height' | 'top' | 'bottom'>,
+): MarketCluster[] {
+  const { width, height, top = 0, bottom = height } = options;
+  const visible = new Map<string, MarketPoint>();
+  for (const p of points) {
+    if (p.x >= 0 && p.x <= width && p.y >= top && p.y <= bottom) visible.set(p.id, p);
+  }
+  const out: MarketCluster[] = [];
+  for (const mark of held) {
+    const group: MarketPoint[] = [];
+    for (const id of mark.ids) {
+      const p = visible.get(id);
+      if (p) group.push(p);
+    }
+    const first = group[0];
+    if (!first) continue;
+    if (group.length === 1 && mark.ids.length > 1) {
+      const lone = markOf(group, first);
+      if (lone) out.push(lone);
+      continue;
+    }
+    const origin = meanOf(group);
+    const followed = markOf(
+      group,
+      { x: origin.x + (mark.x - mark.originX), y: origin.y + (mark.y - mark.originY) },
+      mark.labelDy,
+    );
+    if (followed) out.push(followed);
+  }
+  return out;
 }

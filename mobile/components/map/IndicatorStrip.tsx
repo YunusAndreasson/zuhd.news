@@ -12,7 +12,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { CONTROL_ROW } from '../../lib/deck-layout';
-import { hapticTick } from '../../lib/haptics';
+import { hapticSwipe } from '../../lib/haptics';
 import type { StripItem } from '../../lib/now';
 import { nearestOffsetIndex, sameOffsets, stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
@@ -276,7 +276,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       const index = nearestOffsetIndex(offsets, e.nativeEvent.contentOffset.x);
       if (index === settled.current) return;
       settled.current = index;
-      if (!quiet) hapticTick();
+      if (!quiet) hapticSwipe();
     },
     [offsets],
   );

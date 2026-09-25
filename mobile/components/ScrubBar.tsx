@@ -44,12 +44,16 @@ const TALL_HEIGHT = 8;
  * two things and the most reported cell out-shouted the reader's own place.
  * Every scrubber people know marks the position with a playhead, so this one
  * does: a stem through the track under a head above it, in the loudest ink
- * on the sheet. The head clears a tall cell, so the two never read as one.
+ * on the sheet. The head clears a tall cell by 2.5pt, so the two never read
+ * as one: its bottom is 9pt over the track's midline, a tall cell's top 6.5.
+ * It cleared by half a point until 2026-09-26, which on the most reported
+ * stories sat the head on the cell. At 17 the drawing is centred on the
+ * track, too: the head's top as far above it as the hour words' ink below.
  */
 const PLAYHEAD_HEAD = 8;
 const PLAYHEAD_STEM = 2;
 /** From the track's midline up to the head's top, and down past the track. */
-const PLAYHEAD_UP = 15;
+const PLAYHEAD_UP = 17;
 const PLAYHEAD_DOWN = 5;
 /**
  * How a keyed track's cells move when the river changes under them: stories

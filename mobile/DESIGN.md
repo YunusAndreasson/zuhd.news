@@ -35,7 +35,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Spacing           | `SPACING` (xxs → xxl + `smPlus`, `screenPadding`, `articlePadding`) | Four-pt-ish scale. `articlePadding` (14) is the reading column's inset — the story card, the dock, the gauges and the cards; platform sheets keep `screenPadding` (18). |
 | Gap tokens        | `GAP` (none, tight, row, item, section)         | Named Stack gap tiers derived from SPACING    |
 | Radii             | `RADIUS` (handle, pill, floating)               | Three semantic tiers, intent-named            |
-| Icons             | `ICON` (sm=14, md=20, lg=26)                    | Three-tier. Anything else is a mistake.       |
+| Icons             | `ICON` (xs=11, sm=14, md=20, lg=26)             | Four tiers; `xs` is a chip caret beside 11pt figures only. Anything else is a mistake. |
 | Flag emoji        | `FLAG` (row=18, inline=22, display=32)          | Pictogram sizing — flags aren't type          |
 | Animation         | `ANIMATION`, `EASING`, `KEEP_MOTION`            | Durations, spring configs, Reanimated easings — see §Motion |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
@@ -110,7 +110,7 @@ Eight primitives. Composition over configuration.
 | `Screen`     | Top-level screen scaffold                | `edges`, `padded`                                                          |
 | `Pressable`  | Full-bleed row press (spring + haptic)   | `onPress`, `haptic`, all RN Pressable props                                |
 | `IconButton` | Icon-only chrome button                  | `onPress`, `accessibilityLabel`, icon child                                |
-| `Icon`       | Ionicons wrapper — three sizes + tone    | `name`, `size` (`sm`/`md`/`lg`), `tone`                                    |
+| `Icon`       | Ionicons wrapper — four sizes + tone     | `name`, `size` (`xs`/`sm`/`md`/`lg`), `tone`                               |
 | `Markdown`   | Inline markdown text (`**b**`, `*i*`, links) | `children`, `variant`, `tone`, `onLinkPress` (handles the `country:XX` scheme) |
 
 ### Don't use if…
@@ -351,7 +351,7 @@ Tokens in `constants/theme.ts` (`ANIMATION`, `EASING`, `KEEP_MOTION`); the rules
 - **One landing.** The sheet and the deck settle with the same critically damped `springSettle`; camera moves share `EASING.camera`.
 - **The camera has one way of travelling.** A swipe, a tapped mark, a scrub, a gauge and a notification all move the globe along the great circle (`slerpLatLng`) on van Wijk & Nuij's path (`flyCurve`) — the one MapLibre's `flyTo` flies, at the web map's own `curve: 1.35` — rising out of its way by as much as the crossing is long and coming down close. One ρ sets the rise and the pacing together, so the ground crosses the screen at a constant speed; a flight (`hooks/useCameraFlight.ts`) lasts as long as its own path (`flyMs`), and a flight to a story lands on that story's framing and hands the camera back to the deck on the same frame, so the country highlight and the place's label arrive with the landing.
 - **A crossing the card cannot pace belongs to the camera.** The deck's landing spring settles in ~525 ms whatever the distance (`DECK_SETTLE_MS` — Reanimated's `duration` is perceptual, actual is 1.5× it). Where a crossing's own `flyMs` is longer, the camera leaves the deck at the finger's lift and flies the rest: the card snaps, the earth takes the time the distance asks for. Comparing the two durations, rather than picking an arc, is what keeps the hand-off from ever *hurrying* a crossing.
-- **Anything anchored to the settled story fades through the middle of a swipe.** `settledIndex` flips at `frac = 0.5`, so the qibla and source arcs, the country highlight, the country's name and the place label all ride one smoothstep (`ARC_WINDOW`) that dissolves to nothing across the central band. It is a dissolve through zero, never an overlap, so a second country is never projected; at rest `frac` is exactly 0 or 1 and the fade is exactly 1, so nothing changes where the reader stops.
+- **Anything anchored to the settled story fades through the middle of a swipe.** `settledIndex` flips at `frac = 0.5`, so the source arcs, the country highlight, the country's name and the place label all ride one smoothstep (`ARC_WINDOW`) that dissolves to nothing across the central band. It is a dissolve through zero, never an overlap, so a second country is never projected; at rest `frac` is exactly 0 or 1 and the fade is exactly 1, so nothing changes where the reader stops.
 
 ## Haptics
 
