@@ -5,6 +5,9 @@
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
+import { recapMatch, titleWords } from './lib/dedup.js'
+import { parseFrontmatter } from './lib/frontmatter.js'
+import { soleClassifiedSource } from './lib/outlet-class.js'
 import { regionFromCoords } from './lib/regions.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -122,6 +125,64 @@ function findDuplicates(articles) {
   return { count: dupes.length, details: dupes.map(([url, slugs]) => ({ url: url.slice(0, 80), slugs })) }
 }
 
+// ── Sourcing and datelines ───────────────────────────────────────────
+//
+// Added 2026-09-25 because every goal the tuner is scored on was trivially met
+// ("multi-source ≥ 4/day" against ~60 articles, 72% of them single-source;
+// "regions ≥ 4" while a third of datelines were in the US), so the audit read
+// "all metrics within targets" over the pipeline's actual weaknesses. These are
+// the numbers the 2026-09-25 evaluation had to compute by hand.
+
+// Contiguous US by bounding box: regionFromCoords files the US under 'AM'
+// together with Latin America, which is what hid the imbalance.
+const inUs = (lat, lng) => lat != null && lng != null && lat > 24 && lat < 50 && lng > -125 && lng < -66
+
+function computeSourcing(datePrefix) {
+  if (!existsSync(ARTICLES_DIR)) return null
+  const names = readdirSync(ARTICLES_DIR).filter(f => f.startsWith(datePrefix))
+  const rows = []
+  for (const f of names.filter(n => n.endsWith('.md'))) {
+    try {
+      const raw = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
+      const { meta } = parseFrontmatter(raw)
+      const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
+      const sources = Array.isArray(meta.sources) ? meta.sources : []
+      rows.push({ slug: basename(f, '.md'), title: String(meta.title || ''), sources, body, lat: Number(meta.lat), lng: Number(meta.lng) })
+    } catch { /* an unparseable file is the validator's business */ }
+  }
+  const n = rows.length
+  const pct = k => (n ? Math.round((k / n) * 100) : 0)
+  const single = rows.filter(r => r.sources.length <= 1).length
+  const classified = rows.map(r => ({ r, cls: soleClassifiedSource(r.sources) })).filter(x => x.cls)
+  const us = rows.filter(r => inUs(r.lat, r.lng)).length
+  const latAm = rows.filter(r => regionFromCoords(r.lat, r.lng) === 'AM' && !inUs(r.lat, r.lng) && r.lat < 33).length
+  const noDateline = rows.filter(r => !/^[^\n—]{2,60}? — /.test(r.body)).map(r => r.slug)
+  const withImage = rows.filter(r => r.sources.some(s => typeof s?.image === 'string' && s.image)).length
+  // Same event twice in a day: the title-overlap test prefilter uses, run
+  // pairwise over what actually shipped.
+  const sameEvent = []
+  for (let i = 0; i < rows.length; i++) {
+    const earlier = rows.slice(0, i).map(r => ({ slug: r.slug, words: titleWords(r.title) }))
+    const hit = recapMatch(rows[i].title, earlier)
+    if (hit) sameEvent.push([hit, rows[i].slug])
+  }
+  return {
+    articles: n,
+    singleSourcePct: pct(single),
+    multiSourcePct: pct(n - single),
+    stateOrAdvocacyOnly: classified.length,
+    stateOrAdvocacyOnlySlugs: classified.map(x => x.r.slug),
+    usDatelinePct: pct(us),
+    latAmDatelinePct: pct(latAm),
+    missingDateline: noDateline.length,
+    missingDatelineSlugs: noDateline,
+    imageUrlPct: pct(withImage),
+    sameEventDuplicates: sameEvent.length,
+    sameEventPairs: sameEvent,
+    quarantined: names.filter(f => f.endsWith('.md.bad')).length,
+  }
+}
+
 // ── Log Parsing ──────────────────────────────────────────────────────
 
 function parseLogs(datePrefix) {
@@ -187,6 +248,10 @@ const metrics = {
   duplicates: {
     today: findDuplicates(todayArticles),
     yesterday: findDuplicates(yesterdayArticles),
+  },
+  sourcing: {
+    today: computeSourcing(today),
+    yesterday: computeSourcing(yesterday),
   },
   cycles: {
     today: {

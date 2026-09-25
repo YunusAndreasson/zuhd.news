@@ -102,12 +102,31 @@ test('wouldDedup recap layer fires only when sources are all niche', () => {
   assert.equal(r1.deduped, true)
   assert.equal(r1.reason, 'recap')
 
-  // Multi-source with a major outlet → recap does NOT fire (existing
-  // layers still apply, but a new multi-sourced story about the same
-  // event is treated as fresh — the major outlets confirm timeliness).
+  // Multi-source against an *undated* title set → no match: the all-outlet
+  // check below only counts titles it can place inside its 72h window.
   const multi = story('Israel Encircles Bint Jbeil, Stalls', ['Reuters', 'BBC'], 'foo')
   const r2 = wouldDedup(multi, ctx)
   assert.equal(r2.deduped, false)
+})
+
+// Changed 2026-09-25. Multi-source stories were exempt from the title layer on
+// the theory that major outlets confirm timeliness; in practice the same event
+// came back under a new eventUri and ran again ("Xi Visits Washington" twice).
+test('wouldDedup title layer covers every outlet, but only over 72h', () => {
+  const hoursAgo = (h) => Date.now() - h * 3600 * 1000
+  const ctxAt = (h) => ({
+    recentSlugs: [],
+    ledgerEventUris: new Map(),
+    recentWordSets: [],
+    recentTitleSets: buildTitleSets([{ slug: 'prior', title: 'Israel Encircles Bint Jbeil', date: hoursAgo(h) }]),
+    ledgerLabelSets: [],
+  })
+  const multi = story('Israel Encircles Bint Jbeil, Stalls', ['Reuters', 'BBC'], 'foo')
+  const recent = wouldDedup(multi, ctxAt(20))
+  assert.equal(recent.deduped, true)
+  assert.equal(recent.reason, 'recap')
+  // Five days on, the same words are a running story's next development.
+  assert.equal(wouldDedup(multi, ctxAt(120)).deduped, false)
 })
 
 test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {

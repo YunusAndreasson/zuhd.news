@@ -6,6 +6,8 @@
 // The matching itself lives in scripts/lib/selection-match.js — its five layers,
 // and why the last one is deliberately hard to satisfy, are documented there.
 import { readFileSync, writeFileSync } from 'node:fs'
+import { runWithConcurrency } from './lib/concurrency.js'
+import { fetchSourceText } from './lib/fetch-source-text.js'
 import { createMatcher } from './lib/selection-match.js'
 
 const feed = JSON.parse(readFileSync('/tmp/zuhd-feed.json', 'utf-8'))
@@ -72,6 +74,23 @@ for (const entry of selection) {
     missing++
     missingEntries.push(entry.suggestedSlug || entry.title)
   }
+}
+
+// Thin picks: a source whose body is a feed teaser gets one page fetch — free,
+// the same Readability extractor the angles stage uses. Before this the writer
+// was handed "No summary provided" and skipped the story (1-4 a cycle).
+const THIN_BODY = 400
+const thinSources = selection.flatMap(e => (e.sources || []).filter(s => s?.url && (s.body || '').length < THIN_BODY))
+if (thinSources.length > 0) {
+  let filled = 0
+  await runWithConcurrency(thinSources, 4, async src => {
+    const text = await fetchSourceText(src.url)
+    if (text && text.length > (src.body || '').length) {
+      src.body = text
+      filled++
+    }
+  })
+  console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
 }
 
 // Unmatched entries are DROPPED, not passed through sourceless. The header's

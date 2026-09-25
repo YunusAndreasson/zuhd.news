@@ -163,7 +163,7 @@ export function buildWordSets(slugs) {
 
 /** Build {slug, title, words} sets from articles for title-based fuzzy match. */
 export function buildTitleSets(items) {
-  return items.map(it => ({ slug: it.slug, title: it.title || it.label || '', words: titleWords(it.title || it.label || '') }))
+  return items.map(it => ({ slug: it.slug, title: it.title || it.label || '', date: it.date, words: titleWords(it.title || it.label || '') }))
 }
 
 /** Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words). */
@@ -202,6 +202,8 @@ export function recapMatch(candidateTitle, titleSets) {
   return null
 }
 
+const RECAP_ALL_WINDOW_MS = 72 * 3600 * 1000
+
 function isNicheOnly(story) {
   const sources = story.sources || []
   if (sources.length === 0) return false
@@ -217,8 +219,26 @@ function isNicheOnly(story) {
  * against recent article titles + ledger labels (catches reframed
  * headlines that slug-fuzzy misses).
  */
+/**
+ * The slug of a recent article already covering this NewsAPI event, or null.
+ *
+ * Layer 3 of `wouldDedup`, and also asked by `fetch-news-api.js` *before* it
+ * spends a token expanding an event: the per-event budget went to the top 8
+ * events by coverage, which are mostly running stories this layer then drops
+ * (6 of 8 on 2026-09-25, the same events re-bought every cycle). One function,
+ * so the fetcher skips exactly what prefilter would have thrown away.
+ * @param {string | null | undefined} eventUri
+ * @param {{ ledgerEventUris: Map<string, string[]>, recentSlugs: string[] }} ctx
+ */
+export function eventCoveredRecently(eventUri, ctx) {
+  if (!eventUri || !ctx.ledgerEventUris.has(eventUri)) return null
+  const existing = ctx.ledgerEventUris.get(eventUri)
+  const hasRecent = existing.some(a => ctx.recentSlugs.some(r => r === a || r.endsWith(a)))
+  return hasRecent ? existing[existing.length - 1] : null
+}
+
 export function wouldDedup(story, ctx) {
-  const { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls } = ctx
+  const { recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls } = ctx
   const slug = story.suggestedSlug
   // Layer 1: exact slug match
   if (existsSync(join(ARTICLES_DIR, `${slug}.md`))) {
@@ -237,13 +257,8 @@ export function wouldDedup(story, ctx) {
     }
   }
   // Layer 3: eventUri match — same event covered by a recent article
-  if (story.eventUri && ledgerEventUris.has(story.eventUri)) {
-    const existing = ledgerEventUris.get(story.eventUri)
-    const hasRecent = existing.some(a => recentSlugs.some(r => r === a || r.endsWith(a)))
-    if (hasRecent) {
-      return { deduped: true, reason: 'eventUri', match: existing[existing.length - 1] }
-    }
-  }
+  const eventMatch = eventCoveredRecently(story.eventUri, ctx)
+  if (eventMatch) return { deduped: true, reason: 'eventUri', match: eventMatch }
   // Layer 4: fuzzy slug match
   const slugMatch = fuzzyMatch(slug, recentWordSets)
   if (slugMatch) return { deduped: true, reason: 'fuzzy', match: slugMatch }
@@ -255,6 +270,18 @@ export function wouldDedup(story, ctx) {
     if (titleMatch) return { deduped: true, reason: 'recap', match: titleMatch }
     const labelMatch = recapMatch(story.title, ledgerLabelSets || [])
     if (labelMatch) return { deduped: true, reason: 'recap', match: labelMatch }
+  } else if (story.title) {
+    // Every other story gets the title check too, over a shorter window. It
+    // was niche-only, so a multi-source event published at 12:00 came back at
+    // 17:00 under a new eventUri and a reworded slug and ran again — "Xi Visits
+    // Washington" twice, the OpenAI/Australia breach three times in two days.
+    // Measured on three 09-24/25 feeds: 8-10 hits each, every one an event
+    // already published. 72h rather than the context's 7d, because a running
+    // story's genuine next development does share the words.
+    const since = Date.now() - RECAP_ALL_WINDOW_MS
+    const recentOnly = (recentTitleSets || []).filter(t => (typeof t.date === 'number' ? t.date : Date.parse(t.date)) >= since)
+    const titleMatch = recapMatch(story.title, recentOnly)
+    if (titleMatch) return { deduped: true, reason: 'recap', match: titleMatch }
   }
   return { deduped: false }
 }

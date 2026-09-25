@@ -34,6 +34,8 @@ for (const name of readdirSync(ARTICLES_DIR)) {
   } catch { /* an unparseable neighbour is its own problem, not this article's */ }
 }
 const DATELINE = /^([^\n—]{2,60}?) — /
+/** Block text → the batch files that carry it. */
+const sentenceSeen = new Map()
 
 for (const f of files) {
   const full = resolve(f)
@@ -123,9 +125,28 @@ for (const f of files) {
 
   // State-media or advocacy as the only sourcing: allowed, but the body must
   // say whose claim it is (lib/outlet-class.js has the why).
+  for (const b of blocks.slice(1)) {
+    const text = b.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim()
+    // The same injected level is reworded, never repeated verbatim ("Brent crude
+    // stood at…" / "Brent crude was…"), so the key is the run of figures when a
+    // block carries three or more, and the text otherwise.
+    const figures = text.match(/\d[\d,.]*/g) || []
+    const key = figures.length >= 3 ? `#${figures.join('|')}` : text
+    if (key.length >= 12) sentenceSeen.set(key, [...(sentenceSeen.get(key) || []), { file: basename(f), text }])
+  }
+
   const cls = soleClassifiedSource(meta.sources)
   if (cls && !bodyNamesOutlet(body, cls)) {
     markBad(`only source is ${cls.label}, and the body does not name it`)
+  }
+}
+
+// A warning, not a gate: two articles in one cycle sharing a whole block is
+// the "numeric tic" — on 2026-09-25 two stories carried the identical Brent
+// sentence as their why-it-matters. The editor is the one to fix it.
+for (const where of sentenceSeen.values()) {
+  if (where.length > 1) {
+    console.log(`WARN (same block in ${where.length} articles: ${where.map((w) => w.file).join(', ')}): "${where[0].text.slice(0, 90)}…"`)
   }
 }
 

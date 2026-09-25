@@ -3,6 +3,7 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
+import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
@@ -66,6 +67,27 @@ const COUNTRY_LOOKUP = {
   'Algeria': 'DZ', 'Morocco': 'MA', 'Tunisia': 'TN', 'Senegal': 'SN',
   'Georgia': 'GE', 'Armenia': 'AM', 'Azerbaijan': 'AZ', 'Uzbekistan': 'UZ',
   'Belarus': 'BY', 'Cuba': 'CU', 'Peru': 'PE', 'Chile': 'CL', 'Venezuela': 'VE',
+}
+
+// NewsAPI titles every nature.com article "Nature", so ten *Scientific Reports*
+// manuscripts ran in one week under the flagship's name. The article-number
+// prefix in the URL names the journal.
+const NATURE_JOURNALS = {
+  s41586: 'Nature',
+  s41467: 'Nature Communications',
+  s41598: 'Scientific Reports',
+  s41591: 'Nature Medicine',
+  s41558: 'Nature Climate Change',
+  s41561: 'Nature Geoscience',
+  s41559: 'Nature Ecology & Evolution',
+  s41562: 'Nature Human Behaviour',
+  s41560: 'Nature Energy',
+  s41893: 'Nature Sustainability',
+  s41587: 'Nature Biotechnology',
+}
+function sourceName(a) {
+  const m = /nature\.com\/articles\/(s\d{5})-/.exec(a?.url || '')
+  return (m && NATURE_JOURNALS[m[1]]) || a?.source?.title || ''
 }
 
 function getCountryCode(source) {
@@ -489,15 +511,32 @@ async function main() {
     }
   }
 
-  // Per-event fetch: for the top 8 events, directly fetch 15 diverse articles
+  // Per-event fetch: directly fetch 15 diverse articles for up to 8 events.
   // This guarantees multi-source panels — the Q2-Q5 matching often misses.
-  // Cost: ~1 token per event = ~8 tokens/cycle (skipped events with 3+ articles)
+  // Cost: ≤1 token per event, ≤8 tokens/cycle — the same ceiling as before.
+  //
+  // **Only events we have not already covered.** This took the top 8 by
+  // coverage, which are mostly running stories already in the ledger; the
+  // prefilter then drops them by eventUri (layer 3 of wouldDedup), so the
+  // panel never reached the writer — 6 of 8 on 2026-09-25, with the same
+  // events re-bought every cycle. The budget now walks down the list past
+  // covered events, so the same tokens buy panels for stories we can still
+  // run. `eventCoveredRecently` is prefilter's own test, over prefilter's
+  // own 7-day window.
   const TOP_EVENTS_TO_FETCH = 8
-  const topEvents = events.slice(0, TOP_EVENTS_TO_FETCH)
+  const MAX_EVENTS_SCANNED = 24
+  const dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
   let perEventFetched = 0
+  let perEventCalls = 0
   const perEventLog = []
-  for (const event of topEvents) {
+  for (const event of events.slice(0, MAX_EVENTS_SCANNED)) {
+    if (perEventCalls >= TOP_EVENTS_TO_FETCH) break
     const uri = event.uri
+    const covered = eventCoveredRecently(uri, dedupCtx)
+    if (covered) {
+      perEventLog.push({ uri, cov: event.totalArticleCount, skipped: `covered by ${covered}`, preCount: 0, tokens: 0 })
+      continue
+    }
     const preCount = (articlesByEvent.get(uri) || []).length
     // Skip if we already have 3+ articles from Q2-Q5
     if (preCount >= 3) {
@@ -524,6 +563,7 @@ async function main() {
       includeArticleConcepts: true,
       includeArticleLocation: true,
     }, 'perEvent')
+    perEventCalls++
 
     const fetchedArts = artData[uri]?.articles?.results || []
     perEventLog.push({ uri, cov: event.totalArticleCount, preCount, returned: fetchedArts.length, tokens: 1 })
@@ -539,7 +579,7 @@ async function main() {
       perEventFetched++
     }
   }
-  console.error(`Per-event fetch: enriched ${perEventFetched}/${TOP_EVENTS_TO_FETCH} top events`)
+  console.error(`Per-event fetch: enriched ${perEventFetched}/${perEventCalls} uncovered events (${perEventLog.filter(e => e.skipped?.startsWith('covered')).length} already-covered skipped)`)
   // Per-event detail log — one line per event so experiments can audit waste/yield
   for (const e of perEventLog) {
     const tail = e.skipped ? `skipped=${e.skipped}` : `returned=${e.returned}`
@@ -620,12 +660,12 @@ async function main() {
       eventDate: eventDate,
       socialScore: event.socialScore ?? null,
       category: mapCategory(primary.categories || eventCategories),
-      source: primary.source?.title || '',
+      source: sourceName(primary),
       suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
       eventUri: uri,
       eventCoverage: totalArticles,
       sources: panel.map(a => ({
-        name: a.source?.title || '',
+        name: sourceName(a),
         url: a.url || '',
         country: a._sourceCountry,
         body: (a.body || '').slice(0, MAX_BODY),
@@ -693,13 +733,13 @@ async function main() {
       link: a.url || '',
       pubDate: a.dateTimePub || a.dateTime,
       category: mapCategory(a.categories || []),
-      source: a.source?.title || '',
+      source: sourceName(a),
       suggestedSlug: slugify(a.title, a.dateTimePub || a.dateTime),
       eventUri: a.eventUri || null,
       eventCoverage: null,
       socialScore: articleSocialScore(a),
       sources: [{
-        name: a.source?.title || '',
+        name: sourceName(a),
         url: a.url || '',
         country: a._sourceCountry,
         body: (a.body || '').slice(0, MAX_BODY),

@@ -45,6 +45,24 @@ if (existsSync(SLIM)) {
 
   slim.multiSourceStories = (slim.multiSourceStories || []).filter(s => feedSlugs.has(s.suggestedSlug))
   slim.nicheStories = (slim.nicheStories || []).filter(s => feedSlugs.has(s.suggestedSlug))
+
+  // `thin`: no source carries THIN_BODY characters of text — usually an RSS
+  // item whose feed gave a teaser and no content. The selector reads a
+  // body-less feed, so it could not see this, and picked them: 12 of 60 items
+  // on 2026-09-25, and the writer then skipped 1-4 picks a cycle for "no
+  // summary provided". enrich-selection.js tries one page fetch for a thin
+  // pick; the flag lets the selector weigh the risk before spending a slot.
+  const THIN_BODY = 400
+  const thinSlugs = new Set(
+    [...(feed.multiSourceStories || []), ...(feed.nicheStories || [])]
+      .filter(s => !(s.sources || []).some(src => (src.body || '').length >= THIN_BODY))
+      .map(s => s.suggestedSlug),
+  )
+  let thin = 0
+  for (const s of [...slim.multiSourceStories, ...slim.nicheStories]) {
+    if (thinSlugs.has(s.suggestedSlug)) { s.thin = true; thin++ }
+  }
+  if (thin > 0) console.log(`Marked ${thin} thin-body stories (<${THIN_BODY} chars of source text)`)
   writeFileSync(SLIM, JSON.stringify(slim, null, 2))
 }
 
