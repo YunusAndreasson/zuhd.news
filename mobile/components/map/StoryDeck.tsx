@@ -6,6 +6,7 @@ import {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
@@ -20,6 +21,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
+import { assignSlots, sameKeys } from '../../lib/deck-slots';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -74,11 +76,14 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * away, and the one beside the card should slide in. A second step before the
  * first has landed goes one further, not to the same story again.
  *
- * ## Three mounted cards
+ * ## Three mounted cards, in three slots that are never remounted
  *
  * The current one and its neighbours. A card's content only ever changes while
- * it is off screen, and a card that stops being current scrolls back to its
- * top, so every card arrives showing its kicker.
+ * it is off screen, and a card that stops being current — or a slot that is
+ * handed a new story — scrolls back to its top, so every card arrives showing
+ * its kicker. A story keeps its slot while it stays in the window
+ * (`assignSlots`), so a landing redraws one off-screen slot and a jump redraws
+ * three; neither mounts one (2026-09-25).
  */
 
 /** How far a finger travels sideways before the deck's pan claims it. */
@@ -131,6 +136,7 @@ interface StoryDeckProps {
 const DeckSlot = memo(function DeckSlot({
   position,
   restOffset,
+  storyKey,
   progress,
   peekFade,
   pitch,
@@ -142,6 +148,8 @@ const DeckSlot = memo(function DeckSlot({
   children,
 }: {
   position: number;
+  /** The story drawn here. A slot outlives its stories (`assignSlots`). */
+  storyKey: string;
   /** Where this slot rests relative to the committed story, for its first style. */
   restOffset: number;
   progress: SharedValue<number>;
@@ -157,7 +165,9 @@ const DeckSlot = memo(function DeckSlot({
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const slotStyle = useAnimatedStyle(() => {
     // Reanimated runs this once on the JS thread when the slot mounts, for its
-    // first style. A slot mounts as a swipe lands, while the spring is writing
+    // first style. A slot mounted as every swipe landed until slots were
+    // recycled (2026-09-25), and still can mid-spring when the window first
+    // grows to three, while the spring is writing
     // `progress` on the UI thread, and a JS read of a value the UI thread has
     // changed blocks until the UI thread answers (`runOnUISync`): 150–290 ms
     // of every landing's commit on the emulator, with the globe's reproject
@@ -202,6 +212,15 @@ const DeckSlot = memo(function DeckSlot({
     scrollRef.current?.scrollTo({ y: 0, animated: current });
     if (current) onScrollOffset.value = 0;
   }, [current, onScrollOffset, readable, scrollRef]);
+  // A new story in this slot starts at its top, even open: a jump from a
+  // story read halfway down would otherwise open the next one there.
+  const shownKey = useRef(storyKey);
+  useEffect(() => {
+    if (shownKey.current === storyKey) return;
+    shownKey.current = storyKey;
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+    if (current) onScrollOffset.value = 0;
+  }, [current, onScrollOffset, scrollRef, storyKey]);
 
   return (
     <Animated.View
@@ -345,13 +364,31 @@ export const StoryDeck = memo(function StoryDeck({
 
   const slots: number[] = [];
   for (let i = Math.max(0, index - 1); i <= Math.min(count, index + 1); i++) slots.push(i);
+  const windowKeys = slots.map(keyOf);
+  // Slots are recycled, not remounted: keyed by the slot a story holds, never
+  // by the story. Keyed by slug, every landing mounted a whole card — its
+  // scroll view, native gesture, animated style and scroll handler, all set
+  // up and torn down on the JS thread and all created as views on the UI
+  // thread as the spring settled — and a jump mounted three. Now the card
+  // entering the window is drawn in the slot the one leaving gave up, off
+  // screen on both sides, and a jump redraws the three slots it has.
+  const [assigned, setAssigned] = useState(() => ({
+    keys: windowKeys,
+    slots: assignSlots(windowKeys, new Map()),
+  }));
+  let slotOf = assigned.slots;
+  if (!sameKeys(assigned.keys, windowKeys)) {
+    slotOf = assignSlots(windowKeys, assigned.slots);
+    setAssigned({ keys: windowKeys, slots: slotOf });
+  }
 
   return (
     <GestureDetector gesture={pan}>
       <View style={[styles.fill, { marginBottom: bottomInset }]}>
-        {slots.map((i) => (
+        {slots.map((i, j) => (
           <DeckSlot
-            key={keyOf(i)}
+            key={`slot-${slotOf.get(windowKeys[j] ?? '') ?? j}`}
+            storyKey={windowKeys[j] ?? ''}
             position={i}
             restOffset={i - index}
             progress={progress}

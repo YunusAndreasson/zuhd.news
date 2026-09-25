@@ -1132,10 +1132,44 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   static flag (native rebuild, so a `runtimeVersion` bump and a store build).
 - **An inline object prop on `<MiniGlobe>` re-renders the globe.** The
   compiler caches it with the whole element, so it is rebuilt whenever that
-  block is, and every globe render also makes Skia redraw on the JS thread,
-  reading each shared value through `runOnUISync` (~30 ms a render in dev).
-  `marketViewport` did this on every swipe landing; key such props with
-  `useMemo` on their numbers.
+  block is. `marketViewport` did this on every swipe landing; key such props
+  with `useMemo` on their numbers.
+- **The canvas is its own memoized component (`GlobeCanvas`), and must stay
+  one** (2026-09-25). It was the tail of `MiniGlobe`'s render, and Skia's
+  reconciler answers any commit under `<Canvas>` by redrawing the whole scene
+  on the JS thread (`resetAfterCommit` → `redraw`), reading every picture and
+  warp through `runOnUISync` — so every globe render (a find, a gauge's
+  ring, an arrival's layers) paid a JS redraw that waited on a UI thread busy
+  with the burst or spring that caused it. `MiniGlobe` itself is not
+  compiled. Everything the canvas draws reaches it as shared values; its
+  props are the layout, the ring's colours and whether there is a ring.
+- **The screen reads the network as one boolean** (`hooks/useOffline.ts`,
+  2026-09-25). `useNetworkState` stores a new object on every native event,
+  and Android emits one per capability change (bandwidth, signal,
+  validation), so the whole map screen re-rendered on a phone walking between
+  cells, for an error message it shows only when the feed failed.
+- **JS never reads the zoom override to redraw** (2026-09-25). The effect
+  that redraws the globe for new inputs read `overrideActive.value` /
+  `overrideAngle.value`, which waits on the UI thread whenever it has written
+  them: 44 ms of a story open's commit (the find), on the emulator, in the
+  middle of the sheet's spring. It replays the last frame instead
+  (`lastReprojRef`: its `oA`, `oG` and tier, `moving`). Forcing the settled
+  tier there had also drawn the resting geometry mid-spring whenever a
+  landing found a story. `finalizeReproject` still reads them live: it runs
+  after motion has stopped, to catch the values the last frame missed.
+- **The deck recycles its three slots** (`lib/deck-slots.ts`, tested;
+  2026-09-25). Keyed by slug, every landing unmounted one card and mounted
+  another — scroll view, native gesture, animated style, scroll handler and a
+  card of views, set up on the JS thread and created on the UI thread as the
+  spring settled — and a jump (a mark, the scrubber, `‹ n new`) mounted
+  three. Keyed by slot, a story keeps its slot while it stays in the window,
+  so the card being read keeps its scroll through an arrival, and a story
+  entering takes the slot one leaving gave up. Across the swipe bench
+  (`.argent/flows/deck-swipe-grow-bench.yaml`) component mounts fell from
+  455–479 to 89, and the idle commit that mounted each new card's
+  `sources · save · share` is gone (the actions carry over). A slot handed a
+  new story scrolls to its top. Count mounts, not milliseconds, when A/B-ing
+  this on a loaded host: the commit files' `isFirstMount` is deterministic.
 
 - Globe touches a 32ms JS budget; don't regress `callReproject` throttling.
 - **The globe's moving layers never go through React.** `callReproject`

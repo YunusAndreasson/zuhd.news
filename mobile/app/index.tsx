@@ -8,7 +8,6 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
-import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -79,6 +78,7 @@ import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
+import { useOffline } from '../hooks/useOffline';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
@@ -214,7 +214,7 @@ export default function HomeScreen() {
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
   const marketsSnapshot = useMarkets();
   const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
-  const network = useNetworkState();
+  const offline = useOffline();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
   const [briefingStatus, setBriefingStatus] = useState<BriefingStatus>({
@@ -1771,9 +1771,7 @@ export default function HomeScreen() {
     );
 
   if (error && Object.values(grouped).every((a) => a.length === 0)) {
-    return (
-      <ErrorState offline={network.isInternetReachable === false} error={error} onRetry={retry} />
-    );
+    return <ErrorState offline={offline} error={error} onRetry={retry} />;
   }
 
   return (

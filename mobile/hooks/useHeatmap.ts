@@ -21,6 +21,12 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const query = useQuery({
     queryKey: HEATMAP.queryKey,
     queryFn: ({ signal }) => fetchSnapshot(HEATMAP, { signal }),
+    // Not on focus, for `useApiJson`'s reason: an arrival carries the heatmap
+    // with the feed in one commit (`lib/arrival.ts`). Left on, every return
+    // after five minutes fetched it again on its own and, when it had moved,
+    // redrew the globe's hotspots in a second commit as the reader started
+    // swiping.
+    refetchOnWindowFocus: false,
   });
 
   // Refetch when feed rotates — `generated` tagged on the snapshot lets us

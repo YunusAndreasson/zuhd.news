@@ -37,6 +37,7 @@ import {
   type SkPath,
   type SkPathBuilder,
   type SkPicture,
+  type SkPoint,
   type SkShader,
   StrokeCap,
   StrokeJoin,
@@ -56,8 +57,9 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
+  type DerivedValue,
   Easing,
   type SharedValue,
   useAnimatedReaction,
@@ -3033,9 +3035,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   // `framingsVer` is what tells a cached curve that the river changed under it.
   const framingsSV = useSharedValue<number[]>([]);
   const framingsVer = useSharedValue(0);
+  // Counted here: `+=` on the shared value reads it on JS, which waits on the
+  // UI thread once any write has landed there.
+  const framingsVerRef = useRef(0);
   useEffect(() => {
     framingsSV.value = articleGeo.map((g) => clipAngleForCountry(g?.countryName ?? null));
-    framingsVer.value += 1;
+    framingsVerRef.current += 1;
+    framingsVer.value = framingsVerRef.current;
   }, [articleGeo, framingsSV, framingsVer]);
 
   // One crossing's curve, kept between frames on each thread. It depends only
@@ -3307,8 +3313,22 @@ export const MiniGlobe = memo(function MiniGlobe({
   storyClipOutRef.current = storyClipOut;
   const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach, marketViewport });
   layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach, marketViewport };
-  // Mirror of last reproject args — avoids reading SharedValues outside worklets
-  const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
+  // Mirror of the last frame drawn — avoids reading SharedValues outside
+  // worklets. A JS read of `overrideActive`/`overrideAngle` blocks on the UI
+  // thread (`runOnUISync`) whenever the UI thread has written them, and a
+  // redraw for new inputs (a find, a gauge, a data layer) came exactly when a
+  // flight or a sheet spring was writing: 44 ms of an open's commit on the
+  // emulator (2026-09-25). A redraw replays this frame — its zoom, and its
+  // tier (`moving`): with the settled tier forced, a find on a swipe landing
+  // projected the resting geometry mid-spring.
+  const lastReprojRef = useRef<{
+    lng: number;
+    lat: number;
+    idx: number;
+    oA: number;
+    oG: number;
+    moving: boolean;
+  } | null>(null);
   // The settled redraw the rivers and lakes ask for once decoded
   // (`warmDetailGeo`): `finalizeReproject`, read at the time it fires.
   const detailRedrawRef = useRef<() => void>(() => {});
@@ -3327,7 +3347,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       // flight. Forces the in-motion detail tier; see `nearSettled`.
       cameraMoving = false,
     ) => {
-      lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const {
         globeRadius: r,
         cx: centerX,
@@ -3428,6 +3447,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       // `cameraMoving`, every frame of a globe drag was therefore projected at
       // full settled detail — on the emulator, 26 of 26 frames over four drags.
       const nearSettled = !zoomInFlight && !cameraMoving && isStorySettled(frac);
+      lastReprojRef.current = {
+        lng: geoLng,
+        lat: geoLat,
+        idx: settledIndex,
+        oA: overrideActiveVal,
+        oG: overrideAngleVal,
+        moving: !nearSettled,
+      };
 
       // A moving frame reaches past the canvas (`MOTION_REACH`), so the warp
       // has ground to carry into view until the next projection lands.
@@ -4991,17 +5018,8 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
     const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        overrideActive.value,
-        overrideAngle.value,
-      );
+    // Settled: a return is a moment nothing is moving.
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0, last.oA, last.oG);
   }, [_tick]);
 
   // Once an animation settles the SharedValues stop changing, so the animated
@@ -5036,6 +5054,9 @@ export const MiniGlobe = memo(function MiniGlobe({
   // update several at once (fonts, layout and cached layers on startup), so
   // reproject the complete snapshot once instead of once per changed input.
   // Keep this after the resume effect, which invalidates the sun caches.
+  // The frame on screen, redrawn with the new inputs at its own tier: a camera
+  // still moving is drawn moving, and the reaction brings the detail back when
+  // it stops, as it does for every moving frame.
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is stable and reads the latest input refs
   useEffect(() => {
     const last = lastReprojRef.current;
@@ -5047,8 +5068,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         last.idx,
         last.idx,
         0,
-        overrideActive.value,
-        overrideAngle.value,
+        last.oA,
+        last.oG,
+        last.moving,
       );
   }, [
     selectedCoords,
@@ -5450,6 +5472,122 @@ export const MiniGlobe = memo(function MiniGlobe({
   });
 
   return (
+    <GlobeCanvas
+      width={width}
+      height={height}
+      canvasTransform={canvasTransform}
+      canvasOrigin={canvasOrigin}
+      prevWarp={prevWarp}
+      warp={warp}
+      prevGroundPicture={prevGroundPicture}
+      groundPicture={groundPicture}
+      marksPicture={marksPicture}
+      labelsPicture={labelsPicture}
+      ring={foundTotal > 0}
+      cx={cx}
+      cy={cy}
+      ringRadius={ringRadius}
+      ringPath={ringPath}
+      ringLeft={ringLeft}
+      ringColor={colors.rule}
+      ringLeftColor={colors.textSecondary}
+      pulseColor={colors.textEmphasis}
+      pulseX={pulseX}
+      pulseY={pulseY}
+      pulseR={pulseR}
+      pulseOpacity={pulseOpacity}
+      collectX={collectX}
+      collectY={collectY}
+      collectDiscR={collectDiscR}
+      collectRingR={collectRingR}
+      collectOpacity={collectOpacity}
+      collectColor={collectColor}
+      beaconStyle={beaconStyle}
+    />
+  );
+});
+
+type Value<T> = SharedValue<T> | DerivedValue<T>;
+
+/**
+ * The canvas, on its own and memoized. Everything that moves reaches it
+ * through shared values, which the UI thread redraws from; what React hands
+ * it — the layout, the ring's colours and whether there is a ring — changes
+ * about never.
+ *
+ * It was the tail of `MiniGlobe`'s own render, so every globe render — a
+ * find, a gauge's ring, an arrival's layers — rebuilt the `Canvas` element,
+ * and Skia's reconciler answers a commit by redrawing the whole scene on the
+ * JS thread (`resetAfterCommit` → `redraw`), reading every picture and warp
+ * through `runOnUISync` while the UI thread was busy with the very burst,
+ * flight or sheet spring that caused the render (profiled 2026-09-25).
+ * `MiniGlobe` is not compiled, so nothing else keeps the element stable.
+ */
+const GlobeCanvas = memo(function GlobeCanvas({
+  width,
+  height,
+  canvasTransform,
+  canvasOrigin,
+  prevWarp,
+  warp,
+  prevGroundPicture,
+  groundPicture,
+  marksPicture,
+  labelsPicture,
+  ring,
+  cx,
+  cy,
+  ringRadius,
+  ringPath,
+  ringLeft,
+  ringColor,
+  ringLeftColor,
+  pulseColor,
+  pulseX,
+  pulseY,
+  pulseR,
+  pulseOpacity,
+  collectX,
+  collectY,
+  collectDiscR,
+  collectRingR,
+  collectOpacity,
+  collectColor,
+  beaconStyle,
+}: {
+  width: number;
+  height: number;
+  canvasTransform?: SharedValue<Transforms3d>;
+  canvasOrigin: SkPoint;
+  prevWarp: Value<Transforms3d>;
+  warp: Value<Transforms3d>;
+  prevGroundPicture: Value<SkPicture>;
+  groundPicture: Value<SkPicture>;
+  marksPicture: Value<SkPicture>;
+  labelsPicture: Value<SkPicture>;
+  /** There is a day to find: draw the still-to-find ring. */
+  ring: boolean;
+  cx: number;
+  cy: number;
+  ringRadius: Value<number>;
+  ringPath: Value<SkPath>;
+  ringLeft: SharedValue<number>;
+  ringColor: string;
+  ringLeftColor: string;
+  pulseColor: string;
+  pulseX: SharedValue<number>;
+  pulseY: SharedValue<number>;
+  pulseR: SharedValue<number>;
+  pulseOpacity: SharedValue<number>;
+  collectX: SharedValue<number>;
+  collectY: SharedValue<number>;
+  collectDiscR: SharedValue<number>;
+  collectRingR: SharedValue<number>;
+  collectOpacity: SharedValue<number>;
+  collectColor: SharedValue<string>;
+  beaconStyle: ReturnType<typeof useAnimatedStyle<ViewStyle>>;
+}) {
+  return (
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
         <Group transform={canvasTransform} origin={canvasOrigin}>
@@ -5469,13 +5607,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           </Group>
 
           {/* Still to find — see `ringLeft`. */}
-          {foundTotal > 0 ? (
+          {ring ? (
             <Group>
               <Circle
                 cx={cx}
                 cy={cy}
                 r={ringRadius}
-                color={colors.rule}
+                color={ringColor}
                 style="stroke"
                 strokeWidth={RING_WIDTH}
               />
@@ -5483,7 +5621,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                 path={ringPath}
                 start={0}
                 end={ringLeft}
-                color={colors.textSecondary}
+                color={ringLeftColor}
                 style="stroke"
                 strokeWidth={RING_WIDTH}
                 strokeCap="round"
@@ -5502,7 +5640,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             cx={pulseX}
             cy={pulseY}
             r={pulseR}
-            color={colors.textEmphasis}
+            color={pulseColor}
             opacity={pulseOpacity}
             style="stroke"
             strokeWidth={1.4}

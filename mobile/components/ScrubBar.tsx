@@ -497,9 +497,12 @@ export const ScrubTooltip = memo(function ScrubTooltip({
 }) {
   const stem = below ? undefined : stemColor;
   const lift = stem ? THUMB_CLEARANCE : SPACING.sm;
-  const stemColorStyle = useAnimatedStyle(() => ({
-    backgroundColor: typeof stem === 'string' ? stem : stem?.value,
-  }));
+  // Guarded as `ScrubBar`'s styles are, for the same remount: the dock's stem
+  // is a colour derived on the UI thread from the deck's position.
+  const stemColorStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1 && typeof stem !== 'string') return {};
+    return { backgroundColor: typeof stem === 'string' ? stem : stem?.value };
+  });
   return (
     <>
       {stem ? (
