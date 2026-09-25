@@ -2357,12 +2357,18 @@ test('the published thermal payload only claims what it can explain', (t) => {
       e.relatedArticles?.length > 0,
       `${e.id} is published with no coverage to corroborate`,
     )
-    assert.ok(e.near?.loc, `${e.id} has no place name to state a distance against`)
-    for (const a of e.relatedArticles) {
+    // The app's contract (mobile/lib/overlays.ts): `near` a string it prints,
+    // `relatedArticles` slugs it looks up. The web's detail rides `nearKm` and
+    // `related`. Pinned since 2026-09-25, when objects in both fields would
+    // have failed the app's validator on the first joined event.
+    assert.ok(typeof e.near === 'string' && e.near, `${e.id} has no place name to state a distance against`)
+    assert.ok(e.relatedArticles.every((s) => typeof s === 'string'), `${e.id} relatedArticles must be slugs`)
+    assert.deepEqual(e.related.map((a) => a.slug), e.relatedArticles, `${e.id} related and relatedArticles disagree`)
+    for (const a of e.related) {
       assert.ok(a.km <= payload.joinRadiusKm, `${e.id} cites a story ${a.km}km away`)
     }
-    // `near` is the nearest cited story, which is what the card's hero prints.
-    assert.equal(e.near.km, e.relatedArticles[0].km, `${e.id}'s near distance is not its nearest`)
+    // `nearKm` is the nearest cited story, which is what the card's hero prints.
+    assert.equal(e.nearKm, e.related[0].km, `${e.id}'s near distance is not its nearest`)
   }
 })
 

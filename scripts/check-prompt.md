@@ -30,7 +30,7 @@ Check first, before any style rules.
 - **Figures:** Do numbers in the body match what sources report? If a source says "approximately 80" and the article says "80," that's acceptable. If a source says "80" and the article says "800," flag it.
 - **Attribution of claims:** Are contested claims qualified? "Israel said" vs. stated as fact. "WHO warned" vs. asserted.
 - **Synthesis fidelity:** If the article combines multiple sources, does the synthesis distort any individual source's meaning?
-- **Figures and quotes against the source bodies:** every load-bearing number and every direct quotation must appear in a `body` in `/tmp/zuhd-selection.json` for that story. A figure no body contains is fixed to what the body says or cut. Name what you checked in your summary.
+- **Figures and quotes against the source bodies — every article, not a sample.** Every load-bearing number and every direct quotation in every article must appear in a `body` in `/tmp/zuhd-selection.json` for that story. A figure no body contains is fixed to what the body says or cut. You have a 30-minute budget and this check takes a few minutes; do not stop at a sample. Your summary lists each article with "checked" or the specific figure you could not find.
 - **Dateline accuracy:** Does the location match where the primary action occurred, not where a secondary reaction happened? For a paper or a company announcement with no event location, the dateline is the lead institution's city, never the publisher's headquarters (a Nature paper is not "London", a CoinDesk story is not "New York").
 - **Dateline presence:** Every body opens `City — `. When you rewrite a hook, keep the dateline in front of it; the validator quarantines an article that has lost it.
 </accuracy>

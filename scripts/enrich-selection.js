@@ -7,6 +7,7 @@
 // and why the last one is deliberately hard to satisfy, are documented there.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { runWithConcurrency } from './lib/concurrency.js'
+import { titleWords } from './lib/dedup.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 import { createMatcher } from './lib/selection-match.js'
 
@@ -91,6 +92,27 @@ if (thinSources.length > 0) {
     }
   })
   console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
+}
+
+// Source text that is not about the story. The selector reads a body-less feed,
+// so it cannot see that an item's only "body" is the wrong page — on
+// 2026-09-25 22:04 the Dutch-government/NixOS pick carried a community group's
+// mission blurb that never mentions NixOS, and the writer spent the slot
+// finding that out. Measured on that selection: the bad pick matched 1 of 7
+// title words; every good one matched 57% or more. Dropped here, before
+// dedup, so backfill can refill the slot.
+const RELEVANCE_MIN_HITS = 2
+const RELEVANCE_MIN_RATIO = 0.3
+for (const entry of selection) {
+  if (!Array.isArray(entry.sources) || entry.sources.length === 0) continue
+  const words = [...titleWords(entry.title)]
+  if (words.length < 3) continue
+  const text = entry.sources.map(s => (s.body || '').toLowerCase()).join(' ')
+  const hits = words.filter(w => text.includes(w)).length
+  if (hits < RELEVANCE_MIN_HITS || hits / words.length < RELEVANCE_MIN_RATIO) {
+    console.log(`Dropped "${entry.title}": its source text matches ${hits}/${words.length} title words — not about this story`)
+    entry.sources = []
+  }
 }
 
 // Unmatched entries are DROPPED, not passed through sourceless. The header's
