@@ -50,6 +50,9 @@ const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
   // The top-right menu: search, saved, settings, the map key and the pages.
   // The only three-line icon in the app since the story list went.
   menu: 'line.3.horizontal',
+  // A menu row that leaves the app — mail, the store, a data provider's site —
+  // where a chevron would promise another page.
+  'open-outline': 'arrow.up.right.square',
   pause: 'pause.fill',
   play: 'play.fill',
   search: 'magnifyingglass',

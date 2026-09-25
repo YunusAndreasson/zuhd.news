@@ -1,5 +1,13 @@
 import type { CardDelta } from '../../lib/cards/types';
-import { straitMapChange, straitWeekChange } from '../../lib/strait-map';
+import {
+  STRAIT_SIGN_R,
+  type StraitState,
+  straitMapChange,
+  straitReach,
+  straitSignDx,
+  straitStateFor,
+  straitWeekChange,
+} from '../../lib/strait-map';
 
 ('use no memo');
 
@@ -77,12 +85,13 @@ import {
   type ColorPalette,
   categoryMarkColor,
   KEEP_MOTION,
+  straitMarkColor,
   WHITE,
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import { collapseConflictVisuals, eventAgeDays } from '../../lib/conflict';
-import { alertAgeDays } from '../../lib/gdacs';
+import { alertAgeDays, gdacsGlyphScale } from '../../lib/gdacs';
 import {
   arcDegrees,
   type FlyCurve,
@@ -99,6 +108,7 @@ import {
   type MarketCluster,
   type MarketPoint,
   marketHitDistanceSquared,
+  marketTargetBox,
 } from '../../lib/market-map-layout';
 import { coverageRanks } from '../../lib/now';
 import {
@@ -120,7 +130,6 @@ import {
   topUnfound,
   unfoundSlugs,
 } from '../../lib/story-places';
-import { chokepointValence } from '../../lib/valence';
 import {
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
@@ -134,7 +143,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
+import { GLYPH_HALF, getGlyphPath, getStraitPath } from './disaster-glyphs';
 import { geographyTier, getGlobeGeography } from './geography';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
@@ -378,6 +387,9 @@ const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 1.2, opacity: 0.7 },
 ];
 
+/** The coverage hotspots' halo on the cream globe, against the dark one's. */
+const HOTSPOT_LIGHT = 0.5;
+
 const DOT_GLOW_LAYERS: GlowLayer[] = [
   { r: 14, opacity: 0.04, blur: 10 },
   { r: 7, opacity: 0.12, blur: 5 },
@@ -428,7 +440,7 @@ const STORY_HALO_LAYERS: GlowLayer[] = [
   { r: 6.5, opacity: 0.24, blur: 3 },
 ];
 const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
-/** Scaled 0.62–1.15 by coverage, which lands on the web's 3.4–6.3 px radius. */
+/** Scaled by coverage (`STORY_SCALE_*`) onto the web's 3.4–7.5 px radius. */
 const BEACON_R = 5.5;
 /** A place whose stories are all found keeps a hollow ring this size: small
  *  enough that the beacons still to find stay the loud marks, visible enough to
@@ -467,8 +479,14 @@ const READ_ALPHA = 0.7;
 const CONTESTED_DIVERGENCE = 0.35;
 /** A story tap's catch radius, squared (32 px). */
 const STORY_HIT_PX2 = 1024;
-/** Web: a strait is disrupted past ±15% of its 90-day normal. */
-const STRAIT_SURGE_DELTA = 0.15;
+/** A strait's coastlines, in points. */
+const STRAIT_STROKE = 1;
+
+/** A strait mark's glyph: pinched when its traffic fell far enough to be the
+ *  disruption (`chokepointValence`), bowed open when it surged, else at rest. */
+function straitState(cp: { disrupted: boolean; surge: boolean }): StraitState {
+  return cp.disrupted ? 'pinch' : cp.surge ? 'surge' : 'rest';
+}
 
 /**
  * The hazard glyphs are baked at 3× into one white sprite sheet and stamped
@@ -518,8 +536,13 @@ const MARK_HIT_PX2 = 1296;
  *   layer uses: 18 hours over a 72-hour window is right for a density field
  *   and puts a column of individual marks almost entirely on the floor.
  */
-const STORY_SCALE_MIN = 0.62;
-const STORY_SCALE_MAX = 1.15;
+// 3.4 and 7.5 px of radius, the web's `story-points` (2026-07-30). The
+// ceiling was 6.3 px, the web's before it grew — its argument, which holds
+// here: 15 across keeps the most covered story under a Red hazard's
+// pictogram while giving it presence, and a story with no figure still lands
+// at the web's 4.55 px, below the known median.
+const STORY_SCALE_MIN = 3.4 / BEACON_R;
+const STORY_SCALE_MAX = 7.5 / BEACON_R;
 const STORY_UNKNOWN_RANK = 0.28;
 const STORY_ALPHA_FLOOR = 0.45;
 const STORY_HALF_LIFE_HOURS = 72;
@@ -705,6 +728,13 @@ function boxesMeet(a: LabelBox, b: LabelBox, gap: number): boolean {
 /** Where a strait's or an exchange's name may go, as its baseline below the
  *  mark: under the 22pt glyph first, then over it. */
 const MARK_LABEL_DY = [20, -14] as const;
+/**
+ * Every slot a mark's name may take, as its first baseline's offset from the
+ * mark, in the order they are tried: clear under the glyph, clear over it,
+ * then tucked close (`MARK_LABEL_DY`). One list for the packer and for the
+ * markets' layout, which keeps a slot free for each market it sets apart.
+ */
+const MARK_LABEL_SLOTS = [32, -24, ...MARK_LABEL_DY] as const;
 /** The clear space a mark's name keeps from every label placed before it. */
 const MARK_LABEL_GAP = 2;
 /**
@@ -767,6 +797,30 @@ function markLabelWidth(t: MarkLabelText): number {
 /** How far the label's last line sits below its first baseline. */
 function markLabelDepth(t: MarkLabelText): number {
   return t.move ? MARK_VALUE_DY : 0;
+}
+
+/** A name's first baseline and box in the slot `dy` from a mark at `y`,
+ *  centred on `x`. Two lines where there is a move: over the mark, the block
+ *  rises by its second line, so the line nearest the mark sits where a
+ *  one-line label's did. */
+function markLabelAt(
+  x: number,
+  y: number,
+  dy: number,
+  t: MarkLabelText,
+): { baseline: number; box: LabelBox } {
+  const tw = markLabelWidth(t);
+  const depth = markLabelDepth(t);
+  const baseline = y + dy - (dy < 0 ? depth : 0);
+  return {
+    baseline,
+    box: {
+      x0: x - tw / 2,
+      x1: x + tw / 2,
+      y0: baseline - MARK_LABEL_ASCENT,
+      y1: baseline + depth + MARK_LABEL_DESCENT,
+    },
+  };
 }
 
 // Neighbour-label lines, precomputed at module load. Display-name
@@ -1871,16 +1925,20 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
 
   // Coverage hotspots — a gradient halo and a sharp core. Monochrome, and a
   // diffuse texture unlike the story beacons, so a story stays the focal point.
+  // On cream the halo is half strength: the dark theme's lift of light,
+  // inverted at the same alpha, was a grey cloud the story's dot sat in —
+  // a glow darkens into a smudge where it brightens into light.
   for (const z of f.hotspotGlows) {
     const fade = 0.45 + 0.55 * z.recency;
+    const halo = fade * (light ? HOTSPOT_LIGHT : 1);
     drawGlow(
       c,
       z.x,
       z.y,
       18 + z.intensity * 16,
       [
-        tint(colors.text, (0.18 + z.intensity * 0.18) * fade),
-        tint(colors.text, (0.08 + z.intensity * 0.1) * fade),
+        tint(colors.text, (0.18 + z.intensity * 0.18) * halo),
+        tint(colors.text, (0.08 + z.intensity * 0.1) * halo),
         tint(colors.text, 0),
       ],
       [0, 0.35, 1],
@@ -1894,11 +1952,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   // halo are WCAG-audited (2026-07-04).
   const water = fonts.water;
   for (const cp of f.chokepoints) {
-    const glyphColor = cp.disrupted
-      ? colors.markStraitPinch
-      : cp.surge
-        ? colors.markStraitSurge
-        : colors.markStrait;
+    const state = straitState(cp);
+    const glyphColor = straitMarkColor(state, colors);
     if (cp.disrupted || cp.surge) {
       drawGlow(
         c,
@@ -1915,10 +1970,16 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     }
     drawGlyph(
       c,
-      CHOKEPOINT_PATH,
+      getStraitPath(state),
       cp.x,
       cp.y,
-      strokePaint(glyphColor, 0.6 + 0.35 * cp.intensity, 1.0, StrokeJoin.Round, StrokeCap.Round),
+      strokePaint(
+        glyphColor,
+        0.6 + 0.35 * cp.intensity,
+        STRAIT_STROKE,
+        StrokeJoin.Round,
+        StrokeCap.Round,
+      ),
     );
     // Compact traffic sign beside the coastline glyph; its touch area stays
     // generous. Coloured by what the move means, as on the strait's card
@@ -1928,9 +1989,9 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     const moveColor =
       (cp.moveAlarm ?? cp.disrupted) ? colors.markMarketDown : colors.toneNeutralText;
     if (cp.direction) {
-      const x = cp.x + 12;
+      const x = cp.x + straitSignDx(state, STRAIT_STROKE);
       const color = cp.direction === 'flat' ? colors.textSecondary : moveColor;
-      c.drawCircle(x, cp.y, 6, fillPaint(colors.bg, 0.98));
+      c.drawCircle(x, cp.y, STRAIT_SIGN_R, fillPaint(colors.bg, 0.98));
       if (cp.direction === 'flat') c.drawLine(x - 3, cp.y, x + 3, cp.y, strokePaint(color, 1, 1.5));
       else {
         const sign = cp.direction === 'down' ? 1 : -1;
@@ -2031,8 +2092,13 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   for (const m of f.gdacsMarks) {
     const isHigh = m.alertlevel === 'Red';
     const isLow = m.alertlevel === 'Green';
+    // Sized by level; the scale takes the stroke with it, so a smaller
+    // pictogram keeps its own proportions rather than thickening.
+    const size = gdacsGlyphScale(m.alertlevel);
     c.save();
-    c.translate(m.x - GLYPH_HALF, m.y - GLYPH_HALF);
+    c.translate(m.x, m.y);
+    c.scale(size, size);
+    c.translate(-GLYPH_HALF, -GLYPH_HALF);
     if (isHigh) {
       c.drawCircle(
         GLYPH_HALF,
@@ -2062,6 +2128,8 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
   );
   if (fonts.sub) {
+    // In the conflict's own red, so a count says which mark it counts: a
+    // story's count beside it is white.
     for (const m of f.conflictCounts) {
       drawHaloText(
         c,
@@ -2069,7 +2137,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         m.x + CONFLICT_COUNT_DX,
         m.y - 4,
         fonts.sub,
-        colors.textEmphasis,
+        colors.markConflictText,
         colors.bg,
         0.9,
         1,
@@ -3864,8 +3932,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           direction: cp.direction,
           moveAlarm: cp.moveAlarm,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
-          disrupted: chokepointValence(cp.delta) === 'unfavorable',
-          surge: cp.delta > STRAIT_SURGE_DELTA,
+          disrupted: straitStateFor(cp.delta) === 'pinch',
+          surge: straitStateFor(cp.delta) === 'surge',
           labelY: null,
         });
       }
@@ -4148,32 +4216,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      const marketProjected = layoutMarketClusters(
-        marketPoints,
-        [
-          ...storyMarks,
-          ...chokepointMarks,
-          ...gdacsMarks,
-          ...genocideMarks,
-          ...conflictMarks,
-          ...famineMarks,
-          ...thermalMarks,
-        ],
-        canvasW,
-        canvasH,
-        layoutRef.current.marketViewport?.top,
-        layoutRef.current.marketViewport?.bottom,
-        // The story's place is the one label always drawn: a "6 markets"
-        // leader used to end on "Paris".
-        dotLabel ? [dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current)] : [],
-        { x: centerX, y: centerY, r: projScale },
-      ).map((mark) => ({
-        ...mark,
-        labelX: mark.x,
-        labelY: null as number | null,
-        labelBounds: null as LabelBox | null,
-      }));
-
       // Label collision — dot label (location · time) versus country name
       // label. Small countries where the story dot sits near the polygon
       // centroid (e.g. Islamabad in Pakistan) can stack the two. Compute
@@ -4190,6 +4232,92 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      // What a strait's or an exchange's name has to fit around, fixed before
+      // any is placed: the markets' layout keeps room for their names against
+      // it, and the packer below places them against it.
+      const markFonts: MarkFonts = {
+        sub: subFontRef.current,
+        water: waterFontRef.current,
+        value: valueFontRef.current,
+      };
+      // The text that is drawn whatever else is there: the story's place, its
+      // country, and every genocide name — unseeded, "GAZA" printed across
+      // "Strait of Hormuz" on the whole-planet view. The genocide box follows
+      // the draw call — the ring's 9px, the name at x + 13, y + 4.
+      const fixedText: LabelBox[] = [];
+      if (dotLabel) fixedText.push(dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current));
+      if (countryLabel) fixedText.push(countryLabelBox(countryLabel, countryFontRef.current));
+      for (const g of genocideMarks) fixedText.push(genocideLabelBox(g, subFontRef.current));
+      // Marks, too — a label ran its `vs 90d` across two other straits'
+      // coastlines and arrows around the Black Sea. Circles, one per glyph:
+      // a strait and its traffic arrow, a story beacon, a hazard pictogram.
+      // A label never counts its own mark, which sits where it points.
+      // Each circle remembers the mark it belongs to (`ox`, `oy`): a strait's
+      // traffic sign sits a shape's width right of it, and is its own.
+      const glyphs: { x: number; y: number; r: number; ox: number; oy: number }[] = [];
+      for (const cp of chokepointMarks) {
+        const state = straitState(cp);
+        const r = Math.max(10, straitReach(state, STRAIT_STROKE));
+        glyphs.push({ x: cp.x, y: cp.y, r, ox: cp.x, oy: cp.y });
+        if (cp.direction) {
+          const x = cp.x + straitSignDx(state, STRAIT_STROKE);
+          glyphs.push({ x, y: cp.y, r: STRAIT_SIGN_R, ox: cp.x, oy: cp.y });
+        }
+      }
+      for (const m of storyMarks)
+        glyphs.push({ x: m.x, y: m.y, r: BEACON_R * m.scale + 1, ox: m.x, oy: m.y });
+      for (const g of gdacsMarks) {
+        const r = GLYPH_HALF * gdacsGlyphScale(g.alertlevel);
+        glyphs.push({ x: g.x, y: g.y, r, ox: g.x, oy: g.y });
+      }
+      // A name is centred on its mark, held on the screen.
+      const markLabelX = (x: number, t: MarkLabelText) => {
+        const tw = markLabelWidth(t);
+        return Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, x));
+      };
+      const planetView = clipAngle > MARK_NAMES_PLANET_CLIP;
+
+      const marketProjected = layoutMarketClusters(
+        marketPoints,
+        [
+          ...storyMarks,
+          ...chokepointMarks,
+          ...gdacsMarks,
+          ...genocideMarks,
+          ...conflictMarks,
+          ...famineMarks,
+          ...thermalMarks,
+        ],
+        {
+          width: canvasW,
+          height: canvasH,
+          top: layoutRef.current.marketViewport?.top,
+          bottom: layoutRef.current.marketViewport?.bottom,
+          // The story's place is the one label always drawn: a "6 markets"
+          // leader used to end on "Paris".
+          boxes: dotLabel ? [dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current)] : [],
+          disc: { x: centerX, y: centerY, r: projScale },
+          // Close markets are set apart only where each keeps its name, in a
+          // slot the packer below would give it.
+          label: {
+            slots: (m, x, y) => {
+              const t = marketLabelText(m, markFonts);
+              const lx = markLabelX(x, t);
+              return MARK_LABEL_SLOTS.map((dy) => ({ dy, box: markLabelAt(lx, y, dy, t).box }));
+            },
+            avoid: [...fixedText, ...countBoxes],
+            glyphs,
+            gap: MARK_LABEL_GAP,
+          },
+          split: !planetView,
+        },
+      ).map((mark) => ({
+        ...mark,
+        labelX: mark.x,
+        labelY: null as number | null,
+        labelBounds: null as LabelBox | null,
+      }));
+
       // Strait and exchange names. They were drawn whatever sat under them,
       // and at a story's framing they sat on each other and on the one label
       // that outranks them: "Bosporus Strait" and "BIST 100" read as
@@ -4201,38 +4329,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       // then the straits whose traffic has moved, then the rest.
       const markLabelBoxes: LabelBox[] = [];
       {
-        const markFonts: MarkFonts = {
-          sub: subFontRef.current,
-          water: waterFontRef.current,
-          value: valueFontRef.current,
-        };
-        const taken: LabelBox[] = marketProjected.map((m) => ({
-          x0: m.x - 19,
-          x1: m.x + 19,
-          y0: m.y - 19,
-          y1: m.y + 19,
-        }));
-        if (dotLabel) taken.push(dotLabelBox(dotLabel, labelFontRef.current, subFontRef.current));
-        if (countryLabel) taken.push(countryLabelBox(countryLabel, countryFontRef.current));
-        // A genocide mark and its name are drawn whatever else is there, so a
-        // strait or exchange name has to yield to them: unseeded, "GAZA"
-        // printed across "Strait of Hormuz" on the whole-planet view. The box
-        // follows the draw call — the ring's 9px, the name at x + 13, y + 4.
-        for (const g of genocideMarks) taken.push(genocideLabelBox(g, subFontRef.current));
-        // Marks, too — a label ran its `vs 90d` across two other straits'
-        // coastlines and arrows around the Black Sea. Circles, one per glyph:
-        // a strait and its traffic arrow, a story beacon, a hazard pictogram.
-        // A label never counts its own mark, which sits where it points.
-        const glyphs: { x: number; y: number; r: number }[] = [];
-        for (const cp of chokepointMarks) {
-          glyphs.push({ x: cp.x, y: cp.y, r: 10 });
-          if (cp.direction) glyphs.push({ x: cp.x + 12, y: cp.y, r: 6 });
-        }
-        for (const m of storyMarks) glyphs.push({ x: m.x, y: m.y, r: BEACON_R * m.scale + 1 });
-        for (const g of gdacsMarks) glyphs.push({ x: g.x, y: g.y, r: GLYPH_HALF });
+        const taken: LabelBox[] = [...marketProjected.map(marketTargetBox), ...fixedText];
         const meetsGlyph = (box: LabelBox, selfX: number, selfY: number) =>
           glyphs.some((g) => {
-            if (Math.abs(g.x - selfX) < 13 && Math.abs(g.y - selfY) < 1) return false;
+            if (Math.abs(g.ox - selfX) < 1 && Math.abs(g.oy - selfY) < 1) return false;
             const nx = Math.max(box.x0, Math.min(box.x1, g.x));
             const ny = Math.max(box.y0, Math.min(box.y1, g.y));
             return (g.x - nx) ** 2 + (g.y - ny) ** 2 < g.r * g.r;
@@ -4240,9 +4340,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         // Story and conflict counts are avoided too — a "3" at the Gulf
         // printed over Hormuz's "vs 90d" — but held apart from `taken`, so a
         // disrupted strait's name can still claim their room (below).
-        // Two lines where there is a move: over the mark, the block rises by
-        // its second line, so the line nearest the mark sits where a one-line
-        // label's did.
         const place = (
           x: number,
           y: number,
@@ -4251,17 +4348,15 @@ export const MiniGlobe = memo(function MiniGlobe({
           /** The mark the label names, whose own glyph it may sit beside. */
           self: { x: number; y: number } = { x, y },
           overGlyphs = false,
+          /** The slot the markets' layout kept for this name, tried first. */
+          kept?: number,
         ): { baseline: number; box: LabelBox } | null => {
-          const tw = markLabelWidth(t);
-          const depth = markLabelDepth(t);
-          for (const dy of [32, -24, ...MARK_LABEL_DY]) {
-            const yc = y + dy - (dy < 0 ? depth : 0);
-            const box = {
-              x0: x - tw / 2,
-              x1: x + tw / 2,
-              y0: yc - MARK_LABEL_ASCENT,
-              y1: yc + depth + MARK_LABEL_DESCENT,
-            };
+          const slots =
+            kept === undefined
+              ? MARK_LABEL_SLOTS
+              : [kept, ...MARK_LABEL_SLOTS.filter((dy) => dy !== kept)];
+          for (const dy of slots) {
+            const { baseline: yc, box } = markLabelAt(x, y, dy, t);
             let free =
               box.y0 >= (layoutRef.current.marketViewport?.top ?? 0) &&
               box.y1 <= (layoutRef.current.marketViewport?.bottom ?? canvasH);
@@ -4287,7 +4382,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
           return null;
         };
-        const planetView = clipAngle > MARK_NAMES_PLANET_CLIP;
         for (const m of marketProjected) {
           if (planetView && m.ids.length > 1) {
             m.labelY = null;
@@ -4295,16 +4389,14 @@ export const MiniGlobe = memo(function MiniGlobe({
             continue;
           }
           const t = marketLabelText(m, markFonts);
-          const tw = markLabelWidth(t);
-          m.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, m.x));
-          const placed = place(m.labelX, m.y, t, false, m);
+          m.labelX = markLabelX(m.x, t);
+          const placed = place(m.labelX, m.y, t, false, m, false, m.labelDy);
           m.labelY = placed?.baseline ?? null;
           m.labelBounds = placed?.box ?? null;
         }
         for (const cp of chokepointMarks) {
           const t = straitLabelText(cp, markFonts);
-          const tw = markLabelWidth(t);
-          cp.labelX = Math.max(tw / 2 + 6, Math.min(canvasW - tw / 2 - 6, cp.x));
+          cp.labelX = markLabelX(cp.x, t);
           // A strait whose traffic moved is the headline of its region: with
           // no free room its name takes a count's, and the count is dropped —
           // at the whole-planet zoom a "3" beside it left Hormuz unnamed.
@@ -5301,10 +5393,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // GDACS disaster markers — 36px tap zone across all three tiers,
-      // matching the chokepoint pattern. The previous tighter 20px zone
-      // for Green-tier compensated for an invisible-feeling 2px ambient
-      // dot; with the unified 22px glyph the visual now matches the
-      // tap target across severity levels.
+      // matching the chokepoint pattern. The glyph is sized by level
+      // (`gdacsGlyphScale`) and the target is not: a finger is the same
+      // size whatever the alert.
       for (const m of frame.gdacsMarks) {
         if (isNear(x, y, m.x, m.y, 1296)) {
           candidates.push({

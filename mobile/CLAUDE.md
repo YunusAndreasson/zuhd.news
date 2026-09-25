@@ -117,11 +117,13 @@ whole time; nothing said so.
   opened from the instruments list or a strait tapped on the globe still looks
   itself up there to fly and ring its place.
   - **Every slot is the same seven days** (`gaugeMove`, `lib/cards/week-move.ts`,
-    tested), with the week's line under it (`Sparkline`). The strip used to sort
+    tested). The strip used to sort
     each card's own delta with its window hidden: a strait's gap from its 90-day
     normal beside an index's four sessions beside a currency's whole series — one
     sort over three quantities, printed as though they were one. The card keeps
-    its own window and prints it; `InstrumentsSheet` rows read like their gauge.
+    its own window and prints it. (Each slot drew the week's line under it
+    until 2026-09-13; `Sparkline` was deleted on 09-25 with `InstrumentsSheet`,
+    its last user.)
   - Calendar days, not observations, read off the period labels (`Sep 7`); a
     month label is a monthly series, which has no week and stays in the list. A
     currency's week is the currency's (`currencyMove`), a strait's is its
@@ -166,8 +168,10 @@ whole time; nothing said so.
 - **Instruments without a place are one tap away, always.** Brent, gold, the
   ten-year, nisab, FX movers and every contract have no honest location, so
   they are not on the globe. `all →` at the end of the strip is never
-  conditional, `menu → markets` opens the same browser, and `InstrumentsSheet` lists every card in `buildRankedInstruments`
-  order. Placing Brent in the North Sea to avoid a list would be inventing
+  conditional, `menu → markets` opens the same browser (`MarketBrowserSheet`):
+  every exchange, and every other card in `buildRankedInstruments` order under
+  `other data`. `InstrumentsSheet` did that until 2026-09-20 and was deleted on
+  09-25. Placing Brent in the North Sea to avoid a list would be inventing
   locations for half the deck.
 - **Predictions are merged into the story they settle, never plotted.**
   `lib/predictions.ts` inverts the stories the narration stage cited for each
@@ -496,6 +500,18 @@ whole time; nothing said so.
     the count in its glyph and a quiet strait only its mark; disrupted or
     surging straits and single exchanges keep their labels. Story framings
     (18°–24°) are unaffected.
+  - **Markets share a target only where there is no room to show them
+    apart** (2026-09-25, the user's request). Any two exchanges closer than
+    a target (48pt) used to become one `N markets`: New York and Toronto,
+    Kuala Lumpur and Singapore at every story framing with the sea empty
+    around them, and western Europe as one `6 markets`. `layoutMarketClusters`
+    now tries each on its own first — its city or a leader of at most 72pt,
+    crossing no other leader, and room for its name in a slot the label
+    packer then takes first (`labelDy`) — and a market that finds none joins
+    its nearest neighbour before the group is laid out again. Europe at a
+    story framing now reads as named markets with at most a `2 markets` over
+    the Alps. Past `MARK_NAMES_PLANET_CLIP` the old grouping stands. About
+    0.1 ms a layout in node against 0.03 before; unmeasured on Hermes.
   - **Nothing on the globe prints over anything else** (2026-09-23). Every
     always-drawn thing reserves its room before a name is placed: the story's
     place, genocide names (set left of the mark, and held on the screen, when

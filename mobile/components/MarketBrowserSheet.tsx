@@ -9,9 +9,17 @@ import { type Exchange, exchangeCard, exchangeDelta, exchangeIsStale } from '../
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
 import { Pressable, Text } from './primitives';
+import { SegmentedControl, type SegmentOption } from './SegmentedControl';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 type Filter = 'all' | 'rising' | 'falling' | 'other data';
+const FILTERS: SegmentOption<Filter>[] = [
+  { value: 'all', label: 'all' },
+  { value: 'rising', label: 'rising' },
+  { value: 'falling', label: 'falling' },
+  { value: 'other data', label: 'other data' },
+];
+
 interface Props extends BaseSheetProps {
   exchanges: Exchange[];
   instruments: SwipeCard[];
@@ -46,30 +54,25 @@ export function MarketBrowserSheet({
   return (
     <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="markets & data">
       <View style={styles.intro}>
-        <Text variant="caption">
-          {exchanges.length} exchanges · ↑ {rise} rising · ↓ {fall} falling
+        {/* ▲▼, the rows' own marks; this line said ↑↓ over rows that print ▲▼. */}
+        <Text variant="captionEmphasis">
+          {exchanges.length} exchanges · ▲ {rise} rising · ▼ {fall} falling
         </Text>
         <Text variant="caption">
           Latest quoted session vs prior close. The arrow is the direction; green or red is what it
           means for people — an index rising is green, oil rising is red. * on the map means an
-          older quote.
+          older quote. Tap an exchange to find it on the globe.
         </Text>
-        <Text variant="labelXs">Tap an exchange to locate it on the map</Text>
       </View>
       <View style={[styles.filters, { borderBottomColor: colors.rule }]}>
-        {(['all', 'rising', 'falling', 'other data'] as const).map((value) => (
-          <Pressable
-            key={value}
-            onPress={() => setFilter(value)}
-            accessibilityRole="tab"
-            accessibilityState={{ selected: filter === value }}
-            style={[styles.filter, filter === value && { backgroundColor: colors.pillBg }]}
-          >
-            <Text variant="labelXs" tone={filter === value ? 'emphasis' : 'secondary'}>
-              {value}
-            </Text>
-          </Pressable>
-        ))}
+        <SegmentedControl
+          role="tab"
+          size="compact"
+          accessibilityLabel="Filter exchanges"
+          options={FILTERS}
+          selected={filter}
+          onSelect={setFilter}
+        />
       </View>
       <BottomSheetFlatList
         key={filter}
@@ -118,7 +121,11 @@ export function MarketBrowserSheet({
                 {date ? <Text variant="labelXs">{date}</Text> : null}
               </View>
               <View style={styles.figures}>
-                <Text variant="tabularEmphasis">{item.reading}</Text>
+                {/* The figure the row is for, at body size: it was 11pt, the
+                    smallest type on the row, under a 16pt name. */}
+                <Text variant="bodyEmphasis" style={styles.reading}>
+                  {item.reading}
+                </Text>
                 {delta ? <DeltaChip delta={delta} window={false} scale={1} /> : null}
               </View>
             </Pressable>
@@ -129,18 +136,11 @@ export function MarketBrowserSheet({
   );
 }
 const styles = StyleSheet.create({
-  intro: { paddingHorizontal: SPACING.screenPadding, gap: SPACING.xs, paddingBottom: SPACING.sm },
+  intro: { paddingHorizontal: SPACING.screenPadding, gap: SPACING.xs, paddingBottom: SPACING.md },
   filters: {
-    flexDirection: 'row',
-    paddingHorizontal: SPACING.sm,
+    paddingHorizontal: SPACING.screenPadding,
+    paddingBottom: SPACING.md,
     borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  filter: {
-    minHeight: 48,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: SPACING.sm,
   },
   list: { flexShrink: 1 },
   row: {
@@ -154,4 +154,5 @@ const styles = StyleSheet.create({
   },
   subject: { flex: 1, gap: SPACING.xxs },
   figures: { alignItems: 'flex-end', maxWidth: '38%', gap: SPACING.xs },
+  reading: { fontVariant: ['tabular-nums'] },
 });

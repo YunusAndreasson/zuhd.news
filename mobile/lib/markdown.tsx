@@ -277,9 +277,14 @@ export function makeMarkdownStyles(
       ...font.boldItalic,
       fontVariant: ['oldstyle-nums'],
     },
+    // A link to the web: the body's ink with the underline in `accent`, the
+    // web's own `a`. It was `accent` ink, a step quieter than the sentence it
+    // sat in — the fault the country links below were cured of. The
+    // underline's colour is iOS-only, as below.
     link: {
-      color: colors.accent,
+      color: colors.text,
       textDecorationLine: 'underline',
+      textDecorationColor: colors.accent,
     },
     // Country and entity mentions: the body's own ink with a quiet underline,
     // the web's `.country-link` (text colour, a dotted rule in secondary).

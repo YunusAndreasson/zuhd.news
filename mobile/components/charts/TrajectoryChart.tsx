@@ -34,7 +34,9 @@ export interface TrajectoryThreshold {
   /** Caption rendered at the right edge of the line. */
   label: string;
   /** 'warn' (gold) for soft thresholds, 'crit' (red-ish) for hard limits,
-   *  'neutral' (rule-color) for baselines like 0 or replacement fertility. */
+   *  'neutral' (secondary ink) for baselines like 0 or replacement fertility —
+   *  a reference, drawn like a card chart's dashed normal. Gold is the brand
+   *  and the globe's economy hue; a baseline in it reads as a verdict. */
   tone?: 'warn' | 'crit' | 'neutral';
 }
 

@@ -8,7 +8,6 @@ import {
   Text as RNText,
   StyleSheet,
   type TextStyle,
-  View,
 } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
@@ -20,13 +19,16 @@ import {
   type FontFamily,
   type FontSize,
   HIT_SLOP,
-  type Preferences,
-  RADIUS,
+  LAYOUT,
   SPACING,
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
-import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
+import { usePreferences, useTheme } from '../hooks/useTheme';
+import {
+  getSnapshot as getBookmarks,
+  subscribe as subscribeBookmarks,
+} from '../lib/bookmark-store';
 import {
   formatBytes,
   getSnapshot as getDataUsage,
@@ -34,9 +36,11 @@ import {
 } from '../lib/data-usage';
 import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
 import { resetOnboarding } from '../lib/onboarding-store';
-import { staggerEnter } from '../lib/stagger';
+import { makeStaggerEnter } from '../lib/stagger';
 import { eraseLocalData } from '../lib/wipe';
-import { Icon, Pressable, Text } from './primitives';
+import { MenuControlRow, MenuRow, SectionLabel } from './MenuRow';
+import { Pressable, Text } from './primitives';
+import { SegmentedControl, type SegmentOption } from './SegmentedControl';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
 import { SheetScrollView } from './SheetContent';
@@ -48,10 +52,12 @@ import { SheetSearchPage } from './SheetSearchPage';
 import { Toggle } from './Toggle';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
+const CONTACT_EMAIL = 'contact@zuhd.news';
 
 // ---------------------------------------------------------------------------
-// Registries — one entry per navigable page. Each registry self-describes so
-// `renderPage` can be a simple lookup rather than a switch-per-setting.
+// The prose pages' copy. Settings were a registry here too until 2026-09-25;
+// they are written out in `renderPage` now, because a flat list of entries
+// could not hold the sections they are grouped into.
 // ---------------------------------------------------------------------------
 
 const INFO_PAGES = {
@@ -64,28 +70,42 @@ const INFO_PAGES = {
   privacy: {
     sections: [
       {
-        body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.',
+        // Until 2026-09-25 this also said "No telemetry … No third-party
+        // SDKs", and the next section "The app contacts one address". The
+        // update check (expo-updates → u.expo.dev, with a per-install
+        // `EAS-Client-ID`, every launch) and the push service (exp.host, only
+        // with notifications on) made all three untrue. Named in plain words,
+        // not by vendor: a reader has no idea what Expo is.
+        body: 'No accounts. No analytics. No advertising.',
       },
       {
-        heading: 'one server',
-        body: 'The app contacts one address: zuhd-news.pages.dev. Nothing else is reached automatically — no analytics host, no ad network, no font, map, or image CDN. Source links open in your browser only when you tap them.',
+        heading: 'what the app contacts',
+        body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. No analytics, no ad network, no font, map or image service. Source links open in your browser only when you tap them.',
       },
       {
         // Shares its core sentence verbatim with SheetAboutPage's
         // NO_PROFILE_LINE and the store listing. Change it in all three.
         heading: 'what we know about you',
-        body: 'Nothing. There are no accounts. The app sends no identifier when it fetches the news, so we have no way to tell readers apart, and no record of what anyone reads.',
+        body: 'Nothing. There are no accounts. The app sends no identifier when it fetches the news, so the news server cannot tell readers apart, and it keeps no record of what anyone reads.',
       },
       {
         heading: 'data used',
-        body: 'A day’s news is about 15 KB — text and numbers, compressed. There are no images to load. Audio briefings are the exception: about 3 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it.',
+        // Measured 2026-09-25 on the built API: feed-lite 22 KB gzipped, the
+        // feed plus the eleven snapshots ~112 KB brotli cold, and 304s after
+        // (ETags). Briefings are 64 kbps and ran 7.5–10 minutes: 3.6–4.8 MB.
+        // It said 15 KB and 3 MB, and Settings counts decoded bytes.
+        body: 'The day’s stories are about 20 KB, compressed, and the map’s layers about 100 KB the first time; after that only what has changed is downloaded. There are no images to load. Audio briefings are the exception: about 4 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it, counted before compression, so it reads higher.',
       },
       {
         // Fragments, not a sentence. Six things joined by commas read as a
         // legal inventory; the same six as separate statements read as an
         // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which chart updates you have viewed. Which stories you have found on the globe. Your place in a briefing. How many stories you have read. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice.\n\nNone of it leaves the device. You can erase all of it below.',
+        // Checked against the stores 2026-09-25: the chart-history store went
+        // on 09-13, `found` is any story opened, and `read-store` keeps which
+        // stories, not a count. Erase keeps display settings and the
+        // notification choice, so "all of it" was not true either.
+        body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have opened and read. When you last left the app. Your place in a briefing. Which tips you have seen. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice.\n\nNone of it leaves the device. You can erase it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it
@@ -106,285 +126,34 @@ const INFO_PAGES = {
       },
     ],
   },
-  contact: {
-    sections: [
-      {
-        body: 'Questions, corrections, or feedback.',
-        link: { label: 'contact@zuhd.news', url: 'mailto:contact@zuhd.news' },
-      },
-    ],
-  },
 } as const satisfies Record<string, { sections: InfoSection[] }>;
 
 type InfoKey = keyof typeof INFO_PAGES;
 
-const FONT_SIZE_OPTIONS: { value: FontSize; label: string }[] = [
+const FONT_SIZE_OPTIONS: SegmentOption<FontSize>[] = [
   { value: 'small', label: 'small' },
   { value: 'default', label: 'default' },
   { value: 'large', label: 'large' },
 ];
 
-const FONT_FAMILY_OPTIONS: { value: FontFamily; label: string }[] = [
-  { value: 'source', label: 'source sans' },
+const FONT_FAMILY_OPTIONS: SegmentOption<FontFamily>[] = [
+  { value: 'source', label: 'Source Sans' },
   { value: 'system', label: 'system' },
 ];
 
-const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
+const APPEARANCE_OPTIONS: SegmentOption<AppearanceMode>[] = [
   { value: 'system', label: 'system' },
   { value: 'light', label: 'light' },
   { value: 'dark', label: 'dark' },
 ];
 
-type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
+/** Each family's name set in itself, so the picker shows what it picks. */
+const fontFamilyLabel = (v: FontFamily): TextStyle =>
+  v === 'source' ? FONT_SOURCE.regular : FONT_SYSTEM.regular;
 
-interface SettingEntry {
-  key: SettingKey;
-  label: string;
-  get: (p: Preferences) => string;
-  set: (api: PreferencesApi, v: string) => void;
-  options?: readonly { value: string; label: string }[];
-  /** Per-option absolute font size for the detail-page label — used for size previews. */
-  labelFontSize?: (v: string) => number;
-  /** Per-option style override merged onto the option pill — used for font-family previews. */
-  labelStyle?: (v: string) => TextStyle;
-  toggle?: boolean;
-  hint?: string;
-}
-
-const SETTINGS: readonly SettingEntry[] = [
-  {
-    key: 'size',
-    label: 'size',
-    options: FONT_SIZE_OPTIONS,
-    get: (p) => p.fontSize,
-    set: (api, v) => api.setFontSize(v as FontSize),
-    labelFontSize: (v) => baseFontSize(v as FontSize),
-  },
-  {
-    key: 'font',
-    label: 'font',
-    options: FONT_FAMILY_OPTIONS,
-    get: (p) => p.fontFamily,
-    set: (api, v) => api.setFontFamily(v as FontFamily),
-    // Render each option pill in its own family so the picker is WYSIWYG.
-    labelStyle: (v) => (v === 'source' ? FONT_SOURCE.semiBold : FONT_SYSTEM.semiBold),
-  },
-  {
-    key: 'appearance',
-    label: 'appearance',
-    options: APPEARANCE_OPTIONS,
-    get: (p) => p.appearance,
-    set: (api, v) => api.setAppearance(v as AppearanceMode),
-  },
-  {
-    key: 'haptics',
-    label: 'haptics',
-    get: (p) => (p.haptics ? 'on' : 'off'),
-    set: (api, v) => api.setHaptics(v === 'on'),
-    toggle: true,
-  },
-  {
-    key: 'notifications',
-    label: 'notifications',
-    hint: 'Briefings and breaking news',
-    get: (p) => (p.notifications ? 'on' : 'off'),
-    set: (api, v) => api.setNotifications(v === 'on'),
-    toggle: true,
-  },
-];
-
-type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved' | 'map key';
+type PageKey = InfoKey | 'about' | 'settings' | 'search' | 'saved' | 'map key';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
-
-function NavRow({
-  label,
-  value,
-  hint,
-  first,
-  onPress,
-}: {
-  label: string;
-  value?: string;
-  hint?: string;
-  first?: boolean;
-  onPress: () => void;
-}) {
-  const { colors } = useTheme();
-  return (
-    <Pressable
-      onPress={onPress}
-      style={[
-        styles.row,
-        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-      ]}
-      accessibilityRole="button"
-      accessibilityLabel={value ? `${label}, currently ${value}` : label}
-      accessibilityHint={hint}
-    >
-      <Text variant="label" tone="default">
-        {label}
-      </Text>
-      <View style={styles.rowRight}>
-        {value && <Text variant="caption">{value}</Text>}
-        <Icon name="chevron-forward" size="sm" tone="secondary" />
-      </View>
-    </Pressable>
-  );
-}
-
-function ToggleRow({
-  label,
-  value,
-  hint,
-  first,
-  onChange,
-}: {
-  label: string;
-  value: boolean;
-  hint?: string;
-  first?: boolean;
-  onChange: (v: boolean) => void;
-}) {
-  const { colors } = useTheme();
-  const handlePress = useCallback(() => {
-    hapticTick();
-    onChange(!value);
-  }, [onChange, value]);
-  return (
-    // The whole row is the tap target — a toggle-sized target alone is a
-    // reach on a full-bleed settings row, and screen readers get one
-    // focusable element carrying the complete switch semantics.
-    <Pressable
-      onPress={handlePress}
-      haptic="none"
-      style={[
-        styles.row,
-        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-      ]}
-      accessibilityRole="switch"
-      accessibilityState={{ checked: value }}
-      accessibilityLabel={label}
-      accessibilityHint={hint}
-    >
-      <RowLabel label={label} hint={hint} />
-      <Toggle value={value} />
-    </Pressable>
-  );
-}
-
-/** Inline radiogroup — label + horizontal options on one settings row. */
-function InlineOptionRow<T extends string>({
-  label,
-  hint,
-  options,
-  selected,
-  onSelect,
-  labelFontSize,
-  labelStyle,
-  first,
-}: {
-  label: string;
-  hint?: string;
-  options: readonly { value: T; label: string }[];
-  selected: T;
-  onSelect: (v: T) => void;
-  /** Per-option absolute font size — used for size previews. */
-  labelFontSize?: (v: T) => number;
-  /** Per-option style override merged onto the option pill — used for font-family previews. */
-  labelStyle?: (v: T) => TextStyle;
-  first?: boolean;
-}) {
-  const { colors, typography } = useTheme();
-  return (
-    <View
-      style={[
-        styles.inlineOptionRow,
-        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-      ]}
-      accessibilityRole="radiogroup"
-      accessibilityLabel={label}
-      accessibilityHint={hint}
-    >
-      <Text variant="label" tone="default">
-        {label}
-      </Text>
-      {hint && (
-        <Text variant="caption" style={styles.hint}>
-          {hint}
-        </Text>
-      )}
-      <View style={styles.inlineOptions}>
-        {options.map((opt) => {
-          const active = opt.value === selected;
-          // Option pills in the size setting render at their *actual* target
-          // font size (live preview), so they need dynamic scaling not in a
-          // fixed variant. All other option pills use the default caption size.
-          const pillScale = labelFontSize ? labelFontSize(opt.value) / typography.sizeSm : 1;
-          const pillStyle = labelStyle ? labelStyle(opt.value) : undefined;
-          return (
-            <Pressable
-              key={opt.value}
-              onPress={() => {
-                if (!active) onSelect(opt.value);
-              }}
-              haptic="tick"
-              hitSlop={8}
-              style={styles.inlinePill}
-              accessibilityRole="radio"
-              accessibilityState={{ checked: active }}
-              accessibilityLabel={opt.label}
-            >
-              <Text
-                variant="captionEmphasis"
-                tone={active ? 'emphasis' : 'secondary'}
-                scale={pillScale}
-                style={pillStyle}
-              >
-                {opt.label}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
-    </View>
-  );
-}
-
-/** A settings row's label, with its hint under it. */
-function RowLabel({ label, hint }: { label: string; hint?: string }) {
-  return (
-    <View style={styles.rowText}>
-      <Text variant="label" tone="default">
-        {label}
-      </Text>
-      {hint && (
-        <Text variant="caption" style={styles.hint}>
-          {hint}
-        </Text>
-      )}
-    </View>
-  );
-}
-
-/** Read-only settings row — a fact, not a control. */
-function ReadoutRow({ label, value, hint }: { label: string; value: string; hint?: string }) {
-  const { colors } = useTheme();
-  return (
-    <View
-      style={[
-        styles.row,
-        { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-      ]}
-      accessible
-      accessibilityLabel={`${label}, ${value}`}
-      accessibilityHint={hint}
-    >
-      <RowLabel label={label} hint={hint} />
-      <Text variant="caption">{value}</Text>
-    </View>
-  );
-}
 
 /**
  * Erase control for the privacy page. Two taps, not a native Alert: the app
@@ -430,60 +199,24 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
         erase local data
       </Text>
       <Text selectable variant="body">
-        Removes your saved stories, reading position, cached stories, and reading count. Display
-        settings and your notification choice stay.
+        Removes your saved stories, which stories you have opened and read, your place in a
+        briefing, the tips you have seen, and the cached stories and map data. Display settings and
+        your notification choice stay.
       </Text>
       <Pressable
         onPress={handlePress}
         haptic="none"
         hitSlop={HIT_SLOP}
-        style={[styles.erasePill, { borderColor: colors.rule }]}
+        style={[styles.erasePill, { borderColor: colors.accent }]}
         accessibilityRole="button"
         accessibilityLabel={armed ? 'Confirm erase local data' : 'Erase local data'}
         accessibilityHint={armed ? undefined : 'Asks for confirmation before erasing'}
       >
-        <Text variant="captionEmphasis" tone={armed ? 'unfavorable' : 'default'}>
+        <Text variant="bodyEmphasis" tone={armed ? 'unfavorable' : 'default'}>
           {busy ? 'erasing…' : armed ? 'tap again to erase' : 'erase'}
         </Text>
       </Pressable>
     </>
-  );
-}
-
-function ActionLink({
-  label,
-  hint,
-  first,
-  onPress,
-}: {
-  label: string;
-  hint?: string;
-  first?: boolean;
-  onPress: () => void;
-}) {
-  const { colors } = useTheme();
-  return (
-    <Pressable
-      onPress={onPress}
-      style={[
-        styles.actionRow,
-        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
-      ]}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      accessibilityHint={hint}
-    >
-      {/* Matches NavRow's `label`. These two row types are structurally the
-          same control — same padding, same chevron, both push a page — and
-          rendering them at different sizes made the secondary group (about,
-          privacy, contact) read as fine print. The divider above already
-          carries the hierarchy. Also lifts the row from a ~38pt tap target to
-          ~46pt, clearing the 44pt minimum. */}
-      <Text variant="label" tone="default">
-        {label}
-      </Text>
-      <Icon name="chevron-forward" size="sm" tone="secondary" />
-    </Pressable>
   );
 }
 
@@ -504,12 +237,13 @@ export const MenuSheet = memo(function MenuSheet({
   onMarketsPress,
   onToast,
 }: MenuSheetProps) {
-  const { colors, font } = useTheme();
+  const { colors, font, typography } = useTheme();
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
   const [canRate, setCanRate] = useState(false);
   const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
+  const savedCount = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
 
   const navPush = useCallback(
     (page: PageKey) => {
@@ -529,11 +263,25 @@ export const MenuSheet = memo(function MenuSheet({
       .then(setCanRate)
       .catch(() => {});
   }, []);
+
+  // The root's title is the wordmark, in the handle where every page's title
+  // sits. It used to open the page body, 14pt over rows set larger than it,
+  // and the root was the one page whose handle was empty.
   const Handle = useCallback(
     () => (
-      <SheetHandle title={nav.current ?? undefined} onBack={nav.depth > 0 ? navPop : undefined} />
+      <SheetHandle
+        title={
+          nav.current ?? (
+            <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
+              <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
+              <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
+            </Text>
+          )
+        }
+        onBack={nav.depth > 0 ? navPop : undefined}
+      />
     ),
-    [nav.current, nav.depth, navPop],
+    [nav.current, nav.depth, navPop, font, colors.textSecondary, colors.accent],
   );
 
   const handleDismiss = useCallback(() => {
@@ -542,6 +290,13 @@ export const MenuSheet = memo(function MenuSheet({
   }, [onDismiss, nav.reset]);
 
   const swipeBack = useSheetBackNavigation({ canGoBack: nav.depth > 0, onBack: navPop });
+
+  // The size picker sets each size in itself — the size the whole app will
+  // take, whatever size it is at now.
+  const sizeLabelScale = useCallback(
+    (v: FontSize) => baseFontSize(v) / typography.sizeBase,
+    [typography.sizeBase],
+  );
 
   return (
     <SheetLayout sheetRef={sheetRef} handleComponent={Handle} onDismiss={handleDismiss}>
@@ -564,138 +319,177 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
-          {/* Wordmark: composite with mixed weights/colors per glyph cluster.
-              Outer sets size + tracking via `wordmark` variant; inner fragments
-              override font family and color only — a one-off brand lockup. */}
-          <Text
-            variant="wordmark"
-            accessibilityRole="header"
-            accessibilityLabel="zuhd.news"
-            style={styles.wordmark}
-          >
-            <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
-            <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
-          </Text>
-
-          {/* First, because it was one tap away in the map's top bar until
-              2026-09-21. It leaves the menu for the markets browser rather
-              than pushing a page: that sheet flies the globe and hands off to
-              a card, and there is only ever one platform sheet up. */}
-          <NavRow
+          {/* Markets first, because it was one tap away in the map's top bar
+              until 2026-09-21. It leaves the menu for the markets browser
+              rather than pushing a page: that sheet flies the globe and hands
+              off to a card, and there is only ever one platform sheet up. */}
+          <MenuRow
             first
-            label="markets"
-            hint="Exchanges, prices, straits and currencies"
+            title="markets"
+            description="Exchanges, prices, straits and currencies"
+            trailing="push"
             onPress={onMarketsPress}
           />
-          <NavRow
-            label="search"
-            hint="Search every story by title, topic, or location"
+          <MenuRow
+            title="search"
+            description="Every story, by title, topic or place"
+            trailing="push"
             onPress={() => navPush('search')}
           />
-          <NavRow label="saved" hint="Stories you have saved" onPress={() => navPush('saved')} />
-          <NavRow
-            label="settings"
-            hint="Appearance, text size, haptics, notifications"
-            onPress={() => navPush('settings')}
+          <MenuRow
+            title="saved"
+            description="Stories you have kept"
+            value={savedCount > 0 ? String(savedCount) : undefined}
+            trailing="push"
+            onPress={() => navPush('saved')}
           />
-          <NavRow
-            label="map key"
-            hint="What each mark on the globe means"
+          <MenuRow
+            title="map key"
+            description="What each mark on the globe means"
+            trailing="push"
             onPress={() => navPush('map key')}
           />
 
-          <View style={[styles.divider, { backgroundColor: colors.rule }]} />
-
-          <View>
-            <ActionLink first label="about" onPress={() => navPush('about')} />
-            <ActionLink label="privacy" onPress={() => navPush('privacy')} />
-            <ActionLink label="contact" onPress={() => navPush('contact')} />
-            {canRate && (
-              <ActionLink
-                label="rate"
-                // Not "in the App Store" — this row also ships on Google Play.
-                hint="Opens the rating prompt"
-                onPress={() => {
-                  StoreReview.requestReview().catch(() => {});
-                }}
-              />
-            )}
-          </View>
+          <SectionLabel label="the app" />
+          <MenuRow
+            first
+            title="settings"
+            description="Text size, appearance, haptics, notifications"
+            trailing="push"
+            onPress={() => navPush('settings')}
+          />
+          {/* The rows below settings name themselves, so they carry no
+              description: with one each the root outgrew the sheet at the
+              large text size, and "rate" was cut off at the foot. */}
+          <MenuRow title="about" trailing="push" onPress={() => navPush('about')} />
+          <MenuRow title="privacy" trailing="push" onPress={() => navPush('privacy')} />
+          {/* Straight to mail. It was a page holding one sentence and this
+              address, and the sheet shrank to a quarter of the screen to show
+              it. The address is the description, so a reader without a mail
+              app still has it. */}
+          <MenuRow
+            title="contact"
+            description={CONTACT_EMAIL}
+            trailing="leave"
+            onPress={() => {
+              Linking.openURL(`mailto:${CONTACT_EMAIL}`).catch(() =>
+                onToast?.(`Write to ${CONTACT_EMAIL}`),
+              );
+            }}
+          />
+          {canRate && (
+            <MenuRow
+              title="rate"
+              // Not "in the App Store" — this row also ships on Google Play.
+              accessibilityLabel="Rate zuhd.news"
+              trailing="leave"
+              onPress={() => {
+                StoreReview.requestReview().catch(() => {});
+              }}
+            />
+          )}
         </>
       );
     }
 
     if (current === 'settings') {
+      const enter = makeStaggerEnter();
       return (
         <>
-          {SETTINGS.map((s, i) => {
-            const currentValue = s.get(preferences);
-            const entering = staggerEnter(i);
-            const row = s.toggle ? (
-              <ToggleRow
-                first={i === 0}
-                label={s.label}
-                value={currentValue === 'on'}
-                hint={s.hint}
-                onChange={(v) => {
-                  if (s.key === 'notifications' && v) {
-                    prefsApi.setNotifications(true).then((granted) => {
-                      if (!granted) {
-                        onToast?.('Enable notifications in Settings');
-                        Linking.openSettings().catch(() => {});
-                      }
-                    });
-                  } else {
-                    s.set(prefsApi, v ? 'on' : 'off');
+          <Animated.View entering={enter()}>
+            <SectionLabel first label="display" />
+            <MenuControlRow first title="text size">
+              <SegmentedControl
+                accessibilityLabel="text size"
+                options={FONT_SIZE_OPTIONS}
+                selected={preferences.fontSize}
+                onSelect={prefsApi.setFontSize}
+                labelScale={sizeLabelScale}
+              />
+            </MenuControlRow>
+            <MenuControlRow title="font">
+              <SegmentedControl
+                accessibilityLabel="font"
+                options={FONT_FAMILY_OPTIONS}
+                selected={preferences.fontFamily}
+                onSelect={prefsApi.setFontFamily}
+                labelStyle={fontFamilyLabel}
+              />
+            </MenuControlRow>
+            <MenuControlRow title="appearance">
+              <SegmentedControl
+                accessibilityLabel="appearance"
+                options={APPEARANCE_OPTIONS}
+                selected={preferences.appearance}
+                onSelect={prefsApi.setAppearance}
+              />
+            </MenuControlRow>
+          </Animated.View>
+
+          <Animated.View entering={enter()}>
+            <SectionLabel label="touch and alerts" />
+            {/* The whole row is the target: a toggle-sized target alone is a
+                reach on a full-width row, and a screen reader gets one element
+                carrying the whole switch. */}
+            <MenuRow
+              first
+              title="haptics"
+              description="A light tap as you swipe, scrub and press"
+              trailing={<Toggle value={preferences.haptics} />}
+              haptic="none"
+              accessibilityRole="switch"
+              accessibilityState={{ checked: preferences.haptics }}
+              onPress={() => {
+                hapticTick();
+                prefsApi.setHaptics(!preferences.haptics);
+              }}
+            />
+            <MenuRow
+              title="notifications"
+              description="Briefings and breaking news"
+              trailing={<Toggle value={preferences.notifications} />}
+              haptic="none"
+              accessibilityRole="switch"
+              accessibilityState={{ checked: preferences.notifications }}
+              onPress={() => {
+                hapticTick();
+                if (preferences.notifications) {
+                  prefsApi.setNotifications(false);
+                  return;
+                }
+                prefsApi.setNotifications(true).then((granted) => {
+                  if (!granted) {
+                    onToast?.('Enable notifications in Settings');
+                    Linking.openSettings().catch(() => {});
                   }
-                }}
-              />
-            ) : s.options ? (
-              <InlineOptionRow
-                first={i === 0}
-                label={s.label}
-                hint={s.hint}
-                options={s.options}
-                selected={currentValue}
-                onSelect={(v) => s.set(prefsApi, v)}
-                labelFontSize={s.labelFontSize}
-                labelStyle={s.labelStyle}
-              />
-            ) : null;
-            return (
-              <Animated.View key={s.key} entering={entering}>
-                {row}
-              </Animated.View>
-            );
-          })}
-          {/* A number the reader can watch, rather than a claim they have to
-              accept. This is the app's central promise made checkable — see
-              lib/data-usage.ts for what it counts and why it counts high. */}
-          <Animated.View entering={staggerEnter(SETTINGS.length)}>
-            <ReadoutRow
-              label="data used"
-              value={formatBytes(dataUsed)}
-              hint="Stories and data fetched since you opened the app"
+                });
+              }}
             />
           </Animated.View>
-          <Animated.View entering={staggerEnter(SETTINGS.length + 1)}>
-            <NavRow
-              label="show tips again"
-              hint="Shows the reading tips again"
+
+          <Animated.View entering={enter()}>
+            <SectionLabel label="data" />
+            {/* A number the reader can watch, rather than a claim they have to
+                accept. This is the app's central promise made checkable — see
+                lib/data-usage.ts for what it counts and why it counts high. */}
+            <MenuRow
+              first
+              title="data used"
+              description="Fetched since you opened the app"
+              value={formatBytes(dataUsed)}
+            />
+            <MenuRow
+              title="show tips again"
+              // "tips" — the reader's word, and this row's. The code calls
+              // them hints (HintId, HINT_COPY); no screen does.
+              description="The swipe and globe tips return as you read"
               onPress={() => {
                 resetOnboarding();
-                // "tips" — the reader's word, and this row's. The code calls
-                // them hints (HintId, HINT_COPY); no screen does.
                 onToast?.('Tips will reappear as you read');
                 sheetRef.current?.dismiss();
               }}
             />
           </Animated.View>
-          {APP_VERSION ? (
-            <Text variant="caption" style={styles.versionFooter}>
-              {APP_VERSION}
-            </Text>
-          ) : null}
         </>
       );
     }
@@ -709,15 +503,7 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (current === 'about') {
-      const allArticles = Object.values(grouped).flat();
-      return (
-        <>
-          <SheetAboutPage articles={allArticles} />
-          <Text variant="caption" style={{ marginTop: SPACING.lg }}>
-            {APP_VERSION}
-          </Text>
-        </>
-      );
+      return <SheetAboutPage articles={Object.values(grouped).flat()} version={APP_VERSION} />;
     }
 
     if (isInfoKey(current)) {
@@ -734,66 +520,18 @@ export const MenuSheet = memo(function MenuSheet({
 });
 
 const styles = StyleSheet.create({
-  wordmark: {
-    marginBottom: SPACING.sm,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: SPACING.smPlus,
-    gap: SPACING.md,
-  },
-  rowText: {
-    flex: 1,
-  },
-  hint: {
-    marginTop: SPACING.xxs,
-  },
-  rowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-  },
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    marginVertical: SPACING.sm,
-  },
-  inlineOptionRow: {
-    paddingVertical: SPACING.smPlus,
-  },
-  inlineOptions: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'baseline',
-    gap: SPACING.md,
-    marginTop: SPACING.xs,
-  },
-  inlinePill: {
-    paddingVertical: SPACING.xs,
-  },
-  actionRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: SPACING.smPlus,
-  },
-  versionFooter: {
-    marginTop: SPACING.lg,
-    textAlign: 'center',
-  },
   eraseHeading: {
     marginBottom: SPACING.xs,
   },
   erasePill: {
     marginTop: SPACING.md,
     alignSelf: 'flex-start',
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    borderRadius: RADIUS.floating,
+    justifyContent: 'center',
+    minHeight: LAYOUT.controlHeight,
+    paddingHorizontal: SPACING.lg,
+    borderRadius: LAYOUT.controlHeight / 2,
     // Outlined, not filled: a destructive control should read as deliberate
-    // rather than inviting. Matches the hairline edge the map's `zoom` and
-    // `listen` pills use.
+    // rather than inviting.
     borderWidth: StyleSheet.hairlineWidth,
   },
 });

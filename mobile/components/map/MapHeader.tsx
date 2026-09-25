@@ -252,7 +252,7 @@ export const MapHeader = memo(function MapHeader({
       <Shade width={width} rowHeight={rowHeight} color={colors.bg} />
       <View style={[styles.middle, { minHeight: gaugeHeight }]} pointerEvents="box-none">
         {/* Never unmounted. A conditional unmount here once rebuilt all ~28
-            components (23 gauges' Pressable/DeltaChip/Sparkline) from scratch
+            components (23 gauges' Pressable/DeltaChip/sparkline) from scratch
             on every collapse back to the map — measured at ~493ms dev /
             ~165ms production. */}
         <IndicatorStrip

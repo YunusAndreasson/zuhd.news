@@ -43,3 +43,17 @@ export function gdacsDetailFor(
   if (!alert || (alert.eventtype !== 'EQ' && alert.eventtype !== 'TC')) return null;
   return details[`${alert.eventtype}:${alert.eventid}`] ?? null;
 }
+
+/**
+ * A hazard pictogram's size on the globe, as a fraction of its 22 pt glyph
+ * box, by alert level. Every level drew at the full box until 2026-09-25, so
+ * a faded Green earthquake — the low-severity bulk of the feed — was as large
+ * as a Red one and larger than every story beacon it sat among. The web sizes
+ * its hazards by severity and adds a fixed bump per level on top (Orange 3 px,
+ * Red 6 px); the app has the level only, so the level carries it. Green stays
+ * large enough for a pictogram's inner detail — an earthquake's three rings —
+ * to stay apart.
+ */
+export function gdacsGlyphScale(level: GdacsAlert['alertlevel']): number {
+  return level === 'Red' ? 1 : level === 'Orange' ? 0.9 : 0.8;
+}

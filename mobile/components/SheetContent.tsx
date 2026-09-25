@@ -185,15 +185,16 @@ export function SheetSourceFooter({
 }
 
 // ---------------------------------------------------------------------------
-// SheetLink — the external-link treatment for prose pages (About, privacy,
-// contact). Both pages had hand-rolled the identical recipe: a Pressable with
+// SheetLink — the external-link treatment for prose pages (About, privacy)
+// and a source's "read the original". Both pages had hand-rolled the identical recipe: a Pressable with
 // `marginTop: SPACING.xs` wrapping an underlined accent Text, plus their own
 // copies of the `link` / `linkText` style objects. Owning it here means a link
 // on the privacy page and a link on the About page cannot drift apart.
 //
-// Sized at `bodyEmphasis` (17) rather than the old `captionEmphasis` (13):
-// these are tap targets carrying real content — a contact address, a data
-// provider — and 13px asked too much of the reader.
+// Body size, in the body's own ink with an `accent` underline — the web's `a`,
+// and the story text's links (`lib/markdown.tsx`). It was semibold in `accent`
+// ink: a step quieter than the sentence around it, so a link read as a faded
+// word, and bold enough that a list of them read as a wall (2026-09-25).
 // ---------------------------------------------------------------------------
 
 interface SheetLinkProps {
@@ -204,14 +205,16 @@ interface SheetLinkProps {
 }
 
 export function SheetLink({ label, onPress, accessibilityLabel }: SheetLinkProps) {
+  const { colors } = useTheme();
   return (
     <Pressable
       onPress={onPress}
+      hitSlop={HIT_SLOP}
       style={styles.link}
       accessibilityRole="link"
       accessibilityLabel={accessibilityLabel ?? label}
     >
-      <Text variant="bodyEmphasis" tone="accent" style={styles.linkText}>
+      <Text variant="body" style={[styles.linkText, { textDecorationColor: colors.accent }]}>
         {label}
       </Text>
     </Pressable>

@@ -58,7 +58,7 @@ import { Icon, Pressable, Text } from '../primitives';
  * speaks the common seven-day window per item without taking space in the row.
  *
  * **`all →` ends the row.** The instruments without a move — the nisab, the
- * contracts, the dates — and the full ranked list live in `InstrumentsSheet`,
+ * contracts, the dates — and the full ranked list live in `MarketBrowserSheet`,
  * and the end of a row that is sorted from loudest to quietest is where a
  * reader who wants more has already arrived. It used to sit under the NOW
  * block in the news sheet, which is for news.

@@ -1,4 +1,6 @@
+import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
 import type { CardDelta } from './cards/types';
+import { chokepointValence } from './valence';
 
 /**
  * Seven-day mean traffic compared with the strait's 90-day baseline.
@@ -33,4 +35,66 @@ export function straitWeekChange(delta: CardDelta) {
     alarm: delta.valence === 'unfavorable',
     label: `${value} over 7 days`,
   } as const;
+}
+
+/** What a strait's glyph says about its traffic against the 90-day normal. */
+export type StraitState = 'rest' | 'pinch' | 'surge';
+
+/**
+ * A strait's state from its seven-day traffic against its 90-day normal, as
+ * the globe draws it: pinched when the fall is the disruption
+ * (`chokepointValence`), bowed open past the same bar the other way. One rule
+ * for the globe's mark, the map key and the chooser's row, so the row under a
+ * finger is the shape the finger was on.
+ */
+export function straitStateFor(deltaVs90: number): StraitState {
+  if (chokepointValence(deltaVs90) === 'unfavorable') return 'pinch';
+  return deltaVs90 > CHOKEPOINT_DISRUPTED ? 'surge' : 'rest';
+}
+
+/** The glyph box the globe's pictograms are authored in (`disaster-glyphs.ts`). */
+const GLYPH_BOX = 22;
+/** The web authors its alphabet on a 16-unit box (`public/islands/_map/glyphs.ts`). */
+const WEB_BOX = 16;
+
+/**
+ * How far each coastline of a strait's glyph bows out past its ends, in glyph
+ * units: the web's `strait(bulge)` — 4.0 at rest, 1.4 pinched, 6.4 surging —
+ * scaled from its 16-unit box. The bulge is the data. A pinch pulls the two
+ * coastlines in until the channel is two near-straight shores, a surge bows
+ * them open, so which way traffic moved survives greyscale and a colour-blind
+ * reader; the app drew the rest shape in all three states until 2026-09-25 and
+ * said it in gold against teal alone.
+ */
+export const STRAIT_BULGE: Readonly<Record<StraitState, number>> = {
+  rest: (4.0 * GLYPH_BOX) / WEB_BOX,
+  pinch: (1.4 * GLYPH_BOX) / WEB_BOX,
+  surge: (6.4 * GLYPH_BOX) / WEB_BOX,
+};
+
+/** Each coastline's ends sit this far either side of the glyph's centre. */
+export const STRAIT_END_DX = 3;
+
+/**
+ * How far right of its centre a strait's glyph reaches, stroke included. A
+ * cubic whose two control points share an x reaches three quarters of the way
+ * to them.
+ */
+export function straitReach(state: StraitState, stroke: number): number {
+  return STRAIT_END_DX + 0.75 * STRAIT_BULGE[state] + stroke / 2;
+}
+
+/** The traffic sign beside a strait: a backed disc this wide in radius. */
+export const STRAIT_SIGN_R = 6;
+const STRAIT_SIGN_GAP = 1.5;
+
+/**
+ * Where the traffic sign's centre sits right of the strait's. It was a fixed
+ * 12, and its backing disc covered the right-hand coastline — at rest the arc
+ * reaches 7.6 and the disc began at 6, so the glyph read as `(·` with a sign
+ * stamped over its other shore. It follows the shape now, which a surge
+ * widens.
+ */
+export function straitSignDx(state: StraitState, stroke: number): number {
+  return straitReach(state, stroke) + STRAIT_SIGN_GAP + STRAIT_SIGN_R;
 }

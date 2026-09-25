@@ -10,12 +10,12 @@ import {
 } from '@shopify/react-native-skia';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { type ColorPalette, SPACING } from '../constants/theme';
+import { type ColorPalette, LAYOUT, SPACING, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import {
-  CHOKEPOINT_PATH,
   GLYPH_HALF,
   getGlyphPath,
+  getStraitPath,
   marketDirectionPath,
 } from './globe/disaster-glyphs';
 import {
@@ -26,6 +26,7 @@ import {
   THERMAL_RAY_STROKE,
   THERMAL_RAYS_PATH,
 } from './globe/overlay-glyphs';
+import { SectionLabel } from './MenuRow';
 import { Text } from './primitives';
 
 /**
@@ -79,11 +80,11 @@ interface KeyEntry {
   draw: (colors: ColorPalette) => ReactNode;
 }
 
-const ENTRIES: readonly KeyEntry[] = [
+const STORIES: readonly KeyEntry[] = [
   {
     label: 'story',
     meaning:
-      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages.',
+      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages. A white number beside it is how many stories there you have not found yet.',
     draw: (colors) => (
       <>
         <Circle cx={C} cy={C} r={6.7} color={colors.bg} />
@@ -126,24 +127,33 @@ const ENTRIES: readonly KeyEntry[] = [
       </>
     ),
   },
+];
+
+const SHIPPING: readonly KeyEntry[] = [
   {
     label: 'strait',
     // The two rows under it say what its colours mean. This one used to say
     // "red when squeezed, slate otherwise", beside a squeezed mark drawn gold
     // and a busier one drawn teal.
     meaning:
-      'A shipping strait. The arrow and the figure are its traffic over the past seven days, as in the strip; its colour is its traffic against the 90-day normal.',
-    draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStrait} />,
+      'A shipping strait. The arrow and the figure are its traffic over the past seven days, as in the strip; its shape and colour are its traffic against the 90-day normal.',
+    draw: (colors) => (
+      <Glyph path={getStraitPath('rest')} color={straitMarkColor('rest', colors)} />
+    ),
   },
   {
     label: 'strait, squeezed',
-    meaning: `Traffic ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more below its normal.`,
-    draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStraitPinch} />,
+    meaning: `Traffic ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more below its normal: the shores close in.`,
+    draw: (colors) => (
+      <Glyph path={getStraitPath('pinch')} color={straitMarkColor('pinch', colors)} />
+    ),
   },
   {
     label: 'strait, busier',
-    meaning: 'Traffic well above its normal, usually ships rerouted from a strait that is not.',
-    draw: (colors) => <Glyph path={CHOKEPOINT_PATH} color={colors.markStraitSurge} />,
+    meaning: `Traffic more than ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% above its normal, usually ships rerouted from a strait that is not: the shores open.`,
+    draw: (colors) => (
+      <Glyph path={getStraitPath('surge')} color={straitMarkColor('surge', colors)} />
+    ),
   },
   {
     label: 'exchange',
@@ -153,6 +163,24 @@ const ENTRIES: readonly KeyEntry[] = [
       <Glyph path={marketDirectionPath('up')} color={colors.markMarketUp} stroke={1.2} />
     ),
   },
+  {
+    label: 'selected',
+    meaning: 'The place of the market, strait or currency whose card is open.',
+    draw: (colors) => (
+      <Circle
+        cx={C}
+        cy={C}
+        r={11}
+        color={colors.textEmphasis}
+        style="stroke"
+        strokeWidth={1.5}
+        opacity={0.9}
+      />
+    ),
+  },
+];
+
+const CRISES: readonly KeyEntry[] = [
   {
     label: 'hazard',
     meaning: 'An earthquake, cyclone, flood or other natural hazard on the UN–EU alert system.',
@@ -181,13 +209,13 @@ const ENTRIES: readonly KeyEntry[] = [
   {
     label: 'conflict',
     meaning:
-      'Fighting or unrest on the latest day the conflict data covers. Larger where more people were killed.',
+      'Fighting or unrest on the latest day the conflict data covers. Larger where more people were killed. A red number beside it is how many events are close together.',
     draw: (colors) => (
       <Circle cx={C} cy={C} r={9}>
         <RadialGradient
           c={vec(C, C)}
           r={9}
-          colors={[colors.markConflict, `${colors.markConflict}00`]}
+          colors={[colors.markConflict, withAlpha(colors.markConflict, 0)]}
         />
       </Circle>
     ),
@@ -203,25 +231,23 @@ const ENTRIES: readonly KeyEntry[] = [
       </>
     ),
   },
-  {
-    label: 'selected',
-    meaning: 'The place of the market, strait or currency whose card is open.',
-    draw: (colors) => (
-      <Circle
-        cx={C}
-        cy={C}
-        r={11}
-        color={colors.textEmphasis}
-        style="stroke"
-        strokeWidth={1.5}
-        opacity={0.9}
-      />
-    ),
-  },
+];
+
+/** Three groups, so a reader looking for one mark scans a heading, not
+ *  thirteen rows: what the news is, what moves goods and money, and what
+ *  befalls people. */
+const SECTIONS: readonly { label: string; entries: readonly KeyEntry[] }[] = [
+  { label: 'stories', entries: STORIES },
+  { label: 'shipping and markets', entries: SHIPPING },
+  { label: 'crises', entries: CRISES },
 ];
 
 const KeyRow = memo(function KeyRow({ entry, first }: { entry: KeyEntry; first: boolean }) {
-  const { colors } = useTheme();
+  const { colors, textVariants } = useTheme();
+  // The glyph centres on the title's line, not the row's top: a 28pt box
+  // hung from the top of a ~20pt line sat a few points low of the word it
+  // names.
+  const lift = ((textVariants.rowTitle.lineHeight ?? BOX) - BOX) / 2;
   return (
     <View
       style={[
@@ -231,14 +257,12 @@ const KeyRow = memo(function KeyRow({ entry, first }: { entry: KeyEntry; first: 
       accessible
       accessibilityLabel={`${entry.label}: ${entry.meaning}`}
     >
-      <Canvas style={styles.glyph} pointerEvents="none">
+      <Canvas style={[styles.glyph, { marginTop: lift }]} pointerEvents="none">
         {entry.draw(colors)}
       </Canvas>
       <View style={styles.text}>
         <Text variant="rowTitle">{entry.label}</Text>
-        <Text variant="caption" tone="secondary">
-          {entry.meaning}
-        </Text>
+        <Text variant="caption">{entry.meaning}</Text>
       </View>
     </View>
   );
@@ -250,19 +274,25 @@ export const SheetMapKeyPage = memo(function SheetMapKeyPage() {
       <Text variant="body" tone="secondary" style={styles.intro}>
         Every mark on the globe can be tapped, and opens what it stands for.
       </Text>
-      {ENTRIES.map((entry, i) => (
-        <KeyRow key={entry.label} entry={entry} first={i === 0} />
+      {SECTIONS.map((section) => (
+        <View key={section.label}>
+          <SectionLabel label={section.label} />
+          {section.entries.map((entry, i) => (
+            <KeyRow key={entry.label} entry={entry} first={i === 0} />
+          ))}
+        </View>
       ))}
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  intro: { marginBottom: SPACING.md },
+  intro: { marginBottom: SPACING.xs },
   row: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: SPACING.md,
+    minHeight: LAYOUT.rowMinHeight,
     paddingVertical: SPACING.smPlus,
   },
   glyph: { width: BOX, height: BOX },

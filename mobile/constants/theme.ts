@@ -107,12 +107,6 @@ export const DARK_COLORS = {
    * under the land. Never a mark colour; nothing is ever drawn in it at strength.
    */
   daylight: '#7f9dc4',
-  // Editorial-map water tone — pre-composed `atmosphere` at 0.28 alpha
-  // over `bg`. Used by LocationsBlock as an explicit ocean fill so water
-  // reads as a distinct surface (deep slate-blue) rather than the absence
-  // of land. Pre-composed so lakes (which draw on top of land) can use
-  // the same opaque hex as the ocean Rect — alpha tricks would diverge.
-  water: '#191e24',
   toastBg: 'rgba(48,48,48,0.92)',
   // Tone family — sage / rose / slate, for when a sentiment hue must be
   // applied to *foreground* text (sources sentiment label, country-card
@@ -156,6 +150,13 @@ export const DARK_COLORS = {
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
   markConflict: '#c05252',
+  /**
+   * A conflict stack's count, beside its glow: the conflict red a fifth of the
+   * way to `textEmphasis`, where it clears AA as 11pt numerals (5.8:1; the
+   * mark's own red is 4.2). It was `textEmphasis`, the story counts' ink, so
+   * "3 events here" and "3 stories here" were the same white numeral.
+   */
+  markConflictText: '#cc7474',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
@@ -176,9 +177,15 @@ export const LIGHT_COLORS = {
   textSecondary: '#666666',
   // See DARK_COLORS.accent for the naming note (this is *not* the brand
   // accent — `dome` is). Light-mode value sits between `text` and
-  // `textSecondary` in luminance the same way as dark.
-  accent: '#5a5a5a',
-  rule: '#d8d4ce',
+  // `textSecondary` in luminance the same way as dark: about two thirds of
+  // the way down, in contrast. It was #5a5a5a, 6.2:1 beside secondary's 5.1,
+  // so the "second voice" and the quiet one were one grey on cream (and a
+  // second chart series drew in the third's ink).
+  accent: '#525252',
+  // A hairline as strong on cream as `#2e2e2e` is on the dark sheet (OKLab
+  // ΔL 0.09 against 0.10). It was #d8d4ce, half that: 1.19:1 on `sheetBg`,
+  // where the sheet's handle, the toggles' off track and every row rule sit.
+  rule: '#cfcac2',
   textEmphasis: '#1a1a1a',
   // Dome darkens significantly on cream — the dark-mode #c9a84c gold sits
   // at ~2:1 against `bg`, invisible as foreground text. Shifting to a
@@ -195,10 +202,6 @@ export const LIGHT_COLORS = {
   // See DARK_COLORS.daylight. On cream the night veil already reads; the day
   // side is lifted toward white so the terminator has two sides.
   daylight: '#ffffff',
-  // See DARK_COLORS.water for the rationale. Pre-composed `atmosphere`
-  // at 0.28 alpha over `bg` — sits a touch cooler/darker than cream so
-  // land (gray) reads as the warmer surface.
-  water: '#d6d9da',
   toastBg: 'rgba(240,237,230,0.95)',
   // Foreground-text tone variants. The dark palette's sage / rose / slate,
   // luminance-deepened to clear WCAG AA body (≥ 4.5:1) on cream `bg`.
@@ -226,12 +229,21 @@ export const LIGHT_COLORS = {
   categoryTextScience: '#316366',
   categoryTextTech: '#535a7f',
   categoryTextOther: '#5c5c5c',
-  /** The ring on a story its sources disagree sharply about. */
-  markContested: '#e8e2d4',
+  /**
+   * The ring on a story its sources disagree sharply about. Not the web's
+   * value, unlike the hues around it: the web map is dark-only, and its ring
+   * is a warm near-white *ink* rather than a hue — on cream it measured
+   * 1.04:1 against the sheet, so the map key drew nothing and the globe's
+   * ring vanished over land and sea. This is the same ink at the other pole.
+   */
+  markContested: '#3a352c',
   markGdacs: '#b8763f',
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
   markConflict: '#c05252',
+  /** See DARK_COLORS.markConflictText: the red a fifth of the way to this
+   *  theme's `textEmphasis`, 5.4:1 on cream. */
+  markConflictText: '#9f4747',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#596775',
   markStraitPinch: '#8b681f',
@@ -244,10 +256,6 @@ export const LIGHT_COLORS = {
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
-
-/** bg at a given alpha — pass the resolved bg RGB tuple */
-export const makeBgAlpha = (bgRgb: [number, number, number]) => (a: number) =>
-  `rgba(${bgRgb[0]},${bgRgb[1]},${bgRgb[2]},${a})`;
 
 /** Convert a 3- or 6-digit hex color to an rgba string at a given alpha.
  *  Use when a palette color needs an inline transparency override (e.g. a
@@ -311,6 +319,16 @@ export function categoryTextColor(category: string | undefined, colors: ColorPal
   }
 }
 
+/** A strait's glyph colour in its state: slate at rest, gold pinched, teal
+ *  surging — the web's three. The shape says the same thing (`getStraitPath`). */
+export function straitMarkColor(state: 'rest' | 'pinch' | 'surge', colors: ColorPalette): string {
+  return state === 'pinch'
+    ? colors.markStraitPinch
+    : state === 'surge'
+      ? colors.markStraitSurge
+      : colors.markStrait;
+}
+
 export function categoryMarkColor(category: string | undefined, colors: ColorPalette): string {
   switch (category) {
     case 'politics':
@@ -325,11 +343,6 @@ export function categoryMarkColor(category: string | undefined, colors: ColorPal
       return colors.markOther;
   }
 }
-
-export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
-  dark: [15, 15, 17],
-  light: [245, 242, 237],
-};
 
 // ---------------------------------------------------------------------------
 // Font families
@@ -519,6 +532,13 @@ export const LAYOUT = {
   handleHeight: 4,
   inputHeight: 40,
   hitSlop: 12,
+  /** The shortest a tappable list row may be: Material's 48dp, which also
+   *  covers Apple's 44pt. A one-line menu row sat at ~45 before (2026-09-25)
+   *  and the settings options at ~30. Rows with a description grow past it. */
+  rowMinHeight: 48,
+  /** A segmented control's height at the default type size — Apple's 44pt
+   *  minimum target, and it grows with the reader's text size. */
+  controlHeight: 44,
 } as const;
 
 /** Editorial thresholds — not layout, but shared across components */

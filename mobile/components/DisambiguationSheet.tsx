@@ -1,11 +1,12 @@
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
-import { Canvas, Circle, Path } from '@shopify/react-native-skia';
+import { Canvas, Circle, Path, RadialGradient, vec } from '@shopify/react-native-skia';
 import { type ComponentProps, memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { ANIMATION, SPACING } from '../constants/theme';
+import { ANIMATION, SPACING, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { chooserTitle } from '../lib/chooser-title';
 import { conflictChooserDetails, SUB_EVENT_LABEL } from '../lib/conflict';
 import {
   type FamineArea,
@@ -14,16 +15,14 @@ import {
   type ThermalEvent,
 } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
-import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
-import { straitMapChange } from '../lib/strait-map';
+import { type StraitState, straitMapChange, straitStateFor } from '../lib/strait-map';
 import {
-  CHOKEPOINT_PATH,
   CONFLICT_FAMILY_LABEL,
   EVENT_TYPE_LABEL,
   GLYPH_HALF,
-  getConflictGlyphPath,
   getGlyphPath,
+  getStraitPath,
   marketDirectionPath,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
@@ -82,13 +81,11 @@ interface DisplayRow {
   /** Famine-only — how many of the column's blocks are filled. */
   blocks?: number;
   direction?: 'up' | 'down' | 'flat';
-  /** GDACS-only — drives the glyph + tint inside the icon canvas. */
+  /** GDACS-only — the pictogram, and the Red alarm ring the globe draws. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
-  /** Conflict-only — drives the glyph + tint inside the icon canvas. */
-  conflictFamily?: ConflictEvent['family'];
-  /** Conflict-only — non-zero fatalities tilt the row tint to unfavorable. */
-  fatalities?: number;
+  /** Strait-only — the shape and colour its globe mark is drawn in. */
+  straitState?: StraitState;
 }
 
 function buildRow(
@@ -166,8 +163,6 @@ function buildRow(
       primary,
       secondary: `${CONFLICT_FAMILY_LABEL[evt.family].toLowerCase()}${country ? ` · ${country}` : ''}`,
       kind: 'conflict',
-      conflictFamily: evt.family,
-      fatalities: evt.fatalities,
     };
   }
   if (result.chokepointId) {
@@ -179,6 +174,7 @@ function buildRow(
       primary: cp.name,
       secondary: `all ships · ${straitMapChange(cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${cp.asOf}`,
       kind: 'chokepoint',
+      straitState: straitStateFor(cp.delta7vs90.n_total ?? 0),
     };
   }
   if (result.marketSignalId) {
@@ -227,7 +223,6 @@ function buildRow(
 
 interface RowIconProps {
   row: DisplayRow;
-  tint: string;
 }
 
 /** Centres a glyph in a row icon. */
@@ -237,15 +232,17 @@ const GLYPH_TRANSFORM = [
 ];
 
 /** A glyph stroked over a disc of its own colour — the shape the hazard,
- *  conflict, strait and exchange rows share. */
+ *  strait and exchange rows share. `ring` is the globe's Red-alert ring. */
 function GlyphIcon({
   path,
   color,
   discOpacity,
+  ring = false,
 }: {
   path: ComponentProps<typeof Path>['path'];
   color: string;
   discOpacity: number;
+  ring?: boolean;
 }) {
   return (
     <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
@@ -256,6 +253,16 @@ function GlyphIcon({
         color={color}
         opacity={discOpacity}
       />
+      {ring ? (
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2 - 0.75}
+          color={color}
+          style="stroke"
+          strokeWidth={1.5}
+        />
+      ) : null}
       <Path
         path={path}
         color={color}
@@ -269,10 +276,13 @@ function GlyphIcon({
   );
 }
 
-function RowIcon({ row, tint }: RowIconProps) {
+function RowIcon({ row }: RowIconProps) {
   const { colors } = useTheme();
-  // The hazard layers from the web keep their globe hues here too: the row
-  // names the mark the reader just tapped, and a grey column would not.
+  // Every layer keeps its globe hue and shape here: the row names the mark
+  // the reader just tapped, and a grey glyph would not. The hazard, conflict
+  // and strait rows were grey (rose for a Red alert or a death) until
+  // 2026-09-25 — a conflict row drew a gun-sight the globe never shows, and
+  // every strait the resting shape whatever its state.
   if (row.kind === 'famine') {
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
@@ -337,15 +347,38 @@ function RowIcon({ row, tint }: RowIconProps) {
     );
   }
   if (row.kind === 'gdacs' && row.eventtype) {
-    return <GlyphIcon path={getGlyphPath(row.eventtype)} color={tint} discOpacity={0.18} />;
-  }
-  if (row.kind === 'conflict' && row.conflictFamily) {
     return (
-      <GlyphIcon path={getConflictGlyphPath(row.conflictFamily)} color={tint} discOpacity={0.18} />
+      <GlyphIcon
+        path={getGlyphPath(row.eventtype)}
+        color={colors.markGdacs}
+        discOpacity={0.14}
+        ring={row.alertlevel === 'Red'}
+      />
+    );
+  }
+  if (row.kind === 'conflict') {
+    // The globe's glow, as the map key draws it.
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={9}>
+          <RadialGradient
+            c={vec(ROW_ICON / 2, ROW_ICON / 2)}
+            r={9}
+            colors={[colors.markConflict, withAlpha(colors.markConflict, 0)]}
+          />
+        </Circle>
+      </Canvas>
     );
   }
   if (row.kind === 'chokepoint') {
-    return <GlyphIcon path={CHOKEPOINT_PATH} color={colors.textSecondary} discOpacity={0.12} />;
+    const state = row.straitState ?? 'rest';
+    return (
+      <GlyphIcon
+        path={getStraitPath(state)}
+        color={straitMarkColor(state, colors)}
+        discOpacity={0.12}
+      />
+    );
   }
   if (row.kind === 'market') {
     return (
@@ -419,18 +452,6 @@ function CandidateRow({
   onPress: (result: TapResult) => void;
 }) {
   const { colors } = useTheme();
-  // Red disasters and fatal-conflict rows take the foreground rose tint
-  // (the most editorially urgent signal). Lower-tier disasters read in
-  // `textSecondary` — severity is still legible from the focal numbers
-  // and labels in the row body.
-  const tint = severityTint(
-    colors,
-    {
-      alertLevel: row.alertlevel,
-      fatalities: row.kind === 'conflict' ? row.fatalities : undefined,
-    },
-    colors.textSecondary,
-  );
   const handlePress = useCallback(() => onPress(row.result), [onPress, row.result]);
   return (
     <Animated.View entering={staggerEnter(index, ANIMATION.fast)}>
@@ -440,7 +461,7 @@ function CandidateRow({
         accessibilityRole="button"
         accessibilityLabel={`${row.primary}, ${row.secondary}`}
       >
-        <RowIcon row={row} tint={tint} />
+        <RowIcon row={row} />
         <View style={styles.rowText}>
           <Text variant="bodyEmphasis" numberOfLines={1}>
             {row.primary}
@@ -523,7 +544,11 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   );
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="multiple items here">
+    <SheetLayout
+      sheetRef={sheetRef}
+      onDismiss={onDismiss}
+      handleTitle={chooserTitle(rows.map((row) => row.kind))}
+    >
       <SheetScrollView bottomInset={bottomInset}>
         {rows.map((row, i) => (
           <CandidateRow key={row.key} row={row} index={i} onPress={handleSelect} />

@@ -1,5 +1,6 @@
 import type { ConflictEventFamily, GdacsEventType as EventType } from '@shared/types';
 import { Skia, type SkPath } from '@shopify/react-native-skia';
+import { STRAIT_BULGE, STRAIT_END_DX, type StraitState } from '../../lib/strait-map';
 
 /** Glyph paths for GDACS event types. Each path is centered at (0,0) inside
  *  a 22×22 unit box so MiniGlobe can translate by `(x - GLYPH_HALF, y - GLYPH_HALF)`
@@ -84,20 +85,38 @@ function volcanoPath(): SkPath {
 }
 
 function droughtPath(): SkPath {
-  // Sun with rays — heat / aridity. Center disc + 8 short rays.
+  // A low sun over cracked ground. It was a sun alone — a disc and eight
+  // rays — which is a radial burst, and the thermal anomaly is the one
+  // radial burst the web's alphabet allows: in its near-identical orange, a
+  // drought alert and a fire's heat were the same mark at a glance. The
+  // ground line and its cracks make this one horizontal, and anchored.
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  const b = Skia.PathBuilder.Make().addCircle(cx, cy, 2.5);
-  for (let i = 0; i < 8; i++) {
-    const a = (i * Math.PI) / 4;
-    const inner = 4.5;
-    const outer = 8;
-    b.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner).lineTo(
-      cx + Math.cos(a) * outer,
-      cy + Math.sin(a) * outer,
+  const horizon = cy + 1.5;
+  const b = Skia.PathBuilder.Make()
+    // Ground
+    .moveTo(cx - 8, horizon)
+    .lineTo(cx + 8, horizon)
+    // The sun's upper half, sitting on it
+    .moveTo(cx - 3.5, horizon)
+    .arcToOval(Skia.XYWHRect(cx - 3.5, horizon - 3.5, 7, 7), 180, 180, false);
+  // Three short rays, up and to either side
+  for (const deg of [-150, -90, -30]) {
+    const a = (deg * Math.PI) / 180;
+    b.moveTo(cx + Math.cos(a) * 5.5, horizon + Math.sin(a) * 5.5).lineTo(
+      cx + Math.cos(a) * 8,
+      horizon + Math.sin(a) * 8,
     );
   }
-  return b.detach();
+  // Two cracks in the ground
+  return b
+    .moveTo(cx - 4, horizon)
+    .lineTo(cx - 2.5, horizon + 3)
+    .lineTo(cx - 4, horizon + 5.5)
+    .moveTo(cx + 3, horizon)
+    .lineTo(cx + 4.5, horizon + 2.5)
+    .lineTo(cx + 3, horizon + 5)
+    .detach();
 }
 
 function wildfirePath(): SkPath {
@@ -133,7 +152,7 @@ export function getGlyphPath(type: EventType): SkPath {
   return PATHS[type];
 }
 
-function chokepointPath(): SkPath {
+function straitPath(bulge: number): SkPath {
   // Two opposing arcs with a center mark — the geographic signature of a
   // strait/chokepoint: two coastlines pinching toward a narrow water
   // passage. Arcs face each other (`)(` orientation) so the gap between
@@ -141,57 +160,39 @@ function chokepointPath(): SkPath {
   // exact location. Vertical orientation chosen because most named
   // chokepoints (Hormuz, Bab-el-Mandeb, Malacca, Gibraltar, Dover) read
   // as east/west land masses with north/south through-traffic.
+  //
+  // How far the arcs bow is the strait's state (`STRAIT_BULGE`), the web's
+  // `strait(bulge)` at this box's scale — so the phone and the map draw one
+  // mark, and a pinch reads as a pinch without its gold.
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
+  const end = STRAIT_END_DX;
   return (
     Skia.PathBuilder.Make()
       // Left coastline arc — concave facing right (bulges left)
-      .moveTo(cx - 3, cy - 7)
-      .cubicTo(cx - 9, cy - 4, cx - 9, cy + 4, cx - 3, cy + 7)
+      .moveTo(cx - end, cy - 7)
+      .cubicTo(cx - end - bulge, cy - 4, cx - end - bulge, cy + 4, cx - end, cy + 7)
       // Right coastline arc — concave facing left (bulges right)
-      .moveTo(cx + 3, cy - 7)
-      .cubicTo(cx + 9, cy - 4, cx + 9, cy + 4, cx + 3, cy + 7)
+      .moveTo(cx + end, cy - 7)
+      .cubicTo(cx + end + bulge, cy - 4, cx + end + bulge, cy + 4, cx + end, cy + 7)
       // Center mark — the chokepoint itself
       .addCircle(cx, cy, 1.4)
       .detach()
   );
 }
 
-/** Chokepoint pictogram — two facing coastline arcs around a center mark.
- *  Used in DisambiguationSheet rows so straits read with the same
- *  graphic confidence as GDACS event types instead of as a generic ring. */
-export const CHOKEPOINT_PATH: SkPath = chokepointPath();
+const STRAIT_PATHS: Readonly<Record<StraitState, SkPath>> = {
+  rest: straitPath(STRAIT_BULGE.rest),
+  pinch: straitPath(STRAIT_BULGE.pinch),
+  surge: straitPath(STRAIT_BULGE.surge),
+};
 
-function marketPath(): SkPath {
-  // A candle: the open-high-low-close mark, which is what an index's session
-  // actually is, plus the axis it sits on.
-  //
-  // Shape says what, colour says which way — so the silhouette has to be
-  // *unmistakably* a market and carry no direction of its own. A downward
-  // arrow would say "fell" in the shape channel, which is the channel the
-  // layer alphabet reserves for identity; the reading and its coloured delta
-  // in the strip above own direction. A candle is directionless and nothing
-  // else on this globe looks remotely like one.
-  const cx = GLYPH_HALF;
-  const cy = GLYPH_HALF;
-  return (
-    Skia.PathBuilder.Make()
-      // The wick — high to low
-      .moveTo(cx, cy - 8)
-      .lineTo(cx, cy + 8)
-      // The body — open to close, a rectangle straddling the wick
-      .moveTo(cx - 3.5, cy - 4)
-      .lineTo(cx + 3.5, cy - 4)
-      .lineTo(cx + 3.5, cy + 4)
-      .lineTo(cx - 3.5, cy + 4)
-      .close()
-      .detach()
-  );
+/** A strait's pictogram in its state — two facing coastline arcs around a
+ *  center mark, bowed by how its traffic stands against its normal. The
+ *  globe, the map key and the chooser's rows all draw from this. */
+export function getStraitPath(state: StraitState): SkPath {
+  return STRAIT_PATHS[state];
 }
-
-/** Market pictogram — a candle. Marks the exchange behind an index the
- *  server flagged as having moved. */
-export const MARKET_PATH: SkPath = marketPath();
 
 export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
   EQ: 'Earthquake',
@@ -201,59 +202,6 @@ export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
   DR: 'Drought',
   WF: 'Wildfire',
 };
-
-function kineticPath(): SkPath {
-  // Crosshair / targeting reticle — outer ring with horizontal and
-  // vertical hairs extending past the rim. The universal "targeted
-  // location / site of incident" mark in military and crisis-mapping
-  // vocabularies (OCHA situation maps, Reuters Graphics, NATO joint
-  // operations). Reads as a SITE, not a finality — quieter editorial
-  // tone than the X-as-death pictogram, while staying geometrically
-  // distinct from every other glyph in the family.
-  const cx = GLYPH_HALF;
-  const cy = GLYPH_HALF;
-  return (
-    Skia.PathBuilder.Make()
-      // Outer ring — same family of stroked rings used by the earthquake
-      // glyph, sized so cross-hairs protrude ~3 units past the rim.
-      .addCircle(cx, cy, 6.5)
-      // Horizontal cross-hair — runs the full glyph box width
-      .moveTo(1.5, cy)
-      .lineTo(20.5, cy)
-      // Vertical cross-hair
-      .moveTo(cx, 1.5)
-      .lineTo(cx, 20.5)
-      .detach()
-  );
-}
-
-function unrestPath(): SkPath {
-  // Three head-and-body abstractions clustered in a row — reads as "small
-  // crowd" without resorting to a literal protest pictogram. Heads are
-  // small rings (addCircle under stroke style); bodies are short verticals
-  // beneath. The triadic arrangement is the universal "people" shorthand
-  // used in icon vocabularies (think pedestrian-crossing signs scaled out
-  // to multiple figures), and it stays legible at 22px.
-  const cx = GLYPH_HALF;
-  const cy = GLYPH_HALF;
-  const b = Skia.PathBuilder.Make();
-  for (const xOff of [-5, 0, 5]) {
-    const fx = cx + xOff;
-    b.addCircle(fx, cy - 3, 1.6)
-      .moveTo(fx, cy - 1)
-      .lineTo(fx, cy + 5);
-  }
-  return b.detach();
-}
-
-const CONFLICT_PATHS: Readonly<Record<ConflictEventFamily, SkPath>> = {
-  kinetic: kineticPath(),
-  unrest: unrestPath(),
-};
-
-export function getConflictGlyphPath(family: ConflictEventFamily): SkPath {
-  return CONFLICT_PATHS[family];
-}
 
 export const CONFLICT_FAMILY_LABEL: Readonly<Record<ConflictEventFamily, string>> = {
   kinetic: 'Kinetic event',

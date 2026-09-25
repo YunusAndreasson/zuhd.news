@@ -1,5 +1,5 @@
 import type { GdacsAlert } from '@shared/types';
-import { alertAgeDays, parseSeverityHero } from '../lib/gdacs';
+import { alertAgeDays, gdacsGlyphScale, parseSeverityHero } from '../lib/gdacs';
 
 // Parser/feed tests live in `scripts/lib/gdacs.test.js` — that's where the
 // raw-feed parsing now happens. Mobile only ships the snapshot consumer
@@ -106,5 +106,21 @@ describe('alertAgeDays', () => {
     const modified = '2026-05-01T08:00:00';
     const t = Date.parse(modified) + 3 * 86_400_000;
     expect(alertAgeDays({ ...baseAlert, modifiedDate: modified }, t)).toBeCloseTo(3, 0);
+  });
+});
+
+// Every level drew at the full 22 pt box, so a faded Green alert was as large
+// as a Red one and larger than every story beacon around it.
+describe('gdacsGlyphScale', () => {
+  it('draws a graver alert larger', () => {
+    expect(gdacsGlyphScale('Green')).toBeLessThan(gdacsGlyphScale('Orange'));
+    expect(gdacsGlyphScale('Orange')).toBeLessThan(gdacsGlyphScale('Red'));
+    expect(gdacsGlyphScale('Red')).toBe(1);
+  });
+
+  // A Green earthquake's rings sit 2.5 units apart at full size; below 0.8
+  // they close to under a point and a half and the pictogram is a blot.
+  it('keeps the smallest pictogram big enough to read', () => {
+    expect(22 * gdacsGlyphScale('Green')).toBeGreaterThanOrEqual(17);
   });
 });

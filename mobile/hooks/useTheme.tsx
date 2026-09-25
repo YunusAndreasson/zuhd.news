@@ -5,7 +5,6 @@ import { Appearance, useColorScheme } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
-  BG_RGB,
   type ColorPalette,
   DARK_COLORS,
   FONT_SIZE_SCALE,
@@ -15,7 +14,6 @@ import {
   type FontSet,
   type FontSize,
   LIGHT_COLORS,
-  makeBgAlpha,
   makeSheetStyles,
   makeTextVariants,
   makeTypography,
@@ -44,8 +42,6 @@ export interface Theme {
   typography: Typography;
   textVariants: TextVariants;
   sheetStyles: ReturnType<typeof makeSheetStyles>;
-  bgAlpha: (a: number) => string;
-  bgRgb: [number, number, number];
   resolvedAppearance: 'dark' | 'light';
 }
 
@@ -157,8 +153,6 @@ export function ThemeProvider({
     const typography = makeTypography(sizeScale);
     const textVariants = makeTextVariants(colors, font, typography);
     const sheetStyles = makeSheetStyles(colors);
-    const bgRgb = BG_RGB[resolvedAppearance];
-    const bgAlphaFn = makeBgAlpha(bgRgb);
 
     return {
       colors,
@@ -166,8 +160,6 @@ export function ThemeProvider({
       typography,
       textVariants,
       sheetStyles,
-      bgAlpha: bgAlphaFn,
-      bgRgb,
       resolvedAppearance,
     };
   }, [resolvedAppearance, prefs.fontFamily, prefs.fontSize, fontsAvailable]);
