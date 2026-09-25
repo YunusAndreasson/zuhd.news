@@ -1,63 +1,5 @@
 [
   {
-    "timestamp": "2026-09-03T22:28:30.734Z",
-    "candidateCount": 5,
-    "candidates": [
-      {
-        "slug": "2026-09-03-four-competitors-one-substrate",
-        "title": "AI Giants Suffer Simultaneous Outages",
-        "category": "tech",
-        "eventCoverage": 153,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-a-war-by-any-other-name-starts-a-clock",
-        "title": "Vance Won't Call It War",
-        "category": "politics",
-        "eventCoverage": 130,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-the-franchise-does-not-need-its-founder",
-        "title": "Extortion Boss Arrested in Bolivia",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-what-an-installed-base-is-worth-to-its-new-owner",
-        "title": "Tottenham Slashes VMware Costs",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-03-approval-and-access-are-two-different-events",
-        "title": "FDA Approves Alexander Disease Drug",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-03-a-war-by-any-other-name-starts-a-clock",
-      "title": "Vance Won't Call It War",
-      "category": "politics",
-      "body": "Seven months in, no war has been",
-      "eventCoverage": 130,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Vance declines to call Iran conflict a war after 7 months",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-04T04:26:31.119Z",
     "candidateCount": 8,
     "candidates": [
@@ -10287,6 +10229,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "OpenAI says agents hacked or tried to hack 4 websites unprompted",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 7
+    }
+  },
+  {
+    "timestamp": "2026-09-25T04:16:21.966Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-09-25-uss-lincoln-eight-suicide-attempts-iran-deployment",
+        "title": "Navy Confirms Carrier Suicide Attempts",
+        "category": "politics",
+        "eventCoverage": 303,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-cia-russia-container-ship-drones-southern-europe",
+        "title": "Ship-Launched Drones Feared",
+        "category": "politics",
+        "eventCoverage": 248,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-iran-7-day-ceasefire-proposal-hormuz",
+        "title": "Iran Offers Hormuz Deal",
+        "category": "politics",
+        "eventCoverage": 157,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-italy-caps-foreign-pupils-bans-niqab-schools",
+        "title": "Italy Caps Foreign Pupils",
+        "category": "politics",
+        "eventCoverage": 151,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-oracle-new-mexico-data-centre-no-power-guarantee",
+        "title": "Oracle Bears Power Risk",
+        "category": "tech",
+        "eventCoverage": 118,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-india-opposition-cec-gyanesh-kumar-resign-vote-chori",
+        "title": "Gandhi Demands Election Chief Quit",
+        "category": "politics",
+        "eventCoverage": 117,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-pb-fintech-crash-irdai-insurance-commissions",
+        "title": "Regulator Proposal Crushes PB Fintech",
+        "category": "economy",
+        "eventCoverage": 69,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-unctad-gaza-reconstruction-71-billion",
+        "title": "Gaza Rebuild Costs $71.5bn",
+        "category": "economy",
+        "eventCoverage": 38,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-france-forces-saudi-red-sea-oil-facilities",
+        "title": "France Guards Saudi Oil Hub",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-pakistan-senate-telco-overcharging-probe-pta",
+        "title": "Senate Opens Telecom Probe",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-25-uss-lincoln-eight-suicide-attempts-iran-deployment",
+      "title": "Navy Confirms Carrier Suicide Attempts",
+      "category": "politics",
+      "body": "286 days at sea, 8 suicide attempts across the strike",
+      "eventCoverage": 303,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Navy confirms 8 suicide attempts on USS Lincoln after 286 days at sea",
     "response": {
       "pushed": 1,
       "skipped": 0,
