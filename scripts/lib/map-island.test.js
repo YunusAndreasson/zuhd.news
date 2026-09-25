@@ -819,6 +819,13 @@ test('the density wash is a ground, and the place numeral is a droppable mark', 
       assert.equal(map.getLayer(id), undefined, `${id} should be gone`)
     }
 
+    // The genocide name is always drawn and occupies space, so a country name
+    // yields to it instead of printing through it ("EG'GAZA", 2026-09-25).
+    const gname = map.getLayer('genocide-labels')
+    assert.ok(gname, 'genocide-labels should be added')
+    assert.equal(gname.layout['text-allow-overlap'], true, 'the genocide name is never dropped')
+    assert.equal(gname.layout['text-ignore-placement'], false, 'and other labels must avoid it')
+
     const numeral = map.getLayer('story-place-count')
     assert.ok(numeral, 'story-place-count should be added')
     assert.equal(numeral.type, 'symbol')

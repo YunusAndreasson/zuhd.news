@@ -3527,8 +3527,14 @@ export function mount(
         'text-transform': 'uppercase',
         'text-anchor': 'top',
         'text-offset': [0, 1.05],
+        // Always drawn, and it claims its space. With `ignore-placement: true`
+        // the basemap's labels could not see it, so "EGYPT" was set straight
+        // through "GAZA" — text on text, where both words are lost, which is
+        // worse than the beacon-over-name case (map.md) that a partly covered
+        // name survives. This layer is placed first, so it is the other label
+        // that yields.
         'text-allow-overlap': true,
-        'text-ignore-placement': true,
+        'text-ignore-placement': false,
       },
       paint: {
         'text-color': OVERLAY_COLOUR.genocide,
