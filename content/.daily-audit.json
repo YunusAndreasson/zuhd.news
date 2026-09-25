@@ -1,69 +1,90 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "metrics": {
     "articles": {
       "value": 53,
-      "detail": "5 cycles, all completed, avg ~10.6/cycle (62 yesterday); second full day on the Opus 5.5 selector"
+      "detail": "5 cycles, all completed, avg ~10.6/cycle (53 yesterday); third full day on the Opus 5.5 selector"
     },
     "freshness": {
-      "median": 0.1,
-      "p90": 1.5,
-      "max": 1.5,
+      "median": 0.3,
+      "p90": 1,
+      "max": 1,
       "target": 1.0,
       "met": true
     },
     "categories": {
-      "politics": 20,
-      "economy": 13,
-      "science": 7,
+      "politics": 22,
+      "economy": 12,
+      "science": 6,
       "tech": 13
     },
     "multiSource": {
-      "value": 15,
-      "target": 4,
+      "pct": 36,
+      "target": 30,
       "met": true
     },
+    "usDatelines": {
+      "pct": 43,
+      "target": 25,
+      "met": false
+    },
+    "latAmDatelines": {
+      "pct": 9,
+      "target": 5,
+      "met": true
+    },
+    "sameEventDuplicates": {
+      "value": 0,
+      "target": 0,
+      "met": true
+    },
+    "missingDatelines": {
+      "value": 0,
+      "target": 0,
+      "met": true
+    },
+    "stateOrAdvocacyOnly": 5,
+    "imageUrlPct": 30,
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
       "breakdown": {
-        "AM": 19,
-        "EU": 12,
-        "ME": 9,
-        "AF": 8,
-        "AS": 3,
-        "OC": 1
+        "AM": 28,
+        "EU": 11,
+        "ME": 8,
+        "AS": 4,
+        "AF": 2
       }
     },
     "sciTech": {
-      "ratio": 38,
+      "ratio": 36,
       "target": 25,
       "met": true
     },
     "topSourceShare": {
       "source": "Al Jazeera Online",
-      "pct": 19,
+      "pct": 15,
       "target": 20,
       "met": true
     },
-    "uniqueSources": 47,
+    "uniqueSources": 62,
     "duplicates": 0,
-    "avgCycleDuration": 1064
+    "avgCycleDuration": 971
   },
-  "experiment": "No active experiments to evaluate. No new experiment: the pause gate (noNewExperimentsUntil 2026-09-25) holds for the Opus 5.5 baseline, and every goal metric is met.",
-  "weakestArea": "Two metrics are close to their limits. Al Jazeera Online has 10 of 53 articles, or 19% against the 20% cap, up from 15% yesterday. Asia fell to 3 datelines, from 5 yesterday and 10 the day before. Both are still within target, and both fall inside the Opus 5.5 baseline window, so they are baseline points rather than signals.",
+  "experiment": "There were no active experiments to evaluate. The pause gate expired today, so its field was dropped as its reason instructed. No new experiment was proposed, because the 2026-09-25 pipeline commits (03d76c38, c99f54b8, 1cd1cee5, a42ba727) changed sourcing, dedup, enrichment and state-media labelling at about 20:30 UTC. Only the 22:00 cycle ran on the new code, so any parameter change now would be confounded with them.",
+  "weakestArea": "US datelines are furthest from target at 43% against a 25% cap, up from 34% yesterday. Americas datelines reached 28 of 53. Much of the rise comes from the Iran war and Trump–Xi stories, which carry Washington datelines (civilian toll, diesel export ban, USS Lincoln, Yemen strikes, Supreme Court voter rolls). The GAP_COUNTRIES Latin America expansion was already reverted, so the lever for this is not a source-location list.",
   "watching": [
-    "Xi's visit to Washington has produced pledges while India raises concerns over Russian oil, so the US–China–India trade triangle is moving within a single week.",
-    "Tigray forces seizing airports escalates the northern Ethiopian instability flagged yesterday.",
-    "Pakistan's strikes on Khost and the continued detention of Khan's sisters are a security track and a domestic political track running at the same time.",
-    "Global bond yields are surging while oil rattles Indian markets, which is worth watching for spillover into emerging-market currencies.",
-    "Crypto-platform hacks (Bitget $352M, Duelbits) are landing as New York sues Polymarket and the US weighs a stablecoin push, so enforcement and policy are converging."
+    "Iran's 7-day ceasefire proposal over Hormuz is running alongside US diesel export bans and Italy's diesel cap, so the oil shock is now producing policy responses in several countries.",
+    "Trump–Xi statements on Taiwan and Iran suggest the summit's trade pledges are being tied to security conditions.",
+    "Kazakhstan's Caspian exercise deaths led to detentions of officers, and there are now two separate stories on it, so it is worth watching for a same-event merge.",
+    "The DRC's Ebola toll reached 3,779 per Africa CDC, making it a sustained science and health story with a regional-spread risk.",
+    "Two appellate rulings (the DC Circuit on the Anthropic blacklist and the Sixth Circuit on Kalshi) are shaping US AI and prediction-market regulation at the same time."
   ],
   "coverageGaps": [
-    "Asia has only 3 datelines, with nothing from Japan, Korea or Southeast Asia outside a Philippine Senate story.",
-    "Science fell to 7, from 10 yesterday. It still meets the floor of 5, but only Nature and STAT are primary science outlets.",
-    "Oceania has a single dateline, which has been the case for three straight days."
+    "There were no Oceania datelines and only 4 from Asia, which makes this the fourth straight thin day for the Asia-Pacific.",
+    "Science fell to 6, just above the floor of 5, and three of those were space-launch stories, so primary-research science (Nature, Science, Cell) was nearly absent.",
+    "Africa had only 2 datelines, down from 8 yesterday, even though Sudan, the DRC and Nigeria (Ondo) stories ran."
   ],
-  "context": "The pause gate lifts on 2026-09-25. Drop the field then and, if Asia stays thin or Al Jazeera's share goes above 20% across 09-23→09-25, take that as the first candidate target. The GAP_COUNTRIES Latin America/Pacific expansion has already failed, so do not retry it. Average cycle time fell to 1064s from 1483s. Freshness was measured on only 7 articles today, so treat the p90 of 1.5 days as noisy."
+  "context": "The Opus 5.5 baseline (09-22→09-25) is complete. Multi-source reached 36%, clearing its 30% target for the first time under the new metric (28% yesterday), and the share of articles carrying an image URL rose from 9% to 30%. Both moves are probably effects of today's pipeline fixes and not the model. State-or-advocacy-only stories rose to 5 from 2 now that state sources are labelled rather than blocked. Wait until about 2026-09-28 for three days on the new pipeline code before proposing an experiment. The first candidate is the US dateline share, if it stays above 35%."
 }
