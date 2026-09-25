@@ -133,7 +133,10 @@ const EVENTS_WINDOW_DAYS = 120
 const eventsWindowEnd = new Date(Date.now() + EVENTS_WINDOW_DAYS * 86400_000)
   .toISOString()
   .slice(0, 10)
-const fredEvents = releaseCalendar.map(matchFredRelease).filter(Boolean)
+// One per id: FRED lists several releases a day that match one label — GDP,
+// GDP by industry, GDP by state all read /^gross domestic product/ — and the
+// rail printed "US GDP" three times on 2026-09-25.
+const fredEvents = [...new Map(releaseCalendar.map(matchFredRelease).filter(Boolean).map((e) => [e.id, e])).values()]
 const events = [...EVENT_CATALOG, ...fredEvents]
   .filter((e) => e.date >= today && e.date <= eventsWindowEnd)
   .sort((a, b) => a.date.localeCompare(b.date))

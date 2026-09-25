@@ -584,7 +584,11 @@ const shareRowHtml = (target, title) => {
 
 const ISLAND_V = (() => {
   const publicDir = join(ROOT, 'public')
-  const files = [join(publicDir, 'island-loader.js')]
+  // The lockfile too: the islands bundle maplibre-gl, preact and htm, and a
+  // dependency upgrade changes the shipped bundle without touching a source
+  // file here — so the 6.10 → 6.11 MapLibre bump would have kept the old key
+  // and let browsers hold the old bundle.
+  const files = [join(publicDir, 'island-loader.js'), join(ROOT, 'package-lock.json')]
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name)

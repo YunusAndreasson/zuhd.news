@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { orderCandidates, PIN_TITLE_RE } from './trends-sources/polymarket.js'
+import { isUsableShortTitle, orderCandidates, PIN_TITLE_RE } from './trends-sources/polymarket.js'
 
 // Selection used to re-roll by volume every cycle, orphaning the narration
 // written for the previous roll. These pin the tiers that keep it stable.
@@ -65,4 +65,15 @@ test('PIN_TITLE_RE names waterways and oil, not the Fed', () => {
   ]) {
     assert.equal(PIN_TITLE_RE.test(q), false, q)
   }
+})
+
+test('short titles: a rephrase is kept, a copy with "Will" cut off is not', () => {
+  // The prompt's own examples must pass the guard that judges them.
+  assert.equal(isUsableShortTitle('Will Kevin Warsh be confirmed as Fed Chair?', 'Kevin Warsh confirmed as Fed Chair?'), true)
+  assert.equal(isUsableShortTitle('Will Roberto Sánchez Palomino win the 2026 Peruvian presidential election?', 'Sánchez Palomino wins Peru 2026?'), true)
+  assert.equal(isUsableShortTitle('Will Gavin Newsom win the 2028 Democratic presidential nomination?', 'Newsom wins 2028 Dem nomination?'), true)
+  assert.equal(isUsableShortTitle('Will the U.S. invade Iran before 2027?', 'US invade Iran by 2027?'), true)
+  // The two shapes the guard exists for.
+  assert.equal(isUsableShortTitle('Will Alexandria Ocasio-Cortez win the 2028 US presidential election?', 'Alexandria Ocasio-Cortez win the 2028 US…'), false)
+  assert.equal(isUsableShortTitle('Will there be no change in Fed interest rates?', 'there be no change in Fed rates?'), false)
 })
