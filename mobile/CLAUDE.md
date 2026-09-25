@@ -127,10 +127,20 @@ whole time; nothing said so.
   - Calendar days, not observations, read off the period labels (`Sep 7`); a
     month label is a monthly series, which has no week and stays in the list. A
     currency's week is the currency's (`currencyMove`), a strait's is its
-    seven-day average against the one before, coloured by `chokepointValence`.
+    seven-day average against the one before.
   - The slot whose card is open is marked and the globe rings its place
     (`MiniGlobe.selectedAt`, a position, since a strait's card id is not its
-    mark's id). An exchange mark's colour still follows its card's own chip.
+    mark's id).
+  - **One number per thing: the week, wherever it is printed** (2026-09-25).
+    The globe's exchange marks, the tap chooser and the markets list printed
+    each exchange's session against the prior close, so `BIST 100 ▼2.9%` on
+    the strip flew to a mark reading `↑0.09%`, and `all →` opened a list that
+    disagreed with the row it came from. They print `exchangeMove` now
+    (`lib/cards/week-move.ts`, tested), as a strait's mark already printed
+    the strip's week. The card keeps its own window and prints it. The row
+    itself prints no window: a `past week` label at its start cost the first
+    view most of a slot, and the user asked for it gone the same day. The
+    markets list and the map key say it once; each slot speaks it.
   - **The row is gesture handler's `ScrollView`.** The globe's pan lies under
     the whole header, and gesture handler finds a touch's handlers by walking
     the views under the finger; a plain `ScrollView` has none, so a drag that
@@ -154,11 +164,18 @@ whole time; nothing said so.
     it did, and only the landing is decided.
   - Contracts (their subject is a question) and dates (no move) never take
   a slot. Slots are sized for 3.4 across: the cut slot is the only sign the
-  row continues. **A subject is one line and is never cut**: a strait prints
-  its short form (`stripLabel` — `Hormuz Str.`, the full name is still what a
-  screen reader says) and a slot widens past the 3.4 rhythm for a longer name
-  rather than ellipsizing it. Two-line subjects made the whole strip two caps
-  lines tall for the sake of "STRAIT OF / HORMUZ".
+  row continues. **A subject is one line and is never cut**, and a slot widens
+  past the 3.4 rhythm for a longer name rather than ellipsizing it. Two-line
+  subjects made the whole strip two caps lines tall for the sake of "STRAIT OF
+  / HORMUZ".
+  - **A subject is words, not a code** (`stripLabel`, 2026-09-25, the user's
+    request: "it should be self-explanatory, we shouldn't try to be smart in a
+    way no one understands"). An index is its country's stocks (`Turkey
+    stocks`, `stockMarketPlace`), a strait the ships through it (`Hormuz
+    ships`), and a few codes their plain names (`Oil`, `US 10-year rate`,
+    `Fear index`). It printed `BIST 100`, `KOSPI`, `TA-125`, `VIX` and
+    `Hormuz Str.`. The card keeps the index's name, and a screen reader hears
+    both. The globe's marks keep the index name: they sit on the city.
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
@@ -1068,30 +1085,33 @@ about what a card may say is about the card, not where it is shown.
   exact reciprocal — a rate up 5.6% is a currency down 5.3%, not 5.6%), which
   also retired the three lines of part two that existed only to explain the
   inversion.
-- **One module decides what a move means, and every move is coloured.**
-  `lib/valence.ts`. Up is not good here — oil rising is a fuel bill, an FX rate
-  rising is a currency that weakened, bitcoin rising is neither — so
-  `riseMeansFor` answers per *published series* and `valenceOf` applies it to
-  the direction, which is why a fall in something whose rise hurts reads
-  favorable. Getting that inverted is the first bug this shipped with.
-  - **`neutral` is a colour, not the absence of one.** The chip used to fall
-    back to `emphasis` ink wherever the app had no claim, which was two thirds
-    of the readings and the same near-white as the label text beside them — so
-    the reader's first question was whether a chip was coloured at all, and
-    only then which way it pointed. Slate says *no claim* out loud. `valence`
-    is required on `CardDelta` for that reason, and a `CompareRow` that prints
-    a move always sets `tone`.
-  - **It was four answers to one question and three of them disagreed.** A card
-    chip in sage/rose; `EntitySheet` tinting on *magnitude* in dome gold, the
-    globe's hue, so brent read rose on the card and gold in the sheet that card
-    opens; `ChokepointSheet` calling a strait disrupted at 15% where
-    `markets.ts` said 10%, so the same strait could be rose on the card and
-    grey in its own sheet. Nothing in any of those files mentioned the others.
-    A fifth answer is the regression; a row in `RISE_MEANS` is the change.
-  - **Pass a literal `riseMeans` only when the card has inverted the quantity.**
-    FX mover cards quote `currencyMove`, the reciprocal of the published rate,
-    so they invert the meaning with it. Everywhere else, call the table — that
-    is what stops a card and its sheet drifting.
+- **A move is green up, red down, slate unmoved — everywhere** (`moveTone`,
+  `lib/valence.ts`; 2026-09-25, the user's request, tested). The chip, the
+  strip, the markets list, the globe's arrows and a strait's traffic sign all
+  follow it; a contract's points stay slate (odds are never tinted). Until
+  then the colour said what a move *meant* for an ordinary life — oil up red,
+  a currency up green, bitcoin slate — so one ▲ came in three colours for a
+  reason only a sentence at the top of the markets list gave, beside globe
+  arrows that were green up and red down all along. The user's rule: the
+  screen should explain itself by looking. What a move means is the card's
+  prose to say. How bad a strait's fall is, is its glyph's to say (the pinch).
+  **Do not bring colour-as-consequence back** without the user: a table
+  (`RISE_MEANS`) declared what a rise in each published series did to a
+  reader and `valenceOf` applied it, so a fall in oil was green and bitcoin
+  was slate on purpose. It was careful and nobody could see the rule. The
+  table, `riseMeansFor`, `valenceOf` and the `valence` every `CardDelta`
+  carried were removed the same day (history before 2026-09-25 if they are
+  ever wanted); a strait's pinch is `straitSqueezed`.
+  - **One module still answers the colour, and that part stays.** It was
+    four answers once and three of them disagreed — a card chip in
+    sage/rose, `EntitySheet` tinting on *magnitude* in dome gold, and
+    `ChokepointSheet` calling a strait disrupted at 15% where `markets.ts`
+    said 10%. Nothing in any of those files mentioned the others. A second
+    colour rule anywhere is the regression.
+  - **Slate is a colour, not an absence.** An unmoved reading and a
+    contract's points are slate, never the near-white of the label beside
+    them: that is how two thirds of the readings once looked uncoloured,
+    and the reader's first question was whether a chip was coloured at all.
 - **The builders are pure and tested** (`lib/cards/`). Card arithmetic is
   pinned in `__tests__/cards-*.test.ts`, not eyeballed in a simulator, because
   the failure mode is a plausible wrong number rather than a crash. Two of them

@@ -7,7 +7,6 @@ import type {
   TrendsSnapshot,
 } from '@shared/types';
 import { indicatorObservation, isCurrentObservation, oldestObservation } from '../data-freshness';
-import { chokepointValence, type RiseMeans, riseMeansFor } from '../valence';
 import { VESSEL_CLASSES } from '../vessel-classes';
 import {
   deltaFrom,
@@ -142,12 +141,12 @@ function money(value: number, unit?: string): { reading: string; note?: string }
  * days, so the window is still named from the period labels and never as
  * "month on month".
  */
-function dailyDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
-  return deltaFrom(windowChange(indicator, DAILY_WINDOW), riseMeans);
+function dailyDelta(indicator: Indicator): CardDelta | undefined {
+  return deltaFrom(windowChange(indicator, DAILY_WINDOW));
 }
 
-function monthlyDelta(indicator: Indicator, riseMeans: RiseMeans): CardDelta | undefined {
-  return deltaFrom(windowChange(indicator, MONTH), riseMeans, { window: 'on the month' });
+function monthlyDelta(indicator: Indicator): CardDelta | undefined {
+  return deltaFrom(windowChange(indicator, MONTH), { window: 'on the month' });
 }
 
 /** The year, once the chip has taken the month. Two windows are worth having
@@ -203,17 +202,14 @@ function staplesCard(
   // "rice costs twice what wheat does."
   const ratio = riceNow / wheatNow;
 
-  // The chip measures the ratio, because the ratio is the reading. It carries
-  // no valence: the gap between two grains narrowing is not good or bad for
-  // anyone, while the sentence retains the two directions that do reach a
-  // shopping bill.
+  // The chip measures the ratio, because the ratio is the reading; the
+  // sentence retains the two directions that reach a shopping bill.
   const ratioSeries = wheat.values.map((w, i) => {
     const r = rice.values[i];
     return typeof r === 'number' && typeof w === 'number' && w !== 0 ? r / w : Number.NaN;
   });
   const delta = deltaFrom(
     windowChange({ values: ratioSeries, periods: wheat.periods }, ratioSeries.length - 1),
-    null,
   );
 
   return {
@@ -265,10 +261,6 @@ function indicatorCard(
   const value = latestOf(indicator);
   if (value == null) return null;
   const monthly = indicator.cadence === 'monthly';
-  // Not an argument. What a rise in a published series does to a reader is a
-  // property of the series, not of the card showing it, and while it was an
-  // argument the sheet this card opens answered it differently.
-  const riseMeans = riseMeansFor(indicator);
   const { reading, note } = money(value, indicator.unit);
   return {
     id,
@@ -278,7 +270,7 @@ function indicatorCard(
     title: indicator.label,
     reading,
     readingNote: note,
-    delta: monthly ? monthlyDelta(indicator, riseMeans) : dailyDelta(indicator, riseMeans),
+    delta: monthly ? monthlyDelta(indicator) : dailyDelta(indicator),
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
@@ -323,9 +315,8 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
   const move = windowChange(bindingIndicator, DAILY_WINDOW);
   // The chip moves with the threshold, and the threshold moves with the metal
   // that sets it — so it is the same arrow for both, which is what makes the
-  // sentence below land. No valence: a lower nisab catches more wealth, and
-  // whether that is good news is not the app's call to make.
-  const delta = deltaFrom(move, null);
+  // sentence below land.
+  const delta = deltaFrom(move);
   /** "Silver (Kinesis)" is a data label; a sentence says "silver". */
   const metalName = (bindingIndicator.label.split(' (')[0] ?? n.binding).toLowerCase();
   // The counter-intuitive part, and the only half the chip cannot show: a
@@ -412,8 +403,7 @@ function metalsPairCard(
   const goldMove = windowChange(gold, DAILY_WINDOW);
   const silverMove = windowChange(silver, DAILY_WINDOW);
 
-  // The ratio's own move, with no valence — the oldest price in finance is not
-  // good or bad news, it is a reading of how the two metals are being held
+  // The ratio's own move: a reading of how the two metals are being held
   // against each other.
   const ratioSeries = gold.values.map((g, i) => {
     const sv = silver.values[i];
@@ -421,7 +411,6 @@ function metalsPairCard(
   });
   const delta = deltaFrom(
     windowChange({ values: ratioSeries, periods: gold.periods }, DAILY_WINDOW),
-    null,
   );
 
   return {
@@ -587,10 +576,6 @@ function fxMoverCards(
         // each other.
         delta: deltaFrom(
           { ...change, pct: currencyMove(change.pct) },
-          // Applied to the currency's direction now, so a fall is the bad one.
-          // A literal rather than `riseMeansFor`, for the reason the table on
-          // the card before this one gives: the quoted quantity is inverted.
-          'favorable',
           { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
         ),
         // No sentence under the analysis. One used to say which slot the
@@ -639,23 +624,13 @@ function straitWhy(c: Chokepoint): string | undefined {
   return c.recent?.trim() || (standing !== blurb ? standing : undefined) || blurb || undefined;
 }
 
-/** The distance from a strait's own 90-day normal, as a chip. The valence is
- *  one-sided and `chokepointValence` says why; the globe's strait mark reads the
- *  same function, so a mark can no longer call a strait quiet while its card
- *  calls it disrupted. */
+/** The distance from a strait's own 90-day normal, as a chip. */
 function straitDelta(d: number): CardDelta | undefined {
   const magnitude = formatMagnitudePct(d * 100);
   const window = 'vs its 90-day normal';
   const size = Math.abs(d * 100);
-  if (magnitude === null)
-    return { direction: 'flat', magnitude: 'at its normal', window, valence: 'neutral', size };
-  return {
-    direction: d > 0 ? 'up' : 'down',
-    magnitude,
-    window,
-    valence: chokepointValence(d),
-    size,
-  };
+  if (magnitude === null) return { direction: 'flat', magnitude: 'at its normal', window, size };
+  return { direction: d > 0 ? 'up' : 'down', magnitude, window, size };
 }
 
 function totalTrafficDelta(c: Chokepoint): number | null {
@@ -1004,11 +979,10 @@ function beliefCards(
         // measurement into nothing.
         title: completeBeliefTitle(indicator),
         reading: `${Math.round(value)}%`,
-        // No valence, and this is the clearest case for the rule: a contract
-        // on a ceasefire holding and a contract on a candidate winning move
-        // the same way on the screen, and the app has no business tinting
-        // either of them green.
-        delta: deltaFrom(change, null, { unit: 'points' }),
+        // Never tinted (`moveTone`): a contract on a ceasefire holding and a
+        // contract on a candidate winning move the same way on the screen,
+        // and the app has no business colouring either of them green.
+        delta: deltaFrom(change, { unit: 'points' }),
         // In points, never per cent: a contract going 26 → 86 moved 60 points,
         // and the chip says so. The sentence, when there is one, is only the
         // day's move. It used to carry the range as well — "Low 26% on Jul
@@ -1274,9 +1248,6 @@ export function buildInstrumentCards({
       // ordinary life. An index *level* cannot do either.
       indicatorCard(trends, analysis, articles, 'us-10y', 'money'),
       indicatorCard(trends, analysis, articles, 'vix', 'volatility'),
-      // Slate, from its absence in `RISE_MEANS`: bitcoin going up is good
-      // news for whoever holds it and nothing at all to everyone else, and
-      // an app that tints it sage has taken a position on whether you should.
       indicatorCard(trends, analysis, articles, 'btc', 'crypto'),
       indicatorCard(trends, analysis, articles, 'eth', 'crypto'),
       ...fxMoverCards(trends, analysis, articles),

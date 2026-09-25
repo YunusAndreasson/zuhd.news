@@ -161,9 +161,9 @@ export const DARK_COLORS = {
   markStrait: '#8d97a6',
   markStraitPinch: '#c9a84c',
   markStraitSurge: '#5f9ea0',
-  /** Up and down on the globe are the strip's up and down: the same two
-   *  inks as `toneFavorableText` / `toneUnfavorableText`, so an arrow on an
-   *  exchange and the move on its gauge are one green and one red. */
+  /** Up and down, everywhere a move is printed: the globe's arrows, and every
+   *  move chip through the `rise`/`fall` tones. The same two inks as
+   *  `toneFavorableText` / `toneUnfavorableText`. */
   markMarketUp: '#86bf95',
   markMarketDown: '#e5979b',
   /** The one unmuted tone on the globe, as on the web map. */
@@ -932,6 +932,11 @@ export type TextTone =
   | 'favorable'
   | 'unfavorable'
   | 'neutral'
+  /** A number that went up or down (`moveTone`): the globe's market inks,
+   *  `markMarketUp/Down`, so a move is one green and one red wherever it is
+   *  printed. The same luminance as the sentiment tones. */
+  | 'rise'
+  | 'fall'
   /** Text sitting on an inverted (colors.text-filled) surface — resolves to
    *  `colors.bg`. Used by high-visibility chrome like the onboarding hint
    *  pill; still monochrome, so "color carries meaning" holds. */
@@ -955,6 +960,10 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
       return colors.toneUnfavorableText;
     case 'neutral':
       return colors.toneNeutralText;
+    case 'rise':
+      return colors.markMarketUp;
+    case 'fall':
+      return colors.markMarketDown;
     case 'inverse':
       return colors.bg;
   }

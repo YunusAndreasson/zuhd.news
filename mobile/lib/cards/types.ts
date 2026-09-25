@@ -1,5 +1,5 @@
 import type { RelatedArticleRef, TrendHighlight, TrendSeries } from '@shared/types';
-import type { Direction, Valence } from '../valence';
+import type { Direction } from '../valence';
 
 /**
  * The card model.
@@ -35,18 +35,11 @@ type CardKind = 'reading' | 'belief' | 'scheduled';
  * ("−5.2% since 22 Jul."), which is a thing you read rather than a thing you
  * see. A card is meant to survive four seconds; a sentence does not.
  *
- * Two channels, and keeping them separate is the whole design:
- *
- *   the arrow   says which way the number went.
- *   the colour  says what that direction means for the person holding it.
- *
- * Both are always shown. The colour used to be absent wherever the app had no
- * consequence to claim, which sounds like restraint and read as noise: two
- * thirds of the app's readings sat in near-white, so a reader had to work out
- * whether a chip was coloured before working out which way it pointed, and the
- * same indicator came up in a third hue again inside a sheet. `neutral` says
- * *no claim* in the same channel instead of by omission. The rule itself lives
- * in `lib/valence.ts`; see `valenceOf` for why this is not up-is-green.
+ * The arrow and the colour say the same thing — green up, red down, slate
+ * unmoved (`moveTone`, `lib/valence.ts`) — so the chip reads at a glance with
+ * no legend. Until 2026-09-25 the colour said what a direction meant for an
+ * ordinary life instead (oil up red, bitcoin slate), and one ▲ came in three
+ * colours for a reason the screen never gave.
  */
 export interface CardDelta {
   direction: Direction;
@@ -64,11 +57,9 @@ export interface CardDelta {
    *  "on the month", "vs its 90-day normal". A change without its window is
    *  the mistake `windowChange` exists to prevent. */
   window?: string;
-  /** What this direction means for an ordinary life, or `neutral` where the
-   *  app would be inventing a position by claiming one. Required, so that a
-   *  new chip cannot reach the screen without someone answering the question:
-   *  what does *this* direction do to the person reading it? */
-  valence: Valence;
+  /** `points` for a prediction contract's move, which is never coloured
+   *  (`moveTone`). Absent for every percentage. */
+  unit?: 'points';
 }
 
 interface CardBase {

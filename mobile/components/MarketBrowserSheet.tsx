@@ -4,8 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import type { CardDelta } from '../lib/cards/types';
+import { exchangeMove, gaugeMove, WEEK_WINDOW } from '../lib/cards/week-move';
 import { observationDate } from '../lib/data-freshness';
-import { type Exchange, exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
+import { type Exchange, exchangeCard, exchangeIsStale } from '../lib/markets';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
 import { Pressable, Text } from './primitives';
@@ -35,21 +37,45 @@ export function MarketBrowserSheet({
 }: Props) {
   const { colors } = useTheme();
   const [filter, setFilter] = useState<Filter>('all');
-  // Other readings refresh independently. Reuse the exchange cards (including
-  // their formatted histories) when only that other feed changes.
+  // Every row prints the strip's number, the past week — this list is where
+  // the strip's `all →` leads. It printed each exchange's latest session
+  // against the prior close, so `BIST 100 ▼2.9%` on the strip opened a list
+  // that said ▲0.09%. Other readings refresh independently; the exchange
+  // cards (with their formatted histories) are reused when only they change.
+  const exchangeMoves = useMemo(
+    () =>
+      exchanges.map((e) => {
+        const card = exchangeCard(e);
+        return { card, delta: exchangeMove(e, card) };
+      }),
+    [exchanges],
+  );
   const exchangeRows = useMemo(
     () =>
-      [...exchanges]
+      exchangeMoves
         .filter(
-          (e) => filter === 'all' || (filter === 'rising' ? e.changePct > 0 : e.changePct < 0),
+          ({ delta }) =>
+            filter === 'all' || delta.direction === (filter === 'rising' ? 'up' : 'down'),
         )
-        .sort((a, b) => Math.abs(b.changePct) - Math.abs(a.changePct) || a.id.localeCompare(b.id))
-        .map(exchangeCard),
-    [exchanges, filter],
+        .sort(
+          (a, b) => (b.delta.size ?? 0) - (a.delta.size ?? 0) || a.card.id.localeCompare(b.card.id),
+        )
+        .map(({ card }) => card),
+    [exchangeMoves, filter],
+  );
+  // A reading without a week (a monthly series, a contract) keeps its own
+  // move, and its row prints the period it covers.
+  const moves = useMemo(
+    () =>
+      new Map<string, CardDelta | undefined>([
+        ...exchangeMoves.map(({ card, delta }) => [card.id, delta] as const),
+        ...instruments.map((card) => [card.id, gaugeMove(card)?.delta ?? card.delta] as const),
+      ]),
+    [exchangeMoves, instruments],
   );
   const rows = filter === 'other data' ? instruments : exchangeRows;
-  const rise = exchanges.filter((e) => e.changePct > 0).length;
-  const fall = exchanges.filter((e) => e.changePct < 0).length;
+  const rise = exchangeMoves.filter(({ delta }) => delta.direction === 'up').length;
+  const fall = exchangeMoves.filter(({ delta }) => delta.direction === 'down').length;
   const byId = useMemo(() => new Map(exchanges.map((e) => [`mkt:${e.id}`, e])), [exchanges]);
   return (
     <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle="markets & data">
@@ -59,9 +85,8 @@ export function MarketBrowserSheet({
           {exchanges.length} exchanges · ▲ {rise} rising · ▼ {fall} falling
         </Text>
         <Text variant="caption">
-          Latest quoted session vs prior close. The arrow is the direction; green or red is what it
-          means for people — an index rising is green, oil rising is red. * on the map means an
-          older quote. Tap an exchange to find it on the globe.
+          Moves over the past week, as on the map: green up, red down. * means an older quote. Tap
+          an exchange to find it on the globe.
         </Text>
       </View>
       <View style={[styles.filters, { borderBottomColor: colors.rule }]}>
@@ -92,7 +117,7 @@ export function MarketBrowserSheet({
         }
         renderItem={({ item }) => {
           const exchange = byId.get(item.id);
-          const delta = exchange ? exchangeDelta(exchange) : item.delta;
+          const delta = moves.get(item.id);
           // `Sep 21`, as every card and chart prints a day; the raw
           // `2026-09-21` was the only ISO date a reader saw anywhere.
           const asOf = exchange?.asOf ?? item.asOf;
@@ -126,7 +151,9 @@ export function MarketBrowserSheet({
                 <Text variant="bodyEmphasis" style={styles.reading}>
                   {item.reading}
                 </Text>
-                {delta ? <DeltaChip delta={delta} window={false} scale={1} /> : null}
+                {delta ? (
+                  <DeltaChip delta={delta} window={delta.window !== WEEK_WINDOW} scale={1} />
+                ) : null}
               </View>
             </Pressable>
           );

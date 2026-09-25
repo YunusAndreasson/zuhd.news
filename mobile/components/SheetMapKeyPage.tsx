@@ -136,7 +136,7 @@ const SHIPPING: readonly KeyEntry[] = [
     // "red when squeezed, slate otherwise", beside a squeezed mark drawn gold
     // and a busier one drawn teal.
     meaning:
-      'A shipping strait. The arrow and the figure are its traffic over the past seven days, as in the strip; its shape and colour are its traffic against the 90-day normal.',
+      'A shipping strait. The arrow and the figure are its ships over the past week, as in the strip: green ↑ more, red ↓ fewer. Its shape and colour are its traffic against the 90-day normal.',
     draw: (colors) => (
       <Glyph path={getStraitPath('rest')} color={straitMarkColor('rest', colors)} />
     ),
@@ -158,7 +158,7 @@ const SHIPPING: readonly KeyEntry[] = [
   {
     label: 'exchange',
     meaning:
-      'A stock exchange against its prior close: green ↑ up, red ↓ down, − unchanged. * marks an older quote. A numbered circle is several exchanges close together; tap it for all of them, or zoom in to separate them.',
+      'A stock exchange over the past week, as in the strip: green ↑ up, red ↓ down, − unchanged. * marks an older quote. A numbered circle is several exchanges close together; tap it for all of them, or zoom in to separate them.',
     draw: (colors) => (
       <Glyph path={marketDirectionPath('up')} color={colors.markMarketUp} stroke={1.2} />
     ),

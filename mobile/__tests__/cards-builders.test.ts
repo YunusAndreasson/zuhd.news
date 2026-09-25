@@ -397,11 +397,7 @@ describe('buildInstrumentCards', () => {
       }),
     );
     const mover = find(cards, 'fx-rub-mover');
-    expect(mover?.delta).toMatchObject({
-      direction: 'down',
-      magnitude: '6.4%',
-      valence: 'unfavorable',
-    });
+    expect(mover?.delta).toMatchObject({ direction: 'down', magnitude: '6.4%' });
     expect(mover?.delta?.window).toContain('weaker');
 
     const belief = find(cards, 'poly-ceasefire');
@@ -411,9 +407,9 @@ describe('buildInstrumentCards', () => {
     expect(belief?.delta).toMatchObject({ direction: 'up', magnitude: '60 points' });
     expect(JSON.stringify(belief)).not.toContain('231');
     // A belief takes no position — a ceasefire holding and a candidate
-    // winning move the same way on screen — and says so in slate rather than
-    // by leaving the chip the colour of the label text beside it.
-    expect(belief?.delta?.valence).toBe('neutral');
+    // winning move the same way on screen — so its chip is marked to stay
+    // slate (`moveTone`).
+    expect(belief?.delta?.unit).toBe('points');
     // Nothing under the analysis on an ordinary day. The range this used to
     // print — "Low 26% on Jul 17; high 86% on Aug 9" — is the chart's y-axis
     // read back as prose, and the chip already carries the move.
@@ -469,13 +465,10 @@ describe('buildInstrumentCards', () => {
     expect(quiet.map((c) => c.id)).toEqual(['fx-egp-mover']);
   });
 
-  it('leaves nothing on screen in the colour of the label text beside it', () => {
-    // The goal, as an invariant rather than as a screenshot: every move the
-    // app shows is in the colour channel, and the ones it will not editorialise
-    // over say so in slate. Before this, brent/us-10y/vix carried sage and rose
-    // and everything else — crypto, both ratios, nisab, every prediction, a
-    // strait at its normal — sat in near-white,
-    // so the reader's first question was whether a chip was coloured at all.
+  it('marks a contract so the chip leaves it slate, and nothing else', () => {
+    // Every other move is green up, red down (`moveTone`). A contract moves
+    // in points and is never tinted: green on a likelier war would be the
+    // app taking a side.
     const columns = build({
       trends: snapshot([
         indicator({ id: 'brent', label: 'Brent crude', unit: '$/bbl' }),
@@ -495,20 +488,11 @@ describe('buildInstrumentCards', () => {
     const cards = allOf(columns);
     expect(cards.length).toBeGreaterThan(5);
 
-    for (const card of cards) {
-      if (card.delta) {
-        expect(card.delta.valence).toBeDefined();
-      }
+    const unitOf = (id: string) => cards.find((c) => c.id === id)?.delta?.unit;
+    expect(unitOf('poly-x')).toBe('points');
+    for (const id of ['brent', 'btc', 'eth', 'staples', 'metals', 'fx-rub-mover']) {
+      expect(unitOf(id)).toBeUndefined();
     }
-
-    // And the colour still means something: the three the app speaks for are
-    // not slate, and the ones it does not are.
-    const valenceOfCard = (id: string) => cards.find((c) => c.id === id)?.delta?.valence;
-    expect(valenceOfCard('brent')).toBe('unfavorable');
-    expect(valenceOfCard('btc')).toBe('neutral');
-    expect(valenceOfCard('eth')).toBe('neutral');
-    expect(valenceOfCard('staples')).toBe('neutral');
-    expect(valenceOfCard('metals')).toBe('neutral');
   });
 
   it('keeps every disrupted strait so deck ranking can use current-news relevance', () => {
@@ -536,9 +520,6 @@ describe('buildInstrumentCards', () => {
       direction: 'down',
       magnitude: '90%',
       window: 'vs its 90-day normal',
-      // Freight not moving reaches an ordinary life as the price of
-      // everything that had to sail.
-      valence: 'unfavorable',
     });
     expect(moved?.kind === 'reading' ? moved.series?.reference : undefined).toEqual({
       value: 8.8,

@@ -2,6 +2,7 @@ import type { MarketSignal } from '@shared/market-signals';
 import type { Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from '../lib/cards/rank';
 import type { CardDelta, GraphCard, ReadingCard } from '../lib/cards/types';
+import type { Exchange } from '../lib/markets';
 import type { RiverArticle } from '../lib/news-order';
 import {
   buildNowSurfaces,
@@ -17,7 +18,7 @@ import {
 const NOW = Date.parse('2026-09-12T09:00:00Z');
 
 function move(size: number | undefined, direction: 'up' | 'down' = 'down'): CardDelta {
-  return { direction, magnitude: `${size}%`, valence: 'neutral', size };
+  return { direction, magnitude: `${size}%`, size };
 }
 const DAY = 86_400_000;
 
@@ -152,7 +153,6 @@ describe('buildNowSurfaces — the strip', () => {
     expect(strip.map((s) => s.id)).toEqual(['market-signal:bist', 'strait-hormuz']);
     expect(strip[1]?.delta.window).toBe('over 7 days');
     expect(strip[1]?.card.delta?.magnitude).toBe('57%');
-    expect(strip[0]?.spark).toHaveLength(8);
   });
 
   it('gives a subject one slot, keeping the market signal over the exchange quote', () => {
@@ -200,22 +200,62 @@ describe('buildNowSurfaces — the strip', () => {
     expect(strip[0]?.label).toBe('x title');
   });
 
-  it('prints a strait on one line as its short form and keeps the full name to speak', () => {
-    // A slot wrapped "STRAIT OF / HORMUZ" onto two lines, which made the whole
-    // strip two caps lines tall for one long name.
+  it('prints what a strait counts and keeps the full name to speak', () => {
+    // `Hormuz Str.` beside a percentage did not say what had moved.
     const { strip } = base({ ranked: [reading('strait-hormuz', { title: 'Strait of Hormuz' })] });
-    expect(strip[0]?.short).toBe('Hormuz Str.');
+    expect(strip[0]?.short).toBe('Hormuz ships');
     expect(strip[0]?.label).toBe('Strait of Hormuz');
+  });
+
+  it('names an index by its country, from the exchange or from the signal', () => {
+    // `KOSPI` and `BIST 100` are codes a reader has to know already.
+    const { strip } = base({
+      ranked: [
+        reading('mkt:krx', { title: 'KOSPI', series: week(3) }),
+        reading('market-signal:mkt:bist', { title: 'BIST 100', series: week(-2) }),
+      ],
+      exchanges: [{ id: 'krx', iso2: 'KR', lat: 37.5, lng: 127 } as Exchange],
+      signals: [signal('mkt:bist', { country: 'TR' })],
+    });
+    expect(strip.map((s) => s.short)).toEqual(['South Korea stocks', 'Turkey stocks']);
+    expect(strip.map((s) => s.label)).toEqual(['KOSPI', 'BIST 100']);
+  });
+
+  it('still gives a market one slot when both its quote and its signal name the country', () => {
+    const { strip } = base({
+      ranked: [
+        reading('mkt:bist', { title: 'BIST 100', series: week(-6.3) }),
+        reading('market-signal:mkt:bist', { title: 'BIST 100', series: week(-6.3) }),
+      ],
+      exchanges: [{ id: 'bist', iso2: 'TR', lat: 41, lng: 29 } as Exchange],
+      signals: [signal('mkt:bist', { country: 'TR' })],
+    });
+    expect(strip.map((s) => [s.id, s.short])).toEqual([
+      ['market-signal:mkt:bist', 'Turkey stocks'],
+    ]);
   });
 });
 
 describe('stripLabel', () => {
-  it('shortens both spellings of a strait and leaves everything else alone', () => {
-    expect(stripLabel('Strait of Gibraltar')).toBe('Gibraltar Str.');
-    expect(stripLabel('Kerch Strait')).toBe('Kerch Str.');
-    expect(stripLabel('Bab el-Mandeb')).toBe('Bab el-Mandeb');
-    expect(stripLabel('Suez Canal')).toBe('Suez Canal');
-    expect(stripLabel('South African rand')).toBe('South African rand');
+  it('says what a strait\'s number counts, dropping only "Strait of"', () => {
+    expect(stripLabel({ id: 'strait-gibraltar', title: 'Strait of Gibraltar' })).toBe(
+      'Gibraltar ships',
+    );
+    // Kept: `Taiwan ships` would read as Taiwan's own ships.
+    expect(stripLabel({ id: 'strait-taiwan', title: 'Taiwan Strait' })).toBe('Taiwan Strait ships');
+    expect(stripLabel({ id: 'strait-suez', title: 'Suez Canal' })).toBe('Suez Canal ships');
+  });
+
+  it("names an index by its market's country", () => {
+    expect(stripLabel({ id: 'mkt:bist', title: 'BIST 100' }, 'Turkey')).toBe('Turkey stocks');
+    expect(stripLabel({ id: 'mkt:x', title: 'X 100' }, null)).toBe('X 100');
+  });
+
+  it('gives a code its plain name and leaves words alone', () => {
+    expect(stripLabel({ id: 'brent', title: 'Brent crude' })).toBe('Oil');
+    expect(stripLabel({ id: 'us-10y', title: 'US 10y Treasury' })).toBe('US 10-year rate');
+    expect(stripLabel({ id: 'vix', title: 'VIX' })).toBe('Fear index');
+    expect(stripLabel({ id: 'fx-zar', title: 'South African rand' })).toBe('South African rand');
   });
 });
 

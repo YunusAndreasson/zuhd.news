@@ -1,5 +1,5 @@
 import type { Indicator } from '@shared/types';
-import { chokepointValence, type RiseMeans, riseMeansFor, valenceOf } from '../valence';
+import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
 import { deltaFrom, formatMagnitudePct, windowChange, windowPointChange } from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
@@ -31,6 +31,9 @@ import type { CardDelta } from './types';
  */
 
 export const WEEK_DAYS = 7;
+/** A seven-day move's window, as a chip carries it. A row that prints a move
+ *  without its window checks for this one: every other window is printed. */
+export const WEEK_WINDOW = `over ${WEEK_DAYS} days`;
 /**
  * How late the anchor may be. A market closed on the weekend or a holiday has
  * no close exactly seven days back, and the one before it is still that week's
@@ -76,7 +79,7 @@ export function periodDays(periods: readonly string[], year: number): (number | 
 export interface WeekMove {
   /** Signed percentage change from the anchor to the newest observation. */
   pct: number;
-  /** The observations from the anchor to the newest, for the gauge's line. */
+  /** The observations from the anchor to the newest. */
   points: number[];
   /** The anchor's own label. */
   from: string;
@@ -111,16 +114,6 @@ export function weekMove(
   return null;
 }
 
-/** What a rise means, read back off the card's own chip. The fallback only,
- *  for composite cards with no row in `RISE_MEANS` (the staples, the metals):
- *  a flat or slate chip over the card's long window says nothing about the
- *  week, and reading it first turned a 6% weekly fall in Brent slate. */
-function riseMeansOf(delta: CardDelta | undefined): RiseMeans {
-  if (!delta || delta.direction === 'flat' || delta.valence === 'neutral') return null;
-  if (delta.direction === 'up') return delta.valence;
-  return delta.valence === 'favorable' ? 'unfavorable' : 'favorable';
-}
-
 function yearOf(asOf: string | undefined, fallback: number): number {
   const m = asOf ? /^(\d{4})/.exec(asOf) : null;
   return m ? Number(m[1]) : fallback;
@@ -128,7 +121,6 @@ function yearOf(asOf: string | undefined, fallback: number): number {
 
 export interface GaugeMove {
   delta: CardDelta;
-  points: number[];
 }
 
 /**
@@ -137,8 +129,7 @@ export interface GaugeMove {
  * The quantity is the card's own. A currency card quotes the currency, not the
  * published rate, so the rate's move is inverted with `currencyMove`. A strait
  * card charts a trailing seven-day average, so its week is that average against
- * the one a week earlier. It is coloured by the strait's own one-sided rule:
- * the fall is the disruption, and a rebound stays slate.
+ * the one a week earlier. The chip is coloured by its direction (`moveTone`).
  */
 export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   if (card.kind !== 'reading' || !card.series || card.series.multi) return null;
@@ -147,27 +138,29 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   if (!move) return null;
   const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
   const magnitude = formatMagnitudePct(pct);
-  const window = `over ${WEEK_DAYS} days`;
+  const window = WEEK_WINDOW;
   const size = Math.abs(pct);
-  if (magnitude === null) {
-    return {
-      delta: { direction: 'flat', magnitude: 'unchanged', window, valence: 'neutral', size },
-      points: move.points,
-    };
-  }
-  const direction = pct > 0 ? 'up' : 'down';
-  // The table first (`riseMeansFor`), as everywhere else. A currency card
-  // quotes the currency, whose rise is good news, so it carries that literal;
-  // a strait is coloured by its own one-sided rule.
-  const valence = card.id.startsWith('strait-')
-    ? chokepointValence(pct / 100)
-    : valenceOf(
-        direction,
-        card.id.startsWith('fx-')
-          ? 'favorable'
-          : (riseMeansFor({ id: card.id }) ?? riseMeansOf(card.delta)),
-      );
-  return { delta: { direction, magnitude, window, valence, size }, points: move.points };
+  if (magnitude === null)
+    return { delta: { direction: 'flat', magnitude: 'unchanged', window, size } };
+  return { delta: { direction: pct > 0 ? 'up' : 'down', magnitude, window, size } };
+}
+
+/**
+ * An exchange's move as the strip prints it: the past seven days.
+ *
+ * For the globe's mark and the markets list, which printed the latest session
+ * against the prior close (2026-09-25). Tapping `BIST 100 ▼2.9%` on the strip
+ * flew to Istanbul, where the mark read `↑0.09%` — one market, two numbers,
+ * and nothing on screen said the windows differed. A series with no week
+ * falls back to the session: the strip leaves such an exchange out, so there
+ * is no week number anywhere for it to disagree with.
+ */
+export function exchangeMove(
+  exchange: Exchange,
+  card: SwipeCard = exchangeCard(exchange),
+  now = Date.now(),
+): CardDelta {
+  return gaugeMove(card, now)?.delta ?? exchangeDelta(exchange);
 }
 
 /**
@@ -184,17 +177,15 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
  */
 export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta | undefined {
   if (indicator.source === 'polymarket') {
-    return deltaFrom(windowPointChange(indicator, 1), null, { unit: 'points' });
+    return deltaFrom(windowPointChange(indicator, 1), { unit: 'points' });
   }
-  const riseMeans = riseMeansFor(indicator);
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);
   if (week) {
     return deltaFrom(
       { pct: week.pct, from: week.from, to: '', points: week.points.length - 1 },
-      riseMeans,
-      { window: `over ${WEEK_DAYS} days` },
+      { window: WEEK_WINDOW },
     );
   }
-  return deltaFrom(windowChange(indicator, 1), riseMeans);
+  return deltaFrom(windowChange(indicator, 1));
 }

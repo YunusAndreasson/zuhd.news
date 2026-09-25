@@ -1,6 +1,6 @@
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
 import type { CardDelta } from './cards/types';
-import { chokepointValence } from './valence';
+import { straitSqueezed } from './valence';
 
 /**
  * Seven-day mean traffic compared with the strait's 90-day baseline.
@@ -20,9 +20,8 @@ export function straitMapChange(delta: number | undefined) {
 
 /**
  * A strait's seven-day move as the strip prints it (`gaugeMove`), for the
- * globe's label: the same magnitude and the same colour rule, so the strait
- * reads one number on the screen. No basis: the strip prints none either.
- * `alarm` is the strip's red — a fall big enough to be the disruption.
+ * globe's label: the same magnitude, so the strait reads one number on the
+ * screen. No basis: the strip prints none either.
  */
 export function straitWeekChange(delta: CardDelta) {
   const direction = delta.direction;
@@ -32,7 +31,6 @@ export function straitWeekChange(delta: CardDelta) {
     direction,
     value,
     basis: undefined,
-    alarm: delta.valence === 'unfavorable',
     label: `${value} over 7 days`,
   } as const;
 }
@@ -43,12 +41,12 @@ export type StraitState = 'rest' | 'pinch' | 'surge';
 /**
  * A strait's state from its seven-day traffic against its 90-day normal, as
  * the globe draws it: pinched when the fall is the disruption
- * (`chokepointValence`), bowed open past the same bar the other way. One rule
+ * (`straitSqueezed`), bowed open past the same bar the other way. One rule
  * for the globe's mark, the map key and the chooser's row, so the row under a
  * finger is the shape the finger was on.
  */
 export function straitStateFor(deltaVs90: number): StraitState {
-  if (chokepointValence(deltaVs90) === 'unfavorable') return 'pinch';
+  if (straitSqueezed(deltaVs90)) return 'pinch';
   return deltaVs90 > CHOKEPOINT_DISRUPTED ? 'surge' : 'rest';
 }
 

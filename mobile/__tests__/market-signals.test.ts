@@ -75,7 +75,7 @@ test('cards retain neutral semantic color, an exact window, and factual fallback
   // the pattern label and `facts` is the only prose there is.
   expect(card.kicker).toBe('Rising streak');
   expect(card.changed).toBeUndefined();
-  expect(card.delta).toMatchObject({ direction: 'up', valence: 'neutral', window: '4 sessions' });
+  expect(card.delta).toMatchObject({ direction: 'up', window: '4 sessions' });
   expect(card.why).toBe(fixtureSignal.facts);
 });
 test('an exchange signal names the exchange above its ticker and defines it below', () => {

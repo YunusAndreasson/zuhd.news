@@ -6,6 +6,7 @@ import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { gaugeMove } from '../lib/cards/week-move';
 import { chooserTitle } from '../lib/chooser-title';
 import { conflictChooserDetails, SUB_EVENT_LABEL } from '../lib/conflict';
 import {
@@ -180,21 +181,25 @@ function buildRow(
   if (result.marketSignalId) {
     const card = marketsById.get(result.marketSignalId);
     if (!card) return null;
+    // The week, as the mark under the finger and the strip print it; the
+    // card's own session move is the card's to show, with its window.
+    const week = gaugeMove(card)?.delta;
+    const delta = week ?? card.delta;
     return {
       key: `market-${card.id}`,
       result,
       primary: card.title,
       secondary: [
         card.kicker,
-        card.delta
-          ? `${card.delta.direction === 'up' ? '↑' : card.delta.direction === 'down' ? '↓' : '−'} ${card.delta.magnitude}`
+        delta
+          ? `${delta.direction === 'up' ? '↑' : delta.direction === 'down' ? '↓' : '−'} ${delta.magnitude}${week ? ' past week' : ''}`
           : null,
         card.asOf,
       ]
         .filter(Boolean)
         .join(' · '),
       kind: 'market',
-      direction: card.delta?.direction,
+      direction: delta?.direction,
     };
   }
   if (result.isHotspot) {

@@ -53,9 +53,15 @@ import { Icon, Pressable, Text } from '../primitives';
  * when nothing has happened, which is the engagement mechanic `foundation.md`
  * names in the list of things this is not.
  *
- * Each slot carries its label and week's percentage move on one line.
- * Absolute readings and graphs live in the detail sheet. Accessibility
- * speaks the common seven-day window per item without taking space in the row.
+ * Each slot carries its subject and the week's percentage move on one line,
+ * green up and red down (`moveTone`). Subjects are words, not codes
+ * (`stripLabel`: `Turkey stocks`, `Hormuz ships`, `Oil`). The test is that a
+ * reader gets it by looking (2026-09-25, the user's request). The window is
+ * not printed in the row: a `past week` label at its start cost the first
+ * view most of a slot, and the user asked for it gone the same day. Every
+ * number here is the same week, so the markets list and the map key say it
+ * once, and each slot speaks it. Absolute readings and graphs live in the
+ * detail sheet.
  *
  * **`all →` ends the row.** The instruments without a move — the nisab, the
  * contracts, the dates — and the full ranked list live in `MarketBrowserSheet`,
@@ -121,7 +127,9 @@ const Slot = memo(function Slot({
   // no subject is the strip's version of the globe's lottery-country problem,
   // and unlike the globe this one is cheap to fix.
   const spoken = [
-    item.label,
+    item.short,
+    // The index or the strait by name, after what the slot prints.
+    item.short !== item.label ? item.label : null,
     item.reading,
     item.readingNote,
     item.delta.direction !== 'flat'

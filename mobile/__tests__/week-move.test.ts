@@ -1,6 +1,15 @@
 import type { ReadingCard } from '../lib/cards/types';
 import type { Indicator } from '@shared/types';
-import { gaugeMove, indicatorMove, periodDays, WEEK_DAYS, weekMove } from '../lib/cards/week-move';
+import {
+  exchangeMove,
+  gaugeMove,
+  indicatorMove,
+  periodDays,
+  WEEK_DAYS,
+  WEEK_WINDOW,
+  weekMove,
+} from '../lib/cards/week-move';
+import type { Exchange } from '../lib/markets';
 
 const labels = (from: number, to: number, month = 'Sep') => {
   const out: string[] = [];
@@ -76,48 +85,24 @@ describe('gaugeMove', () => {
       size: 5,
       window: 'over 7 days',
     });
-    expect(g?.points).toHaveLength(8);
   });
 
-  it('colours the direction the way the card already does', () => {
-    // The card says a rise is bad (a fuel price up, unfavourable).
-    const c = card('brent', [100, 1, 1, 1, 1, 1, 1, 90], week, {
-      delta: { direction: 'up', magnitude: '4%', valence: 'unfavorable' },
-    });
-    expect(gaugeMove(c)?.delta.valence).toBe('favorable');
-  });
-
-  it("colours the week from the series' table even when the card's own chip is flat", () => {
-    // Brent unchanged over its thirty observations, down 6% on the week: a fall
-    // in something whose rise hurts is favorable, not slate.
+  it("takes the week's direction, whatever the card's own chip says", () => {
+    // Brent unchanged over its thirty observations, down 6% on the week.
     const c = card('brent', [100, 1, 1, 1, 1, 1, 1, 94], week, {
-      delta: { direction: 'flat', magnitude: 'unchanged', valence: 'neutral' },
+      delta: { direction: 'flat', magnitude: 'unchanged' },
     });
-    expect(gaugeMove(c)?.delta.valence).toBe('favorable');
-    const fx = card('fx-rub-mover', [80, 1, 1, 1, 1, 1, 1, 88], week, {
-      delta: { direction: 'flat', magnitude: 'unchanged', valence: 'neutral' },
-    });
-    expect(gaugeMove(fx)?.delta.valence).toBe('unfavorable');
+    expect(gaugeMove(c)?.delta).toMatchObject({ direction: 'down', magnitude: '6%' });
   });
 
   it('quotes the currency, not the published rate', () => {
     // 80 → 88 rubles to the dollar is the ruble down 9.1%, not up 10%.
     const c = card('fx-rub-mover', [80, 1, 1, 1, 1, 1, 1, 88], week, {
-      delta: { direction: 'down', magnitude: '3%', valence: 'unfavorable' },
+      delta: { direction: 'down', magnitude: '3%' },
     });
     const g = gaugeMove(c);
     expect(g?.delta.direction).toBe('down');
     expect(g?.delta.magnitude).toBe('9.1%');
-    expect(g?.delta.valence).toBe('unfavorable');
-  });
-
-  it("colours a strait's week by the strait's own one-sided rule", () => {
-    expect(gaugeMove(card('strait-hormuz', [100, 1, 1, 1, 1, 1, 1, 80], week))?.delta.valence).toBe(
-      'unfavorable',
-    );
-    expect(
-      gaugeMove(card('strait-hormuz', [100, 1, 1, 1, 1, 1, 1, 130], week))?.delta.valence,
-    ).toBe('neutral');
   });
 
   it('is absent for a comparison of several lines and for a series with no week', () => {
@@ -157,8 +142,41 @@ describe('indicatorMove', () => {
     expect(indicatorMove(monthly)).toMatchObject({ direction: 'down', window: 'since Jun 2026' });
   });
 
-  it('moves a contract in points', () => {
+  it('moves a contract in points, marked so the chip never colours it', () => {
     const contract = indicator({ id: 'poly-x', source: 'polymarket', unit: '%', values: [40, 52] });
-    expect(indicatorMove(contract)?.magnitude).toBe('12 points');
+    expect(indicatorMove(contract)).toMatchObject({ magnitude: '12 points', unit: 'points' });
+  });
+});
+
+describe('exchangeMove', () => {
+  const exchange = (values: number[], periods: string[]): Exchange => ({
+    id: 'bist',
+    name: 'Borsa İstanbul',
+    indexName: 'BIST 100',
+    city: 'Istanbul',
+    iso2: 'TR',
+    lat: 41,
+    lng: 29,
+    level: values[values.length - 1] ?? 0,
+    changePct: 0.09,
+    asOf: '2026-09-11',
+    sourceLabel: 'Provider',
+    blurb: '',
+    series: { values, periods },
+  });
+
+  it('prints the week the strip prints, not the session', () => {
+    // The strip said ▼2.9% and the mark it flew to said ↑0.09%.
+    const e = exchange([100, 100, 100, 100, 100, 100, 100, 97.1], labels(4, 11));
+    expect(exchangeMove(e)).toMatchObject({
+      direction: 'down',
+      magnitude: '2.9%',
+      window: WEEK_WINDOW,
+    });
+  });
+
+  it('falls back to the session where the series has no week', () => {
+    const e = exchange([100, 101], ['Sep 10', 'Sep 11']);
+    expect(exchangeMove(e)).toMatchObject({ direction: 'up', window: 'vs prior close' });
   });
 });

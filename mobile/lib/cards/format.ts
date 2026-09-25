@@ -1,5 +1,4 @@
 import type { Article, Indicator, RelatedArticleRef } from '@shared/types';
-import { type RiseMeans, valenceOf } from '../valence';
 import type { CardDelta } from './types';
 
 /**
@@ -105,24 +104,13 @@ export function formatSignedPct(pct: number): string {
 /**
  * A `WindowChange` as a signal — the arrow, the magnitude and the window.
  *
- * `riseMeans` is the only editorial input, and it is required rather than
- * optional-by-default so that every call site has to answer the question out
- * loud: what does *up* do to the person holding this? Pass `null` when the
- * honest answer is "nothing the app can claim" — bitcoin, the gold-silver
- * ratio, how many people looked something up. A null is a decision, and it
- * now has a colour of its own rather than the absence of one.
- *
- * Most call sites should not be answering it by hand: `riseMeansFor` holds
- * the answer per published series, so a card and the sheet it opens cannot
- * disagree. Pass a literal only where the card quotes something other than the
- * published series — `currencyMove` inverts a rate, and inverts this with it.
- *
- * See `valenceOf` for why the valence applies to the direction rather than to
- * the number.
+ * Its colour is its direction (`moveTone`); a contract's move is in points and
+ * carries `unit`, so the chip leaves it slate. It took a `riseMeans` argument
+ * until 2026-09-25, when the colour said what a move meant for an ordinary
+ * life rather than which way it went.
  */
 export function deltaFrom(
   change: WindowChange | null,
-  riseMeans: RiseMeans,
   options: { window?: string; unit?: 'percent' | 'points' } = {},
 ): CardDelta | undefined {
   if (!change || !Number.isFinite(change.pct)) return undefined;
@@ -130,14 +118,13 @@ export function deltaFrom(
   const magnitude =
     unit === 'points' ? formatMagnitudePoints(change.pct) : formatMagnitudePct(change.pct);
   // "unchanged" is what the formatters return once the move rounds to nothing.
-  // A flat chip carries no arrow — there is no direction to point — but it is
-  // still coloured, because a monochrome chip in a column of slate ones reads
-  // as a fourth state rather than as the quietest one.
+  // A flat chip carries no arrow — there is no direction to point — and reads
+  // slate, the quietest of the three.
   const size = unit === 'percent' ? Math.abs(change.pct) : undefined;
+  const points = unit === 'points' ? ({ unit: 'points' } as const) : {};
   if (magnitude === null)
-    return { direction: 'flat', magnitude: 'unchanged', window, valence: 'neutral', size };
-  const direction = change.pct > 0 ? 'up' : 'down';
-  return { direction, magnitude, window, valence: valenceOf(direction, riseMeans), size };
+    return { direction: 'flat', magnitude: 'unchanged', window, size, ...points };
+  return { direction: change.pct > 0 ? 'up' : 'down', magnitude, window, size, ...points };
 }
 
 /** The magnitude alone, unsigned, or null when it rounds to nothing. Rounding

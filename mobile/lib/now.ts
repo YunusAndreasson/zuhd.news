@@ -4,7 +4,7 @@ import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
 import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
-import type { Exchange } from './markets';
+import { type Exchange, stockMarketPlace } from './markets';
 
 /**
  * What the app says is happening, before the reader scrolls.
@@ -80,8 +80,6 @@ export interface StripItem {
    *  window: the strip sorts these against each other, so they must be one
    *  quantity. The card keeps its own delta and prints its own window. */
   delta: CardDelta;
-  /** The observations the move spans, for the slot's line. */
-  spark: number[];
   coords: LatLng | null;
   card: SwipeCard;
 }
@@ -167,22 +165,55 @@ function locateCard(
   return null;
 }
 
+/** Readings whose published name is a code or a security, in the words the
+ *  number is about. Their cards keep the published name. */
+const PLAIN_NAMES: Readonly<Record<string, string>> = {
+  brent: 'Oil',
+  'us-10y': 'US 10-year rate',
+  vix: 'Fear index',
+};
+
 /**
- * A slot's subject on one line.
+ * A slot's subject, on one line, in words a reader needs no finance to read.
  *
- * Slot subjects wrapped to two lines so "Strait of Hormuz" was never cut to
- * "STRAIT OF HOR…" — which made the whole strip two caps lines tall for the
- * sake of the longest name in it, and set "STRAIT OF" over "HORMUZ" as though
- * they were two labels. The long ones are almost all straits, and a strait has
- * a conventional short form: the name and `Str.`. The number beside it already
- * says ships a day, and the card it opens carries the full name.
+ * The strip is read at a glance, so its subject has to say what the number
+ * counts (2026-09-25, the user's request: the screen should explain itself).
+ * It printed codes a reader could read only if they already knew them —
+ * `BIST 100`, `KOSPI`, `TA-125`, `VIX`, `Hormuz Str.`:
+ *
+ *   an exchange      its country's stocks (`stockMarketPlace`): `Turkey stocks`
+ *   a strait         the ships through it: `Hormuz ships`, `Suez Canal ships`
+ *   a code           its plain name: `Oil`, `US 10-year rate`, `Fear index`
+ *
+ * Currencies, bitcoin and the nisab already said what they were. The card
+ * keeps the full name, and a screen reader hears both. One line, never cut:
+ * a slot widens for a longer subject. Straits wrapped to two lines once, which
+ * made the whole strip two caps lines tall; only the "Strait of" is dropped.
  */
-export function stripLabel(title: string): string {
-  const of = /^Strait of (.+)$/.exec(title);
-  if (of) return `${of[1]} Str.`;
-  const suffix = /^(.+) Strait$/.exec(title);
-  if (suffix) return `${suffix[1]} Str.`;
-  return title;
+export function stripLabel(
+  card: Pick<SwipeCard, 'id' | 'title'>,
+  /** The exchange's country, for an index. */
+  place?: string | null,
+): string {
+  if (card.id.startsWith('strait-')) return `${card.title.replace(/^Strait of /, '')} ships`;
+  if (place) return `${place} stocks`;
+  return PLAIN_NAMES[card.id] ?? card.title;
+}
+
+/** The country an index card's market is in, named for a strip label. */
+function stockMarketOf(
+  card: SwipeCard,
+  signals: MarketSignal[],
+  exchanges: Exchange[] = [],
+): string | null {
+  if (card.id.startsWith('mkt:')) {
+    return stockMarketPlace(exchanges.find((e) => `mkt:${e.id}` === card.id)?.iso2);
+  }
+  if (card.id.startsWith('market-signal:')) {
+    const id = card.id.slice('market-signal:'.length);
+    return stockMarketPlace(signals.find((s) => s.id === id)?.country);
+  }
+  return null;
 }
 
 function toStripItem(
@@ -201,11 +232,10 @@ function toStripItem(
     // ("currency", "metal", "zakat") or longer than the title they head — the
     // emulator printed "AUSTRALIAN SECURITIES EXC…" over the S&P/ASX 200.
     label: card.title,
-    short: stripLabel(card.title),
+    short: stripLabel(card, stockMarketOf(card, signals, exchanges)),
     reading: card.reading,
     readingNote: card.readingNote,
     delta: move.delta,
-    spark: move.points,
     coords: locateCard(card, chokepoints, signals, countryCentroid, exchanges),
     card,
   };

@@ -40,7 +40,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Animation         | `ANIMATION`, `EASING`, `KEEP_MOTION`            | Durations, spring configs, Reanimated easings — see §Motion |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
 | Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |
-| Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`, `inverse` — text on a `colors.text`-filled surface) |
+| Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`, `rise`, `fall` (a move's direction, `moveTone`), `inverse` — text on a `colors.text`-filled surface) |
 | Title scale       | `titleFontScale(length)`                        | Encapsulates "shrink long titles"             |
 
 ### Rules
@@ -58,43 +58,41 @@ All design tokens live in one file. Components consume via `useTheme()`.
 
 - **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — the sentiment hues (sage / rose / slate) for foreground text. **One luminance for all three** (dark 8.2–9.0:1 on `bg`, light 5.5–5.9:1; `__tests__/palette.test.ts`): a hue that says good or bad must not also say it more quietly. Until 2026-09-23 dark rose sat at 5.5:1 beside sage's 7.3:1, so every fall read as the weaker figure, and at 0.18 saturation both read as grey over the globe. The globe's market arrows are the same two inks (`markMarketUp/Down`), so there is one green and one red in the app. The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these. The background-fill tones that once paired with them went with the last blocks that drew tone pills (`CompareBlock`, `TimelineBlock`, `TreemapBlock`).
 
-**The top bar colours consequence, like every other surface (2026-09-23).** It
-coloured direction — up green, down red — so Brent's ▲23% was green on the gauge
-and rose on the card the gauge opens: one reading, two colours, chosen by where
-it was printed. The caret already says the direction. `DeltaChip` has one mode
-now; `MarketBrowserSheet` follows it, and its legend says the arrow is the
-direction and the colour what it means. The gauges' subjects are `text` ink
-(`labelXsTight`), not secondary: 11pt caps over a lit globe fell to ~5:1.
+**A move is green up, red down, slate unmoved, on every surface (2026-09-25, the
+user's request).** `moveTone` in `lib/valence.ts`; `<Text tone="rise|fall">`
+resolves to the globe's market inks (`markMarketUp/Down`), so the chip, the
+strip, the markets list, the globe's arrows and a strait's traffic sign are one
+green and one red. A contract's points stay slate: odds are never tinted. The
+rule it replaced is below — colour as *consequence*, where oil rising was rose
+and bitcoin slate — and it failed the user's test that the screen explain itself
+by looking: one ▲ in three colours, for a reason only a sentence in the markets
+list gave, beside globe arrows that were direction all along. What a move means
+is the card's prose to say. Before 2026-09-23 the strip alone coloured direction
+and the card it opened colour consequence, so Brent was green on the gauge and
+rose on its card; one rule everywhere is what keeps that from coming back. The
+gauges' subjects are `text` ink (`labelXsTight`), not secondary: 11pt caps over a
+lit globe fell to ~5:1.
 
-**Detail cards color consequence, and every move is coloured.** The rule lives in
-`lib/valence.ts` and nowhere else. Two channels that must not be collapsed into
-one: the **caret** says which way the number went, and the **colour** says what
-that direction does to the person holding it. In this app up is not good — oil
-rising is a fuel bill, an FX rate rising is a currency that weakened, bitcoin
-rising is neither — so `riseMeansFor` declares what a rise in each *published
-series* means, and `valenceOf` applies it to the direction, which is why a fall
-in something whose rise hurts is `favorable`.
+**Colour-as-consequence was the rule until 2026-09-25, and was removed.**
+`lib/valence.ts` held a table of what a rise in each published series did to a
+reader (`RISE_MEANS`, `riseMeansFor`, `valenceOf`): oil rising was rose, a fall
+in it sage, bitcoin slate because the app would not say. The caret and the
+colour were two channels on purpose. It was careful and invisible — nothing on
+screen said the colour was a claim — and the user's rule is that the screen
+explains itself. Two lessons from it stand:
 
-The third value is the part that is easy to get wrong. Where the app has no
-honest claim the answer is **`neutral` — slate — not the absence of a colour**.
-It was an absence, and the absence was the bug: two thirds of the app's
-readings sat in `emphasis` ink, indistinguishable from the label text beside
-them, so a reader's first job was working out whether a chip was coloured
-before working out which way it pointed. Slate says *the app will not tell you
-whether this is good news* in the same channel as sage and rose, which is a
-claim it can stand behind. A comparison row that prints a move follows the same
-rule: `tone` is always set, never left undefined.
+- **One module answers the colour of a move.** Three surfaces once answered
+  separately and all three disagreed — a card chip in sage/rose, `EntitySheet`
+  tinting on *magnitude* in the globe's dome gold, `ChokepointSheet` calling a
+  strait disrupted at 15% where the card said 10%. A second rule anywhere is
+  the regression.
+- **Slate is a colour, not an absence.** An unmoved reading or a contract's
+  points is slate, never the `emphasis` ink of the label beside it: that is how
+  two thirds of the readings once looked uncoloured.
 
-Three surfaces used to answer this question separately and all three disagreed
-— a card chip in sage/rose, `EntitySheet` tinting on *magnitude* in the globe's
-dome gold, `ChokepointSheet` calling a strait disrupted at 15% where the card
-said 10%. They read `lib/valence.ts` now. Adding a fourth answer is the
-regression; extending the table there is the change.
-
-A corollary: **quote the quantity whose sign matches its meaning.** FX mover
-cards report the currency's own move rather than the published local-currency-
-per-dollar rate, so the arrow and consequence colour cannot contradict one
-another.
+A corollary that outlived it: **quote the quantity whose sign matches its
+meaning.** FX mover cards report the currency's own move rather than the
+published local-currency-per-dollar rate, so `▼` means the currency fell.
 
 **The neutral ladder has the same steps in both themes** (`__tests__/palette.test.ts`). `accent` sits about two thirds of the way from `text` down to `textSecondary`, at least 1.3× in contrast from each; on cream it was 6.2:1 beside secondary's 5.1, so the second voice and the quiet one were one grey. `rule` is as strong on the sheet in light as in dark (≥ 1.3:1; OKLab ΔL ~0.09 against 0.10) — it was half that on cream, where the sheet's handle, the toggles' off track and every row rule sit. A reference line on a chart (a card's 90-day normal, replacement fertility) is secondary ink, dashed; gold is the brand and the economy hue, and a baseline drawn in it reads as a verdict. A monochrome glow does not invert at the same strength: the globe's coverage hotspots lift the dark ground in `text` ink, and at the same alpha on cream they were a grey cloud around the story's dot, so light draws the halo at half (`HOTSPOT_LIGHT`).
 
@@ -222,8 +220,8 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
   after a larger group gap, with supporting movement copy kept close to the
   analysis it qualifies. Do not add dividers or headings merely to restate
   those groups.
-- **Colour is semantic, not sectional.** Sage, rose and slate belong to the
-  movement chip and retain their consequence meanings; belief moves are
+- **Colour is semantic, not sectional.** Green and red belong to the
+  movement chip and mean up and down (`moveTone`); belief moves are
   neutral. Reading, title, analysis, chart structure and `current` stay in the
   monochrome ink hierarchy. Do not tint sections or spend dome gold as card
   decoration.
@@ -449,10 +447,10 @@ so long edges curve smoothly when magnified.
 
 ### Map exploration (September 2026)
 
-The mobile globe includes every exchange published in `/api/markets.json`, not just scored highlights. Market signs show the latest quoted session versus prior close, with an asterisk for older quotes. `menu → markets` (and the strip's `all →`) opens all / rising / falling filters and Other data, including commodities, currencies, straits and predictions. Selecting an exchange flies to its actual coordinates and opens its source, date, history and context. Non-geographic indicators stay in the browser.
+The mobile globe includes every exchange published in `/api/markets.json`, not just scored highlights. Market signs show the move over the past week — the strip's number, `exchangeMove` — with an asterisk for older quotes; they showed the session against the prior close until 2026-09-25, so a gauge and the mark it flew to could point opposite ways. `menu → markets` (and the strip's `all →`) opens all / rising / falling filters and Other data, including commodities, currencies, straits and predictions. Selecting an exchange flies to its actual coordinates and opens its source, date, history and context. Non-geographic indicators stay in the browser.
 
 The market marker is 26dp across with a separate 48dp touch target. Screen-space clusters preserve every exchange, split as zoom creates space, and expose members in a chooser. Placement avoids story and hazard targets; short leader lines connect displaced signs to their geographic origin. Labels pack around higher-priority text and stay within the map viewport.
 
-Straits retain their coastline silhouettes and disruption hues. A compact arrow and percentage label, red only when the strait is disrupted (`chokepointValence`, as on its card) and slate otherwise, show the seven-day average for all ships against the strait's 90-day normal (`vs 90d`). This differs from the header's seven-day movement and the markets' prior-close window; each comparison is stated. Missing traffic comparisons receive no invented direction.
+Straits retain their coastline silhouettes and disruption hues. A compact arrow and percentage label, green up and red down like every move (`moveTone`; how bad a fall is, is the glyph's pinch to say), show the strait's ships over the past week, the strip's number (`straitWeekChange`); only where there is no week does it fall back to the seven-day average against the 90-day normal, marked `vs 90d`. Missing traffic comparisons receive no invented direction.
 
 **A market's or strait's label is two lines (2026-09-22, the user's request).** The name, then the move under it: `Strait of Hormuz` over `↓57% vs 90d`, `BIST 100` over `↓4.8%`. It was one 11pt line tinted end to end in the move's colour, which ran a third of the way across a phone and put the name in a traffic colour. The hierarchy is the data map's: the figure carries the weight, the name says what it is. The name is 11pt in plain `text` ink — upright semibold for an exchange, the water labels' italic for a strait, the atlas convention for a passage. The move is 13pt semibold (`MARK_VALUE_PT`) in its direction's colour; a strait's `vs 90d` stays 11pt `textSecondary` after it, a qualifier rather than a second figure. One halo covers every line. The story's location (16pt) is still the largest text on the globe, and a cluster's `3 markets` stays one line, since it has no single move. Two lines are narrower and taller, so in a crowded region a label now finds room more often sideways and less often vertically; with no room either way it is dropped as before, and the mark stays tappable.

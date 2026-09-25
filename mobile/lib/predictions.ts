@@ -22,9 +22,8 @@ import type { Indicator, IndicatorAnalysis, TrendsSnapshot } from '@shared/types
  *   **Odds are never tinted favorable or unfavorable.** `--map-pos`/`--map-neg`
  *   mean "a signed change" and read as good and bad; on the odds of an
  *   invasion that is a verdict. A green "US invades Iran, +35 pts" is the app
- *   calling a likelier war good news. `lib/valence.ts` deliberately has no row
- *   for a prediction contract, and `beliefCards` sets no valence — this
- *   follows both.
+ *   calling a likelier war good news. `moveTone` (`lib/valence.ts`) leaves a
+ *   contract's points slate whichever way they move — this follows it.
  */
 
 /** The disclosure, in one place so it cannot be edited out of one surface. */

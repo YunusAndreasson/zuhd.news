@@ -2,25 +2,24 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
 import type { CardDelta } from '../lib/cards/types';
+import { moveTone } from '../lib/valence';
 import { Icon, Text } from './primitives';
 
 /**
- * Which way the number went, and what that does to the person reading.
+ * Which way the number went.
  *
- * Two channels on purpose (see `CardDelta`): the caret says the direction, the
- * colour says the consequence. Both are always present, and the colour is a
- * three-value channel rather than a two-value one that is sometimes absent —
- * a card about the price of oil gets a caret in rose, a card about bitcoin
- * gets one in slate, and slate is the app saying it will not tell you whether
- * that is good news. The near-white fallback this used to take is gone: it was
- * indistinguishable from the label text beside it, so the reader's first job
- * was deciding whether a chip was coloured at all.
+ * Green up, red down, slate unchanged — on every surface, the strip, the cards
+ * and the markets list alike (`moveTone`, 2026-09-25). It coloured what a move
+ * meant for an ordinary life instead: oil up was red, a currency up green,
+ * bitcoin slate, so one ▲ came in three colours for a reason the screen never
+ * gave, beside globe arrows that were green up and red down. The user asked
+ * for a screen that explains itself. Always coloured, never the near-white of
+ * the label beside it, so a reader never has to ask whether a chip is
+ * coloured at all. A contract's points stay slate: odds are never tinted.
  *
- * Every surface colours the consequence, the top strip too (2026-09-23). The
- * strip used to colour direction — up green, down red — so Brent's ▲23% was
- * green on the gauge and rose on the card that gauge opens: one reading, two
- * colours, chosen by where it was printed. The caret already says the
- * direction; a colour that repeats it adds nothing.
+ * Before 2026-09-23 the strip alone coloured direction, so Brent's ▲23% was
+ * green on the gauge and red on the card it opened. One rule everywhere is
+ * what keeps that from coming back.
  *
  * The strip passes `window={false}`: three of these sit side by side in a
  * third of a phone's width each, and "since 22 Jul" does not fit. The window
@@ -36,7 +35,7 @@ export const DeltaChip = memo(function DeltaChip({
   window?: boolean;
   scale?: number;
 }) {
-  const tone = delta.valence;
+  const tone = moveTone(delta);
   return (
     <View style={styles.delta}>
       {delta.direction !== 'flat' ? (

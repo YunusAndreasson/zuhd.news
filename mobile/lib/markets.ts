@@ -1,3 +1,4 @@
+import { displayNameFromCode } from '@shared/countries/iso';
 import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
 
@@ -96,7 +97,6 @@ export function exchangeDelta(e: Exchange): CardDelta {
     magnitude: `${Math.abs(e.changePct).toFixed(2)}%`,
     size: Math.abs(e.changePct),
     window: 'vs prior close',
-    valence: direction === 'up' ? 'favorable' : direction === 'down' ? 'unfavorable' : 'neutral',
   };
 }
 export function exchangeIsStale(e: Exchange, now = Date.now()): boolean {
@@ -109,6 +109,32 @@ export function exchangeIsStale(e: Exchange, now = Date.now()): boolean {
  * index's own full name removes the clash; the published field stays as it is.
  */
 const INDEX_DISPLAY_NAMES: Record<string, string> = { IPC: 'S&P/BMV IPC' };
+
+/** Where the atlas name is long for a strip slot, or missing (Hong Kong and
+ *  Singapore are not countries in it). */
+const MARKET_PLACES: Readonly<Record<string, string>> = {
+  US: 'US',
+  GB: 'UK',
+  AE: 'UAE',
+  HK: 'Hong Kong',
+  SG: 'Singapore',
+};
+
+/**
+ * An exchange's country, named as the strip names its market: `Turkey`, `US`,
+ * `Hong Kong` (`stripLabel`: `Turkey stocks`). An index's own name is a code
+ * a reader can read only if they already know it — `BIST 100`, `TA-125`; the
+ * country is not. Null for a code it cannot name, which keeps the index name.
+ */
+export function stockMarketPlace(iso2: string | undefined): string | null {
+  if (!iso2) return null;
+  const code = iso2.toUpperCase();
+  const short = MARKET_PLACES[code];
+  if (short) return short;
+  // The atlas hands back the code itself for a country it does not carry.
+  const name = displayNameFromCode(code);
+  return name === code ? null : name;
+}
 
 export function exchangeCard(e: Exchange): SwipeCard {
   // A build may append a cached quote under today's date. Never imply an

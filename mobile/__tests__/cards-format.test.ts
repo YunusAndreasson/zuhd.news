@@ -44,7 +44,7 @@ describe('windowPointChange', () => {
     // +231%, which is arithmetic pretending to be journalism.
     const c = windowPointChange(series([26, 50, 86]), 2);
     expect(c?.pct).toBe(60);
-    expect(deltaFrom(c, null, { unit: 'points' })).toMatchObject({
+    expect(deltaFrom(c, { unit: 'points' })).toMatchObject({
       direction: 'up',
       magnitude: '60 points',
     });
@@ -155,8 +155,8 @@ describe('deltaFrom', () => {
   const down = { pct: -6.8, from: 'Jul 11', to: 'Aug 9', points: 30 };
 
   it('names the window it measured, the way every other change here does', () => {
-    expect(deltaFrom(up, null)).toMatchObject({ window: 'since Jul 11' });
-    expect(deltaFrom(up, null, { window: 'on the month' })).toMatchObject({
+    expect(deltaFrom(up)).toMatchObject({ window: 'since Jul 11' });
+    expect(deltaFrom(up, { window: 'on the month' })).toMatchObject({
       window: 'on the month',
     });
   });
@@ -164,50 +164,26 @@ describe('deltaFrom', () => {
   it('carries the direction in the arrow and the magnitude unsigned', () => {
     // The sign and the arrow are the same fact, and printing both is the
     // stutter this whole change exists to remove.
-    expect(deltaFrom(up, null)).toMatchObject({ direction: 'up', magnitude: '6.8%' });
-    expect(deltaFrom(down, null)).toMatchObject({ direction: 'down', magnitude: '6.8%' });
+    expect(deltaFrom(up)).toMatchObject({ direction: 'up', magnitude: '6.8%' });
+    expect(deltaFrom(down)).toMatchObject({ direction: 'down', magnitude: '6.8%' });
   });
 
-  it('applies the valence to the direction, not to the number', () => {
-    // This is the one that already bit: for something whose rise hurts, a
-    // *fall* is the favorable direction. A lookup table of colours cannot
-    // express that, which is why `riseMeans` is phrased as a question about
-    // the rise.
-    expect(deltaFrom(up, 'unfavorable')?.valence).toBe('unfavorable');
-    expect(deltaFrom(down, 'unfavorable')?.valence).toBe('favorable');
-    expect(deltaFrom(up, 'favorable')?.valence).toBe('favorable');
-    expect(deltaFrom(down, 'favorable')?.valence).toBe('unfavorable');
-  });
-
-  it('says "no position" in the colour rather than by withholding it', () => {
-    // `null` is a decision, not an omission — bitcoin, the gold-silver ratio,
-    // how many people looked something up — and it now reads as slate. It was
-    // an absent valence, which put two thirds of the app's readings in
-    // near-white and made "is this coloured?" the reader's first question.
-    expect(deltaFrom(up, null)?.valence).toBe('neutral');
-    expect(deltaFrom(down, null)?.valence).toBe('neutral');
-  });
-
-  it('drops the arrow but keeps a colour once the move rounds to nothing', () => {
-    const flat = deltaFrom({ pct: 0.02, from: 'Jul 11', to: 'Aug 9', points: 30 }, 'unfavorable');
+  it('drops the arrow once the move rounds to nothing', () => {
+    const flat = deltaFrom({ pct: 0.02, from: 'Jul 11', to: 'Aug 9', points: 30 });
     expect(flat).toMatchObject({ direction: 'flat', magnitude: 'unchanged' });
-    // No direction to point at, so no caret — but still slate rather than
-    // monochrome: a white chip in a column of coloured ones reads as a fourth
-    // state rather than as the quietest one.
-    expect(flat?.valence).toBe('neutral');
   });
 
   it('counts a percentage in points, so 26 → 86 is 60 points and never +231%', () => {
+    // And marks it, so the chip leaves a contract slate (`moveTone`).
     expect(
-      deltaFrom({ pct: 60, from: 'Jul 17', to: 'Aug 9', points: 20 }, null, {
-        unit: 'points',
-      }),
-    ).toMatchObject({ direction: 'up', magnitude: '60 points' });
+      deltaFrom({ pct: 60, from: 'Jul 17', to: 'Aug 9', points: 20 }, { unit: 'points' }),
+    ).toMatchObject({ direction: 'up', magnitude: '60 points', unit: 'points' });
+    expect(deltaFrom(up)?.unit).toBeUndefined();
   });
 
   it('returns nothing at all rather than a chip that says nothing', () => {
-    expect(deltaFrom(null, null)).toBeUndefined();
-    expect(deltaFrom({ pct: Number.NaN, from: 'a', to: 'b', points: 1 }, null)).toBeUndefined();
+    expect(deltaFrom(null)).toBeUndefined();
+    expect(deltaFrom({ pct: Number.NaN, from: 'a', to: 'b', points: 1 })).toBeUndefined();
   });
 });
 

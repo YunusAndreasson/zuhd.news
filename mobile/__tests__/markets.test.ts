@@ -4,6 +4,7 @@ import {
   exchangeDelta,
   exchangeIsStale,
   isMarketsSnapshot,
+  stockMarketPlace,
 } from '../lib/markets';
 const e: Exchange = {
   id: 'test',
@@ -58,4 +59,16 @@ test('older quotes retain their real date and never invent chart observations', 
   expect(exchangeIsStale(e, Date.parse('2026-09-20'))).toBe(false);
   expect(exchangeIsStale({ ...e, stale: true }, Date.parse('2026-09-20'))).toBe(true);
   expect(exchangeIsStale(e, Date.parse('2026-09-25'))).toBe(true);
+});
+test("names an exchange's market by its country, short where the atlas name is long", () => {
+  expect(stockMarketPlace('TR')).toBe('Turkey');
+  expect(stockMarketPlace('kr')).toBe('South Korea');
+  expect(stockMarketPlace('US')).toBe('US');
+  expect(stockMarketPlace('GB')).toBe('UK');
+  // Not countries in the atlas at all.
+  expect(stockMarketPlace('HK')).toBe('Hong Kong');
+  expect(stockMarketPlace('SG')).toBe('Singapore');
+  // A code it cannot name keeps the index's own name.
+  expect(stockMarketPlace('XQ')).toBeNull();
+  expect(stockMarketPlace(undefined)).toBeNull();
 });

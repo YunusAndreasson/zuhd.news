@@ -93,6 +93,7 @@ import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
 import type { CardDelta } from '../lib/cards/types';
+import { exchangeMove } from '../lib/cards/week-move';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
@@ -100,7 +101,7 @@ import { markLanded, useFreshSlugs } from '../lib/fresh-store';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
-import { exchangeCard, exchangeDelta, exchangeIsStale } from '../lib/markets';
+import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
   buildNowSurfaces,
@@ -504,9 +505,10 @@ export default function HomeScreen() {
           label: card.title,
           short: card.title,
           reading: card.reading,
-          delta: exchangeDelta(exchange),
+          // The strip's number, the past seven days: the mark the strip's slot
+          // flies to reads what the slot read (`exchangeMove`).
+          delta: exchangeMove(exchange, card),
           stale: exchangeIsStale(exchange),
-          spark: card.series?.values ?? [],
           coords: [exchange.lat, exchange.lng] as LatLng,
           card,
         };
@@ -521,7 +523,9 @@ export default function HomeScreen() {
         id: item.id,
         // Two lines on the globe: the name, then the move under it, larger.
         label: item.label,
-        move: `${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.magnitude}${item.stale ? '*' : ''}`,
+        // A week that rounds to nothing prints `−0%`, as a strait's does; the
+        // chip's word `unchanged` does not belong under a name on the map.
+        move: `${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.direction === 'flat' ? '0%' : item.delta.magnitude}${item.stale ? '*' : ''}`,
         direction: item.delta.direction,
         lat: item.coords[0],
         lng: item.coords[1],

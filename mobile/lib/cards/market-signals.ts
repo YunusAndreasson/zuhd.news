@@ -81,7 +81,6 @@ export function marketSignalCards(
           magnitude: `${Math.abs(p.changePct).toFixed(1)}%`,
           size: Math.abs(p.changePct),
           window: `${p.sessions} ${p.sessions === 1 ? 'session' : 'sessions'}`,
-          valence: 'neutral',
         },
         why,
         sourceLabel: s.sourceLabel,

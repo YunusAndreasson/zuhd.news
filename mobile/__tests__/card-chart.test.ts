@@ -10,7 +10,6 @@ const series = (extra: Partial<CardSeries> = {}): CardSeries => ({
 const delta = (window: string): CardDelta => ({
   direction: 'up',
   magnitude: '100%',
-  valence: 'neutral',
   window,
 });
 

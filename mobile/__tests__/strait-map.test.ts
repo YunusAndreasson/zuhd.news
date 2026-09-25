@@ -35,14 +35,10 @@ test('the globe prints the strip’s seven-day move, so one strait reads one num
     direction: 'down',
     magnitude: '38%',
     window: 'over 7 days',
-    valence: 'unfavorable',
     size: 38,
   });
-  expect(change).toMatchObject({ direction: 'down', value: '↓38%', basis: undefined, alarm: true });
-  expect(straitWeekChange({ direction: 'up', magnitude: '5%', valence: 'neutral' })).toMatchObject({
-    value: '↑5%',
-    alarm: false,
-  });
+  expect(change).toMatchObject({ direction: 'down', value: '↓38%', basis: undefined });
+  expect(straitWeekChange({ direction: 'up', magnitude: '5%' })).toMatchObject({ value: '↑5%' });
 });
 
 describe('a strait’s glyph says its state in its shape', () => {

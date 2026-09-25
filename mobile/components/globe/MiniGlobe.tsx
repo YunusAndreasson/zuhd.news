@@ -483,7 +483,7 @@ const STORY_HIT_PX2 = 1024;
 const STRAIT_STROKE = 1;
 
 /** A strait mark's glyph: pinched when its traffic fell far enough to be the
- *  disruption (`chokepointValence`), bowed open when it surged, else at rest. */
+ *  disruption (`straitSqueezed`), bowed open when it surged, else at rest. */
 function straitState(cp: { disrupted: boolean; surge: boolean }): StraitState {
   return cp.disrupted ? 'pinch' : cp.surge ? 'surge' : 'rest';
 }
@@ -548,7 +548,7 @@ const STORY_ALPHA_FLOOR = 0.45;
 const STORY_HALF_LIFE_HOURS = 72;
 
 // How bright a disrupted chokepoint glows. Magnitude only — *whether* it is
-// disrupted is `chokepointValence`'s answer and nobody else's.
+// disrupted is `straitSqueezed`'s answer and nobody else's.
 //
 // This used to hold its own threshold: `absDelta > 0.15`, against
 // `lib/valence.ts`'s 0.1 and `straitCards`' 0.3 materiality gate. That is the
@@ -1133,8 +1133,6 @@ interface GlobeState {
     basis?: string;
     intensity: number;
     direction?: 'up' | 'down' | 'flat';
-    /** The printed move is a disruption: red, as the strip colours it. */
-    moveAlarm?: boolean;
     labelX: number;
     disrupted: boolean;
     /** Traffic well above its normal — the web's teal strait. */
@@ -1982,12 +1980,11 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
       ),
     );
     // Compact traffic sign beside the coastline glyph; its touch area stays
-    // generous. Coloured by what the move means, as on the strait's card
-    // (`chokepointValence`): red only for a disruption, slate otherwise. It
-    // coloured the direction, so Gibraltar's ↓2% was the same alarm red as
-    // Hormuz's ↓62%, and a surge was green where its card said neutral.
-    const moveColor =
-      (cp.moveAlarm ?? cp.disrupted) ? colors.markMarketDown : colors.toneNeutralText;
+    // generous. Green up, red down, as every move in the app is printed
+    // (`moveTone`, 2026-09-25): more ships or fewer. How bad a fall is, is the
+    // glyph's to say — its shape pinches and turns gold past the disruption
+    // bar — so Gibraltar's ↓2% and Hormuz's ↓62% share a red and not a shape.
+    const moveColor = cp.direction === 'up' ? colors.markMarketUp : colors.markMarketDown;
     if (cp.direction) {
       const x = cp.x + straitSignDx(state, STRAIT_STROKE);
       const color = cp.direction === 'flat' ? colors.textSecondary : moveColor;
@@ -3227,7 +3224,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           move: change?.value,
           basis: change?.basis,
           direction: change?.direction,
-          moveAlarm: week ? week.valence === 'unfavorable' : undefined,
           unit: unit(cp.lng, cp.lat),
           // Signed, because direction decides meaning here and magnitude only
           // decides brightness.
@@ -3930,7 +3926,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           basis: cp.basis,
           labelX: pt[0],
           direction: cp.direction,
-          moveAlarm: cp.moveAlarm,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: straitStateFor(cp.delta) === 'pinch',
           surge: straitStateFor(cp.delta) === 'surge',
