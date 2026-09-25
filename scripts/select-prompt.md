@@ -23,7 +23,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 2. Read `/tmp/zuhd-feed-slim.json` — today's stories (metadata only, bodies stripped). The feed has two sections:
    - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
    - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.
-3. Select 12-13 stories from BOTH sections:
+3. Select the number of stories given in the `<cycle-target>` block at the end of this prompt (12-13 if there is none), from BOTH sections. The target follows how much news arrived since the last cycle — a quiet overnight cycle picks fewer, the evening cycles more — so do not pad a quiet cycle and do not stop short in a busy one:
    - For **politics and economy**: strongly prefer `multiSourceStories` — these topics benefit most from multi-perspective coverage. Pick single-source only when a niche investigation (OCCRP, Intercept, Bellingcat) is more interesting than any multi-source event.
    - For **science and tech**: pick freely from `nicheStories` — these topics are inherently specialist and rarely have multi-source coverage. Nature, Ars Technica, The Decoder, 404 Media are the right sources here.
    - Aim for 4-5 multi-source stories per cycle when the feed provides them, primarily in politics/economy.

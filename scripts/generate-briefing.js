@@ -85,8 +85,9 @@ try {
   console.warn('Could not read story ledger (continuing without it):', err.message)
 }
 
-// Compute hours until next briefing (briefings run at 04:00 and 16:00 UTC only)
-const BRIEFING_HOURS = [4, 16]
+// Compute hours until next briefing — one a day, on the 05:00 UTC cycle
+// (`DAILY_HOUR` in run-cycle.sh). Was [4, 16], from when there were two.
+const BRIEFING_HOURS = [5]
 const now = new Date()
 const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
 const cycleMinutes = BRIEFING_HOURS.map(h => h * 60)

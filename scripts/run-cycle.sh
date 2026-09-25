@@ -167,6 +167,12 @@ cd "$PROJECT_DIR"
 
 # Capture start hour for stage gates (Stage 4/5/6 check this, not wall clock after 20+ min of processing)
 START_HOUR=$(date -u +%H)
+# The cycle that also runs the daily jobs (full indicator dispatch, events,
+# analytics, audio briefing). The first cycle of the news day: the schedule
+# (05, 10, 14, 18, 22 UTC since 2026-09-25) follows when English-language news
+# is published — quiet 23-06 UTC, peaking 14-20 — so this one sees the whole
+# previous day closed plus Asia's morning. Was "04" hard-coded in three places.
+DAILY_HOUR="05"
 
 echo "=== zuhd.news editorial cycle ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"
@@ -242,6 +248,25 @@ ${TRENDING_GAPS}
 </trending-uncovered>"
   echo "Injecting trending-gaps signal ($(echo "$TRENDING_GAPS" | wc -l) titles) into selector prompt" | tee -a "$LOG_FILE"
 fi
+# How many stories this cycle picks follows how much news arrived since the
+# last one (measured 2026-09-25 across 14 global outlets: 05:00 ≈11% of the
+# day's publishing, 10:00 ≈16%, 14:00 ≈20%, 18:00 ≈28%, 22:00 ≈25%). A fixed
+# 12-13 made quiet cycles pad with floor-fillers and busy ones drop good
+# stories. 11 is the floor because the category floors sum to 11.
+case "$START_HOUR" in
+  05) PICK_TARGET=11 ;;
+  10) PICK_TARGET=12 ;;
+  14) PICK_TARGET=13 ;;
+  18) PICK_TARGET=15 ;;
+  22) PICK_TARGET=15 ;;
+  *)  PICK_TARGET=13 ;;
+esac
+SELECT_PROMPT="${SELECT_PROMPT}
+
+<cycle-target>
+Select ${PICK_TARGET} stories this cycle (${START_HOUR}:00 UTC).
+</cycle-target>"
+echo "Selection target: ${PICK_TARGET} stories (${START_HOUR}:00 UTC)" | tee -a "$LOG_FILE"
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
 
@@ -495,9 +520,9 @@ $BODY_LENGTHS
   # Stage 3.4b2: Market snapshot — the map's stock-exchange layer. One Yahoo
   # call per exchange, sequential because parallel trips their rate limit on a
   # shared IP (~10s for 30). Fail-soft: leaves the previous snapshot in place.
-  # The five cycles a day happen to sample the trading day well — 04:00 UTC
-  # catches the Asian close, 08:00 the Gulf, 12:00 European midday, 17:00 the
-  # European close, 22:00 the US close.
+  # The five cycles sample the trading day: 05:00 UTC is Tokyo's last hour,
+  # 10:00 is after the Asian and Indian closes, 14:00 the Gulf close and
+  # European midday, 18:00 the European close, 22:00 the US close.
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.4b2: Market snapshot ---" | tee -a "$LOG_FILE"
   T34B2=$SECONDS
@@ -901,7 +926,7 @@ $ARTICLE_TEXT" 2>/dev/null)
   fi
 fi
 
-# Stage 3.8: Indicator dispatch (04:00 UTC only) — Opus writes two sentences for
+# Stage 3.8: Indicator dispatch (daily cycle, $DAILY_HOUR UTC, only) — Opus writes two sentences for
 # every instrument the rail shows a number for: what it is, and what has
 # happened to it and why. Grounded in our own corpus plus the merged feed
 # snapshots, so it costs nothing at the news API. Writes
@@ -921,7 +946,7 @@ fi
 # the cache checkpoints every 10 items and on SIGTERM. Behind `|| echo WARNING`
 # so it can never hold up a publish.
 HOUR_UTC=$(date -u +%H)
-if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
+if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.8: Indicator dispatch ---" | tee -a "$LOG_FILE"
   T38=$SECONDS
@@ -951,11 +976,11 @@ else
   # was one or two cards deep.
   #
   # `--new-only` skips anything already cached even when its fingerprints have
-  # moved, so this cannot do 04:00's job early, and it does not prune. Steady
+  # moved, so this cannot do the daily cycle's job early, and it does not prune. Steady
   # state is zero calls and the run exits in seconds; the timeout is sized for
   # the handful of items a rotation actually produces, not for a cold pass.
   #
-  # This commits but does not deploy — Stage 4's rebuild is 04:00-only, so the
+  # This commits but does not deploy — Stage 4's rebuild is daily-cycle-only, so the
   # prose ships on the *next* cycle's Stage 3b build. That is ~4 hours rather
   # than the up-to-24 it replaces, and buying the difference would mean a build
   # and a deploy on every cycle for a paragraph.
@@ -967,11 +992,11 @@ else
   commit_only "Indicator dispatch $(date -u +%Y-%m-%dT%H:%M)" content/.indicator-dispatch.json
 fi
 
-# Stage 3.9: Cloudflare analytics fetch (04:00 UTC only — low-frequency, fail-soft)
+# Stage 3.9: Cloudflare analytics fetch (daily cycle only — low-frequency, fail-soft)
 # Writes content/.analytics.json with past-7d per-article pageview counts.
 # Requires CLOUDFLARE_API_TOKEN with Zone > Analytics > Read — skips silently otherwise.
 HOUR_UTC=$(date -u +%H)
-if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
+if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.9: Analytics fetch ---" | tee -a "$LOG_FILE"
   T39=$SECONDS
@@ -979,10 +1004,10 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   echo "Analytics fetch — $((SECONDS - T39))s" | tee -a "$LOG_FILE"
 fi
 
-# Stage 4: Audio briefing — generate at 04:00 UTC cycle only (morning for GCC→India)
+# Stage 4: Audio briefing — generated on the daily cycle only (05:00 UTC)
 # Timer schedule: 04, 08, 12, 17, 22 UTC — check start hour, not current hour
 HOUR_UTC=$(date -u +%H)
-if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
+if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
   timeout 900 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
@@ -1088,7 +1113,7 @@ $BRIEFING_TOP" 2>/dev/null | head -1 | tr -d '\n')
   fi
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 4: Audio briefing (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at ${DAILY_HOUR}:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 5: Weekly quality snapshot — runs Sunday 22:00 UTC only.
