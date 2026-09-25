@@ -996,14 +996,14 @@ export function createSheet(): Sheet {
         el(
           'h2',
           'island-sheet-title',
-          event.near?.loc ? `Heat near ${event.near.loc}` : 'Heat signature',
+          event.near ? `Heat near ${event.near}` : 'Heat signature',
         ),
       )
 
       // Radiative power is the figure, and the pixel count is what makes it
       // legible: 40 MW over one pixel and over twenty are very different fires.
       const pixels = `${fmt.grouped(event.pixels)} pixel${event.pixels === 1 ? '' : 's'}`
-      const distance = event.near ? `${event.near.km} km from the story` : null
+      const distance = Number.isFinite(event.nearKm) ? `${event.nearKm} km from the story` : null
       nodes.push(hero(`${thermalPower(event.frp)} MW`, [pixels, distance].filter(Boolean).join(' · ')))
 
       // How long this place has been alight. "First seen on this pass" is the
@@ -1060,7 +1060,7 @@ export function createSheet(): Sheet {
         // The stories that make this mark publishable. The nearest one's distance
         // is already in the hero, which is the calibration that matters — the
         // join is 75 km wide and the card has to admit it.
-        nodes.push(...relatedList(event.relatedArticles ?? [], 'Reported near here'))
+        nodes.push(...relatedList(event.related ?? [], 'Reported near here'))
       }
       render(nodes, pin)
     },

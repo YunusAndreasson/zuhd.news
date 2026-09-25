@@ -151,7 +151,9 @@ export interface MapExchange {
  * Declared here rather than re-exported from `shared/`, for the reason
  * `MapExchange` gives: there is nothing in `shared/` to fall behind. The payload
  * is assembled by `scripts/fetch-firms.js` from `scripts/lib/firms.js` and
- * joined to coverage by `build.js`, and the app does not read the endpoint.
+ * joined to coverage by `build.js`. **The app reads it too** (since 2026-09-13),
+ * so `near` and `relatedArticles` keep the app's shapes and the web's extras are
+ * additive (`nearKm`, `related`).
  *
  * Every event in the published payload has at least one `relatedArticles` entry —
  * that is the layer's whole claim, and an anomaly with nothing to corroborate is
@@ -188,9 +190,14 @@ export interface ThermalEvent {
   escalating?: boolean
   /** Which satellites' passes contributed. */
   satellites: string[]
-  /** The nearest cited story's place name and distance, for the card's one line. */
-  near: { loc: string; km: number }
-  relatedArticles: Array<{
+  /** The nearest cited story's place name. A string because the app prints it. */
+  near: string
+  /** Slugs of the cited stories — the app's contract, `mobile/lib/overlays.ts`. */
+  relatedArticles: string[]
+  /** Distance from the anomaly to the nearest cited story, km. */
+  nearKm: number
+  /** The cited stories in full, for the web card. */
+  related: Array<{
     slug: string
     title: string
     date?: string

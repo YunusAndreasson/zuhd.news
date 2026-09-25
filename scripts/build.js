@@ -1705,10 +1705,18 @@ if (existsSync(firmsSrc)) {
     const { seedKm, ...rest } = event
     firmsEvents.push({
       ...rest,
-      // Denormalised so the card can say "18 km from Beirut" without the island
-      // holding the corpus. The nearest hit, which is also `relatedArticles[0]`.
-      near: { loc: hits[0].loc, km: hits[0].km },
-      relatedArticles: hits.map((h) => ({
+      // **The app's shape, because the app reads this endpoint** (since
+      // 2026-09-13, `mobile/lib/overlays.ts`): `near` a place-name string it
+      // prints as text, `relatedArticles` slugs it looks up. This emitted
+      // `near: {loc, km}` and story objects, which the app's validator rejects
+      // and its <Text> would crash on — hidden until 2026-09-25 only because
+      // no event had ever been joined (FIRMS_MAP_KEY was missing, so the
+      // payload was always `events: []`). The web's richer card reads the two
+      // additive fields below instead.
+      near: hits[0].loc,
+      relatedArticles: hits.map((h) => h.slug),
+      nearKm: hits[0].km,
+      related: hits.map((h) => ({
         slug: h.slug,
         title: h.title,
         date: h.date,
