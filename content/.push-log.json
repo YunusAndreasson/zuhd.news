@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-09-04T04:26:31.119Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-09-04-twenty-six-days-is-not-a-shipwreck",
-        "title": "Atlantic Crossing Kills Dozens",
-        "category": "politics",
-        "eventCoverage": 237,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-deploying-first-turns-approval-into-removal",
-        "title": "Cybercab Launches Without Approval",
-        "category": "economy",
-        "eventCoverage": 179,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-a-quota-is-an-administrative-document",
-        "title": "Minister Sets Expulsion Quotas",
-        "category": "politics",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-the-only-room-where-fourteen-states-are-one",
-        "title": "China Contests Pacific Forum",
-        "category": "politics",
-        "eventCoverage": 60,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-the-argument-was-made-in-kyiv",
-        "title": "Delhi's Case For Crude",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-a-list-that-cannot-be-unbuilt",
-        "title": "ICE's New Voter List",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-changing-focus-without-moving-anything",
-        "title": "Metalens Switches Retinal Focus",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-04-the-one-process-that-gets-cheaper-in-orbit",
-        "title": "ArcSpace To Weld In Orbit",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-04-twenty-six-days-is-not-a-shipwreck",
-      "title": "Atlantic Crossing Kills Dozens",
-      "category": "politics",
-      "body": "Arguineguín — At least 80 died over 26",
-      "eventCoverage": 237,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "About 80 die on migrant boat crossing to Canary Islands",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-04T08:23:46.115Z",
     "candidateCount": 13,
     "candidates": [
@@ -10322,6 +10243,92 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Navy confirms 8 suicide attempts on USS Lincoln after 286 days at sea",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 7
+    }
+  },
+  {
+    "timestamp": "2026-09-25T08:12:38.162Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-09-25-kazakhstan-nine-servicemen-drown-caspian-exercise",
+        "title": "Caspian Exercise Kills Servicemen",
+        "category": "politics",
+        "eventCoverage": 291,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-argentina-poverty-rises-milei-election",
+        "title": "Argentina Poverty Jumps",
+        "category": "economy",
+        "eventCoverage": 212,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-costa-rica-fires-foreign-minister-trump-summit",
+        "title": "Costa Rica Fires Foreign Minister",
+        "category": "politics",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-stubb-musk-starlink-ukraine-russian-territory",
+        "title": "Stubb Pleads With Musk",
+        "category": "tech",
+        "eventCoverage": 44,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-imran-khan-son-adiala-jail-pti-protest",
+        "title": "Khan's Son Warns Supporters",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-us-south-africa-visa-white-genocide-claim",
+        "title": "US Visa Curbs Target Pretoria",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-us-iran-civilian-toll-precision-strike-missile",
+        "title": "Minab School Strike Toll",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-ondo-ai-civil-service-payroll-pensions",
+        "title": "Ondo Automates Civil Service Payroll",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-25-callisto-reusable-rocket-hop-test-2027",
+        "title": "Callisto Delayed to 2027",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-25-kazakhstan-nine-servicemen-drown-caspian-exercise",
+      "title": "Caspian Exercise Kills Servicemen",
+      "category": "politics",
+      "body": "14 Kazakh servicemen drowned during a Caspian naval",
+      "eventCoverage": 291,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "14 Kazakh servicemen drown during Caspian Sea naval exercise",
     "response": {
       "pushed": 1,
       "skipped": 0,
