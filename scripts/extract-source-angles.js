@@ -261,8 +261,24 @@ if (tasks.length === 0) {
   process.exit(0)
 }
 
-console.log(`  · source-angles: fetching ${tasks.length} URL(s) (concurrency ${FETCH_CONCURRENCY})`)
-const texts = await pool(tasks, FETCH_CONCURRENCY, (t) => fetchSourceText(t.url))
+// The writer's own source text first. Every source it cited arrived with a
+// `body` in /tmp/zuhd-selection.json; re-fetching the page instead failed on
+// 27-44% of URLs every cycle (paywalls, bot walls — dawn.com, ft.com,
+// nytimes.com) and cost ~70s. A page fetch is now the fallback for a source
+// the selection does not hold, e.g. one the editor added.
+const heldBodies = new Map()
+try {
+  for (const entry of JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf8'))) {
+    for (const src of entry.sources || []) {
+      if (src?.url && typeof src.body === 'string' && src.body.length >= 500) heldBodies.set(src.url, src.body.slice(0, 3500))
+    }
+  }
+} catch { /* no selection on disk (manual run) — every source is fetched */ }
+const toFetch = tasks.filter((t) => !heldBodies.has(t.url))
+console.log(`  · source-angles: ${tasks.length - toFetch.length}/${tasks.length} from held source text, fetching ${toFetch.length} (concurrency ${FETCH_CONCURRENCY})`)
+const fetchedTexts = await pool(toFetch, FETCH_CONCURRENCY, (t) => fetchSourceText(t.url))
+const fetchedByTask = new Map(toFetch.map((t, i) => [t, fetchedTexts[i]]))
+const texts = tasks.map((t) => heldBodies.get(t.url) ?? fetchedByTask.get(t) ?? null)
 
 // Pass 2: build Haiku batch from successful fetches only.
 /** @type {Array<{key: number, name: string, articleTitle: string, text: string, fileIdx: number, sourceIdx: number}>} */
@@ -283,7 +299,7 @@ for (let i = 0; i < tasks.length; i++) {
 }
 
 const fetchSuccessPct = tasks.length > 0 ? Math.round((haikuItems.length / tasks.length) * 100) : 0
-console.log(`  · source-angles: ${haikuItems.length}/${tasks.length} fetched (${fetchSuccessPct}%)`)
+console.log(`  · source-angles: ${haikuItems.length}/${tasks.length} with text (${fetchSuccessPct}%)`)
 
 // Per-domain failure tally — ~25% of URLs fail consistently, and without this
 // line there is no way to attribute which outlets block/paywall us.

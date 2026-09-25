@@ -1142,9 +1142,6 @@ if [ "$START_HOUR" = "22" ]; then
       git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
       # Install any new build deps the pull may have added (fast no-op when unchanged).
       npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
-    # Install any new build deps the pull may have added (fast no-op when
-    # unchanged) so the next build.js doesn't crash on a missing module.
-    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
       git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     fi
   else
