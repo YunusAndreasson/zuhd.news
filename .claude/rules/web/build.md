@@ -6,6 +6,7 @@ paths:
   - "scripts/lib/site-chrome.js"
   - "scripts/lib/html.js"
   - "scripts/lib/island-bundle.js"
+  - "scripts/lib/published-at.js"
   - "public/island-loader.js"
   - "knip.jsonc"
   - "tsconfig.node.json"
@@ -36,6 +37,21 @@ site. `scripts/build/*` are the page builders it calls.
 - `headCommonDark` exists because `theme-color` is a claim about the page:
   `body.map-page` / `body.doc-page` commit to dark whatever the reader prefers,
   so they get an unconditional `#080a0d` rather than the light/dark pair.
+
+## An article's three times
+
+- **`eventAt`** — when it happened, the frontmatter date (the source's
+  pubDate). The web orders by it.
+- **`addedAt`** — the file's mtime at build. A published contract field, and
+  the least reliable of the three: the box's `git pull --rebase` rewrites every
+  file a replayed commit touches, so a cycle whose push failed reads as
+  published at the next cycle's rebase, and a fresh checkout reads as
+  published all at once.
+- **`publishedAt`** — when zuhd published it: the author time of the commit
+  that added it (`lib/published-at.js`), which a rebase keeps, with `addedAt`
+  for this cycle's articles, built before their commit. The app orders its
+  river and dates every card by it (2026-09-26). Read it, not `addedAt`, for
+  "when did this come out".
 
 ## Caches
 

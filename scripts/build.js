@@ -25,6 +25,7 @@ import {
 import { escHtml, escXml } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
+import { publishedTimes } from './lib/published-at.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -734,12 +735,16 @@ const buildCutoffDate = new Date(Date.now() - BUILD_WINDOW_DAYS * 24 * 60 * 60 *
 // Per-article "Built:" lines are ~800 lines of noise per cycle log — opt in
 // with ZUHD_BUILD_VERBOSE=1 when debugging a specific article's build.
 const BUILD_VERBOSE = process.env.ZUHD_BUILD_VERBOSE === '1'
+// When each article was published, stable across the box's rebases
+// (lib/published-at.js); mtime for what the log does not name.
+const addTimes = publishedTimes(ROOT, BUILD_WINDOW_DAYS)
 const articles = readdirSync(CONTENT_DIR)
   .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
   .map(file => {
     const article = buildArticle(file)
     if (BUILD_VERBOSE) console.log(`  Built: ${article.slug}`)
-    return { ...article, addedAt: statSync(join(CONTENT_DIR, file)).mtimeMs }
+    const addedAt = statSync(join(CONTENT_DIR, file)).mtimeMs
+    return { ...article, addedAt, publishedAt: addTimes.get(basename(file, '.md')) ?? addedAt }
   })
 console.log(`  Built: ${articles.length} articles (last ${BUILD_WINDOW_DAYS}d window)`)
 
@@ -818,7 +823,7 @@ const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body, sources, concepts, corrections }) => {
+    articles.map(({ slug, meta, addedAt, publishedAt, body, sources, concepts, corrections }) => {
       const thread = threadLookup.get(slug)
       return {
         slug,
@@ -832,6 +837,10 @@ const apiCategories = Object.fromEntries(
         // how old a story is. Additive, so an older client ignores it and a
         // newer one prefers it. See `eventTime` above for what mtime costs.
         eventAt: eventTime({ meta, addedAt }),
+        // When zuhd published it, which `addedAt` is meant to say and a rebase
+        // on the box can reset (lib/published-at.js). The app orders its river
+        // and dates every card by it (2026-09-26). Additive, like `eventAt`.
+        publishedAt: Math.round(publishedAt),
         // Added here rather than in one endpoint, so `feed.json` and
         // `feed-lite.json` cannot disagree about whether a story was corrected.
         // Spread-conditional: the field is absent on the ~100% of articles that
