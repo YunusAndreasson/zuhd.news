@@ -49,21 +49,59 @@ export function spokenWords(text) {
     .filter(Boolean)
 }
 
+const bigrams = (words) => words.slice(1).map((w, i) => `${words[i]} ${w}`)
+
 /**
- * Share of the script's words that a transcript of the audio contains.
+ * The sentences of `script` that a transcript of its audio does not contain.
  *
- * A bag-of-words test, not an alignment: it exists to catch the failure
- * Gemini 3.8 Flash-Lite showed on 2026-09-26 — the whole lead story skipped,
- * 119 of 303 words spoken, no error. A faithful read measures ~0.94 (the
- * misses are numbers a transcriber writes as digits); that skip measured 0.39.
+ * Checked per sentence, on word pairs, because the failure is a skipped
+ * story: on 2026-09-26 Gemini 3.8 Flash dropped a whole three-sentence
+ * story from a 587-word request and returned success. A bag-of-words score
+ * for the request still read 91%; the skipped sentences' word pairs scored
+ * 0.00, 0.08 and 0.12 against the audio, while every sentence it did say
+ * scored 0.85 or more (median 1.00). Sentences under five word pairs are
+ * too short to judge.
  * @param {string} script
  * @param {string} transcript
+ * @param {number} [min]
+ * @returns {string[]}
  */
-export function coverage(script, transcript) {
-  const want = spokenWords(script)
-  if (want.length === 0) return 1
-  const heard = new Set(spokenWords(transcript))
-  return want.filter((w) => heard.has(w)).length / want.length
+export function unheardSentences(script, transcript, min = 0.5) {
+  const heard = new Set(bigrams(spokenWords(transcript)))
+  return String(script)
+    .replace(PAUSE_TAG, ' ')
+    .split(/(?<=[.!?…])\s+/)
+    .map((s) => s.trim())
+    .filter((sentence) => {
+      const pairs = bigrams(spokenWords(sentence))
+      return pairs.length >= 5 && pairs.filter((b) => heard.has(b)).length / pairs.length < min
+    })
+}
+
+/**
+ * A section in synthesis-sized pieces: split at `<long pause>` (the story
+ * boundaries) and regrouped up to `maxChars`, so a request carries one or
+ * two stories. The skip above happened in the longest request of the run;
+ * a short request is also a cheap retry. The caller puts a pause-length
+ * silence between the pieces.
+ * @param {string} section
+ * @param {number} [maxChars]
+ * @returns {string[]}
+ */
+export function splitForSynthesis(section, maxChars = 1200) {
+  const pieces = []
+  let current = ''
+  for (const story of section.split(/\s*<long pause>\s*/).map((s) => s.trim()).filter(Boolean)) {
+    const next = current ? `${current}\n<long pause>\n${story}` : story
+    if (current && next.length > maxChars) {
+      pieces.push(current)
+      current = story
+    } else {
+      current = next
+    }
+  }
+  if (current) pieces.push(current)
+  return pieces
 }
 
 const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')

@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/briefing-script.test.js
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { coverage, parseBriefingScript, scriptToSsml, spokenWords } from './briefing-script.js'
+import { parseBriefingScript, scriptToSsml, splitForSynthesis, spokenWords, unheardSentences } from './briefing-script.js'
 
 const SCRIPT = `This is your briefing for the twenty-sixth of September, twenty twenty-six.
 <long pause>
@@ -46,14 +46,37 @@ test('an SSML reply from the old prompt still becomes a script', () => {
   assert.ok(sections.every(s => !/<(?!(short|long) pause>)/.test(s)))
 })
 
-test('coverage separates a faithful read from the 2026-09-26 Flash-Lite skip', () => {
-  const { sections } = parseBriefingScript(SCRIPT)
-  const whole = sections.join(' ')
-  // A faithful read that writes one number as digits still clears the bar.
-  const faithful = whole.replace('five people', '5 people').replace(/<[^>]+>/g, ' ')
-  assert.ok(coverage(whole, faithful) >= 0.85)
-  // The skip: date and lead gone, only the politics section spoken.
-  assert.ok(coverage(whole, sections[1].replace(/<[^>]+>/g, ' ')) < 0.85)
+// The 2026-09-26 17:23 run: Gemini 3.8 Flash skipped the US Army / Cuba
+// story in the middle of the politics section and returned success.
+const SKIPPED = `Saudi air defences brought down two Houthi drones aimed at Riyadh, along with two ballistic missiles fired at Khamis Mushait, home to a major air base.
+<long pause>
+An internal US Army message asks whether the Army Reserve can supply Southern Command with military police, medics and support units within a hundred and twenty days. These aren't strike forces — they're the units an army needs to hold territory and run it — and US officials link the request to planning on Cuba, though the message never names the island.
+<long pause>
+Russian attacks on Kyiv killed five people, one of them a child, and injured forty-three, as a daytime drone struck an office building in the Solomianskyi district.`
+const HEARD = `Saudi air defenses brought down two Houthi drones aimed at Riyadh, along with two ballistic missiles fired at Khamis Mushait, home to a major air base. Russian attacks on Kyiv killed five people, one of them a child, and injured forty-three, as a daytime drone struck an office building in the Solomians Key district.`
+
+test('a skipped story is found sentence by sentence', () => {
+  const missing = unheardSentences(SKIPPED, HEARD)
+  assert.equal(missing.length, 2)
+  assert.match(missing[0], /^An internal US Army message/)
+  assert.match(missing[1], /^These aren't strike forces/)
+})
+
+test('a faithful read passes despite spelling and digits', () => {
+  // "defenses" for "defences", "43" for "forty-three", a mis-split place name.
+  const faithful = SKIPPED.replace(/<[^>]+>/g, ' ').replace('defences', 'defenses').replace('forty-three', '43')
+  assert.deepEqual(unheardSentences(SKIPPED, faithful), [])
+})
+
+test('sections split at story boundaries into requests of one or two stories', () => {
+  const story = (n) => `Story ${n} ${'word '.repeat(90)}ends.`
+  const section = `In politics. <short pause>\n${story(1)}\n<long pause>\n${story(2)}\n<long pause>\n${story(3)}`
+  const pieces = splitForSynthesis(section, 1200)
+  assert.equal(pieces.length, 2)
+  assert.match(pieces[0], /^In politics\. <short pause>\nStory 1 .*\n<long pause>\nStory 2 /s)
+  assert.match(pieces[1], /^Story 3 /)
+  assert.ok(pieces.every((p) => p.length <= 1200))
+  assert.deepEqual(splitForSynthesis('One short story.'), ['One short story.'])
 })
 
 test('pause tags are markup, not words', () => {

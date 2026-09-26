@@ -12,7 +12,7 @@ import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
 import { argAt } from './lib/argv.js'
-import { coverage, parseBriefingScript, scriptToSsml } from './lib/briefing-script.js'
+import { parseBriefingScript, scriptToSsml, splitForSynthesis, unheardSentences } from './lib/briefing-script.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
@@ -223,15 +223,16 @@ async function synthesizeChirp(ssml, label) {
   }
 }
 
-// Gemini TTS, checked. A model can skip text and still return success —
-// Gemini 3.8 Flash-Lite dropped a whole lead story in testing (2026-09-26) —
-// so each section is transcribed and compared with its script before it is
-// used. Two attempts; a section that fails both is read by Chirp instead, so
-// the day's briefing never loses a story to a silent skip.
-const MIN_COVERAGE = 0.85
-// The first run (2026-09-26, three days after launch) drew `503 high demand`
-// on 2 of 5 sections. An overload gets a third attempt and a wait before
-// each retry; a skipped read or any other error gets two attempts.
+// Gemini TTS, checked. A model can skip text and still return success: in
+// testing on 2026-09-26, Gemini 3.8 Flash-Lite dropped the lead story and
+// Gemini 3.8 Flash dropped a whole story from the middle of a 587-word
+// request. So each section goes out in pieces of one or two stories, each
+// piece is transcribed, and every sentence must be heard (unheardSentences)
+// before its audio is used. A piece that fails is retried, then read by
+// Chirp, so a skip can cost a voice change but never a story.
+// The first run (three days after launch) also drew `503 high demand` on
+// 2 of 5 requests: an overload gets a third attempt and a wait before each
+// retry.
 async function synthesizeGeminiChecked(text, label) {
   let overloaded = false
   for (let attempt = 1; attempt <= (overloaded ? 3 : 2); attempt++) {
@@ -239,14 +240,13 @@ async function synthesizeGeminiChecked(text, label) {
     try {
       const t0 = Date.now()
       const { wav, audioTokens } = await synthesizeGemini(text)
-      const heard = await transcribeGemini(wav)
-      const cov = coverage(text, heard)
+      const missing = unheardSentences(text, await transcribeGemini(wav))
       const secs = ((Date.now() - t0) / 1000).toFixed(0)
-      if (cov >= MIN_COVERAGE) {
-        console.log(`  ✓ ${label}: Gemini, ${audioTokens} audio tokens, ${(cov * 100).toFixed(0)}% of the script heard, ${secs}s`)
+      if (missing.length === 0) {
+        console.log(`  ✓ ${label}: Gemini, ${audioTokens} audio tokens, every sentence heard, ${secs}s`)
         return { wav, audioTokens }
       }
-      console.error(`  ⚠ ${label}: Gemini attempt ${attempt} spoke ${(cov * 100).toFixed(0)}% of the script`)
+      console.error(`  ⚠ ${label}: Gemini attempt ${attempt} skipped ${missing.length} sentence(s): "${missing[0].slice(0, 80)}…"`)
     } catch (err) {
       overloaded = /HTTP (429|503)/.test(err.message)
       console.error(`  ⚠ ${label}: Gemini attempt ${attempt} failed (${err.message.split('\n')[0]})`)
@@ -258,34 +258,9 @@ async function synthesizeGeminiChecked(text, label) {
 const useGemini = Boolean(geminiKey())
 if (!useGemini) console.warn('⚠ No Gemini key (GEMINI or GEMINI_API_KEY) — reading the whole briefing with Chirp 3 HD')
 
-// The last section ends the briefing, so it carries the sign-off.
-const sectionAudio = new Array(scriptSections.length)
-let geminiAudioTokens = 0
-const engines = new Set()
-await runWithConcurrency(scriptSections.map((text, i) => ({ text, i })), 3, async ({ text, i }) => {
-  const label = `section ${i + 1}/${scriptSections.length}`
-  if (useGemini) {
-    const got = await synthesizeGeminiChecked(text, label)
-    if (got) {
-      geminiAudioTokens += got.audioTokens
-      engines.add('gemini')
-      sectionAudio[i] = [got.wav]
-      return
-    }
-    console.error(`  ↳ ${label}: reading it with Chirp 3 HD instead`)
-  }
-  const pieces = []
-  const ssmlChunks = scriptToSsml(text)
-  for (let ci = 0; ci < ssmlChunks.length; ci++) {
-    const audio = await synthesizeChirp(ssmlChunks[ci], `${label}, chunk ${ci + 1}/${ssmlChunks.length}`)
-    if (audio) pieces.push(audio)
-  }
-  if (pieces.length) engines.add('chirp')
-  sectionAudio[i] = pieces
-})
-
 // Two seconds of silence after the last words, so the voice has finished
-// before the outro crossfade begins (Chirp got this from a trailing <break>).
+// before the outro crossfade begins (Chirp got this from a trailing <break>);
+// and a <long pause>'s worth between the pieces of a section.
 function silenceWav(seconds, rate = 24000) {
   const data = Buffer.alloc(Math.round(seconds * rate) * 2)
   const h = Buffer.alloc(44)
@@ -295,6 +270,40 @@ function silenceWav(seconds, rate = 24000) {
   h.write('data', 36); h.writeUInt32LE(data.length, 40)
   return Buffer.concat([h, data])
 }
+const STORY_GAP = silenceWav(0.8)
+
+// Every piece of every section, synthesised 3 at a time and put back in order.
+// The last section ends the briefing, so it carries the sign-off.
+const jobs = scriptSections.flatMap((section, si) =>
+  splitForSynthesis(section).map((text, pi, all) => ({ text, si, pi, label: `section ${si + 1}/${scriptSections.length} piece ${pi + 1}/${all.length}` })))
+const pieceAudio = new Map() // "si:pi" -> WAV buffers
+let geminiAudioTokens = 0
+const engines = new Set()
+console.log(`Synthesizing ${jobs.length} pieces across ${scriptSections.length} sections`)
+await runWithConcurrency(jobs, 3, async ({ text, si, pi, label }) => {
+  if (useGemini) {
+    const got = await synthesizeGeminiChecked(text, label)
+    if (got) {
+      geminiAudioTokens += got.audioTokens
+      engines.add('gemini')
+      pieceAudio.set(`${si}:${pi}`, [got.wav])
+      return
+    }
+    console.error(`  ↳ ${label}: reading it with Chirp 3 HD instead`)
+  }
+  const wavs = []
+  const ssmlChunks = scriptToSsml(text)
+  for (let ci = 0; ci < ssmlChunks.length; ci++) {
+    const audio = await synthesizeChirp(ssmlChunks[ci], `${label}, chunk ${ci + 1}/${ssmlChunks.length}`)
+    if (audio) wavs.push(audio)
+  }
+  if (wavs.length) engines.add('chirp')
+  pieceAudio.set(`${si}:${pi}`, wavs)
+})
+const sectionAudio = scriptSections.map((_, si) => {
+  const pieces = jobs.filter((j) => j.si === si).map((j) => pieceAudio.get(`${si}:${j.pi}`) || []).filter((w) => w.length)
+  return pieces.flatMap((wavs, k) => (k === 0 ? wavs : [STORY_GAP, ...wavs]))
+})
 
 // Build ordered list of audio parts: music files + synthesized TTS chunks
 const audioParts = [] // file paths in final playback order
