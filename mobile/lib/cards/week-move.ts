@@ -1,6 +1,12 @@
 import type { Indicator } from '@shared/types';
 import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
-import { deltaFrom, formatMagnitudePct, windowChange, windowPointChange } from './format';
+import {
+  deltaFrom,
+  formatMagnitudePct,
+  isMonthlyRate,
+  windowChange,
+  windowPointChange,
+} from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
 import type { CardDelta } from './types';
@@ -27,7 +33,7 @@ import type { CardDelta } from './types';
  * because that is what the chart's axis prints. A day label is read as a day
  * of the year, and the year is counted back from the card's `asOf` each time
  * the months wrap. A month label means a monthly series, which has no seven-day
- * move. It returns null, and the reading stays in the instruments list.
+ * move. It returns null, and the reading stays in the menu's lists.
  */
 
 export const WEEK_DAYS = 7;
@@ -173,11 +179,15 @@ export function exchangeMove(
  * indicator printed a thirty-observation chip, so Brent could read up on the card
  * and down in the sheet. The quantity is the published series as it is: this
  * sheet prints the rate, not the currency, so there is no inversion here.
- * A prediction contract moves in points, never as a percentage of a percentage.
+ * A prediction contract moves in points, never as a percentage of a percentage,
+ * and so does a published rate, as its card prints it (`isMonthlyRate`).
  */
 export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta | undefined {
   if (indicator.source === 'polymarket') {
     return deltaFrom(windowPointChange(indicator, 1), { unit: 'points' });
+  }
+  if (isMonthlyRate(indicator)) {
+    return deltaFrom(windowPointChange(indicator, 1), { unit: 'rate' });
   }
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);

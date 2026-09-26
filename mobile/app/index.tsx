@@ -46,8 +46,7 @@ import {
 } from '../components/globe/MiniGlobe';
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
-import { MarketBrowserSheet } from '../components/MarketBrowserSheet';
-import { MenuSheet } from '../components/MenuSheet';
+import { type MenuHazards, MenuSheet } from '../components/MenuSheet';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
@@ -98,8 +97,14 @@ import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '..
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
+import { globeGdacsAlerts } from '../lib/gdacs';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
+import {
+  buildInstrumentCatalog,
+  type CatalogGroup,
+  type CatalogRow,
+} from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
@@ -193,7 +198,6 @@ export default function HomeScreen() {
   const entitySheetRef = useRef<BottomSheetMethodsRef>(null);
   const cardSheetRef = useRef<BottomSheetMethodsRef>(null);
   const overlaySheetRef = useRef<BottomSheetMethodsRef>(null);
-  const instrumentsSheetRef = useRef<BottomSheetMethodsRef>(null);
   const mapSheetRef = useRef<MapSheetRef>(null);
   const deckRef = useRef<StoryDeckRef>(null);
   /** `handleReturn`, below, for `useArticles` to call inside an arrival. */
@@ -258,7 +262,6 @@ export default function HomeScreen() {
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
-  const [instrumentsOpen, setInstrumentsOpen] = useState(false);
 
   // ---------------------------------------------------------------------
   // The camera
@@ -322,7 +325,7 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   /**
    * Move from one platform sheet to the next — a country from a disaster, a
-   * card from the instruments list — only once the first has gone.
+   * card from the menu — only once the first has gone.
    *
    * These were a `dismiss()` and a `present()` in the same tick, or a second
    * sheet presented over an open one. `@expo/ui` fires a sheet's close
@@ -465,6 +468,43 @@ export default function HomeScreen() {
     [columns, marketSignals, river, exchanges],
   );
 
+  /** Every instrument, in the menu's groups: every published series, the
+   *  ranked pool's own cards where it has them (`lib/instrument-catalog.ts`).
+   *  Built only while the menu is open — it is opened a few times a week, and
+   *  forty-odd extra cards do not belong in every arrival's commit. Closed,
+   *  it keeps what it last showed, so the rows do not vanish from a menu
+   *  still sliding away. */
+  const lastCatalogRef = useRef<CatalogGroup[]>([]);
+  const catalog = useMemo(() => {
+    if (!menuOpen) return lastCatalogRef.current;
+    lastCatalogRef.current = buildInstrumentCatalog({
+      ranked: rankedInstruments,
+      trends,
+      chokepoints,
+      analysis,
+      articles: river,
+      exchanges,
+    });
+    return lastCatalogRef.current;
+  }, [menuOpen, rankedInstruments, trends, chokepoints, analysis, river, exchanges]);
+
+  /** The alerts the globe draws, chosen once for the globe and for the
+   *  menu's list of them, so the list holds exactly the marks. */
+  const globeAlerts = useMemo(() => globeGdacsAlerts(gdacsAlerts), [gdacsAlerts]);
+
+  /** The hazard marks as the globe draws them, for the menu's lists — one
+   *  object, kept stable, or the memoised menu re-renders on every commit. */
+  const menuHazards = useMemo<MenuHazards>(
+    () => ({
+      disasters: globeAlerts,
+      conflict: conflictEvents,
+      famine: famineAreas,
+      genocide: genocideSituations,
+      fires: thermalEvents,
+    }),
+    [globeAlerts, conflictEvents, famineAreas, genocideSituations, thermalEvents],
+  );
+
   const { strip, now } = useMemo(
     () =>
       buildNowSurfaces({
@@ -484,7 +524,7 @@ export default function HomeScreen() {
   const stripSlots = useMemo(() => strip.slice(0, STRIP_SLOTS), [strip]);
   // Each strait's seven-day move, for its label on the globe (`straitMoves`):
   // from the whole strip, not the ten slots, so a strait past the tenth still
-  // reads the number its row in the instruments list does.
+  // reads the number its row in the menu's lists does.
   const straitMoves = useMemo(() => {
     const moves: Record<string, CardDelta> = {};
     for (const item of strip) {
@@ -827,22 +867,27 @@ export default function HomeScreen() {
     [openCard, openLink],
   );
 
-  const handleInstrumentsPress = useCallback(() => {
-    setInstrumentsOpen(true);
-    instrumentsSheetRef.current?.present();
-  }, []);
-
-  const handleInstrumentSelect = useCallback(
-    (card: SwipeCard) => {
-      // A row is its gauge in a list: the same flight and the same ring, when
-      // the instrument has a place and a week to show.
+  /** A row in the menu's lists is its gauge in a list: the same flight and
+   *  the same ring, when the instrument has a place and a week to show. It
+   *  was the markets browser's row until 2026-09-26. */
+  const handleMenuRowSelect = useCallback(
+    (row: CatalogRow) => {
+      const { card, chokepoint, exchange } = row;
+      // A market signal stands in for its exchange's row, under the signal's
+      // id; when it has no slot, its exchange's mark is still where it is.
       const gauge =
-        mapMarkets.find((item) => item.id === card.id) ??
-        strip.find((item) => item.id === card.id) ??
+        mapMarkets.find((item) => item.id === row.id) ??
+        strip.find((item) => item.id === row.id) ??
+        (exchange ? mapMarkets.find((item) => item.id === `mkt:${exchange.id}`) : undefined) ??
         null;
       if (gauge) flyTo(gauge.coords);
+      else if (chokepoint) flyTo([chokepoint.lat, chokepoint.lng]);
       setSelectedGauge(gauge);
-      handOffSheet(instrumentsSheetRef, () => openCard(card));
+      // A strait with nothing to chart has no card; its row still finds it
+      // on the globe, and says its name, as a tap on its mark does.
+      handOffSheet(menuSheetRef, () =>
+        card ? openCard(card) : toastRef.current?.show(chokepoint?.name ?? row.short),
+      );
     },
     [flyTo, handOffSheet, openCard, strip, mapMarkets],
   );
@@ -851,6 +896,74 @@ export default function HomeScreen() {
     setActiveOverlay(selection);
     overlaySheetRef.current?.present();
   }, []);
+
+  /**
+   * Open a hazard mark's sheet — a genocide determination, a famine area, a
+   * thermal anomaly, a disaster, a conflict event — from the tap the globe
+   * produced on it, or from a row in the menu's `world hazards` that carries
+   * the same tap. True when the tap was one of these.
+   */
+  const openMark = useCallback(
+    (result: TapResult): boolean => {
+      if (result.genocideId) {
+        const situation = genocideRef.current.find((g) => g.id === result.genocideId);
+        if (situation) openOverlay({ kind: 'genocide', situation });
+        return true;
+      }
+      if (result.famineAreaId) {
+        const area = famineAreasRef.current.find((a) => a.id === result.famineAreaId);
+        if (area) openOverlay({ kind: 'famine', area });
+        return true;
+      }
+      if (result.thermalEventId) {
+        const event = thermalEventsRef.current.find((e) => e.id === result.thermalEventId);
+        if (event) openOverlay({ kind: 'thermal', event });
+        return true;
+      }
+      if (result.gdacsEventId) {
+        const alert = gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId);
+        if (alert) {
+          setActiveAlert(alert);
+          disasterSheetRef.current?.present();
+        }
+        return true;
+      }
+      if (result.conflictEventId) {
+        const evt = conflictEventsRef.current.find((e) => e.id === result.conflictEventId);
+        if (evt) {
+          setActiveConflict(evt);
+          conflictSheetRef.current?.present();
+        }
+        return true;
+      }
+      return false;
+    },
+    [openOverlay],
+  );
+
+  /** Where a hazard mark is, for the flight a menu row makes to it. */
+  const markCoords = useCallback((result: TapResult): LatLng | null => {
+    const at = (p: { lat: number; lng: number } | undefined): LatLng | null =>
+      p && Number.isFinite(p.lat) && Number.isFinite(p.lng) ? [p.lat, p.lng] : null;
+    if (result.genocideId) return at(genocideRef.current.find((g) => g.id === result.genocideId));
+    if (result.famineAreaId)
+      return at(famineAreasRef.current.find((a) => a.id === result.famineAreaId));
+    if (result.thermalEventId)
+      return at(thermalEventsRef.current.find((e) => e.id === result.thermalEventId));
+    if (result.gdacsEventId)
+      return at(gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId));
+    if (result.conflictEventId)
+      return at(conflictEventsRef.current.find((e) => e.id === result.conflictEventId));
+    return null;
+  }, []);
+
+  const handleMenuHazardSelect = useCallback(
+    (result: TapResult) => {
+      flyTo(markCoords(result));
+      handOffSheet(menuSheetRef, () => openMark(result));
+    },
+    [flyTo, handOffSheet, markCoords, openMark],
+  );
 
   // ---------------------------------------------------------------------
   // Globe taps
@@ -872,37 +985,7 @@ export default function HomeScreen() {
         disambiguationSheetRef.current?.present();
         return;
       }
-      if (result.genocideId) {
-        const situation = genocideRef.current.find((g) => g.id === result.genocideId);
-        if (situation) openOverlay({ kind: 'genocide', situation });
-        return;
-      }
-      if (result.famineAreaId) {
-        const area = famineAreasRef.current.find((a) => a.id === result.famineAreaId);
-        if (area) openOverlay({ kind: 'famine', area });
-        return;
-      }
-      if (result.thermalEventId) {
-        const event = thermalEventsRef.current.find((e) => e.id === result.thermalEventId);
-        if (event) openOverlay({ kind: 'thermal', event });
-        return;
-      }
-      if (result.gdacsEventId) {
-        const alert = gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId);
-        if (alert) {
-          setActiveAlert(alert);
-          disasterSheetRef.current?.present();
-        }
-        return;
-      }
-      if (result.conflictEventId) {
-        const evt = conflictEventsRef.current.find((e) => e.id === result.conflictEventId);
-        if (evt) {
-          setActiveConflict(evt);
-          conflictSheetRef.current?.present();
-        }
-        return;
-      }
+      if (openMark(result)) return;
       if (result.marketSignalId) {
         const card = rankedRef.current.find((c) => c.id === result.marketSignalId);
         if (card) {
@@ -959,7 +1042,7 @@ export default function HomeScreen() {
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
-    [focusStory, handleSelectArticle, openCard, openOverlay],
+    [focusStory, handleSelectArticle, openCard, openMark],
   );
 
   // ---------------------------------------------------------------------
@@ -984,14 +1067,6 @@ export default function HomeScreen() {
     setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
-  // `markets` sat in the bar beside the menu until 2026-09-21; it is the
-  // menu's first row now, and opens the same browser the strip's `all →` does.
-  const handleMenuMarketsPress = useCallback(() => {
-    handOffSheet(menuSheetRef, () => {
-      setInstrumentsOpen(true);
-      instrumentsSheetRef.current?.present();
-    });
-  }, [handOffSheet]);
 
   const handleBriefingPress = useCallback(() => {
     markHintDone('masthead');
@@ -1092,6 +1167,11 @@ export default function HomeScreen() {
     },
     [],
   );
+  /** A country chosen from one of the menu's rankings. */
+  const handleMenuCountrySelect = useCallback(
+    (countryName: string) => handOffSheet(menuSheetRef, () => openCountry(countryName)),
+    [handOffSheet, openCountry],
+  );
 
   const handleEntityPress = useCallback(
     (entity: Entity) => {
@@ -1105,7 +1185,6 @@ export default function HomeScreen() {
   const sheetOpen =
     menuOpen ||
     primerOpen ||
-    instrumentsOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
     activeAlert !== null ||
@@ -1305,10 +1384,6 @@ export default function HomeScreen() {
   );
   const handleOverlayDismiss = useCallback(() => {
     setActiveOverlay(null);
-    runSheetHandOff();
-  }, [runSheetHandOff]);
-  const handleInstrumentsDismiss = useCallback(() => {
-    setInstrumentsOpen(false);
     runSheetHandOff();
   }, [runSheetHandOff]);
   const handleSourcesDismiss = useCallback(() => {
@@ -1802,7 +1877,7 @@ export default function HomeScreen() {
           straitMoves={straitMoves}
           landingAt={landingAt}
           selectedAt={selectedGauge?.coords ?? null}
-          gdacsAlerts={gdacsAlerts}
+          gdacsAlerts={globeAlerts}
           conflictEvents={conflictEvents}
           marketMarks={marketMarks}
           marketViewport={marketViewport}
@@ -1866,7 +1941,7 @@ export default function HomeScreen() {
           onMenuPress={handleMenuPress}
           items={stripSlots}
           onSelect={handleStripPress}
-          onAll={handleInstrumentsPress}
+          onAll={handleMenuPress}
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
           linkedColor={linkedHue}
@@ -1936,7 +2011,11 @@ export default function HomeScreen() {
         onDismiss={handleMenuDismiss}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
-        onMarketsPress={handleMenuMarketsPress}
+        catalog={catalog}
+        hazards={menuHazards}
+        onSelectRow={handleMenuRowSelect}
+        onSelectHazard={handleMenuHazardSelect}
+        onSelectCountry={handleMenuCountrySelect}
         onToast={handleMenuToast}
       />
 
@@ -1947,15 +2026,6 @@ export default function HomeScreen() {
         peekHeight={layout.peek}
         onDismiss={handleCardDismiss}
         onStoryPress={handleCardStoryPress}
-      />
-
-      <MarketBrowserSheet
-        sheetRef={instrumentsSheetRef}
-        bottomInset={insets.bottom}
-        exchanges={exchanges}
-        instruments={rankedInstruments.filter((card) => !card.id.startsWith('mkt:'))}
-        onSelect={handleInstrumentSelect}
-        onDismiss={handleInstrumentsDismiss}
       />
 
       <CountrySheet

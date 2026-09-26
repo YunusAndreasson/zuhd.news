@@ -35,7 +35,7 @@ interface SegmentedControlProps<T extends string> {
 
 /**
  * One choice among a few, all visible — the settings' text size, font and
- * appearance, and the markets browser's filters.
+ * appearance, and the stock markets list's filter.
  *
  * The settings used to print their options as bare words, `small default
  * large`, told apart by a step of grey: they read as a sentence rather than a

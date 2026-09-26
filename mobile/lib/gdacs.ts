@@ -57,3 +57,50 @@ export function gdacsDetailFor(
 export function gdacsGlyphScale(level: GdacsAlert['alertlevel']): number {
   return level === 'Red' ? 1 : level === 'Orange' ? 0.9 : 0.8;
 }
+
+/**
+ * The alerts the globe draws, in the order it paints them: Greens
+ * round-robined across event types and capped at `GREEN_CAP`, then every
+ * Orange, then every Red, so consequential marks paint over ambient ones.
+ *
+ * Round-robin surfaces visual diversity — floods, droughts, fires, quakes —
+ * instead of letting the most frequent type monopolise (EQ and WF typically
+ * own ~80% of the raw count). The cap is generous, since perf is not the
+ * constraint: a feed of ~100 Greens fits; it only binds on a pathological
+ * feed. Shared with the menu's `world hazards` list, which has to hold exactly
+ * the marks the globe draws — it is their accessible path.
+ */
+const GREEN_CAP = 100;
+const GDACS_TYPES: GdacsAlert['eventtype'][] = ['EQ', 'TC', 'FL', 'VO', 'DR', 'WF'];
+
+export function globeGdacsAlerts(alerts: readonly GdacsAlert[]): GdacsAlert[] {
+  const byType: Record<string, GdacsAlert[]> = {};
+  for (const t of GDACS_TYPES) byType[t] = [];
+  for (const a of alerts) {
+    if (a.alertlevel === 'Green') byType[a.eventtype]?.push(a);
+  }
+  for (const t of GDACS_TYPES) {
+    byType[t]?.sort((a, b) => Date.parse(b.modifiedDate) - Date.parse(a.modifiedDate));
+  }
+  // Take the most recent of each type, then the second of each, and so on,
+  // until the cap or every list is exhausted.
+  const greens: GdacsAlert[] = [];
+  let round = 0;
+  let progressed = true;
+  while (greens.length < GREEN_CAP && progressed) {
+    progressed = false;
+    for (const t of GDACS_TYPES) {
+      const list = byType[t];
+      if (!list || round >= list.length) continue;
+      const item = list[round];
+      if (!item) continue;
+      greens.push(item);
+      progressed = true;
+      if (greens.length >= GREEN_CAP) break;
+    }
+    round++;
+  }
+  const oranges = alerts.filter((a) => a.alertlevel === 'Orange');
+  const reds = alerts.filter((a) => a.alertlevel === 'Red');
+  return [...greens, ...oranges, ...reds];
+}

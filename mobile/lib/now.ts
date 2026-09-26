@@ -54,7 +54,7 @@ export type LatLng = readonly [number, number];
 /** The strip shows the ten largest moves (2026-09-23, the user's request).
  *  Twenty-odd slots made the row a ticker to be scrolled through rather than
  *  a glance; the rest are one tap away behind `all →`. `strip` keeps every
- *  mover, because a gauge opened from the instruments list or a strait on the
+ *  mover, because a gauge opened from the menu's lists or a strait on the
  *  globe still flies and rings its place. */
 export const STRIP_SLOTS = 10;
 
@@ -126,7 +126,7 @@ const parseTime = (iso: string | undefined): number => {
  * Brent is North Sea crude and gold is priced in London, but the gold-to-silver
  * ratio is not in London and the nisab is not anywhere — so the honest answer
  * for most of the deck is `null`, and a card with no place simply has no mark.
- * That is what the instruments sheet is for.
+ * That is what the menu's lists are for.
  */
 function locateCard(
   card: SwipeCard,
@@ -211,7 +211,12 @@ function stockMarketOf(
   }
   if (card.id.startsWith('market-signal:')) {
     const id = card.id.slice('market-signal:'.length);
-    return stockMarketPlace(signals.find((s) => s.id === id)?.country);
+    // The exchange first, by id: a signal's `country` is additive, and a
+    // signal without one named itself by its index while its exchange's quote
+    // said `Turkey stocks`, so the two stopped being one subject and took two
+    // slots — the duplicate removed on 2026-09-23.
+    const exchange = exchanges.find((e) => `mkt:${e.id}` === id);
+    return stockMarketPlace(exchange?.iso2 ?? signals.find((s) => s.id === id)?.country);
   }
   return null;
 }
@@ -264,7 +269,7 @@ function hazardItems(alerts: GdacsAlert[], now: number): NowItem[] {
 }
 
 /**
- * The line under an instrument's title in the instruments sheet's rows.
+ * The line under an instrument's title in the menu's lists.
  *
  * Strait cards are the builders' only kickerless cards, because their title is
  * the place; a row reading "current · instrument" said nothing about a strait.
@@ -293,11 +298,11 @@ export function buildNowSurfaces({
   // subject, and a prediction market's subject is its question — every
   // contract shares the kicker "what traders think", so a slot holding one
   // printed a level and a move under a label that named nothing. A scheduled
-  // date has no move at all. Both stay in the instruments sheet, and a
+  // date has no move at all. Both stay in the menu's lists, and a
   // contract also rides the story it settles as an odds chip.
   //
   // A reading with no delta has no up or down to glance at, which is the one
-  // thing the strip is for; it stays in the instruments sheet. Nor does a
+  // thing the strip is for; it stays in the menu's lists. Nor does a
   // reading with no seven-day move — a monthly series, a stalled feed.
   //
   // Largest seven-day move first. It sorted each card's own delta once, and

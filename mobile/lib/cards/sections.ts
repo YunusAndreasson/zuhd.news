@@ -31,7 +31,8 @@ function isScheduledWithAnalysis(card: Card): card is DeckCard {
   return card.kind === 'scheduled' && Boolean(card.why?.trim()) && Boolean(card.date);
 }
 
-const admitted = (card: Card): card is DeckCard =>
+/** The deck's gate, and the menu's lists' (`lib/instrument-catalog.ts`). */
+export const admitted = (card: Card): card is DeckCard =>
   hasGraphAndAnalysis(card) || isScheduledWithAnalysis(card);
 
 /**
@@ -39,7 +40,7 @@ const admitted = (card: Card): card is DeckCard =>
  *
  * The rail used to split these across three desks, so each column was ranked
  * against itself and a strait could only ever be compared with other straits.
- * There is one screen now, with one strip and one instruments list, so the
+ * There is one screen now, with one strip and one ranked pool, so the
  * comparison that matters is across kinds: a chokepoint that has closed
  * against an index that fell against a contract that moved sixty points.
  * `prepareSwipeCards` already answers exactly that, lexicographically, and

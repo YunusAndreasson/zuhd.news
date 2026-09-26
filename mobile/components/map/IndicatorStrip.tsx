@@ -59,13 +59,15 @@ import { Icon, Pressable, Text } from '../primitives';
  * reader gets it by looking (2026-09-25, the user's request). The window is
  * not printed in the row: a `past week` label at its start cost the first
  * view most of a slot, and the user asked for it gone the same day. Every
- * number here is the same week, so the markets list and the map key say it
+ * number here is the same week, so the menu's lists and the map key say it
  * once, and each slot speaks it. Absolute readings and graphs live in the
  * detail sheet.
  *
- * **`all →` ends the row.** The instruments without a move — the nisab, the
- * contracts, the dates — and the full ranked list live in `MarketBrowserSheet`,
- * and the end of a row that is sorted from loudest to quietest is where a
+ * **`all →` ends the row, and opens the menu.** The instruments without a
+ * move — the nisab, the contracts, the dates — and every published series
+ * live in the menu's groups (`lib/instrument-catalog.ts`); it opened a
+ * markets browser of its own until 2026-09-26, when the browser became the
+ * menu's pages. The end of a row sorted from loudest to quietest is where a
  * reader who wants more has already arrived. It used to sit under the NOW
  * block in the news sheet, which is for news.
  *
@@ -340,8 +342,8 @@ export const IndicatorStrip = memo(function IndicatorStrip({
         onPress={onAll}
         style={styles.all}
         accessibilityRole="button"
-        accessibilityLabel="All instruments"
-        accessibilityHint="Opens every market, strait, currency and contract as a ranked list"
+        accessibilityLabel="All markets and data"
+        accessibilityHint="Opens the menu, with every market, strait, currency, prediction and date by group"
       >
         <View style={styles.allRow}>
           <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>

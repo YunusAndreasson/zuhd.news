@@ -71,12 +71,39 @@ export function windowPointChange(
   indicator: Pick<Indicator, 'values' | 'periods'>,
   points: number,
 ): WindowChange | null {
-  const relative = windowChange(indicator, points);
-  if (!relative) return null;
-  const { values } = indicator;
-  const latest = values[values.length - 1] as number;
-  const earlier = values[values.length - 1 - relative.points] as number;
-  return { ...relative, pct: latest - earlier };
+  // Not built on `windowChange`: its zero guard is a relative change's, and a
+  // difference is defined from zero — a rate cut to 0% and raised to 0.25%
+  // moved a quarter of a point, and a contract from 0% to 5% moved five.
+  const { values, periods } = indicator;
+  const n = values.length;
+  if (n < 2) return null;
+  const span = Math.max(1, Math.min(points, n - 1));
+  const latest = values[n - 1];
+  const earlier = values[n - 1 - span];
+  if (typeof latest !== 'number' || typeof earlier !== 'number') return null;
+  if (!Number.isFinite(latest) || !Number.isFinite(earlier)) return null;
+  return {
+    pct: latest - earlier,
+    from: periods[n - 1 - span] ?? '',
+    to: periods[n - 1] ?? '',
+    points: span,
+  };
+}
+
+/**
+ * A published rate: a monthly series in percent — the Fed's target, the ECB's
+ * deposit rate, inflation, unemployment. It moves in percentage points
+ * (`windowPointChange`, `deltaFrom` `unit: 'rate'`) on every surface that
+ * prints it, the card and the sheet a story's mention opens alike; a rate that
+ * went from 4.00% to 3.75% fell a quarter of a point, and "−6.3%" is the
+ * mistake `windowPointChange` exists to prevent.
+ *
+ * Monthly only, for now. The ten-year is a daily `%` series whose relative
+ * move the strip sorts on beside prices; moving it to points takes it out of
+ * that sort, which is a change to the strip and its own decision.
+ */
+export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): boolean {
+  return indicator.cadence === 'monthly' && indicator.unit === '%';
 }
 
 /**
@@ -108,15 +135,24 @@ export function formatSignedPct(pct: number): string {
  * carries `unit`, so the chip leaves it slate. It took a `riseMeans` argument
  * until 2026-09-25, when the colour said what a move meant for an ordinary
  * life rather than which way it went.
+ *
+ * `rate` is a published rate's move — the Fed's target, inflation, the jobless
+ * rate — in percentage points (the change from `windowPointChange`). It is
+ * coloured like any move, because a rate is not a contract, and carries no
+ * `size`, because points and percentages are not one scale to sort on.
  */
 export function deltaFrom(
   change: WindowChange | null,
-  options: { window?: string; unit?: 'percent' | 'points' } = {},
+  options: { window?: string; unit?: 'percent' | 'points' | 'rate' } = {},
 ): CardDelta | undefined {
   if (!change || !Number.isFinite(change.pct)) return undefined;
   const { window = `since ${change.from}`, unit = 'percent' } = options;
   const magnitude =
-    unit === 'points' ? formatMagnitudePoints(change.pct) : formatMagnitudePct(change.pct);
+    unit === 'points'
+      ? formatMagnitudePoints(change.pct)
+      : unit === 'rate'
+        ? formatMagnitudeRatePoints(change.pct)
+        : formatMagnitudePct(change.pct);
   // "unchanged" is what the formatters return once the move rounds to nothing.
   // A flat chip carries no arrow — there is no direction to point — and reads
   // slate, the quietest of the three.
@@ -145,6 +181,28 @@ export function formatMagnitudePoints(points: number): string | null {
   if (rounded === 0) return null;
   const magnitude = Math.abs(rounded);
   return `${magnitude} ${magnitude === 1 ? 'point' : 'points'}`;
+}
+
+/**
+ * A rate's move in percentage points, to two decimals.
+ *
+ * Whole points suit a contract, whose sixty-point swings are the story; a
+ * central bank moves in quarters, so rounded to a whole point a 25-basis-point
+ * cut read "unchanged". Two decimals, as the rate itself is printed
+ * (`formatReading`), so the move and the level agree about precision.
+ */
+function formatMagnitudeRatePoints(points: number): string | null {
+  if (!Number.isFinite(points)) return null;
+  const magnitude = Math.abs(points).toFixed(2);
+  if (Number(magnitude) === 0) return null;
+  return `${magnitude} points`;
+}
+
+/** The same move, signed, for a sentence: "+0.25 points", or "unchanged". */
+export function formatSignedRatePoints(points: number): string {
+  const magnitude = formatMagnitudeRatePoints(points);
+  if (magnitude === null) return 'unchanged';
+  return `${points > 0 ? '+' : '−'}${magnitude}`;
 }
 
 /**

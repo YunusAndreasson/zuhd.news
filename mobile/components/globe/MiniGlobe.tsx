@@ -908,6 +908,9 @@ interface MiniGlobeProps {
   /** Where a story flight will land (`useCameraFlight`), so its last frame
    *  can be drawn a little early. */
   landingAt?: SharedValue<{ lat: number; lng: number; story: number } | null>;
+  /** The alerts to draw, already chosen and in paint order
+   *  (`globeGdacsAlerts`): the screen chooses them once, for the globe and
+   *  for the menu's list of them, so the two cannot differ. */
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
   /**
@@ -3237,51 +3240,14 @@ export const MiniGlobe = memo(function MiniGlobe({
   selectedRef.current = selectedCoords;
   // GDACS alerts — precompute per-frame derivations once per snapshot:
   // [lng,lat] tuple and recency alpha (fade events older than 14 days down
-  // to ~0.5; the data layer drops anything past 30 days). Greens are
-  // round-robin'd across event types and capped at GREEN_CAP — round-robin
-  // surfaces visual diversity (floods, droughts, fires, quakes) instead of
-  // letting the most frequent type monopolise (EQ + WF typically own ~80%
-  // of the raw count). The cap is set generously since perf isn't the
-  // constraint: today's feed of ~90 Greens fits comfortably; the cap only
-  // kicks in for pathological future feed sizes. Orange/Red are uncapped
-  // and pass through directly. Render order is Green → Orange → Red so
-  // consequential markers always paint over ambient ones.
+  // to ~0.5; the data layer drops anything past 30 days). Which alerts, and
+  // in what paint order, arrives decided (`globeGdacsAlerts`, run once by the
+  // screen for the globe and the menu's hazard list alike).
   const enrichedGdacs = useMemo(() => {
     // Recompute age-derived opacity after an app-resume clock tick even when
     // the alert array itself is referentially unchanged.
     void _tick;
-    const alerts = gdacsAlerts ?? [];
-    const GREEN_CAP = 100;
-    const TYPES: GdacsAlert['eventtype'][] = ['EQ', 'TC', 'FL', 'VO', 'DR', 'WF'];
-    const byType: Record<string, GdacsAlert[]> = {};
-    for (const t of TYPES) byType[t] = [];
-    for (const a of alerts) {
-      if (a.alertlevel === 'Green') byType[a.eventtype]?.push(a);
-    }
-    for (const t of TYPES) {
-      byType[t]?.sort((a, b) => Date.parse(b.modifiedDate) - Date.parse(a.modifiedDate));
-    }
-    // Round-robin: take the most-recent of each type, then 2nd most-recent
-    // of each, etc., until we hit GREEN_CAP or every list is exhausted.
-    const greens: GdacsAlert[] = [];
-    let round = 0;
-    let progressed = true;
-    while (greens.length < GREEN_CAP && progressed) {
-      progressed = false;
-      for (const t of TYPES) {
-        const list = byType[t];
-        if (!list || round >= list.length) continue;
-        const item = list[round];
-        if (!item) continue;
-        greens.push(item);
-        progressed = true;
-        if (greens.length >= GREEN_CAP) break;
-      }
-      round++;
-    }
-    const oranges = alerts.filter((a) => a.alertlevel === 'Orange');
-    const reds = alerts.filter((a) => a.alertlevel === 'Red');
-    return [...greens, ...oranges, ...reds].map((a) => ({
+    return (gdacsAlerts ?? []).map((a) => ({
       eventid: a.eventid,
       eventtype: a.eventtype,
       alertlevel: a.alertlevel,

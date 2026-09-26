@@ -114,7 +114,7 @@ whole time; nothing said so.
   dramatic change sits at the left; at twenty-odd slots it became a ticker, and
   the user asked for ten (2026-09-23, `STRIP_SLOTS`). The rest are behind
   `all →`. Only the row is cut: `strip` keeps every mover, because a gauge
-  opened from the instruments list or a strait tapped on the globe still looks
+  opened from the menu's lists or a strait tapped on the globe still looks
   itself up there to fly and ring its place.
   - **Every slot is the same seven days** (`gaugeMove`, `lib/cards/week-move.ts`,
     tested). The strip used to sort
@@ -140,7 +140,7 @@ whole time; nothing said so.
     the strip's week. The card keeps its own window and prints it. The row
     itself prints no window: a `past week` label at its start cost the first
     view most of a slot, and the user asked for it gone the same day. The
-    markets list and the map key say it once; each slot speaks it.
+    menu's lists and the map key say it once; each slot speaks it.
   - **The row is gesture handler's `ScrollView`.** The globe's pan lies under
     the whole header, and gesture handler finds a touch's handlers by walking
     the views under the finger; a plain `ScrollView` has none, so a drag that
@@ -182,14 +182,40 @@ whole time; nothing said so.
   rather than arbitrating them: at peek the card does not scroll; nothing in
   it bounces; the pan decides ownership once per gesture and holds it.
   Every other sheet stays a platform sheet.
-- **Instruments without a place are one tap away, always.** Brent, gold, the
-  ten-year, nisab, FX movers and every contract have no honest location, so
-  they are not on the globe. `all →` at the end of the strip is never
-  conditional, `menu → markets` opens the same browser (`MarketBrowserSheet`):
-  every exchange, and every other card in `buildRankedInstruments` order under
-  `other data`. `InstrumentsSheet` did that until 2026-09-20 and was deleted on
-  09-25. Placing Brent in the North Sea to avoid a list would be inventing
-  locations for half the deck.
+- **Instruments without a place are two taps away, always: `all →`, then
+  the group.** Brent, gold, the ten-year, nisab, currencies and every contract
+  have no honest location, so they are not on the globe. `all →` at the end of
+  the strip is never conditional, and opens the menu, whose root leads with
+  the data (2026-09-26, the user's request): `stock markets`, `straits`,
+  `currencies`, `energy, food & metals`, `rates & crypto`, `predictions`,
+  `coming up`, then `world hazards` and `country rankings`, each a pushed page.
+  Each group's row prints its count and its first row — the week's largest
+  move, the strip's own number — so the menu says what is in it before it is
+  opened. The app's own pages fold behind one `settings & about` row.
+  - **The lists hold every published series, not the ranked pool**
+    (`lib/instrument-catalog.ts`, tested). The pool is the strip's, and short
+    on purpose: two currencies of fifteen, Brent without WTI, no Fed rate. The
+    catalog lists all fifteen currencies, WTI, both gases, retail gasoline,
+    copper, gold, silver, the Fed and ECB rates, inflation, jobs, Monero and
+    every future date, reusing the pool's card object wherever it has one — a
+    row, its slot and its card are one thing — and holding every new card to
+    the deck's gate (`admitted`). A series the table does not name is listed
+    by its `source`, so one the pipeline adds is not silently absent;
+    `wiki-*`, `portwatch-*` and `stocks:*` are left out on purpose. An index
+    an exchange quotes is that exchange's row (the NYSE's index is the S&P
+    500). Rows sort by the week's move, and a month is never sorted against a
+    week: monthly series follow, in the table's order.
+  - **A monthly rate moves in points** (`deltaFrom` `unit: 'rate'`, two
+    decimals, coloured like any move). Rounded to whole points a 25-basis-point
+    cut read "unchanged"; as a percentage of itself it read "−6.3%". The
+    ten-year is a daily `%` series and still prints its relative move, because
+    the strip sorts on it; moving it is its own decision.
+  - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
+    rising/falling filter, and every other card unsplit under `other data`.
+    Its filter lives on in `stock markets`, its row as `InstrumentRow`.
+    `InstrumentsSheet` did it until 2026-09-20 and was deleted on 09-25.
+    Placing Brent in the North Sea to avoid a list would be inventing
+    locations for half the deck.
 - **Predictions are merged into the story they settle, never plotted.**
   `lib/predictions.ts` inverts the stories the narration stage cited for each
   `poly-*` contract, which the build puts on `/api/analysis.json` — never on
@@ -581,7 +607,7 @@ whole time; nothing said so.
     owns it they keep whatever the last flight left, and a drag that took the
     camera from them snapped the earth back to a story already swiped past.
     `MiniGlobe` publishes where it is drawing the camera, whoever owns it.
-- **The menu and the briefing are the controls at the top.** Markets,
+- **The menu and the briefing are the controls at the top.** The data,
   search, saved, settings, the map key and the pages open from the menu
   (three lines) at the top right, out of thumb reach on purpose — it is
   opened a few times a week, and the top corner is where both platforms put
@@ -589,9 +615,9 @@ whole time; nothing said so.
   only settings, and the top left, where a hamburger usually goes, is where
   the gauges start. (A `Z` home mark sat top left until 548457c8 removed it.)
   - **`▶` sits beside it and `markets` moved into it (2026-09-21, the user's
-    request).** `markets` was a word between the gauges and the menu; it is
-    the menu's first row now, and opens the browser the strip's `all →`
-    opens. `▶` came up from the dock. Both are bare glyphs in one
+    request).** `markets` was a word between the gauges and the menu; the
+    menu's groups hold it now, and the strip's `all →` opens the menu.
+    `▶` came up from the dock. Both are bare glyphs in one
     `HeaderControl` — one height, one `GAUGE_EXTRA` nudge, the glyph centred
     in one square — so they line up exactly by construction; the user asked
     for exact vertical alignment, and a vertical style on one of them alone
@@ -614,8 +640,11 @@ whole time; nothing said so.
 - **The globe's gesture layer is hidden from screen readers, so the list must
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
-  strip, the story cards or the instruments sheet; that is the accessible path,
-  and a new mark layer without a row is an accessibility regression. The card
+  strip, the story cards or the menu — its groups, and `world hazards`, which
+  lists exactly the marks each hazard layer draws (`globeGdacsAlerts` is the
+  globe's GDACS selection, shared) and gave conflict and fire marks the row
+  they lacked. That is the accessible path, and a new mark layer without a row
+  is an accessibility regression. The card
   itself carries `next story` / `previous story` / `read the whole story` as
   accessibility actions — not the `adjustable` role, which would take over
   VoiceOver's own reading swipes.
@@ -1117,7 +1146,7 @@ about what a card may say is about the card, not where it is shown.
   inversion.
 - **A move is green up, red down, slate unmoved — everywhere** (`moveTone`,
   `lib/valence.ts`; 2026-09-25, the user's request, tested). The chip, the
-  strip, the markets list, the globe's arrows and a strait's traffic sign all
+  strip, the menu's lists, the globe's arrows and a strait's traffic sign all
   follow it; a contract's points stay slate (odds are never tinted). Until
   then the colour said what a move *meant* for an ordinary life — oil up red,
   a currency up green, bitcoin slate — so one ▲ came in three colours for a

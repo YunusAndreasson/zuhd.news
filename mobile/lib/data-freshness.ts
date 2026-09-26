@@ -50,17 +50,22 @@ export function indicatorObservation(
       : undefined;
 }
 
+let observationFormat: Intl.DateTimeFormat | undefined;
+
 /** The observation date alone — "Sep 3". A card's kicker line prints this:
  *  it is one of three items on the single line of metadata a card carries,
  *  and "data through" spent half of that line saying what the position
  *  already said. */
 export function observationDate(asOf: string | undefined): string {
   if (!asOf || !isIsoDate(asOf)) return '';
-  return new Date(asOf).toLocaleDateString('en', {
+  // One formatter for every call: `toLocaleDateString` builds one each time,
+  // ~9 ms on Android, and a list of the menu's rows prints one date a row.
+  observationFormat ??= new Intl.DateTimeFormat('en', {
     day: 'numeric',
     month: 'short',
     timeZone: 'UTC',
   });
+  return observationFormat.format(new Date(asOf));
 }
 
 /** Quiet, explicit provenance copy for the detail sheets, where it sits in a

@@ -29,6 +29,14 @@ export type RowTrailing =
 interface MenuRowProps {
   title: string;
   description?: string;
+  /**
+   * A live line in the caption's place — the menu root's data rows print
+   * their group's first reading here, a subject and its move. `description`
+   * stays the screen reader's hint; `detailLabel` is what the line says, and
+   * joins the row's label, which is explicit and would otherwise skip it.
+   */
+  detail?: ReactNode;
+  detailLabel?: string;
   /** A short figure before the trailing mark — a count, a size. */
   value?: string;
   trailing?: RowTrailing;
@@ -38,13 +46,15 @@ interface MenuRowProps {
   first?: boolean;
   accessibilityRole?: AccessibilityRole;
   accessibilityState?: AccessibilityState;
-  /** Defaults to the title, with the value after it. */
+  /** Defaults to the title, then the value and the detail. */
   accessibilityLabel?: string;
 }
 
 export const MenuRow = memo(function MenuRow({
   title,
   description,
+  detail,
+  detailLabel,
   value,
   trailing,
   onPress,
@@ -55,12 +65,14 @@ export const MenuRow = memo(function MenuRow({
 }: MenuRowProps) {
   const { colors } = useTheme();
   const style = [styles.row, !first && { ...styles.ruled, borderTopColor: colors.rule }];
-  const label = accessibilityLabel ?? (value ? `${title}, ${value}` : title);
+  const label = accessibilityLabel ?? [title, value, detailLabel].filter(Boolean).join(', ');
   const content = (
     <>
       <View style={styles.text}>
         <Text variant="rowTitle">{title}</Text>
-        {description ? (
+        {detail ? (
+          <View style={[styles.description, styles.detail]}>{detail}</View>
+        ) : description ? (
           <Text variant="caption" style={styles.description}>
             {description}
           </Text>
@@ -160,6 +172,8 @@ const styles = StyleSheet.create({
   ruled: { borderTopWidth: StyleSheet.hairlineWidth },
   text: { flex: 1, minWidth: 0 },
   description: { marginTop: SPACING.xxs },
+  // A subject and a chip on one line, wrapping whole at large type.
+  detail: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: SPACING.sm },
   value: { fontVariant: ['tabular-nums'] },
   block: { paddingVertical: SPACING.smPlus },
   control: { marginTop: SPACING.sm },

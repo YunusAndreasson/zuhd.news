@@ -60,7 +60,7 @@ export function marketSignalCards(
          * presentation, and prepending them unranked put whichever exchanges
          * happened to qualify ahead of a strait that had closed. (The strip
          * re-sorts by the size of the move; this order still decides the NOW
-         * block, the instruments sheet and ties.)
+         * block, the menu's predictions and ties.)
          */
         lead: true,
         // The exchange the index belongs to, directly above its ticker — the

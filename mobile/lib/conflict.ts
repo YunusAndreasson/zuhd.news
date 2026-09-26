@@ -50,10 +50,19 @@ export function collapseConflictVisuals(
   }));
 }
 
-/** Distinguish reports in a crowded map target without exposing feed IDs. */
-export function conflictChooserDetails(events: ConflictEvent[]): Map<string, string> {
+/**
+ * Distinguish reports in a crowded map target without exposing feed IDs.
+ *
+ * The menu's conflict list uses it too, with `date: false`: every row there is
+ * the same day, which its page says once, and rows carrying only a toll and a
+ * country read alike — five `2 killed · armed clash` in Yemen on one day.
+ */
+export function conflictChooserDetails(
+  events: ConflictEvent[],
+  { date = true }: { date?: boolean } = {},
+): Map<string, string> {
   const base = (e: ConflictEvent) =>
-    [e.eventDate, e.location || e.admin1, displayCountryName(e.country) ?? e.country]
+    [date ? e.eventDate : '', e.location || e.admin1, displayCountryName(e.country) ?? e.country]
       .filter(Boolean)
       .join(' · ');
   const labels = events.map(base);

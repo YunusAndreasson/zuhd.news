@@ -684,7 +684,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
     } as TextStyle,
     /**
      * A headline in a list of headlines — the sheet's river, search, saved,
-     * the instruments list. One step under `title`, which is what an opened
+     * the menu's lists. One step under `title`, which is what an opened
      * story or a sheet's own subject uses: a row is an entry point and the
      * story it opens is the destination, and at the same size the two read as
      * the same tier. It was `title` × 0.86 (18pt), which made each row a

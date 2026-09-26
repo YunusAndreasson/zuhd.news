@@ -1,13 +1,16 @@
-import type { Article, Category } from '@shared/types';
+import { BottomSheetFlatList } from '@expo/ui/community/bottom-sheet';
+import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
+import type { Article, Category, ConflictEvent, GdacsAlert } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import { memo, useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import {
   AccessibilityInfo,
   Linking,
   Text as RNText,
   StyleSheet,
   type TextStyle,
+  View,
 } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
@@ -29,15 +32,39 @@ import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
 } from '../lib/bookmark-store';
+import { conflictChooserDetails } from '../lib/conflict';
+import { observationDate } from '../lib/data-freshness';
 import {
   formatBytes,
   getSnapshot as getDataUsage,
   subscribe as subscribeDataUsage,
 } from '../lib/data-usage';
 import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
+import {
+  type CatalogGroup,
+  type CatalogRow,
+  GROUP_TITLES,
+  type GroupKey,
+} from '../lib/instrument-catalog';
 import { resetOnboarding } from '../lib/onboarding-store';
+import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
+import { MARKET_CAVEAT } from '../lib/predictions';
 import { makeStaggerEnter } from '../lib/stagger';
 import { eraseLocalData } from '../lib/wipe';
+import { CountryRankingView } from './CountryRankingView';
+import { DeltaChip } from './DeltaChip';
+import { EmptyState } from './EmptyState';
+import type { TapResult } from './globe/MiniGlobe';
+import { InstrumentRow } from './InstrumentRow';
+import {
+  conflictMarkRow,
+  famineMarkRow,
+  gdacsMarkRow,
+  genocideMarkRow,
+  MarkRow,
+  type MarkRowData,
+  thermalMarkRow,
+} from './MarkRow';
 import { MenuControlRow, MenuRow, SectionLabel } from './MenuRow';
 import { Pressable, Text } from './primitives';
 import { SegmentedControl, type SegmentOption } from './SegmentedControl';
@@ -151,9 +178,125 @@ const APPEARANCE_OPTIONS: SegmentOption<AppearanceMode>[] = [
 const fontFamilyLabel = (v: FontFamily): TextStyle =>
   v === 'source' ? FONT_SOURCE.regular : FONT_SYSTEM.regular;
 
-type PageKey = InfoKey | 'about' | 'settings' | 'search' | 'saved' | 'map key';
+/** The hazard layers the globe draws, each a list under `world hazards`. */
+type HazardKey = 'disasters' | 'conflict' | 'famine' | 'genocide' | 'fires';
+
+type PageKey =
+  | InfoKey
+  | 'about'
+  | 'settings'
+  | 'settings & about'
+  | 'search'
+  | 'saved'
+  | 'map key'
+  | GroupKey
+  | 'world hazards'
+  | HazardKey
+  | 'country rankings'
+  | `rank:${MetricKey}`;
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
+
+const HAZARD_TITLES: Readonly<Record<HazardKey, string>> = {
+  disasters: 'disasters',
+  conflict: 'conflict',
+  famine: 'famine',
+  genocide: 'genocide',
+  fires: 'fires',
+};
+const isHazardKey = (k: PageKey): k is HazardKey => k in HAZARD_TITLES;
+const isGroupKey = (k: PageKey): k is GroupKey => k in GROUP_TITLES;
+const rankMetric = (k: PageKey): MetricKey | null =>
+  k.startsWith('rank:') ? (k.slice('rank:'.length) as MetricKey) : null;
+
+/** What a page is called — in its handle and when a screen reader announces
+ *  it. A group's key is a code (`stocks`), and a ranking's carries its metric
+ *  (`rank:gdpPerCapita`); neither is anything a reader should hear. Static,
+ *  not read off the catalog: the handle is a component type that depends on
+ *  it, and a catalog rebuilt by an arrival would remount the handle — and the
+ *  back button a screen reader's focus is on. */
+function pageTitle(key: PageKey): string {
+  const metric = rankMetric(key);
+  if (metric) return METRICS[metric]?.label ?? 'ranking';
+  if (isGroupKey(key)) return GROUP_TITLES[key];
+  if (isHazardKey(key)) return HAZARD_TITLES[key];
+  return key;
+}
+
+/**
+ * The line under each group's list, saying what the numbers are.
+ *
+ * The rows hide the week the way the strip does (`DeltaChip` prints a window
+ * only where it is not the week), so the list is where the week is said —
+ * once, not on every row.
+ */
+const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
+  stocks: 'Moves over the past week: green up, red down. Tap an exchange to find it on the globe.',
+  straits:
+    'Ships a day, and the move over the past week: green up, red down. Tap a strait to find it on the globe.',
+  currencies:
+    'Each currency against the dollar, over the past week: green is stronger, red weaker.',
+  commodities:
+    'Moves over the past week: green up, red down. A price published monthly shows its month.',
+  economy:
+    'Moves over the past week: green up, red down. A rate published monthly shows its month, in percentage points.',
+  predictions: `What a prediction market prices each outcome at — ${MARKET_CAVEAT}. Moves are in points.`,
+  calendar: 'Decisions and releases ahead, nearest first.',
+};
+
+/** The hazard layers, in the arrays the globe draws — see `MenuSheetProps`. */
+export interface MenuHazards {
+  disasters: GdacsAlert[];
+  conflict: ConflictEvent[];
+  famine: FamineArea[];
+  genocide: GenocideSituation[];
+  fires: ThermalEvent[];
+}
+
+/** A mark's row carries the tap the globe would have produced on it, so the
+ *  screen opens it the same way whichever way the reader came. */
+const markTap = (ids: Partial<TapResult>): TapResult => ({
+  countryName: '',
+  location: null,
+  localTime: null,
+  data: null,
+  ...ids,
+});
+
+function hazardRows(key: HazardKey, hazards: MenuHazards): MarkRowData[] {
+  switch (key) {
+    case 'disasters':
+      // Gravest last on the globe, so they paint on top; first here.
+      return [...hazards.disasters]
+        .reverse()
+        .map((a) => gdacsMarkRow(a, markTap({ gdacsEventId: a.eventid })));
+    case 'conflict': {
+      // The chooser's place-and-actors line, so no two rows read alike.
+      const events = [...hazards.conflict].sort((a, b) => b.fatalities - a.fatalities);
+      const details = conflictChooserDetails(events, { date: false });
+      return events.map((e) => {
+        const row = conflictMarkRow(e, markTap({ conflictEventId: e.id }));
+        return { ...row, secondary: details.get(e.id) || row.secondary };
+      });
+    }
+    case 'famine':
+      return [...hazards.famine]
+        .sort((a, b) => b.phase - a.phase)
+        .map((a) => famineMarkRow(a, markTap({ famineAreaId: a.id })));
+    case 'genocide':
+      return hazards.genocide.map((g) => genocideMarkRow(g, markTap({ genocideId: g.id })));
+    case 'fires':
+      return [...hazards.fires]
+        .sort((a, b) => b.frp - a.frp)
+        .map((e) => thermalMarkRow(e, markTap({ thermalEventId: e.id })));
+  }
+}
+
+const METRIC_KEYS = Object.keys(METRICS) as MetricKey[];
+
+/** A list page's rows are the only thing that scrolls, and each hazard row
+ *  is a canvas: build a screenful, not a hundred. */
+const LIST_WINDOW = { initialNumToRender: 12, windowSize: 5, maxToRenderPerBatch: 12 } as const;
 
 /**
  * Erase control for the privacy page. Two taps, not a native Alert: the app
@@ -221,8 +364,18 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
 interface MenuSheetProps extends BaseSheetProps {
   grouped: Record<Category, Article[]>;
   onSelectArticle: (slug: string, category: Category) => void;
-  /** Close the menu and open the markets browser, its own sheet. */
-  onMarketsPress: () => void;
+  /** Every instrument, in its group (`buildInstrumentCatalog`). */
+  catalog: CatalogGroup[];
+  /** The hazard marks, exactly as the globe draws them: these lists are the
+   *  accessible path to every mark, because the globe is hidden from screen
+   *  readers. */
+  hazards: MenuHazards;
+  /** Close the menu, fly to the instrument, and open its card. */
+  onSelectRow: (row: CatalogRow) => void;
+  /** Close the menu, fly to the mark, and open its sheet. */
+  onSelectHazard: (result: TapResult) => void;
+  /** Close the menu and open a country. */
+  onSelectCountry: (name: string) => void;
   onToast?: (message: string) => void;
 }
 
@@ -232,7 +385,11 @@ export const MenuSheet = memo(function MenuSheet({
   onDismiss,
   grouped,
   onSelectArticle,
-  onMarketsPress,
+  catalog,
+  hazards,
+  onSelectRow,
+  onSelectHazard,
+  onSelectCountry,
   onToast,
 }: MenuSheetProps) {
   const { colors, font, typography } = useTheme();
@@ -246,14 +403,14 @@ export const MenuSheet = memo(function MenuSheet({
   const navPush = useCallback(
     (page: PageKey) => {
       nav.push(page);
-      AccessibilityInfo.announceForAccessibility(page);
+      AccessibilityInfo.announceForAccessibility(pageTitle(page));
     },
     [nav.push],
   );
   const navPop = useCallback(() => {
     nav.pop();
     const next = nav.stack[nav.stack.length - 2];
-    AccessibilityInfo.announceForAccessibility(next ?? 'menu');
+    AccessibilityInfo.announceForAccessibility(next ? pageTitle(next) : 'menu');
   }, [nav.pop, nav.stack]);
 
   useEffect(() => {
@@ -269,7 +426,7 @@ export const MenuSheet = memo(function MenuSheet({
     () => (
       <SheetHandle
         title={
-          nav.current ?? (
+          (nav.current && pageTitle(nav.current)) ?? (
             <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
               <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
               <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
@@ -296,14 +453,57 @@ export const MenuSheet = memo(function MenuSheet({
     [typography.sizeBase],
   );
 
+  // A group key with no group is a list an arrival emptied while it was open:
+  // it says so rather than falling through to a blank page.
+  const groupKey = nav.current && isGroupKey(nav.current) ? nav.current : null;
+  const activeGroup = groupKey ? (catalog.find((g) => g.key === groupKey) ?? null) : null;
+  const activeHazard = nav.current && isHazardKey(nav.current) ? nav.current : null;
+  const activeMetric = nav.current ? rankMetric(nav.current) : null;
+
   return (
-    <SheetLayout sheetRef={sheetRef} handleComponent={Handle} onDismiss={handleDismiss}>
+    <SheetLayout
+      sheetRef={sheetRef}
+      handleComponent={Handle}
+      onDismiss={handleDismiss}
+      // Android's back pops a page before it closes the menu, as the
+      // country sheet's ranking does. It closed the whole menu from any page.
+      onBackPress={nav.depth > 0 ? navPop : undefined}
+    >
       {nav.current === 'search' ? (
         <SheetSearchPage
           grouped={grouped}
           bottomInset={bottomInset}
           onSelectArticle={onSelectArticle}
         />
+      ) : groupKey || activeHazard || activeMetric ? (
+        // A list page is a sibling of the scroll view, never inside it: a
+        // virtualised list nested in a scroll view renders every row.
+        <GestureDetector gesture={swipeBack}>
+          <View style={styles.listPage}>
+            {activeGroup ? (
+              <GroupPage group={activeGroup} bottomInset={bottomInset} onSelect={onSelectRow} />
+            ) : groupKey ? (
+              <EmptyState message="Nothing to list right now" />
+            ) : activeHazard ? (
+              <HazardPage
+                layer={activeHazard}
+                hazards={hazards}
+                bottomInset={bottomInset}
+                onSelect={onSelectHazard}
+              />
+            ) : activeMetric ? (
+              <CountryRankingView
+                metric={activeMetric}
+                // The metric's name is the page's, in the handle.
+                titled={false}
+                currentCountryName={null}
+                bottomInset={bottomInset}
+                onRequestClose={() => sheetRef.current?.dismiss()}
+                onSelectCountry={onSelectCountry}
+              />
+            ) : null}
+          </View>
+        </GestureDetector>
       ) : (
         <GestureDetector gesture={swipeBack}>
           <SheetScrollView bottomInset={bottomInset}>{renderPage()}</SheetScrollView>
@@ -317,18 +517,32 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
-          {/* Markets first, because it was one tap away in the map's top bar
-              until 2026-09-21. It leaves the menu for the markets browser
-              rather than pushing a page: that sheet flies the globe and hands
-              off to a card, and there is only ever one platform sheet up. */}
+          {/* The data first (2026-09-26, the user's request): the menu was
+              four reading rows over five rows about the app, and opening it
+              found nothing to read. Each group's row prints its first row —
+              the week's largest move, the strip's own number — so the menu
+              says what is in it before it is opened. The count is what the
+              page lists. */}
+          {catalog.map((group, i) => (
+            <GroupRow
+              key={group.key}
+              group={group}
+              first={i === 0}
+              onPress={() => navPush(group.key)}
+            />
+          ))}
+          <HazardsRow hazards={hazards} first={catalog.length === 0} onPress={navPush} />
+          <MenuRow
+            title="country rankings"
+            description={`Every country by ${METRICS.population.label}, ${METRICS.gdp.label.toUpperCase()} and ${METRIC_KEYS.length - 2} more measures`}
+            value={String(METRIC_KEYS.length)}
+            trailing="push"
+            onPress={() => navPush('country rankings')}
+          />
+
+          <SectionLabel label="reading" />
           <MenuRow
             first
-            title="markets"
-            description="Exchanges, prices, straits and currencies"
-            trailing="push"
-            onPress={onMarketsPress}
-          />
-          <MenuRow
             title="search"
             description="Every story, by title, topic or place"
             trailing="push"
@@ -348,7 +562,23 @@ export const MenuSheet = memo(function MenuSheet({
             onPress={() => navPush('map key')}
           />
 
+          {/* The app's own pages, one row: they are opened rarely, and five
+              rows of them were most of what the menu used to show. */}
           <SectionLabel label="the app" />
+          <MenuRow
+            first
+            title="settings & about"
+            description="Text size, appearance, notifications, privacy, contact"
+            trailing="push"
+            onPress={() => navPush('settings & about')}
+          />
+        </>
+      );
+    }
+
+    if (current === 'settings & about') {
+      return (
+        <>
           <MenuRow
             first
             title="settings"
@@ -357,8 +587,8 @@ export const MenuSheet = memo(function MenuSheet({
             onPress={() => navPush('settings')}
           />
           {/* The rows below settings name themselves, so they carry no
-              description: with one each the root outgrew the sheet at the
-              large text size, and "rate" was cut off at the foot. */}
+              description. They were the root's until 2026-09-26, where with
+              one each the root outgrew the sheet at the large text size. */}
           <MenuRow title="about" trailing="push" onPress={() => navPush('about')} />
           <MenuRow title="privacy" trailing="push" onPress={() => navPush('privacy')} />
           {/* Straight to mail. It was a page holding one sentence and this
@@ -386,6 +616,27 @@ export const MenuSheet = memo(function MenuSheet({
               }}
             />
           )}
+        </>
+      );
+    }
+
+    if (current === 'world hazards') {
+      return <HazardLayers hazards={hazards} onPress={navPush} />;
+    }
+
+    if (current === 'country rankings') {
+      return (
+        <>
+          {METRIC_KEYS.map((key, i) => (
+            <MenuRow
+              key={key}
+              first={i === 0}
+              title={METRICS[key].label}
+              description={METRICS[key].description}
+              trailing="push"
+              onPress={() => navPush(`rank:${key}`)}
+            />
+          ))}
         </>
       );
     }
@@ -518,7 +769,281 @@ export const MenuSheet = memo(function MenuSheet({
   }
 });
 
+/**
+ * A group's row on the root: its name, how many it lists, and its first row —
+ * the subject and its move, so the menu says what is in each list before it
+ * is opened. A contract prints its price (odds are never tinted, and a
+ * question has no short name), a date its distance.
+ */
+const GroupRow = memo(function GroupRow({
+  group,
+  first,
+  onPress,
+}: {
+  group: CatalogGroup;
+  first: boolean;
+  onPress: () => void;
+}) {
+  const lead = group.rows[0];
+  const card = lead?.card;
+  const moved = lead?.move && lead.weekly && group.key !== 'predictions';
+  const subject =
+    group.key === 'predictions' || group.key === 'calendar'
+      ? `${card?.title ?? ''} · ${card?.reading ?? ''}`
+      : (lead?.short ?? '');
+  const move = moved ? lead.move : undefined;
+  return (
+    <MenuRow
+      first={first}
+      title={group.title}
+      value={String(group.rows.length)}
+      detail={
+        lead ? (
+          <>
+            <Text variant="caption" style={styles.teaser}>
+              {subject}
+            </Text>
+            {move ? <DeltaChip delta={move} window={false} scale={1} /> : null}
+          </>
+        ) : undefined
+      }
+      detailLabel={
+        lead
+          ? [subject, move ? `${move.direction} ${move.magnitude} this week` : '']
+              .filter(Boolean)
+              .join(', ')
+          : undefined
+      }
+      trailing="push"
+      onPress={onPress}
+    />
+  );
+});
+
+/** Each layer's count and what it is, in the globe's order of gravity. */
+function hazardLayers(hazards: MenuHazards): { key: HazardKey; count: number; note: string }[] {
+  const conflictDay = observationDate(hazards.conflict[0]?.eventDate);
+  return [
+    { key: 'genocide' as const, count: hazards.genocide.length, note: 'As determined by the UN' },
+    {
+      key: 'conflict' as const,
+      count: hazards.conflict.length,
+      // UCDP publishes weeks behind events, so its latest day is said, never
+      // "today" (the reason `NOW` holds no conflict).
+      note: conflictDay ? `Events recorded on ${conflictDay}, from UCDP` : 'From UCDP',
+    },
+    {
+      key: 'famine' as const,
+      count: hazards.famine.length,
+      note: 'Areas in crisis or worse, from the IPC',
+    },
+    {
+      key: 'disasters' as const,
+      count: hazards.disasters.length,
+      note: 'Earthquakes, storms, floods, volcanoes, droughts and wildfires, from GDACS',
+    },
+    {
+      key: 'fires' as const,
+      count: hazards.fires.length,
+      note: 'Heat seen from space where the news is, from NASA FIRMS',
+    },
+  ].filter((layer) => layer.count > 0);
+}
+
+/** `world hazards` on the root, its teaser the two layers with the most in
+ *  them that a reader is likeliest to look for. */
+const HazardsRow = memo(function HazardsRow({
+  hazards,
+  first,
+  onPress,
+}: {
+  hazards: MenuHazards;
+  first: boolean;
+  onPress: (page: PageKey) => void;
+}) {
+  const layers = hazardLayers(hazards);
+  if (layers.length === 0) return null;
+  const counted = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  const parts = [
+    hazards.conflict.length > 0
+      ? counted(hazards.conflict.length, 'conflict event', 'conflict events')
+      : null,
+    hazards.famine.length > 0
+      ? counted(hazards.famine.length, 'famine area', 'famine areas')
+      : null,
+    hazards.disasters.length > 0
+      ? counted(hazards.disasters.length, 'disaster', 'disasters')
+      : null,
+  ]
+    .filter((p): p is string => p !== null)
+    .slice(0, 2);
+  return (
+    <MenuRow
+      first={first}
+      title="world hazards"
+      description={parts.join(' · ')}
+      trailing="push"
+      onPress={() => onPress('world hazards')}
+    />
+  );
+});
+
+function HazardLayers({
+  hazards,
+  onPress,
+}: {
+  hazards: MenuHazards;
+  onPress: (page: PageKey) => void;
+}) {
+  return (
+    <>
+      {hazardLayers(hazards).map((layer, i) => (
+        <MenuRow
+          key={layer.key}
+          first={i === 0}
+          title={HAZARD_TITLES[layer.key]}
+          description={layer.note}
+          value={String(layer.count)}
+          trailing="push"
+          onPress={() => onPress(layer.key)}
+        />
+      ))}
+    </>
+  );
+}
+
+type StockFilter = 'all' | 'rising' | 'falling';
+const STOCK_FILTERS: SegmentOption<StockFilter>[] = [
+  { value: 'all', label: 'all' },
+  { value: 'rising', label: 'rising' },
+  { value: 'falling', label: 'falling' },
+];
+
+/**
+ * One group's list. `stock markets` keeps the browser's filter and its tally;
+ * every list opens with the line that says what its numbers are.
+ */
+function GroupPage({
+  group,
+  bottomInset,
+  onSelect,
+}: {
+  group: CatalogGroup;
+  bottomInset: number;
+  onSelect: (row: CatalogRow) => void;
+}) {
+  const { colors } = useTheme();
+  const [filter, setFilter] = useState<StockFilter>('all');
+  const stocks = group.key === 'stocks';
+  const rows = useMemo(
+    () =>
+      !stocks || filter === 'all'
+        ? group.rows
+        : group.rows.filter((r) => r.move?.direction === (filter === 'rising' ? 'up' : 'down')),
+    [group.rows, stocks, filter],
+  );
+  // The tally counts exchanges: the fear index and the NASDAQ-100 share the
+  // list, but a rising fear index is not a market rising, and neither has a
+  // place on the globe.
+  const exchanges = stocks ? group.rows.filter((r) => r.exchange) : [];
+  const rise = exchanges.filter((r) => r.move?.direction === 'up').length;
+  const fall = exchanges.filter((r) => r.move?.direction === 'down').length;
+  const renderItem = useCallback(
+    ({ item }: { item: CatalogRow }) => <InstrumentRow row={item} onPress={onSelect} />,
+    [onSelect],
+  );
+  return (
+    <>
+      <View
+        style={[styles.intro, stocks && { ...styles.introRuled, borderBottomColor: colors.rule }]}
+      >
+        {/* ▲▼, the rows' own marks. */}
+        {stocks ? (
+          <Text variant="captionEmphasis">
+            {exchanges.length} exchanges · ▲ {rise} rising · ▼ {fall} falling
+          </Text>
+        ) : null}
+        <Text variant="caption">{GROUP_NOTES[group.key]}</Text>
+        {stocks ? (
+          <View style={styles.filters}>
+            <SegmentedControl
+              role="tab"
+              size="compact"
+              accessibilityLabel="Filter markets"
+              options={STOCK_FILTERS}
+              selected={filter}
+              onSelect={setFilter}
+            />
+          </View>
+        ) : null}
+      </View>
+      <BottomSheetFlatList
+        key={filter}
+        style={styles.list}
+        data={rows}
+        keyExtractor={rowKey}
+        renderItem={renderItem}
+        contentContainerStyle={{ paddingBottom: bottomInset + SPACING.md }}
+        ListEmptyComponent={<EmptyState message="No matching markets" />}
+      />
+    </>
+  );
+}
+
+const rowKey = (row: CatalogRow) => row.id;
+const markKey = (row: MarkRowData) => row.key;
+
+function HazardPage({
+  layer,
+  hazards,
+  bottomInset,
+  onSelect,
+}: {
+  layer: HazardKey;
+  hazards: MenuHazards;
+  bottomInset: number;
+  onSelect: (result: TapResult) => void;
+}) {
+  const rows = useMemo(() => hazardRows(layer, hazards), [layer, hazards]);
+  const note = hazardLayers(hazards).find((l) => l.key === layer)?.note;
+  const renderItem = useCallback(
+    ({ item }: { item: MarkRowData }) => <MarkRow row={item} onPress={onSelect} />,
+    [onSelect],
+  );
+  return (
+    <BottomSheetFlatList
+      style={styles.list}
+      data={rows}
+      keyExtractor={markKey}
+      renderItem={renderItem}
+      {...LIST_WINDOW}
+      contentContainerStyle={[styles.markList, { paddingBottom: bottomInset + SPACING.md }]}
+      ListHeaderComponent={
+        note ? (
+          <Text variant="caption" style={styles.markNote}>
+            {note}
+          </Text>
+        ) : null
+      }
+    />
+  );
+}
+
 const styles = StyleSheet.create({
+  // `flexShrink`, never `flex`: the sheet is content-sized, and `flex: 1`
+  // measures to nothing in an auto-height column (see `SheetSearchPage`).
+  listPage: { flexShrink: 1 },
+  list: { flexShrink: 1 },
+  intro: {
+    paddingHorizontal: SPACING.screenPadding,
+    gap: SPACING.xs,
+    paddingBottom: SPACING.md,
+  },
+  introRuled: { borderBottomWidth: StyleSheet.hairlineWidth },
+  filters: { paddingTop: SPACING.sm },
+  teaser: { flexShrink: 1 },
+  markList: { paddingHorizontal: SPACING.screenPadding },
+  markNote: { paddingBottom: SPACING.sm },
   eraseHeading: {
     marginBottom: SPACING.xs,
   },

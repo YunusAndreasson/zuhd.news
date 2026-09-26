@@ -142,6 +142,21 @@ describe('indicatorMove', () => {
     expect(indicatorMove(monthly)).toMatchObject({ direction: 'down', window: 'since Jun 2026' });
   });
 
+  it('moves a published rate in points, the number its card prints', () => {
+    // The Fed's target, 4.00 → 3.75: the card said ▼0.25 points and the
+    // sheet a story's mention opens said ▼6.3%.
+    const fed = indicator({
+      id: 'fed-funds',
+      unit: '%',
+      cadence: 'monthly',
+      values: [4, 3.75],
+      periods: ['Jul 2026', 'Aug 2026'],
+    });
+    const move = indicatorMove(fed);
+    expect(move).toMatchObject({ direction: 'down', magnitude: '0.25 points' });
+    expect(move?.unit).toBeUndefined();
+  });
+
   it('moves a contract in points, marked so the chip never colours it', () => {
     const contract = indicator({ id: 'poly-x', source: 'polymarket', unit: '%', values: [40, 52] });
     expect(indicatorMove(contract)).toMatchObject({ magnitude: '12 points', unit: 'points' });

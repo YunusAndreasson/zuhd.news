@@ -165,6 +165,23 @@ describe('buildNowSurfaces — the strip', () => {
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['market-signal:bist', 'gold']);
   });
 
+  it('knows a signal is its exchange by id, even when the signal names no country', () => {
+    // Live ids: the signal is `mkt:bist`. `country` is additive on a signal,
+    // and without it the signal read `BIST 100` beside the quote's `Turkey
+    // stocks` — two subjects, two slots, the duplicate above come back.
+    const ranked: SwipeCard[] = [
+      reading('mkt:bist', { title: 'BIST 100', series: week(-6.3) }),
+      reading('market-signal:mkt:bist', { title: 'BIST 100', series: week(-6.3) }),
+    ];
+    const { strip } = base({
+      ranked,
+      signals: [signal('mkt:bist', { country: undefined })],
+      exchanges: [{ id: 'bist', iso2: 'TR', lat: 41, lng: 29 } as Exchange],
+    });
+    expect(strip.map((s) => s.id)).toEqual(['market-signal:mkt:bist']);
+    expect(strip[0]?.short).toBe('Turkey stocks');
+  });
+
   it('keeps the ranked order between equal moves', () => {
     const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { series: week(3) }));
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['b', 'a', 'c']);
@@ -416,7 +433,7 @@ describe('buildNowSurfaces — what a slot and a row may say', () => {
     const { strip, now } = base({ ranked });
     expect(strip.map((s) => s.id)).toEqual(['a', 'b', 'c']);
     // Nor a row in the news sheet: it rides the story it settles as an odds
-    // chip, and the instruments sheet lists it in full.
+    // chip, and the menu's predictions list it in full.
     expect(now).toHaveLength(0);
   });
 

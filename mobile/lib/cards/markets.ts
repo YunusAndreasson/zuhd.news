@@ -16,7 +16,9 @@ import {
   formatQuantity,
   formatReading,
   formatSignedPct,
+  formatSignedRatePoints,
   formatVsNormal,
+  isMonthlyRate,
   latestOf,
   nisab,
   relatedForTags,
@@ -48,6 +50,12 @@ import type {
  * none of them get a screen: an index level is not a fact about a life, and a
  * second crude benchmark teaches nothing the first did not. Currency readings
  * appear only when their own move clears the materiality threshold.
+ *
+ * That is the ranked pool's rule — what the strip and a story's odds draw
+ * from. The menu's lists are a different surface, a place a reader goes to
+ * look something up, and since 2026-09-26 they list every published series
+ * (`lib/instrument-catalog.ts`), built with the builders exported here and
+ * held to the same gate.
  */
 
 /** How many observations back a daily series looks when reporting "what
@@ -146,6 +154,9 @@ function dailyDelta(indicator: Indicator): CardDelta | undefined {
 }
 
 function monthlyDelta(indicator: Indicator): CardDelta | undefined {
+  if (isMonthlyRate(indicator)) {
+    return deltaFrom(windowPointChange(indicator, MONTH), { window: 'on the month', unit: 'rate' });
+  }
   return deltaFrom(windowChange(indicator, MONTH), { window: 'on the month' });
 }
 
@@ -154,9 +165,10 @@ function monthlyDelta(indicator: Indicator): CardDelta | undefined {
  *  than last year is two different facts — but only one of them fits in the
  *  chip. */
 function describeYearChange(indicator: Indicator): string | undefined {
-  const yoy = windowChange(indicator, YEAR);
+  const rate = isMonthlyRate(indicator);
+  const yoy = rate ? windowPointChange(indicator, YEAR) : windowChange(indicator, YEAR);
   if (!yoy) return undefined;
-  const signed = formatSignedPct(yoy.pct);
+  const signed = rate ? formatSignedRatePoints(yoy.pct) : formatSignedPct(yoy.pct);
   return signed === 'unchanged' ? 'Unchanged against a year ago.' : `${signed} against a year ago.`;
 }
 
@@ -249,7 +261,7 @@ function staplesCard(
 /** A live indicator with its pipeline analysis. Hand-written copy stays out of
  * the graph-card path: the section gate requires a `why`, and `whyFor` will
  * only ever hand it something the desk wrote. */
-function indicatorCard(
+export function indicatorCard(
   snapshot: TrendsSnapshot,
   analysis: AnalysisById,
   articles: Article[],
@@ -555,48 +567,69 @@ function fxMoverCards(
 
   return [mover, major]
     .filter((x): x is NonNullable<typeof x> => x !== undefined)
-    .map(({ indicator, change, value }) => {
-      // The unit arrives as a data column — "ZAR / USD" — and the card reads
-      // it aloud: how many of these one dollar buys.
-      const code = indicator.unit?.split(' / ')[0] ?? '';
-      const weakened = change.pct > 0;
-      return {
-        id: `${indicator.id}-mover`,
-        kind: 'reading' as const,
-        kicker: 'currency',
-        asOf: indicatorObservation(indicator, snapshot.asOf),
-        title: indicator.label,
-        reading: formatReading(value),
-        readingNote: code ? `${code} to the dollar` : 'to the dollar',
-        // The chip reports the currency, matching the table on the card
-        // before it — and it says the word. A caret pointing down beside a
-        // reading of 83 rubles to the dollar is only unambiguous once
-        // something on the line names what fell, and "weaker since Jul 24"
-        // is three words that make the rate and the move stop contradicting
-        // each other.
-        delta: deltaFrom(
-          { ...change, pct: currencyMove(change.pct) },
-          { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
-        ),
-        // No sentence under the analysis. One used to say which slot the
-        // card had taken — "largest monthly fall in this 15-currency set" —
-        // which is a fact about the deck's selection rule, not about the
-        // currency, and the date it ended on was already on the kicker line.
-        // The chip says the move and the desk's paragraph says why; nothing
-        // is left for a third line to add.
-        why: whyFor(analysis, indicator.id, indicator),
-        cited: analysis.get(indicator.id)?.relatedArticles,
-        series: {
-          values: indicator.values,
-          periods: indicator.periods,
-          label: indicator.unit ?? 'per US dollar',
-          unit: indicator.unit,
-          highlight: 'last' as const,
-        },
-        related: relatedForTags(articles, indicator.topicTags),
-        sourceLabel: indicator.sourceLabel,
-      };
-    });
+    .map(({ indicator }) =>
+      currencyCard(snapshot, analysis, articles, indicator, `${indicator.id}-mover`),
+    )
+    .filter((card): card is ReadingCard => card !== null);
+}
+
+/**
+ * One currency, quoted the way its holder reads it — the mover slots' card,
+ * and every other currency's in the menu's list. `id` is the mover slot's own
+ * (`fx-try-mover`) or the indicator's (`fx-try`); `gaugeMove` inverts on the
+ * `fx-` prefix, so both quote the currency rather than the rate. Null when the
+ * series has no window to name.
+ */
+export function currencyCard(
+  snapshot: TrendsSnapshot,
+  analysis: AnalysisById,
+  articles: Article[],
+  indicator: Indicator,
+  id: string = indicator.id,
+): ReadingCard | null {
+  const change = windowChange(indicator, indicator.values.length - 1);
+  const value = latestOf(indicator);
+  if (!change || value == null) return null;
+  // The unit arrives as a data column — "ZAR / USD" — and the card reads
+  // it aloud: how many of these one dollar buys.
+  const code = indicator.unit?.split(' / ')[0] ?? '';
+  const weakened = change.pct > 0;
+  return {
+    id,
+    kind: 'reading' as const,
+    kicker: 'currency',
+    asOf: indicatorObservation(indicator, snapshot.asOf),
+    title: indicator.label,
+    reading: formatReading(value),
+    readingNote: code ? `${code} to the dollar` : 'to the dollar',
+    // The chip reports the currency, matching the table on the card
+    // before it — and it says the word. A caret pointing down beside a
+    // reading of 83 rubles to the dollar is only unambiguous once
+    // something on the line names what fell, and "weaker since Jul 24"
+    // is three words that make the rate and the move stop contradicting
+    // each other.
+    delta: deltaFrom(
+      { ...change, pct: currencyMove(change.pct) },
+      { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
+    ),
+    // No sentence under the analysis. One used to say which slot the
+    // card had taken — "largest monthly fall in this 15-currency set" —
+    // which is a fact about the deck's selection rule, not about the
+    // currency, and the date it ended on was already on the kicker line.
+    // The chip says the move and the desk's paragraph says why; nothing
+    // is left for a third line to add.
+    why: whyFor(analysis, indicator.id, indicator),
+    cited: analysis.get(indicator.id)?.relatedArticles,
+    series: {
+      values: indicator.values,
+      periods: indicator.periods,
+      label: indicator.unit ?? 'per US dollar',
+      unit: indicator.unit,
+      highlight: 'last' as const,
+    },
+    related: relatedForTags(articles, indicator.topicTags),
+    sourceLabel: indicator.sourceLabel,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -1146,7 +1179,8 @@ function eventTier(ev: TrendEvent, days: number): number {
   return ev.standing?.trim() ? 1 : 2;
 }
 
-function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
+/** Every event still ahead, once each. */
+function upcomingEvents(snapshot: TrendsSnapshot, now: Date): { ev: TrendEvent; days: number }[] {
   return (
     (snapshot.events ?? [])
       // The published events block has carried one release three times
@@ -1154,37 +1188,75 @@ function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): S
       .filter((ev, i, all) => all.findIndex((other) => other.id === ev.id) === i)
       .map((ev) => ({ ev, days: daysUntil(ev.date, now) }))
       .filter((x): x is { ev: TrendEvent; days: number } => x.days !== null && x.days >= 0)
+  );
+}
+
+function eventCards(snapshot: TrendsSnapshot, articles: Article[], now: Date): ScheduledCard[] {
+  return (
+    upcomingEvents(snapshot, now)
       .filter(({ days }) => days <= EVENT_HORIZON_DAYS)
       .sort((a, b) => eventTier(a.ev, a.days) - eventTier(b.ev, b.days) || a.days - b.days)
       .slice(0, EVENT_LIMIT)
       // Chosen by tier, read by date: the editorial order the ranker breaks
       // ties on is nearest first.
       .sort((a, b) => a.days - b.days)
-      .map(({ ev, days }) => {
-        const ind = eventIndicator(snapshot, ev);
-        return {
-          id: `event-${ev.id}`,
-          kind: 'scheduled' as const,
-          date: ev.date,
-          lead: days <= EVENT_IMMINENT_DAYS,
-          kicker: ev.institution,
-          title: ev.title,
-          reading: countdown(days),
-          readingNote: new Date(`${ev.date}T00:00:00Z`).toLocaleDateString(undefined, {
-            day: 'numeric',
-            month: 'long',
-            timeZone: 'UTC',
-          }),
-          // Same rule as every other card: the day's account of what is at
-          // stake, and the standing description of the institution where there
-          // is none.
-          why: ev.recent?.trim() || ev.standing?.trim() || undefined,
-          changed: ind ? describeLevel(ind) : undefined,
-          series: ind ? seriesOf(ind) : undefined,
-          related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
-        };
-      })
+      .map(({ ev, days }) => eventCard(snapshot, articles, ev, days))
   );
+}
+
+/**
+ * Every date still ahead, nearest first — the menu's `coming up` list.
+ *
+ * No horizon and no limit: those are the deck's, where a column swiped in a
+ * minute cannot hold a diary. A list a reader opens to look ahead can, and
+ * the Bank of Japan's December meeting is worth finding in September.
+ */
+export function calendarCards(
+  snapshot: TrendsSnapshot,
+  articles: Article[],
+  now: Date,
+): ScheduledCard[] {
+  return upcomingEvents(snapshot, now)
+    .sort((a, b) => a.days - b.days)
+    .map(({ ev, days }) => eventCard(snapshot, articles, ev, days));
+}
+
+/** One formatter for every event's date: `toLocaleDateString` builds one per
+ *  call, ~9 ms each on Android, and the menu builds every event. */
+let eventDateFormat: Intl.DateTimeFormat | undefined;
+function eventDate(iso: string): string {
+  eventDateFormat ??= new Intl.DateTimeFormat(undefined, {
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'UTC',
+  });
+  return eventDateFormat.format(new Date(`${iso}T00:00:00Z`));
+}
+
+function eventCard(
+  snapshot: TrendsSnapshot,
+  articles: Article[],
+  ev: TrendEvent,
+  days: number,
+): ScheduledCard {
+  const ind = eventIndicator(snapshot, ev);
+  return {
+    id: `event-${ev.id}`,
+    kind: 'scheduled' as const,
+    date: ev.date,
+    lead: days <= EVENT_IMMINENT_DAYS,
+    kicker: ev.institution,
+    title: ev.title,
+    reading: countdown(days),
+    readingNote: eventDate(ev.date),
+    // Same rule as every other card: the day's account of what is at
+    // stake, and the standing description of the institution where there
+    // is none.
+    why: ev.recent?.trim() || ev.standing?.trim() || undefined,
+    changed: ind ? describeLevel(ind) : undefined,
+    series: ind ? seriesOf(ind) : undefined,
+    related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
+  };
 }
 
 export interface InstrumentCardInputs {

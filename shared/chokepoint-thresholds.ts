@@ -15,9 +15,10 @@
  *
  * - **The web map** asks "is this strait disrupted?", in either direction. A
  *   surge is traffic rerouted to here, which is still a disruption.
- * - **The app's valence** asks "is this bad for an ordinary life?". It only
- *   colours the fall, because the surge is the same disruption seen from the
- *   other end (`chokepointValence`, `mobile/lib/valence.ts`).
+ * - **The app's glyph** asks "is this strait squeezed?". It pinches only on
+ *   the fall, because the surge is the same disruption seen from the other
+ *   end, and bows open past the same bar the other way (`straitSqueezed`,
+ *   `mobile/lib/valence.ts`; `straitStateFor`, `mobile/lib/strait-map.ts`).
  *
  * A strait card's `current` flag is a separate bar, not this one: it asks
  * whether a fall is material enough to be news (`STRAIT_CURRENT_FALL` in

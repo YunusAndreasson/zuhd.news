@@ -7,7 +7,7 @@ import {
 } from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
-import { FLAG, HIT_SLOP, SPACING } from '../constants/theme';
+import { FLAG, HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
@@ -18,6 +18,17 @@ interface Props {
   currentCountryName: string | null;
   bottomInset: number;
   onRequestClose?: () => void;
+  /**
+   * Makes each row open its country. The menu's `country rankings` passes it:
+   * reached from there, a ranking is a way into the countries rather than a
+   * detail of one, and a list of names that could not be pressed would be a
+   * dead end. Rows grow to the menu's row height to be a target.
+   */
+  onSelectCountry?: (name: string) => void;
+  /** Print the metric's name over the list. Off where the sheet's handle
+   *  already names it — the menu's ranking pages: a title lives in the
+   *  handle, never again as a heading in the body. */
+  titled?: boolean;
 }
 
 export const CountryRankingView = memo(function CountryRankingView({
@@ -25,8 +36,11 @@ export const CountryRankingView = memo(function CountryRankingView({
   currentCountryName,
   bottomInset,
   onRequestClose,
+  onSelectCountry,
+  titled = true,
 }: Props) {
   const { colors } = useTheme();
+  const rowHeight = onSelectCountry ? LAYOUT.rowMinHeight : ROW_HEIGHT;
   const ranking = useMemo(() => getRanking(metric), [metric]);
   const currentIndex = useMemo(
     () => (currentCountryName ? ranking.findIndex((r) => r.name === currentCountryName) : -1),
@@ -42,10 +56,10 @@ export const CountryRankingView = memo(function CountryRankingView({
     if (currentIndex < 0 || headerHeight === null || viewportHeight <= 0) return;
     const target = `${metric}:${currentCountryName}:${headerHeight}`;
     if (positioned.current === target) return;
-    const offset = currentIndex <= 2 ? 0 : headerHeight + ROW_HEIGHT * (currentIndex - 2);
+    const offset = currentIndex <= 2 ? 0 : headerHeight + rowHeight * (currentIndex - 2);
     // Wait for native content layout too: a scroll sent while its extent is
     // still zero is silently clamped to the top on Android.
-    if (contentHeight < headerHeight + ROW_HEIGHT * ranking.length) return;
+    if (contentHeight < headerHeight + rowHeight * ranking.length) return;
     // Let the content-size commit reach the native sheet before dispatching
     // its scroll command; a JS microtask can still precede that native mount.
     let task = requestAnimationFrame(() => {
@@ -66,19 +80,15 @@ export const CountryRankingView = memo(function CountryRankingView({
     ranking.length,
     metric,
     currentCountryName,
+    rowHeight,
   ]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: RankingEntry; index: number }) => {
       const isCurrent = item.name === currentCountryName;
-      return (
-        <View
-          style={[
-            styles.row,
-            { borderBottomColor: colors.rule },
-            isCurrent && { backgroundColor: colors.pillBg },
-          ]}
-        >
+      const name = displayCountryName(item.name);
+      const content = (
+        <>
           <Text variant="labelXs" style={styles.rank}>
             {index + 1}
           </Text>
@@ -89,15 +99,31 @@ export const CountryRankingView = memo(function CountryRankingView({
             numberOfLines={1}
             style={styles.name}
           >
-            {displayCountryName(item.name)}
+            {name}
           </Text>
           <Text variant="caption" tone="default" style={styles.value}>
             {item.value}
           </Text>
-        </View>
+        </>
+      );
+      const style = [
+        styles.row,
+        { height: rowHeight, borderBottomColor: colors.rule },
+        isCurrent && { backgroundColor: colors.pillBg },
+      ];
+      if (!onSelectCountry) return <View style={style}>{content}</View>;
+      return (
+        <Pressable
+          onPress={() => onSelectCountry(item.name)}
+          style={style}
+          accessibilityRole="button"
+          accessibilityLabel={`${index + 1}. ${name}, ${item.value}`}
+        >
+          {content}
+        </Pressable>
       );
     },
-    [colors, currentCountryName],
+    [colors, currentCountryName, onSelectCountry, rowHeight],
   );
 
   const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
@@ -121,19 +147,21 @@ export const CountryRankingView = memo(function CountryRankingView({
       getItemLayout={
         headerHeight === null
           ? undefined
-          : (_, index) => ({ length: ROW_HEIGHT, offset: headerHeight + ROW_HEIGHT * index, index })
+          : (_, index) => ({ length: rowHeight, offset: headerHeight + rowHeight * index, index })
       }
       contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
       ListHeaderComponent={
         <View onLayout={(event) => setHeaderHeight(event.nativeEvent.layout.height)}>
-          <View style={styles.header}>
-            <Text variant="labelXs">{meta.label}</Text>
-            {currentIndex >= 0 && (
-              <Text variant="labelXs" tone="emphasis" style={styles.totalNum}>
-                {totalLabel}
-              </Text>
-            )}
-          </View>
+          {titled || currentIndex >= 0 ? (
+            <View style={styles.header}>
+              {titled ? <Text variant="labelXs">{meta.label}</Text> : <View />}
+              {currentIndex >= 0 && (
+                <Text variant="labelXs" tone="emphasis" style={styles.totalNum}>
+                  {totalLabel}
+                </Text>
+              )}
+            </View>
+          ) : null}
           {(meta.description || meta.source) && (
             <View style={[styles.meta, { borderBottomColor: colors.rule }]}>
               {meta.description && (
@@ -198,7 +226,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.sm,
     paddingHorizontal: SPACING.screenPadding,
-    height: ROW_HEIGHT,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   rank: {

@@ -39,6 +39,12 @@ describe('windowChange', () => {
 });
 
 describe('windowPointChange', () => {
+  it('measures a move from zero, which a relative change cannot', () => {
+    // A rate raised off 0% moved a quarter of a point; the relative change's
+    // divide-by-zero guard used to drop it.
+    expect(windowPointChange(series([0, 0.25]), 1)?.pct).toBe(0.25);
+  });
+
   it('reports a probability move in points, not as a relative percentage', () => {
     // The live ceasefire contract went 26 → 86. As a relative change that is
     // +231%, which is arithmetic pretending to be journalism.
