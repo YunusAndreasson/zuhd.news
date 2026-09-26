@@ -30,7 +30,7 @@ function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[
       index.push({ article: a, category: cat, corpus });
     }
   }
-  index.sort((a, b) => b.article.addedAt - a.article.addedAt);
+  index.sort((a, b) => articleTime(b.article) - articleTime(a.article));
   return index;
 }
 

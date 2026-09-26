@@ -199,7 +199,7 @@ whole time; nothing said so.
   carries the level, the move in **points**, and `MARKET_CAVEAT` (`OddsLine`). Odds are never tinted
   favorable/unfavorable — a green likelier war is the app taking a side.
 - **The river is the last 24 hours.** `recentRiver` (`lib/news-order.ts`,
-  tested) cuts the feed to one day on the dateline's own timestamp before
+  tested) cuts the feed to one day of what zuhd published before
   anything reads it, so the deck, the globe's lights, the found ring and the
   index all show the same day. If nothing is inside the day — a stalled
   pipeline — the window anchors on the newest story instead of emptying the
@@ -207,11 +207,24 @@ whole time; nothing said so.
   related story) is pinned into the river (`pinStory`) so `focusStory` can
   still land on it; `tick` re-measures the window while the app stays open.
 - **The river is in time order, and what arrived says so** (2026-09-21, the
-  user's request). `orderNewsRiver` sorts every story newest first by the
-  dateline's time, whatever its category. It was four category bands, newest
-  first within each, so the track could be scrubbed to a category by colour —
-  and the day's newest stories sat in four places, one at the head of each
-  band, and a reader coming back could not tell whether anything had arrived.
+  user's request). `orderNewsRiver` sorts every story newest first, whatever
+  its category. It was four category bands, newest first within each, so the
+  track could be scrubbed to a category by colour — and the day's newest
+  stories sat in four places, one at the head of each band, and a reader
+  coming back could not tell whether anything had arrived.
+  - **Newest means published, not happened** (2026-09-26, the user's
+    report: new stories "not coming in order"). `articleTime` is when zuhd
+    published a story — `publishedAt`, the build's git author time of the
+    commit that added it, or `addedAt` on older payloads — and it orders the
+    river, places the track, sets the day's window and is the `2h ago` on
+    every card. It was when the story happened (`eventAt`), so every story
+    the desk picked up late went in hours deep, among stories already read,
+    under `21h ago · new`, where `‹ n new` never counted it; 18% of stories
+    were picked up more than 12 h late at the time (the pipeline now cuts its
+    pool at 12 h too). A cycle is one **run**: its stories share one time
+    (`ranAt`) and inside it the newest *event* comes first (`eventTime`).
+    Never read `addedAt` for time: it is a file mtime, and a rebase on the
+    pipeline box resets it.
   - **No top-stories lead: the river is plain time order** (2026-09-24,
     the user's request — "the top stories were confusing"). For a day
     (09-23) `leadWithTopStories` moved up to five stories over the report
@@ -235,7 +248,10 @@ whole time; nothing said so.
     2026-09-23: present on some cards and not others, they moved the
     coloured category word sideways from card to card as the reader swiped,
     so it now always starts at the text's edge (the user's request).
-    The track has no mark for
+    **A story read once says `new` no more** (2026-09-26, the user's
+    request): read (two seconds in front) and then left, its `new` is spent
+    (`fresh-store` `spendNew`), on leaving so the word never goes off the card
+    being read. The track has no mark for
     new: a 2pt rule over new stories' segments shipped on 2026-09-21 and was
     removed the next day at the user's request — a second row of dashes over
     the colours that added nothing the kicker and the pill did not already

@@ -3000,13 +3000,14 @@ export const MiniGlobe = memo(function MiniGlobe({
         const existing = clusters.get(key);
         if (existing) {
           existing.total += coverage;
-          if (article.addedAt > existing.newestT) existing.newestT = article.addedAt;
+          const t = articleTime(article);
+          if (t > existing.newestT) existing.newestT = t;
         } else
           clusters.set(key, {
             lat: geo.lat,
             lng: geo.lng,
             total: coverage,
-            newestT: article.addedAt,
+            newestT: articleTime(article),
             countryName: geo.countryName,
           });
       }

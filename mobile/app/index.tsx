@@ -97,7 +97,7 @@ import { exchangeMove } from '../lib/cards/week-move';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
-import { markLanded, useFreshSlugs } from '../lib/fresh-store';
+import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
 import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
@@ -1401,7 +1401,14 @@ export default function HomeScreen() {
   // Whatever story is in front has been had, however it got there — a swipe,
   // a jump, a mark on the globe, or the deck opening on it.
   const frontSlug = storyRows[frontIndex]?.slug;
+  const leftSlugRef = useRef<string | undefined>(undefined);
   useEffect(() => {
+    // A story read and then left stops saying `new` (`fresh-store` `spent`) —
+    // on leaving, so the word never goes off the card being read. The end
+    // card has no slug, and leaving for it counts.
+    const left = leftSlugRef.current;
+    leftSlugRef.current = frontSlug;
+    if (left && left !== frontSlug && getReadSlugs().has(left)) spendNew(left);
     if (!frontSlug) return;
     markLanded(frontSlug);
     // The anchor a feed arrival keeps the reader on. Only a swipe or a focus

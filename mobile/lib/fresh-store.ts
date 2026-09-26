@@ -1,5 +1,5 @@
 import Storage from 'expo-sqlite/kv-store';
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
 import { DAY_MS } from './time';
 
@@ -13,7 +13,7 @@ import { DAY_MS } from './time';
  * published that minute, and a clock comparison would have called it new. A
  * story is new when it was not in a feed the reader already had.
  *
- * Three sets:
+ * Four sets:
  *
  *   - `known` — slugs the reader has had: in a feed before anything was new
  *     to them, or new and then landed on. Persisted with when each became
@@ -27,6 +27,14 @@ import { DAY_MS } from './time';
  *     become known at the next arrival, and on disk when the app backgrounds.
  *     (The dock's jump counts fresh stories not yet *read* — `read-store` —
  *     so it agrees with the track.)
+ *   - `spent` — landed stories the reader *read* (`read-store`, two seconds in
+ *     front) and then left (`spendNew`). Their `new` is spent: a story read
+ *     once does not say `new` when the reader comes back to it (2026-09-26,
+ *     the user's request). Spent on leaving, never while the story is in
+ *     front, so the word still does not vanish off the card being read. Read,
+ *     not landed, because read is the track's and the pill's rule: a story
+ *     swiped straight past stays new in all three places. Cleared at the next
+ *     arrival, which knows every landed story anyway.
  *
  * A fresh story the reader skips stays fresh for as long as it is in the
  * feed: it is new to them, and the day's window ages it out of the river.
@@ -52,6 +60,7 @@ export interface FeedStory {
 export interface FreshState {
   fresh: ReadonlySet<string>;
   landed: ReadonlySet<string>;
+  spent: ReadonlySet<string>;
 }
 
 function isKnownMap(value: unknown): value is KnownMap {
@@ -64,7 +73,7 @@ function isKnownMap(value: unknown): value is KnownMap {
 let known: KnownMap | null = null;
 /** The `generated` stamp last noted; a feed is noted once. */
 let notedFeed: string | null = null;
-let state: FreshState = { fresh: new Set(), landed: new Set() };
+let state: FreshState = { fresh: new Set(), landed: new Set(), spent: new Set() };
 const listeners = createListeners();
 
 try {
@@ -135,7 +144,7 @@ export function noteFeed(
 
   const fresh = new Set<string>();
   for (const story of stories) if (next[story.slug] == null) fresh.add(story.slug);
-  state = { fresh, landed: new Set() };
+  state = { fresh, landed: new Set(), spent: new Set() };
   listeners.emit();
   persist.later();
 }
@@ -143,16 +152,28 @@ export function noteFeed(
 /** The reader has had this story in front of them. */
 export function markLanded(slug: string): void {
   if (!state.fresh.has(slug) || state.landed.has(slug)) return;
-  state = { fresh: state.fresh, landed: new Set(state.landed).add(slug) };
+  state = { ...state, landed: new Set(state.landed).add(slug) };
   listeners.emit();
   persist.later();
+}
+
+/**
+ * The reader read this story and has moved off it: it stops saying `new`.
+ * The caller checks read (`read-store`); only a landed story can be spent,
+ * since only the story in front is ever read. Nothing to persist — a spent
+ * story is landed, and landed stories reach disk.
+ */
+export function spendNew(slug: string): void {
+  if (!state.landed.has(slug) || state.spent.has(slug)) return;
+  state = { ...state, spent: new Set(state.spent).add(slug) };
+  listeners.emit();
 }
 
 /** Forget everything: the next feed is a first launch's. Immediate. */
 export function clearKnown(): void {
   known = null;
   notedFeed = null;
-  state = { fresh: new Set(), landed: new Set() };
+  state = { fresh: new Set(), landed: new Set(), spent: new Set() };
   listeners.emit();
   persist.now();
 }
@@ -173,4 +194,13 @@ const getFresh = (): ReadonlySet<string> => state.fresh;
  */
 export function useFreshSlugs(): ReadonlySet<string> {
   return useSyncExternalStore(subscribe, getFresh, getFresh);
+}
+
+/**
+ * Whether one story's `new` is spent. A boolean per card, so spending a story
+ * re-renders that card alone — not the screen, whose `fresh` set it keeps.
+ */
+export function useNewSpent(slug: string): boolean {
+  const get = useCallback(() => state.spent.has(slug), [slug]);
+  return useSyncExternalStore(subscribe, get, get);
 }

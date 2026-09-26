@@ -1,5 +1,5 @@
 import { getCoords } from '../components/globe/storyDots';
-import { articleTime, ccToFlag, formatTimeAgo } from '../lib/article-utils';
+import { articleTime, ccToFlag, eventTime, formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import type { Article } from '@shared/types';
 
@@ -24,32 +24,53 @@ function makeArticle(overrides: Partial<Article> = {}): Article {
 }
 
 // ---------------------------------------------------------------------------
-// articleTime — which of three timestamps actually answers "how old is this"
+// articleTime — when zuhd published it, the time every surface prints
 // ---------------------------------------------------------------------------
 
 describe('articleTime', () => {
-  it('prefers eventAt, the answer the build now ships', () => {
+  it('is when zuhd published the story, never when it happened', () => {
+    // The 10:01 cycle of 2026-09-26 published a story about the day before.
+    const a = makeArticle({
+      eventAt: Date.parse('2026-09-25T12:53:43Z'),
+      publishedAt: Date.parse('2026-09-26T10:12:57Z'),
+      addedAt: Date.parse('2026-09-26T10:12:40Z'),
+    });
+    expect(articleTime(a)).toBe(Date.parse('2026-09-26T10:12:57Z'));
+  });
+
+  it('prefers the run the river put the story in', () => {
+    expect(articleTime({ ranAt: 7_000, publishedAt: 6_000, addedAt: 5_000 })).toBe(7_000);
+  });
+
+  it('falls back to addedAt for payloads built before publishedAt', () => {
     const a = makeArticle({ eventAt: 4_000, date: '2026-03-27T00:00:00Z', addedAt: 9_000 });
-    expect(articleTime(a)).toBe(4_000);
+    expect(articleTime(a)).toBe(9_000);
+  });
+});
+
+describe('eventTime', () => {
+  it('prefers eventAt, the answer the build ships', () => {
+    const a = makeArticle({ eventAt: 4_000, date: '2026-03-27T00:00:00Z', addedAt: 9_000 });
+    expect(eventTime(a)).toBe(4_000);
   });
 
   it('falls back to the frontmatter date, so payloads built before eventAt are still right', () => {
     const a = makeArticle({ date: '2026-03-27T00:00:00Z', addedAt: 9_000 });
-    expect(articleTime(a)).toBe(Date.parse('2026-03-27T00:00:00Z'));
+    expect(eventTime(a)).toBe(Date.parse('2026-03-27T00:00:00Z'));
   });
 
   it('falls back to addedAt only when the date will not parse', () => {
     const a = makeArticle({ date: 'not a date', addedAt: 9_000 });
-    expect(articleTime(a)).toBe(9_000);
+    expect(eventTime(a)).toBe(9_000);
   });
 
   it('separates stories the build stamped with one shared mtime', () => {
-    // The live feed carried 12 distinct addedAt values across 49 articles, so
-    // every story in a cycle read the same age. These two must not.
+    // A cycle's stories share one addedAt, and one publish time; within the
+    // cycle, what happened later still comes first.
     const cycle = 1_788_196_839_784;
     const fresh = makeArticle({ date: '2026-08-31T16:33:38Z', addedAt: cycle });
     const stale = makeArticle({ date: '2026-08-30T02:00:00Z', addedAt: cycle });
-    expect(articleTime(fresh)).toBeGreaterThan(articleTime(stale));
+    expect(eventTime(fresh)).toBeGreaterThan(eventTime(stale));
   });
 });
 

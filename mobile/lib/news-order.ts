@@ -1,17 +1,26 @@
 import type { Article, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
-import { articleTime } from './article-utils';
+import { articleTime, eventTime } from './article-utils';
 import { isMostCovered } from './coverage';
 import { DAY_MS } from './time';
 
-/** A feed article with its original category retained for its kicker. */
-export type RiverArticle = Article & { category: Category };
+/**
+ * A feed article with its original category retained for its kicker, and the
+ * run it came out in (`ranAt`, set by `orderNewsRiver`).
+ */
+export type RiverArticle = Article & { category: Category; ranAt?: number };
 
-/** Newest story first, using the same timestamp as the visible dateline.
- * Slug breaks exact ties deterministically; coverage never changes recency. */
+/** Stories one cycle writes land within minutes of each other; cycles are
+ *  hours apart. A gap longer than this starts a new run. */
+export const RUN_GAP_MS = 30 * 60_000;
+
+/** Newest run first, then newest event within the run. Slug breaks exact ties
+ * deterministically; coverage never changes recency. */
 function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
-  const recency = articleTime(b) - articleTime(a);
-  if (recency !== 0) return recency;
+  const ran = articleTime(b) - articleTime(a);
+  if (ran !== 0) return ran;
+  const happened = eventTime(b) - eventTime(a);
+  if (happened !== 0) return happened;
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
 }
 
@@ -25,11 +34,34 @@ function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
  * user's request). In time order what arrived since they last looked is at the
  * head of the river, where the deck opens and the track starts; the category
  * is still each card's dot and each segment's hue.
+ *
+ * Time order was when each story *happened* until 2026-09-26, which broke that
+ * promise for every story the desk picked up late: it went into the river
+ * hours deep, among stories the reader had read, and the dock's `‹ n new`
+ * never counted it, because it sat ahead of them. Now the river runs by when
+ * zuhd published (`articleTime`), one run per cycle, and within a run by when
+ * each story happened (`eventTime`).
+ *
+ * **A run shares one time** (`ranAt`, its newest story's). The files of one
+ * cycle land over a few minutes, and read to the minute, a run ordered by
+ * event would print `12m ago` above `13m ago`. With `publishedAt` a cycle is
+ * one commit and so one time already; runs matter for payloads built before
+ * it, whose times are mtimes.
  */
 export function orderNewsRiver(grouped: Record<Category, Article[]>): RiverArticle[] {
   const flat: RiverArticle[] = [];
   for (const category of CATEGORIES) {
     for (const article of grouped[category] ?? []) flat.push({ ...article, category });
+  }
+  flat.sort((a, b) => articleTime(b) - articleTime(a));
+  let ranAt = Number.NaN;
+  let previous = Number.NaN;
+  for (const article of flat) {
+    const at = articleTime(article);
+    // NaN on the first story, so it opens the first run.
+    if (!(previous - at <= RUN_GAP_MS)) ranAt = at;
+    previous = at;
+    article.ranAt = ranAt;
   }
   return flat.sort(compareNewsRecency);
 }
@@ -43,7 +75,8 @@ export const RIVER_WINDOW_MS = DAY_MS;
  * The feed carries several days of stories, and swiping, the globe's lights,
  * the found ring and the list all read the same river, so a story from three
  * days ago was one more card to swipe past and one more light to find. The
- * window is measured on the dateline's own timestamp (`articleTime`).
+ * window is measured on the time each card prints (`articleTime`): a day of
+ * what zuhd published.
  *
  * Two exceptions, both so the screen never lies by omission:
  * - **A stalled pipeline does not empty the globe.** When nothing is inside the

@@ -78,8 +78,8 @@ describe('buildStoryPlaces', () => {
   it('opens the newest story at a place even when the deck groups by category', () => {
     const old = row('old-politics', [51.5074, -0.1278], 'London');
     const fresh = row('new-tech', [51.51, -0.13], 'London');
-    old.article.eventAt = 1000;
-    fresh.article.eventAt = 2000;
+    old.article.publishedAt = 1000;
+    fresh.article.publishedAt = 2000;
     fresh.article.category = 'tech';
     const places = buildStoryPlaces([old, fresh]);
     expect(places[0]).toMatchObject({ key: 'new-tech', slugs: ['new-tech', 'old-politics'] });

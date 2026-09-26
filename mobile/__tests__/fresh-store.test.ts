@@ -84,6 +84,39 @@ describe('fresh-store', () => {
     expect(store.getFreshState()).toBe(before);
   });
 
+  it('spends the new of a read story the reader left, until the next feed', () => {
+    const store = loadStore();
+    store.noteFeed('g1', feed('a'));
+    store.noteFeed('g2', feed('b', 'c', 'a'));
+    store.markLanded('b');
+    store.spendNew('b');
+    // Still fresh — the pill and the boundary read `fresh` — but spent.
+    expect(fresh(store)).toEqual(['b', 'c']);
+    expect([...store.getFreshState().spent]).toEqual(['b']);
+    store.noteFeed('g3', feed('d', 'b', 'c', 'a'));
+    expect(store.getFreshState().spent.size).toBe(0);
+    expect(fresh(store)).toEqual(['c', 'd']);
+  });
+
+  it('spends only a landed story, and keeps the fresh set when it does', () => {
+    const store = loadStore();
+    store.noteFeed('g1', feed('a'));
+    store.noteFeed('g2', feed('b', 'c', 'a'));
+    const before = store.getFreshState();
+    // Never in front, so never read: nothing to spend.
+    store.spendNew('c');
+    store.spendNew('a');
+    expect(store.getFreshState()).toBe(before);
+    store.markLanded('b');
+    const { fresh: freshSet } = store.getFreshState();
+    store.spendNew('b');
+    // The screen subscribes to `fresh` alone; spending must not re-render it.
+    expect(store.getFreshState().fresh).toBe(freshSet);
+    const spent = store.getFreshState();
+    store.spendNew('b');
+    expect(store.getFreshState()).toBe(spent);
+  });
+
   it('carries what was landed and what was skipped across a restart', () => {
     const store = loadStore();
     store.noteFeed('g1', feed('a'));

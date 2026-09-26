@@ -200,14 +200,18 @@ export interface Article {
   slug: string;
   title: string;
   date: string;
-  /** When the build ran, as the markdown file's mtime. The pipeline writes a
-   *  whole cycle in one burst, so this collapses to one value per cycle and
-   *  cannot say how old a story is — prefer `articleTime`, never this. Kept
-   *  because it is a published contract field. */
+  /** The markdown file's mtime at build. Meant as when zuhd published the
+   *  story, but a rebase on the pipeline box rewrites files and resets it —
+   *  read `articleTime`, which prefers `publishedAt`. Kept because it is a
+   *  published contract field. */
   addedAt: number;
   /** When the story happened, from the frontmatter date. Absent on payloads
-   *  built before 2026-08-31; `articleTime` falls back through `date`. */
+   *  built before 2026-08-31; `eventTime` falls back through `date`. */
   eventAt?: number;
+  /** When zuhd published the story: the author time of the commit that added
+   *  it, which a rebase keeps. Absent on payloads built before 2026-09-26;
+   *  `articleTime` falls back to `addedAt`. */
+  publishedAt?: number;
   source: string | null; // derived from sources[0].name — used by globe, share
   sourceUrl: string | null; // derived from sources[0].url — used by share
   sources: ArticleSource[];

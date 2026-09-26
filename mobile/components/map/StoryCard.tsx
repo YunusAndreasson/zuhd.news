@@ -33,6 +33,7 @@ import {
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
 import { ACTIONS_ROW } from '../../lib/deck-layout';
+import { useNewSpent } from '../../lib/fresh-store';
 import { hapticImpact } from '../../lib/haptics';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
@@ -354,9 +355,14 @@ export const StoryCard = memo(function StoryCard({
   //
   // No report count (2026-09-24, the user's request): `· 884 reports` closed
   // the line for a day. See `lib/coverage.ts`.
+  //
+  // A story read once and left says `new` no more (2026-09-26, the user's
+  // request); `fresh-store` spends it on leaving, never while it is in front.
+  const newSpent = useNewSpent(row.slug);
+  const mark = row.mark === 'new' && newSpent ? null : row.mark;
   const categoryInk = categoryTextColor(article.category, colors);
   const age = formatTimeAgo(articleTime(article));
-  const kicker = [meta, row.mark].filter(Boolean).join(' · ');
+  const kicker = [meta, mark].filter(Boolean).join(' · ');
 
   return (
     <View style={styles.card}>
@@ -376,9 +382,9 @@ export const StoryCard = memo(function StoryCard({
               </Text>
             ) : null}
             {article.category ? ` · ${age}` : age}
-            {row.mark ? (
+            {mark ? (
               <Text variant="labelXs" tone="emphasis">
-                {` · ${row.mark}`}
+                {` · ${mark}`}
               </Text>
             ) : null}
           </Text>

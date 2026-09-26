@@ -6,21 +6,31 @@
 import type { Article } from '@shared/types';
 
 /**
- * When the story happened — the only time this app should ever show a reader.
+ * When zuhd published the story — the one time this app shows a reader, and
+ * the one it orders the day by.
  *
- * `addedAt` is the build's mtime. The pipeline writes a whole editorial cycle
- * in one burst and the editor stage rewrites files, so mtime collapses to one
- * value per cycle: a live 49-article feed carried 12 distinct `addedAt` values,
- * twelve stories all reading "now", and the freshest-looking item on the page
- * was 38 hours old. It also flattened the recency tiebreak in `orderNewsRiver`
- * to a no-op within a cycle.
+ * It was when the story *happened* (`eventAt`) from 2026-08-31 to 2026-09-26.
+ * That read well until the desk picked a story up late: a story published
+ * this morning about something yesterday afternoon sat deep in the river,
+ * behind stories the reader had already read, under `21h ago · new`, and the
+ * user asked why new stories did not arrive in order. A news reader dates a
+ * story by when it ran; the user chose that on 2026-09-26.
  *
- * `eventAt` is the build's answer, added 2026-08-31. The `date` fallback is
- * what makes this correct against payloads built before it — the field was
- * always in the feed, just never read — and `addedAt` remains the last resort
- * for a story whose date will not parse.
+ * `ranAt` is the run the story came out in (`orderNewsRiver`), so a cycle's
+ * stories share one time; `publishedAt` is the build's stable answer; and
+ * `addedAt` — a file mtime, which a rebase on the pipeline box can reset —
+ * is the fallback for payloads built before `publishedAt` existed.
  */
-export const articleTime = (a: Pick<Article, 'eventAt' | 'date' | 'addedAt'>): number =>
+export const articleTime = (
+  a: Pick<Article, 'publishedAt' | 'addedAt'> & { ranAt?: number },
+): number => a.ranAt ?? a.publishedAt ?? a.addedAt;
+
+/**
+ * When the story happened: the frontmatter date. Orders the stories inside one
+ * run (`orderNewsRiver`), newest event first; never printed. The `date`
+ * fallback covers payloads built before `eventAt` (2026-08-31).
+ */
+export const eventTime = (a: Pick<Article, 'eventAt' | 'date' | 'addedAt'>): number =>
   a.eventAt ?? (Date.parse(a.date) || a.addedAt);
 
 export function formatTimeAgo(addedAt: number): string {

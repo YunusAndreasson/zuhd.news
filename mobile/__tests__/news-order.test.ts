@@ -1,11 +1,12 @@
 import type { Article, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
-import { articleTime } from '../lib/article-utils';
+import { articleTime, eventTime } from '../lib/article-utils';
 import { buildStoryRows } from '../lib/map-feed';
 import {
   leadWithTopStories,
   orderNewsRiver,
   RIVER_WINDOW_MS,
+  RUN_GAP_MS,
   type RiverArticle,
   recentRiver,
   TOP_STORIES,
@@ -63,7 +64,7 @@ describe('orderNewsRiver', () => {
     ]);
   });
 
-  it('uses event time, then date, then addedAt for legacy stories', () => {
+  it('orders a run by event time, then date, then addedAt', () => {
     const grouped = emptyGrouped();
     grouped.tech = [
       makeArticle({ slug: 'event', eventAt: 5000, addedAt: 9000 }),
@@ -96,7 +97,8 @@ describe('orderNewsRiver', () => {
     const out = orderNewsRiver(grouped);
     expect(out).toHaveLength(40);
     expect(new Set(out.map((a) => a.slug)).size).toBe(40);
-    const times = out.map(articleTime);
+    // One run (one addedAt), so newest event first throughout.
+    const times = out.map(eventTime);
     expect(times).toEqual([...times].sort((a, b) => b - a));
     // Each story keeps the category it was filed under, for its kicker.
     for (const category of CATEGORIES) {
@@ -111,12 +113,63 @@ describe('orderNewsRiver', () => {
   it('handles an empty feed', () => {
     expect(orderNewsRiver(emptyGrouped())).toEqual([]);
   });
+
+  // The user's report of 2026-09-26: new stories did not arrive in order.
+  // Ordered by when each story happened, the 10:01 cycle's pick from the day
+  // before went 36 places deep, behind stories the reader had read.
+  describe('by when zuhd published', () => {
+    const MIN = 60_000;
+    const HOUR = 60 * MIN;
+    const cycle10 = Date.parse('2026-09-26T10:12:57Z');
+    const cycle05 = Date.parse('2026-09-26T05:13:40Z');
+    const story = (slug: string, publishedAt: number, eventAt: number) =>
+      makeArticle({ slug, publishedAt, eventAt, addedAt: publishedAt });
+
+    it('puts what arrived first, even when it happened earlier', () => {
+      const grouped = emptyGrouped();
+      grouped.politics = [story('houthi-drones', cycle05, cycle05 - 4 * HOUR)];
+      grouped.economy = [story('eu-peace-facility', cycle10, cycle10 - 21 * HOUR)];
+      grouped.science = [story('bangkok-floods', cycle10, cycle10 - 2 * HOUR)];
+      expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual([
+        'bangkok-floods',
+        'eu-peace-facility',
+        'houthi-drones',
+      ]);
+    });
+
+    it('gives a run of mtimes one time, and orders it by event', () => {
+      // No publishedAt: a payload from before it, whose times are file
+      // mtimes spread over the minutes a cycle takes to write.
+      const grouped = emptyGrouped();
+      grouped.tech = [
+        makeArticle({
+          slug: 'written-last',
+          addedAt: cycle10 + 2 * MIN,
+          eventAt: cycle10 - 9 * HOUR,
+        }),
+        makeArticle({ slug: 'written-first', addedAt: cycle10, eventAt: cycle10 - HOUR }),
+        makeArticle({ slug: 'earlier-run', addedAt: cycle05, eventAt: cycle05 - HOUR }),
+      ];
+      const out = orderNewsRiver(grouped);
+      expect(out.map((a) => a.slug)).toEqual(['written-first', 'written-last', 'earlier-run']);
+      expect(out.map(articleTime)).toEqual([cycle10 + 2 * MIN, cycle10 + 2 * MIN, cycle05]);
+    });
+
+    it('chains a run across the minutes, and breaks it at a gap', () => {
+      const grouped = emptyGrouped();
+      grouped.tech = [0, 20, 40, 40 + RUN_GAP_MS / MIN + 1].map((m) =>
+        makeArticle({ slug: `t${m}`, addedAt: cycle05 + m * MIN }),
+      );
+      const runs = new Set(orderNewsRiver(grouped).map(articleTime));
+      expect(runs.size).toBe(2);
+    });
+  });
 });
 
 describe('recentRiver', () => {
   const now = Date.parse('2026-09-13T12:00:00Z');
   const hoursAgo = (h: number) => now - h * 3_600_000;
-  const at = (slug: string, t: number) => makeArticle({ slug, eventAt: t });
+  const at = (slug: string, t: number) => makeArticle({ slug, publishedAt: t, addedAt: t });
 
   it('keeps the last 24 hours and drops what is older', () => {
     const river = [at('fresh', hoursAgo(1)), at('edge', hoursAgo(24)), at('stale', hoursAgo(25))];
@@ -168,7 +221,7 @@ describe('leadWithTopStories', () => {
   const NOW = 100 * RIVER_WINDOW_MS;
   const HOUR = RIVER_WINDOW_MS / 24;
   const at = (slug: string, hoursAgo: number, eventCoverage: number | null = null) =>
-    makeArticle({ slug, eventAt: NOW - hoursAgo * HOUR, eventCoverage });
+    makeArticle({ slug, publishedAt: NOW - hoursAgo * HOUR, eventCoverage });
 
   it('leads with the most reported, then the rest of the day newest first', () => {
     const river = [at('a', 1), at('b', 3, 643), at('c', 5), at('d', 11, 884), at('e', 20, 90)];

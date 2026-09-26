@@ -10,8 +10,9 @@ import { Box, Pressable, Text } from './primitives';
 interface ArticleRowProps {
   slug: string;
   title: string;
-  /** When the story happened — `articleTime(article)`, never `addedAt`, which
-   *  is one value per editorial cycle. */
+  /** When zuhd published the story — `articleTime(article)`, the time every
+   *  surface prints, never `addedAt`, which a rebase on the pipeline box can
+   *  reset. */
   time: number;
   category: Category;
   location: string | null;
