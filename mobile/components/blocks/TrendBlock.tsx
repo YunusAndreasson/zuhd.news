@@ -465,6 +465,12 @@ interface TrendBlockProps {
   scrubbable?: boolean;
 }
 
+/** A day is "on Sep 20"; a month, year or quarter is "in Sep", "in 2024".
+ *  The spoken summary said "3.1 a day in Sep 20" on every daily series. */
+function periodPreposition(period: string): 'on' | 'in' {
+  return /^[A-Za-z]{3,9}\.? \d{1,2}$/.test(period.trim()) ? 'on' : 'in';
+}
+
 export const TrendBlock = memo(function TrendBlock({
   values,
   series,
@@ -647,7 +653,7 @@ export const TrendBlock = memo(function TrendBlock({
     : null;
   const a11yLabel =
     highlightValue !== undefined
-      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}${referenceText ? `, ${referenceText}` : ''}`
+      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` ${periodPreposition(highlightPeriod)} ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}${referenceText ? `, ${referenceText}` : ''}`
       : label;
 
   if (normalizedSeries.length === 0) return null;

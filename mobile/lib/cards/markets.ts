@@ -708,6 +708,11 @@ function straitFigures(c: Chokepoint): CardFigure[] {
     (a, b) => Number(b.field === c.primaryField) - Number(a.field === c.primaryField),
   );
   for (const cls of classes) {
+    // PortWatch's `n_cargo` is container + dry bulk + general cargo + ro-ro,
+    // and `n_total` is tankers + `n_cargo`. Listed beside its own parts, the
+    // rows under a 3.1-a-day Hormuz added to 5.8 (2026-09-27). The parts say
+    // more, and add up; the subtotal is kept only as a strait's own class.
+    if (cls.field === 'n_cargo' && c.primaryField !== 'n_cargo') continue;
     const v = c.last7Avg[cls.field];
     const base = c.baseline90Avg[cls.field];
     const d = c.delta7vs90[cls.field];
@@ -1062,10 +1067,13 @@ const EVENT_LIMIT = 4;
  *  screen because it is imminent, not because its subject is important. */
 const EVENT_IMMINENT_DAYS = 3;
 
+/** Calendar days from the reader's today to the event's date. Today is the
+ *  reader's own date, not UTC's: in Stockholm just after midnight it is
+ *  still yesterday in UTC, and Sep 30 read `in 4 days` on Sep 27. */
 function daysUntil(iso: string, now: Date): number | null {
   const then = Date.parse(`${iso}T00:00:00Z`);
   if (!Number.isFinite(then)) return null;
-  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
   return Math.round((then - today) / 86_400_000);
 }
 

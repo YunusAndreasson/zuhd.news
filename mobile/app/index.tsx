@@ -74,6 +74,7 @@ import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useLinkedStory } from '../hooks/useLinkedStory';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
 import { useOffline } from '../hooks/useOffline';
@@ -1486,6 +1487,7 @@ export default function HomeScreen() {
   }, [loading, heatmapReady]);
 
   usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
+  useLinkedStory(loading, grouped, handleSelectArticle);
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);

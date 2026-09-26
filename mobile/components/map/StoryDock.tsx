@@ -317,8 +317,14 @@ export const StoryDock = memo(function StoryDock({
     // anchored at the foot, so the pill grows it upward and the track keeps
     // its width. It sits over the track's left end, where the new stories are,
     // the way a feed's "new posts" pill floats over the list it jumps.
+    // **It yields to an open story** (2026-09-27): a story's last lines and
+    // its `sources · save · share` scroll up to the dock, and the pill's touch
+    // box sat over them — a tap on `1 source` jumped to another story. The
+    // pill is a way back into the day, and it returns when the story is put
+    // down. The end card has nothing under it and says the count the pill
+    // jumps to, so there it stays.
     <View style={styles.foot} pointerEvents="box-none">
-      {newCount > 0 && onNewPress ? (
+      {newCount > 0 && onNewPress && !(ruled && index < count) ? (
         <IconButton
           onPress={onNewPress}
           hitSlop={0}

@@ -2,6 +2,7 @@ import type { Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
 import {
   type AnalysisById,
   buildInstrumentCards,
+  calendarCards,
   type InstrumentCardInputs,
   type InstrumentColumns,
 } from '../lib/cards/markets';
@@ -584,6 +585,45 @@ describe('buildInstrumentCards', () => {
         group: 'ships by type · vs 90-day normal',
       },
     ]);
+  });
+
+  it('lists the classes that add up to the total, not the cargo subtotal beside its parts', () => {
+    // Live Hormuz, 2026-09-27: `n_cargo` is the sum of the four cargo kinds,
+    // and printed beside them the rows came to 5.8 under a reading of 3.1.
+    const hormuz = strait('hormuz', 'Strait of Hormuz', 3.1, 7.4, -0.57);
+    hormuz.primaryField = 'n_tanker';
+    const classes = {
+      n_tanker: [0.6, 3.3],
+      n_container: [0.4, 0.6],
+      n_dry_bulk: [1.6, 2.2],
+      n_cargo: [2.6, 4.3],
+      n_general_cargo: [0.6, 1.4],
+    } as const;
+    for (const [field, [last7, base]] of Object.entries(classes)) {
+      const key = field as keyof typeof classes;
+      hormuz.last7Avg[key] = last7;
+      hormuz.baseline90Avg[key] = base;
+      hormuz.delta7vs90[key] = last7 / base - 1;
+    }
+    const card = find(
+      allOf(
+        build({
+          trends: snapshot([indicator({ id: 'brent' })]),
+          chokepoints: [hormuz],
+          articles: [],
+        }),
+      ),
+      'strait-hormuz',
+    );
+    const figures = card?.kind === 'reading' ? (card.figures ?? []) : [];
+    expect(figures.map((f) => f.label)).toEqual([
+      'tankers',
+      'container ships',
+      'dry bulk carriers',
+      'general cargo ships',
+    ]);
+    const sum = figures.reduce((n, f) => n + Number.parseFloat(f.value), 0);
+    expect(sum).toBeCloseTo(3.2, 5);
   });
 
   it('prints no class row where the class is the total itself', () => {
@@ -1179,5 +1219,26 @@ describe('belief titles', () => {
     expect(columns.predictions[1]?.title).toBe(
       'Will Luiz Inácio Lula da Silva win the 2026 Brazilian presidential election?',
     );
+  });
+});
+
+describe('an event countdown', () => {
+  const tz = process.env.TZ;
+  afterEach(() => {
+    process.env.TZ = tz;
+  });
+
+  it("counts from the reader's own date, not UTC's", () => {
+    // 00:02 on 27 September in Stockholm is still the 26th in UTC, and the
+    // menu read `US GDP · in 4 days` for the 30th (seen on the emulator).
+    process.env.TZ = 'Europe/Stockholm';
+    const trends = snapshot([indicator({ id: 'brent' })], {
+      events: [
+        { id: 'gdp', title: 'US GDP', institution: 'BEA', kind: 'release', date: '2026-09-30' },
+        { id: 'jobs', title: 'US jobs', institution: 'BLS', kind: 'release', date: '2026-09-28' },
+      ],
+    } as never);
+    const cards = calendarCards(trends, [], new Date('2026-09-26T22:02:00Z'));
+    expect(cards.map((c) => c.reading)).toEqual(['tomorrow', 'in 3 days']);
   });
 });

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { CATEGORIES } from '../constants/theme';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 
-type GroupedArticles = Record<Category, Article[]>;
+export type GroupedArticles = Record<Category, Article[]>;
 
 /** When a push-notification tap stashed an intent before the JS bundle loaded,
  *  wait until the feed is ready, then dispatch it to the right callback and
@@ -32,21 +32,7 @@ export function usePendingNotification(
 
     const slug = typeof data?.slug === 'string' ? data.slug : null;
     if (slug) {
-      // Try the live feed first; if the article rotated out, fall back to the
-      // bookmark store (which carries its own category and lets `onSelectArticle`
-      // inject it). Without this fallback, taps on older breaking-news pushes
-      // silently did nothing once the article scrolled out of the feed window.
-      let category: Category | null = null;
-      for (const cat of CATEGORIES) {
-        if (grouped[cat].some((a) => a.slug === slug)) {
-          category = cat;
-          break;
-        }
-      }
-      if (!category) {
-        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
-        if (bookmark) category = bookmark.category;
-      }
+      const category = categoryOf(slug, grouped);
       // Keep an unresolved intent around: the first feed attempt may have
       // failed, and a retry can still supply the requested article.
       if (category) {
@@ -59,4 +45,16 @@ export function usePendingNotification(
       Notifications.clearLastNotificationResponse();
     }
   }, [loading, grouped, onSelectArticle, onPlayBriefing, response]);
+}
+
+/** The live feed's category for `slug`, else a saved story's, else null.
+ *  Try the live feed first; if the article rotated out, fall back to the
+ *  bookmark store (which carries its own category and lets `onSelectArticle`
+ *  inject it). Without this fallback, taps on older breaking-news pushes
+ *  silently did nothing once the article scrolled out of the feed window. */
+export function categoryOf(slug: string, grouped: GroupedArticles): Category | null {
+  for (const cat of CATEGORIES) {
+    if (grouped[cat].some((a) => a.slug === slug)) return cat;
+  }
+  return getBookmarks().find((b) => b.article.slug === slug)?.category ?? null;
 }

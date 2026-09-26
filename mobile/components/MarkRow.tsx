@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { SPACING, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
+import { parseSeverityHero } from '../lib/gdacs';
 import {
   type FamineArea,
   famineBlocks,
@@ -98,6 +99,19 @@ export function thermalMarkRow(e: ThermalEvent, result: TapResult): MarkRowData 
   };
 }
 
+/**
+ * An alert's own measure — `M 4.9 · 64 km deep`, `5,973 ha · burn area` —
+ * or null where GDACS publishes nothing that parses. The row said
+ * `wildfire · Angola` under `Forest fires in Angola`: the title twice, and
+ * `disasters` listed four Angolan fires no reader could tell apart
+ * (2026-09-27), as the conflict rows once did.
+ */
+function gdacsMeasure(alert: GdacsAlert): string | null {
+  const { focal, secondary } = parseSeverityHero(alert);
+  if (!focal || focal === alert.severityText || focal === `${alert.alertlevel} alert`) return null;
+  return secondary ? `${focal} · ${secondary}` : focal;
+}
+
 /** A GDACS alert, as a row. */
 export function gdacsMarkRow(alert: GdacsAlert, result: TapResult): MarkRowData {
   const country = displayCountryName(alert.country) ?? alert.country;
@@ -105,7 +119,13 @@ export function gdacsMarkRow(alert: GdacsAlert, result: TapResult): MarkRowData 
     key: `gdacs-${alert.eventid}`,
     result,
     primary: alert.name.length > 0 ? alert.name : EVENT_TYPE_LABEL[alert.eventtype],
-    secondary: `${EVENT_TYPE_LABEL[alert.eventtype].toLowerCase()}${country ? ` · ${country}` : ''}`,
+    // The country only where the title does not already name it.
+    secondary: [
+      gdacsMeasure(alert) ?? EVENT_TYPE_LABEL[alert.eventtype].toLowerCase(),
+      country && !alert.name.includes(country) ? country : null,
+    ]
+      .filter(Boolean)
+      .join(' · '),
     kind: 'gdacs',
     eventtype: alert.eventtype,
     alertlevel: alert.alertlevel,

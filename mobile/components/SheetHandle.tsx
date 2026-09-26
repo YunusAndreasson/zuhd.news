@@ -37,7 +37,10 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
         importantForAccessibility="no-hide-descendants"
       />
       {(title || onBack || action) && (
-        <View style={styles.titleRow}>
+        // A title's height even without one: the back and action buttons are
+        // absolute, so a page with no title (a card, which heads itself) had
+        // a 0pt row and a back button of no size — nothing to tap.
+        <View style={[styles.titleRow, { minHeight: typography.sizeBase }]}>
           {onBack && (
             <IconButton onPress={onBack} style={styles.back} accessibilityLabel="Back">
               <Icon name="chevron-back" tone="default" />
