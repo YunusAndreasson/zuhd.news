@@ -14,7 +14,9 @@ import {
   fuzzyMatch,
   buildWordSets,
   wouldDedup,
+  isThin,
   NICHE_SOURCES,
+  THIN_BODY,
 } from './dedup.js'
 
 // Helper: build a story object the way merge-feeds.js produces them.
@@ -153,6 +155,36 @@ test('slug-fuzzy thresholds are unchanged (no regression)', () => {
     fuzzyMatch('2026-04-19-bellingcat-tapentadol-india-west-africa-opioid-pipeline', sets),
     '2026-04-17-india-tapentadol-west-africa-opioid-pipeline'
   )
+})
+
+// --- arc words, added 2026-09-26 ---------------------------------------------
+// The 14:04 cycle dropped "Trump rejects Iran's 7-day plan", the selector's
+// lead politics pick, as a copy of the previous day's proposal story: the two
+// slugs shared iran/day/hormuz and nothing else. `iran` was in 7 of that
+// window's slugs, so it is not evidence. A rewrite of the same story keeps
+// matching on the words the arc does not share.
+test('slug-fuzzy does not match a follow-up on running-story words alone', () => {
+  const sets = buildWordSets([
+    '2026-09-25-iran-7-day-ceasefire-proposal-hormuz',
+    '2026-09-25-araghchi-un-gulf-states-bases-responsibility-iran-war',
+    '2026-09-24-iran-drone-strike-kuwait-refinery',
+    '2026-09-24-iraq-iran-gas-waiver-lapses',
+    '2026-09-23-iran-rial-record-low-sanctions',
+    '2026-09-23-pezeshkian-iran-iaea-inspectors-offer',
+  ])
+  assert.equal(fuzzyMatch('2026-09-26-trump-rejects-iran-seven-day-hormuz-plan-strikes-after-midterms', sets), null)
+  assert.equal(fuzzyMatch('2026-09-25-brent-whipsaw-houthi-missiles-iran-hormuz-proposal', sets), null)
+  assert.equal(
+    fuzzyMatch('2026-09-26-iran-seven-day-ceasefire-proposal-hormuz-reopening', sets),
+    '2026-09-25-iran-7-day-ceasefire-proposal-hormuz',
+  )
+})
+
+test('a story is thin when no source carries THIN_BODY characters', () => {
+  assert.equal(isThin({ sources: [{ body: 'x'.repeat(307) }] }), true)
+  assert.equal(isThin({ sources: [{ body: 'x'.repeat(307) }, { body: 'x'.repeat(THIN_BODY) }] }), false)
+  assert.equal(isThin({ sources: [] }), true)
+  assert.equal(isThin({}), true)
 })
 
 // --- URL layer, added 2026-08-30 -------------------------------------------

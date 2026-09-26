@@ -8,6 +8,16 @@ import { parseFrontmatter } from './frontmatter.js'
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
 export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 
+// A story is thin when no source carries this much text — an RSS teaser, not
+// an article. prefilter flags it for the selector, enrich-selection fetches the
+// page once and drops the pick if it is still thin, and backfill never picks one.
+export const THIN_BODY = 400
+
+/** @param {{ sources?: Array<{ body?: string }> }} story */
+export function isThin(story) {
+  return !(story.sources || []).some(src => (src?.body || '').length >= THIN_BODY)
+}
+
 const ARTICLES_DIR = 'content/articles'
 const LEDGER_PATH = 'content/.story-ledger.json'
 
@@ -166,13 +176,44 @@ export function buildTitleSets(items) {
   return items.map(it => ({ slug: it.slug, title: it.title || it.label || '', date: it.date, words: titleWords(it.title || it.label || '') }))
 }
 
-/** Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words). */
+// A word in this many recent slugs names a running story, not an event:
+// `iran` sat in 7 of the 48h slugs on 2026-09-26, `hormuz` in 15 of them on
+// 04-19. Sharing such words is what every follow-up on the arc does, so they
+// are set aside before the overlap is counted. Measured over the eleven
+// fuzzy removals logged 09-20 → 09-26 plus the corpus.test pins: every
+// same-story rewrite keeps ≥3 rarer words in both the 48h and 7d windows,
+// and the two false positives, "Trump rejects Iran's 7-day plan" and a Brent
+// swing, both matched `iran-7-day-ceasefire-proposal-hormuz` on arc words.
+const ARC_WORD_DF = 5
+
+// Keyed by the array and its length: dedup-selection.js grows its batch set
+// one pick at a time.
+/** @type {WeakMap<object, { size: number, df: Map<string, number> }>} */
+const slugWordDf = new WeakMap()
+
+function arcWords(recentWordSets) {
+  const cached = slugWordDf.get(recentWordSets)
+  if (cached?.size === recentWordSets.length) return cached.df
+  const df = new Map()
+  for (const { words } of recentWordSets) for (const w of words) df.set(w, (df.get(w) || 0) + 1)
+  slugWordDf.set(recentWordSets, { size: recentWordSets.length, df })
+  return df
+}
+
+/**
+ * Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words),
+ * counting only words that are not common across the recent slugs.
+ */
 export function fuzzyMatch(candidateSlug, recentWordSets) {
-  const candidateWords = slugWords(candidateSlug)
-  if (candidateWords.size === 0) return null
+  const df = arcWords(recentWordSets)
+  const distinctive = (words) => [...words].filter(w => (df.get(w) || 0) < ARC_WORD_DF)
+  const candidateWords = distinctive(slugWords(candidateSlug))
+  if (candidateWords.length === 0) return null
   for (const { slug, words } of recentWordSets) {
-    const overlap = [...candidateWords].filter(w => words.has(w)).length
-    const ratio = overlap / Math.min(candidateWords.size, words.size)
+    const recentWords = new Set(distinctive(words))
+    if (recentWords.size === 0) continue
+    const overlap = candidateWords.filter(w => recentWords.has(w)).length
+    const ratio = overlap / Math.min(candidateWords.length, recentWords.size)
     if (ratio >= 0.55 && overlap >= 3) return slug
   }
   return null

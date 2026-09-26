@@ -3,11 +3,16 @@
 // picks the best available replacement from the feed.
 // Runs after dedup-selection.js, before update-ledger.js.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { CATEGORY_FLOORS, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { CATEGORY_FLOORS, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { soleClassifiedSource } from './lib/outlet-class.js'
 import { fingerprint } from './lib/utils.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 const FEED = '/tmp/zuhd-feed.json'
+
+// Scientific Reports and MDPI publish on soundness, not significance — the
+// science floor-fillers select-prompt.md names ("Journal papers").
+const EXCLUDED_JOURNAL = /nature\.com\/articles\/s41598|mdpi\.com/i
 
 if (!existsSync(SELECTION) || !existsSync(FEED)) process.exit(0)
 
@@ -49,11 +54,17 @@ for (const [cat, needed] of Object.entries(deficits)) {
     .filter(s => !selectedFps.has(fingerprint(s.title)))
     .filter(s => !selectedSlugs.has(s.suggestedSlug))
     .filter(s => !wouldDedup(s, ctx).deduped)
-    .filter(s => {
-      // Must have usable body content in at least one source
-      const bodies = (s.sources || []).map(src => src.body || '').filter(b => b.length > 100)
-      return bodies.length > 0
-    })
+    // Usable source text, by the same measure enrich-selection drops a pick
+    // on — a 100-character floor here let back in the teasers it had removed.
+    .filter(s => !isThin(s))
+    // select-prompt.md tells the selector not to pick these; backfill picks
+    // with no prompt, so the rule has to be here too.
+    .filter(s => !(s.sources || []).every(src => EXCLUDED_JOURNAL.test(src.url || '')))
+    // Nor a story only state media or an advocacy outlet carries: the selector
+    // may pick one and asks the writer to attribute it, backfill cannot ask.
+    // The 14:04 feed of 2026-09-26 tagged a Mehr report of Russian gains in
+    // Sumy as science, and it was the top science candidate.
+    .filter(s => !soleClassifiedSource(s.sources))
     .sort((a, b) => {
       // Prefer multi-source, then higher coverage
       if (a._rank !== b._rank) return b._rank - a._rank

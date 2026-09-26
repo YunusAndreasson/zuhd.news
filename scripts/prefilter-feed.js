@@ -3,7 +3,7 @@
 // Runs after merge-feeds.js, before the selector, so the LLM never wastes
 // picks on stories that would be deduped downstream.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { THIN_BODY, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const FEED = '/tmp/zuhd-feed.json'
 const SLIM = '/tmp/zuhd-feed-slim.json'
@@ -52,10 +52,9 @@ if (existsSync(SLIM)) {
   // on 2026-09-25, and the writer then skipped 1-4 picks a cycle for "no
   // summary provided". enrich-selection.js tries one page fetch for a thin
   // pick; the flag lets the selector weigh the risk before spending a slot.
-  const THIN_BODY = 400
   const thinSlugs = new Set(
     [...(feed.multiSourceStories || []), ...(feed.nicheStories || [])]
-      .filter(s => !(s.sources || []).some(src => (src.body || '').length >= THIN_BODY))
+      .filter(isThin)
       .map(s => s.suggestedSlug),
   )
   let thin = 0

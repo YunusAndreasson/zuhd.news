@@ -7,7 +7,7 @@
 // and why the last one is deliberately hard to satisfy, are documented there.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { runWithConcurrency } from './lib/concurrency.js'
-import { titleWords } from './lib/dedup.js'
+import { THIN_BODY, isThin, titleWords } from './lib/dedup.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 import { createMatcher } from './lib/selection-match.js'
 
@@ -80,7 +80,6 @@ for (const entry of selection) {
 // Thin picks: a source whose body is a feed teaser gets one page fetch — free,
 // the same Readability extractor the angles stage uses. Before this the writer
 // was handed "No summary provided" and skipped the story (1-4 a cycle).
-const THIN_BODY = 400
 const thinSources = selection.flatMap(e => (e.sources || []).filter(s => s?.url && (s.body || '').length < THIN_BODY))
 if (thinSources.length > 0) {
   let filled = 0
@@ -92,6 +91,17 @@ if (thinSources.length > 0) {
     }
   })
   console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
+}
+
+// Still thin after the fetch: the writer will skip it, and it skips after
+// backfill has run, so the slot is simply lost — 2026-09-26 14:04 handed it a
+// 307-character Undark teaser and published 9 of a 13 target. Dropped here,
+// before dedup, so backfill sees the gap if it breaks a category floor.
+for (const entry of selection) {
+  if (Array.isArray(entry.sources) && entry.sources.length > 0 && isThin(entry)) {
+    console.log(`Dropped "${entry.title}": still under ${THIN_BODY} characters of source text after the page fetch`)
+    entry.sources = []
+  }
 }
 
 // Source text that is not about the story. The selector reads a body-less feed,
