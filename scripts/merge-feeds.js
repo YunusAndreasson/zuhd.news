@@ -2,6 +2,7 @@
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
+import { MAX_FEED_AGE_MS, isFreshFeedItem } from './lib/feed-age.js'
 import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
@@ -35,13 +36,11 @@ for (const s of rss) {
   }
 }
 
-// Drop stories older than 48h — with 5 cycles/day, stale stories have had plenty of chances
-const MAX_AGE_MS = 48 * 60 * 60 * 1000
+// Drop stories past the age cap (lib/feed-age.js, 12 h). It was 48 h, and a
+// story's pubDate is its dateline time on every surface: what the selector
+// picked up a day late went out reading a day old, under `new`.
 const now = Date.now()
-const fresh = stories.filter(s => {
-  const age = now - new Date(s.pubDate).getTime()
-  return !Number.isNaN(age) && age < MAX_AGE_MS
-})
+const fresh = stories.filter(s => isFreshFeedItem(s.pubDate, now))
 const stale = stories.length - fresh.length
 
 // Split into multi-source and niche — no flat list, forces selector to use both sections
@@ -96,4 +95,4 @@ try {
   console.error(`merged-snapshot write failed: ${err.message}`)
 }
 
-console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >48h dropped)`)
+console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >${MAX_FEED_AGE_MS / 3_600_000}h dropped)`)
