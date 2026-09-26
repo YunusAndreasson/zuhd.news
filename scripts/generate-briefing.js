@@ -1,21 +1,32 @@
 #!/usr/bin/env node
 // zuhd.news daily audio briefing generator
-// Three stages: collect articles → Claude SSML → Google TTS MP3
+// Three stages: collect articles → Claude script → Gemini TTS (Chirp 3 HD as
+// the fallback voice) → MP3
+//
+// Usage: node scripts/generate-briefing.js [--out <dir>]
+//   --out writes the script, MP3 and meta to <dir> instead of content/audio/,
+//   for a test run that must not replace the day's published briefing.
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync, rmdirSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
+import { argAt } from './lib/argv.js'
+import { coverage, parseBriefingScript, scriptToSsml } from './lib/briefing-script.js'
+import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
-const AUDIO_DIR = join(ROOT, 'content', 'audio')
+const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'briefing-prompt.md')
 
-// Voice config — easy to swap after testing
-const VOICE_NAME = 'en-US-Chirp3-HD-Charon'
+// The fallback voice. The primary is Gemini TTS (lib/gemini-tts.js) since
+// 2026-09-26; Chirp reads any section Gemini cannot, or everything when no
+// Gemini key is set.
+const CHIRP_VOICE = 'en-US-Chirp3-HD-Charon'
 
 const today = new Date().toISOString().slice(0, 10)
 
@@ -102,8 +113,8 @@ const isFriday = now.getUTCDay() === 5
 const payload = { articles, hoursUntilNext, isFriday }
 if (editorialContext) payload.editorialContext = editorialContext
 
-// --- Stage 2: Generate SSML via Claude CLI ---
-console.log('\n=== Stage 2: Generating SSML bulletin ===')
+// --- Stage 2: Write the spoken script via Claude CLI ---
+console.log('\n=== Stage 2: Writing the bulletin script ===')
 
 const promptTemplate = readFileSync(PROMPT_PATH, 'utf-8')
 // Inline article data directly into the prompt to avoid tool-call round-trip
@@ -127,7 +138,7 @@ try {
   if (result.status !== 0) {
     throw new Error(result.stderr || `Exit code ${result.status}`)
   }
-  // Briefing returns SSML text (not JSON), so unwrap the envelope manually
+  // Briefing returns a plain-text script (not JSON), so unwrap the envelope manually
   // instead of going through parseClaudeEnvelopeWithUsage which expects JSON.
   const envelope = JSON.parse(result.stdout.trim())
   if (envelope?.type !== 'result' || envelope.result == null) {
@@ -144,35 +155,19 @@ try {
   process.exit(1)
 }
 
-// Strip markdown fences in case Claude wraps output in ```xml or ```ssml
-claudeOutput = claudeOutput
-  .replace(/^```(?:xml|ssml)?\s*\n?/m, '')
-  .replace(/\n?```\s*$/m, '')
-
-// Extract SSML from output — greedy match to capture the last </speak> in case
-// Claude wraps output in extra tags that contain inner </speak>-like sequences
-let ssml
-const ssmlMatch = claudeOutput.match(/<speak[\s\S]*<\/speak>/)
-if (ssmlMatch) {
-  // Strip any stray content outside the speak tags (e.g. Claude wrapper tags)
-  ssml = ssmlMatch[0]
-    .replace(/^[\s\S]*?(<speak)/, '$1')
-    .replace(/(<\/speak>)[\s\S]*$/, '$1')
-    .trim()
-  console.log(`SSML extracted (${ssml.length} characters)`)
-} else {
-  // Fallback: wrap plain text output in speak tags
-  console.warn('No SSML tags found — using plain text fallback')
-  const plainText = claudeOutput.replace(/<[^>]+>/g, '').trim()
-  ssml = `<speak>${plainText}</speak>`
+const { script, sections: scriptSections } = parseBriefingScript(claudeOutput)
+if (scriptSections.length === 0) {
+  console.error('Claude returned no script — skipping briefing.')
+  process.exit(1)
 }
+console.log(`Script: ${script.length} characters, ${scriptSections.length} sections`)
 
-// Save SSML transcript for review/debugging
-const ssmlPath = join(AUDIO_DIR, `briefing-${today}.ssml`)
-writeFileSync(ssmlPath, ssml)
-console.log(`SSML saved: ${ssmlPath}`)
+// Saved beside the MP3 for review.
+const scriptPath = join(AUDIO_DIR, `briefing-${today}.txt`)
+writeFileSync(scriptPath, `${script}\n`)
+console.log(`Script saved: ${scriptPath}`)
 
-// --- Stage 3: Synthesize MP3 via Google TTS ---
+// --- Stage 3: Synthesize audio ---
 console.log('\n=== Stage 3: Synthesizing audio ===')
 
 mkdirSync(AUDIO_DIR, { recursive: true })
@@ -186,105 +181,16 @@ const hasOutro = existsSync(OUTRO_MP3)
 
 if (hasTransition) console.log('Using transition music between sections (public/audio/transition.mp3)')
 
-// Split SSML into sections at <p> category boundaries.
-// Structure: [intro+lead] [category <p>] [category <p>] ... [signoff]
-// Transition music replaces the <break> tags between sections.
-const innerSsml = ssml.replace(/^<speak>\s*/, '').replace(/\s*<\/speak>\s*$/, '')
-const pBlocks = [...innerSsml.matchAll(/<p>[\s\S]*?<\/p>/g)]
-
-// Each entry: { type: 'intro'|'category'|'signoff', ssml: string }
-const ssmlSections = []
-if (pBlocks.length === 0) {
-  // No <p> structure — treat entire SSML as one section (fallback)
-  ssmlSections.push({ type: 'intro', ssml: innerSsml })
-} else {
-  // Intro+lead: everything before first <p>, strip trailing inter-section break
-  const introContent = innerSsml.slice(0, pBlocks[0].index)
-    .replace(/\s*<break\s[^>]*\/>\s*$/, '').trim()
-  if (introContent) ssmlSections.push({ type: 'intro', ssml: introContent })
-
-  // Category sections (each <p>...</p> block)
-  for (const block of pBlocks) {
-    ssmlSections.push({ type: 'category', ssml: block[0] })
-  }
-
-  // Signoff: everything after last </p> — append to last category section
-  // so TTS has enough context for natural pacing (tiny standalone chunks sound choppy)
-  // Append 2s trailing silence so the voice finishes before the outro crossfade begins
-  const lastBlock = pBlocks[pBlocks.length - 1]
-  const signoffContent = innerSsml.slice(lastBlock.index + lastBlock[0].length).trim()
-  if (signoffContent && ssmlSections.length > 0) {
-    ssmlSections[ssmlSections.length - 1].ssml += `\n${signoffContent}\n<break time="2s"/>`
-  } else if (signoffContent) {
-    ssmlSections.push({ type: 'signoff', ssml: `${signoffContent}\n<break time="2s"/>` })
-  }
-}
-
-console.log(`Split SSML into ${ssmlSections.length} sections: ${ssmlSections.map(s => s.type).join(', ')}`)
-
-// Google TTS Chirp3-HD supports up to 5000 bytes per request.
-const MAX_BYTES = 4800
-
-// Track open wrapper tags (<p>, <prosody>) so we can close/reopen at chunk boundaries
-function getOpenTags(ssmlFragment) {
-  const opens = [...ssmlFragment.matchAll(/<(p|prosody)(\s[^>]*)?>/g)].map(m => m[0])
-  const closes = [...ssmlFragment.matchAll(/<\/(p|prosody)>/g)]
-  const stack = [...opens]
-  for (const c of closes) {
-    const tag = c[0].match(/<\/(\w+)>/)[1]
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (stack[i].startsWith(`<${tag}`)) { stack.splice(i, 1); break }
-    }
-  }
-  return stack
-}
-
-// Chunk a section into ≤MAX_BYTES pieces, each wrapped in <speak>.
-// Primary split is on <break> boundaries; if a single inter-break segment is
-// still oversized (e.g. a long category with no inter-story breaks) we
-// sub-split on </s> sentence boundaries so a runaway segment can't bypass the
-// limit and trigger a TTS rejection.
-function chunkSection(sectionSsml) {
-  const segs = sectionSsml.split(/(?=<break\s[^>]*\/>)/)
-  const result = []
-  let current = ''
-
-  const flushCurrent = () => {
-    const openTags = getOpenTags(current)
-    const closeTags = openTags.reverse().map(t => `</${t.match(/<(\w+)/)[1]}>`)
-    result.push(`<speak>${current}${closeTags.join('')}</speak>`)
-    current = openTags.reverse().join('')
-  }
-
-  for (const seg of segs) {
-    // If this segment alone busts the budget, sub-split on sentence boundaries.
-    const subSegs = Buffer.byteLength(`<speak>${seg}</speak>`, 'utf-8') > MAX_BYTES
-      ? seg.split(/(?<=<\/s>)/).filter(Boolean)
-      : [seg]
-    for (const sub of subSegs) {
-      if (Buffer.byteLength(`<speak>${current}${sub}</speak>`, 'utf-8') > MAX_BYTES && current) {
-        flushCurrent()
-      }
-      current += sub
-    }
-  }
-  if (current) result.push(`<speak>${current}</speak>`)
-  return result
-}
-
 const client = new textToSpeech.TextToSpeechClient()
 const tmpDir = join(AUDIO_DIR, '.tmp')
 mkdirSync(tmpDir, { recursive: true })
 
-// Synthesize one SSML chunk with a graceful degradation path. Google TTS
-// rejects malformed SSML (chunk-boundary tag splits, stray entities) with
-// `3 INVALID_ARGUMENT`, which previously threw uncaught and lost the ENTIRE
-// day's briefing after several chunks had already synthesized (2026-06-12
-// 04:00 cycle: died on category chunk 4/5). Fail-soft instead: on rejection,
-// retry once with all SSML markup stripped to plain text (always valid input);
-// if even that fails, return null so the caller drops just this chunk and the
-// briefing still ships with the rest of the audio.
-async function synthesizeChunk(ssml, label) {
+// Chirp 3 HD, the fallback voice. Fail-soft per chunk: Google TTS rejects
+// malformed SSML with `3 INVALID_ARGUMENT`, which once threw uncaught and lost
+// the whole day's briefing (2026-06-12 04:00, category chunk 4/5). On
+// rejection, retry once as plain text; if that fails too, return null so the
+// caller drops just this chunk.
+async function synthesizeChirp(ssml, label) {
   const audioConfig = {
     audioEncoding: 'LINEAR16',
     sampleRateHertz: 24000,
@@ -294,7 +200,7 @@ async function synthesizeChunk(ssml, label) {
   // unions, and a bare object literal here resolves onto the callback overload
   // of synthesizeSpeech, whose return is void and cannot be destructured.
   const audioConfigTyped = /** @type {any} */ (audioConfig)
-  const voice = { languageCode: 'en-US', name: VOICE_NAME }
+  const voice = { languageCode: 'en-US', name: CHIRP_VOICE }
   try {
     const [response] = await client.synthesizeSpeech({ input: { ssml }, voice, audioConfig: audioConfigTyped })
     return Buffer.from(response.audioContent)
@@ -317,32 +223,99 @@ async function synthesizeChunk(ssml, label) {
   }
 }
 
+// Gemini TTS, checked. A model can skip text and still return success —
+// Gemini 3.8 Flash-Lite dropped a whole lead story in testing (2026-09-26) —
+// so each section is transcribed and compared with its script before it is
+// used. Two attempts; a section that fails both is read by Chirp instead, so
+// the day's briefing never loses a story to a silent skip.
+const MIN_COVERAGE = 0.85
+// The first run (2026-09-26, three days after launch) drew `503 high demand`
+// on 2 of 5 sections. An overload gets a third attempt and a wait before
+// each retry; a skipped read or any other error gets two attempts.
+async function synthesizeGeminiChecked(text, label) {
+  let overloaded = false
+  for (let attempt = 1; attempt <= (overloaded ? 3 : 2); attempt++) {
+    if (attempt > 1) await new Promise((r) => setTimeout(r, overloaded ? 20_000 * (attempt - 1) : 2_000))
+    try {
+      const t0 = Date.now()
+      const { wav, audioTokens } = await synthesizeGemini(text)
+      const heard = await transcribeGemini(wav)
+      const cov = coverage(text, heard)
+      const secs = ((Date.now() - t0) / 1000).toFixed(0)
+      if (cov >= MIN_COVERAGE) {
+        console.log(`  ✓ ${label}: Gemini, ${audioTokens} audio tokens, ${(cov * 100).toFixed(0)}% of the script heard, ${secs}s`)
+        return { wav, audioTokens }
+      }
+      console.error(`  ⚠ ${label}: Gemini attempt ${attempt} spoke ${(cov * 100).toFixed(0)}% of the script`)
+    } catch (err) {
+      overloaded = /HTTP (429|503)/.test(err.message)
+      console.error(`  ⚠ ${label}: Gemini attempt ${attempt} failed (${err.message.split('\n')[0]})`)
+    }
+  }
+  return null
+}
+
+const useGemini = Boolean(geminiKey())
+if (!useGemini) console.warn('⚠ No Gemini key (GEMINI or GEMINI_API_KEY) — reading the whole briefing with Chirp 3 HD')
+
+// The last section ends the briefing, so it carries the sign-off.
+const sectionAudio = new Array(scriptSections.length)
+let geminiAudioTokens = 0
+const engines = new Set()
+await runWithConcurrency(scriptSections.map((text, i) => ({ text, i })), 3, async ({ text, i }) => {
+  const label = `section ${i + 1}/${scriptSections.length}`
+  if (useGemini) {
+    const got = await synthesizeGeminiChecked(text, label)
+    if (got) {
+      geminiAudioTokens += got.audioTokens
+      engines.add('gemini')
+      sectionAudio[i] = [got.wav]
+      return
+    }
+    console.error(`  ↳ ${label}: reading it with Chirp 3 HD instead`)
+  }
+  const pieces = []
+  const ssmlChunks = scriptToSsml(text)
+  for (let ci = 0; ci < ssmlChunks.length; ci++) {
+    const audio = await synthesizeChirp(ssmlChunks[ci], `${label}, chunk ${ci + 1}/${ssmlChunks.length}`)
+    if (audio) pieces.push(audio)
+  }
+  if (pieces.length) engines.add('chirp')
+  sectionAudio[i] = pieces
+})
+
+// Two seconds of silence after the last words, so the voice has finished
+// before the outro crossfade begins (Chirp got this from a trailing <break>).
+function silenceWav(seconds, rate = 24000) {
+  const data = Buffer.alloc(Math.round(seconds * rate) * 2)
+  const h = Buffer.alloc(44)
+  h.write('RIFF', 0); h.writeUInt32LE(36 + data.length, 4); h.write('WAVEfmt ', 8)
+  h.writeUInt32LE(16, 16); h.writeUInt16LE(1, 20); h.writeUInt16LE(1, 22)
+  h.writeUInt32LE(rate, 24); h.writeUInt32LE(rate * 2, 28); h.writeUInt16LE(2, 32); h.writeUInt16LE(16, 34)
+  h.write('data', 36); h.writeUInt32LE(data.length, 40)
+  return Buffer.concat([h, data])
+}
+
 // Build ordered list of audio parts: music files + synthesized TTS chunks
 const audioParts = [] // file paths in final playback order
 let chunkIdx = 0
-
-for (let si = 0; si < ssmlSections.length; si++) {
-  const section = ssmlSections[si]
-
-  // Transition music between sections (but not before signoff — too short, would feel abrupt)
-  if (si > 0 && section.type !== 'signoff' && hasTransition) {
-    audioParts.push(TRANSITION_MP3)
-  }
-
-  // Synthesize this section's TTS chunks
-  const chunks = chunkSection(section.ssml)
-  for (let ci = 0; ci < chunks.length; ci++) {
-    const label = `${section.type} ${si + 1}/${ssmlSections.length}, chunk ${ci + 1}/${chunks.length}`
-    console.log(`  Synthesizing ${label} (${Buffer.byteLength(chunks[ci], 'utf-8')} bytes)`)
-    // Request LINEAR16 (uncompressed PCM, returned as a RIFF/WAV blob) instead
-    // of MP3. This eliminates the lossy decode→re-encode generation that would
-    // otherwise compound when we mux the chunks together at the end.
-    const audio = await synthesizeChunk(chunks[ci], label)
-    if (!audio) continue // chunk dropped (see synthesizeChunk) — ship the rest
+for (let si = 0; si < sectionAudio.length; si++) {
+  const pieces = sectionAudio[si] || []
+  if (pieces.length === 0) continue // section dropped — ship the rest
+  if (audioParts.length > 0 && hasTransition) audioParts.push(TRANSITION_MP3)
+  for (const wav of pieces) {
     const chunkPath = join(tmpDir, `chunk-${chunkIdx++}.wav`)
-    writeFileSync(chunkPath, audio)
+    writeFileSync(chunkPath, wav)
     audioParts.push(chunkPath)
   }
+}
+if (audioParts.length > 0) {
+  const tail = join(tmpDir, `chunk-${chunkIdx++}.wav`)
+  writeFileSync(tail, silenceWav(2))
+  audioParts.push(tail)
+}
+if (useGemini) {
+  console.log(`Gemini audio tokens: ${geminiAudioTokens} (≈$${(geminiAudioTokens * 9 / 1e6).toFixed(3)} at $9/M)`)
 }
 
 const MUSIC_FILES = new Set([TRANSITION_MP3, OUTRO_MP3])
@@ -350,9 +323,8 @@ const musicCount = audioParts.filter(p => MUSIC_FILES.has(p)).length
 const ttsCount = audioParts.length - musicCount
 console.log(`Total parts: ${audioParts.length} (${ttsCount} TTS, ${musicCount} music)`)
 
-// Global-failure guard. synthesizeChunk() fail-softs per chunk so a single
-// malformed-SSML rejection drops just that chunk and the briefing ships with
-// the rest. But a GLOBAL failure — TTS billing disabled, revoked credentials,
+// Global-failure guard. Each section fail-softs (Gemini, then Chirp, then
+// dropped) so one bad section never costs the briefing. But a GLOBAL failure — TTS billing disabled, revoked credentials,
 // project-wide quota — makes EVERY chunk drop, and without this guard we'd mux
 // the music beds into a ~6s voiceless MP3, commit it, deploy it, and push a
 // briefing notification to users (2026-07-09→11: three identical 6s files
@@ -447,17 +419,18 @@ writeFileSync(metaPath, JSON.stringify({
   date: today,
   generated: new Date().toISOString(),
   articles: articles.length,
-  voice: VOICE_NAME,
-  ssmlLength: ssml.length,
+  voice: engines.has('gemini') ? `${GEMINI_TTS_MODEL}/${GEMINI_TTS_VOICE}` : CHIRP_VOICE,
+  engines: [...engines],
+  scriptLength: script.length,
   duration: durationSec
 }, null, 2))
 console.log(`Metadata saved: ${metaPath}`)
 
-// Clean up MP3s and SSML transcripts older than 7 days
+// Clean up MP3s and scripts older than 7 days (.ssml: the pre-Gemini scripts)
 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 for (const f of readdirSync(AUDIO_DIR)) {
-  if (!f.startsWith('briefing-') || !(f.endsWith('.mp3') || f.endsWith('.ssml'))) continue
-  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|ssml)$/, '')
+  if (!/^briefing-\d{4}-\d{2}-\d{2}\.(mp3|ssml|txt)$/.test(f)) continue
+  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|ssml|txt)$/, '')
   if (new Date(dateStr).getTime() < sevenDaysAgo) {
     unlinkSync(join(AUDIO_DIR, f))
     console.log(`Cleaned up old briefing: ${f}`)
