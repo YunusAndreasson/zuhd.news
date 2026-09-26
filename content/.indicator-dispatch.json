@@ -2050,8 +2050,47 @@
         "2026-09-20-sec-tokenized-stock-atomic-settlement-stablecoin"
       ],
       "generatedAt": "2026-09-26T14:15:48.386Z"
+    },
+    "stocks:BA": {
+      "standingFingerprint": "1ac40aaa1a478ba2",
+      "recentFingerprint": "3e636f165ec4e538",
+      "standing": "America's largest aerospace company and one half of the global duopoly in large passenger jets, alongside Airbus. Its shares move on 737 delivery rates, safety findings and regulator scrutiny, and on US defence contracts.",
+      "recent": "The news on Boeing this fortnight was about safety. A 737 turned back after a mid-air emergency in Iran, and Boeing then flagged a 737 MAX glitch that its own cockpit software update created, which can make an automated navigation feature fail during landing. The glitch came out after the last close shown, so it does not explain the slide.",
+      "citations": [
+        "2026-09-26-boeing-737-max-software-update-landing-glitch"
+      ],
+      "generatedAt": "2026-09-26T22:17:24.443Z"
+    },
+    "stocks:LUV": {
+      "standingFingerprint": "b557ed99760caa19",
+      "recentFingerprint": "84bf55cb75ebab68",
+      "standing": "Shares of Southwest Airlines, the Dallas-based US carrier, traded on the New York Stock Exchange. It flies only Boeing 737s, so the stock answers to Boeing's deliveries and safety record as well as to jet fuel and fares.",
+      "recent": "The one relevant story landed the day after the peak: Boeing said its own software update had created a landing fault on the 737 MAX, the jet Southwest's fleet is built around. It came too late to explain the climb before it, and nothing in the input accounts for that rise.",
+      "citations": [
+        "2026-09-26-boeing-737-max-software-update-landing-glitch"
+      ],
+      "generatedAt": "2026-09-26T22:17:24.469Z"
+    },
+    "poly-will-alexandria-ocasio-cortez-win-the-2028-democ": {
+      "standingFingerprint": "86f2c7e0be8341bc",
+      "recentFingerprint": "4d7172cf3a15f4c8",
+      "standing": "A Polymarket contract that pays out if Alexandria Ocasio-Cortez wins the Democratic Party's 2028 presidential nomination. Its price is what traders pay for that outcome, moving on polls, endorsements and signals about a run.",
+      "recent": "Nothing in the fortnight's news touched Ocasio-Cortez or the nomination race, and none of it accounts for the price. The stories were about the venue itself: New York sued Polymarket for letting 18-to-20-year-olds bet where state law sets 21, and the Sixth Circuit ruled that states can regulate Kalshi's sports contracts.",
+      "citations": [
+        "2026-09-24-new-york-sues-polymarket-illegal-gambling",
+        "2026-09-25-sixth-circuit-kalshi-sports-contracts-not-swaps-state-gaming"
+      ],
+      "generatedAt": "2026-09-26T22:17:27.130Z"
+    },
+    "stocks:UAL": {
+      "standingFingerprint": "ac216b5f97b257c6",
+      "recentFingerprint": "3f2c47717b8bc0ea",
+      "standing": "The parent company of United Airlines, one of the largest US carriers, with hubs in Chicago, Denver, Houston, Newark and San Francisco. Its shares move with jet fuel costs and demand for business and long-haul travel.",
+      "recent": "The fortnight's main aviation news was Boeing's disclosure that its own software update created a landing fault on the 737 MAX, but nothing reported in the period accounts for the move in the share price.",
+      "citations": [],
+      "generatedAt": "2026-09-26T22:17:36.118Z"
     }
   },
-  "generatedAt": "2026-09-26T18:14:11.312Z",
+  "generatedAt": "2026-09-26T22:17:36.118Z",
   "windowDays": 14
 }
