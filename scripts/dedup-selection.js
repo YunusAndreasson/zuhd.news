@@ -15,7 +15,7 @@
 // skyroot-vikram-1-india-private-orbital-rocket, both 2026-07-18, 83% overlap)
 // sailed through as two "new" stories and both got written.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { CATEGORY_FLOORS, buildWordSets, fuzzyMatch, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET, buildWordSets, fuzzyMatch, loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 if (!existsSync(SELECTION)) process.exit(0)
@@ -53,6 +53,7 @@ const catCounts = {}
 for (const s of filtered) catCounts[s.category] = (catCounts[s.category] || 0) + 1
 for (const [cat, min] of Object.entries(CATEGORY_FLOORS)) {
   if ((catCounts[cat] || 0) < min) {
-    console.log(`WARNING: post-dedup floor violation — ${cat}: ${catCounts[cat] || 0} < ${min}`)
+    const level = FLOORS_MAY_GO_UNMET.has(cat) ? 'Note: under floor (allowed)' : 'WARNING: post-dedup floor violation'
+    console.log(`${level} — ${cat}: ${catCounts[cat] || 0} < ${min}`)
   }
 }

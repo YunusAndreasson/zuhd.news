@@ -11,7 +11,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
-import { CATEGORY_FLOORS } from '../lib/dedup.js'
+import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET } from '../lib/dedup.js'
 import { REGION_CODES, regionFromCoords } from '../lib/regions.js'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
 
@@ -166,6 +166,7 @@ function checkGuardrails(articles) {
   // (this copy said tech 2 while the selector's said 3).
   const catCounts = tally(articles.map((a) => a.category))
   for (const [cat, floor] of Object.entries(CATEGORY_FLOORS)) {
+    if (FLOORS_MAY_GO_UNMET.has(cat)) continue
     if ((catCounts[cat] || 0) < floor) failures.push(`category ${cat} below floor ${floor} (got ${catCounts[cat] || 0})`)
   }
   return failures

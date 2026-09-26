@@ -8,6 +8,12 @@ import { parseFrontmatter } from './frontmatter.js'
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
 export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 
+// Floors a cycle may miss rather than fill (user decision 2026-09-26). A thin
+// science feed was filled with disasters — Bangkok flooding and an Athens gas
+// blast shipped as science at 10:01 — and backfill's only signal for science
+// is the feed's category tag, which filed a Mehr war report there.
+export const FLOORS_MAY_GO_UNMET = new Set(['science'])
+
 // A story is thin when no source carries this much text — an RSS teaser, not
 // an article. prefilter flags it for the selector, enrich-selection fetches the
 // page once and drops the pick if it is still thin, and backfill never picks one.

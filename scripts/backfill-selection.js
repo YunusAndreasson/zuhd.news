@@ -3,7 +3,7 @@
 // picks the best available replacement from the feed.
 // Runs after dedup-selection.js, before update-ledger.js.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { CATEGORY_FLOORS, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
 import { soleClassifiedSource } from './lib/outlet-class.js'
 import { fingerprint } from './lib/utils.js'
 
@@ -27,6 +27,7 @@ for (const s of selection) catCounts[s.category] = (catCounts[s.category] || 0) 
 // Find deficit categories
 const deficits = {}
 for (const [cat, floor] of Object.entries(CATEGORY_FLOORS)) {
+  if (FLOORS_MAY_GO_UNMET.has(cat)) continue
   const deficit = floor - (catCounts[cat] || 0)
   if (deficit > 0) deficits[cat] = deficit
 }

@@ -70,6 +70,7 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 - Prefer the freshest stories. The feed is pre-filtered to <12 hours, and the pipeline runs 5×/day — anything from a previous cycle has already had its chance. A story's pubDate is the time readers see on it, so a late pick reads as old news the moment it is published.
 - Skip opinion, features, listicles, liveblog entries.
 - Category floors: politics 3, economy 3, science 2, tech 3.
+- **The science floor may go unmet.** When the feed carries fewer than two real science stories — a finding, a result, a study or reporting on one — pick what there is, even none, and fill the cycle target from the other categories. Never file a disaster, accident, flood or weather event as science to reach the number: on 2026-09-26 Bangkok flooding and an Athens gas explosion shipped as science. A disaster that is news belongs in politics. Say in the selection summary that science is under its floor.
 
 **Clarity over noise.** Every story must teach the reader something they couldn't easily find elsewhere. Skip stories that are merely prominent — volume of coverage is not importance. Prefer stories that reveal a mechanism, expose an accountability gap, or illuminate a structural shift. A UN General Assembly vote with no enforcement carries less weight than a single court ruling with precedent.
 
@@ -83,12 +84,12 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 <internal_verification>
 Check these privately before writing the selection file. Do not output this verification — proceed directly to writing `/tmp/zuhd-selection.json`.
 
-- Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`).
+- Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`), except science on a day the feed has no more real science.
 - No arc has more than 3 selections.
 - Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Only drop below a floor if *every* available multi-source story in that category is genuinely weaker than the best niche alternative — in the selection summary, note which multi-source story you rejected and why. Do not pad with weak multi-source stories to meet a number.
 - OIC-region source carry-through: for each selected story whose primary affected country is an OIC member, the `sources:` array includes ≥1 regional outlet (see "Regional source for OIC-region stories" above) when the feed offers any. If no regional outlet covered the event, note that fact in the selection summary so feed-side gaps can be audited separately.
 - No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
-- If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
+- If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again. If they have nothing, leave science short.
 </internal_verification>
 
 <internal_reasoning>
