@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticImpact } from '../lib/haptics';
 import { Pressable, Screen, Stack, Text } from './primitives';
 
 interface ErrorStateProps {
@@ -12,10 +11,6 @@ interface ErrorStateProps {
 
 export function ErrorState({ offline, error, onRetry }: ErrorStateProps) {
   const { colors } = useTheme();
-  const handleRetry = () => {
-    hapticImpact();
-    onRetry();
-  };
   return (
     <Screen>
       <Stack fill align="center" justify="center" padding="xl" gap="tight">
@@ -32,8 +27,7 @@ export function ErrorState({ offline, error, onRetry }: ErrorStateProps) {
               : 'The newsroom did not answer. Try again in a moment.'}
         </Text>
         <Pressable
-          onPress={handleRetry}
-          haptic="none"
+          onPress={onRetry}
           hitSlop={HIT_SLOP}
           accessibilityRole="button"
           accessibilityLabel="Try again"

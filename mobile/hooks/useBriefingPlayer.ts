@@ -16,7 +16,6 @@ import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
-import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
@@ -473,7 +472,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   }, [activateLockScreen, managedPlayer, refreshLockScreenMetadata, status]);
 
   const toggle = useCallback(async () => {
-    hapticImpact();
     closedRef.current = false;
     const toggleToken = ++toggleTokenRef.current;
     const nextPlaying = !playingIntentRef.current;
@@ -643,12 +641,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     teardownPlayer,
   ]);
 
-  // Pure data operation: clamp, seek, publish. No haptic — the scrub ratchet
-  // belongs to the gesture that drives it, not to the audio timeline. This
-  // used to tick once per crossed audio-second, which sounds discrete but
-  // isn't: the caller drives it per gesture frame, and on a long briefing a
-  // single frame of finger travel crosses several seconds, so the "tick"
-  // fired at frame rate. `BriefingBar` now ratchets on spatial detents.
+  // Pure data operation: clamp, seek, publish. No haptic: this used to tick
+  // once per crossed audio-second, and the caller drives it per gesture frame,
+  // so on a long briefing the "tick" fired at frame rate. The scrubber has no
+  // notches at all now — they stood for nothing in the audio.
   const seek = useCallback((seconds: number) => {
     if (!playerRef.current) return;
     const clamped = Math.max(0, Math.min(seconds, playerRef.current.duration || Infinity));
@@ -679,7 +675,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     setPreparing(false);
     setPlaying(false);
     if (elapsed > 0) setResumable(true);
-    hapticImpact();
   }, [elapsed, savePosition, teardownPlayer]);
 
   // Native duration is authoritative once loaded. Feed duration keeps the

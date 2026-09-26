@@ -175,7 +175,6 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
   const handlePress = useCallback(() => {
     if (busy) return;
     if (!armed) {
-      hapticTick();
       setArmed(true);
       return;
     }
@@ -205,7 +204,6 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
       </Text>
       <Pressable
         onPress={handlePress}
-        haptic="none"
         hitSlop={HIT_SLOP}
         style={[styles.erasePill, { borderColor: colors.accent }]}
         accessibilityRole="button"
@@ -434,21 +432,22 @@ export const MenuSheet = memo(function MenuSheet({
             <MenuRow
               first
               title="haptics"
-              description="A light tap as you swipe, scrub and press"
+              description="A light tap as you swipe and scrub"
               trailing={<Toggle value={preferences.haptics} />}
-              haptic="none"
               accessibilityRole="switch"
               accessibilityState={{ checked: preferences.haptics }}
               onPress={() => {
-                hapticTick();
-                prefsApi.setHaptics(!preferences.haptics);
+                // After the change: turning haptics on is felt, turning them
+                // off is not (it ticked the other way round).
+                const next = !preferences.haptics;
+                prefsApi.setHaptics(next);
+                if (next) hapticTick();
               }}
             />
             <MenuRow
               title="notifications"
               description="Briefings and breaking news"
               trailing={<Toggle value={preferences.notifications} />}
-              haptic="none"
               accessibilityRole="switch"
               accessibilityState={{ checked: preferences.notifications }}
               onPress={() => {

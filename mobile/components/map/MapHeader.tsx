@@ -180,12 +180,10 @@ function HeaderControl({
   children,
   narrow = false,
   ...button
-}: Omit<IconButtonProps, 'style' | 'hitSlop' | 'haptic'> & { narrow?: boolean }) {
+}: Omit<IconButtonProps, 'style' | 'hitSlop'> & { narrow?: boolean }) {
   return (
-    // The screen's handlers give their own feedback, as they do for every gauge.
     <IconButton
       {...button}
-      haptic="none"
       hitSlop={narrow ? PLAY_SLOP : 0}
       style={[styles.control, narrow && styles.narrow]}
     >

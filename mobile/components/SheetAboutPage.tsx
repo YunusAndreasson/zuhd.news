@@ -288,7 +288,6 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
                 tone="secondary"
               />
             }
-            haptic="tick"
             accessibilityState={{ expanded: providersOpen }}
             onPress={() => setProvidersOpen((v) => !v)}
           />

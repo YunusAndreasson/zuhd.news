@@ -128,12 +128,31 @@ jest.mock('react-native-worklets', () => ({
 // ---------------------------------------------------------------------------
 // expo-* mocks
 // ---------------------------------------------------------------------------
+// Every call resolves, as the native module's do: `lib/haptics` chains
+// `.catch` on the result, so a bare `jest.fn()` would throw in any test that
+// loads the real module.
 jest.mock('expo-haptics', () => ({
-  impactAsync: jest.fn(),
-  notificationAsync: jest.fn(),
-  selectionAsync: jest.fn(),
-  ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
+  impactAsync: jest.fn(() => Promise.resolve()),
+  notificationAsync: jest.fn(() => Promise.resolve()),
+  selectionAsync: jest.fn(() => Promise.resolve()),
+  performAndroidHapticsAsync: jest.fn(() => Promise.resolve()),
+  ImpactFeedbackStyle: {
+    Light: 'light',
+    Medium: 'medium',
+    Heavy: 'heavy',
+    Soft: 'soft',
+    Rigid: 'rigid',
+  },
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
+  AndroidHaptics: {
+    Confirm: 'confirm',
+    Reject: 'reject',
+    Clock_Tick: 'clock-tick',
+    Context_Click: 'context-click',
+    Long_Press: 'long-press',
+    Segment_Tick: 'segment-tick',
+    Segment_Frequent_Tick: 'segment-frequent-tick',
+  },
 }));
 
 // ---------------------------------------------------------------------------

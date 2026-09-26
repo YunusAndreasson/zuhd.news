@@ -26,14 +26,10 @@ import { ScrubBar, ScrubTooltip } from './ScrubBar';
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
 const TOOLTIP_WIDTH = 48;
-// Haptic detents across the full track. The ratchet is *spatial*, not
-// temporal: a fixed number of notches per swipe regardless of how long the
-// briefing is, so a 4-minute and a 20-minute briefing feel identical under
-// the finger. Firing per audio-second instead (what `seek` used to do)
-// pegged the haptic to the frame rate — on a 12-minute briefing one point
-// of finger travel spans ~2 audio seconds, so every frame crossed a
-// boundary and the "tick per second" became a continuous buzz.
-const SCRUB_DETENTS = 40;
+// No haptic notches on the audio: forty spatial detents across the track
+// (until 2026-09-26) stood for nothing in the briefing, so under the finger
+// they were a buzz, not a position. The fill and the time say where you are.
+const SCRUB_DETENTS = 0;
 
 const SEEK_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
 
@@ -200,11 +196,8 @@ export const BriefingBar = memo(function BriefingBar({
                 accessibilityLabel="Preparing briefing"
               />
             ) : (
-              // `haptic="none"`: the player's `toggle` gives the one impact,
-              // for this button and for the top bar's ▶ alike.
               <IconButton
                 onPress={onToggle}
-                haptic="none"
                 accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
               >
                 <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
@@ -216,7 +209,6 @@ export const BriefingBar = memo(function BriefingBar({
                 size step down made the X read meaningfully smaller. */}
             <IconButton
               onPress={onDismiss}
-              haptic="none"
               accessibilityLabel={preparing ? 'Cancel briefing loading' : 'Hide briefing player'}
             >
               <Icon name="close-sharp" tone="secondary" size="lg" />

@@ -657,19 +657,20 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   /**
    * Record a find, and mark the day complete once — with the one success
-   * haptic the game has — when it was the last light on the globe.
+   * haptic the game has — when it was the last light on the globe. Says
+   * whether it gave that haptic, so a swipe landing there gives no other.
    */
-  const findStory = useCallback((slug: string) => {
-    if (!markFound(slug)) return;
+  const findStory = useCallback((slug: string): boolean => {
+    if (!markFound(slug)) return false;
     const { found, total } = foundProgress(storyRowsRef.current, getFound());
-    if (total > 0 && found === total) {
-      hapticNotification();
-      toastRef.current?.show(
-        `All ${total} found · new stories arrive through the day`,
-        undefined,
-        'top',
-      );
-    }
+    if (total === 0 || found !== total) return false;
+    hapticNotification();
+    toastRef.current?.show(
+      `All ${total} found · new stories arrive through the day`,
+      undefined,
+      'top',
+    );
+    return true;
   }, []);
 
   /**
@@ -794,7 +795,6 @@ export default function HomeScreen() {
 
   const handleStripPress = useCallback(
     (item: StripItem) => {
-      hapticImpact();
       markHintDone('globe');
       flyTo(item.coords);
       setSelectedGauge(item);
@@ -805,7 +805,6 @@ export default function HomeScreen() {
 
   const handleNowPress = useCallback(
     (item: NowItem) => {
-      hapticImpact();
       flyTo(item.coords);
       const alert = gdacsAlertsRef.current.find((a) => a.eventid === item.gdacsEventId);
       if (alert) {
@@ -821,7 +820,6 @@ export default function HomeScreen() {
    *  itself — a price is only worth printing if the reader can check it. */
   const handleOddsPress = useCallback(
     (value: StoryOdds) => {
-      hapticImpact();
       const card = rankedRef.current.find((c) => c.id === value.id);
       if (card) openCard(card);
       else if (value.marketUrl) openLink(value.marketUrl);
@@ -830,7 +828,6 @@ export default function HomeScreen() {
   );
 
   const handleInstrumentsPress = useCallback(() => {
-    hapticImpact();
     setInstrumentsOpen(true);
     instrumentsSheetRef.current?.present();
   }, []);
@@ -860,9 +857,8 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   const handleCountryPress = useCallback(
     (result: TapResult, cameraEpoch?: number) => {
-      // No haptic here: every caller — the globe's tap layer, an inline
-      // country link, the chooser's row — has already given its own, and a
-      // second one on the same touch read as a double knock.
+      // No haptic here: a press never gives one, and a globe tap has already
+      // had its hit (`onImpact` on the tap layer).
       // Any path here — globe tap, marker tap, or inline country link — proves
       // the reader found the map layer; the globe hint retires on all of them.
       markHintDone('globe');
@@ -985,7 +981,6 @@ export default function HomeScreen() {
   }, []);
 
   const handleMenuPress = useCallback(() => {
-    hapticImpact();
     setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
@@ -1023,7 +1018,6 @@ export default function HomeScreen() {
   }, []);
 
   const handleShare = useCallback((article: RiverArticle) => {
-    hapticImpact();
     const url = `https://zuhd.news/a/${article.slug}`;
     const title = article.title;
     const content = Platform.select({
@@ -1102,7 +1096,6 @@ export default function HomeScreen() {
   const handleEntityPress = useCallback(
     (entity: Entity) => {
       if (!indicatorsById.get(entity.indicatorId)) return;
-      hapticImpact();
       setActiveEntity(entity);
       entitySheetRef.current?.present();
     },
@@ -1138,13 +1131,14 @@ export default function HomeScreen() {
   const caughtUpFiredRef = useRef(false);
 
   /** The reader has swiped onto the first story they had already seen. Said
-   *  once a session, with the haptic the old reader gave the same boundary. */
-  const handleCaughtUp = useCallback(() => {
-    if (caughtUpFiredRef.current) return;
+   *  once a session, with the haptic the old reader gave the same boundary;
+   *  returns whether it did. */
+  const handleCaughtUp = useCallback((): boolean => {
+    if (caughtUpFiredRef.current) return false;
     caughtUpFiredRef.current = true;
     hapticNotification();
-    if (primerTriedRef.current) return;
-    if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
+    if (primerTriedRef.current) return true;
+    if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return true;
     primerTriedRef.current = true;
     primerTimerRef.current = setTimeout(() => {
       primerTimerRef.current = null;
@@ -1152,6 +1146,7 @@ export default function HomeScreen() {
       setPrimerOpen(true);
       primerSheetRef.current?.present();
     }, PRIMER_PRESENT_DELAY_MS);
+    return true;
   }, []);
 
   /**
@@ -1171,7 +1166,6 @@ export default function HomeScreen() {
       const leaving = storyRowsRef.current[leavingIndex]?.coords ?? null;
       deckIndexRef.current = index;
       setDeckIndex(index);
-      hapticSwipe();
       // A screen reader moves the deck through the card's next/previous
       // actions, and the card that replaces the one it was reading has no
       // focus to announce itself.
@@ -1181,11 +1175,15 @@ export default function HomeScreen() {
       maybeRequestReview();
       const row = storyRowsRef.current[index];
       currentSlugRef.current = row?.slug ?? null;
+      // One landing, one haptic: caught up or every story found says more
+      // than the swipe does, so either takes its place.
+      let said = false;
       if (row) {
-        if (row.mark === 'earlier') handleCaughtUp();
+        if (row.mark === 'earlier') said = handleCaughtUp();
         // Reading a story grown is opening it; swiping past one at rest is not.
-        if (sheetDetentRef.current === 'full') findStory(row.slug);
+        if (sheetDetentRef.current === 'full') said = findStory(row.slug) || said;
       }
+      if (!said) hapticSwipe();
       if (row?.coords) {
         const framing = framingFor(index);
         const travel = leaving
@@ -1350,7 +1348,6 @@ export default function HomeScreen() {
   );
 
   const handleRefresh = useCallback(async () => {
-    hapticImpact();
     setRefreshing(true);
     try {
       const addedArticles = await refresh();

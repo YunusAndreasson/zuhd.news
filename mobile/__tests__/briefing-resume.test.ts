@@ -43,7 +43,6 @@ jest.mock('expo-sqlite/kv-store', () => ({
   },
 }));
 jest.mock('../assets/icon.png', () => 1);
-jest.mock('../lib/haptics', () => ({ hapticImpact: jest.fn() }));
 
 let resume: (state: AppStateStatus) => Promise<void>;
 beforeEach(() => {

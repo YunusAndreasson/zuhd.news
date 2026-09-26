@@ -16,7 +16,7 @@ import Animated, {
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
-import { hapticSwipe, hapticTick } from '../../lib/haptics';
+import { hapticSwipe } from '../../lib/haptics';
 import { Pressable } from '../primitives';
 import { ComplexityCard } from './ComplexityCard';
 import { DemographyCard } from './DemographyCard';
@@ -82,8 +82,8 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
 
   const data = useMemo(() => getCountryCardData(countryName), [countryName]);
   const [active, setActive] = useState(0);
-  // Track previous page to fire haptic only on actual change, not on the
-  // initial settle from index 0.
+  // Track the previous page so a swipe's haptic fires only on an actual
+  // change, not on the initial settle from index 0.
   const prevActive = useRef(0);
   // Programmatic paging target for the dot controls. Horizontal swipe inside
   // the bottom sheet's vertical scroller is unreliable on Android (the sheet
@@ -94,10 +94,7 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
     (i: number) => {
       if (pageWidth <= 0) return;
       scrollRef.current?.scrollTo({ x: i * pageWidth, animated: !reduceMotion });
-      if (i !== prevActive.current) {
-        hapticTick();
-        prevActive.current = i;
-      }
+      prevActive.current = i;
       setActive(i);
     },
     [pageWidth, reduceMotion],
@@ -203,10 +200,6 @@ function DotIndicator({
         <Pressable
           key={i}
           onPress={() => onSelect(i)}
-          // `goToPage` already fires a conditional tick (only when the index
-          // actually changes), so suppress the primitive's own haptic to avoid
-          // a double-buzz — we adopt it purely for the spring press feedback.
-          haptic="none"
           accessibilityRole="button"
           accessibilityLabel={`View card ${i + 1} of ${count}`}
           accessibilityState={{ selected: i === active }}

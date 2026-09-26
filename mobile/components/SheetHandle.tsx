@@ -39,12 +39,7 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
       {(title || onBack || action) && (
         <View style={styles.titleRow}>
           {onBack && (
-            <IconButton
-              onPress={onBack}
-              haptic="tick"
-              style={styles.back}
-              accessibilityLabel="Back"
-            >
+            <IconButton onPress={onBack} style={styles.back} accessibilityLabel="Back">
               <Icon name="chevron-back" tone="default" />
             </IconButton>
           )}
@@ -67,7 +62,6 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
           {action && (
             <IconButton
               onPress={action.onPress}
-              haptic="tick"
               style={styles.action}
               accessibilityLabel={action.label}
             >

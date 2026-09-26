@@ -34,7 +34,6 @@ import {
 } from '../../lib/bookmark-store';
 import { ACTIONS_ROW } from '../../lib/deck-layout';
 import { useNewSpent } from '../../lib/fresh-store';
-import { hapticImpact } from '../../lib/haptics';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
@@ -269,7 +268,6 @@ export const StoryCard = memo(function StoryCard({
         const cc = url.slice(COUNTRY_URL_SCHEME.length).toUpperCase();
         const countryName = displayNameFromCode(cc);
         if (!countryName) return;
-        hapticImpact();
         onCountryPress({
           countryName,
           location: null,
@@ -485,7 +483,6 @@ const StoryActions = memo(function StoryActions({
       ) : null}
       <Pressable
         onPress={handleBookmark}
-        haptic="none"
         accessibilityRole="button"
         accessibilityLabel={saved ? 'Saved. Remove from saved stories' : 'Save this story'}
         accessibilityState={{ selected: saved }}
@@ -504,7 +501,6 @@ const StoryActions = memo(function StoryActions({
       </Pressable>
       <Pressable
         onPress={handleShare}
-        haptic="none"
         accessibilityRole="button"
         accessibilityLabel="Share this story"
         accessibilityHint="Opens the system share sheet"

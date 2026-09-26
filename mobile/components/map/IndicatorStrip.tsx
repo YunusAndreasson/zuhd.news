@@ -144,7 +144,6 @@ const Slot = memo(function Slot({
   return (
     <Pressable
       onPress={handlePress}
-      haptic="none"
       style={[styles.slot, { minWidth: width }]}
       onLayout={handleLayout}
       accessibilityRole="button"
@@ -264,8 +263,8 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     }
   }, [items, content, viewport, placements]);
 
-  // A tick says the row moved on. A scroll the row made itself records where it
-  // landed and stays quiet: the press that caused it has already knocked once.
+  // A tick says the row moved on under a finger. A scroll the row made itself
+  // records where it landed and stays quiet: no finger swiped it.
   const handleSettle = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       // Cleared first: a row short enough to need no landings still ends the
@@ -339,7 +338,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       ))}
       <Pressable
         onPress={onAll}
-        haptic="none"
         style={styles.all}
         accessibilityRole="button"
         accessibilityLabel="All instruments"

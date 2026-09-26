@@ -19,8 +19,10 @@ import { hapticTick } from '../lib/haptics';
 import { Text } from './primitives';
 
 const ACTION_WIDTH = 72;
+// Past this, letting go removes the row — and the one tick says so while the
+// finger is still down. A second tick where the row first moved (at a fifth of
+// the width) said nothing a moving row does not.
 const SWIPE_THRESHOLD = -ACTION_WIDTH * 0.6;
-const RATCHET_START = -ACTION_WIDTH * 0.2;
 
 interface SwipeableRowProps {
   children: ReactNode;
@@ -35,7 +37,6 @@ export const SwipeableRow = memo(function SwipeableRow({
 }: SwipeableRowProps) {
   const { colors } = useTheme();
   const translateX = useSharedValue(0);
-  const ratchetStartFired = useSharedValue(false);
   const ratchetThresholdFired = useSharedValue(false);
 
   // No haptic of its own: the action is a committed change of state, and
@@ -52,23 +53,15 @@ export const SwipeableRow = memo(function SwipeableRow({
       failOffsetY: [-10, 10],
       onActivate: () => {
         'worklet';
-        ratchetStartFired.value = false;
         ratchetThresholdFired.value = false;
       },
       onUpdate: (e) => {
         'worklet';
         const next = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
         translateX.value = next;
-        if (!ratchetStartFired.value && next <= RATCHET_START) {
-          ratchetStartFired.value = true;
-          scheduleOnRN(hapticTick);
-        }
         if (!ratchetThresholdFired.value && next <= SWIPE_THRESHOLD) {
           ratchetThresholdFired.value = true;
           scheduleOnRN(hapticTick);
-        }
-        if (ratchetStartFired.value && next > RATCHET_START) {
-          ratchetStartFired.value = false;
         }
         if (ratchetThresholdFired.value && next > SWIPE_THRESHOLD) {
           ratchetThresholdFired.value = false;
@@ -88,7 +81,7 @@ export const SwipeableRow = memo(function SwipeableRow({
         }
       },
     }),
-    [translateX, ratchetStartFired, ratchetThresholdFired, fireAction],
+    [translateX, ratchetThresholdFired, fireAction],
   );
   const panGesture = usePanGesture(panConfig);
 

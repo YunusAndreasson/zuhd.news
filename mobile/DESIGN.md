@@ -108,7 +108,7 @@ Eight primitives. Composition over configuration.
 | `Stack`      | Flex layout                              | `direction`, `gap`, `align`, `justify`, `padding*`, `fill`, `wrap`         |
 | `Box`        | Decorative container                     | `background`, `radius`, `padding*`, `rule` (`top`/`bottom`/`left`/`right`) |
 | `Screen`     | Top-level screen scaffold                | `edges`, `padded`                                                          |
-| `Pressable`  | Full-bleed row press (spring + haptic)   | `onPress`, `haptic`, all RN Pressable props                                |
+| `Pressable`  | Full-bleed row press (spring, no haptic) | `onPress`, all RN Pressable props                                          |
 | `IconButton` | Icon-only chrome button                  | `onPress`, `accessibilityLabel`, icon child                                |
 | `Icon`       | Ionicons wrapper — four sizes + tone     | `name`, `size` (`xs`/`sm`/`md`/`lg`), `tone`                               |
 | `Markdown`   | Inline markdown text (`**b**`, `*i*`, links) | `children`, `variant`, `tone`, `onLinkPress` (handles the `country:XX` scheme) |
@@ -355,7 +355,11 @@ Tokens in `constants/theme.ts` (`ANIMATION`, `EASING`, `KEEP_MOTION`); the rules
 
 ## Haptics
 
-Three tiers, chosen by meaning (`lib/haptics.ts`): **tick** — movement within a surface (a story landing, a sheet settling, a page of cards, a scrub step, an option picked, back a page); **impact** — a press that opens something (a sheet, a story, a card, a link, share, play; the `Pressable` default, and scrub detents, because iOS silences selection feedback while audio plays); **notification** — state committed (saved, removed, undone, erased, every story found), with `hapticError` for what could not be done. A press whose handler gives its own haptic passes `haptic="none"`, so one touch is never two knocks.
+**A haptic answers a finger, and only when it tells the hand something the eye might miss** (`lib/haptics.ts`, 2026-09-26): a threshold crossed while the finger is down, a swipe landing, a notch that stands for an item, a hit on the globe (the one tap with no press state), a state committed or refused. **Never an ordinary press** — opening a sheet, a story, a link, share, play, back. No system button on either platform knocks, and until 2026-09-26 every `Pressable` here did (~40 of them); `Pressable` has no `haptic` prop now, and a handler that commits something fires its own.
+
+Four tiers, by meaning: **swipe** — a sideways swipe landing (the deck, the gauge row, the country cards), the softest there is; **tick** — pull-to-refresh and swipe-to-remove crossing their threshold, a sheet *released* onto a new detent (a move the app makes is silent), a chart scrub on grab and on a cited story's point, a toggle turned on or an option picked; **impact** — a globe tap that hit something, and a notch per story on the story track (impact because iOS silences selection feedback while audio plays), at most one per 50 ms; **notification** — saved, removed, undone, erased, caught up, every story found, with `hapticError` for what could not be done. **One event, one haptic**: where two would fire, the more meaningful wins (a swipe landing on the last story found gives only the success). The briefing's scrubber has no notches — they stood for nothing in the audio.
+
+Android goes through `performAndroidHapticsAsync` (`View.performHapticFeedback`) only: it follows the system's touch-feedback setting. `impactAsync`, `selectionAsync` and `notificationAsync` are raw `Vibrator` buzz on Android and are iOS-only here; below the API level a constant arrived in, an older View constant stands in (`__tests__/haptics.test.ts`). The app stays on `expo-haptics`: it ships over the air, and the system patterns are what both platforms ask for. Pulsar (`react-native-pulsar`) is the path if a swipe must be softer than `Soft`, at the cost of a native module and a store build.
 
 ## Anti-patterns (don't)
 

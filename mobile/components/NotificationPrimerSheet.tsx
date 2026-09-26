@@ -83,7 +83,6 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
           </Pressable>
           <Pressable
             onPress={handleNotNow}
-            haptic="tick"
             hitSlop={HIT_SLOP}
             accessibilityRole="button"
             accessibilityLabel="Not now"

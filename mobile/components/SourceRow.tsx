@@ -107,7 +107,6 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
 
   return (
     <Pressable
-      haptic="tick"
       onPress={onPress}
       hitSlop={{ top: 6, bottom: 6, left: 16, right: 16 }}
       accessibilityRole="button"

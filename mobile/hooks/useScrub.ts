@@ -23,11 +23,15 @@ const noop = () => {};
 /** The stem's thickness: a line that reads above a thumb without becoming a bar. */
 export const STEM_WIDTH = 1;
 
+/** The shortest gap between two notches: one per 50 ms, at most. */
+const NOTCH_MIN_MS = 50;
+
 export interface ScrubOptions {
   /** The filled share, 0–1. The scrub writes it on the UI thread while held. */
   fraction: SharedValue<number>;
   /** Haptic notches across the whole track — spatial, not per unit of content,
-   *  so a long and a short track feel the same under the finger. */
+   *  so a long and a short track feel the same under the finger. 0 for none:
+   *  a notch that stands for nothing in the content is only a buzz. */
   detents: number;
   /** How finely the label changes: seconds of audio, stories in a day. */
   steps: number;
@@ -61,8 +65,11 @@ export interface ScrubOptions {
  * - **The notch the finger feels, the label it reads and the fill move on the
  *   same frame.** Haptics fire per detent, the label per step, both decided in
  *   the worklet so neither needs a JS round trip to know whether it changed.
+ * - **Notches never come faster than one per `NOTCH_MIN_MS`.** Stories bunch
+ *   on the day's track (a cycle's run sits in a few points), and a quick scrub
+ *   across one crossed a notch every frame — a buzz, not a count.
  * - **Grabbing announces itself**: both ratchets reset on activation, so the
- *   first contact is one notch.
+ *   first contact is one notch. A tap is a press, and a press never knocks.
  * - **A tap jumps without a tooltip** — the fill moving is feedback enough; the
  *   tooltip is for a drag, where the reader needs a preview before committing.
  * - **Pan claims at 2pt horizontal and fails at 10pt vertical**, so a vertical
@@ -121,8 +128,11 @@ export function useScrub({
   const start = onScrubStart ?? noop;
   const end = onScrubEnd ?? noop;
 
+  const notches = stepAt != null || detents > 0;
+  const lastNotchAt = useSharedValue(0);
+
   const track = useMemo(() => {
-    const fn = (x: number) => {
+    const fn = (x: number, notch: boolean) => {
       'worklet';
       const w = width.value;
       if (w <= 0) return;
@@ -133,9 +143,13 @@ export function useScrub({
       const detent = stepAt ? step : Math.round(f * detents);
       if (detent !== lastDetent.value) {
         lastDetent.value = detent;
-        // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
-        // while an AVAudioSession is in playback mode.
-        scheduleOnRN(hapticImpact);
+        const now = Date.now();
+        if (notch && notches && now - lastNotchAt.value >= NOTCH_MIN_MS) {
+          lastNotchAt.value = now;
+          // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
+          // while an AVAudioSession is in playback mode.
+          scheduleOnRN(hapticImpact);
+        }
       }
       if (step !== lastStep.value) {
         lastStep.value = step;
@@ -143,7 +157,19 @@ export function useScrub({
       }
     };
     return fn;
-  }, [width, fraction, pending, detents, lastDetent, steps, stepAt, lastStep, updateLabel]);
+  }, [
+    width,
+    fraction,
+    pending,
+    detents,
+    lastDetent,
+    lastNotchAt,
+    notches,
+    steps,
+    stepAt,
+    lastStep,
+    updateLabel,
+  ]);
 
   const panConfig = useMemo<PanGestureConfig>(
     () => ({
@@ -161,12 +187,13 @@ export function useScrub({
         fingerX.value = e.x;
         lastDetent.value = -1;
         lastStep.value = -1;
-        track(e.x);
+        lastNotchAt.value = 0;
+        track(e.x, true);
       },
       onUpdate: (e) => {
         'worklet';
         fingerX.value = e.x;
-        track(e.x);
+        track(e.x, true);
       },
       onFinalize: (e) => {
         'worklet';
@@ -191,6 +218,7 @@ export function useScrub({
       fingerX,
       lastDetent,
       lastStep,
+      lastNotchAt,
       track,
       onCommit,
       onClaim,
@@ -209,7 +237,7 @@ export function useScrub({
         onClaim?.();
         lastDetent.value = -1;
         lastStep.value = -1;
-        track(e.x);
+        track(e.x, false);
         scheduleOnRN(onCommit, pending.value);
       },
     }),

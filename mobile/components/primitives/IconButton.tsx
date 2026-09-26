@@ -10,8 +10,8 @@ export interface IconButtonProps extends Omit<PressableProps, 'children'> {
 /**
  * Compact icon-only button: a `Pressable` with `hitSlop` and
  * `accessibilityRole="button"` baked in, so callers supply only `onPress`,
- * `accessibilityLabel`, and an `<Icon>` child. Spring press and haptics come
- * from `Pressable` itself.
+ * `accessibilityLabel`, and an `<Icon>` child. The spring press comes from
+ * `Pressable` itself.
  */
 export const IconButton = memo(function IconButton({
   hitSlop = HIT_SLOP,

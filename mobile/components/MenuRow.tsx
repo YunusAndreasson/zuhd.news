@@ -2,7 +2,6 @@ import { memo, type ReactNode } from 'react';
 import { type AccessibilityRole, type AccessibilityState, StyleSheet, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import type { HapticTier } from '../lib/haptics';
 import { Icon, Pressable, Text } from './primitives';
 
 /**
@@ -37,7 +36,6 @@ interface MenuRowProps {
   onPress?: () => void;
   /** The first row of a group draws no rule above it. */
   first?: boolean;
-  haptic?: HapticTier;
   accessibilityRole?: AccessibilityRole;
   accessibilityState?: AccessibilityState;
   /** Defaults to the title, with the value after it. */
@@ -51,7 +49,6 @@ export const MenuRow = memo(function MenuRow({
   trailing,
   onPress,
   first,
-  haptic,
   accessibilityRole = 'button',
   accessibilityState,
   accessibilityLabel,
@@ -94,7 +91,6 @@ export const MenuRow = memo(function MenuRow({
   return (
     <Pressable
       onPress={onPress}
-      haptic={haptic}
       style={style}
       accessibilityRole={accessibilityRole}
       accessibilityState={accessibilityState}

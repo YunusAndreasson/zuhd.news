@@ -209,11 +209,22 @@ export function MapSheet({
     (next: MapSheetDetent) => {
       if (detentRef.current === next) return;
       detentRef.current = next;
-      hapticTick();
       setDetent(next);
       onDetentChange?.(next);
     },
     [onDetentChange],
+  );
+
+  // Only a finger letting the sheet go onto a new stop ticks. A move the app
+  // makes — a tap on the card, a story opened from a list, an accessibility
+  // action, a return to the app collapsing it — is silent: the tap is not a
+  // haptic event, and a return ticked with no touch at all.
+  const settleFromFinger = useCallback(
+    (next: MapSheetDetent) => {
+      if (detentRef.current !== next) hapticTick();
+      settle(next);
+    },
+    [settle],
   );
 
   const animateTo = useCallback(
@@ -229,9 +240,9 @@ export function MapSheet({
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
       committedDetent.value = next;
-      scheduleOnRN(settle, next);
+      scheduleOnRN(settleFromFinger, next);
     },
-    [committedDetent, offset, settle],
+    [committedDetent, offset, settleFromFinger],
   );
 
   // Named, because `scheduleOnRN` must never be handed an inline arrow from a

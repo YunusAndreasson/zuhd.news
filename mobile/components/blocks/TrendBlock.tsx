@@ -340,6 +340,7 @@ const ScrubReadout = memo(function ScrubReadout({
   primaryValues,
   periods,
   unit,
+  cited,
 }: {
   scrubIdx: SharedValue<number>;
   points: Pt[];
@@ -348,26 +349,34 @@ const ScrubReadout = memo(function ScrubReadout({
   primaryValues: number[];
   periods?: string[];
   unit?: string;
+  /** The points a cited story sits on — the only steps that tick. */
+  cited: ReadonlySet<number>;
 }) {
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
   // One hop per change, carrying both effects. Two `scheduleOnRN` calls meant
   // the label and the tick were queued as separate JS tasks and could land on
   // different frames; bundling them keeps the notch and the readout together.
-  const applyScrub = useCallback((idx: number, haptic: boolean) => {
-    setScrubIdxJs(idx);
-    if (haptic) hapticTick();
-  }, []);
+  const applyScrub = useCallback(
+    (idx: number, grabbed: boolean) => {
+      setScrubIdxJs(idx);
+      if (grabbed || cited.has(idx)) hapticTick();
+    },
+    [cited],
+  );
 
   useAnimatedReaction(
     () => scrubIdx.value,
     (current, prev) => {
       if (current === prev) return;
-      // Tick on grab (prev < 0) as well as on every step between points —
-      // landing on the chart is the moment the scrub becomes real, and going
-      // silent there made the first contact feel unregistered. Release
-      // (current < 0) stays silent: letting go is its own signal.
-      scheduleOnRN(applyScrub, current, current >= 0);
+      // Tick on grab (prev < 0) — landing on the chart is the moment the
+      // scrub becomes real, and going silent there made the first contact
+      // feel unregistered — and on a cited story's point, where the finger
+      // has found something. Not on every point between: a dense series
+      // crossed one a frame, a 60–120 Hz buzz that told the hand nothing.
+      // Release (current < 0) stays silent: letting go is its own signal.
+      if (current < 0) scheduleOnRN(applyScrub, current, false);
+      else scheduleOnRN(applyScrub, current, prev == null || prev < 0);
     },
   );
 
@@ -549,6 +558,11 @@ export const TrendBlock = memo(function TrendBlock({
     };
   }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference]);
 
+  const citedPoints = useMemo(
+    () => new Set((annotations ?? []).map((a) => a.atIndex)),
+    [annotations],
+  );
+
   // One label per crowd of cited marks (`citedLabels`): neighbouring days'
   // numbers printed edge to edge read as one number.
   const annotationLabels = useMemo(() => {
@@ -729,6 +743,7 @@ export const TrendBlock = memo(function TrendBlock({
                 primaryValues={primaryValues}
                 periods={periods}
                 unit={unit}
+                cited={citedPoints}
               />
               {/* Both boxes are two `LABEL_ROW_HEIGHT` rows tall, which is
                   what the label needs when its unit wraps ("4,599.4" over
@@ -825,12 +840,7 @@ export const TrendBlock = memo(function TrendBlock({
     );
   }
   return (
-    <Pressable
-      haptic="impact"
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={a11yLabel}
-    >
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={a11yLabel}>
       {inner}
     </Pressable>
   );

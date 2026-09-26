@@ -55,12 +55,10 @@ export const OddsLine = memo(function OddsLine({
     </>
   );
   // The press primitive, like the `sources · save · share` words under it: it
-  // used a static pressed style while they sprang. The screen's handler gives
-  // the haptic.
+  // used a static pressed style while they sprang.
   return onPress ? (
     <Pressable
       onPress={handlePress}
-      haptic="none"
       style={[styles.odds, { borderColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={spoken}

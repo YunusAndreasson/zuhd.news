@@ -1,9 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { ANIMATION, EASING, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticTick } from '../lib/haptics';
 import type { HintId } from '../lib/onboarding-store';
 import { Text } from './primitives';
 
@@ -59,11 +58,6 @@ export const HintOverlay = memo(function HintOverlay({
 }: HintOverlayProps) {
   const { colors } = useTheme();
 
-  const handlePress = useCallback(() => {
-    hapticTick();
-    onDismiss();
-  }, [onDismiss]);
-
   if (!hint) return null;
 
   // Reanimated drops both to their end state under Reduce Motion by itself.
@@ -91,7 +85,7 @@ export const HintOverlay = memo(function HintOverlay({
       {/* Remount per hint id so the entering animation runs for each new tip. */}
       <Animated.View key={hint} entering={entering} exiting={exiting}>
         <Pressable
-          onPress={handlePress}
+          onPress={onDismiss}
           // Inverted surface — the one chrome element that must be seen to do
           // its job. Monochrome flip (text-on-bg becomes bg-on-text), so
           // "color carries meaning" still holds; maximum contrast in both
