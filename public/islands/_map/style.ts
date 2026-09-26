@@ -671,7 +671,14 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
  * exactly; it has to be re-measured against the live corpus and nudged when the
  * ratchet trips, the same as the label-contrast peak below.
  *
- * So a place with 10 stories lands at alpha 0.101, Washington at 0.216, London's
+ * **Moved from 1.30 to 1.50 on 2026-09-26.** Washington had reached 88 stories
+ * and New York 55 in the 16-day window (66 and 30 at the last calibration), so
+ * the US northeast measured 1.62. Set short of that on purpose: the selector
+ * capped US datelines at three a cycle on 2026-09-25, and the region should
+ * come back down as the window rolls; 1.62 still sits inside the 10% band.
+ * London + Brussels + Paris now reach 1.22.
+ *
+ * At the 1.30 calibration, a place with 10 stories lands at alpha 0.101, Washington at 0.216, London's
  * neighbourhood at 0.264 and the US northeast at the 0.300 ceiling — a real
  * gradient from "barely crowding" to "the busiest region on the planet".
  *
@@ -699,7 +706,7 @@ export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
   [0.1, 0],
   [0.3, 0.12],
   [0.65, 0.21],
-  [1.3, 0.3],
+  [1.5, 0.3],
 ] as const
 
 /**

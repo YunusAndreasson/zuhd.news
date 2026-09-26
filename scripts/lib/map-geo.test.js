@@ -2500,10 +2500,17 @@ test('a place is a name and a distance, never a grid cell', (t) => {
   // And the split that must survive all of that merging: `La Paz` is two cities
   // 4,511 km apart, Bolivia and Mexico. A grid catches this and so does
   // proximity; only proximity cannot also invent a split under 2 km of jitter.
-  const lapaz = places.filter((p) => p.loc === 'La Paz')
-  if (lapaz.length) {
-    assert.equal(lapaz.length, 2, 'La Paz is two cities and must stay two places')
+  // How many of the two the window actually holds is a fact about the news,
+  // not the grouping: on 2026-09-26 both La Paz stories were Bolivian, 1 km
+  // apart, and one place was the right answer. So count the cities present —
+  // stories more than 100 km from every other — and require exactly that many.
+  const lapazPts = points.filter((p) => p.loc === 'La Paz')
+  const cities = []
+  for (const p of lapazPts) {
+    if (!cities.some((c) => Math.abs(c.lat - p.lat) < 1 && Math.abs(c.lng - p.lng) < 1)) cities.push(p)
   }
+  const lapaz = places.filter((p) => p.loc === 'La Paz')
+  assert.equal(lapaz.length, cities.length, `La Paz is ${cities.length} cit${cities.length === 1 ? 'y' : 'ies'} in this window and must be as many places`)
 
   // The tight merge radius has to stay tight. These are separate cities with
   // separate stories, 9–15 km apart, and on this map separate peoples' — a merge
