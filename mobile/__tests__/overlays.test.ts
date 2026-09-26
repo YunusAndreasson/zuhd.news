@@ -5,6 +5,7 @@ import {
   famineBox,
   thermalAlpha,
   thermalBox,
+  thermalPlace,
 } from '../lib/overlays';
 import { isFamineSnapshot, isGenocideSnapshot, isThermalSnapshot } from '../lib/validate';
 
@@ -92,6 +93,36 @@ describe('overlay validators', () => {
       isGenocideSnapshot({ situations: [{ ...GENOCIDE.situations[0], finding: 'alleged' }] }),
     ).toBe(false);
     expect(isFamineSnapshot(null)).toBe(false);
+  });
+});
+
+describe('the live thermal shape (2026-09-25)', () => {
+  const event = {
+    id: 'e',
+    lat: 45.26,
+    lng: 37.86,
+    t: 1,
+    frp: 42.8,
+    pixels: 4,
+    confidence: 'nominal',
+    near: 'Ilsky',
+    nearKm: 71.7,
+    relatedArticles: ['2026-09-26-ilsky-refinery-drone-strike-krasnodar-diesel'],
+    related: [{ slug: 'x', title: 'Drones Hit Ilsky Refinery', km: 71.7 }],
+  };
+
+  it('accepts it, and rejects the object `near` that would crash a row', () => {
+    expect(isThermalSnapshot({ events: [event] })).toBe(true);
+    expect(isThermalSnapshot({ events: [{ ...event, near: { loc: 'Ilsky', km: 71.7 } }] })).toBe(
+      false,
+    );
+  });
+
+  it('places the fire from the story’s town, not in it', () => {
+    expect(thermalPlace(event)).toBe('72 km from Ilsky');
+    expect(thermalPlace({ near: 'Ilsky', nearKm: 0.4 })).toBe('Ilsky');
+    expect(thermalPlace({ near: 'Ilsky' })).toBe('Ilsky');
+    expect(thermalPlace({})).toBeUndefined();
   });
 });
 

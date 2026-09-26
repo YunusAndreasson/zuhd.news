@@ -14,11 +14,40 @@ export type RiverArticle = Article & { category: Category; ranAt?: number };
  *  hours apart. A gap longer than this starts a new run. */
 export const RUN_GAP_MS = 30 * 60_000;
 
-/** Newest run first, then newest event within the run. Slug breaks exact ties
- * deterministically; coverage never changes recency. */
+/**
+ * How widely a story was reported, for its place inside its run: the most
+ * reported first (2026-09-26, the user's request — "hottest news first").
+ *
+ * Two measures exist and neither covers every story. `eventCoverage`, the
+ * news API's count of reports, is missing on about three in five (every
+ * RSS-origin story), and a missing figure means unmeasured, never quiet
+ * (`lib/coverage.ts`). So it ranks only over its bar: a story past 400
+ * reports leads its run, as its cell stands taller on the track. Below the
+ * bar the measure is breadth — how many outlets the desk cited, which every
+ * story has, and which follows the count where both exist (the 18:12 run of
+ * 2026-09-26: 6, 5, 4, 3, 3, 2, 2 sources beside 830, 165, 227, 182, 155,
+ * 127, 100 reports).
+ *
+ * Only inside a run, never across one. A run shares one time on the track, so
+ * reordering it moves no cell by more than the run's own width. The day's top
+ * stories led the whole river for a day (2026-09-23) and were removed for
+ * exactly that jump: swiping through them sent the playhead across the day
+ * and back. That lead was deleted on 2026-09-26, once this replaced it.
+ */
+function compareHeat(a: RiverArticle, b: RiverArticle): number {
+  const over = (x: RiverArticle) => (isMostCovered(x) ? (x.eventCoverage as number) : 0);
+  const lead = over(b) - over(a);
+  if (lead !== 0) return lead;
+  return (b.sources?.length ?? 0) - (a.sources?.length ?? 0);
+}
+
+/** Newest run first; inside a run the most reported first (`compareHeat`),
+ *  then the newest event. Slug breaks exact ties deterministically. */
 function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
   const ran = articleTime(b) - articleTime(a);
   if (ran !== 0) return ran;
+  const heat = compareHeat(a, b);
+  if (heat !== 0) return heat;
   const happened = eventTime(b) - eventTime(a);
   if (happened !== 0) return happened;
   return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
@@ -39,8 +68,8 @@ function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
  * promise for every story the desk picked up late: it went into the river
  * hours deep, among stories the reader had read, and the dock's `‹ n new`
  * never counted it, because it sat ahead of them. Now the river runs by when
- * zuhd published (`articleTime`), one run per cycle, and within a run by when
- * each story happened (`eventTime`).
+ * zuhd published (`articleTime`), one run per cycle, and within a run the
+ * most reported first (`compareHeat`), then by when each story happened.
  *
  * **A run shares one time** (`ranAt`, its newest story's). The files of one
  * cycle land over a few minutes, and read to the minute, a run ordered by
@@ -108,39 +137,4 @@ export function riverAnchor(river: readonly RiverArticle[], now: number): number
     -Infinity,
   );
   return newest >= now - RIVER_WINDOW_MS ? now : newest;
-}
-
-/** At most this many stories lead the river as the day's top news. A day
- *  runs to 0–8 over the bar, usually two to four; past five the lead would
- *  push the day's newest story a long swipe back. */
-export const TOP_STORIES = 5;
-
-/**
- * The day's top stories first, most reported first, then everything else
- * newest first as before (2026-09-23, the user's request: "like you would
- * expect top news to show up at the top" — Apple News and Google News both
- * open on top stories, then the latest).
- *
- * A top story is one over the most-covered bar (`isMostCovered`, 400
- * reports), inside the day's window: a pinned story from last week does not
- * lead today. The bar is absolute, so a quiet day has no lead at all and the
- * river is plain time order, exactly as it was. The three in five stories
- * with no figure can never lead — not a judgement on them, only the limit of
- * what is measured, which is why this is a short lead and not a sort.
- *
- * `lead` is how many stories were moved to the front: `buildStoryRows` looks
- * for the `earlier` boundary after them, since the lead is not in time order.
- */
-export function leadWithTopStories(
-  river: readonly RiverArticle[],
-  now: number,
-): { river: RiverArticle[]; lead: number } {
-  const from = riverAnchor(river, now) - RIVER_WINDOW_MS;
-  const top = river
-    .filter((a) => isMostCovered(a) && articleTime(a) >= from)
-    .sort((a, b) => (b.eventCoverage ?? 0) - (a.eventCoverage ?? 0) || compareNewsRecency(a, b))
-    .slice(0, TOP_STORIES);
-  if (top.length === 0) return { river: [...river], lead: 0 };
-  const leading = new Set(top.map((a) => a.slug));
-  return { river: [...top, ...river.filter((a) => !leading.has(a.slug))], lead: top.length };
 }

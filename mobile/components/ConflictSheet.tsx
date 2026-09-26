@@ -20,19 +20,40 @@ import { Text } from './primitives';
 import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface ConflictSheetProps extends BaseSheetProps {
+interface ConflictBodyProps {
   event: ConflictEvent | null;
   /** Tap on the country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
 }
 
+/** The handle's title: what kind of event it was. */
+export function conflictTitle(event: ConflictEvent | null): string {
+  return event ? SUB_EVENT_LABEL[event.subEvent] : '';
+}
+
+type ConflictSheetProps = BaseSheetProps & ConflictBodyProps;
+
 export const ConflictSheet = memo(function ConflictSheet({
   sheetRef,
-  event,
   bottomInset,
   onDismiss,
-  onCountryPress,
+  ...body
 }: ConflictSheetProps) {
+  return (
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={conflictTitle(body.event)}>
+      <SheetScrollView bottomInset={bottomInset}>
+        <ConflictBody {...body} />
+      </SheetScrollView>
+    </SheetLayout>
+  );
+});
+
+/** The sheet's content without the sheet: the menu shows it as a page of its
+ *  own, so a reader who came from a list can go back to it. */
+export const ConflictBody = memo(function ConflictBody({
+  event,
+  onCountryPress,
+}: ConflictBodyProps) {
   const { colors } = useTheme();
   const openLink = useOpenLink();
   const handleSourcePress = useCallback(() => {
@@ -53,7 +74,6 @@ export const ConflictSheet = memo(function ConflictSheet({
     return data?.flag ? { name: event.country, flag: data.flag } : null;
   }, [event]);
 
-  const handleTitle = event ? SUB_EVENT_LABEL[event.subEvent] : '';
   // Actor line shape:
   //   • Two-sided (battles, non-state) → "Group A vs Group B"
   //   • One-sided (UCDP type 3, ACLED VAC) → "Group A" alone — the "vs Civilians"
@@ -76,74 +96,72 @@ export const ConflictSheet = memo(function ConflictSheet({
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={handleTitle}>
-      <SheetScrollView bottomInset={bottomInset}>
-        {event && (
-          <>
-            {/* Hero — eyebrow (family) + focal (fatalities or sub-event) +
+    <>
+      {event && (
+        <>
+          {/* Hero — eyebrow (family) + focal (fatalities or sub-event) +
                 supporting clause. Same cognitive shape as DisasterSheet's
                 hero so the two sheets feel like one family. */}
-            <SheetHero
-              entering={enter()}
-              eyebrow={FAMILY_EYEBROW[event.family]}
-              focal={hero?.focal ?? ''}
-              tint={tint}
-              secondary={hero?.secondary}
-            />
+          <SheetHero
+            entering={enter()}
+            eyebrow={FAMILY_EYEBROW[event.family]}
+            focal={hero?.focal ?? ''}
+            tint={tint}
+            secondary={hero?.secondary}
+          />
 
-            {/* Actors — who's involved. The "vs" form is ACLED's
+          {/* Actors — who's involved. The "vs" form is ACLED's
                 convention; one-actor events (peaceful_protest by
                 civilians, abductions where actor2 is unspecified)
                 render with the single name only. */}
-            {actorLine.length > 0 && (
-              <Animated.View entering={enter()} style={styles.actorRow}>
-                <Text variant="bodyEmphasis" tone="emphasis" selectable>
-                  {actorLine}
-                </Text>
-              </Animated.View>
-            )}
-
-            {/* Notes — the one-sentence summary from the data layer. */}
-            {event.notes.length > 0 && (
-              <Animated.View entering={enter()} style={styles.notesRow}>
-                <Text variant="body" selectable>
-                  {event.notes}
-                </Text>
-              </Animated.View>
-            )}
-
-            {/* Meta — when + where, joined as one quiet caption. */}
-            <Animated.View entering={enter()} style={styles.metaRow}>
-              <Text variant="labelXs" tone="secondary">
-                {[relativeTime(event.eventDate), locationLine]
-                  .filter((s) => s.length > 0)
-                  .join(' · ')}
+          {actorLine.length > 0 && (
+            <Animated.View entering={enter()} style={styles.actorRow}>
+              <Text variant="bodyEmphasis" tone="emphasis" selectable>
+                {actorLine}
               </Text>
             </Animated.View>
+          )}
 
-            {flag && (
-              <SheetFlagRow
-                entering={enter()}
-                flags={[flag]}
-                borderColor={colors.rule}
-                onPress={onCountryPress}
-              />
-            )}
+          {/* Notes — the one-sentence summary from the data layer. */}
+          {event.notes.length > 0 && (
+            <Animated.View entering={enter()} style={styles.notesRow}>
+              <Text variant="body" selectable>
+                {event.notes}
+              </Text>
+            </Animated.View>
+          )}
 
-            {/* Footer — source name + tappable URL when published.
+          {/* Meta — when + where, joined as one quiet caption. */}
+          <Animated.View entering={enter()} style={styles.metaRow}>
+            <Text variant="labelXs" tone="secondary">
+              {[relativeTime(event.eventDate), locationLine]
+                .filter((s) => s.length > 0)
+                .join(' · ')}
+            </Text>
+          </Animated.View>
+
+          {flag && (
+            <SheetFlagRow
+              entering={enter()}
+              flags={[flag]}
+              borderColor={colors.rule}
+              onPress={onCountryPress}
+            />
+          )}
+
+          {/* Footer — source name + tappable URL when published.
                 For prototype data this reads "Prototype data — not live
                 ACLED" so nobody mistakes the fixture for journalism. */}
-            <SheetSourceFooter
-              entering={enter()}
-              source={displayConflictSource(event.source)}
-              linkLabel="source →"
-              linkAccessibilityLabel="Open the source"
-              onLinkPress={event.sourceUrl ? handleSourcePress : undefined}
-            />
-          </>
-        )}
-      </SheetScrollView>
-    </SheetLayout>
+          <SheetSourceFooter
+            entering={enter()}
+            source={displayConflictSource(event.source)}
+            linkLabel="source →"
+            linkAccessibilityLabel="Open the source"
+            onLinkPress={event.sourceUrl ? handleSourcePress : undefined}
+          />
+        </>
+      )}
+    </>
   );
 });
 

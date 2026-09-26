@@ -92,3 +92,51 @@ it.each(['dismiss', 'rotate date', 'unmount'] as const)(
     }
   },
 );
+
+describe('a briefing recorded again under the same date', () => {
+  // 2026-09-26 was recorded at 05:28 and again at 17:34, with a new voice, at
+  // the same address. A place in the first is not a place in the second.
+  const stored = (date: string, pos = '90') => {
+    jest
+      .mocked(Storage.getItem)
+      .mockImplementation(async (key: string) =>
+        key === 'zuhd_briefing_pos' ? pos : key === 'zuhd_briefing_date' ? date : null,
+      );
+  };
+  afterEach(() => jest.mocked(Storage.getItem).mockResolvedValue(null));
+
+  const settle = () => act(async () => {});
+
+  it('does not resume a place saved in the earlier recording', async () => {
+    stored('2026-09-26#2026-09-26T05:28:09.976Z');
+    const hook = renderHook(() => useBriefingPlayer('2026-09-26', 502, '2026-09-26T17:32:41.210Z'));
+    await settle();
+    expect(hook.result.current.resumable).toBe(false);
+  });
+
+  it('resumes a place saved in the same recording', async () => {
+    stored('2026-09-26#2026-09-26T17:32:41.210Z');
+    const hook = renderHook(() => useBriefingPlayer('2026-09-26', 502, '2026-09-26T17:32:41.210Z'));
+    await settle();
+    expect(hook.result.current.resumable).toBe(true);
+    expect(hook.result.current.resumeAt).toBe(90);
+  });
+
+  it('still resumes a place saved before recordings were told apart', async () => {
+    stored('2026-09-26');
+    const hook = renderHook(() => useBriefingPlayer('2026-09-26', 502, '2026-09-26T17:32:41.210Z'));
+    await settle();
+    expect(hook.result.current.resumable).toBe(true);
+  });
+
+  it('asks for the recording by its time, so a kept download of the first is not replayed', async () => {
+    const fromURI = jest.spyOn(jest.requireMock('expo-asset').Asset, 'fromURI');
+    const hook = renderHook(() => useBriefingPlayer('2026-09-26', 502, '2026-09-26T17:32:41.210Z'));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(fromURI).toHaveBeenCalledWith(
+      expect.stringMatching(/briefing-2026-09-26\.mp3\?v=2026-09-26T17%3A32%3A41\.210Z$/),
+    );
+  });
+});

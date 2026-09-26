@@ -34,6 +34,8 @@ interface BriefingInfo {
   date: string;
   available: boolean;
   duration?: number;
+  /** When the recording was made — see `FeedResponse.briefing`. */
+  generated?: string;
 }
 
 /**

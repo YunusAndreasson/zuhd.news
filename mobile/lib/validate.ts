@@ -53,7 +53,8 @@ const isBriefing = (v: unknown): boolean =>
   isObject(v) &&
   isIsoDate(v.date) &&
   typeof v.available === 'boolean' &&
-  (v.duration === undefined || (isFiniteNumber(v.duration) && v.duration > 0));
+  (v.duration === undefined || (isFiniteNumber(v.duration) && v.duration > 0)) &&
+  (v.generated === undefined || typeof v.generated === 'string');
 
 export const isFeedResponse = (v: unknown): v is FeedResponse => {
   if (!isObject(v) || !isIsoDate(v.generated)) return false;
@@ -374,6 +375,10 @@ const isThermalEvent = (v: unknown): boolean =>
   isFiniteNumber(v.pixels) &&
   typeof v.confidence === 'string' &&
   THERMAL_CONFIDENCE.has(v.confidence) &&
+  // `near` is printed as text: an object here (the endpoint emitted
+  // `{loc, km}` until 2026-09-25) would crash the row it lands in.
+  (v.near === undefined || typeof v.near === 'string') &&
+  (v.nearKm === undefined || isFiniteNumber(v.nearKm)) &&
   (v.relatedArticles === undefined || isStringArray(v.relatedArticles));
 
 export const isThermalSnapshot = (v: unknown): v is ThermalSnapshot =>

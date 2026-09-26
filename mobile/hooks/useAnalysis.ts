@@ -7,7 +7,7 @@ const EMPTY: ReadonlyMap<string, IndicatorAnalysis> = new Map();
 
 /**
  * Fetches `/api/analysis.json` — the desk's daily account of what moved and
- * why, written by `narrate-indicators.js` at 04:00 UTC.
+ * why, written by `narrate-indicators.js` on the daily 05:00 UTC cycle.
  *
  * This is a second request rather than a wider `trends.json` because that
  * payload is also the website's, and a paragraph per instrument is 17KB no rail

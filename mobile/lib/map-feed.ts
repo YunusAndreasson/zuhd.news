@@ -57,12 +57,9 @@ export interface BuildStoryRowsInput {
   fresh: ReadonlySet<string>;
   /** slug → bare percentage, from `lib/predictions.ts`. */
   odds?: ReadonlyMap<string, string>;
-  /** How many top stories lead the river (`leadWithTopStories`). They are
-   *  not in time order, so the `earlier` boundary is looked for after them. */
-  lead?: number;
 }
 
-export function buildStoryRows({ river, fresh, odds, lead = 0 }: BuildStoryRowsInput): StoryRow[] {
+export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): StoryRow[] {
   // The boundary is the first story the reader already had. By slug, never by
   // `addedAt`: the question is "was this here last time you looked", and a
   // rewritten file's mtime says it was published a minute ago.
@@ -79,11 +76,8 @@ export function buildStoryRows({ river, fresh, odds, lead = 0 }: BuildStoryRowsI
     let mark: StoryRow['mark'] = isFresh ? 'new' : null;
     // Suppress a boundary on the opening card: `earlier ·` there reads as
     // a label on that story rather than as a place the reader has reached.
-    // The top stories leading the river are out of time order, so the
-    // boundary is the first story after them that the reader had, and only
-    // when a new one came before it in the time-ordered part.
-    if (index >= lead && !isFresh && !boundaryMarked) {
-      if (index > lead) mark = 'earlier';
+    if (!isFresh && !boundaryMarked) {
+      if (index > 0) mark = 'earlier';
       boundaryMarked = true;
     }
     const coords = getCoords(article);

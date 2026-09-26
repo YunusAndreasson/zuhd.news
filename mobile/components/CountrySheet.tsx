@@ -140,20 +140,7 @@ function MoreRow({
   );
 }
 
-interface CountrySheetProps extends BaseSheetProps {
-  country: TapResult | null;
-  /** GDACS alerts whose primary or affected-country list includes this
-   *  country. Empty when there are no active disaster alerts touching it. */
-  activeAlerts?: GdacsAlert[];
-  /** Called when the user taps an alert chip — opens DisasterSheet. */
-  onAlertPress?: (alert: GdacsAlert) => void;
-  /**
-   * The hazard marks the globe draws in this country — famine classifications
-   * and genocide determinations. The globe's gesture layer is hidden from
-   * screen readers, so these rows are the accessible path to those marks.
-   */
-  hazards?: CountryHazard[];
-}
+type CountrySheetProps = BaseSheetProps & Omit<CountryBodyProps, 'onRankingPress'>;
 
 export interface CountryHazard {
   key: string;
@@ -248,73 +235,86 @@ function AlertChip({
   );
 }
 
-export const CountrySheet = memo(function CountrySheet({
-  sheetRef,
+/** "Cairo · 14:32": the capital and the local time, when known. */
+function countryDateline(country: TapResult | null): string {
+  if (!country?.data) return '';
+  const parts: string[] = [];
+  const capital = displayLocation(country.data.capital);
+  if (capital) parts.push(capital);
+  if (country.localTime) parts.push(country.localTime);
+  return parts.join(' · ');
+}
+
+/**
+ * The country as a handle's title: its flag and name, and the capital with
+ * the local time. Shared by this sheet and the menu, where a country opened
+ * from a ranking is a page of its own.
+ */
+export function CountryTitle({
+  country,
+  hasBack,
+}: {
+  country: TapResult | null;
+  hasBack: boolean;
+}) {
+  const flag = country?.data?.flag;
+  const name = displayCountryName(country?.countryName ?? null);
+  const dateline = countryDateline(country);
+  if (!flag && !name) return null;
+  return (
+    <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
+      <View style={styles.handleIdent}>
+        {flag && (
+          <RNText allowFontScaling={false} style={styles.handleFlag}>
+            {flag}
+          </RNText>
+        )}
+        {/* 21pt semibold so the country name reads as the canonical
+         *  identifier above every card headline (also 21pt) and metric
+         *  row label (13pt small-caps). `flexShrink` lets a long name
+         *  (e.g. Bosnia and Herzegovina) ellipsize before pushing the
+         *  meta off the right edge. */}
+        {name && (
+          <Text variant="title" tone="emphasis" numberOfLines={1} style={styles.handleName}>
+            {name}
+          </Text>
+        )}
+      </View>
+      {dateline ? (
+        <Text variant="labelXs" tone="secondary" numberOfLines={1} style={styles.handleMeta}>
+          {dateline}
+        </Text>
+      ) : null}
+    </View>
+  );
+}
+
+interface CountryBodyProps {
+  country: TapResult | null;
+  /** GDACS alerts whose primary or affected-country list includes this
+   *  country. Empty when there are no active disaster alerts touching it. */
+  activeAlerts?: GdacsAlert[];
+  /** Called when the user taps an alert chip — opens the disaster. */
+  onAlertPress?: (alert: GdacsAlert) => void;
+  /**
+   * The hazard marks the globe draws in this country — famine classifications
+   * and genocide determinations. The globe's gesture layer is hidden from
+   * screen readers, so these rows are the accessible path to those marks.
+   */
+  hazards?: CountryHazard[];
+  /** A metric row opens that metric's ranking, with this country marked. */
+  onRankingPress: (metric: MetricKey) => void;
+}
+
+/** The country's cards, its ranked metrics, its alerts and the marks in it —
+ *  the sheet's content without the sheet, which the menu shows as a page. */
+export const CountryBody = memo(function CountryBody({
   country,
   activeAlerts,
   onAlertPress,
   hazards,
-  bottomInset,
-  onDismiss,
-}: CountrySheetProps) {
-  const { resolvedAppearance } = useTheme();
-  const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
-  const flag = country?.data?.flag;
-  const name = displayCountryName(country?.countryName ?? null);
-  const onBackToCountry = useCallback(() => setActiveRanking(null), []);
-
-  const dateline = useMemo(() => {
-    if (!country?.data) return '';
-    const parts: string[] = [];
-    const capital = displayLocation(country.data.capital);
-    if (capital) parts.push(capital);
-    if (country.localTime) parts.push(country.localTime);
-    return parts.join(' · ');
-  }, [country?.data, country?.localTime]);
-
-  const hasBack = activeRanking !== null;
-  const CountryHandle = useCallback(
-    () => (
-      <SheetHandle
-        onBack={hasBack ? onBackToCountry : undefined}
-        title={
-          flag || name ? (
-            <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
-              <View style={styles.handleIdent}>
-                {flag && (
-                  <RNText allowFontScaling={false} style={styles.handleFlag}>
-                    {flag}
-                  </RNText>
-                )}
-                {/* 21pt semibold so the country name reads as the canonical
-                 *  identifier above every card headline (also 21pt) and metric
-                 *  row label (13pt small-caps). `flexShrink` lets a long name
-                 *  (e.g. Bosnia and Herzegovina) ellipsize before pushing the
-                 *  meta off the right edge. */}
-                {name && (
-                  <Text variant="title" tone="emphasis" numberOfLines={1} style={styles.handleName}>
-                    {name}
-                  </Text>
-                )}
-              </View>
-              {dateline && (
-                <Text
-                  variant="labelXs"
-                  tone="secondary"
-                  numberOfLines={1}
-                  style={styles.handleMeta}
-                >
-                  {dateline}
-                </Text>
-              )}
-            </View>
-          ) : undefined
-        }
-      />
-    ),
-    [hasBack, onBackToCountry, flag, name, dateline],
-  );
-
+  onRankingPress,
+}: CountryBodyProps) {
   const rankFor = useMemo(() => {
     const targetName = country?.countryName;
     if (!targetName) return () => ({ rank: null as number | null, total: 0 });
@@ -348,6 +348,75 @@ export const CountrySheet = memo(function CountrySheet({
     });
     return rows;
   }, [country?.data, country?.countryName, rankFor]);
+
+  return (
+    <>
+      {country?.countryName && (
+        <Animated.View entering={staggerEnter(0)}>
+          <CountryCardsCarousel key={country.countryName} countryName={country.countryName} />
+        </Animated.View>
+      )}
+      {country?.data && (
+        <Animated.View entering={staggerEnter(1)}>
+          {rankedRows.map((r) => (
+            <MoreRow
+              key={r.key}
+              label={r.label}
+              value={r.value}
+              rank={r.rank}
+              total={r.total}
+              onPress={() => onRankingPress(r.key)}
+            />
+          ))}
+        </Animated.View>
+      )}
+      {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
+        <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
+          <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+            {activeAlerts.length === 1 ? 'active alert' : `${activeAlerts.length} active alerts`}
+          </Text>
+          {activeAlerts.map((a) => (
+            <AlertChip key={a.eventid} alert={a} onPress={onAlertPress} />
+          ))}
+        </Animated.View>
+      )}
+      {hazards && hazards.length > 0 && (
+        <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
+          <Text variant="labelSm" tone="secondary" style={styles.alertsHeading}>
+            on the map
+          </Text>
+          {hazards.map((h) => (
+            <HazardRow key={h.key} hazard={h} />
+          ))}
+        </Animated.View>
+      )}
+    </>
+  );
+});
+
+export const CountrySheet = memo(function CountrySheet({
+  sheetRef,
+  country,
+  activeAlerts,
+  onAlertPress,
+  hazards,
+  bottomInset,
+  onDismiss,
+}: CountrySheetProps) {
+  const { resolvedAppearance } = useTheme();
+  const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
+  const onBackToCountry = useCallback(() => setActiveRanking(null), []);
+
+  const hasBack = activeRanking !== null;
+  const CountryHandle = useCallback(
+    () => (
+      <SheetHandle
+        onBack={hasBack ? onBackToCountry : undefined}
+        title={<CountryTitle country={country} hasBack={hasBack} />}
+      />
+    ),
+    [hasBack, onBackToCountry, country],
+  );
 
   const handleDismiss = useCallback(() => {
     setActiveRanking(null);
@@ -384,47 +453,13 @@ export const CountrySheet = memo(function CountrySheet({
           bottomInset={bottomInset}
           indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
         >
-          {country?.countryName && (
-            <Animated.View entering={staggerEnter(0)}>
-              <CountryCardsCarousel key={country.countryName} countryName={country.countryName} />
-            </Animated.View>
-          )}
-          {country?.data && (
-            <Animated.View entering={staggerEnter(1)}>
-              {rankedRows.map((r) => (
-                <MoreRow
-                  key={r.key}
-                  label={r.label}
-                  value={r.value}
-                  rank={r.rank}
-                  total={r.total}
-                  onPress={() => setActiveRanking(r.key)}
-                />
-              ))}
-            </Animated.View>
-          )}
-          {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
-            <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
-              <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
-                {activeAlerts.length === 1
-                  ? 'active alert'
-                  : `${activeAlerts.length} active alerts`}
-              </Text>
-              {activeAlerts.map((a) => (
-                <AlertChip key={a.eventid} alert={a} onPress={onAlertPress} />
-              ))}
-            </Animated.View>
-          )}
-          {hazards && hazards.length > 0 && (
-            <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
-              <Text variant="labelSm" tone="secondary" style={styles.alertsHeading}>
-                on the map
-              </Text>
-              {hazards.map((h) => (
-                <HazardRow key={h.key} hazard={h} />
-              ))}
-            </Animated.View>
-          )}
+          <CountryBody
+            country={country}
+            activeAlerts={activeAlerts}
+            onAlertPress={onAlertPress}
+            hazards={hazards}
+            onRankingPress={setActiveRanking}
+          />
         </SheetScrollView>
       )}
     </SheetLayout>

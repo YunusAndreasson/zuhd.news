@@ -10,6 +10,7 @@ import {
   famineBlocks,
   type GenocideSituation,
   type ThermalEvent,
+  thermalPlace,
 } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import type { StraitState } from '../lib/strait-map';
@@ -91,7 +92,7 @@ export function thermalMarkRow(e: ThermalEvent, result: TapResult): MarkRowData 
   return {
     key: `thermal-${e.id}`,
     result,
-    primary: e.near ?? 'Thermal anomaly',
+    primary: thermalPlace(e) ?? 'Thermal anomaly',
     secondary: `thermal anomaly · ${Math.round(e.frp).toLocaleString('en-US')} MW`,
     kind: 'thermal',
   };

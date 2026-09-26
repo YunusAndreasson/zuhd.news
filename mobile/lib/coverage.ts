@@ -22,9 +22,9 @@ import type { Article } from '@shared/types';
  * the kicker and the scrub tooltip ended in `884 reports`; before that the
  * words were `most covered`, `widely reported` read as unclear, a coloured
  * bar was not understood, and `trending` promised attention rising now,
- * which nothing here measures. What the bar still does: it leads the river
- * (`leadWithTopStories`) and stands a story's cell taller on the dock's
- * track. If a count ever comes back, its unit is `reports` — one wire story
+ * which nothing here measures. What the bar still does: it leads its run in
+ * the river (`compareHeat`, `lib/news-order.ts`) and stands a story's cell
+ * taller on the dock's track. If a count ever comes back, its unit is `reports` — one wire story
  * syndicated two hundred times is two hundred of them — never `outlets` or
  * `sources`, and only over the bar, or the three in five with no figure
  * read as zero.

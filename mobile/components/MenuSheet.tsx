@@ -1,9 +1,18 @@
 import { BottomSheetFlatList } from '@expo/ui/community/bottom-sheet';
 import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
-import type { Article, Category, ConflictEvent, GdacsAlert } from '@shared/types';
+import type { Article, Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import { memo, useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import {
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import {
   AccessibilityInfo,
   Linking,
@@ -46,12 +55,13 @@ import {
   GROUP_TITLES,
   type GroupKey,
 } from '../lib/instrument-catalog';
+import { metricGroups } from '../lib/metric-groups';
+import type { RiverArticle } from '../lib/news-order';
 import { resetOnboarding } from '../lib/onboarding-store';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { makeStaggerEnter } from '../lib/stagger';
 import { eraseLocalData } from '../lib/wipe';
-import { CountryRankingView } from './CountryRankingView';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
 import type { TapResult } from './globe/MiniGlobe';
@@ -65,6 +75,12 @@ import {
   type MarkRowData,
   thermalMarkRow,
 } from './MarkRow';
+import {
+  type MenuDetail,
+  MenuDetailPage,
+  menuDetailHandleTitle,
+  menuDetailLabel,
+} from './MenuDetail';
 import { MenuControlRow, MenuRow, SectionLabel } from './MenuRow';
 import { Pressable, Text } from './primitives';
 import { SegmentedControl, type SegmentOption } from './SegmentedControl';
@@ -77,6 +93,7 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SheetMapKeyPage } from './SheetMapKeyPage';
 import { SheetSearchPage } from './SheetSearchPage';
 import { Toggle } from './Toggle';
+import { ZuhdMark } from './ZuhdMark';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
 const CONTACT_EMAIL = 'contact@zuhd.news';
@@ -149,7 +166,13 @@ const INFO_PAGES = {
       },
       {
         heading: 'audio',
-        body: 'Briefing audio is generated with Google Cloud text-to-speech and hosted on our own infrastructure. Google receives the text to read aloud. It receives nothing about you.',
+        // Since 2026-09-26 the pipeline's Gemini TTS reads the script, Cloud
+        // text-to-speech only where a piece fails, and every piece is sent
+        // back to Gemini to be transcribed — the check that no sentence was
+        // skipped (`scripts/generate-briefing.js`). "Google Cloud
+        // text-to-speech" alone had stopped being true, and the second trip
+        // is Google's too.
+        body: 'Briefing audio is read by Google’s speech models and hosted on our own infrastructure. Google receives the text to read aloud, and the recording back once, to check that no sentence was skipped. It receives nothing about you.',
       },
     ],
   },
@@ -193,7 +216,9 @@ type PageKey =
   | 'world hazards'
   | HazardKey
   | 'country rankings'
-  | `rank:${MetricKey}`;
+  /** Whatever a row opens — a card, a disaster, a country — as a page of the
+   *  menu (`MenuDetail`), keyed by the order it was opened in. */
+  | `detail:${number}`;
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
 
@@ -206,18 +231,15 @@ const HAZARD_TITLES: Readonly<Record<HazardKey, string>> = {
 };
 const isHazardKey = (k: PageKey): k is HazardKey => k in HAZARD_TITLES;
 const isGroupKey = (k: PageKey): k is GroupKey => k in GROUP_TITLES;
-const rankMetric = (k: PageKey): MetricKey | null =>
-  k.startsWith('rank:') ? (k.slice('rank:'.length) as MetricKey) : null;
+const isDetailKey = (k: PageKey): k is `detail:${number}` => k.startsWith('detail:');
 
-/** What a page is called — in its handle and when a screen reader announces
- *  it. A group's key is a code (`stocks`), and a ranking's carries its metric
- *  (`rank:gdpPerCapita`); neither is anything a reader should hear. Static,
- *  not read off the catalog: the handle is a component type that depends on
- *  it, and a catalog rebuilt by an arrival would remount the handle — and the
- *  back button a screen reader's focus is on. */
+/** What a fixed page is called — in its handle and when a screen reader
+ *  announces it. A group's key is a code (`stocks`), which no reader should
+ *  hear. Static, not read off the catalog: the handle is a component type that
+ *  depends on it, and a catalog rebuilt by an arrival would remount the handle
+ *  — and the back button a screen reader's focus is on. A detail page's title
+ *  is its detail's (`menuDetailLabel`). */
 function pageTitle(key: PageKey): string {
-  const metric = rankMetric(key);
-  if (metric) return METRICS[metric]?.label ?? 'ranking';
   if (isGroupKey(key)) return GROUP_TITLES[key];
   if (isHazardKey(key)) return HAZARD_TITLES[key];
   return key;
@@ -231,9 +253,10 @@ function pageTitle(key: PageKey): string {
  * once, not on every row.
  */
 const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
-  stocks: 'Moves over the past week: green up, red down. Tap an exchange to find it on the globe.',
-  straits:
-    'Ships a day, and the move over the past week: green up, red down. Tap a strait to find it on the globe.',
+  // A row opens its card here, and the globe turns to its place behind the
+  // menu, so closing the menu leaves the reader on it.
+  stocks: 'Moves over the past week: green up, red down.',
+  straits: 'Ships a day, and the move over the past week: green up, red down.',
   currencies:
     'Each currency against the dollar, over the past week: green is stronger, red weaker.',
   commodities:
@@ -292,7 +315,38 @@ function hazardRows(key: HazardKey, hazards: MenuHazards): MarkRowData[] {
   }
 }
 
+/** The page a hazard row opens: the mark its tap names, found in the layers
+ *  the list was built from. */
+function markDetail(result: TapResult, hazards: MenuHazards): MenuDetail | null {
+  if (result.gdacsEventId) {
+    const alert = hazards.disasters.find((a) => a.eventid === result.gdacsEventId);
+    return alert ? { kind: 'alert', alert } : null;
+  }
+  if (result.conflictEventId) {
+    const event = hazards.conflict.find((e) => e.id === result.conflictEventId);
+    return event ? { kind: 'conflict', event } : null;
+  }
+  if (result.famineAreaId) {
+    const area = hazards.famine.find((a) => a.id === result.famineAreaId);
+    return area ? { kind: 'overlay', overlay: { kind: 'famine', area } } : null;
+  }
+  if (result.genocideId) {
+    const situation = hazards.genocide.find((g) => g.id === result.genocideId);
+    return situation ? { kind: 'overlay', overlay: { kind: 'genocide', situation } } : null;
+  }
+  if (result.thermalEventId) {
+    const event = hazards.fires.find((e) => e.id === result.thermalEventId);
+    return event ? { kind: 'overlay', overlay: { kind: 'thermal', event } } : null;
+  }
+  return null;
+}
+
 const METRIC_KEYS = Object.keys(METRICS) as MetricKey[];
+
+/** The mark's box against the wordmark's size: the drawn Z fills 72% of its
+ *  box, so at 1.5× it stands a little taller than the name's capitals, as a
+ *  mark beside a name does. It scales with the reader's text size. */
+const MARK_TO_WORDMARK = 1.5;
 
 /** A list page's rows are the only thing that scrolls, and each hazard row
  *  is a canvas: build a screenful, not a hundred. */
@@ -370,12 +424,27 @@ interface MenuSheetProps extends BaseSheetProps {
    *  accessible path to every mark, because the globe is hidden from screen
    *  readers. */
   hazards: MenuHazards;
-  /** Close the menu, fly to the instrument, and open its card. */
+  /** GDACS population estimates, for a disaster's page. */
+  gdacsDetails: Record<string, GdacsDetail>;
+  /** The river, for the stories a thermal anomaly was joined to. */
+  articles: RiverArticle[];
+  /** A row whose card is opening as a page: fly the globe to it and ring its
+   *  place, behind the menu, so closing the menu leaves the reader there. */
+  onFocusRow: (row: CatalogRow) => void;
+  /** A strait with nothing to chart has no page: close the menu and find it
+   *  on the globe. */
   onSelectRow: (row: CatalogRow) => void;
-  /** Close the menu, fly to the mark, and open its sheet. */
-  onSelectHazard: (result: TapResult) => void;
-  /** Close the menu and open a country. */
-  onSelectCountry: (name: string) => void;
+  /** A hazard mark opening as a page: fly the globe to it, behind the menu. */
+  onFocusMark: (result: TapResult) => void;
+  /** A story a card cites: close the menu and open it. */
+  onStoryPress: (slug: string) => void;
+  /**
+   * Bumped to open the menu at its root. It keeps its pages when it closes
+   * (2026-09-26): a reader who closed it from Bitcoin to look at the map came
+   * back to the main page and had to find their way again. The screen bumps
+   * this when the menu has been closed a while, or when `all →` opens it.
+   */
+  rootKey: number;
   onToast?: (message: string) => void;
 }
 
@@ -387,9 +456,13 @@ export const MenuSheet = memo(function MenuSheet({
   onSelectArticle,
   catalog,
   hazards,
+  gdacsDetails,
+  articles,
+  onFocusRow,
   onSelectRow,
-  onSelectHazard,
-  onSelectCountry,
+  onFocusMark,
+  onStoryPress,
+  rootKey,
   onToast,
 }: MenuSheetProps) {
   const { colors, font, typography } = useTheme();
@@ -399,6 +472,18 @@ export const MenuSheet = memo(function MenuSheet({
   const [canRate, setCanRate] = useState(false);
   const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
   const savedCount = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
+
+  // The pages a row opened, by key. Kept until the menu closes: a key popped
+  // off the stack is never pushed again, so a stale entry is only memory.
+  const [details, setDetails] = useState<Readonly<Record<string, MenuDetail>>>({});
+  const detailSeq = useRef(0);
+  const titleOf = useCallback(
+    (key: PageKey) => {
+      const detail = isDetailKey(key) ? details[key] : undefined;
+      return detail ? menuDetailLabel(detail) : pageTitle(key);
+    },
+    [details],
+  );
 
   const navPush = useCallback(
     (page: PageKey) => {
@@ -410,8 +495,52 @@ export const MenuSheet = memo(function MenuSheet({
   const navPop = useCallback(() => {
     nav.pop();
     const next = nav.stack[nav.stack.length - 2];
-    AccessibilityInfo.announceForAccessibility(next ? pageTitle(next) : 'menu');
-  }, [nav.pop, nav.stack]);
+    AccessibilityInfo.announceForAccessibility(next ? titleOf(next) : 'menu');
+  }, [nav.pop, nav.stack, titleOf]);
+  /** Push whatever a row opened, as a page: back is the list it came from. */
+  const openDetail = useCallback(
+    (detail: MenuDetail) => {
+      detailSeq.current += 1;
+      const key: PageKey = `detail:${detailSeq.current}`;
+      setDetails((all) => ({ ...all, [key]: detail }));
+      nav.push(key);
+      AccessibilityInfo.announceForAccessibility(menuDetailLabel(detail));
+    },
+    [nav.push],
+  );
+  const currentDetail =
+    nav.current && isDetailKey(nav.current) ? (details[nav.current] ?? null) : null;
+
+  // Back to the root when the screen asks: a state update during render, the
+  // pattern for resetting on a prop change, so the menu never paints the old
+  // page first.
+  const [seenRootKey, setSeenRootKey] = useState(rootKey);
+  if (rootKey !== seenRootKey) {
+    setSeenRootKey(rootKey);
+    nav.reset();
+    setDetails({});
+  }
+
+  const handleRow = useCallback(
+    (row: CatalogRow) => {
+      if (!row.card) {
+        onSelectRow(row);
+        return;
+      }
+      onFocusRow(row);
+      openDetail({ kind: 'card', card: row.card });
+    },
+    [onFocusRow, onSelectRow, openDetail],
+  );
+  const handleMark = useCallback(
+    (result: TapResult) => {
+      const detail = markDetail(result, hazards);
+      if (!detail) return;
+      onFocusMark(result);
+      openDetail(detail);
+    },
+    [hazards, onFocusMark, openDetail],
+  );
 
   useEffect(() => {
     StoreReview.hasAction()
@@ -421,28 +550,47 @@ export const MenuSheet = memo(function MenuSheet({
 
   // The root's title is the wordmark, in the handle where every page's title
   // sits. It used to open the page body, 14pt over rows set larger than it,
-  // and the root was the one page whose handle was empty.
+  // and the root was the one page whose handle was empty. The mark leads it
+  // (2026-09-26, the user's request): the menu is the one place in the app
+  // that says whose it is — the top bar names nothing, and the `Z` that sat
+  // top left went on 2026-09-13 — and in the handle it costs no row.
+  const markSize = Math.round(typography.sizeWordmark * MARK_TO_WORDMARK);
   const Handle = useCallback(
     () => (
       <SheetHandle
         title={
-          (nav.current && pageTitle(nav.current)) ?? (
-            <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
-              <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
-              <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
-            </Text>
+          currentDetail ? (
+            menuDetailHandleTitle(currentDetail)
+          ) : nav.current ? (
+            pageTitle(nav.current)
+          ) : (
+            <View style={styles.lockup}>
+              {/* In the ink of `zuhd`, so the mark and the name are one unit. */}
+              <ZuhdMark size={markSize} color={colors.textSecondary} />
+              <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
+                <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
+                <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
+              </Text>
+            </View>
           )
         }
         onBack={nav.depth > 0 ? navPop : undefined}
       />
     ),
-    [nav.current, nav.depth, navPop, font, colors.textSecondary, colors.accent],
+    [
+      nav.current,
+      nav.depth,
+      navPop,
+      currentDetail,
+      font,
+      colors.textSecondary,
+      colors.accent,
+      markSize,
+    ],
   );
 
-  const handleDismiss = useCallback(() => {
-    nav.reset();
-    onDismiss();
-  }, [onDismiss, nav.reset]);
+  // The pages stay when the menu closes; `rootKey` decides where it opens.
+  const handleDismiss = onDismiss;
 
   const swipeBack = useSheetBackNavigation({ canGoBack: nav.depth > 0, onBack: navPop });
 
@@ -458,7 +606,6 @@ export const MenuSheet = memo(function MenuSheet({
   const groupKey = nav.current && isGroupKey(nav.current) ? nav.current : null;
   const activeGroup = groupKey ? (catalog.find((g) => g.key === groupKey) ?? null) : null;
   const activeHazard = nav.current && isHazardKey(nav.current) ? nav.current : null;
-  const activeMetric = nav.current ? rankMetric(nav.current) : null;
 
   return (
     <SheetLayout
@@ -475,13 +622,14 @@ export const MenuSheet = memo(function MenuSheet({
           bottomInset={bottomInset}
           onSelectArticle={onSelectArticle}
         />
-      ) : groupKey || activeHazard || activeMetric ? (
+      ) : groupKey || activeHazard || currentDetail ? (
         // A list page is a sibling of the scroll view, never inside it: a
-        // virtualised list nested in a scroll view renders every row.
+        // virtualised list nested in a scroll view renders every row. A
+        // detail page brings its own scroll view, as its sheet does.
         <GestureDetector gesture={swipeBack}>
           <View style={styles.listPage}>
             {activeGroup ? (
-              <GroupPage group={activeGroup} bottomInset={bottomInset} onSelect={onSelectRow} />
+              <GroupPage group={activeGroup} bottomInset={bottomInset} onSelect={handleRow} />
             ) : groupKey ? (
               <EmptyState message="Nothing to list right now" />
             ) : activeHazard ? (
@@ -489,17 +637,19 @@ export const MenuSheet = memo(function MenuSheet({
                 layer={activeHazard}
                 hazards={hazards}
                 bottomInset={bottomInset}
-                onSelect={onSelectHazard}
+                onSelect={handleMark}
               />
-            ) : activeMetric ? (
-              <CountryRankingView
-                metric={activeMetric}
-                // The metric's name is the page's, in the handle.
-                titled={false}
-                currentCountryName={null}
+            ) : currentDetail ? (
+              <MenuDetailPage
+                detail={currentDetail}
                 bottomInset={bottomInset}
+                hazards={hazards}
+                gdacsDetails={gdacsDetails}
+                articles={articles}
+                onOpen={openDetail}
+                onStoryPress={onStoryPress}
+                onArticlePress={onSelectArticle}
                 onRequestClose={() => sheetRef.current?.dismiss()}
-                onSelectCountry={onSelectCountry}
               />
             ) : null}
           </View>
@@ -625,17 +775,24 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (current === 'country rankings') {
+      // Grouped (`lib/metric-groups.ts`): twenty-seven measures in one column
+      // read as a table of contents with no chapters.
       return (
         <>
-          {METRIC_KEYS.map((key, i) => (
-            <MenuRow
-              key={key}
-              first={i === 0}
-              title={METRICS[key].label}
-              description={METRICS[key].description}
-              trailing="push"
-              onPress={() => navPush(`rank:${key}`)}
-            />
+          {metricGroups().map((group, g) => (
+            <Fragment key={group.label}>
+              <SectionLabel label={group.label} first={g === 0} />
+              {group.metrics.map((key, i) => (
+                <MenuRow
+                  key={key}
+                  first={i === 0}
+                  title={METRICS[key].label}
+                  description={METRICS[key].description}
+                  trailing="push"
+                  onPress={() => openDetail({ kind: 'ranking', metric: key, country: null })}
+                />
+              ))}
+            </Fragment>
           ))}
         </>
       );
@@ -697,7 +854,7 @@ export const MenuSheet = memo(function MenuSheet({
             />
             <MenuRow
               title="notifications"
-              description="Briefings and breaking news"
+              description="The daily briefing and breaking news"
               trailing={<Toggle value={preferences.notifications} />}
               accessibilityRole="switch"
               accessibilityState={{ checked: preferences.notifications }}
@@ -991,7 +1148,28 @@ function GroupPage({
 }
 
 const rowKey = (row: CatalogRow) => row.id;
-const markKey = (row: MarkRowData) => row.key;
+const markKey = (row: HazardItem) => row.key;
+
+/** A heading between a list's rows. */
+type ListLabel = { key: string; label: string };
+type HazardItem = MarkRowData | ListLabel;
+const isListLabel = (item: HazardItem): item is ListLabel => 'label' in item;
+
+/**
+ * Disasters split by GDACS's own level. A feed of a hundred alerts is mostly
+ * Green — small quakes, local floods — and the few Orange and Red ones were
+ * rows among them, told apart only by a ring on their glyph.
+ */
+function withAlertHeadings(rows: MarkRowData[]): HazardItem[] {
+  const serious = rows.filter((r) => r.alertlevel && r.alertlevel !== 'Green');
+  const minor = rows.filter((r) => !r.alertlevel || r.alertlevel === 'Green');
+  const items: HazardItem[] = [];
+  if (serious.length > 0) {
+    items.push({ key: 'label-serious', label: 'red and orange alerts' }, ...serious);
+  }
+  if (minor.length > 0) items.push({ key: 'label-minor', label: 'minor alerts' }, ...minor);
+  return items;
+}
 
 function HazardPage({
   layer,
@@ -1004,10 +1182,18 @@ function HazardPage({
   bottomInset: number;
   onSelect: (result: TapResult) => void;
 }) {
-  const rows = useMemo(() => hazardRows(layer, hazards), [layer, hazards]);
+  const rows = useMemo<HazardItem[]>(() => {
+    const marks = hazardRows(layer, hazards);
+    return layer === 'disasters' ? withAlertHeadings(marks) : marks;
+  }, [layer, hazards]);
   const note = hazardLayers(hazards).find((l) => l.key === layer)?.note;
   const renderItem = useCallback(
-    ({ item }: { item: MarkRowData }) => <MarkRow row={item} onPress={onSelect} />,
+    ({ item, index }: { item: HazardItem; index: number }) =>
+      isListLabel(item) ? (
+        <SectionLabel label={item.label} first={index === 0} />
+      ) : (
+        <MarkRow row={item} onPress={onSelect} />
+      ),
     [onSelect],
   );
   return (
@@ -1033,6 +1219,7 @@ const styles = StyleSheet.create({
   // `flexShrink`, never `flex`: the sheet is content-sized, and `flex: 1`
   // measures to nothing in an auto-height column (see `SheetSearchPage`).
   listPage: { flexShrink: 1 },
+  lockup: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
   list: { flexShrink: 1 },
   intro: {
     paddingHorizontal: SPACING.screenPadding,

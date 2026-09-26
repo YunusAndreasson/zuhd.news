@@ -101,13 +101,39 @@ function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<boolean> 
   });
 }
 
-export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
+/**
+ * Which recording a saved place belongs to: the date, and when the recording
+ * was made where the feed says (`#` between). A briefing recorded again under
+ * the same date — 2026-09-26 was, with a new voice — is a different file: a
+ * place in the first is not a place in the second.
+ */
+function recordingOf(date: string, recorded: string | undefined): string {
+  return date && recorded ? `${date}#${recorded}` : date;
+}
+
+/** The date a recording key is for — the lock screen's album line. */
+const dateOfRecording = (key: string): string => key.split('#')[0] ?? key;
+
+/** Whether a stored place is in this recording. One saved before recordings
+ *  were told apart carries the date alone, and still counts for its date. */
+function isSameRecording(stored: string | null, date: string, recording: string): boolean {
+  if (stored === null) return false;
+  return stored === recording || (!stored.includes('#') && stored === date);
+}
+
+export function useBriefingPlayer(
+  date: string | undefined,
+  feedDuration?: number,
+  /** When the recording was made (`FeedResponse.briefing.generated`). */
+  recorded?: string,
+): BriefingPlayer {
   // No synthetic fallback to today's UTC date — that path produced a
   // guaranteed 404 whenever the latest briefing was >36h old. The feed
   // exposes the date of the most recent mp3 still on disk; if that's
   // missing entirely we surface `available: false` instead of attempting
   // playback we know will fail.
   const effectiveDate = date ?? '';
+  const recording = recordingOf(effectiveDate, recorded);
   const available = !!date;
   // A null source keeps initial mount cheap. Expo owns the native object's
   // lifetime; toggle() installs/removes sources with replace().
@@ -176,7 +202,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         }
         if (cancelled) return;
         const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
-        const valid = savedDateStr === effectiveDate && Number.isFinite(pos) && pos > 0;
+        const valid =
+          isSameRecording(savedDateStr, effectiveDate, recording) &&
+          Number.isFinite(pos) &&
+          pos > 0;
         setResumable(valid);
         setResumeAt(valid ? pos : 0);
       })
@@ -186,7 +215,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => {
       cancelled = true;
     };
-  }, [effectiveDate]);
+  }, [effectiveDate, recording]);
 
   // On app resume, save the last-known position and re-sync UI to the
   // player's actual state. We don't pre-emptively tear down stale players —
@@ -283,18 +312,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   }, [teardownPlayer]);
 
   // A feed refresh can rotate to a new briefing while yesterday's player is
-  // still paused in memory. Never label and resume that old source as today's:
-  // discard it, reset the visible position, and let the next tap load the new
-  // date through the normal first-play path.
+  // still paused in memory — or to a new recording of today's. Never label and
+  // resume that old source as the new one: discard it, reset the visible
+  // position, and let the next tap load it through the normal first-play path.
   useEffect(() => {
-    if (!playerRef.current || !savedDate.current || savedDate.current === effectiveDate) return;
+    if (!playerRef.current || !savedDate.current || savedDate.current === recording) return;
     teardownPlayer();
     savedDate.current = null;
     setPlaying(false);
     setPreparing(false);
     setElapsed(0);
     setResumable(false);
-  }, [effectiveDate, teardownPlayer]);
+  }, [recording, teardownPlayer]);
 
   const savePosition = useCallback(() => {
     if (!playerRef.current || !savedDate.current) return;
@@ -346,7 +375,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           {
             title: 'Daily Briefing',
             artist: 'zuhd.news',
-            albumTitle: savedDate.current ?? undefined,
+            albumTitle: savedDate.current ? dateOfRecording(savedDate.current) : undefined,
             ...(artworkUrl ? { artworkUrl } : {}),
           },
           { showSeekForward: true, showSeekBackward: true },
@@ -374,7 +403,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       player.updateLockScreenMetadata({
         title: 'Daily Briefing',
         artist: 'zuhd.news',
-        albumTitle: savedDate.current ?? undefined,
+        albumTitle: savedDate.current ? dateOfRecording(savedDate.current) : undefined,
         ...(artworkUrl ? { artworkUrl } : {}),
       });
     } catch {}
@@ -541,14 +570,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
 
       const player = managedPlayer;
-      savedDate.current = effectiveDate;
+      savedDate.current = recording;
       playerRef.current = player;
       setHasPlayer(true);
       const loadToken = ++sourceLoadToken.current;
       wantsToPlayRef.current = true;
       sourcePreparingRef.current = true;
 
-      const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
+      // The recording in the address: the download is kept by URL, so without
+      // it a device that had the first recording of a date kept playing it.
+      const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3${
+        recorded ? `?v=${encodeURIComponent(recorded)}` : ''
+      }`;
       const playbackSource = await resolveBriefingSource(remoteUrl);
       if (
         toggleToken !== toggleTokenRef.current ||
@@ -583,7 +616,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
             savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
           ]);
         }
-        if (savedDateStr === effectiveDate && savedPos) {
+        if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
           const pos = Number.parseInt(savedPos, 10);
           if (pos > 0) {
             player.seekTo(pos).catch(() => {});
@@ -633,6 +666,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [
     effectiveDate,
+    recording,
+    recorded,
     managedPlayer,
     savePosition,
     activateLockScreen,

@@ -1,5 +1,4 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
-import { topojsonNameFromCode } from '@shared/countries/iso';
 import type {
   Article,
   ArticleSource,
@@ -55,7 +54,7 @@ import { StoryDeck, type StoryDeckRef } from '../components/map/StoryDeck';
 import { StoryDock } from '../components/map/StoryDock';
 import { StoryMeasure } from '../components/map/StoryMeasure';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
-import { type OverlaySelection, OverlaySheet } from '../components/OverlaySheet';
+import { OverlaySheet } from '../components/OverlaySheet';
 import { Screen } from '../components/primitives';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
@@ -93,6 +92,7 @@ import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
 import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
+import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
@@ -122,6 +122,7 @@ import {
   recordArticleSnap,
 } from '../lib/onboarding-store';
 import { useOpenLink } from '../lib/open-link';
+import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
@@ -172,6 +173,14 @@ const noop = () => {};
 /** Longest a sheet hand-off waits for the first sheet's dismissal before
  *  presenting the next anyway — past a platform sheet's own close transition. */
 const SHEET_HANDOFF_FLOOR_MS = 700;
+
+/** The shortest a pull's `checking for new stories` stays up: long enough to
+ *  read four words. */
+const REFRESH_MIN_MS = 1000;
+
+/** How long the menu keeps the reader's place after it closes. Long enough to
+ *  look at the map and come back; after it, the menu opens at its root. */
+const MENU_RESUME_MS = 5 * 60_000;
 
 interface FocusOptions {
   cameraEpoch?: number;
@@ -439,13 +448,12 @@ export default function HomeScreen() {
   const pinStory = useCallback((slug: string) => {
     setPinnedSlugs((prev) => (prev.has(slug) ? prev : new Set(prev).add(slug)));
   }, []);
-  // **Plain time order, newest first — no top-stories lead** (2026-09-24, the
+  // **Time order, newest run first — no top-stories lead** (2026-09-24, the
   // user's request). For a day the most reported stories were moved to the
-  // front (`leadWithTopStories`, still in `news-order.ts`), but the track
-  // places every story at its own time, so swiping through them sent the
-  // playhead leaping across the day and back, and the user found the top
-  // stories confusing. Every swipe is one step on the track now; the most
-  // reported stories are its tall cells, a scrub away.
+  // front of the whole river, but the track places every story at its own
+  // time, so swiping through them sent the playhead leaping across the day
+  // and back. Every swipe is one step on the track; inside a run the most
+  // reported come first (`compareHeat`), which moves no cell out of its run.
   // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` re-measures the window as stories age past a day while the app is open
   const river = useMemo(
     () => recentRiver(orderNewsRiver(grouped), Date.now(), pinnedSlugs),
@@ -867,29 +875,42 @@ export default function HomeScreen() {
     [openCard, openLink],
   );
 
-  /** A row in the menu's lists is its gauge in a list: the same flight and
-   *  the same ring, when the instrument has a place and a week to show. It
-   *  was the markets browser's row until 2026-09-26. */
+  /** The gauge a menu row stands for: its slot or its mark, so the globe
+   *  flies there and rings its place. A market signal stands in for its
+   *  exchange's row under the signal's id; with no slot, the exchange's mark
+   *  is still where it is. */
+  const gaugeForRow = useCallback(
+    (row: CatalogRow): StripItem | null =>
+      mapMarkets.find((item) => item.id === row.id) ??
+      strip.find((item) => item.id === row.id) ??
+      (row.exchange
+        ? mapMarkets.find((item) => item.id === `mkt:${row.exchange?.id}`)
+        : undefined) ??
+      null,
+    [strip, mapMarkets],
+  );
+
+  /** A row's card opening as a page of the menu (2026-09-26: it used to close
+   *  the menu for a sheet of its own, and the reader lost their place). The
+   *  globe flies and rings behind the menu, so closing it leaves them there. */
+  const handleMenuFocusRow = useCallback(
+    (row: CatalogRow) => {
+      const gauge = gaugeForRow(row);
+      if (gauge) flyTo(gauge.coords);
+      else if (row.chokepoint) flyTo([row.chokepoint.lat, row.chokepoint.lng]);
+      setSelectedGauge(gauge);
+    },
+    [flyTo, gaugeForRow],
+  );
+
+  /** A strait with nothing to chart has no page: it closes the menu, finds
+   *  the strait on the globe, and says its name, as a tap on its mark does. */
   const handleMenuRowSelect = useCallback(
     (row: CatalogRow) => {
-      const { card, chokepoint, exchange } = row;
-      // A market signal stands in for its exchange's row, under the signal's
-      // id; when it has no slot, its exchange's mark is still where it is.
-      const gauge =
-        mapMarkets.find((item) => item.id === row.id) ??
-        strip.find((item) => item.id === row.id) ??
-        (exchange ? mapMarkets.find((item) => item.id === `mkt:${exchange.id}`) : undefined) ??
-        null;
-      if (gauge) flyTo(gauge.coords);
-      else if (chokepoint) flyTo([chokepoint.lat, chokepoint.lng]);
-      setSelectedGauge(gauge);
-      // A strait with nothing to chart has no card; its row still finds it
-      // on the globe, and says its name, as a tap on its mark does.
-      handOffSheet(menuSheetRef, () =>
-        card ? openCard(card) : toastRef.current?.show(chokepoint?.name ?? row.short),
-      );
+      handleMenuFocusRow(row);
+      handOffSheet(menuSheetRef, () => toastRef.current?.show(row.chokepoint?.name ?? row.short));
     },
-    [flyTo, handOffSheet, openCard, strip, mapMarkets],
+    [handOffSheet, handleMenuFocusRow],
   );
 
   const openOverlay = useCallback((selection: OverlaySelection) => {
@@ -957,12 +978,11 @@ export default function HomeScreen() {
     return null;
   }, []);
 
-  const handleMenuHazardSelect = useCallback(
-    (result: TapResult) => {
-      flyTo(markCoords(result));
-      handOffSheet(menuSheetRef, () => openMark(result));
-    },
-    [flyTo, handOffSheet, markCoords, openMark],
+  /** A hazard mark opening as a page of the menu: the globe flies to it
+   *  behind the menu. */
+  const handleMenuFocusMark = useCallback(
+    (result: TapResult) => flyTo(markCoords(result)),
+    [flyTo, markCoords],
   );
 
   // ---------------------------------------------------------------------
@@ -1063,10 +1083,23 @@ export default function HomeScreen() {
     }
   }, []);
 
-  const handleMenuPress = useCallback(() => {
+  /**
+   * Open the menu. It opens where the reader left it when they come back
+   * within `MENU_RESUME_MS` (2026-09-26: closing it from a card to glance at
+   * the map used to cost the way back), and at its root after longer, or
+   * from `all →`, which means "every instrument".
+   */
+  const menuClosedAtRef = useRef(0);
+  const [menuRootKey, setMenuRootKey] = useState(0);
+  const openMenu = useCallback((atRoot: boolean) => {
+    if (atRoot || Date.now() - menuClosedAtRef.current > MENU_RESUME_MS) {
+      setMenuRootKey((k) => k + 1);
+    }
     setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
+  const handleMenuPress = useCallback(() => openMenu(false), [openMenu]);
+  const handleAllPress = useCallback(() => openMenu(true), [openMenu]);
 
   const handleBriefingPress = useCallback(() => {
     markHintDone('masthead');
@@ -1109,45 +1142,19 @@ export default function HomeScreen() {
     ).catch(() => {});
   }, []);
 
-  const countryAlerts = useMemo<GdacsAlert[]>(() => {
-    const name = countrySheet?.countryName;
-    if (!name) return [];
-    const score = (l: GdacsAlert['alertlevel']) => (l === 'Red' ? 2 : l === 'Orange' ? 1 : 0);
-    return gdacsAlerts
-      .filter((a) => a.country === name || a.affectedCountries.includes(name))
-      .sort((a, b) => score(b.alertlevel) - score(a.alertlevel));
-  }, [countrySheet?.countryName, gdacsAlerts]);
+  const countryAlerts = useMemo<GdacsAlert[]>(
+    () => (countrySheet?.countryName ? alertsInCountry(countrySheet.countryName, gdacsAlerts) : []),
+    [countrySheet?.countryName, gdacsAlerts],
+  );
 
-  /** The hazard marks in the open country, as rows — see `CountrySheet.hazards`.
-   *  Thermal anomalies carry no country, only the stories they were joined to,
-   *  so they are reachable from those stories rather than from here. */
+  /** The hazard marks in the open country, as rows — see `CountrySheet.hazards`. */
   const countryHazards = useMemo<CountryHazard[]>(() => {
     const name = countrySheet?.countryName;
     if (!name) return [];
-    const rows: CountryHazard[] = [];
-    for (const situation of genocideSituations) {
-      const country = situation.profile ?? (situation.iso2 && topojsonNameFromCode(situation.iso2));
-      if (country !== name) continue;
-      rows.push({
-        key: `genocide-${situation.id}`,
-        title: `Genocide · ${situation.name}`,
-        detail: 'as determined by the UN',
-        onPress: () =>
-          handOffSheet(countrySheetRef, () => openOverlay({ kind: 'genocide', situation })),
-      });
-    }
-    const areas = famineAreas.filter((a) => a.iso2 && topojsonNameFromCode(a.iso2) === name);
-    // Gravest phase first; the rows are a list of places, not a tally.
-    areas.sort((a, b) => b.phase - a.phase);
-    for (const area of areas) {
-      rows.push({
-        key: `famine-${area.id}`,
-        title: area.area,
-        detail: `${area.phaseName.toLowerCase()} · IPC phase ${area.phase}`,
-        onPress: () => handOffSheet(countrySheetRef, () => openOverlay({ kind: 'famine', area })),
-      });
-    }
-    return rows;
+    return marksInCountry(name, genocideSituations, famineAreas).map(({ selection, ...mark }) => ({
+      ...mark,
+      onPress: () => handOffSheet(countrySheetRef, () => openOverlay(selection)),
+    }));
   }, [countrySheet?.countryName, famineAreas, genocideSituations, handOffSheet, openOverlay]);
 
   const handleCountryAlertPress = useCallback(
@@ -1166,11 +1173,6 @@ export default function HomeScreen() {
       countrySheetRef.current?.present();
     },
     [],
-  );
-  /** A country chosen from one of the menu's rankings. */
-  const handleMenuCountrySelect = useCallback(
-    (countryName: string) => handOffSheet(menuSheetRef, () => openCountry(countryName)),
-    [handOffSheet, openCountry],
   );
 
   const handleEntityPress = useCallback(
@@ -1330,7 +1332,11 @@ export default function HomeScreen() {
   }, []);
 
   const handleMenuDismiss = useCallback(() => {
+    menuClosedAtRef.current = Date.now();
     setMenuOpen(false);
+    // A card read as a page of the menu rang its place; the ring goes with
+    // the menu, as it goes with the card sheet.
+    setSelectedGauge(null);
     runSheetHandOff();
   }, [runSheetHandOff]);
   const handleCountryDismiss = useCallback(() => {
@@ -1377,7 +1383,9 @@ export default function HomeScreen() {
         toastRef.current?.show('Could not open that story');
         return;
       }
+      // The card is in its sheet or a page of the menu; whichever is up goes.
       cardSheetRef.current?.dismiss();
+      menuSheetRef.current?.dismiss();
       focusStory(slug, { grow: true });
     },
     [focusStory, handleSelectArticle, injectArticle, pinStory],
@@ -1424,8 +1432,18 @@ export default function HomeScreen() {
 
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
+    const startedAt = Date.now();
+    // The check is one conditional request, and an unchanged build answers
+    // in a blink: `checking for new stories` flashed too fast to read (the
+    // user's report, 2026-09-26). It holds for a second, and the answer
+    // follows it rather than landing on top of it.
+    const held = () =>
+      new Promise<void>((resolve) =>
+        setTimeout(resolve, Math.max(0, REFRESH_MIN_MS - (Date.now() - startedAt))),
+      );
     try {
       const addedArticles = await refresh();
+      await held();
       if (addedArticles.length > 0) {
         const words = addedArticles.reduce(
           (sum, article) => sum + article.sentences.join(' ').split(/\s+/).length,
@@ -1444,6 +1462,7 @@ export default function HomeScreen() {
         );
       }
     } catch {
+      await held();
       toastRef.current?.show('Could not refresh', undefined, 'top');
     } finally {
       setRefreshing(false);
@@ -1941,7 +1960,7 @@ export default function HomeScreen() {
           onMenuPress={handleMenuPress}
           items={stripSlots}
           onSelect={handleStripPress}
-          onAll={handleMenuPress}
+          onAll={handleAllPress}
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
           linkedColor={linkedHue}
@@ -1997,6 +2016,7 @@ export default function HomeScreen() {
         ref={briefingChromeRef}
         date={briefing?.date}
         duration={briefing?.duration}
+        recorded={briefing?.generated}
         onUnavailable={handleBriefingUnavailable}
         onPlaybackError={handleBriefingPlaybackError}
         onVisibilityChange={setBriefingVisible}
@@ -2013,9 +2033,13 @@ export default function HomeScreen() {
         onSelectArticle={handleSelectArticle}
         catalog={catalog}
         hazards={menuHazards}
+        gdacsDetails={gdacsDetails}
+        articles={river}
+        onFocusRow={handleMenuFocusRow}
         onSelectRow={handleMenuRowSelect}
-        onSelectHazard={handleMenuHazardSelect}
-        onSelectCountry={handleMenuCountrySelect}
+        onFocusMark={handleMenuFocusMark}
+        onStoryPress={handleCardStoryPress}
+        rootKey={menuRootKey}
         onToast={handleMenuToast}
       />
 

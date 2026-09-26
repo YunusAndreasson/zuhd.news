@@ -48,11 +48,10 @@ export interface TimeTrack {
 
 /**
  * @param ages How long ago each story ran, in ms, one per story in river
- *   order. The river is not in time order — the day's top stories lead it
- *   (`leadWithTopStories`) — so stories are laid out by time and the result
- *   is handed back in river order: the deck's first swipes hop along the
- *   track to the top stories' own times, then it runs through the day.
- *   Older than the span sits at the right end.
+ *   order. Stories are laid out by time and the result is handed back in
+ *   river order, so an order that is not strictly by time (the most reported
+ *   first inside a run, `compareHeat`) still lands every story at its own
+ *   time. Older than the span sits at the right end.
  */
 export function timeTrackLayout(
   ages: readonly number[],

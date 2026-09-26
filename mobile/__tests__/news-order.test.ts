@@ -3,13 +3,11 @@ import { CATEGORIES } from '../constants/theme';
 import { articleTime, eventTime } from '../lib/article-utils';
 import { buildStoryRows } from '../lib/map-feed';
 import {
-  leadWithTopStories,
   orderNewsRiver,
   RIVER_WINDOW_MS,
   RUN_GAP_MS,
   type RiverArticle,
   recentRiver,
-  TOP_STORIES,
 } from '../lib/news-order';
 
 function makeArticle(overrides: Partial<RiverArticle> = {}): RiverArticle {
@@ -54,7 +52,7 @@ describe('orderNewsRiver', () => {
     grouped.politics = [1000, 4000, 3000, 2000].map((eventAt) =>
       makeArticle({ slug: `p-${eventAt}`, eventAt }),
     );
-    grouped.economy = [makeArticle({ slug: 'e-2500', eventAt: 2500, eventCoverage: 999 })];
+    grouped.economy = [makeArticle({ slug: 'e-2500', eventAt: 2500 })];
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual([
       'p-4000',
       'p-3000',
@@ -76,7 +74,7 @@ describe('orderNewsRiver', () => {
 
   it('orders timestamp ties deterministically by slug', () => {
     const grouped = emptyGrouped();
-    grouped.politics = [makeArticle({ slug: 'b', eventCoverage: 999 }), makeArticle({ slug: 'a' })];
+    grouped.politics = [makeArticle({ slug: 'b' }), makeArticle({ slug: 'a' })];
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['a', 'b']);
     grouped.politics.reverse();
     expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['a', 'b']);
@@ -117,6 +115,66 @@ describe('orderNewsRiver', () => {
   // The user's report of 2026-09-26: new stories did not arrive in order.
   // Ordered by when each story happened, the 10:01 cycle's pick from the day
   // before went 36 places deep, behind stories the reader had read.
+  describe('the most reported first, inside its run', () => {
+    // The 18:12 run of 2026-09-26, reduced: reports where the API measured
+    // them, and the outlets the desk cited.
+    const src = (n: number) =>
+      Array.from({ length: n }, (_, i) => ({
+        name: `s${i}`,
+        url: '',
+        country: null,
+        sentiment: null,
+      }));
+    const run = (slug: string, eventCoverage: number | null, sources: number, eventAt = 1000) =>
+      makeArticle({ slug, eventCoverage, sources: src(sources), eventAt, publishedAt: 5000 });
+
+    it('leads with the story past the bar, then the most widely sourced', () => {
+      const grouped = emptyGrouped();
+      grouped.politics = [
+        run('one-source', null, 1, 4000),
+        run('four-sources', 227, 4),
+        run('over-the-bar', 830, 6),
+        run('five-sources', 165, 5),
+      ];
+      expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual([
+        'over-the-bar',
+        'five-sources',
+        'four-sources',
+        'one-source',
+      ]);
+    });
+
+    it('does not rank below the bar by a count most stories do not have', () => {
+      // Unmeasured is not quiet: 300 reports does not outrank no figure.
+      const grouped = emptyGrouped();
+      grouped.tech = [run('measured', 300, 2), run('unmeasured', null, 2, 2000)];
+      expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['unmeasured', 'measured']);
+    });
+
+    it('falls back to the newest event when reach is equal', () => {
+      const grouped = emptyGrouped();
+      grouped.tech = [run('older', null, 1, 1000), run('newer', null, 1, 3000)];
+      expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual(['newer', 'older']);
+    });
+
+    it('never lifts a story out of its run', () => {
+      const grouped = emptyGrouped();
+      grouped.politics = [
+        makeArticle({
+          slug: 'hot-earlier-run',
+          eventCoverage: 900,
+          sources: src(6),
+          publishedAt: 1000,
+        }),
+        makeArticle({ slug: 'quiet-newer-run', sources: src(1), publishedAt: 5 * RUN_GAP_MS }),
+      ];
+      expect(orderNewsRiver(grouped).map((a) => a.slug)).toEqual([
+        'quiet-newer-run',
+        'hot-earlier-run',
+      ]);
+    });
+  });
+
   describe('by when zuhd published', () => {
     const MIN = 60_000;
     const HOUR = 60 * MIN;
@@ -217,39 +275,16 @@ describe('recentRiver', () => {
   });
 });
 
-describe('leadWithTopStories', () => {
+describe('buildStoryRows — new and earlier', () => {
   const NOW = 100 * RIVER_WINDOW_MS;
   const HOUR = RIVER_WINDOW_MS / 24;
-  const at = (slug: string, hoursAgo: number, eventCoverage: number | null = null) =>
-    makeArticle({ slug, publishedAt: NOW - hoursAgo * HOUR, eventCoverage });
+  const at = (slug: string, hoursAgo: number) =>
+    makeArticle({ slug, publishedAt: NOW - hoursAgo * HOUR });
 
-  it('leads with the most reported, then the rest of the day newest first', () => {
-    const river = [at('a', 1), at('b', 3, 643), at('c', 5), at('d', 11, 884), at('e', 20, 90)];
-    const { river: led, lead } = leadWithTopStories(river, NOW);
-    expect(led.map((a) => a.slug)).toEqual(['d', 'b', 'a', 'c', 'e']);
-    expect(lead).toBe(2);
-  });
-
-  it('leaves a quiet day in plain time order', () => {
-    const river = [at('a', 1, 120), at('b', 3), at('c', 5, 399)];
-    expect(leadWithTopStories(river, NOW)).toEqual({ river, lead: 0 });
-  });
-
-  it('keeps the lead short and to the day', () => {
-    const many = Array.from({ length: 8 }, (_, i) => at(`t${i}`, i + 1, 400 + i));
-    const pinnedOld = at('old', 40, 5000);
-    const { river: led, lead } = leadWithTopStories([...many, pinnedOld], NOW);
-    expect(lead).toBe(TOP_STORIES);
-    expect(led.slice(0, lead).map((a) => a.slug)).not.toContain('old');
-    expect(led).toHaveLength(9);
-  });
-
-  // `earlier` marks where the new stories end in time order; the lead is out
-  // of it, so the boundary is looked for after it.
-  it('draws the caught-up boundary after the lead', () => {
-    const river = [at('top', 11, 884), at('n1', 1), at('n2', 2), at('old', 5)];
-    const rows = buildStoryRows({ river, fresh: new Set(['n1', 'n2']), lead: 1 });
-    expect(rows.map((r) => r.mark)).toEqual([null, 'new', 'new', 'earlier']);
+  it('marks the first story the reader already had as earlier', () => {
+    const river = [at('n1', 1), at('n2', 2), at('old', 5)];
+    const rows = buildStoryRows({ river, fresh: new Set(['n1', 'n2']) });
+    expect(rows.map((r) => r.mark)).toEqual(['new', 'new', 'earlier']);
   });
 
   it('marks nothing new when every story is: there is nothing it is new beside', () => {

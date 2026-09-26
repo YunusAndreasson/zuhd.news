@@ -20,7 +20,9 @@ export async function setupNotificationChannels(): Promise<void> {
   await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
     name: 'Daily Briefing',
     importance: Notifications.AndroidImportance.DEFAULT,
-    description: 'Morning briefing reminder',
+    // Once a day, on the 05:00 UTC cycle: morning in the Gulf and South
+    // Asia, night in the Americas, so the channel does not name the hour.
+    description: 'The daily audio briefing',
   });
   await Notifications.setNotificationChannelAsync('breaking', {
     name: 'Breaking News',

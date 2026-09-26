@@ -59,11 +59,13 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   }, [onDismiss]);
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="two briefings a day">
+    // One briefing a day, on the 05:00 UTC cycle, and one push for it. This
+    // promised a morning and an evening one long after the evening one was
+    // gone; the pipeline said so in its own comment (2026-09-25).
+    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="one briefing a day">
       <SheetScrollView bottomInset={bottomInset}>
         <Text variant="body">
-          A morning and an evening briefing — the day’s stories, said once. Breaking news only when
-          it matters.
+          The day’s stories, said once. Breaking news only when it matters.
         </Text>
         <View style={styles.actions}>
           <Pressable

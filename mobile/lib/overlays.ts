@@ -48,10 +48,25 @@ export interface ThermalEvent {
   pixels: number;
   confidence: 'low' | 'nominal' | 'high';
   daynight?: 'D' | 'N';
-  /** The place name the fetcher resolved, where it did. */
+  /** The place of the story it was joined to — not where the fire is. */
   near?: string;
+  /** How far the anomaly is from `near`, km. Joined within 75 km, so a fire
+   *  printed as "Ilsky" was often 70 km from it (added 2026-09-25). */
+  nearKm?: number;
   /** Slugs of the stories this anomaly was joined to. */
   relatedArticles?: string[];
+}
+
+/**
+ * Where a thermal anomaly is, in words: `72 km from Ilsky`, not `Ilsky`. The
+ * place is the story's, and the join reaches 75 km, so the bare name put the
+ * fire in a town it could be an hour's drive from. Under a kilometre, or with
+ * no distance published, the name alone.
+ */
+export function thermalPlace(e: Pick<ThermalEvent, 'near' | 'nearKm'>): string | undefined {
+  if (!e.near) return undefined;
+  if (e.nearKm === undefined || !Number.isFinite(e.nearKm) || e.nearKm < 1) return e.near;
+  return `${Math.round(e.nearKm)} km from ${e.near}`;
 }
 
 export interface ThermalSnapshot {
@@ -127,3 +142,10 @@ export function conflictScale(fatalities: number | null | undefined): number {
   const t = Math.min(1, Math.log10(1 + n) / 2);
   return 0.8 + 0.6 * t;
 }
+
+/** A hazard mark chosen for its sheet — `OverlaySheet`, or the menu's page
+ *  of the same content. */
+export type OverlaySelection =
+  | { kind: 'famine'; area: FamineArea }
+  | { kind: 'thermal'; event: ThermalEvent }
+  | { kind: 'genocide'; situation: GenocideSituation };

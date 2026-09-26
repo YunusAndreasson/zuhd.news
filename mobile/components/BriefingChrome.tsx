@@ -22,6 +22,8 @@ const HEARD_STEPS = 40;
 interface BriefingChromeProps {
   date?: string;
   duration?: number;
+  /** When the recording was made (`FeedResponse.briefing.generated`). */
+  recorded?: string;
   onUnavailable: () => void;
   onPlaybackError: () => void;
   onVisibilityChange: (visible: boolean) => void;
@@ -62,6 +64,7 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
     {
       date,
       duration,
+      recorded,
       onUnavailable,
       onPlaybackError,
       onVisibilityChange,
@@ -71,7 +74,7 @@ export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>
     },
     ref,
   ) {
-    const player = useBriefingPlayer(date, duration);
+    const player = useBriefingPlayer(date, duration, recorded);
     const [presented, setPresented] = useState(false);
     const visible = presented && player.state !== 'idle';
 

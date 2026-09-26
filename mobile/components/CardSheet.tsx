@@ -11,8 +11,9 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  *
  * `CardView` and `CardFrame` render here the reading, the chart, the desk's
  * paragraph, the delta chip and the source caption, in that order. You arrive
- * from a gauge in the top bar, a mark on the globe, a row in the instruments
- * list or the odds on a story.
+ * from a gauge in the top bar, a mark on the globe or the odds on a story. A
+ * row in the menu's lists opens the same `CardView` as a page of the menu
+ * instead (`MenuDetail`), so back is the list it came from.
  *
  * **It opens as high as a resting story, not over the map.** A gauge is a
  * place on the earth as much as a number, and the globe flies there as the

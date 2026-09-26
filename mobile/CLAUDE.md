@@ -210,6 +210,31 @@ whole time; nothing said so.
     cut read "unchanged"; as a percentage of itself it read "−6.3%". The
     ten-year is a daily `%` series and still prints its relative move, because
     the strip sorts on it; moving it is its own decision.
+  - **Whatever a row opens is a page of the menu** (`MenuDetail`, the user's
+    report the same day: opening Bitcoin or a prediction closed the menu for
+    a sheet of its own, and closing that lost the list). A card, a disaster,
+    a conflict event, a famine, fire or genocide mark, a ranking and a
+    country are pages pushed on the menu's stack, rendered from each sheet's
+    own body (`CardView`, `DisasterBody`, `ConflictBody`, `OverlayBody`,
+    `CountryBody`), so a mark reads the same from a list as from the globe.
+    Links inside a page stay in the menu — a disaster's country, a country's
+    ranking, a ranking's country — except a story, which closes it. The globe
+    still flies and rings the row's place, behind the menu, so closing it
+    leaves the reader there; the ring goes with the menu. Do not hand a row
+    off to its own sheet again.
+  - **The menu keeps its place for five minutes** (`MENU_RESUME_MS`): closed
+    from a card to look at the map, it reopens on that card; after longer, or
+    from `all →` (which means every instrument), it opens at its root. The
+    screen asks for the root by bumping `rootKey`.
+  - **A row says what its number counts and names its subject in words.** The
+    reading carries the card's `readingNote` under it (`52` / `EGP to the
+    dollar`), and an exchange's row is `Turkey stocks` with `BIST 100 ·
+    Istanbul` under it — the strip's own words (`stripLabel`), because the
+    list printed index codes the strip had just stopped printing.
+  - Disasters list under `red and orange alerts` and `minor alerts` (a feed
+    of a hundred is mostly Green), and the 27 rankings under seven headings
+    (`lib/metric-groups.ts`, tested: every metric listed once, a new one
+    under `other`).
   - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
     rising/falling filter, and every other card unsplit under `other data`.
     Its filter lives on in `stock markets`, its row as `InstrumentRow`.
@@ -248,18 +273,28 @@ whole time; nothing said so.
     under `21h ago · new`, where `‹ n new` never counted it; 18% of stories
     were picked up more than 12 h late at the time (the pipeline now cuts its
     pool at 12 h too). A cycle is one **run**: its stories share one time
-    (`ranAt`) and inside it the newest *event* comes first (`eventTime`).
-    Never read `addedAt` for time: it is a file mtime, and a rebase on the
-    pipeline box resets it.
+    (`ranAt`, and since the build publishes `publishedAt` one commit's time
+    — 43 stories in a day are 5 runs, where file mtimes made 22). Never read
+    `addedAt` for time: it is a file mtime, and a rebase on the pipeline box
+    resets it.
+  - **Inside a run the most reported comes first** (`compareHeat`,
+    2026-09-26, the user's request: "hottest news first"). A story past the
+    400-report bar leads its run, by its count; below it, the number of
+    outlets the desk cited, which every story has; then the newest event.
+    The count is not used below the bar: three in five stories have none,
+    and unmeasured is not quiet (`lib/coverage.ts`). It is not the rejected
+    top-stories lead: a run shares one time, so the order inside it moves no
+    cell on the track by more than the run's own width.
   - **No top-stories lead: the river is plain time order** (2026-09-24,
     the user's request — "the top stories were confusing"). For a day
     (09-23) `leadWithTopStories` moved up to five stories over the report
     bar to the front. The track places every story at its own time, so
     swiping through them sent the playhead leaping across the day — 16h,
     20h, then back to now — and only after them did a swipe move one cell.
-    The function and its tests are still in `lib/news-order.ts`, unwired.
-    The most reported stories are the track's tall cells, one scrub away.
-    Do not bring a lead back without solving the track's jump first.
+    It stayed unwired until 2026-09-26 and was deleted when the most
+    reported came first inside each run instead (above), which cannot jump.
+    Do not bring a whole-river lead back without solving the track's jump
+    first.
   - **New is decided by slug, never by `addedAt`** (`lib/fresh-store.ts`,
     tested). `addedAt` is a file mtime: one value per cycle, reset when a file
     is rewritten, and the live feed that day carried a story filed the day
@@ -742,7 +777,9 @@ about what a card may say is about the card, not where it is shown.
   collapse drag, on iOS `bounces={false}` meant it could never fire — so
   `MapSheet.onPullDown` fires when a drag that began at peek stretches the
   sheet past `PULL_TRIGGER`, and the dock's track gives way to
-  `checking for new stories` while it runs. A refresh that inserts stories in
+  `checking for new stories` while it runs — for at least a second
+  (`REFRESH_MIN_MS`), then the answer: an unchanged build answers in a blink,
+  and the line flashed too fast to read. A refresh that inserts stories in
   front of the one being read keeps the reader on it (anchored by slug, camera
   held). `useArticles.refresh()` probes
   `/api/meta.json`; a moved `generated` is an arrival (below), so the strip,
@@ -947,7 +984,7 @@ about what a card may say is about the card, not where it is shown.
     - **The most reported stories stand taller, and no count is printed**
       (`lib/coverage.ts`, tested). A story whose `eventCoverage` — the news
       API's event-cluster article count — is 400 or more gets an 8pt cell on
-      the track and leads the river (`leadWithTopStories`). For a day
+      the track and leads its run in the river (`compareHeat`). For a day
       (2026-09-23) the kicker and the scrub tooltip also ended in `· 884
       reports`; the user asked for it gone on 2026-09-24. Before the number
       came `most covered`, `widely reported` (unclear), a coloured bar (not
@@ -1122,8 +1159,8 @@ about what a card may say is about the card, not where it is shown.
 - **The card answers the question the chart raises, which is *why did this
   move*.** The desk writes two paragraphs per instrument and they are not
   interchangeable: `standing` says what the thing is, written once and
-  timeless; `recent` says what has happened to it and why, rewritten daily at
-  04:00 UTC against the fortnight's coverage and grounded in it. Every card
+  timeless; `recent` says what has happened to it and why, rewritten daily on
+  the 05:00 UTC cycle (04:00 until 2026-09-25) against the fortnight's coverage and grounded in it. Every card
   led with the definition until 2026-08-29 — a true sentence answering a
   question nobody asks while looking at a line that just fell 15%. `whyFor`
   (`lib/cards/markets.ts`) picks `recent` and falls back to `standing`; a

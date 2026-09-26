@@ -9,7 +9,7 @@ import { useTheme } from '../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
-import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
+import { type OverlaySelection, thermalPlace } from '../lib/overlays';
 import { makeStaggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
 import { Text } from './primitives';
@@ -31,12 +31,9 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * `overall_phase`; a genocide finding is quoted from the body that made it.
  */
 
-export type OverlaySelection =
-  | { kind: 'famine'; area: FamineArea }
-  | { kind: 'thermal'; event: ThermalEvent }
-  | { kind: 'genocide'; situation: GenocideSituation };
+export type { OverlaySelection };
 
-interface OverlaySheetProps extends BaseSheetProps {
+interface OverlayBodyProps {
   overlay: OverlaySelection | null;
   /** The river, so a thermal anomaly can name the stories it was joined to. */
   articles: RiverArticle[];
@@ -64,15 +61,42 @@ function flagFor(name: string | undefined): { name: string; flag: string }[] {
   return data?.flag ? [{ name, flag: data.flag }] : [];
 }
 
+/** The handle's title: what the layer is. */
+export function overlayTitle(overlay: OverlaySelection | null): string {
+  return overlay?.kind === 'famine'
+    ? 'food insecurity'
+    : overlay?.kind === 'thermal'
+      ? 'thermal anomaly'
+      : overlay?.kind === 'genocide'
+        ? 'genocide'
+        : '';
+}
+
+type OverlaySheetProps = BaseSheetProps & OverlayBodyProps;
+
 export const OverlaySheet = memo(function OverlaySheet({
   sheetRef,
-  overlay,
-  articles,
   bottomInset,
   onDismiss,
+  ...body
+}: OverlaySheetProps) {
+  return (
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={overlayTitle(body.overlay)}>
+      <SheetScrollView bottomInset={bottomInset}>
+        <OverlayBody {...body} />
+      </SheetScrollView>
+    </SheetLayout>
+  );
+});
+
+/** The sheet's content without the sheet: the menu shows it as a page of its
+ *  own, so a reader who came from a list can go back to it. */
+export const OverlayBody = memo(function OverlayBody({
+  overlay,
+  articles,
   onArticlePress,
   onCountryPress,
-}: OverlaySheetProps) {
+}: OverlayBodyProps) {
   const { colors } = useTheme();
   const openLink = useOpenLink();
 
@@ -90,151 +114,138 @@ export const OverlaySheet = memo(function OverlaySheet({
     else if (genocideUrl) openLink(genocideUrl);
   }, [overlay, genocideUrl, openLink]);
 
-  const handleTitle =
-    overlay?.kind === 'famine'
-      ? 'food insecurity'
-      : overlay?.kind === 'thermal'
-        ? 'thermal anomaly'
-        : overlay?.kind === 'genocide'
-          ? 'genocide'
-          : '';
-
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={handleTitle}>
-      <SheetScrollView bottomInset={bottomInset}>
-        {overlay?.kind === 'famine' && (
-          <>
-            <SheetHero
-              entering={enter()}
-              eyebrow={`IPC phase ${overlay.area.phase} of 5`}
-              focal={overlay.area.phaseName}
-              tint={colors.markFamine}
-              secondary={overlay.area.area}
-            />
-            {overlay.area.pop?.p3plus ? (
-              <Animated.View entering={enter()} style={styles.block}>
-                <Text variant="body" selectable>
-                  {`${overlay.area.pop.p3plus.toLocaleString('en-US')} people in crisis or worse${
-                    overlay.area.pop.total
-                      ? `, of ${overlay.area.pop.total.toLocaleString('en-US')} analysed`
-                      : ''
-                  }.`}
-                </Text>
-              </Animated.View>
-            ) : null}
-            <Animated.View entering={enter()} style={styles.meta}>
-              <Text variant="labelXs" tone="secondary">
-                {`analysis of ${overlay.area.vintage}`}
-              </Text>
-            </Animated.View>
-            <SheetFlagRow
-              entering={enter()}
-              flags={flagFor(
-                overlay.area.iso2 ? topojsonNameFromCode(overlay.area.iso2) : undefined,
-              )}
-              borderColor={colors.rule}
-              onPress={onCountryPress}
-            />
-            <SheetSourceFooter
-              entering={enter()}
-              source="Integrated Food Security Phase Classification"
-              linkLabel="IPC →"
-              linkAccessibilityLabel="Open the IPC country analyses"
-              onLinkPress={handleSourcePress}
-            />
-          </>
-        )}
-
-        {overlay?.kind === 'thermal' && (
-          <>
-            <SheetHero
-              entering={enter()}
-              eyebrow="fire radiative power"
-              focal={`${Math.round(overlay.event.frp).toLocaleString('en-US')} MW`}
-              tint={colors.markThermal}
-              secondary={overlay.event.near}
-            />
-            <Animated.View entering={enter()} style={styles.meta}>
-              <Text variant="labelXs" tone="secondary">
-                {[
-                  `${overlay.event.pixels} ${overlay.event.pixels === 1 ? 'detection' : 'detections'}`,
-                  `${overlay.event.confidence} confidence`,
-                  overlay.event.daynight === 'N' ? 'night pass' : 'day pass',
-                  formatTimeAgo(overlay.event.t),
-                ].join(' · ')}
-              </Text>
-            </Animated.View>
-            {related.length > 0 && (
-              <Animated.View entering={enter()} style={styles.block}>
-                <Text variant="labelSm" tone="secondary" style={styles.heading}>
-                  {related.length === 1 ? 'in the news' : `${related.length} stories`}
-                </Text>
-                {/* The river's own row: a story looks the same in every list. */}
-                {related.map((a) => (
-                  <ArticleRow
-                    key={a.slug}
-                    slug={a.slug}
-                    title={a.title}
-                    time={articleTime(a)}
-                    category={a.category}
-                    location={a.location}
-                    onPress={onArticlePress}
-                  />
-                ))}
-              </Animated.View>
-            )}
-            <SheetSourceFooter
-              entering={enter()}
-              source="NASA FIRMS · VIIRS"
-              linkLabel="FIRMS map →"
-              linkAccessibilityLabel="Open the NASA FIRMS fire map"
-              onLinkPress={handleSourcePress}
-            />
-          </>
-        )}
-
-        {overlay?.kind === 'genocide' && (
-          <>
-            <SheetHero
-              entering={enter()}
-              eyebrow="as determined by the UN"
-              focal={overlay.situation.name}
-              tint={colors.markGenocide}
-              secondary={
-                overlay.situation.since
-                  ? `since ${formatIsoDate(overlay.situation.since)}`
-                  : undefined
-              }
-            />
+    <>
+      {overlay?.kind === 'famine' && (
+        <>
+          <SheetHero
+            entering={enter()}
+            eyebrow={`IPC phase ${overlay.area.phase} of 5`}
+            focal={overlay.area.phaseName}
+            tint={colors.markFamine}
+            secondary={overlay.area.area}
+          />
+          {overlay.area.pop?.p3plus ? (
             <Animated.View entering={enter()} style={styles.block}>
               <Text variant="body" selectable>
-                {overlay.situation.summary}
+                {`${overlay.area.pop.p3plus.toLocaleString('en-US')} people in crisis or worse${
+                  overlay.area.pop.total
+                    ? `, of ${overlay.area.pop.total.toLocaleString('en-US')} analysed`
+                    : ''
+                }.`}
               </Text>
             </Animated.View>
-            <Animated.View entering={enter()} style={styles.meta}>
-              <Text variant="labelXs" tone="secondary">
-                {`${overlay.situation.document} · ${formatIsoDate(overlay.situation.date)}`}
+          ) : null}
+          <Animated.View entering={enter()} style={styles.meta}>
+            <Text variant="labelXs" tone="secondary">
+              {`analysis of ${overlay.area.vintage}`}
+            </Text>
+          </Animated.View>
+          <SheetFlagRow
+            entering={enter()}
+            flags={flagFor(overlay.area.iso2 ? topojsonNameFromCode(overlay.area.iso2) : undefined)}
+            borderColor={colors.rule}
+            onPress={onCountryPress}
+          />
+          <SheetSourceFooter
+            entering={enter()}
+            source="Integrated Food Security Phase Classification"
+            linkLabel="IPC →"
+            linkAccessibilityLabel="Open the IPC country analyses"
+            onLinkPress={handleSourcePress}
+          />
+        </>
+      )}
+
+      {overlay?.kind === 'thermal' && (
+        <>
+          <SheetHero
+            entering={enter()}
+            eyebrow="fire radiative power"
+            focal={`${Math.round(overlay.event.frp).toLocaleString('en-US')} MW`}
+            tint={colors.markThermal}
+            secondary={thermalPlace(overlay.event)}
+          />
+          <Animated.View entering={enter()} style={styles.meta}>
+            <Text variant="labelXs" tone="secondary">
+              {[
+                `${overlay.event.pixels} ${overlay.event.pixels === 1 ? 'detection' : 'detections'}`,
+                `${overlay.event.confidence} confidence`,
+                overlay.event.daynight === 'N' ? 'night pass' : 'day pass',
+                formatTimeAgo(overlay.event.t),
+              ].join(' · ')}
+            </Text>
+          </Animated.View>
+          {related.length > 0 && (
+            <Animated.View entering={enter()} style={styles.block}>
+              <Text variant="labelSm" tone="secondary" style={styles.heading}>
+                {related.length === 1 ? 'in the news' : `${related.length} stories`}
               </Text>
+              {/* The river's own row: a story looks the same in every list. */}
+              {related.map((a) => (
+                <ArticleRow
+                  key={a.slug}
+                  slug={a.slug}
+                  title={a.title}
+                  time={articleTime(a)}
+                  category={a.category}
+                  location={a.location}
+                  onPress={onArticlePress}
+                />
+              ))}
             </Animated.View>
-            <SheetFlagRow
-              entering={enter()}
-              flags={flagFor(overlay.situation.profile)}
-              borderColor={colors.rule}
-              onPress={onCountryPress}
-            />
-            <SheetSourceFooter
-              entering={enter()}
-              source={overlay.situation.body}
-              linkLabel="finding →"
-              linkAccessibilityLabel="Open the finding"
-              onLinkPress={genocideUrl ? handleSourcePress : undefined}
-            />
-          </>
-        )}
-      </SheetScrollView>
-    </SheetLayout>
+          )}
+          <SheetSourceFooter
+            entering={enter()}
+            source="NASA FIRMS · VIIRS"
+            linkLabel="FIRMS map →"
+            linkAccessibilityLabel="Open the NASA FIRMS fire map"
+            onLinkPress={handleSourcePress}
+          />
+        </>
+      )}
+
+      {overlay?.kind === 'genocide' && (
+        <>
+          <SheetHero
+            entering={enter()}
+            eyebrow="as determined by the UN"
+            focal={overlay.situation.name}
+            tint={colors.markGenocide}
+            secondary={
+              overlay.situation.since
+                ? `since ${formatIsoDate(overlay.situation.since)}`
+                : undefined
+            }
+          />
+          <Animated.View entering={enter()} style={styles.block}>
+            <Text variant="body" selectable>
+              {overlay.situation.summary}
+            </Text>
+          </Animated.View>
+          <Animated.View entering={enter()} style={styles.meta}>
+            <Text variant="labelXs" tone="secondary">
+              {`${overlay.situation.document} · ${formatIsoDate(overlay.situation.date)}`}
+            </Text>
+          </Animated.View>
+          <SheetFlagRow
+            entering={enter()}
+            flags={flagFor(overlay.situation.profile)}
+            borderColor={colors.rule}
+            onPress={onCountryPress}
+          />
+          <SheetSourceFooter
+            entering={enter()}
+            source={overlay.situation.body}
+            linkLabel="finding →"
+            linkAccessibilityLabel="Open the finding"
+            onLinkPress={genocideUrl ? handleSourcePress : undefined}
+          />
+        </>
+      )}
+    </>
   );
 });
 

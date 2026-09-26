@@ -269,7 +269,9 @@ export interface FeedResponse {
   // Wire format may omit empty categories — post-merge consumers use
   // `GroupedArticles` (a full Record) where every key is guaranteed present.
   categories: Partial<Record<Category, Article[]>>;
-  briefing: { date: string; available: boolean; duration?: number } | null;
+  /** `generated` is when the recording at `date`'s address was made: a
+   *  briefing recorded again under the same date is a different file there. */
+  briefing: { date: string; available: boolean; duration?: number; generated?: string } | null;
   contexts?: Record<string, ContextIndexEntry>;
 }
 

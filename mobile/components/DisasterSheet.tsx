@@ -19,7 +19,7 @@ import { Markdown, Text } from './primitives';
 import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface DisasterSheetProps extends BaseSheetProps {
+interface DisasterBodyProps {
   alert: GdacsAlert | null;
   /** Pre-fetched detail map from /api/gdacs.json — keyed
    *  `${eventtype}:${eventid}`. The sheet does a synchronous lookup; missing
@@ -72,14 +72,35 @@ function formatPopulation(n: number | null): string | null {
   return `~${(n / 1_000_000_000).toFixed(1)}B`;
 }
 
+/** The handle's title: the alert's own name. */
+export function disasterTitle(alert: GdacsAlert | null): string {
+  return alert?.name ?? '';
+}
+
+type DisasterSheetProps = BaseSheetProps & DisasterBodyProps;
+
 export const DisasterSheet = memo(function DisasterSheet({
   sheetRef,
-  alert,
-  details,
   bottomInset,
   onDismiss,
-  onCountryPress,
+  ...body
 }: DisasterSheetProps) {
+  return (
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={disasterTitle(body.alert)}>
+      <SheetScrollView bottomInset={bottomInset}>
+        <DisasterBody {...body} />
+      </SheetScrollView>
+    </SheetLayout>
+  );
+});
+
+/** The sheet's content without the sheet: the menu shows it as a page of its
+ *  own, so a reader who came from a list can go back to it. */
+export const DisasterBody = memo(function DisasterBody({
+  alert,
+  details,
+  onCountryPress,
+}: DisasterBodyProps) {
   const { colors } = useTheme();
   const openLink = useOpenLink();
   const handleReportPress = useCallback(() => {
@@ -130,11 +151,10 @@ export const DisasterSheet = memo(function DisasterSheet({
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handleTitle={alert?.name ?? ''}>
-      <SheetScrollView bottomInset={bottomInset}>
-        {alert && (
-          <>
-            {/* Hero — eyebrow + focal severity number + supporting clause.
+    <>
+      {alert && (
+        <>
+          {/* Hero — eyebrow + focal severity number + supporting clause.
                 Cognitive-load shape: the reader's eye lands on a single
                 large tinted number (the magnitude / wind speed / burn
                 area) and gets the "how bad?" answer pre-attentively.
@@ -143,85 +163,84 @@ export const DisasterSheet = memo(function DisasterSheet({
                 alert-level word. The 44px glyph that used to sit here
                 was redundant — the reader just tapped the same shape
                 on the globe. */}
-            <SheetHero
-              entering={enter()}
-              eyebrow={EVENT_TYPE_EYEBROW[alert.eventtype]}
-              focal={hero?.focal ?? ''}
-              tint={tint}
-              secondary={hero?.secondary}
-            />
+          <SheetHero
+            entering={enter()}
+            eyebrow={EVENT_TYPE_EYEBROW[alert.eventtype]}
+            focal={hero?.focal ?? ''}
+            tint={tint}
+            secondary={hero?.secondary}
+          />
 
-            {/* Population sentence — plain-English form of the human
+          {/* Population sentence — plain-English form of the human
                 stake. Renders only when GDACS publishes a meaningful
                 number (EQ shaking footprint or TC hurricane wind zone);
                 low-tier events get null detail and the row stays hidden. */}
-            {populationText && populationClause.length > 0 && (
-              <Animated.View entering={enter()} style={styles.populationRow}>
-                <Text variant="bodyEmphasis" tone="emphasis" selectable>
-                  {populationText}{' '}
-                  <Text variant="body" tone="default">
-                    people {populationClause}
-                  </Text>
+          {populationText && populationClause.length > 0 && (
+            <Animated.View entering={enter()} style={styles.populationRow}>
+              <Text variant="bodyEmphasis" tone="emphasis" selectable>
+                {populationText}{' '}
+                <Text variant="body" tone="default">
+                  people {populationClause}
                 </Text>
-              </Animated.View>
-            )}
+              </Text>
+            </Animated.View>
+          )}
 
-            {/* Narrative — server-composed 2-3 sentence context tying
+          {/* Narrative — server-composed 2-3 sentence context tying
                 the alert to country profile, recent weather (FL/WF/DR),
                 and nearby chokepoints. Only present on Orange/Red alerts
                 where the cycle's narration call validated successfully;
                 Green alerts and validation-rejected calls fall through. */}
-            {alert.narrative && alert.narrative.length > 0 && (
-              <Animated.View entering={enter()} style={styles.narrativeRow}>
-                <Markdown variant="body" selectable>
-                  {alert.narrative}
-                </Markdown>
-              </Animated.View>
-            )}
+          {alert.narrative && alert.narrative.length > 0 && (
+            <Animated.View entering={enter()} style={styles.narrativeRow}>
+              <Markdown variant="body" selectable>
+                {alert.narrative}
+              </Markdown>
+            </Animated.View>
+          )}
 
-            {/* Meta — when did it start, when was the data last refreshed,
+          {/* Meta — when did it start, when was the data last refreshed,
                 or whether it's already over. Alert-level word dropped
                 because the focal number above already carries it via tint. */}
-            <Animated.View entering={enter()} style={styles.metaRow}>
-              <Text variant="labelXs" tone="secondary">
-                {[formatStarted(alert.fromDate), formatStatus(alert)]
-                  .filter((s) => s.length > 0)
-                  .join(' · ')}
+          <Animated.View entering={enter()} style={styles.metaRow}>
+            <Text variant="labelXs" tone="secondary">
+              {[formatStarted(alert.fromDate), formatStatus(alert)]
+                .filter((s) => s.length > 0)
+                .join(' · ')}
+            </Text>
+          </Animated.View>
+
+          {flags.length > 0 && (
+            <SheetFlagRow
+              entering={enter()}
+              flags={flags}
+              borderColor={colors.rule}
+              onPress={onCountryPress}
+            />
+          )}
+
+          {alert.description.length > 0 && (
+            <Animated.View entering={enter()} style={styles.description}>
+              <Text selectable variant="body">
+                {alert.description}
               </Text>
             </Animated.View>
+          )}
 
-            {flags.length > 0 && (
-              <SheetFlagRow
-                entering={enter()}
-                flags={flags}
-                borderColor={colors.rule}
-                onPress={onCountryPress}
-              />
-            )}
-
-            {alert.description.length > 0 && (
-              <Animated.View entering={enter()} style={styles.description}>
-                <Text selectable variant="body">
-                  {alert.description}
-                </Text>
-              </Animated.View>
-            )}
-
-            {/* Footer — full source name (no acronyms) + tappable report.
+          {/* Footer — full source name (no acronyms) + tappable report.
                 The acronym alone ("NEIC", "JTWC") forces the reader to
                 either know the org or read the line as opaque chrome;
                 the spelled-out name carries the trust signal directly. */}
-            <SheetSourceFooter
-              entering={enter()}
-              source={displaySourceName(alert.source)}
-              linkLabel="GDACS report →"
-              linkAccessibilityLabel="Open the GDACS event report"
-              onLinkPress={alert.reportUrl ? handleReportPress : undefined}
-            />
-          </>
-        )}
-      </SheetScrollView>
-    </SheetLayout>
+          <SheetSourceFooter
+            entering={enter()}
+            source={displaySourceName(alert.source)}
+            linkLabel="GDACS report →"
+            linkAccessibilityLabel="Open the GDACS event report"
+            onLinkPress={alert.reportUrl ? handleReportPress : undefined}
+          />
+        </>
+      )}
+    </>
   );
 });
 

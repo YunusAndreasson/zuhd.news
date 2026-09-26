@@ -1387,7 +1387,17 @@ if (existsSync(apiBriefingMetaPath)) {
   const bm = JSON.parse(readFileSync(apiBriefingMetaPath, 'utf-8'))
   const mp3Path = join(ROOT, 'content', 'audio', `briefing-${bm.date}.mp3`)
   if (existsSync(mp3Path)) {
-    briefingInfo = { date: bm.date, available: true, duration: bm.duration ?? 0 }
+    // `generated` says which recording is at that address. A briefing can be
+    // recorded again under the same date — 2026-09-26 was, at 17:34, with a
+    // new voice — and the app keeps a downloaded mp3 by its URL and a place
+    // in it by date, so it went on playing the first recording and resumed a
+    // position from it in the second. Additive: older app builds ignore it.
+    briefingInfo = {
+      date: bm.date,
+      available: true,
+      duration: bm.duration ?? 0,
+      ...(typeof bm.generated === 'string' ? { generated: bm.generated } : {}),
+    }
   }
 }
 
