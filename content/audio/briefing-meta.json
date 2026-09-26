@@ -1,8 +1,11 @@
 {
   "date": "2026-09-26",
-  "generated": "2026-09-26T05:28:09.976Z",
+  "generated": "2026-09-26T17:32:41.210Z",
   "articles": 30,
-  "voice": "en-US-Chirp3-HD-Charon",
-  "ssmlLength": 9080,
-  "duration": 490
+  "voice": "gemini-3.8-flash-tts/Charon",
+  "engines": [
+    "gemini"
+  ],
+  "scriptLength": 7594,
+  "duration": 502
 }
