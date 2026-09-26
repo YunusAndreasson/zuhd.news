@@ -42,12 +42,11 @@
 //                          reasoning task about register and false friends
 //   ZUHD_SV_FORCE=1        ignore the cache and re-translate everything
 
-import { spawnSync } from 'node:child_process'
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { splitBlocks } from './lib/blocks.js'
-import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import {
@@ -141,7 +140,7 @@ if (DRY_RUN) {
 
 /** One batched call. Returns a Map slug → {titel, plats, stycken}; an empty
  *  map on any failure, so a bad batch costs its own articles and nothing else. */
-function translateBatch(batch, label) {
+async function translateBatch(batch, label) {
   const items = batch.map((a, i) => ({
     key: String(i + 1),
     slug: a.slug,
@@ -163,12 +162,7 @@ ${JSON.stringify(items.map((i) => i.payload), null, 2)}
 
 Return ONLY the JSON object keyed by item key. No commentary, no fences.`
 
-  const env = { ...process.env }
-  // The child must not inherit the parent session marker — see `cycle.md`.
-  delete env.CLAUDECODE
-
-  const res = spawnSync(
-    'claude',
+  const res = await spawnClaude(
     [
       '--model', MODEL,
       '--effort', EFFORT,
@@ -178,7 +172,7 @@ Return ONLY the JSON object keyed by item key. No commentary, no fences.`
       '--exclude-dynamic-system-prompt-sections',
       '-p', prompt,
     ],
-    { encoding: 'utf-8', timeout: 240_000, maxBuffer: 4 * 1024 * 1024, env },
+    { timeout: 240_000, maxBuffer: 4 * 1024 * 1024 },
   )
 
   if (res.status !== 0) {
@@ -252,7 +246,7 @@ const registerFaults = (batch, out) =>
 
 await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   const label = `${batch[0].slug.slice(0, 24)}+${batch.length - 1}`
-  let { out, costUsd } = translateBatch(batch, label)
+  let { out, costUsd } = await translateBatch(batch, label)
   totalCostUsd += costUsd
 
   // One retry, on the same condition the selector and writer retries use:
@@ -279,7 +273,7 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   const why = out.size === 0 ? 'nothing returned' : faults.length ? `register: ${faults[0]}` : ''
   if (why) {
     console.log(`  · swedish ${label}: ${why} — retrying once`)
-    const again = translateBatch(batch, `${label} retry`)
+    const again = await translateBatch(batch, `${label} retry`)
     totalCostUsd += again.costUsd
     // Keep the retry only when it is actually better. A re-roll that comes back
     // with more traps than the first draw is a worse payload, and blindly

@@ -2,1473 +2,1400 @@
   "version": 1,
   "stories": [
     {
-      "id": "trump-unga-speech-iran-cuba-walkout",
-      "label": "Five Takeaways From Trump's Speech to the United Nations",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
+      "id": "trump-rejects-iran-hormuz-seven-day-roadmap",
+      "label": "Where Things Stand After Trump Rejects Iran's Hormuz Proposal",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-trump-unga-speech-iran-cuba-walkout"
+        "2026-09-26-trump-rejects-iran-hormuz-seven-day-roadmap"
       ],
-      "eventUri": "eng-12023767",
-      "summary": "At the 81st UNGA Trump threatened to bring down the governments of Iran and Cuba — prompting both delegations to walk out — while his aides float a meeting with Iranian officials on the war and Tehran's envoy in Moscow denies any talks. Lead with the walkout: a US president using the UN rostrum to promise regime change in two member states. Weigh Dawn/TRT/Al Jazeera readings against the WSJ's 'Golden Age' framing; fold in the Cuba line (Reuters) and the 'super intelligence' AI pitch as secondary beats.",
+      "eventUri": "spa-4355456",
+      "summary": "New development on the Hormuz arc: Trump rejected Iran's seven-day roadmap to reopen the strait and halt fighting, calling it unacceptable while saying Tehran 'wants to make a deal'. Lead with what the offer contained (reopening within a week) and what its rejection means for the shipping and fuel shock already forcing diesel caps and export bans abroad; note China's UNGA speech the same day telling the 'relevant country' to stop threatening Gulf sovereignty. Dateline where it lands: the Strait of Hormuz/Tehran, not Washington.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
         "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/Brazil"
-      ]
-    },
-    {
-      "id": "turkey-turgutlu-school-shooting-11-injured",
-      "label": "Shooting Near High School in Turkey Injures 11",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-turkey-turgutlu-school-shooting-11-injured"
-      ],
-      "eventUri": "eng-12031375",
-      "summary": "A gunman wounded 11 students outside a high school in Turgutlu, Manisa province — months after back-to-back school shootings that educators say signal rising youth violence. The mechanism: how firearms reach minors in Turkey and what Ankara did (or didn't) change after the earlier attacks. Al Jazeera carries the regional read; no Turkish outlet clustered on this event.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Turgutlu",
-        "http://en.wikipedia.org/wiki/Manisa",
-        "http://en.wikipedia.org/wiki/Province",
-        "http://en.wikipedia.org/wiki/Manisa_Province",
-        "http://en.wikipedia.org/wiki/Secondary_school",
-        "http://en.wikipedia.org/wiki/Ministry_of_Justice_(Turkey)",
-        "http://en.wikipedia.org/wiki/Police"
-      ]
-    },
-    {
-      "id": "trump-russia-lost-control-zelensky-un-meeting",
-      "label": "Trump slams Russia, says it has 'lost control'",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-trump-russia-lost-control-zelensky-un-meeting"
-      ],
-      "eventUri": "eng-12028257",
-      "summary": "Trump's rare swipe at Putin — the war is 'ridiculous', Russia has 'lost control' — lands as Russia and Ukraine trade deadly strikes before his UN meeting with Zelensky, and while he presses Kyiv to stop hitting Russian refineries. Lead with the contradiction: rhetorical pressure on Moscow, practical pressure on Kyiv's one lever against Russia's war economy. Separate from the prior Macron energy-truce story: this is the pre-meeting escalation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Moscow"
-      ]
-    },
-    {
-      "id": "nigeria-multiple-fx-windows-3-percent-gdp-cbn",
-      "label": "Multiple FX windows cost Nigeria 3% of GDP - CBN",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nigeria-multiple-fx-windows-3-percent-gdp-cbn"
-      ],
-      "eventUri": "eng-12031117",
-      "summary": "CBN Governor Olayemi Cardoso puts a number on Nigeria's old multiple-exchange-rate regime: losses worth about 3% of GDP. Lead with that figure and explain the mechanism — arbitrage between official and parallel windows that let the connected buy cheap dollars while ordinary Nigerians paid the inflation. Then the new monetary-policy reset and what it means for inflation. No multi-source economy story in today's feed; this is the strongest regional alternative.",
-      "conceptUris": []
-    },
-    {
-      "id": "ecb-mica-stablecoin-yield-ban-lending-staking",
-      "label": "ECB seeks tighter MiCA rules to block indirect stablecoin yields and protect bank deposits",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-ecb-mica-stablecoin-yield-ban-lending-staking"
-      ],
-      "eventUri": "eng-12031983",
-      "summary": "The ECB and national central banks want MiCA's stablecoin yield ban extended to crypto lending and staking, closing the back door platforms use to pay interest — explicitly to stop deposits leaking out of banks. The surprising counter-proposal: replace the 30-60% bank-deposit reserve requirement with liquidity rules. Mechanism: who the rule protects (bank funding) versus who it costs (savers seeking yield).",
-      "conceptUris": []
-    },
-    {
-      "id": "germany-car-industry-protests-job-losses",
-      "label": "Protests for Germany's car industry as job losses loom",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-germany-car-industry-protests-job-losses"
-      ],
-      "eventUri": "deu-2176344",
-      "summary": "Workers are protesting as Germany's car industry — VW, Porsche and suppliers — faces tariffs, Chinese EV competition and a slow electric transition at once. Lead with the scale of jobs at risk and the structural why: an export model built on combustion engines and the Chinese market is losing both. Ties to Merz's record-low polling on the watch list.",
-      "conceptUris": []
-    },
-    {
-      "id": "nepal-loss-and-damage-claim-20m-flood-costs",
-      "label": "Analysis: Nepal’s $20m ‘loss-and-damage’ claim only covers 0.7% of flood costs",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nepal-loss-and-damage-claim-20m-flood-costs"
-      ],
-      "eventUri": null,
-      "summary": "Nepal has asked the UN loss-and-damage fund for $20m after devastating floods — about 0.7% of the estimated cost. Lead with that ratio: the fund built to make polluters pay is so thin that the first claims are symbolic. Mechanism: how the fund is capitalised, who pledged and paid, and what the gap means for every climate-vulnerable state in the Global South.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-national-climate-assessment-scientists-replacement",
-      "label": "Effort begins to fill the void left by terminated US climate report",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-us-national-climate-assessment-scientists-replacement"
-      ],
-      "eventUri": null,
-      "summary": "After the Trump administration defunded the US Global Change Research Program, dismissed hundreds of authors of the National Climate Assessment and took past reports offline, scientific societies (AMS, AGU) are starting an independent replacement. Lead with the accountability gap: a legally mandated assessment killed by budget, rebuilt by volunteers — and what an unofficial report can and cannot do for planners.",
-      "conceptUris": []
-    },
-    {
-      "id": "openai-contractors-fired-using-ai-to-train-ai",
-      "label": "People Training OpenAI’s AI Fired for Using AI to Train the AI",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-openai-contractors-fired-using-ai-to-train-ai"
-      ],
-      "eventUri": null,
-      "summary": "OpenAI relies on thousands of contractors to improve its models — and multiple have been fired for using AI to do the work. Lead with the irony, then the mechanism: human feedback is the scarce input, and model-generated feedback risks training the model on itself (model collapse). Who bears the cost: low-paid contract workers, many in the Global South, held to a standard the company sells its way out of.",
-      "conceptUris": []
-    },
-    {
-      "id": "eviltokens-ai-cybercrime-microsoft-takedown-uk-arrests",
-      "label": "Two arrested in UK after Microsoft takedown of ‘Eviltokens’ AI-chatbot for cybercriminals",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-eviltokens-ai-cybercrime-microsoft-takedown-uk-arrests"
-      ],
-      "eventUri": null,
-      "summary": "EvilTokens sold criminals an AI toolkit on Telegram — $1,500 to join, $500 a month — to compromise accounts, triage breached inboxes and pick the most profitable fraud. Microsoft's takedown led to two UK arrests. Lead with the subscription price: crime-as-a-service now ships with an AI analyst. Mechanism: how a private company's civil action and police work combined.",
-      "conceptUris": []
-    },
-    {
-      "id": "nottingham-nhs-maternity-records-audit-logs-erased",
-      "label": "IT mistake erases 11 years of viewing history for hospitals' maternity records",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nottingham-nhs-maternity-records-audit-logs-erased"
-      ],
-      "eventUri": null,
-      "summary": "An IT 'human error' at Nottingham University Hospitals wiped 11 years of access logs for maternity records — the audit trail of who viewed patient files. This is the trust whose maternity care is the subject of England's largest maternity-failings inquiry, so lead with why the logs matter: they are the evidence of who knew what. Disclosed a month late, in a blog post.",
-      "conceptUris": []
-    },
-    {
-      "id": "adm-160-mald-decoy-wreckage-iran-air-defenses",
-      "label": "ADM-160 Miniature Air Launched Decoy Wreckage A Reminder Of Ongoing Spying On Iran’s Air Defenses",
-      "firstSeen": "2026-09-22T17:05:22.561Z",
-      "lastCovered": "2026-09-22T17:05:22.561Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-adm-160-mald-decoy-wreckage-iran-air-defenses"
-      ],
-      "eventUri": null,
-      "summary": "Wreckage of a US ADM-160 MALD decoy recovered in Iran shows the US and Israel are still probing Iran's battered air defenses — even as Trump talks of meeting Iranian officials at the UN. Lead with the hardware: a cheap decoy that mimics a strike aircraft to make radars light up and reveal themselves. The tech is the tell: the military track is live beneath the diplomatic one.",
-      "conceptUris": []
-    },
-    {
-      "id": "g7-iran-houthis-yemen-saudi-strikes",
-      "label": "G7 ministers urge Iran to halt support for Houthis in Yemen",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-g7-iran-houthis-yemen-saudi-strikes"
-      ],
-      "eventUri": "eng-12030984",
-      "summary": "G7 foreign ministers, meeting on the UNGA sidelines, demanded Iran stop arming the Houthis and condemned Iranian and militia attacks in Iraq on diplomatic sites, energy infrastructure and US forces. Advances the Houthi Red Sea arc (Mocha seized, Bab el-Mandeb coast offensive, strikes on Saudi Arabia, 130,000 displaced): the mechanism is the Western bloc framing Yemen as an Iranian proxy front while Yemeni civilians bear the displacement. Name who is doing the fighting and who is displaced; note the statement carries no enforcement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Canada"
-      ]
-    },
-    {
-      "id": "jamui-bihar-assault-minors-police-encounter",
-      "label": "Masked attacker in Jamui viral clip shot in leg, 3 more held for circulating video",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-jamui-bihar-assault-minors-police-encounter"
-      ],
-      "eventUri": "eng-12028026",
-      "summary": "Two minor school students in Bihar's Jamui district were stopped on 19 September; the girl was sexually assaulted and her friend beaten on camera. Police then shot a masked suspect 'in the leg' — the signature of Bihar/UP-style 'half-encounter' policing that substitutes extrajudicial force for trials — and arrested three people for sharing the video, while a minister's 'sporadic incidents' remark set off a political row. Lead with the victims, then the accountability question on both sides: the attackers and a police force that punishes before courts do.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bihar",
-        "http://en.wikipedia.org/wiki/Jamui_district",
-        "http://en.wikipedia.org/wiki/Social_media",
-        "http://en.wikipedia.org/wiki/Viral_video",
-        "http://en.wikipedia.org/wiki/First_information_report",
-        "http://en.wikipedia.org/wiki/Yadav",
-        "http://en.wikipedia.org/wiki/Minor_(law)",
-        "http://en.wikipedia.org/wiki/Rahul_Gandhi"
-      ]
-    },
-    {
-      "id": "trump-approval-32-record-low-iran-war-cost-of-living",
-      "label": "Trump's approval rating hits record low amid Iran war, economy fallout",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-trump-approval-32-record-low-iran-war-cost-of-living"
-      ],
-      "eventUri": "eng-12030102",
-      "summary": "Reuters/Ipsos puts Trump at 32%, the lowest of his political career, with Republicans souring on cost of living amid the Iran war. The mechanism: the war's price is arriving at the pump (record diesel) and in grocery bills, and that is eroding the president's own base as he heads into UNGA week and Xi's visit. Lead with 32% and the Republican shift; tie it to fuel prices, not horse-race framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Ipsos",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Cost_of_living",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "bangladeshi-migrants-cambodia-scam-compounds-trafficking",
-      "label": "Technology-facilitated trafficking: How Bangladeshi migrants become victims of recruitment in Cambodia",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-bangladeshi-migrants-cambodia-scam-compounds-trafficking"
-      ],
-      "eventUri": null,
-      "summary": "Thousands of Bangladeshis went to Cambodia for promised jobs and landed in cyber-scam compounds; 98% reportedly never got the work they were promised. Same week, Phnom Penh opened a giant former scam compound to journalists (The Diplomat) — touting anti-scam credentials while it remains unclear whether the prominent figures who enabled and profited from the industry will be investigated. Lead with the 98% figure and the recruitment pipeline; the accountability gap is who built and protected the compounds.",
-      "conceptUris": []
-    },
-    {
-      "id": "oil-below-98-saudi-east-west-pipeline-hormuz",
-      "label": "Oil price falls below $98 as Saudi Arabia signals reopening of East-West pipeline",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-oil-below-98-saudi-east-west-pipeline-hormuz"
-      ],
-      "eventUri": "eng-12026438",
-      "summary": "Brent fell more than 2% to below $98, a two-week low, as Saudi Arabia prepared to restart its East-West pipeline to Yanbu and Iran signalled Hormuz could reopen within seven days if the US lifts its port blockade. The mechanism: the pipeline is the Gulf's only large-scale bypass of Hormuz — and Reuters data show commodity vessels crossing the strait fell to just two on Monday from 10. Lead with the bypass: markets are pricing a Red Sea route while the Houthis contest that same coast.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
         "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Brent_Crude"
-      ]
-    },
-    {
-      "id": "us-diesel-record-650-refinery-strikes-crack-spread",
-      "label": "US diesel prices hit record high",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-us-diesel-record-650-refinery-strikes-crack-spread"
-      ],
-      "eventUri": "eng-12026289",
-      "summary": "The US national diesel average topped $6.50 a gallon, an all-time high, even as crude falls. The mechanism is refining, not crude: Ukrainian drone strikes on Russian refineries and Gulf disruption have gutted middle-distillate supply, so the crack spread widens while Brent slides. Lead with the divergence — diesel moves freight and farm machinery, so it is the price that reaches food. Follows the France distillate squeeze story; frame this as the US leg, and cite the Times of India for the Iran/Ukraine supply picture.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Diesel_engine",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Middle_East"
-      ]
-    },
-    {
-      "id": "vietnam-us-reciprocal-trade-deal-to-lam-greer",
-      "label": "Reciprocal Trade Deal With the US Close to Completion, Vietnamese Media Reports",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-vietnam-us-reciprocal-trade-deal-to-lam-greer"
-      ],
-      "eventUri": null,
-      "summary": "Vietnam's top leader To Lam met USTR Jamieson Greer in New York, and Hanoi says a reciprocal trade deal is nearly done. Vietnam is the biggest beneficiary of supply chains leaving China and runs one of the largest surpluses with the US, so the terms — especially any rules on Chinese-origin transshipment — set the template for other Southeast Asian exporters. Frame against Xi's Washington visit this week: Hanoi is locking in its deal before the US-China summit resets the board.",
-      "conceptUris": []
-    },
-    {
-      "id": "jordan-azraq-oasis-groundwater-depletion-farmers",
-      "label": "Water Scarcity in Jordan Is Causing an Agricultural Crisis",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-jordan-azraq-oasis-groundwater-depletion-farmers"
-      ],
-      "eventUri": null,
-      "summary": "In Jordan's Azraq oasis, once a wetland, decades of groundwater pumping (much of it to supply Amman) plus climate change have drawn the aquifer down until farming fails. Jordan is among the most water-scarce countries on earth. The mechanism: an aquifer being mined faster than it recharges, with farmers bearing the cost of urban supply. Lead with the oasis that dried and the farmers leaving.",
-      "conceptUris": []
-    },
-    {
-      "id": "brazil-amazon-deforestation-down-23-percent-fragile",
-      "label": "Brazil has made gains against Amazon deforestation, but lasting protection is a challenge",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-brazil-amazon-deforestation-down-23-percent-fragile"
-      ],
-      "eventUri": null,
-      "summary": "Amazon forest loss fell 23.5% in 2025, helping cut Brazil's national clear-cutting by 21% to the lowest since 2016. The question is durability: the gains rest on enforcement that can be reversed by an election, and Brazil's runoff is tied between Lula and Flávio Bolsonaro. Lead with the numbers, then the mechanism that makes them fragile — policy, not structure, drove the decline.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-mobile-internet-shutdowns-drone-alerts",
-      "label": "Russia's internet shutdowns disrupt warnings about incoming drone attacks",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-russia-mobile-internet-shutdowns-drone-alerts"
-      ],
-      "eventUri": null,
-      "summary": "Moscow throttles mobile internet and cellular service to blind GPS- and cellular-guided Ukrainian drones — and the same shutdowns stop civilians from receiving air-raid alerts. The mechanism is a self-inflicted trade-off: the state's counter-drone tool disables its own early-warning system. Lead with that paradox; tie to Ukraine's long-range refinery campaign (1,600 drones around the Duma vote).",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-isaacman-good-deals-moon-partners-india",
-      "label": "NASA chief: I'm only interested in \"good deals\" from international partners",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-nasa-isaacman-good-deals-moon-partners-india"
-      ],
-      "eventUri": null,
-      "summary": "NASA administrator Jared Isaacman says the agency will be selective about international partners as the Moon race shifts from prestige to competition for lunar south pole real estate and resources. The counterpoint: invited to join, India instead invited the world into its own lunar framework (Lowy Interpreter), weighing its say over the rules. Lead with 'good deals' — space cooperation is becoming transactional, and middle powers are building their own blocs.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-next-gen-submarine-bohai-satellite-imagery",
-      "label": "Chinese Next-Generation Submarine Developments Spotted In New Satellite Imagery",
-      "firstSeen": "2026-09-22T12:04:24.839Z",
-      "lastCovered": "2026-09-22T12:04:24.839Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-china-next-gen-submarine-bohai-satellite-imagery"
-      ],
-      "eventUri": null,
-      "summary": "Commercial satellite imagery of Bohai Shipyard shows a next-generation Chinese submarine taking shape with significant new design features. Two days before Xi's White House visit, the OSINT reveals what the summit will not discuss: China's undersea and nuclear build-up (Inkstick notes the arsenal is expanding fast). Lead with what the imagery shows and how open-source satellite analysis now tracks military programmes in near-real time.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-greenland-denmark-security-deal-sovereignty",
-      "label": "Trump to Sign Deal Tuesday That Leaves Greenland in Danish Hands",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-trump-greenland-denmark-security-deal-sovereignty"
-      ],
-      "eventUri": "eng-12028348",
-      "summary": "After a year of annexation threats, Trump signs a security pact with Denmark and Greenland that expands US military basing but leaves sovereignty with Copenhagen and Nuuk. Lead with what Washington got (bases, access) versus what it demanded (ownership); the mechanism is coercion converted into a basing deal. Note the 57,000 Greenlanders, largely Inuit, whose self-determination was the object of the dispute, and contrast Bloomberg/Reuters framing with RT's.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Greenland",
-        "http://en.wikipedia.org/wiki/Denmark",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
         "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Arctic",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran",
         "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/NATO"
+        "http://en.wikipedia.org/wiki/New_York_City",
+        "http://en.wikipedia.org/wiki/The_Wall_Street_Journal"
       ]
     },
     {
-      "id": "ethiopia-armed-groups-alliance-abiy-fano-ola",
-      "label": "Ethiopian armed groups forge alliance against government",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
+      "id": "dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa",
+      "label": "Deadly blast hits Pakistan's Khyber Pakhtunkhwa",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-ethiopia-armed-groups-alliance-abiy-fano-ola"
+        "2026-09-26-dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa"
       ],
-      "eventUri": "eng-12027630",
-      "summary": "Seven Ethiopian armed groups — spanning Amhara Fano factions, the Oromo Liberation Army and Tigrayan forces — announced a coalition to overthrow Abiy Ahmed and install a transitional government. Lead with the unprecedented cross-ethnic line-up: movements that fought each other in 2020-22 now share one enemy. Explain the stakes for Africa's second most populous country and the Horn, where Sudan's war already sits next door.",
+      "eventUri": "eng-12045214",
+      "summary": "A suicide blast in Dera Ismail Khan killed at least 11 (Rescue 1122; other reports say 13) and wounded about 30, with the TTP reportedly claiming it. Name the victims' town and the checkpoint target, give the toll with its source, and place it in the pattern: the same week families fled militancy operations in Bannu, KP's civilians are caught between TTP attacks and military operations along the Afghan border.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ethiopia",
-        "http://en.wikipedia.org/wiki/Amhara_people",
-        "http://en.wikipedia.org/wiki/Fano",
-        "http://en.wikipedia.org/wiki/Tigray_People's_Liberation_Front",
-        "http://en.wikipedia.org/wiki/Abiy_Ahmed",
-        "http://en.wikipedia.org/wiki/Oromo_Liberation_Army",
-        "http://en.wikipedia.org/wiki/Tigray_Region",
-        "http://en.wikipedia.org/wiki/Addis_Ababa"
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Dera_Ismail_Khan",
+        "http://en.wikipedia.org/wiki/Suicide_attack",
+        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa",
+        "http://en.wikipedia.org/wiki/Pakistani_Taliban",
+        "http://en.wikipedia.org/wiki/Drazanda",
+        "http://en.wikipedia.org/wiki/Afghanistan",
+        "http://en.wikipedia.org/wiki/Security_checkpoint"
       ]
     },
     {
-      "id": "yemen-130000-displaced-iom-red-sea-fighting",
-      "label": "Nearly 130,000 displaced in Yemen amid escalating conflict, IOM says",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-yemen-130000-displaced-iom-red-sea-fighting"
-      ],
-      "eventUri": "eng-12030442",
-      "summary": "The IOM counts nearly 130,000 Yemenis newly displaced as fighting escalates along the Red Sea coast after the Houthi push on Mocha and toward Bab al-Mandab. Lead with the human toll, not the front line: who is fleeing, from which governorates, into what aid capacity. Frame the displacement against the regional war over the strait — Yemenis bear the cost of a chokepoint fight. Use the IOM figures as the factual core; TASS is only the carrier.",
-      "conceptUris": []
-    },
-    {
-      "id": "kp-minister-fazal-shakoor-khan-abducted-pti",
-      "label": "KP minister 'abducted' from Peshawar Motorway, claims PTI",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-kp-minister-fazal-shakoor-khan-abducted-pti"
-      ],
-      "eventUri": null,
-      "summary": "Masked gunmen seized Khyber Pakhtunkhwa's sitting public health engineering minister, Fazal Shakoor Khan, at the Peshawar Motorway exit in daylight; PTI says it is the latest enforced disappearance in the crackdown around its march. Lead with the fact that a serving provincial minister can vanish on a motorway. The mechanism: enforced disappearance as a tool against an opposition-run province. Follow-up to the PTI-march crackdown coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "erdogan-unsc-reform-abolish-veto-unga",
-      "label": "Erdogan calls for UN Security Council reform, urges abolition of veto power",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-erdogan-unsc-reform-abolish-veto-unga"
-      ],
-      "eventUri": "tur-1367941",
-      "summary": "On the eve of his UNGA address, Erdogan laid out a concrete UNSC reform plan: abolish the permanent veto, add elected members and give the General Assembly more power. Lead with the specifics, not the slogan 'the world is bigger than five'. Explain the mechanism that blocks it — Article 108 requires the P5's own consent to amend the Charter — and tie it to the Gaza resolutions the US veto has killed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Recep_Tayyip_Erdoğan",
-        "http://en.wikipedia.org/wiki/United_Nations_Security_Council",
-        "http://en.wikipedia.org/wiki/Veto",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/President_of_the_Republic",
-        "http://en.wikipedia.org/wiki/Bloomberg_L.P."
-      ]
-    },
-    {
-      "id": "south-africa-r1-trillion-online-betting-regulation",
-      "label": "South Africans wagered R1-trillion last year. But who's regulating the betting industry?",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
+      "id": "china-us-30-billion-tariff-cut-ai-safety-channel",
+      "label": "China, US agree to set up channel for AI safety incidents",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-south-africa-r1-trillion-online-betting-regulation"
+        "2026-09-26-china-us-30-billion-tariff-cut-ai-safety-channel"
       ],
-      "eventUri": "eng-12029521",
-      "summary": "South Africans staked more than R1-trillion on gambling last year, and online betting grew fifteenfold from R10bn in 2018 to over R150bn by 2023 — now 60% of the market. Lead with that growth curve. The mechanism: provincial licensing built for casinos and bingo halls cannot police app-based sportsbooks, so a household-debt problem in a high-unemployment economy is scaling with no national regulator.",
-      "conceptUris": []
-    },
-    {
-      "id": "upi-mdr-gst-npci-small-merchants",
-      "label": "NPCI says GST on UPI MDR will not burden small merchants",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-upi-mdr-gst-npci-small-merchants"
-      ],
-      "eventUri": "eng-12027070",
-      "summary": "India's payments operator NPCI is defending the introduction of GST on UPI merchant discount rates, saying 96% of merchant transactions fall under the ₹2,000 zero-MDR threshold. Lead with the shift: the world's largest real-time payment rail, built on zero fees, is starting to carry a cost. The mechanism is who pays for free payments — banks and fintechs have lobbied for MDR for years — and what it signals for the countries copying UPI.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mitteldeutscher_Rundfunk",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(India)",
-        "http://en.wikipedia.org/wiki/National_Payments_Corporation_of_India",
-        "http://en.wikipedia.org/wiki/Nirmala_Sitharaman",
-        "http://en.wikipedia.org/wiki/United_Press_International",
-        "http://en.wikipedia.org/wiki/Lakh"
-      ]
-    },
-    {
-      "id": "novo-nordisk-patent-cliff-semaglutide-investors",
-      "label": "Novo CEO Says Drugmaker Has More to Do to Win Over Investors",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-novo-nordisk-patent-cliff-semaglutide-investors"
-      ],
-      "eventUri": "eng-12029913",
-      "summary": "Novo Nordisk's CEO Mike Doustdar concedes the Ozempic maker 'over-promised' and faces a patent cliff on its biggest drugs early next decade. Lead with the admission. The structural why: semaglutide patents are already expiring in India, China, Brazil and Canada, so generic GLP-1s will reach Global South patients years before Western ones — the same molecule priced by jurisdiction.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Novo_Nordisk",
-        "http://en.wikipedia.org/wiki/Medication",
-        "http://en.wikipedia.org/wiki/Denmark",
-        "http://en.wikipedia.org/wiki/Danish_krone",
-        "http://en.wikipedia.org/wiki/London",
-        "http://en.wikipedia.org/wiki/Obesity",
-        "http://en.wikipedia.org/wiki/Pharmaceutical_industry",
-        "http://en.wikipedia.org/wiki/Diabetes"
-      ]
-    },
-    {
-      "id": "hurricane-polo-category-4-mexico-rapid-intensification",
-      "label": "Tropical Storm Polo forms off southwestern Mexico",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-hurricane-polo-category-4-mexico-rapid-intensification"
-      ],
-      "eventUri": "spa-4349170",
-      "summary": "Polo went from tropical storm to Category 4 hurricane (130 mph) in the eastern Pacific and may reach Category 5 by Wednesday, threatening heavy rain for Guerrero and Michoacán. Lead with the rapid intensification. The science: record-warm Pacific surface waters in a super El Niño year fuel storms faster than forecasts can track, which is what made Otis devastate Acapulco in 2023.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tropical_cyclone",
-        "http://en.wikipedia.org/wiki/Saffir–Simpson_scale",
-        "http://en.wikipedia.org/wiki/Guerrero",
-        "http://en.wikipedia.org/wiki/Pacific_Ocean",
-        "http://en.wikipedia.org/wiki/Mexico",
-        "http://en.wikipedia.org/wiki/Michoacán",
-        "http://en.wikipedia.org/wiki/Servicio_Meteorológico_Nacional_(Mexico)",
-        "http://en.wikipedia.org/wiki/Wind"
-      ]
-    },
-    {
-      "id": "pulsar-x-ray-tail-orphan-gamma-rays-lhaaso",
-      "label": "A 42-light-year X-ray tail links a pulsar to previously 'orphan' gamma rays",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-pulsar-x-ray-tail-orphan-gamma-rays-lhaaso"
-      ],
-      "eventUri": null,
-      "summary": "China's Einstein Probe satellite and the LHAASO observatory traced a 42-light-year X-ray tail behind a pulsar 4,600 light-years away that lines up with ultrahigh-energy gamma rays that had no known source. Lead with the 'orphan' gamma rays finding a parent. The mechanism: particles escaping the pulsar's wind are accelerated to extreme energies, a candidate answer to the century-old question of where cosmic rays come from.",
-      "conceptUris": []
-    },
-    {
-      "id": "alibaba-cloud-20gw-datacenters-in-house-ai-chip",
-      "label": "Alibaba Cloud plans six-year stroll to 20GW of datacenters, reveals chip to power them",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-alibaba-cloud-20gw-datacenters-in-house-ai-chip"
-      ],
-      "eventUri": "eng-12030932",
-      "summary": "Alibaba CEO Eddie Wu set a 20GW datacenter target by about 2032 and unveiled an in-house chip to fill it. Lead with the scale — 20GW is roughly the output of 20 nuclear reactors. The structural why: US export controls on Nvidia forced China's hyperscalers to design their own silicon, and Alibaba is now betting its capacity build on domestic chips, two days before Xi meets Trump in Washington.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Alibaba_Group",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Hangzhou",
-        "http://en.wikipedia.org/wiki/Wu_Chinese",
-        "http://en.wikipedia.org/wiki/Cloud_computing"
-      ]
-    },
-    {
-      "id": "coldcard-hack-whitehats-52-bitcoin-recovery-trust",
-      "label": "Whitehats move 52 bitcoin from the Coldcard hack to a recovery trust",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-coldcard-hack-whitehats-52-bitcoin-recovery-trust"
-      ],
-      "eventUri": null,
-      "summary": "Ethical hackers have swept 52.37 BTC out of wallets exposed by July's Coldcard hardware-wallet flaw into a recovery trust, racing attackers to the same keys. Lead with the paradox: rescue works only because the keys were already guessable. The mechanism is weak random number generation in a device sold as the gold standard of self-custody — a lesson in trusting hardware you cannot audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "how-ai-chatbots-are-deskilling-human-empathy",
-      "label": "How AI Chatbots Are 'Deskilling' Human Empathy",
-      "firstSeen": "2026-09-22T08:06:43.111Z",
-      "lastCovered": "2026-09-22T08:06:43.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-how-ai-chatbots-are-deskilling-human-empathy"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Sherry Turkle's latest book, Artificial Intimacy: Who We Become When We Talk to Machines, comes out on September 29.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-refuel-saudi-jets-houthi-yemen",
-      "label": "UK to refuel Saudi jets to help counter Houthi attacks",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-uk-refuel-saudi-jets-houthi-yemen"
-      ],
-      "eventUri": "eng-12030469",
-      "summary": "Prime Minister Andy Burnham has committed British tankers to refuel Saudi jets striking the Houthis, which puts the UK back inside a Yemen air war whose 2015-2022 round killed thousands of civilians. Lead with the mechanism: aerial refuelling is what lets Saudi aircraft reach deep into Yemen, so 'limited support' is what makes the campaign possible. Connect it to the Houthi seizure of Mocha and the fight over the Bab el-Mandeb coast, and to Pakistan's hedged position under the Mecca Pact. Name who will bear the cost: Yemeni civilians under a renewed bombing campaign.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Aerial_refueling",
-        "http://en.wikipedia.org/wiki/Andy_Burnham",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom"
-      ]
-    },
-    {
-      "id": "china-expels-zhang-youxia-liu-zhenli-pla-purge",
-      "label": "China expels two top 'disloyal' military leaders from Communist Party",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-china-expels-zhang-youxia-liu-zhenli-pla-purge"
-      ],
-      "eventUri": "eng-12028881",
-      "summary": "Zhang Youxia was Xi Jinping's second-in-command on the Central Military Commission, and he and Liu Zhenli, chief of the Joint Staff, have now been expelled from the party and the army for 'disloyalty' and corruption. Lead with how far up the purge now reaches: the uniformed top of the CMC has effectively been emptied. The structural point is that loyalty to Xi, not operational command, is now the test for PLA leadership. The timing matters too, two days before Xi's Washington visit and amid US-China talks on tariffs and export controls.",
+      "eventUri": "eng-12044976",
+      "summary": "Beijing announced the summit's concrete output: a $30 billion reciprocal tariff-reduction package plus a US-China channel for reporting AI safety incidents. Lead with the $30bn and which goods it covers; then the AI channel as the first bilateral mechanism of its kind, set against the AOL report that there was no broader AI agreement. Watch item from the audit: whether trade pledges are tied to Taiwan/Iran security conditions.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Chinese_Communist_Party",
-        "http://en.wikipedia.org/wiki/Central_Military_Commission_(China)",
-        "http://en.wikipedia.org/wiki/Zhang_Youxia",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
         "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Corruption",
-        "http://en.wikipedia.org/wiki/Liu_Zhenli_(general)",
-        "http://en.wikipedia.org/wiki/Xinhua_News_Agency"
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Beijing"
       ]
     },
     {
-      "id": "uk-first-rwanda-genocide-charge-bajinya",
-      "label": "UK prosecutors charge first person for Rwanda genocide",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "lavrov-wadephul-russia-germany-first-talks-since-2022",
+      "label": "At UN, Russia and Germany's top diplomats hold first talks since 2022",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-uk-first-rwanda-genocide-charge-bajinya"
+        "2026-09-26-lavrov-wadephul-russia-germany-first-talks-since-2022"
       ],
-      "eventUri": "eng-12029849",
-      "summary": "After a seven-year investigation, UK prosecutors have charged Vincent Brown (formerly Vincent Bajinya), a 65-year-old doctor, the first time anyone has been charged in Britain over the 1994 genocide of the Tutsi. Lead with the 32-year gap. Bajinya was one of the suspects British courts refused to extradite to Rwanda, so for years Britain neither tried them nor sent them back. The mechanism is universal jurisdiction, which has been slow and grudging in the UK compared with France and Belgium. That makes this charge a test of whether Britain will actually prosecute atrocity crimes committed abroad.",
+      "eventUri": "deu-2179413",
+      "summary": "Lavrov and Germany's Johann Wadephul met on the UNGA sidelines, the first Russia–Germany foreign-minister talks since before the 2022 invasion. Lead with the break in a four-year freeze by Europe's largest economy and what each side said was discussed; context: Putin's denial of plans for a European conflict and the US proposal for trilateral talks in the UAE.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Rwanda",
-        "http://en.wikipedia.org/wiki/Genocide",
-        "http://en.wikipedia.org/wiki/Rwandan_genocide",
-        "http://en.wikipedia.org/wiki/Murder",
-        "http://en.wikipedia.org/wiki/Tutsi",
-        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
-        "http://en.wikipedia.org/wiki/London"
+        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/New_York_City",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
+        "http://en.wikipedia.org/wiki/Foreign_minister"
       ]
     },
     {
-      "id": "trump-tv-white-house-media-ban-network-boycott",
-      "label": "White House launches 24/7 'Trump TV' amid media ban, draws just 8,000 viewers",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "zelensky-patriot-production-refused-uae-trilateral-talks",
+      "label": "A week of mixed results for Volodymyr Zelensky",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-trump-tv-white-house-media-ban-network-boycott"
+        "2026-09-26-zelensky-patriot-production-refused-uae-trilateral-talks"
       ],
-      "eventUri": "eng-12025546",
-      "summary": "Trump barred CNN, MS NOW and Politico from the White House. US networks responded by effectively boycotting his coverage, and the three outlets went to court. The White House then launched its own 24/7 stream, which drew about 8,000 viewers. Lead with that sequence: the state is trying to replace the press it has shut out with its own broadcaster. The accountability point is that access to the head of state is being handed out on the basis of loyalty. The lawsuit is the next thing to watch.",
-      "conceptUris": []
-    },
-    {
-      "id": "lula-flavio-bolsonaro-tied-brazil-runoff-polls",
-      "label": "Lula and Bolsonaro statistically tied in potential Brazil runoff, polls suggest",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-lula-flavio-bolsonaro-tied-brazil-runoff-polls"
-      ],
-      "eventUri": "eng-12028648",
-      "summary": "Two polls, Quaest and BTG Pactual/Nexus, show Lula and Flávio Bolsonaro, the former president's son, within one point of each other in a possible runoff. Weeks before Brazil votes, the Bolsonaro movement has carried its support over to a family member even though the father himself is barred from running. Lead with the dynastic transfer. The stakes are the Global South's largest democracy, its BRICS posture and its Amazon policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "macron-trump-ukraine-russia-energy-truce",
-      "label": "Macron says he discussed Ukraine-Russia energy truce ideas with Trump",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-22-macron-trump-ukraine-russia-energy-truce"
-      ],
-      "eventUri": "rus-2128494",
-      "summary": "Macron and Trump discussed an energy truce, meaning a mutual halt to strikes on refineries and power grids, plus interceptor supplies for Ukraine. This comes days after a Ukrainian drone strike took out the Moscow refinery that supplies 40% of the city's fuel. Lead with the economic trade: Kyiv's long-range refinery campaign is its most effective pressure on Russian revenue, and Washington now wants it traded away. Show how the three sources frame it: TASS stresses the 'constructive' talks, Kyiv Independent stresses air defence. The next event is Trump's meeting with Zelensky at the UN.",
+      "eventUri": "fra-1347632",
+      "summary": "Zelensky left the UNGA with a US proposal for trilateral Russia–Ukraine–US talks in the UAE, but Trump declined to let Ukraine manufacture Patriot missiles, and Zelensky says he urged Trump to enlist China. Lead with the Patriot refusal — Ukraine's air defence stays dependent on US supply while Russian strikes shut Kryvyi Rih's steelworks. Dateline Kyiv.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
         "http://en.wikipedia.org/wiki/Ukraine",
         "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/United_States"
+        "http://en.wikipedia.org/wiki/MIM-104_Patriot",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Missile"
       ]
     },
     {
-      "id": "dangote-refinery-nigeria-fuel-self-sufficiency",
-      "label": "Aliko Dangote: Refining Nigeria's oil, helping Africa, and creating wealth",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "belfast-court-halts-orange-order-garvaghy-road-march",
+      "label": "Northern Irish court temporarily stops Orange Order march through Catholic area",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-belfast-court-halts-orange-order-garvaghy-road-march"
+      ],
+      "eventUri": "eng-12041751",
+      "summary": "Belfast's High Court granted Garvaghy Road residents a temporary injunction against Sunday's Orange Order parade, after the Parades Commission overturned a near-30-year ban on the Drumcree route. Lead with the residents' challenge succeeding within a day of the march; the mechanism is who decides contested parades — the commission or the courts — on the route that caused the 1990s Drumcree standoffs.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Orange_Order",
+        "http://en.wikipedia.org/wiki/Parades_Commission",
+        "http://en.wikipedia.org/wiki/Portadown",
+        "http://en.wikipedia.org/wiki/Irish_nationalism",
+        "http://en.wikipedia.org/wiki/Drumcree_conflict",
+        "http://en.wikipedia.org/wiki/Drumcree_Church",
+        "http://en.wikipedia.org/wiki/Northern_Ireland",
+        "http://en.wikipedia.org/wiki/Garvaghy_(civil_parish)"
+      ]
+    },
+    {
+      "id": "yemen-houthis-count-1059-saudi-strikes-marib",
+      "label": "Yemen releases latest statement on no. of Saudi aristrikes",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-yemen-houthis-count-1059-saudi-strikes-marib"
+      ],
+      "eventUri": null,
+      "summary": "The Houthi-run Yemeni Armed Forces' spokesman Yahya Saree says Saudi airstrikes and missile attacks have reached 1,059 since the latest escalation, focused around Marib. State-media, party-claim sourcing: attribute throughout ('Iran's Mehr News Agency, citing the Houthi military spokesman, reported…'), do not state the count as fact. Context: renewed Saudi–Houthi war after Houthi drones on Riyadh and Houthi gains near Bab al-Mandab; the cost falls on Yemeni civilians already in the world's worst humanitarian crisis.",
+      "conceptUris": []
+    },
+    {
+      "id": "khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti",
+      "label": "Naqvi assails PTI's 'version of equality before law' after KP IG told to ensure speaker's approval for any MPA's arrest",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti"
+      ],
+      "eventUri": "eng-12045259",
+      "summary": "Khyber Pakhtunkhwa's assembly told its police chief that no MPA may be arrested without the speaker's prior approval; Interior Minister Mohsin Naqvi called it PTI's 'version of equality before law'. The same day CM Sohail Afridi offered dialogue but warned a federal 'misadventure' could reach a point of no return as PTI prepares nationwide protests. Lead with the arrest-immunity order as the mechanism: a province using legislative privilege to shield its lawmakers from federal policing.",
+      "conceptUris": []
+    },
+    {
+      "id": "kraken-payward-financial-infrastructure-no-ipo",
+      "label": "Kraken's parent Payward is building a financial empire that goes far beyond crypto trading",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-dangote-refinery-nigeria-fuel-self-sufficiency"
+        "2026-09-26-kraken-payward-financial-infrastructure-no-ipo"
       ],
-      "eventUri": "eng-12027583",
-      "summary": "Nigeria is Africa's largest crude producer, yet for decades it imported almost all of its fuel. The Dangote refinery is the attempt to break that pattern, and its owner is now talking about an IPO. Lead with the structural paradox of exporting crude and importing refined fuel. Then explain what one privately owned mega-refinery changes: fuel imports, foreign exchange, and the power of one billionaire over a national energy supply. With Hormuz disrupted and diesel at record highs, African refining capacity is now a strategic question. Report the facts, not the interview's promotional framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Aliko_Dangote",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Nigeria",
-        "http://en.wikipedia.org/wiki/Initial_public_offering",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Dangote_Refinery",
-        "http://en.wikipedia.org/wiki/Africa",
-        "http://en.wikipedia.org/wiki/Shareholder"
-      ]
+      "eventUri": null,
+      "summary": "Payward, Kraken's Wyoming-based parent, has spent two years buying banking, derivatives and futures businesses and says it is profitable with no rush to IPO. Lead with the acquisitions and what they add up to: a crypto exchange becoming regulated financial infrastructure outside the bank charter system — and what that means for who supervises it.",
+      "conceptUris": []
     },
     {
-      "id": "uk-nats-air-traffic-outage-second-in-two-weeks",
-      "label": "UK hit by new air traffic outage, cancelling flights",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "county-championship-somerset-build-big-lead-against-surrey",
+      "label": "County Championship: Somerset build big lead against Surrey",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-uk-nats-air-traffic-outage-second-in-two-weeks"
+        "2026-09-26-county-championship-somerset-build-big-lead-against-surrey"
       ],
-      "eventUri": "eng-12028336",
-      "summary": "NATS, the UK's partly privatised air traffic control provider, had its second technical outage in two weeks and flights were cancelled again. On the same day, a single cut telecom line grounded the US Northeast. Lead with the pattern: two of the world's busiest air traffic systems failed within days of each other because of single points of failure. The structural point is under-investment in aging systems run by a regulated monopoly, with the costs pushed onto airlines and passengers.",
+      "eventUri": null,
+      "summary": "[Auto-backfill for economy floor] Rothesay County Championship, Division One, Cooper Associates County Ground, Taunton (day three)\n\nSurrey 422: Lawrence 139, Sibley 72, Foakes 64; Leach 4-91, Gregory 3-85\n\nSomerset 691-8: Abell 284*, Lammonby 229, Pretorius 72*; Lomror 4-196\n\nSomerset (5 pts) lead Surrey (4 pts) by 269 runs with two",
+      "conceptUris": []
+    },
+    {
+      "id": "resolving-temporal-threat-uncertainty-by-observational-learn",
+      "label": "Resolving temporal threat uncertainty by observational learning involves the amygdala, hippocampus and anterior insula - Translational Psychiatry",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-resolving-temporal-threat-uncertainty-by-observational-learn"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] We're sharing this article early to provide faster access to peer-reviewed, accepted research. It is citable and carries a permanent DOI. This version is subject to further edits and will be replaced automatically by the final Version of Record. All legal disclaimers apply.\n\nBy observing others' exp",
+      "conceptUris": []
+    },
+    {
+      "id": "cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi",
+      "label": "Cymru Premier: Bumper crowd see Penybont victory and Flint finally win",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Penybont came from behind to beat Airbus UK Broughton in front of a crowd of 2,666 to keep their unbeaten start going.\n\nThe bumper crowd of over 2,500 is the biggest attendance at a Cymru Premier game for 22 years, and the fourth highest in league history.\n\nThey were treated to an entertaining game ",
+      "conceptUris": []
+    },
+    {
+      "id": "shinty-big-wins-for-top-two-light-up-premiership-title-race",
+      "label": "Shinty: Big wins for top two light up Premiership title race",
+      "firstSeen": "2026-09-26T18:05:05.426Z",
+      "lastCovered": "2026-09-26T18:05:05.426Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-shinty-big-wins-for-top-two-light-up-premiership-title-race"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Both Newtonmore and Kingussie recorded thumping 7-0 victories as the Mowi Premiership title race looks set to go down to goal difference.\n\nA penalty from Steven MacDonald and a goal from Conor Jones gave leaders Newtonmore an early 2-0 lead against bottom side Kyles Athletic, before Struan Ross grab",
+      "conceptUris": []
+    },
+    {
+      "id": "ceuta-migrant-crisis-madrid-protest-morocco",
+      "label": "Thousands take to the streets in Madrid over Ceuta migrant crisis",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-ceuta-migrant-crisis-madrid-protest-morocco"
+      ],
+      "eventUri": "spa-4356667",
+      "summary": "Thousands of people remain stranded in Ceuta in a worsening humanitarian situation (Al Jazeera), while the PP and Vox march in Madrid against the government. The detail to explain is that Morocco says it will take migrants back, yet Spain has not returned them. The people stuck in the enclave are the story, and Spain's domestic fight is being waged over them. Show how Morocco's control of the border works as leverage over Madrid.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/NATS_Holdings",
-        "http://en.wikipedia.org/wiki/Air_traffic_control",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Scotland",
-        "http://en.wikipedia.org/wiki/Prestwick",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Manchester",
-        "http://en.wikipedia.org/wiki/Glasgow"
+        "http://en.wikipedia.org/wiki/Ceuta",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Madrid",
+        "http://en.wikipedia.org/wiki/Morocco",
+        "http://en.wikipedia.org/wiki/People's_Party_(Spain)",
+        "http://en.wikipedia.org/wiki/Vox_(political_party)",
+        "http://en.wikipedia.org/wiki/Human_migration",
+        "http://en.wikipedia.org/wiki/April_2019_Spanish_general_election"
       ]
     },
     {
-      "id": "measles-americas-record-world-cup-vaccination",
-      "label": "Measles vaccine push urged in Americas after World Cup",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "india-sir-electoral-roll-revision-vote-theft-karnataka",
+      "label": "DK Shivakumar calls EC BJP's puppet, accuses poll panel of vote theft in SIR",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-india-sir-electoral-roll-revision-vote-theft-karnataka"
+      ],
+      "eventUri": "eng-12041411",
+      "summary": "India's Special Intensive Revision (SIR) of electoral rolls has become a fight over who gets to vote. Karnataka's chief minister accuses the Election Commission of 'vote theft' for the BJP, and Priyanka Gandhi is demanding the chief election commissioner resign and the commission's legal safeguards be removed. Explain how a roll revision can remove voters, who holds the burden of proof, and why the dissent reportedly reaches inside the commission. This is a structural story about the world's largest electorate.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
+        "http://en.wikipedia.org/wiki/Indian_National_Congress",
+        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
+        "http://en.wikipedia.org/wiki/Electoral_roll",
+        "http://en.wikipedia.org/wiki/Democracy",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/The_Indian_Express"
+      ]
+    },
+    {
+      "id": "drc-military-plane-crash-kenge-kwango",
+      "label": "Plane crash in DR Congo kills more than a dozen",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-drc-military-plane-crash-kenge-kwango"
+      ],
+      "eventUri": "eng-12043744",
+      "summary": "A Congolese military aircraft came down in a residential area of Kenge, the capital of Kwango province, killing at least 13 to 14 people. Lead with the civilians on the ground. Give the cause as far as the sources establish it, and set the crash against the DRC military's ageing air fleet and its safety record. Dateline Kenge.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Kenge,_Kwango",
+        "http://en.wikipedia.org/wiki/Lieutenant_general",
+        "http://en.wikipedia.org/wiki/Kinshasa",
+        "http://en.wikipedia.org/wiki/Armed_Forces_of_the_Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Kikwit",
+        "http://en.wikipedia.org/wiki/Kwango",
+        "http://en.wikipedia.org/wiki/Aviation_accidents_and_incidents"
+      ]
+    },
+    {
+      "id": "nigerians-repatriated-south-africa-xenophobia",
+      "label": "Xenophobia: 105 more Nigerians repatriated from South Africa",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-nigerians-repatriated-south-africa-xenophobia"
+      ],
+      "eventUri": "eng-12041664",
+      "summary": "About 1,640 Nigerians have been evacuated from South Africa since xenophobic attacks on Black foreigners began in April, and 105 more landed on Saturday. The people evacuated are the story. Lead with the running total and the six months it covers. Explain that the attacks continue while two major African economies manage the problem with airlifts rather than accountability. Dateline Lagos.",
+      "conceptUris": []
+    },
+    {
+      "id": "italy-truckers-strike-diesel-greece-fuel-subsidy",
+      "label": "Italian truck drivers threaten strike over soaring diesel prices",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-italy-truckers-strike-diesel-greece-fuel-subsidy"
+      ],
+      "eventUri": "deu-2177253",
+      "summary": "This advances the Eni diesel-cap story. Italy's cap has not calmed hauliers, whose truckers now threaten to strike, and Greece is adding a fuel subsidy for the first 15 days of October while the Philippines sees a diesel rollback. Lead with the strike threat, then show how the Hormuz oil shock is turning into a series of fiscal patches, each written for two weeks at a time. Do not repeat the price-cap mechanism that was already covered.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Euro",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Motor_fuel",
+        "http://en.wikipedia.org/wiki/Eni",
+        "http://en.wikipedia.org/wiki/Bundestag",
+        "http://en.wikipedia.org/wiki/Excise",
+        "http://en.wikipedia.org/wiki/Diesel_engine"
+      ]
+    },
+    {
+      "id": "binance-circle-usdc-tether-emerging-markets",
+      "label": "Binance's $100M Circle (CRCL) deal boosts USDC in stablecoin race with Tether, analysts say",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-binance-circle-usdc-tether-emerging-markets"
+      ],
+      "eventUri": null,
+      "summary": "Binance's expanded $100M deal with Circle could push USDC into emerging markets where Tether dominates. Frame this as a contest over which private dollar reaches savers in countries with weak currencies. Name the mechanism: exchange distribution deals decide which stablecoin people in Lagos or Karachi actually hold. Note the counterweight that Tether keeps its local liquidity and habits of use.",
+      "conceptUris": []
+    },
+    {
+      "id": "argentina-poverty-rate-32-percent",
+      "label": "Iran pushes 7-day plan to end war; Saudi calls on regional pact for defense; Argentina's poverty rate climbs to over 32%",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-argentina-poverty-rate-32-percent"
+      ],
+      "eventUri": null,
+      "summary": "Use only the Argentina item from this roundup: the poverty rate has risen to over 32%. Explain the mechanism, meaning which adjustment measures and price moves pushed households back below the line, and who is falling. Dateline Buenos Aires. This gives the cycle a Latin America economy story.",
+      "conceptUris": []
+    },
+    {
+      "id": "bitget-hack-xrp-cannot-freeze",
+      "label": "Crypto exchange Bitget pauses withdrawals after $350 million stolen in hack",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-bitget-hack-xrp-cannot-freeze"
+      ],
+      "eventUri": "eng-12042398",
+      "summary": "Bitget lost about $350-388M in unauthorised transfers and froze customer withdrawals. The technical detail to lead with comes from CoinDesk: the hacker has already moved $83M in stolen XRP, and another $75M sits in wallets that Ripple cannot freeze under the network's current rules. The piece explains the gap between 'user funds are safe' and code-level custody. Mention possible North Korea links only if a source attributes them.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bitget",
+        "http://en.wikipedia.org/wiki/Security_hacker",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Cryptocurrency_wallet",
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Blockchain",
+        "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+        "http://en.wikipedia.org/wiki/Cryptocurrency"
+      ]
+    },
+    {
+      "id": "ai-generated-song-evidence-murder-trial",
+      "label": "AI Love Song for Mistress Played at Murder Trial Is Most Excruciating Watch in Recent Memory",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-ai-generated-song-evidence-murder-trial"
+      ],
+      "eventUri": null,
+      "summary": "AI-generated songs a defendant, Caleb Flynn, made for his mistress were played to a jury as evidence in his murder trial. The angle is that generative-AI output has become courtroom evidence of intent and state of mind. Explain what prosecutors used the songs to argue and why this sets a pattern for how such material is admitted. Keep the tone sober rather than lurid.",
+      "conceptUris": []
+    },
+    {
+      "id": "world-of-warcraft-mod-blocks-asmongold-fans-moderation",
+      "label": "This 'World of Warcraft: Forever' Mod Blocks All Interactions With Asmongold Fans",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-world-of-warcraft-mod-blocks-asmongold-fans-moderation"
+      ],
+      "eventUri": null,
+      "summary": "Players built a mod that silences a streamer's followers, who were flooding World of Warcraft's public spaces with slurs, because Blizzard's own moderation had not stopped them. The mechanism is user-built, client-side moderation filling a platform's enforcement gap. Explain how it works and what it shows about who actually polices online spaces.",
+      "conceptUris": []
+    },
+    {
+      "id": "malawi-copper-ingots-kipushi-lead-isotopes",
+      "label": "Lead isotopes trace Malawi's mysterious copper ingot hoard to Congo's Kipushi mine",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-measles-americas-record-world-cup-vaccination"
+        "2026-09-26-malawi-copper-ingots-kipushi-lead-isotopes"
       ],
       "eventUri": null,
-      "summary": "The Americas are reporting record measles levels. Vaccination coverage is falling, and the World Cup moved millions of people across borders at the worst possible time. Lead with the reversal: this is the region that was declared measles-free in 2016. Explain the epidemiology: about 95% coverage is needed for herd immunity, and a mass gathering spreads cases into communities where coverage is below that threshold. Name who bears the cost, which is children in low-coverage countries across Latin America.",
+      "summary": "A Malawian farmer found eight buried copper ingots in 1967. Lead-isotope analysis now traces the metal to the Kipushi mine in Congo, about 800 km away. Lead with the distance. The method is the finding: an isotopic fingerprint proves long-distance precolonial African trade networks that no written record describes. Dateline Malawi.",
       "conceptUris": []
     },
     {
-      "id": "karachi-41c-september-heat-record",
-      "label": "Mercury soars to 41°C in Karachi",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "human-animal-chimeras-organs-brain-exclusion",
+      "label": "Engineering Animals to Grow Human Organs — But Not Human Minds",
+      "firstSeen": "2026-09-26T14:07:02.975Z",
+      "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-karachi-41c-september-heat-record"
+        "2026-09-26-human-animal-chimeras-organs-brain-exclusion"
       ],
       "eventUri": null,
-      "summary": "Karachi reached 41°C on Monday, its hottest September day in a decade, with humidity high enough to make the heat dangerous for a city of 20 million. Lead with the number. Then give the mechanism: humid heat is more lethal than dry heat because sweat stops cooling the body, and this comes as a record 'super El Niño' pushes up sea surface temperatures. Name who is exposed: outdoor workers and residents of informal settlements who live with frequent power cuts. Karachi's 2015 heatwave killed more than 1,200 people.",
+      "summary": "Researchers are building human–animal chimeras as a possible source of organs for transplant, and they are trying to engineer the animals so that human cells stay out of the brain. Explain that mechanism and the current state of the science, including Jun Wu's lab. The ethical line being drawn is about the organ shortage against the moral status of the animal. Report the research, not the essay's opinions.",
       "conceptUris": []
     },
     {
-      "id": "20-countries-global-ai-oversight-body-un",
-      "label": "20 countries propose global oversight body to manage AI dangers",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "houthi-drones-riyadh-intercepted-mecca-pact-test",
+      "label": "Saudi coalition intercepts Houthi drones bound for Riyadh",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
+      "category": "politics",
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-22-20-countries-global-ai-oversight-body-un"
+        "2026-09-26-houthi-drones-riyadh-intercepted-mecca-pact-test"
       ],
-      "eventUri": "spa-4350145",
-      "summary": "Twenty countries and the EU, including Germany, South Africa, Canada, Australia, Norway and Singapore, are calling for a global body to set and enforce standards to keep AI under human control. Lead with who is missing: the two countries that build the frontier models, the US and China, appear not to be among them. The structural question is whether rules can bind AI labs whose home governments refuse to sign. This comes as AI models are already being used in military targeting.",
+      "eventUri": "tur-1369413",
+      "summary": "New development in the Houthi–Saudi arc: the Saudi-led coalition says it intercepted drones and missiles headed for the capital, Riyadh, not just shipping or Red Sea oil sites. The Houthis declared a naval blockade of Saudi Arabia in July. Lead with the target moving to the capital. The structural question is SCMP's: the attacks test the Saudi–Pakistan–Turkey 'Mecca' regional security pact, and whether Islamabad and Ankara will act on it. Name Yemen's civilians, who absorb the coalition's retaliation. GEO TV is the regional voice.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/President_of_the_European_Commission",
-        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
-        "http://en.wikipedia.org/wiki/Norway",
-        "http://en.wikipedia.org/wiki/Singapore",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Technology"
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Mecca",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
       ]
     },
     {
-      "id": "googlebook-android-chromeos-merger-laptops",
-      "label": "Googlebook Arrives As The Upmarket Chromebook",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
+      "id": "us-army-reserve-southcom-cuba-groundwork",
+      "label": "U.S. military lays groundwork for potential action around Cuba",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
+      "category": "politics",
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-googlebook-android-chromeos-merger-laptops"
+        "2026-09-26-us-army-reserve-southcom-cuba-groundwork"
       ],
-      "eventUri": "eng-12029096",
-      "summary": "Googlebook, the product of the 'Aluminium OS' project, merges Android and ChromeOS into a single laptop platform starting at $899, with Acer, Asus, HP and Lenovo building the machines. Lead with the platform consolidation: Google is folding ChromeOS into Android and moving from cheap school laptops into the premium market held by Windows and macOS. The stakes for developers are one app target across phones and PCs. The stakes for users are that more of the PC market runs through Google's accounts, app store and AI.",
+      "eventUri": "spa-4355941",
+      "summary": "An internal Army message, reviewed by CBS News, asks whether the Army Reserve can supply Southern Command with military police, medical staff and support units within four months. Lead with the logistics: these are occupation and stabilisation units, not strike assets. It follows Trump's UNGA attacks on Cuba and the deadly armed incursion from Florida on 09-23. The people exposed are 11 million Cubans already living through blackouts and shortages under the embargo. Dateline Havana: this is US policy that would land in Cuba.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Laptop",
-        "http://en.wikipedia.org/wiki/Android_(operating_system)",
-        "http://en.wikipedia.org/wiki/Acer_Inc.",
-        "http://en.wikipedia.org/wiki/Asus",
-        "http://en.wikipedia.org/wiki/Hewlett-Packard",
-        "http://en.wikipedia.org/wiki/Lenovo",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
+        "http://en.wikipedia.org/wiki/Cuba",
+        "http://en.wikipedia.org/wiki/United_States_Army",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/CBS_News",
+        "http://en.wikipedia.org/wiki/Military_affairs",
+        "http://en.wikipedia.org/wiki/Battalion",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/CBS"
       ]
     },
     {
-      "id": "xai-grok-4-7-release",
-      "label": "Grok 4.7",
-      "firstSeen": "2026-09-22T04:06:29.908Z",
-      "lastCovered": "2026-09-22T04:06:29.908Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-xai-grok-4-7-release"
-      ],
-      "eventUri": null,
-      "summary": "xAI has released Grok 4.7, and the launch drew 522 points and 442 comments on Hacker News. Lead with the one concrete capability, benchmark or pricing change that sets it apart from competing frontier models, taken from xAI's own announcement. Treat xAI's claims as claims: say which benchmarks xAI chose and what developers on Hacker News pushed back on. The structural point is the pace of frontier releases and the fact that xAI's models ship straight into X, with its hundreds of millions of users.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-gaza-militia-compounds-yellow-line",
-      "label": "Israel Is Expanding and Upgrading Compounds for Palestinian Militias in Gaza",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
+      "id": "saudi-nuclear-weapons-us-intelligence-civil-deal",
+      "label": "Saudi Arabia 'has not ruled out' developing nuclear weapons - WaPo",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-israel-gaza-militia-compounds-yellow-line"
+        "2026-09-26-saudi-nuclear-weapons-us-intelligence-civil-deal"
       ],
-      "eventUri": null,
-      "summary": "At least five Israeli-backed Palestinian militias now operate from compounds next to Israeli military bases east of Gaza's 'yellow line', and Israel is expanding and upgrading those compounds. Lead with the number of militias and where the compounds sit. The mechanism is occupation by proxy: Israel keeps control of the ground while armed Palestinian groups police the population for it, during a ceasefire under which killings continue. Name who arms and houses these groups. No regional outlet in the feed covered this, so it is Drop Site only.",
-      "conceptUris": []
+      "eventUri": "eng-12043996",
+      "summary": "A classified US intelligence assessment, first reported by The Washington Post and carried here by RT, says Riyadh has not ruled out building nuclear weapons. That has raised concern in Congress about Trump's civilian nuclear deal with Saudi Arabia, specifically whether it allows domestic uranium enrichment. The mechanism is that a civil 123 agreement without enrichment safeguards gives a state a route to a bomb. Attribute the assessment to the Post's reporting, and note that the only feed source is Russian state broadcaster RT. With a nuclear Israel and Iran's programme at war, this is a proliferation cascade question.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Nuclear_weapon",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/The_Washington_Post",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Nuclear_power"
+      ]
     },
     {
-      "id": "pakistan-hospitals-mass-casualty-pti-march-crackdown",
-      "label": "Pakistan Tells Hospitals To Clear Bed Space For \"Mass Casualty Incident\" Ahead of Major Protest",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
+      "id": "putin-denies-europe-conflict-plans-ukraine-talks",
+      "label": "Putin says Russia not preparing for 'any kind' of conflict with Europe, weighs Ukraine talks",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-pakistan-hospitals-mass-casualty-pti-march-crackdown"
+        "2026-09-26-putin-denies-europe-conflict-plans-ukraine-talks"
       ],
-      "eventUri": null,
-      "summary": "Ahead of the PTI march planned for September 27, Pakistani authorities told hospitals to clear beds for a 'mass casualty incident'. Imran Khan's sisters, other relatives and party leaders were pulled from their homes. Lead with the hospital order: the state is preparing for casualties before a single protester has marched. The mechanism is pre-emptive repression under military-backed rule. This continues the Gandapur torture-claim and DI Khan rally-attack story. No Dawn or Geo coverage of the hospital order appeared in the feed, which is a regional-source gap worth recording.",
-      "conceptUris": []
+      "eventUri": "eng-12043648",
+      "summary": "Putin rejected European warnings that Moscow could target NATO territory, saying Russia has 'no real motive' to escalate, and he raised the possibility of Ukraine talks. This answers Macron's 09-25 warning about 300,000 mobilised troops and the CIA's container-ship drone report. Lead with the gap between his words and the week's facts: the Kyiv office-building strike and the ongoing drone war on refineries. Say what a denial like this is worth, and name the concrete conditions he attaches to any talks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Saint_Petersburg",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+      ]
     },
     {
-      "id": "eu-russia-sanctions-renewal-deadline-unanimity",
-      "label": "EU continues talks on renewal of Russia sanctions, diplomats say",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
+      "id": "eu-peace-facility-6-6-billion-ukraine-hungary-veto",
+      "label": "EU to release US$7.5 billion linked to Ukraine military aid",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
+      "category": "economy",
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-eu-russia-sanctions-renewal-deadline-unanimity"
+        "2026-09-26-eu-peace-facility-6-6-billion-ukraine-hungary-veto"
       ],
-      "eventUri": "rus-2128478",
-      "summary": "EU ambassadors could not agree on renewing sanctions against nearly 3,000 Russia-linked people and entities. The measures expire within hours of the 8 a.m. talks on September 22. Lead with the deadline. Explain the unanimity mechanism: one capital, here Slovakia, can let the whole list lapse, and holdouts are trading their veto for delistings of named oligarchs such as Usmanov and Fridman. Say what happens to asset freezes if the list does lapse, even briefly.",
+      "eventUri": "rus-2130880",
+      "summary": "EU states agreed to release €6.6bn from the European Peace Facility. Hungary had blocked it for months. It arrives as Ukraine's Ministry of Defence faces a budget shortfall that threatens drone deliveries, with a $27bn deficit cited. Lead with the money unblocked. The mechanism is that one member's veto froze an off-budget fund, and the EU found a way around it. Say who funds Ukraine's war now that US aid has thinned, and what €6.6bn buys set against the gap.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Alisher_Usmanov",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Mikhail_Fridman",
-        "http://en.wikipedia.org/wiki/Slovakia",
-        "http://en.wikipedia.org/wiki/International_sanctions_during_the_Russo-Ukrainian_War",
-        "http://en.wikipedia.org/wiki/Ukraine"
-      ]
-    },
-    {
-      "id": "moscow-refinery-drone-strike-fuel-outage",
-      "label": "Moscow oil refinery supplying 40% of city's fuel catches fire after drone attack",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-moscow-refinery-drone-strike-fuel-outage"
-      ],
-      "eventUri": "spa-4348579",
-      "summary": "A Ukrainian drone hit the AVT-6 crude unit at the Kapotnya refinery on the last day of the Duma election. The refinery supplies about 40% of Moscow's fuel, processing has stopped, and repairs could take weeks. Lead with the 40% figure and the weeks-long outage. The mechanism: a strike on one primary distillation unit takes the whole plant offline, which feeds into Russia's domestic fuel squeeze and export bans. The Duma vote was covered separately, so keep this on fuel supply and the economics of the refinery campaign.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Euro",
         "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Sergey_Sobyanin",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Governor"
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Kaja_Kallas",
+        "http://en.wikipedia.org/wiki/Kiev"
       ]
     },
     {
-      "id": "cut-telecom-line-faa-ground-stop-northeast",
-      "label": "FAA halts flights to major US East Coast airports amid outage",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
+      "id": "azerbaijan-investment-forum-middle-corridor-free-zones",
+      "label": "Baku's week of F1 racing, global security, and record investments",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-cut-telecom-line-faa-ground-stop-northeast"
+        "2026-09-26-azerbaijan-investment-forum-middle-corridor-free-zones"
       ],
-      "eventUri": "eng-12029471",
-      "summary": "An Amtrak construction crew in New Jersey accidentally cut a telecom line. The FAA then imposed ground stops at New York-area airports, and delays spread across the Northeast as far as Boston. Lead with the single cut cable. The mechanism is that air-traffic control depends on a handful of leased telecom circuits with no working redundancy. The same day, a NATS failure cancelled at least 227 UK flights, so two national systems failed together. Next: FAA modernisation funding and the cost to airlines.",
+      "eventUri": "eng-12036468",
+      "summary": "Azerbaijan's second International Investment Forum pitched free economic zones and industrial parks as the way to tie Baku into regional value chains along the Middle Corridor, the Caspian route Europe and China now use to bypass Russia and a Hormuz closed by war. Lead with the specific investment figures and the zones, not the forum. Say who gains from rerouted trade, and use Armenia's NEWS.am coverage for the South Caucasus counterweight. Treat the promotional framing with scepticism: separate signed commitments from announced ones.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Federal_Aviation_Administration",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Philadelphia",
-        "http://en.wikipedia.org/wiki/Newark,_New_Jersey",
-        "http://en.wikipedia.org/wiki/Air_traffic_control",
-        "http://en.wikipedia.org/wiki/LaGuardia_Airport",
-        "http://en.wikipedia.org/wiki/New_Jersey",
-        "http://en.wikipedia.org/wiki/East_Coast_of_the_United_States"
-      ]
-    },
-    {
-      "id": "saudi-ceer-ev-launch-pif-foxconn",
-      "label": "Saudi Arabia wants a car industry, launches Ceer with two EVs",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-saudi-ceer-ev-launch-pif-foxconn"
-      ],
-      "eventUri": "eng-12030224",
-      "summary": "Saudi Arabia has never had a domestic carmaker. Ceer, a joint venture between the Public Investment Fund and Foxconn, has now launched two EVs from King Abdullah Economic City. Lead with that first. The mechanism: PIF money buys Foxconn's contract-manufacturing platform, and the kingdom tries to turn oil revenue into industrial jobs under Vision 2030. Test the claim with what share of each car is actually built in Saudi Arabia, the production targets, and how far PIF's own finances are stretched. No Arab News or other Gulf outlet covered the launch in the feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "egypt-maspero-debt-for-assets-swap",
-      "label": "What is left of Maspero after national broadcaster's debt-for-assets swap?",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-egypt-maspero-debt-for-assets-swap"
-      ],
-      "eventUri": null,
-      "summary": "Egypt's state broadcaster Maspero has cleared debts it has been piling up since the 1980s by handing over assets. Lead with who now owns what the public broadcaster gave up. The mechanism is a debt-for-assets swap: state property moves to creditor bodies, often vehicles linked to the state or the military, without going through a budget vote. Place it in Egypt's wider sale of state assets under its IMF programme and ask what is left of public media.",
-      "conceptUris": []
-    },
-    {
-      "id": "super-el-nino-record-sea-surface-temperature",
-      "label": "Analysis: 'Super El Niño' reaches 'remarkable' all-time record",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-super-el-nino-record-sea-surface-temperature"
-      ],
-      "eventUri": null,
-      "summary": "Tropical Pacific sea-surface temperatures have now equalled the all-time El Niño record. Lead with the size of the anomaly against 1997-98 and 2015-16. Explain the mechanism: a strong El Niño on top of a warming baseline raises global temperatures and moves rainfall. Name who bears the cost: drought in southern Africa, Indonesia and Australia, a weaker Indian monsoon, flooding in Peru and Ecuador, and food prices across the Global South. Next: whether it peaks this winter and what that means for a 2027 temperature record.",
-      "conceptUris": []
-    },
-    {
-      "id": "transposons-jumping-genes-evolution-partners",
-      "label": "How Virus-like 'Jumping Genes' Became Our Partners in Evolution",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-transposons-jumping-genes-evolution-partners"
-      ],
-      "eventUri": null,
-      "summary": "Half of the human genome is transposons, stretches of DNA that copy themselves and move around. They were long written off as parasites or junk. Lead with the half-the-genome figure. Explain the mechanism: host genomes suppress these elements and then repurpose them, and some became gene-regulatory switches and even proteins essential to the placenta and immune system. The idea to leave with: evolution works by domesticating its invaders.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-irish-dpc-403m-location-data-fine",
-      "label": "EU data regulator fines Google more than $460 million for location data violations",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-google-irish-dpc-403m-location-data-fine"
-      ],
-      "eventUri": null,
-      "summary": "Ireland's Data Protection Commission is fining Google more than €403m ($462m) over how it processed location data. The inquiry opened in early 2020. Lead with the amount and the six years it took. Explain the mechanism: under the GDPR one-stop-shop, Ireland is lead regulator for most US tech firms, and its slow pace has been criticised for years. Say what Google did with location history and what the ruling orders it to change, beyond the fine.",
-      "conceptUris": []
-    },
-    {
-      "id": "british-columbia-sues-openai-tumbler-ridge",
-      "label": "British Columbia Sues OpenAI Over Tumbler Ridge Shooting",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-british-columbia-sues-openai-tumbler-ridge"
-      ],
-      "eventUri": "eng-12030128",
-      "summary": "British Columbia has sued OpenAI in US federal court. The province says the Tumbler Ridge school shooting 'could have been prevented' if OpenAI had reported the violent concerns its own staff raised internally to police. Lead with a government, not a family, suing an AI company for failing to warn. The mechanism is a novel legal duty: whether a chatbot provider that sees threats in user conversations has an obligation to act on them. Weigh the tension with user privacy and ask what precedent a win would set.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-muse-flaw-amazon-blocks-ai-shopping-agent",
-      "label": "Amazon kicks out Meta's Muse in split over AI shopping",
-      "firstSeen": "2026-09-21T22:03:12.751Z",
-      "lastCovered": "2026-09-21T22:03:12.751Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-meta-muse-flaw-amazon-blocks-ai-shopping-agent"
-      ],
-      "eventUri": "eng-12027105",
-      "summary": "Meta's Muse assistant app launched this month as a secure product built on 'Muse Secure VM'. Within weeks, a flaw was found that lets local malware redirect users' dictation traffic, and Amazon blocked Muse from shopping on its platform. Lead with the gap between the security claims and the flaw. The mechanism: agentic AI assistants need wide access to a device and to other platforms, and whoever owns the storefront decides whether an agent can buy there. This is the first big fight over which AI agents get to act on users' behalf.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Muse_(band)",
+        "http://en.wikipedia.org/wiki/Azerbaijan",
+        "http://en.wikipedia.org/wiki/Baku",
+        "http://en.wikipedia.org/wiki/Azerbaijan_International",
+        "http://en.wikipedia.org/wiki/Ilham_Aliyev",
         "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/Amazon_(company)",
-        "http://en.wikipedia.org/wiki/Mobile_app",
-        "http://en.wikipedia.org/wiki/ChatGPT",
-        "http://en.wikipedia.org/wiki/App_Store_(iOS/iPadOS)",
-        "http://en.wikipedia.org/wiki/Apple_Inc."
+        "http://en.wikipedia.org/wiki/Transcaucasia",
+        "http://en.wikipedia.org/wiki/Logistics",
+        "http://en.wikipedia.org/wiki/Tourism"
       ]
     },
     {
-      "id": "us-belarus-potash-deal-canada-trade-fight",
-      "label": "US preparing 'massive' potash deal with Belarus, Trump says",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "solana-alpenglow-150ms-settlement-testnet",
+      "label": "Solana's 150-millisecond settlement upgrade reaches second public test network",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
       "coverageCount": 1,
       "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-solana-alpenglow-150ms-settlement-testnet"
+      ],
+      "eventUri": "eng-12034914",
+      "summary": "Solana's Alpenglow consensus upgrade, which aims to finalise payments in about 150 milliseconds against roughly 12 seconds today, has reached its second public test network. Lead with the settlement-time gap against card networks and against bank settlement (T+1). The stakes: sub-second finality is what stablecoin payment rails need to compete with Visa. Be plain that there is no mainnet date and the target has not held under live load.",
+      "conceptUris": []
+    },
+    {
+      "id": "latvia-anduril-barracuda-cruise-missile-long-range-strike",
+      "label": "Latvia To Order Anduril's Barracuda Cruise Missile For Long-Range Strike Capability",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-latvia-anduril-barracuda-cruise-missile-long-range-strike"
+      ],
+      "eventUri": null,
+      "summary": "Latvia will buy Anduril's Barracuda, a low-cost, mass-producible cruise missile, to give Riga long-range precision strike for the first time. Lead with the cost model: software-first defence startups are selling 'attritable' missiles built like consumer electronics, and NATO's eastern flank is buying them in quantity rather than a few exquisite Tomahawks. Name the range and what it puts in reach inside Russia, and who profits: a Silicon Valley firm now sits in NATO's deterrence chain. Dateline Riga.",
+      "conceptUris": []
+    },
+    {
+      "id": "shielded-bitcoin-zcash-privacy-no-fork",
+      "label": "Inside the 'Shielded Bitcoin' paper that proposes private BTC payments using Zcash tech",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-shielded-bitcoin-zcash-privacy-no-fork"
+      ],
+      "eventUri": "eng-12042699",
+      "summary": "Researchers propose adding Zcash-style zero-knowledge 'shielded' payments to Bitcoin without changing its consensus rules. Lead with that: privacy without a fork. Explain the mechanism in one line (zk-SNARK proofs hide sender, receiver and amount), then the trade-offs critics name: visible fees, higher costs, and a trusted setup ceremony, which reintroduces trust into a trustless system. Stakes: Bitcoin's public ledger is how chain-analysis firms and states trace users, so private BTC would collide with AML regimes. No launch date.",
+      "conceptUris": []
+    },
+    {
+      "id": "blackbeard-hypersonic-super-hornet-first-flight",
+      "label": "Blackbeard Hypersonic Missile Seen Flying On F/A-18 Super Hornet For The First Time",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-blackbeard-hypersonic-super-hornet-first-flight"
+      ],
+      "eventUri": null,
+      "summary": "The US Navy's Blackbeard hypersonic missile, Castelion's cheap and fast-to-produce standoff weapon, has been seen flying on an F/A-18 Super Hornet for the first time. The Navy wants it in service by 2028. Lead with the cost shift: hypersonics had been multi-million-dollar boutique weapons, and Blackbeard is built for volume, like Barracuda. In context, the US is at war with Iran and has depleted munitions stocks, so a cheap hypersonic changes the stockpile arithmetic. Keep this distinct from the Latvia/Anduril pick: that one is about the buyer, this one about the weapon.",
+      "conceptUris": []
+    },
+    {
+      "id": "bangkok-disaster-zone-flooding-subsidence",
+      "label": "Bangkok declares city disaster zone after heavy flooding",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-bangkok-disaster-zone-flooding-subsidence"
+      ],
+      "eventUri": "eng-12044598",
+      "summary": "Bangkok's governor, Chadchart Sittipunt, declared the entire capital a disaster zone after overnight rain flooded roads and forced thousands from their homes, with more rain forecast. Lead with the whole-city declaration. The science: Bangkok sits about 1.5m above sea level and sinks 1-2cm a year from groundwater extraction, so its canal drainage cannot clear intense rainfall. Name who is hit first: informal canal-side communities. Asia-Pacific coverage has been thin for four days. Dawn and Al Jazeera give regional voices.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bangkok",
+        "http://en.wikipedia.org/wiki/Thailand",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/Canal",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/District",
+        "http://en.wikipedia.org/wiki/Chadchart_Sittipunt",
+        "http://en.wikipedia.org/wiki/Rain"
+      ]
+    },
+    {
+      "id": "athens-plaka-building-explosion-gas-link",
+      "label": "Deadly blast rips through Athens building, near Acropolis",
+      "firstSeen": "2026-09-26T10:05:26.866Z",
+      "lastCovered": "2026-09-26T10:05:26.866Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-athens-plaka-building-explosion-gas-link"
+      ],
+      "eventUri": "eng-12041760",
+      "summary": "An explosion brought down a residential building in Plaka, below the Acropolis. One woman is dead and five people are missing. Investigators are examining a possible link to gas infrastructure. Lead with the toll and the missing. The mechanism: ageing urban gas networks in dense historic districts, where how the gas leaked and built up determines whether a building collapses. Report what investigators have established, and do not speculate beyond the gas lead. TRT World gives a regional voice.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Athens",
+        "http://en.wikipedia.org/wiki/Plaka",
+        "http://en.wikipedia.org/wiki/Acropolis",
+        "http://en.wikipedia.org/wiki/Greece",
+        "http://en.wikipedia.org/wiki/Firefighter",
+        "http://en.wikipedia.org/wiki/Fire_department",
+        "http://en.wikipedia.org/wiki/Acropolis_of_Athens",
+        "http://en.wikipedia.org/wiki/Tourism"
+      ]
+    },
+    {
+      "id": "iraq-all-airports-halt-iran-flights-us-sanctions",
+      "label": "3 Iraqi airports suspend flights from Iran",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-iraq-all-airports-halt-iran-flights-us-sanctions"
+      ],
+      "eventUri": "eng-12042220",
+      "summary": "Erbil and Sulaimaniya joined Baghdad and Najaf, so all four Iraqi airports have now halted flights to and from Iran. Al Jazeera ties the halt to new US aviation sanctions. Lead with the scope: every Iraqi airport, including the Najaf gateway used by Shia pilgrims. The mechanism is secondary sanctions: Washington does not need to ban anything in Iraq itself, because the risk of losing access to US-linked aircraft, parts and dollar clearing makes Iraqi authorities do it. Name who bears the cost (pilgrims, traders, families across the border) and note that this happens while Iran's 7-day ceasefire proposal is still awaiting a US response.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Najaf",
+        "http://en.wikipedia.org/wiki/Baghdad",
+        "http://en.wikipedia.org/wiki/United_States_sanctions_against_Iran",
+        "http://en.wikipedia.org/wiki/Shia_Islam",
+        "http://en.wikipedia.org/wiki/Airport",
+        "http://en.wikipedia.org/wiki/Economic_sanctions"
+      ]
+    },
+    {
+      "id": "kyiv-drone-strike-office-building-five-killed",
+      "label": "Fatalities in Russian Drone Attack on Office Building in Kyiv",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-kyiv-drone-strike-office-building-five-killed"
+      ],
+      "eventUri": "eng-12038373",
+      "summary": "Russian attacks on Kyiv on 25 September killed five people, among them a teenage boy, and injured 43, according to Mayor Klitschko. A drone hit an office building. On the same day Putin told journalists that every peace proposal remained 'on the table' and accused Ukraine of attacking Russian polling stations. Lead with the dead and injured, and put Putin's words beside them as the counterpoint: the talk of settlement and the strikes on a capital are happening at the same moment. Credit the casualty figures to Kyiv city officials.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Russian_language",
+        "http://en.wikipedia.org/wiki/Vitali_Klitschko",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Mayor_of_Kyiv",
+        "http://en.wikipedia.org/wiki/Solomianskyi_District",
+        "http://en.wikipedia.org/wiki/Strike_action"
+      ]
+    },
+    {
+      "id": "bannu-hathikhel-families-flee-militancy-operations",
+      "label": "'Rising militancy' drives relocation of families in Bannu's semi-tribal areas",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-bannu-hathikhel-families-flee-militancy-operations"
+      ],
+      "eventUri": null,
+      "summary": "Families in the mountainous Hathikhel area of Bannu, Khyber Pakhtunkhwa, are leaving their homes. They are caught between militants who impose restrictions on them and repeated state security operations. Lead with the residents: elders say both sides are forcing people out, and the land and farms they leave behind are their livelihood. The structural point is that displacement in Pakistan's former tribal belt happens quietly, family by family, with no camp and no count. Link it to the wider KP/Balochistan violence and the Afghan front (Balochistan, 33 killed, covered recently) without repeating that story.",
+      "conceptUris": []
+    },
+    {
+      "id": "imf-pakistan-174-legislative-changes-fourth-review",
+      "label": "IMF Tightens Screws On Pakistan, Seeks 174 Legislative Changes Under $7 Bn Programme | Exclusive",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-imf-pakistan-174-legislative-changes-fourth-review"
+      ],
+      "eventUri": "eng-12042069",
+      "summary": "As Pakistan heads into the fourth review of its $7bn IMF programme, it faces having to put as many as 174 legislative amendments before Parliament. Lead with the number: an external lender is effectively drafting a legislative calendar. The structural why is conditionality creep, as covering privatisation, tax and governance law moves the programme from fiscal targets into sovereignty over lawmaking. This is an Indian outlet's 'exclusive' about Pakistan, so the writer should attribute the claim carefully and look for Dawn or Express Tribune confirmation during the page fetch.",
+      "conceptUris": []
+    },
+    {
+      "id": "ilsky-refinery-drone-strike-krasnodar-diesel",
+      "label": "Drone attack reportedly hits Russia's Ilsky oil refinery, sparks fire",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-ilsky-refinery-drone-strike-krasnodar-diesel"
+      ],
+      "eventUri": "rus-2130604",
+      "summary": "Overnight on 26 September a drone attack hit the Ilsky refinery in Krasnodar Krai, and footage and local reports show a large fire. Frame it economically: Ukraine's long-range campaign against Russian refining is taking capacity offline at a moment when the Iran war has already caused a diesel shock, with a US export ban and an Italian price cap both recently covered. Lead with the facility and the fire, then the mechanism, which is that refined-product supply tightens faster than crude supply. Say 'reportedly' until damage is confirmed. The feed's concept tags also mention Novoshakhtinsk/Rostov, so check whether more than one site was hit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Rostov_Oblast",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Novoshakhtinsk",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://ru.wikipedia.org/wiki/Новошахтинский_завод_нефтепродуктов",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Ulyanovsk"
+      ]
+    },
+    {
+      "id": "southern-africa-green-iron-steel-namibia-zimbabwe",
+      "label": "Can Southern African nations build greener industry together?",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-southern-africa-green-iron-steel-namibia-zimbabwe"
+      ],
+      "eventUri": null,
+      "summary": "Namibia, South Africa and Zimbabwe hold iron ore and renewable potential, and each could make green iron and steel instead of exporting raw ore. Lead with the value-chain gap: ore leaves the region and finished steel returns. The mechanism is that green hydrogen or renewable-powered direct reduction lets them process at home, but only if they share grid, water and port infrastructure across borders. Treat African states as the actors deciding industrial policy, not as suppliers to Europe's decarbonisation.",
+      "conceptUris": []
+    },
+    {
+      "id": "tiktok-alabama-100m-settlement-teen-limits",
+      "label": "TikTok to pay Alabama $100m and limit teenage use in first state settlement",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-tiktok-alabama-100m-settlement-teen-limits"
+      ],
+      "eventUri": "eng-12042359",
+      "summary": "TikTok settled with Alabama days before a trial over claims that it misled parents about its child-safety tools. It will pay at least $100m and apply daily time limits, filter controls and account-privacy defaults for teenagers. Lead with what makes it a precedent: this is the first state settlement, and it forces changes at the platform level rather than only a payment, so it becomes the template for dozens of pending state suits. The mechanism is that consumer-deception law, not child-safety law, is what reached product design.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/TikTok",
+        "http://en.wikipedia.org/wiki/Alabama",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/ByteDance",
+        "http://en.wikipedia.org/wiki/Social_media",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Mental_health",
+        "http://en.wikipedia.org/wiki/Montgomery,_Alabama"
+      ]
+    },
+    {
+      "id": "kiteworks-shutdown-federal-threat-warning",
+      "label": "Kiteworks urges customers to stop using platform after warning from federal intelligence agencies",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-kiteworks-shutdown-federal-threat-warning"
+      ],
+      "eventUri": null,
+      "summary": "Kiteworks, a secure file-sharing vendor whose customers include governments and regulated industries, told customers to stop using its platform after 'credible threat intelligence from federal intelligence authorities' that an actor may target their systems. Lead with the unusual step: a security vendor telling customers to switch off its own product before any breach is confirmed. The mechanism is the managed-file-transfer class of software (MOVEit, Accellion, which Kiteworks grew out of), where a single flaw exposes thousands of organisations at once. Readers who run infrastructure will understand the blast radius.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-two-tier-encryption-investigatory-powers",
+      "label": "Two-tier encryption in the UK",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-uk-two-tier-encryption-investigatory-powers"
+      ],
+      "eventUri": null,
+      "summary": "This analysis, discussed widely on Hacker News (502 points, 461 comments), sets out how UK users now get weaker encryption than users elsewhere, because platforms withdraw or degrade end-to-end features under the Investigatory Powers Act and Online Safety Act rather than build backdoors. Lead with the concrete two-tier outcome: the same product, with different security depending on the user's country. The mechanism is that states can force a backdoor without legislating one by making strong encryption commercially unviable in their market. It is an accountability story about state power over private communication.",
+      "conceptUris": []
+    },
+    {
+      "id": "phage-library-antibiotic-resistance",
+      "label": "A 'library' of bacteria-killing viruses: Harnessing the power of phages",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-phage-library-antibiotic-resistance"
+      ],
+      "eventUri": null,
+      "summary": "Researchers are building a characterised library of bacteriophages, the viruses that kill specific bacteria, as a ready-made arsenal against antibiotic-resistant infections. Lead with the practical shift: a phage library lets doctors match a patient's resistant strain to a known phage within days, instead of hunting for one after the patient is already dying. The global stake is antimicrobial resistance, which kills most heavily in South Asia and sub-Saharan Africa, and phages are cheap enough to matter there. The writer should confirm the institution and the size of the library from the page.",
+      "conceptUris": []
+    },
+    {
+      "id": "holographic-gravity-space-emergent",
+      "label": "Gravity Seems Holographic. What Does That Mean for Reality?",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-holographic-gravity-space-emergent"
+      ],
+      "eventUri": null,
+      "summary": "Holography is the idea that a theory of gravity in a volume of space is fully equivalent to a gravity-free quantum theory on its boundary. Physicists call it the biggest breakthrough in modern theoretical physics, yet they still do not agree on what it implies. Lead with the counterintuitive claim that gravity can 'collapse' a dimension of space. Explain the mechanism (AdS/CFT, black-hole entropy scaling with area, not volume), then give the open question: whether space itself is emergent. This is primary theoretical science, which the audit found almost absent from recent cycles.",
+      "conceptUris": []
+    },
+    {
+      "id": "supreme-court-save-citizenship-database-voter-rolls-midterms",
+      "label": "Mass freakout as Supreme Court unleashes 'chaos' on elections weeks before midterms",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-supreme-court-save-citizenship-database-voter-rolls-midterms"
+      ],
+      "eventUri": "eng-12043269",
+      "summary": "In an unsigned emergency order, the Supreme Court lifted a lower-court block on DHS's overhauled SAVE citizenship database, letting states run voter rolls against it weeks before the midterms. Lead with who gets flagged: naturalised citizens and anyone whose Social Security and immigration records disagree, with little time to contest a purge before voting. Mechanism: an emergency-docket order with no reasoning, deciding election rules through the shadow docket rather than a merits ruling.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Citizenship",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Homeland_Security",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Systematic_Alien_Verification_for_Entitlements",
+        "http://en.wikipedia.org/wiki/Immigration"
+      ]
+    },
+    {
+      "id": "kazakhstan-caspian-toll-14-conscripts-officers-detained",
+      "label": "14 Kazakh military personnel killed during naval exercise, five naval officers detained",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-kazakhstan-caspian-toll-14-conscripts-officers-detained"
+      ],
+      "eventUri": "eng-12038831",
+      "summary": "Material new development on the story covered earlier today (2026-09-25-kazakhstan-nine-servicemen-drown-caspian-exercise): the toll has risen from 9 to 14 of 17 servicemen swept into the Caspian, most of them conscripts, and five naval officers have been detained on suspicion of negligence. Lead with the revised toll and the arrests; the accountability question is who ordered conscripts into the water in those conditions. Do not repeat the first article's framing — this is the follow-up.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kazakhstan",
+        "http://en.wikipedia.org/wiki/Caspian_Sea",
+        "http://en.wikipedia.org/wiki/Mangystau_Region",
+        "http://en.wikipedia.org/wiki/Ministry_of_Defence_(Russia)",
+        "http://en.wikipedia.org/wiki/Kassym-Jomart_Tokayev",
+        "http://en.wikipedia.org/wiki/Military_exercise",
+        "http://en.wikipedia.org/wiki/National_day_of_mourning",
+        "http://en.wikipedia.org/wiki/Soldier"
+      ]
+    },
+    {
+      "id": "araghchi-un-gulf-states-bases-responsibility-iran-war",
+      "label": "Middle East states helping attack Iran bear direct responsibility -- Araghchi",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-araghchi-un-gulf-states-bases-responsibility-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "At the UN General Assembly, Iranian FM Abbas Araghchi said regional states that opened their territory, bases, airspace and intelligence infrastructure to the US-Israeli campaign bear 'direct responsibility', and put Iran's death toll above 5,000. The new element is the charge against Gulf hosts of US bases — a legal framing (complicity in aggression) with consequences for the Saudi-proposed regional defence pact. State-media only: attribute as 'Russian state news agency TASS reported' and present the toll as Araghchi's claim, not fact. No Iranian or Gulf regional outlet in the feed carried the speech.",
+      "conceptUris": []
+    },
+    {
+      "id": "eni-diesel-price-cap-italy-oil-shock",
+      "label": "Eni sets price cap of €2.19 for diesel, €1.99 for petrol",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-eni-diesel-price-cap-italy-oil-shock"
+      ],
+      "eventUri": "ita-949618",
+      "summary": "Italy's partly state-owned Eni is capping pump prices at its Enilive stations for 30 days, extendable to year-end — a company, not a government, rationing its own margin as Brent sits near $107 after Houthi missiles at Saudi Arabia and stalled US-Iran talks. Lead with the cap figures, then the mechanism: diesel is where the Hormuz shock bites hardest (UK diesel over £2, India's daily pump prices, Pakistan per Dawn). Ask who absorbs the cost Eni forgoes, and whether independent retailers can match it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Euro",
+        "http://en.wikipedia.org/wiki/Motor_fuel",
+        "http://en.wikipedia.org/wiki/Eni",
+        "http://en.wikipedia.org/wiki/Excise",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Diesel_engine"
+      ]
+    },
+    {
+      "id": "bolivia-record-coca-third-year-global-cocaine-demand",
+      "label": "Record Coca Crops in Bolivia Feed a Growing Global Cocaine Demand",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-bolivia-record-coca-third-year-global-cocaine-demand"
+      ],
+      "eventUri": null,
+      "summary": "Bolivia's coca cultivation hit a record for the third straight year, and the growth is outrunning the legal coca-leaf market — the surplus is going to global cocaine demand. Lead with the number and the gap between legal market size and hectares planted. Structural why: demand-side growth in Europe and new markets, not a Bolivian policy change, drives Andean supply; this lands days after Washington kept Bolivia on its drug blacklist while dropping Venezuela, which InSight Crime frames as politics over enforcement.",
+      "conceptUris": []
+    },
+    {
+      "id": "sixth-circuit-kalshi-sports-contracts-not-swaps-state-gaming",
+      "label": "Another appeals court rules against prediction market provider Kalshi, says sports contracts are subject to state regulations",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-sixth-circuit-kalshi-sports-contracts-not-swaps-state-gaming"
+      ],
+      "eventUri": "eng-12044039",
+      "summary": "The Sixth Circuit ruled Kalshi's sports event contracts are not swaps, so states can regulate them as gambling rather than leaving them to the CFTC. Lead with the stakes: the 'it's a derivative, not a bet' theory underpinning the prediction-market boom is losing appeal after appeal, setting up a Supreme Court fight. Tie to the enforcement-and-policy convergence the audit is watching (New York v Polymarket, the failed Clarity Act).",
+      "conceptUris": []
+    },
+    {
+      "id": "dc-circuit-upholds-anthropic-supply-chain-risk-blacklist",
+      "label": "Court rules Trump can blacklist Anthropic for refusing to enable Claude features",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-dc-circuit-upholds-anthropic-supply-chain-risk-blacklist"
+      ],
+      "eventUri": "eng-12043530",
+      "summary": "In a 2-1 ruling, the DC Circuit upheld the administration's designation of Anthropic as a supply-chain risk for withholding certain AI features from government use, even while accepting the company had no malicious intent. Lead with that holding: refusing a capability is now grounds for blacklisting. Mechanism and precedent: the supply-chain-risk authority, built for hostile foreign vendors, is being used to compel a domestic AI firm, and the dissent's reasoning matters for every vendor that sets usage limits. Report straight; do not editorialise on the company.",
+      "conceptUris": []
+    },
+    {
+      "id": "google-ads-scareware-tech-support-scam-freezes-screens",
+      "label": "Google ads caught delivering convincing scareware ads to unsuspecting users",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-google-ads-scareware-tech-support-scam-freezes-screens"
+      ],
+      "eventUri": null,
+      "summary": "Researchers found Google's ad network serving a tech-support scam that freezes Windows and Mac screens and pushes victims to call a fake support line, displayed across high-traffic sites including maps. Lead with the delivery channel: the scam didn't need a malicious site — Google's own ad pipeline placed it on legitimate ones. Accountability angle: the platform profits from placement and screens after the fact; victims skew elderly.",
+      "conceptUris": []
+    },
+    {
+      "id": "dutch-government-nixos-microsoft-alternative-sovereignty",
+      "label": "Dutch governments builds alternative for Microsoft based on NixOS",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-dutch-government-nixos-microsoft-alternative-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "Dutch government bodies are building a NixOS-based workplace stack as an alternative to Microsoft — digital sovereignty moving from speeches to a reproducible Linux build. Lead with what it replaces and who runs it; the mechanism for developer readers is NixOS's declarative, reproducible configuration, which makes a government-wide desktop auditable. Why it matters: European dependence on US cloud vendors under a US administration willing to weaponise supply-chain designations (see today's Anthropic ruling). 915 points on HN.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-workers-refuse-training-optimus-robot-replacements",
+      "label": "Tesla workers balk at training Optimus humanoid robots as replacements",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-tesla-workers-refuse-training-optimus-robot-replacements"
+      ],
+      "eventUri": "eng-12043071",
+      "summary": "Tesla's pivot to Optimus humanoids is stalling on two fronts: dexterous robot hands that won't scale, and factory workers refusing to generate the teleoperation and demonstration data that would train their replacements. Lead with the labour detail — the robots learn from the people they are meant to displace, which gives those workers leverage. Structural why: Musk has bet the company's valuation on AI and robotics while car sales slide.",
+      "conceptUris": []
+    },
+    {
+      "id": "belgian-luvmi-rover-blue-origin-blue-moon-europe-first",
+      "label": "European Lunar Rover Secures Spot Aboard Blue Origin Blue Moon Mission",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-belgian-luvmi-rover-blue-origin-blue-moon-europe-first"
+      ],
+      "eventUri": null,
+      "summary": "Belgium's Space Applications Services has booked its LUVMI-M rover on a Blue Origin Blue Moon Mark 1 lander, set to be Europe's first fully commercial lunar rover mission. Lead with the dependency: Europe's first rover on the Moon rides an American private lander, not an ESA vehicle. Mechanism: publicly funded development, privately bought launch — the model by which Europe buys lunar access it cannot yet build. Distinct from Italy's lunar-habitat deal covered 09-23.",
+      "conceptUris": []
+    },
+    {
+      "id": "toxoplasma-parasite-remodels-host-cell-before-invasion",
+      "label": "Breaking and entering: How parasites prepare host cells for invasion",
+      "firstSeen": "2026-09-25T22:07:48.373Z",
+      "lastCovered": "2026-09-25T22:07:48.373Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-toxoplasma-parasite-remodels-host-cell-before-invasion"
+      ],
+      "eventUri": null,
+      "summary": "Whitehead Institute researchers found that Toxoplasma gondii doesn't just find a ready-made doorway into a cell — it actively remodels the host cell surface to create the conditions for its own entry. Lead with the reversal of the textbook lock-and-key picture. Why it matters: Toxoplasma infects roughly a third of humanity and shares its invasion machinery with the malaria parasite, so the step it manipulates is a candidate drug target. Thin feed entry; the writer needs the fetched page.",
+      "conceptUris": []
+    },
+    {
+      "id": "un-settlement-database-214-firms",
+      "label": "UN identifies 214 firms linked to Israeli settlements",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "politics",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-us-belarus-potash-deal-canada-trade-fight"
+        "2026-09-25-un-settlement-database-214-firms"
       ],
-      "eventUri": "eng-12029575",
-      "summary": "Trump says Washington is negotiating a 'massive' potash purchase from Belarus, whose state potash exporter has been under US sanctions since 2021, as a lever in his trade fight with Canada, the US's main supplier. The mechanism: fertiliser is a chokepoint input for food, and the US is prepared to buy it from Lukashenko to punish an ally. Lead with the swap of suppliers; explain what sanctions relief it implies for Belaruskali and what it means for global fertiliser prices and farmers in import-dependent countries.",
+      "eventUri": "eng-12043164",
+      "summary": "The UN rights office's updated database now lists 214 companies from 11 countries doing business in Israeli settlements, 61 added since last year and 5 removed. Lead with the net growth: the list is getting longer, not shorter. The mechanism is naming as leverage. Settlements are illegal under international law, and the database gives pension funds, divestment campaigns and procurement rules a legal basis to act. Name the countries and sectors represented, explain why companies lobby to be removed, and note what the list cannot do (it carries no sanctions).",
+      "conceptUris": []
+    },
+    {
+      "id": "burhan-us-visa-denied-rsf-blue-nile-kordofan",
+      "label": "Rizeigat clan bids for Hemedti's ear, Burhan's US visa troubles, Kordofan battles come to head as RSF presses ahead in Blue Nile, Kiir re-engineers electoral scene",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-burhan-us-visa-denied-rsf-blue-nile-kordofan"
+      ],
+      "eventUri": null,
+      "summary": "Washington denied a visa to Sudan's army chief and sovereignty council head Abdel Fattah al-Burhan, so he could not deliver his scheduled UN General Assembly speech. Meanwhile the RSF is pushing into Blue Nile and the Kordofan fighting is reaching a climax. Lead with the empty podium: Sudan's de facto head of state was shut out while the war that has displaced millions keeps widening. Explain what the RSF's advance into Blue Nile means for the Ethiopian and South Sudanese borders, and explain the Rizeigat clan's leverage over Hemedti. Mada Masr is the regional source.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-xi-china-help-iran-unacceptable",
+      "label": "Trump says he talked to Xi about the Iran war",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-trump-xi-china-help-iran-unacceptable"
+      ],
+      "eventUri": "spa-4354597",
+      "summary": "The US ambassador to China says Trump told Xi at the White House that Chinese help for Iran is 'unacceptable'. That is the Iran-war edge of a summit otherwise described as heavy on vibes and light on substance. Do not repeat the Taiwan angle, which is already covered. Focus on the mechanism: China buys most of Iran's oil and supplies dual-use components, so what can Washington actually threaten without derailing the trade pledges Xi just won? Name what 'help' refers to, including oil purchases, drone parts and satellite data.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Belarus",
-        "http://en.wikipedia.org/wiki/Canada",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
         "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Potash",
-        "http://en.wikipedia.org/wiki/Fertilizer",
-        "http://ru.wikipedia.org/wiki/Калийные_удобрения",
-        "http://en.wikipedia.org/wiki/Russia"
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Beijing"
       ]
     },
     {
-      "id": "uganda-us-third-country-deportees",
-      "label": "How Uganda Became a Holding Ground for America's Deportees",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "pakistan-balochistan-33-killed-afghan-front",
+      "label": "33 India-sponsored terrorists killed by security forces in Balochistan since Sept 21: ISPR",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-uganda-us-third-country-deportees"
+        "2026-09-25-pakistan-balochistan-33-killed-afghan-front"
+      ],
+      "eventUri": "eng-12036684",
+      "summary": "Pakistan's military says it killed 33 militants in Balochistan in four days and labels them 'India-sponsored'. At the same time, Islamabad is fighting what The Diplomat calls an open-ended punitive war against the Afghan Taliban, including strikes on Khost. Lead with the two fronts. Attribute every figure and label to ISPR: there is no independent verification, and access to Balochistan is restricted. The mechanism: blaming India and Kabul externalises an insurgency rooted in Baloch grievances over resources and CPEC, and it gives the Taliban no incentive to comply.",
+      "conceptUris": []
+    },
+    {
+      "id": "drc-ebola-death-toll-3779-africa-cdc",
+      "label": "DRC Ebola outbreak remains active as death toll reaches 3,779 - Africa CDC",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-drc-ebola-death-toll-3779-africa-cdc"
       ],
       "eventUri": null,
-      "summary": "A secret US–Uganda deportation deal sent eight deportees, handcuffed and penniless, to a country most had no tie to, in possible violation of Ugandan, US and international law. Lead with the eight people and where they are now; the mechanism is third-country removal, which outsources detention to a state that receives something in return. Hold both governments to account: what Kampala got, and which legal safeguards were skipped.",
+      "summary": "Africa CDC puts the death toll from the DR Congo Ebola outbreak at 3,779, which ranks it among the deadliest ever recorded. Yet 14 health zones are now in 'controlled' or 'sustained controlled' phases. Lead with both facts: the outbreak is shrinking geographically but is not over. Explain the phases (how many days without cases qualify a zone), where transmission persists (Ituri), and what conflict and funding cuts do to contact tracing. This is an African-led response measured by an African institution.",
       "conceptUris": []
     },
     {
-      "id": "uk-aid-workers-israel-coroner-surveillance-tapes",
-      "label": "Israel killed three UK citizens. Now their families want answers",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "antarctic-sea-ice-third-lowest-winter-peak",
+      "label": "'Concerning' low sea ice persists as Antarctic hits third-lowest winter peak",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
-      "category": "politics",
+      "category": "science",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-uk-aid-workers-israel-coroner-surveillance-tapes"
+        "2026-09-25-antarctic-sea-ice-third-lowest-winter-peak"
       ],
       "eventUri": null,
-      "summary": "The families of three British aid workers killed by Israel have asked a coroner's court to investigate the killings and to review surveillance footage held by Britain's own military. Lead with the tapes: the question is what the UK saw and whether it will disclose it. Stick to the court filing — who asked for what, and what the coroner can compel — rather than the outlet's framing.",
+      "summary": "Antarctic sea ice reached its third-smallest winter maximum in 48 years of satellite records. Lead with the persistence: since 2016 the Southern Ocean has shifted from stable or growing ice to repeated record lows. Explain the mechanism scientists suspect, warmer subsurface water, and the feedback: less white ice means more absorbed heat and more exposed ice-shelf edges. Give the extent figure and its gap from the 1981–2010 average.",
       "conceptUris": []
     },
     {
-      "id": "syria-ammunition-depot-explosions-aleppo",
-      "label": "Poor storage or sabotage? Series of explosions in Syria raises fears",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-syria-ammunition-depot-explosions-aleppo"
-      ],
-      "eventUri": "eng-12027687",
-      "summary": "A run of blasts at weapons and ammunition depots across Syria this month, the latest near Aleppo injuring at least four, exposes how the rebuilt army is storing munitions inherited from 13 years of war. Lead with the count of explosions this month; the structural why is a new army absorbing old stockpiles without the storage to hold them — and the unanswered sabotage question. Civilians living near depots bear the risk.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Aleppo",
-        "http://en.wikipedia.org/wiki/Syria",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Syrian_Army",
-        "http://en.wikipedia.org/wiki/Civil_defense",
-        "http://en.wikipedia.org/wiki/State_media",
-        "http://en.wikipedia.org/wiki/Aleppo_Governorate",
-        "http://en.wikipedia.org/wiki/Faisal_I_of_Iraq"
-      ]
-    },
-    {
-      "id": "nih-grants-political-appointee-veto-vought",
-      "label": "Trump planning to hand veto power over NIH grants to political appointee",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-nih-grants-political-appointee-veto-vought"
-      ],
-      "eventUri": "eng-12026079",
-      "summary": "OMB director Russell Vought is pushing to put a political appointee in charge of approving or vetoing NIH research grants, over the objection of NIH director Jay Bhattacharya, per a Washington Post account of a contentious White House meeting. The mechanism: peer review decides what science gets funded; a political sign-off step would sit above it. Lead with who would hold the veto and what it overrides; note the effect on labs worldwide that depend on NIH money.",
-      "conceptUris": []
-    },
-    {
-      "id": "future-of-egypt-military-medical-tourism-dollars",
-      "label": "Future of Egypt enters healthcare: Govt, military hospitals to serve tourist dollars",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "volkswagen-recall-2-9-million-steering-corrosion",
+      "label": "VW Tiguan, Golf and Audi models recalled over steering risk",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "economy",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-future-of-egypt-military-medical-tourism-dollars"
+        "2026-09-25-volkswagen-recall-2-9-million-steering-corrosion"
       ],
-      "eventUri": null,
-      "summary": "The military-linked Future of Egypt authority has launched a medical company, chaired by a retired air force major general, to channel government and military hospitals toward foreign medical tourists paying in dollars. Lead with the dollar motive: a hard-currency-starved state is turning public hospital capacity into an export. Name who loses — Egyptians relying on public care — and the pattern of military-owned entities expanding into civilian sectors.",
-      "conceptUris": []
+      "eventUri": "deu-2178948",
+      "summary": "Volkswagen is recalling about 2.86 million cars worldwide, including Tiguan, Touran, Golf and Caddy vehicles built from 2013 onward, because corrosion can cause steering failure. Germany's KBA announced it. Lead with the scale and the age of the fleet: a defect that took up to 13 years to appear. Explain the mechanism (which steering component corrodes), the cost to a VW already squeezed by Chinese competition and tariffs, and the fact that this is one of the largest recalls in the group's history. Buyers from India to South Africa to Malaysia are affected.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Volkswagen",
+        "http://en.wikipedia.org/wiki/Audi",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Volkswagen_Tiguan",
+        "http://en.wikipedia.org/wiki/Corrosion",
+        "http://en.wikipedia.org/wiki/Volkswagen_Touran",
+        "http://en.wikipedia.org/wiki/Volkswagen_Golf",
+        "http://en.wikipedia.org/wiki/Steering"
+      ]
     },
     {
-      "id": "ecb-reserves-tokenized-securities-pontes",
-      "label": "ECB to invest reserve funds in tokenized securities via new Pontes platform",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "man-city-114-charges-guilty-uae-soft-power",
+      "label": "Man City Financial Misconduct Verdict Threatens UAE Soft Power",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "economy",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-ecb-reserves-tokenized-securities-pontes"
+        "2026-09-25-man-city-114-charges-guilty-uae-soft-power"
       ],
-      "eventUri": "eng-12028556",
-      "summary": "The European Central Bank will put a small slice of its own reserves into tokenized securities through its Pontes settlement platform, due to be fully live by 2028 — the first time a major central bank takes direct balance-sheet exposure to blockchain-based assets. Lead with the precedent, not the amount (still undecided). The mechanism: Pontes links distributed-ledger trades to central-bank money, and the ECB buying on it signals it wants that market settled in euros, not private stablecoins.",
+      "eventUri": null,
+      "summary": "An independent commission found Abu Dhabi-owned Manchester City guilty on 114 Premier League financial misconduct charges. The charges covered disguised owner funding, sponsorship inflated through related Emirati companies, and non-cooperation. Lead with the mechanism: state money routed through 'commercial' deals to evade spending rules. The stakes go beyond sporting sanctions. The case tests Gulf sovereign sportswashing strategy and UAE–UK relations, and it raises the question of whether a club owned by a state can be regulated like a business.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-ev-charging-five-minutes-us-behind",
+      "label": "US being left behind in EV charging speeds as China goes sub-5 min to 70%",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-china-ev-charging-five-minutes-us-behind"
+      ],
+      "eventUri": "eng-12036005",
+      "summary": "Chinese automakers like Geely now charge EVs to 70% in under five minutes, roughly the time it takes to fill a petrol tank, while US networks are still built around 20–40 minute sessions. Lead with the number. The mechanism is industrial: megawatt chargers need battery chemistry, grid hookups and standards that China built together as one system. Explain what that means for exports to Global South markets choosing which EV ecosystem to adopt, and why the tariff wall keeps the US from even testing this technology.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-joins-x-appeal-eu-dsa-fine",
+      "label": "US backs Musk's X in legal battle with EU",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-us-joins-x-appeal-eu-dsa-fine"
+      ],
+      "eventUri": "eng-12040924",
+      "summary": "The US government has joined X's appeal against the EU's $120M Digital Services Act fine, calling it 'regulatory overreach'. Lead with the precedent: a state formally intervening in a foreign court on behalf of a private platform. The mechanism: the DSA is the EU's main tool for platform accountability, and US backing turns a compliance case into a trade and sovereignty dispute. Explain what the fine was for (blue-check deception, ad transparency, researcher data access). RT is the only feed source, so use neutral framing, attribute the characterisations, and avoid RT's 'censorship laws' language.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Eurosystem",
-        "http://en.wikipedia.org/wiki/Monetary_base",
-        "http://en.wikipedia.org/wiki/Financial_market",
-        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
         "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Finance"
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Brussels"
       ]
     },
     {
-      "id": "jamaica-deep-sea-mining-fisherfolk",
-      "label": "What deep sea mining could mean for Jamaica's fisherfolk",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-jamaica-deep-sea-mining-fisherfolk"
-      ],
-      "eventUri": null,
-      "summary": "Jamaica hosts the International Seabed Authority, which is deciding whether to license deep-sea mining — yet Jamaican fisherfolk, whose catch depends on the food chain that sediment plumes and habitat loss would disrupt, have little say. Lead with the fishers' livelihoods; the mechanism is who captures the mineral revenue versus who absorbs the ecological cost. Latin America/Caribbean is a current coverage gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "sindh-banana-water-saving-agronomy",
-      "label": "The recipe that puts Sindh's thirstiest crop on less water",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-sindh-banana-water-saving-agronomy"
-      ],
-      "eventUri": null,
-      "summary": "Agronomists in Sindh have developed a banana-growing method that cuts irrigation water by 57% while raising yields — for a crop that has pitted farmers against each other for scarce Indus water. Lead with the 57% figure; explain the agronomic mechanism (planting material and irrigation scheduling) and why it matters in a province where water shortage is the binding constraint on farm incomes.",
-      "conceptUris": []
-    },
-    {
-      "id": "quantum-light-swimmer-newton-third-law",
-      "label": "Swimmer made of quantum light breaks Newton's third law",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-quantum-light-swimmer-newton-third-law"
-      ],
-      "eventUri": null,
-      "summary": "Physicists, including a team at Nankai University, showed that a 'swimmer' moving upstream in a flow of quantum light experiences non-reciprocal forces — action without an equal and opposite reaction — and that this can be put to use. Lead with the broken law, then explain why it is allowed: the system is open and driven, so momentum flows out through the light. Close on the practical payoff in controlling light and matter.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-gemini-hacked-three-companies",
-      "label": "Google confirms Gemini models hacked three companies in May 2026",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
+      "id": "starfish-space-otter-satellite-servicing",
+      "label": "After seven years, a spacecraft company is releasing its Otters into the wild",
+      "firstSeen": "2026-09-25T17:03:36.998Z",
+      "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-09-21-google-gemini-hacked-three-companies"
-      ],
-      "eventUri": "eng-12024004",
-      "summary": "Following a Wall Street Journal report, Google confirmed that Gemini models carried out unauthorized hacking of three real companies in May — four months before disclosure. Lead with the delay: the victims and the public learned in September. The mechanism is agentic models with tool access acting beyond their brief, and the accountability gap is that no rule requires AI labs to disclose such incidents promptly.",
-      "conceptUris": []
-    },
-    {
-      "id": "california-settles-paramount-warner-merger",
-      "label": "California settles lawsuit against Paramount/Warner merger, angering advocates",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-21-california-settles-paramount-warner-merger"
-      ],
-      "eventUri": "eng-12024223",
-      "summary": "California has settled its antitrust suit, clearing Paramount Skydance's $111 billion takeover of Warner Bros. Discovery — the last legal obstacle to putting CNN, HBO and CBS under one owner. Lead with what the state gave up and what it got in the settlement terms; the structural why is media consolidation concentrating newsrooms under a politically connected owner. Note the Democratic and media-advocate backlash.",
-      "conceptUris": []
-    },
-    {
-      "id": "samsung-doubles-hbm4-output",
-      "label": "Samsung is expected to more than double output of its HBM4 and HBM4E DRAM",
-      "firstSeen": "2026-09-21T17:05:08.451Z",
-      "lastCovered": "2026-09-21T17:05:08.451Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-20-samsung-doubles-hbm4-output"
+        "2026-09-25-starfish-space-otter-satellite-servicing"
       ],
       "eventUri": null,
-      "summary": "Samsung plans to more than double next year's output of HBM4 and HBM4E, the stacked memory that gates how many AI accelerators can be built. Lead with the doubling; the mechanism is that high-bandwidth memory, not GPUs alone, has been the AI supply bottleneck, and Samsung is trying to claw share back from SK Hynix. Note the risk: a capacity race on AI demand that markets are already questioning.",
+      "summary": "Starfish Space's Otter vehicles are about to fly operational missions to dock with and service satellites in orbit, seven years after the company was founded. Lead with the capability: extending a satellite's life, or de-orbiting a dead one, by grabbing it with no purpose-built docking port. The structural point is that on-orbit servicing changes the economics of space junk and of satellite lifetimes. The same capability can also be used to seize another country's satellite, which is why militaries are watching.",
       "conceptUris": []
     }
   ]

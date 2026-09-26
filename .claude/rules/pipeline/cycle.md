@@ -24,6 +24,7 @@ paths:
   - "scripts/lib/argv.js"
   - "scripts/lib/regions.js"
   - "scripts/lib/dedup.js"
+  - "scripts/lib/feed-age.js"
   - "scripts/lib/quality-score.js"
   - "scripts/lib/entity-registry.js"
   - "scripts/lib/trends-*.js"
@@ -215,6 +216,45 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   per-item HTTP, `argAt`/`hasFlag` (`lib/argv.js`) for flags,
   `regionFromCoords` (`lib/regions.js`) for the coverage bbox ladder. Each of
   those existed in three to five copies before 2026-08-01.
+
+## The selector's pool is cut at 12 hours
+
+- **A story's pubDate is the time every reader sees on it.** The writer copies
+  the source's pubDate into `date`, the build publishes it as `eventAt`, and the
+  app orders its river and dates every card by it. So a late pick is not a
+  late story, it is an old one: the 10:01 cycle of 2026-09-26 published two
+  stories 21 h after their events, and the app filed them 36 places deep under
+  `21h ago · new`. Past 24 h a story lands outside the app's river the moment
+  it arrives, and nobody swiping the day ever sees it.
+- **The prompt asked for this and the cut did not.** `select-prompt.md` has
+  always said a previous cycle's stories have had their chance, while
+  `merge-feeds.js` handed the selector 48 h of them. Over three weeks 18% of
+  what shipped was more than 12 h old at publish and 6% more than 24 h. The
+  selector reads what it is given; the rule has to be in the cut.
+- **12 h is two chances** at 05/10/14/18/22 UTC: the longest gap is the 7 h
+  overnight. Replayed over 70 archived pools it left at least 35 items a cycle
+  (median 50) for ~12 picks; multi-source stories thin the most (as few as 3), and the prompt's
+  multi-source floors already only apply "when the feed supplies them".
+- **A thin cycle widens the cut, never past 24 h** (2026-09-26). The first
+  12 h cycle — 18:00 that Saturday — held **39 usable stories for a target of
+  15**: the selector found 11, and backfill filled the gaps with county cricket
+  (as economy) and Cymru Premier football and shinty (as tech). The fetch was
+  healthy (77 RSS stories); the day was simply quiet. `poolAgeCapMs` keeps 12 h
+  when at least `MIN_POOL_ITEMS` (60) usable stories survive it, and otherwise
+  reaches back exactly as far as holds 60, capped at 24 h — past a day a story
+  lands outside the app's river, which is what the cut is for. Replayed on that
+  cycle's feed: 12 h 39, 24 h 54, 48 h 84, so on a thin evening it runs to 24 h
+  and stops short of 60. `Pool age cut:` in the cycle log says which cut ran.
+- **Backfill is gone** (2026-09-26, same cycle). It topped category floors up
+  from the feed by category tag, and the tag is noisy (a Mehr war report as
+  science, sport as tech). A slot left short beats one the writer must refuse;
+  `select-prompt.md` already says to fill the target from other categories.
+- **`logs.test.js`'s niche sentinel reads `RSS fetch:`**, not the merged niche
+  count, which after the cut measures freshness rather than feed health.
+- **A date with no time is aged from the end of its day** (`feedItemAgeMs`):
+  7% of stories carry a midnight pubDate (date-only RSS, the events API's
+  fallback), and aged from midnight every one would be gone by noon.
+  `lib/feed-age.js`, tested.
 
 ## Claude CLI stages
 

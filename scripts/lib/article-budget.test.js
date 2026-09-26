@@ -78,3 +78,10 @@ test('the quality metrics measure the current budget', () => {
   assert.match(s, new RegExp(`charOver400Pct: pct\\(visibleLengths\\.filter\\(c => c > ${CEILING}\\)`))
   assert.match(s, /const SCHEMA = 3/, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
 })
+
+test('the RVS writing scorer measures against the same ceiling', () => {
+  // It said 350 for eleven days after the budget rose, and the dashboard showed
+  // the writing score halving overnight.
+  const s = read('scripts/autoresearch/score.js')
+  assert.match(s, new RegExp(`charInRange: len <= ${CEILING},`))
+})

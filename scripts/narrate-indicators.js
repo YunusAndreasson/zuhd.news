@@ -485,6 +485,22 @@ if (DRY_RUN) {
   process.exit(0)
 }
 
+/**
+ * **Checkpointed, because a run that is killed must not cost what it spent.**
+ * The cache used to be written once, after the loop, and the 04:00 pass —
+ * serial behind a synchronous spawn until 2026-09-25 — hit `timeout 1500` on
+ * six of eight days and threw away ~100 finished Opus calls each time. Every
+ * `CHECKPOINT_EVERY` new items and on SIGTERM the finished entries go to disk;
+ * the prune and `generatedAt` still belong to the end of a complete run.
+ */
+const CHECKPOINT_EVERY = 10
+const writeCache = () => writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+process.once('SIGTERM', () => {
+  writeCache()
+  console.log(`  ⚠ SIGTERM — checkpointed ${generated} new items before exit`)
+  process.exit(143)
+})
+
 await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   const bundle = buildBundle(item)
   const sFp = standingFingerprint(item)
@@ -496,7 +512,7 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     return
   }
 
-  const result = callClaude(bundle)
+  const result = await callClaude(bundle)
   if (result.error) {
     failed++
     console.log(`  ✗ ${item.key}: ${result.error}`)
@@ -581,6 +597,7 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
     generatedAt: new Date().toISOString(),
   }
   generated++
+  if (generated % CHECKPOINT_EVERY === 0) writeCache()
   console.log(`  ✓ ${item.key}: ${recent || standing}`)
 })
 
@@ -634,7 +651,7 @@ if (!NEW_ONLY) {
 
 cache.generatedAt = new Date().toISOString()
 cache.windowDays = WINDOW_DAYS
-writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+writeCache()
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(

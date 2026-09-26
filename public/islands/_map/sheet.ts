@@ -50,7 +50,7 @@ import type {
 // Types only, so the painter is erased at build; `SKY_NOTE` comes from the
 // DOM-free half deliberately, since that is the file the compression it
 // describes actually lives in.
-import type { BodyHit, StarHit } from './starfield'
+import type { SunHit } from './sky-paint'
 import { SKY_NOTE } from './sky'
 
 export interface Sheet {
@@ -97,8 +97,7 @@ export interface Sheet {
      docked card, and worse here, because a layer switch is watched *on the map*.
      They are a disclosure inside `.map-mapctl` now. Every `show*` left answers
      "what is this thing on the map", which is what this interface is for. */
-  showStar(star: StarHit, pinned: boolean): void
-  showBody(body: BodyHit, hijri: string | null, pinned: boolean): void
+  showSun(sun: SunHit, pinned: boolean): void
   close(): void
   isOpen(): boolean
   isPinned(): boolean
@@ -996,14 +995,14 @@ export function createSheet(): Sheet {
         el(
           'h2',
           'island-sheet-title',
-          event.near?.loc ? `Heat near ${event.near.loc}` : 'Heat signature',
+          event.near ? `Heat near ${event.near}` : 'Heat signature',
         ),
       )
 
       // Radiative power is the figure, and the pixel count is what makes it
       // legible: 40 MW over one pixel and over twenty are very different fires.
       const pixels = `${fmt.grouped(event.pixels)} pixel${event.pixels === 1 ? '' : 's'}`
-      const distance = event.near ? `${event.near.km} km from the story` : null
+      const distance = Number.isFinite(event.nearKm) ? `${event.nearKm} km from the story` : null
       nodes.push(hero(`${thermalPower(event.frp)} MW`, [pixels, distance].filter(Boolean).join(' · ')))
 
       // How long this place has been alight. "First seen on this pass" is the
@@ -1060,7 +1059,7 @@ export function createSheet(): Sheet {
         // The stories that make this mark publishable. The nearest one's distance
         // is already in the hero, which is the calibration that matters — the
         // join is 75 km wide and the card has to admit it.
-        nodes.push(...relatedList(event.relatedArticles ?? [], 'Reported near here'))
+        nodes.push(...relatedList(event.related ?? [], 'Reported near here'))
       }
       render(nodes, pin)
     },
@@ -1208,117 +1207,39 @@ export function createSheet(): Sheet {
     },
 
     /**
-     * A star.
+     * The sun.
      *
-     * Peek answers what a resting pointer is asking — which one is that, and
-     * how far — and stops. Pinned adds the thing that is worth a click on this
-     * site in particular: **where the name came from.** Roughly a hundred of
-     * the 138 IAU names on stars brighter than magnitude 3 arrived in every
-     * European language through Arabic, usually as a fragment of a longer
-     * phrase and occasionally as a copyist's slip preserved for eight
-     * centuries. That is the one thing a mark on a star can say that a picture
-     * of a star cannot, and `shared/star-lore.ts` is where the claims live.
-     *
-     * A star with no proper name still gets a card, because it still takes the
-     * click: the designation, the constellation, the magnitude and the
-     * distance. A card that cannot answer the gesture that opened it is the
-     * empty-container failure the cluster numeral was deleted for.
-     */
-    showStar(star, pin) {
-      const nodes: Node[] = []
-      nodes.push(kicker(['star', star.name ? star.designation : null, star.constellation || null]))
-      nodes.push(el('h2', 'island-sheet-title', star.name ?? star.designation))
-
-      // Magnitude runs backwards — brighter is smaller, and Sirius is negative
-      // — so the number is given the word that fixes its direction. Distance is
-      // the secondary because it is the fact that makes a point of light a
-      // place: two stars a finger apart can be ten and a thousand light years
-      // away, and nothing on the sky says so.
-      nodes.push(
-        hero(
-          `mag ${fmt.magnitude(star.magnitude)}`,
-          star.lightYears
-            ? `${fmt.grouped(Math.round(star.lightYears))} light years away`
-            : 'distance not measured',
-        ),
-      )
-
-      if (pin) {
-        if (star.lore) {
-          const p = el('p', 'map-sheet-lead')
-          p.append(
-            el('strong', undefined, `${star.lore.lang}`),
-            star.lore.from ? ` ${star.lore.from} — ` : ' — ',
-            star.lore.meaning,
-          )
-          nodes.push(p)
-        }
-        // The source and nothing else. The designation and the constellation
-        // are already the kicker, which is on both densities of this card — a
-        // provenance line that restates the heading is the second copy this
-        // file's other cards are careful not to make.
-        nodes.push(el('p', 'map-sheet-meta', star.source))
-        nodes.push(el('p', 'map-sheet-note', SKY_NOTE))
-      }
-      render(nodes, pin)
-    },
-
-    /**
-     * The sun or the moon.
-     *
-     * The hero is the **sub-point** — where the body is directly overhead —
+     * The hero is the **sub-solar point** — where the sun is directly overhead —
      * because that is the fact that ties the thing in the sky to the map under
-     * it: the sun's is the pole of the terminator already drawn, and saying so
-     * is what makes the two one statement rather than two decorations.
-     *
-     * The moon's phase carries the Hijri date beside it, and that is not a
-     * flourish. This site keeps a Makkah clock and an Umm al-Qura calendar
-     * (`_map/hijri.ts`), and the crescent is the fact underneath both — the one
-     * place on the map where an astronomical drawing and a calendar the site
-     * already publishes are the same object seen twice.
+     * it: it is the pole of the terminator already drawn, and saying so is what
+     * makes the two one statement rather than two decorations.
      */
-    showBody(body, hijri, pin) {
+    showSun(sun, pin) {
       const nodes: Node[] = []
-      const isMoon = body.kind === 'moon'
-      nodes.push(kicker([isMoon ? 'the moon' : 'the sun', isMoon ? body.phase?.name : null]))
-      nodes.push(el('h2', 'island-sheet-title', isMoon ? 'The moon' : 'The sun'))
-
+      nodes.push(kicker(['the sun']))
+      nodes.push(el('h2', 'island-sheet-title', 'The sun'))
       nodes.push(
         hero(
-          fmt.coordinate(body.sub.lat, body.sub.lng),
-          isMoon ? 'directly overhead there now' : 'directly overhead there now — the sun is at its zenith',
+          fmt.coordinate(sun.sub.lat, sun.sub.lng),
+          'directly overhead there now — the sun is at its zenith',
         ),
       )
-
-      if (isMoon && body.phase) {
-        const p = el('p', 'map-sheet-stat')
-        p.append(
-          el('strong', undefined, `${Math.round(body.phase.fraction * 100)}% lit`),
-          hijri ? ` · ${hijri}` : '',
-        )
-        nodes.push(p)
-      }
-
       if (pin) {
         nodes.push(
           el(
             'p',
             'map-sheet-lead',
-            isMoon
-              ? 'The moon is drawn at its true angular size and in its true phase, ' +
-                  'with the lit limb turned toward where the sun actually is. It goes ' +
-                  'behind the earth, and comes back, at the moment it really does.'
-              : 'The terminator across the globe is this point’s own edge: the line ' +
-                  'where the sun is exactly on the horizon. The sun is only in frame ' +
-                  'when the centre of the map is in night — in daylight it is behind ' +
-                  'you, which is why the earth in front of you is lit.',
+            'The terminator across the globe is this point’s own edge: the line ' +
+              'where the sun is exactly on the horizon. The sun is only in frame ' +
+              'when the centre of the map is in night — in daylight it is behind ' +
+              'you, which is why the earth in front of you is lit.',
           ),
         )
         nodes.push(
           el(
             'p',
             'map-sheet-meta',
-            `${fmt.grouped(Math.round(body.km))} km from the earth’s centre`,
+            `${fmt.grouped(Math.round(sun.km))} km from the earth’s centre`,
           ),
         )
         nodes.push(el('p', 'map-sheet-note', SKY_NOTE))

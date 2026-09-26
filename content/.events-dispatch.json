@@ -2,141 +2,135 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "155c12170a62d286",
-      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. It is the figure the Bank of England's 2% target is judged against, and gilts, sterling and mortgage pricing move with it.",
-      "recent": "The Office for National Statistics publishes the UK's September consumer price reading, which settles how fast prices rose over the month and where UK inflation stood as the summer ended.",
+      "recentFingerprint": "31529b6deb264622",
+      "standing": "The Office for National Statistics' monthly measure of UK consumer prices, the gauge the Bank of England's 2% inflation target is judged against and a reference point for wage talks and index-linked payments.",
+      "recent": "The Office for National Statistics reports how fast UK consumer prices rose in the year to September. This month's reading is the one that sets next year's uprating of many state benefits.",
       "citations": [],
-      "generatedAt": "2026-09-21T04:44:17.393Z"
+      "generatedAt": "2026-09-26T05:25:15.026Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "996b8ef9ad811882",
-      "standing": "The Federal Open Market Committee, the Federal Reserve's rate-setting body, which meets eight times a year to set the federal funds rate. It is the price of dollar credit worldwide, and borrowing costs from mortgages to emerging-market debt are indexed to it.",
-      "recent": "The committee raised rates 12-0 on September 16 because a closed strait pushed oil into US consumer prices, which rose 0.4% in August. Tightening into a supply shock is a choice it must make again with the strait still closed, and this time without the unanimity a first move buys. Trump has publicly called for lower rates.",
+      "recentFingerprint": "30d07515f15544f5",
+      "standing": "The Federal Reserve's Federal Open Market Committee meets eight times a year to set the target range for the federal funds rate. Its decisions set borrowing costs across the US and, through the dollar, far beyond it.",
+      "recent": "September's unanimous 12-0 hike tightened into a supply shock whose cause is a closed strait, and defied Trump's calls to lower rates. The war has since shown up in US consumer prices, up 0.4% in August. This meeting settles whether the Fed treats that hike as a single response or keeps tightening against prices set by a shipping route it does not control.",
       "citations": [
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
         "2026-09-11-us-cpi-august-the-war-in-the-price-index",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
-        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice"
+        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export"
       ],
-      "generatedAt": "2026-09-20T04:38:50.252Z"
+      "generatedAt": "2026-09-25T04:42:33.040Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "a787f0189ac55074",
-      "standing": "The European Central Bank's Governing Council, which meets about every six weeks to set interest rates for the countries using the euro. Its decisions set borrowing costs across the bloc and move the euro against the dollar.",
-      "recent": "The Fed voted 12-0 to raise rates over the oil shock from a closed strait, and two days later the Bank of Japan took its rate to a 31-year high. This meeting settles whether the European Central Bank answers the same supply shock, with Brent near $110, by tightening too, or treats it as a shock that interest rates cannot reach.",
+      "recentFingerprint": "7775bdffea4ba5e9",
+      "standing": "The European Central Bank's Governing Council sets interest rates for every country that uses the euro, meeting about every six weeks. Its decisions set borrowing costs across the eurozone and move the euro and European government bonds.",
+      "recent": "The European Central Bank meets after the Fed raised rates 12-0 over a closed strait and the Bank of Japan took its rate to a 31-year high, with Brent near $110 a barrel. This decision settles whether Frankfurt joins them in tightening into the same supply shock or holds.",
       "citations": [
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
         "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
         "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
       ],
-      "generatedAt": "2026-09-22T04:50:20.011Z"
+      "generatedAt": "2026-09-25T04:42:48.806Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "0f88e356f85aece1",
-      "standing": "The Bank of Japan's policy board, which sets Japan's short-term interest rate at eight scheduled meetings a year. Because Japanese savings fund borrowing worldwide, what it decides moves the yen and the cost of money far beyond Japan.",
-      "recent": "Japan raised rates in September to curb rising prices, and what is unsettled now is the currency rather than the price level: officials have weighed steering the yen with pension money instead, and the balancing act with Bessent is the constraint on doing it. This meeting tests whether Tokyo keeps tightening while Washington is tightening too.",
+      "recentFingerprint": "3c0d68ff32218cf7",
+      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term policy rate. Its decisions move the yen and Japanese government bond yields, and reach capital that Japanese savers have invested around the world.",
+      "recent": "The Bank of Japan's September hike took its rate to a 31-year high to curb rising prices, so this meeting will show whether that was a single step or the start of a sustained run. Every move also runs through the BOJ's balancing act with Bessent, which has only grown harder.",
       "citations": [
-        "2026-09-09-yen-defence-pension-fund-as-fx-instrument",
-        "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
-        "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice"
+        "2026-09-18-bank-of-japan-raises-rates-to-31-year-high"
       ],
-      "generatedAt": "2026-09-20T04:39:23.961Z"
+      "generatedAt": "2026-09-25T04:43:05.777Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "5ff4df470697076c",
-      "standing": "The Bank of England's Monetary Policy Committee, whose nine members vote individually on Bank Rate about eight times a year. It sets what British banks pay for reserves, and feeds through to mortgages, business lending and the pound.",
-      "recent": "Brent settled near $106 a barrel this month, an imported cost no rate decision can reach — and other central banks have already moved on it: the Fed raised in a unanimous 12-0 vote, the Bank of Japan to 1.25%, a 31-year high. What this meeting settles is whether the households exposed to it pay for that supply shock twice.",
+      "recentFingerprint": "937a062f20ce005d",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who meet eight times a year to set Bank Rate. Its decisions pass quickly into UK mortgage costs, and sterling moves with them.",
+      "recent": "The Bank of England decides after the Fed and the Bank of Japan both raised rates in September, with Brent near $106 a barrel pushing an oil shock into prices. This meeting settles whether London also tightens into that supply shock or holds.",
       "citations": [
         "2026-09-18-stagflation-brent-100-bond-yields-squeeze",
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
         "2026-09-18-bank-of-japan-raises-rates-to-31-year-high"
       ],
-      "generatedAt": "2026-09-20T04:39:52.477Z"
+      "generatedAt": "2026-09-25T04:43:20.612Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "a71966c078f66f6e",
-      "standing": "The Federal Open Market Committee, the twelve-member body that sets the federal funds rate at eight scheduled meetings a year. It is the reference price for dollar credit worldwide, so borrowing costs from US mortgages to emerging-market debt move with it.",
-      "recent": "The committee raised rates 12-0 in September, tightening into a supply shock rather than a demand boom: Brent above $100 after the closure of a strait pushed August consumer prices up 0.4%. Goldman Sachs abandoned its no-hike call before that vote, and the December meeting settles whether a war-driven price level is something this committee keeps chasing.",
+      "recentFingerprint": "25e05dfb6455a5ff",
+      "standing": "The Federal Reserve's Federal Open Market Committee, which meets eight times a year to set the federal funds rate. Its decisions set the price of dollar credit worldwide, from US mortgages to emerging-market debt.",
+      "recent": "The Fed's September hike passed 12-0, against Trump's calls to lower rates, and its cause was a closed strait, a supply shock that no interest rate can reopen. US consumer prices rose 0.4% in August as the war reached the price index. This meeting settles whether that hike was a single answer to imported inflation or the start of a tightening run.",
       "citations": [
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-        "2026-09-11-us-cpi-august-the-war-in-the-price-index",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export",
-        "2026-09-10-oil-105-fed-hike-the-war-arrives-twice"
+        "2026-09-11-us-cpi-august-the-war-in-the-price-index"
       ],
-      "generatedAt": "2026-09-20T04:40:01.867Z"
+      "generatedAt": "2026-09-25T04:43:37.285Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "efb0508babdb6819",
-      "standing": "The annual summit of the Group of Twenty: 19 major economies, the EU and the African Union, which together produce most of the world's output. The rotating host sets the agenda, and the communiqué shows where they agree on trade, debt and finance.",
-      "recent": "Zelensky has said he is ready to meet Putin face-to-face at the G20 in Miami, which would bring the war to a US-hosted table while Russian strikes on Odesa continue. It follows a BRICS summit where Xi took centre stage and members pushed for payment mechanisms that side-step the US dollar, a rival club courting the same capitals.",
+      "recentFingerprint": "a7d2526aeef417cc",
+      "standing": "The Group of Twenty's annual leaders' meeting, hosted by a rotating presidency, brings together 19 major economies plus the European Union and African Union. Its communiqué sets the agenda for talks on global finance, trade and debt.",
+      "recent": "Rubio has invited the ICC-wanted Vladimir Putin to Miami, and the Kremlin has put the invitation on its briefing agenda. Zelensky has said he is ready to meet Putin face-to-face at the G20. That makes the host's guest list the question of this summit: whether Miami becomes a venue for the war in Ukraine as well as a forum for trade and chips.",
       "citations": [
-        "2026-09-12-ukraine-strikes-miami-g20-meeting-refused"
+        "2026-09-23-putin-g20-miami-invitation-kremlin-considering",
+        "2026-09-12-ukraine-strikes-miami-g20-meeting-refused",
+        "2026-09-18-us-china-ai-compute-controls-before-summit"
       ],
-      "generatedAt": "2026-09-21T04:44:35.297Z"
+      "generatedAt": "2026-09-25T04:43:53.064Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "727088d2526cdb38",
-      "standing": "The European Central Bank's Governing Council sets interest rates for the euro area about every six weeks. Its decisions set the cost of borrowing in every country that uses the euro, and the currency moves with them.",
-      "recent": "This is the European Central Bank's last scheduled rate decision of the year. It sets the cost of borrowing in euros for the start of the new year, and the December meeting also publishes new staff projections for inflation and growth.",
+      "recentFingerprint": "93bf1d7e0610d335",
+      "standing": "The European Central Bank's Governing Council sets interest rates for every country that uses the euro, meeting about every six weeks. Its decisions reach mortgages, business loans and government borrowing across the bloc, and the euro moves with them.",
+      "recent": "The European Central Bank's rate decision sets what banks pay to borrow from it and what they earn on money parked with it for the months after. Nothing reported so far makes this meeting different from a routine one.",
       "citations": [],
-      "generatedAt": "2026-09-22T04:50:34.967Z"
+      "generatedAt": "2026-09-25T04:44:08.484Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "09f49617de6ed5f1",
-      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate — the floor under British mortgages, savings returns and government borrowing costs. Sterling and the gilt market move with it.",
-      "recent": "The Fed raised rates 12-0 into a supply shock and the Bank of Japan went to a 31-year high, both tightening against oil near $106 a barrel rather than against domestic demand. The committee meets into that same imported shock, and what it settles is how much of the cost lands on borrowers.",
-      "citations": [
-        "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-        "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
-        "2026-09-18-stagflation-brent-100-bond-yields-squeeze"
-      ],
-      "generatedAt": "2026-09-20T04:40:49.320Z"
+      "recentFingerprint": "2b6c60e6827fcc1d",
+      "standing": "The Bank of England's Monetary Policy Committee, which meets eight times a year to set Bank Rate, the rate it pays on reserves. Its decisions reach UK mortgages, savings and business loans, and sterling moves with them.",
+      "recent": "The Bank of England's committee decides where its policy rate sits. That sets the cost of borrowing and the return on savings until its next meeting.",
+      "citations": [],
+      "generatedAt": "2026-09-25T04:44:25.183Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "7d5e101b90ea06a6",
-      "standing": "Japan's central bank sets the short-term policy rate and steers the yield curve for the world's largest creditor nation. Its decisions ripple outward through Japanese savings parked abroad, and the yen moves against every major currency with them.",
-      "recent": "The Bank has already moved: it raised its rate to a 31-year high in September to curb rising prices, ending decades of cheap money at home. December settles whether that was a single correction or the start of a run, at a moment when Tokyo is weighing whether to steer the yen using pension money rather than rates alone — and when the Fed's own hike, delivered unanimously, has left the gap between the two central banks the thing the currency turns on.",
+      "recentFingerprint": "43074f383e4cb80d",
+      "standing": "The Bank of Japan's Policy Board meets eight times a year to set the short-term policy rate. After decades near zero, its decisions reach Japanese savers and borrowers, the yen, and the global trades funded in it.",
+      "recent": "The Bank of Japan raised its rate to a 31-year high in September to curb rising prices, and this meeting weighs whether that pressure still calls for tightening. It weighs it inside a balancing act with Bessent in Washington that has only grown harder, while the Fed has been raising rates into a supply shock from a closed strait.",
       "citations": [
         "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
-        "2026-09-09-yen-defence-pension-fund-as-fx-instrument",
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice"
       ],
-      "generatedAt": "2026-09-20T04:40:58.974Z"
+      "generatedAt": "2026-09-25T04:44:40.804Z"
     },
     "fred-us-gdp-2026-09-30": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "f87b469b0844f9b7",
-      "standing": "The Bureau of Economic Analysis's measure of total US output, published quarterly in three successive estimates. It is the broadest read on the world's largest economy, and Treasury yields, the dollar and Fed expectations move with it.",
-      "recent": "The Bureau of Economic Analysis publishes its next reading of US GDP, settling how fast the economy grew over the quarter it covers and how much earlier estimates of that growth are revised.",
-      "citations": [],
-      "generatedAt": "2026-09-22T04:49:49.311Z"
+      "recentFingerprint": "f126f44f5fd67014",
+      "standing": "The Bureau of Economic Analysis's quarterly measure of everything the US economy produces, revised twice as fuller data arrive. It is the benchmark growth reading that interest-rate expectations, Treasury yields and the dollar are priced against.",
+      "recent": "The release lands a week after the OECD said the U.S. economy will grow faster than its allies, on an AI investment boom that is offsetting a Middle East energy shock for now. The figures show how much of American output that spending is actually carrying, with the Nasdaq at an all-time high on the same bet.",
+      "citations": [
+        "2026-09-23-oecd-outlook-ai-investment-energy-shock-2027"
+      ],
+      "generatedAt": "2026-09-24T04:39:33.120Z"
     },
     "fred-us-pce-2026-09-30": {
       "standingFingerprint": "f7794ed88caf73b9",
-      "recentFingerprint": "83a6df7696c21e26",
-      "standing": "The Bureau of Economic Analysis's monthly report on personal consumption expenditures — what Americans earn, what they spend, and what they pay for it. Its price index is the gauge the Federal Reserve targets, and the one policy is written against.",
-      "recent": "The Bureau of Economic Analysis publishes the next reading on 30 September, covering the month just closed. It will settle what households actually paid, how much they spent, and how much they held back.",
+      "recentFingerprint": "052a06837267bbc0",
+      "standing": "The Bureau of Economic Analysis's monthly report on US personal income and spending. Its PCE price index is the Federal Reserve's preferred inflation gauge, so it moves rate expectations, Treasury yields and the dollar.",
+      "recent": "The Bureau of Economic Analysis publishes US PCE with no recent reporting that sets this month apart from a routine one. The release settles the inflation reading that rate-setters weigh most heavily, along with what households earned and spent.",
       "citations": [],
-      "generatedAt": "2026-09-20T04:38:40.959Z"
+      "generatedAt": "2026-09-23T05:01:53.801Z"
     },
     "fred-us-jobs-report-2026-10-02": {
       "standingFingerprint": "76dd59465c94d59d",
-      "recentFingerprint": "83a6df7696c21e26",
-      "standing": "The Bureau of Labor Statistics' monthly count of jobs added by US employers, published alongside the unemployment rate. Treasury yields, the dollar and interest-rate expectations all move within minutes of its release.",
-      "recent": "The Bureau of Labor Statistics publishes the US jobs report, which settles how many jobs employers added over the month and where unemployment now stands.",
+      "recentFingerprint": "052a06837267bbc0",
+      "standing": "The Bureau of Labor Statistics' monthly employment report, usually out on the first Friday, counts jobs added and the unemployment rate. It moves Treasury yields, the dollar and expectations for Federal Reserve policy.",
+      "recent": "The Bureau of Labor Statistics publishes the US jobs report, the first full read on last month's hiring and unemployment. It will settle how the labour market ended the month.",
       "citations": [],
-      "generatedAt": "2026-09-22T04:50:00.813Z"
+      "generatedAt": "2026-09-25T04:42:17.550Z"
     }
   },
-  "generatedAt": "2026-09-22T04:50:35.052Z",
+  "generatedAt": "2026-09-26T05:25:15.026Z",
   "windowDays": 14
 }

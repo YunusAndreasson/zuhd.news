@@ -23,10 +23,10 @@ export const SANDBOX_ROOT = '/tmp/zuhd-autoresearch'
 
 // --- Pinned model IDs (do not use aliases — see CLAUDE.md memory) ---
 export const MODELS = {
-  selector: 'claude-opus-5',
+  selector: 'claude-opus-5-5',
   writer: 'claude-sonnet-5',
   editor: 'claude-sonnet-5',
-  judgeOpus: 'claude-opus-5',
+  judgeOpus: 'claude-opus-5-5',
   judgeSonnet: 'claude-sonnet-5',
 }
 
@@ -110,7 +110,7 @@ export function clearTmpStaging() {
 export function stageFeed(feedSnapshotPath) {
   // Snapshot is the API-side feed (NewsAPI events); we synthesize the merged
   // and slim feeds without invoking merge-feeds.js (which would reject stories
-  // older than 48h, killing replays of older snapshots).
+  // past its age cap, lib/feed-age.js, killing replays of older snapshots).
   const snap = JSON.parse(readFileSync(feedSnapshotPath, 'utf-8'))
   const stories = (snap.stories || []).map((s) => ({ ...s, origin: s.origin || 'api' }))
   const multi = stories.filter((s) => (s.sources || []).length > 1)

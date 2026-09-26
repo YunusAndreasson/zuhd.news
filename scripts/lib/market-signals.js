@@ -99,12 +99,6 @@ export function detectPatterns(m) {
   return out.sort((a, b) => b.score - a.score || a.kind.localeCompare(b.kind))
 }
 
-export function patternLabel(pattern) {
-  return ({ sharp: 'Sharp move', weekly: 'Week-long trend', monthly: 'Month-long trend',
-    reversal: 'Reversal', divergence: 'Markets diverge',
-    streak: pattern.direction > 0 ? 'Rising streak' : 'Falling streak' })[pattern.kind]
-}
-
 export function factualSummary(signal) {
   const p = signal.pattern
   const change = Math.abs(p.changePct).toFixed(1)

@@ -36,7 +36,7 @@ operator/dev detail in `DEV.md`.
 | `npm run dev` | watch + local server (`SKIP_OG=1`) |
 | `npm run build` | `scripts/build.js` → `dist/` |
 | `npm run verify` | `lint && typecheck && test` — run before committing |
-| `npm run lint` | Biome 2.5.12, **linter only** (`biome.jsonc`); formatter is off on purpose |
+| `npm run lint` | Biome 2.5.14, **linter only** (`biome.jsonc`); formatter is off on purpose |
 | `npm run typecheck` | two projects: `tsconfig.islands.json` (islands + `shared/`, strict) and `tsconfig.node.json` (`allowJs`+`checkJs`, `strict` OFF) |
 | `npm test` | `node --test scripts/lib/*.test.js` |
 | `npm run deadcode` | knip (`knip.jsonc`) — unused *files* and *exports*, which Biome cannot |
@@ -119,8 +119,8 @@ Stage 2    Claude CLI writer (write-prompt.md) → content/articles/*.md
 Stage 3    Claude CLI editor (check-prompt.md) → style fixes
 Stage 3b   validate-articles.js → build.js → git commit → wrangler deploy
            → push (api/push) + X (post-to-twitter.js) + IG (post-to-instagram.js)
-Stage 3.8  node narrate-indicators.js (04:00 UTC) → content/.indicator-dispatch.json
-Stage 4    node generate-briefing.js (04:00 UTC) → content/audio/
+Stage 3.8  node narrate-indicators.js (05:00 UTC) → content/.indicator-dispatch.json
+Stage 4    node generate-briefing.js (05:00 UTC) → content/audio/
 Stage 5    node measure-quality.js (Sun 22:00 UTC) → content/.quality-trend.json
 Stage 6    Claude CLI tune (tune-prompt.md) (daily 22:00 UTC)
 ```
@@ -157,7 +157,7 @@ Interactive enhancements, framework-free where possible, loaded on demand.
   `_entity-panel.ts`, `_chart.ts`, `_share.ts`, `_framework.ts` (Preact + htm —
   **not** `@preact/signals`, which was a dependency nothing used)
 - Shipped: `situation-map`, `entity-strip`, `series-chart`, `country-preview`,
-  `spacefield`, `doc-sheet`, `share-bar`
+  `doc-sheet`, `share-bar`
 
 ## Shared datasets (`/shared/`)
 
@@ -188,7 +188,7 @@ silently.
 | | |
 |---|---|
 | `.claude/rules/web/map.md` | the situational map — layers, marks, the ground ramp |
-| `.claude/rules/web/sky.md` | the sun, moon, stars and the limb glow around the globe |
+| `.claude/rules/web/sky.md` | the sun and the limb glow around the globe |
 | `.claude/rules/web/prayer.md` | the prayer-line geometry and the terminator |
 | `.claude/rules/web/hijri.md` | the Hijri calendar, the Makkah clock, Eid closures |
 | `.claude/rules/web/charts.md` | `shared/chart/`, `_chart.ts`, `/e/{id}`, disclosures |

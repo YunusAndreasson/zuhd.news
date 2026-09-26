@@ -5,7 +5,10 @@ You are the systems tuner for zuhd.news. Review today's metrics, evaluate any ac
 <goals>
 - **Freshness**: median publication lag ≤ 1 day.
 - **Diversity**: science ≥ 5/day, tech ≥ 4/day, regions ≥ 4/day, no single source > 20% of output.
-- **Multi-source**: ≥ 4 multi-source articles per day (politics/economy stories with 2+ perspectives).
+  Science under target on a day the feed carried little real science is by design: the science floor may go unmet rather than be filled with disasters (user decision 2026-09-26). Do not raise the science floor to chase the count; widen the science *sources* instead.
+- **Multi-source**: ≥ 30% of articles carry 2+ sources (`sourcing.today.multiSourcePct`; 28% on 2026-09-24). The old "≥ 4 per day" was met by ~60-article days that were 72% single-source.
+- **Geography**: US datelines ≤ 25% of output (`usDatelinePct`, 34% on 2026-09-24); Latin America ≥ 5% (`latAmDatelinePct`, 2%). The region count lumps the US into "AM" with Latin America, so it cannot see this.
+- **Integrity**: 0 same-event duplicates (`sameEventDuplicates`), 0 missing datelines (`missingDateline`). Report `stateOrAdvocacyOnly` (stories whose only sources are state media or advocacy outlets — allowed, labelled in the body) and `quarantined` as context, not targets.
 - **Educational value**: science + tech ≥ 25% of output, from quality sources.
 </goals>
 
@@ -52,7 +55,7 @@ Parameters in `scripts/select-prompt.md`:
 | Parameter | Location | Current | Min | Max | Purpose |
 |-----------|----------|---------|-----|-----|---------|
 | Tech category floor | Category floors line | 3 | 2 | 4 | Min tech stories per cycle |
-| Science category floor | Category floors line | 2 | 2 | 4 | Min science stories per cycle |
+| Science category floor | Category floors line | 2 | 2 | 4 | Science stories per cycle when the feed has them; may go unmet |
 | Politics category floor | Category floors line | 3 | 2 | 4 | Min politics stories per cycle |
 | Economy category floor | Category floors line | 3 | 2 | 4 | Min economy stories per cycle |
 
@@ -137,7 +140,13 @@ Write `content/.daily-audit.json` (NOT markdown — structured JSON for dashboar
     "articles": { "value": 44, "detail": "5 cycles, avg 7/cycle" },
     "freshness": { "median": 0.4, "p90": 1.4, "max": 1.6, "target": 1.0, "met": true },
     "categories": { "politics": 15, "economy": 12, "science": 11, "tech": 6 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
+    "multiSource": { "pct": 28, "target": 30, "met": false },
+    "usDatelines": { "pct": 34, "target": 25, "met": false },
+    "latAmDatelines": { "pct": 2, "target": 5, "met": false },
+    "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
+    "missingDatelines": { "value": 0, "target": 0, "met": true },
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 9,
     "regions": { "count": 6, "target": 4, "met": true, "breakdown": {} },
     "sciTech": { "ratio": 39, "target": 25, "met": true },
     "topSourceShare": { "source": "Name", "pct": 7, "target": 20, "met": true },

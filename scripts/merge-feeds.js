@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
+import { feedItemAgeMs, isFreshFeedItem, poolAgeCapMs } from './lib/feed-age.js'
 import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
@@ -35,13 +36,16 @@ for (const s of rss) {
   }
 }
 
-// Drop stories older than 48h — with 5 cycles/day, stale stories have had plenty of chances
-const MAX_AGE_MS = 48 * 60 * 60 * 1000
+// Drop stories past the age cap (lib/feed-age.js: 12 h, widened toward 24 h on
+// a thin cycle). It was 48 h, and a story's pubDate is its dateline time on
+// every surface: what the selector picked up a day late went out reading a day
+// old, under `new`. The cap is sized on the stories the selector can use —
+// headline-only items are dropped below regardless.
 const now = Date.now()
-const fresh = stories.filter(s => {
-  const age = now - new Date(s.pubDate).getTime()
-  return !Number.isNaN(age) && age < MAX_AGE_MS
-})
+const capMs = poolAgeCapMs(
+  stories.filter(s => (s.sources || []).length > 0).map(s => feedItemAgeMs(s.pubDate, now)),
+)
+const fresh = stories.filter(s => isFreshFeedItem(s.pubDate, now, capMs))
 const stale = stories.length - fresh.length
 
 // Split into multi-source and niche — no flat list, forces selector to use both sections
@@ -83,8 +87,19 @@ try {
   mkdirSync(SNAP_DIR, { recursive: true })
   const ts = output.fetchedAt.replace(/:/g, '-').replace(/\..+/, '').replace('T', 'T').slice(0, 16)
   writeFileSync(`${SNAP_DIR}/${ts}.json`, JSON.stringify(slimOutput, null, 2))
+  // Rotation: this directory had none and reached 700 files / 86 MB by
+  // 2026-09-25, five a day. The narrators read a 14-day window
+  // (lib/coverage-window.js); 45 days leaves replay-recap-dedup a backtest
+  // month on top. Older snapshots up to 2026-08-09 remain in git history.
+  const KEEP_DAYS = 45
+  const cutoff = new Date(Date.now() - KEEP_DAYS * 86400000).toISOString().slice(0, 10)
+  for (const f of readdirSync(SNAP_DIR)) {
+    if (f.endsWith('.json') && f.slice(0, 10) < cutoff) unlinkSync(`${SNAP_DIR}/${f}`)
+  }
 } catch (err) {
   console.error(`merged-snapshot write failed: ${err.message}`)
 }
 
-console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >48h dropped)`)
+console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >${(capMs / 3_600_000).toFixed(1)}h dropped)`)
+// On stderr, which is what run-cycle.sh keeps in the cycle log.
+console.error(`Pool age cut: ${(capMs / 3_600_000).toFixed(1)}h (${fresh.length - dropped} usable stories)`)

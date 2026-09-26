@@ -179,19 +179,6 @@ export const coordinate = (lat: number, lng: number): string =>
   `${Math.abs(lng).toFixed(1)}°${lng >= 0 ? 'E' : 'W'}`
 
 /**
- * A stellar magnitude. `−1.46`, `2.50`.
- *
- * Not `signed()`, which is the *other* thing a sign can mean on this map: there
- * it carries a direction and always prints one, so a magnitude would come out
- * `+2.50` and read as a rise. Here the minus is part of the value — Sirius is
- * brighter than zero, not "up 1.46" — so a positive magnitude takes no sign.
- * The glyph is still U+2212, for the reason `signed` states: `toFixed` emits an
- * ASCII hyphen, which is the wrong width beside the site's own minus.
- */
-export const magnitude = (n: number): string =>
-  `${n < 0 ? '−' : ''}${Math.abs(n).toFixed(2)}`
-
-/**
  * A source's sentiment, as a signed two-decimal number.
  *
  * Only ever shown on stories the map has already marked contested, where the

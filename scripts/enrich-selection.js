@@ -6,6 +6,9 @@
 // The matching itself lives in scripts/lib/selection-match.js — its five layers,
 // and why the last one is deliberately hard to satisfy, are documented there.
 import { readFileSync, writeFileSync } from 'node:fs'
+import { runWithConcurrency } from './lib/concurrency.js'
+import { THIN_BODY, isThin, titleWords } from './lib/dedup.js'
+import { fetchSourceText } from './lib/fetch-source-text.js'
 import { createMatcher } from './lib/selection-match.js'
 
 const feed = JSON.parse(readFileSync('/tmp/zuhd-feed.json', 'utf-8'))
@@ -13,6 +16,37 @@ const selection = JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf-8'))
 const allStories = [...(feed.multiSourceStories || []), ...(feed.nicheStories || [])]
 
 const match = createMatcher(allStories)
+
+// URL → the feed's copy of a source, bodies included, from every story.
+const feedSourceByUrl = new Map()
+for (const story of allStories) {
+  for (const src of story.sources || []) {
+    if (src?.url && !feedSourceByUrl.has(src.url)) feedSourceByUrl.set(src.url, src)
+  }
+}
+
+/**
+ * The matched story's sources, **plus** any the selector added.
+ *
+ * This used to be `entry.sources = hit.story.sources`, which threw away every
+ * source the selector merged in — and `select-prompt.md` tells it to merge a
+ * regional outlet into OIC-region stories from elsewhere in the feed. The
+ * added source keeps whatever the feed holds for its URL (body, image); one
+ * the feed has no copy of is dropped, since the writer cannot cite text it
+ * was never given.
+ */
+function unionSources(feedSources, selectorSources, byUrl) {
+  const out = [...feedSources]
+  const seen = new Set(out.map((s) => s.url).filter(Boolean))
+  for (const s of selectorSources || []) {
+    if (!s?.url || seen.has(s.url)) continue
+    const fromFeed = byUrl.get(s.url)
+    if (!fromFeed?.body) continue
+    out.push({ ...s, ...fromFeed })
+    seen.add(s.url)
+  }
+  return out
+}
 
 let enriched = 0
 let missing = 0
@@ -27,7 +61,11 @@ for (const entry of selection) {
   }
 
   if (hit?.story?.sources) {
-    entry.sources = hit.story.sources
+    const added = unionSources(hit.story.sources, entry.sources, feedSourceByUrl)
+    if (added.length > hit.story.sources.length) {
+      console.error(`  + kept ${added.length - hit.story.sources.length} selector-merged source(s) on "${entry.title}"`)
+    }
+    entry.sources = added
     enriched++
     matchLayers[hit.layer]++
     if (hit.layer === 'keyword') {
@@ -36,6 +74,53 @@ for (const entry of selection) {
   } else {
     missing++
     missingEntries.push(entry.suggestedSlug || entry.title)
+  }
+}
+
+// Thin picks: a source whose body is a feed teaser gets one page fetch — free,
+// the same Readability extractor the angles stage uses. Before this the writer
+// was handed "No summary provided" and skipped the story (1-4 a cycle).
+const thinSources = selection.flatMap(e => (e.sources || []).filter(s => s?.url && (s.body || '').length < THIN_BODY))
+if (thinSources.length > 0) {
+  let filled = 0
+  await runWithConcurrency(thinSources, 4, async src => {
+    const text = await fetchSourceText(src.url)
+    if (text && text.length > (src.body || '').length) {
+      src.body = text
+      filled++
+    }
+  })
+  console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
+}
+
+// Still thin after the fetch: the writer would skip it anyway — 2026-09-26
+// 14:04 handed it a 307-character Undark teaser. Dropped here, so the writer
+// is never handed a story it cannot write.
+for (const entry of selection) {
+  if (Array.isArray(entry.sources) && entry.sources.length > 0 && isThin(entry)) {
+    console.log(`Dropped "${entry.title}": still under ${THIN_BODY} characters of source text after the page fetch`)
+    entry.sources = []
+  }
+}
+
+// Source text that is not about the story. The selector reads a body-less feed,
+// so it cannot see that an item's only "body" is the wrong page — on
+// 2026-09-25 22:04 the Dutch-government/NixOS pick carried a community group's
+// mission blurb that never mentions NixOS, and the writer spent the slot
+// finding that out. Measured on that selection: the bad pick matched 1 of 7
+// title words; every good one matched 57% or more. Dropped here, before
+// the writer spends the slot finding that out.
+const RELEVANCE_MIN_HITS = 2
+const RELEVANCE_MIN_RATIO = 0.3
+for (const entry of selection) {
+  if (!Array.isArray(entry.sources) || entry.sources.length === 0) continue
+  const words = [...titleWords(entry.title)]
+  if (words.length < 3) continue
+  const text = entry.sources.map(s => (s.body || '').toLowerCase()).join(' ')
+  const hits = words.filter(w => text.includes(w)).length
+  if (hits < RELEVANCE_MIN_HITS || hits / words.length < RELEVANCE_MIN_RATIO) {
+    console.log(`Dropped "${entry.title}": its source text matches ${hits}/${words.length} title words — not about this story`)
+    entry.sources = []
   }
 }
 

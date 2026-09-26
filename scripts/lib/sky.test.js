@@ -1,41 +1,32 @@
 // The sky around the globe: the camera it is solved from, the projection that
-// makes it visible, and the two bodies whose positions nothing on screen can
-// check.
+// makes it visible, and the sun, whose position nothing on screen can check.
 //
 // Every assertion here pins something that fails *silently*. A camera solved
-// wrong puts stars in plausible places. A moon a degree out is still a moon. A
-// precession left out is a sky that sits quietly askew against a sun and a moon
-// that are computed correctly. A screen basis with a sign flipped is a sky that
-// is mirrored for half the planet and correct for the other half. None of it
-// throws, and none of it looks broken.
+// wrong puts the sun in a plausible place. A screen basis with a sign flipped
+// is a sky that is mirrored for half the planet and correct for the other
+// half. None of it throws, and none of it looks broken.
 //
 // The oracle is `astronomy-engine`, a devDependency that is **not shipped** —
-// the same arrangement `prayer.ts` has with adhan-js, and for the same reason:
-// the island needs three numbers from the moon, the closed form for them is
-// published, and 100 KB of library against a 40 KB island is the wrong trade.
-// Comparing against it here is a stronger guarantee than importing it and costs
-// the reader nothing.
+// the same arrangement `prayer.ts` has with adhan-js. Comparing against it here
+// is a stronger guarantee than importing it and costs the reader nothing.
+//
+// The stars and the moon were removed on 2026-09-26, and their tests with
+// them; `sky.md` records what went.
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import * as Astro from 'astronomy-engine'
 import { bundleIslands, scratchDir } from './island-bundle.js'
-import { loadShared } from '../build/shared-ts.js'
-
-const ROOT = new URL('../..', import.meta.url).pathname
 
 const dir = scratchDir('sky')
 const bundlePath = await bundleIslands(
   dir,
   [
-    // All three are DOM-free by construction. `starfield.ts` is the fourth and
-    // is deliberately absent: it is the canvas painter, it touches `document`,
-    // and everything in it that can be reasoned about was put in `sky.ts` for
+    // Both are DOM-free by construction. `sky-paint.ts` is the third and is
+    // deliberately absent: it is the canvas painter, it touches `document`, and
+    // everything in it that can be reasoned about was put in `sky.ts` for
     // exactly this reason.
     'public/islands/_map/solar.ts',
-    'public/islands/_map/lunar.ts',
     'public/islands/_map/sky.ts',
   ],
   'sky.mjs',
@@ -193,7 +184,7 @@ test('the sky is drawn at true scale where it meets the earth', () => {
   assert.ok(Math.abs(M.skyRadius(cam.limb, cam) - cam.r) < 1e-9)
 
   // Exact in *slope* at the limb, which is what makes the band next to the
-  // earth read as a photograph — a moon rising over the edge moves at the right
+  // earth read as a photograph — the sun rising over the edge moves at the right
   // rate and is the right size against it. This is the claim `SKY_NOTE` makes
   // to the reader, so it is the one that has to hold.
   const h = 1e-7
@@ -255,77 +246,9 @@ test('a body is placed by its bearing, and hidden exactly at the limb', () => {
   assert.ok(p.x > 500, 'and lands to the east')
 })
 
-test('parallax is applied, and it is not negligible for the moon', () => {
-  const cam = M.calibrate(makeProject(1369, 3.17, HOME, 500, 400), HOME, 0, 0)
-  // A camera 3.17 earth radii out looking at a body 60 out is not at the centre
-  // of the geometry, and the difference reaches 2° — which at this sky's scale
-  // beside the limb is over fifty pixels, and would show as the moon setting
-  // behind the wrong part of the earth.
-  let worst = 0
-  for (let i = 0; i < 360; i += 5) {
-    const g = dirOf(i, 12)
-    const frame = M.skyFrame(HOME[1], HOME[0], 0)
-    const corrected = M.parallaxCorrect(g, 384400 / M.EARTH_RADIUS_KM, cam, frame)
-    worst = Math.max(worst, Math.acos(Math.max(-1, Math.min(1, dot(g, corrected)))) / DEG)
-  }
-  assert.ok(worst > 1.5, `moon parallax should exceed 1.5deg, measured ${worst.toFixed(2)}`)
-  assert.ok(worst < 3.5, `and stay under 3.5deg, measured ${worst.toFixed(2)}`)
-})
-
-test('precession is applied, and matches the oracle to nutation', () => {
-  // Left out, the J2000 catalogue sits 0.36° from a sun and moon computed for
-  // the equinox of date by 2026 — ten pixels at the limb, and a whole sky
-  // quietly askew against two bodies that are right.
-  let worst = 0
-  for (let y = 2000; y <= 2040; y += 2) {
-    const t = new Date(Date.UTC(y, 5, 1))
-    const m = M.precession(M.daysSinceJ2000(t))
-    const rot = Astro.Rotation_EQJ_EQD(Astro.MakeTime(t))
-    for (const [ra, dec] of [[0, 0], [90, 45], [210, -60], [300, 80], [180, -20]]) {
-      const v = dirOf(ra, dec)
-      const mine = [
-        m[0] * v[0] + m[1] * v[1] + m[2] * v[2],
-        m[3] * v[0] + m[4] * v[1] + m[5] * v[2],
-        m[6] * v[0] + m[7] * v[1] + m[8] * v[2],
-      ]
-      const o = Astro.RotateVector(rot, new Astro.Vector(v[0], v[1], v[2], Astro.MakeTime(t)))
-      worst = Math.max(worst, Math.acos(Math.max(-1, Math.min(1, dot(mine, [o.x, o.y, o.z])))) / DEG)
-    }
-  }
-  // 0.01° is 36″ — twice the ±17″ of nutation the oracle carries and we do not.
-  assert.ok(worst < 0.01, `precession is ${(worst * 3600).toFixed(1)}" from the oracle`)
-  // And it is not a no-op, which a matrix built wrong would also satisfy above
-  // if it came out as the identity.
-  const now = M.precession(M.daysSinceJ2000(new Date(Date.UTC(2026, 0, 1))))
-  assert.ok(Math.abs(now[1]) > 1e-4, 'the precession matrix is not the identity')
-})
-
 // ---------------------------------------------------------------------------
 // The bodies
 // ---------------------------------------------------------------------------
-
-test('the moon is where the oracle says, across a decade', () => {
-  let worstPos = 0
-  let worstKm = 0
-  let worstAt = null
-  // Every ~33 hours for fifteen years, which walks the synodic month, the
-  // draconic month and the 8.85-year apsidal cycle against each other rather
-  // than sampling one phase of each.
-  const start = Date.UTC(2020, 0, 1)
-  for (let i = 0; i < 4000; i++) {
-    const t = new Date(start + i * 118_800_000)
-    const m = M.moonPosition(t)
-    const o = geoOfDate(Astro.Body.Moon, t)
-    const s = sep(m.ra, m.dec, o.ra * 15, o.dec)
-    if (s > worstPos) {
-      worstPos = s
-      worstAt = t.toISOString()
-    }
-    worstKm = Math.max(worstKm, Math.abs(m.km - o.dist * 149597870.7))
-  }
-  assert.ok(worstPos < 0.05, `moon is ${worstPos.toFixed(4)}deg out at ${worstAt}`)
-  assert.ok(worstKm < 200, `moon distance is ${worstKm.toFixed(0)} km out`)
-})
 
 test('the sun is where the oracle says, and its distance varies as it should', () => {
   let worst = 0
@@ -348,144 +271,23 @@ test('the sun is where the oracle says, and its distance varies as it should', (
   assert.ok(maxAu > 1.015 && maxAu < 1.02, `aphelion ${maxAu.toFixed(4)} AU`)
 })
 
-test('the moon’s phase is the sun–earth–moon triangle, not the elongation', () => {
-  let worst = 0
-  for (let i = 0; i < 3000; i++) {
-    const t = new Date(Date.UTC(2024, 0, 1) + i * 91_800_000)
-    const m = M.moonPosition(t)
-    const s = M.sunEquatorial(t)
-    const ours = M.moonIllumination(m, s).fraction
-    worst = Math.max(worst, Math.abs(ours - Astro.Illumination(Astro.Body.Moon, t).phase_fraction))
-  }
-  assert.ok(worst < 0.005, `illuminated fraction is ${worst.toFixed(5)} out`)
-})
-
-test('the moon’s apparent size varies, and the phase is named the way a reader would', () => {
-  let min = Infinity
-  let max = -Infinity
-  for (let i = 0; i < 2000; i++) {
-    const m = M.moonPosition(new Date(Date.UTC(2026, 0, 1) + i * 43_200_000))
-    min = Math.min(min, m.diameter)
-    max = Math.max(max, m.diameter)
-  }
-  // 29.4′ to 33.5′ over a month — a real 14%, drawn because it is free and true.
-  assert.ok(min * 60 > 29 && min * 60 < 30, `smallest ${(min * 60).toFixed(2)} arcmin`)
-  assert.ok(max * 60 > 33 && max * 60 < 34.5, `largest ${(max * 60).toFixed(2)} arcmin`)
-
-  // Waxing and waning are the same picture at the same fraction, so the word is
-  // the only thing that separates them.
-  assert.equal(M.moonPhaseName(0.5, true), 'first quarter')
-  assert.equal(M.moonPhaseName(0.5, false), 'last quarter')
-  assert.equal(M.moonPhaseName(0.2, true), 'waxing crescent')
-  assert.equal(M.moonPhaseName(0.2, false), 'waning crescent')
-  assert.equal(M.moonPhaseName(0.005, true), 'new moon')
-  assert.equal(M.moonPhaseName(0.995, false), 'full moon')
-})
-
-test('the sun and the moon are actually on screen often enough to be worth drawing', () => {
+test('the sun is actually on screen often enough to be worth drawing', () => {
   // The measurement the whole compressed-sky design exists to satisfy. At true
   // scale the visible sky is 1.3% of the celestial sphere and the sun reaches
   // it for about twenty minutes a night, a few weeks a year — correct, and
-  // invisible. If a change to `SKY_SPAN` or `SKY_KNEE` takes this back under an
-  // hour a day, the feature has quietly stopped existing.
+  // invisible. If a change to `SKY_SPAN` or `SKY_KNEE` takes this back under
+  // six hours a day, the feature has quietly stopped existing.
   const cam = M.calibrate(makeProject(1369, 3.17, HOME, 500, 400), HOME, 0, 0)
   let sun = 0
-  let moon = 0
   const N = 24 * 60
   for (let i = 0; i < N; i++) {
     const t = new Date(Date.UTC(2026, 7, 1) + i * 60_000)
     const n = M.daysSinceJ2000(t)
     const frame = M.skyFrame(HOME[1], HOME[0], M.gmstHours(n))
     const s = M.sunEquatorial(t)
-    const sp = M.place(
-      M.parallaxCorrect(dirOf(s.ra, s.dec), (s.au * 149597870.7) / M.EARTH_RADIUS_KM, cam, frame),
-      cam,
-      frame,
-    )
-    const m = M.moonPosition(t)
-    const mp = M.place(
-      M.parallaxCorrect(dirOf(m.ra, m.dec), m.km / M.EARTH_RADIUS_KM, cam, frame),
-      cam,
-      frame,
-    )
+    const sp = M.place(dirOf(s.ra, s.dec), cam, frame)
     if (sp && !sp.hidden) sun++
-    if (mp && !mp.hidden) moon++
   }
   const hours = (n) => (n / N) * 24
   assert.ok(hours(sun) > 6, `the sun is drawn ${hours(sun).toFixed(1)}h a day`)
-  assert.ok(hours(moon) > 4, `the moon is drawn ${hours(moon).toFixed(1)}h a day`)
-})
-
-// ---------------------------------------------------------------------------
-// The catalogue
-// ---------------------------------------------------------------------------
-
-const starsFile = join(ROOT, 'shared/data/stars.json')
-const stars = existsSync(starsFile) ? JSON.parse(readFileSync(starsFile, 'utf8')) : null
-
-test('the star catalogue is well formed, and sorted by magnitude', { skip: !stars }, () => {
-  const n = stars.count
-  assert.ok(n > 2000 && n < 6000, `${n} stars`)
-  for (const key of ['ra', 'dec', 'mag', 'bv', 'plx', 'hr', 'bayer', 'flamsteed', 'con']) {
-    assert.equal(stars[key].length, n, `${key} is not ${n} long`)
-  }
-  for (let i = 0; i < n; i++) {
-    assert.ok(stars.ra[i] >= 0 && stars.ra[i] < 360_000, `ra out of range at ${i}`)
-    assert.ok(stars.dec[i] >= 0 && stars.dec[i] <= 180_000, `dec out of range at ${i}`)
-  }
-  // **The sort is load-bearing, not cosmetic.** The island applies its
-  // magnitude cut by breaking out of the draw loop, so an unsorted payload
-  // silently draws a different set from the one the cut names.
-  for (let i = 1; i < n; i++) {
-    assert.ok(stars.mag[i] >= stars.mag[i - 1], `magnitudes are not sorted at index ${i}`)
-  }
-  // The brightest is Sirius, which is the cheapest end-to-end check there is
-  // that the coordinate parse did not silently produce a plausible sky.
-  assert.equal(stars.proper['0'], 'Sirius')
-  assert.equal(stars.con[0], 'CMa')
-  assert.ok(Math.abs(stars.ra[0] / 1000 - 101.287) < 0.01, 'Sirius is at RA 6h45m')
-  assert.ok(Math.abs((stars.dec[0] - 90_000) / 1000 + 16.716) < 0.01, 'Sirius is at Dec −16°43′')
-})
-
-test('every star name the lore describes is a star in the catalogue', { skip: !stars }, async () => {
-  const { STAR_LORE, CONSTELLATIONS } = await loadShared('star-lore.ts')
-  const named = new Set(Object.values(stars.proper))
-  const orphans = Object.keys(STAR_LORE).filter((k) => !named.has(k))
-  // A key matching nothing is an etymology that will never be shown, and the
-  // most likely cause is the IAU revising a spelling — which should surface
-  // here rather than as a card that quietly stops carrying its best line.
-  assert.deepEqual(orphans, [], `lore keys matching no star: ${orphans.join(', ')}`)
-
-  // Every constellation the catalogue uses has a name, or a card prints the
-  // three-letter abbreviation twice and says nothing.
-  const used = [...new Set(stars.con.filter(Boolean))]
-  const missing = used.filter((c) => !CONSTELLATIONS[c])
-  assert.deepEqual(missing, [], `constellations with no name: ${missing.join(', ')}`)
-  assert.equal(Object.keys(CONSTELLATIONS).length, 88, 'the IAU recognises 88 constellations')
-
-  // The reason this table exists at all: the brightest stars are the ones a
-  // reader will click, and most of their names came through Arabic. If that
-  // stops being true of the file, the card has lost the one thing it can say
-  // that a picture of a star cannot.
-  const bright = Object.entries(stars.proper)
-    .filter(([i]) => (stars.mag[i] - 200) / 100 <= 2.5)
-    .map(([, name]) => name)
-  const covered = bright.filter((name) => STAR_LORE[name])
-  assert.ok(
-    covered.length / bright.length > 0.9,
-    `${covered.length} of ${bright.length} stars brighter than mag 2.5 have an etymology`,
-  )
-  const arabic = covered.filter((name) => STAR_LORE[name].lang.includes('Arabic'))
-  assert.ok(
-    arabic.length / covered.length > 0.6,
-    `${arabic.length} of ${covered.length} are Arabic-derived`,
-  )
-})
-
-test('the catalogue stays small enough to be idle-deferred', { skip: !stars }, () => {
-  const kb = readFileSync(starsFile).length / 1024
-  // ~123 KB raw, ~45 KB gzipped, fetched after first paint. The bound is here
-  // because a magnitude cut is one flag on the generator and the payload is the
-  // only thing that would report the change.
-  assert.ok(kb < 260, `stars.json is ${kb.toFixed(0)}KB`)
 })

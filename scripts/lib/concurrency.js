@@ -18,6 +18,11 @@
  * must not lose a whole stage to one bad response catch inside `worker`, which
  * all four of them do.
  *
+ * **The pool only overlaps work that yields.** A worker that calls `spawnSync`
+ * blocks the event loop, and the pool silently runs one at a time — which is
+ * how every narrator's "3 in parallel" was serial until 2026-09-25. Spawn with
+ * `spawnClaude` (`claude-envelope.js`), never `spawnSync`, inside a worker.
+ *
  * @template T
  * @param {T[]} items
  * @param {number} limit

@@ -786,6 +786,9 @@ function renderGlance(overview, cycles) {
     const unmet = []
     if (m.freshness?.met === false) unmet.push('freshness')
     if (m.multiSource?.met === false) unmet.push('multi-source')
+    for (const [k, label] of [['usDatelines', 'US datelines'], ['latAmDatelines', 'Latin America'], ['sameEventDuplicates', 'same-event dups'], ['missingDatelines', 'datelines']]) {
+      if (m[k]?.met === false) unmet.push(label)
+    }
     if (m.regions?.met === false) unmet.push('regions')
     if (m.sciTech?.met === false) unmet.push('sci-tech ratio')
     if (m.topSourceShare?.met === false) unmet.push('source concentration')
@@ -1514,7 +1517,13 @@ function renderAuditJSON(d, metricsEl, expEl, proseEl) {
   // Row 2: target metrics
   html += '<div class="audit-targets">'
   html += auditTarget('freshness', `${m.freshness?.median}d median`, `p90 ${m.freshness?.p90}d`, m.freshness?.met, `target \u2264 ${m.freshness?.target}d`)
-  html += auditTarget('multi-source', m.multiSource?.value, null, m.multiSource?.met, `target \u2265 ${m.multiSource?.target}`)
+  // Schema moved from a daily count to a share on 2026-09-25; older audits keep `value`.
+  const ms = m.multiSource?.pct != null ? `${m.multiSource.pct}%` : m.multiSource?.value
+  html += auditTarget('multi-source', ms, null, m.multiSource?.met, `target \u2265 ${m.multiSource?.target}${m.multiSource?.pct != null ? '%' : ''}`)
+  if (m.usDatelines) html += auditTarget('US datelines', `${m.usDatelines.pct}%`, null, m.usDatelines.met, `target \u2264 ${m.usDatelines.target}%`)
+  if (m.latAmDatelines) html += auditTarget('Latin America', `${m.latAmDatelines.pct}%`, null, m.latAmDatelines.met, `target \u2265 ${m.latAmDatelines.target}%`)
+  if (m.sameEventDuplicates) html += auditTarget('same-event dups', m.sameEventDuplicates.value, null, m.sameEventDuplicates.met, 'target 0')
+  if (m.missingDatelines) html += auditTarget('missing datelines', m.missingDatelines.value, null, m.missingDatelines.met, 'target 0')
   html += auditTarget('regions', `${m.regions?.count} unique`, regionBreakdown(m.regions?.breakdown), m.regions?.met, `target \u2265 ${m.regions?.target}`)
   html += auditTarget('sci+tech', `${m.sciTech?.ratio}%`, null, m.sciTech?.met, `target \u2265 ${m.sciTech?.target}%`)
   html += auditTarget('top source', `${m.topSourceShare?.pct}%`, m.topSourceShare?.source, m.topSourceShare?.met, `target < ${m.topSourceShare?.target}%`)

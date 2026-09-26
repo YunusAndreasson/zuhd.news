@@ -2357,12 +2357,18 @@ test('the published thermal payload only claims what it can explain', (t) => {
       e.relatedArticles?.length > 0,
       `${e.id} is published with no coverage to corroborate`,
     )
-    assert.ok(e.near?.loc, `${e.id} has no place name to state a distance against`)
-    for (const a of e.relatedArticles) {
+    // The app's contract (mobile/lib/overlays.ts): `near` a string it prints,
+    // `relatedArticles` slugs it looks up. The web's detail rides `nearKm` and
+    // `related`. Pinned since 2026-09-25, when objects in both fields would
+    // have failed the app's validator on the first joined event.
+    assert.ok(typeof e.near === 'string' && e.near, `${e.id} has no place name to state a distance against`)
+    assert.ok(e.relatedArticles.every((s) => typeof s === 'string'), `${e.id} relatedArticles must be slugs`)
+    assert.deepEqual(e.related.map((a) => a.slug), e.relatedArticles, `${e.id} related and relatedArticles disagree`)
+    for (const a of e.related) {
       assert.ok(a.km <= payload.joinRadiusKm, `${e.id} cites a story ${a.km}km away`)
     }
-    // `near` is the nearest cited story, which is what the card's hero prints.
-    assert.equal(e.near.km, e.relatedArticles[0].km, `${e.id}'s near distance is not its nearest`)
+    // `nearKm` is the nearest cited story, which is what the card's hero prints.
+    assert.equal(e.nearKm, e.related[0].km, `${e.id}'s near distance is not its nearest`)
   }
 })
 
@@ -2494,10 +2500,17 @@ test('a place is a name and a distance, never a grid cell', (t) => {
   // And the split that must survive all of that merging: `La Paz` is two cities
   // 4,511 km apart, Bolivia and Mexico. A grid catches this and so does
   // proximity; only proximity cannot also invent a split under 2 km of jitter.
-  const lapaz = places.filter((p) => p.loc === 'La Paz')
-  if (lapaz.length) {
-    assert.equal(lapaz.length, 2, 'La Paz is two cities and must stay two places')
+  // How many of the two the window actually holds is a fact about the news,
+  // not the grouping: on 2026-09-26 both La Paz stories were Bolivian, 1 km
+  // apart, and one place was the right answer. So count the cities present —
+  // stories more than 100 km from every other — and require exactly that many.
+  const lapazPts = points.filter((p) => p.loc === 'La Paz')
+  const cities = []
+  for (const p of lapazPts) {
+    if (!cities.some((c) => Math.abs(c.lat - p.lat) < 1 && Math.abs(c.lng - p.lng) < 1)) cities.push(p)
   }
+  const lapaz = places.filter((p) => p.loc === 'La Paz')
+  assert.equal(lapaz.length, cities.length, `La Paz is ${cities.length} cit${cities.length === 1 ? 'y' : 'ies'} in this window and must be as many places`)
 
   // The tight merge radius has to stay tight. These are separate cities with
   // separate stories, 9–15 km apart, and on this map separate peoples' — a merge

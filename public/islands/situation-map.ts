@@ -55,7 +55,7 @@ import {
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
 import { graticuleLines } from './_map/graticule'
-import { createStarfield, type SkyHit } from './_map/starfield'
+import { createSky, type SunHit } from './_map/sky-paint'
 import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
 import {
@@ -517,7 +517,7 @@ export function mount(
    *
    * `map-island.test.js` asserts the position rather than the existence.
    */
-  const sky = createStarfield({
+  const sky = createSky({
     project: (lngLat) => map.project(lngLat),
     centre: () => {
       const c = map.getCenter()
@@ -1494,12 +1494,12 @@ export function mount(
   /**
    * Whether the camera is moving at all — a drag, a wheel, a pinch or a flight.
    *
-   * Set from `movestart`/`moveend`, which is every one of them. Two things read
-   * it, and they are the same argument twice: **nothing that is only worth
-   * doing at rest should be done inside the frame being dragged.** The sky
-   * drops its star field, and the hover path stops running three
-   * `queryRenderedFeatures` per pointer move against a 99k-point source while
-   * the pointer is the thing moving the map.
+   * Set from `movestart`/`moveend`, which is every one of them. **Nothing that
+   * is only worth doing at rest should be done inside the frame being
+   * dragged**: the hover path stops running three `queryRenderedFeatures` per
+   * pointer move against a 99k-point source while the pointer is the thing
+   * moving the map. (The sky used to drop its star field here too, until the
+   * stars were removed on 2026-09-26.)
    */
   let interacting = false
   /**
@@ -1784,7 +1784,7 @@ export function mount(
      * the whole design is built around** — the limb is a circle assembled from
      * tile-mesh triangles, so without MSAA it is a stepped polygon whose
      * silhouette jumps by whole pixels as the camera moves, while the airglow
-     * drawn against it (`_map/starfield.ts`, `drawHalo`) is an analytic circle
+     * drawn against it (`_map/sky-paint.ts`, `drawHalo`) is an analytic circle
      * that moves continuously. The two disagree by up to a pixel, everywhere,
      * every frame, and that disagreement is what makes the edge crawl.
      *
@@ -1803,7 +1803,7 @@ export function mount(
      * So a two-finger drag on a phone or one keypress on a desktop tilted a
      * globe whose whole sky is computed on the assumption that it never tilts —
      * `calibrate` in `_map/sky.ts` refuses any non-zero bearing or pitch, so the
-     * stars, the sun, the moon and the airglow all **disappeared and stayed
+     * sky — then stars, sun, moon and airglow — **disappeared and stayed
      * gone** until the reader found `resetView`. Nothing was thrown and nothing
      * was logged, because refusing to draw is the correct behaviour there; what
      * was wrong is that the state was reachable at all.
@@ -2625,8 +2625,8 @@ export function mount(
     // is that black is not a thing this picture contains. Measured off a headed
     // render: space is `(8,10,13)` and the night sea was `(6,7,9)` — 0.28 of
     // pure black over `#080a0d` — so **the planet's dark half was darker than
-    // the sky behind it**. A solid body in front of a starfield can be as dark
-    // as space and no darker; that inversion is why the night limb needs a rim
+    // the sky behind it**. A solid body in front of space can be as dark as
+    // space and no darker; that inversion is why the night limb needs a rim
     // to exist at all, and it is the one measurable thing about this hemisphere
     // that could not happen.
     //
@@ -3527,8 +3527,14 @@ export function mount(
         'text-transform': 'uppercase',
         'text-anchor': 'top',
         'text-offset': [0, 1.05],
+        // Always drawn, and it claims its space. With `ignore-placement: true`
+        // the basemap's labels could not see it, so "EGYPT" was set straight
+        // through "GAZA" — text on text, where both words are lost, which is
+        // worse than the beacon-over-name case (map.md) that a partly covered
+        // name survives. This layer is placed first, so it is the other label
+        // that yields.
         'text-allow-overlap': true,
-        'text-ignore-placement': true,
+        'text-ignore-placement': false,
       },
       paint: {
         'text-color': OVERLAY_COLOUR.genocide,
@@ -3580,7 +3586,7 @@ export function mount(
     // Until this line the globe's crescent came from an undeclared `light`,
     // which meant `anchor: 'viewport'` and a `u_sun_pos` that never moved — a
     // lit limb pinned to the upper-left of the screen at every hour of every
-    // day, over a terminator drawn from the real sun and beside `starfield`'s
+    // day, over a terminator drawn from the real sun and beside `sky-paint.ts`'s
     // own crescent, which was right the whole time. The derivation, and the
     // reason the antisolar point is the thing handed over, are in
     // `sunLightPosition`.
@@ -3594,14 +3600,9 @@ export function mount(
     // The sky is on this tick for exactly the reason the terminator is: it is a
     // function of where the sun is, and 120 seconds is 0.5° of sky rotation,
     // which is under a pixel where the sky is drawn most precisely. It is *not*
-    // on `scrubNow` either — a Tuesday moon over tonight's earth would be the
+    // on `scrubNow` either — a Tuesday sun over tonight's earth would be the
     // same two clocks in one picture.
-    //
-    // A tick that lands mid-gesture drops the stars, for the same reason `move`
-    // does: two minutes of sky rotation is under a pixel, and the catalogue
-    // walk is the one thing that must not happen inside a dragged frame.
-    // `moveend` redraws in full immediately afterwards in any case.
-    sky.draw(now, interacting ? 'quiet' : 'full')
+    sky.draw(now)
   }
 
   // --- Interaction --------------------------------------------------------
@@ -3642,19 +3643,19 @@ export function mount(
   }
 
   /**
-   * What of the sky is under the pointer.
+   * Whether the sun is under the pointer.
    *
-   * Asks the canvas what it last *drew*, not the catalogue what exists — which
+   * Asks the canvas where it last *drew* the sun, not where the sun is — which
    * is the same discipline `queryRenderedFeatures` enforces one layer up, and
-   * for the same reason: a star behind the earth, past the sky's outer edge or
-   * faded out by the zoom is not on screen, and a hit test that could find one
+   * for the same reason: a sun behind the earth, past the sky's outer edge or
+   * faded out by the zoom is not on screen, and a hit test that could find it
    * would open a card pointing at nothing.
    *
    * `e.point` is relative to MapLibre's canvas and the sky canvas is `inset: 0`
    * inside the same host, so the two coordinate systems are the same one. If
    * that ever stops being true this is where it goes wrong silently.
    */
-  const skyAt = (point: { x: number; y: number }): SkyHit | null =>
+  const skyAt = (point: { x: number; y: number }): SunHit | null =>
     sky.hit(point.x, point.y)
 
   /**
@@ -3960,12 +3961,6 @@ export function mount(
       if (area) return sheet.showFamine(area, pin)
     }
 
-    /** The sun, the moon or a star, in the same two densities as every mark. */
-    const showSky = (h: SkyHit, pin: boolean) => {
-      if (h.kind === 'star') return sheet.showStar(h, pin)
-      return sheet.showBody(h, hijriLabel(new Date()), pin)
-    }
-
     /**
      * The one hit test, and the one precedence.
      *
@@ -4069,12 +4064,12 @@ export function mount(
       // pointer path, and only outside the globe's limb, where `topHit` and
       // `countryAt` are both guaranteed to find nothing. So the precedence is
       // geometric rather than declared: there is nothing for it to contend with.
-      const star = skyAt(e.point)
-      if (star) {
+      const sun = skyAt(e.point)
+      if (sun) {
         openSlug = null
         clearPeekClose()
-        peekId = `sky:${star.kind === 'star' ? star.designation : star.kind}`
-        showSky(star, true)
+        peekId = 'sky:sun'
+        sheet.showSun(sun, true)
         return
       }
 
@@ -4163,14 +4158,13 @@ export function mount(
         }
       } else {
         setHoverSlug(null)
-        const star = skyAt(e.point)
-        if (star) {
+        const sun = skyAt(e.point)
+        if (sun) {
           map.getCanvas().style.cursor = 'pointer'
-          const id = `sky:${star.kind === 'star' ? star.designation : star.kind}`
-          if (id !== peekId) {
-            peekId = id
+          if (peekId !== 'sky:sun') {
+            peekId = 'sky:sun'
             clearPeekClose()
-            showSky(star, false)
+            sheet.showSun(sun, false)
           }
           return
         }
@@ -4281,40 +4275,23 @@ export function mount(
     syncResetButton()
 
     /**
-     * The sky follows the camera, and it stands down for the duration of a
-     * gesture.
+     * The sky follows the camera.
      *
-     * `move` is still the only event it needs — it fires on a frame MapLibre is
+     * `move` is the only event it needs — it fires on a frame MapLibre is
      * already drawing, so this adds a repaint to work in flight rather than
      * scheduling work of its own, and nothing here touches a source, a layer or
-     * a feature state, so the map's idle stays exactly as quiet as it was.
-     * What changed is *how much* it repaints while the camera is moving.
+     * a feature state, so the map's idle stays exactly as quiet as it was. It
+     * repaints the atmosphere and the sun, which is cheap; the star field that
+     * once made a drag expensive was removed on 2026-09-26.
      *
-     * The star field is the whole of the cost — the catalogue walk, a `place()`
-     * per survivor and ~200 `fill()` calls — and it is 0.03% of the ink on the
-     * canvas, which is what makes it the right thing to drop while the camera
-     * is moving and the reader is looking at the planet. The atmosphere, the
-     * sun and the moon stay: the first is the only edge the night hemisphere
-     * has, and the other two are 13px discs whose vanishing at the start of
-     * every drag a reader would actually notice. This is the lever `map.md`
-     * has recorded as "the next real lever" since the allocation fix, and it is
-     * taken here rather than by moving the whole sky to a worker, because the
-     * cheapest frame is still the one that draws less.
-     *
-     * The full sky returns on `moveend`, in one settled frame. Two things fall
-     * out for free. `calibrate` refuses any camera it cannot solve as a sphere
-     * camera, which is every camera part-way through the projection's morph, so
-     * the sky used to **blink out and back frame by frame** through the zoom
-     * band; what is not redrawn while moving cannot blink. And where the
-     * residual was still inside the 1.5px gate it was drawn against a camera
-     * already slightly wrong — the "parts land in the wrong place" half of the
-     * same report.
+     * `interacting` still matters to the pointer path, which skips its hit
+     * tests while the camera is being dragged.
      */
     map.on('movestart', () => {
       interacting = true
     })
     map.on('move', () => {
-      sky.draw(undefined, interacting ? 'quiet' : 'full')
+      sky.draw()
     })
     map.on('moveend', () => {
       interacting = false
@@ -5197,29 +5174,6 @@ export function mount(
   }
 
   /**
-   * The star catalogue, after everything the map is for.
-   *
-   * ~45 KB gzipped of positions, magnitudes, colours and names — the same
-   * treatment the water, the conflict feed and the lead sentences get, and for
-   * the stronger version of the same reason: the sun, the moon and the
-   * atmosphere are arithmetic and are drawn from the first frame, so what waits
-   * here is the one part of the sky nobody is looking for yet.
-   *
-   * A failed or absent fetch is a globe with a sun, a moon and no stars. That
-   * is a complete picture, so there is nothing to report and nothing to retry.
-   */
-  const loadStars = () => {
-    whenIdle(() => {
-      void (async () => {
-        const data = await json<unknown>(basemapUrl('stars.json', basemapV), abort.signal)
-        if (!data || !mounted) return
-        sky.setCatalogue(data)
-        sky.draw()
-      })()
-    }, 8000)
-  }
-
-  /**
    * Check for new stories in place.
    *
    * The reader has built a view — a camera, a time slice, a set of categories,
@@ -5570,10 +5524,8 @@ export function mount(
     loadConflict()
     loadLeads()
     loadWater()
-    loadStars()
     // The sky's canvas has a box only once MapLibre has laid the host out, so
-    // it is measured here rather than at construction. The first paint is a
-    // sun, a moon and an atmosphere; the stars arrive with `loadStars`.
+    // it is measured here rather than at construction.
     sky.resize()
     sky.draw()
     // Every block of the money rail, from one payload.

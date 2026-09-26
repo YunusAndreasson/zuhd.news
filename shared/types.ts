@@ -15,6 +15,11 @@ export interface ArticleSource {
    *  outlet brought nothing distinctive (wire-verbatim). Shown in the
    *  sources sheet when present; hidden otherwise. */
   angle?: string | null;
+  /** The publisher's lead-image URL (NewsAPI `image`, an RSS item's media
+   *  field, or the page's `og:image`). Absent when the source offered none.
+   *  A hotlink to the publisher, not an asset we host — nothing renders it
+   *  yet. */
+  image?: string;
 }
 
 export type BlockTone = 'favorable' | 'unfavorable' | 'neutral';

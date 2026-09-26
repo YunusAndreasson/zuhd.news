@@ -129,8 +129,7 @@
      `body.map-page`). The one thing `light-dark()` cannot do is a non-colour
      property: it is a *colour* function, so `opacity: light-dark(0, 0.85)` is
      an invalid declaration that gets dropped — that mistake shipped a black
-     page over every light-mode article once already, and the spacefield block
-     still carries the media query that replaced it.
+     page over every light-mode article once already.
 
      Contrast is a constraint, not an outcome. Every ink/surface pair below
      clears WCAG AA (4.5:1) in *both* schemes and against both `--bg` and
@@ -313,10 +312,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Establish a stacking context so background islands (spacefield, fixed at
-     z-index: -2) paint above the body background but behind all normal-flow
-     content. Without this, a negative z-index falls through to the root
-     stacking context and hides under body's background fill. */
+  /* Establish a stacking context so a background layer (anything fixed at a
+     negative z-index) paints above the body background but behind all
+     normal-flow content. Without this, a negative z-index falls through to the
+     root stacking context and hides under body's background fill. */
   isolation: isolate;
 }
 
@@ -2365,40 +2364,6 @@ body.doc-page > footer {
   .doc-panel { padding: var(--space-sm); }
 }
 
-/* --- Spacefield (stars + Mars) ---
-   Canvas-rendered starfield with depth layers, subtle twinkling, and a
-   small procedural Mars. Replaces the old static SVG starfield. The
-   island auto-mounts on the article and country templates, sitting at
-   z-index -2 below the ambient globe (-1).
-
-   Dark only, and the media query is load-bearing. This was
-   `opacity: light-dark(0, 0.85)`, which is not a thing: `light-dark()` is a
-   *colour* function, so in `opacity` the whole declaration is invalid and gets
-   dropped — leaving the initial value, 1. A near-black canvas therefore
-   painted at full strength over the white page on every light-mode device,
-   and since a fixed z-index:-2 element still stacks above the body's
-   background, the article headline (#000 on what was now black) simply
-   vanished. Every article and country page was a black rectangle for anyone
-   not running dark mode. Same trap the doc pages hit before they committed to
-   dark; here the fix is to honour the preference rather than override it. */
-.spacefield-root {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-@media (prefers-color-scheme: dark) {
-  .spacefield-root { opacity: 0.85; }
-}
-.spacefield-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 /* ---------------------------------------------------------- Dark surface ---
    The palette for the two pages that commit to dark regardless of the reader's
    scheme: the map, and the documents that open over it.
@@ -3022,8 +2987,8 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   background: var(--map-ground);
 }
 
-/* The sky — stars, the sun, the moon and the outward half of the atmosphere.
-   `_map/starfield.ts` paints it; this rule only has to keep it in the one place
+/* The sky — the sun and the outward half of the atmosphere.
+   `_map/sky-paint.ts` paints it; this rule only has to keep it in the one place
    where all of that is free.
 
    **It carries no `z-index`, and that is deliberate.** It and

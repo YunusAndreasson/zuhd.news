@@ -14,7 +14,9 @@ import {
   fuzzyMatch,
   buildWordSets,
   wouldDedup,
+  isThin,
   NICHE_SOURCES,
+  THIN_BODY,
 } from './dedup.js'
 
 // Helper: build a story object the way merge-feeds.js produces them.
@@ -102,12 +104,31 @@ test('wouldDedup recap layer fires only when sources are all niche', () => {
   assert.equal(r1.deduped, true)
   assert.equal(r1.reason, 'recap')
 
-  // Multi-source with a major outlet → recap does NOT fire (existing
-  // layers still apply, but a new multi-sourced story about the same
-  // event is treated as fresh — the major outlets confirm timeliness).
+  // Multi-source against an *undated* title set → no match: the all-outlet
+  // check below only counts titles it can place inside its 72h window.
   const multi = story('Israel Encircles Bint Jbeil, Stalls', ['Reuters', 'BBC'], 'foo')
   const r2 = wouldDedup(multi, ctx)
   assert.equal(r2.deduped, false)
+})
+
+// Changed 2026-09-25. Multi-source stories were exempt from the title layer on
+// the theory that major outlets confirm timeliness; in practice the same event
+// came back under a new eventUri and ran again ("Xi Visits Washington" twice).
+test('wouldDedup title layer covers every outlet, but only over 72h', () => {
+  const hoursAgo = (h) => Date.now() - h * 3600 * 1000
+  const ctxAt = (h) => ({
+    recentSlugs: [],
+    ledgerEventUris: new Map(),
+    recentWordSets: [],
+    recentTitleSets: buildTitleSets([{ slug: 'prior', title: 'Israel Encircles Bint Jbeil', date: hoursAgo(h) }]),
+    ledgerLabelSets: [],
+  })
+  const multi = story('Israel Encircles Bint Jbeil, Stalls', ['Reuters', 'BBC'], 'foo')
+  const recent = wouldDedup(multi, ctxAt(20))
+  assert.equal(recent.deduped, true)
+  assert.equal(recent.reason, 'recap')
+  // Five days on, the same words are a running story's next development.
+  assert.equal(wouldDedup(multi, ctxAt(120)).deduped, false)
 })
 
 test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
@@ -134,6 +155,36 @@ test('slug-fuzzy thresholds are unchanged (no regression)', () => {
     fuzzyMatch('2026-04-19-bellingcat-tapentadol-india-west-africa-opioid-pipeline', sets),
     '2026-04-17-india-tapentadol-west-africa-opioid-pipeline'
   )
+})
+
+// --- arc words, added 2026-09-26 ---------------------------------------------
+// The 14:04 cycle dropped "Trump rejects Iran's 7-day plan", the selector's
+// lead politics pick, as a copy of the previous day's proposal story: the two
+// slugs shared iran/day/hormuz and nothing else. `iran` was in 7 of that
+// window's slugs, so it is not evidence. A rewrite of the same story keeps
+// matching on the words the arc does not share.
+test('slug-fuzzy does not match a follow-up on running-story words alone', () => {
+  const sets = buildWordSets([
+    '2026-09-25-iran-7-day-ceasefire-proposal-hormuz',
+    '2026-09-25-araghchi-un-gulf-states-bases-responsibility-iran-war',
+    '2026-09-24-iran-drone-strike-kuwait-refinery',
+    '2026-09-24-iraq-iran-gas-waiver-lapses',
+    '2026-09-23-iran-rial-record-low-sanctions',
+    '2026-09-23-pezeshkian-iran-iaea-inspectors-offer',
+  ])
+  assert.equal(fuzzyMatch('2026-09-26-trump-rejects-iran-seven-day-hormuz-plan-strikes-after-midterms', sets), null)
+  assert.equal(fuzzyMatch('2026-09-25-brent-whipsaw-houthi-missiles-iran-hormuz-proposal', sets), null)
+  assert.equal(
+    fuzzyMatch('2026-09-26-iran-seven-day-ceasefire-proposal-hormuz-reopening', sets),
+    '2026-09-25-iran-7-day-ceasefire-proposal-hormuz',
+  )
+})
+
+test('a story is thin when no source carries THIN_BODY characters', () => {
+  assert.equal(isThin({ sources: [{ body: 'x'.repeat(307) }] }), true)
+  assert.equal(isThin({ sources: [{ body: 'x'.repeat(307) }, { body: 'x'.repeat(THIN_BODY) }] }), false)
+  assert.equal(isThin({ sources: [] }), true)
+  assert.equal(isThin({}), true)
 })
 
 // --- URL layer, added 2026-08-30 -------------------------------------------

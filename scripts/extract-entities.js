@@ -174,9 +174,10 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
   // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
   // hit a 30s wall, SIGTERM-killing (exit 143) ~28% of cycles and losing all
   // stock-entity extraction for them. The input tokens are already billed by
-  // then — the kill just discarded paid-for output. Stage budget is 180s, so
-  // 60s leaves ample headroom for the entity-haiku call that follows.
-  const res = runHaiku(prompt, { timeout: 60_000, maxBuffer: 512 * 1024 })
+  // then — the kill just discarded paid-for output. Raised to 90s on
+  // 2026-09-25: 60s still killed 4 of ~40 cycles. The stage budget is 180s and
+  // the entity-haiku call that follows is capped at 20s, so this still fits.
+  const res = runHaiku(prompt, { timeout: 90_000, maxBuffer: 512 * 1024 })
 
   if (res.status !== 0) {
     console.error(`  ✗ stocks-haiku ${invocationId}: exit ${res.status}`)

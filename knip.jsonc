@@ -25,7 +25,6 @@
     //    to be a readable mirror of run-cycle.sh, and a list with holes in it
     //    wherever npm happens to agree is not one. `npm run deadcode` passes
     //    --no-config-hints so the command reports findings, not config advice.
-    "scripts/backfill-selection.js",
     "scripts/build.js",
     "scripts/compute-metrics.js",
     "scripts/coverage-map.js",
@@ -97,12 +96,6 @@
     "scripts/fetch-country-cards.js",
     "scripts/dry-run-augment.js",
     "scripts/shoot.mjs",
-    // generate-stars.js regenerates the committed shared/data/stars.json from
-    // the Bright Star Catalogue and the IAU's name list. Committed because its
-    // output is: shared/countries/country-augmented.ts names a generator that
-    // is *not* in this repo, so it cannot be regenerated and 32 countries have
-    // been hatched on every metric ever since.
-    "scripts/generate-stars.js",
     // merge-palestine.mjs is a one-shot data edit, already applied, that
     // rewrote the bundled Natural Earth TopoJSON to carry one Palestine
     // feature. scripts/build/basemap.js does the same merge at build time with

@@ -43,7 +43,7 @@ Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Mo
 
 - **Cloudflare Pages**, direct upload via `wrangler pages deploy dist --branch master`
 - Production branch: `master` (custom domain `zuhd.news` only serves production deployments)
-- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (04:00, 08:00, 12:00, 17:00, 22:00 UTC)
+- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (05:00, 10:00, 14:00, 18:00, 22:00 UTC — timed to when news is published; 05:00 runs the daily jobs, `DAILY_HOUR` in run-cycle.sh)
 - **Manual run:** `env -u CLAUDECODE bash scripts/run-cycle.sh`
 - **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
 - **Logs:** `logs/cycle-YYYY-MM-DD_HHMM.log` (kept 7 days)

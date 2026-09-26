@@ -1,4 +1,4 @@
-// Shared dedup logic — used by prefilter-feed.js, dedup-selection.js, and backfill-selection.js.
+// Shared dedup logic — used by prefilter-feed.js and dedup-selection.js.
 // Single source of truth for matching rules and category floors.
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -7,6 +7,23 @@ import { parseFrontmatter } from './frontmatter.js'
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
 export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
+
+// Floors a cycle may miss rather than fill (user decision 2026-09-26). A thin
+// science feed was filled with disasters — Bangkok flooding and an Athens gas
+// blast shipped as science at 10:01. Read by dedup-selection's warning and the
+// autoresearch scorer; nothing refills any floor since backfill was removed
+// the same day.
+export const FLOORS_MAY_GO_UNMET = new Set(['science'])
+
+// A story is thin when no source carries this much text — an RSS teaser, not
+// an article. prefilter flags it for the selector, and enrich-selection fetches
+// the page once and drops the pick if it is still thin.
+export const THIN_BODY = 400
+
+/** @param {{ sources?: Array<{ body?: string }> }} story */
+export function isThin(story) {
+  return !(story.sources || []).some(src => (src?.body || '').length >= THIN_BODY)
+}
 
 const ARTICLES_DIR = 'content/articles'
 const LEDGER_PATH = 'content/.story-ledger.json'
@@ -163,16 +180,47 @@ export function buildWordSets(slugs) {
 
 /** Build {slug, title, words} sets from articles for title-based fuzzy match. */
 export function buildTitleSets(items) {
-  return items.map(it => ({ slug: it.slug, title: it.title || it.label || '', words: titleWords(it.title || it.label || '') }))
+  return items.map(it => ({ slug: it.slug, title: it.title || it.label || '', date: it.date, words: titleWords(it.title || it.label || '') }))
 }
 
-/** Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words). */
+// A word in this many recent slugs names a running story, not an event:
+// `iran` sat in 7 of the 48h slugs on 2026-09-26, `hormuz` in 15 of them on
+// 04-19. Sharing such words is what every follow-up on the arc does, so they
+// are set aside before the overlap is counted. Measured over the eleven
+// fuzzy removals logged 09-20 → 09-26 plus the corpus.test pins: every
+// same-story rewrite keeps ≥3 rarer words in both the 48h and 7d windows,
+// and the two false positives, "Trump rejects Iran's 7-day plan" and a Brent
+// swing, both matched `iran-7-day-ceasefire-proposal-hormuz` on arc words.
+const ARC_WORD_DF = 5
+
+// Keyed by the array and its length: dedup-selection.js grows its batch set
+// one pick at a time.
+/** @type {WeakMap<object, { size: number, df: Map<string, number> }>} */
+const slugWordDf = new WeakMap()
+
+function arcWords(recentWordSets) {
+  const cached = slugWordDf.get(recentWordSets)
+  if (cached?.size === recentWordSets.length) return cached.df
+  const df = new Map()
+  for (const { words } of recentWordSets) for (const w of words) df.set(w, (df.get(w) || 0) + 1)
+  slugWordDf.set(recentWordSets, { size: recentWordSets.length, df })
+  return df
+}
+
+/**
+ * Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words),
+ * counting only words that are not common across the recent slugs.
+ */
 export function fuzzyMatch(candidateSlug, recentWordSets) {
-  const candidateWords = slugWords(candidateSlug)
-  if (candidateWords.size === 0) return null
+  const df = arcWords(recentWordSets)
+  const distinctive = (words) => [...words].filter(w => (df.get(w) || 0) < ARC_WORD_DF)
+  const candidateWords = distinctive(slugWords(candidateSlug))
+  if (candidateWords.length === 0) return null
   for (const { slug, words } of recentWordSets) {
-    const overlap = [...candidateWords].filter(w => words.has(w)).length
-    const ratio = overlap / Math.min(candidateWords.size, words.size)
+    const recentWords = new Set(distinctive(words))
+    if (recentWords.size === 0) continue
+    const overlap = candidateWords.filter(w => recentWords.has(w)).length
+    const ratio = overlap / Math.min(candidateWords.length, recentWords.size)
     if (ratio >= 0.55 && overlap >= 3) return slug
   }
   return null
@@ -202,6 +250,8 @@ export function recapMatch(candidateTitle, titleSets) {
   return null
 }
 
+const RECAP_ALL_WINDOW_MS = 72 * 3600 * 1000
+
 function isNicheOnly(story) {
   const sources = story.sources || []
   if (sources.length === 0) return false
@@ -217,8 +267,26 @@ function isNicheOnly(story) {
  * against recent article titles + ledger labels (catches reframed
  * headlines that slug-fuzzy misses).
  */
+/**
+ * The slug of a recent article already covering this NewsAPI event, or null.
+ *
+ * Layer 3 of `wouldDedup`, and also asked by `fetch-news-api.js` *before* it
+ * spends a token expanding an event: the per-event budget went to the top 8
+ * events by coverage, which are mostly running stories this layer then drops
+ * (6 of 8 on 2026-09-25, the same events re-bought every cycle). One function,
+ * so the fetcher skips exactly what prefilter would have thrown away.
+ * @param {string | null | undefined} eventUri
+ * @param {{ ledgerEventUris: Map<string, string[]>, recentSlugs: string[] }} ctx
+ */
+export function eventCoveredRecently(eventUri, ctx) {
+  if (!eventUri || !ctx.ledgerEventUris.has(eventUri)) return null
+  const existing = ctx.ledgerEventUris.get(eventUri)
+  const hasRecent = existing.some(a => ctx.recentSlugs.some(r => r === a || r.endsWith(a)))
+  return hasRecent ? existing[existing.length - 1] : null
+}
+
 export function wouldDedup(story, ctx) {
-  const { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls } = ctx
+  const { recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls } = ctx
   const slug = story.suggestedSlug
   // Layer 1: exact slug match
   if (existsSync(join(ARTICLES_DIR, `${slug}.md`))) {
@@ -237,13 +305,8 @@ export function wouldDedup(story, ctx) {
     }
   }
   // Layer 3: eventUri match — same event covered by a recent article
-  if (story.eventUri && ledgerEventUris.has(story.eventUri)) {
-    const existing = ledgerEventUris.get(story.eventUri)
-    const hasRecent = existing.some(a => recentSlugs.some(r => r === a || r.endsWith(a)))
-    if (hasRecent) {
-      return { deduped: true, reason: 'eventUri', match: existing[existing.length - 1] }
-    }
-  }
+  const eventMatch = eventCoveredRecently(story.eventUri, ctx)
+  if (eventMatch) return { deduped: true, reason: 'eventUri', match: eventMatch }
   // Layer 4: fuzzy slug match
   const slugMatch = fuzzyMatch(slug, recentWordSets)
   if (slugMatch) return { deduped: true, reason: 'fuzzy', match: slugMatch }
@@ -255,6 +318,18 @@ export function wouldDedup(story, ctx) {
     if (titleMatch) return { deduped: true, reason: 'recap', match: titleMatch }
     const labelMatch = recapMatch(story.title, ledgerLabelSets || [])
     if (labelMatch) return { deduped: true, reason: 'recap', match: labelMatch }
+  } else if (story.title) {
+    // Every other story gets the title check too, over a shorter window. It
+    // was niche-only, so a multi-source event published at 12:00 came back at
+    // 17:00 under a new eventUri and a reworded slug and ran again — "Xi Visits
+    // Washington" twice, the OpenAI/Australia breach three times in two days.
+    // Measured on three 09-24/25 feeds: 8-10 hits each, every one an event
+    // already published. 72h rather than the context's 7d, because a running
+    // story's genuine next development does share the words.
+    const since = Date.now() - RECAP_ALL_WINDOW_MS
+    const recentOnly = (recentTitleSets || []).filter(t => (typeof t.date === 'number' ? t.date : Date.parse(t.date)) >= since)
+    const titleMatch = recapMatch(story.title, recentOnly)
+    if (titleMatch) return { deduped: true, reason: 'recap', match: titleMatch }
   }
   return { deduped: false }
 }

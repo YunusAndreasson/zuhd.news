@@ -1,71 +1,90 @@
 {
-  "date": "2026-09-21",
+  "date": "2026-09-25",
   "metrics": {
     "articles": {
-      "value": 59,
-      "detail": "5 cycles, all completed, avg 11.8/cycle"
+      "value": 53,
+      "detail": "5 cycles, all completed, avg ~10.6/cycle (53 yesterday); third full day on the Opus 5.5 selector"
     },
     "freshness": {
-      "median": 0.1,
-      "p90": 0.8,
-      "max": 0.9,
+      "median": 0.3,
+      "p90": 1,
+      "max": 1,
       "target": 1.0,
       "met": true
     },
     "categories": {
-      "politics": 23,
-      "economy": 18,
-      "science": 7,
-      "tech": 11
+      "politics": 22,
+      "economy": 12,
+      "science": 6,
+      "tech": 13
     },
     "multiSource": {
-      "value": 15,
-      "target": 4,
+      "pct": 36,
+      "target": 30,
       "met": true
     },
+    "usDatelines": {
+      "pct": 43,
+      "target": 25,
+      "met": false
+    },
+    "latAmDatelines": {
+      "pct": 9,
+      "target": 5,
+      "met": true
+    },
+    "sameEventDuplicates": {
+      "value": 0,
+      "target": 0,
+      "met": true
+    },
+    "missingDatelines": {
+      "value": 0,
+      "target": 0,
+      "met": true
+    },
+    "stateOrAdvocacyOnly": 5,
+    "imageUrlPct": 30,
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
       "breakdown": {
-        "ME": 20,
-        "AM": 17,
-        "EU": 13,
-        "AS": 5,
-        "AF": 4,
-        "OC": 0
+        "AM": 28,
+        "EU": 11,
+        "ME": 8,
+        "AS": 4,
+        "AF": 2
       }
     },
     "sciTech": {
-      "ratio": 31,
+      "ratio": 36,
       "target": 25,
       "met": true
     },
     "topSourceShare": {
       "source": "Al Jazeera Online",
-      "pct": 14,
+      "pct": 15,
       "target": 20,
       "met": true
     },
-    "uniqueSources": 47,
+    "uniqueSources": 62,
     "duplicates": 0,
-    "avgCycleDuration": 1122
+    "avgCycleDuration": 971
   },
-  "experiment": "No new experiment. 2026-09-18-gap-countries-latam-pacific remains active and evaluates 2026-09-23; today is logged as an interim observation only. Today's read is mixed: uniqueRegions fell back to 5 with Oceania at zero, while US share of total output held at 24% (41% baseline).",
-  "weakestArea": "Regional breadth, which the active experiment targets. Oceania returned to zero and Latin America produced one dateline (Kingston). Mexico, Argentina and the Philippines have not produced a published dateline on either clean day since they were added. Africa sits exactly on its guardrail floor of 4, down from 7, so 09-22 decides whether the four added entries are only inert or are also crowding out gap coverage. Science, at 7 against a target of 5, is the thinnest category margin.",
+  "experiment": "There were no active experiments to evaluate. The pause gate expired today, so its field was dropped as its reason instructed. No new experiment was proposed, because the 2026-09-25 pipeline commits (03d76c38, c99f54b8, 1cd1cee5, a42ba727) changed sourcing, dedup, enrichment and state-media labelling at about 20:30 UTC. Only the 22:00 cycle ran on the new code, so any parameter change now would be confounded with them.",
+  "weakestArea": "US datelines are furthest from target at 43% against a 25% cap, up from 34% yesterday. Americas datelines reached 28 of 53. Much of the rise comes from the Iran war and Trump–Xi stories, which carry Washington datelines (civilian toll, diesel export ban, USS Lincoln, Yemen strikes, Supreme Court voter rolls). The GAP_COUNTRIES Latin America expansion was already reverted, so the lever for this is not a source-location list.",
   "watching": [
-    "Xi's Washington visit comes as US-China truce talks stall; the summit outcome will set tariff and export-control coverage for the week.",
-    "Iran is passing Hormuz terms through intermediaries while Washington issues Gulf security alerts, so the diplomatic and military tracks are still moving together.",
-    "The Houthis seized Mocha, extending ground control along the Red Sea coast next to the Bab el-Mandeb chokepoint.",
-    "Trump is pressing Kyiv on its refinery strikes while a Moscow refinery is halted, which is a direct policy conflict over Ukraine's long-range campaign.",
-    "The US is readying sanctions on the ICC, and Israel is arming Gaza militias as the toll passes 73,900; legal and ground developments on Gaza are both escalating.",
-    "United Russia swept the Duma elections, and Merz's party hit a record poll low; the domestic politics of both European powers are worth tracking."
+    "Iran's 7-day ceasefire proposal over Hormuz is running alongside US diesel export bans and Italy's diesel cap, so the oil shock is now producing policy responses in several countries.",
+    "Trump–Xi statements on Taiwan and Iran suggest the summit's trade pledges are being tied to security conditions.",
+    "Kazakhstan's Caspian exercise deaths led to detentions of officers, and there are now two separate stories on it, so it is worth watching for a same-event merge.",
+    "The DRC's Ebola toll reached 3,779 per Africa CDC, making it a sustained science and health story with a regional-spread risk.",
+    "Two appellate rulings (the DC Circuit on the Anthropic blacklist and the Sixth Circuit on Kalshi) are shaping US AI and prediction-market regulation at the same time."
   ],
   "coverageGaps": [
-    "Oceania is back to zero datelines one day after its first non-zero day; the Australia entry in GAP_COUNTRIES has so far produced output only on 09-20.",
-    "Latin America has 1 dateline (Kingston, Jamaica). Mexico and Argentina have produced nothing across two clean days, so those entries currently look inert.",
-    "Asia fell from 8 to 5 datelines. Outside Pakistan and India the only Asian datelines were Tokyo, Tianjin and Singapore, and the added Philippines entry has not produced one.",
-    "Africa is at its floor of 4 (Entebbe, Ndutu, Port Harcourt), with nothing from the Sahel, the Horn or Sudan today."
+    "There were no Oceania datelines and only 4 from Asia, which makes this the fourth straight thin day for the Asia-Pacific.",
+    "Science fell to 6, just above the floor of 5, and three of those were space-launch stories, so primary-research science (Nature, Science, Cell) was nearly absent.",
+    "Africa had only 2 datelines, down from 8 yesterday, even though Sudan, the DRC and Nigeria (Ondo) stories ran."
   ],
-  "context": "All five cycles completed and every goal metric is met. The Africa count was cross-checked against the article datelines. The OAuth outage of 2026-09-19 is resolved: two consecutive full days of five out of five cycles. The experiment's evaluation on 09-23 should weigh usSharePct over usShareOfAmPct (a mis-specified denominator) and treat an AF count below 4 on 09-22 as grounds to revert."
+  "context": "The Opus 5.5 baseline (09-22→09-25) is complete. Multi-source reached 36%, clearing its 30% target for the first time under the new metric (28% yesterday), and the share of articles carrying an image URL rose from 9% to 30%. Both moves are probably effects of today's pipeline fixes and not the model. State-or-advocacy-only stories rose to 5 from 2 now that state sources are labelled rather than blocked. Wait until about 2026-09-28 for three days on the new pipeline code before proposing an experiment. The first candidate is the US dateline share, if it stays above 35%."
 }

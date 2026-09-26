@@ -1,11 +1,8 @@
 ---
 paths:
   - "public/islands/_map/sky.ts"
-  - "public/islands/_map/lunar.ts"
-  - "public/islands/_map/starfield.ts"
+  - "public/islands/_map/sky-paint.ts"
   - "public/islands/_map/solar.ts"
-  - "shared/star-lore.ts"
-  - "scripts/generate-stars.js"
   - "scripts/lib/sky.test.js"
 ---
 
@@ -15,6 +12,27 @@ Added 2026-08-01, with the globe. Everything here records a decision that could
 have gone the other way and a measurement that decided it. The map itself is
 `map.md` beside this; the terminator and the prayer geometry are `prayer.md`.
 
+## What the sky is now: the sun and the atmosphere
+
+- **The stars and the moon were removed on 2026-09-26, at the owner's
+  request** — a product decision, not a defect. What went: the star field (the
+  Yale Bright Star Catalogue, 2,887 stars, `shared/data/stars.json` and
+  `/basemap/stars.json`, its generator `scripts/generate-stars.js`, the
+  hand-written etymologies in `shared/star-lore.ts`, the star cards), the moon
+  (`_map/lunar.ts`, a Meeus ch. 47 transcription, its phase and earthshine, its
+  card), precession (only the J2000 catalogue needed it), camera parallax (the
+  moon's 2°; the sun's is 0.008°, under a pixel), the move-time "quiet" repaint
+  (its only saving was the star field), and `fmt.magnitude`. The article and
+  country pages' ambient starfield island (`spacefield.ts`, with its Mars
+  sprite) went the same day, for the same reason.
+- **What stayed, and why none of it depended on the stars:** the camera solve,
+  the compressed radial scale, the sun at true size with its card, the
+  atmosphere crescent and the airglow. The airglow is the one that must not be
+  mistaken for decoration — it is the only edge the night hemisphere has.
+- **If the stars come back**, the catalogue, the lore and the Meeus lunar
+  series are in git history before this date, with the measurements below
+  that sized them. The earlier text of this file describes them in full.
+
 ## The measurement the whole design turns on
 
 - **There is almost no sky on screen, and that is arithmetic rather than
@@ -22,10 +40,9 @@ have gone the other way and a measurement that decided it. The map itself is
   36.9° vertical field of view, so the earth's disc subtends ~36.8° and the only
   sky visible is the margin around it: measured against the built canvas
   (1176×913 at 1920, disc radius 456px) that is **4.8° of sky at the sides and
-  10.1° at the corners — 1.3% of the celestial sphere.** At true scale that
-  annulus holds about twenty stars to magnitude 5, and the sun and moon reach it
-  only when their sub-point is near the antipode of the map centre: **the sun for
-  about twenty minutes a night, a few weeks a year.** A photographically true sky
+  10.1° at the corners — 1.3% of the celestial sphere.** At true scale the sun
+  reaches that annulus only when its sub-point is near the antipode of the map
+  centre: **about twenty minutes a night, a few weeks a year.** A photographically true sky
   on this camera is a sky nobody ever sees. That is why the radial scale is
   compressed, and it is the one thing to re-derive before changing `SKY_SPAN` or
   `SKY_KNEE` — `sky.test.js` fails if the sun drops under six hours a day.
@@ -35,18 +52,16 @@ have gone the other way and a measurement that decided it. The map itself is
   *scale at the limb itself* is exact in position and in slope: `skyRadius` is
   `rLimb + a·ln(1 + (α−αLimb)/b)` with `a/b` set to the true perspective
   derivative there, so for the first `SKY_KNEE` degrees the sky is drawn at true
-  scale and a moon rising over the edge moves at the right rate and is the right
-  size against it. What is given up is star *patterns*: they stretch radially
-  with distance from the earth, near the limb barely and in the corner a great
-  deal. `SKY_NOTE` says so on every card the sky opens, the way `PRAYER_NOTE`
-  names Umm al-Qura.
+  scale and the sun rising over the edge moves at the right rate and is the right
+  size against it. What is given up is *distance out from the limb*, and
+  `SKY_NOTE` says so on the sun's card, the way `PRAYER_NOTE` names Umm al-Qura.
 - **Nothing past 90° is drawn.** Beyond that a body is level with or behind the
   camera, and placing it in a corner of the frame would be a claim about
   direction that is false — the line between compressing a sky and inventing
   one. The behaviour that falls out is true and teachable: **the sun is in frame
   when the centre of the map is in night, and behind the reader's shoulder when
   it is in day**, which is why the earth in front of them is lit. Measured at the
-  home view: sun drawn **11.0h a day**, moon **11.5h**.
+  home view: sun drawn **11.0h a day**.
 
 ## The camera
 
@@ -70,11 +85,10 @@ have gone the other way and a measurement that decided it. The map itself is
   still measured because which way the quarter-turn goes depends on the y-axis
   pointing down, and a hemisphere-dependent guess is how a sky comes out
   mirrored for half the planet.
-- **Parallax is not optional for the moon.** The camera is ~2.2 radii above the
-  surface and the moon is ~60 out, so geocentric and camera-centric directions
-  differ by up to **2°** — over fifty pixels beside the limb, and visible as the
-  moon setting behind the wrong part of the earth. The sun gets it too, for
-  0.008° and no extra code.
+- **No parallax correction.** The camera is ~2.2 earth radii above the surface,
+  which shifts the sun by 0.008° — well under a pixel — so it is placed from its
+  geocentric direction. The correction existed for the moon, ~60 radii out,
+  where it reaches 2°; it went with the moon.
 
 ## Rendering
 
@@ -82,7 +96,7 @@ have gone the other way and a measurement that decided it. The map itself is
   `GLOBE_ZOOM.plane` MapLibre draws `ocean` on the tile meshes and clears the
   canvas to transparent, so outside the limb there is no MapLibre colour at all.
   A canvas underneath therefore gets **occlusion by the globe in hardware** —
-  exact at the edge, exact in time, including the partial clip while a body is
+  exact at the edge, exact in time, including the partial clip while the sun is
   halfway over — and MapLibre's own atmosphere composites over ours by the
   browser rather than by us. It carries **no `z-index`**: both are
   `position: absolute` with `z-index: auto`, so tree order decides, and the
@@ -90,35 +104,12 @@ have gone the other way and a measurement that decided it. The map itself is
   `new MapLibreMap` and the sky paints over the earth, with nothing thrown and
   nothing logged. `map-island.test.js` asserts the *position*, not the presence.
 - **No source, no layer, no `addImage`, no feature state, and no rAF loop.** The
-  sky repaints on `move` — a frame MapLibre is drawing anyway, and since
-  2026-08-08 without its star field while the camera is moving — and on the
+  sky repaints on `move` — a frame MapLibre is drawing anyway — and on the
   existing 120-second `SUN_TICK_MS` the terminator already uses, which is 0.5°
   of sky rotation, under a pixel where the sky is drawn most precisely. So it
   cannot touch the invariant that an idle tick writes nothing, which was once
-  worth 56.8 renders a second and ~57% of a core. `spacefield.ts` (the article
-  pages' starfield) has an rAF loop; this must not.
-- **A moving camera gets the sky without its stars** (2026-08-08). The repaint on `move` was the whole sky every frame — a walk of the 2,887-entry catalogue with three dot products each, a `place()` solve per survivor, ~200 individual `fill()` calls, the precession matrix and the moon's whole Meeus series — on the main thread, inside the frame being dragged. That is the cost `map.md` has recorded as "the next real lever" since the allocation fix, and it is taken here rather than by moving the sky to a worker, because the cheapest frame is the one that draws less and an `OffscreenCanvas` would have to carry the canvas-ordering invariant, the star hit test and the headless test path with it. `draw(now, 'quiet')` from `movestart` to `moveend`; `'full'` once when the camera settles. Measured off the built page by counting the sky's own 2D calls: **158 fills per frame full, 74.7 quiet**, and the fill count is the smaller half of it, since none of the catalogue walk or the lunar series shows up in it at all.
-- **What is dropped is chosen by area, and the same measurement decides both ways.** The star field is *this* file's "about 300 square pixels of ink on a canvas of a million" — 0.03% — which is what makes it both the most expensive thing here and the one whose absence for the length of a drag nobody can see; it needs no fade, because there is nothing there to fade. The airglow stays because it is **not decoration**: on the night side it is the only thing giving the planet an edge at all, so a globe that lost it mid-drag would read as *less* solid exactly while it is being turned, which is the opposite of the point. The sun and the moon stay because they are 13px discs rather than 1px points, and a body vanishing at the start of every gesture is the one thing on this canvas a reader would actually notice going.
-- **Two things fall out of not drawing, and they are the other half of the reader's report.** `calibrate` refuses any camera it cannot solve as a sphere camera, which is every camera part-way through the projection's morph — so the sky used to **blink out and back frame by frame** through the zoom band, and inside the band where the residual was still under the 1.5px gate it was drawn against a camera already slightly wrong. A canvas that is not repainted while the camera moves can do neither. The gate itself is unchanged and is still what guards the settled frame.
+  worth 56.8 renders a second and ~57% of a core.
 - **`padding` was added to `calibrate`'s refusals and taken back out** (2026-08-08). The argument was good on its face — `origin` *is* the assumed disc centre, MapLibre's padding offsets the principal point, and the phone writes a bottom inset for the story drawer — so the whole sky should have sat off the limb by half that inset. It does not, because `project` runs through the *same* padded matrix that places the disc. Measured on a 390×844 phone, reading the ring off the sky canvas and the limb off the composited frame on one row: drawer closed, row 200 gives ring 81–97 and 292–308 against limb 89 and 301; row 300 gives ring 5–14 and 375–384 against limb 9 and 380; drawer open, row 220 gives ring 1–9 and 380–388 against limb 4 and 382. The annulus straddles the edge every time, which is what `drawHalo` is drawn to do. **Refusing would have taken the sky off every phone to fix nothing** — kept here because the reasoning is the kind that will be had again.
-- **The star catalogue is fetched, the bodies are arithmetic.** ~45 KB gzipped,
-  idle-deferred beside the water and the conflict feed, so first paint is a sun,
-  a moon and an atmosphere and the stars arrive after. A failed or absent fetch
-  is a globe with no stars, which is a complete picture — nothing to report and
-  nothing to retry.
-- **Culling is three dot products per star, in J2000.** The frame vectors are
-  rotated *backwards* through the precession matrix rather than every star
-  rotated forwards: a rotation is orthogonal, so `dot(P·v, c) === dot(v, Pᵀ·c)`,
-  and that is three vectors transformed instead of three thousand. The
-  magnitude cut is a `break`, not a filter, because the payload is sorted — and
-  `sky.test.js` pins the sort for that reason, since an unsorted payload would
-  silently draw a different set from the one `STAR_MAG_LIMIT` names.
-- **Precession is applied and is not cosmetic.** The catalogue is J2000 and
-  `gmstHours` is measured from the equinox of date, so leaving it out is a
-  systematic 0.36° by 2026 — ten pixels at the limb, and a whole sky sitting
-  quietly askew against a sun and moon that are computed correctly. Pinned
-  against `astronomy-engine` to within nutation (±17″), which the oracle's `EQD`
-  carries and the mean equinox does not.
 
 ## The atmosphere, and the edge the map never had
 
@@ -191,99 +182,31 @@ have gone the other way and a measurement that decided it. The map itself is
   something plausible. The general form is worth keeping: **an engine default
   that produces a picture is more dangerous than one that produces nothing.**
 - **The crescent is 72 wedges sharing one radial gradient, drawn `lighter`.**
-  Carving a crescent out of a ring means `destination-out`, which would take the
-  stars underneath with it. `lighter` is both what light does and what makes
+  Carving a crescent out of a ring means `destination-out`, which would also cut
+  the airglow drawn beneath it. `lighter` is both what light does and what makes
   adjacent wedges meet with no seam. What looks like banding under a 3× exposure
   boost is 8-bit gradient quantisation, not wedge seams.
 
 ## Ink
 
-- **Stars are the one place the quiet-furniture bar is deliberately not
-  applied, and the reason is area.** Every other argument on this map is about a
-  mark or a wash large enough to change what the ground reads as. A magnitude-1
-  star is **1.6px across**, and the whole visible sky spends about 300 square
-  pixels of ink on a canvas of a million — **0.03%**. Holding a point of light to
-  1.5:1 would not make the map quieter, it would make it starless. What *is*
-  rationed is the ramp: alpha falls with magnitude, so the sky is a handful of
-  legible stars and a great many barely there, which is what a sky is.
-- **Sub-pixel stars are drawn by alpha, never by radius.** A browser rounds a
-  0.4px arc up to a pixel and paints it at full strength, so a size ramp below
-  one pixel silently becomes no ramp at all — the failure `glyphs.ts` records at
-  3.2px, one order of magnitude down. Radius floors at 0.7px and caps at 1.6.
-- **Colour is the measurement, not an encoding.** B−V is a star's temperature,
-  so spending hue here is not spending it on a channel. `STAR_TINT` caps how far
-  any star may travel toward `starWarm`/`starCool` at **0.35**: the extremes
-  render near `#e6cec2` and `#c8d0e8`, a channel spread of 44 and 32 against
-  `water`'s 100. Swept at 0.6 (a fairground) and 0.15 (indistinguishable).
-- **The sun and moon are drawn at true angular size** — 0.53° and 0.52°, about
-  13px against a 913px earth — so the brightest thing on the map is also one of
-  the smallest, ~130 square pixels of ink. A body does **not** shrink as it moves
-  into the compressed sky: the compression is of distances, and shrinking the
-  moon with it would be a second, silent encoding of how far out it is.
-- **The moon is a disc with a crescent on it, not a floating crescent.** From
-  here the face the moon turns to us is the face the earth lights, so the unlit
-  part is genuinely faintly visible — earthshine, `moonDark` at 1.10:1 against
-  space. A crescent with nothing behind it reads as a logo.
-- **The terminator on the disc is one path either way.** Its semi-axis along the
-  sun direction is `R·(2k−1)`: positive past half, when the ellipse bulges away
-  from the sun and the shape is gibbous; negative before it, when it cuts toward
-  the sun and the shape is a crescent. The sweep direction carries the sign, so
-  there is no branch on "crescent or gibbous". The sun's direction is resolved
-  **from the two unit vectors**, not from the two drawn positions — under the
-  radial compression the drawn pair are not at their true relative bearing, and a
-  crescent tipped a few degrees wrong is the one error about the moon everybody
-  can see.
-
-## The data
-
-- **Positions from the Yale Bright Star Catalogue** (Hoffleit & Warren 1991, CDS
-  `V/50`), public domain; **names from the IAU WGSN** catalogue, CC BY. **Not
-  HYG**, which is CC BY-SA — share-alike on a file the site serves is a licence
-  term reaching into the site. 2,887 stars to magnitude 5.5, 324 named, 123 KB
-  raw and 45 KB gzipped. `STAR_MAG_LIMIT` is 5.2 and is a *prefix slice*, so
-  lowering what is drawn costs no refetch.
-- **`scripts/generate-stars.js` is committed because its output is.**
-  `shared/countries/country-augmented.ts` names a generator that is not in the
-  repo, so it cannot be regenerated and 32 countries have been hatched on every
-  metric ever since. A committed payload with no committed generator is a
-  payload that can only ever be deleted.
-- **`shared/star-lore.ts` is editorial and hand-written**, in the class of
-  `place-names.ts` and `market-metadata.js` — nobody publishes etymology in
-  machine-readable form, and the IAU's own file says it is working on it. It
-  exists because of what the list turns out to be: of the 138 IAU names on stars
-  brighter than magnitude 3, about a hundred reached every European language
-  through Arabic, usually as a fragment of a longer phrase and occasionally as a
-  copyist's slip preserved for eight centuries (Betelgeuse is a misread *yad*,
-  "hand", as *bat*). That is the one thing a mark on a star can say that a
-  picture of a star cannot. **Deliberately not Arabic-only** — Larawag is
-  Wardaman, Paikauhale Hawaiian, Tianguan and Fang Chinese, Imai Mursi, Tiaki
-  Māori, Nunki and Sargas Mesopotamian — and **deliberately silent** where no
-  derivation is agreed (Kraz, Hatysa, Hassaleh, Tejat), because a confident
-  sentence about one of those would be the file inventing a source. **No Arabic
-  script**: a hundred lines of orthography is a hundred factual claims and this
-  file should not publish claims nobody has checked. Adding it with a reviewer is
-  a good next change.
-- **Both tables are merged into `/basemap/stars.json` at build time**, not
-  imported by the island: this is card text reachable only by clicking a star,
-  and the island's bundle is downloaded by every reader of the homepage. Both
-  files are in `BASEMAP_V`, or the sky goes stale for a day with no way for a
-  reader to force it.
+- **The sun is drawn at true angular size** — 0.53°, about 13px against a 913px
+  earth — so the brightest thing on the map is also one of the smallest, ~130
+  square pixels of ink. It does **not** shrink as it moves into the compressed
+  sky: the compression is of distances, and shrinking the disc with it would be
+  a second, silent encoding of how far out it is.
 
 ## The library is a test oracle
 
 `astronomy-engine` (MIT) is a devDependency and **none of it ships** — the same
-arrangement `prayer.ts` has with adhan-js, and for the same reason: the island
-needs three numbers from the moon, the closed form is published (Meeus ch. 47,
-tables 47.A and 47.B, transcribed whole), and ~100 KB minified against a 40 KB
-island is the wrong trade. `sky.test.js` compares every function against it
-across a decade of sampled instants. Measured: **moon position 0.020° worst**,
-distance **25 km**, sun **0.016°**, illuminated fraction **1.4e-4**.
+arrangement `prayer.ts` has with adhan-js. `sky.test.js` compares the sun
+(`solar.ts`, the NOAA low-precision equations) against it across a decade of
+sampled instants: **0.016° worst**, half a pixel at the scale the sky is drawn
+beside the limb.
 
-**The oracle has to be asked the right question, and the first run of the suite
-did not.** `Astro.Equator(body, t, observer, …)` is *topocentric* — it applies
-the parallax of an observer on the surface, up to a degree for the moon — and
-its default frame is J2000 while ours is the equinox of date. Compared naively
-it reported a **1.46° error that was entirely the oracle**. The right call is
+**The oracle has to be asked the right question.** `Astro.Equator(body, t,
+observer, …)` is *topocentric* and its default frame is J2000, while ours is
+geocentric and the equinox of date; compared naively it once reported an error
+that was entirely the oracle. The right call is
 `EquatorFromVector(RotateVector(Rotation_EQJ_EQD(t), GeoVector(body, t, false)))`,
 and the residual left after that is nutation, which is the only slack in the
 bounds.
@@ -291,8 +214,8 @@ bounds.
 ## Measuring this in a browser
 
 **`requestIdleCallback` does not fire in headless Chromium here**, so a headless
-run shows no stars, no lakes and no rivers — the whole idle-deferred tier, absent,
-with a clean console and a plausible picture. That cost an hour. It is the same
+run shows no lakes and no rivers — the whole idle-deferred tier, absent, with a
+clean console and a plausible picture. That cost an hour. It is the same
 class of trap `map.md` records for `requestAnimationFrame` in an occluded window,
 and the rule is the same: **anything about the map's runtime is measured headed
 or not at all.**

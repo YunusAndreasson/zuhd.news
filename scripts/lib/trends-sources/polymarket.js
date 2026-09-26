@@ -309,15 +309,26 @@ function shortenTitleRegex(raw) {
  * path that already existed for a failed Haiku call, and the failure mode this
  * replaces was silent.
  */
-function isUsableShortTitle(raw, short) {
+export function isUsableShortTitle(raw, short) {
   if (typeof short !== 'string' || short.trim().length === 0) return false
   const s = short.trim()
   // A headline does not start in lower case. This alone catches the class;
-  // the auxiliary test below catches the rest of it.
+  // the copy test below catches the rest of it.
   if (/^[a-z]/.test(s)) return false
-  // "Will X …" keeps its "Will" — anything else has dropped the verb the
-  // question was built around.
-  if (/^Will\s+(?!the\s)/i.test(raw.trim()) && !/^Will\b/i.test(s)) return false
+  // The failure is the model *copying* the question with "Will" cut off, which
+  // leaves the bare infinitive: "Alexandria Ocasio-Cortez win the 2028 US…".
+  // So reject when the answer opens with the question's own first three words
+  // after "Will". The first version of this rule rejected every answer that
+  // did not start with "Will" — including the prompt's own examples ("Kevin
+  // Warsh confirmed as Fed Chair?", "Sánchez Palomino wins Peru 2026?") — so
+  // nearly every "Will <name> win …" market fell back to the regex and shipped
+  // cut mid-phrase ("Will Gavin Newsom win the 2028 Democratic…").
+  const words = (t) => t.toLowerCase().replace(/[?…]/g, '').split(/\s+/).filter(Boolean)
+  const after = /^Will\s+(?!the\s)(.*)$/i.exec(raw.trim())
+  if (after && !/^Will\b/i.test(s)) {
+    const q = words(after[1]).slice(0, 3).join(' ')
+    if (q.split(' ').length === 3 && words(s).slice(0, 3).join(' ') === q) return false
+  }
   return true
 }
 
@@ -782,8 +793,12 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   // selection was sticky every row paid for it on every cycle — ~4 chunks of
   // 22-33s each. An incumbent keeps the label and country tags it was given
   // when it entered; a steady cycle now runs zero chunks.
-  const held = deduped.filter((r) => r._incumbent)
-  const fresh = deduped.filter((r) => !r._incumbent)
+  // An incumbent whose label is a regex truncation ("…") is relabelled rather
+  // than kept: the sticky label made one failed shortening permanent for as
+  // long as the market stayed in the deck.
+  const truncated = (r) => typeof r._incumbent?.label === 'string' && r._incumbent.label.endsWith('…')
+  const held = deduped.filter((r) => r._incumbent && !truncated(r))
+  const fresh = deduped.filter((r) => !r._incumbent || truncated(r))
   for (const r of held) {
     if (typeof r._incumbent.label === 'string' && r._incumbent.label) r.label = r._incumbent.label
     r.countryTags = [

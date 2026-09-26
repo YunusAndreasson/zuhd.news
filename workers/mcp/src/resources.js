@@ -59,7 +59,7 @@ First Principles:
 - Global: News that crosses borders. Written for humans, not demographics.
 
 Categories: politics, economy, science, tech.
-Updated 5 times daily (04:00, 08:00, 12:00, 17:00, 22:00 UTC).
+Updated 5 times daily (05:00, 10:00, 14:00, 18:00, 22:00 UTC).
 40+ sources from 25+ countries.`
 
 export function registerResources(server) {

@@ -2,8 +2,10 @@
 // Trends fetcher for zuhd.news.
 // Reads scripts/lib/trends-registry.js, calls the configured sources, and
 // writes two files:
-//   - content/trends/YYYY-MM-DD.json   (full snapshot, committed)
-//   - /tmp/zuhd-trends-digest.json     (compact, fed to the editor stage)
+//   - content/trends/YYYY-MM-DD.json   (full snapshot; kept 30 days, not committed
+//                                        by the cycle since 2026-08-09 — older ones
+//                                        survive only in git history)
+//   - /tmp/zuhd-trends-digest.json     (compact; read by dry-run-augment and replay)
 //
 // Design principles copied from fetch-news.js:
 //  - Native fetch with 10s timeout + one retry (retry lives in the per-source module).
@@ -11,7 +13,7 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
@@ -131,14 +133,11 @@ const EVENTS_WINDOW_DAYS = 120
 const eventsWindowEnd = new Date(Date.now() + EVENTS_WINDOW_DAYS * 86400_000)
   .toISOString()
   .slice(0, 10)
-const fredEvents = releaseCalendar.map(matchFredRelease).filter(Boolean)
-// One event per id. FRED lists several releases a label's pattern matches on
-// the same day (GDP with its by-state and by-industry tables), and the events
-// block carried `fred-us-gdp-2026-09-30` three times — the app rendered it as
-// duplicate rows under one React key.
-const seenEvents = new Set()
+// One per id: FRED lists several releases a day that match one label — GDP,
+// GDP by industry, GDP by state all read /^gross domestic product/ — and the
+// rail printed "US GDP" three times on 2026-09-25.
+const fredEvents = [...new Map(releaseCalendar.map(matchFredRelease).filter(Boolean).map((e) => [e.id, e])).values()]
 const events = [...EVENT_CATALOG, ...fredEvents]
-  .filter((e) => !seenEvents.has(e.id) && seenEvents.add(e.id))
   .filter((e) => e.date >= today && e.date <= eventsWindowEnd)
   .sort((a, b) => a.date.localeCompare(b.date))
 if (events.length > 0) {
@@ -159,6 +158,20 @@ const snapshot = {
 
 writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2))
 console.log(`Wrote ${SNAPSHOT_PATH} — ${indicators.length} indicators`)
+
+// Rotation. Every reader takes only the newest snapshot (each carries its own
+// full series), so the history was 150 KB a day that nothing opened — 159
+// files, 16 MB, by 2026-09-25. Thirty days keeps a month to diff by hand.
+const KEEP_DAYS = 30
+const cutoff = new Date(Date.now() - KEEP_DAYS * 86400000).toISOString().slice(0, 10)
+let rotated = 0
+for (const f of readdirSync(TRENDS_DIR)) {
+  if (/^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) < cutoff) {
+    unlinkSync(join(TRENDS_DIR, f))
+    rotated++
+  }
+}
+if (rotated) console.log(`Rotated ${rotated} trends snapshots older than ${KEEP_DAYS} days`)
 
 // ── Write digest (editor-facing compact view) ──────────────────────────────
 //

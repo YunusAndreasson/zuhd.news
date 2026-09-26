@@ -25,6 +25,7 @@ import {
 import { escHtml, escXml } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
+import { publishedTimes } from './lib/published-at.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -584,7 +585,11 @@ const shareRowHtml = (target, title) => {
 
 const ISLAND_V = (() => {
   const publicDir = join(ROOT, 'public')
-  const files = [join(publicDir, 'island-loader.js')]
+  // The lockfile too: the islands bundle maplibre-gl, preact and htm, and a
+  // dependency upgrade changes the shipped bundle without touching a source
+  // file here — so the 6.10 → 6.11 MapLibre bump would have kept the old key
+  // and let browsers hold the old bundle.
+  const files = [join(publicDir, 'island-loader.js'), join(ROOT, 'package-lock.json')]
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name)
@@ -624,11 +629,6 @@ const BASEMAP_V = (() => {
     join(ROOT, 'shared', 'data', 'lakes-50m.json'),
     join(ROOT, 'shared', 'data', 'rivers-50m.json'),
     join(ROOT, 'shared', 'data', 'seas-50m.json'),
-    // The sky is served from /basemap/ and is built from two files, one
-    // generated and one hand-written. Both belong here for the reason above:
-    // a star catalogue left out of the hash is one that goes stale for a day.
-    join(ROOT, 'shared', 'data', 'stars.json'),
-    join(ROOT, 'shared', 'star-lore.ts'),
   ]
   const h = createHash('sha256')
   for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
@@ -730,12 +730,16 @@ const buildCutoffDate = new Date(Date.now() - BUILD_WINDOW_DAYS * 24 * 60 * 60 *
 // Per-article "Built:" lines are ~800 lines of noise per cycle log — opt in
 // with ZUHD_BUILD_VERBOSE=1 when debugging a specific article's build.
 const BUILD_VERBOSE = process.env.ZUHD_BUILD_VERBOSE === '1'
+// When each article was published, stable across the box's rebases
+// (lib/published-at.js); mtime for what the log does not name.
+const addTimes = publishedTimes(ROOT, BUILD_WINDOW_DAYS)
 const articles = readdirSync(CONTENT_DIR)
   .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
   .map(file => {
     const article = buildArticle(file)
     if (BUILD_VERBOSE) console.log(`  Built: ${article.slug}`)
-    return { ...article, addedAt: statSync(join(CONTENT_DIR, file)).mtimeMs }
+    const addedAt = statSync(join(CONTENT_DIR, file)).mtimeMs
+    return { ...article, addedAt, publishedAt: addTimes.get(basename(file, '.md')) ?? addedAt }
   })
 console.log(`  Built: ${articles.length} articles (last ${BUILD_WINDOW_DAYS}d window)`)
 
@@ -814,7 +818,7 @@ const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body, sources, concepts, corrections }) => {
+    articles.map(({ slug, meta, addedAt, publishedAt, body, sources, concepts, corrections }) => {
       const thread = threadLookup.get(slug)
       return {
         slug,
@@ -828,6 +832,10 @@ const apiCategories = Object.fromEntries(
         // how old a story is. Additive, so an older client ignores it and a
         // newer one prefers it. See `eventTime` above for what mtime costs.
         eventAt: eventTime({ meta, addedAt }),
+        // When zuhd published it, which `addedAt` is meant to say and a rebase
+        // on the box can reset (lib/published-at.js). The app orders its river
+        // and dates every card by it (2026-09-26). Additive, like `eventAt`.
+        publishedAt: Math.round(publishedAt),
         // Added here rather than in one endpoint, so `feed.json` and
         // `feed-lite.json` cannot disagree about whether a story was corrected.
         // Spread-conditional: the field is absent on the ~100% of articles that
@@ -848,6 +856,9 @@ const apiCategories = Object.fromEntries(
           country: s.country || null,
           sentiment: s.sentiment != null ? Number(s.sentiment) : null,
           ...(s.angle ? { angle: s.angle } : {}),
+          // Optional and additive, like `angle`: the publisher's lead-image URL
+          // when the feed or page offered one. Nothing renders it yet.
+          ...(typeof s.image === 'string' && /^https?:\/\//.test(s.image) ? { image: s.image } : {}),
         })),
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c).filter(Boolean),
         eventCoverage: meta.eventCoverage != null ? Number(meta.eventCoverage) : null,
@@ -1241,8 +1252,9 @@ if (existsSync(iodaSrc)) {
 // Trends snapshot — full indicator catalog with values/periods. Mobile
 // EntitySheet fetches this to render charts for any entity tapped in an
 // article body. Ships the newest snapshot as api/trends.json (single file,
-// current as of this deploy); if mobile wants historical, /trends/
-// per-date JSONs remain queryable via the git repo.
+// current as of this deploy). Per-date snapshots are kept 30 days on the
+// pipeline host only — the cycle has not committed them since 2026-08-09, so
+// git history holds them up to that date and no later.
 //
 // Dated by the snapshot it shipped, not by today: this looked up
 // `content/trends/${today}.json`, which only exists once that day's fetch
@@ -1707,10 +1719,18 @@ if (existsSync(firmsSrc)) {
     const { seedKm, ...rest } = event
     firmsEvents.push({
       ...rest,
-      // Denormalised so the card can say "18 km from Beirut" without the island
-      // holding the corpus. The nearest hit, which is also `relatedArticles[0]`.
-      near: { loc: hits[0].loc, km: hits[0].km },
-      relatedArticles: hits.map((h) => ({
+      // **The app's shape, because the app reads this endpoint** (since
+      // 2026-09-13, `mobile/lib/overlays.ts`): `near` a place-name string it
+      // prints as text, `relatedArticles` slugs it looks up. This emitted
+      // `near: {loc, km}` and story objects, which the app's validator rejects
+      // and its <Text> would crash on — hidden until 2026-09-25 only because
+      // no event had ever been joined (FIRMS_MAP_KEY was missing, so the
+      // payload was always `events: []`). The web's richer card reads the two
+      // additive fields below instead.
+      near: hits[0].loc,
+      relatedArticles: hits.map((h) => h.slug),
+      nearKm: hits[0].km,
+      related: hits.map((h) => ({
         slug: h.slug,
         title: h.title,
         date: h.date,
@@ -1895,6 +1915,7 @@ for (const a of sorted) {
         url: x.url || '',
         country: x.country || null,
         sentiment: x.sentiment != null ? Number(x.sentiment) : null,
+        ...(typeof x.image === 'string' && /^https?:\/\//.test(x.image) ? { image: x.image } : {}),
       })),
       /**
        * The indicators this story is about.
@@ -1964,7 +1985,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // `scripts/build/basemap.js` for why one good fetch beat two.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas, stars } =
+  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas } =
     await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
@@ -1977,14 +1998,10 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   const l = emit('lakes.geojson', lakes)
   const r = emit('rivers.geojson', rivers)
   const s = emit('seas.geojson', seas)
-  // The sky. Idle-deferred by the island, so its weight is not first paint —
-  // and absent entirely if `shared/data/stars.json` has not been generated,
-  // which draws a globe with a sun, a moon and no stars rather than failing.
-  const st = stars ? emit('stars.json', stars) : 0
   console.log(
     `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB, ` +
       `${lakes.features.length} lakes ${l}KB, ${rivers.features.length} rivers ${r}KB, ` +
-      `${seas.features.length} seas ${s}KB, ${stars ? `${stars.count} stars ${st}KB` : 'no stars'})`,
+      `${seas.features.length} seas ${s}KB)`,
   )
 }
 

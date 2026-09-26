@@ -23,12 +23,17 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 2. Read `/tmp/zuhd-feed-slim.json` — today's stories (metadata only, bodies stripped). The feed has two sections:
    - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
    - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.
-3. Select 12-13 stories from BOTH sections:
+3. Select the number of stories given in the `<cycle-target>` block at the end of this prompt (12-13 if there is none), from BOTH sections. The target follows how much news arrived since the last cycle — a quiet overnight cycle picks fewer, the evening cycles more — so do not pad a quiet cycle and do not stop short in a busy one:
    - For **politics and economy**: strongly prefer `multiSourceStories` — these topics benefit most from multi-perspective coverage. Pick single-source only when a niche investigation (OCCRP, Intercept, Bellingcat) is more interesting than any multi-source event.
    - For **science and tech**: pick freely from `nicheStories` — these topics are inherently specialist and rarely have multi-source coverage. Nature, Ars Technica, The Decoder, 404 Media are the right sources here.
    - Aim for 4-5 multi-source stories per cycle when the feed provides them, primarily in politics/economy.
    - **Protect unique stories.** An OCCRP investigation, a Bellingcat OSINT piece, a +972 ground report, or a 404 Media privacy exposé is worth more than a generic multi-source event — even if it's single-source. These are stories no one else reports. But even a unique source must clear the bar: the story should reveal something systemic, set a precedent, or carry consequences beyond the immediate event. A local ruling or incident that doesn't illuminate a larger pattern belongs in that outlet's own feed, not in a 12-story global cycle.
    - **Sourcing discipline for political scoops.** The single-source exception applies to investigative and evidence-based outlets that do original reporting (OCCRP, Bellingcat, 404 Media, Intercept, Mondoweiss, Drop Site, Dawn, Mada Masr, +972). It does NOT apply to advocacy or opinion-forward outlets (Responsible Statecraft, Declassified UK, Quincy Institute briefs, think-tank blogs) making unsourced Washington or geopolitical claims. If the only source for a "White House ordered X" or "[Agency] secretly did Y" story is an advocacy outlet, require a second corroborating source from the feed before selecting — otherwise skip and wait for wire confirmation.
+   - **State media as the only source.** A story carried only by state media (RT, TASS, Sputnik, Xinhua, CGTN, Global Times, Press TV, IRNA, Mehr, Tasnim, Fars, SANA, TRT World, Anadolu, SPA, WAM) may run, but the article will have to say "Russian state news agency TASS reported…" and cannot state the claim as fact. Prefer the same event from an independent outlet when the feed has one, and merge any independent coverage of it into the entry's `sources` — one independent source lifts the label.
+   - **`thin: true`** marks a story whose feed entry carried under 400 characters of source text (a teaser). A page fetch is attempted after selection, but it fails on paywalls and bot walls, and a thin pick the writer cannot write is a lost slot. Pick a thin story only when it is unique and nothing comparable in the feed is full.
+   - **Journal papers.** *Scientific Reports* (`nature.com/articles/s41598…`) and MDPI journals are not Nature: they publish on soundness, not significance, and ten *Scientific Reports* manuscripts ran in one week as science floor-fillers ("Robots get a planner-independent task interface"). Do not pick them. A science pick should be a finding a general reader would miss, from Nature, Science, Cell, The Lancet, NEJM, PNAS, or reporting on one — not a methods paper.
+   - **At most 3 US-datelined picks per cycle.** A story's dateline is where it happened, and US datelines ran at 34-43% of output against a 25% target, mostly Washington. A fourth US pick needs a reason no non-US story in the feed can match. US policy felt elsewhere is datelined where it lands — a US strike in Yemen is a Yemen story — and does not count against the cap.
+   - **Already covered.** Do not re-pick an event covered in the last 48 hours (see the coverage block and the ledger) unless the feed item reports a material new development — a vote, a death toll that changed, a decision — and your `angle` names it.
 4. Save the selection to `/tmp/zuhd-selection.json` (schema below).
 
 Note: The story ledger and editorial notes are updated by a separate pipeline step after selection. You only need to read them for context — do not write to them.
@@ -62,9 +67,10 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 **Constraints:**
 - Max 3 stories from the same source.
 - Max 3 stories per story-ledger arc.
-- Prefer the freshest stories. The feed is pre-filtered to <48 hours, and the pipeline runs 5×/day — anything from a previous cycle has already had its chance.
+- Prefer the freshest stories. The feed is pre-filtered to <12 hours (reaching back up to 24 on a thin cycle), and the pipeline runs 5×/day — anything from a previous cycle has already had its chance. A story's pubDate is the time readers see on it, so a late pick reads as old news the moment it is published.
 - Skip opinion, features, listicles, liveblog entries.
 - Category floors: politics 3, economy 3, science 2, tech 3.
+- **The science floor may go unmet.** When the feed carries fewer than two real science stories — a finding, a result, a study or reporting on one — pick what there is, even none, and fill the cycle target from the other categories. Never file a disaster, accident, flood or weather event as science to reach the number: on 2026-09-26 Bangkok flooding and an Athens gas explosion shipped as science. A disaster that is news belongs in politics. Say in the selection summary that science is under its floor.
 
 **Clarity over noise.** Every story must teach the reader something they couldn't easily find elsewhere. Skip stories that are merely prominent — volume of coverage is not importance. Prefer stories that reveal a mechanism, expose an accountability gap, or illuminate a structural shift. A UN General Assembly vote with no enforcement carries less weight than a single court ruling with precedent.
 
@@ -78,12 +84,12 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 <internal_verification>
 Check these privately before writing the selection file. Do not output this verification — proceed directly to writing `/tmp/zuhd-selection.json`.
 
-- Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`).
+- Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`), except science on a day the feed has no more real science.
 - No arc has more than 3 selections.
 - Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Only drop below a floor if *every* available multi-source story in that category is genuinely weaker than the best niche alternative — in the selection summary, note which multi-source story you rejected and why. Do not pad with weak multi-source stories to meet a number.
 - OIC-region source carry-through: for each selected story whose primary affected country is an OIC member, the `sources:` array includes ≥1 regional outlet (see "Regional source for OIC-region stories" above) when the feed offers any. If no regional outlet covered the event, note that fact in the selection summary so feed-side gaps can be audited separately.
 - No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
-- If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
+- If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again. If they have nothing, leave science short.
 </internal_verification>
 
 <internal_reasoning>
