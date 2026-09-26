@@ -93,10 +93,9 @@ if (thinSources.length > 0) {
   console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
 }
 
-// Still thin after the fetch: the writer will skip it, and it skips after
-// backfill has run, so the slot is simply lost — 2026-09-26 14:04 handed it a
-// 307-character Undark teaser and published 9 of a 13 target. Dropped here,
-// before dedup, so backfill sees the gap if it breaks a category floor.
+// Still thin after the fetch: the writer would skip it anyway — 2026-09-26
+// 14:04 handed it a 307-character Undark teaser. Dropped here, so the writer
+// is never handed a story it cannot write.
 for (const entry of selection) {
   if (Array.isArray(entry.sources) && entry.sources.length > 0 && isThin(entry)) {
     console.log(`Dropped "${entry.title}": still under ${THIN_BODY} characters of source text after the page fetch`)
@@ -110,7 +109,7 @@ for (const entry of selection) {
 // mission blurb that never mentions NixOS, and the writer spent the slot
 // finding that out. Measured on that selection: the bad pick matched 1 of 7
 // title words; every good one matched 57% or more. Dropped here, before
-// dedup, so backfill can refill the slot.
+// the writer spends the slot finding that out.
 const RELEVANCE_MIN_HITS = 2
 const RELEVANCE_MIN_RATIO = 0.3
 for (const entry of selection) {

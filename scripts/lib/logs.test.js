@@ -219,13 +219,21 @@ test('no cycle reaches the writer and writes nothing', () => {
 // the niche count is still reported but the cycle as a whole was already
 // degraded, and the niche feed's RSS sources tend to have a correlated
 // drop when the upstream multi fetch dies (same machine, same window).
+//
+// Since 2026-09-26 it reads the RSS *fetch* count, not the merged niche count.
+// The merged count is taken after the pool's age cut (lib/feed-age.js), so from
+// the first 12 h cycle it measured how much of the day was fresh rather than
+// whether a feed had died: that 18:00 cycle fetched a healthy 77 RSS stories
+// and merged 29 niche, and this test called it a catastrophe. Older logs, from
+// before the fetch line existed, still fall back to the merged count.
 test('feed niche volume above catastrophic floor', () => {
   const vols = []
   for (const { raw } of loadRecent()) {
     const m = raw.match(/Merged feed: (\d+) multi \+ (\d+) niche/)
     if (!m) continue
     if (+m[1] === 0) continue
-    vols.push(+m[2])
+    const fetched = raw.match(/^RSS fetch: (\d+) stories/m)
+    vols.push(fetched ? +fetched[1] : +m[2])
   }
   const FLOOR = 50
   const low = vols.filter(v => v < FLOOR)

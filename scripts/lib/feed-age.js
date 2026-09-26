@@ -16,6 +16,17 @@
 
 export const MAX_FEED_AGE_MS = 12 * 60 * 60 * 1000
 
+// The widening, for a thin cycle. The first 12 h cycle (2026-09-26 18:00, a
+// Saturday evening) held 39 usable stories for a target of 15; the selector
+// found 11, and backfill filled the gaps with county cricket and shinty. So
+// when fewer than `MIN_POOL_ITEMS` survive the 12 h cut, the cut reaches back
+// exactly as far as it takes to hold that many, and never past 24 h: a story
+// older than a day arrives outside the app's river, which is the thing the
+// cut exists to prevent. Replayed on that cycle's feed, 24 h gives 54 (48 h
+// gave 84), so on a thin evening the widening runs to its limit and stops.
+export const MIN_POOL_ITEMS = 60
+export const MAX_WIDENED_AGE_MS = 24 * 60 * 60 * 1000
+
 const DAY_MS = 24 * 60 * 60 * 1000
 
 /**
@@ -35,7 +46,21 @@ export function feedItemAgeMs(pubDate, now = Date.now()) {
 }
 
 /** Young enough for the selector's pool. An undated item never is. */
-export function isFreshFeedItem(pubDate, now = Date.now()) {
+export function isFreshFeedItem(pubDate, now = Date.now(), maxAgeMs = MAX_FEED_AGE_MS) {
   const age = feedItemAgeMs(pubDate, now)
-  return !Number.isNaN(age) && age < MAX_FEED_AGE_MS
+  return !Number.isNaN(age) && age < maxAgeMs
+}
+
+/**
+ * The age cut for this cycle's pool: 12 h, or on a thin cycle as far back as
+ * holds `min` items, at most 24 h.
+ * @param {number[]} ages  feed-item ages in ms; NaN for an undated item
+ * @param {number} [min]
+ */
+export function poolAgeCapMs(ages, min = MIN_POOL_ITEMS) {
+  const sorted = ages.filter((a) => !Number.isNaN(a)).sort((a, b) => a - b)
+  if (sorted.filter((a) => a < MAX_FEED_AGE_MS).length >= min) return MAX_FEED_AGE_MS
+  if (sorted.length < min) return MAX_WIDENED_AGE_MS
+  // Just past the min-th youngest, so exactly that many fall under it.
+  return Math.min(MAX_WIDENED_AGE_MS, Math.max(MAX_FEED_AGE_MS, sorted[min - 1] + 1))
 }

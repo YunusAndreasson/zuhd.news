@@ -1,4 +1,4 @@
-// Shared dedup logic — used by prefilter-feed.js, dedup-selection.js, and backfill-selection.js.
+// Shared dedup logic — used by prefilter-feed.js and dedup-selection.js.
 // Single source of truth for matching rules and category floors.
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -10,13 +10,14 @@ export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 
 // Floors a cycle may miss rather than fill (user decision 2026-09-26). A thin
 // science feed was filled with disasters — Bangkok flooding and an Athens gas
-// blast shipped as science at 10:01 — and backfill's only signal for science
-// is the feed's category tag, which filed a Mehr war report there.
+// blast shipped as science at 10:01. Read by dedup-selection's warning and the
+// autoresearch scorer; nothing refills any floor since backfill was removed
+// the same day.
 export const FLOORS_MAY_GO_UNMET = new Set(['science'])
 
 // A story is thin when no source carries this much text — an RSS teaser, not
-// an article. prefilter flags it for the selector, enrich-selection fetches the
-// page once and drops the pick if it is still thin, and backfill never picks one.
+// an article. prefilter flags it for the selector, and enrich-selection fetches
+// the page once and drops the pick if it is still thin.
 export const THIN_BODY = 400
 
 /** @param {{ sources?: Array<{ body?: string }> }} story */

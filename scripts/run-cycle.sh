@@ -333,9 +333,11 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
   exit 0
 fi
 
-# Stage 1.55: Backfill selection — replace deduped stories to meet category floors
-node scripts/backfill-selection.js 2>&1 | tee -a "$LOG_FILE"
-SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+# (Stage 1.55, backfill, was removed on 2026-09-26. It topped category floors
+# up from the feed by its category tag, which is noisy: its last run filed
+# county cricket as economy and Cymru Premier football and shinty as tech. A
+# slot left short is better than one the writer has to refuse; the selector
+# prompt already says to fill the target from other categories.)
 
 # Stage 1.6: Update story ledger deterministically (moved out of selector LLM to save turns)
 # Runs after dedup so only genuinely new stories get added to the ledger
@@ -344,7 +346,7 @@ node scripts/update-ledger.js 2>&1 | tee -a "$LOG_FILE"
 # Stage 1.7: Attach live indicator levels to the selection, so the writer can
 # cite a number rather than say "oil prices fell". Deterministic — reads the
 # trends snapshot already on disk, no model call and no API call. Runs after
-# backfill so it only works on the final story set. Fail-soft: a missing
+# dedup so it only works on the final story set. Fail-soft: a missing
 # snapshot or an unreadable selection logs and exits 0, and the writer sees a
 # selection with no `indicators` key, which is the state it has always handled.
 node scripts/attach-indicators.js 2>&1 | tee -a "$LOG_FILE"

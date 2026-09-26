@@ -67,7 +67,7 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 **Constraints:**
 - Max 3 stories from the same source.
 - Max 3 stories per story-ledger arc.
-- Prefer the freshest stories. The feed is pre-filtered to <12 hours, and the pipeline runs 5×/day — anything from a previous cycle has already had its chance. A story's pubDate is the time readers see on it, so a late pick reads as old news the moment it is published.
+- Prefer the freshest stories. The feed is pre-filtered to <12 hours (reaching back up to 24 on a thin cycle), and the pipeline runs 5×/day — anything from a previous cycle has already had its chance. A story's pubDate is the time readers see on it, so a late pick reads as old news the moment it is published.
 - Skip opinion, features, listicles, liveblog entries.
 - Category floors: politics 3, economy 3, science 2, tech 3.
 - **The science floor may go unmet.** When the feed carries fewer than two real science stories — a finding, a result, a study or reporting on one — pick what there is, even none, and fill the cycle target from the other categories. Never file a disaster, accident, flood or weather event as science to reach the number: on 2026-09-26 Bangkok flooding and an Athens gas explosion shipped as science. A disaster that is news belongs in politics. Say in the selection summary that science is under its floor.

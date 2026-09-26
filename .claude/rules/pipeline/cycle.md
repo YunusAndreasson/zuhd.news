@@ -235,6 +235,22 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   overnight. Replayed over 70 archived pools it left at least 35 items a cycle
   (median 50) for ~12 picks; multi-source stories thin the most (as few as 3), and the prompt's
   multi-source floors already only apply "when the feed supplies them".
+- **A thin cycle widens the cut, never past 24 h** (2026-09-26). The first
+  12 h cycle — 18:00 that Saturday — held **39 usable stories for a target of
+  15**: the selector found 11, and backfill filled the gaps with county cricket
+  (as economy) and Cymru Premier football and shinty (as tech). The fetch was
+  healthy (77 RSS stories); the day was simply quiet. `poolAgeCapMs` keeps 12 h
+  when at least `MIN_POOL_ITEMS` (60) usable stories survive it, and otherwise
+  reaches back exactly as far as holds 60, capped at 24 h — past a day a story
+  lands outside the app's river, which is what the cut is for. Replayed on that
+  cycle's feed: 12 h 39, 24 h 54, 48 h 84, so on a thin evening it runs to 24 h
+  and stops short of 60. `Pool age cut:` in the cycle log says which cut ran.
+- **Backfill is gone** (2026-09-26, same cycle). It topped category floors up
+  from the feed by category tag, and the tag is noisy (a Mehr war report as
+  science, sport as tech). A slot left short beats one the writer must refuse;
+  `select-prompt.md` already says to fill the target from other categories.
+- **`logs.test.js`'s niche sentinel reads `RSS fetch:`**, not the merged niche
+  count, which after the cut measures freshness rather than feed health.
 - **A date with no time is aged from the end of its day** (`feedItemAgeMs`):
   7% of stories carry a midnight pubDate (date-only RSS, the events API's
   fallback), and aged from midnight every one would be gone by noon.

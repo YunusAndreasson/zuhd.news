@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/feed-age.test.js
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { MAX_FEED_AGE_MS, feedItemAgeMs, isFreshFeedItem } from './feed-age.js'
+import { MAX_FEED_AGE_MS, MAX_WIDENED_AGE_MS, feedItemAgeMs, isFreshFeedItem, poolAgeCapMs } from './feed-age.js'
 
 const HOUR = 60 * 60 * 1000
 // The 10:01 cycle of 2026-09-26, which published two stories 21 h after
@@ -46,4 +46,32 @@ test('an undated item is never fresh', () => {
   assert.equal(isFreshFeedItem('', NOW), false)
   assert.equal(isFreshFeedItem(undefined, NOW), false)
   assert.equal(isFreshFeedItem('not a date', NOW), false)
+})
+
+test('a full pool keeps the 12 h cut', () => {
+  const ages = Array.from({ length: 80 }, (_, i) => (i / 80) * 11 * HOUR)
+  assert.equal(poolAgeCapMs(ages), MAX_FEED_AGE_MS)
+})
+
+test('a thin pool reaches back exactly as far as it takes to hold sixty', () => {
+  // 40 in the last 12 h, then one every half hour out to 32 h.
+  const ages = [
+    ...Array.from({ length: 40 }, (_, i) => (i / 40) * 11 * HOUR),
+    ...Array.from({ length: 40 }, (_, i) => 12 * HOUR + i * 0.5 * HOUR),
+  ]
+  const cap = poolAgeCapMs(ages)
+  assert.ok(cap > MAX_FEED_AGE_MS && cap < MAX_WIDENED_AGE_MS)
+  assert.equal(ages.filter((a) => a < cap).length, 60)
+})
+
+test('never past a day, however thin: the 18:00 cycle of 2026-09-26', () => {
+  // 39 usable at 12 h and 54 at 24 h, measured on that cycle's feed.
+  const ages = [
+    ...Array.from({ length: 39 }, (_, i) => (i / 39) * 11.9 * HOUR),
+    ...Array.from({ length: 15 }, (_, i) => 12.5 * HOUR + i * 0.7 * HOUR),
+    ...Array.from({ length: 30 }, (_, i) => 25 * HOUR + i * HOUR),
+  ]
+  assert.equal(poolAgeCapMs(ages), MAX_WIDENED_AGE_MS)
+  assert.equal(ages.filter((a) => a < MAX_WIDENED_AGE_MS).length, 54)
+  assert.equal(poolAgeCapMs([Number.NaN, HOUR]), MAX_WIDENED_AGE_MS, 'undated items do not count')
 })
