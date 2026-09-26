@@ -19,10 +19,10 @@ const DEG = Math.PI / 180
  * written in terms of.
  *
  * Extracted from `subsolarPoint`, where it and the three functions under it sat
- * inline. Nothing about them is solar — the moon's series, the sidereal frame
- * the stars are drawn in and the sub-point of any body all need exactly these,
- * and the alternative to naming them here was a second copy in `lunar.ts` with
- * no way for a test to notice the two had parted. That is the failure this
+ * inline. Nothing about them is solar — the sidereal frame the sky is drawn in
+ * and the sub-point of any body need exactly these, and the alternative to
+ * naming them here was a second copy (there was once a `lunar.ts` that needed
+ * them) with no way for a test to notice the two had parted. That is the failure this
  * codebase has recorded eleven times over; see the shared-modules table.
  */
 export const daysSinceJ2000 = (date: Date) =>
@@ -121,7 +121,7 @@ export function subsolarPoint(date: Date) {
  * every date, from every camera: measured across five captures between 01:44
  * and 01:56 Makkah on 2026-08-02, with the whole visible hemisphere in night,
  * it never moved. It also disagreed with the terminator drawn underneath it and
- * with `starfield.ts`'s own crescent, which was computed correctly all along —
+ * with the sky canvas's own crescent, which was computed correctly all along —
  * two atmospheres over one planet, one of them pointing the wrong way.
  *
  * ── Why the antisolar point ───────────────────────────────────────────────

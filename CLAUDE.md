@@ -157,7 +157,7 @@ Interactive enhancements, framework-free where possible, loaded on demand.
   `_entity-panel.ts`, `_chart.ts`, `_share.ts`, `_framework.ts` (Preact + htm —
   **not** `@preact/signals`, which was a dependency nothing used)
 - Shipped: `situation-map`, `entity-strip`, `series-chart`, `country-preview`,
-  `spacefield`, `doc-sheet`, `share-bar`
+  `doc-sheet`, `share-bar`
 
 ## Shared datasets (`/shared/`)
 
@@ -188,7 +188,7 @@ silently.
 | | |
 |---|---|
 | `.claude/rules/web/map.md` | the situational map — layers, marks, the ground ramp |
-| `.claude/rules/web/sky.md` | the sun, moon, stars and the limb glow around the globe |
+| `.claude/rules/web/sky.md` | the sun and the limb glow around the globe |
 | `.claude/rules/web/prayer.md` | the prayer-line geometry and the terminator |
 | `.claude/rules/web/hijri.md` | the Hijri calendar, the Makkah clock, Eid closures |
 | `.claude/rules/web/charts.md` | `shared/chart/`, `_chart.ts`, `/e/{id}`, disclosures |

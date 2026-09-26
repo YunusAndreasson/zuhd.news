@@ -9,10 +9,10 @@
 // (1176x913 at 1920, disc radius 456px) that is **4.8° of sky at the sides and
 // 10.1° at the corners — 1.3% of the celestial sphere.**
 //
-// At true scale that annulus holds about twenty stars to magnitude 5, and the
-// sun and moon reach it only when their sub-point is near the antipode of the
-// map's centre: the sun for roughly twenty minutes a night, a few weeks a year.
-// Correct, and invisible. A sky drawn at true scale is a sky nobody sees.
+// At true scale the sun reaches that annulus only when its sub-point is near
+// the antipode of the map's centre: roughly twenty minutes a night, a few weeks
+// a year. Correct, and invisible. A sky drawn at true scale is a sky nobody
+// sees.
 //
 // ── What is compressed, and what is not ──────────────────────────────────────
 //
@@ -29,13 +29,12 @@
 //
 //   **Scale at the limb itself.** `skyRadius` is `rLimb + a·ln(1 + (α−αLimb)/b)`
 //   with `a/b` set to the true perspective scale at the limb, so for the first
-//   `SKY_KNEE` degrees off the limb the sky is drawn at true scale — a moon
+//   `SKY_KNEE` degrees off the limb the sky is drawn at true scale — the sun
 //   rising over the edge of the earth moves at the right rate and is the right
 //   size against it. Only further out does it compress.
 //
-// What is given up, and the legend says so: **star patterns stretch radially
-// with distance from the earth.** Near the limb Orion is right; in the corner
-// it is squashed. This is the same bargain a solar-system diagram makes — true
+// What is given up, and the sun's card says so (`SKY_NOTE`): **distance out
+// from the limb.** This is the same bargain a solar-system diagram makes — true
 // bodies, compressed distances — and the same bargain this map already makes
 // with `GLOBE_FIT`, stated rather than hidden.
 //
@@ -51,7 +50,7 @@ const DEG = Math.PI / 180
  *
  * This is the knee of the logarithm and it is the only tuning number here that
  * is a judgement rather than a measurement. At 3° the first ~85px past the limb
- * on a desktop are honest, which covers a rising moon (0.52° across) with room
+ * on a desktop are honest, which covers the rising sun (0.53° across) with room
  * on both sides, and the whole 90° of sky still lands inside the corner.
  */
 export const SKY_KNEE = 3
@@ -253,7 +252,7 @@ export function skyRadius(alpha: number, cam: SkyCamera): number {
  *
  * A body keeps this size wherever it is drawn, and does not shrink into the
  * compressed sky. Stated as a decision: the compression is of distances, and
- * shrinking the moon with it would make it a second, silent encoding of how far
+ * shrinking the sun with it would make it a second, silent encoding of how far
  * out it is.
  */
 export const skyPxPerDegree = (cam: SkyCamera) => (cam.r / Math.sin(cam.limb)) * DEG
@@ -274,7 +273,7 @@ export interface Placed {
  * The local frame at the map centre, as celestial unit vectors.
  *
  * Everything is done in the equatorial frame of date, because that is the frame
- * the star catalogue precesses into and the frame `subpoint` already inverts.
+ * `sunEquatorial` reports in and the frame `subpoint` already inverts.
  * The centre of the map is a direction in it: declination is the latitude, and
  * right ascension is the longitude plus the sidereal time.
  */
@@ -317,9 +316,9 @@ export function skyFrame(lat: number, lng: number, gmstHours: number): SkyFrame 
 /**
  * Place a celestial direction on the canvas.
  *
- * `dir` is a unit vector in the same equatorial frame as `frame`, already
- * corrected for the camera's own position where that matters — see
- * `parallaxCorrect`, which is not optional for the moon.
+ * `dir` is a unit vector in the same equatorial frame as `frame`. It is taken
+ * as seen from the earth's centre: the camera's own offset shifts the sun by
+ * 0.008°, well under a pixel.
  */
 export function place(
   dir: readonly [number, number, number],
@@ -358,72 +357,6 @@ export function place(
     hidden: alpha < cam.limb,
     edge,
   }
-}
-
-/**
- * The direction of a body at finite distance, as seen from the camera rather
- * than from the earth's centre.
- *
- * **Not optional for the moon.** The camera is ~2.2 earth radii above the
- * surface and the moon is ~60 out, so the geocentric and camera-centric
- * directions differ by up to 2° — which is 56 px at the scale this sky is drawn
- * at next to the limb, and would show as the moon setting behind the wrong part
- * of the earth. The sun's own parallax from here is 0.008° and it gets the same
- * treatment for free.
- *
- * `rho` is the body's distance in earth radii.
- */
-export function parallaxCorrect(
-  dir: readonly [number, number, number],
-  rho: number,
-  cam: SkyCamera,
-  frame: SkyFrame,
-): [number, number, number] {
-  const x = rho * dir[0] - cam.d * frame.c[0]
-  const y = rho * dir[1] - cam.d * frame.c[1]
-  const z = rho * dir[2] - cam.d * frame.c[2]
-  const len = Math.hypot(x, y, z) || 1
-  return [x / len, y / len, z / len]
-}
-
-/** Mean earth radius, km — the unit `SkyCamera.d` and `parallaxCorrect` use. */
-export const EARTH_RADIUS_KM = 6371.0088
-
-/**
- * Rotation from J2000 equatorial coordinates to the mean equinox of date, as a
- * flat row-major 3x3.
- *
- * The catalogue is J2000 and `gmstHours` is measured from the equinox *of
- * date*, so leaving this out is a systematic 0.36° by 2026 — ten pixels at the
- * limb, and a whole sky sitting slightly wrong against a sun and moon that are
- * computed correctly. Meeus 21.3, rigorous rather than the small-angle form,
- * because it costs nine multiplies once per frame instead of per star.
- */
-export function precession(n: number): Float64Array {
-  const t = n / 36525
-  const asec = (1 / 3600) * DEG
-  const zeta = (2306.2181 * t + 0.30188 * t * t + 0.017998 * t * t * t) * asec
-  const z = (2306.2181 * t + 1.09468 * t * t + 0.018203 * t * t * t) * asec
-  const theta = (2004.3109 * t - 0.42665 * t * t - 0.041833 * t * t * t) * asec
-
-  const cz = Math.cos(zeta)
-  const sz = Math.sin(zeta)
-  const ct = Math.cos(theta)
-  const st = Math.sin(theta)
-  const cZ = Math.cos(z)
-  const sZ = Math.sin(z)
-
-  const m = new Float64Array(9)
-  m[0] = cz * ct * cZ - sz * sZ
-  m[1] = -sz * ct * cZ - cz * sZ
-  m[2] = -st * cZ
-  m[3] = cz * ct * sZ + sz * cZ
-  m[4] = -sz * ct * sZ + cz * cZ
-  m[5] = -st * sZ
-  m[6] = cz * st
-  m[7] = -sz * st
-  m[8] = ct
-  return m
 }
 
 /** Equatorial right ascension and declination (degrees) to a unit vector. */
