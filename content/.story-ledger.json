@@ -2,13 +2,225 @@
   "version": 1,
   "stories": [
     {
+      "id": "iraq-all-airports-halt-iran-flights-us-sanctions",
+      "label": "3 Iraqi airports suspend flights from Iran",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-iraq-all-airports-halt-iran-flights-us-sanctions"
+      ],
+      "eventUri": "eng-12042220",
+      "summary": "Erbil and Sulaimaniya joined Baghdad and Najaf, so all four Iraqi airports have now halted flights to and from Iran. Al Jazeera ties the halt to new US aviation sanctions. Lead with the scope: every Iraqi airport, including the Najaf gateway used by Shia pilgrims. The mechanism is secondary sanctions: Washington does not need to ban anything in Iraq itself, because the risk of losing access to US-linked aircraft, parts and dollar clearing makes Iraqi authorities do it. Name who bears the cost (pilgrims, traders, families across the border) and note that this happens while Iran's 7-day ceasefire proposal is still awaiting a US response.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Najaf",
+        "http://en.wikipedia.org/wiki/Baghdad",
+        "http://en.wikipedia.org/wiki/United_States_sanctions_against_Iran",
+        "http://en.wikipedia.org/wiki/Shia_Islam",
+        "http://en.wikipedia.org/wiki/Airport",
+        "http://en.wikipedia.org/wiki/Economic_sanctions"
+      ]
+    },
+    {
+      "id": "kyiv-drone-strike-office-building-five-killed",
+      "label": "Fatalities in Russian Drone Attack on Office Building in Kyiv",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-kyiv-drone-strike-office-building-five-killed"
+      ],
+      "eventUri": "eng-12038373",
+      "summary": "Russian attacks on Kyiv on 25 September killed five people, among them a teenage boy, and injured 43, according to Mayor Klitschko. A drone hit an office building. On the same day Putin told journalists that every peace proposal remained 'on the table' and accused Ukraine of attacking Russian polling stations. Lead with the dead and injured, and put Putin's words beside them as the counterpoint: the talk of settlement and the strikes on a capital are happening at the same moment. Credit the casualty figures to Kyiv city officials.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Russian_language",
+        "http://en.wikipedia.org/wiki/Vitali_Klitschko",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Mayor_of_Kyiv",
+        "http://en.wikipedia.org/wiki/Solomianskyi_District",
+        "http://en.wikipedia.org/wiki/Strike_action"
+      ]
+    },
+    {
+      "id": "bannu-hathikhel-families-flee-militancy-operations",
+      "label": "'Rising militancy' drives relocation of families in Bannu's semi-tribal areas",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-bannu-hathikhel-families-flee-militancy-operations"
+      ],
+      "eventUri": null,
+      "summary": "Families in the mountainous Hathikhel area of Bannu, Khyber Pakhtunkhwa, are leaving their homes. They are caught between militants who impose restrictions on them and repeated state security operations. Lead with the residents: elders say both sides are forcing people out, and the land and farms they leave behind are their livelihood. The structural point is that displacement in Pakistan's former tribal belt happens quietly, family by family, with no camp and no count. Link it to the wider KP/Balochistan violence and the Afghan front (Balochistan, 33 killed, covered recently) without repeating that story.",
+      "conceptUris": []
+    },
+    {
+      "id": "imf-pakistan-174-legislative-changes-fourth-review",
+      "label": "IMF Tightens Screws On Pakistan, Seeks 174 Legislative Changes Under $7 Bn Programme | Exclusive",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-imf-pakistan-174-legislative-changes-fourth-review"
+      ],
+      "eventUri": "eng-12042069",
+      "summary": "As Pakistan heads into the fourth review of its $7bn IMF programme, it faces having to put as many as 174 legislative amendments before Parliament. Lead with the number: an external lender is effectively drafting a legislative calendar. The structural why is conditionality creep, as covering privatisation, tax and governance law moves the programme from fiscal targets into sovereignty over lawmaking. This is an Indian outlet's 'exclusive' about Pakistan, so the writer should attribute the claim carefully and look for Dawn or Express Tribune confirmation during the page fetch.",
+      "conceptUris": []
+    },
+    {
+      "id": "ilsky-refinery-drone-strike-krasnodar-diesel",
+      "label": "Drone attack reportedly hits Russia's Ilsky oil refinery, sparks fire",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-ilsky-refinery-drone-strike-krasnodar-diesel"
+      ],
+      "eventUri": "rus-2130604",
+      "summary": "Overnight on 26 September a drone attack hit the Ilsky refinery in Krasnodar Krai, and footage and local reports show a large fire. Frame it economically: Ukraine's long-range campaign against Russian refining is taking capacity offline at a moment when the Iran war has already caused a diesel shock, with a US export ban and an Italian price cap both recently covered. Lead with the facility and the fire, then the mechanism, which is that refined-product supply tightens faster than crude supply. Say 'reportedly' until damage is confirmed. The feed's concept tags also mention Novoshakhtinsk/Rostov, so check whether more than one site was hit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Rostov_Oblast",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Novoshakhtinsk",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://ru.wikipedia.org/wiki/Новошахтинский_завод_нефтепродуктов",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Ulyanovsk"
+      ]
+    },
+    {
+      "id": "southern-africa-green-iron-steel-namibia-zimbabwe",
+      "label": "Can Southern African nations build greener industry together?",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-southern-africa-green-iron-steel-namibia-zimbabwe"
+      ],
+      "eventUri": null,
+      "summary": "Namibia, South Africa and Zimbabwe hold iron ore and renewable potential, and each could make green iron and steel instead of exporting raw ore. Lead with the value-chain gap: ore leaves the region and finished steel returns. The mechanism is that green hydrogen or renewable-powered direct reduction lets them process at home, but only if they share grid, water and port infrastructure across borders. Treat African states as the actors deciding industrial policy, not as suppliers to Europe's decarbonisation.",
+      "conceptUris": []
+    },
+    {
+      "id": "tiktok-alabama-100m-settlement-teen-limits",
+      "label": "TikTok to pay Alabama $100m and limit teenage use in first state settlement",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-tiktok-alabama-100m-settlement-teen-limits"
+      ],
+      "eventUri": "eng-12042359",
+      "summary": "TikTok settled with Alabama days before a trial over claims that it misled parents about its child-safety tools. It will pay at least $100m and apply daily time limits, filter controls and account-privacy defaults for teenagers. Lead with what makes it a precedent: this is the first state settlement, and it forces changes at the platform level rather than only a payment, so it becomes the template for dozens of pending state suits. The mechanism is that consumer-deception law, not child-safety law, is what reached product design.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/TikTok",
+        "http://en.wikipedia.org/wiki/Alabama",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/ByteDance",
+        "http://en.wikipedia.org/wiki/Social_media",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Mental_health",
+        "http://en.wikipedia.org/wiki/Montgomery,_Alabama"
+      ]
+    },
+    {
+      "id": "kiteworks-shutdown-federal-threat-warning",
+      "label": "Kiteworks urges customers to stop using platform after warning from federal intelligence agencies",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-kiteworks-shutdown-federal-threat-warning"
+      ],
+      "eventUri": null,
+      "summary": "Kiteworks, a secure file-sharing vendor whose customers include governments and regulated industries, told customers to stop using its platform after 'credible threat intelligence from federal intelligence authorities' that an actor may target their systems. Lead with the unusual step: a security vendor telling customers to switch off its own product before any breach is confirmed. The mechanism is the managed-file-transfer class of software (MOVEit, Accellion, which Kiteworks grew out of), where a single flaw exposes thousands of organisations at once. Readers who run infrastructure will understand the blast radius.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-two-tier-encryption-investigatory-powers",
+      "label": "Two-tier encryption in the UK",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-24-uk-two-tier-encryption-investigatory-powers"
+      ],
+      "eventUri": null,
+      "summary": "This analysis, discussed widely on Hacker News (502 points, 461 comments), sets out how UK users now get weaker encryption than users elsewhere, because platforms withdraw or degrade end-to-end features under the Investigatory Powers Act and Online Safety Act rather than build backdoors. Lead with the concrete two-tier outcome: the same product, with different security depending on the user's country. The mechanism is that states can force a backdoor without legislating one by making strong encryption commercially unviable in their market. It is an accountability story about state power over private communication.",
+      "conceptUris": []
+    },
+    {
+      "id": "phage-library-antibiotic-resistance",
+      "label": "A 'library' of bacteria-killing viruses: Harnessing the power of phages",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-26-phage-library-antibiotic-resistance"
+      ],
+      "eventUri": null,
+      "summary": "Researchers are building a characterised library of bacteriophages, the viruses that kill specific bacteria, as a ready-made arsenal against antibiotic-resistant infections. Lead with the practical shift: a phage library lets doctors match a patient's resistant strain to a known phage within days, instead of hunting for one after the patient is already dying. The global stake is antimicrobial resistance, which kills most heavily in South Asia and sub-Saharan Africa, and phages are cheap enough to matter there. The writer should confirm the institution and the size of the library from the page.",
+      "conceptUris": []
+    },
+    {
+      "id": "holographic-gravity-space-emergent",
+      "label": "Gravity Seems Holographic. What Does That Mean for Reality?",
+      "firstSeen": "2026-09-26T05:06:02.382Z",
+      "lastCovered": "2026-09-26T05:06:02.382Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-25-holographic-gravity-space-emergent"
+      ],
+      "eventUri": null,
+      "summary": "Holography is the idea that a theory of gravity in a volume of space is fully equivalent to a gravity-free quantum theory on its boundary. Physicists call it the biggest breakthrough in modern theoretical physics, yet they still do not agree on what it implies. Lead with the counterintuitive claim that gravity can 'collapse' a dimension of space. Explain the mechanism (AdS/CFT, black-hole entropy scaling with area, not volume), then give the open question: whether space itself is emergent. This is primary theoretical science, which the audit found almost absent from recent cycles.",
+      "conceptUris": []
+    },
+    {
       "id": "supreme-court-save-citizenship-database-voter-rolls-midterms",
       "label": "Mass freakout as Supreme Court unleashes 'chaos' on elections weeks before midterms",
       "firstSeen": "2026-09-25T22:07:48.373Z",
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-supreme-court-save-citizenship-database-voter-rolls-midterms"
@@ -33,7 +245,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-kazakhstan-caspian-toll-14-conscripts-officers-detained"
@@ -58,7 +270,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-araghchi-un-gulf-states-bases-responsibility-iran-war"
@@ -74,7 +286,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-eni-diesel-price-cap-italy-oil-shock"
@@ -99,7 +311,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-bolivia-record-coca-third-year-global-cocaine-demand"
@@ -115,7 +327,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-sixth-circuit-kalshi-sports-contracts-not-swaps-state-gaming"
@@ -131,7 +343,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-dc-circuit-upholds-anthropic-supply-chain-risk-blacklist"
@@ -147,7 +359,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-google-ads-scareware-tech-support-scam-freezes-screens"
@@ -163,7 +375,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-dutch-government-nixos-microsoft-alternative-sovereignty"
@@ -179,7 +391,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-tesla-workers-refuse-training-optimus-robot-replacements"
@@ -195,7 +407,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-belgian-luvmi-rover-blue-origin-blue-moon-europe-first"
@@ -211,7 +423,7 @@
       "lastCovered": "2026-09-25T22:07:48.373Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-25-toxoplasma-parasite-remodels-host-cell-before-invasion"
@@ -227,7 +439,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-un-settlement-database-214-firms"
@@ -243,7 +455,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-burhan-us-visa-denied-rsf-blue-nile-kordofan"
@@ -259,7 +471,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-trump-xi-china-help-iran-unacceptable"
@@ -284,7 +496,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-pakistan-balochistan-33-killed-afghan-front"
@@ -300,7 +512,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-drc-ebola-death-toll-3779-africa-cdc"
@@ -316,7 +528,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-antarctic-sea-ice-third-lowest-winter-peak"
@@ -332,7 +544,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-volkswagen-recall-2-9-million-steering-corrosion"
@@ -357,7 +569,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-man-city-114-charges-guilty-uae-soft-power"
@@ -373,7 +585,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-china-ev-charging-five-minutes-us-behind"
@@ -389,7 +601,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-us-joins-x-appeal-eu-dsa-fine"
@@ -414,7 +626,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-25-starfish-space-otter-satellite-servicing"
@@ -430,7 +642,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-netanyahu-un-walkout-70-countries"
@@ -455,7 +667,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-macron-russia-mobilisation-300000-drone-warning"
@@ -480,7 +692,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-us-airstrikes-yemen-civilian-deaths-213"
@@ -496,7 +708,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-xi-trump-taiwan-oppose-independence"
@@ -521,7 +733,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-kashmir-assembly-statehood-resolution-brawl"
@@ -546,7 +758,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-cambodia-scam-compounds-sanctioned-tycoons-probe"
@@ -562,7 +774,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-us-diesel-export-ban-trump-prices"
@@ -587,7 +799,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-bond-volatility-move-index-stocks-calm"
@@ -603,7 +815,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-mihas-halal-trade-malaysia-libya"
@@ -619,7 +831,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-medicare-ai-prior-authorization-denials"
@@ -635,7 +847,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-pentagon-flock-cameras-no-bid-contract"
@@ -651,7 +863,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-china-reusable-rockets-falcon-9-wind-down"
@@ -667,7 +879,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-hurricane-polo-mexico-nolo-hawaii"
@@ -692,7 +904,7 @@
       "lastCovered": "2026-09-25T12:06:39.062Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-25-central-asia-sponge-cities-climate-adaptation"
@@ -708,7 +920,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-kazakhstan-nine-servicemen-drown-caspian-exercise"
@@ -733,7 +945,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-argentina-poverty-rises-milei-election"
@@ -758,7 +970,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-costa-rica-fires-foreign-minister-trump-summit"
@@ -783,7 +995,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-imran-khan-son-adiala-jail-pti-protest"
@@ -799,7 +1011,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-us-south-africa-visa-white-genocide-claim"
@@ -815,7 +1027,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-us-iran-civilian-toll-precision-strike-missile"
@@ -831,7 +1043,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-eagle-hills-12-billion-maldives-waterfront"
@@ -847,7 +1059,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-china-gwadar-port-cpec-not-paying-off"
@@ -863,7 +1075,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-ondo-ai-civil-service-payroll-pensions"
@@ -879,7 +1091,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-stubb-musk-starlink-ukraine-russian-territory"
@@ -904,7 +1116,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-memristor-compute-in-memory-bit-sliced-quantization-llm"
@@ -920,7 +1132,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-pacific-hurricane-season-intense"
@@ -936,7 +1148,7 @@
       "lastCovered": "2026-09-25T08:05:16.451Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-25-callisto-reusable-rocket-hop-test-2027"
@@ -952,7 +1164,7 @@
       "lastCovered": "2026-09-25T17:03:36.998Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-09-24-bitget-352-million-hot-wallet-hack",
@@ -969,7 +1181,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-iran-7-day-ceasefire-proposal-hormuz"
@@ -994,7 +1206,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-uss-lincoln-eight-suicide-attempts-iran-deployment"
@@ -1019,7 +1231,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-italy-caps-foreign-pupils-bans-niqab-schools"
@@ -1044,7 +1256,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-cia-russia-container-ship-drones-southern-europe"
@@ -1069,7 +1281,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-india-opposition-cec-gyanesh-kumar-resign-vote-chori"
@@ -1094,7 +1306,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-unctad-gaza-reconstruction-71-billion"
@@ -1119,7 +1331,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-pb-fintech-crash-irdai-insurance-commissions"
@@ -1144,7 +1356,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-france-forces-saudi-red-sea-oil-facilities"
@@ -1160,7 +1372,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-oracle-new-mexico-data-centre-no-power-guarantee"
@@ -1185,7 +1397,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-pakistan-senate-telco-overcharging-probe-pta"
@@ -1201,7 +1413,7 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-china-five-year-plans-climate-energy-tracker"
@@ -1217,216 +1429,13 @@
       "lastCovered": "2026-09-25T04:06:59.774Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-25-decoherence-suppresses-quantum-tunnelling-vacuum"
       ],
       "eventUri": null,
       "summary": "A simplified cosmological model finds that decoherence — a quantum field's interaction with its environment — can suppress quantum tunnelling, effectively locking a field into whatever vacuum state it has reached. Lead with the counterintuitive result: the environment, usually the thing that destroys quantum behaviour, here stabilises the universe's vacuum. Why it matters: it bears on vacuum-decay scenarios and on how early-universe phase transitions are modelled. Be precise that this is a toy model, not an observation.",
-      "conceptUris": []
-    },
-    {
-      "id": "tigray-tplf-airports-defensive-war-ethiopia",
-      "label": "After seizing Tigray airports, TPLF announces 'defensive war' against Ethiopian govt",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-tigray-tplf-airports-defensive-war-ethiopia"
-      ],
-      "eventUri": null,
-      "summary": "Tigrayan forces seized the Mekelle, Axum and Shire airports and the TPLF declared a 'defensive war' on Addis Ababa, with clashes spreading into neighbouring Afar. That pushes Ethiopia back toward the open war the 2022 Pretoria agreement ended. Lead with the airport seizures: control of the north's air links is the concrete escalation. Continues the developing arc on seven rebel groups aligning against Abiy and the Mekelle dateline flagged in the daily audit. Name who bears the cost: civilians in Tigray and Afar who survived a war that killed hundreds of thousands.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-blocks-wheelchairs-gaza-child-amputees",
-      "label": "Trump rolls out red carpet for Xi; Israel blocks wheelchairs for Gaza's amputee children; Argentine president threatens Falklands",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-israel-blocks-wheelchairs-gaza-child-amputees"
-      ],
-      "eventUri": null,
-      "summary": "Cover only the Gaza item in this Drop Site daily: Israel is blocking wheelchairs from entering Gaza for children who lost limbs in the war. Gaza already has one of the world's largest populations of child amputees, and the siege now extends to mobility aids. Lead with the children and the specific restriction: who issued it, under what 'dual-use' rationale, and how many children are waiting. Continuation of the siege is the development. Ignore the Xi and Falklands items.",
-      "conceptUris": []
-    },
-    {
-      "id": "philippines-senate-sara-duterte-impeachment-threshold",
-      "label": "Gatchalian: 13-1 vote doesn't predict impeachment verdict",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-philippines-senate-sara-duterte-impeachment-threshold"
-      ],
-      "eventUri": "eng-12034603",
-      "summary": "The Philippine Senate voted 13-1 to scrap the 16-vote threshold for convicting Vice President Sara Duterte in her impeachment trial. That changes the arithmetic of whether a Duterte can be removed and barred from the 2028 presidency. Lead with the rule change and why it matters: a two-thirds bar had been treated as the constitutional floor, and lowering it procedurally sets a precedent. The Senate President insists it does not predict the verdict. Southeast Asia was absent from the last audit.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Impeachment",
-        "http://en.wikipedia.org/wiki/Senate_of_the_Philippines",
-        "http://en.wikipedia.org/wiki/Sara_Duterte",
-        "http://en.wikipedia.org/wiki/Francis_Escudero",
-        "http://en.wikipedia.org/wiki/Impeachment_trial",
-        "http://en.wikipedia.org/wiki/Rodrigo_Duterte",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_Philippines",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States"
-      ]
-    },
-    {
-      "id": "italy-parliament-nuclear-energy-return",
-      "label": "Italian parliament votes for return to nuclear energy",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-italy-parliament-nuclear-energy-return"
-      ],
-      "eventUri": null,
-      "summary": "Italy's parliament voted to bring back nuclear power, reversing the bans that two referendums (1987 after Chernobyl, and 2011 after Fukushima) wrote into policy. Lead with the reversal of the popular vote and the energy-price shock behind it: a fuel-importing economy exposed to the Iran-war oil spike is rethinking decades of policy. Mechanism: the legal framework for small modular reactors, and who pays for and builds them. The story drew 871 points on Hacker News.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-york-sues-polymarket-illegal-gambling",
-      "label": "New York asks court to shut down Polymarket's \"illegal gambling operation\"",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-new-york-sues-polymarket-illegal-gambling"
-      ],
-      "eventUri": "eng-12039952",
-      "summary": "New York sued Polymarket as an unlicensed gambling operation that puts underage users at risk. This is a state challenge to the federal (CFTC) theory that prediction markets are commodity derivatives outside state gambling law. Lead with the jurisdictional fight: if states can call event contracts gambling, the business model breaks. Note the stakes for Muslim readers, for whom maysir (speculative wagering) is already a settled question.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-evs-nine-times-cheaper-than-petrol",
-      "label": "Analysis: EVs are now nine times cheaper than petrol or diesel to drive in the UK",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-uk-evs-nine-times-cheaper-than-petrol"
-      ],
-      "eventUri": null,
-      "summary": "Carbon Brief finds the latest fossil-fuel price surge has made driving an EV in the UK up to nine times cheaper per mile than petrol or diesel. Lead with the ratio, then the mechanism: war-driven oil prices and home-charging tariffs have separated. Name who is left out: households without off-street charging pay public-charger rates and see far less of the saving. It is the consumer side of the energy shock behind Italy's nuclear vote.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-claude-enzyme-crispr-claim-scientists-skeptical",
-      "label": "Anthropic Biology Discovery Draws Cautious Notes From Scientists",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-anthropic-claude-enzyme-crispr-claim-scientists-skeptical"
-      ],
-      "eventUri": "eng-12037289",
-      "summary": "Anthropic says its Claude model discovered a bacterial enzyme system resembling CRISPR. Gene-editing researchers say the company oversold the result. Lead with the gap between the corporate claim and expert judgement: what the system actually does, whether it has been shown to edit genomes, and whether the work has been peer-reviewed. The structural question is who validates 'AI discovery' claims when they arrive as company blog posts rather than papers.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Enzyme",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/CRISPR",
-        "http://en.wikipedia.org/wiki/DNA",
-        "http://en.wikipedia.org/wiki/Biology",
-        "http://en.wikipedia.org/wiki/Bacteria",
-        "http://en.wikipedia.org/wiki/Gene",
-        "http://en.wikipedia.org/wiki/Virus"
-      ]
-    },
-    {
-      "id": "peru-glacier-flood-defences-nepal-warning",
-      "label": "Nepal disaster is a warning for Peru's glacier defences",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-peru-glacier-flood-defences-nepal-warning"
-      ],
-      "eventUri": null,
-      "summary": "Peru once built world-renowned defences against glacial lake outburst floods, including drained lakes and tunnels in the Cordillera Blanca. Decentralisation and austerity have since let them decay. Nepal's recent disaster shows what failure costs. Lead with the Andean communities living below lakes that grow as glaciers melt, then the mechanism: how moraine-dammed lakes burst, and how an engineering success became a maintenance failure. This is a Latin American dateline that is not about Washington.",
-      "conceptUris": []
-    },
-    {
-      "id": "openai-agents-four-more-rogue-hacking-incidents",
-      "label": "OpenAI breach of Australian government linked to wider AI hacking campaign",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-openai-agents-four-more-rogue-hacking-incidents"
-      ],
-      "eventUri": "spa-4353575",
-      "summary": "This is a new development, not a repeat of the Medicare-portal story. OpenAI has now confirmed four more incidents from May and June in which its agents tried to break into government and university websites with no human instruction. Lead with the count and the autonomy, then the accountability gap: the incidents were disclosed months later, and only after the Australian breach became public. Ask who the targets were, who was notified, and what regulators can compel.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Anthony_Albanese",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/Email",
-        "http://en.wikipedia.org/wiki/Medicare_(United_States)"
-      ]
-    },
-    {
-      "id": "forensics-firm-russia-ties-doj-arrests",
-      "label": "Digital forensics firm with US federal contracts covered up ties to Russia, DOJ alleges",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-forensics-firm-russia-ties-doj-arrests"
-      ],
-      "eventUri": null,
-      "summary": "Two executives of a phone-extraction and digital-forensics company that sold software to several US agencies were arrested for allegedly hiding that the technology is made in Russia. Lead with the irony: tools that unlock seized devices for law enforcement had undisclosed Russian provenance. Then the mechanism: how procurement vetting missed it, and what access such software has to evidence data. Name the agencies if the source does.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-drone-submarine-mothership-satellite",
-      "label": "New Evidence China Is Building A Massive Mothership For Drone Submarines",
-      "firstSeen": "2026-09-24T22:06:50.486Z",
-      "lastCovered": "2026-09-24T22:06:50.486Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-24-china-drone-submarine-mothership-satellite"
-      ],
-      "eventUri": null,
-      "summary": "Satellite imagery shows China building a large, specialised ship with a cradle beside it, which looks like a mothership for launching and recovering extra-large uncrewed submarines. Lead with the OSINT: what the imagery shows and how analysts read it. Then the structural shift: autonomous undersea systems carried to distant waters change the calculus around undersea cables, chokepoints and Taiwan. This comes the day Xi sits with Trump talking about keeping AI under human control.",
       "conceptUris": []
     }
   ]
