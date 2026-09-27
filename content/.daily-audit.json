@@ -1,92 +1,38 @@
 {
-  "date": "2026-09-26",
+  "date": "2026-09-27",
   "metrics": {
-    "articles": {
-      "value": 48,
-      "detail": "5 cycles, all completed, avg ~9.6/cycle (56 yesterday); first day on the 05/10/14/18/22 UTC schedule"
-    },
-    "freshness": {
-      "median": 0.5,
-      "p90": 0.7,
-      "max": 1.3,
-      "target": 1.0,
-      "met": true
-    },
-    "categories": {
-      "politics": 23,
-      "economy": 11,
-      "science": 5,
-      "tech": 9
-    },
-    "multiSource": {
-      "pct": 48,
-      "target": 30,
-      "met": true
-    },
-    "usDatelines": {
-      "pct": 40,
-      "target": 25,
-      "met": false
-    },
-    "latAmDatelines": {
-      "pct": 0,
-      "target": 5,
-      "met": false
-    },
-    "sameEventDuplicates": {
-      "value": 0,
-      "target": 0,
-      "met": true
-    },
-    "missingDatelines": {
-      "value": 0,
-      "target": 0,
-      "met": true
-    },
+    "articles": { "value": 42, "detail": "5 cycles, all completed, avg 8 published/cycle (51 yesterday); 1 article quarantined" },
+    "freshness": { "median": 0.5, "p90": 0.5, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 11, "science": 3, "tech": 7 },
+    "multiSource": { "pct": 43, "target": 30, "met": true },
+    "usDatelines": { "pct": 21, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
+    "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 4,
     "imageUrlPct": 100,
-    "regions": {
-      "count": 6,
-      "target": 4,
-      "met": true,
-      "breakdown": {
-        "AM": 19,
-        "ME": 12,
-        "EU": 8,
-        "AF": 5,
-        "AS": 3,
-        "GL": 1
-      }
-    },
-    "sciTech": {
-      "ratio": 29,
-      "target": 25,
-      "met": true
-    },
-    "topSourceShare": {
-      "source": "Dawn",
-      "pct": 15,
-      "target": 20,
-      "met": true
-    },
-    "uniqueSources": 55,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 11, "AM": 11, "EU": 9, "AS": 7, "AF": 4 } },
+    "sciTech": { "ratio": 24, "target": 25, "met": false },
+    "topSourceShare": { "source": "Al Jazeera Online / Dawn (tied)", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 744
+    "avgCycleDuration": 963
   },
-  "experiment": "There were no active experiments to evaluate and no pause gate. No new experiment was proposed, because the pipeline changed several times today: the US cap of 3 (982f561b, late on 09-25), the 12-hour selector pool (eb71a380), running-story dedup and thin-pick drops (dfa68da3), the optional science floor (bd8ee3e6), and pool widening with backfill removed (1de1c29b, 18:19 UTC). A parameter change now would be confounded with all of them, so the earliest clean baseline is 2026-09-27 onward.",
-  "weakestArea": "US datelines are furthest from target at 40% against a 25% cap (43% yesterday). The US cap of 3 per cycle has not brought the daily share down yet. The count is inflated by eight articles datelined only \"United States\", mostly crypto and tech wire copy (Binance, Solana, Zcash, Boeing, Instagram, Blackbeard). Latin America reads 0%, but the metric misses at least one Latin American story: Hurricane Polo is datelined \"Baja California Sur\", which is in Mexico. The two Cuba stories carry New York and Washington datelines.",
+  "experiment": "Skipped — no active experiments and no pause gate, but today is the first clean day after five pipeline changes on 09-25/26 (US cap, 12h pool, running-story dedup, optional science floor, pool widening). One day is not a baseline; revisit on 2026-09-30 with three clean days.",
+  "weakestArea": "Science is furthest from target at 3/5 (5 yesterday), pulling sci+tech to 24% against 25%. The science floor is optional by design since 2026-09-26, and only Phys.org and Dawn supplied science. If the shortfall holds through 09-30, the next lever is widening science sources in CURATED_SOURCES, provided it stays NewsAPI token-neutral, rather than raising the floor.",
   "watching": [
-    "Trump rejected Iran's 7-day Hormuz roadmap and Iraq halted all flights to and from Iran under US sanctions, so the oil-shock story is widening from fuel policy into aviation and sanctions enforcement.",
-    "The Houthis sent drones toward Riyadh and published a count of 1,059 Saudi strikes on Marib, which puts the Mecca pact under direct test.",
-    "Hurricane Polo made landfall in Baja California Sur as a Category 5, and follow-up damage reporting would give Latin America a dateline of its own.",
-    "The US and China agreed a $30 billion tariff cut together with an AI-safety channel, which turns the summit pledges into concrete terms.",
-    "Lavrov met Wadephul at the UN in the first Russia–Germany talks in years, while Dmitriev is floating a Nord Stream restart, so this is a possible opening in Europe's stance toward Russia."
+    "Strait of Hormuz: IRGC seized a second REMUS 600 drone, Qeshm blasts, and a Saudi rejection of the PGSA transit fees, while US-Iran talks stall.",
+    "Serbia: Vučić resigns the presidency to run for prime minister.",
+    "Gaza and the West Bank: Smotrich's annexation push and the fallout from the Al-Aqsa storming.",
+    "AI safety: OpenAI paused frontier training after safety incidents (state/advocacy-only sourcing so far), alongside the Amodei–Trump dinner.",
+    "Sudan: RSF drone strikes on the Wad Madani fuel depot in Gezira.",
+    "Switzerland's neutrality referendum result."
   ],
   "coverageGaps": [
-    "Latin America has no datelined article today apart from the missed Baja landfall; Cuba is covered only from New York and Washington.",
-    "East Asia is thin, with 3 AS-region articles out of 48 and only one of them (Beijing) from China, Japan or Korea.",
-    "Two of the five science picks are disasters (the Athens gas explosion and the Bangkok flooding), which is the kind of filler the 09-26 science-floor decision meant to stop.",
-    "Eleven articles use a country or region as the dateline (\"United States\" ×8, Yemen, Malawi, Seychelles) instead of a city, which breaks the city-only location convention."
+    "Science: 3 stories from 2 outlets; nothing from dedicated science journals or agencies beyond Phys.org.",
+    "India skews the Asia count: about 6 of 7 AS stories are Indian domestic (Assam, Manipur, Maharashtra, Delhi, the CEC, the bank strike), and East and Southeast Asia is almost absent.",
+    "No Oceania stories, and Latin America has just enough coverage to meet its target (Haiti only).",
+    "Freshness was computed on only 2 of 42 articles today, so the median is not representative."
   ],
-  "context": "This is the first full day under the new cycle schedule and the 12-hour selector pool. Output fell to 48 articles, but multi-source share rose to 48% (from 36%) and image URLs reached 100%. The dateline metrics need attention in the code before they can be tuned: country-level datelines inflate usDatelinePct, and region names such as \"Baja California Sur\" are not mapped to Latin America."
+  "context": "US datelines fell from 40% to 21%, and Latin America reached 5% on the first full day under the US cap and the widened pool. Both targets were met for the first time, but that is one day of data. Multi-source share held at 43%, and there were no same-event duplicates. One article (Oleshky drone deliveries) was quarantined as .md.bad."
 }
