@@ -1,0 +1,4 @@
+executionPrerequisite: Android emulator-5554, home news sheet collapsed at its peek, large text and font_scale1.8. No modal or briefing bar.
+steps:
+  - tool: gesture-swipe
+    args: {fromX: 0.5, fromY: 0.7, toX: 0.5, toY: 0.89, durationMs: 450}

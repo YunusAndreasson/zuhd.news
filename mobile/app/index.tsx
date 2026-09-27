@@ -10,6 +10,7 @@ import type {
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  AppState,
   type LayoutChangeEvent,
   Platform,
   Share,
@@ -59,13 +60,7 @@ import { Screen } from '../components/primitives';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import {
-  API_BASE,
-  CATEGORIES,
-  categoryMarkColor,
-  EDITORIAL,
-  VARIANT_CAP,
-} from '../constants/theme';
+import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAnalysis } from '../hooks/useAnalysis';
 import type { AppReturn } from '../hooks/useArticles';
 import { useArticles } from '../hooks/useArticles';
@@ -82,12 +77,17 @@ import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useReadTracking } from '../hooks/useReadTracking';
+import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { announce } from '../lib/announce';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
-import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
+import {
+  getSnapshot as getBookmarks,
+  restore as restoreBookmark,
+  toggle as toggleBookmark,
+} from '../lib/bookmark-store';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
@@ -95,7 +95,6 @@ import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
 import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
-import { fetchJson } from '../lib/fetchJson';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
@@ -128,7 +127,6 @@ import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
-import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
 
 /**
@@ -1071,6 +1069,7 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   const handleArticleBookmark = useCallback((article: RiverArticle) => {
     const category = article.category;
+    const removed = getBookmarks().find((b) => b.article.slug === article.slug);
     const added = toggleBookmark(article, category);
     markHintDone('bookmark');
     hapticNotification();
@@ -1078,7 +1077,7 @@ export default function HomeScreen() {
       toastRef.current?.show('Saved');
     } else {
       toastRef.current?.show('Removed — tap to undo', () => {
-        toggleBookmark(article, category);
+        if (removed) restoreBookmark(removed);
         hapticNotification();
       });
     }
@@ -1362,34 +1361,38 @@ export default function HomeScreen() {
     setActiveCard(null);
     setSelectedGauge(null);
   }, []);
-  const handleCardStoryPress = useCallback(
-    async (slug: string) => {
-      const inFeed = CATEGORIES.some((c) => groupedRef.current[c].some((a) => a.slug === slug));
-      if (inFeed) {
-        cardSheetRef.current?.dismiss();
-        // The category is re-resolved from the feed.
-        handleSelectArticle(slug, 'politics');
-        return;
-      }
-      // A card cites a fortnight of coverage and the feed holds about a day
-      // and a half, so most cited stories have to be fetched. The card stays
-      // open until the story is in hand: a failed tap loses the reader nothing.
-      try {
-        const story = await fetchJson(`${API_BASE}/api/story/${slug}.json`, isStoryPayload);
-        const resolved = articleFromStory(story);
-        if (!resolved) throw new Error('unreadable story');
-        pinStory(slug);
-        injectArticle(resolved.article, resolved.category);
-      } catch {
-        toastRef.current?.show('Could not open that story');
-        return;
-      }
-      // The card is in its sheet or a page of the menu; whichever is up goes.
+  const explicitStoryRef = useRef(false);
+  const frontFlightRef = useRef(false);
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'background') explicitStoryRef.current = false;
+    });
+    return () => subscription.remove();
+  }, []);
+  const openResolvedStory = useCallback(
+    (slug: string, article?: Article, category?: Category) => {
+      pinStory(slug);
+      if (article && category) injectArticle(article, category);
       cardSheetRef.current?.dismiss();
       menuSheetRef.current?.dismiss();
       focusStory(slug, { grow: true });
     },
-    [focusStory, handleSelectArticle, injectArticle, pinStory],
+    [focusStory, injectArticle, pinStory],
+  );
+  const reportStoryError = useCallback(() => {
+    toastRef.current?.show('Could not open that story. Please try again.');
+  }, []);
+  const resolveStory = useStoryOpener(groupedRef, openResolvedStory, reportStoryError);
+  const handleCardStoryPress = useCallback(
+    (slug: string) => {
+      // A notification/link takes precedence over this foreground session's
+      // delayed refresh, including a front flight already queued by it.
+      explicitStoryRef.current = true;
+      frontFlightRef.current = false;
+      pendingFocusRef.current = null;
+      void resolveStory(slug);
+    },
+    [resolveStory],
   );
   const handleOverlayDismiss = useCallback(() => {
     setActiveOverlay(null);
@@ -1486,8 +1489,8 @@ export default function HomeScreen() {
     return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 
-  usePendingNotification(loading, grouped, handleSelectArticle, handleBriefingPress);
-  useLinkedStory(loading, grouped, handleSelectArticle);
+  usePendingNotification(loading, grouped, handleCardStoryPress, handleBriefingPress);
+  useLinkedStory(loading, grouped, handleCardStoryPress);
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
@@ -1520,7 +1523,6 @@ export default function HomeScreen() {
   // once the new front exists (`frontFlightRef`). Decided by an effect a
   // commit later, the old story sat under the new day's times for a second,
   // then the card jumped, then the globe followed.
-  const frontFlightRef = useRef(false);
   const showNewToast = useCallback(
     (added: number) => {
       toastRef.current?.show(
@@ -1544,6 +1546,7 @@ export default function HomeScreen() {
     (ret: AppReturn) => {
       const added = ret.added.length;
       const landing = resumeLanding({
+        explicitStory: explicitStoryRef.current,
         awayMs: ret.awayMs,
         coldStart: ret.coldStart,
         added,

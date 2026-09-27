@@ -68,6 +68,16 @@ export function toggle(article: Article, category: Category): boolean {
   return true; // added
 }
 
+/** Undo a removal without changing its original position or removing a story
+ * that was saved again while the undo action was still available. */
+export function restore(bookmark: Bookmark): boolean {
+  if (bookmarks.some((b) => b.article.slug === bookmark.article.slug)) return false;
+  bookmarks = [...bookmarks, bookmark].sort((a, b) => b.savedAt - a.savedAt);
+  listeners.emit();
+  persist.later();
+  return true;
+}
+
 /** Erase every saved bookmark. Persists immediately rather than on the debounce
  *  — this is called from the privacy page's erase control, and a promise to
  *  delete should not be sitting in a timer if the app is killed a moment later. */

@@ -470,6 +470,7 @@ export const MenuSheet = memo(function MenuSheet({
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
   const [canRate, setCanRate] = useState(false);
+  const [notificationPermissionDenied, setNotificationPermissionDenied] = useState(false);
   const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
   const savedCount = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
 
@@ -606,6 +607,15 @@ export const MenuSheet = memo(function MenuSheet({
   const groupKey = nav.current && isGroupKey(nav.current) ? nav.current : null;
   const activeGroup = groupKey ? (catalog.find((g) => g.key === groupKey) ?? null) : null;
   const activeHazard = nav.current && isHazardKey(nav.current) ? nav.current : null;
+  // A detail covers its originating list without unmounting it. Keeping the
+  // native viewport and virtualized window also preserves filters and exact
+  // scroll position; rebuilding a deep list clamps to its first batch.
+  const parentListKey = [...nav.stack].reverse().find((key) => isGroupKey(key) || isHazardKey(key));
+  const keptGroup =
+    parentListKey && isGroupKey(parentListKey)
+      ? catalog.find((group) => group.key === parentListKey)
+      : undefined;
+  const keptHazard = parentListKey && isHazardKey(parentListKey) ? parentListKey : null;
 
   return (
     <SheetLayout
@@ -628,18 +638,29 @@ export const MenuSheet = memo(function MenuSheet({
         // detail page brings its own scroll view, as its sheet does.
         <GestureDetector gesture={swipeBack}>
           <View style={styles.listPage}>
-            {activeGroup ? (
-              <GroupPage group={activeGroup} bottomInset={bottomInset} onSelect={handleRow} />
+            {keptGroup ? (
+              <RetainedListPage hidden={!activeGroup}>
+                <GroupPage
+                  key={keptGroup.key}
+                  group={keptGroup}
+                  bottomInset={bottomInset}
+                  onSelect={handleRow}
+                />
+              </RetainedListPage>
+            ) : keptHazard ? (
+              <RetainedListPage hidden={!activeHazard}>
+                <HazardPage
+                  key={keptHazard}
+                  layer={keptHazard}
+                  hazards={hazards}
+                  bottomInset={bottomInset}
+                  onSelect={handleMark}
+                />
+              </RetainedListPage>
             ) : groupKey ? (
               <EmptyState message="Nothing to list right now" />
-            ) : activeHazard ? (
-              <HazardPage
-                layer={activeHazard}
-                hazards={hazards}
-                bottomInset={bottomInset}
-                onSelect={handleMark}
-              />
-            ) : currentDetail ? (
+            ) : null}
+            {currentDetail ? (
               <MenuDetailPage
                 detail={currentDetail}
                 bottomInset={bottomInset}
@@ -656,7 +677,11 @@ export const MenuSheet = memo(function MenuSheet({
         </GestureDetector>
       ) : (
         <GestureDetector gesture={swipeBack}>
-          <SheetScrollView bottomInset={bottomInset}>{renderPage()}</SheetScrollView>
+          {/* Each page owns its scroll origin; reusing the native scroll view
+              carried the menu's offset into rankings, settings and prose. */}
+          <SheetScrollView key={nav.current ?? 'root'} bottomInset={bottomInset}>
+            {renderPage()}
+          </SheetScrollView>
         </GestureDetector>
       )}
     </SheetLayout>
@@ -854,7 +879,11 @@ export const MenuSheet = memo(function MenuSheet({
             />
             <MenuRow
               title="notifications"
-              description="The daily briefing and breaking news"
+              description={
+                notificationPermissionDenied
+                  ? 'Notification permission is off. You can enable it in device settings.'
+                  : 'The daily briefing and breaking news'
+              }
               trailing={<Toggle value={preferences.notifications} />}
               accessibilityRole="switch"
               accessibilityState={{ checked: preferences.notifications }}
@@ -865,13 +894,17 @@ export const MenuSheet = memo(function MenuSheet({
                   return;
                 }
                 prefsApi.setNotifications(true).then((granted) => {
-                  if (!granted) {
-                    onToast?.('Enable notifications in Settings');
-                    Linking.openSettings().catch(() => {});
-                  }
+                  setNotificationPermissionDenied(!granted);
                 });
               }}
             />
+            {notificationPermissionDenied ? (
+              <MenuRow
+                title="open device settings"
+                trailing="leave"
+                onPress={() => Linking.openSettings().catch(() => {})}
+              />
+            ) : null}
           </Animated.View>
 
           <Animated.View entering={enter()}>
@@ -1075,6 +1108,23 @@ const STOCK_FILTERS: SegmentOption<StockFilter>[] = [
   { value: 'rising', label: 'rising' },
   { value: 'falling', label: 'falling' },
 ];
+
+function RetainedListPage({ hidden, children }: { hidden: boolean; children: React.ReactNode }) {
+  const [height, setHeight] = useState(0);
+  return (
+    <View
+      onLayout={(event) => {
+        if (!hidden) setHeight(event.nativeEvent.layout.height);
+      }}
+      style={hidden ? { position: 'absolute', width: '100%', height, opacity: 0 } : styles.listPage}
+      pointerEvents={hidden ? 'none' : 'auto'}
+      accessibilityElementsHidden={hidden}
+      importantForAccessibility={hidden ? 'no-hide-descendants' : 'auto'}
+    >
+      {children}
+    </View>
+  );
+}
 
 /**
  * One group's list. `stock markets` keeps the browser's filter and its tally;

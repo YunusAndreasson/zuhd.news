@@ -1,0 +1,11 @@
+executionPrerequisite: Android emulator-5554; briefing bar visible and paused, duration9:31, large app text and system font_scale1.8. No modal.
+steps:
+  - tap: {text: Play briefing}
+  - tool: describe
+    delayMs: 1500
+    args: {}
+  - tool: gesture-tap
+    args: {x: 0.949, y: 0.1765}
+  - tool: describe
+    delayMs: 12000
+    args: {}

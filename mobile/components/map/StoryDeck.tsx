@@ -13,6 +13,8 @@ import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-g
 import Animated, {
   cancelAnimation,
   type SharedValue,
+  scrollTo,
+  useAnimatedReaction,
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
@@ -196,22 +198,52 @@ const DeckSlot = memo(function DeckSlot({
 
   const nativeConfig = useMemo(() => ({ simultaneousWith: sheetGesture }), [sheetGesture]);
   const native = useNativeGesture(nativeConfig);
+  const scrollPosition = useSharedValue(0);
+  const closingScroll = useSharedValue(0);
+  const closingProgress = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       'worklet';
+      scrollPosition.value = event.contentOffset.y;
       if (current) onScrollOffset.value = event.contentOffset.y;
     },
   });
+
+  // A scrolled story returns to its headline with the descending sheet,
+  // driven by the very same progress. A separate native scroll animation
+  // drifted from the spring (or started after it), making closing look jerky.
+  useAnimatedReaction(
+    () => peekFade?.value ?? 0,
+    (next, previous) => {
+      if (!current || previous === null || next >= previous) {
+        closingProgress.value = 0;
+        return;
+      }
+      if (closingProgress.value === 0) {
+        closingScroll.value = Math.max(0, scrollPosition.value);
+        closingProgress.value = previous;
+      }
+      if (closingScroll.value === 0) return;
+      const y = closingScroll.value * Math.max(0, next / closingProgress.value);
+      scrollTo(scrollRef, 0, y, false);
+      scrollPosition.value = y;
+      onScrollOffset.value = y;
+    },
+  );
 
   const readable = current && scrollEnabled;
   // A card leaving the front, or a sheet coming down to rest, goes back to its
   // top: at rest the card is its kicker, title and lead, never its middle.
   useEffect(() => {
     if (readable) return;
-    scrollRef.current?.scrollTo({ y: 0, animated: current });
+    // The current card's reset is synchronized with the closing spring above.
+    // Off-screen slots (and callers without sheet progress) reset immediately.
+    if (current && peekFade) return;
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+    scrollPosition.value = 0;
     if (current) onScrollOffset.value = 0;
-  }, [current, onScrollOffset, readable, scrollRef]);
+  }, [current, onScrollOffset, peekFade, readable, scrollPosition, scrollRef]);
   // A new story in this slot starts at its top, even open: a jump from a
   // story read halfway down would otherwise open the next one there.
   const shownKey = useRef(storyKey);
@@ -219,8 +251,9 @@ const DeckSlot = memo(function DeckSlot({
     if (shownKey.current === storyKey) return;
     shownKey.current = storyKey;
     scrollRef.current?.scrollTo({ y: 0, animated: false });
+    scrollPosition.value = 0;
     if (current) onScrollOffset.value = 0;
-  }, [current, onScrollOffset, scrollRef, storyKey]);
+  }, [current, onScrollOffset, scrollPosition, scrollRef, storyKey]);
 
   return (
     <Animated.View

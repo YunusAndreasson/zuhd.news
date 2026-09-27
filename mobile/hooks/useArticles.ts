@@ -233,27 +233,30 @@ export function useArticles(
     await query.refetch();
   }, [query.refetch]);
 
-  /** Inject an article into a category if it's not already present (e.g.
-   *  bookmarked article that rotated out of the feed). */
-  const injectArticle = useCallback(
-    (article: Article, category: Category) => {
-      queryClient.setQueryData<FeedResponse>(FEED_QUERY_KEY, (prev) => {
-        if (!prev) return prev;
-        const list = prev.categories[category] ?? [];
-        if (list.some((a) => a.slug === article.slug)) return prev;
-        return {
-          ...prev,
-          categories: { ...prev.categories, [category]: [article, ...list] },
-        };
-      });
-    },
-    [queryClient],
-  );
+  // Keep explicitly opened stories for this session independently of feed
+  // replacements. A delayed arrival must not remove a notification's story.
+  const [openedArticles, setOpenedArticles] = useState<
+    Map<string, { article: Article; category: Category }>
+  >(() => new Map());
+  const injectArticle = useCallback((article: Article, category: Category) => {
+    setOpenedArticles((previous) => {
+      if (previous.get(article.slug)?.article === article) return previous;
+      const next = new Map(previous);
+      next.set(article.slug, { article, category });
+      return next;
+    });
+  }, []);
 
   const grouped = useMemo<GroupedArticles>(() => {
-    if (!query.data) return emptyGrouped;
-    return { ...emptyGrouped, ...query.data.categories };
-  }, [query.data]);
+    const result = { ...emptyGrouped, ...query.data?.categories };
+    const present = new Set(
+      Object.values(result).flatMap((articles) => articles.map((a) => a.slug)),
+    );
+    for (const { article, category } of openedArticles.values()) {
+      if (!present.has(article.slug)) result[category] = [...result[category], article];
+    }
+    return result;
+  }, [query.data, openedArticles]);
 
   return {
     grouped,

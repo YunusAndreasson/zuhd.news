@@ -76,6 +76,10 @@ export function usePreferences(): PreferencesApi {
 // ---------------------------------------------------------------------------
 
 const prefsPromise = getPreferences();
+// Android can recreate the activity while keeping the JS runtime alive (for
+// example after a system font-size change). The eager promise still contains
+// the launch-time values, so preserve edits across a provider remount too.
+let latestPrefs: Preferences | undefined;
 
 export function ThemeProvider({
   children,
@@ -86,12 +90,14 @@ export function ThemeProvider({
 }) {
   const initialPrefs = use(prefsPromise);
   const [prefs, setPrefs] = useState<Preferences>(() => {
-    setHapticsEnabled(initialPrefs.haptics);
-    return initialPrefs;
+    const current = latestPrefs ?? initialPrefs;
+    setHapticsEnabled(current.haptics);
+    return current;
   });
   const systemScheme = useColorScheme();
 
   const persist = useCallback((next: Preferences) => {
+    latestPrefs = next;
     setPrefs(next);
     savePreferences(next);
   }, []);

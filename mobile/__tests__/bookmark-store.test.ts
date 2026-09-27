@@ -72,6 +72,42 @@ afterEach(() => {
 });
 
 describe('bookmark SQLite persistence', () => {
+  it('restores removed stories with their original content, category and save order', () => {
+    const store = loadStore();
+    jest.setSystemTime(1000);
+    store.toggle(article('older'), 'science');
+    jest.setSystemTime(2000);
+    store.toggle(article('newer'), 'tech');
+    const original = [...store.getSnapshot()];
+    const [newer, older] = original;
+    if (!older || !newer) throw new Error('Both stories must be saved');
+    store.toggle(article('older'), 'science');
+    store.toggle(article('newer'), 'tech');
+
+    jest.setSystemTime(3000);
+    expect(store.restore(older)).toBe(true);
+    expect(store.restore(newer)).toBe(true);
+    expect(store.getSnapshot()).toEqual(original);
+    store.flushBookmarks();
+    expect(loadStore().getSnapshot()).toEqual(original);
+  });
+
+  it('does not remove or overwrite a story saved again before undo', () => {
+    const store = loadStore();
+    store.toggle(article('story'), 'science');
+    const removed = store.getSnapshot()[0];
+    if (!removed) throw new Error('Story must be saved');
+    store.toggle(article('story'), 'science');
+    store.toggle({ ...article('story'), title: 'Updated story' }, 'tech');
+    const savedAgain = store.getSnapshot();
+    const listener = jest.fn();
+    store.subscribe(listener);
+
+    expect(store.restore(removed)).toBe(false);
+    expect(store.getSnapshot()).toBe(savedAgain);
+    expect(listener).not.toHaveBeenCalled();
+  });
+
   it('migrates even an empty valid legacy file so migration is one-time', () => {
     mockFiles.set('/doc/zuhd-bookmarks.json', '[]');
     expect(loadStore().getSnapshot()).toEqual([]);

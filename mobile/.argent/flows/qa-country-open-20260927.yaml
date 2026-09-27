@@ -1,0 +1,10 @@
+executionPrerequisite: Android emulator-5554; menu root open at top, large in-app text, system font_scale1.8.
+steps:
+  - tool: gesture-swipe
+    args: {fromX: 0.5, fromY: 0.85, toX: 0.5, toY: 0.4, momentum: false}
+  - tap: {text: country rankings}
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector: {text: population}
+      timeoutMs: 5000

@@ -171,3 +171,25 @@ it('restores a canceled scrub, ends its hold once, and still commits normal rele
   expect(onCommit).toHaveBeenCalledWith(0.8);
   expect(onScrubEnd).toHaveBeenCalledTimes(2);
 });
+
+it('keeps the distance of a vertical drag whose activation arrives late', () => {
+  const onDetentChange = jest.fn();
+  renderHook(() =>
+    MapSheet({
+      peek: 300,
+      full: 700,
+      progress: shared(0),
+      renderList: () => <div />,
+      onDetentChange,
+    }),
+  );
+  act(() => {
+    mockPan.onBegin?.(event({}));
+    // The first delivered event already crossed half the sheet's travel.
+    mockPan.onActivate?.(event({ translationY: -250 }));
+    if (typeof mockPan.onUpdate === 'function') mockPan.onUpdate(event({ translationY: -260 }));
+    mockPan.onDeactivate?.(event({ velocityY: 0, canceled: false }));
+  });
+  expect(spring).toHaveBeenLastCalledWith(0, expect.objectContaining({ velocity: 0 }));
+  expect(onDetentChange).toHaveBeenCalledWith('full');
+});

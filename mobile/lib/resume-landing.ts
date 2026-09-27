@@ -30,6 +30,7 @@ export function resumeLanding({
   coldStart,
   added,
   readerMoved,
+  explicitStory = false,
 }: {
   awayMs: number;
   coldStart: boolean;
@@ -37,7 +38,10 @@ export function resumeLanding({
   added: number;
   /** For a launch: the reader has swiped or jumped since it opened. */
   readerMoved: boolean;
+  /** A notification or link selected a story during this foreground session. */
+  explicitStory?: boolean;
 }): ResumeLanding {
+  if (explicitStory) return 'stay';
   if (coldStart) {
     if (!readerMoved) return 'front';
     return added > 0 ? 'toast' : 'stay';

@@ -1,0 +1,18 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.85
+      toX: 0.5
+      toY: 0.4
+  - tap:
+      text: saved
+  - tool: gesture-swipe
+    delayMs: 1000
+    args:
+      fromX: 0.85
+      fromY: 0.878
+      toX: 0.15
+      toY: 0.878
+executionPrerequisite: "Android emulator-5554. Menu root open at top. Exactly one
+  saved story. Default text size, dark mode."

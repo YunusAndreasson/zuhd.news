@@ -3,6 +3,19 @@ import { RESUME_TOP_AFTER_MS, resumeLanding, unreadNewBehind } from '../lib/resu
 const MIN = 60_000;
 
 describe('resumeLanding', () => {
+  it('keeps a notification selection when a cold or long-return refresh finishes', () => {
+    for (const coldStart of [true, false]) {
+      expect(
+        resumeLanding({
+          awayMs: Infinity,
+          coldStart,
+          added: 4,
+          readerMoved: false,
+          explicitStory: true,
+        }),
+      ).toBe('stay');
+    }
+  });
   it('keeps the place after a short break, and says what arrived', () => {
     expect(resumeLanding({ awayMs: 10 * MIN, coldStart: false, added: 3, readerMoved: true })).toBe(
       'toast',

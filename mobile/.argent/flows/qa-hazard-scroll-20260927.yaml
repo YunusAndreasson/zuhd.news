@@ -1,0 +1,10 @@
+executionPrerequisite: Android emulator-5554; disasters list open with100 rows, large text and font_scale1.8.
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - {tool: gesture-swipe, args: {fromX: 0.5, fromY: 0.86, toX: 0.5, toY: 0.3}, delayMs: 400}
+        - {tool: gesture-swipe, args: {fromX: 0.5, fromY: 0.86, toX: 0.5, toY: 0.3}, delayMs: 400}
+        - {tool: gesture-swipe, args: {fromX: 0.5, fromY: 0.86, toX: 0.5, toY: 0.3}, delayMs: 400}
+        - {tool: gesture-swipe, args: {fromX: 0.5, fromY: 0.86, toX: 0.5, toY: 0.3}, delayMs: 400}
+        - {tool: gesture-swipe, args: {fromX: 0.5, fromY: 0.86, toX: 0.5, toY: 0.3}, delayMs: 400}

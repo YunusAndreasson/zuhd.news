@@ -1,0 +1,8 @@
+executionPrerequisite: Android emulator-5554; menu root open at top, large text and font_scale1.8.
+steps:
+  - tap: {text: world hazards}
+  - tool: await-ui-element
+    args: {condition: visible, selector: {text: disasters}, timeoutMs: 5000}
+  - tap: {text: disasters}
+  - tool: await-ui-element
+    args: {condition: visible, selector: {text: minor alerts}, timeoutMs: 5000}

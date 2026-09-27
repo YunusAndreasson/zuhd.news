@@ -1,16 +1,13 @@
 import type { Article, Category } from '@shared/types';
 import * as Notifications from 'expo-notifications';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { CATEGORIES } from '../constants/theme';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 
 export type GroupedArticles = Record<Category, Article[]>;
 
-/** When a push-notification tap stashed an intent before the JS bundle loaded,
- *  wait until the feed is ready, then dispatch it to the right callback and
- *  clear it. Runs at most once per stashed intent. Two intents are tracked
- *  independently — article slug (breaking-news push) and briefing (daily
- *  briefing push) — so a tap on one doesn't clobber a still-pending other. */
+/** Dispatch each notification tap once after the feed is ready. Missing stories
+ * are resolved by the opener through the per-story endpoint. */
 export function usePendingNotification(
   loading: boolean,
   grouped: GroupedArticles,
@@ -18,12 +15,14 @@ export function usePendingNotification(
   onPlayBriefing?: () => void,
 ): void {
   const response = Notifications.useLastNotificationResponse();
+  const handled = useRef<typeof response>(null);
 
   useEffect(() => {
-    if (loading || !response) return;
+    if (loading || !response || handled.current === response) return;
     const data = response.notification.request.content.data;
     if (data?.kind === 'briefing') {
       if (onPlayBriefing) {
+        handled.current = response;
         onPlayBriefing();
         Notifications.clearLastNotificationResponse();
       }
@@ -32,14 +31,11 @@ export function usePendingNotification(
 
     const slug = typeof data?.slug === 'string' ? data.slug : null;
     if (slug) {
-      const category = categoryOf(slug, grouped);
-      // Keep an unresolved intent around: the first feed attempt may have
-      // failed, and a retry can still supply the requested article.
-      if (category) {
-        onSelectArticle(slug, category);
-        Notifications.clearLastNotificationResponse();
-      }
+      handled.current = response;
+      onSelectArticle(slug, categoryOf(slug, grouped) ?? 'politics');
+      Notifications.clearLastNotificationResponse();
     } else {
+      handled.current = response;
       // The response is not routable by this app; consume it so it cannot be
       // replayed on a later launch.
       Notifications.clearLastNotificationResponse();

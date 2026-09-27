@@ -1,0 +1,10 @@
+steps:
+  - tap:
+      text: Burnham Vows Free Social Care
+  - tool: button
+    args:
+      button: back
+    delayMs: 1200
+executionPrerequisite: Android emulator-5554, zuhd foreground, story sheet
+  collapsed on Burnham Vows Free Social Care, default font scale. Each tap
+  preceded by target discovery.

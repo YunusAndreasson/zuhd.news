@@ -75,19 +75,19 @@ describe('notification response routing', () => {
     expect(routedAt as number).toBeLessThan(clearedAt as number);
   });
 
-  it('retains an unresolved slug and retries when the feed later contains it', () => {
+  it('hands missing stories to the archive opener once, even when the feed changes', () => {
     mockLastResponse = response({ slug: 'late-story' });
     const onSelect = jest.fn();
     const { rerender } = renderHook(
       ({ grouped }) => usePendingNotification(false, grouped, onSelect),
       { initialProps: { grouped: emptyGrouped } },
     );
-    expect(mockClearResponse).not.toHaveBeenCalled();
+    expect(onSelect).toHaveBeenCalledWith('late-story', 'politics');
 
     act(() => {
       rerender({ grouped: { ...emptyGrouped, tech: [article('late-story')] } });
     });
-    expect(onSelect).toHaveBeenCalledWith('late-story', 'tech');
+    expect(onSelect).toHaveBeenCalledTimes(1);
     expect(mockClearResponse).toHaveBeenCalledTimes(1);
   });
 

@@ -20,7 +20,13 @@ const mockPlayer = {
   clearLockScreenControls: jest.fn(),
   setActiveForLockScreen: jest.fn(),
 };
-const mockStatus = { duration: 120, currentTime: 0, playing: false, isLoaded: true };
+let mockStatus = {
+  duration: 120,
+  currentTime: 0,
+  playing: false,
+  isLoaded: true,
+  didJustFinish: false,
+};
 
 jest.mock('expo-audio', () => ({
   useAudioPlayer: () => mockPlayer,
@@ -49,11 +55,44 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockPlayer.currentTime = 0;
   mockPlayer.playing = false;
+  mockStatus = {
+    duration: 120,
+    currentTime: 0,
+    playing: false,
+    isLoaded: true,
+    didJustFinish: false,
+  };
   jest.mocked(Storage.setItem).mockResolvedValue(undefined);
   jest.mocked(AppState.addEventListener).mockImplementation((_event, callback) => {
     resume = callback as typeof resume;
     return { remove: jest.fn() };
   });
+});
+
+it('pauses before rewinding an ended player so the briefing does not loop', async () => {
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  // ExoPlayer keeps playWhenReady true at the end; seeking starts it again
+  // unless pause has first cleared that intent.
+  let playWhenReady = true;
+  mockPlayer.pause.mockImplementationOnce(() => {
+    playWhenReady = false;
+  });
+  mockPlayer.seekTo.mockImplementationOnce(async () => {
+    mockPlayer.playing = playWhenReady;
+  });
+  mockStatus = { ...mockStatus, currentTime: 120, playing: false, didJustFinish: true };
+  await act(async () => {
+    hook.rerender();
+  });
+  expect(mockPlayer.playing).toBe(false);
+  expect(mockPlayer.seekTo).toHaveBeenLastCalledWith(0);
+  expect(hook.result.current.elapsed).toBe(0);
+  expect(hook.result.current.resumable).toBe(false);
+  expect(hook.result.current.state).toBe('idle');
+  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '0');
 });
 
 it.each(['dismiss', 'rotate date', 'unmount'] as const)(

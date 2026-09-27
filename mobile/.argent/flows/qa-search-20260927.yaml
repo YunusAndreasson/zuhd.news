@@ -1,0 +1,12 @@
+steps:
+  - tap:
+      x: 0.5
+      y: 0.616
+  - tap:
+      text: Search stories
+  - tool: keyboard
+    args:
+      text: Iran
+executionPrerequisite: Android emulator-5554, current development build. Menu
+  open and scrolled to bottom, search visible at y .616. Expo Tools overlay
+  disabled.

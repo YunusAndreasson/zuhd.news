@@ -1,0 +1,21 @@
+executionPrerequisite: Android emulator-5554, Rights Group Presses Nigeria's Bank expanded at its headline, app text size large, no modal open.
+steps:
+  - echo: Expanded story at its headline; scroll to the sources.
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.8
+      toX: 0.5
+      toY: 0.4
+      durationMs: 350
+  - tool: button
+    args:
+      button: back
+    delayMs: 1200
+  - echo: Collapsed story must show its headline again.
+  - tool: describe
+    delayMs: 1200
+  - tap:
+      text: Rights Group Presses Nigeria's Bank
+  - tool: describe
+    delayMs: 1200

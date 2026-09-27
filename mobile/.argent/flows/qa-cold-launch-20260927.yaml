@@ -1,0 +1,12 @@
+executionPrerequisite: Android emulator-5554 running; news.zuhd.app debug build installed. Metro8081 and adb reverse active.
+steps:
+  - tool: restart-app
+    args: {bundleId: news.zuhd.app}
+  - tool: open-url
+    args:
+      url: exp+zuhd-news://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector: {text: Menu}
+      timeoutMs: 20000

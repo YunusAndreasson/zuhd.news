@@ -5,7 +5,7 @@ import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-import { FLAG, OPACITY, SPACING } from '../constants/theme';
+import { FLAG, MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useTheme } from '../hooks/useTheme';
 import { parseSeverityHero } from '../lib/gdacs';
@@ -125,7 +125,13 @@ function MoreRow({
       accessibilityRole="button"
       accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank} of ${total}` : ''}`}
     >
-      <RNText style={[styles.rankCol, rankStyle]}>{hasRank ? `#${rank}` : ''}</RNText>
+      <RNText
+        style={[styles.rankCol, rankStyle]}
+        numberOfLines={1}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+      >
+        {hasRank ? `#${rank}` : ''}
+      </RNText>
       <PercentileStrip rank={rank} total={total} isTop={isTopRank} />
       <Text variant="labelSm" style={styles.moreLabel} numberOfLines={1}>
         {label}

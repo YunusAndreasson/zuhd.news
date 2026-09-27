@@ -66,13 +66,10 @@ const ANNOTATION_LABEL_GAP = SPACING.sm;
 const REFERENCE_LABEL_STEP = 8;
 const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
 const CHART_BOTTOM_PAD = 14;
-// 56, not 44. This is both the plot's right inset and the width of the box the
-// range labels live in, and 44 could not hold one: "$78,317.8" is a single
-// token with nowhere to break, so it simply ran off the edge, and "4,599.4
-// $/oz" wrapped to a second line the box then clipped through the middle of
-// the glyphs. 56 fits the widest label the live payloads produce on one line
-// (a seven-figure currency reading) and costs ~4% of the plot width.
-const CHART_RIGHT_PAD = 56;
+// Share the plot inset with the labels' width. Seven-figure market readings
+// need room at the large in-app text setting too; put units on their own row
+// so neither the number nor its unit runs into the chart edge.
+const CHART_RIGHT_PAD = 72;
 const CHART_LEFT_PAD = 2;
 const MAX_SERIES = 3;
 const SCRUB_LABEL_W_SINGLE = 96;
@@ -763,12 +760,12 @@ export const TrendBlock = memo(function TrendBlock({
                   can ever reach a third line and clip again. */}
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                 <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(max, unit)}
+                  {formatBlockNumber(max, unit).replace(' ', '\n')}
                 </Text>
               </View>
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
                 <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(min, unit)}
+                  {formatBlockNumber(min, unit).replace(' ', '\n')}
                 </Text>
               </View>
               {/* On the line, at its left end, rather than in the right gutter:
@@ -879,6 +876,9 @@ const styles = StyleSheet.create({
     paddingRight: 2,
   },
   yAxisText: {
+    // Constrain the text itself: Android otherwise lets an unbroken number
+    // overflow this flex-end container instead of wrapping its unit.
+    width: '100%',
     lineHeight: LABEL_ROW_HEIGHT,
     textAlign: 'right',
   },

@@ -1,0 +1,30 @@
+executionPrerequisite: Android emulator-5554; home sheet collapsed, first story selected, large text, font_scale1.8. No modal.
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.85, fromY: 0.78, toX: 0.15, toY: 0.78, durationMs: 180}, delayMs: 350}
+  - tool: describe
+    args: {}
+  - tool: run-sequence
+    args:
+      steps:
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}
+        - {tool: gesture-swipe, args: {fromX: 0.15, fromY: 0.78, toX: 0.85, toY: 0.78, durationMs: 180}, delayMs: 350}

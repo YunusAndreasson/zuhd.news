@@ -1,0 +1,80 @@
+QA setup 2026-09-27
+Argent skills read from /home/yunus/.claude/skills (device-interact, android-emulator-setup, react-native-app-workflow, metro-debugger, test-ui-flow, create-flow).
+Current git HEAD 6b24acec; existing package.json/package-lock.json changes predate this session.
+Android debug build successful: ./gradlew :app:assembleDebug -PreactNativeArchitectures=x86_64 (571 tasks).
+Reinstalled via Argent. Current Metro root confirmed /home/yunus/Work/zuhd.news/mobile and Hermes debugger connected.
+Baseline: typecheck, Biome (361 files), API checker passed. npm test -- --runInBand outside sandbox passed all 86 suites / 805 tests.
+Default Argent boot aborted SIGABRT. Headless emulator initially worked, then exited 137 following simulator server stop. Restarted visible host-GPU emulator session 48745 with audio, cold boot and snapshot-save disabled. Must check its current state.
+Metro session 17357 on port 8081; started by this agent.
+Expo Tools floating action button intercepts menu area; need disable before UI testing. Dev menu Compose accessibility coordinates stale after sheet drag (describe returned pre-drag frames); do not tap using them. Pref is showFab in expo.modules.devmenu.sharedpreferences.
+App dev URL exp+zuhd-news://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081 succeeded. zuhd-news scheme initially failed on pre-reinstall client; native manifest now includes both.
+Scope outstanding: main news deck / refresh / long stories / sources; search and saved lifecycle; menus, markets, countries and charts; briefing playback/lifecycle; links, offline recovery; settings including large text, light/dark, reduced motion; repeated navigation and gesture stress; runtime log review; fix and verify all discovered issues.
+
+Updated verified state:
+- Visible emulator session 48745: emulator -avd zuhd-qa -gpu host -no-snapshot-load -no-snapshot-save. Audio enabled. KVM supported. Startup logged a hardware-rendering compatibility warning, then supportsNativeGLES=1 and completed boot; do not claim representative device performance without further graphics verification.
+- Metro persistent TTY session 45983 replaced stopped session 17357. Verify live before reusing.
+- Android native logcat capture session 20882 writes /tmp/zuhd-qa-native-20260927.log.
+- JS logger /home/yunus/.argent/tmp/argent-logs-8081-1790502667738.log; 0 entries at baseline.
+- Disabled showFab in emulator app's expo.modules.devmenu.sharedpreferences.xml and restarted with Argent. Verified menu opens and no Tools overlay appears.
+- Disabled Android secure stylus_handwriting_enabled (was unset/default). show_ime_with_hard_keyboard already 1. Verified full normal keyboard and native sheet resizing with keyboard open.
+- Search Iran returned 3 stories. Selected Iran Threatens Hormuz Charterers while keyboard open: sheet and keyboard dismissed, correct story expanded at position 3/39. Scrolled to footer; sources/save/share visible.
+- Current app state: expanded Iran Threatens Hormuz Charterers story, scrolled to footer.
+- Recorded .argent/flows/qa-search-20260927.yaml. NOT replay-verified. First search tap kept coordinates because recorder's text selector matched a different element. Other steps: Search stories selector, keyboard Iran. This recording predates the normal-keyboard setting; verify prerequisite/re-record before replay.
+- Argent debugger-component-tree gives wrong vertical coordinates inside native sheets (missing sheet offset). Prefer describe there; it agreed with visible app menu/search layout. Expo dev menu Compose tree failed to update after expanding its sheet; do not trust its stale frames.
+- No application code changed in this session yet. Full QA scope remains active; baseline checks alone do not prove completion.
+
+Verified fixes and progress (12:51):
+- Saved page swipe removal had no recovery. Added persistent-in-page batch Undo and screen-reader announcements. Store restore preserves savedAt/order and is idempotent; reader Undo uses it too. Removed and restored final saved story in emulator. .argent/flows/qa-saved-settings-20260927.yaml replay verified after native-sheet settle delay.
+- Android system font-scale recreation reset ThemeProvider to stale launch preferences. Preserve last edited preferences across provider remount. Regression test covers appearance, font size/family, haptics. Verified light+large survive font_scale 2.0 -> 1.8 and a full Argent app restart.
+- MERVAL chart range labels clipped seven-figure values with large in-app text. Expanded shared plot gutter to72dp, constrained text width, split units onto second row. Verified complete min/max in same screen. Before/after images saved here.
+- Full npm run verify passed: typecheck, Biome362 files, API checker, 87 suites808 tests. This full run preceded last chart layout-only edit; targeted chart checks run afterwards.
+- Large-text menu and settings scrolling work; market falling filter excludes rising stocks; market detail opens correctly.
+- Current app state: Argentina MERVAL detail, light appearance, large in-app text; Android system font_scale1.8 (original1.0). Emulator and Metro ongoing.
+- qa-open-settings-20260927 flow is NOT reliable: swipe timing after native-sheet transitions can miss despite successful gesture calls. Last run failed selector and was stopped; do not trust it as a regression test. Manual discovery used for current market checks.
+- Native log fatal at12:14:46 belongs to com.argent.androiddevtools idle watchdog disconnect, not news.zuhd.app. Argent discovery subsequently works. No app fatal/ANR found in capture.
+- Remaining QA scope: broad markets/countries/hazards, briefing/audio lifecycle, offline recovery, links, repeated news/globe gesture stress, notifications/other settings. Goal remains active.
+
+Briefing and offline QA (13:06):
+- Briefing starts, pause holds at0:27, seek to midpoint4:45 works. Android media_session confirms PLAYING and correct Daily Briefing metadata.
+- Sent app to background with Argent Home, confirmed native PLAYING with advancing position, launch-app returned with matching elapsed time. Paused and hid at6:12.
+- Airplane mode enabled via Android unsupported-device-setting command; dumpsys confirms Active default network:none. Cached stories swipe/read correctly. Pull-to-refresh shows Could not refresh while preserving current story.
+- Disabled airplane mode; Active default network103. Same recorded pull-refresh yields Already up to date. Connection recovered without restart.
+- Cold-launch flow replay passes with actual Menu await. Header Resume daily briefing,3min left; play starts from saved6:12. Light/large preferences retained.
+- Found and fixed automatic briefing replay at completion: ExoPlayer retains playWhenReady when ended; rewind without pause restarts audio. Pause before seekTo(0). Regression test models this behavior (8 briefing tests pass), typecheck and Biome pass.
+- Recorded qa-briefing-finish-20260927 flow: paused -> play -> seek9:25 -> wait12s. Replay verified post-fix: bar dismisses, Daily briefing10min returns, no native PLAYING state. New listen starts at0:00. Hid/paused after checking.
+- Current state: home collapsed, light+large, font_scale1.8, online, briefing hidden/paused. Emulator/Metro/debugger remain available for further QA. Remaining: menus/countries/hazards, deep links, more gesture/navigation stress and settings edge cases.
+
+Countries/hazards/links QA (13:15):
+- Found menu pages shared native scroll offset: country rankings opened at life expectancy, hiding population. Key SheetScrollView by page so each new page starts at top. qa-country-open flow replays scrolled-root -> rankings and asserts population visible. Typecheck/Biome pass.
+- Found uncapped country rank RNText wrapping #11 across lines at font_scale1.8+large. Use existing MAX_FONT_SCALE.tabular and one line. Verified India density rank now intact.
+- India population list -> country -> density ranking highlights India at11; Android Back returns to India. Repeated Back returns through prior pages to root.
+- Repeated swipes through100 disaster rows produced no blank list. North Indian Ocean earthquake detail opens with complete magnitude/depth/source.
+- Found long disaster header covered Back control. SheetHandle string titles now reserve symmetric side space and wrap within3 lines. Verified long earthquake title and visible working Back.
+- Navigation concern still to address: Back from deep disaster detail returns list to TOP, losing its deep scroll position (not fixed yet). Need preserve page-specific list offsets when traversing detail pages, rather than conflating with new-page scroll reset.
+- Missing-story link zuhd-news://a/qa-missing-story-20260927 closes menu and shows That story is no longer available.
+- Valid live-feed link zuhd-news://a/2026-09-26-apple-taction-haptics-patent-5-7-billion selects/expands Apple Owes$5.7Billion and focuses San Diego. Current app state expanded Apple story, online, light/large/font_scale1.8.
+- Remaining: preserve list scroll on Back; other hazards/country cards, malformed links, repeated globe/deck stress, settings/notifications, final validation and setup cleanup.
+
+List-return fix (13:24):
+- Returning from details now retains the originating market/hazard list's native viewport and virtualized window behind the detail, with original measured height, opacity0, no touch and no accessibility descendants. Avoids rebuilding/clamping deep scroll to first render batch. No full-list rendering fallback.
+- Verified deep disaster -> earthquake detail -> Back: all visible button labels AND normalized frames match exactly before/after. Verified market falling filter -> Argentina detail -> Back: same filter visually selected and all visible rows/frames unchanged.
+- Earlier contentOffset/restore-hook implementations were discarded after emulator checks exposed initial-batch clamping; current implementation has no offset timers or restoration retries.
+- Current state: stock markets, falling filter, large/light, font_scale1.8, online; no audio playing. Full verify running session73306, output/tmp/zuhd-qa-verify-final-pass.log.
+- Remaining: broader globe/deck gesture stress, settings notification permission/large-system font, other hazard types, final regression audit and restore emulator test settings/cleanup.
+- Current complete verification: typecheck, Biome362, API scanner pass. Jest86 suites808 tests pass in sandbox; sole failure was subprocess EPERM in check-deprecated-apis test. Reran that specific test outside sandbox, passed. All87 suites809 tests thus verified on current code.
+
+Permission and gesture QA (13:33):
+- Notification permission was originally granted at OS level, preferenceoff. Enable/disable switches work. Revoked OS permission for test, restarted, denied native prompt: original implementation immediately opened OS Settings, overriding denial. Fixed to remain in app with inline explanation and explicit Open device settings action.
+- Verified denial after fix, explicit settings action -> Android Notifications -> grant -> return -> enable. Explanation/action disappear on successful enable. Restored app preferenceoff and original OS permissiongranted.
+- Corrected new action trailing icon to MenuRow's 'leave' (initial 'external' value briefly caused Text strings must be rendered error at13:29; fixed before finishing). Typecheck/Biome pass after final correction.
+- Native push registration fails: FirebaseApp is not initialized; app.json has no android.googleServicesFile and no google-services.json found in project/downloads. google-service-account.json is Play submission credentials, not Firebase app configuration. Asked user asynchronously for Firebase config/project. Actual push delivery remains unverified and needs configuration; do not claim notifications end-to-end passed.
+- Settings flow now uses explicit menu readiness and momentum:false scrolls; replay verified twice. Show tips again closes sheet and displays toast correctly.
+- Deck flow20 swipes (10each direction): midpoint story10/34, finalstory1/34; no blank deck/stuck gesture. Rapid gestures can coalesce; do not claim every swipe registered. Ran roundtrip twice.
+- Globe pinch out to full sphere, drag across hemisphere, pinch in toArctic all worked; selectedstory stayedBurnham; reading sheet undisturbed. Current state homecollapsed, zoomedArctic, light/large/font_scale1.8, online,notificationsoff.
+- Remaining: Firebase config/push; further marker selection discovery, final coverage audit/cleanup. Existing suite809 passed before newest notification UI change; finalchange typecheck/Biome pass.
+
+Audit (13:47):
+- Final unrestricted npm run verify session19172 exited0: all87 suites809 tests; typecheck/Biome362/API checker pass.
+- QA report written perf/qa-20260927/REPORT.md with fixes, covered flows, limitations and Firebase blocker.
+- Restored Android font_scale1.0 and app default text/dark/SourceSans/notificationsoff. OS notification permissiongranted (original), airplaneoff. Normalkeyboard/devmenuoverlay preferences retained for QA.
+- Goal not complete: actual Android push registration/delivery requires missing Firebase app config. User question remains pending. Firebase blocker present for two goal turns, but this turn still made meaningful progress (verification/report/restoration), so not markedblocked yet.

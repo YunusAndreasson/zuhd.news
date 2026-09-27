@@ -1,0 +1,8 @@
+executionPrerequisite: Android emulator-5554, menu root open and settled at its top, default text size.
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.85
+      toX: 0.5
+      toY: 0.4

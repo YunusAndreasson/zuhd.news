@@ -53,7 +53,8 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
             // different tier from every lowercase title beside it.
             <Text
               variant="label"
-              style={tightTitle}
+              style={[styles.textTitle, tightTitle]}
+              numberOfLines={3}
               accessibilityRole="header"
               accessibilityLabel={title}
             >
@@ -101,6 +102,13 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     justifyContent: 'center',
+  },
+  textTitle: {
+    flexShrink: 1,
+    // Both sides stay clear even when only Back is present, keeping the
+    // heading centered without long event names covering either control.
+    marginHorizontal: SPACING.screenPadding + LAYOUT.controlHeight,
+    textAlign: 'center',
   },
   action: {
     position: 'absolute',

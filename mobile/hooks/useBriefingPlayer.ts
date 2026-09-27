@@ -489,6 +489,11 @@ export function useBriefingPlayer(
       setResumable(false);
       setHasPlayer(false);
       void Storage.setItem(POSITION_KEY, '0');
+      // ExoPlayer retains playWhenReady at the end. Seeking an ended player
+      // back to zero without pausing starts the briefing again immediately.
+      try {
+        player.pause();
+      } catch {}
       player.seekTo(0).catch(() => {});
       try {
         player.clearLockScreenControls();

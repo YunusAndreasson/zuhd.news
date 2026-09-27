@@ -268,7 +268,10 @@ export function MapSheet({
         // A tap or a horizontal swipe must leave its animation running.
         cancelAnimation(offset);
         dragStart.value = offset.value;
-        dragStartY.value = e.translationY;
+        // A busy frame can deliver activation well past the claim threshold.
+        // Discard only the slop, not the real drag already made by the finger.
+        dragStartY.value =
+          Math.sign(e.translationY) * Math.min(Math.abs(e.translationY), CLAIM_SLOP);
       },
       onUpdate: (e: { translationY: number }) => {
         'worklet';
